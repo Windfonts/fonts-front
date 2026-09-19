@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>字体库 · 文风字体</title>
   <link rel="stylesheet" href="css/wenfeng.css" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-fonts">
   <header class="site-chrome">
@@ -73,6 +74,11 @@
     <div class="preview-input-wrap">
       <input type="text" id="specimenText" placeholder="输入文字，即时预览" value="文风字体" aria-label="即时预览" />
     </div>
+    <div class="specimen-presets" role="group" aria-label="样句预设">
+      <button type="button" data-preset="文风字体，字里行间">标题</button>
+      <button type="button" data-preset="永远相信，美好的事情即将发生。0123456789">段落</button>
+      <button type="button" data-preset="WenFeng 文风 Aa 永漫">品牌</button>
+    </div>
     <div class="size-slider">
       <span>12</span>
       <input type="range" id="specimenSize" min="12" max="108" value="44" aria-label="字号" />
@@ -80,6 +86,8 @@
       <span class="size-val" data-size-val>44px</span>
     </div>
   </div>
+
+  <div class="license-chips" id="licenseChips" role="group" aria-label="许可筛选"></div>
 
   <p class="fonts-count" id="fontsCountLabel">共找到 <strong id="fontCountTotal">—</strong> 个字体，已显示 <strong id="fontCountShown">0</strong> 个</p>
 
@@ -116,6 +124,14 @@
         });
         mainText.addEventListener('input', function () { floatText.value = mainText.value; });
       }
+      document.querySelectorAll('[data-preset]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const v = btn.getAttribute('data-preset') || '';
+          if (mainText) mainText.value = v;
+          if (floatText) floatText.value = v;
+          WFProto.setSample(v);
+        });
+      });
       if (floatSize && mainSize) {
         floatSize.value = mainSize.value;
         floatSize.addEventListener('input', function () {

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>字体详情 · 文风字体</title>
   <link rel="stylesheet" href="css/wenfeng.css" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-detail">
   <header class="site-chrome">
@@ -122,7 +123,10 @@
                 '<label>文字色 <input type="color" id="textColor" value="#18181b" aria-label="文字色" /></label>' +
                 '<label>背景色 <input type="color" id="bgColor" value="#ffffff" aria-label="背景色" /></label>' +
               '</div>' +
-              '<div class="preview-input-wrap">' +
+              '<div class="preview-input-wrap detail-presets">' +
+                '<button type="button" class="preset-mini" data-preset="文风字体，字里行间">标题</button>' +
+                '<button type="button" class="preset-mini" data-preset="永远相信，美好的事情即将发生。0123456789">段落</button>' +
+                '<button type="button" class="preset-mini" data-preset="WenFeng 文风 Aa 永漫">品牌</button>' +
                 '<input type="text" id="detailText" value="文风字体" placeholder="即时预览" aria-label="即时预览" />' +
               '</div>' +
               '<div class="preview-pane-wrap">' +
@@ -158,6 +162,14 @@
         text.addEventListener('input', function () {
           pane.textContent = text.value || '文';
           WFProto.setSample(text.value);
+        });
+        document.querySelectorAll('[data-preset]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            const v = btn.getAttribute('data-preset') || '';
+            text.value = v;
+            pane.textContent = v || '文';
+            WFProto.setSample(v);
+          });
         });
         size.addEventListener('input', function () {
           pane.style.fontSize = size.value + 'px';

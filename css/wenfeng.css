@@ -1657,3 +1657,71 @@ body.page-docs { background: var(--wf-white); }
   .docs-sidebar nav { flex-direction: row; flex-wrap: wrap; }
   .upload-fields { grid-template-columns: 1fr; }
 }
+
+/* ── 许可筛选条（fonts.html）────────────────────────────── */
+.license-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
+.license-chips:empty { display: none; }
+.lic-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--wf-zinc-700);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--wf-zinc-300);
+  font: inherit;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: border-color var(--ease) 0.15s, color var(--ease) 0.15s, background var(--ease) 0.15s;
+}
+.lic-chip:hover { border-color: var(--wf-zinc-400); color: var(--wf-white); }
+.lic-chip.is-active {
+  background: var(--wf-white);
+  border-color: var(--wf-white);
+  color: var(--wf-zinc-900);
+}
+.lic-chip .lic-n {
+  font-size: 0.6875rem;
+  color: inherit;
+  opacity: 0.55;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── 样句预设（列表工具条 + 详情页）─────────────────────── */
+.specimen-presets {
+  display: inline-flex;
+  gap: 0.375rem;
+}
+.specimen-presets button,
+.preset-mini {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--wf-zinc-700);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--wf-zinc-400);
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: border-color var(--ease) 0.15s, color var(--ease) 0.15s;
+}
+.specimen-presets button:hover,
+.preset-mini:hover { border-color: var(--wf-zinc-400); color: var(--wf-white); }
+.detail-presets {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+}
+.detail-presets input[type="text"] { flex: 1 1 12rem; }
+@media (max-width: 640px) {
+  .specimen-presets { display: none; } /* 窄屏收预设，浮条仍可输入 */
+  .fonts-toolbar { flex-wrap: wrap; }
+}

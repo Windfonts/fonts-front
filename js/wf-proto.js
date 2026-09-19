@@ -171,10 +171,21 @@
     document.head.appendChild(link);
   }
 
-  function matchFilter(font, tag, keyword) {
+  /** 许可档位归并（对齐许可字典口径：免费商用单列，联系/付费并「需授权」，空=待核实） */
+  function licenseTier(font) {
+    const t = String((font && font.license) || '').trim();
+    if (t === '免费商用') return '免费商用';
+    if (t === '联系授权' || t === '付费授权') return '需授权';
+    if (t === '个人免费') return '个人免费';
+    return '待核实';
+  }
+
+  function matchFilter(font, tag, keyword, license) {
     const tagQ = (tag || '').trim();
     const kw = (keyword || '').trim().toLowerCase();
+    const licQ = (license || '').trim();
     let ok = true;
+    if (ok && licQ && licenseTier(font) !== licQ) ok = false;
     if (tagQ) {
       const t = tagQ.toLowerCase();
       const tags = (font.tags || []).map(function (x) { return String(x).toLowerCase(); });
@@ -201,7 +212,8 @@
   function filterCatalog(opts) {
     const tag = (opts && opts.tag != null) ? opts.tag : getQuery('tag');
     const keyword = (opts && opts.keyword != null) ? opts.keyword : getQuery('keyword');
-    return catalog.filter(function (f) { return matchFilter(f, tag, keyword); });
+    const license = (opts && opts.license != null) ? opts.license : getQuery('license');
+    return catalog.filter(function (f) { return matchFilter(f, tag, keyword, license); });
   }
 
   function inferLanguage(font) {
@@ -383,6 +395,8 @@
         const params = new URLSearchParams();
         if (v) params.set('keyword', v);
         if (tag) params.set('tag', tag);
+        const cur = (window.WFFontsList && window.WFFontsList.getFilter) ? window.WFFontsList.getFilter() : {};
+        if (cur.license) params.set('license', cur.license);
         const q = params.toString();
         if (document.body.classList.contains('page-fonts') && window.WFFontsList) {
           const url = location.pathname + (q ? '?' + q : '');
@@ -399,6 +413,14 @@
       input.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') { e.preventDefault(); go(); }
       });
+      // 列表页：输入即搜（220ms 防抖），回车仍保留
+      if (document.body.classList.contains('page-fonts')) {
+        let debounce = null;
+        input.addEventListener('input', function () {
+          clearTimeout(debounce);
+          debounce = setTimeout(go, 220);
+        });
+      }
       if (clearBtn) {
         const syncClear = function () {
           clearBtn.hidden = !(input.value || '').trim();
@@ -449,6 +471,42 @@
       let shown = 0;
       let tag = getQuery('tag');
       let keyword = getQuery('keyword');
+      let license = getQuery('license');
+
+      function syncUrl() {
+        const params = new URLSearchParams();
+        if (keyword) params.set('keyword', keyword);
+        if (tag) params.set('tag', tag);
+        if (license) params.set('license', license);
+        const q = params.toString();
+        history.replaceState(null, '', location.pathname + (q ? '?' + q : ''));
+      }
+
+      function renderLicenseChips() {
+        const box = document.getElementById('licenseChips');
+        if (!box) return;
+        const order = ['免费商用', '需授权', '个人免费', '待核实'];
+        const counts = {};
+        catalog.forEach(function (f) {
+          const t = licenseTier(f);
+          counts[t] = (counts[t] || 0) + 1;
+        });
+        const chips = [{ key: '', label: '全部', n: catalog.length }]
+          .concat(order.filter(function (t) { return counts[t]; })
+            .map(function (t) { return { key: t, label: t, n: counts[t] }; }));
+        box.innerHTML = chips.map(function (c) {
+          return '<button type="button" class="lic-chip' + (license === c.key ? ' is-active' : '') +
+            '" data-lic="' + escapeHtml(c.key) + '">' + escapeHtml(c.label) +
+            ' <span class="lic-n">' + c.n + '</span></button>';
+        }).join('');
+        box.querySelectorAll('[data-lic]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            license = btn.getAttribute('data-lic') || '';
+            syncUrl();
+            refresh();
+          });
+        });
+      }
 
       function updateCount() {
         const total = filtered.length;
@@ -535,7 +593,7 @@
       }
 
       function resetAndRender() {
-        filtered = filterCatalog({ tag: tag, keyword: keyword });
+        filtered = filterCatalog({ tag: tag, keyword: keyword, license: license });
         shown = 0;
         listEl.innerHTML = '';
         highlightTags();
@@ -551,11 +609,14 @@
         if (next) {
           if (next.tag != null) tag = next.tag;
           if (next.keyword != null) keyword = next.keyword;
+          if (next.license != null) license = next.license;
         } else {
           tag = getQuery('tag');
           keyword = getQuery('keyword');
+          license = getQuery('license');
         }
         resetAndRender();
+        renderLicenseChips();
       }
 
       if (loadMoreBtn) {
@@ -573,7 +634,8 @@
       window.WFFontsList = {
         refresh: refresh,
         loadMore: appendPage,
-        getFiltered: function () { return filtered.slice(); }
+        getFiltered: function () { return filtered.slice(); },
+        getFilter: function () { return { tag: tag, keyword: keyword, license: license }; }
       };
 
       return loadCatalog().then(function () {
