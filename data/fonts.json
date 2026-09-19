@@ -20,7 +20,16 @@
   "description": "阿里巴巴普惠体是阿里巴巴集团于2019年正式发布的一款免费商用中文字体，旨在为中小商家、设计师及普通用户提供一套合法、优质且免费的中文字体解决方案。该字体由阿里巴巴设计与汉仪字库合作开发，包含Light、Regular、Medium、Bold、Heavy等多种字重。字体设计采用现代简洁的笔画，造型偏瘦长，重心提高，以体现年轻感。针对不同字重，细节处理有所区别：较细的L/R/M字重更适合长文阅读，保留了口字的出脚以平衡阅读流畅感；较粗的B/H字重则切除了出脚，更适用于标题场景，以体现块面感。字体支持多语言，包含大量字符，可满足全球化业务下的多种应用场景需求。",
   "license": "免费商用",
   "licenseName": "阿里巴巴普惠体授权协议",
+  "licenseUrl": "",
+  "copyright": "Copyright ?2019 Alibaba (China) Co., Ltd. All rights reserved.",
   "foundry": "Alibaba Design;Hanyi Fonts",
+  "brand": {
+   "name": "Alibaba Design;Hanyi Fonts",
+   "slug": "alibaba-designhanyi-fonts",
+   "logoUrl": "",
+   "website": "",
+   "description": "Alibaba Design;Hanyi Fonts出品的字体"
+  },
   "releaseYear": 2019,
   "version": "1.0.0",
   "languages": [
@@ -36,7 +45,10 @@
    "UI/UX界面",
    "广告海报",
    "办公文档"
-  ]
+  ],
+  "charCount": 28937,
+  "glyphCount": 28987,
+  "viewCount": 190
  },
  {
   "id": "30c6ed1b-15aa-4ab1-8bb8-d11da053e5fc",
@@ -56,7 +68,16 @@
   "description": "AliHYAiHei（阿里汉仪智能黑体）是由汉仪字库与阿里巴巴人机自然交互实验室合作开发的首款人工智能字体。该字体通过机器学习算法生成，并结合设计师人工干预优化，最终完成了包含6763个字符的标准字库。其设计风格方正挺拔，笔画刚中带柔，融入了手写笔势，具有强烈的视觉对话感和通用性，特别适用于电商广告、品牌推广、UI界面等数字营销场景。字体重心较高，形态年轻，旨在满足阿里巴巴平台生态系统的多样化业务需求。",
   "license": "免费商用",
   "licenseName": "阿里巴巴普惠字体授权",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "Hanyi Fonts",
+  "brand": {
+   "name": "Hanyi Fonts",
+   "slug": "hanyi-fonts",
+   "logoUrl": "",
+   "website": "",
+   "description": "Hanyi Fonts出品的字体"
+  },
   "releaseYear": 2019,
   "version": "5.0.0",
   "languages": [
@@ -68,7 +89,10 @@
    "用户界面(UI)",
    "屏幕显示",
    "营销文案"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 1
  },
  {
   "id": "521ff9df-f6dd-49c6-9a96-2dcc75e2ea10",
@@ -89,7 +113,16 @@
   "description": "阿里妈妈东方大楷是一款基于唐代书法家颜真卿《多宝塔碑》风格，通过算法生成并结合人工优化完成的楷书字体。该字体运用机器学习技术捕捉了颜体丰腴厚重的神韵，在笔画处理上实现了传统书法中的收放起伏，规范了字形骨架与笔画结构，还原了落笔、转笔、藏锋、护尾等书法韵味，使整体风格饱满、圆融、浑厚。字库包含简体中文字符（GB2312标准，共6763个汉字）、英文字母及常用标点符号，总计7043个字符。",
   "license": "免费商用",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "Alibaba Design",
+  "brand": {
+   "name": "Alibaba Design",
+   "slug": "alibaba-design",
+   "logoUrl": "",
+   "website": "",
+   "description": "Alibaba Design出品的字体"
+  },
   "releaseYear": 2023,
   "version": "1.0.0",
   "languages": [
@@ -102,7 +135,10 @@
    "电商广告",
    "书籍封面",
    "传统艺术相关设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 8
  },
  {
   "id": "6aa493e6-b4d7-47ab-a8a2-e4ded64bec3b",
@@ -122,7 +158,16 @@
   "description": "Alimama DaoLiTi (阿里妈妈刀隶体) 是由阿里巴巴设计团队（Alibaba Design）联合多位设计师（包括洪良奋、刘川、韩晓明、陈扬坚、龚伟、易思、李牧）共同开发的一款免费商用中文字体。其设计灵感来源于中国传统隶书，但通过现代设计手法进行了简化与重构，融合了隶书的古朴韵味与黑体（无衬线体）的清晰易读性。字体笔画保留了隶书特有的蚕头燕尾特征，但处理得更为简洁硬朗，转折处带有明显的刀刻感，整体风格兼具传统书法美感和现代设计的几何感与力量感。该字体适用于需要体现文化底蕴、传统韵味或力量感的品牌宣传、标题设计、包装设计、电商广告等场景。",
   "license": "免费商用",
   "licenseName": "Alibaba Font License (免费商用)",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "Alibaba Design",
+  "brand": {
+   "name": "Alibaba Design",
+   "slug": "alibaba-design",
+   "logoUrl": "",
+   "website": "",
+   "description": "Alibaba Design出品的字体"
+  },
   "releaseYear": 2023,
   "version": "1.0.0",
   "languages": [
@@ -136,7 +181,10 @@
    "包装设计",
    "电商广告",
    "文化类设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 3
  },
  {
   "id": "606513af-318f-4db7-b30d-326d7639c8f6",
@@ -156,7 +204,16 @@
   "description": "阿里妈妈数黑体是由阿里巴巴设计团队开发的一款免费商用中文字体。其字型饱满，布白现代，落笔厚实简练，属于现代黑体风格。该字体包含了超过7000个字符，覆盖GB2312标准，兼顾了通用性与时尚感。它适用于电商广告、品牌主视觉、促销物料等多种商业设计场景，是AI人机协同设计的典范之一。",
   "license": "免费商用",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "Copyright ?2022 Alibaba (China) Co., Ltd. All rights reserved.",
   "foundry": "Alibaba Design",
+  "brand": {
+   "name": "Alibaba Design",
+   "slug": "alibaba-design",
+   "logoUrl": "",
+   "website": "",
+   "description": "Alibaba Design出品的字体"
+  },
   "releaseYear": 2022,
   "version": "1.0.0",
   "languages": [
@@ -169,7 +226,10 @@
    "促销物料",
    "网页标题",
    "商业海报"
-  ]
+  ],
+  "charCount": 6991,
+  "glyphCount": 7027,
+  "viewCount": 48
  },
  {
   "id": "8a8e2c91-f8b5-4025-ab4f-ecae780c78ca",
@@ -189,7 +249,16 @@
   "description": "Droid Sans Fallback is a sans-serif typeface designed by Steve Matteson for Ascender Corporation as part of the Droid font family, originally commissioned by Google for the Android operating system. It was released in 2007. The primary purpose of the 'Fallback' variant is to provide extensive character coverage, particularly for East Asian languages (Chinese, Japanese, Korean), within the same visual style as Droid Sans. This makes it a functional 'fallback' font for user interfaces and electronic communication, ensuring text is displayed even when the primary font lacks the necessary glyphs. Its design is a humanist sans-serif, prioritizing clarity and readability on screens. The font is distributed under the Apache License, Version 2.0.",
   "license": "免费商用",
   "licenseName": "Apache 2.0",
+  "licenseUrl": "",
+  "copyright": "Digitized data copyright  2007, Google Corporation.",
   "foundry": "Ascender Corporation",
+  "brand": {
+   "name": "Ascender Corporation",
+   "slug": "ascender-corporation",
+   "logoUrl": "",
+   "website": "",
+   "description": "Ascender Corporation出品的字体"
+  },
   "releaseYear": 2007,
   "version": "1.0.0",
   "languages": [
@@ -202,7 +271,10 @@
    "操作系统默认字体",
    "网页开发后备字体",
    "电子文档显示"
-  ]
+  ],
+  "charCount": 29436,
+  "glyphCount": 43681,
+  "viewCount": 1
  },
  {
   "id": "2b7ea0e7-71fa-4c27-9f31-001701d0b416",
@@ -223,7 +295,16 @@
   "description": "Potta One 是一款日系开源免费字体，由设计师108go（108_）创作，Font Zone 108发布。其设计风格独特，笔画粗壮，字形圆润紧聚，落笔处带有类似剑锋的收尾，在圆润中透出力度，整体呈现出一种神秘感。相比于传统黑体，其造型更为柔和舒适，适用于需要醒目且富有亲和力的设计场景。该字体支持简体中文、繁体中文、英文及日文，并采用 SIL Open Font License 1.1 授权协议，允许个人和企业免费商用。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "Copyright 2020 The Potta Project Authors (https://github.com/go108go/Potta), all rights reserved.",
   "foundry": "Font Zone 108",
+  "brand": {
+   "name": "Font Zone 108",
+   "slug": "font-zone-108",
+   "logoUrl": "",
+   "website": "",
+   "description": "Font Zone 108出品的字体"
+  },
   "releaseYear": 2020,
   "version": "1.0.0",
   "languages": [
@@ -239,7 +320,10 @@
    "社交媒体图片",
    "包装设计",
    "网页标题"
-  ]
+  ],
+  "charCount": 7286,
+  "glyphCount": 7365,
+  "viewCount": 5
  },
  {
   "id": "05cdb1ce-deda-4fae-930f-64a23f5089ac",
@@ -260,7 +344,16 @@
   "description": "包图小白体是一款由字体视界团队于2018年创作的创意字体，后由包图网与字体视界合作，正式更名并公益开源。该字体在字形设计上进行了创新，去除了折笔的弧形，采用平直笔画，并将竖弯钩转为竖折，模仿孩童书写的拙趣感，同时弱化了钩笔画，使字体显得简洁直白、天真可爱。其整体形态采用了镂空制作技巧，增强了立体感。字体采用GB2312编码，包含6763个简体汉字及英文字母、数字、标点符号和日文假名等字符，共计7707个。",
   "license": "免费商用",
   "licenseName": "公益开源",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "上海包图网络科技有限公司",
+  "brand": {
+   "name": "上海包图网络科技有限公司",
+   "slug": "上海包图网络科技有限公司",
+   "logoUrl": "",
+   "website": "",
+   "description": "上海包图网络科技有限公司出品的字体"
+  },
   "releaseYear": 2018,
   "version": "1.0.0",
   "languages": [
@@ -276,7 +369,10 @@
    "影视综艺字幕",
    "游戏界面",
    "漫画配文"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 3
  },
  {
   "id": "0425e067-3300-4713-9df1-e018de750a95",
@@ -297,7 +393,16 @@
   "description": "仓耳小丸子是由北京仓耳文字技术有限公司（仓耳字库）于2023年10月20日发布的一款免费商用中文字体。该字体是一款手写风格字体，笔画圆润丰满，结构灵活，采用夸张的粗细对比以增强视觉冲击力。其字型结构搞怪，空间调整出人意料，笔画错落有致，打破了固有的排列模式，整体营造出天真烂漫、调皮可爱的氛围，具有亲和力与童趣感。字体基于GB2312-80字符集标准，包含6763个汉字及245个英文与标点符号，识别性高，兼容性好。",
   "license": "联系授权",
   "licenseName": "需联系北京仓耳文字技术有限公司授权",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "Beijing Tsanger Character Technology Co., Ltd.",
+  "brand": {
+   "name": "北京仓耳文字技术有限公司",
+   "slug": "北京仓耳文字技术有限公司",
+   "logoUrl": "",
+   "website": "",
+   "description": "北京仓耳文字技术有限公司出品的字体"
+  },
   "releaseYear": 2023,
   "version": "1.0.0",
   "languages": [
@@ -309,7 +414,10 @@
    "文创产品设计",
    "儿童绘本与包装",
    "电商广告与促销标签"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 1
  },
  {
   "id": "9a6530c0-6e7a-49b4-a459-d733af845f51",
@@ -329,7 +437,16 @@
   "description": "仓耳周珂正大榜书是由仓耳字库推出的一款永久免费商用的书法艺术字体。该字体由设计师周珂耗时七个月创作，笔画饱满圆润，收笔处形成平滑圆弧，钩画锋利坚毅，整体结构紧凑密实，字形端正稳重。字体基于GB2312-80字符集标准，包含6763个汉字和245个英文及标点字符。适用于艺术设计、平面宣传、网页设计、书法字帖、匾额、广告海报、产品包装及书籍装帧等领域。",
   "license": "免费商用",
   "licenseName": "全领域永久免费商用授权",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "仓耳字库 (Beijing Tsanger Character Technology Co., Ltd.)",
+  "brand": {
+   "name": "Beijing Tsanger Character Technology Co., Ltd.",
+   "slug": "beijing-tsanger-character-technology-co-ltd",
+   "logoUrl": "",
+   "website": "",
+   "description": "Beijing Tsanger Character Technology Co., Ltd.出品的字体"
+  },
   "releaseYear": 2022,
   "version": "1.0.0",
   "languages": [
@@ -344,7 +461,10 @@
    "广告海报",
    "产品包装",
    "书籍装帧"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 3
  },
  {
   "id": "3efb5b84-658f-4f0c-8647-a6c4b1bb1b48",
@@ -364,7 +484,16 @@
   "description": "cjkFonts是一款基于清松手写体，通过AI深度学习技术扩展生成的中文字体。其设计初衷是为了扩充原始手写体的字符集，以覆盖更广泛的汉字需求。该字体风格保留了手写体的自然笔触与轻微的不规则感，旨在为设计提供一种亲切、非机械化的视觉体验。它适用于需要体现手工艺感、个性化或轻松氛围的设计场景，如社交媒体配图、个人博客、文创产品及非正式的商业宣传材料。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "cjkFonts",
   "foundry": "Google Fonts / Adobe Fonts",
+  "brand": {
+   "name": "Google Fonts / Adobe Fonts",
+   "slug": "google-fonts-adobe-fonts",
+   "logoUrl": "",
+   "website": "",
+   "description": "Google Fonts / Adobe Fonts出品的字体"
+  },
   "releaseYear": 2014,
   "version": "1.11.0",
   "languages": [
@@ -376,7 +505,10 @@
    "个人项目",
    "文创产品",
    "非正式宣传物料"
-  ]
+  ],
+  "charCount": 42147,
+  "glyphCount": 42156,
+  "viewCount": 45
  },
  {
   "id": "15123173-1396-4aae-87f6-4782bbd268f8",
@@ -397,7 +529,16 @@
   "description": "CKTKingKong 是一款由创客贴（www.chuangkit.com）设计并发布的免费商用中文字体。其元信息显示其版权归属于创客贴，版本为 2.000。该字体为 Bold（粗体）字重，属于现代无衬线黑体风格，字形结构清晰，笔画粗壮有力，视觉冲击力强，适用于需要突出标题、海报、品牌标识等强调视觉效果的场景。字体支持简体中文和英文，适合用于电商设计、社交媒体配图、广告宣传等商业用途。",
   "license": "付费授权",
   "licenseName": "免费商用",
+  "licenseUrl": "",
+  "copyright": "Copyright ?2019 www.chuangkit.com. All rights reserved.",
   "foundry": "www.chuangkit.com",
+  "brand": {
+   "name": "www.chuangkit.com",
+   "slug": "wwwchuangkitcom",
+   "logoUrl": "",
+   "website": "",
+   "description": "www.chuangkit.com出品的字体"
+  },
   "releaseYear": 2019,
   "version": "2.0.0",
   "languages": [
@@ -409,7 +550,10 @@
    "品牌标识",
    "电商广告",
    "社交媒体图片"
-  ]
+  ],
+  "charCount": 7638,
+  "glyphCount": 7643,
+  "viewCount": 1
  },
  {
   "id": "001dd279-8021-4284-b75c-4751b59026a2",
@@ -429,7 +573,16 @@
   "description": "云峰字库重庆山城棒棒体是一款由云峰字库发布的免费商用字体。该字体以其新颖的手写风格为特点，笔画设计大方，带有硬笔书写的自然感与力度。字体支持简体中文，包含GB2312标准字符集，适用于海报设计、宣传物料、电商标题、游戏视觉、店铺招牌等多种需要突出个性与视觉冲击力的场景。作为云峰字库旗下免费商用字体系列的一员，其授权允许个人和企业免费用于商业设计，但禁止对字体文件进行二次修改或售卖。",
   "license": "免费商用",
   "licenseName": "作者声明 (企业、个人均可免费商用)",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "云峰字库",
+  "brand": {
+   "name": "云峰字库",
+   "slug": "云峰字库",
+   "logoUrl": "",
+   "website": "",
+   "description": "云峰字库出品的字体"
+  },
   "releaseYear": 2025,
   "version": "3.0.0",
   "languages": [
@@ -441,7 +594,10 @@
    "游戏视觉",
    "店铺招牌",
    "宣传物料"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 0
  },
  {
   "id": "03a8e39e-da59-487c-a95e-b1ce23e15550",
@@ -462,7 +618,16 @@
   "description": "辰宇落雁体 Thin 是一款由高中生刘韦辰与王立宇在学校自主学习计划中合作开发的免费开源手写字型。该字体由刘韦辰负责手写，王立宇进行数字化后制，其命名取自两位创作者名字各一字，并以成语沉鱼落雁谐音而来。字体采用原子笔书写风格，旨在模拟真实手写温度与日常感，适用于需要体现人文温度的设计场景。该字体基于 SIL Open Font License 1.1 协议发布，允许个人与企业免费商用。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "(c) 2022 王立宇、劉韋辰 版權所有。",
   "foundry": "New Value",
+  "brand": {
+   "name": "New Value",
+   "slug": "new-value",
+   "logoUrl": "",
+   "website": "",
+   "description": "New Value出品的字体"
+  },
   "releaseYear": 2022,
   "version": "1.0.0",
   "languages": [
@@ -475,7 +640,10 @@
    "绘本与书籍封面",
    "品牌LOGO与包装",
    "社交媒体海报"
-  ]
+  ],
+  "charCount": 5166,
+  "glyphCount": 5180,
+  "viewCount": 1
  },
  {
   "id": "98879316-b53f-4374-a1ad-7618753cbd67",
@@ -496,7 +664,16 @@
   "description": "钉钉进步体是由钉钉（中国）信息技术有限公司于2022年发布的一款免费商用的中文字体。该字体设计灵感来源于手写体，笔画带有一定的连笔和书写感，整体风格现代、清晰、易读，旨在为钉钉用户及广大设计者提供一种兼具亲和力与专业感的字体选择。它支持简体中文、繁体中文及英文，适用于品牌宣传、UI界面、社交媒体、印刷品等多种场景。",
   "license": "免费商用",
   "licenseName": "钉钉进步体免费商用授权",
+  "licenseUrl": "",
+  "copyright": "(c) 2022 钉钉(中国)信息技术有限公司，版权所有",
   "foundry": "汉仪字库",
+  "brand": {
+   "name": "钉钉（中国）信息技术有限公司",
+   "slug": "钉钉中国信息技术有限公司",
+   "logoUrl": "",
+   "website": "",
+   "description": "钉钉（中国）信息技术有限公司出品的字体"
+  },
   "releaseYear": 2022,
   "version": "1.0.0",
   "languages": [
@@ -509,7 +686,10 @@
    "UI/UX界面",
    "社交媒体",
    "印刷品"
-  ]
+  ],
+  "charCount": 7498,
+  "glyphCount": 7526,
+  "viewCount": 55
  },
  {
   "id": "8a967b73-e331-4bdd-8bc8-0dc8176d6b28",
@@ -530,7 +710,10 @@
   "description": "Dotted Songti Square 是一款基于 GPL 2.0 协议开源的中文像素艺术字体。该字体衍生自文泉驿点阵宋体，通过自动矢量化、变形和美化处理，将传统点阵转换为具有方形点阵风格的 OpenType 字体。它覆盖超过 22000 个 Unicode 字形，支持 GBK 编码中的全部简繁体汉字，适用于复古像素风设计、游戏界面、海报及需要独特艺术感的数字项目。",
   "license": "免费商用",
   "licenseName": "GPL 2.0",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2020,
   "version": "0.1.0",
   "languages": [
@@ -542,7 +725,10 @@
    "像素艺术创作",
    "游戏界面文字",
    "创意包装设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 24
  },
  {
   "id": "968d4e76-949b-4c45-bf0a-0afa01de9950",
@@ -563,7 +749,10 @@
   "description": "Dotted Songti Diamond 是一款基于 GPL 2.0 协议开源的中文像素艺术字体。该字体衍生自文泉驿点阵宋体，通过自动化工具将点阵字形矢量化，并将像素点变形为菱形样式。它支持超过 22000 个 Unicode 字形，完整覆盖 GBK 编码的简繁体汉字，适用于复古风格、像素艺术、游戏界面、海报设计等需要营造怀旧或数字感视觉效果的场景。",
   "license": "免费商用",
   "licenseName": "GPL 2.0",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2020,
   "version": "0.1.0",
   "languages": [
@@ -575,7 +764,10 @@
    "像素艺术创作",
    "游戏 UI",
    "海报与广告设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 43
  },
  {
   "id": "35ffde1f-cf4a-4b0b-a6da-d177e8fa9e0f",
@@ -596,7 +788,10 @@
   "description": "Dotted Songti Circle 是一款基于 GPL 2.0 协议开源的中文像素艺术字体，属于点点像素字体家族。该字体由设计师 wixette 开发，其技术基础源于开源字体文泉驿点阵宋体，通过 JavaScript 工具进行自动矢量化、变形和美化处理，将点阵像素转换为圆点形状的 OpenType 字体。它覆盖了超过 22000 个 Unicode 字形，完整支持 GBK 字符集，包含简体与繁体中文。字体设计具有鲜明的像素艺术风格和复古电子游戏感，圆点装饰为其增添了柔和与创意特质。主要适用于需要营造复古、科技、趣味或创意氛围的设计场景，如游戏界面、海报标题、品牌标识、社交媒体图片和各类数字艺术创作。",
   "license": "免费商用",
   "licenseName": "GPL 2.0",
+  "licenseUrl": "",
+  "copyright": "Copyright (C) 2020 wixette",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2020,
   "version": "0.1.0",
   "languages": [
@@ -609,7 +804,10 @@
    "品牌Logo设计",
    "社交媒体图片",
    "数字艺术创作"
-  ]
+  ],
+  "charCount": 22791,
+  "glyphCount": 22792,
+  "viewCount": 36
  },
  {
   "id": "f3ba444d-79a2-4a3c-9a10-646ef7da0dde",
@@ -629,7 +827,16 @@
   "description": "鼎猎客家体是一款由鼎猎咨询（鼎猎视界）发布的原创中文字体，专为客家文化设计。该字体以富有中国文化底蕴的魏晋南北朝时期爨体为参照，字形兼具古韵、浑厚与拙朴的特质，旨在与客家文化相互交融。字体根据简体中文汉字编码国家标准（GB2312编码）设计，包含6789个简体汉字，并特别增加了数十个客家话专属汉字，以满足地域化设计需求。其设计风格刚劲有力、古朴厚重，适用于广告、书籍、海报、文创产品、文化宣传、公共标识等多种需要展现地域文化特色的场景。",
   "license": "免费商用",
   "licenseName": "无限制免费商用",
+  "licenseUrl": "",
+  "copyright": "AllrightsreservedbyMiaoKeming",
   "foundry": "鼎猎咨询",
+  "brand": {
+   "name": "鼎猎咨询",
+   "slug": "鼎猎咨询",
+   "logoUrl": "",
+   "website": "",
+   "description": "鼎猎咨询出品的字体"
+  },
   "releaseYear": 2024,
   "version": "1.0.0",
   "languages": [
@@ -642,7 +849,10 @@
    "文创产品",
    "文化宣传",
    "公共标识"
-  ]
+  ],
+  "charCount": 7525,
+  "glyphCount": 7435,
+  "viewCount": 1
  },
  {
   "id": "e782aac0-eda1-455c-9a4d-a44ae91ce66c",
@@ -662,7 +872,16 @@
   "description": "鼎猎珠海体是由珠海本土企业鼎猎咨询设计并发布的一款免费商用中文字体。该字体以简体中文国家标准GB2312为基础，共包含7905个字符，其中汉字6916个，在标准6763字基础上特别增加了153个常用粤语汉字，以适配粤港澳大湾区使用场景。字体设计灵感源于珠海先贤苏曼殊的书法，旨在体现珠海的城市文化与精神。其字形风格现代清晰，适用于广告、书籍、海报、包装、品牌宣传等多种印刷与设计场合。",
   "license": "免费商用",
   "licenseName": "作者声明授权",
+  "licenseUrl": "",
+  "copyright": "AllrightsreservedbyMiaoKeming",
   "foundry": "鼎猎咨询",
+  "brand": {
+   "name": "鼎猎咨询",
+   "slug": "鼎猎咨询",
+   "logoUrl": "",
+   "website": "",
+   "description": "鼎猎咨询出品的字体"
+  },
   "releaseYear": 2024,
   "version": "1.0.0",
   "languages": [
@@ -675,7 +894,10 @@
    "包装设计",
    "品牌宣传",
    "文化展览"
-  ]
+  ],
+  "charCount": 7907,
+  "glyphCount": 7905,
+  "viewCount": 161
  },
  {
   "id": "ba104495-2b24-4daa-abdc-e4c2a4345d19",
@@ -696,7 +918,16 @@
   "description": "得意黑（Smiley Sans Oblique）是一款由设计师 oooooohmygosh 与 atelierAnchor 合作设计的开源中文美术字体。其核心特征是大弧线的弯钩造型，字形整体倾斜6度，字身窄长，重心上提，在人文观感与几何特征间寻求平衡。字体支持简体中文常用字（覆盖GB 2312编码字符集）、拉丁字母、日文假名、阿拉伯数字及各类标点符号，适用于标题、海报、电商文案、视频字幕等短文本场景，但不建议用于正文排版。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "atelierAnchor",
+  "brand": {
+   "name": "atelierAnchor",
+   "slug": "atelieranchor",
+   "logoUrl": "",
+   "website": "",
+   "description": "atelierAnchor出品的字体"
+  },
   "releaseYear": 2022,
   "version": "1.0.0",
   "languages": [
@@ -710,7 +941,10 @@
    "视频字幕",
    "书报标题",
    "游戏嵌入"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 8
  },
  {
   "id": "e6df8cbb-a672-482e-98e5-6540f70847a6",
@@ -730,7 +964,16 @@
   "description": "Douyin Sans Bold，中文名称为抖音美好体，是由抖音体验设计中心与方正字库联合设计开发的一款品牌定制无衬线字体。该字体于2023年10月12日正式发布，旨在传播记录美好生活的品牌理念。字体设计简洁大方、清晰易读，兼具现代气质与人文属性，字形自然圆润，拥有大字重，适合标题及正文使用。其笔画细节采用了圆弧和倒角设计，并借鉴了传统书法的流畅感。该字体包含6763个中文字符和682个西文及数字符号，支持GB2312-80简体中文编码标准。作为品牌标准字体，已应用于抖音及其子品牌，以及剪映、醒图等产品中。",
   "license": "免费商用",
   "licenseName": "SIL OFL 1.1",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "北京北大方正电子有限公司",
+  "brand": {
+   "name": "北京北大方正电子有限公司",
+   "slug": "北京北大方正电子有限公司",
+   "logoUrl": "",
+   "website": "",
+   "description": "北京北大方正电子有限公司出品的字体"
+  },
   "releaseYear": 2023,
   "version": "1.0.0",
   "languages": [
@@ -744,7 +987,10 @@
    "视频字幕",
    "社交媒体内容",
    "印刷品标题"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 1
  },
  {
   "id": "0ca1b8f8-08ed-4139-bfc8-2d0c0964fa0e",
@@ -764,7 +1010,16 @@
   "description": "斗鱼追光体是斗鱼官方推出的品牌定制字体，具有电竞感和现代气质。其设计包含斜切等特征，笔画厚重，字面率大，呈现出清晰易读、力量感强的视觉风格，适用于游戏海报、品牌标题等场景。该字体包含6763个汉字和682个西文及数字符号，遵循GB2312-80标准。",
   "license": "免费商用",
   "licenseName": "OFL",
+  "licenseUrl": "",
+  "copyright": "斗鱼追光体",
   "foundry": "斗鱼武汉研发部UED/品牌组",
+  "brand": {
+   "name": "DOUYUFont",
+   "slug": "douyufont",
+   "logoUrl": "",
+   "website": "",
+   "description": "DOUYUFont出品的字体"
+  },
   "releaseYear": 2024,
   "version": "1.0.0",
   "languages": [
@@ -776,7 +1031,10 @@
    "品牌视觉",
    "电商标题",
    "短视频字幕"
-  ]
+  ],
+  "charCount": 7716,
+  "glyphCount": 7707,
+  "viewCount": 8
  },
  {
   "id": "27a6426a-b562-4146-aa7c-cf55967be873",
@@ -796,7 +1054,10 @@
   "description": "龚帆免费体3.0是由设计师龚帆（GongFan）开发并免费发布的一款硬笔手写风格中文字体。该字体于2022年2月21日发布Version 3.00版本。其字形风格偏向日常手写，笔画自然流畅，带有一定的连笔特征，整体感觉亲切、活泼且易于阅读。字体设计旨在提供一种非正式、具有人情味的视觉体验，适用于需要营造轻松、亲切氛围的设计场景。根据其元信息及网络资源，该字体授权为免费商用，用户可通过访问指定网站了解详细授权条款。",
   "license": "免费商用",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "Created by GongFan.",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2021,
   "version": "3.0.0",
   "languages": [
@@ -808,7 +1069,10 @@
    "品牌标识",
    "书籍封面",
    "网页标题"
-  ]
+  ],
+  "charCount": 4006,
+  "glyphCount": 4007,
+  "viewCount": 25
  },
  {
   "id": "4b210871-13e2-4038-abbe-f2f1ce47d13c",
@@ -829,7 +1093,16 @@
   "description": "光良酒-干杯体是由四川光良酒业有限公司投资，委托资深字体设计师刘兵克及其字体江湖团队历时9个月设计完成的品牌定制字体。该字体旨在为白酒行业及广大设计师提供一个免费、安全的字体工具，以应对常见的碰瓷式维权问题。字体包含GB2312标准的简体中文字符6763个，并额外设计了55个不同风格的酒字标识，以及五谷、香型、货运等数十个行业相关图标，特别适合酒类包装、品牌宣传和广告设计。字体风格偏向实用标题类，通用性强，适用于多种商业设计场景。",
   "license": "免费商用",
   "licenseName": "作者声明 (企业、个人均可免费商用)",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "四川光良酒业有限公司",
+  "brand": {
+   "name": "四川光良酒业有限公司",
+   "slug": "四川光良酒业有限公司",
+   "logoUrl": "",
+   "website": "",
+   "description": "四川光良酒业有限公司出品的字体"
+  },
   "releaseYear": 2023,
   "version": "3.0.0",
   "languages": [
@@ -841,7 +1114,10 @@
    "社交媒体广告",
    "电商详情页",
    "白酒行业设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 0
  },
  {
   "id": "fd299190-67eb-4ea8-a7e5-ebf770362d2c",
@@ -862,7 +1138,16 @@
   "description": "ChillDuanSans Black 是寒蝉字型（ChillType）基于思源黑体（Source Han Sans）调整改造的字体。该字体横向加粗，横竖笔画粗细差异较小，融合了黑体与宋体的部分特征，兼具黑体的粗壮感与宋体的优雅饰角，风格介于黑体与宋体之间。字体家族包含多种字重与宽度变体，支持简体中文、繁体中文、英文、日文等多种语言。依据 SIL Open Font License 1.1 协议开源，允许个人及企业免费商用。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "2023 ChillType, with Reserved Font Name 'Duan'.  2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'.",
   "foundry": "ChillType&Adobe",
+  "brand": {
+   "name": "ChillType&Adobe",
+   "slug": "chilltypeadobe",
+   "logoUrl": "",
+   "website": "",
+   "description": "ChillType&Adobe出品的字体"
+  },
   "releaseYear": 2023,
   "version": "1.100",
   "languages": [
@@ -877,7 +1162,10 @@
    "品牌标识",
    "印刷排版",
    "数字媒体标题"
-  ]
+  ],
+  "charCount": 30892,
+  "glyphCount": 31037,
+  "viewCount": 8
  },
  {
   "id": "8defdd77-c579-48fe-8892-5b997ee43f12",
@@ -897,7 +1185,16 @@
   "description": "Chill K Sans 是一款无衬线字体，其元信息显示它融合了多个项目的成果。其假名、注音符号和表意文字部分由 Ryoko NISHIZUKA 设计，拉丁字母部分基于 Julieta Ulanovsky 设计的 Montserrat 字体，整体构建则参考了 Celestial Phineas 的 Glow Sans 项目。版权信息提及了 Glow Sans (2020)、Source Han Sans (2014-2019) 和 Montserrat Project (2011)，表明该字体整合或衍生自这些开源或授权字体。该字体支持多种文字，包括中文、英文和日文，适合需要多语言支持的现代界面设计、品牌标识和数字内容排版。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License",
+  "licenseUrl": "",
+  "copyright": "Glow Sans (c) 2020 Project Welai. Source Han Sans (c) 2014-2019 Adobe (http://www.adobe.com/). Copyright 2011 The Montserrat Project Authors.",
   "foundry": "Project Welai",
+  "brand": {
+   "name": "Project Welai",
+   "slug": "project-welai",
+   "logoUrl": "",
+   "website": "",
+   "description": "Project Welai出品的字体"
+  },
   "releaseYear": 2020,
   "version": "1.0.0",
   "languages": [
@@ -911,7 +1208,10 @@
    "品牌标识",
    "多语言排版",
    "数字内容"
-  ]
+  ],
+  "charCount": 30274,
+  "glyphCount": 33395,
+  "viewCount": 2
  },
  {
   "id": "1604bf32-254a-47e3-a915-8a3293f3bf09",
@@ -935,7 +1235,16 @@
   "description": "寒蝉龙藏楷书是一款基于谷歌开源字体项目中的龙藏体（Long Cang）进行风格化拓展的楷书字体。其设计融合了传统毛笔书法的韵味与现代数字字体的清晰度，笔画带有明显的书法飞白和笔触感，结构舒展，风格古朴雅致。该字体遵循 SIL Open Font License 1.1 开源协议，允许个人和企业免费商用，并支持修改和再分发。它适用于需要展现传统文化、艺术氛围或手写温度的设计场景，如书籍装帧、品牌海报、文化宣传物料以及UI界面的标题设计。",
   "license": "免费商用",
   "licenseName": "OFL (推断)",
+  "licenseUrl": "",
+  "copyright": "Copyright 2018 The LongCang Project Authors (https://github.com/googlefonts/longcang)",
   "foundry": "The LongCang Project Authors",
+  "brand": {
+   "name": "钟齐字库",
+   "slug": "钟齐字库",
+   "logoUrl": "",
+   "website": "",
+   "description": "钟齐字库出品的字体"
+  },
   "releaseYear": 2018,
   "version": "3.500.0",
   "languages": [
@@ -947,7 +1256,10 @@
    "文化宣传",
    "品牌标识",
    "UI标题"
-  ]
+  ],
+  "charCount": 7042,
+  "glyphCount": 7113,
+  "viewCount": 22
  },
  {
   "id": "5b92a6c8-cdd8-499a-b8d0-48c4742a390f",
@@ -967,7 +1279,16 @@
   "description": "寒蝉手拙体是一款手写风格的中文免费商用字体，由设计师萧熠Siue创作。字体以创造的笔意和结构完成，风格独特，旨在提供逼真的手写视觉体验。该字体基于GB2312-80字符集标准，共包含7586个字形，适用于简体中文环境。其设计灵感来源于日常手写，旨在为设计项目增添自然、亲切的人文气息。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "2019 Chill Type. All Rights Reserved.",
   "foundry": "ChillType",
+  "brand": {
+   "name": "ChillType",
+   "slug": "chilltype",
+   "logoUrl": "",
+   "website": "",
+   "description": "ChillType出品的字体"
+  },
   "releaseYear": 2019,
   "version": "2.5.0",
   "languages": [
@@ -979,7 +1300,10 @@
    "社交媒体配图",
    "书籍排版",
    "UI界面设计"
-  ]
+  ],
+  "charCount": 7313,
+  "glyphCount": 7354,
+  "viewCount": 10
  },
  {
   "id": "85ff8d4a-e70f-4e60-8264-185e53b143f2",
@@ -1001,7 +1325,16 @@
   "description": "寒蝉团圆体 Sans 是一款基于得意黑进行二次创作的圆体风格中文字体。该字体具有3的倾斜趋势，字形圆润饱满，风格亲和可爱。它继承了得意黑的基本结构，但通过圆角化处理，营造出柔和、温暖的视觉感受。字体采用 SIL Open Font License 1.1 开源协议发布，支持简体中文、繁体中文及英文，适用于海报、包装、UI界面、社交媒体、游戏字幕等需要轻松活泼氛围的设计场景。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License (OFL)",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "ChillType",
+  "brand": {
+   "name": "ChillType",
+   "slug": "chilltype",
+   "logoUrl": "",
+   "website": "",
+   "description": "ChillType出品的字体"
+  },
   "releaseYear": 2023,
   "version": "2.700.0",
   "languages": [
@@ -1017,7 +1350,10 @@
    "游戏字幕",
    "品牌标识",
    "儿童相关设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 2
  },
  {
   "id": "9085819f-b0a0-41f6-8231-236f8132f697",
@@ -1037,7 +1373,16 @@
   "description": "黄凯桦律师手写体是一款由字体家平台通过AI神笔造字技术生成的手写字体。该字体由黄凯桦律师提供手写样本，经AI技术处理并优化后形成完整的字库。字体风格为自然流畅的硬笔手写体，适用于需要体现个人化、亲和力或法律专业感的设计场景。作者已声明该字体允许个人和企业免费商用，但禁止修改字体文件或将其作为商品单独出售。",
   "license": "免费商用",
   "licenseName": "作者声明免费商用",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "字体家 X 黄凯桦",
+  "brand": {
+   "name": "字体家",
+   "slug": "字体家",
+   "logoUrl": "",
+   "website": "",
+   "description": "字体家出品的字体"
+  },
   "releaseYear": 2024,
   "version": "1.0.0",
   "languages": [
@@ -1049,7 +1394,10 @@
    "社交媒体配图",
    "宣传手册",
    "VI辅助元素"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 11
  },
  {
   "id": "4c31e658-6b06-4f06-afc6-c8479e1688a9",
@@ -1069,7 +1417,16 @@
   "description": "KouzanBrushFontOTF 是一款日文毛笔书法字体，由书法家青柳衡山（Aoyagi Kouzan）创作。该字体模拟了毛笔书写的自然笔触和飞白效果，具有浓厚的日本书法艺术风格。字体设计旨在用于创建具有传统书法美感的日文文本，常见于需要体现日本文化特色的设计场景，如海报、包装、品牌标识以及相关移动应用（如 SyotaiConverter、GyousyoConverter）中。",
   "license": "免费商用",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "NIHON SYSTEM DEVELOPER CORPORATION",
+  "brand": {
+   "name": "NIHON SYSTEM DEVELOPER CORPORATION",
+   "slug": "nihon-system-developer-corporation",
+   "logoUrl": "",
+   "website": "",
+   "description": "NIHON SYSTEM DEVELOPER CORPORATION出品的字体"
+  },
   "releaseYear": 2021,
   "version": "1.1.0",
   "languages": [
@@ -1080,7 +1437,10 @@
    "传统书法艺术展示",
    "品牌文化标识",
    "移动应用界面文字"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 6
  },
  {
   "id": "d45bf318-86c8-46a7-9368-1f4d65341c1a",
@@ -1101,7 +1461,16 @@
   "description": "胡晓波男神体是由设计师胡晓波及其工作室开发的一款免费可商用中文字体。该字体于2019年12月23日首次发布。其设计特点鲜明，字形方正稳重，横竖笔画对比强烈，边角处采用斜角处理以增强视觉冲击力。同时，连接处进行了平滑圆润的处理，赋予字体一定的活力与灵动感。字体重心稍高，比例均衡，显得高挑而稳健。对部分连笔笔画进行了简化，并在笔画密集处做了特殊处理，增加了字内的空间呼吸感，使整体效果简洁大方。字体风格现代、硬朗且带有艺术感，适用于电商设计、游戏界面、广告宣传、品牌标识、社交媒体图片等多种商业设计场景。",
   "license": "免费商用",
   "licenseName": "免费商用授权",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "胡晓波工作室",
+  "brand": {
+   "name": "胡晓波字体工作室",
+   "slug": "胡晓波字体工作室",
+   "logoUrl": "",
+   "website": "",
+   "description": "胡晓波字体工作室出品的字体"
+  },
   "releaseYear": 2019,
   "version": "1.0.0",
   "languages": [
@@ -1113,7 +1482,10 @@
    "游戏界面",
    "品牌标识",
    "社交媒体"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 0
  },
  {
   "id": "d78ca7f5-7cbe-4889-8f8b-e6948e72976f",
@@ -1133,7 +1505,16 @@
   "description": "胡晓波骚包体是由中国设计师胡晓波于2019年发布的一款免费商用硬笔手写字体。其设计风格活泼、随性，笔画带有明显的连笔和飞白效果，字形结构较为松散，整体呈现出一种轻松、俏皮的视觉感受。这款字体适用于需要营造年轻、活泼、个性化氛围的设计场景，如社交媒体配图、海报标题、品牌标识、包装设计等非正式场合。",
   "license": "免费商用",
   "licenseName": "免费商用授权",
+  "licenseUrl": "",
+  "copyright": "(c) Copyright HuXiaoBo 2019",
   "foundry": "胡晓波工作室",
+  "brand": {
+   "name": "胡晓波字库",
+   "slug": "胡晓波字库",
+   "logoUrl": "",
+   "website": "",
+   "description": "胡晓波字库出品的字体"
+  },
   "releaseYear": 2019,
   "version": "2.0.0",
   "languages": [
@@ -1145,7 +1526,10 @@
    "品牌标识",
    "包装设计",
    "非正式印刷品"
-  ]
+  ],
+  "charCount": 7414,
+  "glyphCount": 7465,
+  "viewCount": 4
  },
  {
   "id": "d98aae88-ebc2-46fc-8af9-aee0cd2fbb22",
@@ -1165,7 +1549,16 @@
   "description": "胡晓波骚包体是由设计师胡晓波及其工作室于2019年发布的一款免费可商用中文字体。该字体属于综艺体或美术体风格，字形设计粗犷有力，具有醒目特征。其命名风格独特，体现了设计师的个人特色。字体适用于海报设计、电商设计、品牌标识、广告宣传等商业场景，尤其适合需要展现时尚、综艺、游戏或运动气质的视觉项目。",
   "license": "免费商用",
   "licenseName": "免费可商用授权",
+  "licenseUrl": "",
+  "copyright": "(c) Copyright HuXiaoBo 2019",
   "foundry": "胡晓波工作室",
+  "brand": {
+   "name": "胡晓波工作室",
+   "slug": "胡晓波工作室",
+   "logoUrl": "",
+   "website": "",
+   "description": "胡晓波工作室出品的字体"
+  },
   "releaseYear": 2019,
   "version": "2.0.0",
   "languages": [
@@ -1178,7 +1571,10 @@
    "广告宣传",
    "游戏界面",
    "综艺节目"
-  ]
+  ],
+  "charCount": 7414,
+  "glyphCount": 7465,
+  "viewCount": 8
  },
  {
   "id": "856772ad-0a9b-47b3-a563-535223b5b114",
@@ -1199,7 +1595,16 @@
   "description": "胡晓波真帅体是由设计师胡晓波创作的一款创意字体，于2019年12月23日发布。该字体风格现代，字形饱满有力，兼具黑体的稳重与创意设计的趣味性。它支持简体中文、拉丁文及常用符号，字符数超过7000，适用于广告海报、品牌标识、社交媒体图片等需要突出视觉冲击力的商业设计场景。",
   "license": "免费商用",
   "licenseName": "免费商用授权",
+  "licenseUrl": "",
+  "copyright": "(c) Copyright HuXiaoBo 2019",
   "foundry": "HUXIAOBO",
+  "brand": {
+   "name": "HUXIAOBO",
+   "slug": "huxiaobo",
+   "logoUrl": "",
+   "website": "",
+   "description": "HUXIAOBO出品的字体"
+  },
   "releaseYear": 2019,
   "version": "2.0.0",
   "languages": [
@@ -1211,7 +1616,10 @@
    "品牌标识",
    "社交媒体图片",
    "电商banner"
-  ]
+  ],
+  "charCount": 7409,
+  "glyphCount": 7412,
+  "viewCount": 6
  },
  {
   "id": "62e41b2a-f8c4-456f-91f7-104c618cc401",
@@ -1231,7 +1639,10 @@
   "description": "黄胤淇招牌体是一款由设计师黄胤淇于2012年发布的字体。其版权信息指向设计师个人网站。该字体风格简约，属于无衬线黑体，适用于招牌、标题等需要醒目展示的场合。根据其版权声明中的网址，该字体可能由设计师个人发布。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "copyrighy By huangyinqi 2012,http://www.huangyinqi.com",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2018,
   "version": "1.0.0",
   "languages": [
@@ -1241,7 +1652,10 @@
    "招牌设计",
    "标题",
    "品牌标识"
-  ]
+  ],
+  "charCount": 8099,
+  "glyphCount": 8106,
+  "viewCount": 2
  },
  {
   "id": "ab67bcf5-2c52-4e7f-823e-03710771ce49",
@@ -1262,7 +1676,10 @@
   "description": "Hanzi-Pinyin-Font 是一款专为中文学习者设计的开源字体，其核心特点是在每个汉字上方或旁边直接标注对应的拼音及声调，形成直观的字音结合视觉辅助。字体设计融合了黑体的工整与楷书的清秀，字形易于识别。它主要适用于教育领域，如教材、电子书、学习软件、在线课程等，旨在帮助初学者快速建立汉字与发音的关联，降低学习难度。该字体提供TTF和WOFF2格式，遵循Apache-2.0开源协议，允许免费商用。",
   "license": "免费商用",
   "licenseName": "CC-BY-SA-4.0",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2022,
   "version": "1.0.0",
   "languages": [
@@ -1275,7 +1692,10 @@
    "电子书与拼音读物",
    "在线教育课件",
    "汉字学习卡片"
-  ]
+  ],
+  "charCount": 26654,
+  "glyphCount": 26655,
+  "viewCount": 22
  },
  {
   "id": "93fe1d3f-7790-43e0-a486-402426cf559f",
@@ -1295,7 +1715,10 @@
   "description": "Hanzi-Pinyin-Font 是一款专为中文学习设计的开源字体。其核心特点是在显示汉字的同时，于字符上方标注对应的拼音及声调，直观地将字形与发音关联起来，旨在帮助初学者更快地学习和阅读汉语。字体设计融合了黑体与楷书的特征，字形工整清秀，易于识别。该字体支持简体中文和繁体中文，提供 TTF 和 WOFF2 格式，适用于教育软件、电子书、学习应用程序、教材、字典等多种教育场景和出版物。",
   "license": "免费商用",
   "licenseName": "CC-BY-SA-4.0",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2021,
   "version": "1.0.0",
   "languages": [
@@ -1309,7 +1732,10 @@
    "教材",
    "字典",
    "在线课程"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 2
  },
  {
   "id": "ebfe2481-5377-457b-ae49-719f4faeb2db",
@@ -1334,7 +1760,16 @@
   "description": "IBM Plex Sans SC 是 IBM 公司发布的一款免费开源简体中文字体，属于 IBM Plex 品牌字体家族的无衬线体分支。该字体包含 29562 个字形，专为提升简体中文内容的可读性和现代感设计，线条简洁，字形结构适中，在印刷和数字媒介上均能保持良好的显示效果。它基于 SIL Open Font License 1.1 协议开源发布，允许免费商用。字体支持简体中文、英文、繁体中文、日文、韩文等多种语言，适用于企业文档、网页设计、数字媒体、品牌形象等场景。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "Copyright 2018 IBM Corp. All rights reserved.",
   "foundry": "Sandoll Inc.",
+  "brand": {
+   "name": "Sandoll Inc.",
+   "slug": "sandoll-inc",
+   "logoUrl": "",
+   "website": "",
+   "description": "Sandoll Inc.出品的字体"
+  },
   "releaseYear": 2024,
   "version": "1.0.0",
   "languages": [
@@ -1347,7 +1782,10 @@
    "数字媒体",
    "出版物排版",
    "用户界面"
-  ]
+  ],
+  "charCount": 29286,
+  "glyphCount": 29562,
+  "viewCount": 411
  },
  {
   "id": "69800d23-d875-431e-9755-3d40a8a688a1",
@@ -1367,7 +1805,16 @@
   "description": "Kingnam Bobo（中文名：荆南波波黑）是一款由上海亦传信息技术有限公司（Shanghai Etrump Information Technology Co.）发布的字体。该字体是一款无衬线黑体，字形设计现代，支持简体中文、繁体中文及英文。其版权信息显示为2020年，主要版本发布于2021年12月及2022年6月。根据字体资源平台信息，该字体商用需要联系版权方获取授权。",
   "license": "联系授权",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "(c) Copyright Shanghai Etrump Information Technology Co.",
   "foundry": "Shanghai Etrump Information Technology Co.",
+  "brand": {
+   "name": "Shanghai Etrump Information Technology Co.",
+   "slug": "shanghai-etrump-information-technology-co",
+   "logoUrl": "",
+   "website": "",
+   "description": "Shanghai Etrump Information Technology Co.出品的字体"
+  },
   "releaseYear": 2021,
   "version": "1.30.0",
   "languages": [
@@ -1379,7 +1826,10 @@
    "品牌标题",
    "海报设计",
    "UI界面"
-  ]
+  ],
+  "charCount": 7797,
+  "glyphCount": 7797,
+  "viewCount": 150
  },
  {
   "id": "8342ed75-ecc0-4727-9f20-dd0edca681a7",
@@ -1400,7 +1850,16 @@
   "description": "荆南缘默体是由中国大陆字体爱好者皇帝的新冠（荆南字坊）创作的一款免费可商用中文字体。其创作始于2020年疫情期间，作者希望设计一款在大众场景中广泛使用的字体。该字体风格为圆角黑体，字框偏扁，重心偏低，笔画粗壮以尽可能占满方格，旨在增强视觉冲击力。在制作过程中，作者为增加趣味性而加入了圆角设计，使其区别于常见的圆体美术字。字体包含GB2312标准6763个简体中文字符，并支持西文、数字、日文假名及注音符号等。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "(c) Copyrighted by Kingnam Typography Studios",
   "foundry": "荆南字坊",
+  "brand": {
+   "name": "荆南字坊",
+   "slug": "荆南字坊",
+   "logoUrl": "",
+   "website": "",
+   "description": "荆南字坊出品的字体"
+  },
   "releaseYear": 2021,
   "version": "0.10.0",
   "languages": [
@@ -1415,7 +1874,10 @@
    "地铁公交站广告海报",
    "线上及线下产品宣传",
    "个人VLOG封面标题"
-  ]
+  ],
+  "charCount": 8068,
+  "glyphCount": 8069,
+  "viewCount": 23
  },
  {
   "id": "dc5b95a9-f88d-419e-94cc-ebd062f0e9f4",
@@ -1436,7 +1898,16 @@
   "description": "今年也要加油鸭是由三极字库设计师罗碧霞创作的一款免费可商用硬笔手写字体。字体整体风格温柔、婉约、简约，笔画出头较短，构字骨架带有童稚感，呈现出笨拙可爱的视觉效果。该字体适用于海报企宣、书籍、店铺活动、健康养生等设计场景，尤其适合少儿类、萌宠类、美食类广告和产品包装设计，以及社交网络的个性化用字，能体现出画面的稚嫩萌趣感。",
   "license": "免费商用",
   "licenseName": "作者声明",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "三极字库",
+  "brand": {
+   "name": "三极字库",
+   "slug": "三极字库",
+   "logoUrl": "",
+   "website": "",
+   "description": "三极字库出品的字体"
+  },
   "releaseYear": 2022,
   "version": "1.0.0",
   "languages": [
@@ -1448,7 +1919,10 @@
    "店铺活动设计",
    "产品包装",
    "社交媒体用字"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 2
  },
  {
   "id": "bcb87c97-2cf4-45d8-a450-692fac349918",
@@ -1468,7 +1942,16 @@
   "description": "金山云技术体是由金山云UED设计团队历时四年打造的一款免费商用无衬线字体。其设计风格偏向年轻、硬朗、富有科技感与活力。字体重新定义了1:0.84的字宽比例，并设计了整体、左右、上下等搭配方法，以平衡不同笔画数汉字间的视觉疏密感。笔划设计打破了常规黑体的生硬感，根据整字权重划分粗细，并在笔划的衔接和末端处采用了12度的倾斜设计。字体参照GB2312简体中文编码字符标准，包含国标一、二级字库汉字6763个，外文及数字符号约800个，总字符数超过7500个，可满足日常工作和生活需要。该字体已与WPS Office等软件合作预置，适用于科技行业、品牌标识、演示文稿、印刷品及屏幕显示等多种场景。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License (OFL) 1.1",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "Kingsoft Cloud",
+  "brand": {
+   "name": "Kingsoft Cloud",
+   "slug": "kingsoft-cloud",
+   "logoUrl": "",
+   "website": "",
+   "description": "Kingsoft Cloud出品的字体"
+  },
   "releaseYear": 2020,
   "version": "1.0.0",
   "languages": [
@@ -1482,7 +1965,10 @@
    "印刷品",
    "屏幕显示",
    "Logo与标题"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 4
  },
  {
   "id": "3d6697db-260c-4dcb-a8d9-c9c74cb8e7c9",
@@ -1503,7 +1989,16 @@
   "description": "江西拙楷体是由设计师黄煜臣（Huang Yuchen）独立手写并制作完成的一套免费商用字体。该字体为手写楷体风格，其笔画未采用统一标准，保留了自然的书写痕迹与斑驳肌理，赋予字体淳朴、文艺且低调内敛的视觉美感。字体同时为英文部分添加了相同的肌理效果，确保中英文搭配和谐。字库共收容超过6200个字符，支持简体中文、繁体中文及英文。适用于印章设计、文创产品、食品包装、海报制作等多种需要体现手写温度与文艺气息的场景。",
   "license": "免费商用",
   "licenseName": "免费商用",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "fontree",
+  "brand": {
+   "name": "fontree",
+   "slug": "fontree",
+   "logoUrl": "",
+   "website": "",
+   "description": "fontree出品的字体"
+  },
   "releaseYear": 2023,
   "version": "1.0.0",
   "languages": [
@@ -1517,7 +2012,10 @@
    "食品包装",
    "海报设计",
    "品牌宣传物料"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 15
  },
  {
   "id": "90b99af1-7cd4-4814-b4e4-803d35c575e6",
@@ -1537,7 +2035,16 @@
   "description": "瀞之库格尔黑体是一款基于Adobe思源黑体修改并加工而成的无衬线字体。其设计特点是将字形处理为左扁右宽的形态，形成独特的视觉风格。该字体采用SIL Open Font License 1.1授权协议，允许个人和企业免费商用，并可自由修改和分发。字体支持简体中文、繁体中文和日文，适用于需要展现现代、独特设计感的标题、海报、品牌标识和数字界面等场景。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "2022 RAPTORTYPE",
   "foundry": "RAPTORTYPE",
+  "brand": {
+   "name": "RAPTORTYPE",
+   "slug": "raptortype",
+   "logoUrl": "",
+   "website": "",
+   "description": "RAPTORTYPE出品的字体"
+  },
   "releaseYear": 2022,
   "version": "1.0.0",
   "languages": [
@@ -1551,7 +2058,10 @@
    "标题文字",
    "数字界面",
    "包装设计"
-  ]
+  ],
+  "charCount": 16732,
+  "glyphCount": 16733,
+  "viewCount": 0
  },
  {
   "id": "63559f7e-2ba8-410b-b2b7-93d97d27ada6",
@@ -1571,7 +2081,16 @@
   "description": "Torono Kugel Serif 是一款基于 Adobe 思源宋体修改而成的衬线字体。该字体由日本设计师鴒（Amazusa Rei）创作，并由 RAPTORTYPE 发布。其设计保留了思源宋体的基本结构，并可能进行了特定的视觉调整。根据其元信息描述，该字体遵循与原始字体相同的授权协议，即 SIL Open Font License 1.1，允许个人和企业免费商用。字体支持简体中文、繁体中文、日文及英文等多种语言，适用于需要经典宋体风格且具备免费商用授权的设计项目，如印刷品、数字媒体、品牌标识等。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "2022 RAPTORTYPE",
   "foundry": "RAPTORTYPE",
+  "brand": {
+   "name": "RAPTORTYPE",
+   "slug": "raptortype",
+   "logoUrl": "",
+   "website": "",
+   "description": "RAPTORTYPE出品的字体"
+  },
   "releaseYear": 2022,
   "version": "1.0.0",
   "languages": [
@@ -1586,7 +2105,10 @@
    "品牌设计",
    "海报标题",
    "文化创意产品"
-  ]
+  ],
+  "charCount": 16691,
+  "glyphCount": 16692,
+  "viewCount": 6
  },
  {
   "id": "330bbc75-5c31-4991-8746-00b58aef13c6",
@@ -1607,7 +2129,16 @@
   "description": "快看世界体是快看APP推出的首款自主创作字体，由快看KKDC指导、运营设计组成员主导设计，定位为标题黑体。该字体设计灵感源于漫画对话框的尖角元素，融入ACGN文化，风格年轻潮流、大胆有态度。其字形特点包括横划末端尖角、中宫外扩、字面瘦长、整体向右倾斜8度，共包含3501个字符。字体耗时一年完成，字形均衡考究，适用于正文、标题、品牌营销、漫展、短视频封面等多种场景。该字体已免费授权全社会使用，包括商业用途。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "快看KKDC（快看设计中心）",
+  "brand": {
+   "name": "快看KKDC",
+   "slug": "快看kkdc",
+   "logoUrl": "",
+   "website": "",
+   "description": "快看KKDC出品的字体"
+  },
   "releaseYear": 2023,
   "version": "1.003.0",
   "languages": [
@@ -1621,7 +2152,10 @@
    "客户端UI",
    "企业文化宣传",
    "社交媒体设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 4
  },
  {
   "id": "8dc66b77-e776-48f6-b94f-e4fa46787044",
@@ -1641,7 +2175,16 @@
   "description": "I.Ngaan 是一款基于王汉宗博士早期颜体字型，由 Ichiten Fonts Project 在 2013-2014 年间进行数字化和优化的字体。该字体融合了传统书法韵味与现代数字可读性，字形优雅流畅，带有手写风格的艺术气息。其版权信息显示，原始设计可追溯至 1999-2004 年，后续由 Ichiten Fonts Project 以 GNU General Public License 发布，允许免费使用和修改。",
   "license": "免费商用",
   "licenseName": "GNU General Public License",
+  "licenseUrl": "",
+  "copyright": "(C) Dr. Hann-Tzong Wang, 1999-2004; (C) Ichiten Fonts Project, 2013-14. This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public Linense as published by the Free Software Foundation; either version 2 of the License, or any later version.",
   "foundry": "Ichiten Fonts Project",
+  "brand": {
+   "name": "Ichiten Fonts Project",
+   "slug": "ichiten-fonts-project",
+   "logoUrl": "",
+   "website": "",
+   "description": "Ichiten Fonts Project出品的字体"
+  },
   "releaseYear": 2013,
   "version": "1.004",
   "languages": [
@@ -1654,7 +2197,10 @@
    "标题排版",
    "文化宣传物料",
    "个性化文档"
-  ]
+  ],
+  "charCount": 14471,
+  "glyphCount": 14633,
+  "viewCount": 3
  },
  {
   "id": "c873260f-6b45-4256-8c51-0d3e5fdca3e1",
@@ -1674,7 +2220,16 @@
   "description": "I.PenCrane-B 是一款由 Ichiten Fonts Project 维护的硬笔手写风格字体。其设计基于 Dr. Hann-Tzong Wang 在 1999-2004 年间的工作，并由 Ichiten Fonts Project 在 2013-2014 年进行更新和发布。该字体风格简洁清晰，笔画带有硬笔书写的特征，适用于需要手写体风格的标题、引言、创意设计等场景。",
   "license": "免费商用",
   "licenseName": "GNU General Public License v2.0 or later",
+  "licenseUrl": "",
+  "copyright": "(C) Dr. Hann-Tzong Wang, 1999-2004; (C) Ichiten Fonts Project, 2013-14. This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public Linense as published by the Free Software Foundation; either version 2 of the License, or any later version.",
   "foundry": "Ichiten Fonts Project",
+  "brand": {
+   "name": "Ichiten Fonts Project",
+   "slug": "ichiten-fonts-project",
+   "logoUrl": "",
+   "website": "",
+   "description": "Ichiten Fonts Project出品的字体"
+  },
   "releaseYear": 2013,
   "version": "1.0.0",
   "languages": [
@@ -1687,7 +2242,10 @@
    "引言排版",
    "创意海报",
    "教育材料"
-  ]
+  ],
+  "charCount": 14448,
+  "glyphCount": 14619,
+  "viewCount": 324
  },
  {
   "id": "cdbbf2a5-12dd-4853-aedf-bab72d2b35a3",
@@ -1707,7 +2265,16 @@
   "description": "I.Ming（一点明体）是一套基于传承字形标准化文件《传承字形部件检校表》推荐字形标准制作的OpenType字体。其前身为刻石录明体，现由开源组织Ichiten Fonts Project（I.字坊）维护。该字体严格遵循汉字字理，采用传承字形（旧字形），其简体字部分也传承旧字形，与现代常用简体字形存在差异，形成了独特的复古文艺风格。字体包含标准版、全形标点置中版（CP）、异体字版（Var）等多个变体，支持简体中文、繁体中文、日文及大量粤台闽客汉字、注音符号等字符。旨在为开源和商业市场提供符合Unicode与OpenType技术的传承字形示范。",
   "license": "免费商用",
   "licenseName": "IPA Open Font License v1.0",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "I.字坊 (一点字坊)",
+  "brand": {
+   "name": "Ichiten Fonts Project (I.Font Project)",
+   "slug": "ichiten-fonts-project-ifont-project",
+   "logoUrl": "",
+   "website": "",
+   "description": "Ichiten Fonts Project (I.Font Project)出品的字体"
+  },
   "releaseYear": 2013,
   "version": "5.0.0",
   "languages": [
@@ -1722,7 +2289,10 @@
    "文化宣传物料",
    "品牌标识设计",
    "网页设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 17
  },
  {
   "id": "3c19eaab-50dd-4eaf-b9f6-4ebb77f393d9",
@@ -1742,7 +2312,16 @@
   "description": "I.Ming（一点明体）是一款基于日本IPA明体（IPAex明朝）进行改造和扩展的开源中文字体。该项目旨在提供一款在屏幕显示和印刷上均表现良好的明体/宋体字体。其设计保留了IPA明体的基本骨架和印刷美感，同时针对汉字使用环境进行了优化和增补，支持繁简中文及日文。该字体遵循IPA Font License v1.0协议，允许免费商用。",
   "license": "免费商用",
   "licenseName": "IPA Font License v1.0",
+  "licenseUrl": "",
+  "copyright": "Copyright(c) Ichiten Fonts Project, 2013-2017; Information-technology Promotion Agency, Japan (IPA), 2011-2012. You must accept \"http://ipafont.ipa.go.jp/ipa_font_license_v1.html\" to use this product.",
   "foundry": "Ichiten Fonts Project",
+  "brand": {
+   "name": "Ichiten Fonts Project",
+   "slug": "ichiten-fonts-project",
+   "logoUrl": "",
+   "website": "",
+   "description": "Ichiten Fonts Project出品的字体"
+  },
   "releaseYear": 2013,
   "version": "5.0.0",
   "languages": [
@@ -1755,7 +2334,10 @@
    "文档排版",
    "印刷出版",
    "用户界面设计"
-  ]
+  ],
+  "charCount": 55352,
+  "glyphCount": 55328,
+  "viewCount": 139
  },
  {
   "id": "49d19bf6-af45-42e3-a9a6-f39fca300b4d",
@@ -1775,7 +2357,10 @@
   "description": "Cubic 11（俐方体11号）是一款免费开源的1111中文点阵字体，基于日文字型M gothic 12r改造而来，专为繁体中文用户打造。它针对中文使用习惯优化了字形和标点符号，字符集覆盖常用国字标准字体、Big5、台湾常用字、GB 2312一级字及元素周期表字符等，适用于像素风格游戏、复古界面设计、美术创作等场景。字体采用SIL Open Font License 1.1授权协议，允许商业和非商业使用。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2025,
   "version": "1.410",
   "languages": [
@@ -1790,7 +2375,10 @@
    "像素艺术创作",
    "教育软件",
    "怀旧主题视觉作品"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 23
  },
  {
   "id": "dccf18ad-f602-4e5b-9c55-e299bdd1065c",
@@ -1811,7 +2399,10 @@
   "description": "这是一款使用FontCreator软件创建的卡通风格手写字体。其名称Liu Huan KaTong ShouShu暗示了其可能的设计者或风格来源。字体元信息显示其版权归属于一家公司，但具体公司名称未明确。该字体风格偏向于轻松、活泼的硬笔手写体，适用于儿童内容、卡通标题、非正式的社交媒体设计等场景。",
   "license": "付费授权",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "Typeface ?(your company). 2020. All Rights Reserved",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2020,
   "version": "1.0.0",
   "languages": [
@@ -1822,7 +2413,10 @@
    "卡通标题",
    "社交媒体配图",
    "非正式海报"
-  ]
+  ],
+  "charCount": 6870,
+  "glyphCount": 6871,
+  "viewCount": 10
  },
  {
   "id": "b904874a-04aa-4e01-a2ec-6094c333e36c",
@@ -1842,7 +2436,16 @@
   "description": "临海体是由临海市社发集团与乡立方团队合作开发的一款城市专属字体，旨在传播临海的城市文化。该字体以隶书为基础，融合了临海千年古城、人文历史与山水之韵等城市特质，风格厚重、古典、拙朴，兼具传统韵味与现代适用性。它是一款免费商用字体，适用于广告设计、自媒体、电商平台、城市宣传物料、招牌包装等多种场景，旨在打造临海的城市符号化IP。",
   "license": "免费商用",
   "licenseName": "免费可商用授权",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "临海市社发集团  乡立方",
+  "brand": {
+   "name": "乡立方团队",
+   "slug": "乡立方团队",
+   "logoUrl": "",
+   "website": "",
+   "description": "乡立方团队出品的字体"
+  },
   "releaseYear": 2023,
   "version": "1.0.0",
   "languages": [
@@ -1854,7 +2457,10 @@
    "广告设计",
    "电商平台",
    "招牌与包装"
-  ]
+  ],
+  "charCount": 9311,
+  "glyphCount": 9311,
+  "viewCount": 35
  },
  {
   "id": "7328b800-0824-4d62-9e9f-aba6a19fc5e0",
@@ -1875,7 +2481,10 @@
   "description": "濑户字体（SetoFont）是一款由日本业余字体设计师濑户（Nozomi Seto）创作的手写字体，风格自然随性、偏可爱风。该字体支持简体中文、繁体中文和日文，包含CJK常用汉字、平片假名等字符。其设计走好人缘天然呆的路线，西文部分也设计得较为可爱。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "",
+  "brand": null,
   "releaseYear": null,
   "version": "6.16.0",
   "languages": [
@@ -1887,7 +2496,10 @@
    "个人手书",
    "可爱风格设计",
    "非正式排版"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 5
  },
  {
   "id": "f6efadc4-b5de-4343-9c57-65d54b7db3f8",
@@ -1907,7 +2519,16 @@
   "description": "Source Han Serif CN Light 是思源宋体系列的一个字重，由 Adobe 和 Google 联合开发的开源泛中日韩字体。该字体家族包含七种字重，旨在为中文、日文、韩文以及拉丁文、希腊文、西里尔文提供高质量、风格统一的衬线字体解决方案。此 Light 字重设计清新优雅，适合移动端界面、小字号显示以及需要轻盈现代感的排版场景。项目采用 SIL Open Font License 1.1 许可证，允许个人和商业免费使用。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "Copyright  2017 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name 'Source'.",
   "foundry": "Adobe Systems Incorporated",
+  "brand": {
+   "name": "Adobe Systems Incorporated",
+   "slug": "adobe-systems-incorporated",
+   "logoUrl": "",
+   "website": "",
+   "description": "Adobe Systems Incorporated出品的字体"
+  },
   "releaseYear": 2017,
   "version": "1.0.0",
   "languages": [
@@ -1923,7 +2544,10 @@
    "印刷出版物",
    "品牌设计",
    "学术论文排版"
-  ]
+  ],
+  "charCount": 30847,
+  "glyphCount": 30995,
+  "viewCount": 300
  },
  {
   "id": "fdd53213-6cc4-456c-9a93-af4ec73488f9",
@@ -1943,7 +2567,16 @@
   "description": "Liu Jian Mao Cao（钟齐流江毛草）是一款由钟齐字库（ZhongQi）开发的开源手写字体，属于谷歌开源字体项目。该字体模仿中国传统毛笔草书的风格，笔触流畅自然，具有动态的粗细变化和连续书写感，旨在捕捉手写书法的艺术性和灵动性。其设计灵感来源于毛草书体，字符集支持简体中文，适用于需要体现人文、古典、艺术氛围的标题、海报、包装、品牌标识等设计场景。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "Copyright 2018 The Liu Jian Mao Cao Project Authors (https://www.github.com/googlefonts/liujianmaocao)",
   "foundry": "ZhongQi",
+  "brand": {
+   "name": "钟齐字库",
+   "slug": "钟齐字库",
+   "logoUrl": "",
+   "website": "",
+   "description": "钟齐字库出品的字体"
+  },
   "releaseYear": 2018,
   "version": "1.001",
   "languages": [
@@ -1955,7 +2588,10 @@
    "品牌标识",
    "包装设计",
    "艺术创作"
-  ]
+  ],
+  "charCount": 7015,
+  "glyphCount": 7018,
+  "viewCount": 181
  },
  {
   "id": "8e53fded-f8bd-46f2-99be-60a3ed825eb1",
@@ -1975,7 +2611,10 @@
   "description": "联盟起艺卢帅正锐黑体是一款由设计师卢帅带领其第一期字体特训营学员共同完成的公益字库。该字体于2019年发布，包含近8000个字符，旨在为设计师提供一款免费可商用的中文字体选择。字体风格属于黑体，线条干脆有力，结构几何化，具备良好的可读性。作为一款公益字体，其设计初衷是为了帮助解决设计行业中字体版权的问题，并传递一份对设计行业的热爱与支持。",
   "license": "免费商用",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2019,
   "version": "1.0.0",
   "languages": [
@@ -1987,7 +2626,10 @@
    "UI界面",
    "宣传物料",
    "公益项目"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 2
  },
  {
   "id": "045f66ab-40f4-46a9-8028-44c0b7136b2e",
@@ -2016,7 +2658,16 @@
   "description": "MiSans 是小米公司联合汉仪字库共同开发并开源发布的一款无衬线黑体字体。它基于小米原有的小米兰亭字体优化升级，旨在提供更现代、清晰、友好的屏幕显示体验。该字体家族包含 10 个字重，从 Thin 到 Heavy，并提供了斜体版本，支持简体中文、繁体中文、拉丁字母、西里尔字母、希腊字母等多种字符，覆盖超过 29,000 个汉字。其设计特点包括笔画简洁、中宫开阔、灰度均匀，在屏幕显示和印刷品上均有良好的可读性。MiSans 采用 SIL Open Font License 1.1 开源协议，允许个人和商业免费使用、修改和分发。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "Hanyi Fonts",
+  "brand": {
+   "name": "Hanyi Fonts",
+   "slug": "hanyi-fonts",
+   "logoUrl": "",
+   "website": "",
+   "description": "Hanyi Fonts出品的字体"
+  },
   "releaseYear": 2020,
   "version": "4.0.3",
   "languages": [
@@ -2030,7 +2681,10 @@
    "网页设计",
    "品牌宣传",
    "印刷品排版"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 14
  },
  {
   "id": "c3309e5d-503e-4172-ae3f-2653caf25627",
@@ -2050,7 +2704,16 @@
   "description": "MaokenAssortedSans（猫啃什锦黑）是一款由猫啃网（maoken.com）组织，由多位设计师（补简由ZERO子主导，白日月球、阿東東東東、荆南字坊、时光羊、帆影Shadow、频凡、Y^Lin、orunji）共同创作的开源中文字体。它基于思源黑体（Source Han Sans）进行补字和调整，旨在补充和完善简体中文字符集，特别是生僻字和网络常用字。字体风格现代、简洁，属于黑体（无衬线）类别，支持简体中文、繁体中文和英文。该字体遵循SIL Open Font License (OFL) 1.1开源协议，允许个人和商业免费使用。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "Copyright (c) 2022, Maoken (https://www.maoken.com/).",
   "foundry": "猫啃网",
+  "brand": {
+   "name": "猫啃网",
+   "slug": "猫啃网",
+   "logoUrl": "",
+   "website": "",
+   "description": "猫啃网出品的字体"
+  },
   "releaseYear": 2022,
   "version": "1.10.0",
   "languages": [
@@ -2064,7 +2727,10 @@
    "平面印刷",
    "数字阅读",
    "字幕制作"
-  ]
+  ],
+  "charCount": 10382,
+  "glyphCount": 11760,
+  "viewCount": 6
  },
  {
   "id": "0dd77871-c61a-4e8b-b6b4-78ff6bd02072",
@@ -2084,7 +2750,16 @@
   "description": "MaokenFengYaSong 是一款由 XinYuGong 与 Maoken 合作设计的宋体风格字体，于2020年11月28日首次发布。该字体基于传统宋体结构，融合了现代审美，笔画清晰，字形端庄，兼具良好的屏幕显示与印刷效果。其设计旨在提供一款适用于多种场景的通用宋体字库，特别适合用于正文排版、书籍印刷、品牌宣传和数字界面设计。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License",
+  "licenseUrl": "",
+  "copyright": "[Swei Spring] Modified by Max  [MaokenFengYaSong] Copyright 2020 Maoken,XinYuGong \"MaokenFengYaSong\" font is redistributed by maoken.com",
   "foundry": "Maoken",
+  "brand": {
+   "name": "maoken.com",
+   "slug": "maokencom",
+   "logoUrl": "",
+   "website": "",
+   "description": "maoken.com出品的字体"
+  },
   "releaseYear": 2020,
   "version": "1.0.0",
   "languages": [
@@ -2097,7 +2772,10 @@
    "品牌宣传",
    "数字界面",
    "正文排版"
-  ]
+  ],
+  "charCount": 42767,
+  "glyphCount": 42570,
+  "viewCount": 40
  },
  {
   "id": "ba010099-aed4-46d1-8252-72a0c25c23a6",
@@ -2118,7 +2796,16 @@
   "description": "Maoken Glitch Sans 是一款基于思源黑体 CN Heavy 修改而成的故障艺术风格字体。该字体由设计师 NightFurySL2001 创作，并由 Maoken 发布。其设计融入了数字故障（Glitch）的视觉元素，通过字形破碎、错位和像素化等效果，营造出赛博朋克、复古未来主义的科技感。字体风格独特，适用于需要营造数字故障、科技感、实验性视觉效果的标题、海报、游戏界面、品牌标识和创意设计项目。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License",
+  "licenseUrl": "",
+  "copyright": "2021 Maoken, NightFurySL2001. Maoken Glitch is redistributed under SIL Open Font License.    2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'.",
   "foundry": "Maoken",
+  "brand": {
+   "name": "Maoken",
+   "slug": "maoken",
+   "logoUrl": "",
+   "website": "",
+   "description": "Maoken出品的字体"
+  },
   "releaseYear": 2021,
   "version": "1.0.0",
   "languages": [
@@ -2131,7 +2818,10 @@
    "品牌标识",
    "创意标题",
    "数字艺术"
-  ]
+  ],
+  "charCount": 30892,
+  "glyphCount": 31036,
+  "viewCount": 16
  },
  {
   "id": "90c00653-6ee7-49a0-83de-d99e0db04c88",
@@ -2151,7 +2841,16 @@
   "description": "Maoken Glitch Serif 是一款基于 Adobe 与 Google 合作开发的思源宋体（Source Han Serif CN Heavy）进行修改的故障风格衬线字体。该字体在保留原思源宋体高质量字形和广泛字符集（支持简体中文、繁体中文、日文、韩文及拉丁字母）的基础上，通过引入视觉故障效果，如笔画错位、像素块和失真处理，营造出数字故障、赛博朋克或复古电子设备的视觉风格。其设计旨在为海报、标题、游戏界面、音乐专辑封面等需要强烈视觉冲击力和科技感的创意项目提供独特的字体选择。该字体以 SIL Open Font License (OFL) 授权发布，允许个人和商业免费使用。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License (OFL)",
+  "licenseUrl": "",
+  "copyright": "2022 Maoken, NightFurySL2001. Maoken Glitch is redistributed under SIL Open Font License.    2014-2022 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'.",
   "foundry": "Maoken",
+  "brand": {
+   "name": "Maoken",
+   "slug": "maoken",
+   "logoUrl": "",
+   "website": "",
+   "description": "Maoken出品的字体"
+  },
   "releaseYear": 2022,
   "version": "1.0.0",
   "languages": [
@@ -2167,7 +2866,10 @@
    "专辑封面",
    "科技感设计",
    "短视频字幕"
-  ]
+  ],
+  "charCount": 30847,
+  "glyphCount": 30995,
+  "viewCount": 133
  },
  {
   "id": "ba11472c-9500-42c7-9706-1648840f08f4",
@@ -2187,7 +2889,16 @@
   "description": "MaoKenWangXingYuan 是一款由设计师 MaoKen 于2023年发布的字体。其版权信息明确归属于 MaoKen。该字体风格偏向现代无衬线体，字形结构清晰，适用于需要简洁、易读的中文排版场景，如屏幕显示、UI界面、正文文本等。具体的设计背景、详细特点及官方授权细节需进一步核实。",
   "license": "免费商用",
   "licenseName": "OFL",
+  "licenseUrl": "",
+  "copyright": "Copyright  2023 MaoKen. All rights reserved.",
   "foundry": "猫啃网",
+  "brand": {
+   "name": "猫啃网",
+   "slug": "猫啃网",
+   "logoUrl": "",
+   "website": "",
+   "description": "猫啃网出品的字体"
+  },
   "releaseYear": 2023,
   "version": "1.0.0",
   "languages": [
@@ -2197,7 +2908,10 @@
    "屏幕显示",
    "UI界面",
    "正文排版"
-  ]
+  ],
+  "charCount": 7710,
+  "glyphCount": 7764,
+  "viewCount": 2
  },
  {
   "id": "362fec40-0814-4ba3-bee7-1dc64a274ec6",
@@ -2217,7 +2931,16 @@
   "description": "猫啃竹圆体是一款基于日本Fontworks公司的开源字体RocknRoll进行简体中文字符补充和修改的圆体风格字体。该字体由LongZhuTi项目团队协作开发，设计风格圆润可爱，笔画末端带有圆点装饰，整体呈现出活泼、亲切的视觉效果。它继承了RocknRoll字体的基本骨架，并对中文汉字进行了适配和优化，使其在保持原有日文设计风格的同时，更符合简体中文的阅读习惯。字体适用于需要营造轻松、友好氛围的标题、海报、儿童读物、品牌标识和社交媒体内容等场景。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "Copyright 2022-2023 LongZhuTi Project Authors. Copyright 2020 The RocknRoll Project Authors (https://github.com/fontworks-fonts/RocknRoll)",
   "foundry": "LongZhuTi Project",
+  "brand": {
+   "name": "LongZhuTi Project",
+   "slug": "longzhuti-project",
+   "logoUrl": "",
+   "website": "",
+   "description": "LongZhuTi Project出品的字体"
+  },
   "releaseYear": 2023,
   "version": "1.0.0",
   "languages": [
@@ -2229,7 +2952,10 @@
    "海报与广告",
    "品牌标识",
    "UI界面元素"
-  ]
+  ],
+  "charCount": 14329,
+  "glyphCount": 15122,
+  "viewCount": 207
  },
  {
   "id": "5fafd9ed-f9dc-4dde-846b-25f20e738cfc",
@@ -2249,7 +2975,16 @@
   "description": "Mengshen HanSerif（梦源宋体）是一款基于Adobe Source Han Serif（思源宋体）进行插值生成的衍生字体，由mengshen项目维护。其基础设计源自Google与Adobe联合开发的思源宋体开源项目，提供了完整的宋体风格字形。该字体支持泛中日韩（CJK）字符集，包含简体中文、繁体中文、日文和韩文所需的字符，并集成了高质量的拉丁字母、希腊字母和西里尔字母部分。字体采用SIL Open Font License 1.1开源许可证，允许免费商用。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "Copyright  2017 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name 'Source'. [PROJECT] Copyright(c) 2020 mengshen project",
   "foundry": "Adobe Systems Incorporated",
+  "brand": {
+   "name": "Adobe Systems Incorporated",
+   "slug": "adobe-systems-incorporated",
+   "logoUrl": "",
+   "website": "",
+   "description": "Adobe Systems Incorporated出品的字体"
+  },
   "releaseYear": 2020,
   "version": "1.0.2",
   "languages": [
@@ -2265,7 +3000,10 @@
    "印刷品设计",
    "品牌宣传材料",
    "用户界面设计"
-  ]
+  ],
+  "charCount": 30847,
+  "glyphCount": 60151,
+  "viewCount": 138
  },
  {
   "id": "1dee09c4-71b8-45e7-9ab6-bf7430078f51",
@@ -2286,7 +3024,10 @@
   "description": "沐瑶软笔手写体是由设计师春颜秋色创作的一款免费商用中文字体。该字体以设计师女儿的名字拼音命名，采用软头毛笔书写而成，风格可爱、朴拙。其笔画粗细不均，没有一笔是直的，并将方形部首处理为圆形，折线笔画变为平滑圆弧，整体呈现出活泼风趣的卡通风格。字体基于GB2312标准，包含6763个汉字及常用符号。最初于2019年5月启动，为设计师送给女儿的周岁生日礼物，后于2021年6月使用FontCreator重新制作以确保免费商用授权。适用于儿童设计、网页海报、休闲插画及个人创作等场景。",
   "license": "免费商用",
   "licenseName": "作者声明 (可免费商用)",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2018,
   "version": "2.20",
   "languages": [
@@ -2298,7 +3039,10 @@
    "休闲类插画与漫画",
    "社交媒体内容",
    "个人手账与字帖设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 8
  },
  {
   "id": "03b5f7cd-e75d-4e31-86d1-28fbd473737c",
@@ -2319,7 +3063,16 @@
   "description": "沐瑶软笔手写体是由设计师春颜秋色创作的一款免费商用中文字体。该字体以其女儿的名字沐瑶命名，采用软头毛笔书写，风格可爱、笔画柔软流畅，具有真实的手写感。字体设计上将方形部首处理为圆形，笔画粗细不均，呈现出活泼、风趣的卡通风格。它基于GB2312标准，包含6763个汉字及常用符号，适用于儿童设计、网页海报、休闲插画、漫画及个人创作等场景。",
   "license": "免费商用",
   "licenseName": "免费商用",
+  "licenseUrl": "",
+  "copyright": "Copyright(c) FlexiFont Co.,Ltd.2016",
   "foundry": "FlexiFont Co.,Ltd.",
+  "brand": {
+   "name": "FlexiFont Co.,Ltd.",
+   "slug": "flexifont-coltd",
+   "logoUrl": "",
+   "website": "",
+   "description": "FlexiFont Co.,Ltd.出品的字体"
+  },
   "releaseYear": 2019,
   "version": "2.20.0",
   "languages": [
@@ -2332,7 +3085,10 @@
    "休闲插画与漫画",
    "社交媒体内容",
    "个人手账与字帖"
-  ]
+  ],
+  "charCount": 6890,
+  "glyphCount": 6891,
+  "viewCount": 298
  },
  {
   "id": "0439f87c-70f4-4b62-9b4a-0e744b681e05",
@@ -2352,7 +3108,16 @@
   "description": "女書鳳栖是一款为标题和字幕设计的窄黑体，属于典迹题幕（MonuTitl）系列。其设计整合并修正了未来荧黑（Wlai Glow Sans）的中文部分，并搭配了基于Futura复刻的西文部分。字体包含三个字重，专为在有限空间内清晰显示文字而优化，通过调整标点宽度和字间距以提升排版效率。该字体支持简体中文、繁体中文及拉丁字母，并包含女书字符。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "綿飴",
   "foundry": "MYIL",
+  "brand": {
+   "name": "MYIL",
+   "slug": "myil",
+   "logoUrl": "",
+   "website": "",
+   "description": "MYIL出品的字体"
+  },
   "releaseYear": 2024,
   "version": "1.0.0",
   "languages": [
@@ -2365,7 +3130,10 @@
    "屏幕标题",
    "网页横幅",
    "UI界面"
-  ]
+  ],
+  "charCount": 29993,
+  "glyphCount": 28481,
+  "viewCount": 3
  },
  {
   "id": "4c5b3a39-6c14-49e8-8895-f04739481aab",
@@ -2386,7 +3154,16 @@
   "description": "Nyushu Firmia 是一款由设计师 MY1L 设计的手写风格字体，其设计灵感可能源于女书文化。该字体由 MYIL 厂商发布，其 PostScript 名称为 Nyushu-Firmia，中文名称为女書梧桐。字体风格偏向手写体，具有硬笔书写的特征，适用于需要展现个人化、手写感的中文排版场景。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "MYIL",
+  "brand": {
+   "name": "MYIL",
+   "slug": "myil",
+   "logoUrl": "",
+   "website": "",
+   "description": "MYIL出品的字体"
+  },
   "releaseYear": null,
   "version": "1.0.3",
   "languages": [
@@ -2398,7 +3175,10 @@
    "手写信件",
    "创意设计",
    "社交媒体配图"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 0
  },
  {
   "id": "b6d0ce6e-9081-4f05-b1f1-67c310d1233a",
@@ -2421,7 +3201,16 @@
   "description": "OPPO Sans 是 OPPO 与汉仪字库联合开发的全球化品牌字体，于2019年首次发布，并持续更新。中文部分由汉仪字库设计总监朱志伟指导、设计师黄珍元完成，西文部分由美国 Pentagram 公司设计。字体采用全新骨架，中宫自然舒适，字形舒展，笔画简洁，并去除了出脚等细节，使整体造型干净、现代。曲线处理圆滑流畅，融入了 OPPO 产品的美学理念，具有科技感和未来感。该字体家族包含多种字重，针对屏幕显示进行了优化，支持多国语言，并允许个人和企业免费商用。",
   "license": "免费商用",
   "licenseName": "OPPO Sans Free Use License",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "Hanyi Fonts",
+  "brand": {
+   "name": "Hanyi Fonts",
+   "slug": "hanyi-fonts",
+   "logoUrl": "",
+   "website": "",
+   "description": "Hanyi Fonts出品的字体"
+  },
   "releaseYear": 2019,
   "version": "3.0.4",
   "languages": [
@@ -2437,7 +3226,10 @@
    "移动端应用",
    "宣传物料",
    "网页设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 26
  },
  {
   "id": "6f721bf6-45f7-4318-8514-05b272aad6ca",
@@ -2457,7 +3249,16 @@
   "description": "PFanHuTuTi 是一款由 Do-Font 与 Cpbyes 合作开发的硬笔手写风格中文字体。其元信息描述为殴書 Nagurigaki crayon_1.1，暗示了字体可能具有类似蜡笔或手绘的书写质感。该字体设计风格独特，适用于需要个性化、手写感或创意表达的设计场景，如社交媒体图片、海报标题、个性化包装等。字体版本为 0.357，发布于 2022 年。",
   "license": "免费商用",
   "licenseName": "作者声明授权",
+  "licenseUrl": "",
+  "copyright": "Copyright 2022 CPBYES (C) 2015 Do-Font",
   "foundry": "Do-Font & Cpbyes",
+  "brand": {
+   "name": "Do-Font & Cpbyes",
+   "slug": "do-font-cpbyes",
+   "logoUrl": "",
+   "website": "",
+   "description": "Do-Font & Cpbyes出品的字体"
+  },
   "releaseYear": 2022,
   "version": "0.357.0",
   "languages": [
@@ -2468,7 +3269,10 @@
    "创意海报标题",
    "个性化包装",
    "手写风格文本"
-  ]
+  ],
+  "charCount": 4334,
+  "glyphCount": 4901,
+  "viewCount": 22
  },
  {
   "id": "3503cfad-10e3-49ff-8fc0-ee2838f7a1b8",
@@ -2488,7 +3292,16 @@
   "description": "庞门正道标题体是由庞门正道公众号与自由空间创意工作室联合开发的一款免费商用字体，由12位设计师共同创作。该字体于2016年首次发布，以其现代、方正、大气的风格迅速在设计圈内流行，广泛应用于电商广告、海报设计、横幅、包装印刷等场景。字体笔画均衡，结构合理，线条较粗，视觉冲击力强，适合作为标题字体使用。自发布以来，已更新至3.0版本，累计下载量巨大，是设计行业中广受欢迎且完全免费商用的字体之一。",
   "license": "免费商用",
   "licenseName": "免费商用授权",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "庞门正道",
+  "brand": {
+   "name": "庞门正道公众号",
+   "slug": "庞门正道公众号",
+   "logoUrl": "",
+   "website": "",
+   "description": "庞门正道公众号出品的字体"
+  },
   "releaseYear": 2016,
   "version": "3.12.0",
   "languages": [
@@ -2500,7 +3313,10 @@
    "横幅",
    "包装印刷",
    "标题设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 0
  },
  {
   "id": "528c89d5-af53-4ac7-bca1-b3c23e28a4df",
@@ -2520,7 +3336,16 @@
   "description": "庞门正道标题体是由庞门正道设计公众号联合自由空间创意工作室于2016年底发布的一款免费商用字体。该字体由12位设计师共同设计，整体字形方正，笔画均衡，融合了现代设计风格，兼具方与圆的特征，棱角与弧度并存。字体结构合理，线条较粗，视觉上坚毅大气，适用于品牌标题、广告、电商海报、宣传单页等需要吸引眼球的商业设计场景。",
   "license": "免费商用",
   "licenseName": "免费商用",
+  "licenseUrl": "",
+  "copyright": "(c) Copyright PangMenZhengDao",
   "foundry": "庞门正道",
+  "brand": {
+   "name": "庞门正道设计公众号与自由空间创意工作室",
+   "slug": "庞门正道设计公众号与自由空间创意工作室",
+   "logoUrl": "",
+   "website": "",
+   "description": "庞门正道设计公众号与自由空间创意工作室出品的字体"
+  },
   "releaseYear": 2018,
   "version": "6.0.0",
   "languages": [
@@ -2532,7 +3357,10 @@
    "海报设计",
    "宣传单页",
    "横幅设计"
-  ]
+  ],
+  "charCount": 7590,
+  "glyphCount": 7618,
+  "viewCount": 7
  },
  {
   "id": "ba01a2ed-595f-4766-96a1-49a70833a9af",
@@ -2552,7 +3380,16 @@
   "description": "庞门正道轻松体是由设计师庞门正道（庞其锦）于2019年发布的一款免费商用中文字体。该字体设计风格轻松、圆润、活泼，笔画末端采用圆角处理，字形结构饱满，整体感觉亲切、可爱且富有现代感。它是一款基于GB2312标准的中文字体，包含6763个汉字和常用符号，适用于标题、海报、品牌宣传、社交媒体、包装设计等需要营造轻松、友好氛围的场景。",
   "license": "免费商用",
   "licenseName": "免费商用",
+  "licenseUrl": "",
+  "copyright": "(c) 2018 8  ?",
   "foundry": "庞门正道",
+  "brand": {
+   "name": "庞门正道",
+   "slug": "庞门正道",
+   "logoUrl": "",
+   "website": "",
+   "description": "庞门正道出品的字体"
+  },
   "releaseYear": 2019,
   "version": "1.0.0",
   "languages": [
@@ -2564,7 +3401,10 @@
    "海报设计",
    "包装设计",
    "儿童相关设计"
-  ]
+  ],
+  "charCount": 7369,
+  "glyphCount": 7373,
+  "viewCount": 15
  },
  {
   "id": "85b51dbf-54f0-4a34-8b6a-4549ab96a5da",
@@ -2585,7 +3425,16 @@
   "description": "旁门正道标题体（PangZhenGui-PMZD）是由设计师庞振国（庞门正道）于2018年发布的一款免费商用中文字体。该字体是一款现代风格的无衬线标题字体，字形结构方正、笔画粗壮有力，视觉冲击力强，尤其适用于海报、广告、品牌标识、网页标题等需要突出显示和吸引眼球的场景。字体设计上融合了黑体的稳重与美术字的创意，部分笔画处理带有独特的装饰性，整体风格硬朗且富有现代感。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "(c) Copyright PangMenZhengDao 2018",
   "foundry": "PangMenZhengDao",
+  "brand": {
+   "name": "旁门正道",
+   "slug": "旁门正道",
+   "logoUrl": "",
+   "website": "",
+   "description": "旁门正道出品的字体"
+  },
   "releaseYear": 2018,
   "version": "3.12.0",
   "languages": [
@@ -2599,7 +3448,10 @@
    "品牌标识",
    "网页标题",
    "视频字幕"
-  ]
+  ],
+  "charCount": 7826,
+  "glyphCount": 7954,
+  "viewCount": 1
  },
  {
   "id": "eb9717d5-a3d0-456a-ad9b-2e809feb813b",
@@ -2619,7 +3471,16 @@
   "description": "品如手写体是由设计师林芳柽创作的一款永久免费可商用的手写字体。作者因不满字体版权收费的现状，作为书法爱好者，利用半年业余时间完成了这套字库。字体风格为硬笔手写，笔画流畅自然，带有个人书写特色。该字体基于SIL Open Font License 1.1协议发布，允许个人和企业免费商用、传播和修改。字体最初发布于2017年，后续在2022年进行了更新，修复了在macOS系统上的显示问题以及字体在系统中归类错误的问题。作者林芳柽是品如设计的创意总监，曾任职于奥美广告公司，服务过多个知名品牌。",
   "license": "免费商用",
   "licenseName": "作者声明",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "品如设计",
+  "brand": {
+   "name": "品如设计",
+   "slug": "品如设计",
+   "logoUrl": "",
+   "website": "",
+   "description": "品如设计出品的字体"
+  },
   "releaseYear": 2017,
   "version": "1.0.0",
   "languages": [
@@ -2632,7 +3493,10 @@
    "品牌标识",
    "个人项目",
    "网页设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 9
  },
  {
   "id": "cb7ed496-2255-4535-a75e-5c52e3a78241",
@@ -2652,7 +3516,10 @@
   "description": "Clear Han Serif 是一款开源中文字体，其元信息显示由 chncwk 开发。该字体设计旨在提供清晰的屏幕显示效果，属于衬线字体风格，包含 Regular 字重。它支持简体中文、繁体中文及英文，并采用开源许可证，允许免费商用。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "chncwk",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2022,
   "version": "1.0.7",
   "languages": [
@@ -2665,7 +3532,10 @@
    "用户界面",
    "数字出版",
    "屏幕阅读"
-  ]
+  ],
+  "charCount": 30847,
+  "glyphCount": 30938,
+  "viewCount": 176
  },
  {
   "id": "bd19635e-d2d4-47c5-b0d9-d31b81c09c4a",
@@ -2685,7 +3555,16 @@
   "description": "JasonWriting2（清松手写体2）是由设计师游清松（Yu Ching Sung）创作的一款手写字体。该字体基于SIL Open Font License 1.1开源协议发布，允许个人和企业免费商用。字体设计源于作者在稿纸上用原子笔手写，通过数字化处理而成，字形规矩大方，笔画粗细均匀，风格自然流畅。该字体支持简体中文、繁体中文等多种字符，适用于需要体现手写感、亲和力的设计场景，如社交媒体配图、个人博客、文创产品、非正式品牌宣传等。",
   "license": "联系授权",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "www.writes.com.tw",
+  "brand": {
+   "name": "www.writes.com.tw",
+   "slug": "wwwwritescomtw",
+   "logoUrl": "",
+   "website": "",
+   "description": "www.writes.com.tw出品的字体"
+  },
   "releaseYear": null,
   "version": "1.0.0",
   "languages": [
@@ -2698,7 +3577,10 @@
    "文创产品",
    "非正式品牌宣传",
    "教育材料"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 9
  },
  {
   "id": "5a56c0f9-3172-4bb8-8653-5004520413fe",
@@ -2718,7 +3600,16 @@
   "description": "千图笔锋手写体是一款由上海品图网络信息科技有限公司（千图网）发布的免费商用创意手写字体。其设计改变了平直的笔画，采用柔和的弧线，字形新颖独特、简洁有力、清新淡雅，具有文艺风格。字体整体采用连笔写法，笔画流畅一气呵成，模仿了手写时的笔锋与墨迹感，适用于海报、影视综艺、文艺宣传、商业广告、节日贺卡及个人创作等多种场景。",
   "license": "免费商用",
   "licenseName": "免费可商用",
+  "licenseUrl": "",
+  "copyright": "Copyright Shanghai PinTu Network Technology Co.,Ltd.",
   "foundry": "Shanghai PinTu Network Technology Co.,Ltd.",
+  "brand": {
+   "name": "上海品图网络信息科技有限公司",
+   "slug": "上海品图网络信息科技有限公司",
+   "logoUrl": "",
+   "website": "",
+   "description": "上海品图网络信息科技有限公司出品的字体"
+  },
   "releaseYear": 2021,
   "version": "1.0.0",
   "languages": [
@@ -2731,7 +3622,10 @@
    "影视综艺字幕",
    "节日祝福贺卡",
    "个人手账与博客"
-  ]
+  ],
+  "charCount": 6980,
+  "glyphCount": 6993,
+  "viewCount": 48
  },
  {
   "id": "63d7be22-266c-4358-945e-1d5bdbc07e2d",
@@ -2751,7 +3645,16 @@
   "description": "千图厚黑体是一款由上海品图网络科技有限公司发布的免费商用黑体字。其字形结构稳重大方，笔画粗壮有力，整体效果醒目突出。该字体包含基本拉丁文、一般标点符号、中日韩符号和标点以及中日韩统一表意文字区块，支持简体中文和英文的显示。适用于网页设计、宣传物料、品牌标识等需要视觉冲击力的商业设计场景。",
   "license": "免费商用",
   "licenseName": "免费可商用",
+  "licenseUrl": "",
+  "copyright": "Copyright Shanghai PinTu Network Technology Co.,Ltd.",
   "foundry": "Shanghai PinTu Network Technology Co.,Ltd.",
+  "brand": {
+   "name": "Shanghai PinTu Network Technology Co.,Ltd.",
+   "slug": "shanghai-pintu-network-technology-coltd",
+   "logoUrl": "",
+   "website": "",
+   "description": "Shanghai PinTu Network Technology Co.,Ltd.出品的字体"
+  },
   "releaseYear": 2025,
   "version": "1.0.0",
   "languages": [
@@ -2763,7 +3666,10 @@
    "宣传海报",
    "品牌标识",
    "游戏界面"
-  ]
+  ],
+  "charCount": 6948,
+  "glyphCount": 6961,
+  "viewCount": 29
  },
  {
   "id": "e4c3d41b-99cc-4c1c-9d5e-818bb7904420",
@@ -2783,7 +3689,16 @@
   "description": "千图马克手写体是一款由上海品图网络科技有限公司（千图字体）发布的硬笔手写风格字体。其字形设计模仿日常手写笔迹，笔画流畅自然，带有一定的不规则感，适用于需要营造亲切、活泼、个性化氛围的设计场景，如海报标题、社交媒体配图、品牌标识、包装设计等。该字体支持简体中文、繁体中文、英文及日文等多种字符。",
   "license": "免费商用",
   "licenseName": "https://58pic.com/",
+  "licenseUrl": "",
+  "copyright": "Copyright Shanghai PinTu Network Technology Co.,Ltd.",
   "foundry": "千图字体",
+  "brand": {
+   "name": "千图字体",
+   "slug": "千图字体",
+   "logoUrl": "",
+   "website": "",
+   "description": "千图字体出品的字体"
+  },
   "releaseYear": 2025,
   "version": "1.0.0",
   "languages": [
@@ -2798,7 +3713,10 @@
    "品牌标识",
    "包装设计",
    "电商广告"
-  ]
+  ],
+  "charCount": 10467,
+  "glyphCount": 10481,
+  "viewCount": 195
  },
  {
   "id": "704c3e88-7bc4-4f4e-99fa-439bde608082",
@@ -2818,7 +3736,16 @@
   "description": "千图纤墨体是由上海品图网络科技有限公司（千图网）设计并发布的一款中文手写字体。其名称中的纤墨暗示了字体纤细、带有墨迹感的风格特点。该字体笔画流畅，字形结构较为规整，兼具手写的自然感与一定的可读性，适用于需要体现人文、文艺、清新或手作感的平面设计、社交媒体配图、海报标题、品牌包装等非正式场景。",
   "license": "免费商用",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "Shanghai PinTu Network Technology Co.,Ltd.",
+  "brand": {
+   "name": "Shanghai PinTu Network Technology Co.,Ltd.",
+   "slug": "shanghai-pintu-network-technology-coltd",
+   "logoUrl": "",
+   "website": "",
+   "description": "Shanghai PinTu Network Technology Co.,Ltd.出品的字体"
+  },
   "releaseYear": null,
   "version": "1.0.0",
   "languages": [
@@ -2829,7 +3756,10 @@
    "海报标题",
    "品牌包装",
    "文创产品"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 1
  },
  {
   "id": "c4285fb5-1aa5-4b38-a156-5fb605a2eaa4",
@@ -2849,7 +3779,16 @@
   "description": "qiantuxuehuati 是一款由上海品图网络科技有限公司（Shanghai PinTu Network Technology Co.,Ltd.）设计的手写风格字体。其名称千图学画体暗示了其与学习绘画或手绘相关的设计背景，字体风格偏向硬笔手写，笔画自然流畅，带有一定的亲和力与学习感。该字体适用于需要体现手写感、教育学习、创意笔记、轻松活泼的视觉设计场景。",
   "license": "免费商用",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "Copyright Shanghai PinTu Network Technology Co.,Ltd.",
   "foundry": "Shanghai PinTu Network Technology Co.,Ltd.",
+  "brand": {
+   "name": "Shanghai PinTu Network Technology Co.,Ltd.",
+   "slug": "shanghai-pintu-network-technology-coltd",
+   "logoUrl": "",
+   "website": "",
+   "description": "Shanghai PinTu Network Technology Co.,Ltd.出品的字体"
+  },
   "releaseYear": null,
   "version": "1.0.0",
   "languages": [
@@ -2860,7 +3799,10 @@
    "教育课件",
    "创意海报",
    "社交媒体配图"
-  ]
+  ],
+  "charCount": 10476,
+  "glyphCount": 10490,
+  "viewCount": 3
  },
  {
   "id": "38de05ac-b960-42d3-9f75-997e300a96f6",
@@ -2880,7 +3822,16 @@
   "description": "千图纤墨体是由上海品图网络科技有限公司（千图网）设计并发布的一款免费商用中文字体。其名称纤墨暗示了字体纤细、带有墨迹感的风格特点。该字体笔画纤细流畅，带有手写笔触的韵味，整体风格现代、清新且富有亲和力，适用于需要营造轻松、文艺或女性化氛围的设计场景。字体文件元信息中提供的链接指向千图网官网，表明其作为该平台提供的设计资源之一。",
   "license": "联系授权",
   "licenseName": "免费商用授权",
+  "licenseUrl": "",
+  "copyright": "Copyright Shanghai PinTu Network Technology Co.,Ltd.",
   "foundry": "Shanghai PinTu Network Technology Co.,Ltd.",
+  "brand": {
+   "name": "Shanghai PinTu Network Technology Co.,Ltd.",
+   "slug": "shanghai-pintu-network-technology-coltd",
+   "logoUrl": "",
+   "website": "",
+   "description": "Shanghai PinTu Network Technology Co.,Ltd.出品的字体"
+  },
   "releaseYear": 2020,
   "version": "1.0.0",
   "languages": [
@@ -2892,7 +3843,10 @@
    "品牌标语",
    "书籍封面",
    "UI界面点缀"
-  ]
+  ],
+  "charCount": 7139,
+  "glyphCount": 7152,
+  "viewCount": 174
  },
  {
   "id": "792d2920-9fae-4a2b-94c6-cb8185a22f7f",
@@ -2912,7 +3866,16 @@
   "description": "QTxiaotu（千图小兔体）是由千图网（上海品图网络科技有限公司）发布的一款手写风格字体。该字体字形流畅自然，具有硬笔书写的特征，适用于清新海报、影视综艺类设计、社交媒体图片等多种场景。根据其厂商背景及同类字体信息推断，该字体通常可免费用于商业设计。",
   "license": "免费商用",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "上海品图网络科技有限公司",
   "foundry": "千图网",
+  "brand": {
+   "name": "千图网",
+   "slug": "千图网",
+   "logoUrl": "",
+   "website": "",
+   "description": "千图网出品的字体"
+  },
   "releaseYear": null,
   "version": "1.0.0",
   "languages": [
@@ -2924,7 +3887,10 @@
    "社交媒体图片",
    "产品包装",
    "PPT演示"
-  ]
+  ],
+  "charCount": 6985,
+  "glyphCount": 6999,
+  "viewCount": 12
  },
  {
   "id": "5cb8fa8c-d837-4b95-abe9-0ce4b7637f8a",
@@ -2944,7 +3910,10 @@
   "description": "EBAS 是一款使用 FontForge 工具创建的无衬线字体，其元信息显示为中等字重。该字体由 CMEX 设计，其字符集主要支持拉丁字母，适用于基本的英文排版。",
   "license": "",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "",
+  "brand": null,
   "releaseYear": null,
   "version": "1.0.0",
   "languages": [
@@ -2953,7 +3922,10 @@
   "useCases": [
    "基础英文排版",
    "个人项目"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 4
  },
  {
   "id": "64862922-ca77-43a4-9e4d-e6e35efec8be",
@@ -2973,7 +3945,16 @@
   "description": "ZhenyanGB 是一款由上海瑞贤创意设计有限公司（REEJI）于2018年发布的现代无衬线中文字体。其设计风格简洁、清晰，笔画均匀，字形结构规整，具有良好的屏幕显示和印刷阅读体验。该字体严格遵循GB2312字符集标准，覆盖了常用的简体中文字符，适用于需要正式、清晰视觉呈现的文档排版、界面设计、品牌标识等商业场景。",
   "license": "付费授权",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "Shang hai Rui Xian Creative Design Co., Ltd.",
+  "brand": {
+   "name": "Shang hai Rui Xian Creative Design Co., Ltd.",
+   "slug": "shang-hai-rui-xian-creative-design-co-ltd",
+   "logoUrl": "",
+   "website": "",
+   "description": "Shang hai Rui Xian Creative Design Co., Ltd.出品的字体"
+  },
   "releaseYear": 2018,
   "version": "1.0.0",
   "languages": [
@@ -2984,7 +3965,10 @@
    "品牌设计",
    "用户界面",
    "印刷品"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 2
  },
  {
   "id": "bbeb7a85-2917-4cd8-b34a-8c3d14fade8f",
@@ -3004,7 +3988,16 @@
   "description": "素材集市康康体是一款由素材集市（sucaijishi.com）于2020年发布的免费商用字体。该字体设计风格偏向于无衬线黑体，字形结构稳定，视觉重心均衡，适用于多种数字媒体和平面设计场景，如标题、海报、网页界面等。",
   "license": "联系授权",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "sucaijishi.com",
+  "brand": {
+   "name": "sucaijishi.com",
+   "slug": "sucaijishicom",
+   "logoUrl": "",
+   "website": "",
+   "description": "sucaijishi.com出品的字体"
+  },
   "releaseYear": 2020,
   "version": "1.0.0",
   "languages": [
@@ -3016,7 +4009,10 @@
    "海报制作",
    "网页UI",
    "电商广告"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 0
  },
  {
   "id": "97451ae3-699b-4f3c-ad9a-e4aefbe11fbd",
@@ -3036,7 +4032,16 @@
   "description": "随峰体是由香港设计师阿坤创作的一款开源手写字体。该字体经过两年时间，使用啫喱笔逐字书写而成，保留了自然的手写笔迹与瑕疵，风格亲切随性。字体最初于2022年由cjkFonts以Beta版形式公开发布，并采用SIL Open Font License (OFL) 授权，允许个人及商业免费使用。此版本包含约6100个字符，涵盖数字、英文、标点符号及繁体中文，简体字库相对有限。字体设计旨在提供一种具有人文气息和日常书写感的视觉选择，适用于文创设计、社交媒体、个性化排版等非正式场景。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "cjkFonts x 阿坤",
   "foundry": "cjkFonts",
+  "brand": {
+   "name": "cjkFonts",
+   "slug": "cjkfonts",
+   "logoUrl": "",
+   "website": "",
+   "description": "cjkFonts出品的字体"
+  },
   "releaseYear": 2022,
   "version": "0.1.0",
   "languages": [
@@ -3049,7 +4054,10 @@
    "社交媒体配图",
    "个性化标题",
    "非正式印刷品"
-  ]
+  ],
+  "charCount": 6218,
+  "glyphCount": 6219,
+  "viewCount": 183
  },
  {
   "id": "b8d40e14-81de-41b3-9dae-c49f839406d1",
@@ -3069,7 +4077,16 @@
   "description": "w 是一款由 SCF 于 2008 年发布的字体。其元信息显示为常规字重，版权归属于 SCF。该字体设计简洁，属于无衬线风格，适用于需要清晰易读的通用场景，如屏幕显示、基础排版等。",
   "license": "付费授权",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "(c) CopyrightSCF. 2008",
   "foundry": "SCF",
+  "brand": {
+   "name": "SCF",
+   "slug": "scf",
+   "logoUrl": "",
+   "website": "",
+   "description": "SCF出品的字体"
+  },
   "releaseYear": 2008,
   "version": "1.0.0",
   "languages": [
@@ -3079,7 +4096,10 @@
   "useCases": [
    "屏幕显示",
    "基础文档排版"
-  ]
+  ],
+  "charCount": 22060,
+  "glyphCount": 22021,
+  "viewCount": 1
  },
  {
   "id": "49017d55-73a9-40af-8660-6f083cdf9edb",
@@ -3099,7 +4119,16 @@
   "description": "书体坊禚效锋行草体是由青年书法家、书体坊创始人禚效锋开发的一款行草风格书法字体。该字体基于禚效锋对行草书法的研习，融合了行书的辨识度与草书的飘逸洒脱感，旨在平衡艺术性与实用性。字体造型别致大方，笔触流畅自然，具有手写的温度感。该字体于2009年首次发布，适用于广告创意、文字策划、排版印刷、平面设计、书法展示及文化宣传等领域，能为设计作品增添传统书法艺术的灵动气息。",
   "license": "个人免费",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "Copyright(c) shutifang 20090622  QQ:448488727",
   "foundry": "书体坊",
+  "brand": {
+   "name": "书体坊",
+   "slug": "书体坊",
+   "logoUrl": "",
+   "website": "",
+   "description": "书体坊出品的字体"
+  },
   "releaseYear": 2009,
   "version": "1.0.0",
   "languages": [
@@ -3111,7 +4140,10 @@
    "书法展示",
    "文化宣传",
    "品牌标识"
-  ]
+  ],
+  "charCount": 7704,
+  "glyphCount": 7751,
+  "viewCount": 11
  },
  {
   "id": "dabfdb8a-7eb3-4102-8087-6b404eac7def",
@@ -3137,7 +4169,16 @@
   "description": "Noto Sans CJK 是 Google 与 Adobe 合作开发的一款开源泛 CJK 无衬线字体，旨在为简体中文、繁体中文、日文和韩文提供统一且高质量的字形支持，以消除因缺少字体而显示的豆腐块。该字体家族包含七种字重，风格介于现代与传统之间，设计目标是为手机、平板、桌面用户界面、网页浏览及电子书阅读等多种场景提供清晰易读的显示效果。字体严格遵循各地书写惯例，例如繁体中文符合台湾教育部门标准，并支持 GB18030 及《通用规范汉字表》。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License",
+  "licenseUrl": "",
+  "copyright": "Copyright  2014 Adobe Systems Incorporated. All Rights Reserved.",
   "foundry": "Adobe Systems Incorporated",
+  "brand": {
+   "name": "Adobe Systems Incorporated",
+   "slug": "adobe-systems-incorporated",
+   "logoUrl": "",
+   "website": "",
+   "description": "Adobe Systems Incorporated出品的字体"
+  },
   "releaseYear": 2014,
   "version": "1.0.0",
   "languages": [
@@ -3154,7 +4195,10 @@
    "电子书",
    "印刷品正文",
    "多语言排版"
-  ]
+  ],
+  "charCount": 44681,
+  "glyphCount": 65535,
+  "viewCount": 66
  },
  {
   "id": "f641bdcc-8011-445e-902b-d322ce5edabb",
@@ -3174,7 +4218,16 @@
   "description": "摄图摩登小方体是一款由摄图网与字魂网合作完成的现代几何风格中文字体。其笔画方正质朴，兼具灵气与活力，适中的笔画粗度与几何感的细节设计确保了良好的视觉表现力。字体整体风格稳重端正而不呆板，适用于电商广告、美食宣传、产品包装设计以及社交网络个性化用字等多种商业场景。该字体已作公益开源，允许个人及企业免费商用。",
   "license": "付费授权",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "摄图网",
+  "brand": {
+   "name": "摄图网",
+   "slug": "摄图网",
+   "logoUrl": "",
+   "website": "",
+   "description": "摄图网出品的字体"
+  },
   "releaseYear": 2024,
   "version": "1.0.0",
   "languages": [
@@ -3185,7 +4238,10 @@
    "美食宣传",
    "包装设计",
    "社交媒体"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 0
  },
  {
   "id": "088b2c69-f1e1-4af8-9451-006c1db7ad1c",
@@ -3211,7 +4267,16 @@
   "description": "Source Han Serif CN 是 Adobe 发布的泛中日韩（Pan-CJK）衬线字体家族 Source Han Serif 的简体中文地区子集版本，作为 Source Han Sans 的衬线对应字体。该字体由 Adobe 与 Google 合作开发，旨在为东亚地区提供统一设计的高质量字体。它支持简体中文、繁体中文、日语和韩语，并包含源自 Source Serif 的拉丁文、希腊文和西里尔文字形。字体设计兼顾传统宋体风格与现代审美，提供多种字重，每个字重包含高达 65,535 个字形，遵循 OpenType 标准。该字体基于 SIL 开源字体许可证发布，允许免费商用和修改。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "Adobe Systems Incorporated",
+  "brand": {
+   "name": "Adobe Systems Incorporated",
+   "slug": "adobe-systems-incorporated",
+   "logoUrl": "",
+   "website": "",
+   "description": "Adobe Systems Incorporated出品的字体"
+  },
   "releaseYear": 2017,
   "version": "1.0.0",
   "languages": [
@@ -3228,7 +4293,10 @@
    "网页设计",
    "电子书阅读",
    "多语言排版"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 28
  },
  {
   "id": "db87f2ab-4475-48c1-a6ae-5088ed3c60df",
@@ -3248,7 +4316,16 @@
   "description": "教育部標準楷書是由中華民國教育部主導開發與發布的標準楷書字體，旨在為教育、出版及公眾使用提供一套規範、清晰、美觀的楷體中文字型。該字體嚴格遵循傳統楷書的書寫規範與結構，筆畫清晰、端正，具有良好的可讀性，適用於教科書、公文、正式文件及需要展現傳統書法美感的印刷品。其授權允許免費商用與非商用分發，是台灣地區廣泛使用的公眾授權字體之一。",
   "license": "免费商用",
   "licenseName": "CC BY-ND 3.0 TW",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "中华民国教育部",
+  "brand": {
+   "name": "中華民國教育部",
+   "slug": "中華民國教育部",
+   "logoUrl": "",
+   "website": "",
+   "description": "中華民國教育部出品的字体"
+  },
   "releaseYear": 2019,
   "version": "3.0.0",
   "languages": [
@@ -3259,7 +4336,10 @@
    "公文",
    "正式文件",
    "印刷出版"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 11
  },
  {
   "id": "424f5f22-ccfb-44c3-bc2e-1e568f5bb943",
@@ -3279,7 +4359,10 @@
   "description": "MOESongUN 是一款基于教育部标准宋体（MOESong）进行修改和扩展的字体。其名称中的UN可能代表Unicode或Universal，表明该字体旨在提供更广泛的字符覆盖，特别是对Unicode标准中更多字符的支持。该字体保留了标准宋体的基本结构和易读性，同时通过扩展字符集来满足更广泛的多语言排版需求。其版权信息表明该字体允许在注明来源的情况下进行免费分发和商业使用。适用于需要标准中文字体且兼容多语言环境的文档、教育材料及一般性排版。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "",
+  "brand": null,
   "releaseYear": null,
   "version": "1.0.0",
   "languages": [
@@ -3292,7 +4375,10 @@
    "官方文件",
    "多语言文档排版",
    "屏幕显示"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 6
  },
  {
   "id": "3c2e3003-0ef4-4245-8258-c5033e0e5828",
@@ -3312,7 +4398,16 @@
   "description": "PMingLiU-TW 是 Microsoft MingLiU 字体的衍生版本，专为繁体中文（台湾）显示优化。该字体由台湾的字体设计公司（如华康字型/DynaLab Inc.）共同参与设计，其设计灵感源于宋代书体，旨在改善早期电脑屏幕上中文文本的阅读效果。作为一款经典的屏幕衬线字体，它包含了大量的中文字符，支持拉丁文、希腊文、西里尔文、日文及注音符号等多种文字区块，在早期的Windows操作系统中被广泛使用。",
   "license": "联系授权",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "微软 (Microsoft)",
+  "brand": {
+   "name": "DynaLab Inc.",
+   "slug": "dynalab-inc",
+   "logoUrl": "",
+   "website": "",
+   "description": "DynaLab Inc.出品的字体"
+  },
   "releaseYear": 1999,
   "version": "1.0.0",
   "languages": [
@@ -3323,7 +4418,10 @@
    "传统印刷物屏幕显示",
    "旧版软件界面",
    "文档正文排版"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 11
  },
  {
   "id": "54303525-660d-4296-8efc-a3b85c5f4df0",
@@ -3343,7 +4441,16 @@
   "description": "GNU Unifont 是一款由 Roman Czyborra 于 1998 年创建的免费点阵字体，旨在覆盖整个 Unicode 基本多文种平面。该字体采用独特的 .hex 中间格式，支持 8 或 16 像素宽度、16 像素高度的字形。它包含了超过 55,000 个符号，涵盖了所有可见的 BMP 码点，其中包含近 28,000 个中日韩表意文字。作为 GNU 官方软件包的一部分，Unifont 以其超大字符集和清晰的像素风格，广泛应用于自由操作系统、嵌入式系统、游戏开发及需要多语言支持的技术文档和界面中。",
   "license": "免费商用",
   "licenseName": "Dual license: GNU GPL version 2 or later with the GNU Font Embedding Exception, and SIL Open Font License version 1.1",
+  "licenseUrl": "",
+  "copyright": "Copyright (C) 2016 Roman Czyborra, Paul Hardy, Qianqian Fang, Andrew Miller, et al. Licensed under the GNU General Public License; either version 2, or (at your option) a later version, with the GNU Font Embedding Exception.",
   "foundry": "Unifoundry",
+  "brand": {
+   "name": "GNU Project",
+   "slug": "gnu-project",
+   "logoUrl": "",
+   "website": "",
+   "description": "GNU Project出品的字体"
+  },
   "releaseYear": 1998,
   "version": "9.0.06",
   "languages": [
@@ -3359,7 +4466,10 @@
    "游戏开发",
    "多语言技术文档",
    "编程与终端显示"
-  ]
+  ],
+  "charCount": 65352,
+  "glyphCount": 65356,
+  "viewCount": 20
  },
  {
   "id": "1eb9799e-16af-4bf5-b43b-9731eac9d6a9",
@@ -3379,7 +4489,10 @@
   "description": "WenCang（问藏书房）是一款由丁道华设计的中文字体，于2019年9月发布。该字体风格为现代无衬线黑体，字形结构清晰，笔画简洁，具有良好的可读性。它支持简体中文、繁体中文、日文以及基本拉丁字符，适用于多种数字排版场景，如品牌标识、网页设计、UI界面和印刷品标题等。根据公开信息，其商业使用需要获得授权。",
   "license": "付费授权",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "2019 丁道华. All rights reserved.",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2019,
   "version": "1.0.0",
   "languages": [
@@ -3393,7 +4506,10 @@
    "网页设计",
    "UI界面",
    "印刷标题"
-  ]
+  ],
+  "charCount": 7256,
+  "glyphCount": 7212,
+  "viewCount": 1
  },
  {
   "id": "a750bb54-5395-48ee-83e2-dcb67920c0d3",
@@ -3413,7 +4529,16 @@
   "description": "WenQuanYi Micro Hei Mono 是一款专为现代数字环境设计的开源等宽中文字体，是文泉驿微米黑（WenQuanYi Micro Hei）的等宽变体。该字体基于 Google 的 Droid Sans Fallback 扩展和优化而来，采用 TrueType Collection (TTC) 格式封装，文件体积轻量（约5MB），支持 GBK 标准21003个汉字，并覆盖 Unicode 5.1 标准中的 CJK 统一表意文字范围（U+4E00-U+9FC3）。同时，它完美支持拉丁语、扩展拉丁语、日文假名和韩文谚文字符。其设计初衷是为用户界面、代码编辑器、终端和嵌入式系统提供清晰、高效的中日韩文字显示方案，尤其适合程序开发和命令行环境。",
   "license": "免费商用",
   "licenseName": "Apache 2.0 / GPLv3",
+  "licenseUrl": "",
+  "copyright": "Digitized data copyright ?2007, Google Corporation. Copyright ?2008-2009 WenQuanYi Board of Trustees (http://wenq.org/) and Qianqian Fang",
   "foundry": "Ascender Corporation",
+  "brand": {
+   "name": "Ascender Corporation",
+   "slug": "ascender-corporation",
+   "logoUrl": "",
+   "website": "",
+   "description": "Ascender Corporation出品的字体"
+  },
   "releaseYear": 2008,
   "version": "0.2.0",
   "languages": [
@@ -3429,7 +4554,10 @@
    "嵌入式系统",
    "用户界面设计",
    "文档排版"
-  ]
+  ],
+  "charCount": 34599,
+  "glyphCount": 49531,
+  "viewCount": 27
  },
  {
   "id": "bae917ae-fcaa-48ab-bb73-ac8ce62df648",
@@ -3449,7 +4577,16 @@
   "description": "WenQuanYi Zen Hei Mono 是文泉驿项目开发的一款开源等宽黑体（无衬线）中文字体。它专为中文、日文、韩文等 CJK 字符的通用文本排版和屏幕显示而设计。该字体包含超过 35,000 个字形，覆盖 GBK 字符集、CJK 统一表意文字，并支持简体中文、繁体中文、日语和韩语等多种语言环境。其笔画经过加粗处理，增强了屏幕显示的对比度和可读性。字体内部嵌入了文泉驿点阵宋体，以优化特定小字号下的屏幕显示效果。作为一款开源字体，它旨在为 CJK 用户提供一个视觉舒适、符合标准、跨平台且紧凑的解决方案。",
   "license": "免费商用",
   "licenseName": "Apache 2.0 / GPLv3",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "WenQuanYi (文泉驿)",
+  "brand": {
+   "name": "WenQuanYi",
+   "slug": "wenquanyi",
+   "logoUrl": "",
+   "website": "",
+   "description": "WenQuanYi出品的字体"
+  },
   "releaseYear": 2022,
   "version": "0.8.38",
   "languages": [
@@ -3465,7 +4602,10 @@
    "编程文档",
    "屏幕阅读",
    "跨平台应用"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 32
  },
  {
   "id": "5ad49327-2ddd-4746-93e3-b98fb9eaf779",
@@ -3485,7 +4625,16 @@
   "description": "WenQuanYi Micro Hei is a free and open-source sans-serif typeface designed for screen display and user interfaces. It was developed as part of the WenQuanYi project, a Chinese open-source font initiative. The font combines the glyph structures of the Droid Sans and Hei Ti (黑体) styles, aiming to provide high readability at small sizes on digital screens. It supports a wide range of characters including Simplified Chinese, Traditional Chinese, Japanese Kana, and Latin alphabets. The design emphasizes clarity and legibility for electronic communication, making it suitable for UI design, web content, and mobile applications.",
   "license": "免费商用",
   "licenseName": "Apache 2.0 / GPLv3 (双许可证)",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "Ascender Corporation",
+  "brand": {
+   "name": "Ascender Corporation",
+   "slug": "ascender-corporation",
+   "logoUrl": "",
+   "website": "",
+   "description": "Ascender Corporation出品的字体"
+  },
   "releaseYear": 2008,
   "version": "0.2.0-beta",
   "languages": [
@@ -3499,7 +4648,10 @@
    "移动应用",
    "电子文档",
    "编程编辑器"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 0
  },
  {
   "id": "ca4673b7-7924-4bfa-ba22-23b24673d41e",
@@ -3519,7 +4671,16 @@
   "description": "文泉驿正黑体是一款开源的黑体风格（无衬线）中文字体，由文泉驿项目开发。它是第一个开放源代码的中文黑体字体，旨在为CJK（中日韩）用户提供一个视觉美观、符合标准、平台独立且紧凑的解决方案，用于在计算机上显示和打印中文。该字体包含超过35000个矢量字形，覆盖了超过21000个汉字，对GBK字符集、CJK统一表意文字以及简体中文、繁体中文、日文和韩文区域设置所需的代码点提供了完整的支持。字体笔画略微加粗，增强了屏幕显示的对比度和易读性。从0.8版本开始，该字体包包含比例间距的文泉驿正黑和等宽间距的文泉驿正黑等宽两个字体家族。",
   "license": "免费商用",
   "licenseName": "GPL-2.0-with-font-exception",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "WenQuanYi Project",
+  "brand": {
+   "name": "WenQuanYi (文泉驿)",
+   "slug": "wenquanyi-文泉驿",
+   "logoUrl": "",
+   "website": "",
+   "description": "WenQuanYi (文泉驿)出品的字体"
+  },
   "releaseYear": 2007,
   "version": "0.8.38",
   "languages": [
@@ -3535,7 +4696,10 @@
    "文档排版",
    "多语言支持",
    "开源软件开发"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 1
  },
  {
   "id": "5baf55e4-bba0-4f21-aab8-38d004bf706d",
@@ -3556,7 +4720,16 @@
   "description": "贤二体是一款由北京龙泉寺授权、汉仪字库开发制作的卡通创意毛笔书法字体。其设计灵感来源于北京龙泉寺的动漫形象贤二，字体风格俏皮可爱，笔画模仿毛笔书写，带有手写感和童趣。该字体支持简体中文、繁体中文、英文、日文等多种语言文字，字符集较为完整。根据版权信息，该字体由汉仪字库负责商业授权，通常需要购买授权后方可用于商业用途。",
   "license": "免费商用",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "(c) Copyright Beijing LongQuan Temple",
   "foundry": "北京龙泉寺",
+  "brand": {
+   "name": "汉仪字库",
+   "slug": "hanyi",
+   "logoUrl": "",
+   "website": "",
+   "description": "汉仪字库出品的字体"
+  },
   "releaseYear": 2025,
   "version": "5.0.0",
   "languages": [
@@ -3570,7 +4743,10 @@
    "儿童读物",
    "文化创意设计",
    "社交媒体配图"
-  ]
+  ],
+  "charCount": 10352,
+  "glyphCount": 9962,
+  "viewCount": 24
  },
  {
   "id": "4ba7b662-c9a0-4653-b470-1e0bdc5d6140",
@@ -3590,7 +4766,16 @@
   "description": "乡立方黑体是一款由杭州火石品牌策划公司（乡立方）发布的简约现代风格黑体。该字体设计端庄稳定，笔画清晰，适用于多种商业场景。根据公开信息，其首次发布于2024年3月，并声明允许个人和企业免费商用，但禁止修改或制作衍生版本。字体主要覆盖简体中文，并包含部分繁体中文和英文字符。",
   "license": "免费商用",
   "licenseName": "作者声明",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "hanghzou huoshi",
+  "brand": {
+   "name": "hanghzou huoshi",
+   "slug": "hanghzou-huoshi",
+   "logoUrl": "",
+   "website": "",
+   "description": "hanghzou huoshi出品的字体"
+  },
   "releaseYear": 2024,
   "version": "1.0.0",
   "languages": [
@@ -3604,7 +4789,10 @@
    "宣传册设计",
    "VI设计",
    "自媒体设计"
-  ]
+  ],
+  "charCount": 6617,
+  "glyphCount": 6620,
+  "viewCount": 8
  },
  {
   "id": "4047ea44-46aa-445a-88f2-1789da18598e",
@@ -3624,7 +4812,16 @@
   "description": "Silver 是一款由 Poppy Works 团队（设计师包括 Itou Hiro, Yoon Design, Wolfgang Wozniak）于 2019 年发布的像素字体。该字体专为游戏项目设计，内置了 TRC 和 Lotcheck 兼容的游戏手柄按钮图标以及完整的键盘和鼠标提示。其字形设计重心下移，笔画形状经过调整，使字体下边缘呈直线对齐，呈现出可爱、卡通且独特的视觉效果。笔画处理上进行了简化，部分笔画被设计为简单的像素点连接，增强了像素感，同时保证了可读性。与其他像素字体相比，其字形尺寸相对较小，约为同字号下其他字体的一半。字体支持简体中文、繁体中文及英文，其中简体中文字符3933个，繁体中文4408个，部分缺失的简体字符可用繁体替代。该项目仍在持续更新，旨在增加新的 Unicode 字形，目标是成为像素游戏和应用程序的实用字体。",
   "license": "免费商用",
   "licenseName": "CC BY 4.0",
+  "licenseUrl": "",
+  "copyright": "2019 Poppy Works",
   "foundry": "Poppy Works",
+  "brand": {
+   "name": "Poppy Works",
+   "slug": "poppy-works",
+   "logoUrl": "",
+   "website": "",
+   "description": "Poppy Works出品的字体"
+  },
   "releaseYear": 2019,
   "version": "1.0.0",
   "languages": [
@@ -3637,7 +4834,10 @@
    "像素艺术",
    "应用程序界面",
    "创意设计"
-  ]
+  ],
+  "charCount": 13709,
+  "glyphCount": 13711,
+  "viewCount": 2
  },
  {
   "id": "3043e834-7151-40ff-9f4e-b3a822178ecb",
@@ -3658,7 +4858,10 @@
   "description": "霞鹜漫黑（LXGW Marker Gothic）是一款基于日本开源字体 Tanugo 改造的马克笔书写风格开源中文字体。该字体包含简体中文、繁体中文及异体字，共计超过1.1万个字符，可基本满足简繁日常用字的显示需求。其设计风格独特，适用于漫画、广告、平面设计、电商文案、视频标题及字幕等多种创意场景。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "Copyright 2021-2024 LXGW (https://github.com/lxgw/LxgwMarkerGothic)  Copyright 2020 The Tanugo Project Authors (https://github.com/tanukifont/Tanugo)",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2021,
   "version": "0.310.0",
   "languages": [
@@ -3671,7 +4874,10 @@
    "电商文案",
    "视频字幕",
    "创意设计"
-  ]
+  ],
+  "charCount": 15285,
+  "glyphCount": 15570,
+  "viewCount": 14
  },
  {
   "id": "0bf7c810-4938-4389-9c95-8a850a223c54",
@@ -3691,7 +4897,16 @@
   "description": "LXGW Neo XiHei（霞鹜新晰黑）是一款基于 IPAex Gothic（日本 IPA 字体）改造的中文开源黑体字体，由开发者 lxgw 维护。其核心设计理念是为清晰而生，通过简化部分部件的出脚设计，优化了字形结构，提升了在屏幕和印刷品上的阅读清晰度。该字体收录了超过2.2万个汉字，覆盖通用规范汉字表、GB/T 2312-1980等标准，并支持易经八卦、麻将、中国象棋等文化符号，以及希腊字母、西里尔字母和越南语拉丁字。字体依照 IPA 开放字体授权条款 1.0 版发布，允许免费商业使用和二次开发。",
   "license": "免费商用",
   "licenseName": "IPA Font License",
+  "licenseUrl": "",
+  "copyright": "Copyright(c) 2021-2024 LXGW; Information-technology Promotion Agency, Japan (IPA), 2003-2019. You must accept \"https://opensource.org/licenses/IPA/\" to use this product.",
   "foundry": "LXGW",
+  "brand": {
+   "name": "LXGW",
+   "slug": "lxgw",
+   "logoUrl": "",
+   "website": "",
+   "description": "LXGW出品的字体"
+  },
   "releaseYear": 2021,
   "version": "1.206",
   "languages": [
@@ -3706,7 +4921,10 @@
    "印刷出版",
    "用户界面设计",
    "电子阅读器"
-  ]
+  ],
+  "charCount": 26477,
+  "glyphCount": 26779,
+  "viewCount": 380
  },
  {
   "id": "a6d37129-1ea9-40d6-8dac-a33d910556b5",
@@ -3726,7 +4944,16 @@
   "description": "LXGW Neo ZhiSong（霞鹜新致宋）是一款基于日本IPA（信息处理推进机构）发布的IPA明体（IPAMincho）进行扩展和优化的开源中文字体。它在原IPA明体的基础上，补充了大量简体中文、繁体中文汉字，并优化了部分字形设计，使其更符合现代中文阅读习惯。该字体保留了宋体清晰易读、结构严谨的特点，同时笔画细节处理得当，适合用于屏幕显示和印刷排版。作为一款开源免费商用字体，它广泛应用于网页设计、电子书、文档排版、UI界面等场景。",
   "license": "免费商用",
   "licenseName": "IPA Open Font License 1.0",
+  "licenseUrl": "",
+  "copyright": "Copyright(c) 2023-2024 LXGW; Information-technology Promotion Agency, Japan (IPA), 2003-2019. You must accept \"https://opensource.org/licenses/IPA/\" to use this product.",
   "foundry": "LXGW",
+  "brand": {
+   "name": "LXGW",
+   "slug": "lxgw",
+   "logoUrl": "",
+   "website": "",
+   "description": "LXGW出品的字体"
+  },
   "releaseYear": 2023,
   "version": "1.017.0",
   "languages": [
@@ -3741,7 +4968,10 @@
    "文档排版",
    "UI界面",
    "印刷品"
-  ]
+  ],
+  "charCount": 26477,
+  "glyphCount": 26814,
+  "viewCount": 28
  },
  {
   "id": "4bfa37fe-e7ed-4285-b87d-0082856b43bb",
@@ -3762,7 +4992,16 @@
   "description": "YDW bananaslip plus plus 是一款由日本设计师 yuma yamanaka 于2020年发布的免费商用无衬线字体。该字体属于 YDW bananaslip 系列，其名称中的 'plus plus' 可能表示其是基础版本的增强或扩展变体。字体设计风格现代，字形简洁，具有较高的可读性，适用于标题、品牌标识、网页设计等多种数字媒体场景。",
   "license": "免费商用",
   "licenseName": "全平台免费商用",
+  "licenseUrl": "",
+  "copyright": "(c) 2020 ymnk design works",
   "foundry": "ymnk design works",
+  "brand": {
+   "name": "ymnk design works",
+   "slug": "ymnk-design-works",
+   "logoUrl": "",
+   "website": "",
+   "description": "ymnk design works出品的字体"
+  },
   "releaseYear": 2020,
   "version": "2.001",
   "languages": [
@@ -3773,7 +5012,10 @@
    "网页标题",
    "UI设计",
    "海报设计"
-  ]
+  ],
+  "charCount": 4434,
+  "glyphCount": 4513,
+  "viewCount": 4
  },
  {
   "id": "ce69e20f-95a0-4d27-b1f9-ec06306ef2ad",
@@ -3793,7 +5035,16 @@
   "description": "云峰飞云体是由云峰字库设计并发布的第二款免费商用中文字体，于2022年首次发布。该字体采用浓厚的毛笔书法风格，笔触豪放大气，兼具飞白与墨韵渐变效果，字形结构开阔，视觉冲击力强。它适用于需要展现文化底蕴与视觉张力的场景，如品牌海报、影视片头、文创产品及各类传统风格的设计项目。授权允许在法律范围内不限场景免费商用，但严格禁止对字体进行二次修改或二次售卖。",
   "license": "免费商用",
   "licenseName": "无标准协议 (作者文字声明)",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "云峰字库",
+  "brand": {
+   "name": "云峰字库",
+   "slug": "云峰字库",
+   "logoUrl": "",
+   "website": "",
+   "description": "云峰字库出品的字体"
+  },
   "releaseYear": 2022,
   "version": "1.0.0",
   "languages": [
@@ -3807,7 +5058,10 @@
    "品牌VI",
    "文创产品",
    "线下招牌"
-  ]
+  ],
+  "charCount": 6889,
+  "glyphCount": 7068,
+  "viewCount": 4
  },
  {
   "id": "2081dd92-3875-498a-9f70-d1c6cea8f8ae",
@@ -3827,7 +5081,16 @@
   "description": "Genkaimincho 是一款由 Adobe Systems 发布的日文宋体（明朝体）字体。该字体的设计由 Ken Lunde 博士担任项目架构师，负责字形集定义和整体制作，服部正貴（Masataka HATTORI）负责制作和表意文字元素。其设计旨在提供高质量的字形表现，支持包含简体中文、繁体中文和日文在内的多语言字符集，适用于需要东亚文字排版的印刷和数字媒体设计。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "Adobe Systems Incorporated",
   "foundry": "Adobe Systems Incorporated",
+  "brand": {
+   "name": "Adobe Systems Incorporated",
+   "slug": "adobe-systems-incorporated",
+   "logoUrl": "",
+   "website": "",
+   "description": "Adobe Systems Incorporated出品的字体"
+  },
   "releaseYear": 2014,
   "version": "1.0.0",
   "languages": [
@@ -3839,7 +5102,10 @@
    "印刷出版",
    "品牌设计",
    "数字界面排版"
-  ]
+  ],
+  "charCount": 9804,
+  "glyphCount": 15444,
+  "viewCount": 290
  },
  {
   "id": "310e8e51-7ed4-47fa-824c-ce7890c61544",
@@ -3859,7 +5125,16 @@
   "description": "YouSheBiaoTiHei（优设标题黑）是一款由优设网（YouShe Network Technology Co., Ltd）发布的中文黑体字体。该字体设计风格现代，笔画清晰有力，结构稳重，适用于标题、海报、品牌标识等需要突出视觉冲击力的场景。其字形符合简体中文规范，是一款专为屏幕显示和平面设计优化的标题字体。",
   "license": "付费授权",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "YouShe Network Technology Co., Ltd",
+  "brand": {
+   "name": "YouShe Network Technology Co., Ltd",
+   "slug": "youshe-network-technology-co-ltd",
+   "logoUrl": "",
+   "website": "",
+   "description": "YouShe Network Technology Co., Ltd出品的字体"
+  },
   "releaseYear": null,
   "version": "1.0.0",
   "languages": [
@@ -3870,7 +5145,10 @@
    "海报设计",
    "品牌标识",
    "UI界面标题"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 6
  },
  {
   "id": "0aae99f5-0592-49d3-b1c7-81787e55641b",
@@ -3890,7 +5168,16 @@
   "description": "该字体是一款基于秦代著名刻石《峄山碑》风格设计的篆书字体。《峄山碑》原为秦始皇东巡时所立，由丞相李斯书写，是秦代小篆的代表作，以其线条匀称、结构严谨、风格端庄而著称，被誉为学习小篆的经典范本。本字体由平方造字团出品，旨在将这一传统书法艺术数字化，适用于需要展现古典、庄重、文化底蕴的设计场景，如古籍排版、文化宣传、书法教育、品牌标识及传统艺术相关设计。",
   "license": "免费商用",
   "licenseName": "作者声明",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "咸阳职业技术学院 (大学生科技创新项目)",
+  "brand": {
+   "name": "平方造字团",
+   "slug": "平方造字团",
+   "logoUrl": "",
+   "website": "",
+   "description": "平方造字团出品的字体"
+  },
   "releaseYear": 2022,
   "version": "1.0.0",
   "languages": [
@@ -3902,7 +5189,10 @@
    "书法临摹与教学",
    "传统品牌标识",
    "艺术展览与海报"
-  ]
+  ],
+  "charCount": 3843,
+  "glyphCount": 3843,
+  "viewCount": 31
  },
  {
   "id": "4da4acce-485c-4224-b3af-1ae439c38628",
@@ -3922,7 +5212,16 @@
   "description": "Long Cang（龙藏体）是谷歌开源字体项目中的一款中文毛笔手写字体，由设计师ZhongQi创作，并由钟齐字库维护和发布。该字体设计风格模仿传统毛笔书法，笔画流畅自然，带有飞白和墨迹效果，具有浓厚的中国传统文化气息。字体遵循SIL Open Font License 1.1开源协议，允许个人和企业免费商用。它收录了简体中文、繁体中文及英文字符，适用于需要展现传统、文化、艺术或手写风格的场景，如海报设计、品牌标识、书籍封面、影视标题及文化宣传材料。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "Copyright 2018 The LongCang Project Authors (https://github.com/googlefonts/longcang)",
   "foundry": "ZhongQi",
+  "brand": {
+   "name": "钟齐字库",
+   "slug": "钟齐字库",
+   "logoUrl": "",
+   "website": "",
+   "description": "钟齐字库出品的字体"
+  },
   "releaseYear": 2018,
   "version": "2.0.1",
   "languages": [
@@ -3936,7 +5235,10 @@
    "书籍封面",
    "影视标题",
    "文化宣传"
-  ]
+  ],
+  "charCount": 7015,
+  "glyphCount": 7016,
+  "viewCount": 17
  },
  {
   "id": "bba8b8e6-59bf-467a-a882-ddf40e0bbd09",
@@ -3956,7 +5258,16 @@
   "description": "字魂扁桃体是上海字魂网络科技有限公司发布的一款中文字体。该字体支持简体中文和基本拉丁字符，适用于需要现代、简洁风格的中文排版场景，如品牌标识、广告宣传、社交媒体图文等。根据字魂系列字体的通用授权模式，该字体为商业使用需购买授权。",
   "license": "付费授权",
   "licenseName": "Commercial use requires purchase authorization. Please visit: https://izihun.com/",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "Shanghai ZiHun Network Technology Co.,Ltd.",
+  "brand": {
+   "name": "Shanghai ZiHun Network Technology Co.,Ltd.",
+   "slug": "shanghai-zihun-network-technology-coltd",
+   "logoUrl": "",
+   "website": "",
+   "description": "Shanghai ZiHun Network Technology Co.,Ltd.出品的字体"
+  },
   "releaseYear": 2025,
   "version": "1.0.0",
   "languages": [
@@ -3968,7 +5279,10 @@
    "广告宣传",
    "社交媒体图文",
    "标题设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 20
  },
  {
   "id": "e21ae10e-8c68-4cec-af2c-0071940458b9",
@@ -3988,7 +5302,16 @@
   "description": "ZhuoJianGanLanJianTi 是一款由 zhuojianchina 于2019年发布的简体中文字体。其名称卓见橄榄简体暗示了字体可能具备清晰、易读且带有一定人文气息的设计特点。字体元信息显示为常规字重，适用于需要简洁、现代感的中文排版场景，如UI界面、品牌宣传材料等。具体的设计风格、笔画特征及更详细的设计背景需进一步查阅官方资料确认。",
   "license": "联系授权",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "Copyright  2019 by zhuojianchina. All rights reserved.",
   "foundry": "zhuojianchina",
+  "brand": {
+   "name": "zhuojianchina",
+   "slug": "zhuojianchina",
+   "logoUrl": "",
+   "website": "",
+   "description": "zhuojianchina出品的字体"
+  },
   "releaseYear": 2019,
   "version": "1.100",
   "languages": [
@@ -3999,7 +5322,10 @@
    "个人博客标题",
    "创意海报",
    "非正式印刷品"
-  ]
+  ],
+  "charCount": 7188,
+  "glyphCount": 7189,
+  "viewCount": 149
  },
  {
   "id": "37179233-5561-4606-9058-124b825b7840",
@@ -4019,7 +5345,16 @@
   "description": "站酷高端黑是站酷网于2014年圣诞发布的首款冠名公益字体，由设计师胡晓波、刘兵克发起，通过汉字百人舞活动征集近百位设计师集体创作完成。该字体字形方正，笔画硬朗，属于现代黑体风格，包含6763个汉字、数字和英文字母。作为一款免费商用字体，它适用于广告宣传、品牌标识、影视海报、游戏界面等需要醒目、现代感的视觉设计领域。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "zcool",
   "foundry": "站酷（ZCOOL）",
+  "brand": {
+   "name": "站酷（ZCOOL）",
+   "slug": "站酷zcool",
+   "logoUrl": "",
+   "website": "",
+   "description": "站酷（ZCOOL）出品的字体"
+  },
   "releaseYear": 2014,
   "version": "2.0.10",
   "languages": [
@@ -4031,7 +5366,10 @@
    "影视海报",
    "游戏界面",
    "杂志排版"
-  ]
+  ],
+  "charCount": 7723,
+  "glyphCount": 7782,
+  "viewCount": 35
  },
  {
   "id": "27b6b870-d623-4b75-90e4-7fc2f5b66034",
@@ -4051,7 +5389,16 @@
   "description": "站酷酷黑是一款由设计师胡晓波设计、站酷字库发布的免费商用中文字体。该字体于2016年7月首次发布体验版，其字形笔画粗犷有力，采用宽扁型的字面构建出厚重的字体形态。笔画细节上的修饰增强了字体的设计感与精致感，中宫饱满使得文字排版组合醒目。字体包含3500个常用汉字、52个英文字母及10个阿拉伯数字，支持中文、英文、日文、韩文等多种语言字符，适用于商业设计、广告、品牌标识等场景。",
   "license": "免费商用",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "站酷字库",
+  "brand": {
+   "name": "站酷字库",
+   "slug": "zcool",
+   "logoUrl": "",
+   "website": "",
+   "description": "站酷字库出品的字体"
+  },
   "releaseYear": 2016,
   "version": "3.12.0",
   "languages": [
@@ -4066,7 +5413,10 @@
    "品牌标识",
    "海报设计",
    "网页标题"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 0
  },
  {
   "id": "92bf46bf-ca37-4d48-ba4d-8b7dd2f75ed4",
@@ -4087,7 +5437,16 @@
   "description": "站酷快乐体是由字体设计师刘兵克发起，组织其字体设计学员及100多位爱好者共同完成的公益字体。该字体风格轻松活泼、可爱俏皮，采用GB2312编码，收录6763个汉字。设计工作于2015年9月首次发布，并于2016年6月推出大幅修改的2016修订版。字体采用SIL Open Font License 1.1授权，允许个人和企业免费商用。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "copyright": "(c) Copyright LuiBingKe 2016",
   "foundry": "站酷字库",
+  "brand": {
+   "name": "站酷字库",
+   "slug": "zcool",
+   "logoUrl": "",
+   "website": "",
+   "description": "站酷字库出品的字体"
+  },
   "releaseYear": 2016,
   "version": "3.12.0",
   "languages": [
@@ -4102,7 +5461,10 @@
    "产品包装",
    "漫画作品",
    "电视节目"
-  ]
+  ],
+  "charCount": 7809,
+  "glyphCount": 7881,
+  "viewCount": 12
  },
  {
   "id": "50b750e7-a572-4ddc-8a0e-315565e1cc87",
@@ -4122,7 +5484,16 @@
   "description": "站酷文艺体是由字体设计师刘兵克确定字形和规范，并组织其工作室团队及字体设计直播课的近50位学员共同创作完成的一款中文字体。该字体结构略扁，笔画粗细基本一致，字形新颖独特，简洁有力，清新淡雅，具有文艺风格。设计细节上融入了适当的圆角处理、口字形部件右上角的竖线设计以及撇捺笔画的曲直对比，在保持良好可读性和流畅度的同时，具备独创性。字体采用TTF格式，共收录7155个常用汉字、52个英文字母、10个阿拉伯数字及67个常用标点符号。",
   "license": "付费授权",
   "licenseName": "商用须授权",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "站酷字库",
+  "brand": {
+   "name": "站酷字库",
+   "slug": "zcool",
+   "logoUrl": "",
+   "website": "",
+   "description": "站酷字库出品的字体"
+  },
   "releaseYear": 2018,
   "version": "1.0.0",
   "languages": [
@@ -4137,7 +5508,10 @@
    "电商",
    "儿童产品",
    "食品包装"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 0
  },
  {
   "id": "d234612e-ab92-40b5-b739-86c070f078b0",
@@ -4158,7 +5532,16 @@
   "description": "站酷小薇LOGO体是设计师李大卫（David 小马哥）为女儿三周岁创作的礼物，由上海佐兹品牌设计工作室团队完成。字体设计大胆创新，笔画修长灵秀，在精简部分笔画的同时保持了高识别度，字形空隙均匀，印刷效果清晰明快。该字体旨在填补免费字体中LOGO体的空缺，收录了6763个汉字，适用于标志、标题、广告宣传及平面设计。",
   "license": "联系授权",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "本字库所有权归上海佐兹品牌设计公司",
   "foundry": "上海佐兹品牌设计",
+  "brand": {
+   "name": "上海佐兹品牌设计工作室",
+   "slug": "上海佐兹品牌设计工作室",
+   "logoUrl": "",
+   "website": "",
+   "description": "上海佐兹品牌设计工作室出品的字体"
+  },
   "releaseYear": 2018,
   "version": "1.0.0",
   "languages": [
@@ -4169,7 +5552,10 @@
    "广告标题",
    "平面设计",
    "印刷品标题"
-  ]
+  ],
+  "charCount": 7713,
+  "glyphCount": 7728,
+  "viewCount": 14
  },
  {
   "id": "3af04b40-e14d-4bd5-ad1b-1c7e28d4cc76",
@@ -4190,7 +5576,16 @@
   "description": "郑庆科黄油体是一款由设计师郑庆科创作，融合复古感与现代时尚元素的创意字体。其整体形态被拉长，所有笔划的直角均被处理为半径4pt的圆角，线条柔和顺滑。字体部首的右下角采用45缺角设计，有助于提升视觉中心并改善阅读体验。中文部分注重圆滑简洁，而英文字母和数字则采用独特的折叠式设计，形成视觉对比。该字体风格偏向儿童化，适用于食品、甜品、儿童产品、店招、Banner、标志等设计主题。字符集基于GB2312-80标准，支持9181个汉字及814个英文、标点符号。",
   "license": "免费商用",
   "licenseName": "免费授权全社会使用（包括商用）",
+  "licenseUrl": "",
+  "copyright": "(c) 2016",
   "foundry": "庆科字体",
+  "brand": {
+   "name": "庆科字体",
+   "slug": "庆科字体",
+   "logoUrl": "",
+   "website": "",
+   "description": "庆科字体出品的字体"
+  },
   "releaseYear": 2016,
   "version": "1.0.0",
   "languages": [
@@ -4204,7 +5599,10 @@
    "儿童产品宣传",
    "网页Banner",
    "品牌标志"
-  ]
+  ],
+  "charCount": 6899,
+  "glyphCount": 6901,
+  "viewCount": 4
  },
  {
   "id": "a80380ba-1995-4378-84c6-6dee4d3c655c",
@@ -4224,7 +5622,16 @@
   "description": "Fontquan-XinYiJiXiangSong 是一款由微信公众号字体圈发布，厂商为____Zojitype的宋体字体。其版权信息显示由Zoulewei于2020年持有。该字体设计融合了传统宋体的骨架与吉祥纹样或现代装饰元素，旨在传达新意与吉祥的寓意，适用于需要体现传统文化底蕴或节日喜庆氛围的标题、海报、包装等设计场景。",
   "license": "联系授权",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "",
   "foundry": "____Zojitype",
+  "brand": {
+   "name": "____Zojitype",
+   "slug": "____zojitype",
+   "logoUrl": "",
+   "website": "",
+   "description": "____Zojitype出品的字体"
+  },
   "releaseYear": 2020,
   "version": "1.0.0",
   "languages": [
@@ -4235,7 +5642,10 @@
    "海报设计",
    "包装设计",
    "传统文化相关设计"
-  ]
+  ],
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 3
  },
  {
   "id": "5246cd86-282e-41a2-a59d-e1f380bfc6c8",
@@ -4255,7 +5665,10 @@
   "description": "mplus_hzk_12 是一款开源的中文像素字体，由设计师 Luckeee 创建。该字体以 M+ 12 像素英文字体为基础，结合了 HZK12 字符集以补充覆盖 GB2312 编码的中文字符，旨在提供一款免费、可商用的像素字库。其设计风格复古，字形清晰，适用于像素艺术、复古风格游戏开发、网页设计以及小尺寸打印等场景。",
   "license": "免费商用",
   "licenseName": "OFL-1.1",
+  "licenseUrl": "",
+  "copyright": "Copyright (c) 2020, op",
   "foundry": "",
+  "brand": null,
   "releaseYear": 2020,
   "version": "1.0.0",
   "languages": [
@@ -4269,7 +5682,10 @@
    "复古游戏开发",
    "网页设计（复古主题）",
    "小尺寸打印材料"
-  ]
+  ],
+  "charCount": 10640,
+  "glyphCount": 10898,
+  "viewCount": 17
  },
  {
   "id": "f5d41a64-e342-44b0-908a-1183805c64b2",
@@ -4289,7 +5705,16 @@
   "description": "智勇手书体（ShouShuti）是由设计师贾智勇创作的一款硬笔手写风格字体。该字体于2017年首次发布，其设计旨在模拟自然、流畅的硬笔书写效果，笔画带有明显的手写痕迹和个性特征，兼具实用性与艺术感。字体支持简体中文、繁体中文及基本拉丁字符，适用于需要体现亲和力、个性化或手写温度的设计场景，如品牌标识、社交媒体图片、书籍封面、广告文案等。",
   "license": "联系授权",
   "licenseName": "",
+  "licenseUrl": "",
+  "copyright": "(C) Copyright JiaZhiyong 2017",
   "foundry": "智勇造字",
+  "brand": {
+   "name": "智勇造字",
+   "slug": "智勇造字",
+   "logoUrl": "",
+   "website": "",
+   "description": "智勇造字出品的字体"
+  },
   "releaseYear": 2017,
   "version": "1.0.0",
   "languages": [
@@ -4303,6 +5728,9 @@
    "书籍封面",
    "广告文案",
    "个性化标题"
-  ]
+  ],
+  "charCount": 7584,
+  "glyphCount": 7586,
+  "viewCount": 4
  }
 ]

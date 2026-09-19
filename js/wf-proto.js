@@ -453,10 +453,23 @@
         '&weight=' + encodeURIComponent(weightToCss(weight || '400'));
     },
     copyText: function (text) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        return navigator.clipboard.writeText(text);
+      function legacyCopy() {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        let ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        return ok ? Promise.resolve() : Promise.reject(new Error('copy denied'));
       }
-      return Promise.reject(new Error('no clipboard'));
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text).catch(legacyCopy);
+      }
+      return legacyCopy();
     },
     /** ClientScrollViewList — infinite / load-more from fonts.json */
     mountFontsList: function (opts) {

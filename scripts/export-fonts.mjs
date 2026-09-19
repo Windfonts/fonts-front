@@ -25,13 +25,36 @@ function designerShort(designer) {
   return String(designer || '').split(/[;；,，]/)[0].trim() || '—';
 }
 
-function mapFont(raw) {
+async function fetchDetail(normalized) {
+  const url = `${API}/api/fonts/${encodeURIComponent(normalized)}`;
+  const res = await fetch(url);
+  if (!res.ok) return null;
+  const body = await res.json();
+  return body?.data || null;
+}
+
+function maxCharCount(detail) {
+  let chars = 0;
+  let glyphs = 0;
+  const weights = detail?.weights || {};
+  for (const w of Object.values(weights)) {
+    for (const v of Object.values(w.versions || {})) {
+      if (v.char_count > chars) chars = v.char_count;
+      if (v.glyph_count > glyphs) glyphs = v.glyph_count;
+    }
+  }
+  return { chars, glyphs };
+}
+
+function mapFont(raw, detail) {
   const weights =
     raw.weights && typeof raw.weights === 'object' && !Array.isArray(raw.weights)
       ? Object.keys(raw.weights)
       : Array.isArray(raw.weights)
         ? raw.weights.map((w) => (typeof w === 'object' ? w.weight_name : String(w)))
         : [];
+  const brand = raw.brand || {};
+  const cov = detail ? maxCharCount(detail) : { chars: 0, glyphs: 0 };
   return {
     id: raw.id,
     name: raw.chineseName || raw.name,
@@ -47,11 +70,19 @@ function mapFont(raw) {
     license: raw.licenseType || '',
     // 增益字段：normalizeFont 为 spread，前台不读不碍事，详情页可用
     licenseName: raw.license || '',
-    foundry: raw.foundry || raw.brand?.name || '',
+    licenseUrl: detail?.licenseUrl || '',
+    copyright: detail?.copyright || '',
+    foundry: raw.foundry || brand.name || '',
+    brand: brand.name
+      ? { name: brand.name, slug: brand.slug || '', logoUrl: brand.logoUrl || '', website: brand.website || '', description: brand.description || '' }
+      : null,
     releaseYear: raw.releaseYear ?? null,
     version: raw.version || '',
     languages: Array.isArray(raw.languages) ? raw.languages : [],
     useCases: Array.isArray(raw.useCases) ? raw.useCases : [],
+    charCount: cov.chars,
+    glyphCount: cov.glyphs,
+    viewCount: raw.viewCount ?? 0,
   };
 }
 
@@ -90,7 +121,12 @@ function validate(list) {
 
 const raw = await fetchAll();
 const published = raw.filter((f) => !f.status || f.status === 'published');
-const mapped = published.map(mapFont).sort((a, b) => a.normalized.localeCompare(b.normalized));
+const mapped = [];
+for (const f of published) {
+  const detail = await fetchDetail(f.normalizedName).catch(() => null);
+  mapped.push(mapFont(f, detail));
+}
+mapped.sort((a, b) => a.normalized.localeCompare(b.normalized));
 
 const problems = validate(mapped);
 if (!mapped.length) throw new Error('0 fonts exported — refusing to overwrite');
