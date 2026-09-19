@@ -145,14 +145,18 @@
           '<nav class="breadcrumb" aria-label="面包屑">' +
             '<a href="fonts.html">字体库</a><span class="sep">/</span><span>' + esc(font.name) + '</span>' +
           '</nav>' +
-          '<h1 class="detail-title">' + esc(font.name) + '</h1>' +
-          '<p class="detail-designer">' + esc(font.en || '') + ' · 设计 ' + esc(designer) +
-            ' · family <code id="familyCode" class="family-code" title="点击复制 family">' + esc(font.family) + '</code></p>' +
-          '<div class="detail-actions">' +
-            '<a class="btn btn-black" href="font-embed.html?id=' + encodeURIComponent(font.id) + '">获取嵌入代码</a>' +
-            '<button type="button" class="btn btn-black" id="btnJoin" data-join="' + esc(font.id) +
-              '" data-name="' + esc(font.name) + '" data-op-detail>添加字体</button>' +
-          '</div>' +
+          '<header class="detail-head">' +
+            '<h1 class="detail-title" style="font-family:' + esc(stack) + ';font-weight:' + esc(firstW) + '">' + esc(font.name) + '</h1>' +
+            '<p class="detail-designer">' + esc(font.en || '') +
+              (font.releaseYear ? ' · ' + esc(String(font.releaseYear)) : '') +
+              ' · 设计 ' + esc(designer) +
+              ' · <code id="familyCode" class="family-code" title="点击复制 family">' + esc(font.family) + '</code></p>' +
+            '<div class="detail-actions">' +
+              '<a class="btn btn-ink" href="font-embed.html?id=' + encodeURIComponent(font.id) + '">获取嵌入代码</a>' +
+              '<button type="button" class="btn btn-outline" id="btnJoin" data-join="' + esc(font.id) +
+                '" data-name="' + esc(font.name) + '" data-op-detail>添加字体</button>' +
+            '</div>' +
+          '</header>' +
           '<div class="detail-grid">' +
             '<aside class="detail-side">' +
               // ── 厂商资料卡 ──
@@ -214,27 +218,24 @@
             '</aside>' +
             '<div class="detail-main">' +
               '<section class="action-area" aria-label="即时预览">' +
-                '<div class="weight-seg" role="tablist" aria-label="字重">' + weightBtns + '</div>' +
-                '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem">' +
-                  '<h3 style="margin:0;font-size:0.9375rem;font-weight:600">即时预览</h3>' +
+                '<div class="preview-toolbar">' +
+                  '<span class="use-label" style="margin:0">即时预览</span>' +
+                  '<span class="preset-mini" data-preset="文风字体，字里行间">标题</span>' +
+                  '<span class="preset-mini" data-preset="永远相信，美好的事情即将发生。0123456789">段落</span>' +
+                  '<span class="preset-mini" data-preset="WenFeng 文风 Aa 永漫">品牌</span>' +
                   '<div class="size-slider">' +
                     '<span>字号</span>' +
                     '<input type="range" id="detailSize" min="12" max="108" value="44" aria-label="字号" />' +
                     '<span id="detailSizeVal" data-size-val>44px</span>' +
                   '</div>' +
+                  '<div class="color-row">' +
+                    '<label>字 <input type="color" id="textColor" value="#1c1a17" aria-label="文字色" /></label>' +
+                    '<label>底 <input type="color" id="bgColor" value="#ffffff" aria-label="背景色" /></label>' +
+                  '</div>' +
                 '</div>' +
-                '<div class="color-row">' +
-                  '<label>文字色 <input type="color" id="textColor" value="#18181b" aria-label="文字色" /></label>' +
-                  '<label>背景色 <input type="color" id="bgColor" value="#ffffff" aria-label="背景色" /></label>' +
-                '</div>' +
-                '<div class="preview-input-wrap detail-presets">' +
-                  '<button type="button" class="preset-mini" data-preset="文风字体，字里行间">标题</button>' +
-                  '<button type="button" class="preset-mini" data-preset="永远相信，美好的事情即将发生。0123456789">段落</button>' +
-                  '<button type="button" class="preset-mini" data-preset="WenFeng 文风 Aa 永漫">品牌</button>' +
-                  '<input type="text" id="detailText" value="文风字体" placeholder="即时预览" aria-label="即时预览" />' +
-                '</div>' +
+                '<div class="weight-seg" role="tablist" aria-label="字重">' + weightBtns + '</div>' +
                 '<div class="preview-pane-wrap">' +
-                  '<button type="button" class="btn btn-save-preview" id="btnSavePreview" title="保存预览为 PNG">保存预览</button>' +
+                  '<button type="button" class="btn btn-save-preview" id="btnSavePreview" title="保存预览为 PNG">保存 PNG</button>' +
                   '<div class="preview-pane" id="previewArea" style="font-family:' + esc(stack) +
                     ';font-weight:' + esc(firstW) + '">文风字体</div>' +
                 '</div>' +
@@ -275,26 +276,25 @@
 
       function wireActions(font, stack, firstW) {
         const pane = document.getElementById('previewArea');
-        const text = document.getElementById('detailText');
         const size = document.getElementById('detailSize');
         const sizeVal = document.getElementById('detailSizeVal');
         const textColor = document.getElementById('textColor');
         const bgColor = document.getElementById('bgColor');
-        text.value = WFProto.getSample();
-        pane.textContent = text.value;
+        pane.setAttribute('contenteditable', 'true');
+        pane.setAttribute('spellcheck', 'false');
+        pane.textContent = WFProto.getSample() || '文风字体';
         size.value = String(WFProto.getSize());
         sizeVal.textContent = size.value + 'px';
         pane.style.fontSize = size.value + 'px';
         pane.style.fontWeight = firstW;
 
-        text.addEventListener('input', function () {
-          pane.textContent = text.value || '文';
-          WFProto.setSample(text.value);
+        // 样句舞台直接可编辑：输入即存共用样句
+        pane.addEventListener('input', function () {
+          WFProto.setSample(pane.textContent);
         });
         document.querySelectorAll('[data-preset]').forEach(function (btn) {
           btn.addEventListener('click', function () {
             const v = btn.getAttribute('data-preset') || '';
-            text.value = v;
             pane.textContent = v || '文';
             WFProto.setSample(v);
           });
@@ -377,7 +377,7 @@
           ctx.scale(scale, scale);
           ctx.fillStyle = bgColor.value || '#ffffff';
           ctx.fillRect(0, 0, w, h);
-          ctx.fillStyle = textColor.value || '#18181b';
+          ctx.fillStyle = textColor.value || '#1c1a17';
           ctx.font = (pane.style.fontWeight || '400') + ' ' + (size.value || 44) + 'px ' + stack;
           ctx.textBaseline = 'middle';
           const lines = (pane.textContent || '文').split('\n');
