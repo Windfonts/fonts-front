@@ -164,7 +164,9 @@
                 (font.designer && font.designer !== designer
                   ? '<p class="fc-designers" title="' + esc(font.designer) + '">设计师 ' + esc(designer) + ' 等</p>' : '') +
                 '<div class="fc-links">' +
-                  '<a class="fc-lib" href="fonts.html?keyword=' + encodeURIComponent(brand) + '">在库 ' + brandCount + ' 款 →</a>' +
+                  (brandCount > 1
+                    ? '<a class="fc-lib" href="fonts.html?keyword=' + encodeURIComponent(brand) + '">在库 ' + brandCount + ' 款 →</a>'
+                    : '') +
                   (brandSite ? '<a href="' + esc(brandSite) + '" target="_blank" rel="noopener noreferrer">官网 ↗</a>' : '') +
                 '</div>' +
               '</section>' +

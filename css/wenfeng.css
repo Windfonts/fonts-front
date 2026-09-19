@@ -1726,118 +1726,167 @@ body.page-docs { background: var(--wf-white); }
   .fonts-toolbar { flex-wrap: wrap; }
 }
 
-/* ── 内页重设计：侧栏卡 / 厂商卡 / 授权模块 / CSS 使用区 / 相关字体 ── */
-.detail-grid { display: grid; grid-template-columns: 17.5rem 1fr; gap: 1.25rem; align-items: start; }
+/* ── 内页重设计 v2：浅色纸面卡片体系 ─────────────────────── */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 17.5rem minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
 @media (max-width: 900px) { .detail-grid { grid-template-columns: 1fr; } }
-.detail-side { display: flex; flex-direction: column; gap: 1rem; }
-.detail-main { display: flex; flex-direction: column; gap: 1.25rem; min-width: 0; }
 
-.side-card {
-  border: 1px solid var(--wf-zinc-800);
+.detail-side { display: flex; flex-direction: column; gap: 1rem; }
+.detail-main { display: flex; flex-direction: column; gap: 1.5rem; min-width: 0; }
+
+/* 卡片基座：主列预览区与侧栏卡同一语言 */
+.detail-main .action-area {
+  background: var(--wf-white);
+  border: 1px solid var(--wf-zinc-200);
   border-radius: var(--radius-xl);
-  background: rgba(39, 39, 42, 0.35);
-  padding: 1.1rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(24, 24, 27, 0.04);
+  padding: 1.35rem 1.5rem;
+}
+.side-card {
+  background: var(--wf-white);
+  border: 1px solid var(--wf-zinc-200);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 1px 2px rgba(24, 24, 27, 0.04);
+  padding: 1.25rem 1.35rem;
 }
 .sc-title {
-  margin: 0 0 0.6rem;
-  font-size: 0.8125rem;
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: var(--wf-zinc-400);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  color: var(--wf-zinc-500);
 }
-.side-card .sc-title:not(:first-child) { margin-top: 1rem; }
-.sc-desc { margin: 0; font-size: 0.875rem; line-height: 1.7; color: var(--wf-zinc-300); }
-.prop-list { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.35rem 1rem; }
-.prop-list dt { font-size: 0.75rem; color: var(--wf-zinc-500); align-self: baseline; }
-.prop-list dd { margin: 0; font-size: 0.8125rem; color: var(--wf-zinc-200); text-align: right; font-variant-numeric: tabular-nums; }
+.side-card .sc-title:not(:first-child) { margin-top: 1.25rem; }
+.sc-desc { margin: 0; font-size: 0.8125rem; line-height: 1.7; color: var(--wf-zinc-600); }
+
+/* 属性表：细线行 */
+.prop-list { margin: 0; display: grid; grid-template-columns: auto 1fr; column-gap: 1rem; }
+.prop-list dt {
+  font-size: 0.75rem; color: var(--wf-zinc-500);
+  padding: 0.45rem 0; border-bottom: 1px solid var(--wf-zinc-100);
+}
+.prop-list dd {
+  margin: 0; font-size: 0.8125rem; font-weight: 500; color: var(--wf-zinc-900);
+  text-align: right; font-variant-numeric: tabular-nums;
+  padding: 0.42rem 0; border-bottom: 1px solid var(--wf-zinc-100);
+}
+.prop-list dt:nth-last-of-type(1), .prop-list dd:nth-last-of-type(1) { border-bottom: 0; }
+
+/* 标签/场景小胶囊 */
+.side-card .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.side-card .chip {
+  display: inline-block; padding: 0.28rem 0.7rem;
+  border: 1px solid var(--wf-zinc-200); border-radius: 999px;
+  background: var(--wf-zinc); color: var(--wf-zinc-600);
+  font-size: 0.6875rem; line-height: 1.3; text-decoration: none;
+  transition: border-color var(--ease) 0.15s, color var(--ease) 0.15s;
+}
+a.chip:hover { border-color: var(--wf-zinc-400); color: var(--wf-zinc-900); }
 
 /* 厂商资料卡 */
 .foundry-card { text-align: center; }
 .fc-avatar, .fc-logo {
-  width: 4.5rem; height: 4.5rem;
-  border-radius: 50%;
-  object-fit: cover;
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 2rem; font-weight: 600;
-  color: var(--wf-zinc-900);
-  background: linear-gradient(135deg, var(--wf-zinc-200), var(--wf-zinc-400));
-  margin-bottom: 0.75rem;
+  width: 4.5rem; height: 4.5rem; border-radius: 50%;
+  object-fit: cover; display: inline-flex; align-items: center; justify-content: center;
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: 2.1rem; font-weight: 600; color: var(--wf-zinc-700);
+  background: var(--wf-zinc-100); border: 1px solid var(--wf-zinc-200);
+  margin-bottom: 0.85rem;
 }
-.fc-name { margin: 0 0 0.3rem; font-size: 1rem; font-weight: 600; color: var(--wf-white); }
-.fc-desc { margin: 0; font-size: 0.8125rem; line-height: 1.6; color: var(--wf-zinc-400); }
-.fc-designers { margin: 0.4rem 0 0; font-size: 0.75rem; color: var(--wf-zinc-500); }
-.fc-links { margin-top: 0.8rem; display: flex; justify-content: center; gap: 1rem; font-size: 0.8125rem; }
-.fc-links a { color: var(--wf-zinc-300); text-decoration: none; border-bottom: 1px solid var(--wf-zinc-700); padding-bottom: 1px; }
-.fc-links a:hover { color: var(--wf-white); border-color: var(--wf-zinc-400); }
+.fc-name { margin: 0 0 0.35rem; font-size: 1rem; font-weight: 600; color: var(--wf-zinc-900); }
+.fc-desc { margin: 0; font-size: 0.8125rem; line-height: 1.65; color: var(--wf-zinc-500); }
+.fc-designers { margin: 0.4rem 0 0; font-size: 0.75rem; color: var(--wf-zinc-400); }
+.fc-links { margin-top: 0.9rem; display: flex; justify-content: center; gap: 1.25rem; font-size: 0.8125rem; }
+.fc-links a {
+  color: var(--wf-zinc-600); text-decoration: none;
+  border-bottom: 1px solid var(--wf-zinc-300); padding-bottom: 2px;
+}
+.fc-links a:hover { color: var(--wf-zinc-900); border-color: var(--wf-zinc-500); }
 
 /* 授权模块 */
-.lic-module { text-align: left; }
 .lic-badge {
-  display: inline-flex; align-items: center; gap: 0.45rem;
+  display: inline-flex; align-items: center; gap: 0.5rem;
   font-size: 0.875rem; font-weight: 600;
-  padding: 0.35rem 0.9rem; border-radius: 999px;
-  margin-bottom: 0.7rem;
+  padding: 0.4rem 1rem; border-radius: 999px;
+  margin-bottom: 0.8rem;
 }
 .lic-badge::before { content: ''; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: currentColor; }
-.lic-badge.is-free { color: #4ade80; background: rgba(74, 222, 128, 0.12); }
-.lic-badge.is-paid { color: #fbbf24; background: rgba(251, 191, 36, 0.12); }
-.lic-badge.is-personal { color: #60a5fa; background: rgba(96, 165, 250, 0.12); }
-.lic-badge.is-unverified { color: var(--wf-zinc-400); background: rgba(161, 161, 170, 0.12); }
-.lic-copy { margin: 0 0 0.6rem; font-size: 0.8125rem; line-height: 1.6; color: var(--wf-zinc-300); }
-.lic-name { margin: 0 0 0.3rem; font-size: 0.75rem; color: var(--wf-zinc-400); }
-.lic-copyright { margin: 0; font-size: 0.6875rem; color: var(--wf-zinc-500); line-height: 1.5; word-break: break-all; }
+.lic-badge.is-free { color: #15803d; background: #f0fdf4; border: 1px solid #bbf7d0; }
+.lic-badge.is-paid { color: #b45309; background: #fffbeb; border: 1px solid #fde68a; }
+.lic-badge.is-personal { color: #1d4ed8; background: #eff6ff; border: 1px solid #bfdbfe; }
+.lic-badge.is-unverified { color: var(--wf-zinc-600); background: var(--wf-zinc-100); border: 1px solid var(--wf-zinc-200); }
+.lic-copy { margin: 0 0 0.7rem; font-size: 0.8125rem; line-height: 1.65; color: var(--wf-zinc-600); }
+.lic-name { margin: 0 0 0.35rem; font-size: 0.75rem; color: var(--wf-zinc-500); }
+.lic-copyright { margin: 0; font-size: 0.6875rem; color: var(--wf-zinc-400); line-height: 1.5; word-break: break-all; }
 .lic-source {
-  display: inline-block; margin-top: 0.6rem;
-  font-size: 0.75rem; color: var(--wf-zinc-300);
-  text-decoration: none; border-bottom: 1px solid var(--wf-zinc-700); padding-bottom: 1px;
+  display: inline-block; margin-top: 0.7rem;
+  font-size: 0.75rem; color: var(--wf-zinc-600); text-decoration: none;
+  border-bottom: 1px solid var(--wf-zinc-300); padding-bottom: 2px;
 }
-.lic-source:hover { color: var(--wf-white); }
+.lic-source:hover { color: var(--wf-zinc-900); border-color: var(--wf-zinc-500); }
 
 /* CSS 使用区 */
-.use-area .use-title { margin: 0 0 0.9rem; font-size: 0.9375rem; font-weight: 600; }
-.use-row { display: flex; gap: 0.6rem; align-items: center; margin-bottom: 0.9rem; flex-wrap: wrap; }
+.use-area .use-title { margin: 0 0 1rem; font-size: 0.9375rem; font-weight: 600; color: var(--wf-zinc-900); }
+.use-row { display: flex; gap: 0.6rem; align-items: center; margin-bottom: 1.05rem; flex-wrap: wrap; }
 .use-row input[type="text"] {
   flex: 1 1 16rem; min-width: 0;
-  padding: 0.5rem 0.75rem; border: 1px solid var(--wf-zinc-700); border-radius: 0.5rem;
-  background: var(--wf-zinc-900); color: var(--wf-zinc-300);
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--wf-zinc-200); border-radius: 0.5rem;
+  background: #fafafa; color: var(--wf-zinc-800);
   font-size: 0.75rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
-.use-block { position: relative; margin-bottom: 0.9rem; }
 .use-label {
-  display: inline-block; font-size: 0.6875rem; color: var(--wf-zinc-500);
-  text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.35rem;
+  display: inline-block; font-size: 0.6875rem; font-weight: 600;
+  color: var(--wf-zinc-500); letter-spacing: 0.08em; margin-bottom: 0.4rem;
 }
+.use-block { margin-bottom: 1.05rem; }
 .use-block pre {
-  margin: 0 0 0.4rem; padding: 0.85rem 1rem;
-  border: 1px solid var(--wf-zinc-800); border-radius: 0.5rem;
-  background: var(--wf-zinc-900);
-  overflow-x: auto;
+  margin: 0 0 0.45rem; padding: 0.9rem 1rem;
+  border: 1px solid var(--wf-zinc-200); border-radius: 0.5rem;
+  background: #fafafa; overflow-x: auto;
 }
-.use-block code { font-size: 0.75rem; color: var(--wf-zinc-300); white-space: pre; }
-.btn-copy { flex-shrink: 0; font-size: 0.75rem; padding: 0.4rem 0.9rem; }
-.btn-copy.is-copied { border-color: #4ade80; color: #4ade80; }
+.use-block code { font-size: 0.75rem; color: var(--wf-zinc-800); white-space: pre; }
+.btn-copy {
+  font-size: 0.75rem; padding: 0.4rem 1rem;
+  border: 1px solid var(--wf-zinc-300); border-radius: 999px;
+  background: var(--wf-white); color: var(--wf-zinc-700);
+  cursor: pointer;
+  transition: border-color var(--ease) 0.15s, color var(--ease) 0.15s, background var(--ease) 0.15s;
+}
+.btn-copy:hover { border-color: var(--wf-zinc-500); color: var(--wf-zinc-900); }
+.btn-copy.is-copied { border-color: #86efac; color: #15803d; background: #f0fdf4; }
 .use-tip { margin: 0; font-size: 0.75rem; color: var(--wf-zinc-500); line-height: 1.6; }
-.use-tip code { color: var(--wf-zinc-400); }
+.use-tip code { color: var(--wf-zinc-700); }
 
 /* 相关字体 */
-.related { margin-top: 1.5rem; }
-.related-title { margin: 0 0 0.9rem; font-size: 1.05rem; font-weight: 600; }
-.related-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 0.9rem; }
+.related { margin-top: 1.75rem; }
+.related-title { margin: 0 0 1rem; font-size: 1.05rem; font-weight: 600; color: var(--wf-zinc-900); }
+.related-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr)); gap: 1rem; }
 .related-card {
-  display: flex; flex-direction: column; gap: 0.6rem;
-  border: 1px solid var(--wf-zinc-800); border-radius: var(--radius-xl);
-  padding: 1rem 1.1rem; text-decoration: none;
-  transition: border-color var(--ease) 0.15s, background var(--ease) 0.15s;
+  display: flex; flex-direction: column; gap: 0.7rem;
+  background: var(--wf-white);
+  border: 1px solid var(--wf-zinc-200); border-radius: var(--radius-xl);
+  padding: 1.15rem 1.25rem; text-decoration: none;
+  transition: border-color var(--ease) 0.15s, box-shadow var(--ease) 0.15s, transform var(--ease) 0.15s;
 }
-.related-card:hover { border-color: var(--wf-zinc-600); background: rgba(39, 39, 42, 0.4); }
+.related-card:hover {
+  border-color: var(--wf-zinc-400);
+  box-shadow: 0 6px 16px rgba(24, 24, 27, 0.07);
+  transform: translateY(-1px);
+}
 .rc-preview {
-  font-size: 1.35rem; line-height: 1.3; color: var(--wf-white);
+  font-size: 1.4rem; line-height: 1.3; color: var(--wf-zinc-900);
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .rc-meta { display: flex; align-items: center; justify-content: space-between; }
-.rc-lic { font-size: 0.6875rem; }
-.rc-lic.is-free { color: #4ade80; }
-.rc-lic.is-paid { color: #fbbf24; }
-.rc-lic.is-personal { color: #60a5fa; }
-.rc-lic.is-unverified { color: var(--wf-zinc-400); }
+.rc-lic { font-size: 0.6875rem; font-weight: 500; }
+.rc-lic.is-free { color: #15803d; }
+.rc-lic.is-paid { color: #b45309; }
+.rc-lic.is-personal { color: #1d4ed8; }
+.rc-lic.is-unverified { color: var(--wf-zinc-500); }
 .rc-styles { font-size: 0.6875rem; color: var(--wf-zinc-500); }
