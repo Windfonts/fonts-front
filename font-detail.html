@@ -53,7 +53,7 @@
     (function () {
       const root = document.getElementById('detailRoot');
       const id = WFProto.getQuery('id');
-
+      const POEM = '春风又绿江南岸，明月何时照我还。Windfonts 123';
       function esc(s) { return WFProto.escapeHtml(s); }
 
       function renderMissing() {
@@ -63,247 +63,327 @@
           '<p class="detail-designer">请从 <a href="fonts.html">字体库</a> 选择，或检查 ?id= 是否为目录中的 UUID。</p>';
       }
 
-      /** 档位人话说明（对齐许可字典口径，许可诚实招牌） */
-      function tierCopy(license) {
-        if (license === '免费商用') return '可免费用于个人与商业项目，无需另行授权。';
-        if (license === '需授权') return '商用前需联系厂商获得书面授权；价格与授权范围以厂商为准。';
-        if (license === '个人免费') return '个人学习使用免费；商业使用需另行获得授权。';
-        return '授权信息尚未核实；商用前请先查证授权原文。';
+      function chipsOf(items, hrefKey) {
+        return (items || []).map(function (t) {
+          return '<a class="chip" href="fonts.html?' + hrefKey + '=' + encodeURIComponent(t) + '">' + esc(t) + '</a>';
+        }).join('');
       }
-      function tierClass(license) {
-        if (license === '免费商用') return 'is-free';
-        if (license === '需授权') return 'is-paid';
-        if (license === '个人免费') return 'is-personal';
-        return 'is-unverified';
+
+      function kv(rows) {
+        const list = (rows || []).filter(function (r) { return r && r[1]; });
+        if (!list.length) return '';
+        return '<dl class="info-kv">' + list.map(function (r) {
+          return '<div><dt>' + esc(r[0]) + '</dt><dd>' + r[1] + '</dd></div>';
+        }).join('') + '</dl>';
       }
-      function brandOf(font) {
-        return (font.brand && font.brand.name) || font.foundry || '';
+
+      function infoCard(title, body) {
+        if (!body) return '';
+        return '<section class="info-card"><h3>' + esc(title) + '</h3>' + body + '</section>';
       }
-      function relatedOf(font) {
-        const list = WFProto.getCatalogList();
-        const brand = brandOf(font);
-        const sameCat = list.filter(function (f) {
-          return f.id !== font.id && f.category && f.category === font.category;
+
+      function infoCol(font, designer, weights, tags) {
+        const brandRaw = (font.brand && font.brand.name) || font.foundry || designer;
+        const brand = String(brandRaw).split(/[;；]/)[0].trim() || brandRaw;
+        const brandDescRaw = (font.brand && font.brand.description) || '';
+        const brandDesc = (brandDescRaw && !/出品的字体\s*$/.test(brandDescRaw) && brandDescRaw !== brand)
+          ? brandDescRaw : '';
+        const brandLogo = (font.brand && font.brand.logoUrl) || '';
+        const brandAvatar = brandLogo || font.foundryAvatar ||
+          (font.brand && font.brand.avatarUrl) || '';
+        const brandSite = (font.brand && font.brand.website) || '';
+        const brandCount = WFProto.getCatalogList().filter(function (f) {
+          const n = String((f.brand && f.brand.name) || f.foundry || '').split(/[;；]/)[0].trim();
+          return n && n === brand;
+        }).length;
+        const licUrl = font.licenseFileUrl || font.licenseUrl || '';
+        const mark = brandAvatar
+          ? '<img src="' + esc(brandAvatar) + '" alt="" width="64" height="64" loading="lazy" onerror="this.remove()" />'
+          : '<span class="brand-mark-letter" aria-hidden="true">' + esc(String(brand || '文').charAt(0)) + '</span>';
+        const brandCard =
+          '<section class="brand-card">' +
+            '<div class="brand-mark">' + mark + '</div>' +
+            '<h2 class="brand-name">' + esc(brand) + '</h2>' +
+            '<p class="brand-meta">' +
+              '<a href="fonts.html?keyword=' + encodeURIComponent(brand) + '">在库 ' + brandCount + ' 款</a>' +
+              (brandSite
+                ? '<a href="' + esc(brandSite) + '" target="_blank" rel="noopener noreferrer">官网</a>'
+                : '') +
+            '</p>' +
+            (brandDesc ? '<p class="brand-desc">' + esc(brandDesc) + '</p>' : '') +
+          '</section>';
+        const legalBits = [font.copyright, font.licenseName].filter(Boolean);
+        const license =
+          '<div class="lic-head">' +
+            '<span class="chip">' + esc(font.license || '待核实') + '</span>' +
+            (licUrl
+              ? '<a class="lic-src" href="' + esc(licUrl) + '" target="_blank" rel="noopener noreferrer">原文</a>'
+              : '') +
+          '</div>' +
+          '<p class="lic-note">' + esc(WFProto.licenseCanDo(font)) + '</p>' +
+          (legalBits.length
+            ? '<div class="info-box">' + legalBits.map(esc).join('<br>') + '</div>'
+            : '');
+
+        const attr = kv([
+          ['版本', font.version ? esc(font.version) : ''],
+          ['字重', esc(String(weights.length))],
+          ['分类', font.category ? esc(font.category) : ''],
+          ['格式', 'WOFF2'],
+          ['编码', 'Unicode'],
+          ['浏览', font.viewCount ? esc(WFProto.formatCount(font.viewCount)) : ''],
+          ['字符', font.charCount ? esc(WFProto.formatCount(font.charCount)) : '']
+        ]);
+        const uses = Array.isArray(font.useCases) ? font.useCases : [];
+        const tagHtml = (tags.length || uses.length)
+          ? '<div class="chips">' + chipsOf(tags, 'tag') + chipsOf(uses, 'keyword') + '</div>'
+          : '';
+
+        return (
+          '<aside class="detail-meta" aria-label="字体信息">' +
+            brandCard +
+            infoCard('授权', license) +
+            infoCard('属性', attr) +
+            infoCard('标签', tagHtml) +
+          '</aside>'
+        );
+      }
+
+      function previewCard(stack, firstW, weightBtns) {
+        return (
+          '<section class="stage-card" aria-label="即时预览">' +
+            '<div class="stage-well" id="previewArea" contenteditable="true" spellcheck="false" ' +
+              'role="textbox" aria-multiline="true" aria-label="即时预览" data-placeholder="输入预览文本" ' +
+              'style="font-family:' + esc(stack) + ';font-weight:' + esc(firstW) + ';font-size:64px"></div>' +
+            '<div class="stage-bar" id="fn-preview">' +
+              '<div class="stage-presets" role="group" aria-label="样句">' +
+                '<button type="button" class="preset-mini" data-preset="文风字体，字里行间" data-size="72">标题</button>' +
+                '<button type="button" class="preset-mini" data-preset="永远相信，美好的事情即将发生。0123456789" data-size="28">段落</button>' +
+                '<button type="button" class="preset-mini" data-preset="WenFeng 文风 Aa 永" data-size="56">品牌</button>' +
+                '<button type="button" class="preset-mini is-on" data-preset="' + esc(POEM) + '" data-size="64">诗句</button>' +
+              '</div>' +
+              '<div class="size-slider">' +
+                '<input type="range" id="detailSize" min="16" max="120" value="64" aria-label="字号" />' +
+                '<span id="detailSizeVal">64px</span>' +
+              '</div>' +
+              '<div class="weight-seg" role="tablist" aria-label="字重">' + weightBtns + '</div>' +
+              '<div class="stage-swatches">' +
+                '<label title="文字色"><input type="color" id="textColor" value="#18181b" aria-label="文字色" /></label>' +
+                '<label title="背景色"><input type="color" id="bgColor" value="#ffffff" aria-label="背景色" /></label>' +
+                '<button type="button" class="btn btn-save-preview" id="btnSavePreview" title="保存预览为 PNG">保存</button>' +
+              '</div>' +
+            '</div>' +
+          '</section>'
+        );
+      }
+
+      function embedCard(font) {
+        const versions = WFProto.CSS_VERSIONS.map(function (v, i) {
+          return '<button type="button" class="preset-mini' + (i === 0 ? ' is-on' : '') +
+            '" data-version="' + esc(v.id) + '" title="' + esc(v.hint) + '">' + esc(v.id) + '</button>';
+        }).join('');
+        return (
+          '<section class="use-card" id="fn-embed" aria-label="CSS API">' +
+            '<div class="use-well">' +
+              '<button type="button" class="btn-copy" id="btnCopyCode">复制</button>' +
+              '<pre id="codeConsole"></pre>' +
+            '</div>' +
+            '<div class="use-bar">' +
+              '<div class="stage-presets" role="group" aria-label="字符集">' + versions + '</div>' +
+              '<div class="embed-tabs use-tabs" role="tablist">' +
+                '<button type="button" class="active" data-tab="link" role="tab">link</button>' +
+                '<button type="button" data-tab="import" role="tab">@import</button>' +
+                '<button type="button" data-tab="css" role="tab">css</button>' +
+                '<button type="button" data-tab="npm" role="tab">npm</button>' +
+              '</div>' +
+              '<code class="family-code" id="familyCode" title="点击复制 family">' +
+                esc(font.family) + '</code>' +
+            '</div>' +
+          '</section>'
+        );
+      }
+
+      function relatedBlock(font) {
+        const rel = WFProto.relatedFonts(font, 6);
+        if (!rel.length) return '';
+        rel.forEach(function (f) {
+          WFProto.ensureFontCss(f.family, (f.weights && f.weights[0]) || '400');
         });
-        const sameBrand = brand
-          ? list.filter(function (f) { return f.id !== font.id && brandOf(f) === brand; })
-          : [];
-        const seen = {};
-        return sameBrand.concat(sameCat).filter(function (f) {
-          if (seen[f.id]) return false;
-          seen[f.id] = true;
-          return true;
-        }).slice(0, 4);
+        return (
+          '<section class="related" aria-label="相关字体">' +
+            '<' + 'h2>相关字体</h2>' +
+            '<div class="related-list">' +
+            rel.map(function (f) {
+              const st = WFProto.cssFamilyStack(f.family);
+              const w = WFProto.weightToCss((f.weights && f.weights[0]) || '400');
+              const wCount = (f.weights && f.weights.length) || 1;
+              return '<a class="related-card" href="font-detail.html?id=' + encodeURIComponent(f.id) + '">' +
+                '<span class="rc-name" style="font-family:' + esc(st) + ';font-weight:' + esc(w) + '">' +
+                  esc(f.name) + '</span>' +
+                (f.en ? '<span class="rc-en">' + esc(f.en) + '</span>' : '') +
+                '<span class="rc-meta">' +
+                  '<span class="chip">' + esc(f.license || '待核实') + '</span>' +
+                  (f.category ? '<span>' + esc(f.category) + '</span>' : '') +
+                  '<span>' + wCount + ' 字重</span>' +
+                '</span></a>';
+            }).join('') +
+            '</div></section>'
+        );
       }
 
       function render(font) {
         document.title = font.name + ' · 文风字体';
         const stack = WFProto.cssFamilyStack(font.family);
         const weights = font.weights && font.weights.length ? font.weights : ['Regular'];
-        const tags = font.tags && font.tags.length ? font.tags : (font.category ? [font.category] : []);
+        const tags = font.tags && font.tags.length ? font.tags : [];
         const designer = font.designerShort || font.designer || '—';
-        const desc = font.description || '暂无描述。';
-        const firstW = WFProto.weightToCss(weights[0]);
-
+        const startLabel = weights.filter(function (w) {
+          return String(w).toLowerCase() === 'regular' || WFProto.weightToCss(w) === '400';
+        })[0] || weights[0];
+        const firstW = WFProto.weightToCss(startLabel);
         weights.forEach(function (w) { WFProto.ensureFontCss(font.family, w); });
 
-        // ── 侧栏数据 ──
-        const brand = brandOf(font) || designer;
-        const brandLogo = (font.brand && font.brand.logoUrl) || '';
-        const brandGenAvatar = !brandLogo && (font.foundryAvatar || (font.brand && font.brand.avatarUrl) || '');
-        const brandAvatar = brandLogo || brandGenAvatar || '';
-        const brandDesc = (font.brand && font.brand.description) || '';
-        const brandSite = (font.brand && font.brand.website) || '';
-        const catalog = WFProto.getCatalogList();
-        const brandCount = catalog.filter(function (f) { return brandOf(f) === brand; }).length;
-        const brandFirst = String(brand || '文').trim().charAt(0).toUpperCase();
-        const licUrl = font.licenseFileUrl ||
-          (font.licenseName ? 'https://feicode.com/Windfonts/font-licenses' : '');
-        const licVerified = font.licenseVerified;
-        const related = relatedOf(font);
-
-        const weightBtns = weights.map(function (w, i) {
+        const weightBtns = weights.map(function (w) {
           const cssW = WFProto.weightToCss(w);
-          return '<button type="button"' + (i === 0 ? ' class="active"' : '') +
+          const on = String(w) === String(startLabel);
+          return '<button type="button"' + (on ? ' class="active"' : '') +
             ' data-w="' + esc(cssW) + '" data-label="' + esc(w) + '">' + esc(w) + '</button>';
         }).join('');
 
-        let chips = tags.map(function (t) {
-          return '<a class="chip" href="fonts.html?tag=' + encodeURIComponent(t) + '">' + esc(t) + '</a>';
-        }).join('');
-        if (font.category && tags.indexOf(font.category) === -1) {
-          chips += '<span class="chip">' + esc(font.category) + '</span>';
-        }
-
-        const cssLink = WFProto.cssUrl(font.family, '400');
-        const htmlSnippet =
-          '&lt;link rel="stylesheet" href="' + esc(cssLink) + '" /&gt;\n&lt;!-- 此中文网页字体由文风字体（Windfonts）提供，请保留许可标注 https://wenfeng.org/license --&gt;\n&lt;style&gt; body { font-family: \'' + esc(font.family) + '\', sans-serif; } &lt;/style&gt;';
-        const importSnippet =
-          "@import url('" + esc(cssLink) + "');\nfont-family: '" + esc(font.family) + "', sans-serif;";
+        const flags = [];
+        if (font.category) flags.push('<a class="chip" href="fonts.html?keyword=' + encodeURIComponent(font.category) + '">' + esc(font.category) + '</a>');
+        flags.push(chipsOf(tags, 'tag'));
+        flags.push('<span class="chip">' + esc(font.license || '待核实') + '</span>');
 
         root.innerHTML =
           '<nav class="breadcrumb" aria-label="面包屑">' +
             '<a href="fonts.html">字体库</a><span class="sep">/</span><span>' + esc(font.name) + '</span>' +
           '</nav>' +
-          '<header class="detail-head">' +
-            '<h1 class="detail-title" style="font-family:' + esc(stack) + ';font-weight:' + esc(firstW) + '">' + esc(font.name) + '</h1>' +
-            '<p class="detail-designer">' + esc(font.en || '') +
-              (font.releaseYear ? ' · ' + esc(String(font.releaseYear)) : '') +
-              ' · 设计 ' + esc(designer) +
-              ' · <code id="familyCode" class="family-code" title="点击复制 family">' + esc(font.family) + '</code></p>' +
+          '<div class="detail-head">' +
+            '<div>' +
+              '<h1 class="detail-title" style="font-family:' + esc(stack) + ';font-weight:' + esc(firstW) + '">' + esc(font.name) + '</h1>' +
+              (font.en ? '<p class="detail-en">' + esc(font.en) + '</p>' : '') +
+              '<div class="detail-flags">' + flags.join('') + '</div>' +
+            '</div>' +
             '<div class="detail-actions">' +
-              '<a class="btn btn-ink" href="font-embed.html?id=' + encodeURIComponent(font.id) + '">获取嵌入代码</a>' +
-              '<button type="button" class="btn btn-outline" id="btnJoin" data-join="' + esc(font.id) +
+              '<a class="btn" href="font-embed.html?id=' + encodeURIComponent(font.id) + '">获取嵌入代码</a>' +
+              '<button type="button" class="btn btn-ghost" id="btnCopyCss">复制 CSS</button>' +
+              '<button type="button" class="btn btn-black" id="btnJoin" data-join="' + esc(font.id) +
                 '" data-name="' + esc(font.name) + '" data-op-detail>添加字体</button>' +
             '</div>' +
-          '</header>' +
-          '<div class="detail-grid">' +
-            '<aside class="detail-side">' +
-              // ── 厂商资料卡 ──
-              '<section class="side-card foundry-card" aria-label="厂商资料">' +
-                '<div class="fc-head">' +
-                  '<span class="fc-avatar" aria-hidden="true">' + esc(brandFirst) + '</span>' +
-                  (brandAvatar
-                    ? '<img class="fc-logo" src="' + esc(brandAvatar) + '" alt="" loading="lazy" onerror="this.remove()" />'
-                    : '') +
-                '</div>' +
-                '<h3 class="fc-name">' + esc(brand) + '</h3>' +
-                (brandDesc ? '<p class="fc-desc">' + esc(brandDesc) + '</p>' : '') +
-                (font.designer && font.designer !== designer
-                  ? '<p class="fc-designers" title="' + esc(font.designer) + '">设计师 ' + esc(designer) + ' 等</p>' : '') +
-                '<div class="fc-links">' +
-                  (brandCount > 1
-                    ? '<a class="fc-lib" href="fonts.html?keyword=' + encodeURIComponent(brand) + '">在库 ' + brandCount + ' 款 →</a>'
-                    : '') +
-                  (brandSite ? '<a href="' + esc(brandSite) + '" target="_blank" rel="noopener noreferrer">官网 ↗</a>' : '') +
-                '</div>' +
-              '</section>' +
-              // ── 授权模块 ──
-              '<section class="side-card lic-module" aria-label="授权信息">' +
-                '<div class="lic-badge ' + tierClass(font.license) + '">' + esc(font.license || '待核实') + '</div>' +
-                (licVerified != null
-                  ? '<p class="lic-verified ' + (licVerified ? 'is-ok' : 'is-warn') + '">' +
-                    (licVerified ? '✓ 授权信息已核实' : '○ 授权信息未核实，商用前请查证原文') + '</p>'
-                  : '') +
-                '<p class="lic-copy">' + esc(tierCopy(font.license)) + '</p>' +
-                (font.licenseNotes ? '<p class="lic-notes" title="' + esc(font.licenseNotes) + '">' + esc(font.licenseNotes) + '</p>' : '') +
-                (font.licenseName ? '<p class="lic-name">协议：' + esc(font.licenseName) + '</p>' : '') +
-                (font.copyright ? '<p class="lic-copyright">' + esc(font.copyright) + '</p>' : '') +
-                (licUrl ? '<a class="lic-source" href="' + esc(licUrl) + '" target="_blank" rel="noopener noreferrer">查看授权原文 ↗</a>' : '') +
-              '</section>' +
-              // ── 字体属性 ──
-              '<section class="side-card" aria-label="字体属性">' +
-                '<h3 class="sc-title">字体属性</h3>' +
-                '<dl class="prop-list">' +
-                  '<dt>版本</dt><dd>' + esc(font.version || '—') + '</dd>' +
-                  (font.releaseYear ? '<dt>发布年份</dt><dd>' + esc(String(font.releaseYear)) + '</dd>' : '') +
-                  '<dt>字重</dt><dd>' + weights.length + ' 款</dd>' +
-                  '<dt>分类</dt><dd>' + esc(font.category || '—') + '</dd>' +
-                  (font.charCount ? '<dt>字符 / 字形</dt><dd>' + font.charCount + ' / ' + (font.glyphCount || '—') + '</dd>' : '') +
-                  '<dt>格式</dt><dd>WOFF2 · TTF</dd>' +
-                '</dl>' +
-                (font.useCases && font.useCases.length
-                  ? '<h3 class="sc-title">适用场景</h3><div class="chips meta-block">' +
-                    font.useCases.map(function (u) { return '<span class="chip">' + esc(u) + '</span>'; }).join('') + '</div>'
-                  : '') +
-                '<h3 class="sc-title">标签</h3><div class="chips meta-block">' + (chips || '<span class="chip">—</span>') + '</div>' +
-              '</section>' +
-              (font.description
-                ? '<section class="side-card" aria-label="描述"><h3 class="sc-title">描述</h3><p class="sc-desc">' + esc(desc) + '</p></section>'
-                : '') +
-              (font.viewCount
-                ? '<section class="side-card" aria-label="统计"><h3 class="sc-title">统计</h3>' +
-                  '<dl class="prop-list"><dt>浏览</dt><dd>' + font.viewCount + '</dd></dl></section>'
-                : '') +
-            '</aside>' +
-            '<div class="detail-main">' +
-              '<section class="action-area" aria-label="即时预览">' +
-                '<div class="preview-toolbar">' +
-                  '<span class="use-label" style="margin:0">即时预览</span>' +
-                  '<span class="preset-mini" data-preset="文风字体，字里行间">标题</span>' +
-                  '<span class="preset-mini" data-preset="永远相信，美好的事情即将发生。0123456789">段落</span>' +
-                  '<span class="preset-mini" data-preset="WenFeng 文风 Aa 永漫">品牌</span>' +
-                  '<div class="size-slider">' +
-                    '<span>字号</span>' +
-                    '<input type="range" id="detailSize" min="12" max="108" value="44" aria-label="字号" />' +
-                    '<span id="detailSizeVal" data-size-val>44px</span>' +
-                  '</div>' +
-                  '<div class="color-row">' +
-                    '<label>字 <input type="color" id="textColor" value="#1c1a17" aria-label="文字色" /></label>' +
-                    '<label>底 <input type="color" id="bgColor" value="#ffffff" aria-label="背景色" /></label>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="weight-seg" role="tablist" aria-label="字重">' + weightBtns + '</div>' +
-                '<div class="preview-pane-wrap">' +
-                  '<button type="button" class="btn btn-save-preview" id="btnSavePreview" title="保存预览为 PNG">保存 PNG</button>' +
-                  '<div class="preview-pane" id="previewArea" style="font-family:' + esc(stack) +
-                    ';font-weight:' + esc(firstW) + '">文风字体</div>' +
-                '</div>' +
-              '</section>' +
-              // ── CSS 使用区 ──
-              '<section class="action-area use-area" aria-label="CSS API 使用">' +
-                '<h3 class="use-title">在项目中使用</h3>' +
-                '<div class="use-row"><span class="use-label">CSS 链接</span>' +
-                  '<input type="text" readonly id="cssLinkInput" value="' + esc(cssLink) + '" aria-label="CSS 链接" />' +
-                  '<button type="button" class="btn btn-copy" id="btnCopyLink">复制</button></div>' +
-                '<div class="use-block"><span class="use-label">HTML</span>' +
-                  '<pre><code>' + htmlSnippet + '</code></pre>' +
-                  '<button type="button" class="btn btn-copy" id="btnCopyHtml">复制</button></div>' +
-                '<div class="use-block"><span class="use-label">CSS</span>' +
-                  '<pre><code>' + esc(importSnippet) + '</code></pre>' +
-                  '<button type="button" class="btn btn-copy" id="btnCopyCss">复制</button></div>' +
-                '<p class="use-tip">常用字符集：<code>full</code> 完整 / <code>zh-common</code> 常用中文（轻量，推荐）/ <code>en</code> 英文。生产环境请核对授权与域名白名单。</p>' +
-              '</section>' +
-            '</div>' +
           '</div>' +
-          (related.length
-            ? '<section class="related" aria-label="相关字体推荐">' +
-              '<h2 class="related-title">相关字体</h2>' +
-              '<div class="related-row">' +
-              related.map(function (f) {
-                const rstack = WFProto.cssFamilyStack(f.family);
-                return '<a class="related-card" href="font-detail.html?id=' + encodeURIComponent(f.id) + '" data-family="' + esc(f.family) + '" title="' + esc(f.name) + '">' +
-                  '<span class="rc-preview" style="font-family:' + esc(rstack) + '">' + esc(f.name) + '</span>' +
-                  '<span class="rc-meta"><span class="rc-lic ' + tierClass(f.license) + '">' + esc(f.license || '待核实') + '</span>' +
-                  '<span class="rc-styles">' + ((f.weights && f.weights.length) || 1) + ' 字重</span></span>' +
-                '</a>';
-              }).join('') +
-              '</div></section>'
-            : '');
+          '<div class="detail-grid">' +
+            '<section class="fn-col" aria-label="功能">' +
+              previewCard(stack, firstW, weightBtns) +
+              embedCard(font) +
+            '</section>' +
+            infoCol(font, designer, weights, tags) +
+          '</div>' +
+          relatedBlock(font);
 
-        wireActions(font, stack, firstW);
+        wireActions(font, stack, firstW, weights);
       }
 
-      function wireActions(font, stack, firstW) {
+      function flashBtn(btn, okText) {
+        if (!btn) return;
+        const old = btn.textContent;
+        btn.textContent = okText || '已复制';
+        btn.classList.add('is-copied');
+        setTimeout(function () {
+          btn.textContent = old;
+          btn.classList.remove('is-copied');
+        }, 1200);
+      }
+
+      function wireActions(font, stack, firstW, weights) {
         const pane = document.getElementById('previewArea');
         const size = document.getElementById('detailSize');
         const sizeVal = document.getElementById('detailSizeVal');
         const textColor = document.getElementById('textColor');
         const bgColor = document.getElementById('bgColor');
-        pane.setAttribute('contenteditable', 'true');
-        pane.setAttribute('spellcheck', 'false');
-        pane.textContent = WFProto.getSample() || '文风字体';
-        size.value = String(WFProto.getSize());
-        sizeVal.textContent = size.value + 'px';
-        pane.style.fontSize = size.value + 'px';
+        let currentWeight = firstW;
+        let currentVersion = 'full';
+        let currentTab = 'link';
+
+        const stored = WFProto.getSample();
+        const startText = (!stored || stored === '文风字体') ? POEM : stored;
+        pane.textContent = startText;
+        size.value = '64';
+        sizeVal.textContent = '64px';
+        pane.style.fontSize = '64px';
         pane.style.fontWeight = firstW;
 
-        // 样句舞台直接可编辑：输入即存共用样句
+        function applySize(px) {
+          size.value = String(px);
+          sizeVal.textContent = px + 'px';
+          pane.style.fontSize = px + 'px';
+        }
+        function paneText() {
+          return (pane.innerText || '').replace(/\n+$/, '');
+        }
+
+        function currentUrl(ver) {
+          return WFProto.cssUrl(font.family, currentWeight, ver || currentVersion);
+        }
+        function npmName() {
+          const raw = font.normalized || font.family || 'Font';
+          return String(raw).split('-').map(function (w) {
+            return w.charAt(0).toUpperCase() + w.slice(1);
+          }).join('-');
+        }
+        function weightLabel() {
+          const active = document.querySelector('.weight-seg button.active');
+          return (active && active.dataset.label) || (weights[0] || 'Regular');
+        }
+        function snippetFor(tab) {
+          const url = currentUrl();
+          if (tab === 'import') return "@import url('" + url + "');";
+          if (tab === 'css') {
+            return '.wf-sample {\n  font-family: ' + stack + ';\n  font-weight: ' + currentWeight + ';\n  font-style: normal;\n}';
+          }
+          if (tab === 'npm') {
+            return 'npm install @windfonts/chinese-fonts\n\nimport { loadFont } from \'@windfonts/chinese-fonts\';\n\nloadFont(\'' +
+              npmName() + '-' + weightLabel() + '\', { subset: \'' + currentVersion + '\' });';
+          }
+          return '<link rel="stylesheet" href="' + url + '" />';
+        }
+        function syncUse() {
+          const input = document.getElementById('cssLinkInput');
+          if (input) input.value = currentUrl();
+          const pre = document.getElementById('codeConsole');
+          if (pre) pre.textContent = snippetFor(currentTab);
+        }
+
         pane.addEventListener('input', function () {
-          WFProto.setSample(pane.textContent);
+          document.querySelectorAll('[data-preset]').forEach(function (b) { b.classList.remove('is-on'); });
+          WFProto.setSample(paneText());
+        });
+        pane.addEventListener('paste', function (e) {
+          e.preventDefault();
+          const clip = (e.clipboardData || window.clipboardData);
+          const plain = clip ? clip.getData('text/plain') : '';
+          document.execCommand('insertText', false, plain);
+        });
+        pane.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            document.execCommand('insertLineBreak');
+          }
         });
         document.querySelectorAll('[data-preset]').forEach(function (btn) {
           btn.addEventListener('click', function () {
+            document.querySelectorAll('[data-preset]').forEach(function (b) {
+              b.classList.toggle('is-on', b === btn);
+            });
             const v = btn.getAttribute('data-preset') || '';
-            pane.textContent = v || '文';
+            const px = parseInt(btn.getAttribute('data-size') || size.value, 10);
+            pane.textContent = v;
             WFProto.setSample(v);
+            if (px) applySize(px);
+            pane.focus();
           });
         });
-        size.addEventListener('input', function () {
-          pane.style.fontSize = size.value + 'px';
-          sizeVal.textContent = size.value + 'px';
-          WFProto.setSize(size.value);
-        });
+        size.addEventListener('input', function () { applySize(size.value); });
         textColor.addEventListener('input', function () { pane.style.color = textColor.value; });
         bgColor.addEventListener('input', function () { pane.style.backgroundColor = bgColor.value; });
 
@@ -311,8 +391,28 @@
           btn.addEventListener('click', function () {
             document.querySelectorAll('.weight-seg button').forEach(function (b) { b.classList.remove('active'); });
             btn.classList.add('active');
-            pane.style.fontWeight = btn.dataset.w;
-            WFProto.ensureFontCss(font.family, btn.dataset.w);
+            currentWeight = btn.dataset.w;
+            pane.style.fontWeight = currentWeight;
+            WFProto.ensureFontCss(font.family, currentWeight);
+            syncUse();
+          });
+        });
+        document.querySelectorAll('#fn-embed [data-version]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            document.querySelectorAll('#fn-embed [data-version]').forEach(function (b) {
+              b.classList.toggle('is-on', b === btn);
+            });
+            currentVersion = btn.getAttribute('data-version') || 'full';
+            syncUse();
+          });
+        });
+        document.querySelectorAll('#fn-embed .use-tabs button').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            currentTab = btn.getAttribute('data-tab') || 'link';
+            document.querySelectorAll('#fn-embed .use-tabs button').forEach(function (b) {
+              b.classList.toggle('active', b === btn);
+            });
+            syncUse();
           });
         });
 
@@ -324,47 +424,24 @@
           });
           WFProto.syncJoinButtons();
         }
-
-        // CSS 使用区：三处复制
-        const copyBtn = function (id, getText) {
-          const btn = document.getElementById(id);
-          if (!btn) return;
-          btn.addEventListener('click', function () {
-            const v = getText();
-            WFProto.copyText(v).then(function () {
-              const old = btn.textContent;
-              btn.textContent = '已复制';
-              btn.classList.add('is-copied');
-              setTimeout(function () { btn.textContent = old; btn.classList.remove('is-copied'); }, 1400);
-            }).catch(function () { btn.textContent = '复制失败'; });
-          });
-        };
-        copyBtn('btnCopyLink', function () { return document.getElementById('cssLinkInput').value; });
-        copyBtn('btnCopyHtml', function () {
-          return '<link rel="stylesheet" href="' + WFProto.cssUrl(font.family, '400') + '" />\n' +
-            '<!-- 此中文网页字体由文风字体（Windfonts）提供，请保留许可标注 https://wenfeng.org/license -->\n' +
-            '<style> body { font-family: \'' + font.family + '\', sans-serif; } </style>';
-        });
-        copyBtn('btnCopyCss', function () {
-          return "@import url('" + WFProto.cssUrl(font.family, '400') + "');\n" +
-            "font-family: '" + font.family + "', sans-serif;";
-        });
-
-        // 相关字体卡：加载预览字体
-        document.querySelectorAll('.related-card[data-family]').forEach(function (card) {
-          WFProto.ensureFontCss(card.getAttribute('data-family'), '400');
-        });
-
-        // family 代码点一下即复制
-        const fam = document.getElementById('familyCode');
-        if (fam) {
-          fam.addEventListener('click', function () {
-            WFProto.copyText(font.family).then(function () {
-              fam.classList.add('is-copied');
-              setTimeout(function () { fam.classList.remove('is-copied'); }, 1200);
-            }).catch(function () { /* ignore */ });
+        function copyNow(textVal, btn) {
+          WFProto.copyText(textVal).then(function () { flashBtn(btn); }).catch(function () {
+            if (btn) btn.textContent = '失败';
           });
         }
+        const btnCopyCss = document.getElementById('btnCopyCss');
+        if (btnCopyCss) btnCopyCss.addEventListener('click', function () { copyNow(currentUrl(), btnCopyCss); });
+        const btnCopyLink = document.getElementById('btnCopyLink');
+        if (btnCopyLink) btnCopyLink.addEventListener('click', function () { copyNow(currentUrl(), btnCopyLink); });
+        const btnCopyCode = document.getElementById('btnCopyCode');
+        if (btnCopyCode) {
+          btnCopyCode.addEventListener('click', function () {
+            const pre = document.getElementById('codeConsole');
+            copyNow(pre ? pre.textContent : '', btnCopyCode);
+          });
+        }
+        const familyCode = document.getElementById('familyCode');
+        if (familyCode) familyCode.addEventListener('click', function () { copyNow(font.family, familyCode); });
 
         document.getElementById('btnSavePreview').addEventListener('click', function () {
           const w = Math.max(pane.clientWidth, 640);
@@ -377,25 +454,24 @@
           ctx.scale(scale, scale);
           ctx.fillStyle = bgColor.value || '#ffffff';
           ctx.fillRect(0, 0, w, h);
-          ctx.fillStyle = textColor.value || '#1c1a17';
+          ctx.fillStyle = textColor.value || '#18181b';
           ctx.font = (pane.style.fontWeight || '400') + ' ' + (size.value || 44) + 'px ' + stack;
           ctx.textBaseline = 'middle';
-          const lines = (pane.textContent || '文').split('\n');
-          const lh = parseFloat(size.value) * 1.4;
+          const lines = (paneText() || '文').split('\n');
+          const lh = parseFloat(size.value) * 1.28;
           const startY = h / 2 - ((lines.length - 1) * lh) / 2;
-          lines.forEach(function (line, i) {
-            ctx.fillText(line, 40, startY + i * lh);
-          });
+          lines.forEach(function (line, i) { ctx.fillText(line, 40, startY + i * lh); });
           const a = document.createElement('a');
           a.download = (font.normalized || font.family || 'wenfeng') + '-preview.png';
           a.href = canvas.toDataURL('image/png');
           a.click();
         });
+
+        syncUse();
       }
 
       WFProto.loadCatalog().then(function () {
         if (!id) {
-          // fallback: first font so deep links without id still show something useful
           const list = WFProto.getCatalogList();
           if (list.length) {
             history.replaceState(null, '', 'font-detail.html?id=' + encodeURIComponent(list[0].id));

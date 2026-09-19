@@ -53,12 +53,12 @@
         <input type="checkbox" id="includeAllWeights" checked />
         包含所有字重变体
       </label>
-      <div class="embed-check charset-row" role="radiogroup" aria-label="字符集">
-        <span class="charset-label">字符集</span>
-        <label><input type="radio" name="wfCharset" value="" checked /> 完整</label>
-        <label><input type="radio" name="wfCharset" value="zh-common" /> 常用中文 <em>轻量 · 推荐</em></label>
-        <label><input type="radio" name="wfCharset" value="zh" /> 中文</label>
-        <label><input type="radio" name="wfCharset" value="en" /> 英文</label>
+      <div class="charset-row" role="radiogroup" aria-label="字符集">
+        <span>字符集</span>
+        <label><input type="radio" name="charset" value="full" checked /> full 完整</label>
+        <label><input type="radio" name="charset" value="zh-common" /> zh-common 常用</label>
+        <label><input type="radio" name="charset" value="zh" /> zh 中文</label>
+        <label><input type="radio" name="charset" value="en" /> en 英文</label>
       </div>
     </div>
 
@@ -113,13 +113,8 @@
       let CURRENT = null;
       let selected = new Set();
       let includeAll = true;
-      let charset = '';
+      let charset = 'full';
       let tab = 'link';
-
-      function readCharset() {
-        const on = document.querySelector('input[name="wfCharset"]:checked');
-        return on ? on.value : '';
-      }
 
       const fontsEl = document.getElementById('embedFonts');
       const pickHint = document.getElementById('pickHint');
@@ -171,11 +166,10 @@
       function buildLink() {
         const fonts = selectedData();
         if (!fonts.length) return '';
-        const cs = readCharset();
         const lines = ['<link rel="preconnect" href="https://app.windfonts.com" crossorigin>'];
         fonts.forEach(function (f) {
           weightsFor(f).forEach(function (w) {
-            lines.push('<link rel="stylesheet" crossorigin="anonymous" href="' + WFProto.cssUrl(f.family, w, cs) + '">');
+            lines.push('<link rel="stylesheet" crossorigin="anonymous" href="' + WFProto.cssUrl(f.family, w, charset) + '">');
           });
         });
         lines.push('<!-- 此中文网页字体由文风字体（Windfonts）提供，请保留许可标注 https://wenfeng.org/license -->');
@@ -185,11 +179,10 @@
       function buildImport() {
         const fonts = selectedData();
         if (!fonts.length) return '';
-        const cs = readCharset();
         const imports = [];
         fonts.forEach(function (f) {
           weightsFor(f).forEach(function (w) {
-            imports.push("@import url('" + WFProto.cssUrl(f.family, w, cs) + "');");
+            imports.push("@import url('" + WFProto.cssUrl(f.family, w, charset) + "');");
           });
         });
         return '<style>\n' + imports.join('\n') + '\n</style>\n<!-- 此中文网页字体由文风字体（Windfonts）提供，请保留许可标注 https://wenfeng.org/license -->';
@@ -229,9 +222,13 @@
         includeAll = e.target.checked;
         updateCodes();
       });
-
-      document.querySelectorAll('input[name="wfCharset"]').forEach(function (radio) {
-        radio.addEventListener('change', updateCodes);
+      document.querySelectorAll('input[name="charset"]').forEach(function (r) {
+        r.addEventListener('change', function () {
+          if (r.checked) {
+            charset = r.value;
+            updateCodes();
+          }
+        });
       });
 
       btnAll.addEventListener('click', function () {
