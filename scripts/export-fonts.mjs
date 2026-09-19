@@ -12,6 +12,7 @@
  *   WF_API=http://127.0.0.1:16015 node scripts/export-fonts.mjs   # 指向本地 vault
  */
 import { writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -23,6 +24,14 @@ const OUT_META = join(ROOT, 'data', 'fonts.meta.json');
 
 function designerShort(designer) {
   return String(designer || '').split(/[;；,，]/)[0].trim() || '—';
+}
+
+/** 厂商无 logo 时的 Cravatar 生成头像（同串同图，后续真 logo 覆盖） */
+function cravatarAvatar(seed) {
+  const s = String(seed || '').trim().toLowerCase();
+  if (!s) return '';
+  const hash = createHash('sha256').update(s).digest('hex');
+  return `https://cravatar.com/avatar/${hash}?s=144&d=identicon`;
 }
 
 async function fetchDetail(normalized) {
@@ -90,7 +99,14 @@ function mapFont(raw, detail, licInfo) {
     copyright: detail?.copyright || '',
     foundry: raw.foundry || brand.name || '',
     brand: brand.name
-      ? { name: brand.name, slug: brand.slug || '', logoUrl: brand.logoUrl || '', website: brand.website || '', description: brand.description || '' }
+      ? {
+          name: brand.name,
+          slug: brand.slug || '',
+          logoUrl: brand.logoUrl || '',
+          avatarUrl: brand.logoUrl ? '' : cravatarAvatar(brand.name),
+          website: brand.website || '',
+          description: brand.description || '',
+        }
       : null,
     releaseYear: raw.releaseYear ?? null,
     version: raw.version || '',

@@ -110,6 +110,8 @@
         // ── 侧栏数据 ──
         const brand = brandOf(font) || designer;
         const brandLogo = (font.brand && font.brand.logoUrl) || '';
+        const brandGenAvatar = !brandLogo && (font.foundryAvatar || (font.brand && font.brand.avatarUrl) || '');
+        const brandAvatar = brandLogo || brandGenAvatar || '';
         const brandDesc = (font.brand && font.brand.description) || '';
         const brandSite = (font.brand && font.brand.website) || '';
         const catalog = WFProto.getCatalogList();
@@ -155,9 +157,12 @@
             '<aside class="detail-side">' +
               // ── 厂商资料卡 ──
               '<section class="side-card foundry-card" aria-label="厂商资料">' +
-                (brandLogo
-                  ? '<img class="fc-logo" src="' + esc(brandLogo) + '" alt="' + esc(brand) + ' logo" loading="lazy" />'
-                  : '<span class="fc-avatar" aria-hidden="true">' + esc(brandFirst) + '</span>') +
+                '<div class="fc-head">' +
+                  '<span class="fc-avatar" aria-hidden="true">' + esc(brandFirst) + '</span>' +
+                  (brandAvatar
+                    ? '<img class="fc-logo" src="' + esc(brandAvatar) + '" alt="" loading="lazy" onerror="this.remove()" />'
+                    : '') +
+                '</div>' +
                 '<h3 class="fc-name">' + esc(brand) + '</h3>' +
                 (brandDesc ? '<p class="fc-desc">' + esc(brandDesc) + '</p>' : '') +
                 (font.designer && font.designer !== designer
@@ -256,7 +261,7 @@
               '<div class="related-row">' +
               related.map(function (f) {
                 const rstack = WFProto.cssFamilyStack(f.family);
-                return '<a class="related-card" href="font-detail.html?id=' + encodeURIComponent(f.id) + '" data-family="' + esc(f.family) + '">' +
+                return '<a class="related-card" href="font-detail.html?id=' + encodeURIComponent(f.id) + '" data-family="' + esc(f.family) + '" title="' + esc(f.name) + '">' +
                   '<span class="rc-preview" style="font-family:' + esc(rstack) + '">' + esc(f.name) + '</span>' +
                   '<span class="rc-meta"><span class="rc-lic ' + tierClass(f.license) + '">' + esc(f.license || '待核实') + '</span>' +
                   '<span class="rc-styles">' + ((f.weights && f.weights.length) || 1) + ' 字重</span></span>' +
