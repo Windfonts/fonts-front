@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>字体详情 · 文风字体</title>
@@ -78,7 +79,7 @@
             ' data-w="' + esc(cssW) + '" data-label="' + esc(w) + '">' + esc(w) + '</button>';
         }).join('');
 
-        const chips = tags.map(function (t) {
+        let chips = tags.map(function (t) {
           return '<a class="chip" href="fonts.html?tag=' + encodeURIComponent(t) + '">' + esc(t) + '</a>';
         }).join('');
         if (font.license) {
