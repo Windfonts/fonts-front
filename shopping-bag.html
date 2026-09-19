@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>已获取字体 · 文风字体</title>
+  <link rel="stylesheet" href="css/wenfeng.css" />
+</head>
+<body class="page-bag">
+  <header class="site-chrome">
+    <div class="site-chrome-inner">
+      <ul class="brush-nav">
+        <li class="icon"><a class="brand" href="index.html"><img src="assets/icon.webp" alt="" width="36" height="36" /></a></li>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="fonts.html">字体库</a></li>
+        <li><a href="docs.html">文档</a></li>
+      </ul>
+      <div class="site-chrome-end">
+        <div class="nav-search">
+          <input type="search" id="navSearch" placeholder="搜索字体" aria-label="搜索字体" autocomplete="off" />
+          <button type="button" class="nav-search-clear" id="navSearchClear" hidden aria-label="清除">×</button>
+          <span class="nav-search-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
+          </span>
+        </div>
+        <a class="bag-link" href="shopping-bag.html" aria-label="已获取字体">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path d="M6 8h12l-1 12H7L6 8z" /><path d="M9 8a3 3 0 0 1 6 0" />
+          </svg>
+          <span class="badge" data-pick-count data-count="0">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="bag-wrap">
+    <div class="bag-head">
+      <h1>已获取 <span id="bagCount">0</span> 个字体</h1>
+      <button type="button" class="btn btn-ghost" id="btnClearAll">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 7h16M9 7V5h6v2M8 7l1 14h6l1-14"/></svg>
+        删除所有
+      </button>
+    </div>
+
+    <div class="bag-toolbar">
+      <div class="preview-input-wrap" style="max-width:18.75rem">
+        <input type="text" id="specimenText" placeholder="输入文字，即时预览" aria-label="即时预览" />
+      </div>
+      <div class="size-slider">
+        <span>字号</span>
+        <input type="range" id="specimenSize" min="12" max="108" value="44" aria-label="字号" />
+        <span class="size-val" data-size-val>44px</span>
+      </div>
+    </div>
+
+    <div class="bag-list" id="bagList"></div>
+
+    <div class="bag-foot">
+      <a href="docs.html">查看如何使用</a>
+    </div>
+  </section>
+
+  <footer id="wfExtraFooter" class="site-extra-footer"></footer>
+
+  <script src="js/wf-proto.js"></script>
+  <script>
+    (function () {
+      const list = document.getElementById('bagList');
+      const countEl = document.getElementById('bagCount');
+
+      function render() {
+        const picks = WFProto.getPicks();
+        countEl.textContent = String(picks.length);
+        if (!picks.length) {
+          list.innerHTML = '<div class="bag-empty"><div class="empty-glyph">∅</div><span>暂无加入的字体</span><p style="margin:0.75rem 0 0;font-size:0.875rem"><a href="fonts.html">去字体库挑选</a></p></div>';
+          return;
+        }
+        const sample = WFProto.getSample();
+        const size = WFProto.getSize();
+        list.innerHTML = picks.map(function (p) {
+          const stack = WFProto.cssFamilyStack(p.family);
+          if (p.family) WFProto.ensureFontCss(p.family, '400');
+          const styles = p.styles || (p.weights && p.weights.length) || 1;
+          return (
+            '<div class="font-row status-op" data-font-id="' + WFProto.escapeHtml(p.id) + '">' +
+              '<div class="font-row-head">' +
+                '<span class="name">' + WFProto.escapeHtml(p.name) + '</span>' +
+                '<span class="author">作者 ' + WFProto.escapeHtml(p.designerShort || p.designer || '—') + '</span>' +
+                '<span class="divider" aria-hidden="true"></span>' +
+                '<span class="styles-count">可选样式 ' + styles + '</span>' +
+                '<div class="font-row-ops">' +
+                  '<a class="btn" href="font-embed.html?id=' + encodeURIComponent(p.id) + '">嵌入</a>' +
+                  '<a class="btn" href="#" data-dl="' + WFProto.escapeHtml(p.id) + '">下载</a>' +
+                  '<button type="button" class="btn btn-remove" data-remove="' + WFProto.escapeHtml(p.id) + '">移除</button>' +
+                '</div>' +
+              '</div>' +
+              '<a class="font-row-preview" href="font-detail.html?id=' + encodeURIComponent(p.id) +
+                '" data-specimen style="font-family:' + WFProto.escapeHtml(stack) + ';font-size:' + size + 'px">' +
+                WFProto.escapeHtml(sample) +
+              '</a>' +
+            '</div>'
+          );
+        }).join('');
+        list.querySelectorAll('[data-remove]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            WFProto.removePick(btn.getAttribute('data-remove'));
+            render();
+          });
+        });
+        list.querySelectorAll('[data-dl]').forEach(function (a) {
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            alert('原型 stub：真实下载未接 OSS。\nid=' + a.getAttribute('data-dl'));
+          });
+        });
+      }
+
+      document.getElementById('btnClearAll').addEventListener('click', function () {
+        WFProto.clearPicks();
+        render();
+      });
+
+      document.addEventListener('wf:picks', render);
+      const sampleInput = document.getElementById('specimenText');
+      if (sampleInput) {
+        sampleInput.addEventListener('input', function () {
+          list.querySelectorAll('[data-specimen]').forEach(function (n) {
+            n.textContent = sampleInput.value || '文';
+          });
+        });
+      }
+
+      WFProto.loadCatalog().then(render);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>我的选字 · 文风字库</title>
+  <link rel="stylesheet" href="css/vault-target.css" />
+</head>
+<body class="page-bag">
+  <header class="vt-header">
+    <div class="vt-header-inner">
+      <a class="vt-brand" href="index.html">
+        <span class="vt-brand-mark" aria-hidden="true">文</span>
+        <span>文风字库</span>
+      </a>
+      <nav class="vt-nav" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="fonts.html">字体列表</a>
+        <a class="active" href="picks.html">我的选字</a>
+      </nav>
+      <div class="vt-header-end">
+        <div class="vt-nav-search">
+          <input type="search" id="navSearch" placeholder="搜索字体…" aria-label="搜索字体" autocomplete="off" />
+          <span class="icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
+          </span>
+        </div>
+        <a class="vt-picks-btn" href="picks.html" title="我的选字">
+          选字
+          <span class="badge" data-pick-count data-count="0">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="specimen-bar">
+    <div class="specimen-bar-inner">
+      <input type="text" class="preview-input" id="specimenText" placeholder="输入文字，对比预览" aria-label="共用样句" />
+      <div class="size-slider">
+        <span>字号</span>
+        <input type="range" id="specimenSize" min="12" max="108" value="48" aria-label="字号" />
+        <span class="size-val" data-size-val>48px</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="vt-main">
+    <div class="vt-container">
+      <div class="bag-head">
+        <h1>我的选字 · <span id="bagCount">0</span></h1>
+        <button type="button" class="btn btn-ghost" id="btnClearAll">清空全部</button>
+      </div>
+
+      <div class="bag-css" id="bagCssBlock" hidden>
+        <h3>批量嵌入（link 多 family）</h3>
+        <pre id="bagCssPre"></pre>
+        <button type="button" class="btn btn-black btn-sm" id="btnCopyBagCss">复制全部 CSS</button>
+      </div>
+
+      <ul class="font-list" id="bagList"></ul>
+    </div>
+  </main>
+
+  <footer class="vt-footer">
+    <strong>vault 目标态线框 · 参照 next 行为 · 非生产</strong>
+    <div style="margin-top:0.35rem">P0-2 我的选字袋 · localStorage · 共用样句 · 移除/清空</div>
+  </footer>
+
+  <script src="js/vault-target.js"></script>
+  <script>
+    (function () {
+      const VT = window.VaultTarget;
+      const list = document.getElementById('bagList');
+      const countEl = document.getElementById('bagCount');
+      const cssBlock = document.getElementById('bagCssBlock');
+      const cssPre = document.getElementById('bagCssPre');
+
+      function buildCss(picks) {
+        if (!picks.length) return '';
+        return picks.map(function (p) {
+          if (!p.family) return '';
+          return '<link rel="stylesheet" href="' + VT.cssUrl(p.family, '400') + '" />';
+        }).filter(Boolean).join('\n');
+      }
+
+      function render() {
+        const picks = VT.getPicks();
+        countEl.textContent = String(picks.length);
+        if (!picks.length) {
+          list.innerHTML =
+            '<li class="bag-empty" style="list-style:none">' +
+              '<div style="font-size:2rem;margin-bottom:0.5rem;opacity:0.4">∅</div>' +
+              '<div>还没有选字</div>' +
+              '<p style="margin:0.75rem 0 0;font-size:0.875rem"><a href="fonts.html">去字体列表挑选</a></p>' +
+            '</li>';
+          cssBlock.hidden = true;
+          return;
+        }
+        const sample = VT.getSample();
+        const size = VT.getSize();
+        cssPre.textContent = buildCss(picks);
+        cssBlock.hidden = false;
+
+        list.innerHTML = picks.map(function (p) {
+          const stack = VT.cssFamilyStack(p.family);
+          if (p.family) VT.ensureFontCss(p.family, '400');
+          const styles = p.styles || (p.weights && p.weights.length) || 1;
+          return (
+            '<li class="font-row" data-font-id="' + VT.escapeHtml(p.id) + '">' +
+              '<div class="font-row-head">' +
+                '<span class="name">' + VT.escapeHtml(p.name) + '</span>' +
+                '<span class="author">作者 ' + VT.escapeHtml(p.designerShort || '—') + '</span>' +
+                '<span class="divider" aria-hidden="true"></span>' +
+                '<span class="styles-count">' + styles + ' 样式</span>' +
+                VT.tierHtml(p.license_tier || 'unv', { compact: true }) +
+                '<div style="margin-left:auto;display:flex;gap:0.35rem">' +
+                  '<a class="btn btn-sm" href="font-detail.html?id=' + encodeURIComponent(p.id) + '">详情</a>' +
+                  '<button type="button" class="btn btn-sm btn-ghost" data-remove="' +
+                    VT.escapeHtml(p.id) + '">移除</button>' +
+                '</div>' +
+              '</div>' +
+              '<a class="font-row-preview" href="font-detail.html?id=' + encodeURIComponent(p.id) +
+                '" data-specimen style="font-family:' + VT.escapeHtml(stack) +
+                ';font-size:' + size + 'px">' + VT.escapeHtml(sample) + '</a>' +
+            '</li>'
+          );
+        }).join('');
+
+        list.querySelectorAll('[data-remove]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            VT.removePick(btn.getAttribute('data-remove'));
+            render();
+          });
+        });
+      }
+
+      document.getElementById('btnClearAll').addEventListener('click', function () {
+        if (!VT.getPicks().length) return;
+        if (confirm('清空我的选字？')) {
+          VT.clearPicks();
+          render();
+        }
+      });
+      document.getElementById('btnCopyBagCss').addEventListener('click', function () {
+        VT.copyText(cssPre.textContent || '');
+      });
+      document.addEventListener('vt:picks', render);
+
+      VT.loadCatalog().then(render);
+    })();
+  </script>
+</body>
+</html>

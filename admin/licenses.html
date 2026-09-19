@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>许可 · 文风运营</title>
+  <link rel="stylesheet" href="../css/wenfeng.css" />
+</head>
+<body>
+  <div class="admin">
+        <nav class="admin-nav">
+      <div class="brand">文风 · 后台</div>
+      <a href="manage.html">字体管理</a>
+      <a href="upload.html">字体上传</a>
+      <div class="admin-nav-sep">新运营台</div>
+      <a href="shelf.html">货架</a>
+      <a class="active" href="licenses.html">许可</a>
+      <a href="assets.html">选字资产</a>
+      <a href="customers.html">客户接入</a>
+      <a class="quiet" href="system.html">系统</a>
+    </nav>
+    <div class="admin-main">
+      <div class="admin-top">
+        <h1>许可队列</h1>
+        <span class="pending">待审 23</span>
+      </div>
+      <div class="admin-body">
+        <div class="toolbar">
+          <button class="chip active" type="button">未验证</button>
+          <button class="chip" type="button">OFL</button>
+          <button class="chip" type="button">需授权</button>
+          <button class="chip" type="button">高风险</button>
+          <button class="btn btn-primary" type="button" style="margin-left:auto">批量关联原文</button>
+        </div>
+        <table class="data">
+          <thead>
+            <tr>
+              <th>预览</th>
+              <th>字体</th>
+              <th>档位草案</th>
+              <th>来源</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="mini-preview">玄</span></td>
+              <td style="color:var(--ink);font-weight:500">某品牌黑体</td>
+              <td><span class="tier"><span class="dot dot-muted"></span>未验证</span></td>
+              <td style="color:var(--ink-faint)">foundries / 待核</td>
+              <td><button class="btn" type="button">核</button></td>
+            </tr>
+            <tr>
+              <td><span class="mini-preview">风</span></td>
+              <td style="color:var(--ink);font-weight:500">手写试验 A</td>
+              <td><span class="tier"><span class="dot dot-muted"></span>未验证</span></td>
+              <td style="color:var(--ink-faint)">上传批次 #18</td>
+              <td><button class="btn" type="button">核</button></td>
+            </tr>
+            <tr>
+              <td><span class="mini-preview" style="font-family:serif">楷</span></td>
+              <td style="color:var(--ink);font-weight:500">霞鹜文楷</td>
+              <td><span class="tier"><span class="dot dot-warn"></span>需授权</span></td>
+              <td style="color:var(--ink-faint)">品牌协议草案</td>
+              <td><button class="btn" type="button">核</button></td>
+            </tr>
+            <tr>
+              <td><span class="mini-preview" style="font-family:serif">宋</span></td>
+              <td style="color:var(--ink);font-weight:500">思源宋体 CN</td>
+              <td><span class="tier"><span class="dot dot-ok"></span>OFL 已核</span></td>
+              <td style="color:var(--ink-faint)">font-licenses</td>
+              <td><a href="#" style="font-size:0.85rem">原文</a></td>
+            </tr>
+            <tr>
+              <td><span class="mini-preview">险</span></td>
+              <td style="color:var(--ink);font-weight:500">高风险示例族</td>
+              <td><span class="tier"><span class="dot dot-danger"></span>高风险</span></td>
+              <td style="color:var(--danger)">限制上架</td>
+              <td><button class="btn" type="button" style="color:var(--danger);border-color:#fecaca">处理</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="stub" style="padding-top:1.25rem">早开即待审。档位字典与文案终稿问 Foundry；UI 只展示档位，不发明法律结论。</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

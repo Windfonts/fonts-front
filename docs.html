@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>使用文档 · 文风字体</title>
+  <link rel="stylesheet" href="css/wenfeng.css" />
+</head>
+<body class="page-docs">
+  <header class="site-chrome">
+    <div class="site-chrome-inner">
+      <ul class="brush-nav">
+        <li class="icon"><a class="brand" href="index.html"><img src="assets/icon.webp" alt="" width="36" height="36" /></a></li>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="fonts.html">字体库</a></li>
+        <li><a class="active" href="docs.html">文档</a></li>
+      </ul>
+      <div class="site-chrome-end">
+        <div class="nav-search">
+          <input type="search" id="navSearch" placeholder="搜索字体" aria-label="搜索字体" autocomplete="off" />
+          <button type="button" class="nav-search-clear" id="navSearchClear" hidden aria-label="清除">×</button>
+          <span class="nav-search-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
+          </span>
+        </div>
+        <a class="bag-link" href="shopping-bag.html" aria-label="已获取字体">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path d="M6 8h12l-1 12H7L6 8z" /><path d="M9 8a3 3 0 0 1 6 0" />
+          </svg>
+          <span class="badge" data-pick-count data-count="0">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar" aria-label="文档导航">
+      <p class="docs-side-title">Getting started</p>
+      <nav>
+        <a href="#intro" class="active">概述</a>
+        <a href="#link">引入 CSS（link）</a>
+        <a href="#import">@import</a>
+        <a href="#css-use">在 CSS 中使用</a>
+        <a href="#params">参数说明</a>
+        <a href="#bag">选字袋</a>
+        <a href="#embed">嵌入页</a>
+        <a href="#tips">许可与注意</a>
+      </nav>
+    </aside>
+
+    <article class="docs-wrap docs-main">
+      <section id="intro">
+        <h1>快速开始</h1>
+        <p class="lead">一行 CSS 即可在网页中使用文风字体。生产环境请核对许可与域名白名单。本页对应 next-windfonts <code>/docs/getting-started</code>。</p>
+      </section>
+
+      <section id="link">
+        <h2>1. 用 &lt;link&gt; 引入</h2>
+        <p>将下列代码放入页面的 <code>&lt;head&gt;</code>。建议先 <code>preconnect</code> 再拉 CSS：</p>
+        <div class="code-block">
+          <pre>&lt;link rel="preconnect" href="https://app.windfonts.com" crossorigin&gt;
+&lt;link rel="stylesheet"
+  href="https://app.windfonts.com/api/css?family=wenfeng-systcn&amp;weight=400"
+  crossorigin="anonymous"&gt;</pre>
+        </div>
+        <p>多字重请分别请求，或在 <a href="font-embed.html">嵌入页</a> 勾选「包含所有字重变体」批量生成。</p>
+      </section>
+
+      <section id="import">
+        <h2>2. 用 @import 引入</h2>
+        <p>适合写在已有 CSS 文件顶部（注意 <code>@import</code> 必须在其他规则之前）：</p>
+        <div class="code-block">
+          <pre>&lt;style&gt;
+@import url('https://app.windfonts.com/api/css?family=wenfeng-ibmps&amp;weight=400');
+@import url('https://app.windfonts.com/api/css?family=wenfeng-ibmps&amp;weight=700');
+&lt;/style&gt;</pre>
+        </div>
+      </section>
+
+      <section id="css-use">
+        <h2>3. 在 CSS 中使用</h2>
+        <p>API 返回的 <code>font-family</code> 一般为 <code>windfonts-*</code>（由 <code>wenfeng-</code> slug 映射）。同时保留系统中文回退：</p>
+        <div class="code-block">
+          <pre>.title {
+  font-family: 'windfonts-systcn', 'wenfeng-systcn',
+               'PingFang SC', 'Microsoft YaHei', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hero {
+  font-family: 'windfonts-ibmps', 'wenfeng-ibmps', system-ui, sans-serif;
+  font-weight: 700;
+}</pre>
+        </div>
+      </section>
+
+      <section id="params">
+        <h2>4. 参数说明</h2>
+        <ol>
+          <li><code>family</code> — 字体族 slug，如 <code>wenfeng-systcn</code>、<code>wenfeng-ibmps</code>（见字体详情页）</li>
+          <li><code>weight</code> — 字重数字（<code>400</code>、<code>700</code>）或名称映射后的数值；变体以详情页「可选样式」为准</li>
+        </ol>
+        <p>完整 URL 形如：</p>
+        <div class="code-block">
+          <pre>https://app.windfonts.com/api/css?family={family}&amp;weight={weight}</pre>
+        </div>
+      </section>
+
+      <section id="bag">
+        <h2>5. 选字袋工作流</h2>
+        <ol>
+          <li>在 <a href="fonts.html">字体库</a> 将字体「加入选择」</li>
+          <li>打开 <a href="shopping-bag.html">已获取字体</a> 统一预览、移除或跳转嵌入</li>
+          <li>选字袋数据存在浏览器 <code>localStorage</code>（键 <code>wf-proto-picks</code>），仅本机原型有效</li>
+        </ol>
+      </section>
+
+      <section id="embed">
+        <h2>6. 嵌入页</h2>
+        <p>详情页「获取嵌入代码」进入 <code>font-embed.html?id=…</code>：</p>
+        <ul>
+          <li>当前字体会默认勾选且不可取消</li>
+          <li>可将选字袋中的其它字体一并勾选</li>
+          <li>切换 <strong>link</strong> / <strong>@import</strong> 标签，一键复制；下方附 CSS 使用示例</li>
+        </ul>
+        <div class="code-block">
+          <pre>// 从详情进入
+font-detail.html?id={uuid}
+  → 获取嵌入代码
+  → font-embed.html?id={uuid}</pre>
+        </div>
+      </section>
+
+      <section id="tips">
+        <h2>7. 许可与注意</h2>
+        <ul>
+          <li>保留文风许可注释与 <a href="https://wenfeng.org/license" target="_blank" rel="noopener">wenfeng.org/license</a> 标注</li>
+          <li>CSS API 可能限流（429）；生产应走 CDN / 白名单域名</li>
+          <li>本原型为静态镜像：无登录、无真实 OSS 下载、无后台写库</li>
+        </ul>
+        <p style="margin-top:2rem;color:var(--wf-zinc-400);font-size:0.8125rem">prototypes v3.3 · 非生产</p>
+      </section>
+    </article>
+  </div>
+
+  <footer id="wfExtraFooter" class="site-extra-footer"></footer>
+  <script src="js/wf-proto.js"></script>
+  <script>
+    (function () {
+      const links = document.querySelectorAll('.docs-sidebar a');
+      function sync() {
+        const hash = location.hash || '#intro';
+        links.forEach(function (a) {
+          a.classList.toggle('active', a.getAttribute('href') === hash);
+        });
+      }
+      window.addEventListener('hashchange', sync);
+      sync();
+    })();
+  </script>
+</body>
+</html>

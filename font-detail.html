@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>字体详情 · 文风字体</title>
+  <link rel="stylesheet" href="css/wenfeng.css" />
+</head>
+<body class="page-detail">
+  <header class="site-chrome">
+    <div class="site-chrome-inner">
+      <ul class="brush-nav">
+        <li class="icon"><a class="brand" href="index.html"><img src="assets/icon.webp" alt="" width="36" height="36" /></a></li>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="fonts.html">字体库</a></li>
+        <li><a href="docs.html">文档</a></li>
+      </ul>
+      <div class="site-chrome-end">
+        <div class="nav-search">
+          <input type="search" id="navSearch" placeholder="搜索字体" aria-label="搜索字体" autocomplete="off" />
+          <button type="button" class="nav-search-clear" id="navSearchClear" hidden aria-label="清除">×</button>
+          <span class="nav-search-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
+          </span>
+        </div>
+        <a class="bag-link" href="shopping-bag.html" aria-label="已获取字体">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path d="M6 8h12l-1 12H7L6 8z" /><path d="M9 8a3 3 0 0 1 6 0" />
+          </svg>
+          <span class="badge" data-pick-count data-count="0">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="detail-wrap" id="detailRoot">
+    <p class="detail-loading" id="detailLoading">正在加载字体…</p>
+  </div>
+
+  <a class="affix-bag" href="shopping-bag.html" aria-label="选字袋">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+      <path d="M6 8h12l-1 12H7L6 8z" /><path d="M9 8a3 3 0 0 1 6 0" />
+    </svg>
+    <span class="badge" data-pick-count data-count="0">0</span>
+  </a>
+
+  <footer id="wfExtraFooter" class="site-extra-footer"></footer>
+
+  <script src="js/wf-proto.js"></script>
+  <script>
+    (function () {
+      const root = document.getElementById('detailRoot');
+      const id = WFProto.getQuery('id');
+
+      function esc(s) { return WFProto.escapeHtml(s); }
+
+      function renderMissing() {
+        root.innerHTML =
+          '<nav class="breadcrumb" aria-label="面包屑"><a href="fonts.html">字体库</a><span class="sep">/</span><span>未找到</span></nav>' +
+          '<h1 class="detail-title">未找到该字体</h1>' +
+          '<p class="detail-designer">请从 <a href="fonts.html">字体库</a> 选择，或检查 ?id= 是否为目录中的 UUID。</p>';
+      }
+
+      function render(font) {
+        document.title = font.name + ' · 文风字体';
+        const stack = WFProto.cssFamilyStack(font.family);
+        const weights = font.weights && font.weights.length ? font.weights : ['Regular'];
+        const tags = font.tags && font.tags.length ? font.tags : (font.category ? [font.category] : []);
+        const designer = font.designerShort || font.designer || '—';
+        const desc = font.description || '暂无描述。';
+        const firstW = WFProto.weightToCss(weights[0]);
+
+        weights.forEach(function (w) { WFProto.ensureFontCss(font.family, w); });
+
+        const weightBtns = weights.map(function (w, i) {
+          const cssW = WFProto.weightToCss(w);
+          return '<button type="button"' + (i === 0 ? ' class="active"' : '') +
+            ' data-w="' + esc(cssW) + '" data-label="' + esc(w) + '">' + esc(w) + '</button>';
+        }).join('');
+
+        const chips = tags.map(function (t) {
+          return '<a class="chip" href="fonts.html?tag=' + encodeURIComponent(t) + '">' + esc(t) + '</a>';
+        }).join('');
+        if (font.license) {
+          chips += '<span class="chip">' + esc(font.license) + '</span>';
+        }
+        if (font.category && tags.indexOf(font.category) === -1) {
+          chips += '<span class="chip">' + esc(font.category) + '</span>';
+        }
+
+        root.innerHTML =
+          '<nav class="breadcrumb" aria-label="面包屑">' +
+            '<a href="fonts.html">字体库</a><span class="sep">/</span><span>' + esc(font.name) + '</span>' +
+          '</nav>' +
+          '<h1 class="detail-title">' + esc(font.name) + '</h1>' +
+          '<p class="detail-designer">设计师 / 厂商 · ' + esc(designer) +
+            ' · family <code>' + esc(font.family) + '</code></p>' +
+          '<div class="detail-actions">' +
+            '<a class="btn btn-black" href="font-embed.html?id=' + encodeURIComponent(font.id) + '">获取嵌入代码</a>' +
+            '<a class="btn" href="#" id="btnDownload" data-id="' + esc(font.id) + '">下载</a>' +
+            '<button type="button" class="btn btn-black" id="btnJoin" data-join="' + esc(font.id) +
+              '" data-name="' + esc(font.name) + '" data-op-detail>添加字体</button>' +
+          '</div>' +
+          '<div class="detail-grid">' +
+            '<aside class="detail-meta">' +
+              '<h3>描述</h3><p>' + esc(desc) + '</p>' +
+              '<h3>分类</h3><p>' + esc(font.category || '—') + '</p>' +
+              '<h3>标签</h3><div class="chips meta-block">' + chips + '</div>' +
+            '</aside>' +
+            '<section class="action-area" aria-label="即时预览">' +
+              '<div class="weight-seg" role="tablist" aria-label="字重">' + weightBtns + '</div>' +
+              '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem">' +
+                '<h3 style="margin:0;font-size:0.9375rem;font-weight:600">即时预览</h3>' +
+                '<div class="size-slider">' +
+                  '<span>字号</span>' +
+                  '<input type="range" id="detailSize" min="12" max="108" value="44" aria-label="字号" />' +
+                  '<span id="detailSizeVal" data-size-val>44px</span>' +
+                '</div>' +
+              '</div>' +
+              '<div class="color-row">' +
+                '<label>文字色 <input type="color" id="textColor" value="#18181b" aria-label="文字色" /></label>' +
+                '<label>背景色 <input type="color" id="bgColor" value="#ffffff" aria-label="背景色" /></label>' +
+              '</div>' +
+              '<div class="preview-input-wrap">' +
+                '<input type="text" id="detailText" value="文风字体" placeholder="即时预览" aria-label="即时预览" />' +
+              '</div>' +
+              '<div class="preview-pane-wrap">' +
+                '<button type="button" class="btn btn-save-preview" id="btnSavePreview" title="保存预览为 PNG">保存预览</button>' +
+                '<div class="preview-pane" id="previewArea" style="font-family:' + esc(stack) +
+                  ';font-weight:' + esc(firstW) + '">文风字体</div>' +
+              '</div>' +
+            '</section>' +
+          '</div>' +
+          '<div class="tip-box">' +
+            '<strong>提示：</strong> 嵌入时使用 ' +
+            '<code>' + esc(WFProto.cssUrl(font.family, '400')) + '</code>。' +
+            ' 生产环境请核对许可原文与域名白名单；本页为 next-windfonts 交互镜像原型（v3.3）。' +
+          '</div>';
+
+        wireActions(font, stack, firstW);
+      }
+
+      function wireActions(font, stack, firstW) {
+        const pane = document.getElementById('previewArea');
+        const text = document.getElementById('detailText');
+        const size = document.getElementById('detailSize');
+        const sizeVal = document.getElementById('detailSizeVal');
+        const textColor = document.getElementById('textColor');
+        const bgColor = document.getElementById('bgColor');
+        text.value = WFProto.getSample();
+        pane.textContent = text.value;
+        size.value = String(WFProto.getSize());
+        sizeVal.textContent = size.value + 'px';
+        pane.style.fontSize = size.value + 'px';
+        pane.style.fontWeight = firstW;
+
+        text.addEventListener('input', function () {
+          pane.textContent = text.value || '文';
+          WFProto.setSample(text.value);
+        });
+        size.addEventListener('input', function () {
+          pane.style.fontSize = size.value + 'px';
+          sizeVal.textContent = size.value + 'px';
+          WFProto.setSize(size.value);
+        });
+        textColor.addEventListener('input', function () { pane.style.color = textColor.value; });
+        bgColor.addEventListener('input', function () { pane.style.backgroundColor = bgColor.value; });
+
+        document.querySelectorAll('.weight-seg button').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            document.querySelectorAll('.weight-seg button').forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            pane.style.fontWeight = btn.dataset.w;
+            WFProto.ensureFontCss(font.family, btn.dataset.w);
+          });
+        });
+
+        const join = document.getElementById('btnJoin');
+        if (join) {
+          join.addEventListener('click', function (e) {
+            e.preventDefault();
+            WFProto.togglePick(font.id, font.name);
+          });
+          WFProto.syncJoinButtons();
+        }
+
+        document.getElementById('btnDownload').addEventListener('click', function (e) {
+          e.preventDefault();
+          alert('原型 stub：真实下载走 OSS / 现网 Pro API，未接。\n字体：' + font.name + '\nid：' + font.id);
+        });
+
+        document.getElementById('btnSavePreview').addEventListener('click', function () {
+          const w = Math.max(pane.clientWidth, 640);
+          const h = Math.max(pane.clientHeight, 320);
+          const canvas = document.createElement('canvas');
+          const scale = 2;
+          canvas.width = w * scale;
+          canvas.height = h * scale;
+          const ctx = canvas.getContext('2d');
+          ctx.scale(scale, scale);
+          ctx.fillStyle = bgColor.value || '#ffffff';
+          ctx.fillRect(0, 0, w, h);
+          ctx.fillStyle = textColor.value || '#18181b';
+          ctx.font = (pane.style.fontWeight || '400') + ' ' + (size.value || 44) + 'px ' + stack;
+          ctx.textBaseline = 'middle';
+          const lines = (pane.textContent || '文').split('\n');
+          const lh = parseFloat(size.value) * 1.4;
+          const startY = h / 2 - ((lines.length - 1) * lh) / 2;
+          lines.forEach(function (line, i) {
+            ctx.fillText(line, 40, startY + i * lh);
+          });
+          const a = document.createElement('a');
+          a.download = (font.normalized || font.family || 'wenfeng') + '-preview.png';
+          a.href = canvas.toDataURL('image/png');
+          a.click();
+        });
+      }
+
+      WFProto.loadCatalog().then(function () {
+        if (!id) {
+          // fallback: first font so deep links without id still show something useful
+          const list = WFProto.getCatalogList();
+          if (list.length) {
+            history.replaceState(null, '', 'font-detail.html?id=' + encodeURIComponent(list[0].id));
+            render(list[0]);
+          } else {
+            renderMissing();
+          }
+          return;
+        }
+        const font = WFProto.getFont(id);
+        if (!font) renderMissing();
+        else render(font);
+      });
+    })();
+  </script>
+</body>
+</html>

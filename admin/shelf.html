@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>货架 · 文风运营</title>
+  <link rel="stylesheet" href="https://app.windfonts.com/api/css?family=wenfeng-systcn&amp;weight=400" />
+  <link rel="stylesheet" href="https://app.windfonts.com/api/css?family=wenfeng-syhtcjk&amp;weight=400" />
+  <link rel="stylesheet" href="https://app.windfonts.com/api/css?family=wenfeng-ibmps&amp;weight=400" />
+  <link rel="stylesheet" href="../css/wenfeng.css" />
+</head>
+<body>
+  <div class="admin">
+        <nav class="admin-nav">
+      <div class="brand">文风 · 后台</div>
+      <a href="manage.html">字体管理</a>
+      <a href="upload.html">字体上传</a>
+      <div class="admin-nav-sep">新运营台</div>
+      <a class="active" href="shelf.html">货架</a>
+      <a href="licenses.html">许可</a>
+      <a href="assets.html">选字资产</a>
+      <a href="customers.html">客户接入</a>
+      <a class="quiet" href="system.html">系统</a>
+    </nav>
+    <div class="admin-main">
+      <div class="admin-top">
+        <h1>货架</h1>
+        <a class="pending" href="licenses.html">许可待审 23</a>
+      </div>
+      <div class="admin-body">
+        <div class="toolbar">
+          <select aria-label="状态"><option>全部状态</option><option>上架</option><option>下架</option></select>
+          <input type="search" placeholder="名称 / family…" />
+          <button class="btn" type="button">同步对账</button>
+          <button class="btn btn-primary" type="button" style="margin-left:auto">上架新族</button>
+        </div>
+        <table class="data">
+          <thead>
+            <tr>
+              <th>预览</th>
+              <th>名称</th>
+              <th>family</th>
+              <th>许可档位</th>
+              <th>状态</th>
+              <th>同步</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="mini-preview ff-systcn">永</span></td>
+              <td style="color:var(--ink);font-weight:500">思源宋体 CN</td>
+              <td><code style="font-size:0.75rem;color:var(--ink-faint)">wenfeng-systcn</code></td>
+              <td><span class="tier"><span class="dot dot-ok"></span>OFL 已核</span></td>
+              <td><span class="badge-status on">上架</span></td>
+              <td style="color:var(--ink-faint)">ok · 2h</td>
+            </tr>
+            <tr>
+              <td><span class="mini-preview ff-syht">黑</span></td>
+              <td style="color:var(--ink);font-weight:500">思源黑体</td>
+              <td><code style="font-size:0.75rem;color:var(--ink-faint)">wenfeng-syhtcjk</code></td>
+              <td><span class="tier"><span class="dot dot-ok"></span>OFL 已核</span></td>
+              <td><span class="badge-status on">上架</span></td>
+              <td style="color:var(--ink-faint)">ok · 2h</td>
+            </tr>
+            <tr>
+              <td><span class="mini-preview" style="font-family:serif">楷</span></td>
+              <td style="color:var(--ink);font-weight:500">霞鹜文楷</td>
+              <td><code style="font-size:0.75rem;color:var(--ink-faint)">wenfeng-…</code></td>
+              <td><span class="tier"><span class="dot dot-warn"></span>需授权</span></td>
+              <td><span class="badge-status on">上架</span></td>
+              <td style="color:var(--ink-faint)">ok · 2h</td>
+            </tr>
+            <tr>
+              <td><span class="mini-preview ff-ibmps">M</span></td>
+              <td style="color:var(--ink);font-weight:500">IBM Plex Sans SC</td>
+              <td><code style="font-size:0.75rem;color:var(--ink-faint)">wenfeng-ibmps</code></td>
+              <td><span class="tier"><span class="dot dot-ok"></span>OFL 已核</span></td>
+              <td><span class="badge-status on">上架</span></td>
+              <td style="color:var(--ink-faint)">ok · 1d</td>
+            </tr>
+            <tr>
+              <td><span class="mini-preview">玄</span></td>
+              <td style="color:var(--ink);font-weight:500">某品牌黑体</td>
+              <td><code style="font-size:0.75rem;color:var(--ink-faint)">—</code></td>
+              <td><span class="tier"><span class="dot dot-muted"></span>未验证</span></td>
+              <td><span class="badge-status off">下架</span></td>
+              <td style="color:var(--warn)">待关联许可</td>
+            </tr>
+            <tr>
+              <td><span class="mini-preview">险</span></td>
+              <td style="color:var(--ink);font-weight:500">高风险示例族</td>
+              <td><code style="font-size:0.75rem;color:var(--ink-faint)">—</code></td>
+              <td><span class="tier"><span class="dot dot-danger"></span>高风险</span></td>
+              <td><span class="badge-status off">下架</span></td>
+              <td style="color:var(--danger)">禁止上架</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="stub" style="padding-top:1.25rem">表可有，首列迷你预览字——仍像文风，不像纯 Excel。无 KPI 墙 · 无 SaaS 深色壳。</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

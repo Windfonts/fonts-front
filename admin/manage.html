@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>字体管理 · 文风后台</title>
+  <link rel="stylesheet" href="../css/wenfeng.css" />
+</head>
+<body>
+  <div class="admin">
+    <nav class="admin-nav">
+      <div class="brand">文风 · 后台</div>
+      <a class="active" href="manage.html">字体管理</a>
+      <a href="upload.html">字体上传</a>
+      <div class="admin-nav-sep">新运营台</div>
+      <a href="shelf.html">货架</a>
+      <a href="licenses.html">许可</a>
+      <a href="assets.html">选字资产</a>
+      <a href="customers.html">客户接入</a>
+      <a class="quiet" href="system.html">系统</a>
+    </nav>
+    <div class="admin-main">
+      <div class="admin-top">
+        <h1>字体管理</h1>
+        <span class="pending" id="manageTotal">共 — 款</span>
+        <a class="btn btn-black" href="upload.html" style="margin-left:0.5rem">上传字体</a>
+      </div>
+      <div class="admin-body">
+        <div class="toolbar">
+          <input type="search" id="fltKeyword" placeholder="关键词：名称 / family / 设计师…" style="min-width:14rem" />
+          <select id="fltCategory" aria-label="分类"><option value="">全部分类</option></select>
+          <select id="fltTag" aria-label="标签"><option value="">全部标签</option></select>
+          <button class="btn" type="button" id="btnReset">重置</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="data" id="manageTable">
+            <thead>
+              <tr>
+                <th>字体名</th>
+                <th>标签</th>
+                <th>分类</th>
+                <th>语言</th>
+                <th>变体数量</th>
+                <th>更新</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="manageBody">
+              <tr><td colspan="7" style="color:var(--wf-zinc-500)">加载 fonts.json…</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="stub" style="padding-top:1rem">客户端过滤 · 数据源 <code>../data/fonts.json</code>（128）。编辑/写库为 stub。</p>
+      </div>
+    </div>
+  </div>
+  <script src="../js/wf-proto.js"></script>
+  <script>
+    (function () {
+      const body = document.getElementById('manageBody');
+      const selCat = document.getElementById('fltCategory');
+      const selTag = document.getElementById('fltTag');
+      const kw = document.getElementById('fltKeyword');
+
+      function fillSelects(list) {
+        const cats = {};
+        const tags = {};
+        list.forEach(function (f) {
+          if (f.category) cats[f.category] = true;
+          (f.tags || []).forEach(function (t) { tags[t] = true; });
+        });
+        Object.keys(cats).sort().forEach(function (c) {
+          const o = document.createElement('option');
+          o.value = c; o.textContent = c;
+          selCat.appendChild(o);
+        });
+        Object.keys(tags).sort().forEach(function (t) {
+          const o = document.createElement('option');
+          o.value = t; o.textContent = t;
+          selTag.appendChild(o);
+        });
+      }
+
+      function filtered() {
+        const q = (kw.value || '').trim().toLowerCase();
+        const cat = selCat.value;
+        const tag = selTag.value;
+        return WFProto.getCatalogList().filter(function (f) {
+          if (cat && f.category !== cat) return false;
+          if (tag && (f.tags || []).indexOf(tag) === -1) return false;
+          if (q) {
+            const hay = [f.name, f.en, f.family, f.designer, f.designerShort, (f.tags || []).join(' ')].join(' ').toLowerCase();
+            if (hay.indexOf(q) === -1) return false;
+          }
+          return true;
+        });
+      }
+
+      function render() {
+        const rows = filtered();
+        document.getElementById('manageTotal').textContent = '共 ' + rows.length + ' 款';
+        if (!rows.length) {
+          body.innerHTML = '<tr><td colspan="7" style="color:var(--wf-zinc-500)">无匹配字体</td></tr>';
+          return;
+        }
+        body.innerHTML = rows.map(function (f) {
+          const tags = (f.tags || []).map(function (t) {
+            return '<span class="chip" style="cursor:default;padding:0.15rem 0.45rem;font-size:0.7rem">' +
+              WFProto.escapeHtml(t) + '</span>';
+          }).join(' ') || '—';
+          const n = (f.weights && f.weights.length) || 1;
+          const lang = WFProto.inferLanguage(f);
+          return '<tr>' +
+            '<td style="color:var(--wf-zinc-900);font-weight:500">' +
+              '<a href="../font-detail.html?id=' + encodeURIComponent(f.id) + '" style="color:inherit">' +
+              WFProto.escapeHtml(f.name) + '</a>' +
+              '<div style="font-size:0.7rem;color:var(--wf-zinc-400);margin-top:0.15rem"><code>' +
+              WFProto.escapeHtml(f.family || '') + '</code></div></td>' +
+            '<td>' + tags + '</td>' +
+            '<td>' + WFProto.escapeHtml(f.category || '—') + '</td>' +
+            '<td>' + WFProto.escapeHtml(lang) + '</td>' +
+            '<td>' + n + '</td>' +
+            '<td style="color:var(--wf-zinc-400);font-size:0.8125rem">目录快照</td>' +
+            '<td><button type="button" class="btn" data-edit="' + WFProto.escapeHtml(f.id) + '">编辑</button></td>' +
+          '</tr>';
+        }).join('');
+        body.querySelectorAll('[data-edit]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            alert('原型 stub：编辑表单未接 DB。\nid=' + btn.getAttribute('data-edit'));
+          });
+        });
+      }
+
+      kw.addEventListener('input', render);
+      selCat.addEventListener('change', render);
+      selTag.addEventListener('change', render);
+      document.getElementById('btnReset').addEventListener('click', function () {
+        kw.value = '';
+        selCat.value = '';
+        selTag.value = '';
+        render();
+      });
+
+      WFProto.loadCatalog().then(function (list) {
+        fillSelects(list);
+        render();
+      });
+    })();
+  </script>
+</body>
+</html>

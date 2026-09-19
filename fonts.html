@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>字体库 · 文风字体</title>
+  <link rel="stylesheet" href="css/wenfeng.css" />
+</head>
+<body class="page-fonts">
+  <header class="site-chrome">
+    <div class="site-chrome-inner">
+      <ul class="brush-nav">
+        <li class="icon"><a class="brand" href="index.html"><img src="assets/icon.webp" alt="" width="36" height="36" /><span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden">文风字体</span></a></li>
+        <li><a href="index.html">首页</a></li>
+        <li><a class="active" href="fonts.html">字体库</a></li>
+        <li><a href="docs.html">文档</a></li>
+      </ul>
+      <div class="site-chrome-end">
+        <div class="nav-search">
+          <input type="search" id="navSearch" placeholder="搜索字体" aria-label="搜索字体" autocomplete="off" />
+          <button type="button" class="nav-search-clear" id="navSearchClear" hidden aria-label="清除">×</button>
+          <span class="nav-search-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
+          </span>
+        </div>
+        <a class="bag-link" href="shopping-bag.html" aria-label="已获取字体" title="选字袋">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path d="M6 8h12l-1 12H7L6 8z" /><path d="M9 8a3 3 0 0 1 6 0" />
+          </svg>
+          <span class="badge" data-pick-count data-count="0">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="tag-bar" id="tagBar">
+    <div class="vtags" role="navigation" aria-label="字体分类">
+      <a href="fonts.html?tag=黑体" class="vtag"><span>黑</span><span>体</span></a>
+      <a href="fonts.html?tag=宋体" class="vtag"><span>宋</span><span>体</span></a>
+      <a href="fonts.html?tag=楷体" class="vtag"><span>楷</span><span>体</span></a>
+      <a href="fonts.html?tag=隶书" class="vtag"><span>隶</span><span>书</span></a>
+      <a href="fonts.html?tag=拼音" class="vtag"><span>拼</span><span>音</span></a>
+      <a href="fonts.html?tag=硬笔手写" class="vtag"><span>硬</span><span>笔</span><span>手</span><span>写</span></a>
+      <a href="fonts.html?tag=毛笔书法" class="vtag"><span>毛</span><span>笔</span><span>书</span><span>法</span></a>
+      <a href="fonts.html?tag=卡通创意" class="vtag"><span>卡</span><span>通</span><span>创</span><span>意</span></a>
+      <a href="fonts.html?tag=其他" class="vtag"><span>其</span><span>他</span></a>
+    </div>
+  </div>
+
+  <div class="float-bar" id="floatBar" aria-hidden="true">
+    <div class="vtags">
+      <a href="fonts.html?tag=黑体" class="vtag"><span>黑</span><span>体</span></a>
+      <a href="fonts.html?tag=宋体" class="vtag"><span>宋</span><span>体</span></a>
+      <a href="fonts.html?tag=楷体" class="vtag"><span>楷</span><span>体</span></a>
+      <a href="fonts.html?tag=隶书" class="vtag"><span>隶</span><span>书</span></a>
+      <a href="fonts.html?tag=拼音" class="vtag"><span>拼</span><span>音</span></a>
+      <a href="fonts.html?tag=硬笔手写" class="vtag"><span>硬</span><span>笔</span><span>手</span><span>写</span></a>
+      <a href="fonts.html?tag=毛笔书法" class="vtag"><span>毛</span><span>笔</span><span>书</span><span>法</span></a>
+      <a href="fonts.html?tag=卡通创意" class="vtag"><span>卡</span><span>通</span><span>创</span><span>意</span></a>
+      <a href="fonts.html?tag=其他" class="vtag"><span>其</span><span>他</span></a>
+    </div>
+    <div class="preview-input-wrap" style="max-width:16rem">
+      <input type="text" id="specimenTextFloat" placeholder="输入文字，即时预览" aria-label="即时预览" />
+    </div>
+    <div class="size-slider">
+      <span>字号</span>
+      <input type="range" id="specimenSizeFloat" min="12" max="108" value="44" />
+      <span data-size-val>44px</span>
+    </div>
+  </div>
+
+  <div class="fonts-toolbar">
+    <div class="preview-input-wrap">
+      <input type="text" id="specimenText" placeholder="输入文字，即时预览" value="文风字体" aria-label="即时预览" />
+    </div>
+    <div class="size-slider">
+      <span>12</span>
+      <input type="range" id="specimenSize" min="12" max="108" value="44" aria-label="字号" />
+      <span>108</span>
+      <span class="size-val" data-size-val>44px</span>
+    </div>
+  </div>
+
+  <p class="fonts-count" id="fontsCountLabel">共找到 <strong id="fontCountTotal">—</strong> 个字体，已显示 <strong id="fontCountShown">0</strong> 个</p>
+
+  <ul class="font-list" id="fontList">
+    <li class="font-list-empty">正在加载字体目录…</li>
+  </ul>
+
+  <div class="list-more-wrap">
+    <button type="button" class="btn btn-load-more" id="loadMore" hidden>加载更多</button>
+    <div id="listSentinel" class="list-sentinel" aria-hidden="true"></div>
+  </div>
+
+  <a class="affix-bag" href="shopping-bag.html" aria-label="选字袋" title="选字袋">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+      <path d="M6 8h12l-1 12H7L6 8z" /><path d="M9 8a3 3 0 0 1 6 0" />
+    </svg>
+    <span class="badge" data-pick-count data-count="0">0</span>
+  </a>
+
+  <footer id="wfExtraFooter" class="site-extra-footer"></footer>
+
+  <script src="js/wf-proto.js"></script>
+  <script>
+    (function () {
+      const mainText = document.getElementById('specimenText');
+      const mainSize = document.getElementById('specimenSize');
+      const floatText = document.getElementById('specimenTextFloat');
+      const floatSize = document.getElementById('specimenSizeFloat');
+      if (floatText && mainText) {
+        floatText.value = mainText.value;
+        floatText.addEventListener('input', function () {
+          mainText.value = floatText.value;
+          WFProto.setSample(floatText.value);
+        });
+        mainText.addEventListener('input', function () { floatText.value = mainText.value; });
+      }
+      if (floatSize && mainSize) {
+        floatSize.value = mainSize.value;
+        floatSize.addEventListener('input', function () {
+          mainSize.value = floatSize.value;
+          WFProto.setSize(floatSize.value);
+        });
+        mainSize.addEventListener('input', function () { floatSize.value = mainSize.value; });
+      }
+      WFProto.mountFontsList({ pageSize: 10 });
+    })();
+  </script>
+</body>
+</html>

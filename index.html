@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>文风字体 · Windfonts</title>
+  <link rel="stylesheet" href="css/wenfeng.css" />
+</head>
+<body class="page-home">
+  <div class="home-shell">
+    <header class="home-header">
+      <a class="brand" href="index.html">
+        <img src="assets/icon.webp" alt="" width="28" height="28" />
+        <span>文风字体</span>
+      </a>
+      <nav>
+        <a href="index.html">首页</a>
+        <a href="fonts.html">字体库</a>
+        <a href="docs.html">文档</a>
+      </nav>
+      <a class="bag-btn" href="shopping-bag.html" aria-label="购物车 / 选字" title="选字袋">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+          <path d="M6 8h12l-1 12H7L6 8z" />
+          <path d="M9 8a3 3 0 0 1 6 0" />
+        </svg>
+        <span class="badge" data-pick-count data-count="0">0</span>
+      </a>
+    </header>
+
+    <main class="home-main">
+      <img class="home-logo-bar" src="assets/logo-bar.webp" width="246" alt="Windfonts" />
+      <form class="home-search" action="fonts.html" method="get" id="homeSearchForm">
+        <input type="search" name="keyword" id="homeSearch" placeholder="搜索海量免费字体" aria-label="搜索海量免费字体" title="输入后按 Enter 搜索" />
+      </form>
+      <div class="vtags" role="navigation" aria-label="字体分类">
+        <a href="fonts.html?tag=黑体" class="vtag"><span>黑</span><span>体</span></a>
+        <a href="fonts.html?tag=宋体" class="vtag"><span>宋</span><span>体</span></a>
+        <a href="fonts.html?tag=楷体" class="vtag"><span>楷</span><span>体</span></a>
+        <a href="fonts.html?tag=隶书" class="vtag"><span>隶</span><span>书</span></a>
+        <a href="fonts.html?tag=拼音" class="vtag"><span>拼</span><span>音</span></a>
+        <a href="fonts.html?tag=硬笔手写" class="vtag"><span>硬</span><span>笔</span><span>手</span><span>写</span></a>
+        <a href="fonts.html?tag=毛笔书法" class="vtag"><span>毛</span><span>笔</span><span>书</span><span>法</span></a>
+        <a href="fonts.html?tag=卡通创意" class="vtag"><span>卡</span><span>通</span><span>创</span><span>意</span></a>
+        <a href="fonts.html?tag=其他" class="vtag"><span>其</span><span>他</span></a>
+      </div>
+    </main>
+
+    <footer id="wfExtraFooter" class="home-footer site-extra-footer is-dark">
+      <!-- EXTRA_LINKS filled by wf-proto.js -->
+    </footer>
+  </div>
+  <script src="js/wf-proto.js"></script>
+
+</body>
+</html>

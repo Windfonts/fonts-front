@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>嵌入代码 · 文风字体</title>
+  <link rel="stylesheet" href="css/wenfeng.css" />
+</head>
+<body class="page-embed">
+  <header class="site-chrome">
+    <div class="site-chrome-inner">
+      <ul class="brush-nav">
+        <li class="icon"><a class="brand" href="index.html"><img src="assets/icon.webp" alt="" width="36" height="36" /></a></li>
+        <li><a href="index.html">首页</a></li>
+        <li><a href="fonts.html">字体库</a></li>
+        <li><a href="docs.html">文档</a></li>
+      </ul>
+      <div class="site-chrome-end">
+        <div class="nav-search">
+          <input type="search" id="navSearch" placeholder="搜索字体" aria-label="搜索字体" autocomplete="off" />
+          <button type="button" class="nav-search-clear" id="navSearchClear" hidden aria-label="清除">×</button>
+          <span class="nav-search-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
+          </span>
+        </div>
+        <a class="bag-link" href="shopping-bag.html" aria-label="已获取字体">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path d="M6 8h12l-1 12H7L6 8z" /><path d="M9 8a3 3 0 0 1 6 0" />
+          </svg>
+          <span class="badge" data-pick-count data-count="0">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="embed-wrap">
+    <nav class="breadcrumb" aria-label="面包屑" id="embedCrumb">
+      <a href="fonts.html">字体库</a>
+      <span class="sep">/</span>
+      <a href="font-detail.html" id="crumbDetail">字体</a>
+      <span class="sep">/</span>
+      <span>嵌入代码</span>
+    </nav>
+
+    <div class="embed-section">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+        <h3>选择字体 <span id="pickHint" style="font-weight:400;color:var(--wf-zinc-500);font-size:0.875rem"></span></h3>
+        <button type="button" class="btn btn-ghost" id="btnSelectAll" hidden>全选</button>
+      </div>
+      <div class="embed-fonts" id="embedFonts"></div>
+      <label class="embed-check">
+        <input type="checkbox" id="includeAllWeights" checked />
+        包含所有字重变体
+      </label>
+    </div>
+
+    <div class="embed-tabs" role="tablist">
+      <button type="button" class="active" data-tab="link" role="tab">link</button>
+      <button type="button" data-tab="import" role="tab">@import</button>
+    </div>
+
+    <div class="embed-panel" id="panel-link" role="tabpanel">
+      <div class="embed-card">
+        <div class="embed-card-head">
+          <h4>1. 引入 web 项目</h4>
+          <p>将代码放入你的 &lt;head&gt; 标签内</p>
+        </div>
+        <div class="code-block">
+          <button type="button" class="btn-copy" data-copy="link">复制</button>
+          <pre id="codeLink"></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="embed-panel" id="panel-import" role="tabpanel" hidden>
+      <div class="embed-card">
+        <div class="embed-card-head">
+          <h4>1. 引入 web 项目</h4>
+          <p>将代码放入你的 &lt;head&gt; 标签内</p>
+        </div>
+        <div class="code-block">
+          <button type="button" class="btn-copy" data-copy="import">复制</button>
+          <pre id="codeImport"></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="embed-card" style="margin-top:1.5rem">
+      <div class="embed-card-head">
+        <h4>2. 使用</h4>
+        <p>CSS 使用示例</p>
+      </div>
+      <div class="code-block">
+        <button type="button" class="btn-copy" data-copy="css">复制</button>
+        <pre id="codeCss"></pre>
+      </div>
+    </div>
+  </div>
+
+  <footer id="wfExtraFooter" class="site-extra-footer"></footer>
+
+  <script src="js/wf-proto.js"></script>
+  <script>
+    (function () {
+      let CURRENT = null;
+      let selected = new Set();
+      let includeAll = true;
+      let tab = 'link';
+
+      const fontsEl = document.getElementById('embedFonts');
+      const pickHint = document.getElementById('pickHint');
+      const btnAll = document.getElementById('btnSelectAll');
+
+      function allFonts() {
+        const picks = WFProto.getPicks();
+        const map = new Map();
+        if (CURRENT) map.set(CURRENT.id, CURRENT);
+        picks.forEach(function (p) { if (!map.has(p.id)) map.set(p.id, p); });
+        return Array.from(map.values());
+      }
+
+      function renderChecks() {
+        const fonts = allFonts();
+        const picksLen = WFProto.getPicks().length;
+        pickHint.textContent = picksLen ? '（已选择 ' + picksLen + ' 个字体在选字袋）' : '';
+        btnAll.hidden = fonts.length <= 1;
+        fontsEl.innerHTML = fonts.map(function (f) {
+          const isCur = CURRENT && f.id === CURRENT.id;
+          const checked = selected.has(f.id) ? ' checked' : '';
+          const dis = isCur ? ' disabled' : '';
+          const cls = isCur ? ' is-current' : '';
+          const ws = (f.weights || ['Regular']).join(', ');
+          const label = f.name + ' (' + ws + ')' + (isCur ? ' - 当前字体' : '');
+          return '<label class="' + cls.trim() + '"><input type="checkbox" data-fid="' +
+            WFProto.escapeHtml(f.id) + '"' + checked + dis + ' />' + WFProto.escapeHtml(label) + '</label>';
+        }).join('');
+        fontsEl.querySelectorAll('input[data-fid]').forEach(function (inp) {
+          inp.addEventListener('change', function () {
+            const fid = inp.getAttribute('data-fid');
+            if (CURRENT && fid === CURRENT.id) return;
+            if (inp.checked) selected.add(fid); else selected.delete(fid);
+            updateCodes();
+          });
+        });
+        btnAll.textContent = selected.size === fonts.length ? '取消全选' : '全选';
+      }
+
+      function selectedData() {
+        return allFonts().filter(function (f) { return selected.has(f.id); });
+      }
+
+      function weightsFor(f) {
+        const ws = f.weights && f.weights.length ? f.weights : ['Regular'];
+        return includeAll ? ws : [ws[0]];
+      }
+
+      function buildLink() {
+        const fonts = selectedData();
+        if (!fonts.length) return '';
+        const lines = ['<link rel="preconnect" href="https://app.windfonts.com" crossorigin>'];
+        fonts.forEach(function (f) {
+          weightsFor(f).forEach(function (w) {
+            lines.push('<link rel="stylesheet" crossorigin="anonymous" href="' + WFProto.cssUrl(f.family, w) + '">');
+          });
+        });
+        lines.push('<!-- 此中文网页字体由文风字体（Windfonts）提供，请保留许可标注 https://wenfeng.org/license -->');
+        return lines.join('\n');
+      }
+
+      function buildImport() {
+        const fonts = selectedData();
+        if (!fonts.length) return '';
+        const imports = [];
+        fonts.forEach(function (f) {
+          weightsFor(f).forEach(function (w) {
+            imports.push("@import url('" + WFProto.cssUrl(f.family, w) + "');");
+          });
+        });
+        return '<style>\n' + imports.join('\n') + '\n</style>\n<!-- 此中文网页字体由文风字体（Windfonts）提供，请保留许可标注 https://wenfeng.org/license -->';
+      }
+
+      function buildCss() {
+        const fonts = selectedData();
+        if (!fonts.length) return '';
+        const parts = ['/* 字体使用示例 */', '/* font-weight 决定粗细；font-style: normal | italic */', ''];
+        fonts.forEach(function (f) {
+          parts.push('/* ' + f.name + ' */');
+          const stack = WFProto.cssFamilyStack(f.family);
+          weightsFor(f).forEach(function (w) {
+            const cssW = WFProto.weightToCss(w);
+            const slug = (f.family || f.id).replace(/\s+/g, '-').toLowerCase();
+            parts.push(
+              '.wf-' + slug + '-' + cssW + ' {\n' +
+              '    font-family: ' + stack + ';\n' +
+              '    font-weight: ' + cssW + ';\n' +
+              '    font-style: normal;\n}'
+            );
+            parts.push('');
+          });
+        });
+        return parts.join('\n').trim();
+      }
+
+      function updateCodes() {
+        document.getElementById('codeLink').textContent = buildLink();
+        document.getElementById('codeImport').textContent = buildImport();
+        document.getElementById('codeCss').textContent = buildCss();
+        const fonts = allFonts();
+        btnAll.textContent = selected.size === fonts.length ? '取消全选' : '全选';
+      }
+
+      document.getElementById('includeAllWeights').addEventListener('change', function (e) {
+        includeAll = e.target.checked;
+        updateCodes();
+      });
+
+      btnAll.addEventListener('click', function () {
+        const fonts = allFonts();
+        if (selected.size === fonts.length) {
+          selected = new Set(CURRENT ? [CURRENT.id] : []);
+        } else {
+          selected = new Set(fonts.map(function (f) { return f.id; }));
+        }
+        renderChecks();
+        updateCodes();
+      });
+
+      document.querySelectorAll('.embed-tabs button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          tab = btn.dataset.tab;
+          document.querySelectorAll('.embed-tabs button').forEach(function (b) {
+            b.classList.toggle('active', b === btn);
+          });
+          document.getElementById('panel-link').hidden = tab !== 'link';
+          document.getElementById('panel-import').hidden = tab !== 'import';
+        });
+      });
+
+      document.querySelectorAll('.btn-copy').forEach(function (btn) {
+        btn.addEventListener('click', async function () {
+          const key = btn.getAttribute('data-copy');
+          const map = { link: 'codeLink', import: 'codeImport', css: 'codeCss' };
+          const text = document.getElementById(map[key]).textContent;
+          try {
+            await WFProto.copyText(text);
+            btn.textContent = '已复制';
+            btn.classList.add('is-copied');
+            setTimeout(function () { btn.textContent = '复制'; btn.classList.remove('is-copied'); }, 1200);
+          } catch (e) {
+            btn.textContent = '失败';
+          }
+        });
+      });
+
+      WFProto.loadCatalog().then(function () {
+        const id = WFProto.getQuery('id');
+        CURRENT = (id && WFProto.getFont(id)) || WFProto.getCatalogList()[0] || null;
+        if (!CURRENT) {
+          fontsEl.innerHTML = '<p style="color:var(--wf-zinc-500)">目录为空，无法生成嵌入代码。</p>';
+          return;
+        }
+        selected = new Set([CURRENT.id]);
+        document.title = '嵌入代码 · ' + CURRENT.name + ' · 文风字体';
+        const crumb = document.getElementById('crumbDetail');
+        crumb.textContent = CURRENT.name;
+        crumb.href = 'font-detail.html?id=' + encodeURIComponent(CURRENT.id);
+        if (!id) {
+          history.replaceState(null, '', 'font-embed.html?id=' + encodeURIComponent(CURRENT.id));
+        }
+        renderChecks();
+        updateCodes();
+      });
+    })();
+  </script>
+</body>
+</html>

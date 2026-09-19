@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>字体上传 · 文风后台</title>
+  <link rel="stylesheet" href="../css/wenfeng.css" />
+</head>
+<body>
+  <div class="admin">
+    <nav class="admin-nav">
+      <div class="brand">文风 · 后台</div>
+      <a href="manage.html">字体管理</a>
+      <a class="active" href="upload.html">字体上传</a>
+      <div class="admin-nav-sep">新运营台</div>
+      <a href="shelf.html">货架</a>
+      <a href="licenses.html">许可</a>
+      <a href="assets.html">选字资产</a>
+      <a href="customers.html">客户接入</a>
+      <a class="quiet" href="system.html">系统</a>
+    </nav>
+    <div class="admin-main">
+      <div class="admin-top">
+        <h1>字体上传</h1>
+        <a class="pending" href="manage.html">返回管理</a>
+      </div>
+      <div class="admin-body">
+        <form class="upload-form" id="uploadForm" onsubmit="return false;">
+          <div class="upload-drop" id="dropZone" tabindex="0" role="button" aria-label="拖放字体文件">
+            <div class="upload-drop-icon" aria-hidden="true">↑</div>
+            <p><strong>拖放 TTF / OTF / WOFF2</strong> 到此处，或点击选择文件</p>
+            <p class="hint">原型 stub：不会实际上传；匹配 next-windfonts 上传心智模型</p>
+            <input type="file" id="fileInput" accept=".ttf,.otf,.woff,.woff2,font/*" multiple hidden />
+          </div>
+          <ul class="upload-file-list" id="fileList"></ul>
+
+          <div class="upload-fields">
+            <label>字体名称
+              <input type="text" name="name" placeholder="如：霞鹜文楷" />
+            </label>
+            <label>英文名
+              <input type="text" name="en" placeholder="LXGW WenKai" />
+            </label>
+            <label>family slug
+              <input type="text" name="family" placeholder="wenfeng-…" />
+            </label>
+            <label>设计师 / 厂商
+              <input type="text" name="designer" placeholder="作者" />
+            </label>
+            <label>分类
+              <select name="category">
+                <option value="无衬线字体">无衬线字体</option>
+                <option value="衬线">衬线</option>
+                <option value="手写体">手写体</option>
+                <option value="宋体">宋体</option>
+                <option value="Mono">Mono</option>
+                <option value="其他">其他</option>
+              </select>
+            </label>
+            <label>标签（逗号分隔）
+              <input type="text" name="tags" placeholder="黑体, 正文" />
+            </label>
+            <label class="full">描述
+              <textarea name="description" rows="4" placeholder="字体简介…"></textarea>
+            </label>
+            <label>许可
+              <input type="text" name="license" placeholder="OFL / 免费商用 / …" value="免费商用" />
+            </label>
+            <label>字重变体
+              <input type="text" name="weights" placeholder="Regular, Bold" value="Regular" />
+            </label>
+          </div>
+
+          <div class="upload-actions">
+            <button type="button" class="btn btn-black" id="btnSubmit">提交上传</button>
+            <button type="reset" class="btn">清空</button>
+          </div>
+          <p class="stub" id="uploadMsg">未接 OSS / DB：提交仅本地提示。</p>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="../js/wf-proto.js"></script>
+  <script>
+    (function () {
+      const drop = document.getElementById('dropZone');
+      const input = document.getElementById('fileInput');
+      const list = document.getElementById('fileList');
+      const msg = document.getElementById('uploadMsg');
+      let files = [];
+
+      function renderFiles() {
+        if (!files.length) { list.innerHTML = ''; return; }
+        list.innerHTML = files.map(function (f, i) {
+          return '<li><span>' + WFProto.escapeHtml(f.name) + '</span>' +
+            '<span class="meta">' + Math.round(f.size / 1024) + ' KB</span>' +
+            '<button type="button" data-i="' + i + '">移除</button></li>';
+        }).join('');
+        list.querySelectorAll('button[data-i]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            files.splice(parseInt(btn.getAttribute('data-i'), 10), 1);
+            renderFiles();
+          });
+        });
+      }
+
+      function addFiles(fileList) {
+        Array.prototype.forEach.call(fileList || [], function (f) { files.push(f); });
+        renderFiles();
+      }
+
+      drop.addEventListener('click', function () { input.click(); });
+      drop.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); }
+      });
+      input.addEventListener('change', function () { addFiles(input.files); input.value = ''; });
+      ;['dragenter', 'dragover'].forEach(function (ev) {
+        drop.addEventListener(ev, function (e) {
+          e.preventDefault();
+          drop.classList.add('is-drag');
+        });
+      });
+      ;['dragleave', 'drop'].forEach(function (ev) {
+        drop.addEventListener(ev, function (e) {
+          e.preventDefault();
+          drop.classList.remove('is-drag');
+          if (ev === 'drop') addFiles(e.dataTransfer.files);
+        });
+      });
+
+      document.getElementById('btnSubmit').addEventListener('click', function () {
+        const fd = new FormData(document.getElementById('uploadForm'));
+        const name = fd.get('name') || '(未命名)';
+        msg.textContent = '原型 stub：已记录「' + name + '」+ ' + files.length +
+          ' 个文件，未写入 OSS / 数据库。请接 next-windfonts admin upload API。';
+        msg.style.color = 'var(--wf-zinc-900)';
+      });
+    })();
+  </script>
+</body>
+</html>

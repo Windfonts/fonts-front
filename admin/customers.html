@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>客户接入 · 文风运营</title>
+  <link rel="stylesheet" href="../css/wenfeng.css" />
+</head>
+<body>
+  <div class="admin">
+        <nav class="admin-nav">
+      <div class="brand">文风 · 后台</div>
+      <a href="manage.html">字体管理</a>
+      <a href="upload.html">字体上传</a>
+      <div class="admin-nav-sep">新运营台</div>
+      <a href="shelf.html">货架</a>
+      <a href="licenses.html">许可</a>
+      <a href="assets.html">选字资产</a>
+      <a class="active" href="customers.html">客户接入</a>
+      <a class="quiet" href="system.html">系统</a>
+    </nav>
+    <div class="admin-main">
+      <div class="admin-top">
+        <h1>客户接入</h1>
+        <a class="pending" href="licenses.html">许可待审 23</a>
+      </div>
+      <div class="admin-body">
+        <div class="toolbar">
+          <input type="search" placeholder="域名 / Key…" />
+          <button class="btn" type="button">新建 Key</button>
+        </div>
+        <table class="data">
+          <thead>
+            <tr><th>域名</th><th>Key</th><th>额度</th><th>状态</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color:var(--ink)">docs.example.com</td>
+              <td><code style="font-size:0.75rem;color:var(--ink-faint)">wf_••••a91c</code></td>
+              <td style="color:var(--ink-faint)">基础</td>
+              <td><span class="badge-status on">有效</span></td>
+            </tr>
+            <tr>
+              <td style="color:var(--ink)">staging.acme.io</td>
+              <td><code style="font-size:0.75rem;color:var(--ink-faint)">wf_••••3e02</code></td>
+              <td style="color:var(--ink-faint)">未验证</td>
+              <td><span class="badge-status off">限流</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="stub" style="padding-top:1.25rem">域名、Key、用量。商业位可先灰显；无假仪表盘 KPI。</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
