@@ -1790,10 +1790,10 @@ body.page-detail { background: var(--paper); color: var(--ink); }
 .btn-outline:hover { border-color: var(--ink-soft); background: rgba(255,255,255,0.6); opacity: 1; }
 .btn-outline.is-picked { border-color: #2f7d4f; color: #2f7d4f; }
 
-/* ── 栅格：主区左 / 侧栏右 ── */
+/* ── 栅格：侧栏左（窄）/ 主区右（宽）── */
 .detail-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 18rem;
+  grid-template-columns: 18rem minmax(0, 1fr);
   gap: 3rem;
   align-items: start;
 }
