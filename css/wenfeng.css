@@ -1890,3 +1890,66 @@ a.chip:hover { border-color: var(--wf-zinc-400); color: var(--wf-zinc-900); }
 .rc-lic.is-personal { color: #1d4ed8; }
 .rc-lic.is-unverified { color: var(--wf-zinc-500); }
 .rc-styles { font-size: 0.6875rem; color: var(--wf-zinc-500); }
+
+/* ── UX 细节批 ───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--wf-zinc-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* 列表：计数 + 排序一行 */
+.sort-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+}
+.sort-row .fonts-count { margin: 0 0 1rem; }
+.sort-select {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: 0.75rem; color: var(--wf-zinc-500);
+  margin-bottom: 1rem;
+}
+.sort-select select {
+  font: inherit; font-size: 0.75rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--wf-zinc-300); border-radius: 0.45rem;
+  background: var(--wf-white); color: var(--wf-zinc-800);
+  cursor: pointer;
+}
+
+/* 列表行整行可点的手感 */
+.font-row { cursor: pointer; }
+.font-row .name { color: var(--wf-zinc-900); }
+
+/* 详情：family 代码点拷 */
+.family-code { cursor: pointer; border-bottom: 1px dashed var(--wf-zinc-400); }
+.family-code:hover { color: var(--wf-zinc-600); }
+.family-code.is-copied { color: #15803d; border-color: #86efac; }
+
+/* 详情：授权核实行 + 须知 */
+.lic-verified { margin: 0 0 0.6rem; font-size: 0.75rem; font-weight: 500; }
+.lic-verified.is-ok { color: #15803d; }
+.lic-verified.is-warn { color: #b45309; }
+.lic-notes {
+  margin: 0 0 0.6rem; padding: 0.55rem 0.75rem;
+  border: 1px solid var(--wf-zinc-200); border-left: 3px solid var(--wf-zinc-400);
+  border-radius: 0.4rem; background: #fafafa;
+  font-size: 0.75rem; line-height: 1.6; color: var(--wf-zinc-600);
+}
+
+/* 嵌入页：字符集行 */
+.charset-row {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.9rem;
+  margin-top: 0.6rem;
+}
+.charset-label { font-size: 0.75rem; font-weight: 600; color: var(--wf-zinc-500); letter-spacing: 0.04em; }
+.charset-row label {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.8125rem; color: var(--wf-zinc-700); cursor: pointer;
+}
+.charset-row label em {
+  font-style: normal; font-size: 0.6875rem;
+  color: #15803d; background: #f0fdf4;
+  border: 1px solid #bbf7d0; border-radius: 999px;
+  padding: 0.05rem 0.5rem;
+}

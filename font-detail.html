@@ -115,9 +115,9 @@
         const catalog = WFProto.getCatalogList();
         const brandCount = catalog.filter(function (f) { return brandOf(f) === brand; }).length;
         const brandFirst = String(brand || '文').trim().charAt(0).toUpperCase();
-        const licUrl = font.licenseName
-          ? 'https://feicode.com/Windfonts/font-licenses/src/branch/main'
-          : '';
+        const licUrl = font.licenseFileUrl ||
+          (font.licenseName ? 'https://feicode.com/Windfonts/font-licenses' : '');
+        const licVerified = font.licenseVerified;
         const related = relatedOf(font);
 
         const weightBtns = weights.map(function (w, i) {
@@ -135,7 +135,7 @@
 
         const cssLink = WFProto.cssUrl(font.family, '400');
         const htmlSnippet =
-          '&lt;link rel="stylesheet" href="' + esc(cssLink) + '" /&gt;\n&lt;style&gt; body { font-family: \'' + esc(font.family) + '\', sans-serif; } &lt;/style&gt;';
+          '&lt;link rel="stylesheet" href="' + esc(cssLink) + '" /&gt;\n&lt;!-- 此中文网页字体由文风字体（Windfonts）提供，请保留许可标注 https://wenfeng.org/license --&gt;\n&lt;style&gt; body { font-family: \'' + esc(font.family) + '\', sans-serif; } &lt;/style&gt;';
         const importSnippet =
           "@import url('" + esc(cssLink) + "');\nfont-family: '" + esc(font.family) + "', sans-serif;";
 
@@ -145,10 +145,9 @@
           '</nav>' +
           '<h1 class="detail-title">' + esc(font.name) + '</h1>' +
           '<p class="detail-designer">' + esc(font.en || '') + ' · 设计 ' + esc(designer) +
-            ' · family <code>' + esc(font.family) + '</code></p>' +
+            ' · family <code id="familyCode" class="family-code" title="点击复制 family">' + esc(font.family) + '</code></p>' +
           '<div class="detail-actions">' +
             '<a class="btn btn-black" href="font-embed.html?id=' + encodeURIComponent(font.id) + '">获取嵌入代码</a>' +
-            '<a class="btn" href="#" id="btnDownload" data-id="' + esc(font.id) + '">下载</a>' +
             '<button type="button" class="btn btn-black" id="btnJoin" data-join="' + esc(font.id) +
               '" data-name="' + esc(font.name) + '" data-op-detail>添加字体</button>' +
           '</div>' +
@@ -173,7 +172,12 @@
               // ── 授权模块 ──
               '<section class="side-card lic-module" aria-label="授权信息">' +
                 '<div class="lic-badge ' + tierClass(font.license) + '">' + esc(font.license || '待核实') + '</div>' +
+                (licVerified != null
+                  ? '<p class="lic-verified ' + (licVerified ? 'is-ok' : 'is-warn') + '">' +
+                    (licVerified ? '✓ 授权信息已核实' : '○ 授权信息未核实，商用前请查证原文') + '</p>'
+                  : '') +
                 '<p class="lic-copy">' + esc(tierCopy(font.license)) + '</p>' +
+                (font.licenseNotes ? '<p class="lic-notes" title="' + esc(font.licenseNotes) + '">' + esc(font.licenseNotes) + '</p>' : '') +
                 (font.licenseName ? '<p class="lic-name">协议：' + esc(font.licenseName) + '</p>' : '') +
                 (font.copyright ? '<p class="lic-copyright">' + esc(font.copyright) + '</p>' : '') +
                 (licUrl ? '<a class="lic-source" href="' + esc(licUrl) + '" target="_blank" rel="noopener noreferrer">查看授权原文 ↗</a>' : '') +
@@ -333,6 +337,7 @@
         copyBtn('btnCopyLink', function () { return document.getElementById('cssLinkInput').value; });
         copyBtn('btnCopyHtml', function () {
           return '<link rel="stylesheet" href="' + WFProto.cssUrl(font.family, '400') + '" />\n' +
+            '<!-- 此中文网页字体由文风字体（Windfonts）提供，请保留许可标注 https://wenfeng.org/license -->\n' +
             '<style> body { font-family: \'' + font.family + '\', sans-serif; } </style>';
         });
         copyBtn('btnCopyCss', function () {
@@ -345,10 +350,16 @@
           WFProto.ensureFontCss(card.getAttribute('data-family'), '400');
         });
 
-        document.getElementById('btnDownload').addEventListener('click', function (e) {
-          e.preventDefault();
-          alert('原型 stub：真实下载走 OSS / 现网 Pro API，未接。\n字体：' + font.name + '\nid：' + font.id);
-        });
+        // family 代码点一下即复制
+        const fam = document.getElementById('familyCode');
+        if (fam) {
+          fam.addEventListener('click', function () {
+            WFProto.copyText(font.family).then(function () {
+              fam.classList.add('is-copied');
+              setTimeout(function () { fam.classList.remove('is-copied'); }, 1200);
+            }).catch(function () { /* ignore */ });
+          });
+        }
 
         document.getElementById('btnSavePreview').addEventListener('click', function () {
           const w = Math.max(pane.clientWidth, 640);

@@ -89,7 +89,18 @@
 
   <div class="license-chips" id="licenseChips" role="group" aria-label="许可筛选"></div>
 
-  <p class="fonts-count" id="fontsCountLabel">共找到 <strong id="fontCountTotal">—</strong> 个字体，已显示 <strong id="fontCountShown">0</strong> 个</p>
+  <div class="sort-row">
+    <p class="fonts-count" id="fontsCountLabel">共找到 <strong id="fontCountTotal">—</strong> 个字体，已显示 <strong id="fontCountShown">0</strong> 个</p>
+    <label class="sort-select">
+      <span>排序</span>
+      <select id="sortSel" aria-label="排序方式">
+        <option value="">默认</option>
+        <option value="views">最多浏览</option>
+        <option value="weights">字重最多</option>
+        <option value="name">按名称</option>
+      </select>
+    </label>
+  </div>
 
   <ul class="font-list" id="fontList">
     <li class="font-list-empty">正在加载字体目录…</li>
@@ -132,6 +143,14 @@
           WFProto.setSample(v);
         });
       });
+      const sortSel = document.getElementById('sortSel');
+      if (sortSel) {
+        const q = new URLSearchParams(location.search).get('sort');
+        if (q) sortSel.value = q;
+        sortSel.addEventListener('change', function () {
+          if (window.WFFontsList) WFFontsList.setSort(sortSel.value);
+        });
+      }
       if (floatSize && mainSize) {
         floatSize.value = mainSize.value;
         floatSize.addEventListener('input', function () {

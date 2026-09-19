@@ -448,9 +448,10 @@
         });
       }
     },
-    cssUrl: function (family, weight) {
+    cssUrl: function (family, weight, version) {
       return 'https://app.windfonts.com/api/css?family=' + encodeURIComponent(family) +
-        '&weight=' + encodeURIComponent(weightToCss(weight || '400'));
+        '&weight=' + encodeURIComponent(weightToCss(weight || '400')) +
+        (version ? '&version=' + encodeURIComponent(version) : '');
     },
     copyText: function (text) {
       function legacyCopy() {
@@ -485,12 +486,29 @@
       let tag = getQuery('tag');
       let keyword = getQuery('keyword');
       let license = getQuery('license');
+      let sortKey = getQuery('sort');
+
+      function applySort(list) {
+        if (sortKey === 'views') {
+          return list.slice().sort(function (a, b) { return (b.viewCount || 0) - (a.viewCount || 0); });
+        }
+        if (sortKey === 'weights') {
+          return list.slice().sort(function (a, b) {
+            return (b.weights && b.weights.length || 0) - (a.weights && a.weights.length || 0);
+          });
+        }
+        if (sortKey === 'name') {
+          return list.slice().sort(function (a, b) { return String(a.name).localeCompare(String(b.name), 'zh'); });
+        }
+        return list;
+      }
 
       function syncUrl() {
         const params = new URLSearchParams();
         if (keyword) params.set('keyword', keyword);
         if (tag) params.set('tag', tag);
         if (license) params.set('license', license);
+        if (sortKey) params.set('sort', sortKey);
         const q = params.toString();
         history.replaceState(null, '', location.pathname + (q ? '?' + q : ''));
       }
@@ -587,6 +605,15 @@
             WFProto.togglePick(btn.getAttribute('data-join'), btn.getAttribute('data-name'));
           });
         }
+        // 整行可点进详情（按钮/链接除外）；文本选择不受影响（拖选时 click 不触发导航的代价可接受）
+        if (!li._wfRowBound) {
+          li._wfRowBound = true;
+          li.addEventListener('click', function (e) {
+            if (e.target.closest('button, a')) return;
+            const link = li.querySelector('a[href^="font-detail"]');
+            if (link) location.href = link.href;
+          });
+        }
       }
 
       function appendPage() {
@@ -606,7 +633,7 @@
       }
 
       function resetAndRender() {
-        filtered = filterCatalog({ tag: tag, keyword: keyword, license: license });
+        filtered = applySort(filterCatalog({ tag: tag, keyword: keyword, license: license }));
         shown = 0;
         listEl.innerHTML = '';
         highlightTags();
@@ -648,7 +675,8 @@
         refresh: refresh,
         loadMore: appendPage,
         getFiltered: function () { return filtered.slice(); },
-        getFilter: function () { return { tag: tag, keyword: keyword, license: license }; }
+        getFilter: function () { return { tag: tag, keyword: keyword, license: license, sort: sortKey }; },
+        setSort: function (k) { sortKey = k || ''; syncUrl(); refresh(); }
       };
 
       return loadCatalog().then(function () {

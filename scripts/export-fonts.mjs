@@ -33,6 +33,17 @@ async function fetchDetail(normalized) {
   return body?.data || null;
 }
 
+/** font-licenses 仓的 license-info.json（授权核实状态/授权原文/须知） */
+async function fetchLicenseInfo(normalized) {
+  const url = `https://feicode.com/Windfonts/font-licenses/raw/branch/main/licenses/${encodeURIComponent(normalized)}/license-info.json`;
+  try {
+    const res = await fetchPolite(url, { gap: 80 });
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
 function maxCharCount(detail) {
   let chars = 0;
   let glyphs = 0;
@@ -46,7 +57,7 @@ function maxCharCount(detail) {
   return { chars, glyphs };
 }
 
-function mapFont(raw, detail) {
+function mapFont(raw, detail, licInfo) {
   const weights =
     raw.weights && typeof raw.weights === 'object' && !Array.isArray(raw.weights)
       ? Object.keys(raw.weights)
@@ -68,9 +79,14 @@ function mapFont(raw, detail) {
     weights: weights.length ? weights : ['Regular'],
     description: raw.description || '',
     license: raw.licenseType || '',
-    // 增益字段：normalizeFont 为 spread，前台不读不碍事，详情页可用
     licenseName: raw.license || '',
-    licenseUrl: detail?.licenseUrl || '',
+    licenseUrl: detail?.licenseUrl || licInfo?.licenseUrl || '',
+    licenseFileUrl: licInfo?.licenseFile
+      ? `https://feicode.com/Windfonts/font-licenses/src/branch/main/${licInfo.licenseFile}`
+      : '',
+    licenseNotes: licInfo?.notes || '',
+    licenseVerified: licInfo ? Boolean(licInfo.verified) : null,
+    purchaseUrl: licInfo?.purchaseUrl || raw.purchaseUrl || null,
     copyright: detail?.copyright || '',
     foundry: raw.foundry || brand.name || '',
     brand: brand.name
@@ -86,13 +102,32 @@ function mapFont(raw, detail) {
   };
 }
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/** 429/5xx 退避重试；请求间隔保持礼貌 */
+async function fetchPolite(url, { tries = 4, gap = 250 } = {}) {
+  for (let i = 0; ; i++) {
+    const res = await fetch(url);
+    if (res.ok) {
+      if (gap) await sleep(gap);
+      return res;
+    }
+    if ((res.status === 429 || res.status >= 500) && i < tries - 1) {
+      const wait = Number(res.headers.get('retry-after')) * 1000 || 2000 * (i + 1);
+      console.warn(`  ${res.status} on ${url} — wait ${wait}ms`);
+      await sleep(wait);
+      continue;
+    }
+    throw new Error(`GET ${url} → ${res.status}`);
+  }
+}
+
 async function fetchAll() {
   const all = [];
   let page = 1;
   for (;;) {
     const url = `${API}/api/fonts?page=${page}&pageSize=${PAGE_SIZE}`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`GET ${url} → ${res.status}`);
+    const res = await fetchPolite(url);
     const body = await res.json();
     const data = body?.data?.dataList;
     if (!Array.isArray(data)) throw new Error(`unexpected shape at page ${page}`);
@@ -123,8 +158,11 @@ const raw = await fetchAll();
 const published = raw.filter((f) => !f.status || f.status === 'published');
 const mapped = [];
 for (const f of published) {
-  const detail = await fetchDetail(f.normalizedName).catch(() => null);
-  mapped.push(mapFont(f, detail));
+  const [detail, licInfo] = await Promise.all([
+    fetchDetail(f.normalizedName).catch(() => null),
+    fetchLicenseInfo(f.normalizedName).catch(() => null),
+  ]);
+  mapped.push(mapFont(f, detail, licInfo));
 }
 mapped.sort((a, b) => a.normalized.localeCompare(b.normalized));
 
