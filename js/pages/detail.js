@@ -73,7 +73,7 @@
         '<p class="crumb crumb-dark"><a href="fonts.html">字体库</a><span>/</span>' +
           (font.category ? '<a href="fonts.html?cat=' + encodeURIComponent(font.category) + '">' + esc(font.category) + '</a><span>/</span>' : '') +
           '<span>' + esc(font.name) + '</span></p>' +
-        '<div class="card-view" id="cardView"><div class="wall-stage" id="heroStage" style="--card-face:' + esc(stack) + '">' +
+        '<div class="studio-body"><div class="tester-templates" id="wallTpl" hidden></div><div class="tester-controls" id="wallCtl" hidden></div><div class="card-view" id="cardView"><div class="wall-stage" id="heroStage" style="--card-face:' + esc(stack) + '">' +
           '<img class="card-bg" data-paint="img" data-slot="bg" alt="" /><div class="card-scrim" data-paint="fill"></div>' +
           '<div class="card-safe" data-guide hidden></div>' +
           '<div class="card-body"><span class="card-quote" aria-hidden="true">「</span><div class="wall" id="hero" contenteditable="true" spellcheck="false" data-placeholder="输入文字" style="font-family:' +
@@ -82,7 +82,7 @@
             '<div class="card-lines"><span class="card-sub" data-slot="sub" contenteditable="true" spellcheck="false" data-placeholder="副文字 / 署名"></span>' +
             '<span class="card-credit"><span class="card-name" data-card-name contenteditable="true" spellcheck="false" data-placeholder="字体名"></span>' +
             '<span class="card-brand" data-card-brand contenteditable="true" spellcheck="false" data-placeholder="品牌"></span><span class="card-mark">文风</span></span></div></footer>' +
-        '</div></div>' +
+        '</div></div></div>' +
         '<div class="wall-tools" id="wallTools">' +
           '<input class="range" type="range" id="heroSize" min="24" max="240" value="64" aria-label="字号" />' +
           '<span class="val" id="heroSizeVal">64px</span>' +
@@ -96,7 +96,6 @@
           '<span class="spacer"></span>' +
           '<button type="button" class="btn-text" id="btnEdit">' + WFChrome.icon('edit') + '编辑样张</button>' +
         '</div>' +
-        '<div class="tester" id="wallTester" hidden></div>' +
       '</div></section>' +
       '<div class="container">' +
       '<div class="detail-title">' +
@@ -297,7 +296,7 @@
       big.textContent = t;
       document.querySelectorAll('[data-weight-line]').forEach(function (n) { n.textContent = t; });
     });
-    const tester = WFTester.mount(document.getElementById('wallTester'), {
+    const tester = WFTester.mount({ tpl: document.getElementById('wallTpl'), ctl: document.getElementById('wallCtl'),
       hero: hero,
       stage: document.getElementById('heroStage'),
       view: document.getElementById('cardView'),
