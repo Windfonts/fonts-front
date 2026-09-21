@@ -32,29 +32,29 @@
             <a class="btn btn-lg" href="docs.html">查看文档</a>
           </div>
         </div>
+        <p class="home-stats" id="homeStats" aria-label="库内数字"></p>
       </div>
     </section>
 
-    <div id="controlbar"></div>
-
-    <div class="container">
-      <div class="lib has-side">
-        <aside class="lib-rail" id="libRail" aria-label="筛选"></aside>
-        <section>
-          <div class="count-line row-between">
-            <span id="countLine">正在加载字体目录…</span>
-            <div class="lib-active" id="activeFilters"></div>
-            <label class="lib-sort"><span class="sr-only">排序</span><select class="select" id="sortSel" aria-label="排序"><option value="featured">推荐排序</option><option value="name">按名称</option><option value="weights">字重多到少</option><option value="newest">最新发布</option></select></label>
-          </div>
-          <ul class="specimens" id="fontList"></ul>
-          <div class="load-more"><button type="button" class="btn" id="loadMore" hidden>加载更多</button></div>
-          <div id="listSentinel" aria-hidden="true"></div>
-        </section>
-        <aside class="lib-side" id="libSide" aria-label="当前字体"></aside>
+    <section class="home-forest" aria-label="字林">
+      <div class="container">
+        <div class="home-forest-grid" id="homeForest"></div>
       </div>
-    </div>
+    </section>
 
-    <section class="stats-band" aria-label="字体库统计"><div class="container" id="statsBand"></div></section>
+    <section class="home-now" aria-label="当前字体">
+      <div class="container" id="homeNow"></div>
+    </section>
+
+    <section class="home-related" aria-label="同分类">
+      <div class="container">
+        <div class="count-line" id="homeRelatedCount"></div>
+        <ul class="specimens" id="homeRelated"></ul>
+        <p class="home-lib-more" id="homeMore"></p>
+      </div>
+    </section>
+
+    <section class="stats-band" aria-label="库内结构"><div class="container" id="statsBand"></div></section>
   </main>
 
   <footer id="wfExtraFooter"></footer>
@@ -62,8 +62,6 @@
   <script src="js/wf-proto.js"></script>
   <script src="js/wf-chrome.js"></script>
   <script src="js/wf-specimen.js"></script>
-  <script src="js/wf-embed.js"></script>
-  <script src="js/pages/fonts.js"></script>
   <script src="js/pages/home.js"></script>
 </body>
 </html>
