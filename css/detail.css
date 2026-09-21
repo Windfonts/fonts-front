@@ -1,5 +1,8 @@
 /* 文风字体 v4 · 字体详情页：浅灰字形墙 + 白页面上的浅灰面板 + 右侧品牌卡 */
 .detail-top { padding: var(--s-8) 0 var(--s-6); }
+.detail-crumb { padding-top: var(--s-4); }
+.detail-crumb .crumb { margin-bottom: var(--s-3); }
+#use, #preview, #glyphs, #weights { scroll-margin-top: calc(var(--topbar-h) + var(--s-4)); }
 .crumb-dark { margin-bottom: var(--s-6); }
 .glyph-wall .weights { display: flex; gap: var(--s-1); flex-wrap: wrap; }
 .glyph-wall .presets { display: flex; gap: var(--s-1); flex-wrap: wrap; }
@@ -29,11 +32,10 @@
 .detail-main .panel-head + .panel-pad { padding: var(--s-5) 0 var(--s-8); }
 .detail-main .panel-head .input { height: 2rem; font-size: var(--fs-13); }
 .detail-main .panel .input, .detail-main .panel .chip, .detail-main .panel .seg, .detail-main .panel .code,
-.detail-main .panel .btn:not(.btn-ink):not(.btn-text), .detail-main .use-note code, .detail-main .glyphs span { background: var(--fill); }
+.detail-main .panel .btn:not(.btn-ink):not(.btn-text), .detail-main .use-note code { background: var(--fill); }
 .detail-main .panel .chip.is-on { background: var(--ink); }
 .detail-main .panel .seg .is-on { background: var(--paper); }
 .detail-main .panel .seg-ink .is-on { background: var(--ink); }
-.detail-main .glyphs span:hover { background: var(--ink); }
 .detail-main .code pre { white-space: pre-wrap; word-break: break-all; }
 .os-switch { font-size: var(--fs-12); }
 .os-meta { font-size: var(--fs-12); color: var(--gray); margin-bottom: var(--s-4); }
@@ -108,6 +110,7 @@
 .license-cite.lineage { border-bottom: 0; padding-top: 0; }
 .detail-related .section-head { flex-wrap: wrap; }
 .detail-related .section-head .more + .more { margin-left: var(--s-4); }
+.side-brand .brand-desc { margin-top: var(--s-4); color: var(--ink-2); line-height: 1.7; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
 .side-brand .side-fold { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
 .side-brand .claim { margin-top: var(--s-3); color: var(--gray); font-size: var(--fs-12); display: flex; align-items: center; gap: 0.4em; }
 .side-brand .claim.is-quiet { color: var(--gray-2); }

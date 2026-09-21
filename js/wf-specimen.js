@@ -57,7 +57,7 @@
       '駭躍超驤誅斬賊盜捕獲叛亡布射僚丸嵇琴阮嘯恬筆倫紙鈞巧任釣釋紛利俗並皆佳妙毛施淑姿工顰妍笑年矢每催曦暉'+
       '朗曜璇璣懸斡晦魄環照指薪修祜永綏吉劭矩步引領俯仰廊廟束帶矜莊徘徊瞻眺孤陋寡聞愚蒙等誚謂語助者焉哉乎也'
   };
-  const QIANZIWEN_EXCERPT = 250;
+  const QIANZIWEN_EXCERPT = 80;
   /* 简/繁探测对：两岸写法不同的高频字，哪边覆盖率高就用哪边的千字文 */
   const SCRIPT_PROBES = ['国國', '这這', '们們', '东東', '马馬', '长長', '时時', '门門', '为為', '发發'];
   const GLYPH_BLOCKS = [
@@ -199,17 +199,20 @@
     return ws.sort(function (a, b) { return parseInt(WFProto.weightToCss(a), 10) - parseInt(WFProto.weightToCss(b), 10); });
   }
 
-  function weightsSheetHtml(font, sample) {
+  function weightsSheetHtml(font, sample, current) {
     const stack = WFProto.cssFamilyStack(font.family);
+    const cur = current != null ? String(WFProto.weightToCss(current)) : '';
     return sortedWeights(font).map(function (w) {
-      const css = WFProto.weightToCss(w);
+      const css = String(WFProto.weightToCss(w));
       WFProto.ensureFontCss(font.family, css);
-      return '<div><span class="w">' + esc(w) + ' · ' + css + '</span>' +
-        '<span class="line" data-weight-line style="font-family:' + esc(stack) + ';font-weight:' + css + '">' + esc(sample) + '</span></div>';
+      const on = cur && css === cur;
+      return '<button type="button" class="weight-row' + (on ? ' is-on' : '') + '" data-w="' + css + '">' +
+        '<span class="w">' + esc(w) + '<span class="for-dev"> · ' + css + '</span></span>' +
+        '<span class="line" data-weight-line style="font-family:' + esc(stack) + ';font-weight:' + css + '">' + esc(sample) + '</span></button>';
     }).join('');
   }
 
-  /* —— 字符表 v2：简/繁自适应 · 缺字标记 · 覆盖统计 · 展开全文 ——
+  /* —— 字符表 v2：简/繁自适应 · 缺字标记 · 覆盖统计 ——
      缺字判定：不依赖 document.fonts.check（实测 Chromium 对已注册 family 恒真，不可用），
      改为拉取 CDN 的分包子 CSS，解析 unicode-range 清单——cn-font-split 按真实 cmap 逐字生成，
      等价于字体实际收录声明。
@@ -279,12 +282,14 @@
     return cssRangeCache[key];
   }
 
-  function mountGlyphTable(blocksEl, summaryEl, toolsEl, font) {
+  function mountGlyphTable(blocksEl, summaryEl, toolsEl, font, initialWeight) {
     const fam = String(font.family || '');
     const stack = WFProto.cssFamilyStack(fam);
     const EXTRA_TEXT = GLYPH_BLOCKS.map(function (b) { return b.chars; }).join('');
     const skipCov = WFChrome.skipGlyphCov(font);
-    const st = { variant: 'hans', expanded: false, filter: 'all', marks: { hans: null, hant: null }, hit: { hans: 0, hant: 0 }, total: { hans: 0, hant: 0 } };
+    let weight = String(WFProto.weightToCss(initialWeight || firstWeight(font)));
+    let covGen = 0;
+    const st = { variant: 'hans', filter: 'all', marks: { hans: null, hant: null }, hit: { hans: 0, hant: 0 }, total: { hans: 0, hant: 0 } };
 
     function qzw() { return QIANZIWEN[st.variant]; }
 
@@ -303,13 +308,13 @@
       const marks = st.marks[st.variant];
       const full = qzw();
       /* 缺字视图必须扫全文——缺字常在节选之外，否则筛出来是空的 */
-      const shown = st.filter === 'miss' ? full : (st.expanded ? full : full.slice(0, QIANZIWEN_EXCERPT));
+      const shown = st.filter === 'miss' ? full : full.slice(0, QIANZIWEN_EXCERPT);
       let html =
         '<h3>' + (st.variant === 'hant' ? '常用漢字 · 千字文（繁體）' : '常用汉字 · 千字文（简体）') +
           '<span class="h3-r">' +
             (marks ? '<span class="cov">覆盖 ' + st.hit[st.variant] + ' / ' + st.total[st.variant] + '</span>' : '') +
             '<span class="mono for-dev">U+4E00–9FFF</span></span></h3>' +
-        '<div class="glyphs" style="font-family:' + esc(stack) + '">' + cellsHtml(shown, marks) + '</div>';
+        '<div class="glyphs" style="font-family:' + esc(stack) + ';font-weight:' + weight + '">' + cellsHtml(shown, marks) + '</div>';
       GLYPH_BLOCKS.forEach(function (b) {
         let n = null;
         var bTotal = b.chars.length;
@@ -321,7 +326,7 @@
         html += '<h3>' + esc(b.name) + '<span class="h3-r">' +
           (n != null ? '<span class="cov">覆盖 ' + n + ' / ' + bTotal + '</span>' : '') +
           '<span class="mono for-dev">' + esc(b.range) + '</span></span></h3>' +
-          '<div class="glyphs" style="font-family:' + esc(stack) + '">' + cellsHtml(b.chars, marks) + '</div>';
+          '<div class="glyphs" style="font-family:' + esc(stack) + ';font-weight:' + weight + '">' + cellsHtml(b.chars, marks) + '</div>';
       });
       blocksEl.innerHTML = html +
         (st.filter === 'miss' && marks && st.hit[st.variant] === st.total[st.variant] ? '<p class="glyph-legend">该字体没有缺字。</p>' : '');
@@ -350,7 +355,7 @@
       else suffix = '覆盖 ' + pct + '%';
       summaryEl.innerHTML =
         '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' 常用字已收录 · ' + suffix + '</p>' +
-        '<p class="glyph-legend">虚线灰格 = 该字体未收录，格内字形来自系统字体，仅作示意。</p>';
+        '<p class="glyph-legend">虚线田字格 = 未收录，格内是系统字形。</p>';
     }
 
     function syncTools() {
@@ -360,8 +365,6 @@
       toolsEl.querySelectorAll('[data-f]').forEach(function (b) {
         b.classList.toggle('is-on', b.getAttribute('data-f') === st.filter);
       });
-      const ex = toolsEl.querySelector('[data-t="expand"]');
-      if (ex) ex.textContent = st.expanded ? '收起' : '展开全文';
     }
 
     function applyRanges(ranges) {
@@ -395,7 +398,6 @@
       '<div class="seg-glyph" role="group" aria-label="写法">' +
         '<button type="button" data-sc="hans">简</button>' +
         '<button type="button" data-sc="hant">繁</button></div>' +
-      '<button type="button" class="gtoggle" data-t="expand">展开全文</button>' +
       (skipCov ? '' :
         '<div class="seg-glyph" role="group" aria-label="筛选">' +
           '<button type="button" data-f="all">全部</button>' +
@@ -411,9 +413,7 @@
         return;
       }
       const f = btn.getAttribute('data-f');
-      if (f) { st.filter = f; renderBlocks(); syncTools(); return; }
-      const t = btn.getAttribute('data-t');
-      if (t === 'expand') { st.expanded = !st.expanded; renderBlocks(); syncTools(); }
+      if (f) { st.filter = f; renderBlocks(); syncTools(); }
     });
     summaryEl.addEventListener('click', function (e) {
       const chip = e.target.closest ? e.target.closest('.chip-miss') : null;
@@ -423,20 +423,36 @@
       blocksEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
 
+    function paintFace() {
+      blocksEl.querySelectorAll('.glyphs').forEach(function (el) { el.style.fontWeight = weight; });
+    }
+    function loadCoverage() {
+      if (skipCov) return;
+      const gen = ++covGen;
+      fetchCssRanges(fam, weight).then(function (ranges) {
+        if (gen !== covGen) return;
+        if (!ranges || !ranges.length) {
+          renderSummary('分包清单未能获取，已跳过收录核对；以下均为系统字形。');
+          return;
+        }
+        applyRanges(ranges);
+      });
+    }
+    function setWeight(w) {
+      const next = String(WFProto.weightToCss(w));
+      if (!next || next === weight) { paintFace(); return; }
+      weight = next;
+      WFProto.ensureFontCss(fam, weight);
+      paintFace();
+      loadCoverage();
+    }
+
     renderBlocks();
     renderSummary(skipCov ? '台湾系字体不对简体常用字做收录盘点；以下仅展示样例字符。' : null);
     syncTools();
-    WFProto.ensureFontCss(fam, firstWeight(font));
-
-    if (skipCov) return;
-
-    fetchCssRanges(fam, firstWeight(font)).then(function (ranges) {
-      if (!ranges || !ranges.length) {
-        renderSummary('分包清单未能获取，已跳过收录核对；以下均为系统字形。');
-        return;
-      }
-      applyRanges(ranges);
-    });
+    WFProto.ensureFontCss(fam, weight);
+    loadCoverage();
+    return { setWeight: setWeight };
   }
 
   document.addEventListener('wf:picks', syncActs);

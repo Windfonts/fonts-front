@@ -293,6 +293,7 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
   display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2);
   padding: var(--s-2) 0 0;
 }
+.tester-foot [data-share] { grid-column: 1 / -1; }
 .tester-foot .btn { height: 2rem; font-size: var(--fs-13); }
 .tester-foot .btn .icon { width: 1em; height: 1em; }
 .tester-end > [data-done] { height: 2rem; font-size: var(--fs-13); }
@@ -403,18 +404,39 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
 .big-preview:empty::before { content: attr(data-placeholder); color: var(--gray-2); }
 
 /* —— 字重逐行 —— */
-.weights-sheet > div { display: grid; grid-template-columns: 8rem 1fr; gap: var(--s-6); align-items: baseline; padding: var(--s-4) 0; border-bottom: 1px solid var(--rule-2); }
-.weights-sheet > div:last-child { border-bottom: 0; }
-.weights-sheet .w { font-size: var(--fs-12); color: var(--gray); }
-.weights-sheet .line { font-size: var(--fs-40); line-height: 1.2; overflow-wrap: anywhere; }
+.weights-sheet .weight-row {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: var(--s-4);
+  align-items: baseline;
+  width: 100%;
+  padding: var(--s-2) 0;
+  border-bottom: 1px solid var(--rule-2);
+  text-align: left;
+  color: inherit;
+}
+.weights-sheet .weight-row:last-child { border-bottom: 0; }
+.weights-sheet .w { font-size: var(--fs-12); color: var(--gray); white-space: nowrap; }
+.weights-sheet .weight-row:hover .w,
+.weights-sheet .weight-row.is-on .w { color: var(--ink); }
+.weights-sheet .line { font-size: var(--fs-28); line-height: 1.25; overflow-wrap: anywhere; }
 
 /* —— 字符表 —— */
 .glyph-blocks h3 { font-size: var(--fs-13); color: var(--gray); font-weight: 400; margin: var(--s-6) 0 var(--s-3); display: flex; justify-content: space-between; }
 .glyph-blocks h3:first-child { margin-top: 0; }
 .glyph-blocks h3 .mono { color: var(--gray-2); }
-.glyphs { display: grid; grid-template-columns: repeat(auto-fill, minmax(2.75rem, 1fr)); gap: 3px; }
-.glyphs span { background: var(--paper); border-radius: 6px; aspect-ratio: 1; display: grid; place-items: center; font-size: var(--fs-20); line-height: 1; }
-.glyphs span:hover { background: var(--ink); color: var(--on-ink); }
+.glyphs { display: grid; grid-template-columns: repeat(auto-fill, minmax(3rem, 1fr)); gap: var(--s-1); --tian: color-mix(in srgb, var(--ink) 18%, var(--page)); }
+.glyphs span {
+  aspect-ratio: 1; display: grid; place-items: center;
+  font-size: var(--fs-20); line-height: 1; color: var(--ink);
+  background-color: transparent;
+  background-image: linear-gradient(var(--tian), var(--tian)), linear-gradient(var(--tian), var(--tian));
+  background-size: 100% 1px, 1px 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 1px var(--tian);
+}
+.glyphs span:hover { color: var(--ink); }
 
 @media (max-width: 960px) {
   .glyph-wall.is-editing .studio-body,
@@ -441,8 +463,8 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
   .controlbar .sizer .val { min-width: 3em; }
   .specimens.is-grid { grid-template-columns: 1fr; }
   .specimen { padding: var(--s-4) var(--s-4) var(--s-5); }
-  .weights-sheet > div { grid-template-columns: 1fr; gap: var(--s-2); }
-  .weights-sheet .line { font-size: var(--fs-28); }
+  .weights-sheet .weight-row { grid-template-columns: 1fr; gap: var(--s-1); }
+  .weights-sheet .line { font-size: var(--fs-20); }
   .glyph-wall.is-editing .studio-body {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto auto auto;
@@ -477,8 +499,13 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
 .glyph-legend { color: var(--gray-2); font-size: var(--fs-13); }
 .glyph-blocks h3 .h3-r { display: inline-flex; align-items: baseline; gap: var(--s-3); }
 .glyph-blocks h3 .cov { color: var(--ink-2); font-variant-numeric: tabular-nums; }
-.glyphs span.is-miss { color: var(--gray-2); opacity: 0.45; outline: 1px dashed var(--gray-2); outline-offset: -3px; }
-.glyphs span.is-miss:hover { background: var(--fill); color: var(--gray-2); }
+.glyphs span.is-miss {
+  color: var(--gray-2); opacity: 0.48;
+  box-shadow: none;
+  outline: 1px dashed var(--gray-2);
+  outline-offset: -1px;
+}
+.glyphs span.is-miss:hover { color: var(--gray); }
 .glyph-blocks.only-hit .is-miss { display: none; }
 [data-theme="dark"] .glyphs span.is-miss { opacity: 0.6; }
 .glyph-blocks.only-miss .glyphs span:not(.is-miss) { display: none; }
