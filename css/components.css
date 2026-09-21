@@ -189,6 +189,8 @@ html:not([data-view="dev"]) .ink-design:hover { background: var(--ink-hover); }
 .tab-panel[hidden] { display: none; }
 html:not([data-view="dev"]) .for-dev { display: none; }
 html[data-view="dev"] .for-design { display: none; }
+html:not([data-view="dev"]) body.page-bag main .for-dev { display: unset; }
+html[data-view="dev"] body.page-bag main .for-design { display: unset; }
 .topbar-end .view-switch { font-size: var(--fs-12); flex: none; }
 .topmenu .view-switch { margin-top: var(--s-2); width: fit-content; }
 
@@ -203,8 +205,10 @@ html[data-view="dev"] .for-design { display: none; }
 .foundry { display: flex; align-items: center; gap: var(--s-3); }
 .foundry img, .foundry .mark {
   width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex: 0 0 auto;
-  background: var(--ink); color: var(--on-ink); display: grid; place-items: center; font-size: var(--fs-16); font-weight: var(--fw-title);
+  display: grid; place-items: center; font-size: var(--fs-16); font-weight: var(--fw-title);
 }
+.foundry img { background: var(--face); }
+.foundry .mark { background: var(--ink); color: var(--on-ink); }
 .foundry > span { display: grid; gap: 0.1rem; min-width: 0; }
 .foundry .name { font-size: var(--fs-14); font-weight: var(--fw-title); display: flex; align-items: center; flex-wrap: wrap; gap: 0 0.35em; }
 .foundry .name .en { flex-basis: 100%; font-size: var(--fs-12); color: var(--gray-2); font-weight: var(--fw-body); font-family: var(--font-mono); letter-spacing: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

@@ -170,3 +170,10 @@
 .glyph-wall.is-editing .wall-stage[data-layout="fill"] .card-meta {
   display: flex; position: absolute; left: 64px; right: 64px; bottom: 48px; z-index: 2; padding: 0; gap: 20px;
 }
+.glyph-wall .wall-stage[data-hide~="sub"] .card-sub,
+.glyph-wall .wall-stage[data-hide~="avatar"] .card-avatar,
+.glyph-wall .wall-stage[data-hide~="name"] .card-name,
+.glyph-wall .wall-stage[data-hide~="brand"] .card-brand,
+.glyph-wall .wall-stage[data-hide~="mark"] .card-mark { display: none !important; }
+.glyph-wall .wall-stage[data-hide~="name"][data-hide~="brand"][data-hide~="mark"] .card-credit { display: none !important; }
+.glyph-wall .wall-stage[data-hide~="sub"][data-hide~="avatar"][data-hide~="name"][data-hide~="brand"][data-hide~="mark"] .card-meta { display: none !important; }

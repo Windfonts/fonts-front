@@ -73,12 +73,8 @@
     ].filter(function (r) { return r && r[1]; });
 
     const wallText = sample || font.name;
-    const wallPhotos = WFCard.WALL_BGS;
-    var wallHash = 0, wallI, wallId = String(font.id || '');
-    for (wallI = 0; wallI < wallId.length; wallI++) wallHash = (wallHash * 33 + wallId.charCodeAt(wallI)) >>> 0;
-    const wallPhoto = wallPhotos[wallHash % wallPhotos.length];
     root.innerHTML =
-      '<section class="glyph-wall" id="glyphWall" style="--wall-photo:url(\'' + esc(wallPhoto) + '\')"><div class="container glyph-wall-inner">' +
+      '<section class="glyph-wall" id="glyphWall"><div class="container glyph-wall-inner">' +
         '<p class="crumb crumb-dark"><a href="fonts.html">字体库</a><span>/</span>' +
           (font.category ? '<a href="fonts.html?cat=' + encodeURIComponent(font.category) + '">' + esc(font.category) + '</a><span>/</span>' : '') +
           '<span>' + esc(font.name) + '</span></p>' +

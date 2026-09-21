@@ -56,19 +56,21 @@
     if (editing) {
       const maxH = 480;
       scale = Math.min(1, maxW / sz.w, maxH / sz.h);
-      boxH = Math.max(1, Math.round(sz.h * scale));
-    } else {
-      scale = maxW / sz.w;
-      boxH = Math.max(1, Math.round(sz.h * scale));
+      stage.style.setProperty('--card-scale', String(scale));
+      if (view) {
+        view.classList.add('is-framed');
+        view.style.height = '';
+      }
+      if (wall) wall.style.removeProperty('--studio-h');
+      return;
     }
+    scale = maxW / sz.w;
+    boxH = Math.max(1, Math.round(sz.h * scale));
     stage.style.setProperty('--card-scale', String(scale));
     if (!view) return;
     view.classList.add('is-framed');
     view.style.height = boxH + 'px';
-    if (wall) {
-      if (editing) wall.style.setProperty('--studio-h', boxH + 'px');
-      else wall.style.removeProperty('--studio-h');
-    }
+    if (wall) wall.style.removeProperty('--studio-h');
   }
 
   function applyFrame(stage, kind) {
@@ -240,6 +242,14 @@
         const el = node.parentElement;
         if (!el || el.closest('[data-guide]')) continue;
         const hc = getComputedStyle(el);
+        if (hc.display === 'none' || hc.visibility === 'hidden') continue;
+        var anc = el.parentElement, skip = false;
+        while (anc && anc !== stage) {
+          var as = getComputedStyle(anc);
+          if (as.display === 'none' || as.visibility === 'hidden') { skip = true; break; }
+          anc = anc.parentElement;
+        }
+        if (skip) continue;
         ctx.fillStyle = hc.color;
         ctx.globalAlpha = Number(hc.opacity) || 1;
         ctx.font = hc.fontStyle + ' ' + hc.fontWeight + ' ' + (parseFloat(hc.fontSize) * k) + 'px ' + hc.fontFamily;

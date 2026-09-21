@@ -2,6 +2,9 @@
   const esc = function (s) { return WFProto.escapeHtml(s); };
   const PREF_KEY = 'wf-card-pref.v1';
   const TWEAK = ['size', 'leading', 'tracking', 'face', 'zoom', 'bgx', 'bgy', 'scrim'];
+  const LAYERS = [
+    ['sub', '副文'], ['avatar', '头像'], ['name', '字体名'], ['brand', '品牌'], ['mark', '文风']
+  ];
   function loadPref() {
     try { return JSON.parse(localStorage.getItem(PREF_KEY) || '{}') || {}; } catch (e) { return {}; }
   }
@@ -10,7 +13,7 @@
     return !v || /^(blob|data):/i.test(v) ? '' : v.slice(0, 240);
   }
   function defaults(weight) {
-    return { size: 64, leading: 1.35, tracking: 0.02, weight: String(weight || 400), align: 'left', wrap: true, fit: false, ink: '', paper: '', face: 88, zoom: 1, bgx: 50, bgy: 50, scrim: 62 };
+    return { size: 64, leading: 1.35, tracking: 0.02, weight: String(weight || 400), align: 'left', wrap: true, fit: false, ink: '', paper: '', face: 88, zoom: 1, bgx: 50, bgy: 50, scrim: 62, hide: {} };
   }
   function tokenHex(name, fallback) {
     const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -46,7 +49,11 @@
     const colors = '<div class="tester-colors"><label class="tester-color"><input type="color" data-ink aria-label="字色" /></label>' +
       '<label class="tester-color"><input type="color" data-paper aria-label="底色" /></label>' +
       '<button type="button" data-invert>反相</button></div>';
-    const typeBody = field('sub', 'text', '副文字 / 署名', 0) +
+    const layers = '<div class="tester-layers"><span class="k">显示</span><div class="tester-pills" role="group" aria-label="显示">' +
+      LAYERS.map(function (it) {
+        return '<button type="button" data-layer="' + it[0] + '" class="is-on" aria-pressed="true">' + esc(it[1]) + '</button>';
+      }).join('') + '</div></div>';
+    const typeBody = field('sub', 'text', '副文字 / 署名', 0) + layers +
       '<div class="tester-toolbar">' + wt + pills('align', [['left', '左'], ['center', '中'], ['right', '右']], state.align) + '</div>' +
       '<div class="tester-sliders tester-cols-2">' + slider('size', '字号', 12, 240, 1, state.size) +
         slider('leading', '行距', 0.8, 2.4, 0.05, state.leading) + slider('tracking', '字距', -0.12, 0.24, 0.005, state.tracking) + '</div>' + colors;
@@ -100,6 +107,41 @@
     const timers = {};
     let saveTimer, closeScrollY;
     function note(msg) { noteEl.textContent = msg || ''; noteEl.hidden = !msg; }
+    function wallTone(src) {
+      const m = String(src || '').replace(/[?#].*$/, '').match(/\/wall\/0([1-6])\.jpg$/);
+      return m ? (Number(m[1]) <= 3 ? 'dark' : 'light') : '';
+    }
+    function applyTone(tone) {
+      if (tone !== 'dark' && tone !== 'light') return;
+      const dark = tone === 'dark';
+      state.ink = dark ? tokenHex('--paper', '#ffffff') : tokenHex('--ink', '#111111');
+      state.paper = dark ? tokenHex('--ink', '#111111') : tokenHex('--paper', '#ffffff');
+      syncColors();
+      apply();
+    }
+    function inkFromBg(src) {
+      src = String(src || '').trim();
+      if (!src) return;
+      const known = wallTone(src);
+      if (known) { applyTone(known); return; }
+      const im = new Image();
+      im.onload = function () {
+        try {
+          const c = document.createElement('canvas');
+          c.width = 8; c.height = 8;
+          const x = c.getContext('2d');
+          x.drawImage(im, 0, 0, 8, 8);
+          const d = x.getImageData(0, 0, 8, 8).data;
+          var sum = 0, n = 0, i;
+          for (i = 0; i < d.length; i += 4) {
+            sum += 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+            n += 1;
+          }
+          applyTone((sum / n) < 140 ? 'dark' : 'light');
+        } catch (e) { /* 跨域画布读不了就不动字色 */ }
+      };
+      im.src = src;
+    }
     function setContent(slot, raw) {
       const v = String(raw || '').trim();
       note('');
@@ -131,6 +173,7 @@
       note('');
       WFCard.setSlot(stage, slot, url, function (ok) {
         if (!ok) note('这张图读不出来');
+        else if (slot === 'bg') inkFromBg(url);
       });
       persistSoon();
     }
@@ -151,6 +194,20 @@
       state.size = Math.max(12, Math.min(240, Math.floor(200 * have / need)));
       const sl = ctl.querySelector('[data-k="size"]');
       if (sl) sl.value = String(state.size);
+    }
+    function hideList() {
+      return LAYERS.map(function (it) { return it[0]; }).filter(function (k) { return state.hide && state.hide[k]; });
+    }
+    function applyLayers() {
+      if (!stage) return;
+      const list = hideList();
+      if (list.length) stage.setAttribute('data-hide', list.join(' '));
+      else stage.removeAttribute('data-hide');
+      ctl.querySelectorAll('[data-layer]').forEach(function (el) {
+        const on = !(state.hide && state.hide[el.getAttribute('data-layer')]);
+        el.classList.toggle('is-on', on);
+        el.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
     }
     function apply() {
       if (!hero) return;
@@ -174,6 +231,7 @@
         stage.style.setProperty('--bg-x', state.bgx + '%');
         stage.style.setProperty('--bg-y', state.bgy + '%');
         stage.style.setProperty('--scrim', state.scrim + '%');
+        applyLayers();
       }
       paintVals();
       persistSoon();
@@ -261,6 +319,8 @@
         if (el) { el.value = durable(src[k]); setContent(k, el.value); }
       });
       [['cardName','[data-card-name]'],['cardBrand','[data-card-brand]']].forEach(function (p) { if (src[p[0]] == null) return; var el = stage.querySelector(p[1]); if (el) el.textContent = src[p[0]]; });
+      state.hide = {};
+      String(src.hide || '').split(/\s+/).forEach(function (k) { if (k) state.hide[k] = 1; });
       syncUi();
       warnPaint();
     }
@@ -277,10 +337,11 @@
       ctl.querySelectorAll('[data-c]').forEach(function (el) { rec[el.getAttribute('data-c')] = durable(el.value); });
       var ne = stage && stage.querySelector('[data-card-name]'), be = stage && stage.querySelector('[data-card-brand]');
       rec.cardName = durable(ne && ne.textContent); rec.cardBrand = durable(be && be.textContent);
+      rec.hide = hideList().join(' ');
       const all = loadPref();
       all.fonts = all.fonts || {};
       all.fonts[font.id] = rec;
-      TWEAK.concat(['tpl', 'frame', 'align', 'wrap', 'fit', 'ink', 'paper', 'weight', 'sub', 'avatar', 'bg', 'cardName', 'cardBrand']).forEach(function (k) { all[k] = rec[k]; });
+      TWEAK.concat(['tpl', 'frame', 'align', 'wrap', 'fit', 'ink', 'paper', 'weight', 'sub', 'avatar', 'bg', 'cardName', 'cardBrand', 'hide']).forEach(function (k) { all[k] = rec[k]; });
       try { localStorage.setItem(PREF_KEY, JSON.stringify(all)); } catch (e) { /* ignore */ }
     }
     function persistSoon() { if (ctl.hidden && !WFCard.currentKind(stage)) return; clearTimeout(saveTimer); saveTimer = setTimeout(persist, 220); }
@@ -330,7 +391,11 @@
       if (c) {
         clearTimeout(timers[c]);
         if (c === 'sub') { setContent(c, t.value); persistSoon(); }
-        else timers[c] = setTimeout(function () { setContent(c, t.value); persistSoon(); }, 450);
+        else timers[c] = setTimeout(function () {
+          setContent(c, t.value);
+          if (c === 'bg') inkFromBg(t.value);
+          persistSoon();
+        }, 450);
       }
       const fileSlot = t.getAttribute('data-file');
       if (fileSlot && t.files && t.files[0]) { setFile(fileSlot, t.files[0]); t.value = ''; }
@@ -344,6 +409,15 @@
         ctl.querySelectorAll('[data-w]').forEach(function (x) { x.classList.toggle('is-on', x === b); });
         if (opts.onWeight) opts.onWeight(w);
         apply();
+        return;
+      }
+      const layer = b.getAttribute('data-layer');
+      if (layer) {
+        if (!state.hide) state.hide = {};
+        if (state.hide[layer]) delete state.hide[layer];
+        else state.hide[layer] = 1;
+        applyLayers();
+        persistSoon();
         return;
       }
       const set = b.getAttribute('data-set');
@@ -373,6 +447,7 @@
         var bgInp = ctl.querySelector('[data-c="bg"]');
         if (bgInp) bgInp.value = wallBg;
         setContent('bg', wallBg);
+        inkFromBg(wallBg);
         persistSoon();
         syncBgPick();
         return;
@@ -424,97 +499,13 @@
       hs.lineHeight = ''; hs.letterSpacing = ''; hs.textAlign = ''; hs.whiteSpace = '';
       WFCard.unframe(stage);
     }
-    var inkImg = null, inkSrc = '', inkTimer = 0;
-    function wallBgUrl(el) {
-      var bg = el && getComputedStyle(el).backgroundImage;
-      var m = bg && bg.match(/url\(["']?([^"')]+)["']?\)/);
-      return m ? m[1] : '';
-    }
-    function glyphRect() {
-      if (!hero || !hero.firstChild) return null;
-      var range = document.createRange();
-      range.selectNodeContents(hero);
-      var r = range.getBoundingClientRect();
-      return r.width && r.height ? r : null;
-    }
-    function coverDraw(ctx, img, cw, ch) {
-      var ir = img.naturalWidth / img.naturalHeight;
-      var br = cw / ch;
-      var dw, dh, dx, dy;
-      if (ir > br) { dh = ch; dw = ch * ir; dx = (cw - dw) / 2; dy = 0; }
-      else { dw = cw; dh = cw / ir; dx = 0; dy = (ch - dh) / 2; }
-      ctx.clearRect(0, 0, cw, ch);
-      ctx.drawImage(img, dx, dy, dw, dh);
-    }
-    function lumaBox(ctx, x, y, w, h, cw, ch) {
-      var xa = Math.max(0, Math.min(cw - 1, Math.round(x)));
-      var ya = Math.max(0, Math.min(ch - 1, Math.round(y)));
-      var ww = Math.max(1, Math.min(cw - xa, Math.round(w)));
-      var hh = Math.max(1, Math.min(ch - ya, Math.round(h)));
-      var pix = ctx.getImageData(xa, ya, ww, hh).data;
-      var s = 0, n = 0, i;
-      for (i = 0; i < pix.length; i += 4) {
-        s += pix[i] * 0.2126 + pix[i + 1] * 0.7152 + pix[i + 2] * 0.0722;
-        n++;
-      }
-      return n ? s / n / 255 : 0.5;
-    }
-    function applyWallInk() {
-      if (!wall) return;
-      var inner = wall.querySelector('.glyph-wall-inner');
-      if (!inner || !isDesign() || wall.classList.contains('is-editing')) {
-        wall.removeAttribute('data-ink-mid');
-        wall.removeAttribute('data-ink-mix');
-        return;
-      }
-      var src = wallBgUrl(inner);
-      if (!src) {
-        wall.removeAttribute('data-ink-mid');
-        wall.removeAttribute('data-ink-mix');
-        return;
-      }
-      function paint(img) {
-        var box = inner.getBoundingClientRect();
-        var glyphs = glyphRect();
-        var canvas = applyWallInk._c || (applyWallInk._c = document.createElement('canvas'));
-        var scale = Math.min(1, 360 / Math.max(1, box.width));
-        var cw = Math.max(32, Math.round(box.width * scale));
-        var ch = Math.max(16, Math.round(box.height * scale));
-        canvas.width = cw;
-        canvas.height = ch;
-        var ctx = canvas.getContext('2d', { willReadFrequently: true });
-        coverDraw(ctx, img, cw, ch);
-        var gx = glyphs ? (glyphs.left - box.left) * scale : cw * 0.15;
-        var gy = glyphs ? (glyphs.top - box.top) * scale : ch * 0.3;
-        var gw = glyphs ? glyphs.width * scale : cw * 0.7;
-        var gh = glyphs ? glyphs.height * scale : ch * 0.35;
-        var a = lumaBox(ctx, gx, gy, gw * 0.32, gh, cw, ch);
-        var b = lumaBox(ctx, gx + gw * 0.34, gy, gw * 0.32, gh, cw, ch);
-        var c = lumaBox(ctx, gx + gw * 0.68, gy, gw * 0.32, gh, cw, ch);
-        var avg = (a + b + c) / 3;
-        var spread = Math.max(a, b, c) - Math.min(a, b, c);
-        wall.setAttribute('data-ink-mid', avg > 0.52 ? 'dark' : 'light');
-        if (spread > 0.16) wall.setAttribute('data-ink-mix', '');
-        else wall.removeAttribute('data-ink-mix');
-      }
-      if (inkImg && inkSrc === src) { paint(inkImg); return; }
-      var img = new Image();
-      img.onload = function () { inkImg = img; inkSrc = src; paint(img); };
-      img.src = src;
-    }
     function applyWallMode() {
       if (wall && wall.classList.contains('is-editing')) {
         if (!isDesign()) setOpen(false);
-        applyWallInk();
         return;
       }
       hideWallCard();
-      applyWallInk();
     }
-    window.addEventListener('resize', function () {
-      clearTimeout(inkTimer);
-      inkTimer = setTimeout(applyWallInk, 120);
-    });
     function sync(partial) {
       if (partial.size != null) { state.size = Number(partial.size); state.fit = false; }
       if (partial.weight != null) state.weight = String(partial.weight);
