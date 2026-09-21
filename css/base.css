@@ -64,13 +64,15 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .section { padding: var(--s-12) 0; }
 .section-head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: var(--s-4);
   margin-bottom: var(--s-8);
 }
-.section-head h2 { font-size: var(--fs-20); font-weight: 700; line-height: var(--lh-snug); }
-.section-head .more { font-size: var(--fs-13); color: var(--gray); }
+.section-head h2 { font-size: var(--fs-20); font-weight: 700; line-height: var(--lh-snug); display: flex; align-items: center; gap: 0.4em; }
+.section-head h2 .icon { color: var(--gray); flex: none; }
+.section-head .more { font-size: var(--fs-13); color: var(--gray); display: inline-flex; align-items: center; gap: 0.35em; }
+.section-head .more .icon { color: var(--gray-2); }
 
 .grid { display: grid; gap: var(--gutter); }
 .grid-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
@@ -99,7 +101,8 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .panel { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); }
 .panel-pad { padding: var(--s-6); }
 .panel-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); padding: var(--s-5) var(--s-6) 0; }
-.panel-head h2, .panel-head h3 { font-size: var(--fs-16); font-weight: 700; }
+.panel-head h2, .panel-head h3 { font-size: var(--fs-16); font-weight: 700; display: flex; align-items: center; gap: 0.4em; }
+.panel-head h2 .icon, .panel-head h3 .icon { color: var(--gray); flex: none; }
 .panel-head .more { font-size: var(--fs-13); color: var(--gray); }
 .panel-head + .panel-pad { padding-top: var(--s-4); }
 /* 面板里的控件翻成白色 */

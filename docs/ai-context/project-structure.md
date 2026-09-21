@@ -5,7 +5,7 @@
 - 数据：`data/*.json`（构建期导出）+ `localStorage`（选字袋、主题、控制台状态）
 - 字体：UI 用寒蝉全圆体本地 woff2；样张字体从 `https://cn.windfonts.com` CDN 实时加载
 - 产品边界：本仓只做 Windfonts 分发前端；造字 / 授权 / 源文件在 `wenfeng.org`，见 `docs/PLATFORMS.md`。授权依据见 `docs/LICENSE.md`。
-- 图标：MingCute Line sprite（`assets/icons.svg`）
+- 图标：Remix Icon 线标 sprite（`assets/icons.svg`）
 - 工具：`node scripts/export-fonts.mjs` 导出目录；headless Chrome 截图 / 抓控制台错做 QA
 
 ## 文件树（职责）

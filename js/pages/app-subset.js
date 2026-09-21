@@ -100,15 +100,15 @@
     return '<div class="result"><div class="v">' + WFEmbed.fmtBytes(one).replace(' ', '<small> ') + '</small></div>' +
         '<div class="was">完整 ' + WFEmbed.fmtBytes(full) + ' → 省 ' + saved + '%</div></div>' +
       '<dl class="kv">' +
-        '<div><dt>字形</dt><dd class="num">' + WFProto.formatCount(glyphs) + ' / ' + WFProto.formatCount(font.glyphCount || font.charCount || 0) + '</dd></div>' +
-        '<div><dt>字重</dt><dd class="num">' + (st.weights.join(' · ') || '—') + '</dd></div>' +
-        '<div><dt>子集</dt><dd>' + esc(WFApp.subsetLabel(subset())) + '</dd></div>' +
-        '<div><dt>全部产物</dt><dd class="num">' + WFEmbed.fmtBytes(total) + '</dd></div>' +
+        '<div><dt>' + WFChrome.icon('text') + '字形</dt><dd class="num">' + WFProto.formatCount(glyphs) + ' / ' + WFProto.formatCount(font.glyphCount || font.charCount || 0) + '</dd></div>' +
+        '<div><dt>' + WFChrome.icon('font') + '字重</dt><dd class="num">' + (st.weights.join(' · ') || '—') + '</dd></div>' +
+        '<div><dt>' + WFChrome.icon('scissors') + '子集</dt><dd>' + esc(WFApp.subsetLabel(subset())) + '</dd></div>' +
+        '<div><dt>' + WFChrome.icon('box') + '全部产物</dt><dd class="num">' + WFEmbed.fmtBytes(total) + '</dd></div>' +
       '</dl>' +
       '<div class="field"><label>格式</label><div class="weight-checks">' + ['woff2', 'woff', 'ttf'].map(function (f) {
         return '<label class="check"><input type="checkbox" data-format="' + f + '"' + (st.formats.indexOf(f) !== -1 ? ' checked' : '') + (f === 'woff2' ? ' disabled' : '') + ' /> ' + f + '</label>';
       }).join('') + '</div></div>' +
-      '<button type="button" class="btn btn-ink btn-lg" id="btnAdd"' + (st.weights.length ? '' : ' disabled') + '>加入「' + esc(project ? project.name : '项目') + '」</button>' +
+      '<button type="button" class="btn btn-ink btn-lg" id="btnAdd"' + (st.weights.length ? '' : ' disabled') + '>' + WFChrome.icon('plus') + '加入「' + esc(project ? project.name : '项目') + '」</button>' +
       '<p class="t-12 muted">加入后生成新版本，嵌入代码不变。</p>';
   }
 

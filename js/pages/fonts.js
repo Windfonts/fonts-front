@@ -120,7 +120,7 @@
       facetHtml('开源', 'open', facetCounts('open', ['1'], function (f, v) { return v === '1' && WFProto.isOpenFont(f); }),
         function () { return '开源协议'; }) +
       '</div>' +
-      (hasAny() ? '<button type="button" class="btn-text reset" id="resetFilters">清除全部筛选</button>' : '');
+      (hasAny() ? '<button type="button" class="btn-text reset" id="resetFilters">' + WFChrome.icon('close') + '清除全部筛选</button>' : '');
     railEl.innerHTML = html;
     railEl.querySelectorAll('[data-facet]').forEach(function (b) {
       b.addEventListener('click', function () {

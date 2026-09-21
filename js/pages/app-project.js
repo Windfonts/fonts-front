@@ -17,7 +17,7 @@
     const cur = WFApp.currentVersion(p);
     return '<div class="app-head"><div><p class="crumb"><a href="projects.html">项目</a><span>/</span><span>' + esc(p.name) + '</span></p>' +
       '<h1>' + esc(p.name) + '</h1><p class="sub mono">' + esc(p.slug) + ' · v' + cur.v + ' · ' + p.fonts.length + ' 字体 · ' + WFEmbed.fmtBytes(WFApp.projectBytes(p)) + '</p></div>' +
-      '<div class="app-actions"><a class="btn" href="../fonts.html">去字体库</a><a class="btn btn-ink" href="subset.html?project=' + esc(p.id) + '">添加字体</a></div></div>' +
+      '<div class="app-actions"><a class="btn" href="../fonts.html">' + WFChrome.icon('font-size') + '去字体库</a><a class="btn btn-ink" href="subset.html?project=' + esc(p.id) + '">' + WFChrome.icon('plus') + '添加字体</a></div></div>' +
       '<div class="tabs" role="tablist">' + TABS.map(function (t) {
         return '<button type="button" role="tab" data-tab="' + t[0] + '"' + (t[0] === tab ? ' class="is-on"' : '') + '>' + t[1] + '</button>';
       }).join('') + '</div>';
@@ -32,13 +32,13 @@
         return '<tr><td>' + WFChrome.faceHtml(meta, 18) + '<a href="../font-detail.html?id=' + esc(f.fontId) + '">' + esc(meta.name) + '</a><br><span class="mono t-12 muted">' + esc(meta.family) + '</span></td>' +
           '<td class="num">' + f.weights.join(' · ') + '</td><td>' + esc(WFApp.subsetLabel(f.subset)) + '</td>' +
           '<td class="num">' + WFEmbed.fmtBytes(WFApp.subsetBytes(meta, f.subset, f.weights.length)) + '</td>' +
-          '<td class="actions"><a class="btn-text" href="subset.html?project=' + esc(p.id) + '&font=' + esc(f.fontId) + '">调整</a> <button type="button" class="btn-text" data-remove-font="' + esc(f.fontId) + '">移除</button></td></tr>';
+          '<td class="actions"><a class="btn-text" href="subset.html?project=' + esc(p.id) + '&font=' + esc(f.fontId) + '">' + WFChrome.icon('scissors') + '调整</a> <button type="button" class="btn-text" data-remove-font="' + esc(f.fontId) + '">' + WFChrome.icon('trash') + '移除</button></td></tr>';
       }).join('') + '</tbody></table></div>';
   }
 
   function domainsPanel() {
     return '<div class="panel"><div class="panel-head"><p>字体文件只对白名单内域名返回。<code>localhost</code> 默认允许。</p>' +
-      '<form class="inline-form" id="domainForm"><input class="input" id="domainInput" placeholder="example.com 或 *.example.com" required /><button type="submit" class="btn">添加域名</button></form></div>' +
+      '<form class="inline-form" id="domainForm"><input class="input" id="domainInput" placeholder="example.com 或 *.example.com" required /><button type="submit" class="btn">' + WFChrome.icon('plus') + '添加域名</button></form></div>' +
       (p.domains.length ? '<table class="table"><thead><tr><th>域名</th><th>状态</th><th class="num">30 天请求</th><th>添加于</th><th></th></tr></thead><tbody>' +
         p.domains.map(function (d) {
           const u = (p.usage.byDomain || []).filter(function (x) { return x.host === d.host; })[0];
@@ -46,8 +46,8 @@
             '<td><span class="status-dot' + (d.verified ? '' : ' is-pending') + '">' + (d.verified ? '已验证 · ' + (d.method === 'file' ? '文件' : 'DNS') : '待验证') + '</span></td>' +
             '<td class="num">' + (u ? WFProto.formatCount(u.requests30d) : '—') + '</td>' +
             '<td class="mono muted">' + WFApp.fmtDate(d.addedAt).slice(0, 10) + '</td>' +
-            '<td class="actions">' + (d.verified ? '' : '<button type="button" class="btn-text" data-verify="' + esc(d.host) + '">我已完成验证</button> ') +
-            '<button type="button" class="btn-text" data-remove-domain="' + esc(d.host) + '">移除</button></td></tr>';
+            '<td class="actions">' + (d.verified ? '' : '<button type="button" class="btn-text" data-verify="' + esc(d.host) + '">' + WFChrome.icon('check') + '我已完成验证</button> ') +
+            '<button type="button" class="btn-text" data-remove-domain="' + esc(d.host) + '">' + WFChrome.icon('trash') + '移除</button></td></tr>';
         }).join('') + '</tbody></table>' : '<p class="empty">还没绑定域名，字体只能在本地开发环境加载。</p>') +
       '<p class="t-13 muted" style="margin-top:var(--s-5)">验证方式：在站点根目录放置 <code>/.well-known/windfonts-verify.txt</code>，内容为项目 ID <code>' + esc(p.id) + '</code>；或添加 DNS TXT 记录 <code>windfonts=' + esc(p.id) + '</code>。全部域名与拦截记录见<a href="domains.html">域名</a>。</p></div>';
   }
@@ -70,7 +70,7 @@
       '<ul class="version-list">' + p.versions.map(function (v) {
         return '<li><span class="v' + (v.current ? ' is-current' : '') + '">v' + v.v + '</span><span class="note">' + esc(v.note) + '</span>' +
           '<span class="num muted">' + WFEmbed.fmtBytes(v.bytes) + '</span><span class="at">' + WFApp.fmtDate(v.at) +
-          (v.current ? '' : ' · <button type="button" class="btn-text" data-rollback="' + v.v + '">回滚</button>') + '</span></li>';
+          (v.current ? '' : ' · <button type="button" class="btn-text" data-rollback="' + v.v + '">' + WFChrome.icon('history') + '回滚</button>') + '</span></li>';
       }).join('') + '</ul></div>';
   }
 

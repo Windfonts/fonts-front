@@ -72,9 +72,10 @@
     });
   }
 
-  /* —— 图标：MingCute 线性（Apache-2.0），经墨图爱可 icons.motucloud.com 选取，打包在 assets/icons.svg —— */
+  /* —— 图标：Remix Icon 线标（Apache-2.0），经墨图爱可 icons.motucloud.com/collection/ri 选取，打包在 assets/icons.svg。symbol id 是站内语义名。 —— */
+  const ICON_VER = '20260922ri';
   function icon(name, cls) {
-    return '<svg class="icon' + (cls ? ' ' + cls : '') + '" aria-hidden="true" focusable="false"><use href="' + href('assets/icons.svg') + '#i-' + name + '"/></svg>';
+    return '<svg class="icon' + (cls ? ' ' + cls : '') + '" aria-hidden="true" focusable="false"><use href="' + href('assets/icons.svg') + '?v=' + ICON_VER + '#i-' + name + '"/></svg>';
   }
   function themeIcon() { return icon(theme() === 'dark' ? 'sun' : 'moon'); }
 
@@ -362,6 +363,7 @@
   }
 
   const REL_LABEL = { original: '原作', locale: '地区版', fork: '派生', commissioned: '委托定制', collab: '合作' };
+  const REL_ICON = { original: 'commit', locale: 'merge', fork: 'branch', collab: 'merge' };
   const FOLLOW_COPY = {
     inherit: '沿用上游许可，改完要换名并保留声明。',
     own: '以品牌方许可为准。',
@@ -380,10 +382,10 @@
     if (maker) bits.push(maker.name + ' 制作');
     const follow = (L && FOLLOW_COPY[L.licenseFollows]) || '';
     return '<div class="license-cite lineage">' +
-      (bits.length ? '<p class="cite-meta">' + icon('history') + '<span>' + esc(bits.join(' · ')) + '</span></p>' : '') +
+      (bits.length ? '<p class="cite-meta">' + icon(REL_ICON[(L && L.relation)] || 'branch') + '<span>' + esc(bits.join(' · ')) + '</span></p>' : '') +
       (follow ? '<p class="cite-warn">' + esc(follow) + '</p>' : '') +
       (L && L.group
-        ? '<p class="cite-links"><a href="' + href('fonts.html?lineage=' + encodeURIComponent(L.group)) + '">' + icon('link') + '查看同系字体</a></p>'
+        ? '<p class="cite-links"><a href="' + href('fonts.html?lineage=' + encodeURIComponent(L.group)) + '">' + icon('compare') + '查看同系字体</a></p>'
         : '') +
     '</div>';
   }
@@ -415,46 +417,71 @@
   function isLineagePack(f, rootName) {
     return !!(rootName && f.name !== rootName && f.name.indexOf(rootName) === 0);
   }
-  function lineageRow(f, on, faceOf) {
-    const face = faceOf ? faceOf(f) : '';
-    return '<a class="lin-row' + (on ? ' is-on' : '') + '" href="' + href('font-detail.html?id=' + encodeURIComponent(f.id)) + '">' +
-      '<span class="lin-name"' + (face ? ' style="' + face + '"' : '') + '>' + esc(f.name) + '</span>' +
-      '<span class="lin-rel">' + esc(REL_LABEL[(f.lineage || {}).relation] || '同系') + (on ? ' · 当前' : '') + '</span></a>';
-  }
-  function lineageGhostRow(name) {
-    return '<span class="lin-row is-miss">' +
-      '<span class="lin-name">' + esc(name) + '</span>' +
-      '<span class="lin-rel">原作 · 库里没有</span></span>';
-  }
-  function lineageTreeHtml(font, list, faceOf) {
+  function lineageSplit(font, list) {
     const all = lineageKin(list, font);
     const L = (font && font.lineage) || {};
     const up = L.upstreamName || '';
     const root = findFontByName(list, up) ||
       all.filter(function (f) { return (f.lineage || {}).relation === 'original'; })[0] ||
       null;
-    const peers = all.filter(function (f) {
-      if (f.id === font.id) return false;
+    const rest = all.filter(function (f) {
       if (root && f.id === root.id) return false;
       if (isLineagePack(f, (root && root.name) || up)) return false;
       return true;
     });
-    if (!root && !up && all.length < 2) return '';
-    const n = all.length || 1;
-    const lead = '<p class="lin-lead">' + esc(L.groupName || up || '同系') + ' · ' + n + ' 款' +
-      (!root && up ? ' · 原作不在库里' : '') + '</p>';
-    if (root || up) {
-      const kids = peers.slice();
-      if (!root || font.id !== root.id) kids.unshift(font);
-      const head = root
-        ? lineageRow(root, root.id === font.id, faceOf)
-        : lineageGhostRow(up);
-      return lead + '<div class="lin-tree">' + head +
-        '<div class="lin-kids">' + kids.map(function (k) { return lineageRow(k, k.id === font.id, faceOf); }).join('') + '</div></div>';
-    }
-    return lead + '<div class="lin-tree lin-flat">' + all.map(function (f) {
-      return lineageRow(f, f.id === font.id, faceOf);
-    }).join('') + '</div>';
+    rest.sort(function (a, b) {
+      if (a.id === font.id) return -1;
+      if (b.id === font.id) return 1;
+      return 0;
+    });
+    const buckets = { fork: [], locale: [], collab: [], commissioned: [], other: [] };
+    rest.forEach(function (f) {
+      const rel = (f.lineage || {}).relation;
+      (buckets[rel] || buckets.other).push(f);
+    });
+    Object.keys(buckets).forEach(function (k) {
+      buckets[k].sort(function (a, b) {
+        if (a.id === font.id) return -1;
+        if (b.id === font.id) return 1;
+        return 0;
+      });
+    });
+    return { all: all, L: L, up: up, root: root, rest: rest, buckets: buckets, n: all.length || 1 };
+  }
+  function lineageRow(f, on, faceOf) {
+    const face = faceOf ? faceOf(f) : '';
+    return '<a class="lin-row' + (on ? ' is-on' : '') + '" href="' + href('font-detail.html?id=' + encodeURIComponent(f.id)) + '">' +
+      '<span class="lin-name"' + (face ? ' style="' + face + '"' : '') + '>' + esc(f.name) + '</span>' +
+      (on ? '<span class="lin-rel">当前</span>' : '') + '</a>';
+  }
+  function lineageGhostRow(name) {
+    return '<span class="lin-row is-miss">' +
+      '<span class="lin-name">' + esc(name) + '</span>' +
+      '<span class="lin-rel">库里没有</span></span>';
+  }
+  function lineageBlock(title, rows) {
+    return rows.length ? '<p class="lin-h">' + esc(title) + '</p>' + rows.join('') : '';
+  }
+  function lineageListHtml(font, split, faceOf) {
+    const originRow = split.root
+      ? lineageRow(split.root, split.root.id === font.id, faceOf)
+      : (split.up ? lineageGhostRow(split.up) : '');
+    const rowOf = function (f) { return lineageRow(f, f.id === font.id, faceOf); };
+    return '<div class="lin-tree">' +
+      lineageBlock('原作', originRow ? [originRow] : []) +
+      lineageBlock('派生', split.buckets.fork.map(rowOf)) +
+      lineageBlock('地区版', split.buckets.locale.map(rowOf)) +
+      lineageBlock('合作', split.buckets.collab.map(rowOf)) +
+      lineageBlock('委托定制', split.buckets.commissioned.map(rowOf)) +
+      lineageBlock('同系', split.buckets.other.map(rowOf)) +
+      '</div>';
+  }
+  function lineageTreeHtml(font, list, faceOf) {
+    const split = lineageSplit(font, list);
+    if (!split.root && !split.up && split.all.length < 2) return '';
+    const lead = '<p class="lin-lead">' + esc(split.L.groupName || split.up || '同系') + ' · ' + split.n + ' 款' +
+      (!split.root && split.up ? ' · 原作不在库里' : '') + '</p>';
+    return lead + lineageListHtml(font, split, faceOf);
   }
 
   function foundryHtml(font, opts) {
@@ -499,12 +526,25 @@
     return '待核实';
   }
 
+  function loadSearch() {
+    if (window.WFSearch || document.querySelector('script[data-wf-search]')) {
+      if (window.WFSearch) WFSearch.mount();
+      return;
+    }
+    const s = document.createElement('script');
+    s.src = href('js/wf-search.js?v=20260922e');
+    s.setAttribute('data-wf-search', '');
+    s.onload = function () { if (window.WFSearch) WFSearch.mount(); };
+    document.head.appendChild(s);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     applyPricingVisibility();
     document.querySelectorAll('[data-topbar]').forEach(renderTopbar);
     ensureFooter();
     const s = document.getElementById('navSearch');
     if (s) WFProto.bindNavSearch(s, document.getElementById('navSearchClear'));
+    loadSearch();
   });
 
   function holdScroll(node, fn, lockY) {
@@ -549,8 +589,11 @@
     licenseCiteHtml: licenseCiteHtml,
     lineageHtml: lineageHtml,
     lineageKin: lineageKin,
+    lineageSplit: lineageSplit,
     lineageTreeHtml: lineageTreeHtml,
+    lineageListHtml: lineageListHtml,
     findFontByName: findFontByName,
+    REL_LABEL: REL_LABEL,
     showPricing: showPricing,
     VERIFIED_SVG: VERIFIED_SVG,
     holdScroll: holdScroll

@@ -78,7 +78,7 @@
       '<button type="button" class="btn" data-share>' + WFChrome.icon('link') + '复制链接</button>' +
       '<button type="button" class="btn" data-copy>' + WFChrome.icon('copy') + '复制图</button>' +
       '<button type="button" class="btn btn-ink" data-export>' + WFChrome.icon('download') + '导出图</button></div>' +
-      '<button type="button" class="btn" data-done>完成</button></div>'
+      '<button type="button" class="btn" data-done>' + WFChrome.icon('check') + '完成</button></div>'
     };
   }
   function fmt(k, v) {
@@ -196,6 +196,42 @@
       const sl = ctl.querySelector('[data-k="size"]');
       if (sl) sl.value = String(state.size);
     }
+    /* 不换行的模板（方印）遇上留下的长句：缩到画心里面，短句再回到原来的字号 */
+    function fitLine() {
+      if (!hero || state.wrap || state.fit) return;
+      const cap = state.lineCap || state.size;
+      const box = hero.parentElement || stage;
+      if (!box || !box.clientWidth) return;
+      const prevSize = hero.style.fontSize;
+      const prevWs = hero.style.whiteSpace;
+      const prevLs = hero.style.letterSpacing;
+      hero.style.whiteSpace = 'nowrap';
+      hero.style.fontSize = cap + 'px';
+      hero.style.letterSpacing = (state.tracking || 0) + 'em';
+      const bs = getComputedStyle(box);
+      const have = Math.max(1, box.clientWidth - (parseFloat(bs.paddingLeft) || 0) - (parseFloat(bs.paddingRight) || 0) - 8);
+      const need = Math.max(1, hero.scrollWidth);
+      hero.style.fontSize = prevSize;
+      hero.style.whiteSpace = prevWs;
+      hero.style.letterSpacing = prevLs;
+      const next = need <= have + 1 ? cap : Math.max(12, Math.min(240, Math.floor(cap * have / need)));
+      if (next === state.size) return;
+      state.size = next;
+      const sl = ctl.querySelector('[data-k="size"]');
+      if (sl) sl.value = String(next);
+    }
+    function slotHas(key) {
+      return ((stage && stage.getAttribute('data-slots')) || '').split(/\s+/).indexOf(key) !== -1;
+    }
+    function layerLive(key) {
+      if (key === 'sub' || key === 'avatar') return slotHas(key);
+      if (key === 'name' || key === 'brand' || key === 'mark') {
+        if (!stage || stage.getAttribute('data-credit') === '0') return false;
+        if (stage.getAttribute('data-layout') === 'fill' && !stage.hasAttribute('data-has-avatar')) return false;
+        return true;
+      }
+      return true;
+    }
     function hideList() {
       return LAYERS.map(function (it) { return it[0]; }).filter(function (k) { return state.hide && state.hide[k]; });
     }
@@ -205,14 +241,31 @@
       if (list.length) stage.setAttribute('data-hide', list.join(' '));
       else stage.removeAttribute('data-hide');
       ctl.querySelectorAll('[data-layer]').forEach(function (el) {
-        const on = !(state.hide && state.hide[el.getAttribute('data-layer')]);
+        const key = el.getAttribute('data-layer');
+        const live = layerLive(key);
+        el.hidden = !live;
+        const on = live && !(state.hide && state.hide[key]);
         el.classList.toggle('is-on', on);
         el.setAttribute('aria-pressed', on ? 'true' : 'false');
       });
+      const layerRow = ctl.querySelector('.tester-layers');
+      if (layerRow) layerRow.hidden = !LAYERS.some(function (it) { return layerLive(it[0]); });
+      const subField = ctl.querySelector('[data-field="sub"]');
+      if (subField) subField.hidden = !slotHas('sub');
+      const avField = ctl.querySelector('[data-field="avatar"]');
+      if (avField) avField.hidden = !slotHas('avatar');
+      ['face'].forEach(function (id) {
+        const row = ctl.querySelector('[data-k="' + id + '"]');
+        const host = row && row.closest('.tester-row');
+        if (host) host.hidden = !slotHas('avatar');
+      });
+      const empty = ctl.querySelector('[data-media-empty]');
+      if (empty) empty.hidden = true;
     }
     function apply() {
       if (!hero) return;
       if (state.fit) fitText();
+      else fitLine();
       const hs = hero.style;
       hs.fontSize = state.size + 'px';
       hs.lineHeight = String(state.leading);
@@ -290,8 +343,9 @@
       state.size = T.size; state.leading = T.leading; state.tracking = T.tracking;
       state.align = T.align; state.wrap = !!T.wrap; state.fit = !!T.fit;
       state.face = T.face || 88; state.zoom = 1; state.bgx = 50; state.bgy = 50; state.scrim = 62;
-      state.ink = T.invert ? tokenHex('--paper', '#ffffff') : '';
-      state.paper = T.invert ? tokenHex('--ink', '#111111') : '';
+      state.lineCap = T.size;
+      state.ink = T.invert ? '#f2f2f2' : '';
+      state.paper = T.invert ? '#111111' : '';
       if (!keepText) {
         if (T.hero) hero.textContent = T.hero;
         const subEl = ctl.querySelector('[data-c="sub"]');
@@ -301,12 +355,19 @@
       WFCard.paintStudio(tpl, stage);
     }
     function overlay(src, keepHero) {
-      takeTpl(WFCard.applyTemplate(stage, src.tpl), keepHero);
-      if (keepHero && src.hero != null) hero.textContent = String(src.hero);
+      const keepText = !!(keepHero && src.hero != null);
+      takeTpl(WFCard.applyTemplate(stage, src.tpl), keepText);
+      if (src.hero != null) hero.textContent = String(src.hero);
       TWEAK.forEach(function (k) { if (src[k] != null) state[k] = Number(src[k]); });
+      if (src.size != null) state.lineCap = Number(src.size);
       if (src.align) state.align = src.align;
       if (src.ink != null) state.ink = src.ink;
       if (src.paper != null) state.paper = src.paper;
+      const cur = WFCard.currentTemplate(stage);
+      if (cur && cur.invert && state.ink === tokenHex('--paper', '#ffffff') && state.paper === tokenHex('--ink', '#111111')) {
+        state.ink = '#f2f2f2';
+        state.paper = '#111111';
+      }
       if (src.wrap !== undefined) state.wrap = !!src.wrap;
       if (src.fit !== undefined) state.fit = !!src.fit;
       if (src.weight) state.weight = String(src.weight);
@@ -316,9 +377,15 @@
         if (!(wide && src.frame === 'narrow')) WFCard.applyFrame(stage, src.frame);
       }
       ['sub', 'avatar', 'bg'].forEach(function (k) {
+        if (src[k] == null) return;
         const el = ctl.querySelector('[data-c="' + k + '"]');
         if (el) { el.value = durable(src[k]); setContent(k, el.value); }
       });
+      if (src.sub == null && keepText) {
+        const T = WFCard.currentTemplate(stage);
+        const subEl = ctl.querySelector('[data-c="sub"]');
+        if (T && T.sub !== undefined && subEl) { subEl.value = T.sub; setContent('sub', T.sub); }
+      }
       [['cardName','[data-card-name]'],['cardBrand','[data-card-brand]']].forEach(function (p) { if (src[p[0]] == null) return; var el = stage.querySelector(p[1]); if (el) el.textContent = src[p[0]]; });
       state.hide = {};
       String(src.hide || '').split(/\s+/).forEach(function (k) { if (k) state.hide[k] = 1; });
@@ -383,7 +450,7 @@
       const k = t.getAttribute('data-k');
       if (k) {
         state[k] = Number(t.value);
-        if (k === 'size') state.fit = false;
+        if (k === 'size') { state.fit = false; state.lineCap = state[k]; }
         apply();
         return;
       }
@@ -540,19 +607,32 @@
       requestAnimationFrame(function () { WFCard.fit(stage, stage && stage.parentElement); markCard(); });
       if (opts.onRestore) opts.onRestore({ size: state.size, weight: state.weight });
     }
+    function savedCard() {
+      const all = loadPref();
+      return (all.fonts && font && all.fonts[font.id]) || null;
+    }
+    /* 分享链接只带模板和两句文案。和本机刚存的是同一张时，用完整记录，否则背景和字号会被短链接清掉。 */
+    function sameShare(share, mine) {
+      if (!share || !mine || !mine.tpl) return false;
+      if (share.tpl && share.tpl !== mine.tpl) return false;
+      if (share.frame && share.frame !== mine.frame) return false;
+      if (share.hero && share.hero !== String(mine.hero || '').trim().slice(0, 80)) return false;
+      if (share.sub && share.sub !== String(mine.sub || '').trim().slice(0, 80)) return false;
+      return true;
+    }
     function cardSeed() {
       const share = WFCard.readShare();
+      const mine = savedCard();
+      if (share && share.from === 'bag' && mine && mine.tpl) return mine;
       if (share && (share.tpl || share.hero || share.sub || share.frame)) {
-        const rec = { tpl: share.tpl || 'poem' };
+        if (sameShare(share, mine)) return mine;
+        const rec = { tpl: share.tpl || (mine && mine.tpl) || 'poem' };
         if (share.frame) rec.forceFrame = share.frame;
         if (share.hero) rec.hero = share.hero;
         if (share.sub) rec.sub = share.sub;
         return rec;
       }
-      if (share && share.from === 'bag') {
-        const all = loadPref();
-        if (all.tpl) return all;
-      }
+      if (mine && mine.tpl) return mine;
       return null;
     }
     function applyWallMode() {

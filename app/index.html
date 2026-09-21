@@ -17,7 +17,7 @@
   <main class="app-main" id="root"><p class="loading">正在加载…</p></main>
 
   <script src="../js/wf-proto.js"></script>
-  <script src="../js/wf-chrome.js"></script>
+  <script src="../js/wf-chrome.js?v=20260922ri"></script>
   <script src="../js/wf-embed.js"></script>
   <script src="../js/wf-app.js"></script>
   <script>
@@ -39,7 +39,7 @@
 
         root.innerHTML =
           '<div class="app-head"><div><h1>概览</h1><p class="sub">' + s.plan.name + '版 · 近 30 天</p></div>' +
-            '<div class="app-actions"><a class="btn" href="subset.html">子集化</a><a class="btn btn-ink" href="projects.html?new=1">新建项目</a></div></div>' +
+            '<div class="app-actions"><a class="btn" href="subset.html">' + WFChrome.icon('scissors') + '子集化</a><a class="btn btn-ink" href="projects.html?new=1">' + WFChrome.icon('plus') + '新建项目</a></div></div>' +
           '<div class="stats">' +
             '<div class="stat"><div class="v">' + ps.length + '<small>/ ' + s.plan.quota.projects + '</small></div><div class="l">项目</div></div>' +
             '<div class="stat"><div class="v">' + WFApp.fmtGB(bytes) + '<small>GB / ' + s.plan.quota.trafficGB + '</small></div><div class="l">本月流量</div></div>' +
@@ -48,7 +48,7 @@
           '</div>' +
           '<section class="app-section"><h2>每日请求<span class="more mono">30 天</span></h2>' + WFApp.sparkline(daily) +
             '<div class="spark-meta"><span>30 天前</span><span>今天</span></div></section>' +
-          '<section class="app-section"><h2>项目<a class="more" href="projects.html">全部 →</a></h2><ul class="proj-list">' +
+          '<section class="app-section"><h2>项目<a class="more" href="projects.html">' + WFChrome.icon('arrow-right') + '全部</a></h2><ul class="proj-list">' +
             ps.map(function (p) {
               return '<li><a class="name" href="project.html?id=' + esc(p.id) + '">' + esc(p.name) + '<small>' + esc(p.slug) + '</small></a>' +
                 '<span><span class="num">' + p.fonts.length + '</span> 字体</span>' +

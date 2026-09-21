@@ -132,14 +132,14 @@
       '<article class="pair-stage">' +
         '<div class="pair-picks">' +
           '<div class="pair-pick"><span class="k">标题</span><select class="select" id="pairTitleSel" aria-label="标题字体">' + pairOpts(fonts, title.id) + '</select></div>' +
-          '<button type="button" class="btn-text" id="pairSwap">对调</button>' +
+          '<button type="button" class="btn-text" id="pairSwap">' + WFChrome.icon('refresh') + '对调</button>' +
           '<div class="pair-pick"><span class="k">正文</span><select class="select" id="pairBodySel" aria-label="正文字体">' + pairOpts(fonts, body.id) + '</select></div>' +
         '</div>' +
         '<p class="pair-title" style="font-family:' + esc(WFProto.cssFamilyStack(title.family)) + ';font-weight:' + tw + '">' + esc(sample) + '</p>' +
         '<p class="pair-body" style="font-family:' + esc(WFProto.cssFamilyStack(body.family)) + ';font-weight:' + bw + '">' + esc(sample) + '</p>' +
         '<div class="pair-acts">' +
-          '<a href="' + studioHref(title.id) + '">编辑标题样张</a>' +
-          '<a href="' + studioHref(body.id) + '">编辑正文样张</a>' +
+          '<a href="' + studioHref(title.id) + '">' + WFChrome.icon('edit') + '编辑标题样张</a>' +
+          '<a href="' + studioHref(body.id) + '">' + WFChrome.icon('edit') + '编辑正文样张</a>' +
         '</div>' +
       '</article>';
     document.getElementById('pairTitleSel').addEventListener('change', function () {

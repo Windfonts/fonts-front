@@ -15,14 +15,14 @@
       '<section class="app-section"><h2>账号</h2><div class="grid cols-2">' +
         '<div class="field"><label>显示名</label><input class="input" id="accName" value="' + esc(u.name || '') + '" /></div>' +
         '<div class="field"><label>邮箱</label><input class="input" value="' + esc(u.email || '') + '" disabled /></div></div>' +
-        '<p style="margin-top:var(--s-4)"><button type="button" class="btn" id="saveAcc">保存</button></p></section>' +
+        '<p style="margin-top:var(--s-4)"><button type="button" class="btn" id="saveAcc">' + WFChrome.icon('check') + '保存</button></p></section>' +
       (WFChrome.showPricing()
-        ? '<section class="app-section" data-pricing><h2>套餐<a class="more" href="../pricing.html">对比 →</a></h2>' +
+        ? '<section class="app-section" data-pricing><h2>套餐<a class="more" href="../pricing.html">' + WFChrome.icon('rows') + '对比</a></h2>' +
           '<dl class="kv" style="max-width:36rem">' +
-            '<div><dt>当前</dt><dd>' + esc(s.plan.name) + '版 · ¥99 / 月</dd></div>' +
-            '<div><dt>项目</dt><dd class="num">' + s.projects.length + ' / ' + s.plan.quota.projects + '</dd></div>' +
-            '<div><dt>月流量</dt><dd class="num">' + s.plan.quota.trafficGB + ' GB</dd></div>' +
-            '<div><dt>团队</dt><dd><a href="team.html">' + (s.team || []).length + ' 人</a></dd></div></dl>' +
+            '<div><dt>' + WFChrome.icon('certificate') + '当前</dt><dd>' + esc(s.plan.name) + '版 · ¥99 / 月</dd></div>' +
+            '<div><dt>' + WFChrome.icon('folder') + '项目</dt><dd class="num">' + s.projects.length + ' / ' + s.plan.quota.projects + '</dd></div>' +
+            '<div><dt>' + WFChrome.icon('cloud') + '月流量</dt><dd class="num">' + s.plan.quota.trafficGB + ' GB</dd></div>' +
+            '<div><dt>' + WFChrome.icon('group') + '团队</dt><dd><a href="team.html">' + (s.team || []).length + ' 人</a></dd></div></dl>' +
           '<p class="t-13 muted" style="margin-top:var(--s-4)">发票与付款方式在商务后台管理；企业版请<a href="mailto:hi@windfonts.com">联系销售</a>。</p></section>'
         : '') +
       '<section class="app-section"><h2>项目默认</h2><div class="grid cols-2">' +
@@ -31,7 +31,7 @@
         }).join('') + '</select><span class="hint">新项目和没单独改过的嵌入代码会用这个。</span></div></div></section>' +
       '<section class="app-section"><h2>API 密钥</h2>' +
         '<div class="code"><button type="button" class="copy" id="copyKey">复制</button><pre id="apiKey">' + esc(s.settings.apiKey.slice(0, 12)) + '••••••••••••</pre></div>' +
-        '<p class="t-13 muted" style="margin-top:var(--s-3)">创建于 ' + WFApp.fmtDate(s.settings.apiKeyCreatedAt) + ' · 用于动态子集化 API 与 CI 发布。 <button type="button" class="btn-text" id="rotateKey">重新生成</button></p>' +
+        '<p class="t-13 muted" style="margin-top:var(--s-3)">创建于 ' + WFApp.fmtDate(s.settings.apiKeyCreatedAt) + ' · 用于动态子集化 API 与 CI 发布。 <button type="button" class="btn-text" id="rotateKey">' + WFChrome.icon('refresh') + '重新生成</button></p>' +
         '<div class="code" style="margin-top:var(--s-4)"><pre>curl -X POST https://cn.windfonts.com/v1/subset \\\n  -H "Authorization: Bearer $WINDFONTS_KEY" \\\n  -d family=wenfeng-albbpht -d weight=400 \\\n  --data-urlencode text="让中文字体在网页上，一行代码可用。"</pre></div></section>' +
       '<section class="app-section" id="claim"><h2>认领厂商</h2>' +
         '<p class="t-14" style="max-width:40em;color:var(--ink-2)">代表字体厂商或独立设计师可认领品牌页，维护标志、介绍与官网。通过后名称旁显示认证徽记。</p>' +
@@ -40,19 +40,19 @@
           '<div class="field"><label>官网</label><input class="input" id="claimSite" placeholder="https://" /></div>' +
           '<div class="field"><label>联系邮箱（请用官网域名）</label><input class="input" id="claimEmail" type="email" placeholder="brand@foundry.com" /></div>' +
           '<div class="field"><label>授权原文链接</label><input class="input" id="claimLic" placeholder="https://…/license" /></div></div>' +
-        '<p style="margin-top:var(--s-4)"><button type="button" class="btn" id="claimBtn">提交认领</button></p>' +
+        '<p style="margin-top:var(--s-4)"><button type="button" class="btn" id="claimBtn">' + WFChrome.icon('idcard') + '提交认领</button></p>' +
         (claims.length ? '<table class="table" style="margin-top:var(--s-5)"><thead><tr><th>厂商</th><th>状态</th><th>提交于</th></tr></thead><tbody>' +
           claims.map(function (c) {
             return '<tr><td>' + esc(c.name) + '<br><span class="mono t-12 muted">' + esc(c.slug) + '</span></td>' +
               '<td><span class="status-dot' + (c.status === 'approved' ? '' : ' is-pending') + '">' + (c.status === 'approved' ? '已通过' : '审核中') + '</span></td>' +
               '<td class="mono muted">' + WFApp.fmtDate(c.submittedAt).slice(0, 10) + '</td></tr>';
           }).join('') + '</tbody></table>' : '') + '</section>' +
-      '<section class="app-section"><h2>审计日志<a class="more" href="team.html">团队 →</a></h2>' +
+      '<section class="app-section"><h2>审计日志<a class="more" href="team.html">' + WFChrome.icon('group') + '团队</a></h2>' +
         (audit.length ? '<ul class="version-list">' + audit.map(function (a) {
           return '<li><span class="v">' + esc(a.action === '提交厂商认领' ? '提交认领' : a.action) + '</span><span class="note">' + esc(a.detail) + '</span>' +
             '<span class="num muted">' + esc(a.actor) + '</span><span class="at">' + WFApp.fmtDate(a.at) + '</span></li>';
         }).join('') + '</ul>' : '<p class="empty">还没有操作记录。</p>') + '</section>' +
-      '<section class="app-section"><h2>本地数据</h2><p class="t-13 muted">控制台数据保存在本机浏览器。 <button type="button" class="btn-text" id="resetData">恢复示例数据</button></p></section>';
+      '<section class="app-section"><h2>本地数据</h2><p class="t-13 muted">控制台数据保存在本机浏览器。 <button type="button" class="btn-text" id="resetData">' + WFChrome.icon('refresh') + '恢复示例数据</button></p></section>';
 
     document.getElementById('saveAcc').addEventListener('click', function () {
       WFChrome.login({ name: document.getElementById('accName').value || u.name, email: u.email });

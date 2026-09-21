@@ -47,7 +47,7 @@
 }
 .glyph-wall .card-safe[hidden] { display: none; }
 
-/* —— 背景图 + 压色层：只有模板给了 bg 槽且填了地址才出现 —— */
+/* —— 背景图 + 压色层：选了预置图或填了地址就出现 —— */
 .glyph-wall .card-bg,
 .glyph-wall .card-scrim { display: none; position: absolute; inset: 0; width: 100%; height: 100%; }
 .glyph-wall .card-bg {
@@ -154,21 +154,18 @@
 .glyph-wall .wall-stage[data-layout="seal"] .card-lines { align-items: center; text-align: center; }
 .glyph-wall .wall-stage[data-layout="seal"] .card-avatar { width: var(--avatar-size, 96px); height: var(--avatar-size, 96px); order: -1; }
 /* 编辑态：卡片内联改字（主文 / 副文 / 字体名 / 品牌） */
-.glyph-wall.is-editing .wall-stage[data-card] .card-sub,
-.glyph-wall.is-editing .wall-stage[data-card] .card-name,
-.glyph-wall.is-editing .wall-stage[data-card] .card-brand { display: inline-block; min-width: 0.5em; cursor: text; outline: none; }
-.glyph-wall.is-editing .wall-stage[data-card] .card-sub:empty::before,
-.glyph-wall.is-editing .wall-stage[data-card] .card-name:empty::before,
-.glyph-wall.is-editing .wall-stage[data-card] .card-brand:empty::before {
+.glyph-wall.is-editing .wall-stage[data-card][data-slots~="sub"] .card-sub,
+.glyph-wall.is-editing .wall-stage[data-card]:not([data-credit="0"]):not([data-layout="fill"]) .card-name,
+.glyph-wall.is-editing .wall-stage[data-card]:not([data-credit="0"]):not([data-layout="fill"]) .card-brand { display: inline-block; min-width: 0.5em; cursor: text; outline: none; }
+.glyph-wall.is-editing .wall-stage[data-card][data-slots~="sub"] .card-sub:empty::before,
+.glyph-wall.is-editing .wall-stage[data-card]:not([data-credit="0"]):not([data-layout="fill"]) .card-name:empty::before,
+.glyph-wall.is-editing .wall-stage[data-card]:not([data-credit="0"]):not([data-layout="fill"]) .card-brand:empty::before {
   content: attr(data-placeholder); color: var(--gray-2); opacity: 0.55; pointer-events: none;
 }
 .glyph-wall.is-editing .wall-stage[data-card] .card-sub:focus,
 .glyph-wall.is-editing .wall-stage[data-card] .card-name:focus,
 .glyph-wall.is-editing .wall-stage[data-card] .card-brand:focus {
   outline: 1px dashed var(--gray-2); outline-offset: 3px; border-radius: 2px;
-}
-.glyph-wall.is-editing .wall-stage[data-layout="fill"] .card-meta {
-  display: flex; position: absolute; left: 64px; right: 64px; bottom: 48px; z-index: 2; padding: 0; gap: 20px;
 }
 .glyph-wall .wall-stage[data-hide~="sub"] .card-sub,
 .glyph-wall .wall-stage[data-hide~="avatar"] .card-avatar,

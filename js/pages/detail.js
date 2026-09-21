@@ -39,16 +39,21 @@
     return '许可还没核对，用之前先联系权利人。';
   }
 
-  function lineageBodyHtml(font, list, faceOf) {
+  function faceOf(f) {
+    const w = WFSpecimen.firstWeight(f);
+    WFProto.ensureFontCss(f.family, w);
+    return 'font-family:' + esc(WFProto.cssFamilyStack(f.family)) + ';font-weight:' + w;
+  }
+  function lineageBodyHtml(font, list) {
     const L = (font && font.lineage) || {};
     const tree = WFChrome.lineageTreeHtml(font, list, faceOf) || '';
     const kinN = WFChrome.lineageKin(list, font).length;
     const kin = L.group && kinN > 1
-      ? '<a class="btn" href="' + WFChrome.href('fonts.html?lineage=' + encodeURIComponent(L.group)) + '">查看全部同源字</a>'
+      ? '<a class="btn" href="' + WFChrome.href('fonts.html?lineage=' + encodeURIComponent(L.group)) + '">' + WFChrome.icon('compare') + '查看全部同源字</a>'
       : '';
-    return tree +
-      '<div class="lin-acts">' +
-        '<a class="btn ink-design" href="' + WFChrome.href('app/upload.html?upstream=' + encodeURIComponent(font.id)) + '">上传你的字体</a>' +
+  return tree +
+    '<div class="lin-acts">' +
+      '<a class="btn ink-design" href="' + WFChrome.href('app/upload.html?upstream=' + encodeURIComponent(font.id)) + '">' + WFChrome.icon('upload') + '上传你的字体</a>' +
         kin +
       '</div>';
   }
@@ -73,23 +78,18 @@
     const user = WFChrome.user();
     const sample = WFSpecimen.PRESETS.filter(function (p) { return p.id === 'poem'; })[0].text;
 
-    // [标签, 值, 值是否为 HTML, 仅开发模式]。字体本身的属性两边都给；只有接入机制（版本、字形数）归开发。
+    // 字体本身的属性两边都给；只有接入机制（版本、字形数）归开发。
     const kv = [
-      maker ? ['制作方', '<a href="foundry.html?slug=' + encodeURIComponent(maker.id) + '">' + esc(maker.name) + '</a>', true] : null,
-      ['分类', WFChrome.catLabel(font.category) || font.category],
-      ['语言', (font.languages || []).map(function (l) { return l === '英语' ? '英文' : l; }).join(' · ')],
-      ['发布', font.releaseYear ? String(font.releaseYear) : ''],
-      ['浏览', font.viewCount ? WFProto.formatCount(font.viewCount) : ''],
-      ['版本', font.version, false, true],
-      ['字形数', font.glyphCount ? WFProto.formatCount(font.glyphCount) : '', false, true]
-    ].filter(function (r) { return r && r[1]; });
+      maker ? { icon: 'palette', dt: '制作方', dd: '<a href="foundry.html?slug=' + encodeURIComponent(maker.id) + '">' + esc(maker.name) + '</a>', html: true } : null,
+      { icon: 'classify', dt: '分类', dd: WFChrome.catLabel(font.category) || font.category },
+      { icon: 'translate', dt: '语言', dd: (font.languages || []).map(function (l) { return l === '英语' ? '英文' : l; }).join(' · ') },
+      { icon: 'calendar', dt: '发布', dd: font.releaseYear ? String(font.releaseYear) : '' },
+      { icon: 'eye', dt: '浏览', dd: font.viewCount ? WFProto.formatCount(font.viewCount) : '' },
+      { icon: 'version', dt: '版本', dd: font.version, dev: true },
+      { icon: 'text', dt: '字形数', dd: font.glyphCount ? WFProto.formatCount(font.glyphCount) : '', dev: true }
+    ].filter(function (r) { return r && r.dd; });
 
-    function faceOf(f) {
-      const w = WFSpecimen.firstWeight(f);
-      WFProto.ensureFontCss(f.family, w);
-      return 'font-family:' + esc(WFProto.cssFamilyStack(f.family)) + ';font-weight:' + w;
-    }
-    const lineageBody = lineageBodyHtml(font, list, faceOf);
+    const lineageBody = lineageBodyHtml(font, list);
     const wallText = sample || font.name;
     const crumb = '<p class="crumb"><a href="fonts.html">字体库</a><span>/</span>' +
       (font.category ? '<a href="fonts.html?cat=' + encodeURIComponent(font.category) + '">' + esc(WFChrome.catLabel(font.category) || font.category) + '</a><span>/</span>' : '') +
@@ -118,7 +118,7 @@
               }).join('') + '</div>'
             : '') +
           '<span class="spacer"></span>' +
-          '<button type="button" class="btn-text" id="btnWallReset" hidden>灰墙</button>' +
+          '<button type="button" class="btn-text" id="btnWallReset" hidden>' + WFChrome.icon('text') + '灰墙</button>' +
           '<button type="button" class="btn-text" id="btnShare" hidden>' + WFChrome.icon('link') + '复制链接</button>' +
           '<button type="button" class="btn-text for-design" id="btnEdit">' + WFChrome.icon('edit') + '编辑样张</button>' +
         '</div>' +
@@ -143,7 +143,7 @@
       '</div>' +
       '<div class="detail-body">' +
         '<div class="detail-main">' +
-          '<section class="panel for-dev" id="use"><div class="panel-head"><h2>使用</h2>' +
+          '<section class="panel for-dev" id="use"><div class="panel-head"><h2>' + WFChrome.icon('code') + '使用</h2>' +
             '<div class="use-versions" id="versions">' + WFEmbed.VERSIONS.map(function (v, i) {
               return '<button type="button" class="chip' + (i === 0 ? ' is-on' : '') + '" data-version="' + v.id + '" title="' + esc(v.hint) + '">' +
                 v.label + ' <span class="n">≈ ' + WFEmbed.fmtBytes(WFEmbed.versionSize(font, v.id)) + '</span></button>';
@@ -153,12 +153,12 @@
               '<code>font-family</code> 用 <code>' + esc(WFEmbed.familyName(font.family)) + '</code>。</p></div>' +
           '</section>' +
           (weights.length > 1
-            ? '<section class="panel" id="weights"><div class="panel-head"><h2>字重</h2></div>' +
+            ? '<section class="panel" id="weights"><div class="panel-head"><h2>' + WFChrome.icon('font') + '字重</h2></div>' +
               '<div class="panel-pad weights-sheet" id="sheet">' + WFSpecimen.weightsSheetHtml(font, sample, w0) + '</div></section>'
             : '') +
-          '<section class="panel" id="glyphs"><div class="panel-head"><h2>字符表</h2><div class="glyph-tools" id="glyphTools"></div></div>' +
+          '<section class="panel" id="glyphs"><div class="panel-head"><h2>' + WFChrome.icon('hashtag') + '字符表</h2><div class="glyph-tools" id="glyphTools"></div></div>' +
             '<div class="panel-pad"><div class="glyph-summary" id="glyphSummary" aria-live="polite"></div><div class="glyph-blocks" id="glyphBlocks"></div></div></section>' +
-          '<section class="panel" id="license"><div class="panel-head"><h2>授权</h2>' +
+          '<section class="panel" id="license"><div class="panel-head"><h2>' + WFChrome.icon('certificate') + '授权</h2>' +
             '<div class="license-head"><span class="tier">' + esc(WFChrome.licenseTier(font)) + '</span>' +
               (font.licenseName ? '<span class="name">' + esc(font.licenseName) + '</span>' : '') + '</div></div>' +
             '<div class="panel-pad">' +
@@ -174,7 +174,7 @@
                 (font.purchaseUrl ? '<a href="' + esc(font.purchaseUrl) + '" target="_blank" rel="noopener noreferrer">购买授权</a>' : '') +
                 ' <a href="docs.html#license">许可类型说明</a></p></details></div>' +
           '</section>' +
-          '<section class="panel" id="lineage"><div class="panel-head"><h2>谱系</h2></div>' +
+          '<section class="panel" id="lineage"><div class="panel-head"><h2>' + WFChrome.icon('branch') + '谱系</h2></div>' +
             '<div class="panel-pad">' + lineageBody + '</div></section>' +
         '</div>' +
         '<aside class="detail-side" aria-label="字体资料">' +
@@ -187,14 +187,13 @@
               : '') +
             (WFChrome.brandVerified(font)
               ? '<p class="claim"><span class="badge-verified">' + WFChrome.VERIFIED_SVG + '</span> 已认领</p>'
-              : '<p class="claim is-quiet">未认领 · <a href="' + (WFChrome.brandSlug(font) ? 'claim.html?slug=' + encodeURIComponent(WFChrome.brandSlug(font)) : 'claim.html') + '">认领</a></p>') +
-            '<div class="side-meta"><h3>资料</h3><dl class="kv">' + kv.map(function (r) {
-              const html = !!r[2];
-              return '<div' + (r[3] ? ' class="for-dev"' : '') + '><dt>' + esc(r[0]) + '</dt><dd' + (!html && /^[\d,.\s]+$/.test(r[1]) ? ' class="num"' : '') + '>' +
-                (html ? r[1] : esc(r[1])) + '</dd></div>';
+              : '<p class="claim is-quiet">' + WFChrome.icon('verified') + '未认领 · <a href="' + (WFChrome.brandSlug(font) ? 'claim.html?slug=' + encodeURIComponent(WFChrome.brandSlug(font)) : 'claim.html') + '">认领</a></p>') +
+            '<div class="side-meta"><h3>' + WFChrome.icon('info') + '资料</h3><dl class="kv">' + kv.map(function (r) {
+              return '<div' + (r.dev ? ' class="for-dev"' : '') + '><dt>' + WFChrome.icon(r.icon) + esc(r.dt) + '</dt><dd' + (!r.html && /^[\d,.\s]+$/.test(r.dd) ? ' class="num"' : '') + '>' +
+                (r.html ? r.dd : esc(r.dd)) + '</dd></div>';
             }).join('') + '</dl></div>' +
           '</div>' +
-          '<div class="panel panel-pad"><h3>标签</h3><div class="chips">' + (font.tags || []).map(function (t) {
+          '<div class="panel panel-pad"><h3>' + WFChrome.icon('star') + '标签</h3><div class="chips">' + (font.tags || []).map(function (t) {
             return '<a class="chip" href="fonts.html?tag=' + encodeURIComponent(t) + '">' + esc(t) + '</a>';
           }).concat((font.useCases || []).map(function (t) {
             return '<a class="chip" href="fonts.html?keyword=' + encodeURIComponent(t) + '">' + esc(t) + '</a>';

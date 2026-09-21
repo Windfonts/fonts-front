@@ -75,7 +75,7 @@
             return '<tr><td><a href="project.html?id=' + esc(p.id) + '&tab=usage">' + esc(p.name) + '</a></td><td class="num">' + fmt(Math.round(p.usage.requests30d * k)) + '</td>' +
               '<td class="num">' + WFApp.fmtGB(p.usage.bytes30d * k) + ' GB</td><td class="num">' + Math.round(p.usage.perf.hitRate * 100) + '%</td></tr>';
           }).join('') + '</tbody></table></section>' +
-        '<section class="app-section"><h2>按域名<a class="more" href="domains.html">管理 →</a></h2><table class="table"><thead><tr><th>域名</th><th class="num">请求</th><th class="num">流量</th></tr></thead><tbody>' +
+        '<section class="app-section"><h2>按域名<a class="more" href="domains.html">' + WFChrome.icon('globe') + '管理</a></h2><table class="table"><thead><tr><th>域名</th><th class="num">请求</th><th class="num">流量</th></tr></thead><tbody>' +
           domains.map(function (d) {
             return '<tr><td class="mono">' + esc(d.host) + '<br><span class="t-12 muted">' + esc(d.project.name) + '</span></td><td class="num">' + fmt(Math.round(d.requests30d * k)) + '</td><td class="num">' + WFApp.fmtGB(d.bytes30d * k) + ' GB</td></tr>';
           }).join('') + '</tbody></table></section>' +

@@ -377,21 +377,28 @@
     return rec;
   }
 
+  function qval(s) {
+    return String(s).replace(/[&=#%?+]/g, function (ch) {
+      return encodeURIComponent(ch);
+    }).replace(/ /g, '%20');
+  }
   function sharePath(fontId, rec, opts) {
-    const q = new URLSearchParams();
-    q.set('id', fontId);
-    if (opts && opts.view) q.set('view', opts.view);
-    if (rec && rec.tpl) q.set('tpl', rec.tpl);
-    if (rec && rec.frame && SIZES[rec.frame]) q.set('frame', rec.frame);
+    const T = byId((rec && rec.tpl) || 'poem');
+    const parts = ['id=' + encodeURIComponent(fontId)];
+    if (opts && opts.view) parts.push('view=' + opts.view);
+    if (rec && rec.tpl) parts.push('tpl=' + rec.tpl);
+    if (rec && rec.frame && SIZES[rec.frame] && rec.frame !== T.frame) parts.push('frame=' + rec.frame);
     const t = String((rec && rec.hero) || '').trim().slice(0, 80);
     const s = String((rec && rec.sub) || '').trim().slice(0, 80);
-    if (t) q.set('t', t);
-    if (s) q.set('s', s);
-    return 'font-detail.html?' + q.toString();
+    if (t && t !== String(T.hero || '')) parts.push('t=' + qval(t));
+    if (s !== String(T.sub || '')) parts.push('s=' + qval(s));
+    return 'font-detail.html?' + parts.join('&');
   }
 
   function shareUrl(fontId, rec, opts) {
-    return new URL(sharePath(fontId, rec, opts), location.href).href;
+    const path = sharePath(fontId, rec, opts);
+    const u = new URL(location.href);
+    return u.origin + u.pathname.replace(/[^/]*$/, '') + path;
   }
 
   window.WFCard = {

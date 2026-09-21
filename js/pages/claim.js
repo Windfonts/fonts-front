@@ -27,8 +27,8 @@
       (fd ? '<div class="claim-who">' + WFChrome.foundryHtml({ ownerInfo: fd, foundryInfo: fd }, { small: true, sub: '认领此页' }) + '</div>' : '') +
       '<p>提交前先登录控制台。</p>' +
       '<p class="home-cta" style="margin-top:var(--s-5)">' +
-        '<a class="btn btn-ink" href="login.html?' + loginQuery() + '">登录后继续</a>' +
-        '<a class="btn" href="login.html?mode=signup&amp;' + loginQuery() + '">免费注册</a>' +
+        '<a class="btn btn-ink" href="login.html?' + loginQuery() + '">' + WFChrome.icon('user') + '登录后继续</a>' +
+        '<a class="btn" href="login.html?mode=signup&amp;' + loginQuery() + '">' + WFChrome.icon('user-add') + '免费注册</a>' +
       '</p>';
   }
 
@@ -52,7 +52,7 @@
           '<input class="input" id="claimEmail" type="email" placeholder="brand@foundry.com" /></div>' +
         '<div class="field"><label for="claimLic">授权原文链接</label>' +
           '<input class="input" id="claimLic" type="url" placeholder="https://…/license" /></div>' +
-        '<button type="submit" class="btn btn-ink" style="margin-top:var(--s-2)">提交认领</button>' +
+        '<button type="submit" class="btn btn-ink" style="margin-top:var(--s-2)">' + WFChrome.icon('idcard') + '提交认领</button>' +
       '</form>' +
       (claims.length
         ? '<table class="table" style="margin-top:var(--s-5)"><thead><tr><th>厂商</th><th>状态</th></tr></thead><tbody>' +

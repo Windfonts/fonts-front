@@ -228,10 +228,12 @@
   margin-top: var(--s-5); padding-top: var(--s-5); border-top: 1px solid var(--rule);
   font-size: var(--fs-13); color: var(--ink-2); line-height: 1.5;
 }
-.foundry-origins-label { color: var(--gray-2); flex: none; }
+.foundry-origins-label { color: var(--gray-2); flex: none; display: inline-flex; align-items: center; gap: 0.3em; }
+.foundry-origins-label .icon { width: 1em; height: 1em; }
 .foundry-upstream-item { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.35em 0.5em; }
 .foundry-upstream-item a { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
-.foundry-upstream-item .more { text-decoration: none; font-weight: var(--fw-label); }
+.foundry-upstream-item .more { text-decoration: none; font-weight: var(--fw-label); display: inline-flex; align-items: center; gap: 0.35em; }
+.foundry-upstream-item .more .icon { color: var(--gray); }
 .foundry-upstream-who {
   display: inline-flex; align-items: center; gap: 0.35em;
   color: var(--ink); text-decoration: none; font-weight: var(--fw-label);
@@ -242,8 +244,10 @@
   background: var(--fill); display: grid; place-items: center; font-size: var(--fs-12);
 }
 .foundry-eco .foundry-upstream-item strong { font-weight: var(--fw-title); }
-.foundry-hero .claim { font-size: var(--fs-13); color: var(--gray); }
-.foundry-hero .claim a { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; font-weight: var(--fw-label); }
+.foundry-hero .claim { font-size: var(--fs-13); color: var(--gray); display: flex; align-items: flex-start; gap: 0.35em; }
+.foundry-hero .claim .icon { flex: none; margin-top: 0.15em; color: var(--gray-2); }
+.foundry-hero .claim > span { min-width: 0; word-break: keep-all; }
+.foundry-hero .claim a { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; font-weight: var(--fw-label); white-space: nowrap; }
 .foundry-index { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-3); }
 .foundry-index .foundry { padding: var(--s-4) var(--s-5); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); }
 .foundry-index .foundry:hover { background: var(--surface-2); }
@@ -319,6 +323,7 @@
 .docs-body .kicker { margin-bottom: var(--s-3); }
 .docs-body .note { padding: var(--s-4) var(--s-5); background: var(--surface); border-radius: var(--radius-sm); margin-top: var(--s-4); }
 .docs-body h2 { display: flex; align-items: center; gap: 0.4em; }
+.docs-body h2 > .icon { color: var(--gray); flex: none; }
 .docs-body h2 .anchor { color: var(--gray-2); opacity: 0; text-decoration: none; display: inline-grid; place-items: center; }
 .docs-body h2 .anchor .icon { width: 0.9em; height: 0.9em; }
 .docs-body h2:hover .anchor, .docs-body h2 .anchor:focus-visible { opacity: 1; }
@@ -345,7 +350,8 @@
 .docs-body .faq dd { color: var(--ink-2); font-size: var(--fs-14); margin-top: var(--s-2); }
 .docs-body .table td, .docs-body .table th { vertical-align: top; }
 .docs-foot { display: flex; flex-wrap: wrap; gap: var(--s-4) var(--s-6); padding: var(--s-8) 0 var(--s-4); border-top: 1px solid var(--rule); font-size: var(--fs-14); }
-.docs-foot a { font-weight: var(--fw-label); text-decoration: none; }
+.docs-foot a { font-weight: var(--fw-label); text-decoration: none; display: inline-flex; align-items: center; gap: 0.35em; }
+.docs-foot a .icon { color: var(--gray); }
 .docs-foot .muted { margin-left: auto; font-size: var(--fs-13); }
 
 /* —— 选字袋 —— */
@@ -377,8 +383,11 @@
 .pair-title { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.15; letter-spacing: -0.03em; overflow-wrap: anywhere; }
 .pair-body { margin-top: var(--s-4); font-size: var(--fs-20); line-height: 1.7; overflow-wrap: anywhere; color: var(--ink-2); }
 .pair-acts { margin-top: var(--s-6); display: flex; flex-wrap: wrap; gap: var(--s-4); font-size: var(--fs-13); }
+.pair-acts a { display: inline-flex; align-items: center; gap: 0.35em; }
+.pair-acts a .icon { color: var(--gray); }
 .bag-embed { display: grid; gap: var(--s-5); padding: var(--s-6); margin-top: var(--s-6); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); min-width: 0; }
-.bag-embed h2 { font-size: var(--fs-20); font-weight: var(--fw-title); margin: 0; }
+.bag-embed h2 { font-size: var(--fs-20); font-weight: var(--fw-title); margin: 0; display: flex; align-items: center; gap: 0.4em; }
+.bag-embed h2 .icon { color: var(--gray); }
 .bag-embed .opts {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr)) auto;

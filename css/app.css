@@ -35,11 +35,12 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
 .cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .app-section { padding: var(--s-6); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); }
 .app-section + .app-section, .stats + .app-section, .stats + .usage-grid, .app-section + .usage-grid, .usage-grid + .app-section, .usage-grid + .usage-grid { margin-top: var(--s-3); }
-.app-section > h2 { font-size: var(--fs-16); font-weight: var(--fw-title); margin-bottom: var(--s-5); display: flex; justify-content: space-between; align-items: baseline; }
+.app-section > h2 { font-size: var(--fs-16); font-weight: var(--fw-title); margin-bottom: var(--s-5); display: flex; justify-content: space-between; align-items: center; }
 .app-section .input, .app-section .select, .app-section .textarea, .app-section .code, .app-section .chip:not(.is-on), .app-section .btn:not(.btn-ink):not(.btn-text), .app-section .tabs { background: var(--paper); }
 .app-section .tabs { background: var(--paper); }
 .app-section .tabs .is-on { background: var(--surface); }
-.app-section > h2 .more { font-size: var(--fs-13); color: var(--gray); font-weight: var(--fw-body); }
+.app-section > h2 .more { font-size: var(--fs-13); color: var(--gray); font-weight: var(--fw-body); display: inline-flex; align-items: center; gap: 0.35em; }
+.app-section > h2 .more .icon { color: var(--gray-2); }
 .table .meta-face, .app-head .meta-face { width: 18px; height: 18px; border-radius: 50%; object-fit: cover; vertical-align: -0.35em; margin-right: 0.35em; background: var(--face); }
 
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-3); }

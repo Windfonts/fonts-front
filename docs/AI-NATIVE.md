@@ -23,7 +23,7 @@
 | 手写 `<link>` 到 CDN、拼 CDN 地址字符串 | `WFProto.cssUrl` / `ensureFontCss` / `WFEmbed` |
 | 在页面里写厂商名、英文名、官网 | `data/foundries.json` + `WFChrome.brand*` |
 | 用占位文案、假数据、`TODO` UI | 补全 `mock-app.json` 的真实结构化数据 |
-| 混入其他图标集、内联随手画的 SVG | MingCute（motucloud）→ `assets/icons.svg` |
+| 混入其他图标集、内联随手画的 SVG | Remix Icon 线标（motucloud `/collection/ri`）→ `assets/icons.svg` |
 | 修改 `data/fonts.json` 手工字段 | 改 `scripts/export-fonts.mjs` 或 `foundries.json` |
 | `git commit` / `git push` / 删分支 | 完成后报告，由用户决定提交 |
 | 启动长期运行的服务并留着 | 告知用户如何本地预览（任意静态服务器指到仓根） |

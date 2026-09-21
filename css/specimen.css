@@ -90,7 +90,8 @@
 .load-more { display: flex; justify-content: center; padding: var(--s-8) 0; }
 .count-line { font-size: var(--fs-13); color: var(--gray); padding: var(--s-2) 0 var(--s-4); }
 .count-line strong { color: var(--ink); font-weight: var(--fw-title); }
-.count-line a { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
+.count-line a { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; display: inline-flex; align-items: center; gap: 0.3em; }
+.count-line a .icon { width: 1em; height: 1em; }
 
 /* —— 字形墙（详情页首屏，浅灰面板） —— */
 .glyph-wall { padding-top: var(--s-2); }
@@ -261,7 +262,9 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
 }
 .tester-field .btn-icon:hover { color: var(--ink); }
 .tester-field .btn-icon .icon { width: 1em; height: 1em; }
-.tester-field[hidden], .tester-sec[hidden] { display: none; }
+.tester-field[hidden], .tester-sec[hidden],
+.tester-layers[hidden], .wall-bgs[hidden],
+.tester-sliders .tester-row[hidden] { display: none; }
 .wall-bgs {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -387,8 +390,13 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
 .tester-fold-body .hint { font-size: var(--fs-12); color: var(--gray-2); }
 .tester-color { display: inline-flex; align-items: center; gap: var(--s-2); }
 .tester-color input[type="color"] {
-  width: 1.75rem; height: 1.75rem; padding: 0; border: 0; background: transparent; cursor: pointer;
+  width: 1.75rem; height: 1.75rem; padding: 0; border: 0; border-radius: 999px;
+  background: transparent; cursor: pointer; overflow: hidden;
+  box-shadow: inset 0 0 0 1px var(--rule);
 }
+.tester-color input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+.tester-color input[type="color"]::-webkit-color-swatch,
+.tester-color input[type="color"]::-moz-color-swatch { border: 0; border-radius: 999px; }
 .glyph-wall .card-frames { display: flex; align-items: center; gap: var(--s-1); flex-wrap: wrap; }
 
 /* —— 大字预览（详情页「字体预览」） —— */

@@ -44,6 +44,25 @@
 .topsearch .clear .icon { position: static; width: 0.85rem; height: 0.85rem; color: inherit; pointer-events: none; }
 .topsearch .clear:hover { color: var(--ink); background: var(--surface-2); }
 .topsearch .clear[hidden] { display: none; }
+.search-pop {
+  position: absolute; top: calc(100% + 0.4rem); right: 0;
+  width: min(18rem, calc(100vw - 2 * var(--gutter)));
+  padding: 0.3rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  z-index: 50;
+}
+.search-hit {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-sm);
+  color: var(--ink); text-decoration: none;
+}
+.search-hit:hover, .search-hit.is-on { background: var(--paper); text-decoration: none; }
+.search-face { font-size: var(--fs-16); line-height: 1.3; min-width: 0; }
+.search-meta { font-size: var(--fs-12); color: var(--gray); flex: none; }
+.search-empty { margin: 0; padding: 0.6rem 0.65rem; font-size: var(--fs-13); color: var(--gray); }
+.topmenu .search-pop { left: 0; right: 0; width: auto; }
 
 /* —— 图标 —— */
 .icon { width: 1.1em; height: 1.1em; flex: 0 0 auto; fill: currentColor; vertical-align: -0.2em; display: inline-block; }
@@ -96,7 +115,7 @@ html:not([data-view="dev"]) .ink-design { background: var(--ink); color: var(--o
 html:not([data-view="dev"]) .ink-design:hover { background: var(--ink-hover); }
 html[data-view="dev"] .ink-dev { background: var(--ink); color: var(--on-ink); }
 html[data-view="dev"] .ink-dev:hover { background: var(--ink-hover); }
-.btn-text { background: transparent; padding: 0 0.25rem; color: var(--gray); height: auto; font-weight: var(--fw-body); }
+.btn-text { display: inline-flex; align-items: center; gap: 0.35em; background: transparent; padding: 0 0.25rem; color: var(--gray); height: auto; font-weight: var(--fw-body); }
 .btn-text:hover { color: var(--ink); background: transparent; text-decoration: underline; text-underline-offset: 0.2em; }
 .btn-text.is-on { color: var(--ink); font-weight: var(--fw-label); }
 .btn-sm { height: 1.875rem; padding: 0 0.8rem; font-size: var(--fs-12); }
@@ -226,7 +245,8 @@ html[data-view="dev"] body.page-bag main .for-design { display: unset; }
 .kv { font-size: var(--fs-13); }
 .kv > div { display: flex; justify-content: space-between; gap: var(--s-4); padding: 0.55rem 0; border-bottom: 1px solid var(--rule); }
 .kv > div:last-child { border-bottom: 0; }
-.kv dt { color: var(--gray); flex: 0 0 auto; }
+.kv dt { color: var(--gray); flex: 0 0 auto; display: inline-flex; align-items: center; gap: 0.35em; }
+.kv dt .icon { width: 1em; height: 1em; color: var(--gray-2); }
 .kv dd { text-align: right; color: var(--ink); font-weight: var(--fw-label); }
 
 /* —— 厂商标识 —— */

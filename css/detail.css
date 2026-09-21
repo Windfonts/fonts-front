@@ -32,7 +32,7 @@
 .detail-main .panel-head + .panel-pad { padding: var(--s-5) 0 var(--s-12); }
 .detail-main .panel-head .input { height: 2rem; font-size: var(--fs-13); }
 .detail-main .panel .input, .detail-main .panel .chip, .detail-main .panel .seg, .detail-main .panel .code,
-.detail-main .panel .btn:not(.btn-ink):not(.btn-text), .detail-main .use-note code { background: var(--fill); }
+.detail-main .panel .btn:not(.btn-ink):not(.btn-text):not(.ink-design), .detail-main .use-note code { background: var(--fill); }
 .detail-main .panel .chip.is-on { background: var(--ink); }
 .detail-main .panel .seg .is-on { background: var(--paper); }
 .detail-main .panel .seg-ink .is-on { background: var(--ink); }
@@ -89,7 +89,8 @@
 
 /* 侧栏：品牌卡（含资料）/ 标签 */
 .detail-side { position: sticky; top: calc(var(--topbar-h) + var(--s-4)); font-size: var(--fs-13); display: grid; gap: var(--s-3); }
-.detail-side h3 { font-size: var(--fs-12); color: var(--gray-2); font-weight: var(--fw-label); margin-bottom: var(--s-3); }
+.detail-side h3 { font-size: var(--fs-12); color: var(--gray-2); font-weight: var(--fw-label); margin-bottom: var(--s-3); display: flex; align-items: center; gap: 0.35em; }
+.detail-side h3 .icon { width: 1em; height: 1em; }
 .detail-side .kv a { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
 .detail-side .side-fold > summary {
   list-style: none;
@@ -117,32 +118,40 @@
 .side-brand .claim a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }
 
 .side-brand .side-meta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
-.side-brand .side-meta h3 { margin-bottom: var(--s-3); }
+.side-brand .side-meta h3 { margin-bottom: var(--s-2); display: flex; align-items: center; gap: 0.35em; }
+.side-brand .side-meta h3 .icon,
+.side-brand .kv dt .icon { width: 1em; height: 1em; color: var(--gray-2); }
+.side-brand .kv dt { display: inline-flex; align-items: center; gap: 0.35em; }
+.detail-side .side-meta .kv { font-size: var(--fs-12); }
+.detail-side .side-meta .kv > div { padding: 0.35rem 0; }
+.detail-side .side-meta .kv dd { color: var(--ink-2); font-weight: var(--fw-body); }
 
 
-/* 谱系 */
-.lin-lead { font-size: var(--fs-13); color: var(--gray); margin-bottom: var(--s-4); display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-3) var(--s-4); }
-.lin-lead .more { color: var(--ink); font-size: var(--fs-13); }
-.lin-tree { display: grid; gap: 0; }
+/* 谱系：分组名单，族谱图在对照页 */
+.lin-lead { font-size: var(--fs-13); color: var(--gray); margin-bottom: var(--s-4); }
+.lin-lead .more { color: var(--ink); font-size: var(--fs-13); display: inline-flex; align-items: center; gap: 0.35em; }
+.lin-tree { display: grid; gap: 2px; }
+.lin-h { font-size: var(--fs-12); color: var(--gray-2); font-weight: var(--fw-label); margin: var(--s-5) 0 var(--s-2); }
+.lin-tree > .lin-h:first-child { margin-top: 0; }
 .lin-row {
   display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4);
-  padding: var(--s-3); color: var(--ink); text-decoration: none;
+  min-width: 0;
+  padding: var(--s-3);
+  color: var(--ink); text-decoration: none;
   border-radius: var(--radius-sm);
 }
-.lin-row:hover { background: var(--fill); }
+.lin-row:hover { background: var(--fill); text-decoration: none; }
 .lin-row.is-on { background: var(--ink); color: var(--on-ink); }
 .lin-row.is-on .lin-rel { color: var(--on-ink); opacity: 0.7; }
 .lin-row.is-miss { color: var(--gray); cursor: default; }
 .lin-row.is-miss:hover { background: transparent; }
-.lin-name { font-size: var(--fs-22); line-height: 1.2; }
-.lin-rel { font-size: var(--fs-12); color: var(--gray); flex: none; }
-.lin-kids { margin-left: var(--s-6); padding-left: var(--s-4); border-left: 1px solid var(--rule); }
+.lin-row .lin-name { font-size: var(--fs-22); line-height: 1.2; min-width: 0; }
+.lin-row .lin-rel { font-size: var(--fs-12); color: var(--gray); flex: none; }
 
 .lin-from { font-size: var(--fs-16); line-height: 1.6; margin-bottom: var(--s-4); }
 .lin-from a { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
 .lin-invite, .lin-empty { font-size: var(--fs-16); line-height: 1.6; margin-bottom: var(--s-4); }
 .lin-invite strong, .lin-empty strong { font-weight: var(--fw-title); }
-.lin-h { font-size: var(--fs-12); color: var(--gray-2); font-weight: var(--fw-label); margin: var(--s-5) 0 var(--s-2); }
 .lin-forks { display: grid; }
 .lin-fold { margin-top: var(--s-5); }
 .lin-fold > summary {

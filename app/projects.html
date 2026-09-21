@@ -17,7 +17,7 @@
   <main class="app-main" id="root"><p class="loading">正在加载…</p></main>
 
   <script src="../js/wf-proto.js"></script>
-  <script src="../js/wf-chrome.js"></script>
+  <script src="../js/wf-chrome.js?v=20260922ri"></script>
   <script src="../js/wf-embed.js"></script>
   <script src="../js/wf-app.js"></script>
   <script>
@@ -31,7 +31,7 @@
         const ps = WFApp.projects();
         root.innerHTML =
           '<div class="app-head"><div><h1>项目</h1><p class="sub">' + ps.length + ' / ' + s.plan.quota.projects + ' · 每个项目一份嵌入代码、一组域名白名单、独立版本记录</p></div>' +
-            '<div class="app-actions"><form class="inline-form" id="newForm"><input class="input" id="newName" placeholder="项目名称，如 品牌官网" required /><button type="submit" class="btn btn-ink">新建项目</button></form></div></div>' +
+            '<div class="app-actions"><form class="inline-form" id="newForm"><input class="input" id="newName" placeholder="项目名称，如 品牌官网" required /><button type="submit" class="btn btn-ink">' + WFChrome.icon('plus') + '新建项目</button></form></div></div>' +
           (ps.length ? '<ul class="proj-list">' + ps.map(function (p) {
             const cur = WFApp.currentVersion(p);
             return '<li><a class="name" href="project.html?id=' + esc(p.id) + '">' + esc(p.name) + '<small>' + esc(p.slug) + ' · 创建于 ' + WFApp.fmtDate(p.createdAt).slice(0, 10) + '</small></a>' +
@@ -39,7 +39,7 @@
               '<span class="hide-md"><span class="num">' + p.domains.filter(function (d) { return d.verified; }).length + '</span> / ' + p.domains.length + ' 域名已验证</span>' +
               '<span class="hide-md"><span class="num">' + WFApp.fmtGB(p.usage.bytes30d) + '</span> GB / 30 天</span>' +
               '<span>v' + cur.v + ' · ' + WFApp.fmtDate(cur.at).slice(5, 10) +
-              ' <button type="button" class="btn-text" data-del="' + esc(p.id) + '">删除</button></span></li>';
+              ' <button type="button" class="btn-text" data-del="' + esc(p.id) + '">' + WFChrome.icon('trash') + '删除</button></span></li>';
           }).join('') + '</ul>'
           : '<p class="empty">还没有项目。上面输入名称新建一个。</p>');
         document.getElementById('newForm').addEventListener('submit', function (e) {

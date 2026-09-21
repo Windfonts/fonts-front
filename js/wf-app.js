@@ -266,7 +266,7 @@
     { id: 'fonts', label: '我的字体', path: 'app/fonts.html', icon: 'font' },
     { id: 'subset', label: '子集化', path: 'app/subset.html', icon: 'scissors' },
     { id: 'usage', label: '用量', path: 'app/usage.html', icon: 'chart' },
-    { id: 'team', label: '团队', path: 'app/team.html', icon: 'user' },
+    { id: 'team', label: '团队', path: 'app/team.html', icon: 'group' },
     { id: 'settings', label: '设置', path: 'app/settings.html', icon: 'settings' }
   ];
   function renderRail(el) {

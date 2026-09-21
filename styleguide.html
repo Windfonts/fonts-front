@@ -155,8 +155,8 @@
       <button type="button" class="btn" id="sgDialog">打开确认弹层</button>
     </section>
     <section class="sg-section" id="icons">
-      <h2>10 · 图标 · MingCute 线性</h2>
-      <p class="sg-note" style="margin:0 0 var(--s-6)">经 <a href="https://icons.motucloud.com/collection/mingcute" target="_blank" rel="noopener">墨图爱可</a> 选取 MingCute Icon（Apache-2.0），24 栅格、圆头线条，与寒蝉全圆体同一气质。全部打包在 <code class="code-inline">assets/icons.svg</code>，用 <code class="code-inline">WFChrome.icon('name')</code> 输出，随 <code class="code-inline">currentColor</code> 着色。</p>
+      <h2>10 · 图标 · Remix Icon 线标</h2>
+      <p class="sg-note" style="margin:0 0 var(--s-6)">经 <a href="https://icons.motucloud.com/collection/ri?style=outline" target="_blank" rel="noopener">墨图爱可</a> 选取 Remix Icon 线标（Apache-2.0），24 栅格、平头线条，跟普惠体同一气质。全部打包在 <code class="code-inline">assets/icons.svg</code>，用 <code class="code-inline">WFChrome.icon('name')</code> 输出，随 <code class="code-inline">currentColor</code> 着色。</p>
       <div class="sg-icons" id="sgIcons"></div>
     </section>
   </main>
@@ -164,7 +164,7 @@
   <footer id="wfExtraFooter"></footer>
 
   <script src="js/wf-proto.js"></script>
-  <script src="js/wf-chrome.js"></script>
+  <script src="js/wf-chrome.js?v=20260922ri"></script>
   <script src="js/wf-specimen.js"></script>
   <script>
     (function () {
@@ -188,7 +188,7 @@
         hero.style.fontFamily = WFProto.cssFamilyStack(f.family);
         hero.textContent = f.name;
       });
-      fetch('assets/icons.svg').then(function (r) { return r.text(); }).then(function (svg) {
+      fetch('assets/icons.svg?v=20260922ri').then(function (r) { return r.text(); }).then(function (svg) {
         const ids = (svg.match(/id="i-[a-z-]+"/g) || []).map(function (m) { return m.slice(6, -1); });
         document.getElementById('sgIcons').innerHTML = ids.map(function (id) {
           return '<div>' + WFChrome.icon(id) + '<span>' + id + '</span></div>';

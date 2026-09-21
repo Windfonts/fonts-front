@@ -70,7 +70,7 @@
       '<div class="sub">' + WFChrome.foundryHtml(font, { small: true }) + '</div>' +
       '<p class="bits">' + esc(bits(font)) + '</p></div>' +
       '<div class="acts">' +
-        '<a class="btn btn-ink" href="' + detail + '">查看这款</a>' +
+        '<a class="btn btn-ink" href="' + detail + '">' + WFChrome.icon('eye') + '查看这款</a>' +
         '<button type="button" class="btn" id="nowPick">' + WFChrome.icon('plus') + '加入选字袋</button>' +
       '</div></div>';
   }
@@ -162,12 +162,12 @@
     }
 
     band.innerHTML =
-      '<div class="section-head"><h2>' + WFChrome.icon('chart') + '现在的库</h2>' +
-        '<a class="more" href="foundry.html">厂商索引 →</a></div>' +
+      '<div class="section-head"><h2>' + WFChrome.icon('rows') + '现在的库</h2>' +
+        '<a class="more" href="foundry.html">' + WFChrome.icon('building') + '厂商索引</a></div>' +
       '<div class="stats-grid">' +
         panel('certificate', '按授权', rows(tierItems, function (r) { return 'fonts.html?license=' + encodeURIComponent(r.label); }), '分类说明见文档。') +
-        panel('user', '字体最多的厂商', rows(topBrands, function (r) { return 'foundry.html?slug=' + encodeURIComponent(r.key); })) +
-        panel('font-size', '字符规模', rows(scaleItems),
+        panel('building', '字体最多的厂商', rows(topBrands, function (r) { return 'foundry.html?slug=' + encodeURIComponent(r.key); })) +
+        panel('text', '字符规模', rows(scaleItems),
           '按已有字数的 ' + charKnown + ' 款统计' + (unknown ? '；' + unknown + ' 款还没录入字数。' : '。')) +
       '</div>';
   }
@@ -278,7 +278,7 @@
         if (relatedCount) relatedCount.textContent = catLabel(f) + ' · 抽出 ' + rows.length + ' 款';
         WFSpecimen.renderRows(related, rows, { size: 40 });
       }
-      if (more) more.innerHTML = '<a class="btn btn-lg" href="fonts.html">全部 ' + list.length + ' 款 →</a>';
+      if (more) more.innerHTML = '<a class="btn btn-lg" href="fonts.html">' + WFChrome.icon('grid') + '全部 ' + list.length + ' 款</a>';
     }
 
     applyLive();

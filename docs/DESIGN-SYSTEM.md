@@ -79,6 +79,7 @@
 | 组件 | 类 | 文件 | 备注 |
 |---|---|---|---|
 | 顶栏 | `.topbar .topnav .topsearch .topbar-end .topmenu` | components.css / wf-chrome.js | 白底；导航选中为 `--fill` 胶囊；移动端折叠成 `.topmenu` 覆层 |
+| 搜索预测 | `.search-pop .search-hit .search-face` | components.css / `wf-search.js` | 输入出几条；字体名用本款字面，右侧厂商名 |
 | 页脚 | `.site-extra-footer` | components.css / wf-proto.js | 一行：左版权与备案，右关于 / 文档 / 厂商认领 |
 | 按钮 | `.btn` `.btn-ink` `.btn-text` `.btn-sm` `.icon-btn` | components.css | 默认浅灰胶囊；`btn-ink` 每屏一颗；图标在文字左侧 |
 | 输入 | `.input .select .textarea .field .check` | components.css | 无边框，`--well` 底，焦点 2px 墨黑 outline |
@@ -109,11 +110,14 @@
 
 ## 4. 图标
 
-- 图集：MingCute Line（Apache-2.0），经 [墨图爱可 icons.motucloud.com](https://icons.motucloud.com/collection/mingcute) 选取，24 栅格圆头线条，与寒蝉全圆体同一气质。
+- 图集：Remix Icon 线标（Apache-2.0），经 [墨图爱可 icons.motucloud.com/collection/ri](https://icons.motucloud.com/collection/ri?style=outline) 选取，24 栅格平头线条，跟普惠体的平头字端同一气质。
 - 打包：`assets/icons.svg` 一个 sprite，`<symbol id="i-{name}">`；输出用 `WFChrome.icon('name', cls?)`，静态 HTML 用 `<svg class="icon"><use href="assets/icons.svg#i-name"/></svg>`。
-- 现有名称：`search bag user menu moon sun flash server font-size shield globe certificate rows grid copy check close refresh edit download external arrow-right chevron-right chevron-down plus trash upload settings chart folder scissors font dashboard exit filter verified code link eye info time history key mail cloud rocket text translate box text-area star book home question`。
+- 现有名称：`search bag user menu moon sun flash server font-size shield globe certificate rows grid copy check close refresh edit download external arrow-right chevron-right chevron-down plus trash upload settings chart folder scissors font dashboard exit filter verified code link eye info time history key mail cloud rocket text translate box text-area star book home question building classify group user-add idcard branch calendar hashtag palette more quote version commit merge compare`。
+- 谱系用 git 线标：原作 / 改自 = commit，派生 = branch，地区版 / 合作 = merge，同支 / 同系 = compare。委托定制不加。
+- 活页面区块标题（详情「使用 / 字重 / 字符表 / 授权 / 谱系」、侧栏「资料 / 标签」、首页「现在的库」、厂商「入驻与认领」、认领「流程 / 需要准备」、定价「常见问题」）一律带标。说明 / 法律正文标题不加。
+- 一义一标：同一屏里不同含义不得复用同一颗图标；缺标再从 motucloud Remix 线标补进 sprite。symbol 上的 `data-ri` 是 Remix 原名（如 `add-line`），`id` 仍用站内语义名（如 `i-plus`）。
 - 尺寸：默认 `1.1em`；`.icon-btn` 内 1.2rem；按钮内 1.05em；随 `currentColor` 着色，从不单独上色。
-- 缺图标：先去 motucloud 的 MingCute 集合里挑同风格的，加进 sprite；不要混入其他图标集。
+- 缺图标：先去 motucloud 的 Remix Icon 线标里挑同风格的，加进 sprite；不要混入其他图标集。
 
 ## 5. 版式与页面骨架
 
