@@ -1,0 +1,132 @@
+/* 文风字体 v4 · 字体详情页：浅灰字形墙 + 白页面上的浅灰面板 + 右侧品牌卡 */
+.detail-top { padding: var(--s-8) 0 var(--s-6); }
+.crumb-dark { margin-bottom: var(--s-6); }
+.glyph-wall .weights { display: flex; gap: var(--s-1); flex-wrap: wrap; }
+.glyph-wall .presets { display: flex; gap: var(--s-1); flex-wrap: wrap; }
+
+/* 标题行 */
+.detail-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-6);
+  padding: var(--s-6) var(--s-2) var(--s-4);
+  flex-wrap: wrap;
+  background: transparent;
+}
+.detail-title h1 { font-size: var(--fs-28); font-weight: var(--fw-title); letter-spacing: -0.01em; line-height: var(--lh-snug); }
+.detail-title h1 small { font-size: var(--fs-14); font-weight: var(--fw-body); color: var(--gray); margin-left: 0.4em; }
+.detail-title .dotlist { margin-top: var(--s-2); font-size: var(--fs-13); }
+.detail-title .dotlist .foundry-inline { display: inline-flex; align-items: center; gap: 0.35em; color: var(--ink); font-weight: var(--fw-label); }
+.detail-title .dotlist .foundry-inline img { width: 18px; height: 18px; border-radius: 50%; }
+.detail-actions { display: flex; align-items: center; gap: var(--s-3); }
+
+/* 正文两栏：左列平铺（细线分节，不再套灰盒），右列保留灰卡 */
+.detail-body { display: grid; grid-template-columns: minmax(0, 1fr) 19rem; gap: var(--s-10); align-items: start; }
+.detail-main { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; min-width: 0; }
+.detail-main > .panel { min-width: 0; background: transparent; border-radius: 0; box-shadow: none; border-top: 1px solid var(--rule); }
+.detail-main .panel-head { flex-wrap: wrap; padding: var(--s-8) 0 0; }
+.detail-main .panel-head + .panel-pad { padding: var(--s-5) 0 var(--s-8); }
+.detail-main .panel-head .input { height: 2rem; font-size: var(--fs-13); }
+.detail-main .panel .input, .detail-main .panel .chip, .detail-main .panel .seg, .detail-main .panel .code,
+.detail-main .panel .btn:not(.btn-ink):not(.btn-text), .detail-main .use-note code, .detail-main .glyphs span { background: var(--fill); }
+.detail-main .panel .chip.is-on { background: var(--ink); }
+.detail-main .panel .seg .is-on { background: var(--paper); }
+.detail-main .panel .seg-ink .is-on { background: var(--ink); }
+.detail-main .glyphs span:hover { background: var(--ink); }
+.detail-main .code pre { white-space: pre-wrap; word-break: break-all; }
+.os-switch { font-size: var(--fs-12); }
+.os-meta { font-size: var(--fs-12); color: var(--gray); margin-bottom: var(--s-4); }
+/* OpenType / 变体轴（开发模式，挂在大字预览下面） */
+.feat-panel { margin-top: var(--s-6); display: grid; gap: var(--s-3); justify-items: start; }
+.feat-panel .tester-fold { width: 100%; }
+.feat-panel .feat-css { width: 100%; margin-top: var(--s-2); }
+.feat-panel .feat-css pre { font-size: var(--fs-13); }
+
+/* 使用 */
+.use-versions { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.use-versions .chip .n { margin-left: 0.15em; }
+.use-note { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-4); line-height: 1.7; }
+.use-note code { background: var(--paper); padding: 0.05em 0.35em; border-radius: 6px; }
+.use-note a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }
+
+/* 授权 */
+.license-lead { font-size: var(--fs-16); line-height: 1.6; margin-bottom: var(--s-5); }
+.license-fold { margin-top: var(--s-5); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
+.license-fold .license-cite { border-bottom: 0; }
+.side-fold > summary {
+  list-style: none; cursor: pointer; user-select: none;
+  display: flex; align-items: center; gap: 0.3em;
+  color: var(--gray); font-size: var(--fs-12); font-weight: var(--fw-label);
+}
+.side-fold > summary::-webkit-details-marker { display: none; }
+.side-fold > summary .icon { flex: none; transition: transform 0.15s ease; }
+.side-fold[open] > summary { margin-bottom: var(--s-3); }
+.side-fold[open] > summary .icon { transform: rotate(180deg); }
+.license-head { display: flex; align-items: baseline; gap: var(--s-3); flex-wrap: wrap; }
+.license-head .tier { font-size: var(--fs-13); font-weight: var(--fw-label); padding: 0.2rem 0.7rem; background: var(--ink); color: var(--on-ink); border-radius: var(--radius-pill); }
+.license-head .name { font-size: var(--fs-12); color: var(--gray); }
+.license-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-8); }
+.license-grid h3 { font-size: var(--fs-12); color: var(--gray); font-weight: var(--fw-label); margin-bottom: var(--s-2); }
+.license-grid li { font-size: var(--fs-14); padding: 0.35rem 0; border-bottom: 1px solid var(--rule); display: flex; gap: 0.6em; }
+.license-grid li:last-child { border-bottom: 0; }
+.license-grid li::before { content: "—"; color: var(--gray-2); }
+.license-grid .ok li::before { content: "✓"; color: var(--ink); font-weight: var(--fw-title); }
+.license-grid .no li::before { content: "×"; color: var(--gray); }
+.license-notes { font-size: var(--fs-13); color: var(--ink-2); line-height: 1.7; margin-bottom: var(--s-4); }
+.license-cite { margin-bottom: var(--s-5); padding: var(--s-4) 0; border-bottom: 1px solid var(--rule); }
+.license-cite .cite-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.75rem; font-size: var(--fs-12); color: var(--gray); }
+.license-cite .cite-meta .icon { flex: none; }
+.license-cite .cite-meta .mono { font-family: var(--font-mono); }
+.license-cite blockquote { margin: var(--s-3) 0 0; font-size: var(--fs-13); color: var(--ink-2); line-height: 1.7; padding-left: var(--s-4); border-left: 2px solid var(--ink); }
+.license-cite .cite-warn { margin-top: var(--s-3); font-size: var(--fs-13); color: var(--ink-2); }
+.license-cite .cite-links { margin-top: var(--s-3); display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); font-size: var(--fs-12); color: var(--gray-2); }
+.license-cite .cite-links a { color: var(--ink); display: inline-flex; align-items: center; gap: 0.3em; text-decoration: underline; text-underline-offset: 0.2em; }
+.license-foot { margin-top: var(--s-5); font-size: var(--fs-12); color: var(--gray-2); line-height: 1.6; }
+.license-foot a { color: var(--gray); text-decoration: underline; text-underline-offset: 0.2em; }
+
+/* 侧栏：品牌卡 / 资料 / 标签 */
+.detail-side { position: sticky; top: calc(var(--topbar-h) + var(--s-4)); font-size: var(--fs-13); display: grid; gap: var(--s-3); }
+.detail-side h3 { font-size: var(--fs-12); color: var(--gray-2); font-weight: var(--fw-label); margin-bottom: var(--s-3); }
+.detail-side .kv a { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
+.detail-side .side-fold > summary {
+  list-style: none;
+  cursor: pointer;
+  color: var(--gray);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-label);
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  user-select: none;
+}
+.detail-side .side-fold > summary::-webkit-details-marker { display: none; }
+.detail-side .side-fold > summary .icon { flex: none; transition: transform 0.15s ease; }
+.detail-side .side-fold[open] > summary { margin-bottom: var(--s-3); }
+.detail-side .side-fold[open] > summary .icon { transform: rotate(180deg); }
+.detail-side .side-fold .desc { color: var(--ink-2); line-height: 1.7; }
+.license-cite.lineage { border-bottom: 0; padding-top: 0; }
+.detail-related .section-head { flex-wrap: wrap; }
+.detail-related .section-head .more + .more { margin-left: var(--s-4); }
+.side-brand .side-fold { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
+.side-brand .claim { margin-top: var(--s-3); color: var(--gray); font-size: var(--fs-12); display: flex; align-items: center; gap: 0.4em; }
+.side-brand .claim.is-quiet { color: var(--gray-2); }
+.side-brand .claim a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }
+
+/* 相关 */
+.detail-related { padding-top: var(--s-12); }
+
+@media (max-width: 1024px) {
+  .detail-body { grid-template-columns: minmax(0, 1fr); gap: var(--s-8); }
+  .detail-main, .detail-side { min-width: 0; }
+  .detail-side { position: static; }
+}
+@media (max-width: 768px) {
+  .license-grid { grid-template-columns: 1fr; }
+  .glyph-wall .wall-tools .spacer { display: none; }
+  .glyph-wall .wall-tools { gap: var(--s-2); }
+  .detail-title { padding: var(--s-5) 0 var(--s-3); }
+  .detail-title h1 { font-size: var(--fs-20); }
+  .detail-actions { flex-wrap: wrap; }
+  .os-switch { flex-wrap: wrap; }
+}

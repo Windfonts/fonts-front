@@ -11,8 +11,7 @@
  *   node scripts/export-fonts.mjs            # 拉 https://app.windfonts.com
  *   WF_API=http://127.0.0.1:16015 node scripts/export-fonts.mjs   # 指向本地 vault
  */
-import { writeFileSync } from 'node:fs';
-import { createHash } from 'node:crypto';
+import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -22,17 +21,16 @@ const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const OUT = join(ROOT, 'data', 'fonts.json');
 const OUT_META = join(ROOT, 'data', 'fonts.meta.json');
 
+/** 预抓头像清单（fetch-avatars.mjs 产出）：slug → 本地 WebP 路径 */
+const AVATARS = existsSync(join(ROOT, 'data', 'avatars.json'))
+  ? JSON.parse(readFileSync(join(ROOT, 'data', 'avatars.json'), 'utf8'))
+  : {};
+
 function designerShort(designer) {
   return String(designer || '').split(/[;；,，]/)[0].trim() || '—';
 }
 
-/** 厂商无 logo 时的 Cravatar 生成头像（同串同图，后续真 logo 覆盖） */
-function cravatarAvatar(seed) {
-  const s = String(seed || '').trim().toLowerCase();
-  if (!s) return '';
-  const hash = createHash('sha256').update(s).digest('hex');
-  return `https://cravatar.com/avatar/${hash}?s=144&d=identicon`;
-}
+/** 厂商头像：本地预抓 WebP（motuicons pack-media 打法）；无则空，前端走字标 */
 
 async function fetchDetail(normalized) {
   const url = `${API}/api/fonts/${encodeURIComponent(normalized)}`;
@@ -103,7 +101,7 @@ function mapFont(raw, detail, licInfo) {
           name: brand.name,
           slug: brand.slug || '',
           logoUrl: brand.logoUrl || '',
-          avatarUrl: brand.logoUrl ? '' : cravatarAvatar(brand.name),
+          avatarUrl: brand.logoUrl ? '' : (AVATARS[brand.slug] || ''),
           website: brand.website || '',
           description: brand.description || '',
         }

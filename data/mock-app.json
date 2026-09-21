@@ -1,0 +1,348 @@
+{
+  "plan": {
+    "id": "pro",
+    "name": "专业",
+    "quota": {
+      "projects": 10,
+      "domains": null,
+      "trafficGB": 200,
+      "fonts": 50
+    }
+  },
+  "settings": {
+    "display": "swap",
+    "apiKey": "wf_live_9f3a1c7e2b8d4a6f0e5c",
+    "apiKeyCreatedAt": "2026-08-02T09:12:00+08:00"
+  },
+  "team": [
+    { "id": "me", "name": "文派设计", "email": "design@wenpai.org", "role": "owner", "status": "active", "invitedAt": "2026-06-12T10:00:00+08:00" },
+    { "id": "m-fe", "name": "前端组", "email": "fe@wenpai.org", "role": "editor", "status": "active", "invitedAt": "2026-07-01T09:00:00+08:00" },
+    { "id": "m-ops", "name": "运营", "email": "ops@wenpai.org", "role": "viewer", "status": "pending", "invitedAt": "2026-09-18T14:20:00+08:00" }
+  ],
+  "claims": [],
+  "audit": [
+    { "at": "2026-09-16T11:20:00+08:00", "actor": "design@wenpai.org", "action": "发布版本", "detail": "文派官网 · 阿里巴巴普惠体 增加 800 字重" },
+    { "at": "2026-09-15T16:40:00+08:00", "actor": "design@wenpai.org", "action": "添加域名", "detail": "staging.wenpai.dev · 文派官网" },
+    { "at": "2026-09-10T20:12:00+08:00", "actor": "fe@wenpai.org", "action": "发布版本", "detail": "赛博字库 · 站酷高端黑 按文字子集" }
+  ],
+  "uploads": [
+    {
+      "id": "up-1",
+      "name": "文派标题体",
+      "family": "custom-wenpai-title",
+      "weights": [
+        "Bold"
+      ],
+      "glyphCount": 6763,
+      "format": "ttf",
+      "size": 2318336,
+      "uploadedAt": "2026-08-30T14:20:00+08:00",
+      "status": "ready"
+    }
+  ],
+  "projects": [
+    {
+      "id": "p-wenpai",
+      "name": "文派官网",
+      "slug": "wenpai-org",
+      "createdAt": "2026-06-12T10:00:00+08:00",
+      "fonts": [
+        {
+          "fontId": "7fdcfd07-864d-49a1-8727-b51d78316e0b",
+          "weights": [
+            "400",
+            "800"
+          ],
+          "subset": {
+            "mode": "common",
+            "preset": "3500"
+          }
+        },
+        {
+          "fontId": "f6efadc4-b5de-4343-9c57-65d54b7db3f8",
+          "weights": [
+            "400"
+          ],
+          "subset": {
+            "mode": "text",
+            "text": "文派开源 让中文字体在网页上一行代码可用 WordPress 主题 插件 字体 图标 头像"
+          }
+        }
+      ],
+      "domains": [
+        {
+          "host": "wenpai.org",
+          "verified": true,
+          "method": "dns",
+          "addedAt": "2026-06-12T10:05:00+08:00",
+          "verifiedAt": "2026-06-12T10:12:00+08:00",
+          "lastSeenAt": "2026-09-20T09:41:00+08:00"
+        },
+        {
+          "host": "*.wenpai.org",
+          "verified": true,
+          "method": "dns",
+          "addedAt": "2026-06-12T10:06:00+08:00",
+          "verifiedAt": "2026-06-12T10:12:00+08:00",
+          "lastSeenAt": "2026-09-20T09:38:00+08:00"
+        },
+        {
+          "host": "staging.wenpai.dev",
+          "verified": false,
+          "method": "file",
+          "addedAt": "2026-09-15T16:40:00+08:00",
+          "verifiedAt": null,
+          "lastSeenAt": null
+        }
+      ],
+      "versions": [
+        {
+          "v": 7,
+          "at": "2026-09-16T11:20:00+08:00",
+          "note": "阿里巴巴普惠体 增加 800 字重",
+          "bytes": 1042000,
+          "current": true
+        },
+        {
+          "v": 6,
+          "at": "2026-09-02T09:05:00+08:00",
+          "note": "思源宋体 子集改为按文字（62 字）",
+          "bytes": 1021000,
+          "current": false
+        },
+        {
+          "v": 5,
+          "at": "2026-08-20T18:30:00+08:00",
+          "note": "普惠体 子集 7000 → 3500",
+          "bytes": 1200000,
+          "current": false
+        },
+        {
+          "v": 4,
+          "at": "2026-07-30T15:00:00+08:00",
+          "note": "新增 思源宋体 CN Light",
+          "bytes": 2210000,
+          "current": false
+        }
+      ],
+      "usage": {
+        "requests30d": 184220,
+        "bytes30d": 38400000000,
+        "topPages": [
+          {
+            "path": "/",
+            "requests": 61200
+          },
+          {
+            "path": "/plugins",
+            "requests": 40210
+          },
+          {
+            "path": "/themes",
+            "requests": 28840
+          },
+          {
+            "path": "/docs",
+            "requests": 19310
+          }
+        ],
+        "perf": {
+          "fcpMs": 1180,
+          "fontLoadMs": 320,
+          "hitRate": 0.97
+        },
+        "byDomain": [
+          {
+            "host": "wenpai.org",
+            "requests30d": 143700,
+            "bytes30d": 29900000000
+          },
+          {
+            "host": "*.wenpai.org",
+            "requests30d": 40520,
+            "bytes30d": 8500000000
+          }
+        ],
+        "byFont": [
+          {
+            "fontId": "7fdcfd07-864d-49a1-8727-b51d78316e0b",
+            "requests30d": 126400,
+            "bytes30d": 31200000000,
+            "weights": {
+              "400": 98100,
+              "800": 28300
+            }
+          },
+          {
+            "fontId": "f6efadc4-b5de-4343-9c57-65d54b7db3f8",
+            "requests30d": 57820,
+            "bytes30d": 7200000000,
+            "weights": {
+              "400": 57820
+            }
+          }
+        ],
+        "status": {
+          "200": 61400,
+          "304": 120400,
+          "403": 2420
+        },
+        "blockedHosts": [
+          {
+            "host": "wenpai-mirror.xyz",
+            "requests30d": 1860,
+            "lastAt": "2026-09-19T22:10:00+08:00"
+          },
+          {
+            "host": "localhost:8080",
+            "requests30d": 560,
+            "lastAt": "2026-09-20T08:02:00+08:00"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p-cyber",
+      "name": "赛博字库",
+      "slug": "cyberfonts",
+      "createdAt": "2026-08-05T09:30:00+08:00",
+      "fonts": [
+        {
+          "fontId": "ebfe2481-5377-457b-ae49-719f4faeb2db",
+          "weights": [
+            "300",
+            "400",
+            "700"
+          ],
+          "subset": {
+            "mode": "common",
+            "preset": "7000"
+          }
+        },
+        {
+          "fontId": "fd299190-67eb-4ea8-a7e5-ebf770362d2c",
+          "weights": [
+            "300"
+          ],
+          "subset": {
+            "mode": "unicode",
+            "ranges": "U+4E00-9FFF, U+3000-303F"
+          }
+        },
+        {
+          "fontId": "37179233-5561-4606-9058-124b825b7840",
+          "weights": [
+            "400"
+          ],
+          "subset": {
+            "mode": "text",
+            "text": "赛博字库 CYBERFONTS 极简 未来 像素"
+          }
+        }
+      ],
+      "domains": [
+        {
+          "host": "cyberfonts.com",
+          "verified": true,
+          "method": "file",
+          "addedAt": "2026-08-05T09:40:00+08:00",
+          "verifiedAt": "2026-08-05T09:52:00+08:00",
+          "lastSeenAt": "2026-09-20T09:12:00+08:00"
+        }
+      ],
+      "versions": [
+        {
+          "v": 3,
+          "at": "2026-09-10T20:12:00+08:00",
+          "note": "站酷高端黑 按文字子集",
+          "bytes": 4100000,
+          "current": true
+        },
+        {
+          "v": 2,
+          "at": "2026-08-22T13:00:00+08:00",
+          "note": "寒蝉端黑 Unicode 区间",
+          "bytes": 5330000,
+          "current": false
+        },
+        {
+          "v": 1,
+          "at": "2026-08-05T09:45:00+08:00",
+          "note": "初始版本",
+          "bytes": 3900000,
+          "current": false
+        }
+      ],
+      "usage": {
+        "requests30d": 52310,
+        "bytes30d": 9100000000,
+        "topPages": [
+          {
+            "path": "/",
+            "requests": 30110
+          },
+          {
+            "path": "/fonts",
+            "requests": 15200
+          },
+          {
+            "path": "/about",
+            "requests": 7000
+          }
+        ],
+        "perf": {
+          "fcpMs": 1420,
+          "fontLoadMs": 510,
+          "hitRate": 0.94
+        },
+        "byDomain": [
+          {
+            "host": "cyberfonts.com",
+            "requests30d": 52310,
+            "bytes30d": 9100000000
+          }
+        ],
+        "byFont": [
+          {
+            "fontId": "ebfe2481-5377-457b-ae49-719f4faeb2db",
+            "requests30d": 31200,
+            "bytes30d": 6100000000,
+            "weights": {
+              "300": 4100,
+              "400": 22300,
+              "700": 4800
+            }
+          },
+          {
+            "fontId": "fd299190-67eb-4ea8-a7e5-ebf770362d2c",
+            "requests30d": 12600,
+            "bytes30d": 2200000000,
+            "weights": {
+              "300": 12600
+            }
+          },
+          {
+            "fontId": "37179233-5561-4606-9058-124b825b7840",
+            "requests30d": 8510,
+            "bytes30d": 800000000,
+            "weights": {
+              "400": 8510
+            }
+          }
+        ],
+        "status": {
+          "200": 19800,
+          "304": 32510,
+          "403": 690
+        },
+        "blockedHosts": [
+          {
+            "host": "cyberfonts.cn",
+            "requests30d": 690,
+            "lastAt": "2026-09-18T15:33:00+08:00"
+          }
+        ]
+      }
+    }
+  ]
+}

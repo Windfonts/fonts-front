@@ -2,172 +2,317 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>使用文档 · 文风字体</title>
-  <link rel="stylesheet" href="css/wenfeng.css" />
+  <title>文档 · 文风字体</title>
+  <meta name="description" content="文风字体接入文档：CDN 地址规则、link / @import / CSS / npm 用法、子集化、font-display、域名白名单、版本回滚与 API 参数。" />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/site.css" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-docs">
-  <header class="site-chrome">
-    <div class="site-chrome-inner">
-      <ul class="brush-nav">
-        <li class="icon"><a class="brand" href="index.html"><img src="assets/icon.webp" alt="" width="36" height="36" /></a></li>
-        <li><a href="index.html">首页</a></li>
-        <li><a href="fonts.html">字体库</a></li>
-        <li><a class="active" href="docs.html">文档</a></li>
-      </ul>
-      <div class="site-chrome-end">
-        <div class="nav-search">
-          <input type="search" id="navSearch" placeholder="搜索字体" aria-label="搜索字体" autocomplete="off" />
-          <button type="button" class="nav-search-clear" id="navSearchClear" hidden aria-label="清除">×</button>
-          <span class="nav-search-icon" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>
-          </span>
-        </div>
-        <a class="bag-link" href="shopping-bag.html" aria-label="已获取字体">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-            <path d="M6 8h12l-1 12H7L6 8z" /><path d="M9 8a3 3 0 0 1 6 0" />
-          </svg>
-          <span class="badge" data-pick-count data-count="0">0</span>
-        </a>
-      </div>
-    </div>
-  </header>
+  <header data-topbar data-active="docs"></header>
 
-  <div class="docs-layout">
-    <aside class="docs-sidebar" aria-label="文档导航">
-      <p class="docs-side-title">Getting started</p>
-      <nav>
-        <a href="#intro" class="active">概述</a>
-        <a href="#link">引入 CSS（link）</a>
-        <a href="#import">@import</a>
-        <a href="#css-use">在 CSS 中使用</a>
-        <a href="#params">参数说明</a>
-        <a href="#bag">选字袋</a>
-        <a href="#embed">嵌入页</a>
-        <a href="#foundry">厂商入驻</a>
-        <a href="#tips">许可与注意</a>
-      </nav>
+  <main class="container docs">
+    <aside class="docs-toc" aria-label="文档目录">
+      <label class="docs-search"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-search"/></svg><input type="search" id="docsFilter" placeholder="筛选章节" aria-label="筛选章节" autocomplete="off" /></label>
+      <h3>开始</h3>
+      <a href="#intro">概述</a>
+      <a class="for-dev" href="#url">CDN 地址规则</a>
+      <a class="for-dev" href="#link">用 link 引入</a>
+      <a class="for-dev" href="#import">用 @import 引入</a>
+      <a class="for-dev" href="#css">在 CSS 中使用</a>
+      <a class="for-dev" href="#npm">npm 与框架</a>
+      <h3 class="for-dev">优化</h3>
+      <a class="for-dev" href="#subset">子集化</a>
+      <a class="for-dev" href="#display">font-display</a>
+      <a class="for-dev" href="#preload">preload 与 preconnect</a>
+      <a class="for-dev" href="#cache">缓存与更新</a>
+      <h3 class="for-dev">项目</h3>
+      <a class="for-dev" href="#projects">项目与项目 CDN</a>
+      <a class="for-dev" href="#domains">域名白名单</a>
+      <a class="for-dev" href="#versions">版本与回滚</a>
+      <a class="for-dev" href="#usage">用量与统计</a>
+      <a class="for-dev" href="#upload">上传自有字体</a>
+      <h3>参考</h3>
+      <a class="for-dev" href="#params">地址参数</a>
+      <a class="for-dev" href="#weights">字重名对照</a>
+      <a href="#bag">选字袋</a>
+      <a href="#license">许可与注意</a>
+      <a href="#license-types">许可类型</a>
+      <a href="#faq">常见问题</a>
     </aside>
 
-    <article class="docs-wrap docs-main">
-      <section id="intro">
-        <h1>快速开始</h1>
-        <p class="lead">一行 CSS 即可在网页中使用文风字体。生产环境请核对许可与域名白名单。本页对应 next-windfonts <code>/docs/getting-started</code>。</p>
-      </section>
-
-      <section id="link">
-        <h2>1. 用 &lt;link&gt; 引入</h2>
-        <p>将下列代码放入页面的 <code>&lt;head&gt;</code>。建议先 <code>preconnect</code> 再拉 CSS：</p>
-        <div class="code-block">
-          <pre>&lt;link rel="preconnect" href="https://app.windfonts.com" crossorigin&gt;
-&lt;link rel="stylesheet"
-  href="https://app.windfonts.com/api/css?family=wenfeng-systcn&amp;weight=400"
-  crossorigin="anonymous"&gt;</pre>
-        </div>
-        <p>多字重请分别请求，或在 <a href="font-embed.html">嵌入页</a> 勾选「包含所有字重变体」批量生成。</p>
-      </section>
-
-      <section id="import">
-        <h2>2. 用 @import 引入</h2>
-        <p>适合写在已有 CSS 文件顶部（注意 <code>@import</code> 必须在其他规则之前）：</p>
-        <div class="code-block">
-          <pre>&lt;style&gt;
-@import url('https://app.windfonts.com/api/css?family=wenfeng-ibmps&amp;weight=400');
-@import url('https://app.windfonts.com/api/css?family=wenfeng-ibmps&amp;weight=700');
-&lt;/style&gt;</pre>
+    <article class="docs-body">
+      <section id="intro" style="padding-top:0">
+        <p class="kicker">文档 · 更新于 2026-09-20</p>
+        <h1>接入文风字体</h1>
+        <p class="lead">一行 CSS 就能在网页中使用中文字体。公开字体走 <code>cn.windfonts.com</code> CDN，按字体族与字重取 CSS；正式站点建议创建项目、绑定域名白名单，并核对每款字体的授权范围。</p>
+        <div class="docs-steps">
+          <a href="fonts.html"><b>1</b><span>在字体库挑字体，看字重与授权</span></a>
+          <a href="#link"><b>2</b><span>复制字体页「使用」区的代码放进 <code>&lt;head&gt;</code></span></a>
+          <a href="#css"><b>3</b><span>在 CSS 里写 <code>font-family: "wenfeng-{slug}"</code></span></a>
+          <a href="#domains"><b>4</b><span>上线前创建项目、绑定域名、子集化减体积</span></a>
         </div>
       </section>
 
-      <section id="css-use">
-        <h2>3. 在 CSS 中使用</h2>
-        <p>API 返回的 <code>font-family</code> 一般为 <code>windfonts-*</code>（由 <code>wenfeng-</code> slug 映射）。同时保留系统中文回退：</p>
-        <div class="code-block">
-          <pre>.title {
-  font-family: 'windfonts-systcn', 'wenfeng-systcn',
-               'PingFang SC', 'Microsoft YaHei', serif;
+      <section id="url" class="for-dev">
+        <h2>CDN 地址规则</h2>
+        <p>每款字体的每个字重是一份独立 CSS，地址由字体族 slug 与字重名组成：</p>
+        <div class="code"><pre>https://cn.windfonts.com/wenfeng/fonts/<b>{slug}</b>/<b>{weight}</b>/web/<b>index.css</b></pre></div>
+        <ul>
+          <li><code>{slug}</code>：字体族标识去掉 <code>wenfeng-</code> 前缀，如 <code>wenfeng-albbpht</code> → <code>albbpht</code>。字体页「使用」区直接给出完整地址。</li>
+          <li><code>{weight}</code>：小写字重名，<code>regular</code> <code>bold</code> <code>light</code> <code>medium</code> <code>heavy</code>…以字体页列出的字重为准，见<a href="#weights">对照表</a>。</li>
+          <li>文件名 <code>index.css</code> 为完整字集；<code>zh_index.css</code> 为中文子集，体积更小，见<a href="#subset">子集化</a>。</li>
+        </ul>
+        <p>CSS 内部按 Unicode 区间切成多个 woff2 分片，浏览器只下载页面实际用到的分片；字体文件与 CSS 同目录，跨域头已放开。</p>
+      </section>
+
+      <section id="link" class="for-dev">
+        <h2>用 &lt;link&gt; 引入</h2>
+        <p>放入页面 <code>&lt;head&gt;</code>。先 <code>preconnect</code> 再拉 CSS，可省一次 DNS + TLS 往返。免费提供的字体请保留授权标注注释。</p>
+        <div class="code"><pre>&lt;!-- 此中文网页字体由文风字体（Windfonts）免费提供，您可以自由引用，请务必保留此授权许可标注 https://wenfeng.org/license --&gt;
+&lt;link rel="preconnect" href="https://cn.windfonts.com" crossorigin&gt;
+&lt;link rel="stylesheet" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/index.css"&gt;</pre></div>
+        <p>需要多个字重就多写几行 <code>&lt;link&gt;</code>，每个字重一份 CSS；字体页「使用」区与<a href="shopping-bag.html">选字袋</a>可一次生成多款、多字重的合并代码。</p>
+      </section>
+
+      <section id="import" class="for-dev">
+        <h2>用 @import 引入</h2>
+        <p>写在 CSS 文件顶部（<code>@import</code> 必须位于其他规则之前）。相比 <code>&lt;link&gt;</code> 会晚一个解析阶段，首屏字体优先用 <code>&lt;link&gt;</code>。</p>
+        <div class="code"><pre>@import url('https://cn.windfonts.com/wenfeng/fonts/ibmps/regular/web/index.css');
+@import url('https://cn.windfonts.com/wenfeng/fonts/ibmps/bold/web/index.css');</pre></div>
+      </section>
+
+      <section id="css" class="for-dev">
+        <h2>在 CSS 中使用</h2>
+        <p>CSS 声明的 <code>font-family</code> 与字体族标识一致，为 <code>wenfeng-{slug}</code>。始终保留系统中文回退，避免加载期间空白。</p>
+        <div class="code"><pre>.title {
+  font-family: "wenfeng-albbpht",
+               "PingFang SC", "Microsoft YaHei", sans-serif;
   font-weight: 400;
-  font-style: normal;
-}
-
-.hero {
-  font-family: 'windfonts-ibmps', 'wenfeng-ibmps', system-ui, sans-serif;
-  font-weight: 700;
-}</pre>
-        </div>
+}</pre></div>
+        <p class="note">同一页面同时引入一款字体的多个字重时，请在 <code>font-weight</code> 上区分；如果你自己拼接 CSS，需要为每个字重的 <code>@font-face</code> 补上对应 <code>font-weight</code>，否则后加载的字重会覆盖前者。项目 CDN 生成的 CSS 已处理好这一点。</p>
       </section>
 
-      <section id="params">
-        <h2>4. 参数说明</h2>
-        <ol>
-          <li><code>family</code> — 字体族 slug，如 <code>wenfeng-systcn</code>、<code>wenfeng-ibmps</code>（见字体详情页）</li>
-          <li><code>weight</code> — 字重数字（<code>400</code>、<code>700</code>）或名称映射后的数值；变体以详情页「可选样式」为准</li>
-        </ol>
-        <p>完整 URL 形如：</p>
-        <div class="code-block">
-          <pre>https://app.windfonts.com/api/css?family={family}&amp;weight={weight}</pre>
-        </div>
+      <section id="npm" class="for-dev">
+        <h2>npm 与框架</h2>
+        <p>现代前端工作流用 loader 按需注入，并拿到加载状态（loading / loaded / error）。</p>
+        <div class="code"><pre>npm install @windfonts/loader
+
+import { loadFonts } from '@windfonts/loader';
+
+const status = await loadFonts([
+  { family: 'wenfeng-albbpht', weights: ['regular', 'bold'], version: 'zh' }
+], { display: 'swap' });</pre></div>
+        <p>React 用 <code>useWindfonts()</code>，Vue 用 <code>useWindfonts()</code> composable，返回同一份状态对象。WordPress 站点可直接用文派的字体插件，在后台选字即可。</p>
+      </section>
+
+      <section id="subset" class="for-dev">
+        <h2>子集化</h2>
+        <p>中文字体整包常在 5–15 MB。子集化只保留会出现的字，体积可减少 90% 以上。</p>
+        <table class="table">
+          <thead><tr><th>方式</th><th>适用</th><th>在哪里</th></tr></thead>
+          <tbody>
+            <tr><td><strong>预制 · 完整</strong> <code>index.css</code></td><td>正文内容不固定、需要生僻字</td><td>公开 CDN</td></tr>
+            <tr><td><strong>预制 · 中文</strong> <code>zh_index.css</code></td><td>常见中文内容，去掉了大量扩展区字符</td><td>公开 CDN</td></tr>
+            <tr><td><strong>按文字</strong></td><td>标题、品牌名、固定文案；体积以 KB 计</td><td>控制台 · 子集化工作台</td></tr>
+            <tr><td><strong>按常用字</strong> 3500 / 7000</td><td>正文不固定但不需要生僻字的站点</td><td>控制台 · 子集化工作台</td></tr>
+            <tr><td><strong>按 Unicode 区间</strong></td><td>多语言、自定义码点</td><td>控制台 · 子集化工作台</td></tr>
+          </tbody>
+        </table>
+        <div class="code"><pre>https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/zh_index.css</pre></div>
+        <p>控制台生成的自定义子集作为<a href="#versions">项目版本</a>发布，走项目 CDN 地址，改子集不需要改嵌入代码。</p>
+      </section>
+
+      <section id="display" class="for-dev">
+        <h2>font-display</h2>
+        <p>控制字体加载期间文字如何呈现。CDN 的 CSS 默认 <code>swap</code>；项目设置里可统一指定，项目 CDN 会按设置生成。</p>
+        <ul>
+          <li><code>swap</code>（默认）：先用回退字体显示，加载完成后替换。首屏最快，有一次重排。</li>
+          <li><code>block</code>：短暂隐藏文字等待字体，适合品牌标题。</li>
+          <li><code>fallback</code> / <code>optional</code>：网络慢时放弃替换，保证阅读稳定。</li>
+        </ul>
+      </section>
+
+      <section id="preload" class="for-dev">
+        <h2>preload 与 preconnect</h2>
+        <p>关键字体（首屏标题）可在 <code>&lt;head&gt;</code> 顶部预加载 CSS，再由 CSS 拉字体分片；配合 <code>preconnect</code> 效果最好。不要 preload 字体文件本身——分片由 <code>unicode-range</code> 决定，浏览器比你更清楚要哪几片。</p>
+        <div class="code"><pre>&lt;link rel="preconnect" href="https://cn.windfonts.com" crossorigin&gt;
+&lt;link rel="preload" as="style" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/bold/web/index.css"&gt;
+&lt;link rel="stylesheet" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/bold/web/index.css"&gt;</pre></div>
+      </section>
+
+      <section id="cache" class="for-dev">
+        <h2>缓存与更新</h2>
+        <p>字体分片文件名含内容哈希，可长期缓存；CSS 短缓存（约 10 分钟），字体更新版本时只需 CSS 刷新。项目 CDN 地址指向项目「当前版本」，发布或回滚后 CSS 自动切换，无需改代码。</p>
+      </section>
+
+      <section id="projects" class="for-dev">
+        <h2>项目与项目 CDN</h2>
+        <p>项目是「一组字体 + 一组域名 + 一份设置」的发布单元。登录控制台新建项目，从字体库或选字袋把字体加进来，逐款设定字重与子集，发布后得到项目地址：</p>
+        <div class="code"><pre>https://cn.windfonts.com/p/<b>{project-slug}</b>/index.css</pre></div>
+        <ul>
+          <li>一份 CSS 包含项目内全部字体与字重，已按项目设置处理 <code>font-display</code> 与 <code>font-weight</code>。</li>
+          <li data-pricing hidden>免费版 1 个项目 / 3 个域名；专业版 10 个项目、域名不限、月流量 200 GB，见<a href="pricing.html">定价</a>。</li>
+        </ul>
+      </section>
+
+      <section id="domains" class="for-dev">
+        <h2>域名白名单</h2>
+        <p>项目绑定的域名决定字体文件对谁返回。字体分片校验请求的 <code>Referer</code> / <code>Origin</code>，白名单外一律 403，并记入控制台「域名 › 白名单外的拉取」。</p>
+        <ul>
+          <li>支持精确域名与通配 <code>*.example.com</code>（不含根域名）；<code>localhost</code> 与 <code>127.0.0.1</code> 默认允许。</li>
+          <li>新增域名需验证，两种方式任选：DNS TXT <code>_windfonts.example.com → "windfonts={project-id}"</code>，或在站点根目录放置 <code>/.well-known/windfonts-verify.txt</code>，内容为项目 ID。</li>
+          <li>公开 CDN（<code>cn.windfonts.com</code>）不校验域名，但有限流；正式站点请走项目 CDN。</li>
+        </ul>
+      </section>
+
+      <section id="versions" class="for-dev">
+        <h2>版本与回滚</h2>
+        <p>项目每次改动（增删字体、修改子集、切换字重）都生成一个新版本，记录体积与说明；嵌入代码指向项目而不是具体版本，发布即生效。出问题时在项目「版本」标签回滚——回滚以旧版内容生成新版本，历史不丢。</p>
+      </section>
+
+      <section id="usage" class="for-dev">
+        <h2>用量与统计</h2>
+        <p>控制台「用量」按项目、字体、字重、域名四个维度统计请求数与流量，另有 200 / 304 / 403 状态分布与字体加载中位时间（来自嵌入 CSS 的 Resource Timing 上报，仅白名单域名）。数据延迟约 5 分钟，支持 7 / 30 / 90 天与 CSV 导出。点任一字体进入钻取页，可看到很少被请求的字重，便于从项目里移除。</p>
+      </section>
+
+      <section id="upload" class="for-dev">
+        <h2>上传自有字体</h2>
+        <p>支持 <code>.ttf</code> <code>.otf</code> <code>.woff</code> <code>.woff2</code>。上传时自动解析名称、字重、字符数，生成分片与全部格式，之后与库内字体一样加入项目、子集化。你必须拥有该字体的合法授权，上传即视为承诺；自有字体只通过项目 CDN 分发，不进入公开字体库。</p>
+      </section>
+
+      <section id="params" class="for-dev">
+        <h2>地址参数</h2>
+        <table class="table">
+          <thead><tr><th>段</th><th>说明</th><th>示例</th></tr></thead>
+          <tbody>
+            <tr><td><code>{slug}</code></td><td>字体族标识去掉 <code>wenfeng-</code>；字体页「使用」区可复制</td><td class="mono">albbpht · syhtcjk · ibmps</td></tr>
+            <tr><td><code>{weight}</code></td><td>小写字重名，以字体页列出的为准</td><td class="mono">regular · bold · light · heavy</td></tr>
+            <tr><td>文件</td><td>完整字集 / 中文子集</td><td class="mono">index.css · zh_index.css</td></tr>
+            <tr><td><code>font-family</code></td><td>CSS 中声明的族名</td><td class="mono">"wenfeng-albbpht"</td></tr>
+          </tbody>
+        </table>
+        <div class="code"><pre>https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/{index|zh_index}.css</pre></div>
+      </section>
+
+      <section id="weights" class="for-dev">
+        <h2>字重名对照</h2>
+        <p>地址里用字重名而不是数字；在 CSS 中用数字 <code>font-weight</code>。对照如下（个别字体使用自有命名如 <code>normal</code>、<code>extrabold</code>，以字体页为准）：</p>
+        <table class="table">
+          <thead><tr><th>地址段</th><th>font-weight</th><th>地址段</th><th>font-weight</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">thin</td><td class="num">100</td><td class="mono">medium</td><td class="num">500</td></tr>
+            <tr><td class="mono">extralight</td><td class="num">200</td><td class="mono">semibold</td><td class="num">600</td></tr>
+            <tr><td class="mono">light</td><td class="num">300</td><td class="mono">bold</td><td class="num">700</td></tr>
+            <tr><td class="mono">regular · normal</td><td class="num">400</td><td class="mono">heavy · extrabold</td><td class="num">800</td></tr>
+            <tr><td class="mono">text</td><td class="num">400</td><td class="mono">black</td><td class="num">900</td></tr>
+          </tbody>
+        </table>
       </section>
 
       <section id="bag">
-        <h2>5. 选字袋工作流</h2>
-        <ol>
-          <li>在 <a href="fonts.html">字体库</a> 将字体「加入选择」</li>
-          <li>打开 <a href="shopping-bag.html">已获取字体</a> 统一预览、移除或跳转嵌入</li>
-          <li>选字袋数据存在浏览器 <code>localStorage</code>（键 <code>wf-proto-picks</code>），仅本机原型有效</li>
-        </ol>
+        <h2>选字袋</h2>
+        <p>在字体库或字体页「加入选字袋」，到<a href="shopping-bag.html">选字袋</a>统一预览、比较，并一次生成多款字体的合并嵌入代码。登录后可把选字袋整体添加到某个项目。选字袋存在浏览器本地。</p>
       </section>
 
-      <section id="embed">
-        <h2>6. 嵌入页</h2>
-        <p>详情页「获取嵌入代码」进入 <code>font-embed.html?id=…</code>：</p>
+      <section id="license">
+        <h2>许可与注意</h2>
         <ul>
-          <li>当前字体会默认勾选且不可取消</li>
-          <li>可将选字袋中的其它字体一并勾选</li>
-          <li>切换 <strong>link</strong> / <strong>@import</strong> 标签，一键复制；下方附 CSS 使用示例</li>
-        </ul>
-        <div class="code-block">
-          <pre>// 从详情进入
-font-detail.html?id={uuid}
-  → 获取嵌入代码
-  → font-embed.html?id={uuid}</pre>
-        </div>
-      </section>
-
-      <section id="foundry">
-        <h2>7. 厂商入驻与认领</h2>
-        <p>文风按品牌收字。厂商入驻后可维护品牌主页（标志、官网、介绍）；通过认证的品牌会在名称旁显示徽章。</p>
-        <ul>
-          <li>请准备品牌法定名称、官网、授权原文（或许可档位说明）</li>
-          <li>入驻通道尚未对公众开放；意向先发到 <a href="https://windfonts.com" target="_blank" rel="noopener noreferrer">windfonts.com</a></li>
+          <li>本站转述条款，不二次授权。每款字的范围以字体页「授权」区的出处为准；没有原文链接的不要当成已经核实。</li>
+          <li>「素材站声明」不是厂商官网。千图、包图、字魂等平台上的「可商用」须再核权利人。</li>
+          <li>归属看品牌方。字库代做的字，版权在出资的品牌，不能拿制作方其他款的许可来猜。</li>
+          <li>派生、地区版会标上游和同系。写明沿用上游许可的，仍须改名并保留声明；未写明的不要自行推断。</li>
+          <li>免费商用或开源字体请保留版权与授权标注注释；不得单独分发字体文件、不得二次托管 CDN 分片。</li>
+          <li>公开 CDN 有限流与突发保护；正式站点请创建项目并绑定域名，走项目 CDN 地址。</li>
         </ul>
       </section>
 
-      <section id="tips">
-        <h2>8. 许可与注意</h2>
+      <section id="license-types">
+        <h2>许可类型</h2>
+        <p>图标站墨图爱可按 SPDX 标每一套；字体同样按短名区分，不能把全部「免费商用」当成一种许可。</p>
         <ul>
-          <li>保留文风许可注释与 <a href="https://wenfeng.org/license" target="_blank" rel="noopener">wenfeng.org/license</a> 标注</li>
-          <li>CSS API 可能限流（429）；生产应走 CDN / 白名单域名</li>
-          <li>本原型为静态镜像：无登录、无真实 OSS 下载、无后台写库</li>
+          <li><b>宽松</b>（OFL、Apache、MIT）：多数商业项目可用。OFL 允许改字再分发，但必须换名字、保留声明，不得单独卖字体文件。</li>
+          <li><b>署名</b>（CC BY）：可商用，须按许可署名原作者。</li>
+          <li><b>相同方式共享</b>（CC BY-SA）：署名之外，衍生作品须用同一许可。</li>
+          <li><b>禁止改作</b>（CC BY-ND）：可传播原件，不得分发改过的版本。</li>
+          <li><b>Copyleft</b>（GPL）：再分发须遵守 GPL，不能当 MIT 用。</li>
+          <li><b>素材站 / 作者声明 / 未标明</b>：只有档位或口头声明，没有可核验原文。上线前自己找权利人。</li>
         </ul>
-        <p style="margin-top:2rem;color:var(--wf-zinc-400);font-size:0.8125rem">prototypes v3.3 · 非生产</p>
+        <p>选字袋里多款字体混装时，按字核对出处，不要合成一张「均可商用」。</p>
       </section>
+
+      <section id="faq" style="border-bottom:0">
+        <h2>常见问题</h2>
+        <dl class="faq">
+          <dt>页面上字体没生效？</dt><dd>检查三件事：CSS 地址是否 200；<code>font-family</code> 是否与 CSS 内声明一致（<code>wenfeng-{slug}</code>）；所用字重是否在该字体的字重列表里。</dd>
+          <dt>控制台里请求量很低，但站点访问不少？</dt><dd>正常——分片文件长期缓存，回访用户命中浏览器缓存不产生请求；304 占比高说明缓存工作正常。</dd>
+          <dt>为什么有 403？</dt><dd>来源不在白名单。「域名」页会列出来源域名，是自己的就加白，不是就保持拦截。</dd>
+          <dt>能把字体文件下载到自己服务器吗？</dt><dd>免费商用字体请到 <a href="https://wenfeng.org" target="_blank" rel="noopener">wenfeng.org</a> 下载原始文件自行部署；CDN 分片文件不用于二次托管。</dd>
+        </dl>
+      </section>
+
+      <nav class="docs-foot" aria-label="文档页脚">
+        <a href="fonts.html">去字体库挑一款 →</a>
+        <a href="app/index.html">打开控制台 →</a>
+        <span class="muted">有错漏？在 GitHub 提 issue 或写信 docs@windfonts.com</span>
+      </nav>
     </article>
-  </div>
+  </main>
 
-  <footer id="wfExtraFooter" class="site-extra-footer"></footer>
+  <footer id="wfExtraFooter"></footer>
+
   <script src="js/wf-proto.js"></script>
+  <script src="js/wf-chrome.js"></script>
   <script>
     (function () {
-      const links = document.querySelectorAll('.docs-sidebar a');
+      const toc = document.querySelector('.docs-toc');
+      const links = toc.querySelectorAll('a');
+      const sections = Array.prototype.map.call(links, function (a) { return document.querySelector(a.getAttribute('href')); });
       function sync() {
-        const hash = location.hash || '#intro';
-        links.forEach(function (a) {
-          a.classList.toggle('active', a.getAttribute('href') === hash);
-        });
+        let cur = sections[0];
+        const y = window.scrollY + 120;
+        sections.forEach(function (s) { if (s && s.offsetTop <= y) cur = s; });
+        links.forEach(function (a) { a.classList.toggle('is-on', cur && a.getAttribute('href') === '#' + cur.id); });
       }
-      window.addEventListener('hashchange', sync);
+      if (/^#(url|link|import|css|npm|subset|display|preload|cache|projects|domains|versions|usage|upload|params|weights)$/.test(location.hash)) {
+        WFChrome.setView('dev');
+      }
+      window.addEventListener('scroll', sync, { passive: true });
       sync();
+
+      /* 章节筛选 */
+      document.getElementById('docsFilter').addEventListener('input', function (e) {
+        const q = e.target.value.trim().toLowerCase();
+        links.forEach(function (a, i) {
+          const s = sections[i];
+          const hit = !q || a.textContent.toLowerCase().indexOf(q) !== -1 || (s && s.textContent.toLowerCase().indexOf(q) !== -1);
+          a.hidden = !hit;
+        });
+        toc.querySelectorAll('h3').forEach(function (h) {
+          let n = h.nextElementSibling, any = false;
+          while (n && n.tagName === 'A') { if (!n.hidden) any = true; n = n.nextElementSibling; }
+          h.hidden = !any;
+        });
+      });
+
+      /* 代码块复制按钮 + 标题锚点 */
+      document.querySelectorAll('.docs-body .code').forEach(function (box) {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'copy'; b.innerHTML = WFChrome.icon('copy') + '复制';
+        b.addEventListener('click', function () { WFChrome.copy(box.querySelector('pre').textContent, '已复制代码'); });
+        box.appendChild(b);
+      });
+      document.querySelectorAll('.docs-body section[id] h2').forEach(function (h) {
+        const a = document.createElement('a');
+        a.className = 'anchor'; a.href = '#' + h.parentNode.id; a.setAttribute('aria-label', '本节链接'); a.innerHTML = WFChrome.icon('link');
+        a.addEventListener('click', function (e) { e.preventDefault(); history.replaceState(null, '', a.href); WFChrome.copy(location.href, '已复制本节链接'); });
+        h.appendChild(a);
+      });
     })();
   </script>
 </body>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>上传字体 · 控制台 · 文风字体</title>
+  <link rel="stylesheet" href="../css/fonts.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/app.css" />
+  <link rel="icon" type="image/webp" href="../assets/icon.webp" />
+</head>
+<body class="app">
+  <aside class="rail" data-rail data-active="fonts"></aside>
+  <main class="app-main">
+    <div class="app-head"><div><p class="crumb"><a href="fonts.html">我的字体</a><span>/</span><span>上传</span></p><h1>上传字体</h1>
+      <p class="sub">支持 .ttf .otf .woff .woff2。上传后自动解析名称、字重、字符数，并生成全部格式；享受同样的子集化与托管。</p></div></div>
+
+    <form id="uploadForm" class="grid" style="grid-template-columns:minmax(0,1fr) 20rem;gap:var(--s-12);align-items:start">
+      <div class="stack">
+        <label class="drop" id="drop"><input type="file" id="file" accept=".ttf,.otf,.woff,.woff2" /><strong>拖入字体文件</strong>，或点击选择<br><span class="t-13" id="fileName">单个文件 ≤ 30 MB</span></label>
+        <div class="grid" style="grid-template-columns:1fr 1fr">
+          <div class="field"><label>字体名称</label><input class="input" id="upName" placeholder="解析后自动填入，可改" /></div>
+          <div class="field"><label>字重</label><select class="select" id="upWeight"><option value="Thin">Thin 100</option><option value="Light">Light 300</option><option value="Regular" selected>Regular 400</option><option value="Medium">Medium 500</option><option value="Bold">Bold 700</option><option value="Black">Black 900</option></select></div>
+        </div>
+        <div class="field"><label>font-family slug</label><input class="input mono" id="upFamily" placeholder="custom-your-font" /><span class="hint">只允许小写字母、数字与连字符；用于嵌入代码。</span></div>
+        <div class="field"><label>授权来源</label><select class="select" id="upLicense"><option>自研 / 委托设计，拥有全部权利</option><option>已购买商业授权（含网页嵌入）</option><option>开源许可（OFL / Apache 等）</option></select></div>
+        <label class="check"><input type="checkbox" id="upAgree" required /> 我确认拥有该字体在网页嵌入场景下的合法授权，并同意《上传条款》。因授权问题产生的责任由上传者承担。</label>
+      </div>
+      <aside class="subset-side">
+        <dl class="kv">
+          <div><dt>文件</dt><dd class="num" id="kvSize">—</dd></div>
+          <div><dt>格式</dt><dd class="mono" id="kvFormat">—</dd></div>
+          <div><dt>产物</dt><dd class="mono">woff2 · woff · ttf</dd></div>
+          <div><dt>配额</dt><dd class="num" id="kvQuota">—</dd></div>
+        </dl>
+        <button type="submit" class="btn btn-ink btn-lg" id="btnUpload" disabled>上传并解析</button>
+        <p class="t-12 muted">上传的字体仅对你的项目可见，不会进入公开字体库。</p>
+      </aside>
+    </form>
+  </main>
+
+  <script src="../js/wf-proto.js"></script>
+  <script src="../js/wf-chrome.js"></script>
+  <script src="../js/wf-embed.js"></script>
+  <script src="../js/wf-app.js"></script>
+  <script>
+    (function () {
+      if (!WFApp.gate()) return;
+      const drop = document.getElementById('drop');
+      const file = document.getElementById('file');
+      const name = document.getElementById('upName');
+      const fam = document.getElementById('upFamily');
+      const agree = document.getElementById('upAgree');
+      const btn = document.getElementById('btnUpload');
+      let picked = null;
+
+      function slug(s) { return s.toLowerCase().replace(/\.[a-z0-9]+$/, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+      function check() { btn.disabled = !(picked && agree.checked && name.value.trim() && /^[a-z0-9-]+$/.test(fam.value)); }
+      function take(f) {
+        if (!f) return;
+        if (!/\.(ttf|otf|woff2?)$/i.test(f.name)) { WFChrome.toast('只支持 ttf / otf / woff / woff2'); return; }
+        if (f.size > 30 * 1024 * 1024) { WFChrome.toast('文件超过 30 MB'); return; }
+        picked = f;
+        document.getElementById('fileName').textContent = f.name;
+        document.getElementById('kvSize').textContent = WFEmbed.fmtBytes(f.size);
+        document.getElementById('kvFormat').textContent = f.name.split('.').pop().toLowerCase();
+        if (!name.value) name.value = f.name.replace(/\.[a-z0-9]+$/i, '').replace(/[-_]+/g, ' ');
+        if (!fam.value) fam.value = 'custom-' + slug(f.name);
+        check();
+      }
+      file.addEventListener('change', function () { take(file.files[0]); });
+      ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('is-over'); }); });
+      ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('is-over'); }); });
+      drop.addEventListener('drop', function (e) { take(e.dataTransfer.files[0]); });
+      [name, fam, agree].forEach(function (el) { el.addEventListener('input', check); el.addEventListener('change', check); });
+
+      document.getElementById('uploadForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (btn.disabled) return;
+        const s = WFApp.state();
+        s.uploads.unshift({
+          id: 'up-' + Date.now().toString(36), name: name.value.trim(), family: fam.value, weights: [document.getElementById('upWeight').value],
+          glyphCount: Math.round(picked.size / 320), format: picked.name.split('.').pop().toLowerCase(), size: picked.size,
+          uploadedAt: new Date().toISOString(), status: 'ready'
+        });
+        WFApp.save();
+        WFChrome.toast('已上传并解析');
+        location.href = 'fonts.html';
+      });
+
+      WFApp.load().then(function (s) {
+        document.getElementById('kvQuota').textContent = s.uploads.length + ' / ' + s.plan.quota.fonts + ' 款';
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -2,55 +2,68 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>文风字体 · Windfonts</title>
-  <link rel="stylesheet" href="css/wenfeng.css" />
+  <title>文风字体 · 中文 Webfonts 云服务</title>
+  <meta name="description" content="合法、高速、稳定地在网页上使用中文字体：托管、子集化、域名白名单，一行代码接入。" />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/specimen.css" />
+  <link rel="stylesheet" href="css/site.css" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
-<body class="page-home">
-  <div class="home-shell">
-    <header class="home-header">
-      <a class="brand" href="index.html">
-        <img src="assets/icon.webp" alt="" width="28" height="28" />
-        <span>文风字体</span>
-      </a>
-      <nav>
-        <a href="index.html">首页</a>
-        <a href="fonts.html">字体库</a>
-        <a href="docs.html">文档</a>
-      </nav>
-      <a class="bag-btn" href="shopping-bag.html" aria-label="购物车 / 选字" title="选字袋">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-          <path d="M6 8h12l-1 12H7L6 8z" />
-          <path d="M9 8a3 3 0 0 1 6 0" />
-        </svg>
-        <span class="badge" data-pick-count data-count="0">0</span>
-      </a>
-    </header>
+<body class="page-index">
+  <header data-topbar data-active="home"></header>
 
-    <main class="home-main">
-      <img class="home-logo-bar" src="assets/logo-bar.webp" width="246" alt="Windfonts" />
-      <form class="home-search" action="fonts.html" method="get" id="homeSearchForm">
-        <input type="search" name="keyword" id="homeSearch" placeholder="搜索海量免费字体" aria-label="搜索海量免费字体" title="输入后按 Enter 搜索" />
-      </form>
-      <div class="vtags" role="navigation" aria-label="字体分类">
-        <a href="fonts.html?tag=黑体" class="vtag"><span>黑</span><span>体</span></a>
-        <a href="fonts.html?tag=宋体" class="vtag"><span>宋</span><span>体</span></a>
-        <a href="fonts.html?tag=楷体" class="vtag"><span>楷</span><span>体</span></a>
-        <a href="fonts.html?tag=隶书" class="vtag"><span>隶</span><span>书</span></a>
-        <a href="fonts.html?tag=拼音" class="vtag"><span>拼</span><span>音</span></a>
-        <a href="fonts.html?tag=硬笔手写" class="vtag"><span>硬</span><span>笔</span><span>手</span><span>写</span></a>
-        <a href="fonts.html?tag=毛笔书法" class="vtag"><span>毛</span><span>笔</span><span>书</span><span>法</span></a>
-        <a href="fonts.html?tag=卡通创意" class="vtag"><span>卡</span><span>通</span><span>创</span><span>意</span></a>
-        <a href="fonts.html?tag=其他" class="vtag"><span>其</span><span>他</span></a>
+  <main>
+    <section class="home-hero">
+      <div class="container">
+        <div class="home-hero-top">
+          <p class="kicker">中文 Webfonts 云服务</p>
+          <p class="live-caption"><span>正在使用</span><a class="now" id="liveName" href="fonts.html">—</a><button type="button" id="liveNext"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-refresh"/></svg>换一款</button></p>
+        </div>
+        <h1 class="live" id="live" contenteditable="true" spellcheck="false" aria-label="可编辑的活样张" data-placeholder="写几个字试试">让中文字体，<br>在网页上流动。</h1>
+        <div class="home-hero-foot">
+          <p class="lead">托管、子集化、域名白名单，一行代码接入。每款字的授权以出处原文为准。</p>
+          <div class="home-cta">
+            <a class="btn btn-ink btn-lg" href="fonts.html">浏览字体库</a>
+            <a class="btn btn-lg" href="docs.html">查看文档</a>
+          </div>
+        </div>
       </div>
-    </main>
+    </section>
 
-    <footer id="wfExtraFooter" class="home-footer site-extra-footer is-dark">
-      <!-- EXTRA_LINKS filled by wf-proto.js -->
-    </footer>
-  </div>
+    <div id="controlbar"></div>
+
+    <div class="container">
+      <div class="lib has-side">
+        <aside class="lib-rail" id="libRail" aria-label="筛选"></aside>
+        <section>
+          <div class="count-line row-between">
+            <span id="countLine">正在加载字体目录…</span>
+            <div class="lib-active" id="activeFilters"></div>
+            <label class="lib-sort"><span class="sr-only">排序</span><select class="select" id="sortSel" aria-label="排序"><option value="featured">推荐排序</option><option value="name">按名称</option><option value="weights">字重多到少</option><option value="newest">最新发布</option></select></label>
+          </div>
+          <ul class="specimens" id="fontList"></ul>
+          <div class="load-more"><button type="button" class="btn" id="loadMore" hidden>加载更多</button></div>
+          <div id="listSentinel" aria-hidden="true"></div>
+        </section>
+        <aside class="lib-side" id="libSide" aria-label="当前字体"></aside>
+      </div>
+    </div>
+
+    <section class="stats-band" aria-label="字体库统计"><div class="container" id="statsBand"></div></section>
+  </main>
+
+  <footer id="wfExtraFooter"></footer>
+
   <script src="js/wf-proto.js"></script>
-
+  <script src="js/wf-chrome.js"></script>
+  <script src="js/wf-specimen.js"></script>
+  <script src="js/wf-embed.js"></script>
+  <script src="js/pages/fonts.js"></script>
+  <script src="js/pages/home.js"></script>
 </body>
 </html>

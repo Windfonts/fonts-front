@@ -1,0 +1,4321 @@
+[
+ {
+  "normalized": "02UtsukushiMincho",
+  "name": "02UtsukushiMincho",
+  "en": "02UtsukushiMincho",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "201",
+  "name": "拾陆字濑户2.0-1",
+  "en": "拾陆字濑户2.0-1",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   700
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "8",
+  "name": "书体坊雪纯体3500",
+  "en": " ÈÃÂ∑",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "851tegakizatsu",
+  "name": "851tegakizatsu",
+  "en": "851tegakizatsu",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "975MaruSCRegular",
+  "name": "975 圆体",
+  "en": "975Maru SC",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400,
+   500,
+   700
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "AAR",
+  "name": "AAR",
+  "en": "AAR",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "AcyBold",
+  "name": "Acy",
+  "en": "Acy",
+  "license": "免费商用",
+  "designer": "lxfly2000",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "AleoRegular",
+  "name": "Aleo",
+  "en": "Aleo",
+  "license": "免费商用",
+  "designer": "Alessio Laiso",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "AlexBrushRegular",
+  "name": "Alex Brush",
+  "en": "Alex Brush",
+  "license": "免费商用",
+  "designer": "Robert E. Leuschke",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "AlibabaPuHuiTi255Regular",
+  "name": "阿里巴巴普惠体 2.0",
+  "en": "Alibaba PuHuiTi 2.0",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   600,
+   700,
+   800,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "AlibabaSansMediumItalic",
+  "name": "Alibab Sans",
+  "en": "Alibab Sans",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "AlibabaSansRegular",
+  "name": "Alibaba Sans",
+  "en": "Alibaba Sans",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   300,
+   400,
+   500,
+   700,
+   800,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "AlibabaSansThai",
+  "name": "Alibaba Sans Thai",
+  "en": "Alibaba Sans Thai",
+  "license": "免费商用",
+  "designer": "Monotype Studio",
+  "weights": [
+   400,
+   500,
+   700
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "AlibabaSansViet",
+  "name": "Alibaba Sans Viet",
+  "en": "Alibaba Sans Viet",
+  "license": "免费商用",
+  "designer": "Monotype Studio",
+  "weights": [
+   400,
+   500,
+   700
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "AlwaysHere",
+  "name": "AlwaysHere",
+  "en": "AlwaysHere",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   500
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "AmaranthItalic",
+  "name": "Amaranth",
+  "en": "Amaranth",
+  "license": "免费商用",
+  "designer": "Gesine Todt",
+  "weights": [
+   400,
+   700
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "Antrokasdemo",
+  "name": "Antrokasdemo",
+  "en": "Antrokasdemo",
+  "license": "联系授权",
+  "designer": "Roci",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "ArvoBold",
+  "name": "Arvo",
+  "en": "Arvo",
+  "license": "免费商用",
+  "designer": "Anton Koovit",
+  "weights": [
+   700
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "AsapBoldItalic",
+  "name": "Asap",
+  "en": "Asap",
+  "license": "免费商用",
+  "designer": "Pablo Cosgaya",
+  "weights": [
+   700
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "AsapCondensedBold",
+  "name": "Asap Condensed",
+  "en": "Asap Condensed",
+  "license": "免费商用",
+  "designer": "Omnibus-Type",
+  "weights": [
+   700
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "B2SCLight",
+  "name": "猫啃网烟波宋-L",
+  "en": "B2B2 ",
+  "license": "免费商用",
+  "designer": "XinYuGong x Maoken",
+  "weights": [
+   300
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "BRUXRegular",
+  "name": "BRUX",
+  "en": "BRUX",
+  "license": "联系授权",
+  "designer": "Marcelo Reis Melo",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "BadScriptRegular",
+  "name": "Bad Script",
+  "en": "Bad Script",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "BahianaRegular",
+  "name": "Bahiana",
+  "en": "Bahiana",
+  "license": "免费商用",
+  "designer": "Pablo Cosgaya & Dani Raskovsky",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "BangersRegular",
+  "name": "Bangers",
+  "en": "Bangers",
+  "license": "免费商用",
+  "designer": "vernon adams",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "BarrioRegular",
+  "name": "Barrio",
+  "en": "Barrio",
+  "license": "免费商用",
+  "designer": "Pablo Cosgaya & Sergio Jimenez",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "BatterUpRegularDemo",
+  "name": "Batter Up Regular Demo",
+  "en": "Batter Up Regular Demo",
+  "license": "试用版",
+  "designer": "Out of Step Font Company",
+  "weights": [
+   400
+  ],
+  "category": "展示字体"
+ },
+ {
+  "normalized": "BlowBrush",
+  "name": "BlowBrush",
+  "en": "BlowBrush",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "BodoniFLFBold",
+  "name": "BodoniFLF",
+  "en": "BodoniFLF",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   500,
+   700
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "Boldandblue",
+  "name": "Bold and blue",
+  "en": "Bold and blue",
+  "license": "联系授权",
+  "designer": "http://www.dafont.com/wino-s-kadir.d2209",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "BoteraTFERegular",
+  "name": "Botera TFE",
+  "en": "Botera TFE",
+  "license": "联系授权",
+  "designer": "Javi Montoya",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "Brela",
+  "name": "Brela",
+  "en": "Brela",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "CEFFontsCJK",
+  "name": "快去寫作業-CJK",
+  "en": "CEF Fonts CJK",
+  "license": "免费商用",
+  "designer": "PartyBoss（派对大魔王）",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "CEFFontsCJKMono",
+  "name": "快去写代码-CJK",
+  "en": "CEF Fonts CJK Mono",
+  "license": "联系授权",
+  "designer": "PartyBoss（派对大魔王）",
+  "weights": [
+   400
+  ],
+  "category": "等宽字体"
+ },
+ {
+  "normalized": "CKTKingKong",
+  "name": "创客贴金刚体",
+  "en": "CKTKingKong",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   700
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "CabinItalic",
+  "name": "Cabin",
+  "en": "Cabin",
+  "license": "免费商用",
+  "designer": "Pablo Impallari",
+  "weights": [
+   400,
+   500,
+   600,
+   700
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "CabinSketchRegular",
+  "name": "Cabin Sketch",
+  "en": "Cabin Sketch",
+  "license": "免费商用",
+  "designer": "Pablo Impallari",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "CandyCaneUnregistered",
+  "name": "Candy Cane (Unregistered)",
+  "en": "Candy Cane (Unregistered)",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "CapriolaRegular",
+  "name": "Capriola",
+  "en": "Capriola",
+  "license": "免费商用",
+  "designer": "Viktoriya Grabowska",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "ChillGSans",
+  "name": "寒蟬高黑體",
+  "en": "Chill G Sans",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA 西塚涼子 (kana, bopomofo & i",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "ChillKSans",
+  "name": "寒蝉宽黑体",
+  "en": "Chill K Sans",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA (kana, bopomofo & ideogr",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "ChogokubosoGothic",
+  "name": "Chogokuboso Gothic",
+  "en": "Chogokuboso Gothic",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "ChopinScript",
+  "name": "Chopin Script",
+  "en": "Chopin Script",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "Chusung16",
+  "name": "粗宋",
+  "en": "Chusung",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "Code2003",
+  "name": "Code2003",
+  "en": "Code2003",
+  "license": "免费商用",
+  "designer": "James Kass",
+  "weights": [
+   500
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "ComfortaaRegular",
+  "name": "Comfortaa",
+  "en": "Comfortaa",
+  "license": "免费商用",
+  "designer": "Johan Aakerlund",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "ContributeFREEversion",
+  "name": "Contribute_FREE-version",
+  "en": "Contribute_FREE-version",
+  "license": "联系授权",
+  "designer": "Fontscafe.com",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "CormorantRegular",
+  "name": "Cormorant",
+  "en": "Cormorant",
+  "license": "免费商用",
+  "designer": "Christian Thalmann (Catharsis Fonts)",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "CormorantSCRegular",
+  "name": "Cormorant SC",
+  "en": "Cormorant SC",
+  "license": "免费商用",
+  "designer": "Christian Thalmann (Catharsis Fonts)",
+  "weights": [
+   300,
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "CormorantUprightLight",
+  "name": "Cormorant Upright",
+  "en": "Cormorant Upright",
+  "license": "免费商用",
+  "designer": "Christian Thalmann (Catharsis Fonts)",
+  "weights": [
+   300
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "CuprumBold",
+  "name": "Cuprum",
+  "en": "Cuprum",
+  "license": "免费商用",
+  "designer": "Jovanny Lemonad",
+  "weights": [
+   700
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "CursiveSans",
+  "name": "Cursive Sans",
+  "en": "Cursive Sans",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "Cursivestandard",
+  "name": "Cursive standard",
+  "en": "Cursive standard",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFBuDingW12",
+  "name": "华康布丁体W12",
+  "en": "DFBuDingW12-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFCaiDaiBdHKPBF",
+  "name": "华康彩带体",
+  "en": "",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFErW3WINBF",
+  "name": "華康兒風體W3",
+  "en": "DFErW3-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFErW3WINPBF",
+  "name": "華康兒風體W3(P)",
+  "en": "DFPErW3-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFFangYuanW7",
+  "name": "华康方圆体W7",
+  "en": "DFFangYuanW7-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFGangBiW2WINBF",
+  "name": "華康鋼筆體W2",
+  "en": "DFGangBiW2-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFGangBiW2WINPBF",
+  "name": "華康鋼筆體W2(P)",
+  "en": "DFPGangBiW2-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFHaiBaoW12",
+  "name": "华康海报体W12",
+  "en": "DFHaiBaoW12-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFJinWenW3WINBF",
+  "name": "華康金文體W3",
+  "en": "DFJinWenW3-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFKaiW5A",
+  "name": "华康楷体W5-A",
+  "en": "DFKaiW5-A",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "DFLiShuW7HKBF",
+  "name": "華康隸書體W7",
+  "en": "DFLiShuW7-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFLiShuW7HKPBF",
+  "name": "華康隸書體W7(P)",
+  "en": "DFPLiShuW7-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFMoXbHKBF",
+  "name": "DFMo-B5",
+  "en": "DFMo-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "DFMoXbHKPBF",
+  "name": "µÿ±dæ•¶r≈È(P)",
+  "en": "µÿ±dæ•¶r≈È(P)",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "DFPBuDingW12",
+  "name": "华康布丁体W12(P)",
+  "en": "DFPBuDingW12-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPFangYuanW7",
+  "name": "华康方圆体W7(P)",
+  "en": "DFPFangYuanW7-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPHaiBaoW12",
+  "name": "华康海报体W12(P)",
+  "en": "DFPHaiBaoW12-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPHannotateW7GB",
+  "name": "华康手札体W7P",
+  "en": "DFPHannotateW7-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPHanziPenW5GB",
+  "name": "华康翩翩体W5P",
+  "en": "DFPHanziPenW5-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPHeiW12",
+  "name": "华康黑体W12(P)",
+  "en": "DFPHeiW12-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPHeiW3",
+  "name": "华康黑体W3(P)",
+  "en": "DFPHeiW3-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPHeiW5",
+  "name": "华康黑体W5(P)",
+  "en": "DFPHeiW5-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPHeiW7",
+  "name": "华康黑体W7(P)",
+  "en": "DFPHeiW7-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPHeiW9",
+  "name": "华康黑体W9(P)",
+  "en": "DFPHeiW9-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPKanTingLiuW9",
+  "name": "华康勘亭流W9(P)",
+  "en": "DFPKanTingLiuW9-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPLiJinHeiW8",
+  "name": "华康俪金黑W8(P)",
+  "en": "DFPLiJinHeiW8-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPLongMenW9",
+  "name": "华康龙门石碑W9(P)",
+  "en": "DFPLongMenW9-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPOP1W5HKBF",
+  "name": "華康POP1體W5",
+  "en": "DFPOP1W5-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPOP1W5HKPBF",
+  "name": "華康POP1體W5(P)",
+  "en": "DFPPOP1W5-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPOP2W9",
+  "name": "华康POP2体W9",
+  "en": "DFPOP2W9-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPOP3W12WINBF",
+  "name": "華康POP3體W12",
+  "en": "DFPOP3W12-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPPOP2W9",
+  "name": "华康POP2体W9(P)",
+  "en": "DFPPOP2W9-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPShaoNvW5",
+  "name": "华康少女文字W5(P)",
+  "en": "DFPShaoNvW5-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPShiYiW5",
+  "name": "华康饰艺体W5(P)",
+  "en": "DFPShiYiW5-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPShouJinW3",
+  "name": "华康瘦金体W3(P)",
+  "en": "DFPShouJinW3-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPSongW12",
+  "name": "华康宋体W12(P)",
+  "en": "DFPSongW12-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "DFPSongW5",
+  "name": "华康宋体W5(P)",
+  "en": "DFPSongW5-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "DFPSongW7",
+  "name": "华康宋体W7(P)",
+  "en": "DFPSongW7-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "DFPSongW9",
+  "name": "华康标题宋W9(P)",
+  "en": "DFPSongW9-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "DFPWaWaW5",
+  "name": "华康娃娃体W5(P)",
+  "en": "DFPWaWaW5-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPWeiBeiW7",
+  "name": "华康魏碑W7(P)",
+  "en": "DFPWeiBeiW7-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPYaSongW9",
+  "name": "华康雅宋体W9(P)",
+  "en": "DFPYaSongW9-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "DFPYuanW3",
+  "name": "华康圆体W3(P)",
+  "en": "DFPYuanW3-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPYuanW5",
+  "name": "华康圆体W5(P)",
+  "en": "DFPYuanW5-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPYuanW7",
+  "name": "华康圆体W7(P)",
+  "en": "DFPYuanW7-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPYuanW9",
+  "name": "华康圆体W9(P)",
+  "en": "DFPYuanW9-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPZongYiW7",
+  "name": "华康新综艺W7(P)",
+  "en": "DFPZongYiW7-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFPZongYiW9",
+  "name": "华康新综艺体W9(P)",
+  "en": "DFPZongYiW9-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFSTDLIMdHKBF",
+  "name": "±–®|≥°¡ıÆ—",
+  "en": "±–®|≥°¡ıÆ—",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "DFShiYiW5",
+  "name": "华康饰艺体W5",
+  "en": "DFShiYiW5-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFSongW3A",
+  "name": "华康宋体W3-A",
+  "en": "DFSongW3-A",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "DFTanLiW5HKPBF",
+  "name": "華康唐風隸W5(P)",
+  "en": "DFPTanLiW5-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFWaWaW5",
+  "name": "华康娃娃体W5",
+  "en": "DFWaWaW5-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFYaYiW6HKPBF",
+  "name": "華康雅藝體W6(P)",
+  "en": "DFPYaYiW6-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DFYanKaiW5HKPBF",
+  "name": "華康正顏楷體W5(P)",
+  "en": "DFPYanKaiW5-B5",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "DFZongYiW9",
+  "name": "华康新综艺体W9",
+  "en": "DFZongYiW9-GB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DOUYUFont",
+  "name": "DOUYU Font",
+  "en": "DOUYU",
+  "license": "免费商用",
+  "designer": "DOUYU",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DancingScriptRegular",
+  "name": "Dancing Script",
+  "en": "Dancing Script",
+  "license": "免费商用",
+  "designer": "Pablo Impallari",
+  "weights": [
+   400,
+   700
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "DidactGothicRegular",
+  "name": "Didact Gothic",
+  "en": "Didact Gothic",
+  "license": "免费商用",
+  "designer": "Daniel Johnson",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DolceVita",
+  "name": "Dolce Vita",
+  "en": "Dolce Vita",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "DolceVitaHeavyBold",
+  "name": "Dolce Vita Heavy",
+  "en": "Dolce Vita Heavy",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   700
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "DolceVitaLight",
+  "name": "Dolce Vita Light",
+  "en": "Dolce Vita Light",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "DottedSongtiCircleRegular",
+  "name": "点点像素体-圆形",
+  "en": "点点像素体-圆形",
+  "license": "免费商用",
+  "designer": "wixette",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "DroidSans",
+  "name": "Droid Sans",
+  "en": "Droid Sans",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400,
+   700
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "Eccentric",
+  "name": "Eccentric",
+  "en": "Eccentric",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "ElsieRegular",
+  "name": "Elsie",
+  "en": "Elsie",
+  "license": "免费商用",
+  "designer": "Alejandro Inler",
+  "weights": [
+   400,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "ElsieSwashCapsRegular",
+  "name": "Elsie Swash Caps",
+  "en": "Elsie Swash Caps",
+  "license": "免费商用",
+  "designer": "Alejandro Inler",
+  "weights": [
+   400,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "EncodeSansExpandedMedium",
+  "name": "Encode Sans Expanded",
+  "en": "Encode Sans Expanded",
+  "license": "免费商用",
+  "designer": "Multiple Designers",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "EncodeSansThin",
+  "name": "Encode Sans",
+  "en": "Encode Sans",
+  "license": "免费商用",
+  "designer": "Multiple Designers",
+  "weights": [
+   200
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "FZFSJWGB10",
+  "name": "方正仿宋简体",
+  "en": "FZFangSong-Z02S",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "FZHTJWGB10",
+  "name": "方正黑体简体",
+  "en": "FZHei-B01S",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "FZKTJWGB10",
+  "name": "方正楷体简体",
+  "en": "FZKai-Z03S",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "FZSSJWGB10",
+  "name": "方正书宋简体",
+  "en": "FZShuSong-Z01S",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "FandolBrailleDisplay",
+  "name": "Fandol Braille",
+  "en": "Fandol Braille",
+  "license": "联系授权",
+  "designer": "Clerk Ma, Jie Su",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "FandolFangRegular",
+  "name": "FandolFang",
+  "en": "FandolFang",
+  "license": "联系授权",
+  "designer": "Clerk Ma, Jie Su",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "FandolHeiBold",
+  "name": "FandolHei",
+  "en": "FandolHei",
+  "license": "联系授权",
+  "designer": "Clerk Ma, Jie Su",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "FandolKaiRegular",
+  "name": "FandolKai",
+  "en": "FandolKai",
+  "license": "联系授权",
+  "designer": "Clerk Ma, Jie Su",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "FandolSongBold",
+  "name": "FandolSong",
+  "en": "FandolSong",
+  "license": "联系授权",
+  "designer": "Clerk Ma, Jie Su",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "FenixRegular",
+  "name": "Fenix",
+  "en": "Fenix",
+  "license": "免费商用",
+  "designer": "Fernando Diaz",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "FinelinerScript",
+  "name": "Fineliner Script",
+  "en": "Fineliner Script",
+  "license": "联系授权",
+  "designer": "Paul IJsendoorn",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "FiraSansBlackItalic",
+  "name": "Fira Sans",
+  "en": "Fira Sans",
+  "license": "免费商用",
+  "designer": "Carrois Corporate & Edenspiekermann AG",
+  "weights": [
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "FiraSansCondensedThin",
+  "name": "Fira Sans Condensed",
+  "en": "Fira Sans Condensed",
+  "license": "免费商用",
+  "designer": "Carrois Corporate & Edenspiekermann AG",
+  "weights": [
+   200
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "FirstShine",
+  "name": "First Shine",
+  "en": "First Shine",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   100,
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "FoglihtenNo07",
+  "name": "FoglihtenNo07",
+  "en": "FoglihtenNo07",
+  "license": "免费商用",
+  "designer": "gluk (gluksza@wp.pl)",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "FoglihtenNo07calt",
+  "name": "FoglihtenNo07calt",
+  "en": "FoglihtenNo07calt",
+  "license": "免费商用",
+  "designer": "gluk (gluksza@wp.pl)",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "Fonsung16",
+  "name": "坊宋",
+  "en": "Fonsung",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "FontquanXinYiJiXiangSongRegular",
+  "name": "字体圈欣意吉祥宋",
+  "en": "Fontquan-XinYiJiXiangSong",
+  "license": "联系授权",
+  "designer": "_____:___",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "GNUUnifontFull",
+  "name": "Unifont",
+  "en": "Unifont",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "GemunuLibreRegular",
+  "name": "Gemunu Libre",
+  "en": "Gemunu Libre",
+  "license": "免费商用",
+  "designer": "Pushpananda Ekanayake, Sol Matas, Kosala",
+  "weights": [
+   300,
+   400,
+   600,
+   800
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "GenJyuuGothicRegular",
+  "name": "Gen Jyuu Gothic",
+  "en": "Gen Jyuu Gothic",
+  "license": "免费商用",
+  "designer": "[Source Han Sans]\nRyoko NISHIZUKA  (kana",
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "GenJyuuGothicXMonospaceRegular",
+  "name": "Gen Jyuu Gothic X Monospace",
+  "en": "Gen Jyuu Gothic X Monospace",
+  "license": "免费商用",
+  "designer": "[Source Han Sans]\nRyoko NISHIZUKA  (kana",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   700,
+   800
+  ],
+  "category": "等宽字体"
+ },
+ {
+  "normalized": "GenJyuuGothicXPRegular",
+  "name": "Gen Jyuu Gothic XP",
+  "en": "Gen Jyuu Gothic XP",
+  "license": "免费商用",
+  "designer": "[Source Han Sans]\nRyoko NISHIZUKA  (kana",
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "GenJyuuGothicXRegular",
+  "name": "Gen Jyuu GothicX",
+  "en": "Gen Jyuu GothicX",
+  "license": "免费商用",
+  "designer": "[Source Han Sans]\nRyoko NISHIZUKA  (kana",
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "GenRyuMinJPRegularTTF",
+  "name": "GenRyuMin JP TTF",
+  "en": "GenRyuMin JP TTF",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "GenRyuMinTWRegularTTF",
+  "name": "源流明體 TTF",
+  "en": "GenRyuMin TW TTF",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   600,
+   700,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "GenShinGothicMonospaceRegular",
+  "name": "Gen Shin Gothic Monospace",
+  "en": "Gen Shin Gothic Monospace",
+  "license": "免费商用",
+  "designer": "[Source Han Sans]\nRyoko NISHIZUKA  (kana",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   700,
+   800
+  ],
+  "category": "等宽字体"
+ },
+ {
+  "normalized": "GenShinGothicPRegular",
+  "name": "Gen Shin Gothic P",
+  "en": "Gen Shin Gothic P",
+  "license": "免费商用",
+  "designer": "[Source Han Sans]\nRyoko NISHIZUKA  (kana",
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "GenShinGothicRegular",
+  "name": "Gen Shin Gothic",
+  "en": "Gen Shin Gothic",
+  "license": "免费商用",
+  "designer": "[Source Han Sans]\nRyoko NISHIZUKA  (kana",
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "GenWanMinJPRegularTTF",
+  "name": "GenWanMin JP TTF",
+  "en": "GenWanMin JP TTF",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   300,
+   400,
+   600
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "GenWanMinTWRegularTTF",
+  "name": "源雲明體 TTF",
+  "en": "GenWanMin TW TTF",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400,
+   500,
+   600
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "GenYoMinJPBoldTTF",
+  "name": "GenYoMin JP TTF",
+  "en": "GenYoMin JP TTF",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   200,
+   300,
+   600,
+   700,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "GenYoMinTWRegularTTF",
+  "name": "源樣明體 TTF",
+  "en": "GenYoMin TW TTF",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   600,
+   700,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "Genkaimincho",
+  "name": "Genkaimincho",
+  "en": "Genkaimincho",
+  "license": "免费商用",
+  "designer": "Dr. Ken Lunde (project architect, glyph ",
+  "weights": [
+   800
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "GrandHotelRegular",
+  "name": "Grand Hotel",
+  "en": "Grand Hotel",
+  "license": "免费商用",
+  "designer": "Brian J. Bonislawsky & Jim Lyles for Ast",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HamurzFreeVersion",
+  "name": "Hamurz Free Version",
+  "en": "Hamurz Free Version",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangCC02",
+  "name": "王漢宗酷儷海報",
+  "en": "HanWangCC02",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangCC15",
+  "name": "王漢宗酷正海報",
+  "en": "HanWangCC15",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangFangSongMedium",
+  "name": "王漢宗中仿宋繁",
+  "en": "HanWangFangSongMedium",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangFangSongMediumGb5",
+  "name": "王漢宗中仿宋簡",
+  "en": "HanWang FangSongMedium-Gb5",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangGB06",
+  "name": "王漢宗鋼筆行楷繁",
+  "en": "HanWangGB06",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "HanWangGSolid06cut1",
+  "name": "王漢宗超黑體俏皮動物一",
+  "en": "HanWangGSolid06cut1",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangHeiHeavy",
+  "name": "王漢宗特黑體繁",
+  "en": "HanWangHeiHeavy",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangHeiLight",
+  "name": "王漢宗細黑體繁",
+  "en": "HanWangHeiLight",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangKaiBoldGb5",
+  "name": "王漢宗粗楷體簡",
+  "en": "HanWang KaiBold-Gb5",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "HanWangKaiMediumChuIn",
+  "name": "王漢宗中楷體注音",
+  "en": "HanWangKaiMediumChuIn",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "HanWangKaiMediumPoIn1",
+  "name": "王漢宗中楷體破音一",
+  "en": "HanWangKaiMediumPoIn1",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "HanWangKaiMediumPoIn2",
+  "name": "王漢宗中楷體破音二",
+  "en": "HanWangKaiMediumPoIn2",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "HanWangKaiMediumPoIn3",
+  "name": "王漢宗中楷體破音三",
+  "en": "HanWangKaiMediumPoIn3",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "HanWangKanDaYan",
+  "name": "王漢宗空疊圓繁",
+  "en": "HanWangKanDaYan",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangKanTan",
+  "name": "王漢宗勘亭流繁",
+  "en": "HanWangKanTan",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangLiSuMedium",
+  "name": "王漢宗中隸書繁",
+  "en": "HanWangLiSuMedium",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangMingBlack",
+  "name": "王漢宗超明體繁",
+  "en": "HanWangMingBlack",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangMingBold",
+  "name": "王漢宗粗明體繁",
+  "en": "HanWangMingBold",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangMingHeavy",
+  "name": "王漢宗特明體繁",
+  "en": "HanWangMingHeavy",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangMingLight",
+  "name": "王漢宗細明體繁",
+  "en": "HanWangMingLight",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangMingMedium",
+  "name": "王漢宗中明體繁",
+  "en": "HanWangMingMedium",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangMingMediumChuIn",
+  "name": "王漢宗中明體注音",
+  "en": "HanWangMingMediumChuIn",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangMingMediumPoIn1",
+  "name": "王漢宗中明體破音一",
+  "en": "HanWangMingMediumPoIn1",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangMingMediumPoIn2",
+  "name": "王漢宗中明體破音二",
+  "en": "HanWangMingMediumPoIn2",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangMingMediumPoIn3",
+  "name": "王漢宗中明體破音三",
+  "en": "HanWangMingMediumPoIn3",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangShinSuMedium",
+  "name": "王漢宗中行書繁",
+  "en": "HanWangShinSuMedium",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangSinSongThinGb5",
+  "name": "王漢宗細新宋簡",
+  "en": "HanWang SinSongThin-Gb5",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangWCL01",
+  "name": "王漢宗新潮體一波浪",
+  "en": "HanWangWCL01",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangWCL02",
+  "name": "王漢宗特明體一標準",
+  "en": "HanWangWCL02",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangWCL03",
+  "name": "王漢宗波卡體一空陰",
+  "en": "HanWangWCL03",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangWCL04",
+  "name": "王漢宗綜藝體一雙空陰",
+  "en": "HanWangWCL04",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangWCL05",
+  "name": "王漢宗標楷體一空心",
+  "en": "HanWangWCL05",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "HanWangWCL06",
+  "name": "王漢宗仿宋體一標準",
+  "en": "HanWangWCL06",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanWangWCL07",
+  "name": "王漢宗粗鋼體一標準",
+  "en": "HanWangWCL07",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangWCL08",
+  "name": "王漢宗粗黑體一實陰",
+  "en": "HanWangWCL08",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangWCL09",
+  "name": "王漢宗粗圓體一雙空",
+  "en": "HanWangWCL09",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangWCL10",
+  "name": "王漢宗海報體一半天水",
+  "en": "HanWangWCL10",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangWeiBeiMediumGb5",
+  "name": "王漢宗中魏碑簡",
+  "en": "HanWang WeiBeiMedium-Gb5",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangYanKai",
+  "name": "王漢宗顏楷體繁",
+  "en": "HanWangYanKai",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "HanWangYenHeavy",
+  "name": "王漢宗特圓體繁",
+  "en": "HanWangYenHeavy",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangYenLight",
+  "name": "王漢宗細圓體繁",
+  "en": "HanWangYenLight",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanWangZonYi",
+  "name": "王漢宗綜藝體繁",
+  "en": "HanWangZonYi",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanaMinA",
+  "name": "HanaMinA",
+  "en": "HanaMinA",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   500
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HanaMinB",
+  "name": "HanaMinB",
+  "en": "HanaMinB",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   500
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HannotateSCW5",
+  "name": "手札體-簡",
+  "en": "Hannotate SC",
+  "license": "联系授权",
+  "designer": "DynaComware Taiwan Inc.",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HanziPenSCW3",
+  "name": "翩翩體-簡",
+  "en": "HanziPen SC",
+  "license": "联系授权",
+  "designer": "DynaComware Taiwan Inc.",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HappyZcool2016",
+  "name": "站酷快乐体2016修订版",
+  "en": "HappyZcool-2016",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HarbellPersonalUseOnly",
+  "name": "Harbell Personal Use Only",
+  "en": "Harbell Personal Use Only",
+  "license": "个人免费",
+  "designer": "MÂns Greb‰ck",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "Harrington",
+  "name": "Harrington",
+  "en": "Harrington",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HerrVonMuellerhoffRegular",
+  "name": "Herr Von Muellerhoff",
+  "en": "Herr Von Muellerhoff",
+  "license": "免费商用",
+  "designer": "Alejandro Paul",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "HolLeighCaps",
+  "name": "HolLeigh Caps",
+  "en": "HolLeigh Caps",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HuXiaoBoKuHei",
+  "name": "站酷酷黑",
+  "en": "HuXiaoBo_KuHei",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "HultogSnowdrift",
+  "name": "Hultog Snowdrift",
+  "en": "Hultog Snowdrift",
+  "license": "联系授权",
+  "designer": "S. John Ross",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "IBMPlexMonoItalic",
+  "name": "IBM Plex Mono",
+  "en": "IBM Plex Mono",
+  "license": "联系授权",
+  "designer": "Mike Abbink, Bold Monday",
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   600,
+   700
+  ],
+  "category": "等宽字体"
+ },
+ {
+  "normalized": "IBMPlexSansItalic",
+  "name": "IBM Plex Sans",
+  "en": "IBM Plex Sans",
+  "license": "联系授权",
+  "designer": "Mike Abbink, Bold Monday",
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   600,
+   700
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "IBMPlexSerifItalic",
+  "name": "IBM Plex Serif",
+  "en": "IBM Plex Serif",
+  "license": "联系授权",
+  "designer": "Mike Abbink, Bold Monday",
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   600,
+   700
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "IMing",
+  "name": "I.Ming",
+  "en": "I.Ming",
+  "license": "免费商用",
+  "designer": "Ichiten Fonts Project",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "INgaan",
+  "name": "I.Ngaan",
+  "en": "I.Ngaan",
+  "license": "免费商用",
+  "designer": "Ichiten Fonts Project",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "IPAexMincho",
+  "name": "IPAexMincho",
+  "en": "IPAexMincho",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "IPenCraneB",
+  "name": "I.PenCrane-B",
+  "en": "I.PenCrane-B",
+  "license": "免费商用",
+  "designer": "Ichiten Fonts Project",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "JKGothicM",
+  "name": "JK Gothic M",
+  "en": "JK Gothic M",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "JNRSBFontOTF",
+  "name": "JNR-SB-FontOTF",
+  "en": "JNR-SB-FontOTF",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "JandaCheerfulScript",
+  "name": "Janda Cheerful Script",
+  "en": "Janda Cheerful Script",
+  "license": "联系授权",
+  "designer": "Kimberly Geswein",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "JasonWriting2",
+  "name": "JasonWriting2",
+  "en": "JasonWriting2",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "JuraMedium",
+  "name": "Jura",
+  "en": "Jura",
+  "license": "免费商用",
+  "designer": "Daniel Johnson, Alexei Vanyashin",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "KaushanScriptRegular",
+  "name": "Kaushan Script",
+  "en": "Kaushan Script",
+  "license": "免费商用",
+  "designer": "Pablo Impallari",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "KingthingsWillow",
+  "name": "Kingthings Willow",
+  "en": "Kingthings Willow",
+  "license": "联系授权",
+  "designer": "Kevin King: Kingthings 2007",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "KingthingsWillowless",
+  "name": "Kingthings Willowless",
+  "en": "Kingthings Willowless",
+  "license": "联系授权",
+  "designer": "Kevin King: Kingthings 2007",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "KochiMincho",
+  "name": "Kochi Mincho",
+  "en": "Kochi Mincho",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "KodomoRounded",
+  "name": "KodomoRounded",
+  "en": "KodomoRounded",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "KokoroMinchoutai",
+  "name": "KokoroMinchoutai",
+  "en": "KokoroMinchoutai",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "KosefontJP",
+  "name": "小瀨字體 ",
+  "en": "Kosefont JP",
+  "license": "免费商用",
+  "designer": "Nozomi Seto 瀬戸のぞみ",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "KosefontPJP",
+  "name": "小瀨字體P SC",
+  "en": "Kosefont P JP",
+  "license": "免费商用",
+  "designer": "Nozomi Seto 瀬戸のぞみ",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "Kust",
+  "name": "Kust",
+  "en": "Kust",
+  "license": "联系授权",
+  "designer": "Ieva Mezule, Krisjanis Mezulis",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "LaborUnionRegular",
+  "name": "Labor Union",
+  "en": "Labor Union",
+  "license": "联系授权",
+  "designer": "McLetters",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "Landliebe",
+  "name": "Landliebe",
+  "en": "Landliebe",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   500
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "LavanderiaDelicate",
+  "name": "Lavanderia",
+  "en": "Lavanderia",
+  "license": "联系授权",
+  "designer": "James T. Edmondson",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "LeagueGothic",
+  "name": "League Gothic",
+  "en": "League Gothic",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "LeagueScript",
+  "name": "League Script",
+  "en": "League Script",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "LeagueScriptThinRegular",
+  "name": "League Script Thin",
+  "en": "League Script Thin",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "LearningCurve",
+  "name": "Learning Curve",
+  "en": "Learning Curve",
+  "license": "联系授权",
+  "designer": "Jess Latham",
+  "weights": [
+   400,
+   700
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "LearningCurveDashed",
+  "name": "Learning Curve Dashed",
+  "en": "Learning Curve Dashed",
+  "license": "联系授权",
+  "designer": "Jess Latham",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "LearningCurveDings",
+  "name": "Learning Curve Dings",
+  "en": "Learning Curve Dings",
+  "license": "联系授权",
+  "designer": "Jess Latham",
+  "weights": [
+   400
+  ],
+  "category": "展示字体"
+ },
+ {
+  "normalized": "Lot",
+  "name": "Lot",
+  "en": "Lot",
+  "license": "联系授权",
+  "designer": "Svetoslav Simov",
+  "weights": [
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "LucidaCalligraphyItalic",
+  "name": "Lucida Calligraphy",
+  "en": "Lucida Calligraphy",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "MCHS1p2pNJC",
+  "name": "M+ CHS 1p2p NJC",
+  "en": "M+ CHS 1p2p NJC",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400,
+   700
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "MCHS1p2pNJCLight",
+  "name": "M+ CHS 1p2p NJC Light",
+  "en": "M+ CHS 1p2p NJC Light",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   300
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "MOESongUN",
+  "name": "教育部標準宋體UN",
+  "en": "MOESongUN",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "MagnoliaItalic",
+  "name": "Magnolia ",
+  "en": "Magnolia ",
+  "license": "个人免费",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "MagnoliaLight",
+  "name": "Magnolia Light",
+  "en": "Magnolia Light",
+  "license": "个人免费",
+  "designer": "",
+  "weights": [
+   300
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "ManualeMedium",
+  "name": "Manuale",
+  "en": "Manuale",
+  "license": "免费商用",
+  "designer": "Eduardo Tunni / Pablo Cosgaya",
+  "weights": [
+   500,
+   600
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "Maratre",
+  "name": "Maratre",
+  "en": "Maratre",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   500
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "MarckScriptRegular",
+  "name": "Marck Script",
+  "en": "Marck Script",
+  "license": "免费商用",
+  "designer": "Denis Masharov, Marck Fogel",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "MerakFreeRegular",
+  "name": "Merak Free",
+  "en": "Merak Free",
+  "license": "联系授权",
+  "designer": "Mcraft Studio",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "MetroRetroNF",
+  "name": "Metro Retro NF",
+  "en": "Metro Retro NF",
+  "license": "联系授权",
+  "designer": "Nick Curtis",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "MontserratAlternatesBlackItalic",
+  "name": "Montserrat Alternates",
+  "en": "Montserrat Alternates",
+  "license": "免费商用",
+  "designer": "Julieta Ulanovsky",
+  "weights": [
+   200,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "MontserratBlack",
+  "name": "Montserrat",
+  "en": "Montserrat",
+  "license": "免费商用",
+  "designer": "Julieta Ulanovsky",
+  "weights": [
+   200,
+   300,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "MorganiteBook",
+  "name": "Morganite",
+  "en": "Morganite",
+  "license": "个人免费",
+  "designer": "Rajesh Rajput",
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   600,
+   700,
+   800,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "MountainsofChristmasRegular",
+  "name": "Mountains of Christmas",
+  "en": "Mountains of Christmas",
+  "license": "免费商用",
+  "designer": "Crystal Kluge",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "MuliExtraBoldItalic",
+  "name": "Muli",
+  "en": "Muli",
+  "license": "免费商用",
+  "designer": "Vernon Adams",
+  "weights": [
+   300,
+   800
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "MuyaoSoftbrush",
+  "name": "Muyao-Softbrush",
+  "en": "Muyao-Softbrush",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "NISCRIPTRegular",
+  "name": "NISCRIPT",
+  "en": "NISCRIPT",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "NagurigakiCrayon",
+  "name": "Nagurigaki Crayon",
+  "en": "Nagurigaki Crayon",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "Navidad",
+  "name": "Navidad",
+  "en": "Navidad",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "Nickelodeon",
+  "name": "Nickelodeon",
+  "en": "Nickelodeon",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "NickelodeonNF",
+  "name": "Nickelodeon NF",
+  "en": "Nickelodeon NF",
+  "license": "联系授权",
+  "designer": "Nick Curtis",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "NotoSansCJKRegular",
+  "name": "Noto Sans CJK",
+  "en": "Noto Sans CJK",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA (kana & ideographs); Pau",
+  "weights": [
+   100,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "NotoSansHansRegular",
+  "name": "Noto Sans S Chinese",
+  "en": "Noto Sans S Chinese",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA (kana & ideographs); Pau",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "NotoSansTCRegular",
+  "name": "Noto Sans TC",
+  "en": "Noto Sans TC",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA 西塚涼子 (kana, bopomofo & i",
+  "weights": [
+   100,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "NotoSerifCJKscRegular",
+  "name": "Noto Serif CJK SC",
+  "en": "Noto Serif CJK SC",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA 西塚涼子 (kana & ideographs)",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   600,
+   700,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "NotoSerifSCExtraLight",
+  "name": "Noto Serif SC",
+  "en": "Noto Serif SC",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA 西塚涼子 (kana & ideographs)",
+  "weights": [
+   200
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "NouvelleVagueBlack",
+  "name": "Nouvelle Vague",
+  "en": "Nouvelle Vague",
+  "license": "联系授权",
+  "designer": "Dirk Schuster",
+  "weights": [
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "NunitoRegular",
+  "name": "Nunito",
+  "en": "Nunito",
+  "license": "免费商用",
+  "designer": "Vernon Adams",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "OPPOSansB",
+  "name": "OPPOSans",
+  "en": "OPPOSans",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "OneStarryNight",
+  "name": "One Starry Night",
+  "en": "One Starry Night",
+  "license": "联系授权",
+  "designer": "Brittney Murphy",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "OswaldMedium",
+  "name": "Oswald",
+  "en": "Oswald",
+  "license": "免费商用",
+  "designer": "Vernon Adams",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "PMingLiUTW",
+  "name": "臺灣新細明體",
+  "en": "PMingLiU-TW",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   500
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "PacificoRegular",
+  "name": "Pacifico",
+  "en": "Pacifico",
+  "license": "免费商用",
+  "designer": "Vernon Adams",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "PangMenZhengDaoCu",
+  "name": "庞门正道粗书体",
+  "en": "PangMenZhengDao-Cu",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "PangMenZhengDaoCu60",
+  "name": "庞门正道粗书体6.0",
+  "en": "PangMenZhengDao-Cu6.0",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "PangZhenGuiPMZD",
+  "name": "庞门正道真贵楷体",
+  "en": "PangZhenGui-PMZD",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "PangolinRegular",
+  "name": "Pangolin",
+  "en": "Pangolin",
+  "license": "免费商用",
+  "designer": "Kevin Burke",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "ParalinesRegular",
+  "name": "Paralines",
+  "en": "Paralines",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "PlaylistScript",
+  "name": "Playlist",
+  "en": "Playlist",
+  "license": "联系授权",
+  "designer": "Artimasa",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "PoiretOneRegular",
+  "name": "Poiret One",
+  "en": "Poiret One",
+  "license": "免费商用",
+  "designer": "Denis Masharov (denis.masharov@gmail.com",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "PostNoBillsColomboExtraBold",
+  "name": "Post No Bills Colombo",
+  "en": "Post No Bills Colombo",
+  "license": "免费商用",
+  "designer": "Kosala Senevirathne, Siva Puranthara, La",
+  "weights": [
+   800
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "PostNoBillsJaffnaRegular",
+  "name": "Post No Bills Jaffna",
+  "en": "Post No Bills Jaffna",
+  "license": "免费商用",
+  "designer": "Kosala Senevirathne, Siva Puranthara, La",
+  "weights": [
+   400,
+   700
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "PottaOneRegular",
+  "name": "Potta One",
+  "en": "Potta One",
+  "license": "免费商用",
+  "designer": "108_,108go",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "PublicSansItalic",
+  "name": "Public Sans",
+  "en": "Public Sans",
+  "license": "免费商用",
+  "designer": "Pablo Impallari, Rodrigo Fuenzalida (Mod",
+  "weights": [
+   100,
+   200,
+   300,
+   400,
+   500,
+   600,
+   700,
+   800,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "PublicSansItalicVF",
+  "name": "Public Sans Italic VF",
+  "en": "Public Sans Italic VF",
+  "license": "免费商用",
+  "designer": "Pablo Impallari, Rodrigo Fuenzalida (Mod",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "PublicSansVF",
+  "name": "Public Sans VF",
+  "en": "Public Sans VF",
+  "license": "免费商用",
+  "designer": "Pablo Impallari, Rodrigo Fuenzalida (Mod",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "Railway",
+  "name": "Railway",
+  "en": "Railway",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "Regular",
+  "name": "郑庆科黄油体Regular ",
+  "en": "÷£«Ïø∆ª∆”ÕÃÂRegular",
+  "license": "联系授权",
+  "designer": "÷£«Ïø∆",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "RobotoRegular",
+  "name": "Roboto",
+  "en": "Roboto",
+  "license": "免费商用",
+  "designer": "Christian Robertson",
+  "weights": [
+   200,
+   300,
+   400,
+   700
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "RopaSansItalic",
+  "name": "Ropa Sans",
+  "en": "Ropa Sans",
+  "license": "免费商用",
+  "designer": "Botio Nikoltchev",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "RubikBlack",
+  "name": "Rubik",
+  "en": "Rubik",
+  "license": "免费商用",
+  "designer": "Hubert and Fischer",
+  "weights": [
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SCF9jiangxs",
+  "name": "书体坊赵九江钢笔行书",
+  "en": "SCF-9jiangxs",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "SailorsDelight",
+  "name": "Sailor's Delight",
+  "en": "Sailor's Delight",
+  "license": "联系授权",
+  "designer": "Out Of Step Font Company",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SairaBlack",
+  "name": "Saira",
+  "en": "Saira",
+  "license": "免费商用",
+  "designer": "Hector Gatti with collaboration of the O",
+  "weights": [
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SairaCondensedThin",
+  "name": "Saira Condensed",
+  "en": "Saira Condensed",
+  "license": "免费商用",
+  "designer": "Hector Gatti with collaboration of the O",
+  "weights": [
+   200
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SansitaBlack",
+  "name": "Sansita",
+  "en": "Sansita",
+  "license": "免费商用",
+  "designer": "Pablo Cosgaya",
+  "weights": [
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SantasSleighFull",
+  "name": "Santa'sSleighFull",
+  "en": "Santa'sSleighFull",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400,
+   700
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "SantasSleighFullDeluxe",
+  "name": "Santa'sSleighFull 'Deluxe'",
+  "en": "Santa'sSleighFull 'Deluxe'",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "SazanamiMinchoRegular",
+  "name": "Sazanami Mincho",
+  "en": "Sazanami Mincho",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   500
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "Sentinel",
+  "name": "Sentinel",
+  "en": "Sentinel",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "Serval",
+  "name": "Serval",
+  "en": "Serval",
+  "license": "个人免费",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "SetoFont",
+  "name": "SetoFont",
+  "en": "SetoFont",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "SevillanaRegular",
+  "name": "Sevillana",
+  "en": "Sevillana",
+  "license": "免费商用",
+  "designer": "Olga Umpeleva",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "ShanHeiSunUni",
+  "name": "文鼎PL細上海宋Uni",
+  "en": "AR PL ShanHeiSun Uni",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "ShippedGoods1PersonalUse",
+  "name": "Shipped Goods 1 (Personal Use)",
+  "en": "Shipped Goods 1 (Personal Use)",
+  "license": "联系授权",
+  "designer": "MÂns Greb‰ck",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "ShippedGoods2PersonalUse",
+  "name": "Shipped Goods 2 (Personal Use)",
+  "en": "Shipped Goods 2 (Personal Use)",
+  "license": "联系授权",
+  "designer": "MÂns Greb‰ck",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "ShouShuti",
+  "name": "手书体",
+  "en": "ShouShuti",
+  "license": "联系授权",
+  "designer": "?",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "SigmarOneRegular",
+  "name": "Sigmar One",
+  "en": "Sigmar One",
+  "license": "免费商用",
+  "designer": "Vernon Adams",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SlidechunfengRegular",
+  "name": "演示春风楷",
+  "en": "Slidechunfeng",
+  "license": "免费商用",
+  "designer": "keynoteart",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "SlideqiuhongRegular",
+  "name": "演示秋鸿楷",
+  "en": "Slideqiuhong",
+  "license": "免费商用",
+  "designer": "Keynoteart",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "SnowhouseDEMO",
+  "name": "Snowhouse DEMO",
+  "en": "Snowhouse DEMO",
+  "license": "联系授权",
+  "designer": "MÂns Greb‰ck",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "SofiaRegular",
+  "name": "Sofia",
+  "en": "Sofia",
+  "license": "免费商用",
+  "designer": "Paula Nazal and Daniel Hernández",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SoukouMincho",
+  "name": "SoukouMincho",
+  "en": "SoukouMincho",
+  "license": "免费商用",
+  "designer": "Dr. Ken Lunde (project architect, glyph ",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "SourceHanSansCNRegular",
+  "name": "思源黑体 CN",
+  "en": "Source Han Sans CN",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA (kana & ideographs); Pau",
+  "weights": [
+   100,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SourceHanSansHCRegular",
+  "name": "思源黑體 香港",
+  "en": "Source Han Sans HC",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA 西塚涼子 (kana, bopomofo & i",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SourceHanSansKRegular",
+  "name": "Source Han Sans K",
+  "en": "Source Han Sans K",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA  (kana & ideographs); Pa",
+  "weights": [
+   100,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SourceHanSansOLDRegular",
+  "name": "思源黑體舊字形",
+  "en": "Source Han Sans Old Style",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA (kana & ideographs); Pau",
+  "weights": [
+   200,
+   300,
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SourceHanSansRegular",
+  "name": "Source Han Sans",
+  "en": "Source Han Sans",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA 西塚涼子 (kana, bopomofo & i",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SourceHanSansSCRegular",
+  "name": "思源黑体",
+  "en": "Source Han Sans SC",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA (kana & ideographs); Pau",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SourceHanSansTWRegular",
+  "name": "思源黑體 TW",
+  "en": "Source Han Sans TW",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA (kana & ideographs); Pau",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SourceHanSansXTRegular",
+  "name": "思源黑体斜体",
+  "en": "思源黑体斜体",
+  "license": "免费商用",
+  "designer": "刘鹏优化分享",
+  "weights": [
+   100,
+   300,
+   400,
+   500,
+   700,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SourceHanSerifCNVFExtraLight",
+  "name": "思源宋体 CN VF",
+  "en": "Source Han Serif CN VF",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA 西塚涼子 (kana & ideographs)",
+  "weights": [
+   200
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "SourceHanSerifCNforDisplay",
+  "name": "思源屏显臻宋 CN",
+  "en": "思源屏显臻宋 CN",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "SourceHanSerifSCRegular",
+  "name": "思源宋体",
+  "en": "Source Han Serif SC",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA 西塚涼子 (kana & ideographs)",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   600,
+   700,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "SourceHanSerifSCVFExtraLight",
+  "name": "思源宋体 VF",
+  "en": "Source Han Serif SC VF",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA 西塚涼子 (kana & ideographs)",
+  "weights": [
+   200
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "SourceHanSerifTCRegular",
+  "name": "思源宋體",
+  "en": "Source Han Serif TC",
+  "license": "免费商用",
+  "designer": "Ryoko NISHIZUKA 西塚涼子 (kana & ideographs)",
+  "weights": [
+   200,
+   300,
+   400,
+   500,
+   600,
+   700,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "SourceSa3mSerifCNRegular",
+  "name": "叁慕斜宋体",
+  "en": "Source-Sa3mSerifCN",
+  "license": "免费商用",
+  "designer": "sa3m",
+  "weights": [
+   100,
+   300,
+   400,
+   500,
+   600,
+   700,
+   900
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "SourceSansProIt",
+  "name": "Source Sans Pro",
+  "en": "Source Sans Pro",
+  "license": "免费商用",
+  "designer": "Paul D. Hunt",
+  "weights": [
+   200,
+   300,
+   400,
+   600,
+   700,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SourceSerifProSemiBold",
+  "name": "Source Serif Pro",
+  "en": "Source Serif Pro",
+  "license": "免费商用",
+  "designer": "Frank Grießhammer",
+  "weights": [
+   600
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "StNicholas",
+  "name": "St. Nicholas",
+  "en": "St. Nicholas",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "StackyardPERSONALUSE",
+  "name": "Stackyard PERSONAL USE",
+  "en": "Stackyard PERSONAL USE",
+  "license": "联系授权",
+  "designer": "MÂns Greb‰ck",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "SunnyWinter",
+  "name": "Sunny Winter",
+  "en": "Sunny Winter",
+  "license": "个人免费",
+  "designer": "Roland Huse",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "TaipeiSansTCBetaRegular",
+  "name": "Taipei Sans TC Beta",
+  "en": "Taipei Sans TC Beta",
+  "license": "免费商用",
+  "designer": "JT Foundry",
+  "weights": [
+   300,
+   400,
+   700
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "ThingsWeSaid",
+  "name": "Things We Said",
+  "en": "Things We Said",
+  "license": "个人免费",
+  "designer": "Imagex",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "ThirstyScriptExtraboldDemo",
+  "name": "Thirsty Script Extrabold Demo",
+  "en": "Thirsty Script Extrabold Demo",
+  "license": "联系授权",
+  "designer": "Ryan Martinson",
+  "weights": [
+   700
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "TsangerFeiBaiW01",
+  "name": "TsangerFeiBai",
+  "en": "TsangerFeiBai",
+  "license": "免费商用",
+  "designer": "Beijing Tsanger Character Technology Co.",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "TsangerShuYuanTW01",
+  "name": "仓耳舒圆体",
+  "en": "TsangerShuYuanT",
+  "license": "免费商用",
+  "designer": "Beijing Tsanger Character Technology Co.",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "TsangerYuMoW01",
+  "name": "TsangerYuMo",
+  "en": "TsangerYuMo",
+  "license": "免费商用",
+  "designer": "Beijing Tsanger Character Technology Co.",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "TypoPRODancingScript",
+  "name": "TypoPRO Dancing Script",
+  "en": "TypoPRO Dancing Script",
+  "license": "免费商用",
+  "designer": "Pablo Impallari",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "VonwaonBitmap12px",
+  "name": "凤凰点阵体 12px",
+  "en": "VonwaonBitmap 12px",
+  "license": "联系授权",
+  "designer": "Haoyu Qiu",
+  "weights": [
+   400
+  ],
+  "category": "展示字体"
+ },
+ {
+  "normalized": "VonwaonBitmap12pxLite",
+  "name": "凤凰点阵体 12px Lite",
+  "en": "VonwaonBitmap 12px Lite",
+  "license": "联系授权",
+  "designer": "Haoyu Qiu",
+  "weights": [
+   400
+  ],
+  "category": "展示字体"
+ },
+ {
+  "normalized": "VonwaonBitmap16px",
+  "name": "凤凰点阵体 16px",
+  "en": "VonwaonBitmap 16px",
+  "license": "联系授权",
+  "designer": "Haoyu Qiu",
+  "weights": [
+   400
+  ],
+  "category": "展示字体"
+ },
+ {
+  "normalized": "VonwaonBitmap16pxLite",
+  "name": "凤凰点阵体 16px Lite",
+  "en": "VonwaonBitmap 16px Lite",
+  "license": "联系授权",
+  "designer": "Haoyu Qiu",
+  "weights": [
+   400
+  ],
+  "category": "展示字体"
+ },
+ {
+  "normalized": "W",
+  "name": "颜體楷書繁體",
+  "en": "w",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "WenQuanYiMicroHei",
+  "name": "文泉驛微米黑",
+  "en": "WenQuanYi Micro Hei",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "WenQuanYiMicroHeiMono",
+  "name": "文泉驛等寬微米黑",
+  "en": "WenQuanYi Micro Hei Mono",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "WenQuanYiZenHei",
+  "name": "文泉驛正黑",
+  "en": "WenQuanYi Zen Hei",
+  "license": "免费商用",
+  "designer": "Qianqian Fang",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "WenQuanYiZenHeiMono",
+  "name": "文泉驛等寬正黑",
+  "en": "WenQuanYi Zen Hei Mono",
+  "license": "免费商用",
+  "designer": "Qianqian Fang",
+  "weights": [
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "XiaolaiMonoSC",
+  "name": "小賴字體 等寬 SC",
+  "en": "Xiaolai Mono SC",
+  "license": "免费商用",
+  "designer": "Nozomi Seto 瀬戸のぞみ",
+  "weights": [
+   400
+  ],
+  "category": "等宽字体"
+ },
+ {
+  "normalized": "XiaolaiSC",
+  "name": "小賴字體 SC",
+  "en": "小賴字體 SC",
+  "license": "免费商用",
+  "designer": "Nozomi Seto 瀬戸のぞみ",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "XinYuGongHeXieSongLLight",
+  "name": "猫啃网文明宋-L",
+  "en": "MaoKenWangWenMingSong-L",
+  "license": "免费商用",
+  "designer": "XinYuGong",
+  "weights": [
+   200
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "Xiomara",
+  "name": "Xiomara",
+  "en": "Xiomara",
+  "license": "个人免费",
+  "designer": "Lauren Thompson ",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "YRDZSTRegular",
+  "name": "杨任东竹石体",
+  "en": "YRDZST",
+  "license": "免费商用",
+  "designer": "—Ó»Œ∂´",
+  "weights": [
+   100,
+   200,
+   400,
+   600,
+   700,
+   800,
+   900
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "YesevaOneRegular",
+  "name": "Yeseva One",
+  "en": "Yeseva One",
+  "license": "免费商用",
+  "designer": "Jovanny Lemonad",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "Yozai",
+  "name": "悠哉字体",
+  "en": "Yozai",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   300,
+   400,
+   500
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "Zh0D2D6800",
+  "name": "书体坊王学勤钢笔行书",
+  "en": " ",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "Zh100Ec99D",
+  "name": "书体坊安景臣钢笔行书",
+  "en": " ",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "Zh762286D5",
+  "name": "书体坊雪纯体3500",
+  "en": " ÈÃÂ∑",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "Zhca81D408",
+  "name": "书体坊硬笔行书3500",
+  "en": " ",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "ZhenyanGBRegular",
+  "name": "锐字真言体免费商用",
+  "en": "ZhenyanGB",
+  "license": "联系授权",
+  "designer": "REEJI",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "Zhfc94C5C4",
+  "name": "书体坊郭小语钢笔楷体",
+  "en": "",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "ZhuoJianGanLanJianTiRegular",
+  "name": "卓健橄榄简体",
+  "en": "ZhuoJianGanLanJianTi",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "crimsontextroman",
+  "name": "Crimson Text",
+  "en": "Crimson Text",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   500
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "cwTeXMing",
+  "name": "cwTeX 明體",
+  "en": "cwTeXMing",
+  "license": "联系授权",
+  "designer": "Ministry of Education, R.O.C. All rights",
+  "weights": [
+   500
+  ],
+  "category": "衬线字体"
+ },
+ {
+  "normalized": "huangyinqizhaopai",
+  "name": "黄引齐招牌4aqq.com",
+  "en": "huangyinqi zhaopai",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "jiangxizhuokaiRegular",
+  "name": "江西拙楷",
+  "en": "jiangxizhuokai",
+  "license": "联系授权",
+  "designer": "huang yu chen",
+  "weights": [
+   400
+  ],
+  "category": "手写体"
+ },
+ {
+  "normalized": "lianmengqiyilushuaizhengruiheitiRegular",
+  "name": "联盟起艺卢帅正锐黑体",
+  "en": "lianmengqiyilushuaizhengruiheiti",
+  "license": "免费商用",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "无衬线字体"
+ },
+ {
+  "normalized": "miniwakuwaku",
+  "name": "mini-wakuwaku",
+  "en": "mini-wakuwaku",
+  "license": "联系授权",
+  "designer": "",
+  "weights": [
+   400
+  ],
+  "category": "衬线字体"
+ }
+]

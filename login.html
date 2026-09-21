@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>登录 · 文风字体</title>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+</head>
+<body class="page-login">
+  <header data-topbar></header>
+
+  <main class="container login">
+    <form id="loginForm">
+      <div>
+        <h1>登录控制台</h1>
+        <p class="sub">管理项目、域名白名单、子集化与用量。原型环境：任意邮箱即可进入。</p>
+      </div>
+      <div class="field"><label for="email">邮箱</label><input class="input" id="email" type="email" autocomplete="email" placeholder="you@example.com" required autofocus /></div>
+      <div class="field"><label for="password">密码</label><input class="input" id="password" type="password" autocomplete="current-password" placeholder="••••••••" required /></div>
+      <button type="submit" class="btn btn-ink btn-lg">登录</button>
+      <p class="alt">还没有账号？<a href="#" id="signup">免费注册</a><span data-pricing hidden> · <a href="pricing.html">查看定价</a></span></p>
+    </form>
+  </main>
+
+  <script src="js/wf-proto.js"></script>
+  <script src="js/wf-chrome.js"></script>
+  <script>
+    (function () {
+      const next = WFProto.getQuery('next');
+      function go() {
+        const email = document.getElementById('email').value || 'design@wenpai.org';
+        WFChrome.login({ name: email.split('@')[0], email: email });
+        let to = 'app/index.html';
+        if (next === 'bag') to = 'app/subset.html?from=bag';
+        else if (next === 'app' && /^[\w-]+\.html$/.test(WFProto.getQuery('back'))) to = 'app/' + WFProto.getQuery('back');
+        else if (next === 'claim') to = 'app/settings.html?claim=' + encodeURIComponent(WFProto.getQuery('slug'));
+        location.href = to;
+      }
+      document.getElementById('loginForm').addEventListener('submit', function (e) { e.preventDefault(); go(); });
+      document.getElementById('signup').addEventListener('click', function (e) { e.preventDefault(); go(); });
+      if (WFChrome.user()) location.replace('app/index.html');
+    })();
+  </script>
+</body>
+</html>

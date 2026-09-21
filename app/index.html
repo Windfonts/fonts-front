@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>概览 · 控制台 · 文风字体</title>
+  <link rel="stylesheet" href="../css/fonts.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/app.css" />
+  <link rel="icon" type="image/webp" href="../assets/icon.webp" />
+</head>
+<body class="app">
+  <aside class="rail" data-rail data-active="overview"></aside>
+  <main class="app-main" id="root"><p class="loading">正在加载…</p></main>
+
+  <script src="../js/wf-proto.js"></script>
+  <script src="../js/wf-chrome.js"></script>
+  <script src="../js/wf-embed.js"></script>
+  <script src="../js/wf-app.js"></script>
+  <script>
+    (function () {
+      if (!WFApp.gate()) return;
+      const esc = WFProto.escapeHtml;
+      const root = document.getElementById('root');
+      Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(function (r) {
+        const s = r[1];
+        const ps = s.projects;
+        const req = ps.reduce(function (a, p) { return a + p.usage.requests30d; }, 0);
+        const bytes = ps.reduce(function (a, p) { return a + p.usage.bytes30d; }, 0);
+        const domains = ps.reduce(function (a, p) { return a + p.domains.length; }, 0);
+        const fonts = ps.reduce(function (a, p) { return a + p.fonts.length; }, 0);
+        const daily = WFApp.series('all', 30, req);
+        const versions = [];
+        ps.forEach(function (p) { p.versions.slice(0, 3).forEach(function (v) { versions.push({ p: p, v: v }); }); });
+        versions.sort(function (a, b) { return new Date(b.v.at) - new Date(a.v.at); });
+
+        root.innerHTML =
+          '<div class="app-head"><div><h1>概览</h1><p class="sub">' + s.plan.name + '版 · 近 30 天</p></div>' +
+            '<div class="app-actions"><a class="btn" href="subset.html">子集化</a><a class="btn btn-ink" href="projects.html?new=1">新建项目</a></div></div>' +
+          '<div class="stats">' +
+            '<div class="stat"><div class="v">' + ps.length + '<small>/ ' + s.plan.quota.projects + '</small></div><div class="l">项目</div></div>' +
+            '<div class="stat"><div class="v">' + WFApp.fmtGB(bytes) + '<small>GB / ' + s.plan.quota.trafficGB + '</small></div><div class="l">本月流量</div></div>' +
+            '<div class="stat"><div class="v">' + (req / 1000).toFixed(1) + '<small>k</small></div><div class="l">字体请求</div></div>' +
+            '<div class="stat"><div class="v">' + fonts + '<small>款 · ' + domains + ' 域名</small></div><div class="l">在用字体</div></div>' +
+          '</div>' +
+          '<section class="app-section"><h2>每日请求<span class="more mono">30 天</span></h2>' + WFApp.sparkline(daily) +
+            '<div class="spark-meta"><span>30 天前</span><span>今天</span></div></section>' +
+          '<section class="app-section"><h2>项目<a class="more" href="projects.html">全部 →</a></h2><ul class="proj-list">' +
+            ps.map(function (p) {
+              return '<li><a class="name" href="project.html?id=' + esc(p.id) + '">' + esc(p.name) + '<small>' + esc(p.slug) + '</small></a>' +
+                '<span><span class="num">' + p.fonts.length + '</span> 字体</span>' +
+                '<span class="hide-md"><span class="num">' + p.domains.length + '</span> 域名</span>' +
+                '<span class="hide-md"><span class="num">' + WFApp.fmtGB(p.usage.bytes30d) + '</span> GB</span>' +
+                '<span>v' + WFApp.currentVersion(p).v + '</span></li>';
+            }).join('') + '</ul></section>' +
+          '<section class="app-section"><h2>最近版本</h2><ul class="version-list">' +
+            versions.slice(0, 6).map(function (x) {
+              return '<li><span class="v' + (x.v.current ? ' is-current' : '') + '">v' + x.v.v + '</span>' +
+                '<span class="note"><a href="project.html?id=' + esc(x.p.id) + '&tab=versions">' + esc(x.p.name) + '</a> · ' + esc(x.v.note) + '</span>' +
+                '<span class="num muted">' + WFEmbed.fmtBytes(x.v.bytes) + '</span><span class="at">' + WFApp.fmtDate(x.v.at) + '</span></li>';
+            }).join('') + '</ul></section>';
+      });
+    })();
+  </script>
+</body>
+</html>

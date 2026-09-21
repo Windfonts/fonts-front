@@ -1,9 +1,28 @@
 /* Shared specimen + pick bag + catalog (fonts.json) — v3.3 */
 (function () {
   const KEY = 'wf-proto-picks';
-  const SAMPLE_KEY = 'wf-proto-sample';
+  const SAMPLE_KEY = 'wf-proto-sample.v3';
   const SIZE_KEY = 'wf-proto-size';
+  const SPECIMEN_CFG_KEY = 'wf-proto-specimen-cfg.v1';
+  const DEFAULT_SPECIMEN = {
+    listDefault: '春风又绿江南岸',
+    detailPreset: 'poem',
+    size: 40,
+    wallText: '天地玄黄 宇宙洪荒 日月盈昃 Aa 0123',
+    presets: [
+      { id: 'line', label: '短句', text: '春风又绿江南岸' },
+      { id: 'title', label: '标题', text: '字里行间' },
+      { id: 'para', label: '段落', text: '天地玄黄，宇宙洪荒' },
+      { id: 'brand', label: '品牌', text: '文派 Wenpai' },
+      { id: 'poem', label: '诗句', text: '行到水穷处，坐看云起时' },
+      { id: 'mix', label: '中英数', text: '汉字 Hànzì Aa 0123' }
+    ]
+  };
   const PAGE_SIZE = 10;
+  /* 正式 CDN：https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/index.css（zh_index.css 为中文子集） */
+  const CDN = 'https://cn.windfonts.com';
+  const CDN_LICENSE_NOTE = '<!-- 此中文网页字体由文风字体（Windfonts）免费提供，您可以自由引用，请务必保留此授权许可标注 https://wenfeng.org/license -->';
+  const CSS_TO_NAME = { '100': 'thin', '200': 'extralight', '300': 'light', '350': 'demilight', '400': 'regular', '500': 'medium', '600': 'semibold', '700': 'bold', '800': 'heavy', '900': 'black' };
 
   const EXTRA_LINKS = [
     { label: '文风字体', path: 'https://windfonts.com' },
@@ -29,19 +48,47 @@
   let catalogPromise = null;
   const injectedCss = new Set();
 
-  function catalogUrl() {
+  function dataUrl(file) {
     try {
       const scripts = document.getElementsByTagName('script');
       for (let i = scripts.length - 1; i >= 0; i--) {
         const src = scripts[i].src || '';
         if (src.indexOf('wf-proto.js') !== -1) {
-          return new URL('../data/fonts.json', src).href;
+          return new URL('../data/' + file, src).href;
         }
       }
     } catch (e) { /* ignore */ }
     const base = location.pathname.replace(/\/[^/]*$/, '/');
-    if (base.indexOf('/admin') !== -1) return '../data/fonts.json';
-    return 'data/fonts.json';
+    if (base.indexOf('/admin') !== -1) return '../data/' + file;
+    return 'data/' + file;
+  }
+  function catalogUrl() { return dataUrl('fonts.json'); }
+
+  /* —— 厂商字典：data/foundries.json 是厂商名称的唯一真相来源（中文名 / 英文 / 简称 / 官网） —— */
+  let foundries = [];
+  let licenseEvidenceData = { standards: {}, names: {} };
+  let lineageData = { groups: {}, byName: {} };
+  const foundryByAlias = {};
+  const foundryByFont = {};
+  function normKey(s) { return String(s || '').trim().toLowerCase().replace(/\s+/g, ' '); }
+  function slugify(s) { return String(s || '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-+|-+$/g, ''); }
+  function indexFoundries(list) {
+    foundries = list;
+    list.forEach(function (fd) {
+      (fd.aliases || []).forEach(function (a) { foundryByAlias[normKey(a)] = fd; });
+      foundryByAlias[normKey(fd.name)] = fd;
+      if (fd.en) foundryByAlias[normKey(fd.en)] = fd;
+      (fd.fontNames || []).forEach(function (n) { foundryByFont[n] = fd; });
+    });
+  }
+  /** 目录原始厂商字符串 → 字典条目；未收录的按原文生成临时条目 */
+  function resolveFoundry(raw) {
+    const brandRaw = (raw.brand && raw.brand.name) || raw.foundry || '';
+    const hit = foundryByAlias[normKey(brandRaw)] || foundryByAlias[normKey(String(brandRaw).split(/[;；]/)[0])] || foundryByFont[raw.name];
+    if (hit) return hit;
+    const first = String(brandRaw).split(/[;；]/)[0].trim();
+    if (!first) return null;
+    return { id: slugify(first), name: first, en: /^[\x00-\x7f]+$/.test(first) ? first : '', short: first, website: (raw.brand && raw.brand.website) || '', aliases: [first], unlisted: true };
   }
 
   function normalizeFont(raw) {
@@ -52,6 +99,7 @@
     return Object.assign({}, raw, {
       weights: weights,
       tags: tags,
+      foundryInfo: resolveFoundry(raw),
       designerShort: designerShort,
       styles: weights.length,
       detail: 'font-detail.html?id=' + encodeURIComponent(raw.id)
@@ -61,13 +109,29 @@
   function loadCatalog() {
     if (catalog.length) return Promise.resolve(catalog);
     if (catalogPromise) return catalogPromise;
-    catalogPromise = fetch(catalogUrl())
-      .then(function (r) {
-        if (!r.ok) throw new Error('fonts.json ' + r.status);
-        return r.json();
-      })
-      .then(function (arr) {
-        catalog = (Array.isArray(arr) ? arr : []).map(normalizeFont);
+    const fontsReq = fetch(catalogUrl()).then(function (r) {
+      if (!r.ok) throw new Error('fonts.json ' + r.status);
+      return r.json();
+    });
+    const foundriesReq = fetch(dataUrl('foundries.json')).then(function (r) { return r.ok ? r.json() : { foundries: [] }; })
+      .catch(function () { return { foundries: [] }; });
+    const evidenceReq = fetch(dataUrl('license-evidence.json')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
+      .catch(function () { return { standards: {}, names: {} }; });
+    const lineageReq = fetch(dataUrl('font-lineage.json')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
+      .catch(function () { return { groups: {}, byName: {} }; });
+    catalogPromise = Promise.all([fontsReq, foundriesReq, evidenceReq, lineageReq])
+      .then(function (res) {
+        indexFoundries((res[1] && res[1].foundries) || []);
+        licenseEvidenceData = res[2] || { standards: {}, names: {} };
+        lineageData = res[3] || { groups: {}, byName: {} };
+        catalog = (Array.isArray(res[0]) ? res[0] : []).map(function (raw) {
+          const font = normalizeFont(raw);
+          font.lineage = resolveLineage(font);
+          font.ownerInfo = font.lineage.ownerInfo || font.foundryInfo;
+          font.makerInfo = font.lineage.makerInfo || font.foundryInfo;
+          font.licenseEvidence = resolveLicenseEvidence(font);
+          return font;
+        });
         return catalog;
       })
       .catch(function (err) {
@@ -147,28 +211,71 @@
     return WEIGHT_MAP[key] || '400';
   }
 
-  function cssFamilyStack(family) {
+  function cssFamilyStack(family, platform) {
     const f = family || '';
     const alt = f.indexOf('wenfeng-') === 0 ? f.replace(/^wenfeng-/, 'windfonts-') : '';
     const parts = [];
     if (alt) parts.push("'" + alt + "'");
     if (f) parts.push("'" + f + "'");
-    parts.push('"PingFang SC"', '"Microsoft YaHei"', 'system-ui', 'sans-serif');
-    return parts.join(', ');
+    const extra = {
+      mac: ['"PingFang SC"', '"Hiragino Sans GB"', '"Heiti SC"', 'system-ui', 'sans-serif'],
+      win: ['"Microsoft YaHei"', 'SimHei', '"Segoe UI"', 'sans-serif'],
+      android: ['"Noto Sans CJK SC"', 'Roboto', 'sans-serif']
+    };
+    return parts.concat(extra[platform] || ['"PingFang SC"', '"Microsoft YaHei"', 'system-ui', 'sans-serif']).join(', ');
   }
 
+  /** 字体族 slug（CDN 路径段）：wenfeng-albbpht → albbpht */
+  function familySlug(family) { return String(family || '').replace(/^wenfeng-/, ''); }
+
+  /** 数值字重 → CDN 目录里的字重名。优先用目录里该字体的真实字重名（Normal / Heavy / Extrabold 等） */
+  function weightName(family, weight) {
+    const s = String(weight == null ? '400' : weight).trim();
+    if (!/^\d{2,4}$/.test(s)) return s.toLowerCase().replace(/[\s-]+/g, '');
+    const font = catalog.filter(function (f) { return f.family === family; })[0];
+    const names = (font && font.weights) || [];
+    const hit = names.filter(function (n) { return weightToCss(n) === s; })[0];
+    return (hit || CSS_TO_NAME[s] || 'regular').toLowerCase().replace(/[\s-]+/g, '');
+  }
+
+  function cssUrl(family, weight, version) {
+    const file = version === 'zh' ? 'zh_index.css' : 'index.css';
+    return CDN + '/wenfeng/fonts/' + familySlug(family) + '/' + weightName(family, weight || '400') + '/web/' + file;
+  }
+
+  /**
+   * 注入字体 CSS。CDN 的 CSS 只声明 font-family，没有 font-weight，且 font-style 写的是字重名（无效值）；
+   * 多个字重同页会互相覆盖。这里拉取后补上 font-weight / 修正 font-style / 把相对 url 转绝对，再以 <style> 注入。
+   * 拉取失败时退回 <link>。
+   */
   function ensureFontCss(family, weight) {
     if (!family) return;
     const w = weightToCss(weight || '400');
     const key = family + '|' + w;
     if (injectedCss.has(key)) return;
     injectedCss.add(key);
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = WFProto.cssUrl(family, w);
-    link.setAttribute('data-wf-family', family);
-    link.onerror = function () { /* 429 or blocked — family fallback still set */ };
-    document.head.appendChild(link);
+    const url = cssUrl(family, w);
+    const base = url.replace(/[^/]+$/, '');
+    fetch(url).then(function (r) {
+      if (!r.ok) throw new Error(String(r.status));
+      return r.text();
+    }).then(function (css) {
+      const fixed = css
+        .replace(/font-style:\s*[a-z-]+;/gi, 'font-style:normal;font-weight:' + w + ';')
+        .replace(/url\("\.\//g, 'url("' + base)
+        .replace(/url\('\.\//g, "url('" + base);
+      const style = document.createElement('style');
+      style.setAttribute('data-wf-family', family);
+      style.setAttribute('data-wf-weight', w);
+      style.textContent = fixed;
+      document.head.appendChild(style);
+    }).catch(function () {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = url;
+      link.setAttribute('data-wf-family', family);
+      document.head.appendChild(link);
+    });
   }
 
   /** 许可档位归并（对齐许可字典口径：免费商用单列，联系/付费并「需授权」，空=待核实） */
@@ -201,6 +308,111 @@
     return '待核实';
   }
 
+  function getFoundryById(id) {
+    if (!id) return null;
+    for (let i = 0; i < foundries.length; i++) {
+      if (foundries[i].id === id) return foundries[i];
+    }
+    return null;
+  }
+
+  function matchNamedRecord(map, name) {
+    const keys = Object.keys(map || {}).sort(function (a, b) { return b.length - a.length; });
+    for (let i = 0; i < keys.length; i++) {
+      if (String(name || '').indexOf(keys[i]) !== -1) return map[keys[i]];
+    }
+    return null;
+  }
+
+  function resolveLineage(font) {
+    const rec = matchNamedRecord((lineageData && lineageData.byName) || {}, font && font.name);
+    const groups = (lineageData && lineageData.groups) || {};
+    const fallback = font && font.foundryInfo;
+    if (!rec) {
+      return {
+        group: '', groupName: '', relation: '', upstreamName: '',
+        licenseFollows: 'unknown', ownerInfo: fallback, makerInfo: fallback
+      };
+    }
+    const group = rec.group ? groups[rec.group] : null;
+    const owner = getFoundryById(rec.ownerId) || fallback;
+    const maker = getFoundryById(rec.makerId) || owner || fallback;
+    return {
+      group: rec.group || '',
+      groupName: (group && group.name) || '',
+      relation: rec.relation || '',
+      upstreamName: rec.upstreamName || (group && group.upstreamName) || '',
+      licenseFollows: rec.licenseFollows || 'unknown',
+      ownerInfo: owner,
+      makerInfo: maker
+    };
+  }
+
+  function inferStandardKey(text) {
+    const t = String(text || '');
+    if (/OFL|Open Font License/i.test(t)) return 'OFL-1.1';
+    if (/Apache/i.test(t)) return 'Apache-2.0';
+    if (/GPL/i.test(t)) return 'GPL-2.0';
+    if (/CC-?BY-?SA/i.test(t)) return 'CC-BY-SA-4.0';
+    if (/CC-?BY-?ND/i.test(t)) return 'CC-BY-ND-3.0';
+    if (/IPA/i.test(t)) return 'IPA-1.0';
+    return '';
+  }
+
+  function evidenceVerified(ev) {
+    if (!ev || !ev.sourceUrl) return false;
+    if (ev.sourceKind === 'platform' || ev.sourceKind === 'author_note' || ev.sourceKind === 'unlabeled') return false;
+    return ev.sourceKind === 'standard' || ev.sourceKind === 'github_license' || ev.sourceKind === 'rights_holder';
+  }
+
+  function resolveLicenseEvidence(font) {
+    const standards = (licenseEvidenceData && licenseEvidenceData.standards) || {};
+    const names = (licenseEvidenceData && licenseEvidenceData.names) || {};
+    const licName = String((font && font.licenseName) || '');
+    const foundry = (font && font.foundryInfo) || {};
+    let ev = {
+      sourceKind: 'unlabeled',
+      sourceUrl: (font && (font.licenseFileUrl || font.licenseUrl)) || '',
+      quote: '',
+      verifiedAt: '',
+      restrictions: [],
+      spdx: '',
+      label: licName,
+      verified: false
+    };
+    const stdKey = inferStandardKey(licName);
+    if (stdKey && standards[stdKey]) {
+      ev = Object.assign({}, ev, standards[stdKey], { label: licName || standards[stdKey].label });
+    }
+    const keys = Object.keys(names).sort(function (a, b) { return b.length - a.length; });
+    for (let i = 0; i < keys.length; i++) {
+      if (String((font && font.name) || '').indexOf(keys[i]) === -1) continue;
+      const n = names[keys[i]];
+      ev = Object.assign({}, ev, n);
+      if (n.spdx && standards[n.spdx]) {
+        if (!n.quote) ev.quote = standards[n.spdx].quote;
+        if (!n.restrictions) ev.restrictions = standards[n.spdx].restrictions.slice();
+        if (!ev.label) ev.label = standards[n.spdx].label;
+        if (!ev.spdx) ev.spdx = n.spdx;
+      }
+      break;
+    }
+    if (foundry.kind === 'platform' && ev.sourceKind !== 'standard' && ev.sourceKind !== 'github_license') {
+      ev.sourceKind = 'platform';
+      if (!ev.sourceUrl) ev.sourceUrl = foundry.website || '';
+    } else if (ev.sourceKind === 'unlabeled' && /作者声明|免费可商用|免费商用授权/.test(licName)) {
+      ev.sourceKind = 'author_note';
+    }
+    ev.verified = evidenceVerified(ev);
+    return ev;
+  }
+
+  function isOpenFont(font) {
+    const ev = (font && font.licenseEvidence) || {};
+    return /OFL|Apache|MIT|IPA|CC-BY/i.test(String(ev.spdx || '')) ||
+      /OFL|Open Font|Apache|\bMIT\b|IPA|CC-?BY/i.test(String((font && font.licenseName) || ''));
+  }
+
   function matchFilter(font, tag, keyword, license) {
     const tagQ = (tag || '').trim();
     const kw = (keyword || '').trim().toLowerCase();
@@ -224,6 +436,10 @@
         font.name, font.en, font.family, font.normalized,
         font.designer, font.designerShort, font.category,
         font.foundry, font.brand && font.brand.name,
+        font.foundryInfo && (font.foundryInfo.name + ' ' + (font.foundryInfo.en || '') + ' ' + (font.foundryInfo.short || '')),
+        font.ownerInfo && (font.ownerInfo.name + ' ' + (font.ownerInfo.en || '') + ' ' + (font.ownerInfo.short || '')),
+        font.makerInfo && (font.makerInfo.name + ' ' + (font.makerInfo.en || '') + ' ' + (font.makerInfo.short || '')),
+        font.lineage && (font.lineage.groupName + ' ' + font.lineage.upstreamName),
         (font.tags || []).join(' '), font.description, font.license
       ].join(' ').toLowerCase();
       ok = hay.indexOf(kw) !== -1;
@@ -287,6 +503,67 @@
     renderExtraFooter(foot, variant);
   }
 
+  function normalizePreset(p, i) {
+    const id = String((p && p.id) || ('p' + i)).replace(/[^a-z0-9_-]/gi, '') || ('p' + i);
+    return {
+      id: id.slice(0, 24),
+      label: String((p && p.label) || '预设').slice(0, 12),
+      text: String((p && p.text) || '').slice(0, 120)
+    };
+  }
+  function getSpecimenConfig() {
+    const base = JSON.parse(JSON.stringify(DEFAULT_SPECIMEN));
+    let raw = null;
+    try { raw = JSON.parse(localStorage.getItem(SPECIMEN_CFG_KEY) || 'null'); } catch (e) { /* ignore */ }
+    if (!raw || typeof raw !== 'object') return base;
+    if (raw.listDefault) base.listDefault = String(raw.listDefault).slice(0, 120);
+    if (raw.detailPreset) base.detailPreset = String(raw.detailPreset).slice(0, 24);
+    if (raw.wallText) base.wallText = String(raw.wallText).slice(0, 200);
+    const sz = parseInt(raw.size, 10);
+    if (Number.isFinite(sz)) base.size = Math.max(16, Math.min(160, sz));
+    if (Array.isArray(raw.presets) && raw.presets.length) {
+      base.presets = raw.presets.map(normalizePreset).filter(function (p) { return p.text; }).slice(0, 10);
+    }
+    if (!base.presets.length) base.presets = JSON.parse(JSON.stringify(DEFAULT_SPECIMEN.presets));
+    if (!base.presets.some(function (p) { return p.id === base.detailPreset; })) {
+      base.detailPreset = (base.presets.filter(function (p) { return p.id === 'poem'; })[0] || base.presets[0]).id;
+    }
+    return base;
+  }
+  function applySpecimenSize(px) {
+    document.querySelectorAll('[data-specimen]').forEach(function (n) {
+      n.style.fontSize = px + 'px';
+    });
+    document.querySelectorAll('[data-size-val]').forEach(function (n) {
+      n.textContent = px + 'px';
+    });
+  }
+  function setSpecimenConfig(cfg) {
+    const prev = getSpecimenConfig();
+    const next = {
+      listDefault: String((cfg && cfg.listDefault) || DEFAULT_SPECIMEN.listDefault).slice(0, 120),
+      detailPreset: String((cfg && cfg.detailPreset) || DEFAULT_SPECIMEN.detailPreset).slice(0, 24),
+      size: (function () {
+        const n = parseInt(cfg && cfg.size, 10);
+        return Number.isFinite(n) ? Math.max(16, Math.min(160, n)) : DEFAULT_SPECIMEN.size;
+      })(),
+      wallText: String((cfg && cfg.wallText) || DEFAULT_SPECIMEN.wallText).slice(0, 200),
+      presets: (Array.isArray(cfg && cfg.presets) ? cfg.presets : DEFAULT_SPECIMEN.presets)
+        .map(normalizePreset).filter(function (p) { return p.text; }).slice(0, 10)
+    };
+    if (!next.presets.length) next.presets = JSON.parse(JSON.stringify(DEFAULT_SPECIMEN.presets));
+    if (!next.presets.some(function (p) { return p.id === next.detailPreset; })) {
+      next.detailPreset = next.presets[0].id;
+    }
+    try {
+      localStorage.setItem(SPECIMEN_CFG_KEY, JSON.stringify(next));
+      if (localStorage.getItem(SAMPLE_KEY) === prev.listDefault) localStorage.removeItem(SAMPLE_KEY);
+      if (String(localStorage.getItem(SIZE_KEY) || '') === String(prev.size)) localStorage.removeItem(SIZE_KEY);
+    } catch (e) { /* ignore */ }
+    document.dispatchEvent(new CustomEvent('wf:specimen', { detail: next }));
+    return next;
+  }
+
   window.WFProto = {
     PAGE_SIZE: PAGE_SIZE,
     EXTRA_LINKS: EXTRA_LINKS,
@@ -294,6 +571,12 @@
     escapeHtml: escapeHtml,
     loadCatalog: loadCatalog,
     getCatalogList: function () { return catalog.slice(); },
+    getFoundries: function () { return foundries.slice(); },
+    getFoundryById: getFoundryById,
+    resolveLicenseEvidence: resolveLicenseEvidence,
+    resolveLineage: resolveLineage,
+    isOpenFont: isOpenFont,
+    slugify: slugify,
     getFont: function (id) { return getById(id); },
     getCatalog: function (id) {
       const f = getById(id);
@@ -306,8 +589,19 @@
     ensureFontCss: ensureFontCss,
     inferLanguage: inferLanguage,
     renderExtraFooter: renderExtraFooter,
+    defaultSpecimen: function () { return JSON.parse(JSON.stringify(DEFAULT_SPECIMEN)); },
+    getSpecimenConfig: getSpecimenConfig,
+    setSpecimenConfig: setSpecimenConfig,
+    resetSpecimenConfig: function () {
+      try { localStorage.removeItem(SPECIMEN_CFG_KEY); } catch (e) { /* ignore */ }
+      document.dispatchEvent(new CustomEvent('wf:specimen', { detail: getSpecimenConfig() }));
+    },
     getSample: function () {
-      return localStorage.getItem(SAMPLE_KEY) || '文风字体';
+      try {
+        const v = localStorage.getItem(SAMPLE_KEY);
+        if (v != null && v !== '') return v;
+      } catch (e) { /* ignore */ }
+      return getSpecimenConfig().listDefault;
     },
     setSample: function (v) {
       localStorage.setItem(SAMPLE_KEY, v);
@@ -316,17 +610,18 @@
       });
     },
     getSize: function () {
-      const s = parseInt(localStorage.getItem(SIZE_KEY) || '44', 10);
-      return Number.isFinite(s) ? s : 44;
+      try {
+        const raw = localStorage.getItem(SIZE_KEY);
+        if (raw != null && raw !== '') {
+          const s = parseInt(raw, 10);
+          if (Number.isFinite(s)) return s;
+        }
+      } catch (e) { /* ignore */ }
+      return getSpecimenConfig().size;
     },
     setSize: function (px) {
       localStorage.setItem(SIZE_KEY, String(px));
-      document.querySelectorAll('[data-specimen]').forEach(function (n) {
-        n.style.fontSize = px + 'px';
-      });
-      document.querySelectorAll('[data-size-val]').forEach(function (n) {
-        n.textContent = px + 'px';
-      });
+      applySpecimenSize(px);
     },
     getPicks: function () { return loadPicks().map(enrich); },
     picks: function () { return loadPicks().map(enrich); },
@@ -470,17 +765,18 @@
         });
       }
     },
-    cssUrl: function (family, weight, version) {
-      var url = 'https://app.windfonts.com/api/css?family=' + encodeURIComponent(family) +
-        '&weight=' + encodeURIComponent(weightToCss(weight || '400'));
-      if (version) url += '&version=' + encodeURIComponent(version);
-      return url;
+    CDN: CDN,
+    CDN_LICENSE_NOTE: CDN_LICENSE_NOTE,
+    familySlug: familySlug,
+    weightName: weightName,
+    cssUrl: cssUrl,
+    /** 项目对外地址：与公开字体同一域名 cn.windfonts.com */
+    projectCssUrl: function (slug, file) {
+      return CDN + '/p/' + encodeURIComponent(slug || '') + '/' + (file || 'index.css');
     },
     CSS_VERSIONS: [
       { id: 'full', hint: '完整字符集（推荐）' },
-      { id: 'zh-common', hint: '常用中文字符（轻量）' },
-      { id: 'zh', hint: '中文字符集' },
-      { id: 'en', hint: '英文字符集' }
+      { id: 'zh', hint: '中文子集（zh_index.css）' }
     ],
     licenseCanDo: function (font) {
       const name = String((font && (font.licenseName || font.license)) || '');
@@ -501,22 +797,22 @@
     relatedFonts: function (font, limit) {
       limit = limit || 6;
       if (!font) return [];
-      const brand = ((font.brand && font.brand.name) || font.foundry || '').trim();
-      const cat = String(font.category || '').trim();
       const rest = catalog.filter(function (f) { return f.id !== font.id; });
-      const sameBrand = brand
-        ? rest.filter(function (f) {
-            return (((f.brand && f.brand.name) || f.foundry || '').trim() === brand);
-          })
-        : [];
+      const group = font.lineage && font.lineage.group;
+      const ownerId = font.ownerInfo && font.ownerInfo.id;
       const seen = {};
-      sameBrand.forEach(function (f) { seen[f.id] = true; });
-      const sameCat = cat
-        ? rest.filter(function (f) {
-            return !seen[f.id] && String(f.category || '').trim() === cat;
-          })
-        : [];
-      return sameBrand.concat(sameCat).slice(0, limit);
+      function take(pred) {
+        return rest.filter(function (f) {
+          if (seen[f.id] || !pred(f)) return false;
+          seen[f.id] = true;
+          return true;
+        });
+      }
+      const sameGroup = group ? take(function (f) { return f.lineage && f.lineage.group === group; }) : [];
+      const sameOwner = ownerId ? take(function (f) { return f.ownerInfo && f.ownerInfo.id === ownerId; }) : [];
+      const cat = String(font.category || '').trim();
+      const sameCat = cat ? take(function (f) { return String(f.category || '').trim() === cat; }) : [];
+      return sameGroup.concat(sameOwner).concat(sameCat).slice(0, limit);
     },
     formatCount: function (n) {
       const num = Number(n);
@@ -728,15 +1024,14 @@
     const size = document.getElementById('specimenSize');
     if (sample) {
       sample.value = WFProto.getSample();
-      WFProto.setSample(sample.value);
       sample.addEventListener('input', function () { WFProto.setSample(sample.value); });
     }
     if (size) {
       size.value = String(WFProto.getSize());
-      WFProto.setSize(size.value);
+      applySpecimenSize(WFProto.getSize());
       size.addEventListener('input', function () { WFProto.setSize(size.value); });
     } else if (document.querySelector('[data-specimen]')) {
-      WFProto.setSize(WFProto.getSize());
+      applySpecimenSize(WFProto.getSize());
     }
 
     document.querySelectorAll('[data-join]').forEach(function (btn) {

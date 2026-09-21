@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <script>
+    (function () {
+      function on() {
+        try {
+          var q = location.search;
+          if (/[?&]dev=1(?:&|$)/.test(q)) localStorage.setItem('wf-dev', '1');
+          if (/[?&]pricing=1(?:&|$)/.test(q)) localStorage.setItem('wf-show-pricing', '1');
+          if (localStorage.getItem('wf-show-pricing') === '1' || localStorage.getItem('wf-dev') === '1') return true;
+        } catch (e) {}
+        var h = location.hostname;
+        return h === 'localhost' || h === '127.0.0.1' || h === '[::1]' || h === '0.0.0.0';
+      }
+      if (!on()) location.replace('index.html');
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>定价 · 文风字体</title>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+</head>
+<body class="page-pricing">
+  <header data-topbar data-active="pricing"></header>
+
+  <main class="container">
+    <div class="page-head">
+      <h1>用多少，付多少</h1>
+      <p class="lead">按流量、域名数与字体数计费。免费额度足够让一个站点真正跑起来；项目上线有流量之后，再升级。</p>
+    </div>
+
+    <div class="plans">
+      <div class="plan">
+        <h2>免费</h2>
+        <div class="price">¥0<small> / 月</small></div>
+        <p class="for">个人站点、开源项目、试用与验证。</p>
+        <ul>
+          <li><span>字体库</span><span>开源与免费商用</span></li>
+          <li><span>项目</span><span>1</span></li>
+          <li><span>域名白名单</span><span>3</span></li>
+          <li><span>月流量</span><span>10 GB</span></li>
+          <li><span>子集化</span><span>按文字 · 常用字</span></li>
+          <li><span>格式</span><span>woff2 · woff</span></li>
+          <li><span>版本历史</span><span>保留 5 个</span></li>
+          <li><span>支持</span><span>社区</span></li>
+        </ul>
+        <a class="btn" href="login.html">免费开始</a>
+      </div>
+      <div class="plan">
+        <h2>专业</h2>
+        <div class="price">¥99<small> / 月 · 年付 ¥990</small></div>
+        <p class="for">上线的品牌站、电商、内容站；需要商业字体与稳定流量。</p>
+        <ul>
+          <li><span>字体库</span><span>含商业字体库</span></li>
+          <li><span>项目</span><span>10</span></li>
+          <li><span>域名白名单</span><span>不限</span></li>
+          <li><span>月流量</span><span>200 GB</span></li>
+          <li><span>子集化</span><span>+ Unicode 区间 · 动态 API</span></li>
+          <li><span>格式</span><span>woff2 · woff · ttf</span></li>
+          <li><span>版本历史</span><span>不限 · 一键回滚</span></li>
+          <li><span>用量分析</span><span>域名 · 页面 · 性能</span></li>
+          <li><span>支持</span><span>工作日邮件</span></li>
+        </ul>
+        <a class="btn btn-ink" href="login.html?plan=pro">开始专业版</a>
+      </div>
+      <div class="plan">
+        <h2>企业</h2>
+        <div class="price">按需<small> 报价</small></div>
+        <p class="for">合规、安全、SLA 与合同发票有硬要求的团队。</p>
+        <ul>
+          <li><span>SSO</span><span>SAML · LDAP / AD</span></li>
+          <li><span>权限</span><span>RBAC 细粒度</span></li>
+          <li><span>审计日志</span><span>全部操作</span></li>
+          <li><span>部署</span><span>私有化 · Helm · HA</span></li>
+          <li><span>CDN</span><span>企业级多节点</span></li>
+          <li><span>SLA</span><span>99.9%</span></li>
+          <li><span>支持</span><span>7×24 · 2 小时响应</span></li>
+          <li><span>商务</span><span>合同 · 发票 · 采购</span></li>
+        </ul>
+        <a class="btn" href="mailto:hi@windfonts.com">联系销售</a>
+      </div>
+    </div>
+
+    <p class="plan-note">超出月流量按 ¥0.8 / GB 计；商业字体的授权费按厂商标价，平台与厂商分成，购买后在授权页可查证书与到期时间。厂商入驻不收费。</p>
+
+    <section class="section">
+      <div class="section-head"><h2>常见问题</h2></div>
+      <div class="faq">
+        <div><h3>免费版能商用吗？</h3><p>能。免费版可使用全部开源与免费商用字体，授权范围以每款字体页「授权」区为准。限制在项目数、域名数与流量，不在用途。</p></div>
+        <div><h3>流量怎么算？</h3><p>只计字体文件（woff2 / woff / ttf）经 CDN 的出站流量。CSS 请求与被域名白名单拒绝的请求不计。子集化越充分，流量越省。</p></div>
+        <div><h3>域名白名单如何防盗用？</h3><p>字体文件只对白名单内域名的 Referer / Origin 返回；其他来源收到 403。通配符 <code>*.example.com</code> 可覆盖子域。</p></div>
+        <div><h3>可以自己上传字体吗？</h3><p>可以。上传时需承诺拥有合法授权；上传字体享受同样的子集化、托管与加速，并计入项目字体数。</p></div>
+        <div><h3>开源版和这里的免费版是什么关系？</h3><p>核心字体服务器开源可自部署，包含字体管理、基础子集化、@font-face 生成与单项目管理。这里的云服务是托管版，免运维并附带 CDN 与商业字体库。</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="wfExtraFooter"></footer>
+
+  <script src="js/wf-proto.js"></script>
+  <script src="js/wf-chrome.js"></script>
+</body>
+</html>

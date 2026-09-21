@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>特点 · 文风字体</title>
+  <meta name="description" content="合法、高速、稳定地在网页上使用中文字体：托管、子集化、域名白名单，一行代码接入。" />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/specimen.css" />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+</head>
+<body class="page-features">
+  <header data-topbar data-active="features"></header>
+
+  <main>
+    <section class="home-hero">
+      <div class="container">
+        <p class="kicker">中文 Webfonts 云服务</p>
+        <h1 class="live" id="live" contenteditable="true" spellcheck="false" aria-label="可编辑的活样张" data-placeholder="写几个字试试">文风字体，美事尽显。</h1>
+        <p class="lead">Windfonts 为中文网页而生：字体托管、按需子集化、域名白名单，一行代码接入。每款字的授权以出处原文为准，本站不二次授权。</p>
+        <p class="live-caption"><span>正在使用</span><a class="now" id="liveName" href="fonts.html">—</a><button type="button" id="liveNext"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-refresh"/></svg>换一款</button><span>· 点击标题可改写</span></p>
+        <div class="home-cta">
+          <a class="btn btn-ink btn-lg" href="fonts.html">浏览字体库</a>
+          <a class="btn btn-lg" href="docs.html">试试 Windfonts API</a>
+        </div>
+        <p class="note">授权范围以字体页「授权」区的出处为准。素材站声明不等于厂商官网。</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="home-codebar">
+        <span class="lbl">一行接入</span>
+        <pre id="ctaCode">&lt;link rel="stylesheet" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/index.css"&gt;</pre>
+        <button type="button" class="btn btn-sm" id="ctaCopy"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-copy"/></svg>复制</button>
+      </div>
+    </div>
+
+    <section class="container section">
+      <div class="home-features">
+        <div class="panel">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-flash"/></svg>
+          <h3>极速加载，立即可用</h3><p>在字体页复制一个 <code>&lt;link&gt;</code> 放进 <code>&lt;head&gt;</code>，格式、字重、回退栈都替你写好。</p>
+        </div>
+        <div class="panel">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-server"/></svg>
+          <h3>在线字体服务器</h3><p>每份字体自动压缩与切片，每次请求只按需加载出现过的字，不再整包下发。</p>
+        </div>
+        <div class="panel">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-font-size"/></svg>
+          <h3>WOFF2 与子集化</h3><p>按文字 / 常用 3500·7000 / Unicode 区间三种方式子集化，体积可减少 90% 以上。</p>
+        </div>
+        <div class="panel">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-shield"/></svg>
+          <h3>域名白名单</h3><p>字体文件只对项目绑定的域名返回，其他来源 403。支持通配子域与本地开发。</p>
+        </div>
+        <div class="panel">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-globe"/></svg>
+          <h3>专为中文网络构建</h3><p>WordPress、Typecho、任意前端框架都能用；提供 npm loader 与动态子集化 API。</p>
+        </div>
+        <div class="panel">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-certificate"/></svg>
+          <h3>公开、开放、负责</h3><p>每款字体写明出处与许可短名，本站不二次授权；厂商可认领品牌页。你的数据依旧属于你。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section">
+      <div class="section-head"><h2>精选字体</h2><a class="more" href="fonts.html">全部 128 款 →</a></div>
+      <ul class="specimens home-picks" id="homeRows"></ul>
+    </section>
+
+    <section class="container section">
+      <div class="section-head"><h2>在库厂商</h2><a class="more" href="foundry.html">厂商索引 →</a></div>
+      <div class="home-foundries" id="homeFoundries"></div>
+    </section>
+
+    <section class="container section" data-pricing hidden>
+      <div class="section-head"><h2>定价</h2><a class="more" href="pricing.html">完整说明 →</a></div>
+      <div class="home-plans">
+        <div class="panel"><h3>免费</h3><div class="price">¥0<small> / 月</small></div><p>开源与免费商用字体 · 1 个项目 · 3 个域名 · 每月 10 GB 流量。</p><a class="btn" href="login.html">免费开始</a></div>
+        <div class="panel"><h3>专业</h3><div class="price">¥99<small> / 月</small></div><p>商业字体库 · 10 个项目 · 域名不限 · 每月 200 GB · 动态子集化 API。</p><a class="btn btn-ink" href="login.html?plan=pro">开始专业版</a></div>
+        <div class="panel"><h3>企业</h3><div class="price">按需<small> 报价</small></div><p>SSO · 审计日志 · 私有化部署 · SLA 99.9% · 专属支持与合同发票。</p><a class="btn" href="mailto:hi@windfonts.com">联系销售</a></div>
+      </div>
+    </section>
+
+    <section class="container section">
+      <div class="home-more">
+        <a class="panel" href="docs.html#npm"><h3>应用商店 ↗</h3><p>原生集成 Windfonts 字体服务的应用程序与软件。</p></a>
+        <a class="panel" href="foundry.html"><h3>作品展示 ↗</h3><p>正在使用 Windfonts 的主题、插件与网站案例。</p></a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="wfExtraFooter"></footer>
+
+  <script src="js/wf-proto.js"></script>
+  <script src="js/wf-chrome.js"></script>
+  <script src="js/wf-specimen.js"></script>
+  <script src="js/pages/features.js"></script>
+</body>
+</html>
