@@ -61,7 +61,7 @@
         '<div class="subset-modes seg" role="tablist">' +
           '<button type="button" data-mode="text"' + (st.mode === 'text' ? ' class="is-on"' : '') + '>按文字</button>' +
           '<button type="button" data-mode="common"' + (st.mode === 'common' ? ' class="is-on"' : '') + '>常用字</button>' +
-          '<button type="button" data-mode="unicode"' + (st.mode === 'unicode' ? ' class="is-on"' : '') + '>Unicode 区间</button>' +
+          '<button type="button" data-mode="unicode"' + (st.mode === 'unicode' ? ' class="is-on"' : '') + '>按编码范围</button>' +
         '</div>' +
         modeHtml() +
         '<div class="subset-preview"><h3>预览 · ' + esc(font.name) + '</h3>' +
@@ -75,17 +75,17 @@
   function modeHtml() {
     if (st.mode === 'text') {
       return '<div><textarea class="textarea" id="subText" placeholder="粘贴页面上会出现的文字：标题、品牌名、导航、固定文案……">' + esc(st.text) + '</textarea>' +
-        '<p class="t-13 muted" style="margin-top:var(--s-2)">去重后 <strong class="num" id="charCount">' + WFApp.uniqueChars(st.text) + '</strong> 个字符 · 自动补入 ASCII 数字与基础标点</p>' +
+        '<p class="t-13 muted" style="margin-top:var(--s-2)">去重后 <strong class="num" id="charCount">' + WFApp.uniqueChars(st.text) + '</strong> 个字符 · 自动加上数字和常用标点</p>' +
         '<div class="presets-row">' + WFSpecimen.PRESETS.map(function (p) { return '<button type="button" class="chip" data-fill="' + esc(p.text) + '">+ ' + p.label + '</button>'; }).join('') + '</div></div>';
     }
     if (st.mode === 'common') {
       return '<div class="stack-2" style="display:grid;gap:var(--s-2)">' +
-        '<label class="check"><input type="radio" name="preset" value="3500"' + (st.preset === '3500' ? ' checked' : '') + ' /> 常用 3500 字 · 《通用规范汉字表》一级 · 覆盖日常阅读 99.5%</label>' +
-        '<label class="check"><input type="radio" name="preset" value="7000"' + (st.preset === '7000' ? ' checked' : '') + ' /> 常用 7000 字 · 一二级 · 适合正文不固定的内容站</label>' +
+        '<label class="check"><input type="radio" name="preset" value="3500"' + (st.preset === '3500' ? ' checked' : '') + ' /> 常用 3500 字（覆盖大部分正文）</label>' +
+        '<label class="check"><input type="radio" name="preset" value="7000"' + (st.preset === '7000' ? ' checked' : '') + ' /> 常用 7000 字（适合正文不固定的站点）</label>' +
         '<p class="t-13 muted" style="margin-top:var(--s-3)">正文可变的站点用常用字集；标题与品牌名单独走「按文字」拿到最小体积。</p></div>';
     }
     return '<div><input class="input" id="subRanges" value="' + esc(st.ranges) + '" placeholder="U+4E00-9FFF, U+3000-303F" />' +
-      '<p class="t-13 muted" style="margin-top:var(--s-2)">逗号分隔，支持单点与区间 · 解析出 <strong class="num" id="rangeCount">' + WFProto.formatCount(WFApp.parseRanges(st.ranges)) + '</strong> 个码点</p>' +
+      '<p class="t-13 muted" style="margin-top:var(--s-2)">逗号分隔，支持单点与区间 · 约 <strong class="num" id="rangeCount">' + WFProto.formatCount(WFApp.parseRanges(st.ranges)) + '</strong> 个字</p>' +
       '<div class="presets-row">' + UNI_PRESETS.map(function (p) { return '<button type="button" class="chip" data-range="' + esc(p[1]) + '">+ ' + p[0] + '</button>'; }).join('') + '</div></div>';
   }
 

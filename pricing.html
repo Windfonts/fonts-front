@@ -62,7 +62,7 @@
           <li><span>项目</span><span>10</span></li>
           <li><span>域名白名单</span><span>不限</span></li>
           <li><span>月流量</span><span>200 GB</span></li>
-          <li><span>子集化</span><span>+ Unicode 区间 · 动态 API</span></li>
+          <li><span>子集化</span><span>+ 编码范围 · 动态 API</span></li>
           <li><span>格式</span><span>woff2 · woff · ttf</span></li>
           <li><span>版本历史</span><span>不限 · 一键回滚</span></li>
           <li><span>用量分析</span><span>域名 · 页面 · 性能</span></li>
@@ -76,7 +76,7 @@
         <p class="for">合规、安全、SLA 与合同发票有硬要求的团队。</p>
         <ul>
           <li><span>SSO</span><span>SAML · LDAP / AD</span></li>
-          <li><span>权限</span><span>RBAC 细粒度</span></li>
+          <li><span>权限</span><span>按角色分配</span></li>
           <li><span>审计日志</span><span>全部操作</span></li>
           <li><span>部署</span><span>私有化 · Helm · HA</span></li>
           <li><span>CDN</span><span>企业级多节点</span></li>
@@ -95,7 +95,7 @@
       <div class="faq">
         <div><h3>免费版能商用吗？</h3><p>能。免费版可使用全部开源与免费商用字体，授权范围以每款字体页「授权」区为准。限制在项目数、域名数与流量，不在用途。</p></div>
         <div><h3>流量怎么算？</h3><p>只计字体文件（woff2 / woff / ttf）经 CDN 的出站流量。CSS 请求与被域名白名单拒绝的请求不计。子集化越充分，流量越省。</p></div>
-        <div><h3>域名白名单如何防盗用？</h3><p>字体文件只对白名单内域名的 Referer / Origin 返回；其他来源收到 403。通配符 <code>*.example.com</code> 可覆盖子域。</p></div>
+        <div><h3>域名白名单如何防盗用？</h3><p>字体文件只对你绑定的域名下发，别的站点请求会被拒绝。通配符 <code>*.example.com</code> 可覆盖子域。</p></div>
         <div><h3>可以自己上传字体吗？</h3><p>可以。上传时需承诺拥有合法授权；上传字体享受同样的子集化、托管与加速，并计入项目字体数。</p></div>
         <div><h3>开源版和这里的免费版是什么关系？</h3><p>核心字体服务器开源可自部署，包含字体管理、基础子集化、@font-face 生成与单项目管理。这里的云服务是托管版，免运维并附带 CDN 与商业字体库。</p></div>
       </div>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>上传条款 · 文风字体</title>
+  <meta name="description" content="向文风字体控制台上传自有字体时的约定：你必须有网页嵌入授权，上传字体不上公开库。" />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+</head>
+<body class="page-upload-terms">
+  <header data-topbar></header>
+
+  <main class="container docs">
+    <aside class="docs-toc" aria-label="说明目录"><div data-docs-nav="upload-terms"></div></aside>
+    <article class="docs-body">
+      <section>
+        <p class="kicker">条款</p>
+        <h1>上传条款</h1>
+        <p class="lead">上传到控制台的自有字体适用本页。公开字体库里的字不走这条路径。</p>
+      </section>
+
+      <section>
+        <h2>你必须有权</h2>
+        <p>勾选并上传，即确认你拥有或已取得该字体在网页嵌入场景下的合法授权。因授权问题产生的责任由上传者承担。文风字体不代核权利、不代授许可。</p>
+      </section>
+
+      <section>
+        <h2>不上公开库</h2>
+        <p>上传字体只对你的项目可见，不进入公开字体库，也不出现在首页或厂商页。</p>
+      </section>
+
+      <section>
+        <h2>我们做什么</h2>
+        <p>解析名称、字重、字符数，生成网页格式，供你的项目子集化与托管。配额见控制台。接入说明见<a href="docs.html#upload">文档 · 上传自有字体</a>。</p>
+      </section>
+
+      <section>
+        <h2>我们不做什么</h2>
+        <ul>
+          <li>不把上传字体当作文风出品</li>
+          <li>不把上传字体提供给第三人下载源文件</li>
+          <li>不替你向权利人担保使用范围</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>格式与体积</h2>
+        <p>接受 <code>.ttf</code> <code>.otf</code> <code>.woff</code> <code>.woff2</code>，单个文件不超过 30 MB。</p>
+      </section>
+
+      <section>
+        <h2>下线</h2>
+        <p>收到权利人投诉，或明显无权使用时，我们会下线该字体，并通知账号邮箱。</p>
+      </section>
+
+      <section>
+        <h2>变更</h2>
+        <p>本页随产品更新。上传页勾选视为同意当时版本。</p>
+        <p class="note">要上传请先<a href="login.html">登录控制台</a>，打开「我的字体 → 上传」。</p>
+      </section>
+    </article>
+  </main>
+
+  <footer id="wfExtraFooter"></footer>
+  <script src="js/wf-proto.js"></script>
+  <script src="js/wf-chrome.js"></script>
+  <script src="js/wf-docs-nav.js"></script>
+</body>
+</html>

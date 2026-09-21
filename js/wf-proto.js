@@ -25,15 +25,18 @@
   const CSS_TO_NAME = { '100': 'thin', '200': 'extralight', '300': 'light', '350': 'demilight', '400': 'regular', '500': 'medium', '600': 'semibold', '700': 'bold', '800': 'heavy', '900': 'black' };
 
   const EXTRA_LINKS = [
-    { label: '文风字体', path: 'https://windfonts.com' },
-    { label: 'Cravatar', path: 'https://cravatar.com' },
-    { label: 'adminCDN', path: 'https://admincdn.com' },
-    { label: '赛博字库', path: 'https://cyberfonts.com' },
-    { label: '文派开源', path: 'https://wenpai.org' },
-    { label: '字体下载', path: 'https://wenfeng.org' }
+    { label: '关于', path: 'about.html' },
+    { label: '文档', path: 'docs.html' },
+    { label: '认领厂商', path: 'claim.html' }
   ];
-  const SAFE_CODE =
-    'Copyright © 2025 Windfonts 文风字体, All Rights Reserved. 文派（广州）科技有限公司；版权所有 · 粤ICP备2023091240号-3';
+  const ICP_HREF = 'https://beian.miit.gov.cn/';
+  const ICP_NO = '粤ICP备2023091240号-3';
+  function copyrightYear() {
+    return String(new Date().getFullYear());
+  }
+  function copyrightLine(icpHtml) {
+    return '© ' + copyrightYear() + ' 文风字体 · 文派（广州）科技有限公司 · ' + (icpHtml || ICP_NO);
+  }
 
   const WEIGHT_MAP = {
     thin: '100', extralight: '200', 'extra-light': '200', light: '300',
@@ -66,15 +69,18 @@
 
   /* —— 厂商字典：data/foundries.json 是厂商名称的唯一真相来源（中文名 / 英文 / 简称 / 官网） —— */
   let foundries = [];
+  let avatars = {};
   let licenseEvidenceData = { standards: {}, names: {} };
   let lineageData = { groups: {}, byName: {} };
   const foundryByAlias = {};
   const foundryByFont = {};
   function normKey(s) { return String(s || '').trim().toLowerCase().replace(/\s+/g, ' '); }
   function slugify(s) { return String(s || '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-+|-+$/g, ''); }
+  function getAvatarUrl(id) { return (id && avatars[id]) || ''; }
   function indexFoundries(list) {
     foundries = list;
     list.forEach(function (fd) {
+      if (!fd.avatarUrl && avatars[fd.id]) fd.avatarUrl = avatars[fd.id];
       (fd.aliases || []).forEach(function (a) { foundryByAlias[normKey(a)] = fd; });
       foundryByAlias[normKey(fd.name)] = fd;
       if (fd.en) foundryByAlias[normKey(fd.en)] = fd;
@@ -119,8 +125,11 @@
       .catch(function () { return { standards: {}, names: {} }; });
     const lineageReq = fetch(dataUrl('font-lineage.json')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
       .catch(function () { return { groups: {}, byName: {} }; });
-    catalogPromise = Promise.all([fontsReq, foundriesReq, evidenceReq, lineageReq])
+    const avatarsReq = fetch(dataUrl('avatars.json?v=20260921d')).then(function (r) { return r.ok ? r.json() : {}; })
+      .catch(function () { return {}; });
+    catalogPromise = Promise.all([fontsReq, foundriesReq, evidenceReq, lineageReq, avatarsReq])
       .then(function (res) {
+        avatars = (res[4] && typeof res[4] === 'object') ? res[4] : {};
         indexFoundries((res[1] && res[1].foundries) || []);
         licenseEvidenceData = res[2] || { standards: {}, names: {} };
         lineageData = res[3] || { groups: {}, byName: {} };
@@ -186,15 +195,21 @@
     } catch (e) { return ''; }
   }
 
+  function pageHref(path) {
+    if (/^https?:/i.test(path || '')) return path;
+    if (window.WFChrome && WFChrome.href) return WFChrome.href(path);
+    return path;
+  }
   function setJoinLabel(btn, picked) {
     if (!btn) return;
+    btn.classList.toggle('is-picked', picked);
+    /* 样张行 / 详情 / 对比卡自己管文案和图标，这里只同步选中态 */
+    if (btn.classList.contains('act') || btn.id === 'btnPick' || btn.id === 'nowPick') return;
     if (btn.hasAttribute('data-op-detail')) {
-      btn.textContent = picked ? '移除字体' : '添加字体';
-      btn.classList.toggle('is-picked', picked);
+      btn.textContent = picked ? '从选字袋移除' : '加入选字袋';
       return;
     }
-    btn.textContent = picked ? '移除选择' : '加入选择';
-    btn.classList.toggle('is-picked', picked);
+    btn.textContent = picked ? '从选字袋移除' : '加入选字袋';
   }
 
   function escapeHtml(s) {
@@ -215,8 +230,8 @@
     const f = family || '';
     const alt = f.indexOf('wenfeng-') === 0 ? f.replace(/^wenfeng-/, 'windfonts-') : '';
     const parts = [];
-    if (alt) parts.push("'" + alt + "'");
     if (f) parts.push("'" + f + "'");
+    if (alt) parts.push("'" + alt + "'");
     const extra = {
       mac: ['"PingFang SC"', '"Hiragino Sans GB"', '"Heiti SC"', 'system-ui', 'sans-serif'],
       win: ['"Microsoft YaHei"', 'SimHei', '"Segoe UI"', 'sans-serif'],
@@ -324,24 +339,39 @@
     return null;
   }
 
+  const LINEAGE_UPSTREAM = {
+    'source-han-sans': 'adobe',
+    'source-han-serif': 'adobe',
+    'droid-sans': 'google-fonts',
+    'ipa-mincho': 'ipa',
+    'longcang': 'zhongqi',
+    'rocknroll': 'fontworks'
+  };
+
   function resolveLineage(font) {
     const rec = matchNamedRecord((lineageData && lineageData.byName) || {}, font && font.name);
     const groups = (lineageData && lineageData.groups) || {};
     const fallback = font && font.foundryInfo;
     if (!rec) {
       return {
-        group: '', groupName: '', relation: '', upstreamName: '',
+        group: '', groupName: '', relation: '', upstreamName: '', upstreamOwnerInfo: null,
         licenseFollows: 'unknown', ownerInfo: fallback, makerInfo: fallback
       };
     }
     const group = rec.group ? groups[rec.group] : null;
     const owner = getFoundryById(rec.ownerId) || fallback;
     const maker = getFoundryById(rec.makerId) || owner || fallback;
+    const upstreamOwnerId = rec.upstreamOwnerId || (rec.group && LINEAGE_UPSTREAM[rec.group]) || '';
+    const upstreamOwner = upstreamOwnerId ? getFoundryById(upstreamOwnerId) : null;
+    if (rec.relation === 'fork' && owner && owner.id && upstreamOwner && owner.id === upstreamOwner.id) {
+      console.warn('[lineage] fork owner equals upstream:', font && font.name, owner.id);
+    }
     return {
       group: rec.group || '',
       groupName: (group && group.name) || '',
       relation: rec.relation || '',
       upstreamName: rec.upstreamName || (group && group.upstreamName) || '',
+      upstreamOwnerInfo: upstreamOwner,
       licenseFollows: rec.licenseFollows || 'unknown',
       ownerInfo: owner,
       makerInfo: maker
@@ -463,21 +493,24 @@
     return '简体中文';
   }
 
-  function renderExtraFooter(target, variant) {
+  function renderExtraFooter(target) {
     const el = typeof target === 'string' ? document.querySelector(target) : target;
     if (!el) return;
-    const dark = variant === 'dark' || el.classList.contains('home-footer') ||
-      document.body.classList.contains('page-home');
     el.classList.add('site-extra-footer');
-    if (dark) el.classList.add('is-dark');
+    el.classList.remove('is-dark');
+    const icp = '<a href="' + ICP_HREF + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(ICP_NO) + '</a>';
     el.innerHTML =
-      '<nav class="extra-links" aria-label="相关链接">' +
-      EXTRA_LINKS.map(function (l) {
-        return '<a href="' + escapeHtml(l.path) + '" target="_blank" rel="noopener noreferrer">' +
-          escapeHtml(l.label) + '</a>';
-      }).join('<span class="extra-sep" aria-hidden="true">·</span>') +
-      '</nav>' +
-      '<p class="extra-copy">' + escapeHtml(SAFE_CODE) + '</p>';
+      '<div class="extra-inner">' +
+        '<p class="extra-copy">' + copyrightLine(icp) + '</p>' +
+        '<nav class="extra-links" aria-label="条款">' +
+        EXTRA_LINKS.map(function (l) {
+          const ext = l.external || /^https?:/.test(l.path);
+          return '<a href="' + escapeHtml(pageHref(l.path)) + '"' +
+            (ext ? ' target="_blank" rel="noopener noreferrer"' : '') + '>' +
+            escapeHtml(l.label) + '</a>';
+        }).join('') +
+        '</nav>' +
+      '</div>';
   }
 
   function injectFooterIfMissing() {
@@ -499,8 +532,7 @@
       foot.className = 'site-extra-footer';
       document.body.appendChild(foot);
     }
-    const variant = document.body.classList.contains('page-home') ? 'dark' : 'lite';
-    renderExtraFooter(foot, variant);
+    renderExtraFooter(foot);
   }
 
   function normalizePreset(p, i) {
@@ -567,12 +599,15 @@
   window.WFProto = {
     PAGE_SIZE: PAGE_SIZE,
     EXTRA_LINKS: EXTRA_LINKS,
-    SAFE_CODE: SAFE_CODE,
+    copyrightLine: copyrightLine,
+    SAFE_CODE: copyrightLine(),
     escapeHtml: escapeHtml,
     loadCatalog: loadCatalog,
     getCatalogList: function () { return catalog.slice(); },
     getFoundries: function () { return foundries.slice(); },
     getFoundryById: getFoundryById,
+    getAvatarUrl: getAvatarUrl,
+    licenseTier: licenseTier,
     resolveLicenseEvidence: resolveLicenseEvidence,
     resolveLineage: resolveLineage,
     isOpenFont: isOpenFont,
@@ -703,7 +738,8 @@
       return shown;
     },
     bindNavSearch: function (input, clearBtn) {
-      if (!input) return;
+      if (!input || input._wfBound) return;
+      input._wfBound = true;
       const tag = getQuery('tag');
       const kw = getQuery('keyword');
       if (kw) input.value = kw;
@@ -724,7 +760,7 @@
           history.replaceState(null, '', url);
           WFProto.applyListFilters({ keyword: v, tag: tag });
         } else {
-          location.href = 'fonts.html' + (q ? '?' + q : '');
+          location.href = pageHref('fonts.html') + (q ? '?' + q : '');
         }
       };
       input.addEventListener('keydown', function (e) {
@@ -788,11 +824,11 @@
         return '可免费用于网站与产品；遵循 Apache-2.0 声明要求。';
       }
       if (tier === '需授权') return '需向权利方取得授权或购买后再用。';
-      if (tier === '个人免费') return '可用但限制较多（如禁止衍生），请读原文。';
+      if (tier === '个人免费') return '个人可用，商用或改字要看原文。';
       if (tier === '免费商用' && font && font.licenseVerified) {
         return '可按声明免费用于商业项目；再分发或改字前请读原文。';
       }
-      return '条款尚未人工核实，上线嵌入前请先确认原文。';
+      return '授权还没核对，用之前先看原文。';
     },
     relatedFonts: function (font, limit) {
       limit = limit || 6;
@@ -921,7 +957,7 @@
               '<span class="divider" aria-hidden="true"></span>' +
               '<span class="styles-count">可选样式 ' + styles + '</span>' +
               '<button type="button" class="btn-pill join-btn" data-join="' + escapeHtml(font.id) +
-                '" data-name="' + escapeHtml(font.name) + '">加入选择</button>' +
+                '" data-name="' + escapeHtml(font.name) + '">加入选字袋</button>' +
             '</div>' +
             '<a class="font-row-preview" href="font-detail.html?id=' + encodeURIComponent(font.id) +
               '" data-specimen style="font-family:' + escapeHtml(stack) + ';font-size:' + size + 'px">' +
@@ -967,7 +1003,7 @@
         listEl.innerHTML = '';
         highlightTags();
         if (!filtered.length) {
-          listEl.innerHTML = '<li class="font-list-empty">没有匹配的字体，试试其他标签或关键词</li>';
+          listEl.innerHTML = '<li class="font-list-empty">没有匹配的字体。试试改关键词或清除筛选</li>';
           updateCount();
           return;
         }

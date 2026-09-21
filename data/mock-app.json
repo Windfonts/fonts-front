@@ -23,7 +23,7 @@
   "audit": [
     { "at": "2026-09-16T11:20:00+08:00", "actor": "design@wenpai.org", "action": "发布版本", "detail": "文派官网 · 阿里巴巴普惠体 增加 800 字重" },
     { "at": "2026-09-15T16:40:00+08:00", "actor": "design@wenpai.org", "action": "添加域名", "detail": "staging.wenpai.dev · 文派官网" },
-    { "at": "2026-09-10T20:12:00+08:00", "actor": "fe@wenpai.org", "action": "发布版本", "detail": "赛博字库 · 站酷高端黑 按文字子集" }
+    { "at": "2026-09-10T20:12:00+08:00", "actor": "fe@wenpai.org", "action": "发布版本", "detail": "墨图云集 · 站酷高端黑 按文字子集" }
   ],
   "uploads": [
     {
@@ -203,7 +203,7 @@
     },
     {
       "id": "p-cyber",
-      "name": "赛博字库",
+      "name": "墨图云集",
       "slug": "cyberfonts",
       "createdAt": "2026-08-05T09:30:00+08:00",
       "fonts": [
@@ -236,7 +236,7 @@
           ],
           "subset": {
             "mode": "text",
-            "text": "赛博字库 CYBERFONTS 极简 未来 像素"
+            "text": "墨图云集 MOTUCLOUD 极简 未来 像素"
           }
         }
       ],

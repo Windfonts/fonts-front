@@ -16,7 +16,7 @@
 | 白底黑字 + 细线分隔（Type Specimen） | 太冷、太西式、同质化 | 浅灰填充面板代替线，圆角代替直角 |
 | 墨与纸（宣纸色、朱印红） | 拟物，和 windfonts.com 现网气质不一致 | 纯黑白灰 |
 | 任何红色点缀 | 用户明确否决 | `--accent` 落到墨黑 |
-| 深色照片 hero、重字重、投影分层（B′） | 用力过猛 | 回到 B：无投影、700/400/500 三档字重 |
+| 深色照片 hero、重字重、投影分层（B′） | 用力过猛 | 回到 B：无投影、700 / 400 两档字重 |
 | 白卡 + 投影 + 浅灰页（B″） | 深色模式不好做 | 纯白页 + 浅灰面板；深色模式一处覆写 |
 
 ## 2. 令牌（`css/tokens.css`）
@@ -46,26 +46,26 @@
 - UI 字体 `--font-ui`：寒蝉全圆体（Chill Round Gothic，`css/fonts.css` 本地 woff2 子集）→ PingFang SC → Noto Sans SC → 系统。
 - 等宽 `--font-mono`：系统等宽；用于 slug、URL、代码、数字表格。
 - 字阶：`12 13 14 16 20 28 40 64 96 144`（rem）。移动端 `40/64/96/144` 自动缩小。
-- 字重只有三档：`--fw-title 700`（标题、字体名、选中项）· `--fw-label 500`（按钮、标签、导航、表头）· `--fw-body 400`（正文）。
+- 字重只有两档：`--fw-title 700`（标题、字体名、选中项）· `--fw-body` / `--fw-label` 都是 `400`。不用 500 / 600。样张里展示某款字自带的 Medium / Semibold 除外。
 - 行高：`--lh-tight 1.15` 大标题 · `--lh-snug 1.3` 小标题 · `--lh-body 1.6` 正文。
 - 样张文字（字体本身的展示）不受 UI 字阶限制，按控制条设定的字号渲染。
 
 ### 2.4 间距 · 圆角 · 版心
 - 间距 4px 基准：`--s-1 … --s-24`（4/8/12/16/20/24/32/40/48/64/80/96px）。面板内边距 `--s-6`，区块间 `--s-3`，页面区段 `--s-10`~`--s-16`。
 - 圆角：`--radius 16px` 面板 · `--radius-sm 10px` 面板内控件 · `--radius-pill 999px` 按钮 / 标签 / 输入 / 分段 Tab。
-- 版心 `--container 80rem`，边距 `--gutter`（24 → 20 → 16px）。顶栏高 `--topbar-h 4rem`，控制台侧栏 `--rail-w 14rem`。
+- 版心 `--container 96rem`，边距 `--gutter`（24 → 20 → 16px）。顶栏高 `--topbar-h 4rem`，控制台侧栏 `--rail-w 14rem`。
 - 投影：`none`。层次全靠 `page → surface → paper` 三层填充。
-- 只套一层盒子：一屏里灰面板只给工具与侧卡（首屏字形墙、品牌卡、资料、标签），正文区块（字重、使用、字符表、授权）和字体库筛选栏用细线分节平铺，不再面板套面板。
+- 只套一层盒子：一屏里灰面板只给工具与侧卡（首屏字形墙、品牌卡含资料、标签），正文区块（字重、使用、字符表、授权）和字体库筛选栏用细线分节平铺，不再面板套面板。
 - 填充只给状态：筛选、预设、模板这类可选项未选时是灰字，hover 才起 `--fill`（灰面板里翻 `--paper`），选中翻黑。同一屏别出现一排一模一样的灰胶囊。
 
 ## 设计 / 开发两种视图
 
 顶栏切换，`<html data-view="design|dev">`，存 `wf-view`，URL `?view=` 可覆盖。判定一句话：**字体本身的属性两边都给，只有接入的机制归开发。** 字重、字符数、语言、发布年是「这款字是什么」，选字的人都要看；代码、字节数、标识符、回退栈是「怎么把它接进页面」，只有开发要。
 
-- 归开发（`.for-dev`）：代码与 CSS 值、标识符（family slug、SPDX）、字节数、Unicode 区段标注、版本号、字形数；「获取代码 / 添加到项目 / 控制台」；字体预览的 OS 回退栈、OpenType / 变体轴面板；使用；文档的接入章节；选字袋对比表的制作 / 出处 / 体积列。
+- 归开发（`.for-dev`）：代码与 CSS 值、标识符（family slug、SPDX）、字节数、Unicode 区段标注、版本号、字形数；「获取代码」标题常显；添加到项目只在「使用」；字体预览的 OS 回退栈、OpenType / 变体轴面板；使用；文档的接入章节；选字袋对比表的制作 / 出处 / 体积列。
+- 两边都有：顶栏「控制台 / 登录」、样张、字重、字符数、字符表（区段标注除外）、授权结论、品牌 / 制作方、分类 / 语言 / 发布、浏览量、标签、样张卡片工坊。
 - 归设计（`.for-design`）：「查看字体」这类只在设计视图需要的替代入口。
-- 两边都有：样张、字重、字符数、字符表（区段标注除外）、授权结论、品牌 / 制作方、分类 / 语言 / 发布、浏览量、标签、样张卡片工坊。
-- 主按钮跟视图走：设计视图「加入选字袋」翻黑（`.ink-design`），开发视图「获取代码 / 添加到项目」翻黑。
+- 主按钮跟视图走：设计视图「加入选字袋」翻黑（`.ink-design`），开发视图「获取代码」翻黑（`.ink-dev`）。标题只留这两颗。
 - 首屏字形墙始终可直接改字，不用进任何模式。样张卡片工坊只做「出一张图」，且只在设计视图：开发视图不还原卡片、「编辑样张」隐藏，墙上是普通字形墙。默认画幅 1080×1440 窄幅；刊头仍是横幅，方印仍是方图。第一次套模板和重置带默认文案；之后换模板只换版式和默认画幅，主文 / 副文留下。底栏可换窄幅 / 分享图 / X / 横幅 / 方图，导出或复制 PNG。上次的模板 / 内容 / 微调 / 画幅记在本机。「完成」后卡片留在设计视图的字形墙上。OpenType 与变体轴不在工坊里，在开发视图「字体预览」下面。
 
 ### 2.5 动效
@@ -79,7 +79,7 @@
 | 组件 | 类 | 文件 | 备注 |
 |---|---|---|---|
 | 顶栏 | `.topbar .topnav .topsearch .topbar-end .topmenu` | components.css / wf-chrome.js | 白底；导航选中为 `--fill` 胶囊；移动端折叠成 `.topmenu` 覆层 |
-| 页脚 | `.footer` | components.css / wf-chrome.js | 白底灰字，无线 |
+| 页脚 | `.site-extra-footer` | components.css / wf-proto.js | 一行：左版权与备案，右关于 / 文档 / 厂商认领 |
 | 按钮 | `.btn` `.btn-ink` `.btn-text` `.btn-sm` `.icon-btn` | components.css | 默认浅灰胶囊；`btn-ink` 每屏一颗；图标在文字左侧 |
 | 输入 | `.input .select .textarea .field .check` | components.css | 无边框，`--well` 底，焦点 2px 墨黑 outline |
 | 标签 | `.chip` `.chip.is-on` | components.css | 胶囊；选中翻黑 |
@@ -103,7 +103,7 @@
 | 字重逐行 / 字符表 | `.weights-sheet .glyph-blocks` | specimen.css | |
 | 控制台壳 | `.app .rail .rail-nav .rail-foot .app-main .app-head .app-section` | app.css / wf-app.js | 侧栏是 `--surface` 面板 |
 | 控制台专用 | `.inline-form .status-dot .version-list .proj-list .usage-grid .weight-bars .status-row .back .dropzone` | app.css | |
-| 文档 | `.docs .docs-toc .docs-search .docs-body .docs-steps .docs-foot .faq .note` | site.css | 左目录粘性、章节筛选、代码复制、标题锚点 |
+| 文档 | `.docs .docs-toc .docs-search .docs-body .docs-steps .docs-foot .faq .note` | site.css | 文档独立：左栏章节目录 + 筛选；说明页另用站点目录；窄屏下拉 |
 
 新增组件的门槛：先确认现有组件组合不能表达，再加；加了要在 `styleguide.html` 补样张、在本表补一行。
 
@@ -123,7 +123,9 @@
 - 字体库：控制条 → 两栏（筛选栏 / 列表，无限滚动，排序在计数行右侧）。
 - 详情：面包屑 → 标题行 → 字形墙 → 两栏（正文 tabs / 侧栏 KV + 厂商 + 使用代码）。
 - 厂商：索引卡片网格；单厂商 hero + KV + 旗下字体。
-- 文档：左目录（粘性、可筛选）+ 44rem 正文列。
+- 文档独立页，左栏是章节目录。关于 / 认领 / 上传条款 / 法律薄页共用另一条左侧目录（本站 · 许可 · 法律）。
+- 认领：目录 + 说明 + 侧卡表单（未登录给登录 / 注册）。
+- 404：短文 + 回首页 / 字体库。不挂说明目录。
 
 ### 控制台（`body.app`）
 `<aside class="rail" data-rail data-active="…">` + `<main class="app-main" id="root">`。页面由 JS 渲染进 `#root`：`.app-head`（标题 + 副标题 + 右侧动作）→ `.stats` → 若干 `.app-section`（可用 `.usage-grid` 两栏）。

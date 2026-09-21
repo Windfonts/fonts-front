@@ -18,15 +18,14 @@
     { id: 'ink', label: '墨底', hint: '反相居中', frame: 'og', layout: 'center', slots: ['sub'], hero: '行到水穷处，坐看云起时', sub: '—— 王维', size: 72, leading: 1.28, tracking: 0.04, align: 'center', wrap: 1, fit: 0, invert: 1 },
     { id: 'seal', label: '方印', hint: '方图，头像压在字下', frame: 'square', layout: 'seal', slots: ['sub', 'avatar'], credit: 0, hero: '文', sub: '', size: 160, leading: 1.05, tracking: 0.12, align: 'center', wrap: 0, fit: 0, invert: 0, face: 96 }
   ];
-  const WALL_BGS = [
-    '/assets/wall/01.jpg', '/assets/wall/02.jpg', '/assets/wall/03.jpg',
-    '/assets/wall/04.jpg', '/assets/wall/05.jpg', '/assets/wall/06.jpg'
-  ];
+  const WALL_BGS = ['01', '02', '03', '04', '05', '06'].map(function (n) {
+    return WFChrome.href('assets/wall/' + n + '.jpg');
+  });
 
   function token(name, fallback) {
     return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
   }
-  function faceName(family) { return String(family || '').replace(/^wenfeng-/, 'windfonts-'); }
+  function faceName(family) { return WFEmbed.familyName(family); }
   function fileSlug(name) { return String(name || 'font').replace(/[\\/:*?"<>|]+/g, '').replace(/\s+/g, '-').slice(0, 40); }
   function byId(id) { return TEMPLATES.filter(function (T) { return T.id === id; })[0] || TEMPLATES[0]; }
   function currentKind(stage) {
@@ -362,6 +361,39 @@
     return function () { ro.disconnect(); };
   }
 
+  function readShare() {
+    let q;
+    try { q = new URLSearchParams(location.search); } catch (e) { return null; }
+    const rec = {
+      tpl: q.get('tpl') || '',
+      frame: q.get('frame') || '',
+      hero: q.get('t') || '',
+      sub: q.get('s') || '',
+      from: q.get('from') || ''
+    };
+    if (!rec.tpl && !rec.frame && !rec.hero && !rec.sub && rec.from !== 'bag') return null;
+    if (rec.tpl && !byId(rec.tpl)) rec.tpl = 'poem';
+    if (rec.frame && !SIZES[rec.frame]) rec.frame = '';
+    return rec;
+  }
+
+  function sharePath(fontId, rec, opts) {
+    const q = new URLSearchParams();
+    q.set('id', fontId);
+    if (opts && opts.view) q.set('view', opts.view);
+    if (rec && rec.tpl) q.set('tpl', rec.tpl);
+    if (rec && rec.frame && SIZES[rec.frame]) q.set('frame', rec.frame);
+    const t = String((rec && rec.hero) || '').trim().slice(0, 80);
+    const s = String((rec && rec.sub) || '').trim().slice(0, 80);
+    if (t) q.set('t', t);
+    if (s) q.set('s', s);
+    return 'font-detail.html?' + q.toString();
+  }
+
+  function shareUrl(fontId, rec, opts) {
+    return new URL(sharePath(fontId, rec, opts), location.href).href;
+  }
+
   window.WFCard = {
     SIZES: SIZES,
     TEMPLATES: TEMPLATES,
@@ -380,6 +412,9 @@
     templatesHtml: templatesHtml,
     unframe: unframe,
     setSlot: setSlot,
-    paintStudio: paintStudio
+    paintStudio: paintStudio,
+    readShare: readShare,
+    sharePath: sharePath,
+    shareUrl: shareUrl
   };
 })();

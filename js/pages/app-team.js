@@ -10,9 +10,9 @@
     const active = team.filter(function (m) { return m.status === 'active'; }).length;
     const pending = team.filter(function (m) { return m.status === 'pending'; }).length;
     root.innerHTML =
-      '<div class="app-head"><div><h1>团队</h1><p class="sub">专业版最多 5 名成员。所有者可改角色、移除；SSO 与细粒度权限为企业版。</p></div></div>' +
+      '<div class="app-head"><div><h1>团队</h1><p class="sub">专业版最多 5 名成员。所有者可改角色、移除。企业版支持单点登录和更细权限。</p></div></div>' +
       '<div class="stats">' +
-        '<div class="stat"><div class="v">' + active + '</div><div class="l">在职成员</div></div>' +
+        '<div class="stat"><div class="v">' + active + '</div><div class="l">已加入成员</div></div>' +
         '<div class="stat"><div class="v">' + pending + '</div><div class="l">待接受邀请</div></div>' +
         '<div class="stat"><div class="v">5</div><div class="l">席位上限</div></div>' +
         '<div class="stat"><div class="v">' + s.projects.length + '</div><div class="l">共享项目</div></div></div>' +

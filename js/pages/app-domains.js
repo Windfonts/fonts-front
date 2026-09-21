@@ -20,13 +20,13 @@
     const first = ps[0];
 
     root.innerHTML =
-      '<div class="app-head"><div><h1>域名</h1><p class="sub">字体文件只对白名单内域名返回；其余来源一律 403，并记录在下方拦截列表。</p></div>' +
+      '<div class="app-head"><div><h1>域名</h1><p class="sub">字体文件只对白名单内域名返回；其他来源会被拒绝，并记在下面。</p></div>' +
         '<div class="app-actions"><button type="button" class="btn" id="exportCsv">' + WFChrome.icon('download') + '导出 CSV</button></div></div>' +
       '<div class="stats">' +
         '<div class="stat"><div class="v">' + verified.length + '<small>/ ' + ds.length + '</small></div><div class="l">已验证域名</div></div>' +
         '<div class="stat"><div class="v">' + pending.length + '</div><div class="l">待验证</div></div>' +
         '<div class="stat"><div class="v">' + (req / 1000).toFixed(1) + '<small>k</small></div><div class="l">30 天白名单请求</div></div>' +
-        '<div class="stat"><div class="v">' + WFProto.formatCount(blockedReq) + '</div><div class="l">30 天拦截（403）</div></div>' +
+        '<div class="stat"><div class="v">' + WFProto.formatCount(blockedReq) + '</div><div class="l">30 天被拒请求</div></div>' +
       '</div>' +
       '<section class="app-section"><h2>添加域名</h2>' +
         '<form class="inline-form" id="domainForm">' +
@@ -47,14 +47,14 @@
               '<td class="actions">' + (d.verified ? '' : '<button type="button" class="btn-text" data-verify="' + esc(d.project.id) + '|' + esc(d.host) + '">' + WFChrome.icon('check') + '我已完成验证</button> ') +
                 '<button type="button" class="btn-text" data-remove="' + esc(d.project.id) + '|' + esc(d.host) + '">' + WFChrome.icon('trash') + '移除</button></td></tr>';
           }).join('') + '</tbody></table>' : '<p class="empty">还没有域名。添加后字体才能在线上加载。</p>') + '</section>' +
-      '<section class="app-section"><h2>白名单外的拉取<span class="more mono">近 30 天</span></h2>' +
+      '<section class="app-section"><h2>未授权访问<span class="more mono">近 30 天</span></h2>' +
         (blocked.length ? '<table class="table"><thead><tr><th>来源</th><th>请求的项目</th><th class="num">被拦截请求</th><th>最近一次</th><th></th></tr></thead><tbody>' +
           blocked.map(function (b) {
             return '<tr><td class="mono">' + esc(b.host) + '</td><td>' + esc(b.project.name) + '</td><td class="num">' + WFProto.formatCount(b.requests30d) + '</td>' +
               '<td class="mono muted">' + WFApp.fmtDate(b.lastAt) + '</td>' +
               '<td class="actions">' + (WFApp.validHost(b.host.replace(/:\d+$/, '')) ? '<button type="button" class="btn-text" data-allow="' + esc(b.project.id) + '|' + esc(b.host.replace(/:\d+$/, '')) + '">' + WFChrome.icon('plus') + '加入白名单</button>' : '<span class="muted t-12">本地端口，无需加入</span>') + '</td></tr>';
-          }).join('') + '</tbody></table>' : '<p class="empty">近 30 天没有白名单外的拉取。</p>') +
-        '<p class="t-13 muted" style="margin-top:var(--s-4)">拦截依据请求的 <code>Referer</code> / <code>Origin</code>。如果是你自己的新域名，直接加入白名单；如果是盗用，保持拦截即可，不计入你的流量。</p></section>' +
+          }).join('') + '</tbody></table>' : '<p class="empty">近 30 天没有未授权访问。</p>') +
+        '<p class="t-13 muted" style="margin-top:var(--s-4)">按访问来源判断。是你的域名就加入列表，不是就继续拦截，不计入你的流量。</p></section>' +
       '<section class="app-section"><h2>验证方法</h2><div class="usage-grid">' +
         '<div><h3 class="t-13 muted" style="margin-bottom:var(--s-3)">方式一 · DNS TXT（推荐，覆盖通配符）</h3>' +
           '<div class="code"><pre>_windfonts.example.com  TXT  "windfonts=' + esc(first ? first.id : 'p-xxxx') + '"</pre></div>' +
@@ -80,7 +80,7 @@
     root.querySelectorAll('[data-remove]').forEach(function (b) {
       b.addEventListener('click', function () {
         const x = pair(b.getAttribute('data-remove'));
-        WFChrome.confirm({ title: '移除域名', message: '将 ' + x.host + ' 从「' + (x.p ? x.p.name : '') + '」白名单移除。该域名上的字体请求会被 403。', ok: '移除' }).then(function (ok) {
+        WFChrome.confirm({ title: '移除域名', message: '将 ' + x.host + ' 从「' + (x.p ? x.p.name : '') + '」白名单移除。该域名将无法加载字体。', ok: '移除' }).then(function (ok) {
           if (!ok) return;
           WFApp.removeDomain(x.p, x.host);
           WFChrome.toast('已移除');

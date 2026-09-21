@@ -34,11 +34,12 @@ const GITHUB = {
   'welai': ['welai'],
   'wenquanyi': ['wenquanyi'],
   'raptortype': ['RaptorType'],
+  'mengshen': ['MaruTama'],
   'kuaikan': ['kuaikan'],
   'mplus': ['coz-m'],
   'ichiten': ['ichitenfont'],
 };
-const GH_DENY = new Set(['chilltype', 'zcool']); // 已核实为同名无关个人号
+const GH_DENY = new Set(['chilltype', 'zcool', 'mengshen', 'mplus', 'sandoll']);
 
 /** 官网补充（foundries.json 里 website 为空但确定的） */
 const SITE = {
@@ -71,6 +72,8 @@ const SKIP = new Set([
   'potta', 'dinglie', 'scf', 'flexifont', 'pinru', 'zhuojian',
   'qingke', 'xyzy', 'xianlifang', 'longquansi', 'do-font', 'writes',
   'ascender', 'nsd', 'seto', 'wencang', 'ymnk',
+  'baotu', 'chilltype', 'mengshen', 'huxiaobo', 'pangmen', 'uisdc',
+  'kuaikan', 'mplus', 'ipa', 'gongfan', 'tsanger', 'founder', 'shetu', 'fontree',
 ]);
 
 function sha256(buf) { return createHash('sha256').update(buf).digest('hex'); }
@@ -204,19 +207,21 @@ async function weiboAvatar(kw) {
 const data = JSON.parse(readFileSync(join(ROOT, 'data', 'foundries.json'), 'utf8'));
 mkdirSync(OUT_DIR, { recursive: true });
 
-const ok = [], missing = [];
+const ok = [], missing = [], skipped = [];
 for (const fd of data.foundries) {
   const slug = fd.id;
   const dest = join(OUT_DIR, `${slug}.webp`);
+  if (existsSync(dest)) { skipped.push(slug); continue; }
+  if (SKIP.has(slug)) { missing.push(slug); continue; }
   let cands = [];
   if (GITHUB[slug]) cands.push(...GITHUB[slug].filter(o => !GH_DENY.has(o.toLowerCase())).map(o => `https://github.com/${o}.png`));
-  const site = SITE[slug] || (!SKIP.has(slug) ? fd.website : '');
+  const site = SITE[slug] || fd.website;
   if (site) cands.push(...await siteLogoCandidates(site));
   let hit = null;
   for (const url of cands) {
     const { buf } = await httpGet(url);
     if (buf && !(await isPlaceholder(url, buf)) && toWebp(buf, dest)) { hit = url; break; }
-    try { rmSync(dest); } catch {}
+    try { if (existsSync(dest)) rmSync(dest); } catch {}
   }
   if (!hit && WEIBO[slug]) {
     const wu = await weiboAvatar(WEIBO[slug]);
@@ -226,13 +231,17 @@ for (const fd of data.foundries) {
     }
   }
   if (hit) { ok.push(slug); console.log(`✓ ${slug} ← ${hit}`); }
-  else { try { rmSync(dest); } catch {}; missing.push(slug); }
+  else { try { if (existsSync(dest)) rmSync(dest); } catch {}; missing.push(slug); }
   await new Promise(r => setTimeout(r, 150));
 }
 
-console.log(`\n猎取 ${ok.length}/${data.foundries.length}，未获 ${missing.length}（走字标）`);
+console.log(`\n猎取 ${ok.length}，已有跳过 ${skipped.length}，未获 ${missing.length}（走字标）`);
 if (missing.length) console.log('未获：' + missing.join(' '));
-
-const manifest = Object.fromEntries(ok.map(s => [s, `assets/avatars/${s}.webp`]));
-writeFileSync(join(ROOT, 'data', 'avatars.json'), JSON.stringify(manifest, null, 2) + '\n');
-console.log(`清单 → data/avatars.json（${Object.keys(manifest).length} 条）`);
+if (ok.length) {
+  const prev = existsSync(join(ROOT, 'data', 'avatars.json'))
+    ? JSON.parse(readFileSync(join(ROOT, 'data', 'avatars.json'), 'utf8'))
+    : {};
+  for (const s of ok) prev[s] = `assets/avatars/${s}.webp`;
+  writeFileSync(join(ROOT, 'data', 'avatars.json'), JSON.stringify(prev, null, 2) + '\n');
+  console.log(`清单追加 ${ok.length} 条 → data/avatars.json（现 ${Object.keys(prev).length}）`);
+}

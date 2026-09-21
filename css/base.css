@@ -48,7 +48,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .muted { color: var(--gray); }
 .faint { color: var(--gray-2); }
 .accent { color: var(--accent); }
-.medium { font-weight: 500; }
+.medium { font-weight: 400; } /* UI 不用 500；样张里某款字自己的 Medium 走 inline font-weight */
 .bold { font-weight: 700; }
 .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 

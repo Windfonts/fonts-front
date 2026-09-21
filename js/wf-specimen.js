@@ -76,7 +76,8 @@
     const n = (font.weights && font.weights.length) || 1;
     const ev = WFChrome.licenseEvidence(font);
     const fam = String(font.family || '').replace(/^wenfeng-/, '');
-    return '<span class="meta">' + esc(brandLine(font)) + ' · ' + n + ' 字重 · ' +
+    const mark = WFChrome.faceHtml(font, 16);
+    return '<span class="meta">' + mark + esc(brandLine(font)) + ' · ' + n + ' 字重 · ' +
       esc(WFChrome.licenseTier(font)) +
       '<span class="for-dev">' +
         (ev.spdx ? ' · ' + esc(ev.spdx) : '') +
@@ -341,7 +342,7 @@
       }
       const marks = st.marks[st.variant];
       if (!marks) {
-        summaryEl.innerHTML = '<p class="glyph-sum-line is-quiet">正在按字体分包清单核对收录…</p>';
+        summaryEl.innerHTML = '<p class="glyph-sum-line is-quiet">正在核对这款字收录了哪些字…</p>';
         return;
       }
       const total = st.total[st.variant] || uniqueHits(qzw(), {}).total;
@@ -355,7 +356,7 @@
       else suffix = '覆盖 ' + pct + '%';
       summaryEl.innerHTML =
         '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' 常用字已收录 · ' + suffix + '</p>' +
-        '<p class="glyph-legend">虚线田字格 = 未收录，格内是系统字形。</p>';
+        '<p class="glyph-legend">虚线框表示字体里没有这个字。</p>';
     }
 
     function syncTools() {
@@ -432,7 +433,7 @@
       fetchCssRanges(fam, weight).then(function (ranges) {
         if (gen !== covGen) return;
         if (!ranges || !ranges.length) {
-          renderSummary('分包清单未能获取，已跳过收录核对；以下均为系统字形。');
+          renderSummary('暂时无法核对缺字，下面显示的是系统默认字形。');
           return;
         }
         applyRanges(ranges);
@@ -448,7 +449,7 @@
     }
 
     renderBlocks();
-    renderSummary(skipCov ? '台湾系字体不对简体常用字做收录盘点；以下仅展示样例字符。' : null);
+    renderSummary(skipCov ? '这款字不做常用字覆盖统计，下面只展示样例。' : null);
     syncTools();
     WFProto.ensureFontCss(fam, weight);
     loadCoverage();

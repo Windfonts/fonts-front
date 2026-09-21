@@ -33,8 +33,14 @@
     return out;
   }
 
-  function familyName(family) {
-    return String(family || '').replace(/^wenfeng-/, 'windfonts-');
+  /** 公开嵌入锁定 wenfeng-。opts.alias 只给付费 / 授权项目改名前缀。 */
+  function familyName(family, opts) {
+    opts = opts || {};
+    if (opts.alias) return String(opts.alias);
+    const raw = String(family || '');
+    if (raw.indexOf('wenfeng-') === 0) return raw;
+    if (raw.indexOf('windfonts-') === 0) return 'wenfeng-' + raw.slice(10);
+    return raw ? 'wenfeng-' + raw.replace(/^wenfeng-/, '') : '';
   }
 
   function code(kind, items, opts) {
@@ -51,8 +57,8 @@
     }
     if (kind === 'css') {
       return items.map(function (it) {
-        const fam = familyName(it.family);
-        return '.your-selector {\n  font-family: "' + fam + '", "' + it.family + '",\n    "PingFang SC", "Microsoft YaHei", sans-serif;\n  font-weight: ' +
+        const fam = familyName(it.family, opts);
+        return '.your-selector {\n  font-family: "' + fam + '",\n    "PingFang SC", "Microsoft YaHei", sans-serif;\n  font-weight: ' +
           ((it.weights || ['400'])[0]) + ';\n  font-display: ' + (opts.display || 'swap') + ';\n}';
       }).join('\n\n');
     }
@@ -78,6 +84,43 @@
     return '';
   }
 
+  function highlight(kind, src) {
+    const e = esc(src);
+    const held = [];
+    function hold(html) {
+      held.push(html);
+      return '\0' + (held.length - 1) + '\0';
+    }
+    function restore(s) {
+      return s.replace(/\0(\d+)\0/g, function (_, i) { return held[Number(i)]; });
+    }
+    function strings(s) {
+      return s.replace(/(&quot;[\s\S]*?&quot;|'[^']*')/g, function (m) {
+        return hold('<span class="k-s">' + m + '</span>');
+      });
+    }
+    if (kind === 'link' || kind === 'project') {
+      return restore(strings(e
+        .replace(/(&lt;!--[\s\S]*?--&gt;)/g, function (m) { return hold('<span class="k-c">' + m + '</span>'); })
+        .replace(/(&lt;\/?)([a-zA-Z][\w:-]*)/g, function (_, a, b) { return a + hold('<span class="k">' + b + '</span>'); })
+        .replace(/\s([a-zA-Z_:][\w:.-]*)=/g, function (_, a) { return ' ' + hold('<span class="k-a">' + a + '</span>') + '='; })));
+    }
+    if (kind === 'import') {
+      return restore(strings(e.replace(/(@import)/g, function (m) { return hold('<span class="k">' + m + '</span>'); })));
+    }
+    if (kind === 'css') {
+      return restore(strings(e.replace(/(font-family|font-weight|font-display)/g, function (m) {
+        return hold('<span class="k">' + m + '</span>');
+      })));
+    }
+    if (kind === 'npm') {
+      return restore(strings(e.replace(/\b(npm|install|import|from|loadFonts)\b/g, function (m) {
+        return hold('<span class="k">' + m + '</span>');
+      })));
+    }
+    return e;
+  }
+
   const KINDS = [
     { id: 'link', label: 'link' },
     { id: 'import', label: '@import' },
@@ -97,7 +140,7 @@
       }).join('') + '</div>' +
       '<div class="code" style="margin-top:var(--s-4)"><button type="button" class="copy">' + WFChrome.icon('copy') + '复制</button><pre></pre></div>';
     const pre = el.querySelector('pre');
-    function paint() { pre.textContent = code(kind, cur, curOpts); }
+    function paint() { pre.innerHTML = highlight(kind, code(kind, cur, curOpts)); }
     el.querySelectorAll('[data-kind]').forEach(function (b) {
       b.addEventListener('click', function () {
         kind = b.getAttribute('data-kind');

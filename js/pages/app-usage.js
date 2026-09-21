@@ -51,12 +51,12 @@
       '<div class="stats">' +
         '<div class="stat"><div class="v">' + WFApp.fmtGB(bytes) + '<small>GB · ' + pct + '%</small></div><div class="l">字体流量 / 配额</div></div>' +
         '<div class="stat"><div class="v">' + (req / 1000).toFixed(1) + '<small>k</small></div><div class="l">字体请求</div></div>' +
-        '<div class="stat"><div class="v">' + fmt(blocked) + '</div><div class="l">白名单外拦截（403）</div></div>' +
+        '<div class="stat"><div class="v">' + fmt(blocked) + '</div><div class="l">未授权访问</div></div>' +
         '<div class="stat"><div class="v">' + (req ? WFEmbed.fmtBytes(bytes / req).replace(' ', '<small>') + '</small>' : '—') + '</div><div class="l">平均每次请求</div></div>' +
       '</div>' +
       '<section class="app-section"><h2>每日请求<span class="more mono">' + range + ' 天</span></h2>' + WFApp.sparkline(daily) +
         '<div class="spark-meta"><span>' + range + ' 天前</span><span>今天</span></div>' +
-        '<div class="status-row"><span><b>' + Math.round(st['200'] / stSum * 100) + '%</b>200 下发</span><span><b>' + Math.round(st['304'] / stSum * 100) + '%</b>304 缓存命中</span><span><b>' + Math.round(st['403'] / stSum * 100) + '%</b>403 拦截</span></div></section>' +
+        '<div class="status-row"><span><b>' + Math.round(st['200'] / stSum * 100) + '%</b>成功下发</span><span><b>' + Math.round(st['304'] / stSum * 100) + '%</b>缓存命中</span><span><b>' + Math.round(st['403'] / stSum * 100) + '%</b>被拒</span></div></section>' +
       '<section class="app-section"><h2>按字体<span class="more mono">' + byFont.length + ' 款</span></h2>' +
         '<table class="table"><thead><tr><th>字体</th><th>厂商</th><th>项目</th><th>字重</th><th class="num">请求</th><th class="num">流量</th><th class="num">占比</th></tr></thead><tbody>' +
         byFont.map(function (r) {
@@ -80,11 +80,11 @@
             return '<tr><td class="mono">' + esc(d.host) + '<br><span class="t-12 muted">' + esc(d.project.name) + '</span></td><td class="num">' + fmt(Math.round(d.requests30d * k)) + '</td><td class="num">' + WFApp.fmtGB(d.bytes30d * k) + ' GB</td></tr>';
           }).join('') + '</tbody></table></section>' +
       '</div>' +
-      '<section class="app-section"><h2>性能</h2><table class="table"><thead><tr><th>项目</th><th class="num">FCP 中位</th><th class="num">字体加载中位</th><th class="num">CDN 命中</th><th>font-display</th></tr></thead><tbody>' +
+      '<section class="app-section"><h2>性能</h2><table class="table"><thead><tr><th>项目</th><th class="num">首屏时间（中位）</th><th class="num">字体加载中位</th><th class="num">CDN 命中</th><th>加载策略</th></tr></thead><tbody>' +
         ps.map(function (p) {
           return '<tr><td>' + esc(p.name) + '</td><td class="num">' + p.usage.perf.fcpMs + ' ms</td><td class="num">' + p.usage.perf.fontLoadMs + ' ms</td><td class="num">' + Math.round(p.usage.perf.hitRate * 100) + '%</td><td class="mono">' + esc(s.settings.display) + '</td></tr>';
         }).join('') + '</tbody></table>' +
-        '<p class="t-13 muted" style="margin-top:var(--s-4)">字体加载时间来自嵌入 CSS 内置的 Resource Timing 上报，仅统计白名单域名。</p></section>';
+        '<p class="t-13 muted" style="margin-top:var(--s-4)">由嵌入代码自动统计，仅含已绑定域名。</p></section>';
 
     bindRange();
     document.getElementById('exportCsv').addEventListener('click', function () {
@@ -121,7 +121,7 @@
 
     root.innerHTML =
       '<a class="back" href="usage.html?range=' + range + '">← 返回用量</a>' +
-      '<div class="app-head"><div><h1>' + esc(m.name) + '</h1><p class="sub">' + esc(WFChrome.brandName(m)) + ' · <span class="mono">' + esc(m.family) + '</span> · ' + u.projects.length + ' 个项目在用</p></div>' +
+      '<div class="app-head"><div><h1>' + esc(m.name) + '</h1><p class="sub">' + WFChrome.faceHtml(m, 18) + esc(WFChrome.brandName(m)) + ' · <span class="mono">' + esc(m.family) + '</span> · ' + u.projects.length + ' 个项目在用</p></div>' +
         '<div class="app-actions">' + rangeTabs() + '<a class="btn" href="../font-detail.html?id=' + esc(fontId) + '">' + WFChrome.icon('external') + '字体页</a></div></div>' +
       '<div class="stats">' +
         '<div class="stat"><div class="v">' + (req / 1000).toFixed(1) + '<small>k</small></div><div class="l">请求</div></div>' +
@@ -146,7 +146,7 @@
         domains.map(function (d) {
           return '<tr><td class="mono">' + esc(d.host) + '</td><td>' + esc(d.project.name) + '</td><td class="num">' + fmt(Math.round(d.requests30d * k)) + '</td><td class="num">' + WFApp.fmtGB(d.bytes30d * k) + ' GB</td></tr>';
         }).join('') + '</tbody></table>' +
-        '<p class="t-13 muted" style="margin-top:var(--s-4)">域名维度按该字体在项目内的请求占比折算。</p></section>';
+        '<p class="t-13 muted" style="margin-top:var(--s-4)">按该字体在项目里的请求比例估算。</p></section>';
     document.title = m.name + ' · 用量 · 控制台 · 文风字体';
     bindRange();
   }

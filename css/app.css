@@ -17,7 +17,7 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
 .rail-nav a.is-active .icon, .rail-nav a:hover .icon { color: var(--ink); }
 .rail-foot a, .rail-foot .btn-text { display: inline-flex; align-items: center; gap: 0.5em; }
 .rail-nav a:hover { color: var(--ink); text-decoration: none; background: var(--paper); }
-.rail-nav a.is-active { color: var(--ink); background: var(--paper); font-weight: var(--fw-label); }
+.rail-nav a.is-active { color: var(--ink); background: var(--paper); font-weight: var(--fw-title); }
 .rail-foot { margin-top: auto; display: grid; gap: var(--s-1); font-size: var(--fs-13); color: var(--gray); padding: 0 var(--s-2); }
 .rail-foot .who { display: grid; margin-bottom: var(--s-3); }
 .rail-foot .who strong { color: var(--ink); font-weight: var(--fw-title); }
@@ -39,7 +39,8 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
 .app-section .input, .app-section .select, .app-section .textarea, .app-section .code, .app-section .chip:not(.is-on), .app-section .btn:not(.btn-ink):not(.btn-text), .app-section .tabs { background: var(--paper); }
 .app-section .tabs { background: var(--paper); }
 .app-section .tabs .is-on { background: var(--surface); }
-.app-section > h2 .more { font-size: var(--fs-13); color: var(--gray); font-weight: 400; }
+.app-section > h2 .more { font-size: var(--fs-13); color: var(--gray); font-weight: var(--fw-body); }
+.table .meta-face, .app-head .meta-face { width: 18px; height: 18px; border-radius: 50%; object-fit: cover; vertical-align: -0.35em; margin-right: 0.35em; background: var(--face); }
 
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-3); }
 .stats .stat { padding: var(--s-5) var(--s-6); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); }

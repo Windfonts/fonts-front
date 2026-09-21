@@ -19,35 +19,44 @@
   <main class="container docs">
     <aside class="docs-toc" aria-label="文档目录">
       <label class="docs-search"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-search"/></svg><input type="search" id="docsFilter" placeholder="筛选章节" aria-label="筛选章节" autocomplete="off" /></label>
-      <h3>开始</h3>
-      <a href="#intro">概述</a>
-      <a class="for-dev" href="#url">CDN 地址规则</a>
-      <a class="for-dev" href="#link">用 link 引入</a>
-      <a class="for-dev" href="#import">用 @import 引入</a>
-      <a class="for-dev" href="#css">在 CSS 中使用</a>
-      <a class="for-dev" href="#npm">npm 与框架</a>
-      <h3 class="for-dev">优化</h3>
-      <a class="for-dev" href="#subset">子集化</a>
-      <a class="for-dev" href="#display">font-display</a>
-      <a class="for-dev" href="#preload">preload 与 preconnect</a>
-      <a class="for-dev" href="#cache">缓存与更新</a>
-      <h3 class="for-dev">项目</h3>
-      <a class="for-dev" href="#projects">项目与项目 CDN</a>
-      <a class="for-dev" href="#domains">域名白名单</a>
-      <a class="for-dev" href="#versions">版本与回滚</a>
-      <a class="for-dev" href="#usage">用量与统计</a>
-      <a class="for-dev" href="#upload">上传自有字体</a>
-      <h3>参考</h3>
-      <a class="for-dev" href="#params">地址参数</a>
-      <a class="for-dev" href="#weights">字重名对照</a>
-      <a href="#bag">选字袋</a>
-      <a href="#license">许可与注意</a>
-      <a href="#license-types">许可类型</a>
-      <a href="#faq">常见问题</a>
+      <div class="docs-nav" id="docsChapterNav">
+        <button type="button" class="docs-nav-switch" aria-expanded="false" aria-controls="docsNavPanel">
+          <span class="docs-nav-switch-now">概述</span>
+          <span class="docs-nav-switch-meta"><span>开始</span><span class="docs-nav-caret" aria-hidden="true"></span></span>
+        </button>
+        <button type="button" class="docs-nav-dim" hidden aria-label="关闭目录"></button>
+        <nav class="docs-nav-panel docs-chapters" id="docsNavPanel" aria-label="本页目录">
+          <h3>开始</h3>
+          <a href="#intro">概述</a>
+          <a class="for-dev" href="#url">CDN 地址规则</a>
+          <a class="for-dev" href="#link">用 link 引入</a>
+          <a class="for-dev" href="#import">用 @import 引入</a>
+          <a class="for-dev" href="#css">在 CSS 中使用</a>
+          <a class="for-dev" href="#npm">npm 与框架</a>
+          <h3 class="for-dev">优化</h3>
+          <a class="for-dev" href="#subset">子集化</a>
+          <a class="for-dev" href="#display">font-display</a>
+          <a class="for-dev" href="#preload">preload 与 preconnect</a>
+          <a class="for-dev" href="#cache">缓存与更新</a>
+          <h3 class="for-dev">项目</h3>
+          <a class="for-dev" href="#projects">项目与项目 CDN</a>
+          <a class="for-dev" href="#domains">域名白名单</a>
+          <a class="for-dev" href="#versions">版本与回滚</a>
+          <a class="for-dev" href="#usage">用量与统计</a>
+          <a class="for-dev" href="#upload">上传自有字体</a>
+          <h3>参考</h3>
+          <a class="for-dev" href="#params">地址参数</a>
+          <a class="for-dev" href="#weights">字重名对照</a>
+          <a href="#bag">选字袋</a>
+          <a href="#license">许可与注意</a>
+          <a href="#license-types">许可类型</a>
+          <a href="#faq">常见问题</a>
+        </nav>
+      </div>
     </aside>
 
     <article class="docs-body">
-      <section id="intro" style="padding-top:0">
+      <section id="intro">
         <p class="kicker">文档 · 更新于 2026-09-20</p>
         <h1>接入文风字体</h1>
         <p class="lead">一行 CSS 就能在网页中使用中文字体。公开字体走 <code>cn.windfonts.com</code> CDN，按字体族与字重取 CSS；正式站点建议创建项目、绑定域名白名单，并核对每款字体的授权范围。</p>
@@ -121,7 +130,7 @@ const status = await loadFonts([
             <tr><td><strong>预制 · 中文</strong> <code>zh_index.css</code></td><td>常见中文内容，去掉了大量扩展区字符</td><td>公开 CDN</td></tr>
             <tr><td><strong>按文字</strong></td><td>标题、品牌名、固定文案；体积以 KB 计</td><td>控制台 · 子集化工作台</td></tr>
             <tr><td><strong>按常用字</strong> 3500 / 7000</td><td>正文不固定但不需要生僻字的站点</td><td>控制台 · 子集化工作台</td></tr>
-            <tr><td><strong>按 Unicode 区间</strong></td><td>多语言、自定义码点</td><td>控制台 · 子集化工作台</td></tr>
+            <tr><td><strong>按编码范围</strong></td><td>多语言、自定义字集</td><td>控制台 · 子集化工作台</td></tr>
           </tbody>
         </table>
         <div class="code"><pre>https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/zh_index.css</pre></div>
@@ -163,7 +172,7 @@ const status = await loadFonts([
 
       <section id="domains" class="for-dev">
         <h2>域名白名单</h2>
-        <p>项目绑定的域名决定字体文件对谁返回。字体分片校验请求的 <code>Referer</code> / <code>Origin</code>，白名单外一律 403，并记入控制台「域名 › 白名单外的拉取」。</p>
+        <p>项目绑定的域名决定字体文件对谁返回。白名单外的请求会被拒绝，并记入控制台「域名 › 未授权访问」。</p>
         <ul>
           <li>支持精确域名与通配 <code>*.example.com</code>（不含根域名）；<code>localhost</code> 与 <code>127.0.0.1</code> 默认允许。</li>
           <li>新增域名需验证，两种方式任选：DNS TXT <code>_windfonts.example.com → "windfonts={project-id}"</code>，或在站点根目录放置 <code>/.well-known/windfonts-verify.txt</code>，内容为项目 ID。</li>
@@ -178,12 +187,12 @@ const status = await loadFonts([
 
       <section id="usage" class="for-dev">
         <h2>用量与统计</h2>
-        <p>控制台「用量」按项目、字体、字重、域名四个维度统计请求数与流量，另有 200 / 304 / 403 状态分布与字体加载中位时间（来自嵌入 CSS 的 Resource Timing 上报，仅白名单域名）。数据延迟约 5 分钟，支持 7 / 30 / 90 天与 CSV 导出。点任一字体进入钻取页，可看到很少被请求的字重，便于从项目里移除。</p>
+        <p>控制台「用量」按项目、字体、字重、域名四个维度统计请求数与流量，另有成功下发、缓存命中、被拒三类占比，以及字体加载中位时间（仅白名单域名）。数据延迟约 5 分钟，支持 7 / 30 / 90 天与 CSV 导出。点任一字体可看各字重用量，便于从项目里移除很少用到的字重。</p>
       </section>
 
       <section id="upload" class="for-dev">
         <h2>上传自有字体</h2>
-        <p>支持 <code>.ttf</code> <code>.otf</code> <code>.woff</code> <code>.woff2</code>。上传时自动解析名称、字重、字符数，生成分片与全部格式，之后与库内字体一样加入项目、子集化。你必须拥有该字体的合法授权，上传即视为承诺；自有字体只通过项目 CDN 分发，不进入公开字体库。</p>
+        <p>支持 <code>.ttf</code> <code>.otf</code> <code>.woff</code> <code>.woff2</code>。上传时自动解析名称、字重、字符数，生成分片与全部格式，之后与库内字体一样加入项目、子集化。你必须拥有该字体的合法授权，上传即视为承诺；自有字体只通过项目 CDN 分发，不进入公开字体库。约定见<a href="upload-terms.html">上传条款</a>。</p>
       </section>
 
       <section id="params" class="for-dev">
@@ -234,7 +243,7 @@ const status = await loadFonts([
 
       <section id="license-types">
         <h2>许可类型</h2>
-        <p>图标站墨图爱可按 SPDX 标每一套；字体同样按短名区分，不能把全部「免费商用」当成一种许可。</p>
+        <p>字体按许可短名区分，不能把全部「免费商用」当成一种许可。</p>
         <ul>
           <li><b>宽松</b>（OFL、Apache、MIT）：多数商业项目可用。OFL 允许改字再分发，但必须换名字、保留声明，不得单独卖字体文件。</li>
           <li><b>署名</b>（CC BY）：可商用，须按许可署名原作者。</li>
@@ -249,9 +258,9 @@ const status = await loadFonts([
       <section id="faq" style="border-bottom:0">
         <h2>常见问题</h2>
         <dl class="faq">
-          <dt>页面上字体没生效？</dt><dd>检查三件事：CSS 地址是否 200；<code>font-family</code> 是否与 CSS 内声明一致（<code>wenfeng-{slug}</code>）；所用字重是否在该字体的字重列表里。</dd>
-          <dt>控制台里请求量很低，但站点访问不少？</dt><dd>正常——分片文件长期缓存，回访用户命中浏览器缓存不产生请求；304 占比高说明缓存工作正常。</dd>
-          <dt>为什么有 403？</dt><dd>来源不在白名单。「域名」页会列出来源域名，是自己的就加白，不是就保持拦截。</dd>
+          <dt>页面上字体没生效？</dt><dd>检查三件事：CSS 能否打开；<code>font-family</code> 是否与 CSS 内声明一致（<code>wenfeng-{slug}</code>）；所用字重是否在该字体的字重列表里。</dd>
+          <dt>控制台里请求量很低，但站点访问不少？</dt><dd>正常——分片文件会长期缓存，回访用户走浏览器缓存就不会再请求；缓存命中占比高说明工作正常。</dd>
+          <dt>为什么字体打不开？</dt><dd>来源不在白名单。「域名」页会列出这些来源，是自己的站点就加上，别人的保持拦截即可。</dd>
           <dt>能把字体文件下载到自己服务器吗？</dt><dd>免费商用字体请到 <a href="https://wenfeng.org" target="_blank" rel="noopener">wenfeng.org</a> 下载原始文件自行部署；CDN 分片文件不用于二次托管。</dd>
         </dl>
       </section>
@@ -270,20 +279,47 @@ const status = await loadFonts([
   <script src="js/wf-chrome.js"></script>
   <script>
     (function () {
-      const toc = document.querySelector('.docs-toc');
+      const nav = document.getElementById('docsChapterNav');
+      const toc = document.querySelector('.docs-chapters');
       const links = toc.querySelectorAll('a');
       const sections = Array.prototype.map.call(links, function (a) { return document.querySelector(a.getAttribute('href')); });
+      const sw = nav.querySelector('.docs-nav-switch');
+      const dim = nav.querySelector('.docs-nav-dim');
+      const now = nav.querySelector('.docs-nav-switch-now');
+      const meta = nav.querySelector('.docs-nav-switch-meta span');
+      function open(on) {
+        nav.classList.toggle('is-open', on);
+        if (sw) sw.setAttribute('aria-expanded', on ? 'true' : 'false');
+        if (dim) dim.hidden = !on;
+      }
+      if (sw) sw.addEventListener('click', function () { open(!nav.classList.contains('is-open')); });
+      if (dim) dim.addEventListener('click', function () { open(false); });
+      toc.addEventListener('click', function (e) {
+        if (e.target.closest('a')) open(false);
+      });
+      function groupOf(a) {
+        let n = a.previousElementSibling;
+        while (n && n.tagName !== 'H3') n = n.previousElementSibling;
+        return n ? n.textContent : '';
+      }
       function sync() {
         let cur = sections[0];
         const y = window.scrollY + 120;
         sections.forEach(function (s) { if (s && s.offsetTop <= y) cur = s; });
-        links.forEach(function (a) { a.classList.toggle('is-on', cur && a.getAttribute('href') === '#' + cur.id); });
+        let on = null;
+        links.forEach(function (a) {
+          const hit = cur && a.getAttribute('href') === '#' + cur.id;
+          a.classList.toggle('is-on', hit);
+          if (hit) on = a;
+        });
+        if (on && now) now.textContent = on.textContent;
+        if (on && meta) meta.textContent = groupOf(on);
       }
       if (/^#(url|link|import|css|npm|subset|display|preload|cache|projects|domains|versions|usage|upload|params|weights)$/.test(location.hash)) {
         WFChrome.setView('dev');
       }
       window.addEventListener('scroll', sync, { passive: true });
-      sync();
+      requestAnimationFrame(sync);
 
       /* 章节筛选 */
       document.getElementById('docsFilter').addEventListener('input', function (e) {

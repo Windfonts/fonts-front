@@ -20,7 +20,7 @@
 .topnav { display: flex; gap: var(--s-1); font-size: var(--fs-14); }
 .topnav a { padding: 0.4rem 0.85rem; border-radius: var(--radius-pill); color: var(--gray); }
 .topnav a:hover { color: var(--ink); text-decoration: none; background: var(--fill); }
-.topnav a.is-active { color: var(--ink); background: var(--fill); font-weight: var(--fw-label); }
+.topnav a.is-active { color: var(--ink); background: var(--fill); font-weight: var(--fw-title); }
 .topbar-end { margin-left: auto; display: flex; align-items: center; gap: var(--s-4); font-size: var(--fs-13); }
 .topbar-end > a { color: var(--ink-2); padding: 0.4rem 0.7rem; border-radius: var(--radius-pill); font-weight: var(--fw-label); display: inline-flex; align-items: center; gap: 0.35em; }
 .topbar-end > a .icon { color: var(--gray); }
@@ -53,18 +53,29 @@
 .btn .icon { width: 1.05em; height: 1.05em; margin-left: -0.15em; }
 .btn-text .icon { color: var(--gray); }
 
-/* —— 页脚：白底、灰字 —— */
+/* —— 页脚：一行收口，左版权右条款 —— */
 .site-extra-footer {
-  margin-top: var(--s-20);
-  padding: var(--s-8) var(--gutter) var(--s-10);
+  margin-top: var(--s-12);
+  padding: var(--s-6) var(--gutter) var(--s-8);
   color: var(--gray);
   font-size: var(--fs-13);
 }
-.site-extra-footer .extra-links { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); max-width: var(--container); margin: 0 auto; }
+.site-extra-footer .extra-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3) var(--s-6);
+}
+.site-extra-footer .extra-links { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
 .site-extra-footer .extra-links a { color: var(--ink-2); font-weight: var(--fw-label); }
 .site-extra-footer .extra-links a:hover { color: var(--ink); }
 .site-extra-footer .extra-sep { display: none; }
-.site-extra-footer .extra-copy { max-width: var(--container); margin: var(--s-4) auto 0; color: var(--gray-2); font-size: var(--fs-12); }
+.site-extra-footer .extra-copy { margin: 0; color: var(--gray-2); font-size: var(--fs-12); }
+.site-extra-footer .extra-copy a { color: inherit; font-weight: var(--fw-body); }
+.site-extra-footer .extra-copy a:hover { color: var(--ink-2); }
 
 /* —— 按钮：浅灰胶囊默认 / 墨黑主按钮（每屏一颗）/ 纯文字 —— */
 .btn {
@@ -80,9 +91,11 @@
 .btn:disabled { color: var(--gray-2); background: var(--fill); cursor: not-allowed; opacity: 0.55; }
 .btn-ink { background: var(--ink); color: var(--on-ink); }
 .btn-ink:hover, .btn-ink:active:not(:disabled) { background: var(--ink-hover); }
-/* 设计模式下升为主按钮（开发模式的主按钮是「获取代码 / 添加到项目」，带 .for-dev） */
+/* 主按钮跟视图走：设计翻 .ink-design，开发翻 .ink-dev */
 html:not([data-view="dev"]) .ink-design { background: var(--ink); color: var(--on-ink); }
 html:not([data-view="dev"]) .ink-design:hover { background: var(--ink-hover); }
+html[data-view="dev"] .ink-dev { background: var(--ink); color: var(--on-ink); }
+html[data-view="dev"] .ink-dev:hover { background: var(--ink-hover); }
 .btn-text { background: transparent; padding: 0 0.25rem; color: var(--gray); height: auto; font-weight: var(--fw-body); }
 .btn-text:hover { color: var(--ink); background: transparent; text-decoration: underline; text-underline-offset: 0.2em; }
 .btn-text.is-on { color: var(--ink); font-weight: var(--fw-label); }
@@ -167,12 +180,27 @@ html:not([data-view="dev"]) .ink-design:hover { background: var(--ink-hover); }
 .pill-count[data-count="0"] { display: none; }
 
 /* —— 代码块 —— */
-.code { position: relative; background: var(--well); border-radius: var(--radius-sm); padding: var(--s-4) var(--s-5); overflow: auto; }
+.code {
+  --code-c: #6e7781;
+  --code-k: #0969da;
+  --code-a: #cf222e;
+  --code-s: #1a7f37;
+  position: relative; background: var(--well); border-radius: var(--radius-sm); padding: var(--s-4) var(--s-5); overflow: auto;
+}
+html[data-theme="dark"] .code {
+  --code-c: #8b949e;
+  --code-k: #79c0ff;
+  --code-a: #ffa198;
+  --code-s: #7ee787;
+}
 .code:has(.copy) { padding-right: 4.5rem; }
 .code pre { color: var(--ink-2); }
-.code .k { color: var(--ink); font-weight: var(--fw-title); }
-.code .copy { position: absolute; top: var(--s-2); right: var(--s-3); font-size: var(--fs-12); color: var(--gray); padding: 0.15rem 0.6rem; border-radius: var(--radius-pill); display: inline-flex; align-items: center; gap: 0.3em; }
-.code .copy:hover { color: var(--ink); background: var(--surface-2); }
+.code .k { color: var(--code-k); font-weight: var(--fw-title); }
+.code .k-a { color: var(--code-a); }
+.code .k-s { color: var(--code-s); }
+.code .k-c { color: var(--code-c); font-weight: var(--fw-body); }
+.code .copy { position: absolute; top: var(--s-2); right: var(--s-3); z-index: 1; font-size: var(--fs-12); color: var(--gray); padding: 0.15rem 0.6rem; border-radius: var(--radius-pill); display: inline-flex; align-items: center; gap: 0.3em; background: var(--paper); }
+.code .copy:hover { color: var(--ink); background: var(--surface); }
 .code-inline { background: var(--well); padding: 0.05em 0.4em; border-radius: 6px; font-size: 0.9em; }
 
 /* —— 分段胶囊：页上灰底白选中；面板里白底黑选中 —— */

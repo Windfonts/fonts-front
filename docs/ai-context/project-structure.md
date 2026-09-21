@@ -16,8 +16,14 @@ font-detail.html          字体详情                                js/pages/d
 foundry.html              厂商索引 / 单厂商                       js/pages/foundry.js
 features.html             特点页（旧首页）                        js/pages/features.js
 pricing.html docs.html login.html styleguide.html                 内联少量脚本
+about.html 404.html upload-terms.html claim.html                  关于 / 404 / 上传条款 / 认领（claim.js）
+privacy.html terms.html disclaimer.html trademark.html            说明页（wf-docs-nav；文档独立）
 shopping-bag.html         选字袋                                  js/pages/bag.js
 design-options.html       设计方向对比（决策留档）                css/design-options.css
+detail-options.html       详情结构对照（甲乙丙丁，不进现页）     css/detail-options.css / js/pages/detail-options.js
+detail-meta-options.html  详情标题/资料/预览对照（不进现页）     css/detail-options.css / js/pages/detail-meta-options.js
+detail-license-options.html 详情授权/谱系对照（不进现页）         css/detail-options.css / js/pages/detail-license-options.js
+detail-lineage-options.html 思源谱系对照（不进现页）              css/detail-options.css / js/pages/detail-lineage-options.js
 app/index.html            控制台概览                              内联
 app/projects.html         项目列表                                内联
 app/project.html          项目详情（fonts/domains/embed/versions/usage 标签） js/pages/app-project.js
@@ -39,7 +45,8 @@ css/detail.css            详情页
 css/app.css               控制台
 
 js/wf-proto.js            WFProto：目录 + 厂商字典加载、筛选、选字袋、CDN 地址、ensureFontCss
-js/wf-chrome.js           WFChrome：顶栏 / 页脚 / 登录态 / toast / confirm / copy / icon / 主题 / brand* / foundryHtml / licenseTier
+js/wf-chrome.js           WFChrome：顶栏 / 页脚 / 登录态 / toast / confirm / copy / icon / 主题 / brand* / foundryHtml / licenseTier；头像按厂商 id 读 avatars.json
+js/wf-docs-nav.js         说明页左侧目录（关于 / 认领 / 条款；不含文档）
 js/wf-specimen.js         WFSpecimen：样张行渲染、控制条、字重工具
 js/wf-embed.js            WFEmbed：嵌入代码、体积估算、mount
 js/wf-card.js             WFCard：固定像素画布、版式模板、槽位、导出 PNG
@@ -51,6 +58,7 @@ js/wf-app.js              WFApp：控制台状态（localStorage）、项目 / �
 data/fonts.json           字体目录（导出，不手改）
 data/fonts.meta.json      导出元信息
 data/foundries.json       厂商字典（中文名 / 英文 / 简称 / 官网 / kind / openSource）
+data/avatars.json         厂商 slug → assets/avatars/*.webp
 data/license-evidence.json 授权依据（标准许可 + 按字体名）
 data/font-lineage.json    品牌方 / 制作方 / 上游同系
 data/mock-app.json        控制台演示数据（结构见 docs/FRONTEND-STANDARDS.md §6）

@@ -87,7 +87,10 @@ fonts-front/
 
 ### `data/fonts.json`（由 `scripts/export-fonts.mjs` 生成，不手改）
 关键字段：`id name en family normalized designer category tags[] weights[] description license licenseName licenseUrl licenseFileUrl licenseNotes licenseVerified copyright foundry brand{name,slug,website,description} releaseYear version charCount glyphCount viewCount foundryAvatar`。
-运行时由 `normalizeFont` 补 `designerShort styles detail foundryInfo`。
+运行时由 `normalizeFont` 补 `designerShort styles detail foundryInfo`。厂商头像不读这里的 `brand.avatarUrl` 当唯一源。
+
+### `data/avatars.json`（`fetch-avatars.mjs` 产出，slug → 本地 WebP）
+运行时由 `WFProto.loadCatalog` 一并加载。`WFChrome.brandAvatar(font)` 先按厂商 id 查这张表，再回退到目录里的 `logoUrl` / `avatarUrl`。identicon / Cravatar 热链丢弃。
 
 ### `data/foundries.json`（手工维护，厂商名称唯一真源）
 ```json

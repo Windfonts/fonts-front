@@ -8,9 +8,9 @@
   <link rel="stylesheet" href="css/fonts.css" />
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css?v=20260921x" />
-  <link rel="stylesheet" href="css/specimen.css?v=20260921x" />
-  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/components.css?v=20260921ac" />
+  <link rel="stylesheet" href="css/specimen.css?v=20260921y" />
+  <link rel="stylesheet" href="css/site.css?v=20260921aa" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-bag">
@@ -22,6 +22,7 @@
       <div class="row">
         <div class="bag-views seg" id="bagViews" hidden role="tablist" aria-label="视图">
           <button type="button" data-view="rows" class="is-on">样张</button>
+          <button type="button" data-view="pair">配对</button>
           <button type="button" data-view="compare">对比</button>
         </div>
         <button type="button" class="btn-text" id="btnClear">清空</button>
@@ -32,22 +33,23 @@
   <div id="controlbar"></div>
   <main class="container">
     <ul class="specimens" id="bagList"></ul>
+    <div id="bagPair" hidden></div>
     <div id="bagCompare" hidden></div>
 
     <section class="bag-embed" id="bagEmbed" hidden>
-      <div>
-        <h2>合并嵌入代码</h2>
-        <div id="embed"></div>
-        <p class="use-note t-13 muted" style="margin-top:var(--s-3)">一次引入选字袋里的全部字体。估算总体积 <strong class="num" id="bagBytes">—</strong>（woff2，按所选子集）。</p>
-      </div>
+      <h2>合并嵌入代码</h2>
       <div class="opts">
         <div class="field"><label>子集</label><select class="select" id="optVersion">
           <option value="full">完整</option><option value="zh">中文 7000</option><option value="zh-common" selected>常用 3500</option><option value="en">拉丁</option></select></div>
         <div class="field"><label>字重</label><select class="select" id="optWeights">
-          <option value="first">仅常规 / 首个字重</option><option value="all">全部字重</option></select></div>
-        <div class="field"><label>font-display</label><select class="select" id="optDisplay">
+          <option value="first">只用常规字重</option><option value="all">全部字重</option></select></div>
+        <div class="field"><label>加载策略</label><select class="select" id="optDisplay">
           <option value="">默认（swap）</option><option value="swap">swap</option><option value="block">block</option><option value="fallback">fallback</option><option value="optional">optional</option></select></div>
-        <label class="check"><input type="checkbox" id="optPreload" /> 生成 preload 提示</label>
+        <label class="check"><input type="checkbox" id="optPreload" /> 提前加载字体</label>
+      </div>
+      <div class="bag-embed-main">
+        <div id="embed"></div>
+        <p class="use-note t-13 muted">一次引入选字袋里的全部字体。估算总体积 <strong class="num" id="bagBytes">—</strong>（按所选子集）。</p>
       </div>
     </section>
   </main>
@@ -56,8 +58,8 @@
 
   <script src="js/wf-proto.js"></script>
   <script src="js/wf-chrome.js"></script>
-  <script src="js/wf-specimen.js?v=20260921x"></script>
-  <script src="js/wf-embed.js"></script>
-  <script src="js/pages/bag.js?v=20260921x"></script>
+  <script src="js/wf-specimen.js?v=20260921y"></script>
+  <script src="js/wf-embed.js?v=20260921d"></script>
+  <script src="js/pages/bag.js?v=20260921z"></script>
 </body>
 </html>

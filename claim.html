@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>认领厂商 · 文风字体</title>
+  <meta name="description" content="认领文风字体厂商页：维护标志、介绍与官网。" />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+</head>
+<body class="page-claim">
+  <header data-topbar></header>
+
+  <main class="container docs docs-claim">
+    <aside class="docs-toc" aria-label="说明目录"><div data-docs-nav="claim"></div></aside>
+    <div class="docs-main">
+      <article class="docs-body claim-copy">
+        <section>
+          <p class="kicker">本站</p>
+          <h1>认领厂商</h1>
+          <p class="lead">通过后可维护标志、介绍与官网。认领只说明谁在维护这一页。许可仍以每款字体授权区的原文为准。</p>
+        </section>
+        <section>
+          <h2>流程</h2>
+          <ol>
+            <li>准备品牌法定名称或已收录的厂商名、官网、授权原文链接。</li>
+            <li>用官网域名下的邮箱登录或注册控制台。</li>
+            <li>在本页提交。审核通常 3 个工作日。</li>
+            <li>通过后名称旁显示认证徽记，可改标志与介绍。</li>
+          </ol>
+        </section>
+        <section>
+          <h2>需要准备</h2>
+          <ul>
+            <li>品牌法定名称，或厂商页上已有的名称</li>
+            <li>官网地址</li>
+            <li>能证明你代表该品牌的联系邮箱（请用官网域名）</li>
+            <li>授权原文链接，方便对照库里的字体</li>
+          </ul>
+          <p class="note">还没有厂商页？先到<a href="foundry.html">厂商索引</a>确认是否已收录，再提交。</p>
+        </section>
+      </article>
+      <aside class="claim-card" id="claimCard"></aside>
+    </div>
+  </main>
+
+  <footer id="wfExtraFooter"></footer>
+  <script src="js/wf-proto.js"></script>
+  <script src="js/wf-chrome.js"></script>
+  <script src="js/wf-docs-nav.js"></script>
+  <script src="js/wf-app.js"></script>
+  <script src="js/pages/claim.js"></script>
+</body>
+</html>

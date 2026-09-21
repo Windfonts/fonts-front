@@ -20,7 +20,7 @@
     <div class="page-head">
       <p class="crumb"><span>v4</span><span>/</span><span>设计样张</span></p>
       <h1>柔和 · 圆润</h1>
-      <p class="lead">只有黑白灰。层次靠明度差：白页 → 浅灰面板 → 面板里的白控件；黑只给主按钮、选中态、头像。标题 700、正文 400、标签 500，UI 字体寒蝉全圆体。这一页是设计系统的活样张；规则文本见 <code class="code-inline">docs/DESIGN-SYSTEM.md</code>，代码规范见 <code class="code-inline">docs/FRONTEND-STANDARDS.md</code>，智能体工作要求见 <code class="code-inline">docs/AI-NATIVE.md</code>。</p>
+      <p class="lead">只有黑白灰。层次靠明度差：白页 → 浅灰面板 → 面板里的白控件；黑只给主按钮、选中态、头像。标题 700、其余 400，不用 500 / 600。UI 字体寒蝉全圆体。这一页是设计系统的活样张；规则文本见 <code class="code-inline">docs/DESIGN-SYSTEM.md</code>，代码规范见 <code class="code-inline">docs/FRONTEND-STANDARDS.md</code>，智能体工作要求见 <code class="code-inline">docs/AI-NATIVE.md</code>。</p>
     </div>
 
     <section class="sg-section" id="color">
@@ -170,7 +170,7 @@
     (function () {
       document.getElementById('sgVerified').innerHTML = WFChrome.VERIFIED_SVG;
       document.getElementById('sgDialog').addEventListener('click', function () {
-        WFChrome.confirm({ title: '移除域名', message: '移除后该域名上的字体请求会被 403。', ok: '移除' }).then(function (ok) {
+        WFChrome.confirm({ title: '移除域名', message: '移除后该域名将无法加载字体。', ok: '移除' }).then(function (ok) {
           WFChrome.toast(ok ? '已确认' : '已取消');
         });
       });

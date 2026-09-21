@@ -845,7 +845,7 @@
    "name": "包图网 (ibaotu)",
    "slug": "baotu",
    "logoUrl": "",
-   "avatarUrl": "",
+   "avatarUrl": "assets/avatars/baotu.webp",
    "website": "https://ibaotu.com/",
    "description": "综合正版商用素材平台，提供设计模板、视频、音乐、字体等素材，VIP会员可获得商用授权。旗下有包图小白体等免费商用字体。"
   },
@@ -1146,7 +1146,7 @@
    "name": "Chuangkit",
    "slug": "chuangkit",
    "logoUrl": "",
-   "avatarUrl": "",
+   "avatarUrl": "assets/avatars/chuangkit.webp",
    "website": "https://www.chuangkit.com/",
    "description": "在线平面设计平台，提供模板、字体、素材等设计工具，会员可获得字体商用授权。主打'会打字就能做设计'。"
   },
@@ -1193,7 +1193,7 @@
    "name": "Chuangkit",
    "slug": "chuangkit",
    "logoUrl": "",
-   "avatarUrl": "",
+   "avatarUrl": "assets/avatars/chuangkit.webp",
    "website": "https://www.chuangkit.com/",
    "description": "在线平面设计平台，提供模板、字体、素材等设计工具，会员可获得字体商用授权。主打'会打字就能做设计'。"
   },
@@ -1330,7 +1330,7 @@
    "name": "云峰字库",
    "slug": "yunfeng",
    "logoUrl": "",
-   "avatarUrl": "",
+   "avatarUrl": "assets/avatars/yunfeng.webp",
    "website": "",
    "description": "云峰字库为独立字体设计者，已发布云峰飞云体等免费商用字体，风格偏手写艺术体。"
   },
@@ -3253,7 +3253,7 @@
    "name": "荆南字坊 (Kingnam Typography)",
    "slug": "jingnan",
    "logoUrl": "",
-   "avatarUrl": "",
+   "avatarUrl": "assets/avatars/jingnan.webp",
    "website": "",
    "description": "独立字体设计师/工作室，相关公开信息极少，未在主流免费商用字体平台中找到明确收录记录。"
   },
@@ -4193,7 +4193,7 @@
    "name": "ZhongQi",
    "slug": "zhongqi",
    "logoUrl": "",
-   "avatarUrl": "",
+   "avatarUrl": "assets/avatars/zhongqi.webp",
    "website": "",
    "description": "ZhongQi出品的字体"
   },
@@ -4719,7 +4719,7 @@
   "family": "wenfeng-mspyt",
   "normalized": "Mspyt",
   "designer": "[Source Han Sans] Ryoko NISHIZUKA (kana & ideographs); Frank Griehammer (Latin, Greek & Cyrillic); Wenlong ZHANG (bopomofo); Sandoll Communications , Soohyun PARK , Yejin WE & Donghoon HAN (hangul elements, letters & syllables) [mengshen project] Yuya Maruyama",
-  "designerShort": "[Source Han Sans] Ryoko NISHIZUKA (kana & ideographs)",
+  "designerShort": "萌神PROJECT",
   "category": "衬线",
   "tags": [
    "宋体"
@@ -4727,7 +4727,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "Mengshen HanSerif（梦源宋体）是一款基于Adobe Source Han Serif（思源宋体）进行插值生成的衍生字体，由mengshen项目维护。其基础设计源自Google与Adobe联合开发的思源宋体开源项目，提供了完整的宋体风格字形。该字体支持泛中日韩（CJK）字符集，包含简体中文、繁体中文、日文和韩文所需的字符，并集成了高质量的拉丁字母、希腊字母和西里尔字母部分。字体采用SIL Open Font License 1.1开源许可证，允许免费商用。",
+  "description": "萌神汉宋（Mengshen HanSerif）是萌神PROJECT 做的开源宋体，在思源宋体上加了拼音标注等功能。支持简繁中文、日文假名等，采用 SIL Open Font License 1.1，可免费商用。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -6374,7 +6374,7 @@
    "name": "素材集市",
    "slug": "sucaijishi",
    "logoUrl": "",
-   "avatarUrl": "",
+   "avatarUrl": "assets/avatars/sucaijishi.webp",
    "website": "https://www.sucaijishi.com/",
    "description": "设计素材分享平台，发布多款免费商用字体，包括素材集市酷方体、社会体、康康体等，均可免费商用。"
   },
@@ -7991,7 +7991,7 @@
    "name": "云峰字库",
    "slug": "yunfeng",
    "logoUrl": "",
-   "avatarUrl": "",
+   "avatarUrl": "assets/avatars/yunfeng.webp",
    "website": "",
    "description": "云峰字库为独立字体设计者，已发布云峰飞云体等免费商用字体，风格偏手写艺术体。"
   },
@@ -8245,7 +8245,7 @@
    "name": "ZhongQi",
    "slug": "zhongqi",
    "logoUrl": "",
-   "avatarUrl": "",
+   "avatarUrl": "assets/avatars/zhongqi.webp",
    "website": "",
    "description": "ZhongQi出品的字体"
   },

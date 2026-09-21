@@ -16,35 +16,86 @@
   <header data-topbar></header>
 
   <main class="container login">
-    <form id="loginForm">
+    <form id="authForm">
       <div>
-        <h1>登录控制台</h1>
-        <p class="sub">管理项目、域名白名单、子集化与用量。原型环境：任意邮箱即可进入。</p>
+        <h1 id="authTitle">登录控制台</h1>
+        <p class="sub" id="authSub">管理项目、域名白名单、子集化与用量。</p>
+      </div>
+      <div class="field" id="nameField" hidden>
+        <label for="displayName">显示名</label>
+        <input class="input" id="displayName" autocomplete="nickname" placeholder="怎么称呼你" />
       </div>
       <div class="field"><label for="email">邮箱</label><input class="input" id="email" type="email" autocomplete="email" placeholder="you@example.com" required autofocus /></div>
       <div class="field"><label for="password">密码</label><input class="input" id="password" type="password" autocomplete="current-password" placeholder="••••••••" required /></div>
-      <button type="submit" class="btn btn-ink btn-lg">登录</button>
-      <p class="alt">还没有账号？<a href="#" id="signup">免费注册</a><span data-pricing hidden> · <a href="pricing.html">查看定价</a></span></p>
+      <div class="field" id="confirmField" hidden>
+        <label for="confirm">确认密码</label>
+        <input class="input" id="confirm" type="password" autocomplete="new-password" placeholder="再输入一次" />
+      </div>
+      <button type="submit" class="btn btn-ink btn-lg" id="authBtn">登录</button>
+      <p class="alt" id="authAlt"></p>
     </form>
   </main>
 
+  <footer id="wfExtraFooter"></footer>
   <script src="js/wf-proto.js"></script>
   <script src="js/wf-chrome.js"></script>
   <script>
     (function () {
-      const next = WFProto.getQuery('next');
-      function go() {
-        const email = document.getElementById('email').value || 'design@wenpai.org';
-        WFChrome.login({ name: email.split('@')[0], email: email });
-        let to = 'app/index.html';
-        if (next === 'bag') to = 'app/subset.html?from=bag';
-        else if (next === 'app' && /^[\w-]+\.html$/.test(WFProto.getQuery('back'))) to = 'app/' + WFProto.getQuery('back');
-        else if (next === 'claim') to = 'app/settings.html?claim=' + encodeURIComponent(WFProto.getQuery('slug'));
-        location.href = to;
+      const signup = WFProto.getQuery('mode') === 'signup';
+      const q = new URLSearchParams(location.search);
+
+      function dest() {
+        const next = WFProto.getQuery('next');
+        if (next === 'bag') return 'app/subset.html?from=bag';
+        if (next === 'app' && /^[\w-]+\.html$/.test(WFProto.getQuery('back'))) return 'app/' + WFProto.getQuery('back');
+        if (next === 'claim') {
+          const slug = WFProto.getQuery('slug');
+          return 'claim.html' + (slug ? '?slug=' + encodeURIComponent(slug) : '');
+        }
+        return 'app/index.html';
       }
-      document.getElementById('loginForm').addEventListener('submit', function (e) { e.preventDefault(); go(); });
-      document.getElementById('signup').addEventListener('click', function (e) { e.preventDefault(); go(); });
-      if (WFChrome.user()) location.replace('app/index.html');
+
+      function hrefFor(mode) {
+        const next = new URLSearchParams(q);
+        if (mode === 'signup') next.set('mode', 'signup');
+        else next.delete('mode');
+        const s = next.toString();
+        return 'login.html' + (s ? '?' + s : '');
+      }
+
+      function enter() {
+        const email = document.getElementById('email').value || 'design@wenpai.org';
+        const name = (document.getElementById('displayName').value || '').trim() || email.split('@')[0];
+        WFChrome.login({ name: name, email: email });
+        location.href = dest();
+      }
+
+      if (signup) {
+        document.title = '注册 · 文风字体';
+        document.getElementById('authTitle').textContent = '注册控制台';
+        document.getElementById('authSub').textContent = '创建账号后可管理项目、上传字体、认领厂商页。';
+        document.getElementById('nameField').hidden = false;
+        document.getElementById('confirmField').hidden = false;
+        document.getElementById('confirm').required = true;
+        document.getElementById('password').autocomplete = 'new-password';
+        document.getElementById('authBtn').textContent = '创建账号';
+        document.getElementById('authAlt').innerHTML = '已有账号？<a href="' + hrefFor('login') + '">登录</a>';
+      } else {
+        document.getElementById('authAlt').innerHTML = '还没有账号？<a href="' + hrefFor('signup') + '">免费注册</a>' +
+          '<span data-pricing hidden> · <a href="pricing.html">查看定价</a></span>';
+      }
+
+      document.getElementById('authForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (signup) {
+          const a = document.getElementById('password').value;
+          const b = document.getElementById('confirm').value;
+          if (a !== b) { WFChrome.toast('两次密码不一致'); return; }
+        }
+        enter();
+      });
+
+      if (WFChrome.user()) location.replace(dest());
     })();
   </script>
 </body>

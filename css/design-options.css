@@ -84,7 +84,7 @@ i { font-style: normal; }
 .v-a .topbar .end input::placeholder { color: #666; }
 .v-a .topbar .end b { background: #111; color: #fff; padding: 0 .35rem; margin-left: .15rem; }
 .v-a .hero { border-bottom: 2px solid #111; background: repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), #e2e2e2 calc(25% - 1px) 25%); }
-.v-a .hero .kicker { display: inline-block; background: #111; color: #fff; padding: .15rem .5rem; font-weight: 500; }
+.v-a .hero .kicker { display: inline-block; background: #111; color: #fff; padding: .15rem .5rem; font-weight: 400; }
 .v-a .hero .live { font-weight: 900; }
 .v-a .hero .lead { color: #333; }
 .v-a .hero .cta .meta { color: #444; }
@@ -124,7 +124,7 @@ i { font-style: normal; }
 .v-a .kv dt { color: #555; }
 .v-a .code { background: #111; color: #fff; }
 .v-a .code button { color: #fff; text-decoration: underline; }
-.v-a .foot { border-top: 2px solid #111; background: #111; color: #fff; font-weight: 500; }
+.v-a .foot { border-top: 2px solid #111; background: #111; color: #fff; font-weight: 400; }
 .v-a .ok { color: #111; font-weight: 700; }
 
 /* ===== B 柔和 · 圆润（原版）===== */
@@ -132,16 +132,16 @@ i { font-style: normal; }
 .v-b .topbar { padding: 0 2.5rem; height: 4.25rem; }
 .v-b .topbar .mark { background: #111; color: #fff; border-radius: 8px; }
 .v-b .topbar nav a { color: #666; padding: .4rem .8rem; border-radius: 999px; }
-.v-b .topbar nav a.on { color: #111; background: #f0f0f0; font-weight: 500; }
+.v-b .topbar nav a.on { color: #111; background: #f0f0f0; font-weight: 400; }
 .v-b .topbar .end input { border: 0; background: #f0f0f0; border-radius: 999px; padding: 0 1rem; }
 .v-b .topbar .end a { color: #444; }
 .v-b .topbar .end b { color: #111; }
 .v-b .hero { padding: 5rem 2.5rem 3.5rem; }
 .v-b .hero .kicker { color: #888; }
-.v-b .hero .live { font-weight: 500; }
+.v-b .hero .live { font-weight: 400; }
 .v-b .hero .lead { color: #666; }
 .v-b .hero .cta .meta { color: #888; }
-.v-b .btn { border-radius: 999px; background: #f0f0f0; color: #111; font-weight: 500; }
+.v-b .btn { border-radius: 999px; background: #f0f0f0; color: #111; font-weight: 400; }
 .v-b .btn:hover { background: #e6e6e6; }
 .v-b .btn-primary { background: #111; color: #fff; }
 .v-b .btn-primary:hover { background: #000; }
@@ -159,7 +159,7 @@ i { font-style: normal; }
 .v-b .rail .facet + .facet { margin-top: .75rem; }
 .v-b .rail h4 { color: #888; }
 .v-b .rail li a { color: #555; }
-.v-b .rail li.on a { color: #111; font-weight: 500; }
+.v-b .rail li.on a { color: #111; font-weight: 400; }
 .v-b .rail li i { color: #999; }
 .v-b .rail .cats button { background: #fff; border-radius: 10px; color: #333; }
 .v-b .rail .cats li.on button { background: #111; color: #fff; }
@@ -191,17 +191,17 @@ i { font-style: normal; }
 .v-b2 .topbar .brand { font-weight: 700; }
 .v-b2 .topbar .mark { background: #111; color: #fff; border-radius: 8px; }
 .v-b2 .topbar nav a { color: #666; padding: .4rem .85rem; border-radius: 999px; }
-.v-b2 .topbar nav a.on { color: #111; background: #fff; font-weight: 500; box-shadow: 0 1px 2px rgba(0,0,0,.06); }
+.v-b2 .topbar nav a.on { color: #111; background: #fff; font-weight: 400; box-shadow: 0 1px 2px rgba(0,0,0,.06); }
 .v-b2 .topbar .end input { border: 0; background: #fff; border-radius: 999px; padding: 0 1rem; box-shadow: 0 1px 2px rgba(0,0,0,.06); }
 .v-b2 .topbar .end a { color: #444; }
 .v-b2 .topbar .end b { color: #111; }
 .v-b2 .hero { background: #fff; border-radius: 20px; padding: 4.5rem 3rem 3rem; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 12px 32px -24px rgba(0,0,0,.25); }
-.v-b2 .hero .kicker { color: #888; font-weight: 500; }
+.v-b2 .hero .kicker { color: #888; font-weight: 400; }
 .v-b2 .hero .live { font-weight: 700; font-size: 4.75rem; letter-spacing: -.015em; }
 .v-b2 .hero .lead { color: #666; }
 .v-b2 .hero .cta .meta { color: #888; }
 .v-b2 .hero .cta .meta b { color: #111; }
-.v-b2 .btn { border-radius: 999px; background: #efefef; color: #111; font-weight: 500; }
+.v-b2 .btn { border-radius: 999px; background: #efefef; color: #111; font-weight: 400; }
 .v-b2 .btn:hover { background: #e4e4e4; }
 .v-b2 .btn-primary { background: #111; color: #fff; }
 .v-b2 .btn-primary:hover { background: #000; }
@@ -217,7 +217,7 @@ i { font-style: normal; }
 .v-b2 .body { padding: .75rem 0 0; gap: .75rem; }
 .v-b2 .rail .facet { background: #fff; border-radius: 16px; padding: 1rem 1.25rem; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
 .v-b2 .rail .facet + .facet { margin-top: .75rem; }
-.v-b2 .rail h4 { color: #999; font-weight: 500; }
+.v-b2 .rail h4 { color: #999; font-weight: 400; }
 .v-b2 .rail li a { color: #555; }
 .v-b2 .rail li.on a { color: #111; font-weight: 700; }
 .v-b2 .rail li i { color: #aaa; }
@@ -261,14 +261,14 @@ i { font-style: normal; }
 .v-c .topbar .end b { color: #fff; }
 .v-c .hero { padding: 3.5rem 2rem 2.5rem; border-bottom: 1px solid #2a2a2a; }
 .v-c .hero .kicker { color: #8a8a8a; font-family: ui-monospace, Menlo, monospace; font-size: .75rem; }
-.v-c .hero .live { font-weight: 500; font-size: 4rem; color: #fff; }
+.v-c .hero .live { font-weight: 400; font-size: 4rem; color: #fff; }
 .v-c .hero .lead { color: #9a9a9a; font-size: .9375rem; }
 .v-c .hero .cta .meta { color: #8a8a8a; }
 .v-c .hero .cta .meta b { color: #fff; }
 .v-c .btn { border: 1px solid #3a3a3a; background: #1f1f1f; color: #ededed; border-radius: 6px; height: 2rem; }
 .v-c .btn-lg { height: 2.5rem; }
 .v-c .btn:hover { border-color: #666; }
-.v-c .btn-primary { background: #fff; color: #111; border-color: #fff; font-weight: 500; }
+.v-c .btn-primary { background: #fff; color: #111; border-color: #fff; font-weight: 400; }
 .v-c .btn-primary:hover { background: #e2e2e2; }
 .v-c .bar { border-bottom: 1px solid #2a2a2a; background: #181818; font-size: .75rem; padding: .5rem 2rem; }
 .v-c .bar .sample { background: #1f1f1f; border: 1px solid #333; border-radius: 6px; color: #fff; height: 2rem; }
@@ -313,7 +313,7 @@ i { font-style: normal; }
 /* ===== D 网格 · 规格表 ===== */
 .v-d .frame { background: #fff; border: 1px solid #111; }
 .v-d .topbar { border-bottom: 1px solid #111; padding: 0; gap: 0; }
-.v-d .topbar .brand { padding: 0 1.5rem; height: 100%; border-right: 1px solid #111; font-weight: 500; }
+.v-d .topbar .brand { padding: 0 1.5rem; height: 100%; border-right: 1px solid #111; font-weight: 400; }
 .v-d .topbar .mark { border: 1px solid #111; }
 .v-d .topbar nav { gap: 0; height: 100%; }
 .v-d .topbar nav a { display: flex; align-items: center; padding: 0 1.25rem; border-right: 1px solid #111; color: #555; }
@@ -365,7 +365,7 @@ i { font-style: normal; }
 .v-d .chip.on { background: #111; color: #fff; }
 .v-d .card { padding: 1rem 1.5rem 1.5rem; border-bottom: 1px solid #111; }
 .v-d .card:last-child { border-bottom: 0; }
-.v-d .card .name { font-weight: 500; }
+.v-d .card .name { font-weight: 400; }
 .v-d .card .sub { color: #555; font-family: ui-monospace, Menlo, monospace; font-size: .6875rem; }
 .v-d .card .act { color: #111; text-decoration: underline; text-underline-offset: .2em; }
 .v-d .card .act.picked { color: #888; }

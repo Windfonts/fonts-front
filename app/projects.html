@@ -30,7 +30,7 @@
         const s = WFApp.state();
         const ps = WFApp.projects();
         root.innerHTML =
-          '<div class="app-head"><div><h1>项目</h1><p class="sub">' + ps.length + ' / ' + s.plan.quota.projects + ' · 每个项目一份嵌入代码、一组域名白名单、一条版本线</p></div>' +
+          '<div class="app-head"><div><h1>项目</h1><p class="sub">' + ps.length + ' / ' + s.plan.quota.projects + ' · 每个项目一份嵌入代码、一组域名白名单、独立版本记录</p></div>' +
             '<div class="app-actions"><form class="inline-form" id="newForm"><input class="input" id="newName" placeholder="项目名称，如 品牌官网" required /><button type="submit" class="btn btn-ink">新建项目</button></form></div></div>' +
           (ps.length ? '<ul class="proj-list">' + ps.map(function (p) {
             const cur = WFApp.currentVersion(p);

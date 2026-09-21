@@ -24,12 +24,12 @@
   }
 
   function fontsPanel() {
-    if (!p.fonts.length) return '<div class="panel"><p class="empty">项目里还没有字体。<a href="subset.html?project=' + esc(p.id) + '">从字体库添加并子集化</a></p></div>';
+    if (!p.fonts.length) return '<div class="panel"><p class="empty">项目里还没有字体。<a href="subset.html?project=' + esc(p.id) + '">去字体库添加</a></p></div>';
     return '<div class="panel"><div class="panel-head"><p>每款字体的字重与子集独立设置；改动会生成新版本。</p></div>' +
       '<table class="table"><thead><tr><th>字体</th><th>字重</th><th>子集</th><th class="num">估算体积</th><th></th></tr></thead><tbody>' +
       p.fonts.map(function (f) {
         const meta = WFProto.getFont(f.fontId) || { name: f.fontId, family: '' };
-        return '<tr><td><a href="../font-detail.html?id=' + esc(f.fontId) + '">' + esc(meta.name) + '</a><br><span class="mono t-12 muted">' + esc(meta.family) + '</span></td>' +
+        return '<tr><td>' + WFChrome.faceHtml(meta, 18) + '<a href="../font-detail.html?id=' + esc(f.fontId) + '">' + esc(meta.name) + '</a><br><span class="mono t-12 muted">' + esc(meta.family) + '</span></td>' +
           '<td class="num">' + f.weights.join(' · ') + '</td><td>' + esc(WFApp.subsetLabel(f.subset)) + '</td>' +
           '<td class="num">' + WFEmbed.fmtBytes(WFApp.subsetBytes(meta, f.subset, f.weights.length)) + '</td>' +
           '<td class="actions"><a class="btn-text" href="subset.html?project=' + esc(p.id) + '&font=' + esc(f.fontId) + '">调整</a> <button type="button" class="btn-text" data-remove-font="' + esc(f.fontId) + '">移除</button></td></tr>';
@@ -46,16 +46,16 @@
             '<td><span class="status-dot' + (d.verified ? '' : ' is-pending') + '">' + (d.verified ? '已验证 · ' + (d.method === 'file' ? '文件' : 'DNS') : '待验证') + '</span></td>' +
             '<td class="num">' + (u ? WFProto.formatCount(u.requests30d) : '—') + '</td>' +
             '<td class="mono muted">' + WFApp.fmtDate(d.addedAt).slice(0, 10) + '</td>' +
-            '<td class="actions">' + (d.verified ? '' : '<button type="button" class="btn-text" data-verify="' + esc(d.host) + '">我已放置验证文件</button> ') +
+            '<td class="actions">' + (d.verified ? '' : '<button type="button" class="btn-text" data-verify="' + esc(d.host) + '">我已完成验证</button> ') +
             '<button type="button" class="btn-text" data-remove-domain="' + esc(d.host) + '">移除</button></td></tr>';
-        }).join('') + '</tbody></table>' : '<p class="empty">尚未绑定域名，字体只能在本地开发环境加载。</p>') +
+        }).join('') + '</tbody></table>' : '<p class="empty">还没绑定域名，字体只能在本地开发环境加载。</p>') +
       '<p class="t-13 muted" style="margin-top:var(--s-5)">验证方式：在站点根目录放置 <code>/.well-known/windfonts-verify.txt</code>，内容为项目 ID <code>' + esc(p.id) + '</code>；或添加 DNS TXT 记录 <code>windfonts=' + esc(p.id) + '</code>。全部域名与拦截记录见<a href="domains.html">域名</a>。</p></div>';
   }
 
   function embedPanel() {
     return '<div class="panel"><div class="embed-opts">' +
-      '<div class="field"><label>font-display</label><select class="select" id="optDisplay"><option value="">项目默认（' + esc(WFApp.state().settings.display) + '）</option><option value="swap">swap</option><option value="block">block</option><option value="fallback">fallback</option><option value="optional">optional</option></select></div>' +
-      '<div class="field"><label>preload</label><label class="check" style="margin-top:0.4rem"><input type="checkbox" id="optPreload" /> 为每个 CSS 生成 preload</label></div>' +
+        '<div class="field"><label>加载策略</label><select class="select" id="optDisplay"><option value="">项目默认（' + esc(WFApp.state().settings.display) + '）</option><option value="swap">swap</option><option value="block">block</option><option value="fallback">fallback</option><option value="optional">optional</option></select></div>' +
+      '<div class="field"><label>提前加载</label><label class="check" style="margin-top:0.4rem"><input type="checkbox" id="optPreload" /> 提前加载字体样式</label></div>' +
       '<div class="field"><label>项目 CDN</label><span class="mono t-13" style="padding-top:0.5rem;display:block;overflow-wrap:anywhere">cn.windfonts.com/p/' + esc(p.slug) + '/</span></div>' +
       '</div>' +
       '<div class="tabs" role="tablist" style="margin-bottom:var(--s-4)">' +
@@ -128,7 +128,7 @@
     root.querySelectorAll('[data-remove-domain]').forEach(function (b) {
       b.addEventListener('click', function () {
         const host = b.getAttribute('data-remove-domain');
-        WFChrome.confirm({ title: '移除域名', message: '移除后，' + host + ' 上的字体请求会被 403。确认已从站点卸下嵌入代码再操作。', ok: '移除' }).then(function (ok) {
+        WFChrome.confirm({ title: '移除域名', message: '移除后，' + host + ' 将无法加载字体。确认已从站点卸下嵌入代码再操作。', ok: '移除' }).then(function (ok) {
           if (!ok) return;
           WFApp.removeDomain(p, host);
           WFChrome.toast('已移除');

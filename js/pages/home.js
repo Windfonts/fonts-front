@@ -1,9 +1,18 @@
-/* 首页：原 hero + 数字一行 + 字林 + 当前款一条 + 同分类四款 + 库内结构。全库在 fonts.html。 */
+/* 首页：原 hero + 数字一行 + 字林 + 当前款一条 + 同分类四款 + 库内结构 + 合作伙伴。全库在 fonts.html。 */
 (function () {
   const esc = WFProto.escapeHtml;
   const FEATURED = ['阿里巴巴普惠体', '得意黑', '思源黑体', '站酷', '思源宋体', '霞鹙文楷', 'LXGW', '寒蝉', '钟齐'];
   const RELATED_N = 4;
-  const CAT_LABEL = { '无衬线字体': '黑体', 'Mono': '等宽' };
+  const PARTNERS = [
+    { name: '文派', slug: 'wenpai', href: 'https://wenpai.org' },
+    { name: '薇晓朵', slug: 'weixiaoduo', href: 'https://www.weixiaoduo.com' },
+    { name: 'WPTEA', slug: 'wptea', href: 'https://wptea.com' },
+    { name: '莫蒂奇', slug: 'modiqi', href: 'https://modiqi.com' },
+    { name: '橙黑', slug: 'chenghei', href: 'https://chenghei.com' },
+    { name: '跨飞', slug: 'kuafei', href: 'https://www.feibisi.com' },
+    { name: 'Cravatar', slug: 'cravatar', href: 'https://cravatar.com' },
+    { name: '菲比斯', slug: 'feibisi', href: 'https://feibisi.com' }
+  ];
 
   function pickFeatured(list, n) {
     const out = [];
@@ -24,7 +33,7 @@
   }
 
   function catLabel(font) {
-    return CAT_LABEL[font.category] || font.category || '同分类';
+    return WFChrome.catLabel(font.category) || font.category || '同分类';
   }
 
   function heavyWeight(font) {
@@ -153,16 +162,31 @@
     }
 
     band.innerHTML =
-      '<div class="section-head"><h2>' + WFChrome.icon('chart') + '库内结构</h2>' +
+      '<div class="section-head"><h2>' + WFChrome.icon('chart') + '现在的库</h2>' +
         '<a class="more" href="foundry.html">厂商索引 →</a></div>' +
       '<div class="stats-grid">' +
-        panel('certificate', '按授权', rows(tierItems, function (r) { return 'fonts.html?license=' + encodeURIComponent(r.label); }), '口径见许可类型说明。') +
+        panel('certificate', '按授权', rows(tierItems, function (r) { return 'fonts.html?license=' + encodeURIComponent(r.label); }), '分类说明见文档。') +
         panel('user', '字体最多的厂商', rows(topBrands, function (r) { return 'foundry.html?slug=' + encodeURIComponent(r.key); })) +
         panel('font-size', '字符规模', rows(scaleItems),
-          '按已录入 ' + charKnown + ' 款；' + (unknown ? unknown + ' 款未录入，不参与分档。' : '全部已录入。')) +
+          '按已有字数的 ' + charKnown + ' 款统计' + (unknown ? '；' + unknown + ' 款还没录入字数。' : '。')) +
       '</div>';
   }
 
+  function renderPartners() {
+    const el = document.getElementById('homePartners');
+    if (!el) return;
+    el.innerHTML =
+      '<p class="home-partners-eyebrow">合作伙伴</p>' +
+      '<ul class="home-partners-list">' +
+      PARTNERS.map(function (p) {
+        return '<li><a href="' + esc(p.href) + '" target="_blank" rel="noopener noreferrer">' +
+          '<img src="' + WFChrome.href('assets/partners/' + p.slug + '.webp') + '" alt="' + esc(p.name) +
+          '" width="426" height="150" loading="lazy" decoding="async" /></a></li>';
+      }).join('') +
+      '</ul>';
+  }
+
+  renderPartners();
   WFProto.loadCatalog().then(function (list) {
     renderStats(list);
     const featured = pickFeatured(list, 9);

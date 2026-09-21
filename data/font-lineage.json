@@ -1,49 +1,414 @@
 {
-  "$schema": "归属与谱系。byName 按字体名包含匹配（长的优先）。ownerId/makerId 对 foundries.json。没有把握的关系不写。",
+  "$schema": "归属与谱系。byName 按字体名包含匹配（长的优先）。ownerId/makerId 对 foundries.json。upstreamOwnerId 为上游机构（fork 时 ownerId 不得与其相同）。没有把握的关系不写。",
   "groups": {
-    "source-han-sans": { "name": "思源黑体 / Source Han Sans", "upstreamName": "思源黑体" },
-    "source-han-serif": { "name": "思源宋体 / Source Han Serif", "upstreamName": "思源宋体" },
-    "droid-sans": { "name": "Droid Sans", "upstreamName": "Droid Sans" },
-    "ipa-mincho": { "name": "IPA 明朝", "upstreamName": "IPAexMincho" },
-    "alibaba-sans": { "name": "阿里巴巴字体", "upstreamName": "" },
-    "zcool": { "name": "站酷字库", "upstreamName": "" },
-    "longcang": { "name": "龙藏", "upstreamName": "龙藏体" }
+    "source-han-sans": {
+      "name": "思源黑体 / Source Han Sans",
+      "upstreamName": "思源黑体"
+    },
+    "source-han-serif": {
+      "name": "思源宋体 / Source Han Serif",
+      "upstreamName": "思源宋体"
+    },
+    "droid-sans": {
+      "name": "Droid Sans",
+      "upstreamName": "Droid Sans"
+    },
+    "ipa-mincho": {
+      "name": "IPA 明朝",
+      "upstreamName": "IPAexMincho"
+    },
+    "alibaba-sans": {
+      "name": "阿里巴巴字体",
+      "upstreamName": ""
+    },
+    "zcool": {
+      "name": "站酷字库",
+      "upstreamName": ""
+    },
+    "longcang": {
+      "name": "龙藏",
+      "upstreamName": "龙藏体"
+    },
+    "rocknroll": {
+      "name": "RocknRoll",
+      "upstreamName": "RocknRoll"
+    }
   },
   "byName": {
-    "思源黑体": { "ownerId": "adobe", "makerId": "adobe", "group": "source-han-sans", "relation": "original", "licenseFollows": "inherit" },
-    "思源黑體": { "ownerId": "adobe", "makerId": "adobe", "group": "source-han-sans", "relation": "locale", "upstreamName": "思源黑体", "licenseFollows": "inherit" },
-    "思源宋体": { "ownerId": "adobe", "makerId": "adobe", "group": "source-han-serif", "relation": "original", "licenseFollows": "inherit" },
-    "思源屏显臻宋": { "ownerId": "adobe", "makerId": "adobe", "group": "source-han-serif", "relation": "locale", "upstreamName": "思源宋体", "licenseFollows": "inherit" },
-    "屏显臻宋": { "ownerId": "adobe", "makerId": "adobe", "group": "source-han-serif", "relation": "fork", "upstreamName": "思源宋体", "licenseFollows": "inherit" },
-    "源界明朝": { "ownerId": "adobe", "makerId": "adobe", "group": "source-han-serif", "relation": "fork", "upstreamName": "思源宋体", "licenseFollows": "inherit" },
-    "萌神汉宋": { "ownerId": "adobe", "makerId": "adobe", "group": "source-han-serif", "relation": "fork", "upstreamName": "思源宋体", "licenseFollows": "inherit" },
-    "975 圆体": { "ownerId": "google-fonts", "makerId": "adobe", "group": "source-han-sans", "relation": "fork", "upstreamName": "思源黑体", "licenseFollows": "inherit" },
-    "猫啃故障黑体": { "ownerId": "maoken", "makerId": "maoken", "group": "source-han-sans", "relation": "fork", "upstreamName": "思源黑体", "licenseFollows": "inherit" },
-    "猫啃故障宋体": { "ownerId": "maoken", "makerId": "maoken", "group": "source-han-serif", "relation": "fork", "upstreamName": "思源宋体", "licenseFollows": "inherit" },
-    "寒蝉端黑体": { "ownerId": "chilltype", "makerId": "chilltype", "group": "source-han-sans", "relation": "fork", "upstreamName": "思源黑体", "licenseFollows": "inherit" },
-    "Chill K Sans": { "ownerId": "welai", "makerId": "welai", "group": "source-han-sans", "relation": "fork", "upstreamName": "思源黑体", "licenseFollows": "inherit" },
-    "Droid Sans": { "ownerId": "google-fonts", "makerId": "ascender", "group": "droid-sans", "relation": "original", "licenseFollows": "inherit" },
-    "文泉驿微米黑": { "ownerId": "wenquanyi", "makerId": "wenquanyi", "group": "droid-sans", "relation": "fork", "upstreamName": "Droid Sans Fallback", "licenseFollows": "inherit" },
-    "IPAexMincho": { "ownerId": "ipa", "makerId": "ipa", "group": "ipa-mincho", "relation": "original", "licenseFollows": "inherit" },
-    "一点明体": { "ownerId": "ichiten", "makerId": "ichiten", "group": "ipa-mincho", "relation": "fork", "upstreamName": "IPAexMincho", "licenseFollows": "inherit" },
-    "霞鹜新晰黑": { "ownerId": "lxgw", "makerId": "lxgw", "group": "ipa-mincho", "relation": "fork", "upstreamName": "IPA 黑体", "licenseFollows": "inherit" },
-    "霞鹜新致宋": { "ownerId": "lxgw", "makerId": "lxgw", "group": "ipa-mincho", "relation": "fork", "upstreamName": "IPA 明朝", "licenseFollows": "inherit" },
-    "阿里巴巴普惠体": { "ownerId": "alibaba-design", "makerId": "hanyi", "group": "alibaba-sans", "relation": "commissioned", "licenseFollows": "own" },
-    "阿里汉仪智能黑体": { "ownerId": "alibaba-design", "makerId": "hanyi", "group": "alibaba-sans", "relation": "collab", "licenseFollows": "own" },
-    "阿里妈妈": { "ownerId": "alibaba-design", "makerId": "alibaba-design", "group": "alibaba-sans", "relation": "commissioned", "licenseFollows": "own" },
-    "钉钉进步体": { "ownerId": "dingtalk", "makerId": "hanyi", "relation": "commissioned", "licenseFollows": "own" },
-    "OPPO Sans": { "ownerId": "oppo", "makerId": "hanyi", "relation": "commissioned", "licenseFollows": "own" },
-    "OPPOSans": { "ownerId": "oppo", "makerId": "hanyi", "relation": "commissioned", "licenseFollows": "own" },
-    "小米兰亭": { "ownerId": "xiaomi", "makerId": "hanyi", "relation": "commissioned", "licenseFollows": "own" },
-    "金山云技术体": { "ownerId": "kingsoft-cloud", "makerId": "kingsoft-cloud", "relation": "commissioned", "licenseFollows": "own" },
-    "快看世界体": { "ownerId": "kuaikan", "makerId": "kuaikan", "relation": "commissioned", "licenseFollows": "own" },
-    "抖音美好体": { "ownerId": "bytedance", "makerId": "founder", "relation": "commissioned", "licenseFollows": "own" },
-    "IBM Plex Sans SC": { "ownerId": "ibm", "makerId": "sandoll", "relation": "commissioned", "licenseFollows": "own" },
-    "站酷高端黑": { "ownerId": "zcool", "makerId": "zcool", "group": "zcool", "relation": "commissioned", "licenseFollows": "own" },
-    "站酷快乐体": { "ownerId": "zcool", "makerId": "zcool", "group": "zcool", "relation": "commissioned", "licenseFollows": "own" },
-    "站酷文艺体": { "ownerId": "zcool", "makerId": "zcool", "group": "zcool", "relation": "commissioned", "licenseFollows": "own" },
-    "胡晓波酷黑体": { "ownerId": "huxiaobo", "makerId": "huxiaobo", "relation": "original", "licenseFollows": "own" },
-    "龙藏体": { "ownerId": "zhongqi", "makerId": "zhongqi", "group": "longcang", "relation": "original", "licenseFollows": "inherit" },
-    "寒蝉龙藏楷书": { "ownerId": "chilltype", "makerId": "chilltype", "group": "longcang", "relation": "fork", "upstreamName": "龙藏体", "licenseFollows": "inherit" }
+    "思源黑体": {
+      "ownerId": "adobe",
+      "makerId": "adobe",
+      "group": "source-han-sans",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe"
+    },
+    "思源黑體": {
+      "ownerId": "adobe",
+      "makerId": "adobe",
+      "group": "source-han-sans",
+      "relation": "locale",
+      "upstreamName": "思源黑体",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe"
+    },
+    "思源宋体": {
+      "ownerId": "adobe",
+      "makerId": "adobe",
+      "group": "source-han-serif",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe"
+    },
+    "思源屏显臻宋": {
+      "ownerId": "adobe",
+      "makerId": "adobe",
+      "group": "source-han-serif",
+      "relation": "locale",
+      "upstreamName": "思源宋体",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe"
+    },
+    "屏显臻宋": {
+      "ownerId": "chncwk",
+      "makerId": "chncwk",
+      "group": "source-han-serif",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe"
+    },
+    "源界明朝": {
+      "ownerId": "adobe",
+      "makerId": "adobe",
+      "group": "source-han-serif",
+      "relation": "locale",
+      "upstreamName": "思源宋体",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe"
+    },
+    "萌神汉宋": {
+      "ownerId": "mengshen",
+      "makerId": "mengshen",
+      "group": "source-han-serif",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe"
+    },
+    "975 圆体": {
+      "ownerId": "975maru",
+      "makerId": "975maru",
+      "group": "source-han-sans",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit"
+    },
+    "猫啃故障黑体": {
+      "ownerId": "maoken",
+      "makerId": "maoken",
+      "group": "source-han-sans",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe"
+    },
+    "猫啃故障宋体": {
+      "ownerId": "maoken",
+      "makerId": "maoken",
+      "group": "source-han-serif",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe"
+    },
+    "寒蝉端黑体": {
+      "ownerId": "chilltype",
+      "makerId": "chilltype",
+      "group": "source-han-sans",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit"
+    },
+    "Chill K Sans": {
+      "ownerId": "welai",
+      "makerId": "welai",
+      "group": "source-han-sans",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit"
+    },
+    "Droid Sans": {
+      "ownerId": "google-fonts",
+      "makerId": "ascender",
+      "group": "droid-sans",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "google-fonts"
+    },
+    "文泉驿微米黑": {
+      "ownerId": "wenquanyi",
+      "makerId": "wenquanyi",
+      "group": "droid-sans",
+      "relation": "fork",
+      "upstreamName": "Droid Sans Fallback",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "google-fonts"
+    },
+    "IPAexMincho": {
+      "ownerId": "ipa",
+      "makerId": "ipa",
+      "group": "ipa-mincho",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "ipa"
+    },
+    "一点明体": {
+      "ownerId": "ichiten",
+      "makerId": "ichiten",
+      "group": "ipa-mincho",
+      "relation": "fork",
+      "upstreamName": "IPAexMincho",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "ipa"
+    },
+    "霞鹜新晰黑": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "group": "ipa-mincho",
+      "relation": "fork",
+      "upstreamName": "IPA 黑体",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "ipa"
+    },
+    "霞鹜新致宋": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "group": "ipa-mincho",
+      "relation": "fork",
+      "upstreamName": "IPA 明朝",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "ipa"
+    },
+    "阿里巴巴普惠体": {
+      "ownerId": "alibaba-design",
+      "makerId": "hanyi",
+      "group": "alibaba-sans",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "阿里汉仪智能黑体": {
+      "ownerId": "alibaba-design",
+      "makerId": "hanyi",
+      "group": "alibaba-sans",
+      "relation": "collab",
+      "licenseFollows": "own"
+    },
+    "阿里妈妈": {
+      "ownerId": "alibaba-design",
+      "makerId": "alibaba-design",
+      "group": "alibaba-sans",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "钉钉进步体": {
+      "ownerId": "dingtalk",
+      "makerId": "hanyi",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "OPPO Sans": {
+      "ownerId": "oppo",
+      "makerId": "hanyi",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "OPPOSans": {
+      "ownerId": "oppo",
+      "makerId": "hanyi",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "小米兰亭": {
+      "ownerId": "xiaomi",
+      "makerId": "hanyi",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "金山云技术体": {
+      "ownerId": "kingsoft-cloud",
+      "makerId": "kingsoft-cloud",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "快看世界体": {
+      "ownerId": "kuaikan",
+      "makerId": "kuaikan",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "抖音美好体": {
+      "ownerId": "bytedance",
+      "makerId": "founder",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "IBM Plex Sans SC": {
+      "ownerId": "ibm",
+      "makerId": "sandoll",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "站酷高端黑": {
+      "ownerId": "zcool",
+      "makerId": "zcool",
+      "group": "zcool",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "站酷快乐体": {
+      "ownerId": "zcool",
+      "makerId": "zcool",
+      "group": "zcool",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "站酷文艺体": {
+      "ownerId": "zcool",
+      "makerId": "zcool",
+      "group": "zcool",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "胡晓波酷黑体": {
+      "ownerId": "huxiaobo",
+      "makerId": "huxiaobo",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "龙藏体": {
+      "ownerId": "zhongqi",
+      "makerId": "zhongqi",
+      "group": "longcang",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "zhongqi"
+    },
+    "寒蝉龙藏楷书": {
+      "ownerId": "chilltype",
+      "makerId": "chilltype",
+      "group": "longcang",
+      "relation": "fork",
+      "upstreamName": "龙藏体",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "zhongqi"
+    },
+    "猫啃什锦黑": {
+      "ownerId": "maoken",
+      "makerId": "maoken",
+      "group": "source-han-sans",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit"
+    },
+    "猫啃网风雅宋": {
+      "ownerId": "maoken",
+      "makerId": "maoken",
+      "group": "source-han-serif",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit"
+    },
+    "猫啃网烟波宋": {
+      "ownerId": "maoken",
+      "makerId": "maoken",
+      "group": "source-han-serif",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit"
+    },
+    "猫啃网文明宋": {
+      "ownerId": "maoken",
+      "makerId": "maoken",
+      "group": "source-han-serif",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit"
+    },
+    "猫啃网星圆体": {
+      "ownerId": "maoken",
+      "makerId": "maoken",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "猫啃竹圆体": {
+      "ownerId": "maoken",
+      "makerId": "maoken",
+      "group": "rocknroll",
+      "relation": "fork",
+      "upstreamName": "RocknRoll",
+      "upstreamOwnerId": "fontworks",
+      "licenseFollows": "inherit"
+    },
+    "寒蝉宽黑体": {
+      "ownerId": "chilltype",
+      "makerId": "welai",
+      "group": "source-han-sans",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit"
+    },
+    "寒蝉团圆体": {
+      "ownerId": "chilltype",
+      "makerId": "chilltype",
+      "relation": "fork",
+      "licenseFollows": "own"
+    },
+    "寒蝉手拙体": {
+      "ownerId": "chilltype",
+      "makerId": "chilltype",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "瀞之库格尔黑体": {
+      "ownerId": "raptortype",
+      "makerId": "raptortype",
+      "group": "source-han-sans",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit"
+    },
+    "瀞明朝": {
+      "ownerId": "raptortype",
+      "makerId": "raptortype",
+      "group": "source-han-serif",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit"
+    },
+    "霞鹜漫黑": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "relation": "fork",
+      "licenseFollows": "inherit"
+    },
+    "女書鳳栖": {
+      "ownerId": "myil",
+      "makerId": "myil",
+      "relation": "fork",
+      "upstreamName": "未来荧黑",
+      "upstreamOwnerId": "welai",
+      "licenseFollows": "inherit"
+    }
   }
 }

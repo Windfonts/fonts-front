@@ -134,7 +134,7 @@
           '</form>' +
           '<a href="' + href('shopping-bag.html') + '">' + icon('bag') + '<span>选字袋</span><span class="count" data-pick-count data-count="0">0</span></a>' +
           (u
-            ? '<a class="for-dev" href="' + href('app/index.html') + '">' + icon('dashboard') + '<span>控制台</span></a>'
+            ? '<a href="' + href('app/index.html') + '">' + icon('dashboard') + '<span>控制台</span></a>'
             : '<a href="' + href('login.html') + '">' + icon('user') + '<span>登录</span></a>') +
           viewSwitchHtml() +
           '<button type="button" class="icon-btn" data-theme-toggle aria-label="' + (theme() === 'dark' ? '切换到浅色' : '切换到深色') + '">' + themeIcon() + '</button>' +
@@ -187,7 +187,7 @@
   function ensureFooter() {
     let foot = document.getElementById('wfExtraFooter');
     if (!foot) return;
-    if (!foot.children.length) WFProto.renderExtraFooter(foot, 'lite');
+    if (!foot.children.length) WFProto.renderExtraFooter(foot);
     foot.classList.remove('is-dark');
   }
 
@@ -281,11 +281,25 @@
   function brandEn(font) { const b = brandInfo(font); return (b && b.en) || ''; }
   function brandShort(font) { const b = brandInfo(font); return (b && (b.short || b.name)) || ''; }
   function brandSite(font) { const b = brandInfo(font); return (b && b.website) || (font && font.brand && font.brand.website) || ''; }
-  function brandAvatar(font) {
-    const url = (font && (font.foundryAvatar || (font.brand && (font.brand.logoUrl || font.brand.avatarUrl)))) || '';
-    if (!url) return '';
-    if (/identicon|cravatar\.com\/avatar/i.test(url)) return '';
-    return url;
+  function junkAvatar(url) {
+    return /identicon|cravatar\.(com|cn)\/avatar/i.test(url || '');
+  }
+  /* 本地清单优先：按正在展示的厂商 id 取图，不看哪条目录碰巧写了 brand.avatarUrl */
+  function resolveAvatar(url) {
+    const u = String(url || '').trim();
+    if (!u || junkAvatar(u)) return '';
+    if (/^(https?:|data:|blob:)/i.test(u)) return u;
+    return href(u.replace(/^\.\//, ''));
+  }
+  function brandAvatar(font, info) {
+    const who = info || brandInfo(font);
+    const id = (who && who.id) || (font && font.brand && font.brand.slug) || '';
+    const fromMap = (WFProto.getAvatarUrl && WFProto.getAvatarUrl(id)) || '';
+    if (fromMap) return resolveAvatar(fromMap);
+    if (id) return '';
+    const brand = font && font.brand;
+    const raw = (brand && (brand.logoUrl || brand.avatarUrl)) || (font && font.foundryAvatar) || '';
+    return resolveAvatar(raw);
   }
   /** 同一厂商的多条目录记录（别名、合作署名）归到一个 id */
   function brandSlug(font) { const b = brandInfo(font); return b ? b.id : ''; }
@@ -342,16 +356,16 @@
       (ev.quote ? '<blockquote>' + esc(ev.quote) + '</blockquote>' : '') +
       (ev.sourceKind === 'platform' ? '<p class="cite-warn">这是素材站声明，不是厂商官网。商用前请到权利人页面核对。</p>' : '') +
       (ev.sourceKind === 'unlabeled' || ev.sourceKind === 'author_note'
-        ? '<p class="cite-warn">目录只有档位或作者口头声明，没有可核验的原文链接。上线前请自己找权利人确认。</p>' : '') +
+        ? '<p class="cite-warn">目前没有可核验的原文链接。用之前请向权利人确认。</p>' : '') +
       '<p class="cite-links">' + (links.length ? links.join('') : '') +
-        ' <span>本站转述，条款以权利人为准。</span></p></div>';
+        ' <span>条款以权利人为准。</span></p></div>';
   }
 
   const REL_LABEL = { original: '原作', locale: '地区版', fork: '派生', commissioned: '委托定制', collab: '合作' };
   const FOLLOW_COPY = {
-    inherit: '沿用上游许可。派生须改名并保留声明，不能拿自己当原作授权。',
-    own: '以品牌方许可为准，不能拿制作方其他款来猜。',
-    unknown: '谱系已知，许可是否沿用尚未核对。'
+    inherit: '沿用上游许可，改完要换名并保留声明。',
+    own: '以品牌方许可为准。',
+    unknown: '同源关系已知，许可还没核对。'
   };
 
   function lineageHtml(font) {
@@ -374,14 +388,83 @@
     '</div>';
   }
 
+  const UPSTREAM_FONT = {
+    'IPA 明朝': 'IPAexMincho',
+    '思源黑体': '思源黑体',
+    '思源宋体': '思源宋体',
+    '龙藏体': '龙藏体'
+  };
+  function findFontByName(list, name) {
+    if (!name || !list) return null;
+    const hit = list.filter(function (f) { return f.name === name; })[0];
+    if (hit) return hit;
+    const alias = UPSTREAM_FONT[name];
+    if (alias) {
+      const mapped = list.filter(function (f) { return f.name === alias; })[0];
+      if (mapped) return mapped;
+    }
+    return list.filter(function (f) {
+      return f.name.indexOf(name) === 0 || name.indexOf(f.name) === 0;
+    })[0] || null;
+  }
+  function lineageKin(list, font) {
+    const g = font && font.lineage && font.lineage.group;
+    if (!g || !list) return [];
+    return list.filter(function (f) { return f.lineage && f.lineage.group === g; });
+  }
+  function isLineagePack(f, rootName) {
+    return !!(rootName && f.name !== rootName && f.name.indexOf(rootName) === 0);
+  }
+  function lineageRow(f, on, faceOf) {
+    const face = faceOf ? faceOf(f) : '';
+    return '<a class="lin-row' + (on ? ' is-on' : '') + '" href="' + href('font-detail.html?id=' + encodeURIComponent(f.id)) + '">' +
+      '<span class="lin-name"' + (face ? ' style="' + face + '"' : '') + '>' + esc(f.name) + '</span>' +
+      '<span class="lin-rel">' + esc(REL_LABEL[(f.lineage || {}).relation] || '同系') + (on ? ' · 当前' : '') + '</span></a>';
+  }
+  function lineageGhostRow(name) {
+    return '<span class="lin-row is-miss">' +
+      '<span class="lin-name">' + esc(name) + '</span>' +
+      '<span class="lin-rel">原作 · 库里没有</span></span>';
+  }
+  function lineageTreeHtml(font, list, faceOf) {
+    const all = lineageKin(list, font);
+    const L = (font && font.lineage) || {};
+    const up = L.upstreamName || '';
+    const root = findFontByName(list, up) ||
+      all.filter(function (f) { return (f.lineage || {}).relation === 'original'; })[0] ||
+      null;
+    const peers = all.filter(function (f) {
+      if (f.id === font.id) return false;
+      if (root && f.id === root.id) return false;
+      if (isLineagePack(f, (root && root.name) || up)) return false;
+      return true;
+    });
+    if (!root && !up && all.length < 2) return '';
+    const n = all.length || 1;
+    const lead = '<p class="lin-lead">' + esc(L.groupName || up || '同系') + ' · ' + n + ' 款' +
+      (!root && up ? ' · 原作不在库里' : '') + '</p>';
+    if (root || up) {
+      const kids = peers.slice();
+      if (!root || font.id !== root.id) kids.unshift(font);
+      const head = root
+        ? lineageRow(root, root.id === font.id, faceOf)
+        : lineageGhostRow(up);
+      return lead + '<div class="lin-tree">' + head +
+        '<div class="lin-kids">' + kids.map(function (k) { return lineageRow(k, k.id === font.id, faceOf); }).join('') + '</div></div>';
+    }
+    return lead + '<div class="lin-tree lin-flat">' + all.map(function (f) {
+      return lineageRow(f, f.id === font.id, faceOf);
+    }).join('') + '</div>';
+  }
+
   function foundryHtml(font, opts) {
     opts = opts || {};
     const info = opts.info || brandInfo(font);
     const name = (info && info.name) || brandName(font) || '未署名';
-    const avatar = opts.info ? '' : brandAvatar(font);
+    const avatar = brandAvatar(font, info);
     const size = opts.small ? 24 : 40;
     const mark = avatar
-      ? '<img src="' + esc(avatar) + '" alt="" width="' + size + '" height="' + size + '" loading="lazy" />'
+      ? '<img src="' + esc(avatar) + '" alt="" width="' + size + '" height="' + size + '" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'mark\',textContent:' + JSON.stringify(name.charAt(0)) + '}))" />'
       : '<span class="mark">' + esc(name.charAt(0)) + '</span>';
     const slug = (info && info.id) || brandSlug(font);
     const link = href('foundry.html?slug=' + encodeURIComponent(slug));
@@ -395,7 +478,20 @@
       (sub ? '<span class="sub">' + esc(sub) + '</span>' : '') + '</span></a>';
   }
 
+  const CAT_LABEL = { '无衬线字体': '黑体', 'Mono': '等宽' };
+  function catLabel(raw) { return CAT_LABEL[raw] || raw || ''; }
+
+  function faceHtml(font, size, info) {
+    const url = brandAvatar(font, info);
+    if (!url) return '';
+    const s = size || 16;
+    const who = info || brandInfo(font);
+    const letter = ((who && (who.short || who.name)) || '?').charAt(0);
+    return '<img class="meta-face" src="' + esc(url) + '" alt="" width="' + s + '" height="' + s + '" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'meta-face mark\',textContent:' + JSON.stringify(letter) + '}))" />';
+  }
+
   function licenseTier(font) {
+    if (WFProto.licenseTier) return WFProto.licenseTier(font);
     const t = String((font && font.license) || '').trim();
     if (t === '免费商用') return '免费商用';
     if (t === '联系授权' || t === '付费授权') return '需授权';
@@ -439,6 +535,8 @@
     brandShort: brandShort,
     brandSite: brandSite,
     brandAvatar: brandAvatar,
+    faceHtml: faceHtml,
+    catLabel: catLabel,
     brandSlug: brandSlug,
     brandVerified: brandVerified,
     brandKind: brandKind,
@@ -450,6 +548,9 @@
     sourceKindLabel: sourceKindLabel,
     licenseCiteHtml: licenseCiteHtml,
     lineageHtml: lineageHtml,
+    lineageKin: lineageKin,
+    lineageTreeHtml: lineageTreeHtml,
+    findFontByName: findFontByName,
     showPricing: showPricing,
     VERIFIED_SVG: VERIFIED_SVG,
     holdScroll: holdScroll

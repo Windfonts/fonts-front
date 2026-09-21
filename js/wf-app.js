@@ -13,11 +13,28 @@
       { id: 'm-fe', name: '前端组', email: 'fe@wenpai.org', role: 'editor', status: 'active', invitedAt: '2026-07-01T09:00:00+08:00' }
     ];
   }
+  function renameLegacy(s) {
+    const raw = JSON.stringify(s);
+    if (raw.indexOf('赛博字库') === -1 && raw.indexOf('CYBERFONTS') === -1) return false;
+    function walk(o) {
+      if (!o || typeof o !== 'object') return;
+      Object.keys(o).forEach(function (k) {
+        if (typeof o[k] === 'string') {
+          o[k] = o[k].replace(/赛博字库/g, '墨图云集').replace(/CYBERFONTS/g, 'MOTUCLOUD');
+        } else walk(o[k]);
+      });
+    }
+    walk(s);
+    return true;
+  }
   function ensureShape(s) {
     if (!s.settings) s.settings = { display: 'swap' };
     if (!s.team) s.team = defaultTeam();
     if (!s.audit) s.audit = [];
     if (!s.claims) s.claims = [];
+    if (renameLegacy(s)) {
+      try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) { /* ignore */ }
+    }
     return s;
   }
   function log(action, detail) {
@@ -200,7 +217,7 @@
     if (!subset || subset.mode === 'full') return '完整字集';
     if (subset.mode === 'text') return '按文字 ' + uniqueChars(subset.text) + ' 字';
     if (subset.mode === 'common') return '常用 ' + subset.preset + ' 字';
-    if (subset.mode === 'unicode') return 'Unicode 区间';
+    if (subset.mode === 'unicode') return '按编码范围';
     return '';
   }
   function projectBytes(p) {
@@ -332,7 +349,7 @@
       status: 'pending', submittedAt: new Date().toISOString()
     };
     state.claims.unshift(c);
-    log('提交厂商认领', c.name);
+    log('提交认领', c.name);
     save();
     return c;
   }

@@ -38,7 +38,7 @@
         const bagFonts = WFProto.getPicks().map(function (x) { return WFProto.getFont(x.id); }).filter(Boolean);
 
         root.innerHTML =
-          '<div class="app-head"><div><h1>我的字体</h1><p class="sub">' + fonts.length + ' 款在项目中 · ' + s.uploads.length + ' 款自有上传 · ' + bagFonts.length + ' 款在选字袋</p></div>' +
+          '<div class="app-head"><div><h1>我的字体</h1><p class="sub">' + fonts.length + ' 款在项目中 · ' + s.uploads.length + ' 款我上传的 · ' + bagFonts.length + ' 款在选字袋</p></div>' +
             '<div class="app-actions"><a class="btn" href="../fonts.html">字体库</a><a class="btn btn-ink" href="upload.html">上传字体</a></div></div>' +
           '<section class="app-section"><h2>在项目中使用</h2>' +
             (fonts.length ? '<table class="table"><thead><tr><th>字体</th><th>项目</th><th>字重 · 子集</th><th class="num">体积</th><th class="num">30 天请求</th><th></th></tr></thead><tbody>' +
@@ -46,7 +46,7 @@
                 const meta = WFProto.getFont(id);
                 if (!meta) return '';
                 return used[id].map(function (u, i) {
-                  return '<tr>' + (i === 0 ? '<td rowspan="' + used[id].length + '"><a href="../font-detail.html?id=' + esc(id) + '">' + esc(meta.name) + '</a><br><span class="mono t-12 muted">' + esc(meta.family) + '</span></td>' : '') +
+                  return '<tr>' + (i === 0 ? '<td rowspan="' + used[id].length + '">' + WFChrome.faceHtml(meta, 18) + '<a href="../font-detail.html?id=' + esc(id) + '">' + esc(meta.name) + '</a><br><span class="mono t-12 muted">' + esc(meta.family) + '</span></td>' : '') +
                     '<td><a href="project.html?id=' + esc(u.p.id) + '">' + esc(u.p.name) + '</a></td>' +
                     '<td><span class="num">' + u.f.weights.join(' · ') + '</span> · ' + esc(WFApp.subsetLabel(u.f.subset)) + '</td>' +
                     '<td class="num">' + WFEmbed.fmtBytes(WFApp.subsetBytes(meta, u.f.subset, u.f.weights.length)) + '</td>' +
@@ -54,14 +54,14 @@
                     '<td class="actions"><a class="btn-text" href="subset.html?project=' + esc(u.p.id) + '&font=' + esc(id) + '">调整</a></td></tr>';
                 }).join('');
               }).join('') + '</tbody></table>' : '<p class="empty">项目里还没有字体。<a href="../fonts.html">去字体库</a></p>') + '</section>' +
-          '<section class="app-section"><h2>自有上传<a class="more" href="upload.html">上传 →</a></h2>' +
+          '<section class="app-section"><h2>我上传的字体<a class="more" href="upload.html">上传 →</a></h2>' +
             (s.uploads.length ? '<table class="table"><thead><tr><th>字体</th><th>字重</th><th class="num">字形</th><th>格式</th><th class="num">原始体积</th><th>状态</th><th>上传于</th></tr></thead><tbody>' +
               s.uploads.map(function (u) {
                 return '<tr><td>' + esc(u.name) + '<br><span class="mono t-12 muted">' + esc(u.family) + '</span></td><td>' + u.weights.join(' · ') + '</td><td class="num">' + WFProto.formatCount(u.glyphCount) + '</td>' +
                   '<td class="mono">' + esc(u.format) + ' → woff2 · woff · ttf</td><td class="num">' + WFEmbed.fmtBytes(u.size) + '</td><td><span class="status-dot' + (u.status === 'ready' ? '' : ' is-pending') + '">' + (u.status === 'ready' ? '可用' : '处理中') + '</span></td><td class="mono muted">' + WFApp.fmtDate(u.uploadedAt).slice(0, 10) + '</td></tr>';
               }).join('') + '</tbody></table>' : '<p class="empty">还没有上传字体。</p>') + '</section>' +
           '<section class="app-section"><h2>选字袋<a class="more" href="../shopping-bag.html">查看 →</a></h2>' +
-            (bagFonts.length ? '<ul class="specimens" id="bagRows"></ul><p style="margin-top:var(--s-4)"><a class="btn" href="subset.html?from=bag">逐款子集化并加入项目</a></p>' : '<p class="empty">选字袋是空的。在字体库里「加入选字袋」，这里会列出来。</p>') + '</section>';
+            (bagFonts.length ? '<ul class="specimens" id="bagRows"></ul><p style="margin-top:var(--s-4)"><a class="btn" href="subset.html?from=bag">加入项目</a></p>' : '<p class="empty">选字袋是空的。在字体库点「加入选字袋」。</p>') + '</section>';
         if (bagFonts.length) WFSpecimen.renderRows(document.getElementById('bagRows'), bagFonts, { size: 40 });
       }
       Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(render);

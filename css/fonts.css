@@ -3,7 +3,6 @@
    正式环境改由 windfonts API 下发。 */
 @font-face { font-family: "Chill Round Gothic"; font-weight: 300; font-display: swap; src: url("../assets/fonts/ChillRoundGothic-300.woff2") format("woff2"); }
 @font-face { font-family: "Chill Round Gothic"; font-weight: 400; font-display: swap; src: url("../assets/fonts/ChillRoundGothic-400.woff2") format("woff2"); }
-@font-face { font-family: "Chill Round Gothic"; font-weight: 500; font-display: swap; src: url("../assets/fonts/ChillRoundGothic-500.woff2") format("woff2"); }
 @font-face { font-family: "Chill Round Gothic"; font-weight: 700; font-display: swap; src: url("../assets/fonts/ChillRoundGothic-700.woff2") format("woff2"); }
 @font-face { font-family: "Chill Round Gothic"; font-weight: 900; font-display: swap; src: url("../assets/fonts/ChillRoundGothic-900.woff2") format("woff2"); }
 /* 全局 UI 字体：阿里巴巴普惠体 3.0（Apache-2.0 免费商用，本地子集）
@@ -11,7 +10,6 @@
    同名 wenfeng-albbpht 供目录字帖行/首页活样张直接命中本地（API 侧该字重数据未建）。 */
 @font-face { font-family: "Alibaba PuHuiTi"; font-weight: 300; font-display: swap; src: url("../assets/fonts/PuHuiTi-300.woff2") format("woff2"); }
 @font-face { font-family: "Alibaba PuHuiTi"; font-weight: 400; font-display: swap; src: url("../assets/fonts/PuHuiTi-400.woff2") format("woff2"); }
-@font-face { font-family: "Alibaba PuHuiTi"; font-weight: 500; font-display: swap; src: url("../assets/fonts/PuHuiTi-500.woff2") format("woff2"); }
 @font-face { font-family: "Alibaba PuHuiTi"; font-weight: 700; font-display: swap; src: url("../assets/fonts/PuHuiTi-700.woff2") format("woff2"); }
 @font-face { font-family: "wenfeng-albbpht"; font-weight: 300; font-display: swap; src: url("../assets/fonts/PuHuiTi-300.woff2") format("woff2"); }
 @font-face { font-family: "wenfeng-albbpht"; font-weight: 400; font-display: swap; src: url("../assets/fonts/PuHuiTi-400.woff2") format("woff2"); }

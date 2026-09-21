@@ -57,7 +57,7 @@
       '<div class="tester-toolbar">' + wt + pills('align', [['left', '左'], ['center', '中'], ['right', '右']], state.align) + '</div>' +
       '<div class="tester-sliders tester-cols-2">' + slider('size', '字号', 12, 240, 1, state.size) +
         slider('leading', '行距', 0.8, 2.4, 0.05, state.leading) + slider('tracking', '字距', -0.12, 0.24, 0.005, state.tracking) + '</div>' + colors;
-    const mediaBody = field('avatar', 'email', '邮箱，取 Cravatar', 1) + field('bg', 'url', '图片地址', 1) +
+    const mediaBody = field('avatar', 'email', '填邮箱自动取头像', 1) + field('bg', 'url', '图片地址', 1) +
       '<div class="wall-bgs" role="listbox" aria-label="默认背景">' + (WFCard.WALL_BGS || []).map(function (src, i) {
         return '<button type="button" class="wall-bg" data-wall-bg="' + esc(src) + '" aria-label="背景 ' + (i + 1) + '" style="background-image:url(\'' + esc(src) + '\')"></button>';
       }).join('') + '</div>' +
@@ -75,6 +75,7 @@
       '<div class="tester-out">' + pills('frame', [['narrow', '窄幅'], ['og', '分享图'], ['x', 'X'], ['banner', '横幅'], ['square', '方图']], 'narrow') +
         '<span data-out></span></div>' +
       '<div class="tester-foot">' +
+      '<button type="button" class="btn" data-share>' + WFChrome.icon('link') + '复制链接</button>' +
       '<button type="button" class="btn" data-copy>' + WFChrome.icon('copy') + '复制图</button>' +
       '<button type="button" class="btn btn-ink" data-export>' + WFChrome.icon('download') + '导出图</button></div>' +
       '<button type="button" class="btn" data-done>完成</button></div>'
@@ -158,10 +159,10 @@
       WFCard.setSlot(stage, slot, src, function (ok, kind) {
         if (!v) return;
         if (!ok) {
-          note(slot === 'avatar' ? '这个邮箱在 Cravatar 没有头像' : '背景图加载失败');
+          note(slot === 'avatar' ? '这个邮箱没有头像' : '背景图加载失败');
           return;
         }
-        if (kind === 'preview') note('预览可以，导出或复制请改上传（来源未开放跨域）');
+        if (kind === 'preview') note('在线图片只能预览，导出请改用上传');
         else warnPaint();
       });
     }
@@ -263,7 +264,7 @@
     }
     function warnPaint() {
       if (stage && stage.querySelector('img[data-preview-only][src]')) {
-        note('预览可以，导出或复制请改上传（来源未开放跨域）');
+        note('在线图片只能预览，导出请改用上传');
       } else if (/跨域/.test(noteEl.textContent || '')) note('');
     }
     function syncFrames() {
@@ -343,6 +344,7 @@
       all.fonts[font.id] = rec;
       TWEAK.concat(['tpl', 'frame', 'align', 'wrap', 'fit', 'ink', 'paper', 'weight', 'sub', 'avatar', 'bg', 'cardName', 'cardBrand', 'hide']).forEach(function (k) { all[k] = rec[k]; });
       try { localStorage.setItem(PREF_KEY, JSON.stringify(all)); } catch (e) { /* ignore */ }
+      pushShare();
     }
     function persistSoon() { if (ctl.hidden && !WFCard.currentKind(stage)) return; clearTimeout(saveTimer); saveTimer = setTimeout(persist, 220); }
     function setOpen(on, seed) {
@@ -371,7 +373,7 @@
           takeTpl(WFCard.applyTemplate(stage, 'poem'));
         }
         if (!mine || (mine.cardName == null && mine.cardBrand == null)) WFCard.fillMeta(stage, { name: font.name, brand: WFChrome.brandName(font) });
-        requestAnimationFrame(function () { WFCard.fit(stage, stage && stage.parentElement); ensureCtlVisible(); });
+        requestAnimationFrame(function () { WFCard.fit(stage, stage && stage.parentElement); ensureCtlVisible(); markCard(); });
       }, seed && seed.scrollY);
     }
 
@@ -465,6 +467,7 @@
         takeTpl(WFCard.applyTemplate(stage, tplId), true);
         return;
       }
+      if (b.hasAttribute('data-share')) { copyShare(); return; }
       if (b.hasAttribute('data-export') || b.hasAttribute('data-copy')) {
         const copy = b.hasAttribute('data-copy');
         const btns = ctl.querySelectorAll('[data-copy],[data-export]');
@@ -472,7 +475,7 @@
         WFCard.exportStage(stage, { name: font.name, family: font.family, weight: state.weight, copy: copy }).then(function (out) {
           const kb = Math.round((out.bytes || 0) / 1024);
           const dim = out.label + ' · ' + out.w + '×' + out.h + ' · ' + kb + ' KB';
-          const skip = out.skipped ? ' · ' + out.skipped + ' 张图片来源未开放跨域，未画入' : '';
+          const skip = out.skipped ? ' · ' + out.skipped + ' 张在线图片未能导出' : '';
           const head = copy ? (out.copied ? '已复制 ' : '这页不能复制，已下载 ') : '已导出 ';
           WFChrome.toast(head + dim + skip);
         }).catch(function () { WFChrome.toast((copy ? '复制' : '导出') + '失败，等字体加载后再试'); })
@@ -498,13 +501,73 @@
       const hs = hero.style;
       hs.lineHeight = ''; hs.letterSpacing = ''; hs.textAlign = ''; hs.whiteSpace = '';
       WFCard.unframe(stage);
+      markCard();
+    }
+    function shareRec() {
+      const subEl = ctl.querySelector('[data-c="sub"]');
+      return {
+        tpl: (stage && stage.getAttribute('data-template')) || '',
+        frame: (stage && stage.getAttribute('data-card')) || '',
+        hero: String((hero && hero.textContent) || ''),
+        sub: String((subEl && subEl.value) || '')
+      };
+    }
+    function pushShare() {
+      if (!font || !font.id || !isDesign() || !WFCard.currentKind(stage)) return;
+      const path = WFCard.sharePath(font.id, shareRec());
+      const now = (location.pathname.split('/').pop() || '') + location.search;
+      if (now !== path) history.replaceState(null, '', path);
+    }
+    function copyShare() {
+      if (!font || !font.id) return;
+      persist();
+      const rec = shareRec();
+      if (!rec.tpl && !WFCard.currentKind(stage)) {
+        WFChrome.toast('先做一张样张再复制链接');
+        return;
+      }
+      if (!rec.tpl) rec.tpl = 'poem';
+      WFChrome.copy(WFCard.shareUrl(font.id, rec, { view: 'design' }), '已复制样张链接');
+    }
+    function markCard() {
+      if (opts.onCard) opts.onCard(!!WFCard.currentKind(stage));
+    }
+    function showBrowseCard(src) {
+      if (!src) return;
+      overlay(src, true);
+      if (src.forceFrame) WFCard.applyFrame(stage, src.forceFrame);
+      if (!src.cardName && !src.cardBrand) WFCard.fillMeta(stage, { name: font.name, brand: WFChrome.brandName(font) });
+      requestAnimationFrame(function () { WFCard.fit(stage, stage && stage.parentElement); markCard(); });
+      if (opts.onRestore) opts.onRestore({ size: state.size, weight: state.weight });
+    }
+    function cardSeed() {
+      const share = WFCard.readShare();
+      if (share && (share.tpl || share.hero || share.sub || share.frame)) {
+        const rec = { tpl: share.tpl || 'poem' };
+        if (share.frame) rec.forceFrame = share.frame;
+        if (share.hero) rec.hero = share.hero;
+        if (share.sub) rec.sub = share.sub;
+        return rec;
+      }
+      if (share && share.from === 'bag') {
+        const all = loadPref();
+        if (all.tpl) return all;
+      }
+      return null;
     }
     function applyWallMode() {
       if (wall && wall.classList.contains('is-editing')) {
         if (!isDesign()) setOpen(false);
         return;
       }
+      if (!isDesign()) { hideWallCard(); return; }
+      const seed = cardSeed();
+      if (seed) showBrowseCard(seed);
+      else hideWallCard();
+    }
+    function clearCard() {
       hideWallCard();
+      if (font && font.id) history.replaceState(null, '', 'font-detail.html?id=' + encodeURIComponent(font.id));
     }
     function sync(partial) {
       if (partial.size != null) { state.size = Number(partial.size); state.fit = false; }
@@ -513,7 +576,18 @@
     }
     document.addEventListener('wf:view', applyWallMode);
     applyWallMode();
-    return { open: function (seed) { setOpen(true, seed); }, close: function () { setOpen(false); }, sync: sync };
+    var inbound = WFCard.readShare();
+    if (inbound && inbound.from === 'bag') {
+      if (!isDesign()) WFChrome.setView('design');
+      setOpen(true, {});
+    }
+    return {
+      open: function (seed) { setOpen(true, seed); },
+      close: function () { setOpen(false); },
+      sync: sync,
+      share: copyShare,
+      clearCard: clearCard
+    };
   }
 
   window.WFTester = { mount: mount };
