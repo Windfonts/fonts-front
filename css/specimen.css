@@ -140,31 +140,44 @@
   display: grid; grid-template-columns: 1fr; gap: 4px;
 }
 .glyph-wall.is-editing .wall { max-height: none; overflow: auto; cursor: text; }
-/* 工坊行高编辑态 650px；左右栏对齐画板，超出可滑 */
+/* 工坊行高编辑态 650px；三栏在 studio-body 内，不依赖 display:contents */
 .glyph-wall.is-editing .glyph-wall-inner {
-  display: grid; grid-template-columns: 13rem minmax(0, 1fr) 17rem;
-  grid-template-rows: auto var(--studio-h, 650px);
-  gap: var(--s-5) var(--s-6); align-items: stretch;
   padding-top: var(--s-6) !important;
   padding-bottom: var(--s-6) !important;
 }
-.glyph-wall.is-editing .crumb { grid-column: 1 / -1; grid-row: 1; margin: 0 0 var(--s-2); }
-.glyph-wall.is-editing .card-view { grid-column: 2; grid-row: 2; min-width: 0; height: var(--studio-h, 650px); max-height: var(--studio-h, 650px); }
-.glyph-wall.is-editing .tester:not([hidden]) { display: contents; }
-.glyph-wall .tester[hidden] { display: none; }
+.glyph-wall.is-editing .crumb { margin: 0 0 var(--s-2); }
+.glyph-wall.is-editing .wall-tools { display: none; }
+.studio-body .tester-templates,
+.studio-body .tester-controls { display: none; }
+.glyph-wall.is-editing .studio-body {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr) 17rem;
+  grid-template-rows: var(--studio-h, 650px);
+  gap: var(--s-5) var(--s-6);
+  align-items: stretch;
+  min-height: 0;
+}
+.glyph-wall.is-editing .studio-body .tester-templates { display: block; }
+.glyph-wall.is-editing .studio-body .tester-controls {
+  display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
+}
 .tester-templates,
 .tester-controls { font-size: var(--fs-12); color: var(--gray); }
 .glyph-wall.is-editing .tester-templates {
-  grid-column: 1; grid-row: 2; align-self: stretch;
+  grid-column: 1; grid-row: 1; align-self: stretch;
   max-height: var(--studio-h, 650px); min-height: 0; overflow-y: auto;
   overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--gray-2) transparent;
+}
+.glyph-wall.is-editing .card-view {
+  grid-column: 2; grid-row: 1; min-width: 0;
+  height: var(--studio-h, 650px); max-height: var(--studio-h, 650px);
 }
 .glyph-wall.is-editing .tester-templates h4 {
   position: sticky; top: 0; z-index: 1;
   background: var(--surface); padding-bottom: var(--s-2);
 }
 .glyph-wall.is-editing .tester-controls {
-  grid-column: 3; grid-row: 2; align-self: stretch;
+  grid-column: 3; grid-row: 1; align-self: stretch;
   display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
   height: var(--studio-h, 650px); max-height: var(--studio-h, 650px); min-height: 0; overflow: hidden; gap: 0;
   --pill-hover: var(--paper);
@@ -361,14 +374,14 @@
 .glyphs span:hover { background: var(--ink); color: var(--on-ink); }
 
 @media (max-width: 960px) {
-  .glyph-wall.is-editing .glyph-wall-inner {
+  .glyph-wall.is-editing .studio-body {
     grid-template-columns: minmax(0, 1fr) 17rem;
-    grid-template-rows: auto auto var(--studio-h, 650px);
+    grid-template-rows: auto var(--studio-h, 650px);
   }
-  .glyph-wall.is-editing .tester-templates { grid-column: 1 / -1; grid-row: 2; height: auto; max-height: none; min-height: 0; overflow: visible; }
-  .glyph-wall.is-editing .card-view { grid-column: 1; grid-row: 3; height: var(--studio-h, 650px); max-height: var(--studio-h, 650px); min-height: 0; }
+  .glyph-wall.is-editing .tester-templates { grid-column: 1 / -1; grid-row: 1; height: auto; max-height: none; min-height: 0; overflow: visible; }
+  .glyph-wall.is-editing .card-view { grid-column: 1; grid-row: 2; height: var(--studio-h, 650px); max-height: var(--studio-h, 650px); min-height: 0; }
   .glyph-wall.is-editing .tester-controls {
-    grid-column: 2; grid-row: 3; align-self: start;
+    grid-column: 2; grid-row: 2; align-self: start;
     position: sticky; top: var(--s-4);
     height: var(--studio-h, 650px); max-height: min(var(--studio-h, 650px), calc(100svh - 6rem));
     min-height: 0;
@@ -390,12 +403,15 @@
   .specimen { padding: var(--s-4) var(--s-4) var(--s-5); }
   .weights-sheet > div { grid-template-columns: 1fr; gap: var(--s-2); }
   .weights-sheet .line { font-size: var(--fs-28); }
-  .glyph-wall.is-editing .glyph-wall-inner { grid-template-columns: minmax(0, 1fr); }
+  .glyph-wall.is-editing .studio-body {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+  }
   .glyph-wall.is-editing .tester-templates,
-  .glyph-wall.is-editing .card-view { grid-column: 1; grid-row: auto; height: auto; min-height: 0; }
-  .glyph-wall.is-editing .card-view { height: var(--studio-h, 650px); max-height: var(--studio-h, 650px); }
+  .glyph-wall.is-editing .card-view,
+  .glyph-wall.is-editing .tester-controls { grid-column: 1; grid-row: auto; }
+  .glyph-wall.is-editing .card-view { height: var(--studio-h, 650px); max-height: var(--studio-h, 650px); min-height: 0; }
   .glyph-wall.is-editing .tester-controls {
-    grid-column: 1; grid-row: auto;
     height: var(--studio-h, 650px); max-height: var(--studio-h, 650px); min-height: 0;
     display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
   }

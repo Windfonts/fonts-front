@@ -48,7 +48,11 @@
     const maxW = (view && view.clientWidth) || sz.w;
     const editing = !!(wall && wall.classList.contains('is-editing'));
     var boxH = editing ? 650 : Math.round(maxW * SIZES.og.h / SIZES.og.w);
-    if (editing && window.innerWidth <= 960) boxH = Math.min(650, Math.max(320, window.innerHeight - 240));
+    if (editing && window.innerWidth <= 960) {
+      var tplH = 0;
+      if (wall) { var tpl = wall.querySelector('.tester-templates'); if (tpl && !tpl.hidden) tplH = tpl.offsetHeight || 0; }
+      boxH = Math.min(650, Math.max(320, window.innerHeight - tplH - 160));
+    }
     const scale = Math.min(1, maxW / sz.w, boxH / sz.h);
     stage.style.setProperty('--card-scale', String(scale));
     if (!view) return;

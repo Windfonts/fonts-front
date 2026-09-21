@@ -54,8 +54,9 @@
       '<div class="tester-sliders tester-cols-2">' + slider('face', '头像', 32, 240, 1, state.face) + slider('zoom', '取景', 1, 2.5, 0.05, state.zoom) +
         slider('bgx', '横', 0, 100, 1, state.bgx) + slider('bgy', '纵', 0, 100, 1, state.bgy) +
         slider('scrim', '压色', 0, 90, 1, state.scrim) + '</div>';
-    return '<div class="tester-templates">' + '<div class="tester-sec"><div class="tester-sec-head"><h4>模板</h4></div>' + WFCard.templatesHtml() + '</div>' + '</div>' +
-      '<div class="tester-controls"><div class="tester-headbar">' +
+    return {
+      tpl: '<div class="tester-sec"><div class="tester-sec-head"><h4>模板</h4></div>' + WFCard.templatesHtml() + '</div>',
+      ctl: '<div class="tester-headbar">' +
       ('<div class="tester-tabs" role="tablist"><button type="button" role="tab" data-tab="type" class="is-on" aria-selected="true">字</button><button type="button" role="tab" data-tab="media" aria-selected="false">图</button></div>') + reset + '</div>' +
       '<div class="tester-scroll">' +
       '<div class="tester-panel" data-panel="type" role="tabpanel">' + typeBody + '</div>' +
@@ -63,7 +64,8 @@
       '<div class="tester-end"><p class="tester-note" data-note hidden></p>' +
       '<div class="tester-foot">' +
       '<button type="button" class="btn btn-ink" data-export>' + WFChrome.icon('download') + '导出图</button>' +
-      '<button type="button" class="btn" data-done>完成</button></div></div></div>';
+      '<button type="button" class="btn" data-done>完成</button></div></div>'
+    };
   }
   function fmt(k, v) {
     if (k === 'leading') return Number(v).toFixed(2);
@@ -72,14 +74,23 @@
     if (k === 'bgx' || k === 'bgy' || k === 'scrim') return Math.round(v) + '%';
     return Math.round(v) + 'px';
   }
-  function mount(host, opts) {
+  function mount(opts) {
     opts = opts || {};
-    const hero = opts.hero, stage = opts.stage, wall = opts.wall, bar = opts.bar, font = opts.font;
+    const tpl = opts.tpl, ctl = opts.ctl, hero = opts.hero, stage = opts.stage, wall = opts.wall, bar = opts.bar, font = opts.font;
     let state = defaults(opts.weight);
-    host.innerHTML = html(opts, state);
-    const inkEl = host.querySelector('[data-ink]');
-    const paperEl = host.querySelector('[data-paper]');
-    const noteEl = host.querySelector('[data-note]');
+    const parts = html(opts, state);
+    tpl.innerHTML = parts.tpl;
+    ctl.innerHTML = parts.ctl;
+    function setShown(on) { tpl.hidden = !on; ctl.hidden = !on; }
+    function ensureCtlVisible() {
+      if (!ctl || ctl.hidden || window.innerWidth > 960) return;
+      var foot = ctl.querySelector('.tester-foot'); if (!foot) return;
+      var r = foot.getBoundingClientRect();
+      if (r.bottom > window.innerHeight - 8) window.scrollBy({ top: r.bottom - window.innerHeight + 16 });
+    }
+    const inkEl = ctl.querySelector('[data-ink]');
+    const paperEl = ctl.querySelector('[data-paper]');
+    const noteEl = ctl.querySelector('[data-note]');
     const timers = {};
     let saveTimer, closeScrollY;
     function note(msg) { noteEl.textContent = msg || ''; noteEl.hidden = !msg; }
@@ -108,7 +119,7 @@
     function setFile(slot, file) {
       const url = WFAvatar.fileUrl(file);
       if (!url) { note('请选一张图片'); return; }
-      const input = host.querySelector('[data-c="' + slot + '"]');
+      const input = ctl.querySelector('[data-c="' + slot + '"]');
       if (input) input.value = '';
       note('');
       WFCard.setSlot(stage, slot, url, function (ok) {
@@ -118,7 +129,7 @@
     }
     function paintVals() {
       TWEAK.forEach(function (k) {
-        const n = host.querySelector('[data-val="' + k + '"]');
+        const n = ctl.querySelector('[data-val="' + k + '"]');
         if (n) n.textContent = fmt(k, state[k]);
       });
     }
@@ -131,7 +142,7 @@
       const bs = getComputedStyle(box);
       const have = Math.max(1, (box.clientWidth || stage.clientWidth || 800) - (parseFloat(bs.paddingLeft) || 0) - (parseFloat(bs.paddingRight) || 0) - 8);
       state.size = Math.max(12, Math.min(240, Math.floor(200 * have / need)));
-      const sl = host.querySelector('[data-k="size"]');
+      const sl = ctl.querySelector('[data-k="size"]');
       if (sl) sl.value = String(state.size);
     }
     function apply() {
@@ -162,13 +173,13 @@
     }
     function syncColors() { inkEl.value = state.ink || tokenHex('--ink', '#111111'); paperEl.value = state.paper || tokenHex('--paper', '#ffffff'); }
     function setTab(id) {
-      host.querySelectorAll('[data-tab]').forEach(function (b) { var on = b.getAttribute('data-tab') === id; b.classList.toggle('is-on', on); b.setAttribute('aria-selected', on ? 'true' : 'false'); });
-      host.querySelectorAll('[data-panel]').forEach(function (pn) { pn.hidden = pn.getAttribute('data-panel') !== id; });
+      ctl.querySelectorAll('[data-tab]').forEach(function (b) { var on = b.getAttribute('data-tab') === id; b.classList.toggle('is-on', on); b.setAttribute('aria-selected', on ? 'true' : 'false'); });
+      ctl.querySelectorAll('[data-panel]').forEach(function (pn) { pn.hidden = pn.getAttribute('data-panel') !== id; });
     }
     function syncUi() {
-      host.querySelectorAll('[data-k]').forEach(function (el) { el.value = String(state[el.getAttribute('data-k')]); });
-      host.querySelectorAll('[data-w]').forEach(function (el) { el.classList.toggle('is-on', el.getAttribute('data-w') === state.weight); });
-      host.querySelectorAll('[data-set]').forEach(function (el) {
+      ctl.querySelectorAll('[data-k]').forEach(function (el) { el.value = String(state[el.getAttribute('data-k')]); });
+      ctl.querySelectorAll('[data-w]').forEach(function (el) { el.classList.toggle('is-on', el.getAttribute('data-w') === state.weight); });
+      ctl.querySelectorAll('[data-set]').forEach(function (el) {
         el.classList.toggle('is-on', el.getAttribute('data-v') === String(state[el.getAttribute('data-set')]));
       });
       syncColors();
@@ -182,10 +193,10 @@
       state.ink = T.invert ? tokenHex('--paper', '#ffffff') : '';
       state.paper = T.invert ? tokenHex('--ink', '#111111') : '';
       if (T.hero) hero.textContent = T.hero;
-      const subEl = host.querySelector('[data-c="sub"]');
+      const subEl = ctl.querySelector('[data-c="sub"]');
       if (T.sub !== undefined && subEl) { subEl.value = T.sub; setContent('sub', T.sub); }
       syncUi();
-      WFCard.paintStudio(host, stage);
+      WFCard.paintStudio(tpl, stage);
     }
     function overlay(src, keepHero) {
       takeTpl(WFCard.applyTemplate(stage, src.tpl));
@@ -198,7 +209,7 @@
       if (src.fit !== undefined) state.fit = !!src.fit;
       if (src.weight) state.weight = String(src.weight);
       ['sub', 'avatar', 'bg'].forEach(function (k) {
-        const el = host.querySelector('[data-c="' + k + '"]');
+        const el = ctl.querySelector('[data-c="' + k + '"]');
         if (el) { el.value = durable(src[k]); setContent(k, el.value); }
       });
       [['cardName','[data-card-name]'],['cardBrand','[data-card-brand]']].forEach(function (p) { if (src[p[0]] == null) return; var el = stage.querySelector(p[1]); if (el) el.textContent = src[p[0]]; });
@@ -213,7 +224,7 @@
         hero: String((hero && hero.textContent) || '').slice(0, 200)
       };
       TWEAK.forEach(function (k) { rec[k] = state[k]; });
-      host.querySelectorAll('[data-c]').forEach(function (el) { rec[el.getAttribute('data-c')] = durable(el.value); });
+      ctl.querySelectorAll('[data-c]').forEach(function (el) { rec[el.getAttribute('data-c')] = durable(el.value); });
       var ne = stage && stage.querySelector('[data-card-name]'), be = stage && stage.querySelector('[data-card-brand]');
       rec.cardName = durable(ne && ne.textContent); rec.cardBrand = durable(be && be.textContent);
       const all = loadPref();
@@ -222,7 +233,7 @@
       TWEAK.concat(['tpl', 'align', 'wrap', 'fit', 'ink', 'paper', 'weight', 'sub', 'avatar', 'bg', 'cardName', 'cardBrand']).forEach(function (k) { all[k] = rec[k]; });
       try { localStorage.setItem(PREF_KEY, JSON.stringify(all)); } catch (e) { /* ignore */ }
     }
-    function persistSoon() { if (host.hidden) return; clearTimeout(saveTimer); saveTimer = setTimeout(persist, 220); }
+    function persistSoon() { if (ctl.hidden) return; clearTimeout(saveTimer); saveTimer = setTimeout(persist, 220); }
     function release() {
       const hs = hero.style;
       hs.lineHeight = ''; hs.letterSpacing = ''; hs.textAlign = ''; hs.whiteSpace = '';
@@ -233,7 +244,7 @@
         persist();
         WFChrome.holdScroll(wall, function () {
           if (wall) wall.classList.remove('is-editing');
-          host.hidden = true;
+          setShown(false);
           if (bar) bar.hidden = false;
           release();
         }, closeScrollY);
@@ -242,7 +253,7 @@
       }
       WFChrome.holdScroll(wall, function () {
         if (wall) wall.classList.add('is-editing');
-        host.hidden = false;
+        setShown(true);
         if (bar) bar.hidden = true;
         const all = loadPref();
         const mine = all.fonts && all.fonts[font.id];
@@ -254,12 +265,12 @@
           takeTpl(WFCard.applyTemplate(stage, 'poem'));
         }
         if (!mine || (mine.cardName == null && mine.cardBrand == null)) WFCard.fillMeta(stage, { name: font.name, brand: WFChrome.brandName(font) });
-        requestAnimationFrame(function () { WFCard.fit(stage, stage && stage.parentElement); });
+        requestAnimationFrame(function () { WFCard.fit(stage, stage && stage.parentElement); ensureCtlVisible(); });
       }, seed && seed.scrollY);
     }
 
-    host.addEventListener('mousedown', function (e) { if (e.target.closest('[data-done]')) closeScrollY = window.scrollY; }, true);
-    host.addEventListener('input', function (e) {
+    function onMd(e) { if (e.target.closest('[data-done]')) closeScrollY = window.scrollY; }
+    function onInput(e) {
       const t = e.target;
       const k = t.getAttribute('data-k');
       if (k) {
@@ -278,14 +289,14 @@
       }
       const fileSlot = t.getAttribute('data-file');
       if (fileSlot && t.files && t.files[0]) { setFile(fileSlot, t.files[0]); t.value = ''; }
-    });
-    host.addEventListener('click', function (e) {
+    }
+    function onClick(e) {
       const b = e.target.closest('button');
-      if (!b || !host.contains(b)) return;
+      if (!b || (!tpl.contains(b) && !ctl.contains(b))) return;
       const w = b.getAttribute('data-w');
       if (w) {
         state.weight = w;
-        host.querySelectorAll('[data-w]').forEach(function (x) { x.classList.toggle('is-on', x === b); });
+        ctl.querySelectorAll('[data-w]').forEach(function (x) { x.classList.toggle('is-on', x === b); });
         if (opts.onWeight) opts.onWeight(w);
         apply();
         return;
@@ -293,7 +304,7 @@
       const set = b.getAttribute('data-set');
       if (set) {
         state[set] = b.getAttribute('data-v');
-        host.querySelectorAll('[data-set="' + set + '"]').forEach(function (x) { x.classList.toggle('is-on', x === b); });
+        ctl.querySelectorAll('[data-set="' + set + '"]').forEach(function (x) { x.classList.toggle('is-on', x === b); });
         apply();
         return;
       }
@@ -313,7 +324,7 @@
       }
       const pick = b.getAttribute('data-pick');
       if (pick) {
-        const f = host.querySelector('[data-file="' + pick + '"]');
+        const f = ctl.querySelector('[data-file="' + pick + '"]');
         if (f) f.click();
         return;
       }
@@ -333,14 +344,15 @@
         return;
       }
       if (b.hasAttribute('data-done')) setOpen(false);
-    });
+    }
+    [tpl, ctl].forEach(function (el) { el.addEventListener('mousedown', onMd, true); el.addEventListener('input', onInput); el.addEventListener('click', onClick); });
 
     syncColors();
     paintVals();
     WFCard.watch(stage);
     if (stage) stage.addEventListener('input', function (e) {
       var t = e.target; if (!t.matches || !t.matches('[data-card-name],[data-card-brand],[data-slot="sub"]')) return;
-      if (t.matches('[data-slot="sub"]')) { var inp = host.querySelector('[data-c="sub"]'); if (inp) inp.value = t.textContent || ''; setContent('sub', t.textContent || ''); }
+      if (t.matches('[data-slot="sub"]')) { var inp = ctl.querySelector('[data-c="sub"]'); if (inp) inp.value = t.textContent || ''; setContent('sub', t.textContent || ''); }
       persistSoon();
     });
     if (hero) hero.addEventListener('input', persistSoon);
