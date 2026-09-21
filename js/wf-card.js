@@ -2,6 +2,7 @@
 (function () {
   const esc = function (s) { return WFProto.escapeHtml(s); };
   const SIZES = {
+    narrow: { w: 1080, h: 1440, label: '窄幅' },
     og: { w: 1200, h: 630, label: '分享图' },
     x: { w: 1200, h: 675, label: 'X 卡片' },
     banner: { w: 1600, h: 500, label: '横幅' },
@@ -16,6 +17,10 @@
     { id: 'poster', label: '海报', hint: '背景图铺满，反白压字', frame: 'og', layout: 'poster', slots: ['sub', 'bg'], hero: '让中文字体，在网页上流动。', sub: '', size: 72, leading: 1.15, tracking: 0, align: 'left', wrap: 1, fit: 0, invert: 1 },
     { id: 'ink', label: '墨底', hint: '反相居中', frame: 'og', layout: 'center', slots: ['sub'], hero: '行到水穷处，坐看云起时', sub: '—— 王维', size: 72, leading: 1.28, tracking: 0.04, align: 'center', wrap: 1, fit: 0, invert: 1 },
     { id: 'seal', label: '方印', hint: '方图，头像压在字下', frame: 'square', layout: 'seal', slots: ['sub', 'avatar'], credit: 0, hero: '文', sub: '', size: 160, leading: 1.05, tracking: 0.12, align: 'center', wrap: 0, fit: 0, invert: 0, face: 96 }
+  ];
+  const WALL_BGS = [
+    '/assets/wall/01.jpg', '/assets/wall/02.jpg', '/assets/wall/03.jpg',
+    '/assets/wall/04.jpg', '/assets/wall/05.jpg', '/assets/wall/06.jpg'
   ];
 
   function token(name, fallback) {
@@ -47,13 +52,15 @@
     stage.style.height = sz.h + 'px';
     const maxW = (view && view.clientWidth) || sz.w;
     const editing = !!(wall && wall.classList.contains('is-editing'));
-    var boxH = editing ? 650 : Math.round(maxW * SIZES.og.h / SIZES.og.w);
-    if (editing && window.innerWidth <= 960) {
-      var tplH = 0;
-      if (wall) { var tpl = wall.querySelector('.tester-templates'); if (tpl && !tpl.hidden) tplH = tpl.offsetHeight || 0; }
-      boxH = Math.min(650, Math.max(320, window.innerHeight - tplH - 160));
+    var scale, boxH;
+    if (editing) {
+      const maxH = 480;
+      scale = Math.min(1, maxW / sz.w, maxH / sz.h);
+      boxH = Math.max(1, Math.round(sz.h * scale));
+    } else {
+      scale = maxW / sz.w;
+      boxH = Math.max(1, Math.round(sz.h * scale));
     }
-    const scale = Math.min(1, maxW / sz.w, boxH / sz.h);
     stage.style.setProperty('--card-scale', String(scale));
     if (!view) return;
     view.classList.add('is-framed');
@@ -259,6 +266,16 @@
     });
   }
 
+  function copyCanvas(canvas) {
+    return new Promise(function (resolve, reject) {
+      if (!navigator.clipboard || !window.ClipboardItem) { reject(new Error('clipboard')); return; }
+      canvas.toBlob(function (blob) {
+        if (!blob) { reject(new Error('toBlob')); return; }
+        navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]).then(function () { resolve(blob); }).catch(reject);
+      }, 'image/png');
+    });
+  }
+
   function exportStage(stage, opts) {
     opts = opts || {};
     return Promise.all([readyFace(opts.family, opts.weight), collectImages(stage)]).then(function (res) {
@@ -266,9 +283,16 @@
     }).then(function (pics) {
       const out = outputSize(stage);
       const canvas = snapshot(stage, pics.imgs);
-      return download(canvas, '文风-' + fileSlug(opts.name) + '-' + (stage.getAttribute('data-template') || out.kind) + '.png').then(function (blob) {
-        return { blob: blob, kind: out.kind, label: out.label, w: canvas.width, h: canvas.height, bytes: blob.size, skipped: pics.skipped };
-      });
+      const name = '文风-' + fileSlug(opts.name) + '-' + (stage.getAttribute('data-template') || out.kind) + '.png';
+      const pack = function (blob, copied) {
+        return { blob: blob, kind: out.kind, label: out.label, w: canvas.width, h: canvas.height, bytes: blob.size, skipped: pics.skipped, copied: !!copied };
+      };
+      if (opts.copy) {
+        return copyCanvas(canvas).then(function (blob) { return pack(blob, true); }).catch(function () {
+          return download(canvas, name).then(function (blob) { return pack(blob, false); });
+        });
+      }
+      return download(canvas, name).then(function (blob) { return pack(blob, false); });
     });
   }
 
@@ -331,6 +355,7 @@
   window.WFCard = {
     SIZES: SIZES,
     TEMPLATES: TEMPLATES,
+    WALL_BGS: WALL_BGS,
     applyFrame: applyFrame,
     applyTemplate: applyTemplate,
     setGuide: setGuide,
@@ -340,6 +365,7 @@
     fit: fit,
     watch: watch,
     snapshot: snapshot,
+    outputSize: outputSize,
     exportStage: exportStage,
     templatesHtml: templatesHtml,
     unframe: unframe,

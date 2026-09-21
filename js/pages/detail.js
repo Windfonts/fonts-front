@@ -51,6 +51,11 @@
     const maker = WFChrome.makerInfo(font);
     const L = font.lineage || {};
     const avatar = WFChrome.brandAvatar(font);
+    /* 厂商简介：字典 description 优先（多段取首段做侧栏摘要，全文在厂商页） */
+    const brandInfoEntry = WFChrome.brandInfo(font) || {};
+    const brandDesc = (brandInfoEntry.description ||
+      ((font.brand && font.brand.description && !/出品的字体$/.test(font.brand.description)) ? font.brand.description : '')
+    ).split(/\n+/).map(function (s) { return s.trim(); }).filter(Boolean)[0] || '';
     const lic = licenseLists(font);
     const user = WFChrome.user();
     const sample = WFSpecimen.PRESETS.filter(function (p) { return p.id === 'poem'; })[0].text;
@@ -68,8 +73,12 @@
     ].filter(function (r) { return r && r[1]; });
 
     const wallText = sample || font.name;
+    const wallPhotos = WFCard.WALL_BGS;
+    var wallHash = 0, wallI, wallId = String(font.id || '');
+    for (wallI = 0; wallI < wallId.length; wallI++) wallHash = (wallHash * 33 + wallId.charCodeAt(wallI)) >>> 0;
+    const wallPhoto = wallPhotos[wallHash % wallPhotos.length];
     root.innerHTML =
-      '<section class="glyph-wall" id="glyphWall"><div class="container glyph-wall-inner">' +
+      '<section class="glyph-wall" id="glyphWall" style="--wall-photo:url(\'' + esc(wallPhoto) + '\')"><div class="container glyph-wall-inner">' +
         '<p class="crumb crumb-dark"><a href="fonts.html">字体库</a><span>/</span>' +
           (font.category ? '<a href="fonts.html?cat=' + encodeURIComponent(font.category) + '">' + esc(font.category) + '</a><span>/</span>' : '') +
           '<span>' + esc(font.name) + '</span></p>' +
@@ -94,7 +103,7 @@
             return '<button type="button" data-preset="' + p.id + '"' + (p.id === 'poem' ? ' class="is-on"' : '') + '>' + p.label + '</button>';
           }).join('') + '<button type="button" data-preset="__wall">字形墙</button></div>' +
           '<span class="spacer"></span>' +
-          '<button type="button" class="btn-text" id="btnEdit">' + WFChrome.icon('edit') + '编辑样张</button>' +
+          '<button type="button" class="btn-text for-design" id="btnEdit">' + WFChrome.icon('edit') + '编辑样张</button>' +
         '</div>' +
       '</div></section>' +
       '<div class="container">' +
@@ -171,6 +180,7 @@
         '<aside class="detail-side" aria-label="字体资料">' +
           '<div class="panel panel-pad side-brand">' +
             WFChrome.foundryHtml(font, { sub: '在库 ' + brandCount + ' 款' }) +
+            (brandDesc ? '<p class="brand-desc">' + esc(brandDesc) + '</p>' : '') +
             (font.description
               ? '<details class="side-fold"><summary>' + WFChrome.icon('chevron-down') + '简介</summary>' +
                 '<p class="desc" id="desc">' + esc(font.description) + '</p></details>'
@@ -264,9 +274,11 @@
     const sizeVal = document.getElementById('heroSizeVal');
     const tools = document.getElementById('wallTools');
     const WALL = '天地玄黄 宇宙洪荒 日月盈昃 Aa 0123';
+    let tester;
     size.addEventListener('input', function () {
       hero.style.fontSize = size.value + 'px';
       sizeVal.textContent = size.value + 'px';
+      if (tester) tester.sync({ size: Number(size.value) });
     });
     tools.querySelectorAll('[data-w]').forEach(function (b) {
       b.addEventListener('click', function () {
@@ -275,6 +287,7 @@
         hero.style.fontWeight = weight;
         big.style.fontWeight = weight;
         embed.setItems([{ family: font.family, weights: [weight], version: version }]);
+        if (tester) tester.sync({ weight: weight });
       });
     });
     tools.querySelectorAll('[data-preset]').forEach(function (b) {
@@ -283,6 +296,7 @@
         const p = WFSpecimen.PRESETS.filter(function (x) { return x.id === id; })[0];
         applyPreview(p ? p.text : WALL, id === '__wall');
         tools.querySelectorAll('[data-preset]').forEach(function (x) { x.classList.toggle('is-on', x === b); });
+        if (tester) tester.sync({});
       });
     });
     function syncTools() {
@@ -296,7 +310,12 @@
       big.textContent = t;
       document.querySelectorAll('[data-weight-line]').forEach(function (n) { n.textContent = t; });
     });
-    const tester = WFTester.mount({ tpl: document.getElementById('wallTpl'), ctl: document.getElementById('wallCtl'),
+    function applyWallState(s) {
+      if (s.size) { size.value = String(Math.round(s.size)); hero.style.fontSize = size.value + 'px'; }
+      if (s.weight) weight = String(s.weight);
+      syncTools();
+    }
+    tester = WFTester.mount({ tpl: document.getElementById('wallTpl'), ctl: document.getElementById('wallCtl'),
       hero: hero,
       stage: document.getElementById('heroStage'),
       view: document.getElementById('cardView'),
@@ -310,11 +329,8 @@
         big.style.fontWeight = w;
         embed.setItems([{ family: font.family, weights: [w], version: version }]);
       },
-      onClose: function (s) {
-        if (s.size) { size.value = String(Math.round(s.size)); hero.style.fontSize = size.value + 'px'; }
-        if (s.weight) weight = String(s.weight);
-        syncTools();
-      }
+      onClose: applyWallState,
+      onRestore: applyWallState
     });
     var editScrollY;
     document.getElementById('btnEdit').addEventListener('mousedown', function () { editScrollY = window.scrollY; }, true);

@@ -45,7 +45,8 @@
   }
 
   function isLocal(src) {
-    return /^(blob:|data:)/.test(src || '');
+    if (/^(blob:|data:)/.test(src || '')) return true;
+    try { return new URL(src, location.href).origin === location.origin; } catch (e) { return false; }
   }
 
   function fileUrl(file) {

@@ -51,6 +51,9 @@
       '<div class="tester-sliders tester-cols-2">' + slider('size', '字号', 12, 240, 1, state.size) +
         slider('leading', '行距', 0.8, 2.4, 0.05, state.leading) + slider('tracking', '字距', -0.12, 0.24, 0.005, state.tracking) + '</div>' + colors;
     const mediaBody = field('avatar', 'email', '邮箱，取 Cravatar', 1) + field('bg', 'url', '图片地址', 1) +
+      '<div class="wall-bgs" role="listbox" aria-label="默认背景">' + (WFCard.WALL_BGS || []).map(function (src, i) {
+        return '<button type="button" class="wall-bg" data-wall-bg="' + esc(src) + '" aria-label="背景 ' + (i + 1) + '" style="background-image:url(\'' + esc(src) + '\')"></button>';
+      }).join('') + '</div>' +
       '<div class="tester-sliders tester-cols-2">' + slider('face', '头像', 32, 240, 1, state.face) + slider('zoom', '取景', 1, 2.5, 0.05, state.zoom) +
         slider('bgx', '横', 0, 100, 1, state.bgx) + slider('bgy', '纵', 0, 100, 1, state.bgy) +
         slider('scrim', '压色', 0, 90, 1, state.scrim) + '</div>';
@@ -62,9 +65,12 @@
       '<div class="tester-panel" data-panel="type" role="tabpanel">' + typeBody + '</div>' +
       '<div class="tester-panel" data-panel="media" role="tabpanel" hidden>' + mediaBody + '</div></div>' +
       '<div class="tester-end"><p class="tester-note" data-note hidden></p>' +
+      '<div class="tester-out">' + pills('frame', [['narrow', '窄幅'], ['og', '分享图'], ['x', 'X'], ['banner', '横幅'], ['square', '方图']], 'narrow') +
+        '<span data-out></span></div>' +
       '<div class="tester-foot">' +
-      '<button type="button" class="btn btn-ink" data-export>' + WFChrome.icon('download') + '导出图</button>' +
-      '<button type="button" class="btn" data-done>完成</button></div></div>'
+      '<button type="button" class="btn" data-copy>' + WFChrome.icon('copy') + '复制图</button>' +
+      '<button type="button" class="btn btn-ink" data-export>' + WFChrome.icon('download') + '导出图</button></div>' +
+      '<button type="button" class="btn" data-done>完成</button></div>'
     };
   }
   function fmt(k, v) {
@@ -113,7 +119,8 @@
           note(slot === 'avatar' ? '这个邮箱在 Cravatar 没有头像' : '背景图加载失败');
           return;
         }
-        if (kind === 'preview') note('预览可以，导出请改上传（来源未开放跨域）');
+        if (kind === 'preview') note('预览可以，导出或复制请改上传（来源未开放跨域）');
+        else warnPaint();
       });
     }
     function setFile(slot, file) {
@@ -176,30 +183,66 @@
       ctl.querySelectorAll('[data-tab]').forEach(function (b) { var on = b.getAttribute('data-tab') === id; b.classList.toggle('is-on', on); b.setAttribute('aria-selected', on ? 'true' : 'false'); });
       ctl.querySelectorAll('[data-panel]').forEach(function (pn) { pn.hidden = pn.getAttribute('data-panel') !== id; });
     }
+    function syncBgPick() {
+      var inp = ctl.querySelector('[data-c="bg"]');
+      var cur = inp ? String(inp.value || '').trim() : '';
+      ctl.querySelectorAll('[data-wall-bg]').forEach(function (el) {
+        el.classList.toggle('is-on', el.getAttribute('data-wall-bg') === cur);
+      });
+    }
     function syncUi() {
       ctl.querySelectorAll('[data-k]').forEach(function (el) { el.value = String(state[el.getAttribute('data-k')]); });
+      syncBgPick();
       ctl.querySelectorAll('[data-w]').forEach(function (el) { el.classList.toggle('is-on', el.getAttribute('data-w') === state.weight); });
       ctl.querySelectorAll('[data-set]').forEach(function (el) {
-        el.classList.toggle('is-on', el.getAttribute('data-v') === String(state[el.getAttribute('data-set')]));
+        const key = el.getAttribute('data-set');
+        if (key === 'frame') return;
+        el.classList.toggle('is-on', el.getAttribute('data-v') === String(state[key]));
       });
       syncColors();
       apply();
+      syncFrames();
     }
-    function takeTpl(T) {
+    function warnPaint() {
+      if (stage && stage.querySelector('img[data-preview-only][src]')) {
+        note('预览可以，导出或复制请改上传（来源未开放跨域）');
+      } else if (/跨域/.test(noteEl.textContent || '')) note('');
+    }
+    function syncFrames() {
+      const lock = stage && stage.getAttribute('data-template') === 'seal';
+      const kind = (stage && stage.getAttribute('data-card')) || '';
+      ctl.querySelectorAll('[data-set="frame"]').forEach(function (el) {
+        const v = el.getAttribute('data-v');
+        el.hidden = !!(lock && v !== 'square');
+        el.classList.toggle('is-on', v === kind);
+      });
+      const outEl = ctl.querySelector('[data-out]');
+      const out = stage && WFCard.outputSize(stage);
+      if (outEl && out) outEl.textContent = out.w + '×' + out.h + ' · ' + out.label;
+    }
+    function setFrame(kind) {
+      if (!kind || (stage && stage.getAttribute('data-template') === 'seal' && kind !== 'square')) return;
+      WFCard.applyFrame(stage, kind);
+      syncFrames();
+      persistSoon();
+    }
+    function takeTpl(T, keepText) {
       if (!T) return;
       state.size = T.size; state.leading = T.leading; state.tracking = T.tracking;
       state.align = T.align; state.wrap = !!T.wrap; state.fit = !!T.fit;
       state.face = T.face || 88; state.zoom = 1; state.bgx = 50; state.bgy = 50; state.scrim = 62;
       state.ink = T.invert ? tokenHex('--paper', '#ffffff') : '';
       state.paper = T.invert ? tokenHex('--ink', '#111111') : '';
-      if (T.hero) hero.textContent = T.hero;
-      const subEl = ctl.querySelector('[data-c="sub"]');
-      if (T.sub !== undefined && subEl) { subEl.value = T.sub; setContent('sub', T.sub); }
+      if (!keepText) {
+        if (T.hero) hero.textContent = T.hero;
+        const subEl = ctl.querySelector('[data-c="sub"]');
+        if (T.sub !== undefined && subEl) { subEl.value = T.sub; setContent('sub', T.sub); }
+      }
       syncUi();
       WFCard.paintStudio(tpl, stage);
     }
     function overlay(src, keepHero) {
-      takeTpl(WFCard.applyTemplate(stage, src.tpl));
+      takeTpl(WFCard.applyTemplate(stage, src.tpl), keepHero);
       if (keepHero && src.hero != null) hero.textContent = String(src.hero);
       TWEAK.forEach(function (k) { if (src[k] != null) state[k] = Number(src[k]); });
       if (src.align) state.align = src.align;
@@ -208,17 +251,24 @@
       if (src.wrap !== undefined) state.wrap = !!src.wrap;
       if (src.fit !== undefined) state.fit = !!src.fit;
       if (src.weight) state.weight = String(src.weight);
+      if (src.frame) {
+        const native = (WFCard.currentTemplate(stage) || {}).frame;
+        const wide = native === 'og' || native === 'banner' || native === 'x';
+        if (!(wide && src.frame === 'narrow')) WFCard.applyFrame(stage, src.frame);
+      }
       ['sub', 'avatar', 'bg'].forEach(function (k) {
         const el = ctl.querySelector('[data-c="' + k + '"]');
         if (el) { el.value = durable(src[k]); setContent(k, el.value); }
       });
       [['cardName','[data-card-name]'],['cardBrand','[data-card-brand]']].forEach(function (p) { if (src[p[0]] == null) return; var el = stage.querySelector(p[1]); if (el) el.textContent = src[p[0]]; });
       syncUi();
+      warnPaint();
     }
     function persist() {
       if (!font || !font.id) return;
       const rec = {
         tpl: (stage && stage.getAttribute('data-template')) || 'poem',
+        frame: (stage && stage.getAttribute('data-card')) || '',
         align: state.align, wrap: !!state.wrap, fit: !!state.fit,
         ink: state.ink || '', paper: state.paper || '', weight: String(state.weight || ''),
         hero: String((hero && hero.textContent) || '').slice(0, 200)
@@ -230,15 +280,10 @@
       const all = loadPref();
       all.fonts = all.fonts || {};
       all.fonts[font.id] = rec;
-      TWEAK.concat(['tpl', 'align', 'wrap', 'fit', 'ink', 'paper', 'weight', 'sub', 'avatar', 'bg', 'cardName', 'cardBrand']).forEach(function (k) { all[k] = rec[k]; });
+      TWEAK.concat(['tpl', 'frame', 'align', 'wrap', 'fit', 'ink', 'paper', 'weight', 'sub', 'avatar', 'bg', 'cardName', 'cardBrand']).forEach(function (k) { all[k] = rec[k]; });
       try { localStorage.setItem(PREF_KEY, JSON.stringify(all)); } catch (e) { /* ignore */ }
     }
-    function persistSoon() { if (ctl.hidden) return; clearTimeout(saveTimer); saveTimer = setTimeout(persist, 220); }
-    function release() {
-      const hs = hero.style;
-      hs.lineHeight = ''; hs.letterSpacing = ''; hs.textAlign = ''; hs.whiteSpace = '';
-      WFCard.unframe(stage);
-    }
+    function persistSoon() { if (ctl.hidden && !WFCard.currentKind(stage)) return; clearTimeout(saveTimer); saveTimer = setTimeout(persist, 220); }
     function setOpen(on, seed) {
       if (!on) {
         persist();
@@ -246,7 +291,7 @@
           if (wall) wall.classList.remove('is-editing');
           setShown(false);
           if (bar) bar.hidden = false;
-          release();
+          applyWallMode();
         }, closeScrollY);
         if (opts.onClose) opts.onClose({ size: state.size, weight: state.weight }); closeScrollY = null;
         return;
@@ -303,6 +348,7 @@
       }
       const set = b.getAttribute('data-set');
       if (set) {
+        if (set === 'frame') { setFrame(b.getAttribute('data-v')); return; }
         state[set] = b.getAttribute('data-v');
         ctl.querySelectorAll('[data-set="' + set + '"]').forEach(function (x) { x.classList.toggle('is-on', x === b); });
         apply();
@@ -322,6 +368,15 @@
         takeTpl(WFCard.applyTemplate(stage, stage.getAttribute('data-template') || 'poem'));
         return;
       }
+      const wallBg = b.getAttribute('data-wall-bg');
+      if (wallBg) {
+        var bgInp = ctl.querySelector('[data-c="bg"]');
+        if (bgInp) bgInp.value = wallBg;
+        setContent('bg', wallBg);
+        persistSoon();
+        syncBgPick();
+        return;
+      }
       const pick = b.getAttribute('data-pick');
       if (pick) {
         const f = ctl.querySelector('[data-file="' + pick + '"]');
@@ -330,17 +385,23 @@
       }
       const tab = b.getAttribute('data-tab');
       if (tab) { setTab(tab); return; }
-      const tpl = b.getAttribute('data-tpl');
-      if (tpl) {
-        takeTpl(WFCard.applyTemplate(stage, tpl));
+      const tplId = b.getAttribute('data-tpl');
+      if (tplId) {
+        takeTpl(WFCard.applyTemplate(stage, tplId), true);
         return;
       }
-      if (b.hasAttribute('data-export')) {
-        WFCard.exportStage(stage, { name: font.name, family: font.family, weight: state.weight }).then(function (out) {
+      if (b.hasAttribute('data-export') || b.hasAttribute('data-copy')) {
+        const copy = b.hasAttribute('data-copy');
+        const btns = ctl.querySelectorAll('[data-copy],[data-export]');
+        btns.forEach(function (x) { x.disabled = true; });
+        WFCard.exportStage(stage, { name: font.name, family: font.family, weight: state.weight, copy: copy }).then(function (out) {
           const kb = Math.round((out.bytes || 0) / 1024);
-          WFChrome.toast('已导出 ' + out.label + ' · ' + out.w + '×' + out.h + ' · ' + kb + ' KB' +
-            (out.skipped ? ' · ' + out.skipped + ' 张图片来源未开放跨域，未画入' : ''));
-        }).catch(function () { WFChrome.toast('导出失败，等字体加载后再试'); });
+          const dim = out.label + ' · ' + out.w + '×' + out.h + ' · ' + kb + ' KB';
+          const skip = out.skipped ? ' · ' + out.skipped + ' 张图片来源未开放跨域，未画入' : '';
+          const head = copy ? (out.copied ? '已复制 ' : '这页不能复制，已下载 ') : '已导出 ';
+          WFChrome.toast(head + dim + skip);
+        }).catch(function () { WFChrome.toast((copy ? '复制' : '导出') + '失败，等字体加载后再试'); })
+          .then(function () { btns.forEach(function (x) { x.disabled = false; }); });
         return;
       }
       if (b.hasAttribute('data-done')) setOpen(false);
@@ -356,7 +417,112 @@
       persistSoon();
     });
     if (hero) hero.addEventListener('input', persistSoon);
-    return { open: function (seed) { setOpen(true, seed); }, close: function () { setOpen(false); } };
+    function isDesign() { return WFChrome.view() !== 'dev'; }
+    function hideWallCard() {
+      if (!hero) return;
+      const hs = hero.style;
+      hs.lineHeight = ''; hs.letterSpacing = ''; hs.textAlign = ''; hs.whiteSpace = '';
+      WFCard.unframe(stage);
+    }
+    var inkImg = null, inkSrc = '', inkTimer = 0;
+    function wallBgUrl(el) {
+      var bg = el && getComputedStyle(el).backgroundImage;
+      var m = bg && bg.match(/url\(["']?([^"')]+)["']?\)/);
+      return m ? m[1] : '';
+    }
+    function glyphRect() {
+      if (!hero || !hero.firstChild) return null;
+      var range = document.createRange();
+      range.selectNodeContents(hero);
+      var r = range.getBoundingClientRect();
+      return r.width && r.height ? r : null;
+    }
+    function coverDraw(ctx, img, cw, ch) {
+      var ir = img.naturalWidth / img.naturalHeight;
+      var br = cw / ch;
+      var dw, dh, dx, dy;
+      if (ir > br) { dh = ch; dw = ch * ir; dx = (cw - dw) / 2; dy = 0; }
+      else { dw = cw; dh = cw / ir; dx = 0; dy = (ch - dh) / 2; }
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.drawImage(img, dx, dy, dw, dh);
+    }
+    function lumaBox(ctx, x, y, w, h, cw, ch) {
+      var xa = Math.max(0, Math.min(cw - 1, Math.round(x)));
+      var ya = Math.max(0, Math.min(ch - 1, Math.round(y)));
+      var ww = Math.max(1, Math.min(cw - xa, Math.round(w)));
+      var hh = Math.max(1, Math.min(ch - ya, Math.round(h)));
+      var pix = ctx.getImageData(xa, ya, ww, hh).data;
+      var s = 0, n = 0, i;
+      for (i = 0; i < pix.length; i += 4) {
+        s += pix[i] * 0.2126 + pix[i + 1] * 0.7152 + pix[i + 2] * 0.0722;
+        n++;
+      }
+      return n ? s / n / 255 : 0.5;
+    }
+    function applyWallInk() {
+      if (!wall) return;
+      var inner = wall.querySelector('.glyph-wall-inner');
+      if (!inner || !isDesign() || wall.classList.contains('is-editing')) {
+        wall.removeAttribute('data-ink-mid');
+        wall.removeAttribute('data-ink-mix');
+        return;
+      }
+      var src = wallBgUrl(inner);
+      if (!src) {
+        wall.removeAttribute('data-ink-mid');
+        wall.removeAttribute('data-ink-mix');
+        return;
+      }
+      function paint(img) {
+        var box = inner.getBoundingClientRect();
+        var glyphs = glyphRect();
+        var canvas = applyWallInk._c || (applyWallInk._c = document.createElement('canvas'));
+        var scale = Math.min(1, 360 / Math.max(1, box.width));
+        var cw = Math.max(32, Math.round(box.width * scale));
+        var ch = Math.max(16, Math.round(box.height * scale));
+        canvas.width = cw;
+        canvas.height = ch;
+        var ctx = canvas.getContext('2d', { willReadFrequently: true });
+        coverDraw(ctx, img, cw, ch);
+        var gx = glyphs ? (glyphs.left - box.left) * scale : cw * 0.15;
+        var gy = glyphs ? (glyphs.top - box.top) * scale : ch * 0.3;
+        var gw = glyphs ? glyphs.width * scale : cw * 0.7;
+        var gh = glyphs ? glyphs.height * scale : ch * 0.35;
+        var a = lumaBox(ctx, gx, gy, gw * 0.32, gh, cw, ch);
+        var b = lumaBox(ctx, gx + gw * 0.34, gy, gw * 0.32, gh, cw, ch);
+        var c = lumaBox(ctx, gx + gw * 0.68, gy, gw * 0.32, gh, cw, ch);
+        var avg = (a + b + c) / 3;
+        var spread = Math.max(a, b, c) - Math.min(a, b, c);
+        wall.setAttribute('data-ink-mid', avg > 0.52 ? 'dark' : 'light');
+        if (spread > 0.16) wall.setAttribute('data-ink-mix', '');
+        else wall.removeAttribute('data-ink-mix');
+      }
+      if (inkImg && inkSrc === src) { paint(inkImg); return; }
+      var img = new Image();
+      img.onload = function () { inkImg = img; inkSrc = src; paint(img); };
+      img.src = src;
+    }
+    function applyWallMode() {
+      if (wall && wall.classList.contains('is-editing')) {
+        if (!isDesign()) setOpen(false);
+        applyWallInk();
+        return;
+      }
+      hideWallCard();
+      applyWallInk();
+    }
+    window.addEventListener('resize', function () {
+      clearTimeout(inkTimer);
+      inkTimer = setTimeout(applyWallInk, 120);
+    });
+    function sync(partial) {
+      if (partial.size != null) { state.size = Number(partial.size); state.fit = false; }
+      if (partial.weight != null) state.weight = String(partial.weight);
+      if (WFCard.currentKind(stage)) apply();
+    }
+    document.addEventListener('wf:view', applyWallMode);
+    applyWallMode();
+    return { open: function (seed) { setOpen(true, seed); }, close: function () { setOpen(false); }, sync: sync };
   }
 
   window.WFTester = { mount: mount };
