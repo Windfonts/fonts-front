@@ -266,6 +266,18 @@ html[data-view="dev"] body.page-bag main .for-design { display: unset; }
 a.foundry:hover { text-decoration: none; }
 a.foundry:hover .name { text-decoration: underline; text-underline-offset: 0.2em; }
 
+.who-row { display: flex; align-items: center; gap: var(--s-2); }
+.who-row > .foundry { flex: 1; min-width: 0; }
+.fav {
+  width: 1.15em; height: 1.15em; flex: none; padding: 0;
+  display: inline-grid; place-items: center;
+  color: var(--gray-2); background: none; vertical-align: middle;
+}
+.fav:hover,
+.fav.is-on { color: var(--ink); background: none; }
+.fav .icon { width: 1em; height: 1em; }
+.who-row > .fav { font-size: var(--fs-16); width: 1.15em; height: 1.15em; }
+
 /* —— 数据表 —— */
 .table { width: 100%; border-collapse: collapse; font-size: var(--fs-13); }
 .table th, .table td { text-align: left; padding: 0.75rem 0.75rem; border-bottom: 1px solid var(--rule); vertical-align: middle; }

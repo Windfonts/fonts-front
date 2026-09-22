@@ -1,6 +1,7 @@
 /* Shared specimen + pick bag + catalog (fonts.json) — v3.3 */
 (function () {
   const KEY = 'wf-proto-picks';
+  const FAV_KEY = 'wf-favs';
   const SAMPLE_KEY = 'wf-proto-sample.v3';
   const SIZE_KEY = 'wf-proto-size';
   const SPECIMEN_CFG_KEY = 'wf-proto-specimen-cfg.v1';
@@ -159,6 +160,32 @@
     updateBadges(arr.length);
     document.dispatchEvent(new CustomEvent('wf:picks', { detail: arr }));
   }
+  function loadFavs() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(FAV_KEY) || '{}');
+      return {
+        fonts: Array.isArray(raw.fonts) ? raw.fonts : [],
+        authors: Array.isArray(raw.authors) ? raw.authors : []
+      };
+    } catch (e) { return { fonts: [], authors: [] }; }
+  }
+  function saveFavs(data) {
+    localStorage.setItem(FAV_KEY, JSON.stringify({ fonts: data.fonts, authors: data.authors }));
+    document.dispatchEvent(new CustomEvent('wf:favs'));
+  }
+  function hasFav(list, id) {
+    return !!list.find(function (x) { return x.id === id; });
+  }
+  function toggleFav(bucket, id, name) {
+    const data = loadFavs();
+    const list = data[bucket];
+    const i = list.findIndex(function (x) { return x.id === id; });
+    if (i >= 0) list.splice(i, 1);
+    else list.push({ id: id, name: name || id });
+    saveFavs(data);
+    return i < 0;
+  }
+
   function updateBadges(n) {
     document.querySelectorAll('[data-pick-count]').forEach(function (el) {
       el.textContent = String(n);
@@ -711,6 +738,10 @@
       if (WFProto.hasPick(id)) return WFProto.removePick(id);
       return WFProto.addPick(id, name);
     },
+    hasFavFont: function (id) { return hasFav(loadFavs().fonts, id); },
+    hasFavAuthor: function (id) { return hasFav(loadFavs().authors, id); },
+    toggleFavFont: function (id, name) { return toggleFav('fonts', id, name); },
+    toggleFavAuthor: function (id, name) { return toggleFav('authors', id, name); },
     count: function () { return loadPicks().length; },
     syncJoinButtons: function () {
       document.querySelectorAll('[data-join]').forEach(function (btn) {

@@ -181,7 +181,10 @@
       '<div class="detail-top"><p class="crumb"><a href="foundry.html">厂商</a><span>/</span><span>' + esc(g.name) + '</span></p></div>' +
       '<div class="foundry-hero">' +
         '<div class="foundry-hero-main">' +
-          WFChrome.foundryHtml(g.font, { sub: heroSub }) +
+          '<div class="who-row">' +
+            WFChrome.foundryHtml(g.font, { sub: heroSub }) +
+            WFChrome.favHtml('author', g.slug, g.name) +
+          '</div>' +
           (desc ? '<p class="desc">' + esc(desc) + '</p>' : '') +
           WFSponsor.html(info) +
           origins +

@@ -87,10 +87,8 @@
   }
 
   function emptyHtml(slug) {
-    return '<div class="sp-empty">' +
-      '<div class="sp-ph" aria-hidden="true">' + WFChrome.icon('gift') + '</div>' +
-      '<p class="sp-host">请<a href="' + HOST + '" target="_blank" rel="noopener noreferrer">前往上传</a>，或<a href="' +
-        claimHref(slug) + '">认领主页</a>后修改。</p></div>';
+    return '<div class="sp-empty"><p class="sp-host">请<a href="' + HOST + '" target="_blank" rel="noopener noreferrer">前往上传</a>，或<a href="' +
+      claimHref(slug) + '">认领主页</a>后修改。</p></div>';
   }
 
   function liveOf(tip, demo) {

@@ -25,6 +25,16 @@
     return out.slice(0, n);
   }
 
+  function famOf(font) {
+    return String((font && font.family) || '').replace(/^wenfeng-/, '');
+  }
+
+  function devTag(font, weight) {
+    const fam = famOf(font);
+    const text = [fam, weight].filter(Boolean).join(' · ');
+    return text ? '<span class="for-dev home-forest-fam">' + esc(text) + '</span>' : '';
+  }
+
   function bits(font) {
     const n = (font.weights || []).length || 1;
     const parts = [WFChrome.licenseTier(font), n + ' 字重'];
@@ -66,11 +76,14 @@
     WFProto.ensureFontCss(font.family, w);
     return '<div class="home-now-card">' +
       '<p class="home-now-glyph" style="font-family:' + esc(stack) + ';font-weight:' + w + '">' + esc(glyph || '风') + '</p>' +
-      '<div><h2><a href="' + detail + '">' + esc(font.name) + '</a></h2>' +
+      '<div><h2><a href="' + detail + '">' + esc(font.name) + '</a>' +
+        WFChrome.favHtml('font', font.id, font.name) + '</h2>' +
       '<div class="sub">' + WFChrome.foundryHtml(font, { small: true }) + '</div>' +
-      '<p class="bits">' + esc(bits(font)) + '</p></div>' +
+      '<p class="bits">' + esc(bits(font)) +
+        '<span class="for-dev"> · <span class="mono">' + esc(famOf(font)) + '</span> · ' + esc(w) + '</span></p></div>' +
       '<div class="acts">' +
-        '<a class="btn btn-ink" href="' + detail + '">' + WFChrome.icon('eye') + '查看这款</a>' +
+        '<a class="btn ink-design for-design" href="' + detail + '">' + WFChrome.icon('eye') + '查看这款</a>' +
+        '<a class="btn ink-dev for-dev" href="' + detail + '#use">' + WFChrome.icon('code') + '获取代码</a>' +
         '<button type="button" class="btn" id="nowPick">' + WFChrome.icon('plus') + '加入选字袋</button>' +
       '</div></div>';
   }
@@ -218,11 +231,11 @@
           WFProto.ensureFontCss(f.family, hw);
           return '<div class="home-forest-cell is-on">' +
             '<p class="home-forest-glyph" data-forest-glyph contenteditable="true" spellcheck="false">' + esc(g) + '</p>' +
-            '<i>' + esc(f.name) + '</i></div>';
+            '<i>' + esc(f.name) + devTag(f, hw) + '</i></div>';
         }
         return '<button type="button" class="home-forest-cell" data-forest="' + esc(f.id) + '" title="' + esc(f.name) +
           '" style="font-family:' + esc(stack) + ';font-weight:' + w + '">' +
-          '<span class="home-forest-mark">' + esc(g) + '</span><i>' + esc(f.name) + '</i></button>';
+          '<span class="home-forest-mark">' + esc(g) + '</span><i>' + esc(f.name) + devTag(f, w) + '</i></button>';
       }).join('');
     }
 
@@ -261,6 +274,8 @@
       live.style.fontWeight = w;
       liveName.textContent = f.name;
       liveName.href = 'font-detail.html?id=' + encodeURIComponent(f.id);
+      const liveFamily = document.getElementById('liveFamily');
+      if (liveFamily) liveFamily.textContent = famOf(f) + ' · ' + w;
       if (forest) {
         forest.innerHTML = forestHtml(f, glyph);
         const liveG = forest.querySelector('[data-forest-glyph]');

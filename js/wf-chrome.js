@@ -73,7 +73,7 @@
   }
 
   /* —— 图标：Remix Icon 线标（Apache-2.0），经墨图爱可 icons.motucloud.com/collection/ri 选取，打包在 assets/icons.svg。symbol id 是站内语义名。 —— */
-  const ICON_VER = '20260922rj';
+  const ICON_VER = '20260922rk';
   function icon(name, cls) {
     return '<svg class="icon' + (cls ? ' ' + cls : '') + '" aria-hidden="true" focusable="false"><use href="' + href('assets/icons.svg') + '?v=' + ICON_VER + '#i-' + name + '"/></svg>';
   }
@@ -448,10 +448,21 @@
     });
     return { all: all, L: L, up: up, root: root, rest: rest, buckets: buckets, n: all.length || 1 };
   }
+  function lineageMeta(f) {
+    const parts = [];
+    if (f.charCount) parts.push('字符 ' + WFProto.formatCount(f.charCount));
+    if (f.glyphCount) parts.push('字形 ' + WFProto.formatCount(f.glyphCount));
+    if (f.weights && f.weights.length) parts.push(f.weights.length + ' 字重');
+    if (f.releaseYear) parts.push(String(f.releaseYear));
+    const lic = licenseTier(f);
+    if (lic) parts.push(lic);
+    return parts.length ? '<span class="lin-meta">' + esc(parts.join(' · ')) + '</span>' : '';
+  }
   function lineageRow(f, on, faceOf) {
     const face = faceOf ? faceOf(f) : '';
     return '<a class="lin-row' + (on ? ' is-on' : '') + '" href="' + href('font-detail.html?id=' + encodeURIComponent(f.id)) + '">' +
       '<span class="lin-name"' + (face ? ' style="' + face + '"' : '') + '>' + esc(f.name) + '</span>' +
+      lineageMeta(f) +
       (on ? '<span class="lin-rel">当前</span>' : '') + '</a>';
   }
   function lineageGhostRow(name) {
@@ -483,6 +494,41 @@
       (!split.root && split.up ? ' · 原作不在库里' : '') + '</p>';
     return lead + lineageListHtml(font, split, faceOf);
   }
+
+  function paintFav(btn) {
+    const kind = btn.getAttribute('data-fav');
+    const id = btn.getAttribute('data-id');
+    const on = kind === 'author' ? WFProto.hasFavAuthor(id) : WFProto.hasFavFont(id);
+    btn.classList.toggle('is-on', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.setAttribute('aria-label', on ? '取消收藏' : '收藏');
+    btn.innerHTML = icon(on ? 'star-fill' : 'star');
+  }
+  function syncFavs() {
+    document.querySelectorAll('[data-fav]').forEach(paintFav);
+  }
+  function favHtml(kind, id, name) {
+    if (!id) return '';
+    const on = kind === 'author' ? WFProto.hasFavAuthor(id) : WFProto.hasFavFont(id);
+    return '<button type="button" class="fav' + (on ? ' is-on' : '') + '" data-fav="' + kind +
+      '" data-id="' + esc(id) + '" data-name="' + esc(name || '') + '" aria-pressed="' +
+      (on ? 'true' : 'false') + '" aria-label="' + (on ? '取消收藏' : '收藏') + '">' +
+      icon(on ? 'star-fill' : 'star') + '</button>';
+  }
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('[data-fav]');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const kind = btn.getAttribute('data-fav');
+    const id = btn.getAttribute('data-id');
+    if (!id) return;
+    const name = btn.getAttribute('data-name');
+    const on = kind === 'author' ? WFProto.toggleFavAuthor(id, name) : WFProto.toggleFavFont(id, name);
+    toast(on ? '已收藏' : '已取消收藏');
+    syncFavs();
+  });
+  document.addEventListener('wf:favs', syncFavs);
 
   function foundryHtml(font, opts) {
     opts = opts || {};
@@ -583,6 +629,8 @@
     skipGlyphCov: skipGlyphCov,
     kindLabel: kindLabel,
     foundryHtml: foundryHtml,
+    favHtml: favHtml,
+    syncFavs: syncFavs,
     licenseTier: licenseTier,
     licenseEvidence: licenseEvidence,
     sourceKindLabel: sourceKindLabel,

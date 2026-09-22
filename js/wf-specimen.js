@@ -100,7 +100,8 @@
     const w = firstWeight(font);
     return '<li class="specimen" data-font-id="' + esc(font.id) + '" data-family="' + esc(font.family || '') +
         '" data-weight="' + w + '">' +
-      '<div class="head"><a class="name" href="' + detail + '">' + esc(font.name) + '</a>' + metaHtml(font) + '</div>' +
+      '<div class="head"><span class="name-line"><a class="name" href="' + detail + '">' + esc(font.name) + '</a>' +
+        (opts.noAction ? '' : WFChrome.favHtml('font', font.id, font.name)) + '</span>' + metaHtml(font) + '</div>' +
       (opts.noAction ? '' :
         '<button type="button" class="act" data-join="' + esc(font.id) + '" data-name="' + esc(font.name) + '">' + WFChrome.icon('plus') + '加入选字袋</button>') +
       '<a class="preview" href="' + detail + '" data-specimen style="font-family:' + esc(stack) +

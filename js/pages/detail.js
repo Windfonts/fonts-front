@@ -125,7 +125,8 @@
       '</div>' +
       '<div class="detail-title">' +
         '<div class="detail-title-main">' +
-          '<h1>' + esc(font.name) + (font.en && font.en !== font.name ? ' <small>' + esc(font.en) + '</small>' : '') + '</h1>' +
+          '<h1><span>' + esc(font.name) + '</span>' + WFChrome.favHtml('font', font.id, font.name) +
+            (font.en && font.en !== font.name ? '<small>' + esc(font.en) + '</small>' : '') + '</h1>' +
           '<p class="dotlist">' +
             '<a class="foundry-inline" href="foundry.html?slug=' + encodeURIComponent(WFChrome.brandSlug(font)) + '">' +
               (avatar ? '<img src="' + esc(avatar) + '" alt="" />' : '') + esc(brand || '未署名') +
@@ -179,7 +180,10 @@
         '</div>' +
         '<aside class="detail-side" aria-label="字体资料">' +
           '<div class="panel panel-pad side-brand">' +
-            WFChrome.foundryHtml(font, { sub: '在库 ' + brandCount + ' 款' }) +
+            '<div class="who-row">' +
+              WFChrome.foundryHtml(font, { sub: '在库 ' + brandCount + ' 款' }) +
+              WFChrome.favHtml('author', WFChrome.brandSlug(font), brand) +
+            '</div>' +
             (brandDesc ? '<p class="brand-desc">' + esc(brandDesc) + '</p>' : '') +
             (font.description
               ? '<details class="side-fold"><summary>' + WFChrome.icon('chevron-down') + '简介</summary>' +
