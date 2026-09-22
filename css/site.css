@@ -31,6 +31,7 @@ body.is-index main > section {
 body.is-index .page-head { padding-top: 0; }
 .home-hero { padding: var(--s-16) 0; }
 .home-hero-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--s-3) var(--s-4); margin-bottom: var(--s-8); }
+.page-index .home-hero-top { margin-bottom: 6rem; }
 .home-hero .kicker { font-size: var(--fs-13); color: var(--gray); font-weight: var(--fw-label); }
 .home-hero .live {
   display: block;
@@ -49,6 +50,7 @@ body.is-index .page-head { padding-top: 0; }
   display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--s-6);
   margin-top: var(--s-16); padding-top: var(--s-16); border-top: 1px solid var(--rule);
 }
+.page-index .home-hero-foot { margin-top: 6rem; }
 .home-hero .lead { font-size: var(--fs-16); color: var(--gray); max-width: 34em; line-height: 1.7; }
 .home-hero .live-caption { display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-3); font-size: var(--fs-13); color: var(--gray); }
 .home-hero .live-using { display: inline-flex; align-items: baseline; gap: 0.45em; white-space: nowrap; }
@@ -108,7 +110,7 @@ body.is-index .page-head { padding-top: 0; }
   padding: var(--s-6);
 }
 .home-forest-cell.is-on:hover { background: var(--ink); }
-.home-forest-cell:not(.is-on) { padding: var(--s-8) var(--s-4); }
+.home-forest-cell:not(.is-on) { padding: var(--s-8) var(--s-8); }
 .home-forest-glyph {
   font-size: clamp(5.5rem, 16vw, 12rem);
   line-height: 0.95; letter-spacing: -0.04em;
@@ -534,6 +536,8 @@ body.page-404 { min-height: 100vh; display: flex; flex-direction: column; }
   .home-forest,
   .home-partners { padding: var(--s-12) 0; }
   .home-hero-foot { grid-template-columns: minmax(0, 1fr); margin-top: var(--s-12); padding-top: var(--s-12); }
+  .page-index .home-hero-top { margin-bottom: var(--s-12); }
+  .page-index .home-hero-foot { margin-top: var(--s-16); }
   .home-forest-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .home-forest-glyph { font-size: clamp(4.5rem, 28vw, 8rem); }
   .home-now-card { grid-template-columns: 1fr; }
@@ -628,13 +632,12 @@ a.stat-row:hover .track i { background: var(--ink-hover); }
   margin: 0;
   padding: 0;
 }
-.home-partners-list a {
+.home-partners-list li {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 2.25rem;
 }
-.home-partners-list a:hover { text-decoration: none; }
 .home-partners-list img {
   display: block;
   height: 1.75rem;
@@ -645,12 +648,72 @@ a.stat-row:hover .track i { background: var(--ink-hover); }
   filter: grayscale(1);
   transition: opacity var(--dur) var(--ease);
 }
-.home-partners-list a:hover img { opacity: 1; }
 [data-theme="dark"] .home-partners-list img {
   filter: grayscale(1) invert(1);
   opacity: 0.5;
 }
-[data-theme="dark"] .home-partners-list a:hover img { opacity: 0.92; }
+.page-index .home-close { position: relative; overflow: hidden; padding: 12rem 0; }
+.home-close-bg {
+  position: absolute;
+  z-index: 0;
+  right: -0.02em;
+  bottom: calc(18% - 0.48em);
+  margin: 0;
+  font-size: clamp(22rem, 40vw, 34rem);
+  font-weight: 800;
+  line-height: 0.72;
+  letter-spacing: -0.08em;
+  color: color-mix(in srgb, var(--ink) 8%, transparent);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+.home-close-num {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--s-8);
+}
+.home-close-figure {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.2em;
+  flex: none;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+}
+.home-close-figure b {
+  font-size: clamp(4.5rem, 9vw, 7rem);
+  font-weight: 700;
+}
+.home-close-figure span {
+  font-size: var(--fs-20);
+  font-weight: var(--fw-title);
+  color: var(--gray);
+}
+.home-close h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+.home-close .lead {
+  margin: var(--s-4) 0 0;
+  max-width: 28em;
+  font-size: var(--fs-16);
+  color: var(--gray);
+  line-height: 1.7;
+}
+.home-close .btn { margin-top: var(--s-6); }
+@media (max-width: 768px) {
+  .page-index .home-close { padding: 8rem 0; }
+  .home-close-bg { font-size: 16rem; right: -0.2em; bottom: 12%; }
+  .home-close-num { flex-direction: column; align-items: flex-start; }
+}
 .page-index .site-extra-footer,
 .page-features .site-extra-footer,
 .page-pricing .site-extra-footer,
