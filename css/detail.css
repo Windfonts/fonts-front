@@ -169,13 +169,13 @@
 .side-brand .sp-box { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
 .side-brand .sp-tip { max-width: none; }
 .side-brand .sp-code { width: 6.5rem; }
-.side-brand .side-meta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
-.side-brand .side-meta h3 { margin-bottom: var(--s-2); display: flex; align-items: center; gap: 0.35em; }
+.side-brand .side-meta { margin-top: var(--s-5); padding-top: var(--s-5); border-top: 1px solid var(--rule); }
+.side-brand .side-meta h3 { margin-bottom: var(--s-4); display: flex; align-items: center; gap: 0.35em; }
 .side-brand .side-meta h3 .icon,
 .side-brand .kv dt .icon { width: 1em; height: 1em; color: var(--gray-2); }
 .side-brand .kv dt { display: inline-flex; align-items: center; gap: 0.35em; }
-.detail-side .side-meta .kv { font-size: var(--fs-12); }
-.detail-side .side-meta .kv > div { padding: 0.35rem 0; }
+.detail-side .side-meta .kv { font-size: var(--fs-13); }
+.detail-side .side-meta .kv > div { padding: var(--s-3) 0; align-items: baseline; }
 .detail-side .side-meta .kv dd { color: var(--ink-2); font-weight: var(--fw-body); }
 
 

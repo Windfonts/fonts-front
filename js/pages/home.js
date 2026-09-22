@@ -82,8 +82,8 @@
       '<p class="bits">' + esc(bits(font)) +
         '<span class="for-dev"> · <span class="mono">' + esc(famOf(font)) + '</span> · ' + esc(w) + '</span></p></div>' +
       '<div class="acts">' +
-        '<a class="btn ink-design for-design" href="' + detail + '">' + WFChrome.icon('eye') + '查看这款</a>' +
-        '<a class="btn ink-dev for-dev" href="' + detail + '#use">' + WFChrome.icon('code') + '获取代码</a>' +
+        '<a class="btn ink-design" href="' + detail + '">' + WFChrome.icon('eye') + '查看这款</a>' +
+        '<a class="btn ink-dev" href="' + detail + '#use">' + WFChrome.icon('code') + '获取代码</a>' +
         '<button type="button" class="btn" id="nowPick">' + WFChrome.icon('plus') + '加入选字袋</button>' +
       '</div></div>';
   }
@@ -179,7 +179,7 @@
         '<a class="more" href="foundry.html">' + WFChrome.icon('building') + '厂商索引</a></div>' +
       '<div class="stats-grid">' +
         panel('certificate', '按授权', rows(tierItems, function (r) { return 'fonts.html?license=' + encodeURIComponent(r.label); }), '分类说明见文档。') +
-        panel('building', '字体最多的厂商', rows(topBrands, function (r) { return 'foundry.html?slug=' + encodeURIComponent(r.key); })) +
+        panel('chart', '字体最多的厂商', rows(topBrands, function (r) { return 'foundry.html?slug=' + encodeURIComponent(r.key); })) +
         panel('text', '字符规模', rows(scaleItems),
           '按已有字数的 ' + charKnown + ' 款统计' + (unknown ? '；' + unknown + ' 款还没录入字数。' : '。')) +
       '</div>';
@@ -290,10 +290,10 @@
       }
       if (related) {
         const rows = relatedOf(list, featured, f);
-        if (relatedCount) relatedCount.textContent = catLabel(f) + ' · 抽出 ' + rows.length + ' 款';
+        if (relatedCount) relatedCount.innerHTML = esc(catLabel(f)) + ' · 抽出 ' + rows.length + ' 款';
         WFSpecimen.renderRows(related, rows, { size: 40 });
       }
-      if (more) more.innerHTML = '<a class="btn btn-lg" href="fonts.html">' + WFChrome.icon('grid') + '全部 ' + list.length + ' 款</a>';
+      if (more) more.innerHTML = WFChrome.icon('arrow-right') + '全部 ' + list.length + ' 款';
       settleFace(f, w, ((live.textContent || '') + glyph).replace(/\s+/g, ''));
     }
 

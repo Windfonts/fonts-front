@@ -69,6 +69,7 @@
 .icon { width: 1.1em; height: 1.1em; flex: 0 0 auto; fill: currentColor; vertical-align: -0.2em; display: inline-block; }
 .icon-btn { display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%; color: var(--ink-2); background: transparent; }
 .icon-btn:hover { background: var(--fill); color: var(--ink); }
+.icon-btn[aria-pressed="true"] { background: var(--fill); color: var(--ink); }
 .icon-btn .icon { width: 1.2rem; height: 1.2rem; }
 .btn .icon { width: 1.05em; height: 1.05em; margin-left: -0.15em; }
 .btn-text .icon { color: var(--gray); }

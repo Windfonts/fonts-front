@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>特点 · 文风字体</title>
   <meta name="description" content="在网页上使用中文字体：托管、子集化、域名白名单，一行代码接入。" />
@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css?v=20260922f" />
   <link rel="stylesheet" href="css/specimen.css" />
-  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/site.css?v=20260922an" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-features">
@@ -25,21 +25,24 @@
         <p class="lead">为中文网页而生：字体托管、按需子集化、域名白名单，一行代码接入。每款字的授权以出处原文为准。</p>
         <p class="live-caption"><span>正在使用</span><a class="now" id="liveName" href="fonts.html">—</a><button type="button" id="liveNext"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-refresh"/></svg>换一款</button><span>· 点击标题可改写</span></p>
         <div class="home-cta">
-          <a class="btn btn-ink btn-lg" href="fonts.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-font-size"/></svg>浏览字体库</a>
+          <a class="btn btn-ink btn-lg" href="fonts.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-folder"/></svg>浏览字体库</a>
           <a class="btn btn-lg" href="docs.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-book"/></svg>查看接入文档</a>
+        </div>
+        <div class="home-codebar">
+          <span class="lbl">一行接入</span>
+          <div class="cdn-switch seg" role="group" aria-label="CDN 节点">
+            <button type="button" data-cdn="cn" class="is-on">中国</button>
+            <button type="button" data-cdn="hk">香港</button>
+            <button type="button" data-cdn="en">国际</button>
+          </div>
+          <pre id="ctaCode">&lt;link rel="stylesheet" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/index.css"&gt;</pre>
+          <button type="button" class="btn btn-sm" id="ctaCopy"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-copy"/></svg>复制</button>
         </div>
       </div>
     </section>
 
-    <div class="container">
-      <div class="home-codebar">
-        <span class="lbl">一行接入</span>
-        <pre id="ctaCode">&lt;link rel="stylesheet" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/index.css"&gt;</pre>
-        <button type="button" class="btn btn-sm" id="ctaCopy"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-copy"/></svg>复制</button>
-      </div>
-    </div>
-
-    <section class="container section">
+    <section>
+      <div class="container">
       <div class="home-features">
         <div class="panel">
           <svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-flash"/></svg>
@@ -66,40 +69,49 @@
           <h3>公开、开放、负责</h3><p>每款字体写明出处与许可短名，授权以原文为准。厂商可认领品牌页。你的数据依旧属于你。</p>
         </div>
       </div>
+      </div>
     </section>
 
-    <section class="container section">
-        <div class="section-head"><h2><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-font"/></svg>精选字体</h2><a class="more" href="fonts.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-grid"/></svg>全部字体</a></div>
+    <section>
+      <div class="container">
+        <div class="section-head"><h2><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-font"/></svg>精选字体</h2><a class="more" href="fonts.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-arrow-right"/></svg>全部字体</a></div>
       <ul class="specimens home-picks" id="homeRows"></ul>
+      </div>
     </section>
 
-    <section class="container section">
+    <section>
+      <div class="container">
       <div class="section-head"><h2><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-building"/></svg>在库厂商</h2><a class="more" href="foundry.html">厂商索引</a></div>
       <div class="home-foundries" id="homeFoundries"></div>
+      </div>
     </section>
 
-    <section class="container section" data-pricing hidden>
+    <section data-pricing hidden>
+      <div class="container">
       <div class="section-head"><h2><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-certificate"/></svg>定价</h2><a class="more" href="pricing.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-book"/></svg>完整说明</a></div>
       <div class="home-plans">
         <div class="panel"><h3>免费</h3><div class="price">¥0<small> / 月</small></div><p>开源与免费商用字体 · 1 个项目 · 3 个域名 · 每月 10 GB 流量。</p><a class="btn" href="login.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-plus"/></svg>免费开始</a></div>
         <div class="panel"><h3>专业</h3><div class="price">¥99<small> / 月</small></div><p>商业字体库 · 10 个项目 · 域名不限 · 每月 200 GB · 动态子集化 API。</p><a class="btn btn-ink" href="login.html?plan=pro"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-rocket"/></svg>开始专业版</a></div>
         <div class="panel"><h3>企业</h3><div class="price">按需<small> 报价</small></div><p>SSO · 审计日志 · 私有化部署 · SLA 99.9% · 专属支持与合同发票。</p><a class="btn" href="mailto:hi@windfonts.com"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-mail"/></svg>联系销售</a></div>
       </div>
+      </div>
     </section>
 
-    <section class="container section">
+    <section>
+      <div class="container">
       <div class="home-more">
           <a class="panel" href="docs.html#npm"><h3>插件与集成 ↗</h3><p>用 npm loader 或文档里的方式接到自己的项目。</p></a>
           <a class="panel" href="foundry.html"><h3>在库厂商 ↗</h3><p>品牌方、字库与开源项目都在厂商页。</p></a>
+      </div>
       </div>
     </section>
   </main>
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js"></script>
-  <script src="js/wf-chrome.js?v=20260922ri"></script>
+  <script src="js/wf-proto.js?v=20260922g"></script>
+  <script src="js/wf-chrome.js?v=20260922rq"></script>
   <script src="js/wf-specimen.js"></script>
-  <script src="js/pages/features.js"></script>
+  <script src="js/pages/features.js?v=20260922a"></script>
 </body>
 </html>

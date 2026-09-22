@@ -20,8 +20,15 @@
     ]
   };
   const PAGE_SIZE = 10;
-  /* 正式 CDN：https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/index.css（zh_index.css 为中文子集） */
+  /* 正式 CDN：https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/index.css（zh_index.css 为中文子集）。
+     页面预览固定走中国节点。嵌入代码可选中国 / 香港 / 国际，记在本地。 */
   const CDN = 'https://cn.windfonts.com';
+  const CDN_KEY = 'wf-cdn';
+  const CDN_HOSTS = [
+    { id: 'cn', label: '中国', host: 'cn.windfonts.com' },
+    { id: 'hk', label: '香港', host: 'hk.windfonts.com' },
+    { id: 'en', label: '国际', host: 'en.windfonts.com' }
+  ];
   const CDN_LICENSE_NOTE = '<!-- 此中文网页字体由文风字体（Windfonts）免费提供，您可以自由引用，请务必保留此授权许可标注 https://wenfeng.org/license -->';
   const CSS_TO_NAME = { '100': 'thin', '200': 'extralight', '300': 'light', '350': 'demilight', '400': 'regular', '500': 'medium', '600': 'semibold', '700': 'bold', '800': 'heavy', '900': 'black' };
 
@@ -35,8 +42,8 @@
   function copyrightYear() {
     return String(new Date().getFullYear());
   }
-  function copyrightLine(icpHtml) {
-    return '© ' + copyrightYear() + ' 文风字体 · 文派（广州）科技有限公司 · ' + (icpHtml || ICP_NO);
+  function copyrightLine() {
+    return '版权所有 · 文风 ™ · © ' + copyrightYear() + ' 文派（广州）科技有限公司';
   }
 
   const WEIGHT_MAP = {
@@ -280,9 +287,50 @@
     return (hit || CSS_TO_NAME[s] || 'regular').toLowerCase().replace(/[\s-]+/g, '');
   }
 
-  function cssUrl(family, weight, version) {
+  function cdnHost() {
+    let id = 'cn';
+    try { id = localStorage.getItem(CDN_KEY) || 'cn'; } catch (e) {}
+    return CDN_HOSTS.filter(function (h) { return h.id === id; })[0] || CDN_HOSTS[0];
+  }
+  function cdnOrigin() { return 'https://' + cdnHost().host; }
+  function setCdn(id) {
+    if (!CDN_HOSTS.filter(function (h) { return h.id === id; }).length) return;
+    try { localStorage.setItem(CDN_KEY, id); } catch (e) {}
+    document.dispatchEvent(new CustomEvent('wf:cdn', { detail: { id: id } }));
+  }
+  function cdnSwitchHtml() {
+    const on = cdnHost().id;
+    return '<div class="cdn-switch seg" role="group" aria-label="CDN 节点">' +
+      CDN_HOSTS.map(function (h) {
+        return '<button type="button" data-cdn="' + h.id + '"' + (h.id === on ? ' class="is-on"' : '') + '>' + h.label + '</button>';
+      }).join('') + '</div>';
+  }
+  function syncCdnUi(root) {
+    const on = cdnHost().id;
+    const host = cdnHost().host;
+    (root || document).querySelectorAll('.cdn-switch [data-cdn]').forEach(function (b) {
+      b.classList.toggle('is-on', b.getAttribute('data-cdn') === on);
+    });
+    const re = /(?:https:\/\/)?(?:cn|hk|en)\.windfonts\.com/g;
+    const scope = (root || document).querySelector('.docs-body') || null;
+    if (!scope) return;
+    const walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT);
+    let node;
+    while ((node = walker.nextNode())) {
+      if (node.parentElement && node.parentElement.closest('script, style, .cdn-switch')) continue;
+      if (!re.test(node.nodeValue)) { re.lastIndex = 0; continue; }
+      re.lastIndex = 0;
+      node.nodeValue = node.nodeValue.replace(re, function (m) {
+        return m.indexOf('https://') === 0 ? 'https://' + host : host;
+      });
+    }
+  }
+  function cssUrl(family, weight, version, origin) {
     const file = version === 'zh' ? 'zh_index.css' : 'index.css';
-    return CDN + '/wenfeng/fonts/' + familySlug(family) + '/' + weightName(family, weight || '400') + '/web/' + file;
+    return (origin || CDN) + '/wenfeng/fonts/' + familySlug(family) + '/' + weightName(family, weight || '400') + '/web/' + file;
+  }
+  function embedCssUrl(family, weight, version) {
+    return cssUrl(family, weight, version, cdnOrigin());
   }
 
   /**
@@ -544,7 +592,7 @@
     const icp = '<a href="' + ICP_HREF + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(ICP_NO) + '</a>';
     el.innerHTML =
       '<div class="extra-inner">' +
-        '<p class="extra-copy">' + copyrightLine(icp) + '</p>' +
+        '<p class="extra-copy">' + copyrightLine() + ' · ' + icp + '</p>' +
         '<nav class="extra-links" aria-label="条款">' +
         EXTRA_LINKS.map(function (l) {
           const ext = l.external || /^https?:/.test(l.path);
@@ -850,13 +898,20 @@
       }
     },
     CDN: CDN,
+    CDN_HOSTS: CDN_HOSTS,
     CDN_LICENSE_NOTE: CDN_LICENSE_NOTE,
+    cdnHost: cdnHost,
+    cdnOrigin: cdnOrigin,
+    setCdn: setCdn,
+    cdnSwitchHtml: cdnSwitchHtml,
+    syncCdnUi: syncCdnUi,
     familySlug: familySlug,
     weightName: weightName,
     cssUrl: cssUrl,
-    /** 项目对外地址：与公开字体同一域名 cn.windfonts.com */
+    embedCssUrl: embedCssUrl,
+    /** 项目对外地址：跟当前选的 CDN 节点走 */
     projectCssUrl: function (slug, file) {
-      return CDN + '/p/' + encodeURIComponent(slug || '') + '/' + (file || 'index.css');
+      return cdnOrigin() + '/p/' + encodeURIComponent(slug || '') + '/' + (file || 'index.css');
     },
     CSS_VERSIONS: [
       { id: 'full', hint: '完整字符集（推荐）' },
@@ -1098,6 +1153,14 @@
     }
   };
 
+  document.addEventListener('click', function (e) {
+    const b = e.target.closest('.cdn-switch [data-cdn]');
+    if (!b) return;
+    e.preventDefault();
+    setCdn(b.getAttribute('data-cdn'));
+  });
+  document.addEventListener('wf:cdn', function () { syncCdnUi(); });
+
   updateBadges(loadPicks().length);
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -1130,6 +1193,8 @@
       });
     });
     WFProto.syncJoinButtons();
+
+    syncCdnUi();
 
     const navSearch = document.getElementById('navSearch');
     const navSearchClear = document.getElementById('navSearchClear');

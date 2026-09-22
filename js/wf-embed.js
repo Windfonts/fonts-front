@@ -1,7 +1,7 @@
 /* 文风字体 v4 · 嵌入代码生成 + 体积估算。依赖 wf-proto.js */
 (function () {
   const esc = WFProto.escapeHtml;
-  const API = WFProto.CDN;
+  function apiOrigin() { return WFProto.cdnOrigin ? WFProto.cdnOrigin() : WFProto.CDN; }
   const BYTES_PER_GLYPH = 290; /* woff2 中文字形均值（估算） */
   const OVERHEAD = 2048;
 
@@ -27,7 +27,7 @@
     const out = [];
     items.forEach(function (it) {
       (it.weights || ['400']).forEach(function (w) {
-        out.push(WFProto.cssUrl(it.family, w, it.version && it.version !== 'full' ? it.version : ''));
+        out.push(WFProto.embedCssUrl(it.family, w, it.version && it.version !== 'full' ? it.version : ''));
       });
     });
     return out;
@@ -48,7 +48,7 @@
     const list = urls(items);
     const display = opts.display ? '&display=' + opts.display : '';
     if (kind === 'link') {
-      return WFProto.CDN_LICENSE_NOTE + '\n<link rel="preconnect" href="' + API + '" crossorigin>\n' +
+      return WFProto.CDN_LICENSE_NOTE + '\n<link rel="preconnect" href="' + apiOrigin() + '" crossorigin>\n' +
         (opts.preload ? list.map(function (u) { return '<link rel="preload" as="style" href="' + u + display + '">'; }).join('\n') + '\n' : '') +
         list.map(function (u) { return '<link rel="stylesheet" href="' + u + display + '">'; }).join('\n');
     }
@@ -67,7 +67,7 @@
       const file = opts.file || 'index.css';
       const display = opts.display ? '?display=' + encodeURIComponent(opts.display) : '';
       const url = WFProto.projectCssUrl(slug, file) + display;
-      return WFProto.CDN_LICENSE_NOTE + '\n<link rel="preconnect" href="' + API + '" crossorigin>\n' +
+      return WFProto.CDN_LICENSE_NOTE + '\n<link rel="preconnect" href="' + apiOrigin() + '" crossorigin>\n' +
         (opts.preload ? '<link rel="preload" as="style" href="' + url + '">\n' : '') +
         '<link rel="stylesheet" href="' + url + '">';
     }
@@ -140,7 +140,11 @@
       }).join('') + '</div>' +
       '<div class="code" style="margin-top:var(--s-4)"><button type="button" class="copy">' + WFChrome.icon('copy') + '复制</button><pre></pre></div>';
     const pre = el.querySelector('pre');
-    function paint() { pre.innerHTML = highlight(kind, code(kind, cur, curOpts)); }
+    function paint() {
+      if (!pre.isConnected) return;
+      pre.innerHTML = highlight(kind, code(kind, cur, curOpts));
+    }
+    document.addEventListener('wf:cdn', paint);
     el.querySelectorAll('[data-kind]').forEach(function (b) {
       b.addEventListener('click', function () {
         kind = b.getAttribute('data-kind');
@@ -158,7 +162,7 @@
   }
 
   window.WFEmbed = {
-    API: API,
+    API: WFProto.CDN,
     VERSIONS: VERSIONS,
     KINDS: KINDS,
     estimateBytes: estimateBytes,

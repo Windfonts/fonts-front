@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>文档 · 文风字体</title>
   <meta name="description" content="文风字体接入文档：CDN 地址规则、link / @import / CSS / npm 用法、子集化、font-display、域名白名单、版本回滚与 API 参数。" />
@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/tokens.css?v=20260922l" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css?v=20260922f" />
-  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/site.css?v=20260922an" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-docs">
@@ -69,7 +69,14 @@
       </section>
 
       <section id="url" class="for-dev">
-        <h2>CDN 地址规则</h2>
+        <div class="docs-cdn">
+          <h2>CDN 地址规则</h2>
+          <div class="cdn-switch seg" role="group" aria-label="CDN 节点">
+            <button type="button" data-cdn="cn" class="is-on">中国</button>
+            <button type="button" data-cdn="hk">香港</button>
+            <button type="button" data-cdn="en">国际</button>
+          </div>
+        </div>
         <p>每款字体的每个字重是一份独立 CSS，地址由字体族 slug 与字重名组成：</p>
         <div class="code"><pre>https://cn.windfonts.com/wenfeng/fonts/<b>{slug}</b>/<b>{weight}</b>/web/<b>index.css</b></pre></div>
         <ul>
@@ -275,8 +282,8 @@ const status = await loadFonts([
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js"></script>
-  <script src="js/wf-chrome.js?v=20260922ri"></script>
+  <script src="js/wf-proto.js?v=20260922g"></script>
+  <script src="js/wf-chrome.js?v=20260922rq"></script>
   <script>
     (function () {
       const nav = document.getElementById('docsChapterNav');

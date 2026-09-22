@@ -29,7 +29,14 @@
       no.push('许可还没核实，用之前先联系厂商');
     }
     (ev.restrictions || []).forEach(function (t) { if (no.indexOf(t) === -1) no.push(t); });
-    return { ok: ok, no: no, notes: font.licenseNotes || '' };
+    return { ok: ok, no: no, notes: licenseNotes(font.licenseNotes, ok) };
+  }
+
+  function licenseNotes(notes, ok) {
+    const text = notes || '';
+    if (!text) return '';
+    if (/不可修改|不得修改|不能修改/.test(text) && /可修改/.test(ok.join(' '))) return '';
+    return text;
   }
 
   function licenseLead(tier) {
@@ -39,8 +46,14 @@
     return '许可还没核对，用之前先联系权利人。';
   }
 
+  function lineageWeight(f) {
+    const ws = ((f && f.weights) || []).map(function (n) { return Number(WFProto.weightToCss(n)) || 400; });
+    if (!ws.length) return 400;
+    return ws.reduce(function (best, n) { return Math.abs(n - 400) < Math.abs(best - 400) ? n : best; }, ws[0]);
+  }
+
   function faceOf(f) {
-    const w = WFSpecimen.firstWeight(f);
+    const w = lineageWeight(f);
     WFProto.ensureFontCss(f.family, w);
     return 'font-family:' + esc(WFProto.cssFamilyStack(f.family)) + ';font-weight:' + w;
   }
@@ -149,7 +162,7 @@
               return '<button type="button" class="chip' + (i === 0 ? ' is-on' : '') + '" data-version="' + v.id + '" title="' + esc(v.hint) + '">' +
                 v.label + ' <span class="n">≈ ' + WFEmbed.fmtBytes(WFEmbed.versionSize(font, v.id)) + '</span></button>';
             }).join('') + '</div></div>' +
-            '<div class="panel-pad"><div id="embed"></div>' +
+            '<div class="panel-pad"><div class="use-cdn">' + WFProto.cdnSwitchHtml() + '</div><div id="embed"></div>' +
             '<p class="use-note">体积按单字重估算。只要页面里出现的字，用 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a>。' +
               '<code>font-family</code> 用 <code>' + esc(WFEmbed.familyName(font.family)) + '</code>。</p></div>' +
           '</section>' +

@@ -137,20 +137,24 @@
     const authors = gs.filter(function (g) { return g.kind === 'author' || g.kind === 'project'; }).length;
     const brands = gs.filter(function (g) { return g.kind === 'brand'; }).length;
     const platforms = gs.filter(function (g) { return g.kind === 'platform'; }).length;
+    document.body.classList.add('is-index');
     root.innerHTML =
-      '<div class="page-head"><h1>厂商</h1><p class="lead">在库 ' + gs.length + ' 家：品牌方 ' + brands +
-        ' 家，开源作者 / 项目 ' + authors + ' 家，素材平台 ' + platforms +
-        ' 家。版权归品牌方；字库代做的列在「受托制作」。</p></div>' +
-      '<div class="foundry-index">' + gs.map(function (g) {
-        const n = g.fonts.length;
-        const m = g.made.length;
-        return WFChrome.foundryHtml(g.font, { sub: '在库 ' + n + ' 款' + (m ? ' · 受托 ' + m + ' 款' : '') });
-      }).join('') + '</div>' +
-      '<section class="section"><div class="section-head"><h2>' + WFChrome.icon('idcard') + '入驻与认领</h2></div>' +
-        '<p class="t-14" style="max-width:40em;color:var(--ink-2)">准备品牌名称、官网和授权原文，到<a href="claim.html">认领厂商</a>提交，或从任一厂商页点「认领此页」。通过后可改标志、介绍与官网。许可仍以每款字体的出处为准。</p></section>';
+      '<section><div class="container">' +
+        '<div class="page-head"><h1>厂商</h1><p class="lead">在库 ' + gs.length + ' 家：品牌方 ' + brands +
+          ' 家，开源作者 / 项目 ' + authors + ' 家，素材平台 ' + platforms +
+          ' 家。版权归品牌方；字库代做的列在「受托制作」。</p></div>' +
+        '<div class="foundry-index">' + gs.map(function (g) {
+          const n = g.fonts.length;
+          const m = g.made.length;
+          return WFChrome.foundryHtml(g.font, { sub: '在库 ' + n + ' 款' + (m ? ' · 受托 ' + m + ' 款' : '') });
+        }).join('') + '</div>' +
+      '</div></section>' +
+      '<section><div class="container"><div class="section-head"><h2>' + WFChrome.icon('idcard') + '入驻与认领</h2></div>' +
+        '<p class="t-14" style="max-width:40em;color:var(--ink-2)">准备品牌名称、官网和授权原文，到<a href="claim.html">认领厂商</a>提交，或从任一厂商页点「认领此页」。通过后可改标志、介绍与官网。许可仍以每款字体的出处为准。</p></div></section>';
   }
 
   function renderOne(list, g) {
+    document.body.classList.remove('is-index');
     document.title = g.name + ' · 厂商 · 文风字体';
     const f = g.fonts[0] || g.font;
     const info = g.info || WFChrome.brandInfo(f) || {};
@@ -178,6 +182,7 @@
     const heroSub = (g.claimed ? '已认领' : '未认领') + ' · 归属 ' + g.fonts.length + ' 款' + (g.made.length ? ' · 受托 ' + g.made.length + ' 款' : '');
     const origins = originsStrip(list, g) || ecosystemStrip(list, g.slug);
     root.innerHTML =
+      '<div class="container">' +
       '<div class="detail-top"><p class="crumb"><a href="foundry.html">厂商</a><span>/</span><span>' + esc(g.name) + '</span></p></div>' +
       '<div class="foundry-hero">' +
         '<div class="foundry-hero-main">' +
@@ -205,7 +210,8 @@
       (g.made.length
         ? '<div class="count-line">受托制作 <strong>' + g.made.length + '</strong> 款 · 版权归品牌方，不计入本页归属</div>' +
           '<ul class="specimens" id="made"></ul>'
-        : '');
+        : '') +
+      '</div>';
     if (g.fonts.length) WFSpecimen.renderRows(document.getElementById('rows'), g.fonts, { size: 56 });
     if (g.made.length) WFSpecimen.renderRows(document.getElementById('made'), g.made, { size: 56 });
     WFSponsor.bind(root);
@@ -215,7 +221,7 @@
     const slug = WFProto.getQuery('slug');
     if (!slug) { renderIndex(list); return; }
     const g = groups(list).filter(function (x) { return x.slug === slug || x.name === slug; })[0];
-    if (!g) { root.innerHTML = '<p class="empty">未找到该厂商。<a href="foundry.html">' + WFChrome.icon('building') + '查看全部厂商</a></p>'; return; }
+    if (!g) { root.innerHTML = '<p class="empty container">未找到该厂商。<a href="foundry.html">' + WFChrome.icon('building') + '查看全部厂商</a></p>'; return; }
     renderOne(list, g);
   });
 })();

@@ -43,6 +43,29 @@
   }
   applyTheme(theme());
 
+  /* 大字：整页 150%，和浏览器放大一档同一观感。记在本地。 */
+  const SCALE_KEY = 'wf-scale';
+  function largeType() { return localStorage.getItem(SCALE_KEY) === 'lg'; }
+  function applyScale(on) {
+    if (on) document.documentElement.setAttribute('data-scale', 'lg');
+    else document.documentElement.removeAttribute('data-scale');
+  }
+  function syncScaleBtns() {
+    const on = largeType();
+    document.querySelectorAll('[data-scale-toggle]').forEach(function (b) {
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.setAttribute('aria-label', on ? '关闭大字' : '大字');
+    });
+  }
+  function toggleScale() {
+    const next = !largeType();
+    if (next) localStorage.setItem(SCALE_KEY, 'lg');
+    else localStorage.removeItem(SCALE_KEY);
+    applyScale(next);
+    syncScaleBtns();
+  }
+  applyScale(largeType());
+
   const VIEW_KEY = 'wf-view';
   function view() { return localStorage.getItem(VIEW_KEY) === 'dev' ? 'dev' : 'design'; }
   function applyView(v) { document.documentElement.setAttribute('data-view', v === 'dev' ? 'dev' : 'design'); }
@@ -73,7 +96,7 @@
   }
 
   /* —— 图标：Remix Icon 线标（Apache-2.0），经墨图爱可 icons.motucloud.com/collection/ri 选取，打包在 assets/icons.svg。symbol id 是站内语义名。 —— */
-  const ICON_VER = '20260922rk';
+  const ICON_VER = '20260922rp';
   function icon(name, cls) {
     return '<svg class="icon' + (cls ? ' ' + cls : '') + '" aria-hidden="true" focusable="false"><use href="' + href('assets/icons.svg') + '?v=' + ICON_VER + '#i-' + name + '"/></svg>';
   }
@@ -138,6 +161,7 @@
             ? '<a href="' + href('app/index.html') + '">' + icon('dashboard') + '<span>控制台</span></a>'
             : '<a href="' + href('login.html') + '">' + icon('user') + '<span>登录</span></a>') +
           viewSwitchHtml() +
+          '<button type="button" class="icon-btn" data-scale-toggle aria-pressed="' + (largeType() ? 'true' : 'false') + '" aria-label="' + (largeType() ? '关闭大字' : '大字') + '">' + icon('font-size') + '</button>' +
           '<button type="button" class="icon-btn" data-theme-toggle aria-label="' + (theme() === 'dark' ? '切换到浅色' : '切换到深色') + '">' + themeIcon() + '</button>' +
           '<button type="button" class="icon-btn menu-btn" id="navMenuBtn" aria-label="菜单" aria-expanded="false" aria-controls="navMenu">' + icon('menu') + '</button>' +
         '</div>' +
@@ -156,6 +180,7 @@
       c.setAttribute('data-count', String(pickN));
     });
     el.querySelector('[data-theme-toggle]').addEventListener('click', toggleTheme);
+    el.querySelector('[data-scale-toggle]').addEventListener('click', toggleScale);
     bindViewSwitch(el);
     const menuBtn = el.querySelector('#navMenuBtn');
     const menu = el.querySelector('#navMenu');

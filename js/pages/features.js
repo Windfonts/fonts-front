@@ -40,9 +40,10 @@
       live.style.fontWeight = w;
       liveName.textContent = f.name;
       liveName.href = 'font-detail.html?id=' + encodeURIComponent(f.id);
-      code.textContent = '<link rel="stylesheet" href="' + WFProto.cssUrl(f.family, w) + '">';
+      code.textContent = '<link rel="stylesheet" href="' + WFProto.embedCssUrl(f.family, w) + '">';
     }
     applyLive();
+    document.addEventListener('wf:cdn', applyLive);
     document.getElementById('liveNext').addEventListener('click', function () { idx += 1; applyLive(); });
     document.getElementById('ctaCopy').addEventListener('click', function () {
       WFChrome.copy(code.textContent, '已复制 <link>');

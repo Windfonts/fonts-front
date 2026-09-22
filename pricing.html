@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
   <script>
     (function () {
       function on() {
@@ -24,13 +24,15 @@
   <link rel="stylesheet" href="css/tokens.css?v=20260922l" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css?v=20260922f" />
-  <link rel="stylesheet" href="css/site.css?v=20260922d" />
+  <link rel="stylesheet" href="css/site.css?v=20260922ak" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-pricing">
   <header data-topbar data-active="pricing"></header>
 
-  <main class="container">
+  <main>
+    <section>
+    <div class="container">
     <div class="page-head">
       <h1>用多少，付多少</h1>
       <p class="lead">按流量、域名数与字体数计费。免费额度足够让一个站点真正跑起来；项目上线有流量之后，再升级。</p>
@@ -89,8 +91,11 @@
     </div>
 
     <p class="plan-note">超出月流量按 ¥0.8 / GB 计；商业字体的授权费按厂商标价，平台与厂商分成，购买后在授权页可查证书与到期时间。厂商入驻不收费。</p>
+    </div>
+    </section>
 
-    <section class="section">
+    <section>
+    <div class="container">
       <div class="section-head"><h2><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-question"/></svg>常见问题</h2></div>
       <div class="faq">
         <div><h3>免费版能商用吗？</h3><p>能。免费版可使用全部开源与免费商用字体，授权范围以每款字体页「授权」区为准。限制在项目数、域名数与流量，不在用途。</p></div>
@@ -99,12 +104,13 @@
         <div><h3>可以自己上传字体吗？</h3><p>可以。上传时需承诺拥有合法授权；上传字体享受同样的子集化、托管与加速，并计入项目字体数。</p></div>
         <div><h3>开源版和这里的免费版是什么关系？</h3><p>核心字体服务器开源可自部署，包含字体管理、基础子集化、@font-face 生成与单项目管理。这里的云服务是托管版，免运维并附带 CDN 与商业字体库。</p></div>
       </div>
+    </div>
     </section>
   </main>
 
   <footer id="wfExtraFooter"></footer>
 
   <script src="js/wf-proto.js"></script>
-  <script src="js/wf-chrome.js?v=20260922ri"></script>
+  <script src="js/wf-chrome.js?v=20260922rq"></script>
 </body>
 </html>

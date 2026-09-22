@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>文风字体 · 中文网页字体</title>
   <meta name="description" content="在网页上使用中文字体：托管、子集化、域名白名单，一行代码接入。" />
@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="css/tokens.css?v=20260922l" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css?v=20260922h" />
-  <link rel="stylesheet" href="css/specimen.css" />
-  <link rel="stylesheet" href="css/site.css?v=20260922aj" />
+  <link rel="stylesheet" href="css/specimen.css?v=20260922d" />
+  <link rel="stylesheet" href="css/site.css?v=20260922ak" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-index">
@@ -28,7 +28,7 @@
         <div class="home-hero-foot">
           <p class="lead">托管、子集化、域名白名单，一行代码接入。每款字的授权以出处原文为准。</p>
           <div class="home-cta">
-            <a class="btn ink-design btn-lg" href="fonts.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-font-size"/></svg>浏览字体库</a>
+            <a class="btn ink-design btn-lg" href="fonts.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-folder"/></svg>浏览字体库</a>
             <a class="btn ink-dev btn-lg" href="docs.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-book"/></svg>查看文档</a>
           </div>
         </div>
@@ -38,19 +38,25 @@
 
     <section class="home-forest" aria-label="字林">
       <div class="container">
+        <div class="section-head"><h2>字林</h2></div>
         <div class="home-forest-grid" id="homeForest"></div>
       </div>
     </section>
 
     <section class="home-now" aria-label="当前字体">
-      <div class="container" id="homeNow"></div>
+      <div class="container">
+        <div class="section-head"><h2><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-font"/></svg>当前字体</h2></div>
+        <div id="homeNow"></div>
+      </div>
     </section>
 
     <section class="home-related" aria-label="同分类">
       <div class="container">
-        <div class="count-line" id="homeRelatedCount"></div>
+        <div class="section-head">
+          <h2 id="homeRelatedCount"></h2>
+          <a class="more" id="homeMore" href="fonts.html"></a>
+        </div>
         <ul class="specimens" id="homeRelated"></ul>
-        <p class="home-lib-more" id="homeMore"></p>
       </div>
     </section>
 
@@ -63,9 +69,9 @@
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js?v=20260922d"></script>
-  <script src="js/wf-chrome.js?v=20260922rl"></script>
+  <script src="js/wf-proto.js?v=20260922g"></script>
+  <script src="js/wf-chrome.js?v=20260922rq"></script>
   <script src="js/wf-specimen.js"></script>
-  <script src="js/pages/home.js?v=20260922n"></script>
+  <script src="js/pages/home.js?v=20260922q"></script>
 </body>
 </html>

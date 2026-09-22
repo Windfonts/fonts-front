@@ -2,15 +2,15 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>选字袋 · 文风字体</title>
   <link rel="stylesheet" href="css/fonts.css?v=20260922a" />
   <link rel="stylesheet" href="css/tokens.css?v=20260922l" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css?v=20260922h" />
-  <link rel="stylesheet" href="css/specimen.css?v=20260922c" />
-  <link rel="stylesheet" href="css/site.css?v=20260921aa" />
+  <link rel="stylesheet" href="css/specimen.css?v=20260922d" />
+  <link rel="stylesheet" href="css/site.css?v=20260922an" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-bag">
@@ -37,7 +37,14 @@
     <div id="bagCompare" hidden></div>
 
     <section class="bag-embed" id="bagEmbed" hidden>
-      <h2><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-code"/></svg>合并嵌入代码</h2>
+      <div class="bag-embed-head">
+        <h2><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-code"/></svg>合并嵌入代码</h2>
+        <div class="cdn-switch seg" role="group" aria-label="CDN 节点">
+          <button type="button" data-cdn="cn" class="is-on">中国</button>
+          <button type="button" data-cdn="hk">香港</button>
+          <button type="button" data-cdn="en">国际</button>
+        </div>
+      </div>
       <div class="opts">
         <div class="field"><label>子集</label><select class="select" id="optVersion">
           <option value="full">完整</option><option value="zh">中文 7000</option><option value="zh-common" selected>常用 3500</option><option value="en">拉丁</option></select></div>
@@ -56,10 +63,10 @@
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js"></script>
-  <script src="js/wf-chrome.js?v=20260922rl"></script>
+  <script src="js/wf-proto.js?v=20260922g"></script>
+  <script src="js/wf-chrome.js?v=20260922rq"></script>
   <script src="js/wf-specimen.js?v=20260922ai"></script>
-  <script src="js/wf-embed.js?v=20260921d"></script>
+  <script src="js/wf-embed.js?v=20260922e"></script>
   <script src="js/pages/bag.js?v=20260921aa"></script>
 </body>
 </html>
