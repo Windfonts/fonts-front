@@ -24,6 +24,53 @@
 .detail-title .dotlist .foundry-inline img { width: 18px; height: 18px; border-radius: 50%; }
 .detail-actions { display: flex; align-items: center; gap: var(--s-3); }
 
+/* 丙：卡在左，标题行仍是名字左、按钮右。有样张时右侧不重复厂商身份和简介。 */
+.glyph-pair > .glyph-wall-inner { max-width: none; }
+.glyph-wall:not(.is-editing) .glyph-pair:has(.wall-stage[data-card]) {
+  display: grid;
+  grid-template-columns: auto minmax(16rem, 1fr);
+  gap: var(--s-5) var(--s-8);
+  align-items: center;
+  max-width: calc(var(--container) - 2 * var(--gutter));
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  padding: var(--s-6) var(--s-6) var(--s-4) !important;
+}
+.glyph-wall:not(.is-editing) .glyph-pair:has(.wall-stage[data-card]) > .glyph-wall-inner {
+  display: contents;
+  background: none;
+  box-shadow: none;
+  padding: 0 !important;
+}
+.glyph-wall:not(.is-editing) .glyph-pair:has(.wall-stage[data-card]) .studio-body { grid-column: 1; grid-row: 1; min-width: 0; }
+.glyph-wall:not(.is-editing) .glyph-pair:has(.wall-stage[data-card]) .detail-title {
+  grid-column: 2; grid-row: 1; padding: 0; min-width: 0;
+}
+.glyph-wall:not(.is-editing) .glyph-pair:has(.wall-stage[data-card]) .wall-tools {
+  grid-column: 1 / -1; grid-row: 2; margin-top: 0;
+}
+.page-detail:has(.wall-stage[data-card]) .detail-side .foundry,
+.page-detail:has(.wall-stage[data-card]) .side-brand .brand-desc,
+.page-detail:has(.wall-stage[data-card]) .side-brand .side-fold,
+.page-detail:has(.wall-stage[data-card]) .side-brand .claim,
+.page-detail:has(.wall-stage[data-card]) .side-brand .sp-box { display: none; }
+.page-detail:has(.wall-stage[data-card]) .side-brand .side-meta {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.page-detail:has(.wall-stage[data-card]) .detail-crumb { padding-top: var(--s-3); }
+.page-detail:has(.wall-stage[data-card]) .detail-crumb .crumb { margin-bottom: var(--s-2); }
+.page-detail:has(.wall-stage[data-card]) .glyph-wall { padding-top: 0; padding-bottom: var(--s-4); }
+.page-detail:has(.wall-stage[data-card]) .detail-body { gap: var(--s-8); }
+.page-detail:has(.wall-stage[data-card]) #glyphs .panel-head { padding-top: var(--s-8); }
+@media (max-width: 800px) {
+  .glyph-wall:not(.is-editing) .glyph-pair:has(.wall-stage[data-card]) { grid-template-columns: minmax(0, 1fr); }
+  .glyph-wall:not(.is-editing) .glyph-pair:has(.wall-stage[data-card]) .detail-title { grid-column: 1; grid-row: 2; }
+  .glyph-wall:not(.is-editing) .glyph-pair:has(.wall-stage[data-card]) .wall-tools { grid-row: 3; }
+}
+
 /* 正文两栏：左列平铺（细线分节，不再套灰盒），右列保留灰卡 */
 .detail-body { display: grid; grid-template-columns: minmax(0, 1fr) 19rem; gap: var(--s-10); align-items: start; }
 .detail-main { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; min-width: 0; }
@@ -117,6 +164,10 @@
 .side-brand .claim.is-quiet { color: var(--gray-2); }
 .side-brand .claim a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }
 
+.side-brand .sp-box { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
+.side-brand .sp-tip { max-width: none; }
+.side-brand .sp-code,
+.side-brand .sp-ph { width: 6.5rem; }
 .side-brand .side-meta { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
 .side-brand .side-meta h3 { margin-bottom: var(--s-2); display: flex; align-items: center; gap: 0.35em; }
 .side-brand .side-meta h3 .icon,

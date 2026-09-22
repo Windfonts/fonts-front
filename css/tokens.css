@@ -30,6 +30,7 @@
 
   /* 字 */
   --font-ui: "Alibaba PuHuiTi", "Chill Round Gothic", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-wordmark: "wenfeng-hckht", "Chill K Sans Medium", var(--font-ui);
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
   --fs-12: 0.75rem;

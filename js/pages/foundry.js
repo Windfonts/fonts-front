@@ -183,6 +183,7 @@
         '<div class="foundry-hero-main">' +
           WFChrome.foundryHtml(g.font, { sub: heroSub }) +
           (desc ? '<p class="desc">' + esc(desc) + '</p>' : '') +
+          WFSponsor.html(info) +
           origins +
         '</div>' +
         '<div><dl class="kv">' + kv.map(function (r) {
@@ -204,6 +205,7 @@
         : '');
     if (g.fonts.length) WFSpecimen.renderRows(document.getElementById('rows'), g.fonts, { size: 56 });
     if (g.made.length) WFSpecimen.renderRows(document.getElementById('made'), g.made, { size: 56 });
+    WFSponsor.bind(root);
   }
 
   WFProto.loadCatalog().then(function (list) {

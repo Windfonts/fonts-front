@@ -43,16 +43,18 @@
     if (!sz) {
       stage.style.width = ''; stage.style.height = '';
       stage.style.removeProperty('--card-scale');
-      if (view) { view.style.height = ''; view.classList.remove('is-framed'); }
+      if (view) { view.style.height = ''; view.style.width = ''; view.classList.remove('is-framed'); }
       if (wall) wall.style.removeProperty('--studio-h');
       return;
     }
     stage.style.width = sz.w + 'px';
     stage.style.height = sz.h + 'px';
-    const maxW = (view && view.clientWidth) || sz.w;
     const editing = !!(wall && wall.classList.contains('is-editing'));
+    const pair = view && view.closest('.glyph-pair');
     var scale, boxH;
     if (editing) {
+      if (view) view.style.width = '';
+      const maxW = (view && view.clientWidth) || sz.w;
       const maxH = 480;
       scale = Math.min(1, maxW / sz.w, maxH / sz.h);
       stage.style.setProperty('--card-scale', String(scale));
@@ -63,11 +65,36 @@
       if (wall) wall.style.removeProperty('--studio-h');
       return;
     }
+    if (pair) {
+      const cs = getComputedStyle(pair);
+      const pad = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
+      const host = pair.clientWidth - pad;
+      if (host < 80) {
+        if (!stage.dataset.fitWait) {
+          stage.dataset.fitWait = '1';
+          requestAnimationFrame(function () { delete stage.dataset.fitWait; fit(stage, view); });
+        }
+        return;
+      }
+      const stacked = window.matchMedia('(max-width: 800px)').matches;
+      const col = stacked ? host : Math.min(host * 0.58, 680);
+      const cap = stacked ? 420 : 520;
+      scale = Math.min(col / sz.w, cap / sz.h);
+      boxH = Math.max(1, Math.round(sz.h * scale));
+      stage.style.setProperty('--card-scale', String(scale));
+      view.classList.add('is-framed');
+      view.style.width = (sz.w * scale) + 'px';
+      view.style.height = boxH + 'px';
+      if (wall) wall.style.removeProperty('--studio-h');
+      return;
+    }
+    const maxW = (view && view.clientWidth) || sz.w;
     scale = maxW / sz.w;
     boxH = Math.max(1, Math.round(sz.h * scale));
     stage.style.setProperty('--card-scale', String(scale));
     if (!view) return;
     view.classList.add('is-framed');
+    view.style.width = '';
     view.style.height = boxH + 'px';
     if (wall) wall.style.removeProperty('--studio-h');
   }
@@ -400,6 +427,10 @@
     const u = new URL(location.href);
     return u.origin + u.pathname.replace(/[^/]*$/, '') + path;
   }
+
+  window.addEventListener('resize', function () {
+    document.querySelectorAll('.glyph-pair .wall-stage[data-card]').forEach(function (stage) { fit(stage); });
+  });
 
   window.WFCard = {
     SIZES: SIZES,

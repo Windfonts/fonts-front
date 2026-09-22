@@ -14,6 +14,7 @@
   display: inline-flex; align-items: center; gap: var(--s-2);
   font-size: var(--fs-16); font-weight: var(--fw-title); letter-spacing: 0.01em; white-space: nowrap;
 }
+.wordmark span { font-family: var(--font-wordmark); font-weight: 400; }
 [data-theme="dark"] .wordmark img { filter: invert(1); }
 .wordmark img { width: 24px; height: 24px; border-radius: 6px; }
 .wordmark:hover { text-decoration: none; }

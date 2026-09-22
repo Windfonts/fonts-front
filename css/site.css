@@ -30,7 +30,9 @@
   outline: none;
   overflow-wrap: anywhere;
   min-height: 1.06em;
+  transition: opacity 0.28s ease;
 }
+.home-hero .live.is-pending { opacity: 0.34; }
 .home-hero .live:empty::before { content: attr(data-placeholder); color: var(--gray-2); }
 .home-hero-foot {
   display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--s-6);
@@ -99,7 +101,9 @@
   line-height: 0.95; letter-spacing: -0.04em;
   width: 100%; flex: 1; display: flex; align-items: center;
   margin: 0; outline: none; font-weight: var(--fw-body);
+  transition: opacity 0.28s ease;
 }
+.home-forest-glyph.is-pending { opacity: 0.34; }
 .home-forest-glyph:empty::before { content: "风"; color: var(--on-ink-2); }
 .home-forest-cell.is-on i { color: var(--on-ink-2); }
 
@@ -119,6 +123,13 @@
   font-size: clamp(3.4rem, 8vw, 5.5rem);
   line-height: 0.95;
   letter-spacing: -0.04em;
+  transition: opacity 0.28s ease;
+}
+.home-now-glyph.is-pending { opacity: 0.34; }
+@media (prefers-reduced-motion: reduce) {
+  .home-hero .live,
+  .home-forest-glyph,
+  .home-now-glyph { transition: none; }
 }
 .home-now-card h2 { font-size: var(--fs-20); font-weight: var(--fw-title); letter-spacing: -0.02em; }
 .home-now-card h2 a { color: inherit; }
@@ -248,6 +259,27 @@
 .foundry-hero .claim .icon { flex: none; margin-top: 0.15em; color: var(--gray-2); }
 .foundry-hero .claim > span { min-width: 0; word-break: keep-all; }
 .foundry-hero .claim a { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; font-weight: var(--fw-label); white-space: nowrap; }
+
+.sp-box { margin-top: var(--s-5); }
+.sp-box .sp-tip { display: none; }
+.sp-box.is-open .sp-tip { display: grid; }
+.sp-tip {
+  justify-items: start; gap: var(--s-3);
+  max-width: 20rem; margin-top: var(--s-4);
+}
+.sp-tip .view-switch { font-size: var(--fs-12); }
+.sp-code { width: 8rem; display: grid; gap: 0.45rem; justify-items: start; }
+.sp-qr { display: block; width: 100%; height: auto; aspect-ratio: 1; background: #fff; padding: 0.45rem; }
+.sp-code b { font-size: var(--fs-12); color: var(--gray); font-weight: var(--fw-label); }
+.sp-empty { display: grid; gap: var(--s-3); justify-items: start; }
+.sp-ph {
+  width: 8rem; aspect-ratio: 1; display: grid; place-items: center;
+  background: var(--fill); color: var(--gray-2);
+}
+.sp-ph .icon { width: 1.75rem; height: 1.75rem; }
+.sp-host { margin: 0; font-size: var(--fs-12); color: var(--gray-2); line-height: 1.5; }
+.sp-host a { color: var(--gray); }
+.sp-host a:hover { color: var(--ink); }
 .foundry-index { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-3); }
 .foundry-index .foundry { padding: var(--s-4) var(--s-5); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); }
 .foundry-index .foundry:hover { background: var(--surface-2); }

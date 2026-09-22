@@ -96,7 +96,7 @@
       '<span>' + esc(font.name) + '</span></p>';
     root.innerHTML =
       '<div class="container detail-crumb">' + crumb + '</div>' +
-      '<section class="glyph-wall" id="glyphWall"><div class="container glyph-wall-inner">' +
+      '<section class="glyph-wall" id="glyphWall"><div class="container glyph-pair"><div class="glyph-wall-inner">' +
         '<div class="studio-body"><div class="tester-templates" id="wallTpl" hidden></div><div class="tester-controls" id="wallCtl" hidden></div><div class="card-view" id="cardView"><div class="wall-stage" id="heroStage" style="--card-face:' + esc(stack) + '">' +
           '<img class="card-bg" data-paint="img" data-slot="bg" alt="" /><div class="card-scrim" data-paint="fill"></div>' +
           '<div class="card-safe" data-guide hidden></div>' +
@@ -118,15 +118,14 @@
               }).join('') + '</div>'
             : '') +
           '<span class="spacer"></span>' +
-          '<button type="button" class="btn-text" id="btnWallReset" hidden>' + WFChrome.icon('text') + '灰墙</button>' +
+          '<button type="button" class="btn-text" id="btnWallReset" hidden>' + WFChrome.icon('refresh') + '恢复预览</button>' +
           '<button type="button" class="btn-text" id="btnShare" hidden>' + WFChrome.icon('link') + '复制链接</button>' +
           '<button type="button" class="btn-text for-design" id="btnEdit">' + WFChrome.icon('edit') + '编辑样张</button>' +
         '</div>' +
-      '</div></section>' +
-      '<div class="container">' +
+      '</div>' +
       '<div class="detail-title">' +
         '<div class="detail-title-main">' +
-          '<h1>' + esc(font.name) + (font.en ? ' <small>' + esc(font.en) + '</small>' : '') + '</h1>' +
+          '<h1>' + esc(font.name) + (font.en && font.en !== font.name ? ' <small>' + esc(font.en) + '</small>' : '') + '</h1>' +
           '<p class="dotlist">' +
             '<a class="foundry-inline" href="foundry.html?slug=' + encodeURIComponent(WFChrome.brandSlug(font)) + '">' +
               (avatar ? '<img src="' + esc(avatar) + '" alt="" />' : '') + esc(brand || '未署名') +
@@ -140,7 +139,8 @@
           '<button type="button" class="btn ink-design" id="btnPick" data-join="' + esc(font.id) + '" data-name="' + esc(font.name) + '">' + WFChrome.icon('plus') + '加入选字袋</button>' +
           '<button type="button" class="btn ink-dev" id="btnUse">' + WFChrome.icon('code') + '获取代码</button>' +
         '</div>' +
-      '</div>' +
+      '</div></div></section>' +
+      '<div class="container">' +
       '<div class="detail-body">' +
         '<div class="detail-main">' +
           '<section class="panel for-dev" id="use"><div class="panel-head"><h2>' + WFChrome.icon('code') + '使用</h2>' +
@@ -188,6 +188,7 @@
             (WFChrome.brandVerified(font)
               ? '<p class="claim"><span class="badge-verified">' + WFChrome.VERIFIED_SVG + '</span> 已认领</p>'
               : '<p class="claim is-quiet">' + WFChrome.icon('verified') + '未认领 · <a href="' + (WFChrome.brandSlug(font) ? 'claim.html?slug=' + encodeURIComponent(WFChrome.brandSlug(font)) : 'claim.html') + '">认领</a></p>') +
+            WFSponsor.html(WFChrome.brandInfo(font)) +
             '<div class="side-meta"><h3>' + WFChrome.icon('info') + '资料</h3><dl class="kv">' + kv.map(function (r) {
               return '<div' + (r.dev ? ' class="for-dev"' : '') + '><dt>' + WFChrome.icon(r.icon) + esc(r.dt) + '</dt><dd' + (!r.html && /^[\d,.\s]+$/.test(r.dd) ? ' class="num"' : '') + '>' +
                 (r.html ? r.dd : esc(r.dd)) + '</dd></div>';
@@ -206,6 +207,7 @@
   }
 
   function wire(font, weights, w0) {
+    WFSponsor.bind(root);
     const hero = document.getElementById('hero');
     let weight = w0;
     let version = 'full';

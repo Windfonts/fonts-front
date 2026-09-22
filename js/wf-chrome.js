@@ -73,7 +73,7 @@
   }
 
   /* —— 图标：Remix Icon 线标（Apache-2.0），经墨图爱可 icons.motucloud.com/collection/ri 选取，打包在 assets/icons.svg。symbol id 是站内语义名。 —— */
-  const ICON_VER = '20260922ri';
+  const ICON_VER = '20260922rj';
   function icon(name, cls) {
     return '<svg class="icon' + (cls ? ' ' + cls : '') + '" aria-hidden="true" focusable="false"><use href="' + href('assets/icons.svg') + '?v=' + ICON_VER + '#i-' + name + '"/></svg>';
   }

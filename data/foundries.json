@@ -197,6 +197,10 @@
    "kind": "author",
    "openSource": true,
    "claimed": false,
+   "tips": {
+    "alipay": true,
+    "wechat": true
+   },
    "fontNames": [
     "寒蝉团圆体",
     "寒蝉宽黑体",
@@ -262,7 +266,11 @@
    ],
    "kind": "author",
    "openSource": true,
-   "claimed": false
+   "claimed": false,
+   "tips": {
+    "alipay": true,
+    "wechat": true
+   }
   },
   {
    "id": "lxgw",
@@ -280,7 +288,11 @@
    ],
    "kind": "author",
    "openSource": true,
-   "claimed": false
+   "claimed": false,
+   "tips": {
+    "alipay": true,
+    "wechat": true
+   }
   },
   {
    "id": "fontzone108",
@@ -385,7 +397,10 @@
    ],
    "kind": "author",
    "openSource": true,
-   "claimed": false
+   "claimed": false,
+   "tips": {
+    "alipay": true
+   }
   },
   {
    "id": "founder",
@@ -521,7 +536,10 @@
    ],
    "kind": "author",
    "openSource": true,
-   "claimed": false
+   "claimed": false,
+   "tips": {
+    "wechat": true
+   }
   },
   {
    "id": "sanji",

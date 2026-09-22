@@ -406,6 +406,7 @@
       var ne = stage && stage.querySelector('[data-card-name]'), be = stage && stage.querySelector('[data-card-brand]');
       rec.cardName = durable(ne && ne.textContent); rec.cardBrand = durable(be && be.textContent);
       rec.hide = hideList().join(' ');
+      delete rec.dismissed;
       const all = loadPref();
       all.fonts = all.fonts || {};
       all.fonts[font.id] = rec;
@@ -604,6 +605,7 @@
       overlay(src, true);
       if (src.forceFrame) WFCard.applyFrame(stage, src.forceFrame);
       if (!src.cardName && !src.cardBrand) WFCard.fillMeta(stage, { name: font.name, brand: WFChrome.brandName(font) });
+      markCard();
       requestAnimationFrame(function () { WFCard.fit(stage, stage && stage.parentElement); markCard(); });
       if (opts.onRestore) opts.onRestore({ size: state.size, weight: state.weight });
     }
@@ -632,6 +634,7 @@
         if (share.sub) rec.sub = share.sub;
         return rec;
       }
+      if (mine && mine.dismissed) return null;
       if (mine && mine.tpl) return mine;
       return null;
     }
@@ -644,9 +647,20 @@
       const seed = cardSeed();
       if (seed) showBrowseCard(seed);
       else hideWallCard();
+      markCard();
+    }
+    function markDismissed() {
+      if (!font || !font.id) return;
+      const all = loadPref();
+      all.fonts = all.fonts || {};
+      const rec = all.fonts[font.id] || {};
+      rec.dismissed = true;
+      all.fonts[font.id] = rec;
+      try { localStorage.setItem(PREF_KEY, JSON.stringify(all)); } catch (e) { /* ignore */ }
     }
     function clearCard() {
       hideWallCard();
+      markDismissed();
       if (font && font.id) history.replaceState(null, '', 'font-detail.html?id=' + encodeURIComponent(font.id));
     }
     function sync(partial) {

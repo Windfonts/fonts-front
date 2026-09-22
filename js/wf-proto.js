@@ -49,7 +49,7 @@
 
   let catalog = [];
   let catalogPromise = null;
-  const injectedCss = new Set();
+  const injectedCss = {};
 
   function dataUrl(file) {
     try {
@@ -119,7 +119,7 @@
       if (!r.ok) throw new Error('fonts.json ' + r.status);
       return r.json();
     });
-    const foundriesReq = fetch(dataUrl('foundries.json')).then(function (r) { return r.ok ? r.json() : { foundries: [] }; })
+    const foundriesReq = fetch(dataUrl('foundries.json?v=20260922a')).then(function (r) { return r.ok ? r.json() : { foundries: [] }; })
       .catch(function () { return { foundries: [] }; });
     const evidenceReq = fetch(dataUrl('license-evidence.json')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
       .catch(function () { return { standards: {}, names: {} }; });
@@ -264,14 +264,13 @@
    * 拉取失败时退回 <link>。
    */
   function ensureFontCss(family, weight) {
-    if (!family) return;
+    if (!family) return Promise.resolve();
     const w = weightToCss(weight || '400');
     const key = family + '|' + w;
-    if (injectedCss.has(key)) return;
-    injectedCss.add(key);
+    if (injectedCss[key]) return injectedCss[key];
     const url = cssUrl(family, w);
     const base = url.replace(/[^/]+$/, '');
-    fetch(url).then(function (r) {
+    injectedCss[key] = fetch(url).then(function (r) {
       if (!r.ok) throw new Error(String(r.status));
       return r.text();
     }).then(function (css) {
@@ -285,11 +284,28 @@
       style.textContent = fixed;
       document.head.appendChild(style);
     }).catch(function () {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = url;
-      link.setAttribute('data-wf-family', family);
-      document.head.appendChild(link);
+      return new Promise(function (resolve) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = url;
+        link.setAttribute('data-wf-family', family);
+        link.onload = function () { resolve(); };
+        link.onerror = function () { resolve(); };
+        document.head.appendChild(link);
+      });
+    });
+    return injectedCss[key];
+  }
+
+  /** 等 CSS 注入后再拉该段文字所需分片。cached 时几乎立刻 resolve。 */
+  function readyFace(family, weight, text) {
+    const w = weightToCss(weight || '400');
+    const fam = String(family || '').replace(/["']/g, '');
+    return ensureFontCss(family, w).then(function () {
+      if (!fam || !document.fonts || !document.fonts.load) return;
+      return document.fonts.load(w + ' 80px "' + fam + '"', String(text || '')).catch(function () {
+        return null;
+      });
     });
   }
 
@@ -622,6 +638,7 @@
     weightToCss: weightToCss,
     cssFamilyStack: cssFamilyStack,
     ensureFontCss: ensureFontCss,
+    readyFace: readyFace,
     inferLanguage: inferLanguage,
     renderExtraFooter: renderExtraFooter,
     defaultSpecimen: function () { return JSON.parse(JSON.stringify(DEFAULT_SPECIMEN)); },

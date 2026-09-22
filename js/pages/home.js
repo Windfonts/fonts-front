@@ -279,6 +279,33 @@
         WFSpecimen.renderRows(related, rows, { size: 40 });
       }
       if (more) more.innerHTML = '<a class="btn btn-lg" href="fonts.html">' + WFChrome.icon('grid') + '全部 ' + list.length + ' 款</a>';
+      settleFace(f, w, ((live.textContent || '') + glyph).replace(/\s+/g, ''));
+    }
+
+    let faceGen = 0;
+
+    function faceEls() {
+      return [live, forest && forest.querySelector('[data-forest-glyph]'), document.querySelector('.home-now-glyph')]
+        .filter(Boolean);
+    }
+
+    function settleFace(font, weight, text) {
+      const gen = ++faceGen;
+      function paint(on) {
+        faceEls().forEach(function (el) { el.classList.toggle('is-pending', on); });
+      }
+      const timer = setTimeout(function () {
+        if (gen !== faceGen) return;
+        paint(true);
+      }, 80);
+      const done = function () {
+        if (gen !== faceGen) return;
+        clearTimeout(timer);
+        clearTimeout(cap);
+        paint(false);
+      };
+      const cap = setTimeout(done, 1200);
+      WFProto.readyFace(font.family, weight, text).then(done, done);
     }
 
     applyLive();
