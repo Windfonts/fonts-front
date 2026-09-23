@@ -7,9 +7,9 @@
   <title>上传字体 · 控制台 · 文风字体</title>
   <link rel="stylesheet" href="../css/fonts.css?v=20260923u" />
   <link rel="stylesheet" href="../css/tokens.css?v=20260923qa" />
-  <link rel="stylesheet" href="../css/base.css?v=20260923r1" />
-  <link rel="stylesheet" href="../css/components.css?v=20260923qa" />
-  <link rel="stylesheet" href="../css/app.css?v=20260923qb" />
+  <link rel="stylesheet" href="../css/base.css?v=20260924c" />
+  <link rel="stylesheet" href="../css/components.css?v=20260924d" />
+  <link rel="stylesheet" href="../css/app.css?v=20260924i" />
   <link rel="icon" type="image/webp" href="../assets/icon.webp" />
 </head>
 <body class="app">
@@ -45,7 +45,7 @@
   <script src="../js/wf-proto.js?v=20260923u"></script>
   <script src="../js/wf-chrome.js?v=20260923qc"></script>
   <script src="../js/wf-embed.js?v=20260923o"></script>
-  <script src="../js/wf-app.js?v=20260923qb"></script>
+  <script src="../js/wf-app.js?v=20260924g"></script>
   <script>
     (function () {
       if (!WFApp.gate()) return;
@@ -59,17 +59,80 @@
 
       function slug(s) { return s.toLowerCase().replace(/\.[a-z0-9]+$/, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
       function check() { btn.disabled = !(picked && agree.checked && name.value.trim() && /^[a-z0-9-]+$/.test(fam.value)); }
+      function u16(view, o) { return view.getUint16(o); }
+      function tagAt(view, o) {
+        return String.fromCharCode(view.getUint8(o), view.getUint8(o + 1), view.getUint8(o + 2), view.getUint8(o + 3));
+      }
+      function readName(view, start, length, utf16) {
+        let s = '';
+        if (utf16) {
+          for (let j = 0; j + 1 < length; j += 2) s += String.fromCharCode(view.getUint16(start + j));
+        } else {
+          for (let j = 0; j < length; j++) s += String.fromCharCode(view.getUint8(start + j));
+        }
+        return s.replace(/\0/g, '').trim();
+      }
+      function parseSfnt(buf) {
+        const view = new DataView(buf);
+        const sig = tagAt(view, 0);
+        if (sig !== '\u0000\u0001\u0000\u0000' && sig !== 'OTTO' && sig !== 'true' && sig !== 'typ1') return null;
+        const num = u16(view, 4);
+        let nameOff = 0, os2 = 0, maxp = 0;
+        for (let i = 0; i < num && i < 80; i++) {
+          const rec = 12 + i * 16;
+          const t = tagAt(view, rec);
+          const off = view.getUint32(rec + 8);
+          if (t === 'name') nameOff = off;
+          if (t === 'OS/2') os2 = off;
+          if (t === 'maxp') maxp = off;
+        }
+        const out = { family: '', weight: os2 ? u16(view, os2 + 4) : 400, glyphs: maxp ? u16(view, maxp + 4) : 0 };
+        if (!nameOff) return out;
+        const count = u16(view, nameOff + 2);
+        const strOff = u16(view, nameOff + 4);
+        for (let i = 0; i < count && i < 80; i++) {
+          const r = nameOff + 6 + i * 12;
+          const platform = u16(view, r);
+          const nameId = u16(view, r + 6);
+          const length = u16(view, r + 8);
+          const offset = u16(view, r + 10);
+          if (nameId !== 1 && nameId !== 4 && nameId !== 16) continue;
+          const text = readName(view, nameOff + strOff + offset, length, platform === 3 || platform === 0);
+          if (!text) continue;
+          if (nameId === 4 || nameId === 16) out.family = text;
+          else if (!out.family) out.family = text;
+        }
+        return out;
+      }
+      function weightOption(n) {
+        const steps = [100, 300, 400, 500, 700, 900];
+        const labels = ['Thin', 'Light', 'Regular', 'Medium', 'Bold', 'Black'];
+        let best = 2;
+        steps.forEach(function (s, i) { if (Math.abs(s - n) < Math.abs(steps[best] - n)) best = i; });
+        return labels[best];
+      }
       function take(f) {
         if (!f) return;
         if (!/\.(ttf|otf|woff2?)$/i.test(f.name)) { WFChrome.toast('只支持 ttf / otf / woff / woff2'); return; }
         if (f.size > 30 * 1024 * 1024) { WFChrome.toast('文件超过 30 MB'); return; }
         picked = f;
+        picked.glyphs = 0;
         document.getElementById('fileName').textContent = f.name;
         document.getElementById('kvSize').textContent = WFEmbed.fmtBytes(f.size);
         document.getElementById('kvFormat').textContent = f.name.split('.').pop().toLowerCase();
         if (!name.value) name.value = f.name.replace(/\.[a-z0-9]+$/i, '').replace(/[-_]+/g, ' ');
         if (!fam.value) fam.value = 'custom-' + slug(f.name);
         check();
+        if (!/\.(ttf|otf)$/i.test(f.name)) return;
+        f.arrayBuffer().then(function (buf) {
+          const meta = parseSfnt(buf);
+          if (!meta) return;
+          if (meta.family) name.value = meta.family;
+          if (meta.glyphs) picked.glyphs = meta.glyphs;
+          if (meta.weight) document.getElementById('upWeight').value = weightOption(meta.weight);
+          if (meta.family) fam.value = 'custom-' + slug(meta.family);
+          check();
+        }).catch(function () { WFChrome.toast('没能从文件里读出名称，已用文件名'); });
       }
       file.addEventListener('change', function () { take(file.files[0]); });
       ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('is-over'); }); });
@@ -83,11 +146,12 @@
         const s = WFApp.state();
         s.uploads.unshift({
           id: 'up-' + Date.now().toString(36), name: name.value.trim(), family: fam.value, weights: [document.getElementById('upWeight').value],
-          glyphCount: Math.round(picked.size / 320), format: picked.name.split('.').pop().toLowerCase(), size: picked.size,
+          glyphCount: picked.glyphs || Math.round(picked.size / 320), format: picked.name.split('.').pop().toLowerCase(), size: picked.size,
           uploadedAt: new Date().toISOString(), status: 'ready'
         });
+        WFApp.log('上传字体', name.value.trim());
         WFApp.save();
-        WFChrome.toast('已上传并解析');
+        WFChrome.toast('已上传。下一步把它加入项目');
         location.href = 'fonts.html';
       });
 

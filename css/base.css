@@ -108,7 +108,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .panel-head .more { font-size: var(--fs-13); color: var(--gray); }
 .panel-head + .panel-pad { padding-top: var(--s-4); }
 /* 面板里的控件翻成白色 */
-.panel .input, .panel .select, .panel .textarea, .panel .code, .panel .chip, .panel .btn:not(.btn-ink):not(.btn-text):not(.ink-design) { background: var(--paper); }
+.panel .input, .panel .select, .panel .textarea, .panel .code, .panel .chip, .panel .btn:not(.btn-ink):not(.btn-text):not(.ink-design) { background-color: var(--paper); }
 html[data-view="dev"] .panel .btn.ink-design { background: var(--paper); }
 
 /* —— 顶栏下的页面标题带 —— */

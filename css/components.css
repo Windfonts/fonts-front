@@ -137,8 +137,8 @@ html[data-view="dev"] .ink-dev:hover { background: var(--ink-hover); }
 .input::placeholder, .textarea::placeholder { color: var(--gray-2); }
 .input:focus, .select:focus, .textarea:focus, .input-line:focus { outline: 2px solid var(--ink); outline-offset: 0; }
 .input:disabled, .select:disabled, .textarea:disabled, .input-line:disabled { color: var(--gray-2); cursor: not-allowed; opacity: 0.6; }
-.select { appearance: none; padding-right: 2rem; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.8rem center; }
-[data-theme="dark"] .select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239a9a9a' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); }
+.select { appearance: none; padding-right: 2rem; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.8rem center; background-size: 12px 12px; }
+[data-theme="dark"] .select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239a9a9a' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.8rem center; background-size: 12px 12px; }
 .field { display: grid; gap: var(--s-2); }
 .field > label { font-size: var(--fs-13); color: var(--gray); font-weight: var(--fw-label); }
 .field .hint { font-size: var(--fs-12); color: var(--gray-2); }
@@ -215,7 +215,7 @@ html[data-theme="dark"] .code {
   --code-s: #7ee787;
 }
 .code:has(.copy) { padding-right: 4.5rem; }
-.code pre { color: var(--ink-2); }
+.code pre { color: var(--ink-2); white-space: pre-wrap; overflow-wrap: break-word; }
 .code .k { color: var(--code-k); font-weight: var(--fw-title); }
 .code .k-a { color: var(--code-a); }
 .code .k-s { color: var(--code-s); }

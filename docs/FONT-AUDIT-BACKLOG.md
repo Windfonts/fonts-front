@@ -56,6 +56,7 @@
 - `hcth`/`hcwjt`：原包 name table = 寒蝉有机体 / 寒蝉无机体；产品「寒蝉谭黑」；**勿改成谭黑**
 - `wlhxh`：vault `brandId` → `welai`；重复 `project-welai` 已 offline
 - 下一波素材平台（千图/包图/优设/创客贴…）：只核误挂与命名，**不要**无证据标思源 fork
+- **2026-09-24 已核误挂**：千图 6 款、包图小白体、优设标题黑、创客贴金刚体、摄图摩登小方体在 `font-lineage.json` 都没有 fork 行。许可正文与备注互相矛盾，本轮不改。站酷文艺体谱系是 `original`，`licenseName` 仍是「商用须授权」；没有原包 OFL 文件，不改成 OFL。
 
 ---
 

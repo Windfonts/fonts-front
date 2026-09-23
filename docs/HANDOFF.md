@@ -270,7 +270,7 @@
 
 - 先读本节 + LICENSE §8 + FONT-AUDIT-BACKLOG；不要重开大批量 OSS 收录。
 - 继续核实品牌时：先看版权行与作者 README，再写 `font-lineage.json`；没把握不写。
-- 下一优先：千图 / 包图 / 优设 / 字魂以外素材平台——只核「是否误标 fork / 名称 / brand slug」，不要虚构思源上游。
+- 千图 / 包图 / 优设 / 创客贴 / 摄图的误挂已在 §12.3 核过：没有 fork 行。不要再按猫啃套路补思源上游。许可字段互相矛盾的，没有原包就不要改。
 
 ### 9.6 设计样张与剩余工作区（2026-09-23 晚）
 
@@ -351,3 +351,48 @@
 包括：源流明体、源云明体、邪宋、源起明体、源起黑体、月星楷、尚古明体、初夏明朝体、合简宋体、澳声通拼音文楷、就是不错字（吧）、谐灵附体、简语生活体、汇文明朝、汉典秦系文字体、激笔 SFX，以及 M+ 各切版、Zen 系列、Kosugi、Shippori、Kiwi Maru、Hachi Maru Pop、Yusei Magic。Zen Loop / Zen Dots / Zen Tokyo Zoo / M+ Code Latin / 激笔 SFX 没有汉字，也登记了。CC0 专路没有再找到第二套宋/楷/黑/仿宋。汉典金文仓里没有许可文件，cwTeX Q 不是 CC0。
 
 昭源缺的 ExtraLight / SemiBold / Heavy 和斜体还没补进已有行。未 git commit。
+
+## 12. 2026-09-24 会话 `01500391`（续 `8a50af81`）
+
+Cursor 会话 [01500391-9c7f-49af-bf92-046928b48838](01500391-9c7f-49af-bf92-046928b48838)。先交接 `8a50af81`，再核类似猫啃的厂商，随后改名、对齐 slug、标 IBM，并提交。最后一条没做完：按现行站点改 v4 设计指南，并放进关于目录。
+
+### 12.1 该会话已经交出去的
+
+| Commit | 内容 |
+|---|---|
+| `cd1c5f4` | 交接 §9、谱系核实、welai、IBM、寒蝉原包名 |
+| `660a935` | 认领矩阵 / 谱系口径 / OSS 留档 |
+| `a771c1b` | 产品规格、短码别名、实验室索引 |
+| `3aaef3d` | 厂商谱系、许可/FAQ、产品规格接线 |
+| `1913e00` | 对照页与审计页留档 |
+| `7e9f41f` | handoff §9.6 |
+
+其后另有 `1d6debd`（目录 401）和 `84f92cf`（把「设计指南」写进 `js/wf-docs-nav.js`）。`84f92cf` 只加了菜单项，`styleguide.html` 仍是独立样张，正文还写着不进说明目录。
+
+### 12.2 本轮补上的
+
+- `styleguide.html`：说明壳与关于页相同（左栏 + 右侧相关），样张留在下面全宽，避免 96px 字标被窄栏折行。
+- 正文按 `css/tokens.css` 改：定稿是 B，不是被否决的 B″。补 `--paper` / `--fill` / `--face`。黑只给主按钮、选中态、字标头像；带图头像底是白。界面字体普惠体，缺字回退寒蝉全圆体；字标寒蝉宽黑。
+- 「全部」计数改走 `WFProducts.collapseForList`。现目录 401 行收成 343，与字体库一致。
+- `docs/DESIGN-SYSTEM.md` §5 改成：设计指南用说明壳，样张标题仍用 `.sg-*`。
+- 浏览器核对：`http://127.0.0.1:16016/styleguide.html` 桌面全页；关于页手机宽度的「相关」里有设计指南；`?theme=dark` 见 §12.5。
+
+### 12.3 素材平台误挂（只核，不改许可）
+
+`font-lineage.json` 里这些名字没有 `relation=fork`，没有挂思源：千图 6 款、包图小白体、优设标题黑、创客贴金刚体、摄图摩登小方体。
+
+没有改许可字段。这几条的 `license` 与 `licenseNotes` 彼此矛盾（写着免费商用，备注又写须购买）。站酷文艺体谱系已是 `original`，`licenseName` 仍是「商用须授权」；Google Fonts 没有 `ZCOOL WenYi` 这一页（404）。没有原包许可文件，不把文艺体改成 OFL。
+
+寒蝉楷体、寒蝉拙楷、寒蝉活仿宋仍然没有谱系行。寒蝉手拙体是 `original`，与拙楷不是同一款。
+
+### 12.4 没动
+
+- 全库 `/api/css` 扫描、子集缺口、TTC/VF：仍在 [FONT-AUDIT-BACKLOG.md](FONT-AUDIT-BACKLOG.md)。
+- 未跟踪的 `*.bak`、`docs/_audit-*`、`docs/_oss-aqua-probe*`：继续留在本地。
+- 工作区里另有未提交的 `js/wf-chrome.js`、`font-detail.html`（谱系沿 `upstreamName` 走到 `original`，中间显示「经」）。不是 `01500391` 写完的，本轮没有改这两份，也没有提交。
+
+### 12.5 验证
+
+- 设计指南桌面全页已看：左栏当前项是设计指南，右侧相关有关于 / 认领 / 常见问题；色板、字阶、按钮、三行样张、页脚链接都在。`#sgCountAll` 为 343。
+- 关于页手机宽度：「相关」第一条是设计指南。
+- 深色：页面认 `?theme=dark` 和 `localStorage.wf-theme`，不认系统 `prefers-color-scheme`。`styleguide.html?theme=dark` 手机宽度已看：页底和面板转暗，墨黑色块转亮，字标仍是一行。

@@ -673,56 +673,48 @@
       return !!(hit && hit.id === font.id);
     });
   }
-  function isLineagePack(f, rootName) {
-    return !!(rootName && f.name !== rootName && f.name.indexOf(rootName) === 0);
+  /** 沿 upstreamName 走到 relation=original。链是 [源头, …, 当前]，只含这一跳一跳的路径。 */
+  function lineageChain(list, font) {
+    const chain = [];
+    const seen = {};
+    let cur = font;
+    let guard = 0;
+    while (cur && !seen[cur.id] && guard < 8) {
+      seen[cur.id] = true;
+      guard += 1;
+      chain.unshift(cur);
+      const rec = cur.lineage || {};
+      const up = rec.upstreamName || '';
+      if (!up || up === cur.name || rec.relation === 'original') break;
+      const parent = findFontByName(list, up);
+      if (!parent || parent.id === cur.id) break;
+      cur = parent;
+    }
+    return chain;
   }
   function lineageSplit(font, list) {
     const L = (font && font.lineage) || {};
     let up = L.upstreamName || '';
-    if (up === font.name) up = '';
-    const byGroup = lineageKin(list, font);
-    const downs = lineageDownstream(list, font);
-    const seen = {};
-    const all = [];
-    function add(f) {
-      if (!f || seen[f.id]) return;
-      seen[f.id] = true;
-      all.push(f);
-    }
-    add(font);
-    byGroup.forEach(add);
-    downs.forEach(add);
-
-    const isRootFace = !up || L.relation === 'original' || (downs.length > 0 && !up);
-    const root = isRootFace
-      ? font
-      : (findFontByName(list, up) ||
-        all.filter(function (f) { return (f.lineage || {}).relation === 'original'; })[0] ||
-        null);
-    const rootName = (root && root.name) || up;
-    const rest = all.filter(function (f) {
-      if (root && f.id === root.id) return false;
-      if (isLineagePack(f, rootName)) return false;
-      return true;
+    if (font && up === font.name) up = '';
+    const chain = lineageChain(list, font);
+    const root = chain[0] || null;
+    const via = chain.filter(function (f) {
+      return f && root && font && f.id !== root.id && f.id !== font.id;
     });
-    rest.sort(function (a, b) {
-      if (a.id === font.id) return -1;
-      if (b.id === font.id) return 1;
-      return 0;
-    });
+    const onChain = {};
+    chain.forEach(function (f) { if (f) onChain[f.id] = true; });
+    const downs = lineageDownstream(list, font).filter(function (f) { return !onChain[f.id]; });
+    const all = chain.concat(downs);
+    const rest = all.filter(function (f) { return root && f.id !== root.id; });
     const buckets = { fork: [], locale: [], collab: [], commissioned: [], other: [] };
-    rest.forEach(function (f) {
+    downs.forEach(function (f) {
       const rel = (f.lineage || {}).relation;
       (buckets[rel] || buckets.other).push(f);
     });
-    Object.keys(buckets).forEach(function (k) {
-      buckets[k].sort(function (a, b) {
-        if (a.id === font.id) return -1;
-        if (b.id === font.id) return 1;
-        return 0;
-      });
-    });
-    return { all: all, L: L, up: up, root: root, rest: rest, buckets: buckets, n: all.length || 1, downs: downs };
+    return {
+      all: all, L: L, up: up, root: root, via: via, rest: rest,
+      buckets: buckets, n: all.length || 1, downs: downs
+    };
   }
   function lineageMeta(f) {
     const parts = [];
@@ -774,6 +766,7 @@
     const rowOf = function (f) { return lineageRow(f, f.id === font.id, faceOf); };
     return '<div class="lin-tree">' +
       lineageBlock('原作', originRow ? [originRow] : []) +
+      lineageBlock('创作', (split.via || []).map(rowOf)) +
       lineageBlock('派生', split.buckets.fork.map(rowOf)) +
       lineageBlock('地区版', split.buckets.locale.map(rowOf)) +
       lineageBlock('合作', split.buckets.collab.map(rowOf)) +
@@ -784,8 +777,22 @@
   function lineageInviteHtml(font, split) {
     if (!font || !WFProto.isOpenFont(font)) return '';
     const L = (font && font.lineage) || {};
-    if (L.relation === 'fork' && L.upstreamName) {
-      return '<p class="lin-invite">此字体由「' + esc(L.upstreamName) + '」派生。遵循原许可协议开源发布。</p>';
+    const chain = [];
+    if (split && split.root) chain.push(split.root);
+    if (split && split.via) split.via.forEach(function (f) { chain.push(f); });
+    if (font && (!split || !split.root || font.id !== split.root.id)) chain.push(font);
+    if (L.relation === 'fork' && chain.length >= 2) {
+      const bits = [];
+      for (let i = chain.length - 1; i >= 1; i--) {
+        const parent = chain[i - 1];
+        if (chain[i].id === font.id) {
+          bits.push('此字体基于「' + esc(parent.name) + '」创作' + (i > 1 ? '，' : '。'));
+        } else {
+          bits.push(esc(chain[i].name) + '由「' + esc(parent.name) + '」派生。');
+        }
+      }
+      bits.push('遵循原许可协议开源发布。');
+      return '<p class="lin-invite">' + bits.join('') + '</p>';
     }
     if (L.relation === 'original' || !L.upstreamName) {
       return '<p class="lin-invite">此为开源字体谱系源头。许可允许修改后以其他名称再分发，须保留许可声明。</p>';
@@ -799,7 +806,6 @@
     if (!hasTree && !invite) return '';
     const lead = hasTree
       ? '<p class="lin-lead">' + esc(split.L.groupName || split.up || (split.root && split.root.name) || '同系') +
-          ' · ' + split.n + ' 款' +
           (!split.root && split.up ? ' · 原作不在库里' : '') + '</p>'
       : '';
     const listHtml = hasTree ? lineageListHtml(font, split, faceOf) : '';

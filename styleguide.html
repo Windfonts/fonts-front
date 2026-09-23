@@ -5,170 +5,189 @@
   <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>设计指南 · 文风字体</title>
-  <meta name="description" content="文风字体 v4 设计指南：柔和 · 圆润。黑白灰、浅灰面板、普惠体 UI、设计/开发双视图。" />
-  <link rel="stylesheet" href="css/fonts.css?v=20260922a" />
+  <meta name="description" content="文风字体 v4 设计指南：柔和 · 圆润。纯白页面、浅灰面板、黑白灰、普惠体界面、寒蝉宽黑字标。" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260923u" />
   <link rel="stylesheet" href="css/tokens.css?v=20260923qa" />
-  <link rel="stylesheet" href="css/base.css?v=20260923r1" />
-  <link rel="stylesheet" href="css/components.css?v=20260923qa" />
+  <link rel="stylesheet" href="css/base.css?v=20260924c" />
+  <link rel="stylesheet" href="css/components.css?v=20260924d" />
   <link rel="stylesheet" href="css/specimen.css" />
-  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/site.css?v=20260924b" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-styleguide">
   <header data-topbar></header>
 
   <main class="container">
-    <div class="page-head">
-      <p class="crumb"><span>v4</span><span>/</span><span>设计指南</span></p>
-      <h1>柔和 · 圆润</h1>
-      <p class="lead">只有黑白灰。层次靠明度差：白页 → 浅灰面板 → 面板里的白控件；黑只给主按钮、选中态、头像。标题 700、其余 400，不用 500 / 600。UI 字体阿里巴巴普惠体，字标寒蝉宽黑。这一页是设计系统的活样张，用自己的独立模板（不进说明页目录版式）；规则文本见 <code class="code-inline">docs/DESIGN-SYSTEM.md</code>，代码规范见 <code class="code-inline">docs/FRONTEND-STANDARDS.md</code>，智能体工作要求见 <code class="code-inline">docs/AI-NATIVE.md</code>。</p>
+    <div class="docs">
+      <aside class="docs-toc" aria-label="说明目录"><div data-docs-nav="styleguide"></div></aside>
+      <div class="docs-main">
+        <article class="docs-body">
+          <section>
+            <p class="kicker">设计指南</p>
+            <h1>柔和 · 圆润</h1>
+            <p class="lead">v4 定稿是 B。纯白页面，浅灰面板，面板里的控件是白的。只有黑白灰，没有彩色，没有投影。黑只给主按钮、选中态和字标头像；带图头像底保持白色。标题 700，其余 400，不用 500 / 600。界面字体是阿里巴巴普惠体，缺这款字时用寒蝉全圆体。字标「文风字体」用寒蝉宽黑。本页挂在关于目录里，下面是按现行令牌摆的样张。</p>
+          </section>
+        </article>
+        <aside data-docs-aside="styleguide" aria-label="相关"></aside>
+      </div>
     </div>
 
-    <section class="sg-section" id="color">
-      <h2>01 · 色</h2>
-      <div class="sg-swatches">
-        <div class="sg-swatch"><div class="sw" style="background:var(--page)"></div><div class="n">页面底 page</div><div class="c">#ffffff</div></div>
-        <div class="sg-swatch"><div class="sw" style="background:var(--surface)"></div><div class="n">面板 surface</div><div class="c">#f5f5f5</div></div>
-        <div class="sg-swatch"><div class="sw" style="background:var(--surface-2)"></div><div class="n">面板 hover surface-2</div><div class="c">#e6e6e6</div></div>
-        <div class="sg-swatch"><div class="sw" style="background:var(--ink)"></div><div class="n">墨黑 ink · 主按钮 / 选中 / 头像</div><div class="c">#111111</div></div>
-        <div class="sg-swatch"><div class="sw" style="background:var(--gray)"></div><div class="n">灰字 gray</div><div class="c">#666666</div></div>
-        <div class="sg-swatch"><div class="sw" style="background:var(--rule)"></div><div class="n">分隔线 rule · 仅 KV / 表格</div><div class="c">#e6e6e6</div></div>
-      </div>
-      <p class="sg-note">没有彩色点缀。所有颜色走令牌，<code>[data-theme="dark"]</code> 一处覆写即可翻成深色模式。</p>
-    </section>
+    <div class="sg-sheet">
+        <section class="sg-section" id="color">
+          <h2>01 · 色</h2>
+          <div class="sg-swatches">
+            <div class="sg-swatch"><div class="sw" style="background:var(--page)"></div><div class="n">页面底 page</div><div class="c">#ffffff</div></div>
+            <div class="sg-swatch"><div class="sw" style="background:var(--surface)"></div><div class="n">面板 surface</div><div class="c">#f5f5f5</div></div>
+            <div class="sg-swatch"><div class="sw" style="background:var(--paper)"></div><div class="n">面板内控件 paper</div><div class="c">#ffffff</div></div>
+            <div class="sg-swatch"><div class="sw" style="background:var(--fill)"></div><div class="n">白页小件 fill</div><div class="c">#f0f0f0</div></div>
+            <div class="sg-swatch"><div class="sw" style="background:var(--face)"></div><div class="n">带图头像底 face</div><div class="c">#ffffff</div></div>
+            <div class="sg-swatch"><div class="sw" style="background:var(--ink)"></div><div class="n">墨黑 ink · 主按钮 / 选中 / 字标</div><div class="c">#111111</div></div>
+            <div class="sg-swatch"><div class="sw" style="background:var(--gray)"></div><div class="n">灰字 gray</div><div class="c">#666666</div></div>
+            <div class="sg-swatch"><div class="sw" style="background:var(--rule)"></div><div class="n">分隔线 rule · 仅 KV / 表格</div><div class="c">#e6e6e6</div></div>
+          </div>
+          <p class="sg-note">填充件悬停是 <code>--surface-2</code>（#e6e6e6），不是面板再铺一层灰。<code>--well</code> 与 <code>--fill</code> 同值，用在输入框和代码块。深色模式只在 <code>[data-theme="dark"]</code> 覆写令牌；<code>--face</code> 深浅都是白。</p>
+        </section>
 
-    <section class="sg-section" id="type">
-      <h2>02 · 字阶与字体</h2>
-      <p class="sg-note" style="margin:0 0 var(--s-4)">UI：<code>Alibaba PuHuiTi</code> → <code>Chill Round Gothic</code> → 系统。字标「文风字体」：<code>wenfeng-hckht</code>（寒蝉宽黑）。等宽：系统 mono。</p>
-      <div class="sg-scale">
-        <div><span class="k">144 / 1.0</span><span class="t-144">字</span></div>
-        <div><span class="k">96 / 1.05</span><span class="t-96">文风字体</span></div>
-        <div><span class="k">64 / 1.15</span><span class="t-64">让中文字体在网页上</span></div>
-        <div><span class="k">40 / 1.15</span><span class="t-40">一行代码可用，子集化后只剩几十 KB</span></div>
-        <div><span class="k">28 / 1.3</span><span class="t-28">页面标题 · 项目名称 · 定价数字</span></div>
-        <div><span class="k">20 / 1.3</span><span class="t-20">区块标题 · 二级标题</span></div>
-        <div><span class="k">16 / 1.6</span><span class="t-16">导语与正文强调：合法、高速、稳定地在网页上使用任何中文字体。</span></div>
-        <div><span class="k">14 / 1.6</span><span class="t-14">正文默认：所有功能设计都围绕「如何让中文字体在网页上用得更快」这一核心痛点。</span></div>
-        <div><span class="k">13 / 1.6</span><span class="t-13 muted">注解、元信息、表格：阿里巴巴设计 · 7 字重 · 免费商用</span></div>
-        <div><span class="k">12 / mono</span><span class="t-12 num">https://cn.windfonts.com/api/css?family=wenfeng-albbpht&amp;weight=regular&amp;version=full</span></div>
-      </div>
-    </section>
+        <section class="sg-section" id="type">
+          <h2>02 · 字阶与字体</h2>
+          <p class="sg-note" style="margin:0 0 var(--s-4)">界面：<code>Alibaba PuHuiTi</code> → <code>Chill Round Gothic</code> → 系统。字标「文风字体」：<code>wenfeng-hckht</code>（寒蝉宽黑）。等宽：系统 mono。字重只有 700 和 400。</p>
+          <div class="sg-scale">
+            <div><span class="k">144 / 1.0</span><span class="t-144">字</span></div>
+            <div><span class="k">96 / 1.05</span><span class="t-96">文风字体</span></div>
+            <div><span class="k">64 / 1.15</span><span class="t-64">让中文字体在网页上</span></div>
+            <div><span class="k">40 / 1.15</span><span class="t-40">一行代码可用，子集化后只剩几十 KB</span></div>
+            <div><span class="k">28 / 1.3</span><span class="t-28">页面标题 · 项目名称 · 定价数字</span></div>
+            <div><span class="k">20 / 1.3</span><span class="t-20">区块标题 · 二级标题</span></div>
+            <div><span class="k">16 / 1.6</span><span class="t-16">导语与正文强调：合法、高速、稳定地在网页上使用任何中文字体。</span></div>
+            <div><span class="k">14 / 1.6</span><span class="t-14">正文默认：所有功能设计都围绕「如何让中文字体在网页上用得更快」这一核心痛点。</span></div>
+            <div><span class="k">13 / 1.6</span><span class="t-13 muted">注解、元信息、表格：阿里巴巴设计 · 7 字重 · 免费商用</span></div>
+            <div><span class="k">12 / mono</span><span class="t-12 num">https://cn.windfonts.com/api/css?family=wenfeng-albbpht&amp;weight=regular&amp;version=full</span></div>
+          </div>
+        </section>
 
-    <section class="sg-section" id="buttons">
-      <h2>03 · 按钮 · 每屏最多一颗实心</h2>
-      <div class="sg-row">
-        <button type="button" class="btn btn-ink">添加到项目</button>
-        <button type="button" class="btn">复制 CSS</button>
-        <button type="button" class="btn btn-sm">复制</button>
-        <button type="button" class="btn" disabled>不可用</button>
-        <button type="button" class="btn-text">加入选字袋</button>
-        <button type="button" class="btn-text is-on">已在选字袋</button>
-        <a class="btn btn-lg" href="fonts.html">查看字体库</a>
-      </div>
-      <p class="sg-note">设计视图主按钮偏「加入选字袋」，开发视图偏「获取代码」。同一标题区不要两颗实心。</p>
-    </section>
+        <section class="sg-section" id="buttons">
+          <h2>03 · 按钮 · 每屏最多一颗实心</h2>
+          <div class="sg-row">
+            <button type="button" class="btn btn-ink">添加到项目</button>
+            <button type="button" class="btn">复制 CSS</button>
+            <button type="button" class="btn btn-sm">复制</button>
+            <button type="button" class="btn" disabled>不可用</button>
+            <button type="button" class="btn-text">加入选字袋</button>
+            <button type="button" class="btn-text is-on">已在选字袋</button>
+            <a class="btn btn-lg" href="fonts.html">查看字体库</a>
+          </div>
+          <p class="sg-note">设计视图主按钮偏「加入选字袋」，开发视图偏「获取代码」。同一标题区不要两颗实心。顶栏用 <code>wf-view</code> 切换，存在本机。</p>
+        </section>
 
-    <section class="sg-section" id="inputs">
-      <h2>04 · 输入</h2>
-      <div class="sg-two">
-        <div class="stack">
-          <div class="field"><label>项目名称</label><input class="input" value="文派官网" /></div>
-          <div class="field"><label>绑定域名</label><input class="input" placeholder="example.com" /><span class="hint">支持通配 *.example.com，一行一个</span></div>
-          <div class="field"><label>font-display</label><select class="select"><option>swap</option><option>block</option><option>fallback</option><option>optional</option></select></div>
-          <label class="check"><input type="checkbox" checked /> 我已拥有此字体的合法授权，并同意《上传条款》</label>
-        </div>
-        <div class="stack">
-          <input class="input-line" placeholder="输入文字，即时预览" value="永远相信，美好的事情即将发生。" />
-          <div class="row"><input class="range" type="range" min="16" max="160" value="56" style="width:12rem" /><span class="t-12 num muted">56px</span></div>
-          <textarea class="textarea" placeholder="粘贴页面文字，只打包出现过的字">让中文字体在网页上，一行代码可用。</textarea>
-        </div>
-      </div>
-    </section>
+        <section class="sg-section" id="inputs">
+          <h2>04 · 输入</h2>
+          <div class="sg-two">
+            <div class="stack">
+              <div class="field"><label>项目名称</label><input class="input" value="文派官网" /></div>
+              <div class="field"><label>绑定域名</label><input class="input" placeholder="example.com" /><span class="hint">支持通配 *.example.com，一行一个</span></div>
+              <div class="field"><label>font-display</label><select class="select"><option>swap</option><option>block</option><option>fallback</option><option>optional</option></select></div>
+              <label class="check"><input type="checkbox" checked /> 我已拥有此字体的合法授权，并同意《上传条款》</label>
+            </div>
+            <div class="stack">
+              <input class="input-line" placeholder="输入文字，即时预览" value="永远相信，美好的事情即将发生。" />
+              <div class="row"><input class="range" type="range" min="16" max="160" value="56" style="width:12rem" /><span class="t-12 num muted">56px</span></div>
+              <textarea class="textarea" placeholder="粘贴页面文字，只打包出现过的字">让中文字体在网页上，一行代码可用。</textarea>
+            </div>
+          </div>
+        </section>
 
-    <section class="sg-section" id="chips">
-      <h2>05 · 标签 · 点号 · 徽记</h2>
-      <div class="stack">
-        <div class="chips"><a class="chip is-on" href="fonts.html">全部 <span class="n" id="sgCountAll">—</span></a><a class="chip" href="fonts.html?license=免费商用">免费商用</a><a class="chip" href="fonts.html?open=1">开源</a></div>
-        <p class="dotlist"><a href="fonts.html?cat=黑体">黑体</a><a href="fonts.html?tag=电商">电商设计</a><a href="fonts.html?tag=品牌">品牌宣传</a><a href="fonts.html?tag=界面">UI / UX</a></p>
-        <p class="t-14">选字袋 <span class="pill-count" data-count="3">3</span> &nbsp;&nbsp; 厂商已认领 <span id="sgVerified"></span></p>
-      </div>
-      <p class="sg-note">筛选未选时是灰字，hover 起填充，选中翻黑。同屏不要一排一模一样的灰胶囊。</p>
-    </section>
+        <section class="sg-section" id="chips">
+          <h2>05 · 标签 · 点号 · 徽记</h2>
+          <div class="stack">
+            <div class="chips"><a class="chip is-on" href="fonts.html">全部 <span class="n" id="sgCountAll">—</span></a><a class="chip" href="fonts.html?license=免费商用">免费商用</a><a class="chip" href="fonts.html?open=1">开源</a></div>
+            <p class="dotlist"><a href="fonts.html?cat=黑体">黑体</a><a href="fonts.html?tag=电商">电商设计</a><a href="fonts.html?tag=品牌">品牌宣传</a><a href="fonts.html?tag=界面">UI / UX</a></p>
+            <p class="t-14">选字袋 <span class="pill-count" data-count="3">3</span> &nbsp;&nbsp; 厂商已认领 <span id="sgVerified"></span></p>
+          </div>
+          <p class="sg-note">筛选未选时是灰字，hover 起填充，选中翻黑。同屏不要一排一模一样的灰胶囊。「全部」后面的数字与字体库相同：同产品多规格收成一张卡。</p>
+        </section>
 
-    <section class="sg-section" id="code">
-      <h2>06 · 代码块 · Tab · KV 表</h2>
-      <div class="sg-two">
-        <div>
-          <div class="tabs"><button type="button" class="is-on">link</button><button type="button">@import</button><button type="button">css</button><button type="button">npm</button></div>
-          <div class="code" style="margin-top:var(--s-4)">
-            <button type="button" class="copy">复制</button>
+        <section class="sg-section" id="code">
+          <h2>06 · 代码块 · Tab · KV 表</h2>
+          <div class="sg-two">
+            <div>
+              <div class="tabs"><button type="button" class="is-on">link</button><button type="button">@import</button><button type="button">css</button><button type="button">npm</button></div>
+              <div class="code" style="margin-top:var(--s-4)">
+                <button type="button" class="copy">复制</button>
 <pre>&lt;link rel="preconnect" href="https://cn.windfonts.com" crossorigin&gt;
 &lt;link rel="stylesheet"
   href="https://cn.windfonts.com/api/css?family=wenfeng-albbpht&amp;weight=regular&amp;version=full"&gt;</pre>
+              </div>
+            </div>
+            <dl class="kv">
+              <div><dt>版本</dt><dd class="num">1.0.0</dd></div>
+              <div><dt>字重</dt><dd class="num">7</dd></div>
+              <div><dt>字符数</dt><dd class="num">28,937</dd></div>
+              <div><dt>分类</dt><dd>无衬线</dd></div>
+              <div><dt>语言</dt><dd>简 · 繁 · 英</dd></div>
+              <div><dt>发布</dt><dd class="num">2019</dd></div>
+            </dl>
           </div>
-        </div>
-        <dl class="kv">
-          <div><dt>版本</dt><dd class="num">1.0.0</dd></div>
-          <div><dt>字重</dt><dd class="num">7</dd></div>
-          <div><dt>字符数</dt><dd class="num">28,937</dd></div>
-          <div><dt>分类</dt><dd>无衬线</dd></div>
-          <div><dt>语言</dt><dd>简 · 繁 · 英</dd></div>
-          <div><dt>发布</dt><dd class="num">2019</dd></div>
-        </dl>
-      </div>
-      <p class="sg-note">对外示例只写 CDN 域名 + <code>/api/css</code>。旧路径 <code>/wenfeng/fonts/…</code> 仅兼容，不再当默认。</p>
-    </section>
+          <p class="sg-note">对外示例只写 CDN 域名 + <code>/api/css</code>。旧路径 <code>/wenfeng/fonts/…</code> 仅兼容，不再当默认。定价默认不出现在顶栏，开发模式或显式允许才显示。</p>
+        </section>
 
-    <section class="sg-section" id="foundry">
-      <h2>07 · 厂商标识 · 大数字 · 数据表</h2>
-      <div class="sg-two">
-        <div class="stack" id="sgFoundry"></div>
-        <div>
-          <div class="grid" style="grid-template-columns:repeat(3,1fr)">
-            <div class="stat"><div class="v">42<small>KB</small></div><div class="l">子集后体积</div></div>
-            <div class="stat"><div class="v">3</div><div class="l">绑定域名</div></div>
-            <div class="stat"><div class="v">1.2<small>GB</small></div><div class="l">本月流量</div></div>
+        <section class="sg-section" id="foundry">
+          <h2>07 · 厂商标识 · 大数字 · 数据表</h2>
+          <div class="sg-two">
+            <div class="stack" id="sgFoundry"></div>
+            <div>
+              <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+                <div class="stat"><div class="v">42<small>KB</small></div><div class="l">子集后体积</div></div>
+                <div class="stat"><div class="v">3</div><div class="l">绑定域名</div></div>
+                <div class="stat"><div class="v">1.2<small>GB</small></div><div class="l">本月流量</div></div>
+              </div>
+              <table class="table" style="margin-top:var(--s-8)">
+                <thead><tr><th>域名</th><th>状态</th><th class="num">请求</th><th></th></tr></thead>
+                <tbody>
+                  <tr><td class="mono">wenpai.org</td><td>已验证</td><td class="num">184,220</td><td class="actions"><button type="button" class="btn-text">移除</button></td></tr>
+                  <tr><td class="mono">*.wenpai.org</td><td class="muted">待验证</td><td class="num">0</td><td class="actions"><button type="button" class="btn-text">移除</button></td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <table class="table" style="margin-top:var(--s-8)">
-            <thead><tr><th>域名</th><th>状态</th><th class="num">请求</th><th></th></tr></thead>
-            <tbody>
-              <tr><td class="mono">wenpai.org</td><td>已验证</td><td class="num">184,220</td><td class="actions"><button type="button" class="btn-text">移除</button></td></tr>
-              <tr><td class="mono">*.wenpai.org</td><td class="muted">待验证</td><td class="num">0</td><td class="actions"><button type="button" class="btn-text">移除</button></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <section class="sg-section" id="controlbar" style="border-bottom:0">
-      <h2>08 · 控制条 · 样张行</h2>
-      <p class="sg-note" style="margin:0 0 var(--s-4)">控制条粘在顶栏下；样张行是字体库、详情相关、选字袋、厂商页共用的列表形态。同产品多规格用 <code>font-products.json</code> 合并展示，嵌入仍用当前规格的 <code>family</code>。</p>
-    </section>
+        <section class="sg-section" id="controlbar" style="border-bottom:0">
+          <h2>08 · 控制条 · 样张行</h2>
+          <p class="sg-note" style="margin:0 0 var(--s-4)">控制条粘在顶栏下；样张行是字体库、详情相关、选字袋、厂商页共用的列表形态。同产品多规格用 <code>font-products.json</code> 合并展示，嵌入仍用当前规格的 <code>family</code>。</p>
+        </section>
 
-    <div data-controlbar-demo></div>
-    <ul class="specimens" id="sgRows"></ul>
-    <section class="sg-section" id="hero">
-      <h2>09 · 字形墙（详情页首屏）· 可编辑</h2>
-      <div class="glyph-wall" style="padding:0"><div class="glyph-wall-inner"><div class="wall" contenteditable="true" spellcheck="false" id="sgHero" data-placeholder="输入文字" style="font-size:64px">阿里巴巴普惠体 天地玄黄 宇宙洪荒</div></div></div>
-      <p class="sg-note">详情首屏可直接改字。样张工坊只在设计视图；开发视图是普通字形墙。默认出图 1080×1440 窄幅。</p>
-    </section>
-    <section class="sg-section" id="icons">
-      <h2>10 · 图标 · Remix Icon 线标</h2>
-      <p class="sg-note" style="margin:0 0 var(--s-6)">经 <a href="https://icons.motucloud.com/collection/ri?style=outline" target="_blank" rel="noopener">墨图爱可</a> 选取 Remix Icon 线标（Apache-2.0）。打包在 <code class="code-inline">assets/icons.svg</code>，用 <code class="code-inline">WFChrome.icon('name')</code>，随 <code class="code-inline">currentColor</code>。</p>
-      <div class="sg-icons" id="sgIcons"></div>
-    </section>
-    <section class="sg-section" id="dialog">
-      <h2>11 · 确认弹层</h2>
-      <p class="sg-note" style="margin:0 0 var(--s-4)">破坏性操作走 <code class="code-inline">WFChrome.confirm</code>，返回 Promise。Esc / 点遮罩取消；移除、清空类默认焦点在取消。</p>
-      <button type="button" class="btn" id="sgDialog">打开确认弹层</button>
-    </section>
+        <div data-controlbar-demo></div>
+        <ul class="specimens" id="sgRows"></ul>
+        <section class="sg-section" id="hero">
+          <h2>09 · 字形墙（详情页首屏）· 可编辑</h2>
+          <div class="glyph-wall" style="padding:0"><div class="glyph-wall-inner"><div class="wall" contenteditable="true" spellcheck="false" id="sgHero" data-placeholder="输入文字" style="font-size:64px">阿里巴巴普惠体 天地玄黄 宇宙洪荒</div></div></div>
+          <p class="sg-note">详情首屏可直接改字。样张工坊只在设计视图；开发视图是普通字形墙。默认出图 1080×1440 窄幅。</p>
+        </section>
+        <section class="sg-section" id="icons">
+          <h2>10 · 图标 · Remix Icon 线标</h2>
+          <p class="sg-note" style="margin:0 0 var(--s-6)">经 <a href="https://icons.motucloud.com/collection/ri?style=outline" target="_blank" rel="noopener">墨图爱可</a> 选取 Remix Icon 线标（Apache-2.0）。打包在 <code class="code-inline">assets/icons.svg</code>，用 <code class="code-inline">WFChrome.icon('name')</code>，随 <code class="code-inline">currentColor</code>。</p>
+          <div class="sg-icons" id="sgIcons"></div>
+        </section>
+        <section class="sg-section" id="dialog">
+          <h2>11 · 确认弹层</h2>
+          <p class="sg-note" style="margin:0 0 var(--s-4)">破坏性操作走 <code class="code-inline">WFChrome.confirm</code>，返回 Promise。Esc / 点遮罩取消；移除、清空类默认焦点在取消。</p>
+          <button type="button" class="btn" id="sgDialog">打开确认弹层</button>
+          <nav class="docs-foot" aria-label="页脚">
+            <a href="about.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-info"/></svg>关于</a>
+            <a href="license.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-shield"/></svg>许可说明</a>
+            <a href="docs.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-book"/></svg>接入文档</a>
+          </nav>
+        </section>
+    </div>
   </main>
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js"></script>
-  <script src="js/wf-chrome.js?v=20260922bd"></script>
+  <script src="js/wf-proto.js?v=20260923u"></script>
+  <script src="js/wf-products.js?v=20260923u"></script>
+  <script src="js/wf-chrome.js?v=20260924f"></script>
   <script src="js/wf-specimen.js"></script>
+  <script src="js/wf-docs-nav.js?v=20260924a"></script>
   <script>
     (function () {
       document.getElementById('sgVerified').innerHTML = WFChrome.VERIFIED_SVG;
@@ -178,9 +197,14 @@
         });
       });
       WFSpecimen.controlBar(document.querySelector('[data-controlbar-demo]'), { view: false });
-      WFProto.loadCatalog().then(function (list) {
+      Promise.all([
+        WFProto.loadCatalog(),
+        window.WFProducts ? WFProducts.load() : Promise.resolve()
+      ]).then(function (res) {
+        const list = res[0];
+        const shown = window.WFProducts ? WFProducts.collapseForList(list) : list;
         const n = document.getElementById('sgCountAll');
-        if (n) n.textContent = String(list.length);
+        if (n) n.textContent = String(shown.length);
         const pick = ['阿里巴巴普惠体', '思源黑体', '得意黑'];
         const fonts = pick.map(function (name) {
           return list.filter(function (f) { return (f.name || '').indexOf(name) === 0; })[0];

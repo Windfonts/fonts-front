@@ -1,9 +1,10 @@
 /* 文风字体 v4 · 公开站页面：样张页 / 首页 / 字体库 / 厂商 / 定价 / 文档 / 选字袋 / 登录 */
 
 /* —— 样张页（styleguide） —— */
+.sg-sheet { padding-top: var(--s-4); }
 .sg-section { padding: var(--s-12) 0; }
 .sg-section > h2 { font-size: var(--fs-13); color: var(--gray); font-weight: var(--fw-label); margin-bottom: var(--s-6); }
-.sg-swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--gutter); }
+.sg-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: var(--gutter); }
 .sg-swatch .sw { height: 4rem; border-radius: var(--radius-sm); box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
 .sg-swatch .n { margin-top: var(--s-2); font-size: var(--fs-13); }
 .sg-swatch .c { font-family: var(--font-mono); font-size: var(--fs-12); color: var(--gray); }

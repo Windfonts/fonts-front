@@ -28,7 +28,7 @@
     return '<div class="panel"><div class="panel-head"><p>每款字体的字重与子集独立设置；改动会生成新版本。</p></div>' +
       '<table class="table"><thead><tr><th>字体</th><th>字重</th><th>子集</th><th class="num">估算体积</th><th></th></tr></thead><tbody>' +
       p.fonts.map(function (f) {
-        const meta = WFProto.getFont(f.fontId) || { name: f.fontId, family: '' };
+        const meta = WFApp.fontMeta(f.fontId) || { name: f.fontId, family: '' };
         return '<tr><td>' + WFChrome.faceHtml(meta, 18) + '<a href="../font-detail.html?id=' + esc(f.fontId) + '">' + esc(meta.name) + '</a><br><span class="mono t-12 muted">' + esc(meta.family) + '</span></td>' +
           '<td class="mono">' + f.weights.join(' · ') + '</td><td>' + esc(WFApp.subsetLabel(f.subset)) + '</td>' +
           '<td class="num">' + WFEmbed.fmtBytes(WFApp.subsetBytes(meta, f.subset, f.weights.length)) + '</td>' +
@@ -55,10 +55,10 @@
   function embedPanel() {
     return '<div class="panel"><div class="embed-opts">' +
         '<div class="field"><label for="optDisplay">加载策略</label><select class="select" id="optDisplay" aria-label="加载策略"><option value="">项目默认（' + esc(WFApp.state().settings.display) + '）</option><option value="swap">swap</option><option value="block">block</option><option value="fallback">fallback</option><option value="optional">optional</option></select></div>' +
-      '<div class="field"><label>提前加载</label><label class="check" style="margin-top:0.4rem"><input type="checkbox" id="optPreload" /> 提前加载字体样式</label></div>' +
-      '<div class="field"><label>项目 CDN</label><span class="mono t-13" id="projectCdn" style="padding-top:0.5rem;display:block;overflow-wrap:anywhere"></span></div>' +
+      '<div class="field"><label>提前加载</label><label class="check"><input type="checkbox" id="optPreload" /> 提前加载字体样式</label></div>' +
+      '<div class="field field-cdn"><label>项目 CDN</label><span class="mono t-13" id="projectCdn"></span></div>' +
       '</div>' +
-      '<div class="tabs" role="tablist" style="margin-bottom:var(--s-4)">' +
+      '<div class="tabs" role="tablist">' +
         '<button type="button" role="tab" data-embed-src="project" class="is-on">项目一份 CSS</button>' +
         '<button type="button" role="tab" data-embed-src="fonts">按字体拆开</button></div>' +
       '<div id="embed"></div>' +
@@ -74,6 +74,36 @@
       }).join('') + '</ul></div>';
   }
 
+  function projectUsageActs() {
+    const lows = [];
+    (p.usage.byFont || []).forEach(function (f) {
+      const ws = f.weights || {};
+      const keys = Object.keys(ws);
+      const total = keys.reduce(function (a, w) { return a + (ws[w] || 0); }, 0);
+      const row = (p.fonts || []).filter(function (x) { return x.fontId === f.fontId; })[0];
+      if (!row || keys.length < 2 || !total || (row.weights || []).length < 2) return;
+      keys.forEach(function (w) {
+        if ((row.weights || []).map(String).indexOf(String(w)) === -1) return;
+        if (ws[w] / total < 0.15) lows.push({ fontId: f.fontId, weight: w, pct: Math.round(ws[w] / total * 100) });
+      });
+    });
+    const blocked = (p.usage.blockedHosts || []).map(function (b) {
+      const host = String(b.host || '').replace(/:\d+$/, '').toLowerCase();
+      if (!host || host === 'localhost' || host === '127.0.0.1' || !WFApp.validHost(host)) return null;
+      return { host: host, requests30d: b.requests30d };
+    }).filter(Boolean);
+    if (!lows.length && !blocked.length) return '';
+    return '<div class="insight" style="margin-top:var(--s-6)">' +
+      lows.map(function (d) {
+        const meta = WFApp.fontMeta(d.fontId);
+        return '<div class="row"><span>' + esc(meta ? meta.name : d.fontId) + ' · ' + esc(d.weight) + ' 占 ' + d.pct + '%</span>' +
+          '<button type="button" class="btn-text" data-drop-weight="' + esc(d.fontId) + '|' + esc(d.weight) + '">' + WFChrome.icon('scissors') + '去掉这个字重</button></div>';
+      }).join('') +
+      blocked.map(function (b) {
+        return '<div class="row"><span>' + esc(b.host) + ' 被拒 ' + WFProto.formatCount(b.requests30d) + ' 次</span>' +
+          '<button type="button" class="btn-text" data-allow-host="' + esc(b.host) + '">' + WFChrome.icon('plus') + '加入白名单</button></div>';
+      }).join('') + '</div>';
+  }
   function usagePanel() {
     const u = p.usage;
     const daily = WFApp.series(p.id, 30, u.requests30d);
@@ -91,9 +121,10 @@
         (u.byDomain || []).map(function (d) {
           return '<tr><td class="mono">' + esc(d.host) + '</td><td class="num">' + WFProto.formatCount(d.requests30d) + '</td><td class="num">' + WFApp.fmtGB(d.bytes30d) + ' GB</td></tr>';
         }).join('') + '</tbody></table>' +
+      projectUsageActs() +
       '<h3 class="t-13 muted" style="margin:var(--s-5) 0 var(--s-3)">按字体</h3><table class="table"><tbody>' +
         (u.byFont || []).map(function (f) {
-          const m = WFProto.getFont(f.fontId);
+          const m = WFApp.fontMeta(f.fontId);
           return '<tr><td><a href="usage.html?font=' + esc(f.fontId) + '">' + esc(m ? m.name : f.fontId) + '</a></td><td class="num">' + WFProto.formatCount(f.requests30d) + '</td><td class="num">' + WFApp.fmtGB(f.bytes30d) + ' GB</td></tr>';
         }).join('') + '</tbody></table></div></div></div>';
   }
@@ -106,7 +137,7 @@
     root.querySelectorAll('[data-remove-font]').forEach(function (b) {
       b.addEventListener('click', function () {
         const id = b.getAttribute('data-remove-font');
-        const meta = WFProto.getFont(id);
+        const meta = WFApp.fontMeta(id);
         WFChrome.confirm({ title: '从项目移除字体', message: '将「' + (meta ? meta.name : id) + '」移出本项目，并生成新版本。已上线的嵌入代码会在发布后不再包含这款字体。', ok: '移除' }).then(function (ok) {
           if (!ok) return;
           WFApp.removeFont(p, id);
@@ -136,10 +167,32 @@
         });
       });
     });
+    root.querySelectorAll('[data-drop-weight]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        const parts = b.getAttribute('data-drop-weight').split('|');
+        const meta = WFApp.fontMeta(parts[0]);
+        WFChrome.confirm({ title: '去掉字重', message: '从「' + (meta ? meta.name : parts[0]) + '」去掉 ' + parts[1] + '，并生成新版本。', ok: '去掉' }).then(function (ok) {
+          if (!ok) return;
+          if (WFApp.removeWeight(p, parts[0], parts[1])) { WFChrome.toast('已去掉，生成新版本'); render(); }
+          else WFChrome.toast('这款字至少要留一个字重');
+        });
+      });
+    });
+    root.querySelectorAll('[data-allow-host]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        const host = b.getAttribute('data-allow-host');
+        if (WFApp.addDomain(p, host, 'dns')) { WFChrome.toast('已加入白名单，待验证'); render(); }
+        else WFChrome.toast('已在白名单');
+      });
+    });
     root.querySelectorAll('[data-rollback]').forEach(function (b) {
       b.addEventListener('click', function () {
         const v = parseInt(b.getAttribute('data-rollback'), 10);
-        WFChrome.confirm({ title: '回滚到 v' + v, message: '会以 v' + v + ' 的内容生成一个新版本，当前版本仍保留在历史里。嵌入地址不变，发布后立刻生效。', ok: '回滚' }).then(function (ok) {
+        const target = (p.versions || []).filter(function (x) { return x.v === v; })[0];
+        const msg = target && target.fonts
+          ? '会按 v' + v + ' 记下的字体清单生成新版本。当前版本留在历史里，嵌入地址不变。'
+          : 'v' + v + ' 没有记下当时的字体清单。回滚只会多一条记录，项目里的字体不会变。';
+        WFChrome.confirm({ title: '回滚到 v' + v, message: msg, ok: '回滚' }).then(function (ok) {
           if (!ok) return;
           const restored = WFApp.rollback(p, v);
           WFChrome.toast(restored ? '已回滚，字体清单已恢复' : '已记下回滚；这一版没有字体清单，项目里的字体未改');
@@ -151,7 +204,7 @@
     const embedEl = document.getElementById('embed');
     if (embedEl) {
       const items = p.fonts.map(function (f) {
-        return { family: (WFProto.getFont(f.fontId) || {}).family || f.fontId, weights: f.weights, version: f.subset && f.subset.mode === 'common' ? 'zh' : '' };
+        return { family: (WFApp.fontMeta(f.fontId) || {}).family || f.fontId, weights: f.weights, version: f.subset && f.subset.mode === 'common' ? 'zh' : '' };
       });
       let src = 'project';
       let m = null;

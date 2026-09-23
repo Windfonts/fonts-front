@@ -29,6 +29,75 @@
     }).join('') + '</div>';
   }
 
+  function lowWeights(ps) {
+    const out = [];
+    ps.forEach(function (p) {
+      (p.usage.byFont || []).forEach(function (f) {
+        const ws = f.weights || {};
+        const keys = Object.keys(ws);
+        const total = keys.reduce(function (a, w) { return a + (ws[w] || 0); }, 0);
+        if (keys.length < 2 || !total) return;
+        const row = (p.fonts || []).filter(function (x) { return x.fontId === f.fontId; })[0];
+        if (!row || (row.weights || []).length < 2) return;
+        keys.forEach(function (w) {
+          if ((row.weights || []).map(String).indexOf(String(w)) === -1) return;
+          const share = ws[w] / total;
+          if (share < 0.15) out.push({ p: p, fontId: f.fontId, weight: w, pct: Math.round(share * 100) });
+        });
+      });
+    });
+    return out;
+  }
+  function insightHtml(ps, pct) {
+    const lows = lowWeights(ps).slice(0, 4);
+    const blocked = WFApp.blockedHosts().map(function (b) {
+      const host = String(b.host || '').replace(/:\d+$/, '').toLowerCase();
+      if (!host || host === 'localhost' || host === '127.0.0.1' || !WFApp.validHost(host)) return null;
+      return { host: host, project: b.project, requests30d: b.requests30d };
+    }).filter(Boolean).slice(0, 3);
+    if (pct < 80 && !lows.length && !blocked.length) return '';
+    const bits = [];
+    if (pct >= 80) bits.push('<p>本月流量已用 ' + pct + '%，超出后按 ¥0.8 / GB 计。</p>');
+    lows.forEach(function (d) {
+      const meta = WFApp.fontMeta(d.fontId);
+      bits.push('<div class="row"><span>' + esc(d.p.name) + ' · ' + esc(meta ? meta.name : d.fontId) + ' 的 ' + esc(d.weight) + ' 只占请求 ' + d.pct + '%</span>' +
+        '<button type="button" class="btn-text" data-drop-weight="' + esc(d.p.id) + '|' + esc(d.fontId) + '|' + esc(d.weight) + '">' + WFChrome.icon('scissors') + '去掉这个字重</button></div>');
+    });
+    blocked.forEach(function (b) {
+      bits.push('<div class="row"><span>' + esc(b.host) + ' 被拒 ' + WFProto.formatCount(b.requests30d) + ' 次 · ' + esc(b.project.name) + '</span>' +
+        '<button type="button" class="btn-text" data-allow="' + esc(b.project.id) + '|' + esc(b.host) + '">' + WFChrome.icon('plus') + '加入白名单</button></div>');
+    });
+    return '<section class="app-section"><h2>可以处理的</h2><div class="insight">' + bits.join('') + '</div></section>';
+  }
+  function bindInsights() {
+    root.querySelectorAll('[data-drop-weight]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        const parts = b.getAttribute('data-drop-weight').split('|');
+        const p = WFApp.project(parts[0]);
+        const meta = WFApp.fontMeta(parts[1]);
+        WFChrome.confirm({
+          title: '去掉字重',
+          message: '从「' + (p ? p.name : '') + '」的「' + (meta ? meta.name : parts[1]) + '」去掉 ' + parts[2] + '，并生成新版本。',
+          ok: '去掉'
+        }).then(function (ok) {
+          if (!ok || !p) return;
+          if (WFApp.removeWeight(p, parts[1], parts[2])) { WFChrome.toast('已去掉，生成新版本'); render(); }
+          else WFChrome.toast('这款字至少要留一个字重');
+        });
+      });
+    });
+    root.querySelectorAll('[data-allow]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        const v = b.getAttribute('data-allow');
+        const i = v.indexOf('|');
+        const p = WFApp.project(v.slice(0, i));
+        const host = v.slice(i + 1);
+        if (p && WFApp.addDomain(p, host, 'dns')) { WFChrome.toast('已加入白名单，待验证'); render(); }
+        else WFChrome.toast('已在白名单');
+      });
+    });
+  }
+
   /* —— 总览 —— */
   function renderAll() {
     const s = WFApp.state();
@@ -54,13 +123,14 @@
         '<div class="stat"><div class="v">' + fmt(blocked) + '</div><div class="l">未授权访问</div></div>' +
         '<div class="stat"><div class="v">' + (req ? WFEmbed.fmtBytes(bytes / req).replace(' ', '<small>') + '</small>' : '—') + '</div><div class="l">平均每次请求</div></div>' +
       '</div>' +
+      insightHtml(ps, pct) +
       '<section class="app-section"><h2>每日请求<span class="more mono">' + range + ' 天</span></h2>' + WFApp.sparkline(daily) +
         '<div class="spark-meta"><span>' + range + ' 天前</span><span>今天</span></div>' +
         '<div class="status-row"><span><b>' + Math.round(st['200'] / stSum * 100) + '%</b>成功下发</span><span><b>' + Math.round(st['304'] / stSum * 100) + '%</b>缓存命中</span><span><b>' + Math.round(st['403'] / stSum * 100) + '%</b>被拒</span></div></section>' +
       '<section class="app-section"><h2>按字体<span class="more mono">' + byFont.length + ' 款</span></h2>' +
         '<table class="table"><thead><tr><th>字体</th><th>厂商</th><th>项目</th><th>字重</th><th class="num">请求</th><th class="num">流量</th><th class="num">占比</th></tr></thead><tbody>' +
         byFont.map(function (r) {
-          const m = WFProto.getFont(r.fontId);
+          const m = WFApp.fontMeta(r.fontId);
           const ws = Object.keys(r.weights).sort();
           return '<tr><td><a href="usage.html?font=' + esc(r.fontId) + '&range=' + range + '">' + esc(m ? m.name : r.fontId) + '</a></td>' +
             '<td>' + esc(m ? WFChrome.brandShort(m) : '—') + '</td>' +
@@ -87,11 +157,12 @@
         '<p class="t-13 muted" style="margin-top:var(--s-4)">由嵌入代码自动统计，仅含已绑定域名。</p></section>';
 
     bindRange();
+    bindInsights();
     document.getElementById('exportCsv').addEventListener('click', function () {
       WFApp.download('windfonts-usage-' + range + 'd.csv', WFApp.toCsv(
         ['字体', 'fontId', '项目', '字重', '请求', '流量(bytes)'],
         byFont.map(function (r) {
-          const m = WFProto.getFont(r.fontId);
+          const m = WFApp.fontMeta(r.fontId);
           return [m ? m.name : r.fontId, r.fontId, r.projects.map(function (x) { return x.p.name; }).join(' / '), Object.keys(r.weights).join(' '), Math.round(r.requests30d * k), Math.round(r.bytes30d * k)];
         })
       ));
@@ -100,7 +171,7 @@
 
   /* —— 单字体钻取 —— */
   function renderFont() {
-    const m = WFProto.getFont(fontId);
+    const m = WFApp.fontMeta(fontId);
     const u = WFApp.fontUsage(fontId);
     const k = scale();
     if (!m || !u) {
@@ -133,7 +204,7 @@
         '<div class="spark-meta"><span>' + range + ' 天前</span><span>今天</span></div></section>' +
       '<div class="usage-grid">' +
         '<section class="app-section"><h2>按字重</h2>' + weightBars(u.weights, u.requests30d) +
-          '<p class="t-13 muted" style="margin-top:var(--s-4)">很少被请求的字重可以从项目里移掉，减少版本体积。</p></section>' +
+          weightActions(u) + '</section>' +
         '<section class="app-section"><h2>按项目</h2><table class="table"><thead><tr><th>项目</th><th>字重 · 子集</th><th class="num">请求</th><th class="num">流量</th></tr></thead><tbody>' +
           u.projects.map(function (x) {
             const pf = x.p.fonts.filter(function (f) { return f.fontId === fontId; })[0];
@@ -149,6 +220,23 @@
         '<p class="t-13 muted" style="margin-top:var(--s-4)">按该字体在项目里的请求比例估算。</p></section>';
     document.title = m.name + ' · 用量 · 控制台 · 文风字体';
     bindRange();
+    bindInsights();
+  }
+  function weightActions(u) {
+    const ws = u.weights || {};
+    const keys = Object.keys(ws);
+    const total = keys.reduce(function (a, w) { return a + (ws[w] || 0); }, 0);
+    if (keys.length < 2 || !total) return '<p class="t-13 muted" style="margin-top:var(--s-4)">这款字只挂了一个字重。</p>';
+    const lows = keys.filter(function (w) { return ws[w] / total < 0.15; });
+    if (!lows.length) return '<p class="t-13 muted" style="margin-top:var(--s-4)">各字重都有明显请求。</p>';
+    return '<div class="insight" style="margin-top:var(--s-4)">' + lows.map(function (w) {
+      return u.projects.map(function (x) {
+        const pf = (x.p.fonts || []).filter(function (f) { return f.fontId === fontId; })[0];
+        if (!pf || (pf.weights || []).length < 2 || (pf.weights || []).map(String).indexOf(String(w)) === -1) return '';
+        return '<div class="row"><span>' + esc(x.p.name) + ' · ' + esc(w) + ' 占 ' + Math.round(ws[w] / total * 100) + '%</span>' +
+          '<button type="button" class="btn-text" data-drop-weight="' + esc(x.p.id) + '|' + esc(fontId) + '|' + esc(w) + '">' + WFChrome.icon('scissors') + '去掉这个字重</button></div>';
+      }).join('');
+    }).join('') + '</div>';
   }
 
   function render() { if (fontId) renderFont(); else renderAll(); }

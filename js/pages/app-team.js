@@ -41,7 +41,9 @@
       e.preventDefault();
       const email = document.getElementById('inviteEmail').value;
       const role = document.getElementById('inviteRole').value;
-      if (WFApp.inviteMember(email, role)) { WFChrome.toast('邀请已发送'); render(); }
+      const added = WFApp.inviteMember(email, role);
+      if (added === true) { WFChrome.toast('邀请已发送'); render(); }
+      else if (added === 'full') WFChrome.toast('席位已满，专业版最多 5 人');
       else WFChrome.toast('该邮箱已在团队中');
     });
     root.querySelectorAll('[data-role]').forEach(function (sel) {

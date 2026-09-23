@@ -212,17 +212,50 @@
     setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 0);
   }
 
+  function fontMeta(id) {
+    const cat = WFProto.getFont(id);
+    if (cat) return cat;
+    const up = ((state && state.uploads) || []).filter(function (u) { return u.id === id; })[0];
+    if (!up) return null;
+    return {
+      id: up.id, name: up.name, family: up.family,
+      glyphCount: up.glyphCount, charCount: up.glyphCount,
+      weights: up.weights || [], custom: true
+    };
+  }
   function addFont(p, fontId, weights, subset) {
     const exists = p.fonts.filter(function (f) { return f.fontId === fontId; })[0];
     if (exists) { exists.weights = weights; exists.subset = subset; }
     else p.fonts.push({ fontId: fontId, weights: weights, subset: subset });
-    const meta = WFProto.getFont(fontId);
+    const meta = fontMeta(fontId);
     pushVersion(p, (exists ? '更新 ' : '新增 ') + (meta ? meta.name : fontId) + ' · ' + subsetLabel(subset));
   }
   function removeFont(p, fontId) {
-    const meta = WFProto.getFont(fontId);
+    const meta = fontMeta(fontId);
     p.fonts = p.fonts.filter(function (f) { return f.fontId !== fontId; });
     pushVersion(p, '移除 ' + (meta ? meta.name : fontId));
+  }
+  function removeWeight(p, fontId, weight) {
+    const row = p.fonts.filter(function (f) { return f.fontId === fontId; })[0];
+    if (!row) return false;
+    const key = String(weight);
+    const next = (row.weights || []).filter(function (w) { return String(w) !== key; });
+    if (!next.length || next.length === (row.weights || []).length) return false;
+    row.weights = next;
+    const meta = fontMeta(fontId);
+    pushVersion(p, '去掉字重 ' + key + ' · ' + (meta ? meta.name : fontId));
+    return true;
+  }
+  function removeUpload(id) {
+    const up = ((state && state.uploads) || []).filter(function (u) { return u.id === id; })[0];
+    if (!up) return false;
+    state.projects.forEach(function (p) {
+      if (p.fonts.some(function (f) { return f.fontId === id; })) removeFont(p, id);
+    });
+    state.uploads = state.uploads.filter(function (u) { return u.id !== id; });
+    log('删除上传字体', up.name);
+    save();
+    return true;
   }
 
   /* —— 子集估算 —— */
@@ -266,7 +299,7 @@
   }
   function projectBytes(p) {
     return p.fonts.reduce(function (sum, f) {
-      return sum + subsetBytes(WFProto.getFont(f.fontId), f.subset, (f.weights || []).length || 1);
+      return sum + subsetBytes(fontMeta(f.fontId), f.subset, (f.weights || []).length || 1);
     }, 0);
   }
 
@@ -351,6 +384,7 @@
   function inviteMember(email, role) {
     email = String(email || '').trim().toLowerCase();
     if (!email || !state) return false;
+    if ((state.team || []).length >= 5) return 'full';
     if (state.team.some(function (m) { return m.email === email; })) return false;
     state.team.push({ id: 'm-' + Date.now().toString(36), name: email.split('@')[0], email: email, role: role || 'editor', status: 'pending', invitedAt: new Date().toISOString() });
     log('邀请成员', email + ' · ' + roleLabel(role || 'editor'));
@@ -417,7 +451,8 @@
     validHost: validHost, addDomain: addDomain, removeDomain: removeDomain, verifyDomain: verifyDomain,
     allDomains: allDomains, blockedHosts: blockedHosts, usageByFont: usageByFont, fontUsage: fontUsage, statusTotals: statusTotals,
     toCsv: toCsv, download: download,
-    addFont: addFont, removeFont: removeFont,
+    addFont: addFont, removeFont: removeFont, removeWeight: removeWeight, removeUpload: removeUpload,
+    fontMeta: fontMeta,
     uniqueChars: uniqueChars, parseRanges: parseRanges, subsetGlyphs: subsetGlyphs, subsetBytes: subsetBytes,
     subsetLabel: subsetLabel, projectBytes: projectBytes,
     series: series, sparkline: sparkline, fmtDate: fmtDate, fmtGB: fmtGB,

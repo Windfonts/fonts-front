@@ -13,8 +13,16 @@
   let queue = [];
   let st = { mode: 'text', text: '', preset: '3500', ranges: 'U+4E00-9FFF', weights: [], formats: ['woff2'] };
 
+  function pickable() {
+    const cat = WFProto.getCatalogList();
+    const ups = ((WFApp.state() && WFApp.state().uploads) || []).map(function (u) { return WFApp.fontMeta(u.id); }).filter(Boolean);
+    return cat.concat(ups);
+  }
   function fontOptions(list) {
     return list.map(function (f) { return '<option value="' + esc(f.name) + '">'; }).join('');
+  }
+  function findPick(name) {
+    return pickable().filter(function (f) { return f.name === name; })[0] || null;
   }
 
   function loadExisting() {
@@ -37,7 +45,7 @@
   }
 
   function render() {
-    const list = WFProto.getCatalogList();
+    const list = pickable();
     const projects = WFApp.projects();
     const ws = WFSpecimen.sortedWeights(font);
     const sample = st.mode === 'text' && st.text.trim() ? st.text : WFProto.getSample();
@@ -74,7 +82,8 @@
 
   function modeHtml() {
     if (st.mode === 'text') {
-      return '<div><textarea class="textarea" id="subText" placeholder="粘贴页面上会出现的文字：标题、品牌名、导航、固定文案……">' + esc(st.text) + '</textarea>' +
+      return '<div class="field" style="margin-bottom:var(--s-4)"><label for="pageUrl">从页面抽取</label><div class="inline-form"><input class="input" id="pageUrl" type="url" placeholder="https://example.com/page" aria-label="页面地址" /><button type="button" class="btn" id="pullPage">抽取文字</button></div><span class="hint">读得到页面就抽出正文；读不到就改贴文字。</span></div>' +
+        '<div><textarea class="textarea" id="subText" placeholder="粘贴页面上会出现的文字：标题、品牌名、导航、固定文案……">' + esc(st.text) + '</textarea>' +
         '<p class="t-13 muted" style="margin-top:var(--s-2)">去重后 <strong class="num" id="charCount">' + WFApp.uniqueChars(st.text) + '</strong> 个字符 · 自动加上数字和常用标点</p>' +
         '<div class="presets-row">' + WFSpecimen.PRESETS.map(function (p) { return '<button type="button" class="chip" data-fill="' + esc(p.text) + '">+ ' + p.label + '</button>'; }).join('') + '</div></div>';
     }
@@ -109,13 +118,35 @@
       '<div class="field"><label>格式</label><div class="weight-checks">' + ['woff2', 'woff', 'ttf'].map(function (f) {
         return '<label class="check"><input type="checkbox" data-format="' + f + '"' + (st.formats.indexOf(f) !== -1 ? ' checked' : '') + (f === 'woff2' ? ' disabled' : '') + ' /> ' + f + '</label>';
       }).join('') + '</div></div>' +
+      suggestHtml() +
       '<button type="button" class="btn btn-ink btn-lg" id="btnAdd"' + (st.weights.length ? '' : ' disabled') + '>' + WFChrome.icon('plus') + '加入「' + esc(project ? project.name : '项目') + '」</button>' +
       '<p class="t-12 muted">加入后生成新版本，嵌入代码不变。</p>';
   }
 
+  function suggestHtml() {
+    const textBytes = WFApp.subsetBytes(font, { mode: 'text', text: st.text }, 1);
+    const c3500 = WFApp.subsetBytes(font, { mode: 'common', preset: '3500' }, 1);
+    const c7000 = WFApp.subsetBytes(font, { mode: 'common', preset: '7000' }, 1);
+    const chars = WFApp.uniqueChars(st.text);
+    const advice = !st.text.trim() ? '先贴文字或抽一个页面，再和常用字集体积比。'
+      : (chars < 800 ? '这段文字不到 800 字，按文字比常用字集小。' : '文字很多，常用 3500 或 7000 更合适。');
+    function row(label, bytes, mode, on) {
+      return '<div><span>' + label + '</span><span class="num">' + WFEmbed.fmtBytes(bytes) + '</span>' +
+        (on ? '<span class="muted">当前</span>' : '<button type="button" class="btn-text" data-suggest="' + mode + '">改用</button>') + '</div>';
+    }
+    const onText = st.mode === 'text';
+    const on3500 = st.mode === 'common' && st.preset === '3500';
+    const on7000 = st.mode === 'common' && st.preset === '7000';
+    return '<div class="field"><label>子集对比</label><div class="suggest">' +
+      row('按文字' + (chars ? ' ' + chars : ''), textBytes, 'text', onText) +
+      row('常用 3500', c3500, '3500', on3500) +
+      row('常用 7000', c7000, '7000', on7000) +
+      '</div><p class="t-12 muted">' + advice + '</p></div>';
+  }
+
   function wire() {
     document.getElementById('fontPick').addEventListener('change', function (e) {
-      const f = WFProto.getCatalogList().filter(function (x) { return x.name === e.target.value; })[0];
+      const f = findPick(e.target.value);
       if (f) { font = f; loadExisting(); render(); }
     });
     root.querySelectorAll('[data-queue]').forEach(function (b) {
@@ -144,6 +175,28 @@
     });
     root.querySelectorAll('[data-mode]').forEach(function (b) {
       b.addEventListener('click', function () { st.mode = b.getAttribute('data-mode'); render(); });
+    });
+    const pull = document.getElementById('pullPage');
+    if (pull) pull.addEventListener('click', function () {
+      const url = (document.getElementById('pageUrl').value || '').trim();
+      if (!url) { WFChrome.toast('先填写页面地址'); return; }
+      pull.disabled = true;
+      fetch(url).then(function (r) {
+        if (!r.ok) throw new Error('status');
+        return r.text();
+      }).then(function (html) {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        doc.querySelectorAll('script,style,noscript').forEach(function (n) { n.remove(); });
+        const text = ((doc.body && doc.body.innerText) || '').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim().slice(0, 8000);
+        if (!text) throw new Error('empty');
+        st.text = text;
+        st.mode = 'text';
+        WFChrome.toast('抽到 ' + WFApp.uniqueChars(text) + ' 个字符');
+        render();
+      }).catch(function () {
+        pull.disabled = false;
+        WFChrome.toast('这个地址读不到正文，把文字贴到下面');
+      });
     });
     const ta = document.getElementById('subText');
     if (ta) ta.addEventListener('input', function () {
@@ -181,6 +234,14 @@
     wireSide();
   }
   function wireSide() {
+    root.querySelectorAll('[data-suggest]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        const m = b.getAttribute('data-suggest');
+        if (m === 'text') st.mode = 'text';
+        else { st.mode = 'common'; st.preset = m; }
+        render();
+      });
+    });
     root.querySelectorAll('[data-format]').forEach(function (c) {
       c.addEventListener('change', function () {
         const f = c.getAttribute('data-format');
@@ -206,7 +267,7 @@
     if (WFProto.getQuery('from') === 'bag') {
       queue = WFProto.getPicks().map(function (p) { return WFProto.getFont(p.id); }).filter(Boolean);
     }
-    font = WFProto.getFont(WFProto.getQuery('font')) || queue[0] || list.filter(function (f) { return (f.glyphCount || f.charCount || 0) > 1; })[0] || list[0];
+    font = WFApp.fontMeta(WFProto.getQuery('upload')) || WFProto.getFont(WFProto.getQuery('font')) || queue[0] || list.filter(function (f) { return (f.glyphCount || f.charCount || 0) > 1; })[0] || list[0];
     if (!font) { root.innerHTML = '<p class="empty">字体目录为空。</p>'; return; }
     loadExisting();
     WFSpecimen.sortedWeights(font).forEach(function (w) { WFProto.ensureFontCss(font.family, w); });
