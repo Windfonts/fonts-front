@@ -19,7 +19,25 @@
     { "id": "m-fe", "name": "前端组", "email": "fe@wenpai.org", "role": "editor", "status": "active", "invitedAt": "2026-07-01T09:00:00+08:00" },
     { "id": "m-ops", "name": "运营", "email": "ops@wenpai.org", "role": "viewer", "status": "pending", "invitedAt": "2026-09-18T14:20:00+08:00" }
   ],
-  "claims": [],
+  "claims": [
+    {
+      "id": "cl-alibaba",
+      "slug": "alibaba-design",
+      "name": "阿里巴巴设计",
+      "kind": "brand",
+      "kindLabel": "品牌方",
+      "website": "https://design.alibaba.com",
+      "email": "design@wenpai.org",
+      "status": "approved",
+      "submittedAt": "2026-08-01T10:00:00+08:00",
+      "page": {
+        "intro": "阿里巴巴设计出品的字体页。这里只改本页介绍、官网和外链。",
+        "site": "https://design.alibaba.com",
+        "links": "",
+        "repo": ""
+      }
+    }
+  ],
   "audit": [
     { "at": "2026-09-16T11:20:00+08:00", "actor": "design@wenpai.org", "action": "发布版本", "detail": "文派官网 · 阿里巴巴普惠体 增加 800 字重" },
     { "at": "2026-09-15T16:40:00+08:00", "actor": "design@wenpai.org", "action": "添加域名", "detail": "staging.wenpai.dev · 文派官网" },

@@ -8,10 +8,23 @@
   function render() {
     const s = WFApp.state();
     const u = WFChrome.user() || {};
-    const claims = s.claims || [];
     const audit = (s.audit || []).slice(0, 10);
+    if (WFApp.desk() === 'page') {
+      root.innerHTML =
+        '<div class="app-head"><div><h1>设置</h1><p class="sub">账号</p></div></div>' +
+        '<section class="app-section"><h2>账号</h2><div class="grid cols-2">' +
+          '<div class="field"><label for="accName">显示名</label><input class="input" id="accName" value="' + esc(u.name || '') + '" /></div>' +
+          '<div class="field"><label for="accEmail">邮箱</label><input class="input" id="accEmail" value="' + esc(u.email || '') + '" disabled /></div></div>' +
+          '<p style="margin-top:var(--s-4)"><button type="button" class="btn" id="saveAcc">' + WFChrome.icon('check') + '保存</button></p></section>' +
+        '<p class="t-13 muted">页资料在「我的页」。用字项目、域名和用量在「用字」。</p>';
+      document.getElementById('saveAcc').addEventListener('click', function () {
+        WFChrome.login({ name: document.getElementById('accName').value || u.name, email: u.email });
+        location.reload();
+      });
+      return;
+    }
     root.innerHTML =
-      '<div class="app-head"><div><h1>设置</h1><p class="sub">账号 · API · 认领厂商 · 审计' + (WFChrome.showPricing() ? ' · 套餐' : '') + '</p></div></div>' +
+      '<div class="app-head"><div><h1>设置</h1><p class="sub">账号 · 新项目默认 · API · 审计' + (WFChrome.showPricing() ? ' · 套餐' : '') + '</p></div></div>' +
       '<section class="app-section"><h2>账号</h2><div class="grid cols-2">' +
         '<div class="field"><label for="accName">显示名</label><input class="input" id="accName" value="' + esc(u.name || '') + '" /></div>' +
         '<div class="field"><label for="accEmail">邮箱</label><input class="input" id="accEmail" value="' + esc(u.email || '') + '" disabled /></div></div>' +
@@ -43,26 +56,13 @@
         '<div class="code"><button type="button" class="copy" id="copyKey">复制</button><pre id="apiKey">' + esc(s.settings.apiKey.slice(0, 12)) + '••••••••••••</pre></div>' +
         '<p class="t-13 muted" style="margin-top:var(--s-3)">创建于 ' + WFApp.fmtDate(s.settings.apiKeyCreatedAt) + ' · 用于动态子集化 API 与 CI 发布。 <button type="button" class="btn-text" id="rotateKey">' + WFChrome.icon('refresh') + '重新生成</button></p>' +
         '<div class="code" style="margin-top:var(--s-4)"><pre>curl -X POST ' + esc(WFProto.cdnOrigin()) + '/v1/subset \\\n  -H "Authorization: Bearer $WINDFONTS_KEY" \\\n  -d family=wenfeng-albbpht \\\n  -d weight=regular \\\n  --data-urlencode text="让中文字体在网页上，一行代码可用。"</pre></div></section>' +
-      '<section class="app-section" id="claim"><h2>认领厂商</h2>' +
-        '<p class="t-14" style="max-width:40em;color:var(--ink-2)">代表字体厂商或独立设计师可认领品牌页，维护标志、介绍与官网。通过后名称旁显示认证徽记。</p>' +
-        '<div class="grid cols-2" style="margin-top:var(--s-5)">' +
-          '<div class="field"><label for="claimSlug">厂商</label><input class="input" id="claimSlug" value="' + esc(claimQ || '') + '" placeholder="厂商名或页面地址" /></div>' +
-          '<div class="field"><label for="claimSite">官网</label><input class="input" id="claimSite" placeholder="https://" /></div>' +
-          '<div class="field"><label for="claimEmail">联系邮箱（请用官网域名）</label><input class="input" id="claimEmail" type="email" placeholder="brand@foundry.com" /></div>' +
-          '<div class="field"><label for="claimLic">授权原文链接</label><input class="input" id="claimLic" placeholder="https://…/license" /></div></div>' +
-        '<p style="margin-top:var(--s-4)"><button type="button" class="btn" id="claimBtn">' + WFChrome.icon('idcard') + '提交认领</button></p>' +
-        (claims.length ? '<table class="table" style="margin-top:var(--s-5)"><thead><tr><th>厂商</th><th>状态</th><th>提交于</th></tr></thead><tbody>' +
-          claims.map(function (c) {
-            return '<tr><td>' + esc(c.name) + '<br><span class="mono t-12 muted">' + esc(c.slug) + '</span></td>' +
-              '<td><span class="status-dot' + (c.status === 'approved' ? '' : ' is-pending') + '">' + (c.status === 'approved' ? '已通过' : '审核中') + '</span></td>' +
-              '<td class="mono muted">' + WFApp.fmtDate(c.submittedAt).slice(0, 10) + '</td></tr>';
-          }).join('') + '</tbody></table>' : '') + '</section>' +
+      '<section class="app-section"><h2>认领</h2><p class="t-14" style="max-width:40em;color:var(--ink-2)">作者、字库、品牌方、开源项目和素材平台到<a href="' + WFChrome.href('claim.html') + '">认领页</a>提交。通过后在侧栏「我的页」改本页资料，不能改许可档位。</p></section>' +
       '<section class="app-section"><h2>审计日志<a class="more" href="team.html">' + WFChrome.icon('group') + '团队</a></h2>' +
         (audit.length ? '<ul class="version-list is-audit">' + audit.map(function (a) {
           return '<li><span class="v">' + esc(a.action === '提交厂商认领' ? '提交认领' : a.action) + '</span><span class="note">' + esc(a.detail) + '</span>' +
             '<span class="num muted">' + esc(a.actor) + '</span><span class="at">' + WFApp.fmtDate(a.at) + '</span></li>';
         }).join('') + '</ul>' : '<p class="empty">还没有操作记录。</p>') + '</section>' +
-      '<section class="app-section"><h2>本地数据</h2><p class="t-13 muted">控制台数据保存在本机浏览器。 <button type="button" class="btn-text" id="resetData">' + WFChrome.icon('refresh') + '恢复示例数据</button></p></section>';
+      (WFChrome.showPricing() ? '<section class="app-section"><h2>本地数据</h2><p class="t-13 muted">控制台数据保存在本机浏览器。 <button type="button" class="btn-text" id="resetData">' + WFChrome.icon('refresh') + '恢复示例数据</button></p></section>' : '');
 
     document.getElementById('saveAcc').addEventListener('click', function () {
       WFChrome.login({ name: document.getElementById('accName').value || u.name, email: u.email });
@@ -92,25 +92,13 @@
         render();
       });
     });
-    document.getElementById('claimBtn').addEventListener('click', function () {
-      const slug = document.getElementById('claimSlug').value.trim();
-      if (!slug) { WFChrome.toast('填写厂商名'); return; }
-      WFApp.submitClaim({
-        slug: slug, name: slug,
-        website: document.getElementById('claimSite').value,
-        email: document.getElementById('claimEmail').value,
-        licenseUrl: document.getElementById('claimLic').value
-      });
-      WFChrome.toast('已提交，审核通常 3 个工作日');
-      render();
-    });
-    document.getElementById('resetData').addEventListener('click', function () {
+    const reset = document.getElementById('resetData');
+    if (reset) reset.addEventListener('click', function () {
       WFChrome.confirm({ title: '恢复示例数据', message: '本机控制台的项目、域名、团队与认领记录都会被示例数据覆盖。', ok: '恢复' }).then(function (ok) {
         if (!ok) return;
         WFApp.reset().then(function () { WFChrome.toast('已恢复示例数据'); render(); });
       });
     });
-    if (claimQ) document.getElementById('claim').scrollIntoView();
   }
 
   Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(render);

@@ -85,7 +85,7 @@
 | `GET /api/css?family&weight&subset`（`subset` 或 `lang`：`full` / `zh` / `zh-common` / `en`）。**不认 `version`**。`cn.windfonts.com/api/css` 是 OSS 404 | 嵌入地址改到 `app.windfonts.com/api/css`，并同时写 `subset` 和 `version` |
 | 管理后台：字体 / 厂商 / 分类 / 风格、同步、安全开关、域名白名单、域名黑名单、API 密钥。IP 白名单在导航里被拿掉 | 顾客控制台不做这套运营后台 |
 
-现网还没有、仍只在本仓 localStorage 里的：项目、版本回滚、子集化工作台、用量四维、团队、认领工单、审计。这两套白名单不是一件事：REST 免密钥白名单只认完整 hostname、要带 `Origin`、不支持通配；项目 CDN 白名单仍可以写 `*.example.com`。
+现网还没有、仍只在本仓 localStorage 里的：项目、版本回滚、子集化工作台、用量四维、团队、认领工单、审计。顾客控制台按三套工作台拆开，见 [CONSOLE.md](CONSOLE.md)：用字、我的页、运营（运营不在本仓）。这两套白名单不是一件事：REST 免密钥白名单只认完整 hostname、要带 `Origin`、不支持通配；项目 CDN 白名单仍可以写 `*.example.com`。
 
 密钥：`Authorization: Bearer`、`X-API-Key`，或 query `apiKey`（不要写进公开页面）。
 

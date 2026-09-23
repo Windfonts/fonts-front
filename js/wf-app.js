@@ -103,13 +103,17 @@
     if (state) return Promise.resolve(state);
     try {
       const cached = JSON.parse(localStorage.getItem(KEY) || 'null');
-      if (cached && cached.projects) { state = ensureShape(cached); return Promise.resolve(state); }
+      if (cached && cached.projects) { state = ensureShape(cached); refreshRails(); return Promise.resolve(state); }
     } catch (e) { /* ignore */ }
     return fetch(mockUrl()).then(function (r) { return r.json(); }).then(function (json) {
       state = ensureShape(json);
       save();
+      refreshRails();
       return state;
     });
+  }
+  function refreshRails() {
+    document.querySelectorAll('[data-rail]').forEach(renderRail);
   }
   function save() {
     localStorage.setItem(KEY, JSON.stringify(state));
@@ -364,7 +368,7 @@
   function fmtGB(bytes) { return (bytes / 1e9).toFixed(bytes >= 1e10 ? 0 : 1); }
 
   /* —— 壳 —— */
-  const NAV = [
+  const NAV_USE = [
     { id: 'overview', label: '概览', path: 'app/index.html', icon: 'dashboard' },
     { id: 'projects', label: '项目', path: 'app/projects.html', icon: 'folder' },
     { id: 'domains', label: '域名', path: 'app/domains.html', icon: 'globe' },
@@ -374,12 +378,58 @@
     { id: 'team', label: '团队', path: 'app/team.html', icon: 'group' },
     { id: 'settings', label: '设置', path: 'app/settings.html', icon: 'settings' }
   ];
+  const NAV_PAGE = [
+    { id: 'pages', label: '我的页', path: 'app/pages.html', icon: 'idcard' },
+    { id: 'settings', label: '设置', path: 'app/settings.html', icon: 'settings' }
+  ];
+  function approvedClaims() {
+    const list = state && state.claims;
+    return (list || []).filter(function (c) { return c.status === 'approved'; });
+  }
+  function desk() {
+    let d = 'use';
+    try {
+      const q = WFProto.getQuery('desk');
+      if (q === 'use' || q === 'page') sessionStorage.setItem('wf-desk', q);
+      d = sessionStorage.getItem('wf-desk') || 'use';
+    } catch (e) { /* ignore */ }
+    if (d === 'page' && !approvedClaims().length) d = 'use';
+    return d;
+  }
+  function isPro() {
+    return !!(state && state.plan && state.plan.id === 'pro');
+  }
+  function updateClaimPage(id, page) {
+    const c = approvedClaims().filter(function (x) { return x.id === id; })[0];
+    if (!c) return false;
+    c.page = {
+      intro: String(page.intro || '').slice(0, 500),
+      site: String(page.site || '').slice(0, 200),
+      links: String(page.links || '').slice(0, 300),
+      repo: String(page.repo || '').slice(0, 200)
+    };
+    log('更新页资料', c.name);
+    save();
+    return true;
+  }
   function renderRail(el) {
     const active = el.getAttribute('data-active') || '';
     const u = WFChrome.user() || {};
+    const d = desk();
+    const nav = d === 'page' ? NAV_PAGE : NAV_USE;
+    if (state && active && !nav.some(function (n) { return n.id === active; })) {
+      location.replace(WFChrome.href(nav[0].path));
+      return;
+    }
+    const switcher = approvedClaims().length
+      ? '<div class="desk-switch" role="tablist" aria-label="工作台">' +
+          '<a href="' + WFChrome.href('app/index.html?desk=use') + '"' + (d === 'use' ? ' class="is-on"' : '') + '>用字</a>' +
+          '<a href="' + WFChrome.href('app/pages.html?desk=page') + '"' + (d === 'page' ? ' class="is-on"' : '') + '>我的页</a></div>'
+      : '';
     el.innerHTML =
       '<a class="wordmark" href="' + WFChrome.href('index.html') + '"><img src="' + WFChrome.href('assets/icon.webp') + '" alt="" width="22" height="22" /><span>文风字体</span></a>' +
-      '<nav class="rail-nav" aria-label="控制台导航">' + NAV.map(function (n) {
+      switcher +
+      '<nav class="rail-nav" aria-label="控制台导航">' + nav.map(function (n) {
         return '<a href="' + WFChrome.href(n.path) + '"' + (n.id === active ? ' class="is-active"' : '') + '>' + WFChrome.icon(n.icon) + n.label + '</a>';
       }).join('') + '</nav>' +
       '<div class="rail-foot"><div class="who"><strong>' + esc(u.name || '未登录') + '</strong><span>' + esc(u.email || '') + '</span></div>' +
@@ -473,7 +523,8 @@
     state: function () { return state; },
     ROLES: ROLES, roleLabel: roleLabel,
     inviteMember: inviteMember, setMemberRole: setMemberRole, removeMember: removeMember,
-    submitClaim: submitClaim,
+    submitClaim: submitClaim, updateClaimPage: updateClaimPage, approvedClaims: approvedClaims,
+    desk: desk, isPro: isPro,
     projects: projects, project: project, createProject: createProject, removeProject: removeProject,
     currentVersion: currentVersion, pushVersion: pushVersion, rollback: rollback,
     validHost: validHost, addDomain: addDomain, removeDomain: removeDomain, verifyDomain: verifyDomain,
@@ -484,6 +535,6 @@
     uniqueChars: uniqueChars, parseRanges: parseRanges, subsetGlyphs: subsetGlyphs, subsetBytes: subsetBytes,
     subsetLabel: subsetLabel, projectBytes: projectBytes,
     series: series, sparkline: sparkline, fmtDate: fmtDate, fmtGB: fmtGB,
-    NAV: NAV
+    NAV: NAV_USE
   };
 })();

@@ -81,7 +81,7 @@
         sel('optStruct', '地址', [
           { value: 'dynamic', label: '动态' }, { value: 'static', label: '静态' }
         ], d.structure) +
-        '<div class="field"><label for="optAlias">字体名前缀</label><input class="input" id="optAlias" value="' + esc(d.alias) + '" placeholder="留空为 wenfeng-" autocomplete="off" /></div>' +
+        '<div class="field"><label for="optAlias">字体名前缀</label><input class="input" id="optAlias" value="' + esc(d.alias) + '" placeholder="留空为 wenfeng-" autocomplete="off"' + (WFApp.isPro() ? '' : ' disabled') + ' /><span class="hint">' + (WFApp.isPro() ? '留空保持 wenfeng-。只改这个项目的嵌入名。' : '专业档可改这个项目的字体名前缀。') + '</span></div>' +
       '</div>' +
       '<div class="tabs" role="tablist">' +
         '<button type="button" role="tab" data-embed-src="project" class="is-on">项目一份 CSS</button>' +
