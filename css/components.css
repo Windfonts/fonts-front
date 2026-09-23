@@ -434,6 +434,15 @@ a.foundry:hover .name { text-decoration: underline; text-underline-offset: 0.2em
 .dialog-acts { display: flex; justify-content: flex-end; gap: var(--s-3); margin-top: var(--s-6); }
 .dialog .field { gap: var(--s-2); }
 .dialog .input { background: var(--paper); }
+.dialog-back:has(.dialog-exit) { padding-inline: var(--s-10); }
+.dialog.dialog-exit {
+  width: min(32rem, 100%);
+  padding: var(--s-8) var(--s-10);
+}
+.dialog-exit .exit-host { margin-top: var(--s-4); font-size: var(--fs-16); font-weight: var(--fw-title); color: var(--ink); overflow-wrap: anywhere; }
+.dialog-exit .exit-url { margin-top: var(--s-2); font-size: var(--fs-13); color: var(--ink-2); overflow-wrap: anywhere; }
+.dialog-exit .exit-remember { display: flex; align-items: flex-start; gap: var(--s-2); margin-top: var(--s-4); font-size: var(--fs-13); color: var(--ink-2); cursor: pointer; }
+.dialog-exit .exit-remember input { margin-top: 0.2rem; }
 
 @media (max-width: 1024px) { .topsearch input { width: 10rem; } }
 /* 移动端折叠菜单。960 以下完整顶栏（导航 + 搜索 + 文字按钮）会挤出屏幕。 */

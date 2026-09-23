@@ -932,8 +932,111 @@
     document.head.appendChild(s);
   }
 
+  /* 外链确认。自家域名直接走；第三方先问，可在本会话记住该域名。 */
+  const EXIT_OWN = ['windfonts.com', 'wenfeng.org', 'motucloud.com', 'weixiaoduo.com', 'feibisi.com', 'feicode.com', 'wenpai.org', 'wenpai.net'];
+  const EXIT_KEY = 'wf-exit-skip:';
+  let exitBound = false;
+  function exitHost(name) {
+    return String(name || '').replace(/^www\./i, '').replace(/\.$/, '').toLowerCase();
+  }
+  function exitOwn(host) {
+    const h = exitHost(host);
+    if (!h) return true;
+    return EXIT_OWN.some(function (d) { return h === d || h.slice(-(d.length + 1)) === '.' + d; });
+  }
+  function exitExternalHost(href) {
+    const raw = String(href || '').trim();
+    if (!raw || raw.charAt(0) === '#' || raw.charAt(0) === '?' || raw.charAt(0) === '/') return '';
+    if (/^(mailto:|tel:|javascript:|data:)/i.test(raw)) return '';
+    let url;
+    try { url = new URL(raw, window.location.href); } catch (e) { return ''; }
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return '';
+    if (url.origin === window.location.origin || exitOwn(url.hostname)) return '';
+    if (/\.(png|jpe?g|gif|webp|svg|zip|pdf)(\?.*)?$/i.test(url.pathname)) return '';
+    return exitHost(url.hostname);
+  }
+  function exitRemembered(host) {
+    try { return sessionStorage.getItem(EXIT_KEY + host) === '1'; } catch (e) { return false; }
+  }
+  function exitRemember(host) {
+    try { sessionStorage.setItem(EXIT_KEY + host, '1'); } catch (e) { /* 隐私模式写不进就每次都问 */ }
+  }
+  function showExternalExit(link, host) {
+    const prev = document.getElementById('wfDialog');
+    if (prev) prev.remove();
+    const wrap = document.createElement('div');
+    wrap.id = 'wfDialog';
+    wrap.className = 'dialog-back';
+    wrap.innerHTML =
+      '<div class="dialog dialog-exit" role="dialog" aria-modal="true" aria-labelledby="wfDialogTitle">' +
+        '<h3 id="wfDialogTitle">即将离开文风</h3>' +
+        '<p>你将打开第三方网站。该站内容由对方运营方负责。</p>' +
+        '<p class="exit-host">' + esc(host) + '</p>' +
+        '<p class="exit-url">' + esc(link.href) + '</p>' +
+        '<label class="exit-remember"><input type="checkbox" data-remember /> <span>本会话内跳过该域名提示</span></label>' +
+        '<div class="dialog-acts">' +
+          '<button type="button" class="btn" data-no>留在本站</button>' +
+          '<button type="button" class="btn btn-ink" data-yes>继续前往</button>' +
+        '</div></div>';
+    document.body.appendChild(wrap);
+    const no = wrap.querySelector('[data-no]');
+    const yes = wrap.querySelector('[data-yes]');
+    const box = wrap.querySelector('[data-remember]');
+    const buttons = [box, no, yes];
+    document.body.style.overflow = 'hidden';
+    const done = function (go) {
+      wrap.remove();
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKey);
+      if (go) {
+        if (box.checked) exitRemember(host);
+        window.open(link.href, '_blank', 'noopener,noreferrer');
+      } else if (link.focus) {
+        link.focus();
+      }
+    };
+    const onKey = function (e) {
+      if (e.key === 'Escape') { e.preventDefault(); done(false); return; }
+      if (e.key !== 'Tab') return;
+      e.preventDefault();
+      const i = buttons.indexOf(document.activeElement);
+      const next = e.shiftKey ? (i <= 0 ? buttons.length - 1 : i - 1) : (i === buttons.length - 1 || i < 0 ? 0 : i + 1);
+      buttons[next].focus();
+    };
+    no.addEventListener('click', function () { done(false); });
+    yes.addEventListener('click', function () { done(true); });
+    wrap.addEventListener('click', function (e) { if (e.target === wrap) done(false); });
+    document.addEventListener('keydown', onKey);
+    no.focus();
+  }
+  function bindExternalExit() {
+    if (exitBound) return;
+    exitBound = true;
+    document.addEventListener('click', function (e) {
+      if (!(e.target instanceof Element) || document.getElementById('wfDialog')) return;
+      const link = e.target.closest('a[href]');
+      if (!link || e.defaultPrevented) return;
+      if (link.closest('#wfDialog, .wf-exit-skip')) return;
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (link.hasAttribute('download')) return;
+      const host = exitExternalHost(link.getAttribute('href') || link.href);
+      if (!host) return;
+      link.setAttribute('target', '_blank');
+      const rel = (link.getAttribute('rel') || '').split(/\s+/).filter(Boolean);
+      ['noopener', 'noreferrer'].forEach(function (bit) {
+        if (!rel.some(function (x) { return x.toLowerCase() === bit; })) rel.push(bit);
+      });
+      link.setAttribute('rel', rel.join(' '));
+      if (exitRemembered(host)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      showExternalExit(link, host);
+    }, true);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     applyPricingVisibility();
+    bindExternalExit();
     document.querySelectorAll('[data-topbar]').forEach(renderTopbar);
     ensureFooter();
     const s = document.getElementById('navSearch');
