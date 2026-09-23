@@ -170,11 +170,16 @@
 
   function collectForkEcosystem(list, slug) {
     const map = {};
+    const loose = [];
     list.forEach(function (f) {
       const L = f.lineage || {};
       if (L.relation !== 'fork') return;
       const up = L.upstreamOwnerInfo;
-      if (!up || up.id !== slug || !L.group) return;
+      if (!up || up.id !== slug) return;
+      if (!L.group) {
+        loose.push(f);
+        return;
+      }
       if (!map[L.group]) {
         map[L.group] = {
           group: L.group,
@@ -185,7 +190,11 @@
       }
       map[L.group].n++;
     });
-    return Object.keys(map).map(function (k) { return map[k]; });
+    loose.sort(function (a, b) { return a.name.localeCompare(b.name, 'zh'); });
+    return {
+      groups: Object.keys(map).map(function (k) { return map[k]; }),
+      loose: loose
+    };
   }
 
   /**
@@ -338,16 +347,21 @@
   }
 
   function ecosystemStrip(list, slug) {
-    const rows = collectForkEcosystem(list, slug);
-    if (!rows.length) return '';
-    const total = rows.reduce(function (n, r) { return n + r.n; }, 0);
+    const eco = collectForkEcosystem(list, slug);
+    const rows = eco.groups;
+    const loose = eco.loose;
+    if (!rows.length && !loose.length) return '';
+    const total = rows.reduce(function (n, r) { return n + r.n; }, 0) + loose.length;
+    const links = rows.map(function (row) {
+      return '<a href="' + WFChrome.href('fonts.html?lineage=' + encodeURIComponent(row.group)) + '">' +
+        esc(row.groupName || row.upstreamName || row.group) + ' ' + row.n + '</a>';
+    }).concat(loose.map(function (f) {
+      return '<a href="' + WFChrome.href(WFProto.detailHref(f)) + '">' + esc(f.name) + '</a>';
+    }));
     return '<div class="foundry-origins foundry-eco">' +
       '<span class="foundry-origins-label">' + WFChrome.icon('branch') + '同系派生</span>' +
       '<span class="foundry-upstream-item">站内另有 <strong>' + total + '</strong> 款从本页开源线上改出，版权归改作者 · ' +
-      rows.map(function (row) {
-        return '<a href="' + WFChrome.href('fonts.html?lineage=' + encodeURIComponent(row.group)) + '">' +
-          esc(row.groupName || row.upstreamName || row.group) + ' ' + row.n + '</a>';
-      }).join(' · ') +
+      links.join(' · ') +
       '</span></div>';
   }
 
@@ -676,7 +690,7 @@
       { icon: 'question', dt: '名称状态', dd: info.provisional ? '中文名拟定，待确认' : (info.unlisted ? '未入字典，按目录原文显示' : ''), dev: true }
     ].filter(function (r) { return r && r.dd; });
 
-    const origins = originsStrip(list, g) || ecosystemStrip(list, g.slug);
+    const origins = [originsStrip(list, g), ecosystemStrip(list, g.slug)].filter(Boolean).join('');
     const claimHtml = '<p class="claim">' + WFChrome.icon('idcard') + '<span>' + (g.claimed
       ? who + '已认领此页。许可仍以每款字体的出处为准。'
       : '这是你的品牌？<a href="claim.html?slug=' + encodeURIComponent(g.slug) + '">认领此页</a>。通过后可改标志与介绍。') + '</span></p>';
