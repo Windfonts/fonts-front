@@ -1,0 +1,218 @@
+{
+  "note": "对照 / 原型 / 研究页真源。文件留在仓根（相对路径不碎）。禁止当垃圾删。见 docs/LAB.md，索引 lab.html。",
+  "updated": "2026-09-23",
+  "policy": {
+    "keep": true,
+    "noProductionNav": true,
+    "robots": "noindex"
+  },
+  "groups": [
+    {
+      "id": "home",
+      "title": "首页",
+      "items": [
+        {
+          "href": "home-hero-options.html",
+          "title": "Hero 第二轮",
+          "status": "archive",
+          "note": "多套 hero 对照",
+          "assets": ["css/home-hero-options.css", "js/pages/home-hero-options.js"]
+        },
+        {
+          "href": "home-layout-options.html",
+          "title": "首页结构四套",
+          "status": "archive",
+          "assets": ["css/home-layout-options.css", "js/pages/home-layout-options.js"]
+        },
+        {
+          "href": "home-lib-options.html",
+          "title": "首页下半四套",
+          "status": "archive",
+          "assets": ["css/home-lib-options.css", "js/pages/home-lib-options.js"]
+        },
+        {
+          "href": "home-related-options.html",
+          "title": "同分类对照",
+          "status": "archive",
+          "assets": ["css/home-related-options.css", "js/pages/home-related-options.js"]
+        },
+        {
+          "href": "home-close-options.html",
+          "title": "首页收尾四套",
+          "status": "archive",
+          "note": "合作伙伴下、页脚上",
+          "assets": ["css/home-close-options.css", "js/pages/home-close-options.js"]
+        },
+        {
+          "href": "home-mark-options.html",
+          "title": "底部浅字四套",
+          "status": "archive",
+          "assets": ["css/home-mark-options.css", "js/pages/home-mark-options.js"]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "title": "详情",
+      "items": [
+        {
+          "href": "detail-options.html",
+          "title": "详情结构四套",
+          "status": "archive",
+          "assets": ["css/detail-options.css", "js/pages/detail-options.js"]
+        },
+        {
+          "href": "detail-meta-options.html",
+          "title": "标题与资料",
+          "status": "archive",
+          "assets": ["css/detail-options.css", "js/pages/detail-meta-options.js"]
+        },
+        {
+          "href": "detail-license-options.html",
+          "title": "授权与谱系",
+          "status": "archive",
+          "assets": ["css/detail-options.css", "js/pages/detail-license-options.js"]
+        },
+        {
+          "href": "detail-lineage-options.html",
+          "title": "开源谱系文案",
+          "status": "archive",
+          "note": "谱系口语文案定稿参考",
+          "assets": ["css/detail-options.css", "js/pages/detail-lineage-options.js"]
+        },
+        {
+          "href": "detail-lineage-tree-options.html",
+          "title": "谱系方案树",
+          "status": "archive",
+          "assets": ["js/pages/detail-lineage-tree-options.js"]
+        },
+        {
+          "href": "detail-share-layout-options.html",
+          "title": "样张布局",
+          "status": "archive",
+          "assets": ["js/pages/detail-share-layout-options.js"]
+        },
+        {
+          "href": "lineage-options.html",
+          "title": "谱系对照",
+          "status": "archive",
+          "assets": ["css/lineage-options.css", "js/pages/lineage-options.js"]
+        }
+      ]
+    },
+    {
+      "id": "foundry",
+      "title": "厂商",
+      "items": [
+        {
+          "href": "foundry-hero-options.html",
+          "title": "厂商顶部 / 整页",
+          "status": "shipped-ref",
+          "note": "丁·粘顶目录已上正式站；此页归档对照",
+          "assets": ["css/foundry-hero-options.css", "js/pages/foundry-hero-options.js"]
+        },
+        {
+          "href": "foundry-join-options.html",
+          "title": "入驻 CTA 四套",
+          "status": "shipped-ref",
+          "note": "丙·竖排已上正式站；此页归档对照",
+          "assets": ["css/foundry-join-options.css", "js/pages/foundry-join-options.js"]
+        }
+      ]
+    },
+    {
+      "id": "chrome",
+      "title": "壳层与互动",
+      "items": [
+        {
+          "href": "design-options.html",
+          "title": "设计系统候选",
+          "status": "archive",
+          "note": "方向决策留档，勿删",
+          "assets": ["css/design-options.css"]
+        },
+        {
+          "href": "footer-options.html",
+          "title": "页脚四套",
+          "status": "archive",
+          "assets": ["css/footer-options.css", "js/pages/footer-options.js"]
+        },
+        {
+          "href": "fav-options.html",
+          "title": "收藏对照",
+          "status": "archive",
+          "assets": ["css/fav-options.css", "js/pages/fav-options.js"]
+        },
+        {
+          "href": "sponsor-options.html",
+          "title": "赞助作者",
+          "status": "archive",
+          "assets": ["css/sponsor-options.css", "js/pages/sponsor-options.js"]
+        },
+        {
+          "href": "sponsor-empty-options.html",
+          "title": "赞助空态",
+          "status": "archive",
+          "assets": ["css/sponsor-empty-options.css", "js/pages/sponsor-empty-options.js"]
+        }
+      ]
+    },
+    {
+      "id": "v5",
+      "title": "v5 整站对照（已否）",
+      "items": [
+        {
+          "href": "v5.html",
+          "title": "v5 首页",
+          "status": "rejected",
+          "note": "误做成的整站对照，不进现站；人没说删则留档",
+          "assets": ["css/v5.css", "js/pages/v5.js"]
+        },
+        {
+          "href": "v5-fonts.html",
+          "title": "v5 字体库",
+          "status": "rejected",
+          "assets": ["css/v5.css", "js/pages/v5.js"]
+        },
+        {
+          "href": "v5-detail.html",
+          "title": "v5 详情",
+          "status": "rejected",
+          "assets": ["css/v5.css", "js/pages/v5.js"]
+        },
+        {
+          "href": "v5-foundry.html",
+          "title": "v5 厂商",
+          "status": "rejected",
+          "assets": ["css/v5.css", "js/pages/v5.js"]
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "title": "研究 / 审计",
+      "items": [
+        {
+          "href": "oss-audit.html",
+          "title": "OSS 缺口清单",
+          "status": "active",
+          "note": "读 docs/_oss-authors-github-audit.json；首批 docs/_oss-ingest-batch1.json",
+          "assets": ["css/oss-audit.css", "js/pages/oss-audit.js"],
+          "docs": [
+            "docs/_oss-authors-github-audit.md",
+            "docs/_oss-authors-github-audit.json",
+            "docs/_oss-ingest-batch1.json",
+            "docs/FAMILY-VARIANTS.md",
+            "docs/FONT-AUDIT-BACKLOG.md"
+          ]
+        }
+      ]
+    }
+  ],
+  "statusLabels": {
+    "active": "在用研究",
+    "archive": "归档对照",
+    "shipped-ref": "已上线·留档",
+    "rejected": "已否·留档"
+  }
+}

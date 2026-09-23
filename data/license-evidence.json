@@ -99,6 +99,13 @@
       "sourceUrl": "https://github.com/atelier-anchor/smiley-sans",
       "verifiedAt": "2026-09-20"
     },
+    "字魂扁桃体": {
+      "sourceKind": "rights_holder",
+      "spdx": "OFL-1.1",
+      "sourceUrl": "https://www.zcool.com.cn/work/ZNjUwNDM5OTY=.html",
+      "verifiedAt": "2026-09-23",
+      "quote": "字魂创意字库对得意黑进行二次创作……「字魂扁桃体」是一款开源字体，遵从原作者约定及开源协议，永久免费商用。"
+    },
     "教育部標準楷書": {
       "sourceKind": "rights_holder",
       "spdx": "CC-BY-ND-3.0",
