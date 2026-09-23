@@ -458,8 +458,7 @@
 
   function packageSubset(version) {
     const v = String(version || 'full').toLowerCase();
-    if (v === 'zh') return 'zh-common';
-    if (v === 'zh-common' || v === 'en') return v;
+    if (v === 'zh' || v === 'zh-common' || v === 'en') return v;
     return 'full';
   }
 

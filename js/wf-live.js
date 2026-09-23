@@ -23,6 +23,9 @@
   function counts(font) {
     var family = familyOf(font);
     if (!family) return Promise.resolve(null);
+    try {
+      if (sessionStorage.getItem('wf-live-off') === '1') return Promise.resolve(null);
+    } catch (e) { /* ignore */ }
     var map = readMap();
     var hit = map[family];
     var fresh = hit && Date.now() - hit.at < (hit.failed ? 10 * 60 * 1000 : TTL);
@@ -50,7 +53,10 @@
         apply(font, row);
         return remember(row);
       })
-      .catch(function () { return remember({ failed: true, at: Date.now() }); });
+      .catch(function () {
+        try { sessionStorage.setItem('wf-live-off', '1'); } catch (e) { /* ignore */ }
+        return remember({ failed: true, at: Date.now() });
+      });
   }
 
   window.WFLive = { origin: ORIGIN, counts: counts };

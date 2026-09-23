@@ -62,7 +62,7 @@
         '<button type="button" role="tab" data-embed-src="project" class="is-on">项目一份 CSS</button>' +
         '<button type="button" role="tab" data-embed-src="fonts">按字体拆开</button></div>' +
       '<div id="embed"></div>' +
-      '<p class="t-13 muted" style="margin-top:var(--s-4)">地址跟当前选的 CDN 节点走。项目地址指向当前版本，回滚或发布后无需改代码。' + (p.fonts.length ? '' : '项目里还没有字体，代码为空。') + '</p></div>';
+      '<p class="t-13 muted" style="margin-top:var(--s-4)">项目地址指向当前版本。节点上还没有 <code>/p/…/index.css</code> 时，这条链接会打开失败。' + (p.fonts.length ? '' : '项目里还没有字体，代码为空。') + '</p></div>';
   }
 
   function versionsPanel() {
@@ -213,7 +213,7 @@
       }
       function cdnLabel() {
         const lab = document.getElementById('projectCdn');
-        if (lab) lab.textContent = WFProto.projectCssUrl(p.slug).replace(/^https:\/\//, '');
+        if (lab) lab.innerHTML = esc(WFProto.projectCssUrl(p.slug).replace(/^https:\/\//, '')).replace(/\//g, '/<wbr>');
       }
       function onCdn() {
         if (!embedEl.isConnected) { document.removeEventListener('wf:cdn', onCdn); return; }

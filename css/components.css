@@ -214,7 +214,8 @@ html[data-theme="dark"] .code {
   --code-a: #ffa198;
   --code-s: #7ee787;
 }
-.code:has(.copy) { padding-right: 4.5rem; }
+.code:has(.copy),
+.code:has(.copy) pre { padding-right: 6rem; }
 .code pre { color: var(--ink-2); white-space: pre-wrap; overflow-wrap: break-word; }
 .code .k { color: var(--code-k); font-weight: var(--fw-title); }
 .code .k-a { color: var(--code-a); }
