@@ -85,10 +85,11 @@
     "狮尾四季春": {
       "ownerId": "aqua",
       "makerId": "aqua",
-      "group": "swei-spring",
-      "relation": "original",
+      "group": "source-han-serif",
+      "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamOwnerId": "aqua"
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体"
     },
     "jf open 粉圆": {
       "ownerId": "justfont",
@@ -1104,10 +1105,515 @@
     "狮尾B2加糖宋体": {
       "ownerId": "aqua",
       "makerId": "aqua",
-      "group": "swei-b2-sugar",
-      "relation": "original",
+      "group": "source-han-serif",
+      "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamOwnerId": "aqua"
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体"
+    },
+    "狮尾三腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾三角黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾锯腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾锯齿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾斧腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾斧头黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾B2腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾B2黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾B2宋体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体",
+      "group": "source-han-serif"
+    },
+    "狮尾蝙蝠圆体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾喇腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾喇叭黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾骨腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾骨头黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾霓腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾霓黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾弯腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾弯黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾飞腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾飞镖黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾D卤腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾德鲁纳黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾恶腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾恶魔黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾D露西": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾繁腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾繁中黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾繁中宋体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体",
+      "group": "source-han-serif"
+    },
+    "狮尾咏腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾咏春黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾福腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾福音黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾圆体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾腿圆体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾半月体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾简腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾简中黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾简中宋体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体",
+      "group": "source-han-serif"
+    },
+    "狮尾麦腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾麦克黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾火腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾火柴黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾肉丸": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾螺帽腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾螺帽黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾彩虹腿": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾右下腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾右下圆黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾快腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾快剪黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾尖腿黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾尖刺黑体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾加糖宋体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体",
+      "group": "source-han-serif"
+    },
+    "狮尾牙膏圆体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
+    },
+    "狮尾XD珍珠": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans"
     }
   }
 }
