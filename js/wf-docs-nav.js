@@ -1,10 +1,11 @@
-/* 说明页左侧目录 + 右侧相关：关于 / 认领 / 条款。文档是独立页，不走这里。依赖 wf-chrome.js */
+/* 说明页左侧目录 + 右侧相关：关于 / 设计指南 / 认领 / 条款。文档是独立页，不走这里。依赖 wf-chrome.js */
 (function () {
   const GROUPS = [
     {
       title: '本站',
       items: [
         { id: 'about', label: '关于', path: 'about.html' },
+        { id: 'styleguide', label: '设计指南', path: 'styleguide.html' },
         { id: 'claim', label: '认领厂商', path: 'claim.html' },
         { id: 'faq', label: '常见问题', path: 'faq.html' }
       ]

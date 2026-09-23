@@ -1,7 +1,7 @@
 /* 文风字体 v4 · 基础样式：重置、排版、通用布局工具 */
 *, *::before, *::after { box-sizing: border-box; }
 
-html[data-scale="lg"] { zoom: 1.5; }
+html[data-scale="lg"]:not(:has(body.app)) { zoom: 1.5; }
 .icon-btn[aria-pressed="true"] { background: var(--fill); color: var(--ink); }
 html {
   font-size: 16px;

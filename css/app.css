@@ -73,7 +73,7 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
 .weight-bars { display: grid; gap: var(--s-2); }
 .weight-bars > div { display: grid; grid-template-columns: 7rem 1fr auto; align-items: center; gap: var(--s-3); font-size: var(--fs-13); }
 .weight-bars .num { white-space: nowrap; }
-.weight-bars .bar { height: 8px; background: var(--paper); border-radius: 4px; overflow: hidden; }
+.weight-bars .bar { height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
 .weight-bars .bar i { display: block; height: 100%; background: var(--ink); border-radius: 4px; }
 .weight-bars .num { text-align: right; }
 .status-row { display: flex; gap: var(--s-6); font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-3); }
@@ -84,12 +84,16 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
 .status-dot.is-pending { color: var(--gray); }
 .embed-opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-4); margin-bottom: var(--s-5); }
 .embed-opts .field label { color: var(--gray); }
-.version-list li { display: grid; grid-template-columns: 4rem 1fr auto auto; gap: var(--s-5); align-items: baseline; padding: var(--s-4) 0; border-bottom: 1px solid var(--rule); font-size: var(--fs-13); }
+/* 固定列宽，保证版本 / 体积 / 时间 / 回滚在各行纵向对齐（不用 auto，否则每行各算各的） */
+.version-list li { display: grid; grid-template-columns: 5rem minmax(0, 1fr) 5.5rem 12.5rem; gap: var(--s-5); align-items: baseline; padding: var(--s-4) 0; border-bottom: 1px solid var(--rule); font-size: var(--fs-13); }
 .version-list li:last-child { border-bottom: 0; }
 .version-list .v { color: var(--ink); font-weight: var(--fw-title); }
 .version-list .v.is-current::after { content: "当前"; margin-left: 0.5em; padding: 0.05em 0.5em; background: var(--ink); color: var(--on-ink); border-radius: var(--radius-pill); font-size: var(--fs-12); font-weight: var(--fw-label); }
 .version-list .note { color: var(--ink-2); }
 .version-list .at { color: var(--gray-2); font-size: var(--fs-12); }
+/* 审计日志：第 3 列是操作者邮箱（比体积宽），单独放宽并允许省略 */
+.version-list.is-audit li { grid-template-columns: 5rem minmax(0, 1fr) 12rem 11rem; }
+.version-list.is-audit .num { text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* 子集化工作台 */
 .subset { display: grid; grid-template-columns: minmax(0, 1fr) 20rem; gap: var(--s-3); align-items: start; }
@@ -99,7 +103,7 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
 .subset-preview h3 { font-size: var(--fs-12); color: var(--gray-2); font-weight: var(--fw-label); margin-bottom: var(--s-3); }
 .subset-preview .line { font-size: var(--fs-40); line-height: 1.2; overflow-wrap: anywhere; min-height: 1.2em; }
 .subset-side { position: sticky; top: var(--s-6); display: grid; gap: var(--s-3); }
-.subset-side > * { padding: var(--s-5) var(--s-6); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); }
+.subset-side > .result, .subset-side > .kv, .subset-side > .field { padding: var(--s-5) var(--s-6); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); }
 .subset-side .result .v { font-size: var(--fs-40); font-weight: var(--fw-title); letter-spacing: -0.02em; line-height: 1; }
 .subset-side .result .v small { font-size: 0.45em; color: var(--gray); font-weight: var(--fw-body); }
 .subset-side .result .was { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-2); }
@@ -153,7 +157,7 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
   .rail-foot .btn-text { margin-top: 0; }
   .app-head { flex-direction: column; align-items: flex-start; }
   .embed-opts { grid-template-columns: 1fr; }
-  .version-list li { grid-template-columns: 4rem 1fr; }
+  .version-list li { grid-template-columns: 5rem minmax(0, 1fr); }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-2); }
   .stats .stat { padding: var(--s-4); }
   .stats .stat .v, .app-section .stats .stat .v { font-size: var(--fs-28); }

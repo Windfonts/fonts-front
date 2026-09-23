@@ -431,6 +431,8 @@ a.foundry:hover .name { text-decoration: underline; text-underline-offset: 0.2em
 .dialog h3 { font-size: var(--fs-16); font-weight: var(--fw-title); }
 .dialog p { margin-top: var(--s-3); font-size: var(--fs-14); color: var(--ink-2); line-height: 1.6; }
 .dialog-acts { display: flex; justify-content: flex-end; gap: var(--s-3); margin-top: var(--s-6); }
+.dialog .field { gap: var(--s-2); }
+.dialog .input { background: var(--paper); }
 
 @media (max-width: 1024px) { .topsearch input { width: 10rem; } }
 /* 移动端折叠菜单。960 以下完整顶栏（导航 + 搜索 + 文字按钮）会挤出屏幕。 */

@@ -311,6 +311,61 @@
     });
   }
 
+  /* —— 输入弹层：替代原生 prompt()，与 confirm 同一套面板样式。返回 Promise<string|null>（取消为 null） —— */
+  function promptInput(opts) {
+    opts = opts || {};
+    return new Promise(function (resolve) {
+      const prev = document.getElementById('wfDialog');
+      if (prev) prev.remove();
+      const wrap = document.createElement('div');
+      wrap.id = 'wfDialog';
+      wrap.className = 'dialog-back';
+      wrap.innerHTML =
+        '<form class="dialog" role="dialog" aria-modal="true" aria-labelledby="wfDialogTitle">' +
+          '<h3 id="wfDialogTitle">' + esc(opts.title || '输入') + '</h3>' +
+          (opts.message ? '<p>' + esc(opts.message) + '</p>' : '') +
+          '<div class="field" style="margin-top:var(--s-4)">' +
+            '<label for="wfDialogInput">' + esc(opts.label || '') + '</label>' +
+            '<input class="input" id="wfDialogInput" value="' + esc(opts.value || '') + '" placeholder="' + esc(opts.placeholder || '') + '" autocomplete="off" />' +
+          '</div>' +
+          '<div class="dialog-acts">' +
+            '<button type="button" class="btn" data-no>' + esc(opts.cancel || '取消') + '</button>' +
+            '<button type="submit" class="btn btn-ink">' + esc(opts.ok || '确定') + '</button>' +
+          '</div></form>';
+      document.body.appendChild(wrap);
+      const form = wrap.querySelector('form');
+      const input = wrap.querySelector('#wfDialogInput');
+      const prior = document.activeElement;
+      document.body.style.overflow = 'hidden';
+      const done = function (val) {
+        wrap.remove();
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', onKey);
+        if (prior && prior.focus) prior.focus();
+        resolve(val);
+      };
+      const onKey = function (e) {
+        if (e.key === 'Escape') { e.preventDefault(); done(null); return; }
+        if (e.key !== 'Tab') return;
+        e.preventDefault();
+        const btns = [input, wrap.querySelector('[data-no]'), form.querySelector('button[type="submit"]')];
+        const i = btns.indexOf(document.activeElement);
+        const next = e.shiftKey ? (i <= 0 ? btns.length - 1 : i - 1) : (i === btns.length - 1 || i < 0 ? 0 : i + 1);
+        btns[next].focus();
+      };
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const v = input.value.trim();
+        done(v || null);
+      });
+      wrap.querySelector('[data-no]').addEventListener('click', function () { done(null); });
+      wrap.addEventListener('click', function (e) { if (e.target === wrap) done(null); });
+      document.addEventListener('keydown', onKey);
+      input.focus();
+      input.select();
+    });
+  }
+
   const VERIFIED_SVG = '<span class="badge-verified" title="厂商已认领">' + icon('verified') + '</span>';
   const SOURCE_KIND_LABEL = {
     standard: '标准开源文本',
@@ -793,7 +848,7 @@
     const avatar = brandAvatar(font, info);
     const size = opts.small ? 24 : 40;
     const mark = avatar
-      ? '<img src="' + esc(avatar) + '" alt="" width="' + size + '" height="' + size + '" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'mark\',textContent:' + JSON.stringify(name.charAt(0)) + '}))" />'
+      ? '<img src="' + esc(avatar) + '" alt="" width="' + size + '" height="' + size + '" loading="lazy" onerror="' + esc("this.replaceWith(Object.assign(document.createElement('span'),{className:'mark',textContent:" + JSON.stringify(name.charAt(0)) + "}))") + '" />'
       : '<span class="mark">' + esc(name.charAt(0)) + '</span>';
     const slug = (info && info.id) || brandSlug(font);
     const link = href('foundry.html?slug=' + encodeURIComponent(slug));
@@ -823,7 +878,7 @@
     const s = size || 16;
     const who = info || brandInfo(font);
     const letter = ((who && (who.short || who.name)) || '?').charAt(0);
-    return '<img class="meta-face" src="' + esc(url) + '" alt="" width="' + s + '" height="' + s + '" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'meta-face mark\',textContent:' + JSON.stringify(letter) + '}))" />';
+    return '<img class="meta-face" src="' + esc(url) + '" alt="" width="' + s + '" height="' + s + '" loading="lazy" onerror="' + esc("this.replaceWith(Object.assign(document.createElement('span'),{className:'meta-face mark',textContent:" + JSON.stringify(letter) + "}))") + '" />';
   }
 
   /** 联合作者小条：头像 + 名，链到厂商页 */
@@ -886,6 +941,7 @@
     toast: toast,
     copy: copy,
     confirm: confirm,
+    promptInput: promptInput,
     icon: icon,
     theme: theme,
     toggleTheme: toggleTheme,

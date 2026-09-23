@@ -13,8 +13,8 @@
     root.innerHTML =
       '<div class="app-head"><div><h1>设置</h1><p class="sub">账号 · API · 认领厂商 · 审计' + (WFChrome.showPricing() ? ' · 套餐' : '') + '</p></div></div>' +
       '<section class="app-section"><h2>账号</h2><div class="grid cols-2">' +
-        '<div class="field"><label>显示名</label><input class="input" id="accName" value="' + esc(u.name || '') + '" /></div>' +
-        '<div class="field"><label>邮箱</label><input class="input" value="' + esc(u.email || '') + '" disabled /></div></div>' +
+        '<div class="field"><label for="accName">显示名</label><input class="input" id="accName" value="' + esc(u.name || '') + '" /></div>' +
+        '<div class="field"><label for="accEmail">邮箱</label><input class="input" id="accEmail" value="' + esc(u.email || '') + '" disabled /></div></div>' +
         '<p style="margin-top:var(--s-4)"><button type="button" class="btn" id="saveAcc">' + WFChrome.icon('check') + '保存</button></p></section>' +
       (WFChrome.showPricing()
         ? '<section class="app-section" data-pricing><h2>套餐<a class="more" href="../pricing.html">' + WFChrome.icon('rows') + '对比</a></h2>' +
@@ -26,7 +26,7 @@
           '<p class="t-13 muted" style="margin-top:var(--s-4)">发票与付款方式在商务后台管理；企业版请<a href="mailto:hi@windfonts.com">联系销售</a>。</p></section>'
         : '') +
       '<section class="app-section"><h2>项目默认</h2><div class="grid cols-2">' +
-        '<div class="field"><label>字体加载策略</label><select class="select" id="setDisplay">' + ['swap', 'block', 'fallback', 'optional'].map(function (d) {
+        '<div class="field"><label for="setDisplay">字体加载策略</label><select class="select" id="setDisplay">' + ['swap', 'block', 'fallback', 'optional'].map(function (d) {
           return '<option' + (s.settings.display === d ? ' selected' : '') + '>' + d + '</option>';
         }).join('') + '</select><span class="hint">新项目和没单独改过的嵌入代码会用这个。</span></div></div></section>' +
       '<section class="app-section"><h2>API 密钥</h2>' +
@@ -36,10 +36,10 @@
       '<section class="app-section" id="claim"><h2>认领厂商</h2>' +
         '<p class="t-14" style="max-width:40em;color:var(--ink-2)">代表字体厂商或独立设计师可认领品牌页，维护标志、介绍与官网。通过后名称旁显示认证徽记。</p>' +
         '<div class="grid cols-2" style="margin-top:var(--s-5)">' +
-          '<div class="field"><label>厂商</label><input class="input" id="claimSlug" value="' + esc(claimQ || '') + '" placeholder="厂商名或页面地址" /></div>' +
-          '<div class="field"><label>官网</label><input class="input" id="claimSite" placeholder="https://" /></div>' +
-          '<div class="field"><label>联系邮箱（请用官网域名）</label><input class="input" id="claimEmail" type="email" placeholder="brand@foundry.com" /></div>' +
-          '<div class="field"><label>授权原文链接</label><input class="input" id="claimLic" placeholder="https://…/license" /></div></div>' +
+          '<div class="field"><label for="claimSlug">厂商</label><input class="input" id="claimSlug" value="' + esc(claimQ || '') + '" placeholder="厂商名或页面地址" /></div>' +
+          '<div class="field"><label for="claimSite">官网</label><input class="input" id="claimSite" placeholder="https://" /></div>' +
+          '<div class="field"><label for="claimEmail">联系邮箱（请用官网域名）</label><input class="input" id="claimEmail" type="email" placeholder="brand@foundry.com" /></div>' +
+          '<div class="field"><label for="claimLic">授权原文链接</label><input class="input" id="claimLic" placeholder="https://…/license" /></div></div>' +
         '<p style="margin-top:var(--s-4)"><button type="button" class="btn" id="claimBtn">' + WFChrome.icon('idcard') + '提交认领</button></p>' +
         (claims.length ? '<table class="table" style="margin-top:var(--s-5)"><thead><tr><th>厂商</th><th>状态</th><th>提交于</th></tr></thead><tbody>' +
           claims.map(function (c) {
@@ -48,7 +48,7 @@
               '<td class="mono muted">' + WFApp.fmtDate(c.submittedAt).slice(0, 10) + '</td></tr>';
           }).join('') + '</tbody></table>' : '') + '</section>' +
       '<section class="app-section"><h2>审计日志<a class="more" href="team.html">' + WFChrome.icon('group') + '团队</a></h2>' +
-        (audit.length ? '<ul class="version-list">' + audit.map(function (a) {
+        (audit.length ? '<ul class="version-list is-audit">' + audit.map(function (a) {
           return '<li><span class="v">' + esc(a.action === '提交厂商认领' ? '提交认领' : a.action) + '</span><span class="note">' + esc(a.detail) + '</span>' +
             '<span class="num muted">' + esc(a.actor) + '</span><span class="at">' + WFApp.fmtDate(a.at) + '</span></li>';
         }).join('') + '</ul>' : '<p class="empty">还没有操作记录。</p>') + '</section>' +

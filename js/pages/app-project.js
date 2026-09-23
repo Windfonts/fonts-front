@@ -30,7 +30,7 @@
       p.fonts.map(function (f) {
         const meta = WFProto.getFont(f.fontId) || { name: f.fontId, family: '' };
         return '<tr><td>' + WFChrome.faceHtml(meta, 18) + '<a href="../font-detail.html?id=' + esc(f.fontId) + '">' + esc(meta.name) + '</a><br><span class="mono t-12 muted">' + esc(meta.family) + '</span></td>' +
-          '<td class="num">' + f.weights.join(' · ') + '</td><td>' + esc(WFApp.subsetLabel(f.subset)) + '</td>' +
+          '<td class="mono">' + f.weights.join(' · ') + '</td><td>' + esc(WFApp.subsetLabel(f.subset)) + '</td>' +
           '<td class="num">' + WFEmbed.fmtBytes(WFApp.subsetBytes(meta, f.subset, f.weights.length)) + '</td>' +
           '<td class="actions"><a class="btn-text" href="subset.html?project=' + esc(p.id) + '&font=' + esc(f.fontId) + '">' + WFChrome.icon('scissors') + '调整</a> <button type="button" class="btn-text" data-remove-font="' + esc(f.fontId) + '">' + WFChrome.icon('trash') + '移除</button></td></tr>';
       }).join('') + '</tbody></table></div>';
@@ -38,7 +38,7 @@
 
   function domainsPanel() {
     return '<div class="panel"><div class="panel-head"><p>字体文件只对白名单内域名返回。<code>localhost</code> 默认允许。</p>' +
-      '<form class="inline-form" id="domainForm"><input class="input" id="domainInput" placeholder="example.com 或 *.example.com" required /><button type="submit" class="btn">' + WFChrome.icon('plus') + '添加域名</button></form></div>' +
+      '<form class="inline-form" id="domainForm"><input class="input" id="domainInput" placeholder="example.com 或 *.example.com" aria-label="域名" required /><button type="submit" class="btn">' + WFChrome.icon('plus') + '添加域名</button></form></div>' +
       (p.domains.length ? '<table class="table"><thead><tr><th>域名</th><th>状态</th><th class="num">30 天请求</th><th>添加于</th><th></th></tr></thead><tbody>' +
         p.domains.map(function (d) {
           const u = (p.usage.byDomain || []).filter(function (x) { return x.host === d.host; })[0];
@@ -54,7 +54,7 @@
 
   function embedPanel() {
     return '<div class="panel"><div class="embed-opts">' +
-        '<div class="field"><label>加载策略</label><select class="select" id="optDisplay"><option value="">项目默认（' + esc(WFApp.state().settings.display) + '）</option><option value="swap">swap</option><option value="block">block</option><option value="fallback">fallback</option><option value="optional">optional</option></select></div>' +
+        '<div class="field"><label for="optDisplay">加载策略</label><select class="select" id="optDisplay" aria-label="加载策略"><option value="">项目默认（' + esc(WFApp.state().settings.display) + '）</option><option value="swap">swap</option><option value="block">block</option><option value="fallback">fallback</option><option value="optional">optional</option></select></div>' +
       '<div class="field"><label>提前加载</label><label class="check" style="margin-top:0.4rem"><input type="checkbox" id="optPreload" /> 提前加载字体样式</label></div>' +
       '<div class="field"><label>项目 CDN</label><span class="mono t-13" id="projectCdn" style="padding-top:0.5rem;display:block;overflow-wrap:anywhere"></span></div>' +
       '</div>' +

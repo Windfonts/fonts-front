@@ -28,9 +28,9 @@
 | `--surface` | `#f5f5f5` | `#1c1c1c` | 面板 / 卡片 / 控制台侧栏 |
 | `--paper` | `#ffffff` | `#2a2a2a` | 面板内的控件（输入、按钮、代码块、标签） |
 | `--face` | `#ffffff` | `#ffffff` | 带图头像底；深浅都白 |
-| `--fill` | `#f0f0f0` | `#1c1c1c` | 白页上直接放的小件：默认按钮、导航选中、搜索框、标签 |
+| `--fill` | `#f0f0f0` | `#262626` | 白页上直接放的小件：默认按钮、导航选中、搜索框、标签 |
 | `--surface-2` | `#e6e6e6` | `#333333` | 填充件 hover |
-| `--well` | `#f0f0f0` | `#1c1c1c` | 输入框、代码块底 |
+| `--well` | `#f0f0f0` | `#262626` | 输入框、代码块底 |
 | `--rule` / `--rule-2` | `#e6e6e6` / `#efefef` | `#2c2c2c` / `#232323` | 仅 KV 表、数据表行线 |
 
 ### 2.2 颜色 · 文字
@@ -43,7 +43,7 @@
 - 不用彩色表达状态：状态用文字 + `status-dot`（实心 = 正常，空心 = 待处理）。
 
 ### 2.3 字体与字阶
-- UI 字体 `--font-ui`：寒蝉全圆体（Chill Round Gothic，`css/fonts.css` 本地 woff2 子集）→ PingFang SC → Noto Sans SC → 系统。
+- UI 字体 `--font-ui`：阿里巴巴普惠体（`css/fonts.css` 本地 woff2 子集）→ 寒蝉全圆体（Chill Round Gothic）→ PingFang SC → Noto Sans SC → 系统。实现以 `css/tokens.css` 为准。
 - 等宽 `--font-mono`：系统等宽；用于 slug、URL、代码、数字表格。
 - 字阶：`12 13 14 16 20 28 40 64 96 144`（rem）。移动端 `40/64/96/144` 自动缩小。
 - 字重只有两档：`--fw-title 700`（标题、字体名、选中项）· `--fw-body` / `--fw-label` 都是 `400`。不用 500 / 600。样张里展示某款字自带的 Medium / Semibold 除外。
@@ -93,7 +93,7 @@
 | 数据表 | `.table .num .mono .actions` | components.css | 数字右对齐等宽 |
 | 大数字 | `.stat .v .l` / `.stats` | components.css / app.css | 40px 数字 + 13px 标签 |
 | 提示条 | `.toast` | components.css / `WFChrome.toast` | 底部居中，黑底白字 |
-| 确认弹层 | `.dialog-back .dialog .dialog-acts` | components.css / `WFChrome.confirm` | 居中浅灰面板；Esc / 点遮罩取消；焦点困在层内；破坏性操作默认焦点在取消 |
+| 确认 / 输入弹层 | `.dialog-back .dialog .dialog-acts` | components.css / `WFChrome.confirm` · `WFChrome.promptInput` | 居中浅灰面板；Esc / 点遮罩取消；焦点困在层内；破坏性操作默认焦点在取消。输入一律用 `WFChrome.promptInput`，不要用原生 `prompt()` |
 | 图标 | `.icon` | components.css / `WFChrome.icon(name)` | 见 §4 |
 | 面板 | `.panel .panel-head .panel-pad` | base.css | 浅灰填充、16px 圆角、无边框 |
 | 页头带 | `.page-head .lead .kicker .crumb` | base.css | |
@@ -103,7 +103,7 @@
 | 字形墙 | `.glyph-wall .wall` | specimen.css | 详情页首屏，全站最大的字 |
 | 字重逐行 / 字符表 | `.weights-sheet .glyph-blocks` | specimen.css | |
 | 控制台壳 | `.app .rail .rail-nav .rail-foot .app-main .app-head .app-section` | app.css / wf-app.js | 侧栏是 `--surface` 面板 |
-| 控制台专用 | `.inline-form .status-dot .version-list .proj-list .usage-grid .weight-bars .status-row .back .dropzone` | app.css | |
+| 控制台专用 | `.inline-form .status-dot .version-list .proj-list .usage-grid .weight-bars .status-row .back .drop` | app.css | `.version-list` 各行用固定列宽（`5rem · 1fr · 5.5rem · 12.5rem`）保证体积 / 时间纵向对齐，勿改回 `auto` |
 | 文档 | `.docs .docs-toc .docs-search .docs-body .docs-steps .docs-foot .faq .note` | site.css | 文档独立：左栏章节目录 + 筛选；说明页另用站点目录；窄屏下拉 |
 
 新增组件的门槛：先确认现有组件组合不能表达，再加；加了要在 `styleguide.html` 补样张、在本表补一行。
@@ -127,12 +127,13 @@
 - 字体库：控制条 → 两栏（筛选栏 / 列表，无限滚动，排序在计数行右侧）。
 - 详情：面包屑 → 标题行 → 字形墙 → 两栏（正文 tabs / 侧栏 KV + 厂商 + 使用代码）。
 - 厂商：索引卡片网格；单厂商 hero + KV + 旗下字体。
-- 文档独立页，左栏是章节目录。关于 / 认领 / 上传条款 / 法律薄页共用另一条左侧目录（本站 · 许可 · 法律）。
+- 文档独立页，左栏是章节目录。关于 / 认领 / 上传条款 / 法律薄页共用另一条左侧目录（本站 · 许可 · 法律）。设计指南（`styleguide.html`）是活样张，用自己的独立模板，只在说明目录里挂导航入口，不套说明页版式。
 - 认领：目录 + 说明 + 侧卡表单（未登录给登录 / 注册）。
 - 404：短文 + 回首页 / 字体库。不挂说明目录。
 
 ### 控制台（`body.app`）
 `<aside class="rail" data-rail data-active="…">` + `<main class="app-main" id="root">`。页面由 JS 渲染进 `#root`：`.app-head`（标题 + 副标题 + 右侧动作）→ `.stats` → 若干 `.app-section`（可用 `.usage-grid` 两栏）。
+大字（`html[data-scale="lg"]` 的 `zoom: 1.5`）只作用于公开站；控制台 `body.app` 显式排除（`html[data-scale="lg"]:not(:has(body.app))`），否则整屏被放大 1.5 倍、布局全乱。控制台不提供大字开关。
 
 ### 响应式
 `1024px`：gutter 收窄、搜索框缩短、三栏收成两栏。`768px`：单栏、字阶缩小、顶栏动作只留图标、目录改横向、控制台侧栏改顶部横向滚动并露出主题 / 退出。
@@ -149,6 +150,8 @@
 
 - 焦点：`:focus-visible` 2px 墨黑 outline，不隐藏。
 - 图标按钮必须有 `aria-label`；纯图标 `aria-hidden="true"`。
+- 表单控件必须可被读出：`.field` 里写 `<label for="控件id">`；无法用 `for` 时给 `aria-label`。不要只拿 placeholder 当标签。
+- 需要用户输入时用 `WFChrome.promptInput`（返回 `Promise<string|null>`），不要用原生 `prompt()`；破坏性操作先 `WFChrome.confirm`。
 - 键盘：`/` 聚焦搜索，Esc 关闭覆层；Tab 顺序按 DOM。
 - 对比：正文 `#111/#fff`；说明 `#666/#fff` ≥ 5.7:1；弱说明 `#9a9a9a` 仅用于非关键信息。
 - 每个列表都有空态文案 + 一个去处链接；每个异步区域有 `.loading`。

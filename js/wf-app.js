@@ -28,14 +28,43 @@
     return true;
   }
   function cloneFonts(fonts) { return JSON.parse(JSON.stringify(fonts || [])); }
+  const PLAN_DEFAULT = { id: 'pro', name: '专业', quota: { projects: 10, domains: null, trafficGB: 200, fonts: 50 } };
+  function ensureUsage(p) {
+    if (!p.usage) p.usage = {};
+    const u = p.usage;
+    let dirty = false;
+    ['requests30d', 'bytes30d'].forEach(function (k) { if (typeof u[k] !== 'number') { u[k] = 0; dirty = true; } });
+    ['topPages', 'byDomain', 'byFont', 'blockedHosts'].forEach(function (k) { if (!Array.isArray(u[k])) { u[k] = []; dirty = true; } });
+    if (!u.status || typeof u.status !== 'object') { u.status = { '200': 0, '304': 0, '403': 0 }; dirty = true; }
+    ['200', '304', '403'].forEach(function (k) { if (typeof u.status[k] !== 'number') { u.status[k] = 0; dirty = true; } });
+    if (!u.perf || typeof u.perf !== 'object') { u.perf = { fcpMs: 0, fontLoadMs: 0, hitRate: 0 }; dirty = true; }
+    ['fcpMs', 'fontLoadMs', 'hitRate'].forEach(function (k) { if (typeof u.perf[k] !== 'number') { u.perf[k] = 0; dirty = true; } });
+    ['fonts', 'domains', 'versions'].forEach(function (k) { if (!Array.isArray(p[k])) { p[k] = []; dirty = true; } });
+    return dirty;
+  }
   function ensureShape(s) {
-    if (!s.settings) s.settings = { display: 'swap' };
-    if (!s.team) s.team = defaultTeam();
-    if (!s.audit) s.audit = [];
-    if (!s.claims) s.claims = [];
     let dirty = renameLegacy(s);
-    (s.projects || []).forEach(function (p) {
-      const cur = (p.versions || []).filter(function (v) { return v.current; })[0] || (p.versions || [])[0];
+    if (!s.plan || !s.plan.quota) { s.plan = JSON.parse(JSON.stringify(PLAN_DEFAULT)); dirty = true; }
+    if (!s.settings) { s.settings = {}; dirty = true; }
+    if (s.settings.display !== 'swap' && s.settings.display !== 'block' && s.settings.display !== 'fallback' && s.settings.display !== 'optional') { s.settings.display = 'swap'; dirty = true; }
+    if (!s.settings.apiKey) { s.settings.apiKey = 'wf_live_' + Math.random().toString(36).slice(2, 14) + Math.random().toString(36).slice(2, 10); dirty = true; }
+    if (!s.settings.apiKeyCreatedAt) { s.settings.apiKeyCreatedAt = new Date().toISOString(); dirty = true; }
+    if (!Array.isArray(s.uploads)) { s.uploads = []; dirty = true; }
+    if (!s.team) { s.team = defaultTeam(); dirty = true; }
+    if (!Array.isArray(s.audit)) { s.audit = []; dirty = true; }
+    if (!Array.isArray(s.claims)) { s.claims = []; dirty = true; }
+    if (!Array.isArray(s.projects)) { s.projects = []; dirty = true; }
+    s.projects.forEach(function (p) {
+      if (ensureUsage(p)) dirty = true;
+      if (!p.slug) { p.slug = String(p.id || '').replace(/^p-/, ''); dirty = true; }
+      if (!p.createdAt) { p.createdAt = new Date().toISOString(); dirty = true; }
+      if (!p.versions.length) {
+        p.versions = [{ v: 1, at: p.createdAt, note: '初始版本', bytes: 0, fonts: cloneFonts(p.fonts), current: true }];
+        dirty = true;
+      } else if (!p.versions.some(function (v) { return v.current; })) {
+        p.versions[0].current = true; dirty = true;
+      }
+      const cur = p.versions.filter(function (v) { return v.current; })[0] || p.versions[0];
       if (cur && !cur.fonts) { cur.fonts = cloneFonts(p.fonts); dirty = true; }
     });
     if (dirty) {
@@ -70,7 +99,7 @@
 
   function projects() { return state.projects.slice(); }
   function project(id) { return state.projects.filter(function (p) { return p.id === id; })[0] || null; }
-  function currentVersion(p) { return (p.versions || []).filter(function (v) { return v.current; })[0] || p.versions[0]; }
+  function currentVersion(p) { return (p.versions || []).filter(function (v) { return v.current; })[0] || (p.versions || [])[0] || { v: 0, at: p.createdAt || '', note: '', bytes: 0, current: true }; }
   function pushVersion(p, note, bytes) {
     const max = p.versions.reduce(function (m, v) { return Math.max(m, v.v); }, 0);
     p.versions.forEach(function (v) { v.current = false; });

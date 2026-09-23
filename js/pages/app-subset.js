@@ -46,11 +46,11 @@
       '<div class="app-head"><div><h1>子集化</h1><p class="sub">只打包页面会出现的字，再把结果加入项目。体积为 woff2 单字重估算。</p></div></div>' +
       '<div class="subset"><div>' +
         '<div class="grid" style="grid-template-columns:1fr 1fr;margin-bottom:var(--s-6)">' +
-          '<div class="field"><label>字体</label><input class="input" id="fontPick" list="fontList" value="' + esc(font.name) + '" /><datalist id="fontList">' + fontOptions(list) + '</datalist>' +
+          '<div class="field"><label for="fontPick">字体</label><input class="input" id="fontPick" list="fontList" value="' + esc(font.name) + '" /><datalist id="fontList">' + fontOptions(list) + '</datalist>' +
             (queue.length > 1 ? '<div class="chips" style="margin-top:var(--s-2)">' + queue.map(function (q) {
               return '<button type="button" class="chip' + (q.id === font.id ? ' is-on' : '') + '" data-queue="' + esc(q.id) + '">' + esc(q.name) + '</button>';
             }).join('') + '</div>' : '') + '</div>' +
-          '<div class="field"><label>加入项目</label><select class="select" id="projPick">' + projects.map(function (p) {
+          '<div class="field"><label for="projPick">加入项目</label><select class="select" id="projPick">' + projects.map(function (p) {
             return '<option value="' + esc(p.id) + '"' + (project && p.id === project.id ? ' selected' : '') + '>' + esc(p.name) + '</option>';
           }).join('') + '<option value="__new">＋ 新建项目…</option></select></div>' +
         '</div>' +
@@ -90,7 +90,8 @@
   }
 
   function sideHtml() {
-    const full = WFEmbed.estimateBytes(font.glyphCount || font.charCount || 8000);
+    const known = font.glyphCount || font.charCount || 0;
+    const full = WFEmbed.estimateBytes(known || 8000);
     const glyphs = WFApp.subsetGlyphs(font, subset());
     const one = WFEmbed.estimateBytes(glyphs);
     const nW = Math.max(1, st.weights.length);
@@ -100,7 +101,7 @@
     return '<div class="result"><div class="v">' + WFEmbed.fmtBytes(one).replace(' ', '<small> ') + '</small></div>' +
         '<div class="was">完整 ' + WFEmbed.fmtBytes(full) + ' → 省 ' + saved + '%</div></div>' +
       '<dl class="kv">' +
-        '<div><dt>' + WFChrome.icon('text') + '字形</dt><dd class="num">' + WFProto.formatCount(glyphs) + ' / ' + WFProto.formatCount(font.glyphCount || font.charCount || 0) + '</dd></div>' +
+        '<div><dt>' + WFChrome.icon('text') + '字形</dt><dd class="num">' + WFProto.formatCount(glyphs) + ' / ' + (known > 1 ? WFProto.formatCount(known) : '—') + '</dd></div>' +
         '<div><dt>' + WFChrome.icon('font') + '字重</dt><dd class="num">' + (st.weights.join(' · ') || '—') + '</dd></div>' +
         '<div><dt>' + WFChrome.icon('scissors') + '子集</dt><dd>' + esc(WFApp.subsetLabel(subset())) + '</dd></div>' +
         '<div><dt>' + WFChrome.icon('box') + '全部产物</dt><dd class="num">' + WFEmbed.fmtBytes(total) + '</dd></div>' +
@@ -122,9 +123,13 @@
     });
     document.getElementById('projPick').addEventListener('change', function (e) {
       if (e.target.value === '__new') {
-        const name = prompt('项目名称');
-        if (name) project = WFApp.createProject(name.trim());
-      } else project = WFApp.project(e.target.value);
+        WFChrome.promptInput({ title: '新建项目', label: '项目名称', placeholder: '如 品牌官网', ok: '新建' }).then(function (name) {
+          if (name) project = WFApp.createProject(name);
+          loadExisting(); render();
+        });
+        return;
+      }
+      project = WFApp.project(e.target.value);
       loadExisting(); render();
     });
     root.querySelectorAll('[data-weight]').forEach(function (c) {
@@ -201,7 +206,7 @@
     if (WFProto.getQuery('from') === 'bag') {
       queue = WFProto.getPicks().map(function (p) { return WFProto.getFont(p.id); }).filter(Boolean);
     }
-    font = WFProto.getFont(WFProto.getQuery('font')) || queue[0] || list[0];
+    font = WFProto.getFont(WFProto.getQuery('font')) || queue[0] || list.filter(function (f) { return (f.glyphCount || f.charCount || 0) > 1; })[0] || list[0];
     if (!font) { root.innerHTML = '<p class="empty">字体目录为空。</p>'; return; }
     loadExisting();
     WFSpecimen.sortedWeights(font).forEach(function (w) { WFProto.ensureFontCss(font.family, w); });

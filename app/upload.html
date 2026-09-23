@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>上传字体 · 控制台 · 文风字体</title>
   <link rel="stylesheet" href="../css/fonts.css?v=20260923u" />
-  <link rel="stylesheet" href="../css/tokens.css?v=20260922l" />
-  <link rel="stylesheet" href="../css/base.css" />
-  <link rel="stylesheet" href="../css/components.css?v=20260922bf" />
-  <link rel="stylesheet" href="../css/app.css?v=20260923a" />
+  <link rel="stylesheet" href="../css/tokens.css?v=20260923qa" />
+  <link rel="stylesheet" href="../css/base.css?v=20260923r1" />
+  <link rel="stylesheet" href="../css/components.css?v=20260923qa" />
+  <link rel="stylesheet" href="../css/app.css?v=20260923qb" />
   <link rel="icon" type="image/webp" href="../assets/icon.webp" />
 </head>
 <body class="app">
@@ -22,11 +22,11 @@
       <div class="stack">
         <label class="drop" id="drop"><input type="file" id="file" accept=".ttf,.otf,.woff,.woff2" /><strong>拖入字体文件</strong>，或点击选择<br><span class="t-13" id="fileName">单个文件 ≤ 30 MB</span></label>
         <div class="grid" style="grid-template-columns:1fr 1fr">
-          <div class="field"><label>字体名称</label><input class="input" id="upName" placeholder="解析后自动填入，可改" /></div>
-          <div class="field"><label>字重</label><select class="select" id="upWeight"><option value="Thin">Thin 100</option><option value="Light">Light 300</option><option value="Regular" selected>Regular 400</option><option value="Medium">Medium 500</option><option value="Bold">Bold 700</option><option value="Black">Black 900</option></select></div>
+          <div class="field"><label for="upName">字体名称</label><input class="input" id="upName" placeholder="解析后自动填入，可改" /></div>
+          <div class="field"><label for="upWeight">字重</label><select class="select" id="upWeight"><option value="Thin">Thin 100</option><option value="Light">Light 300</option><option value="Regular" selected>Regular 400</option><option value="Medium">Medium 500</option><option value="Bold">Bold 700</option><option value="Black">Black 900</option></select></div>
         </div>
-        <div class="field"><label>嵌入用名称</label><input class="input mono" id="upFamily" placeholder="custom-your-font" /><span class="hint">只用小写字母、数字和连字符，写进嵌入代码。</span></div>
-        <div class="field"><label>授权来源</label><select class="select" id="upLicense"><option>自己设计或委托设计</option><option>已购买商业授权（含网页嵌入）</option><option>开源许可（OFL / Apache 等）</option></select></div>
+        <div class="field"><label for="upFamily">嵌入用名称</label><input class="input mono" id="upFamily" placeholder="custom-your-font" /><span class="hint">只用小写字母、数字和连字符，写进嵌入代码。</span></div>
+        <div class="field"><label for="upLicense">授权来源</label><select class="select" id="upLicense"><option>自己设计或委托设计</option><option>已购买商业授权（含网页嵌入）</option><option>开源许可（OFL / Apache 等）</option></select></div>
         <label class="check"><input type="checkbox" id="upAgree" required /> 我已确认有权在网页里用这款字体，并同意<a href="../upload-terms.html">《上传条款》</a>。</label>
       </div>
       <aside class="subset-side">
@@ -43,9 +43,9 @@
   </main>
 
   <script src="../js/wf-proto.js?v=20260923u"></script>
-  <script src="../js/wf-chrome.js?v=20260923c"></script>
+  <script src="../js/wf-chrome.js?v=20260923qc"></script>
   <script src="../js/wf-embed.js?v=20260923o"></script>
-  <script src="../js/wf-app.js?v=20260923a"></script>
+  <script src="../js/wf-app.js?v=20260923qb"></script>
   <script>
     (function () {
       if (!WFApp.gate()) return;
