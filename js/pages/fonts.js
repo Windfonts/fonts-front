@@ -28,7 +28,9 @@
   const LICENSES = ['免费商用', '需授权', '个人免费', '待核实'];
   /* 风格：目录 tags 里的字形气质（与「分类」无衬线/手写体等正交；对齐线上侧栏） */
   const STYLE_TAGS = ['黑体', '宋体', '楷体', '隶书', '硬笔手写', '毛笔书法', '卡通创意', '像素', '拼音', '其他'];
-  const BRAND_FACET_MAX = 14;
+  /* 品牌侧栏：默认只露前 N 家（按款数），其余折叠；展开后区内滚动，避免侧栏被拉穿 */
+  const BRAND_FACET_PREVIEW = 8;
+  let brandRailOpen = false;
   /* 分类名用对应风格的系统字体呈现（汉仪式的分类入口） */
   const CAT_STYLE = { '无衬线字体': 'cat-sans', '衬线': 'cat-serif', '宋体': 'cat-serif', '手写体': 'cat-hand', '书法': 'cat-callig', '隶书': 'cat-li', 'Mono': 'cat-mono', '圆体': 'cat-round', '其他': 'cat-deco' };
   function catLabel(v) { return WFChrome.catLabel(v); }
@@ -96,20 +98,68 @@
 
   function brandFacetValues() {
     const all = WFProto.getCatalogList();
-    const counts = {};
     const names = {};
+    const ids = [];
+    const seen = {};
     all.forEach(function (f) {
       const id = WFChrome.brandSlug(f);
-      if (!id) return;
-      counts[id] = (counts[id] || 0) + 1;
-      if (!names[id]) names[id] = WFChrome.brandName(f) || id;
+      if (!id || seen[id]) return;
+      seen[id] = true;
+      ids.push(id);
+      names[id] = WFChrome.brandName(f) || id;
     });
-    const ranked = Object.keys(counts).sort(function (a, b) {
-      return counts[b] - counts[a] || String(names[a]).localeCompare(String(names[b]), 'zh-Hans-CN');
+    return { ids: ids, names: names };
+  }
+
+  function chipBtn(key, v, label, n, on) {
+    return '<button type="button" class="chip' + (on ? ' is-on' : '') + '" data-facet="' + key + '" data-v="' + esc(v) + '"' +
+      (on ? ' aria-pressed="true"' : ' aria-pressed="false"') + '>' +
+      esc(label) + ' <span class="n">' + n + '</span></button>';
+  }
+
+  function brandFacetHtml(items, names) {
+    /* 按「当前其它筛选项下」的款数排序，避免全库热门在加了风格后仍占前排却显示 1 */
+    const visible = items.filter(function (it) { return it.n > 0 || state.foundry === it.v; }).slice().sort(function (a, b) {
+      if (a.v === state.foundry && b.v !== state.foundry) return -1;
+      if (b.v === state.foundry && a.v !== state.foundry) return 1;
+      return b.n - a.n || String(names[a.v] || a.v).localeCompare(String(names[b.v] || b.v), 'zh-Hans-CN');
     });
-    const picked = ranked.slice(0, BRAND_FACET_MAX);
-    if (state.foundry && picked.indexOf(state.foundry) === -1) picked.push(state.foundry);
-    return { ids: picked, names: names };
+    if (!visible.length) return '';
+    const head = visible.slice(0, BRAND_FACET_PREVIEW);
+    const more = visible.slice(BRAND_FACET_PREVIEW);
+    /* 已选不在前 N：钉进可见区，并从 more 去掉 */
+    if (state.foundry) {
+      const inHead = head.some(function (it) { return it.v === state.foundry; });
+      if (!inHead) {
+        const sel = visible.filter(function (it) { return it.v === state.foundry; })[0];
+        if (sel) {
+          head.push(sel);
+          for (let i = more.length - 1; i >= 0; i--) {
+            if (more[i].v === state.foundry) more.splice(i, 1);
+          }
+        }
+      }
+    }
+    const headHtml = head.map(function (it) {
+      return chipBtn('foundry', it.v, names[it.v] || it.v, it.n, state.foundry === it.v);
+    }).join('');
+    const moreHtml = more.map(function (it) {
+      return chipBtn('foundry', it.v, names[it.v] || it.v, it.n, state.foundry === it.v);
+    }).join('');
+    const open = brandRailOpen && more.length > 0;
+    const toggle = more.length
+      ? '<button type="button" class="btn-text facet-more" id="brandFacetMore" aria-expanded="' + (open ? 'true' : 'false') + '">' +
+          (open ? '收起' : ('更多 ' + more.length + ' 家')) + '</button>'
+      : '';
+    return '<div class="facet facet-brand' + (open ? ' is-open' : '') + '">' +
+      '<h3>厂商</h3>' +
+      '<div class="chips">' + headHtml + '</div>' +
+      (more.length
+        ? '<div class="chips facet-brand-more"' + (open ? '' : ' hidden') + '>' + moreHtml + '</div>'
+        : '') +
+      '<div class="facet-brand-foot">' + toggle +
+        '<a class="more" href="foundry.html">' + WFChrome.icon('building') + '厂商索引</a>' +
+      '</div></div>';
   }
 
   function facetCounts(key, values, getter) {
@@ -123,10 +173,7 @@
 
   function facetHtml(title, key, items, labelOf) {
     const rows = items.filter(function (it) { return it.n > 0 || state[key] === it.v; }).map(function (it) {
-      const on = state[key] === it.v;
-      return '<button type="button" class="chip' + (on ? ' is-on' : '') + '" data-facet="' + key + '" data-v="' + esc(it.v) + '"' +
-        (on ? ' aria-pressed="true"' : ' aria-pressed="false"') + '>' +
-        esc(labelOf ? labelOf(it.v) : it.v) + ' <span class="n">' + it.n + '</span></button>';
+      return chipBtn(key, it.v, labelOf ? labelOf(it.v) : it.v, it.n, state[key] === it.v);
     }).join('');
     return '<div class="facet"><h3>' + title + '</h3><div class="chips">' + rows + '</div></div>';
   }
@@ -147,8 +194,7 @@
     const html =
       catFacetHtml(facetCounts('cat', cats, function (f, v) { return f.category === v; })) +
       facetHtml('风格', 'style', facetCounts('style', STYLE_TAGS, hasStyle)) +
-      facetHtml('品牌', 'foundry', facetCounts('foundry', brands.ids, function (f, v) { return WFChrome.brandSlug(f) === v; }),
-        function (id) { return brands.names[id] || id; }) +
+      brandFacetHtml(facetCounts('foundry', brands.ids, function (f, v) { return WFChrome.brandSlug(f) === v; }), brands.names) +
       facetHtml('字重', 'weight', facetCounts('weight', WEIGHT_BUCKETS.map(function (b) { return b.id; }), matchWeight),
         function (id) { return WEIGHT_BUCKETS.filter(function (b) { return b.id === id; })[0].label; }) +
       facetHtml('语言', 'lang', facetCounts('lang', langs, function (f, v) { return (f.languages || []).indexOf(v) !== -1; }),
@@ -170,6 +216,13 @@
         refresh();
       });
     });
+    const brandMore = document.getElementById('brandFacetMore');
+    if (brandMore) {
+      brandMore.addEventListener('click', function () {
+        brandRailOpen = !brandRailOpen;
+        renderRail();
+      });
+    }
     const reset = document.getElementById('resetFilters');
     if (reset) reset.addEventListener('click', function () {
       state.cat = state.weight = state.lang = state.license = state.foundry = state.lineage = state.open = state.kind = state.style = state.tag = state.keyword = '';
@@ -199,7 +252,7 @@
     if (state.license) chips.push({ k: 'license', l: state.license });
     if (state.foundry) {
       const fd = WFProto.getFoundries().filter(function (x) { return x.id === state.foundry; })[0];
-      chips.push({ k: 'foundry', l: ((fd && fd.kind === 'brand') ? '品牌 ' : '厂商 ') + (fd ? fd.name : state.foundry) });
+      chips.push({ k: 'foundry', l: '厂商 ' + (fd ? fd.name : state.foundry) });
     }
     if (state.lineage) {
       const n = (WFProto.getCatalogList().filter(function (f) { return f.lineage && f.lineage.group === state.lineage; })[0] || {}).lineage;

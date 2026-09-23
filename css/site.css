@@ -157,14 +157,6 @@ body.is-index .page-head { padding-top: 0; }
 .home-now-card .bits { margin-top: var(--s-2); font-size: var(--fs-13); color: var(--gray); white-space: nowrap; }
 .home-now-card .acts { display: flex; flex-wrap: wrap; gap: var(--s-2); }
 .home-related { padding: var(--s-16) 0; }
-.home-popular { padding: var(--s-16) 0; }
-.home-popular .specimens.is-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-4); }
-@media (max-width: 900px) {
-  .home-popular .specimens.is-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 560px) {
-  .home-popular .specimens.is-grid { grid-template-columns: 1fr; }
-}
 .home-lib-more { padding: var(--s-5) 0 0; }
 .home-lib-more .btn { text-decoration: none; }
 
@@ -254,6 +246,23 @@ body.is-index .page-head { padding-top: 0; }
 .lib-rail .chip:hover { background: var(--fill); color: var(--ink); }
 .lib-rail .chip.is-on { background: var(--ink); color: var(--on-ink); }
 .lib-rail .reset { justify-self: start; margin: var(--s-3) 0 0; color: var(--gray); }
+.lib-rail .facet-brand-foot {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3);
+  margin-top: var(--s-3);
+}
+.lib-rail .facet-brand-foot .facet-more,
+.lib-rail .facet-brand-foot .more {
+  font-size: var(--fs-12); color: var(--gray); text-decoration: none;
+}
+.lib-rail .facet-brand-foot .facet-more:hover,
+.lib-rail .facet-brand-foot .more:hover { color: var(--ink); }
+.lib-rail .facet-brand-more {
+  margin-top: var(--s-2);
+  max-height: 12rem;
+  overflow: auto;
+  padding-right: 0.15rem;
+}
+.lib-rail .facet-brand-more[hidden] { display: none; }
 /* 分类名用对应风格的字体呈现（汉仪式） */
 .lib-rail .facet-cat ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-1); }
 .lib-rail .facet-cat li { display: block; }
@@ -282,10 +291,22 @@ body.is-index .page-head { padding-top: 0; }
 /* —— 厂商 —— */
 .foundry-hero { display: grid; grid-template-columns: 1fr 20rem; gap: var(--s-12); padding: var(--s-8); margin-top: var(--s-2); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); align-items: start; }
 .page-foundry .foundry-hero + .count-line { padding-top: var(--s-8); }
+.page-foundry .specimens + .count-line { padding-top: var(--s-8); }
+.page-foundry .count-line-sub {
+  padding-top: var(--s-5);
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+}
+.page-foundry .count-line-sub strong { color: var(--ink-2); }
 .foundry-hero .foundry img, .foundry-hero .foundry .mark { width: 64px; height: 64px; font-size: var(--fs-28); }
 .foundry-hero .foundry .name { font-size: var(--fs-28); font-weight: var(--fw-title); letter-spacing: -0.01em; }
 .foundry-hero .foundry .sub { font-size: var(--fs-13); }
 .foundry-hero-main { min-width: 0; }
+.foundry-hero .foundry .name a { color: inherit; text-decoration: none; }
+.foundry-hero .foundry .name a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.foundry-hero .foundry .name .fav {
+  font-size: var(--fs-16); width: 1.15em; height: 1.15em; align-self: center;
+}
 .foundry-hero .desc { margin-top: var(--s-6); color: var(--ink-2); max-width: 40em; }
 .foundry-origins {
   display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-4);

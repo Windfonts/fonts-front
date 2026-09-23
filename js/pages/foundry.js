@@ -153,6 +153,52 @@
         '<p class="t-14" style="max-width:40em;color:var(--ink-2)">准备品牌名称、官网和授权原文，到<a href="claim.html">认领厂商</a>提交，或从任一厂商页点「认领此页」。通过后可改标志、介绍与官网。许可仍以每款字体的出处为准。</p></div></section>';
   }
 
+  const OWNED_SECTIONS = [
+    { id: 'original', title: '源字', note: '原作' },
+    { id: 'locale', title: '地区版', note: '同一原作的地区或屏显版' },
+    { id: 'fork', title: '派生', note: '从上游改出来的' },
+    { id: 'collab', title: '合作', note: '' },
+    { id: 'commissioned', title: '委托定制', note: '版权归出资的品牌方' },
+    { id: 'other', title: '归属字体', note: '' }
+  ];
+
+  function splitOwned(fonts) {
+    const buckets = {};
+    OWNED_SECTIONS.forEach(function (s) { buckets[s.id] = []; });
+    fonts.forEach(function (f) {
+      const rel = (f.lineage || {}).relation;
+      (buckets[rel] || buckets.other).push(f);
+    });
+    OWNED_SECTIONS.forEach(function (s) {
+      buckets[s.id].sort(function (a, b) { return a.name.localeCompare(b.name, 'zh'); });
+    });
+    const filled = OWNED_SECTIONS.filter(function (s) { return buckets[s.id].length; });
+    if (filled.length === 1 && filled[0].id === 'other') {
+      return [{ id: 'other', title: '归属字体', note: '', fonts: buckets.other }];
+    }
+    return filled.map(function (s) {
+      return { id: s.id, title: s.title, note: s.note, fonts: buckets[s.id] };
+    });
+  }
+
+  function ownedHtml(g) {
+    const sections = splitOwned(g.fonts);
+    if (!sections.length) return '';
+    const filter = '<a class="more" href="fonts.html?foundry=' + encodeURIComponent(g.slug) + '">' + WFChrome.icon('filter') + '在字体库筛选</a>';
+    if (sections.length === 1) {
+      const s = sections[0];
+      return '<div class="count-line">' + s.title + ' <strong>' + s.fonts.length + '</strong> 款' +
+        (s.note ? ' · ' + s.note : '') + ' · ' + filter + '</div>' +
+        '<ul class="specimens" id="rows-' + s.id + '"></ul>';
+    }
+    return '<div class="count-line">在库 <strong>' + g.fonts.length + '</strong> 款 · ' + filter + '</div>' +
+      sections.map(function (s) {
+        return '<div class="count-line count-line-sub">' + s.title + ' <strong>' + s.fonts.length + '</strong> 款' +
+          (s.note ? ' · ' + s.note : '') + '</div>' +
+          '<ul class="specimens" id="rows-' + s.id + '"></ul>';
+      }).join('');
+  }
+
   function renderOne(list, g) {
     document.body.classList.remove('is-index');
     document.title = g.name + ' · 厂商 · 文风字体';
@@ -186,10 +232,7 @@
       '<div class="detail-top"><p class="crumb"><a href="foundry.html">厂商</a><span>/</span><span>' + esc(g.name) + '</span></p></div>' +
       '<div class="foundry-hero">' +
         '<div class="foundry-hero-main">' +
-          '<div class="who-row">' +
-            WFChrome.foundryHtml(g.font, { sub: heroSub }) +
-            WFChrome.favHtml('author', g.slug, g.name) +
-          '</div>' +
+          WFChrome.foundryHtml(g.font, { sub: heroSub, fav: WFChrome.favHtml('author', g.slug, g.name) }) +
           (desc ? '<p class="desc">' + esc(desc) + '</p>' : '') +
           WFSponsor.html(info) +
           origins +
@@ -203,16 +246,16 @@
             : '这是你的品牌？<a href="claim.html?slug=' + encodeURIComponent(g.slug) + '">认领此页</a>。通过后可改标志与介绍。') + '</span></p>' +
         '</div>' +
       '</div>' +
-      (g.fonts.length
-        ? '<div class="count-line">归属字体 <strong>' + g.fonts.length + '</strong> 款 · <a class="more" href="fonts.html?foundry=' + encodeURIComponent(g.slug) + '">' + WFChrome.icon('filter') + '在字体库筛选</a></div>' +
-          '<ul class="specimens" id="rows"></ul>'
-        : '') +
+      ownedHtml(g) +
       (g.made.length
         ? '<div class="count-line">受托制作 <strong>' + g.made.length + '</strong> 款 · 版权归品牌方，不计入本页归属</div>' +
           '<ul class="specimens" id="made"></ul>'
         : '') +
       '</div>';
-    if (g.fonts.length) WFSpecimen.renderRows(document.getElementById('rows'), g.fonts, { size: 56 });
+    splitOwned(g.fonts).forEach(function (s) {
+      const el = document.getElementById('rows-' + s.id);
+      if (el) WFSpecimen.renderRows(el, s.fonts, { size: 56 });
+    });
     if (g.made.length) WFSpecimen.renderRows(document.getElementById('made'), g.made, { size: 56 });
     WFSponsor.bind(root);
   }

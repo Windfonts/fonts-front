@@ -67,6 +67,7 @@
 .page-detail:has(.wall-stage[data-card]) .glyph-wall { padding-top: 0; padding-bottom: var(--s-4); }
 .page-detail:has(.wall-stage[data-card]) .detail-body { gap: var(--s-8); }
 .page-detail:has(.wall-stage[data-card]) #glyphs .panel-head { padding-top: var(--s-8); }
+.page-detail:has(.wall-stage[data-card]) .detail-main > .for-dev + .panel { border-top: 0; }
 @media (max-width: 800px) {
   .glyph-wall:not(.is-editing) .glyph-pair:has(.wall-stage[data-card]) { grid-template-columns: minmax(0, 1fr); }
   .glyph-wall:not(.is-editing) .glyph-pair:has(.wall-stage[data-card]) .detail-title { grid-column: 1; grid-row: 2; }

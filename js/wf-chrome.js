@@ -597,10 +597,17 @@
     const kind = kindLabel(info || font);
     const sub = [kind, opts.sub].filter(Boolean).join(' · ');
     const verified = !!(info && info.claimed);
-    return '<a class="foundry' + (opts.small ? ' foundry-sm' : '') + (opts.cls ? ' ' + opts.cls : '') + '" href="' + link + '">' + mark +
-      '<span><span class="name">' + esc(name) + (verified ? VERIFIED_SVG : '') +
-      (en && !opts.small && en !== name ? '<span class="en">' + esc(en) + '</span>' : '') + '</span>' +
-      (sub ? '<span class="sub">' + esc(sub) + '</span>' : '') + '</span></a>';
+    const enHtml = en && !opts.small && en !== name ? '<span class="en">' + esc(en) + '</span>' : '';
+    const subHtml = sub ? '<span class="sub">' + esc(sub) + '</span>' : '';
+    const cls = 'foundry' + (opts.small ? ' foundry-sm' : '') + (opts.cls ? ' ' + opts.cls : '');
+    if (opts.fav) {
+      return '<div class="' + cls + '">' + mark +
+        '<span><span class="name"><a href="' + link + '">' + esc(name) + (verified ? VERIFIED_SVG : '') + '</a>' +
+        opts.fav + enHtml + '</span>' + subHtml + '</span></div>';
+    }
+    return '<a class="' + cls + '" href="' + link + '">' + mark +
+      '<span><span class="name">' + esc(name) + (verified ? VERIFIED_SVG : '') + enHtml + '</span>' +
+      subHtml + '</span></a>';
   }
 
   const CAT_LABEL = { '无衬线字体': '黑体', 'Mono': '等宽' };

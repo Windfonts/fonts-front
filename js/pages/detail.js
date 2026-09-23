@@ -61,14 +61,22 @@
     const L = (font && font.lineage) || {};
     const tree = WFChrome.lineageTreeHtml(font, list, faceOf) || '';
     const kinN = WFChrome.lineageKin(list, font).length;
+    const open = WFProto.isOpenFont(font);
+    const hasStory = !!(tree || L.upstreamName || L.upstreamOwnerInfo ||
+      L.relation === 'fork' || L.relation === 'locale' || L.relation === 'original' ||
+      (L.group && kinN > 1));
+    /* 开源可改、或真有上下游/同系时才出「从哪来」；上传入口只给开源 */
+    if (!hasStory && !open) return '';
     const kin = L.group && kinN > 1
       ? '<a class="btn" href="' + WFChrome.href('fonts.html?lineage=' + encodeURIComponent(L.group)) + '">' + WFChrome.icon('compare') + '查看全部同源字</a>'
       : '';
-  return tree +
-    '<div class="lin-acts">' +
-      '<a class="btn ink-design" href="' + WFChrome.href('app/upload.html?upstream=' + encodeURIComponent(font.id)) + '">' + WFChrome.icon('upload') + '上传你的字体</a>' +
-        kin +
-      '</div>';
+    const upload = open
+      ? '<a class="btn ink-design" href="' + WFChrome.href('app/upload.html?upstream=' + encodeURIComponent(font.id)) + '">' + WFChrome.icon('upload') + '上传你的字体</a>'
+      : '';
+    const acts = upload || kin
+      ? '<div class="lin-acts">' + upload + kin + '</div>'
+      : '';
+    return tree + acts;
   }
 
   function render(font) {
@@ -106,6 +114,10 @@
     }
 
     const lineageBody = lineageBodyHtml(font, list);
+    const lineageSection = lineageBody
+      ? '<section class="panel" id="lineage"><div class="panel-head"><h2>' + WFChrome.icon('branch') + '从哪来</h2></div>' +
+          '<div class="panel-pad">' + lineageBody + '</div></section>'
+      : '';
     const wallText = sample || font.name;
     const crumb = '<p class="crumb"><a href="fonts.html">字体库</a><span>/</span>' +
       (font.category ? '<a href="fonts.html?cat=' + encodeURIComponent(font.category) + '">' + esc(WFChrome.catLabel(font.category) || font.category) + '</a><span>/</span>' : '') +
@@ -154,7 +166,8 @@
         '</div>' +
         '<div class="detail-actions">' +
           '<button type="button" class="btn ink-design" id="btnPick" data-join="' + esc(font.id) + '" data-name="' + esc(font.name) + '">' + WFChrome.icon('plus') + '加入选字袋</button>' +
-          '<button type="button" class="btn ink-dev" id="btnUse">' + WFChrome.icon('code') + '获取代码</button>' +
+          '<button type="button" class="btn for-design" id="btnUse">' + WFChrome.icon('code') + '获取代码</button>' +
+          '<button type="button" class="btn ink-dev for-dev" id="btnPreview">' + WFChrome.icon('eye') + '设计预览</button>' +
         '</div>' +
       '</div></div></section>' +
       '<div class="container">' +
@@ -191,8 +204,7 @@
                 (font.purchaseUrl ? '<a href="' + esc(font.purchaseUrl) + '" target="_blank" rel="noopener noreferrer">购买授权</a>' : '') +
                 ' <a href="docs.html#license">许可类型说明</a></p></details></div>' +
           '</section>' +
-          '<section class="panel" id="lineage"><div class="panel-head"><h2>' + WFChrome.icon('branch') + '谱系</h2></div>' +
-            '<div class="panel-pad">' + lineageBody + '</div></section>' +
+          lineageSection +
         '</div>' +
         '<aside class="detail-side" aria-label="字体资料">' +
           '<div class="panel panel-pad side-brand">' +
@@ -353,6 +365,12 @@
     }
     const btnUse = document.getElementById('btnUse');
     if (btnUse) btnUse.addEventListener('click', goUse);
+    const btnPreview = document.getElementById('btnPreview');
+    if (btnPreview) btnPreview.addEventListener('click', function () {
+      WFChrome.setView('design');
+      const wall = document.getElementById('glyphWall');
+      if (wall) wall.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
     if (/^#(use|glyphs|lineage)$/.test(location.hash)) WFChrome.setView('dev');
 
     glyphTable = WFSpecimen.mountGlyphTable(
