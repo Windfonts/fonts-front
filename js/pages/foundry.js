@@ -98,7 +98,7 @@
       : '';
     const what = row.upstreamName
       ? (font
-        ? '<a href="' + WFChrome.href('font-detail.html?id=' + encodeURIComponent(font.id)) + '">' + esc(row.upstreamName) + '</a>'
+        ? '<a href="' + WFChrome.href(WFProto.detailHref(font)) + '">' + esc(row.upstreamName) + '</a>'
         : esc(row.upstreamName))
       : (row.groupName ? esc(row.groupName) : '');
     const kin = row.group

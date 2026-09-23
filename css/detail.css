@@ -80,10 +80,10 @@
 .detail-main .panel-head { flex-wrap: wrap; padding: var(--s-12) 0 0; }
 .detail-main .panel-head + .panel-pad { padding: var(--s-5) 0 var(--s-12); }
 .detail-main .panel-head .input { height: 2rem; font-size: var(--fs-13); }
-.detail-main .panel .input, .detail-main .panel .chip, .detail-main .panel .seg, .detail-main .panel .code,
+.detail-main .panel .input, .detail-main .panel .chip, .detail-main .panel .seg, .detail-main .panel .tabs, .detail-main .panel .code,
 .detail-main .panel .btn:not(.btn-ink):not(.btn-text):not(.ink-design), .detail-main .use-note code { background: var(--fill); }
 .detail-main .panel .chip.is-on { background: var(--ink); }
-.detail-main .panel .seg .is-on { background: var(--paper); }
+.detail-main .panel .seg .is-on, .detail-main .panel .tabs .is-on { background: var(--paper); color: var(--ink); }
 .detail-main .panel .seg-ink .is-on { background: var(--ink); }
 .detail-main .code pre { white-space: pre-wrap; word-break: break-all; }
 .os-switch { font-size: var(--fs-12); }
@@ -94,7 +94,19 @@
 .feat-panel .feat-css { width: 100%; margin-top: var(--s-2); }
 .feat-panel .feat-css pre { font-size: var(--fs-13); }
 
-/* 使用 */
+/* 使用：地区单独一行；动态/静态与引用方式同一行，高度与地区开关一致 */
+.use-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3);
+}
+.detail-main .use-bar .seg,
+.detail-main .use-bar .tabs {
+  padding: 0.15rem; gap: 0.1rem; font-size: var(--fs-12); background: var(--fill);
+}
+.detail-main .use-bar .seg button,
+.detail-main .use-bar .tabs button {
+  padding: 0.28rem 0.7rem; line-height: 1.35; font-size: inherit;
+}
+.detail-main .panel .use-bar .is-on { background: var(--paper); color: var(--ink); }
 .use-versions { display: flex; flex-wrap: wrap; gap: var(--s-2); }
 .use-versions .chip .n { margin-left: 0.15em; }
 .use-note { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-4); line-height: 1.7; }
@@ -170,6 +182,9 @@
 .side-brand .sp-tip { max-width: none; }
 .side-brand .sp-code { width: 6.5rem; }
 .side-brand .side-meta { margin-top: var(--s-5); padding-top: var(--s-5); border-top: 1px solid var(--rule); }
+.side-stats h3 { margin-bottom: var(--s-4); }
+.side-stats .kv dd.num { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: var(--fw-label); }
+.side-stats-note { margin: var(--s-3) 0 0; font-size: var(--fs-12); color: var(--gray-2); line-height: 1.5; }
 .side-brand .side-meta h3 { margin-bottom: var(--s-4); display: flex; align-items: center; gap: 0.35em; }
 .side-brand .side-meta h3 .icon,
 .side-brand .kv dt .icon { width: 1em; height: 1em; color: var(--gray-2); }
@@ -240,4 +255,28 @@
   .detail-title h1 { font-size: var(--fs-20); }
   .detail-actions { flex-wrap: wrap; }
   .os-switch { flex-wrap: wrap; }
+  /* 悬停才出现的字数说明在触屏上仍占位，会把字体名挤到看不见 */
+  .lin-meta {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  .lin-row.is-on { flex-wrap: wrap; row-gap: 0.2rem; }
+  .lin-row.is-on .lin-name { flex: 1 1 auto; }
+  .lin-row.is-on .lin-meta {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    flex: 1 0 100%;
+    text-align: left;
+    white-space: normal;
+  }
 }

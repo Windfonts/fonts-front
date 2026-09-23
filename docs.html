@@ -5,12 +5,12 @@
   <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>文档 · 文风字体</title>
-  <meta name="description" content="文风字体接入文档：CDN 地址规则、link / @import / CSS / npm 用法、子集化、font-display、域名白名单、版本回滚与 API 参数。" />
+  <meta name="description" content="文风字体接入文档：CDN、REST API、API Key / 白名单、link / @import / CSS / npm、子集化、font-display、域名与版本。" />
   <link rel="stylesheet" href="css/fonts.css?v=20260922a" />
   <link rel="stylesheet" href="css/tokens.css?v=20260922l" />
   <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css?v=20260922f" />
-  <link rel="stylesheet" href="css/site.css?v=20260922an" />
+  <link rel="stylesheet" href="css/components.css?v=20260922bf" />
+  <link rel="stylesheet" href="css/site.css?v=20260922bg" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-docs">
@@ -33,6 +33,11 @@
           <a class="for-dev" href="#import">用 @import 引入</a>
           <a class="for-dev" href="#css">在 CSS 中使用</a>
           <a class="for-dev" href="#npm">npm 与框架</a>
+          <h3 class="for-dev">REST API</h3>
+          <a class="for-dev" href="#api">概述与响应</a>
+          <a class="for-dev" href="#api-auth">认证与白名单</a>
+          <a class="for-dev" href="#api-fonts">字体接口</a>
+          <a class="for-dev" href="#api-categories">分类与品牌</a>
           <h3 class="for-dev">优化</h3>
           <a class="for-dev" href="#subset">子集化</a>
           <a class="for-dev" href="#display">font-display</a>
@@ -69,15 +74,17 @@
       </section>
 
       <section id="url" class="for-dev">
-        <div class="docs-cdn">
-          <h2>CDN 地址规则</h2>
-          <div class="cdn-switch seg" role="group" aria-label="CDN 节点">
-            <button type="button" data-cdn="cn" class="is-on">中国</button>
-            <button type="button" data-cdn="hk">香港</button>
-            <button type="button" data-cdn="en">国际</button>
-          </div>
-        </div>
-        <p>每款字体的每个字重是一份独立 CSS，地址由字体族 slug 与字重名组成：</p>
+        <h2>CDN 地址规则</h2>
+        <p>对外地址一律用 CDN 域名 <code>cn.windfonts.com</code>。字体页「使用」区可以在动态和静态之间切换。</p>
+        <h3>动态</h3>
+        <p>和 Google Fonts 一样，用查询参数指定字体。参数一律小写：<code>family</code> 用 slug（<code>yjmct</code>），<code>weight</code> 用字重名（<code>regular</code>）。接口不区分大小写，写出去的地址固定小写。子集用 <code>subset</code>，取值 <code>zh</code>、<code>zh-common</code>、<code>en</code>，不写就是完整字集。</p>
+        <div class="code"><pre>https://cn.windfonts.com/api/css?family=<b>{slug}</b>&amp;weight=<b>{weight}</b></pre></div>
+        <div class="code"><pre>https://cn.windfonts.com/api/css?family=albbpht&amp;weight=heavy</pre></div>
+        <p>多款字体可写在同一条动态地址里，<code>family</code> 用竖线 <code>|</code> 分隔。该请求的 <code>weight</code> 对各款共用；需要不同字重时请拆成多条 <code>&lt;link&gt;</code>。</p>
+        <div class="code"><pre>https://cn.windfonts.com/api/css?family=albbpht|ibmps&amp;weight=regular</pre></div>
+        <p>也可为每款各写一行 <code>&lt;link&gt;</code>。返回的 CSS 里 <code>font-family</code> 是 <code>windfonts-{slug}</code>，页面上同时写上 <code>wenfeng-{slug}</code>。</p>
+        <h3>静态</h3>
+        <p>每个字重一份 CSS，路径用小写字重名：</p>
         <div class="code"><pre>https://cn.windfonts.com/wenfeng/fonts/<b>{slug}</b>/<b>{weight}</b>/web/<b>index.css</b></pre></div>
         <ul>
           <li><code>{slug}</code>：字体族标识去掉 <code>wenfeng-</code> 前缀，如 <code>wenfeng-albbpht</code> → <code>albbpht</code>。字体页「使用」区直接给出完整地址。</li>
@@ -92,7 +99,9 @@
         <p>放入页面 <code>&lt;head&gt;</code>。先 <code>preconnect</code> 再拉 CSS，可省一次 DNS + TLS 往返。免费提供的字体请保留授权标注注释。</p>
         <div class="code"><pre>&lt;!-- 此中文网页字体由文风字体（Windfonts）免费提供，您可以自由引用，请务必保留此授权许可标注 https://wenfeng.org/license --&gt;
 &lt;link rel="preconnect" href="https://cn.windfonts.com" crossorigin&gt;
-&lt;link rel="stylesheet" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/index.css"&gt;</pre></div>
+&lt;link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=albbpht&amp;weight=regular"&gt;</pre></div>
+        <p>静态同一款字是：</p>
+        <div class="code"><pre>&lt;link rel="stylesheet" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/index.css"&gt;</pre></div>
         <p>需要多个字重就多写几行 <code>&lt;link&gt;</code>，每个字重一份 CSS；字体页「使用」区与<a href="shopping-bag.html">选字袋</a>可一次生成多款、多字重的合并代码。</p>
       </section>
 
@@ -116,15 +125,131 @@
 
       <section id="npm" class="for-dev">
         <h2>npm 与框架</h2>
-        <p>现代前端工作流用 loader 按需注入，并拿到加载状态（loading / loaded / error）。</p>
-        <div class="code"><pre>npm install @windfonts/loader
+        <p>现代前端工作流用 <code>@windfonts/loader</code> 按需注入，并拿到加载状态（loading / loaded / error）。包与示例见开源仓 <a href="https://github.com/Windfonts/font-packages" target="_blank" rel="noopener noreferrer">Windfonts/font-packages</a>。</p>
+        <h3>安装</h3>
+        <div class="code"><pre>npm install @windfonts/loader</pre></div>
+        <h3>一次加载多款 / 多字重</h3>
+        <div class="code"><pre>import { loadFonts, loadFont } from '@windfonts/loader';
 
-import { loadFonts } from '@windfonts/loader';
-
+/* 多款 */
 const status = await loadFonts([
-  { family: 'wenfeng-albbpht', weights: ['regular', 'bold'], version: 'zh' }
-], { display: 'swap' });</pre></div>
-        <p>React 用 <code>useWindfonts()</code>，Vue 用 <code>useWindfonts()</code> composable，返回同一份状态对象。WordPress 站点可直接用文派的字体插件，在后台选字即可。</p>
+  { family: 'wenfeng-albbpht', weights: ['regular', 'bold'], version: 'zh' },
+  { family: 'wenfeng-ibmps', weights: ['regular'], version: 'full' }
+], { display: 'swap' });
+
+/* 单款简写 */
+await loadFont('wenfeng-albbpht', { weights: ['regular', 'heavy'], subset: 'zh' });</pre></div>
+        <h3>React</h3>
+        <div class="code"><pre>import { useWindfonts } from '@windfonts/loader/react';
+
+function Title() {
+  const { status, error } = useWindfonts([
+    { family: 'wenfeng-albbpht', weights: ['bold'] }
+  ]);
+  if (status === 'error') return &lt;p&gt;字体加载失败：{String(error)}&lt;/p&gt;;
+  return (
+    &lt;h1 style={{ fontFamily: '"wenfeng-albbpht", "PingFang SC", sans-serif', fontWeight: 700 }}&gt;
+      文风字体
+    &lt;/h1&gt;
+  );
+}</pre></div>
+        <h3>Vue</h3>
+        <p>用 <code>useWindfonts()</code> composable，返回同一份状态对象（<code>status</code> / <code>error</code>）。</p>
+        <p>WordPress 站点可直接用文派的字体插件，在后台选字即可。纯静态页仍推荐 <code>&lt;link&gt;</code> + CDN，不必强行上 npm。</p>
+      </section>
+
+      <section id="api" class="for-dev">
+        <h2>REST API 概述</h2>
+        <p>数据面提供 RESTful JSON API，用于字体查询、分类与品牌浏览。基址：</p>
+        <div class="code"><pre>https://app.windfonts.com/api</pre></div>
+        <p>所有响应均为 JSON，统一信封：</p>
+        <div class="code"><pre>{
+  "code": 200,
+  "message": "success",
+  "data": { ... }
+}</pre></div>
+        <p>CSS 嵌入仍走 <code>cn.windfonts.com</code>（见<a href="#url">CDN 地址规则</a>）；本段只描述元数据 API。</p>
+      </section>
+
+      <section id="api-auth" class="for-dev">
+        <h2>认证与白名单</h2>
+        <p>API 用密钥管理访问与配额。多数 GET 支持匿名，但有严格日限流（默认约 100 次/天）。正式集成请申请 API Key 以提高配额。</p>
+        <h3>白名单免密钥</h3>
+        <p>请求域名加入白名单后，可免 API Key 访问字体 API，且不计入日配额。白名单需完全匹配规范化后的 hostname（不支持通配），由管理员配置。</p>
+        <ul>
+          <li>浏览器跨域/同域请求通常会自动带 <code>Origin</code>；服务端调用须自行附带。</li>
+          <li>日配额：白名单流量不消耗日配额。</li>
+          <li>分钟限流：默认约 600 次/分钟（可由服务端配置调整）。</li>
+        </ul>
+        <p>项目 CDN 的「域名白名单」（见<a href="#domains">域名白名单</a>）管的是字体文件分发；此处白名单管的是 REST 元数据 API，二者用途不同。</p>
+        <h3>传递 API Key</h3>
+        <p>任选其一（推荐 Header）：</p>
+        <div class="code"><pre>Authorization: Bearer wf_live_...
+# 或
+X-API-Key: wf_live_...
+
+# Query（不推荐写进前端公开页面）
+GET /api/fonts?apiKey=wf_live_...</pre></div>
+      </section>
+
+      <section id="api-fonts" class="for-dev">
+        <h2>字体接口</h2>
+        <h3><code>GET /api/fonts</code></h3>
+        <p>分页列表，支持筛选与排序。</p>
+        <table class="table">
+          <thead><tr><th>参数</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">page</td><td>页码，默认 1</td></tr>
+            <tr><td class="mono">size</td><td>每页条数，默认 20</td></tr>
+            <tr><td class="mono">category</td><td>分类 ID / slug</td></tr>
+            <tr><td class="mono">brand</td><td>品牌 ID</td></tr>
+            <tr><td class="mono">search</td><td>关键词</td></tr>
+            <tr><td class="mono">sort</td><td><code>name</code> · <code>createdAt</code> · <code>viewCount</code></td></tr>
+          </tbody>
+        </table>
+        <div class="code"><pre>GET https://app.windfonts.com/api/fonts?page=1&amp;size=20&amp;sort=viewCount</pre></div>
+        <div class="code"><pre>{
+  "code": 200,
+  "data": {
+    "total": 100,
+    "page": 1,
+    "pageTotal": 5,
+    "dataList": [
+      {
+        "id": "uuid",
+        "name": "思源黑体",
+        "fontFamily": "Source Han Sans",
+        "category": { "name": "无衬线体" },
+        "brand": { "name": "Adobe" }
+      }
+    ]
+  }
+}</pre></div>
+        <h3><code>GET /api/fonts/:family</code></h3>
+        <p>单款详情，路径可为字体 ID 或族名 / slug（如 <code>albbpht</code>、<code>qtxtt</code>）。</p>
+        <div class="code"><pre>GET https://app.windfonts.com/api/fonts/albbpht</pre></div>
+      </section>
+
+      <section id="api-categories" class="for-dev">
+        <h2>分类与品牌</h2>
+        <h3><code>GET /api/categories</code></h3>
+        <p>全部分类列表。</p>
+        <div class="code"><pre>GET https://app.windfonts.com/api/categories
+
+{
+  "code": 200,
+  "data": [
+    {
+      "id": "uuid",
+      "name": "无衬线体",
+      "slug": "sans-serif",
+      "description": "现代简洁的字体风格"
+    }
+  ]
+}</pre></div>
+        <h3><code>GET /api/brands</code></h3>
+        <p>全部品牌（厂商）列表，字段结构与分类类似，用于筛选与厂商页。</p>
+        <div class="code"><pre>GET https://app.windfonts.com/api/brands</pre></div>
       </section>
 
       <section id="subset" class="for-dev">
@@ -142,6 +267,13 @@ const status = await loadFonts([
         </table>
         <div class="code"><pre>https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/zh_index.css</pre></div>
         <p>控制台生成的自定义子集作为<a href="#versions">项目版本</a>发布，走项目 CDN 地址，改子集不需要改嵌入代码。</p>
+        <h3>按文字即时切</h3>
+        <p>标题、品牌名这类固定文案可以不建项目，用密钥直接按文字要一版。密钥在控制台「设置」。地址里的字重用字重名，不用数字。</p>
+        <div class="code"><pre>curl -X POST https://cn.windfonts.com/v1/subset \
+  -H "Authorization: Bearer $WINDFONTS_KEY" \
+  -d family=wenfeng-albbpht \
+  -d weight=regular \
+  --data-urlencode text="让中文字体在网页上，一行代码可用。"</pre></div>
       </section>
 
       <section id="display" class="for-dev">
@@ -211,6 +343,7 @@ const status = await loadFonts([
             <tr><td><code>{weight}</code></td><td>小写字重名，以字体页列出的为准</td><td class="mono">regular · bold · light · heavy</td></tr>
             <tr><td>文件</td><td>完整字集 / 中文子集</td><td class="mono">index.css · zh_index.css</td></tr>
             <tr><td><code>font-family</code></td><td>CSS 中声明的族名</td><td class="mono">"wenfeng-albbpht"</td></tr>
+            <tr><td><code>display</code></td><td>可选查询参数，只覆盖这一次 CSS 的 <code>font-display</code></td><td class="mono">?display=swap</td></tr>
           </tbody>
         </table>
         <div class="code"><pre>https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/{index|zh_index}.css</pre></div>
@@ -226,7 +359,7 @@ const status = await loadFonts([
             <tr><td class="mono">extralight</td><td class="num">200</td><td class="mono">semibold</td><td class="num">600</td></tr>
             <tr><td class="mono">light</td><td class="num">300</td><td class="mono">bold</td><td class="num">700</td></tr>
             <tr><td class="mono">regular · normal</td><td class="num">400</td><td class="mono">heavy · extrabold</td><td class="num">800</td></tr>
-            <tr><td class="mono">text</td><td class="num">400</td><td class="mono">black</td><td class="num">900</td></tr>
+            <tr><td class="mono">text</td><td class="num">450</td><td class="mono">black</td><td class="num">900</td></tr>
           </tbody>
         </table>
       </section>
@@ -274,7 +407,7 @@ const status = await loadFonts([
 
       <nav class="docs-foot" aria-label="文档页脚">
         <a href="fonts.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-font-size"/></svg>去字体库挑一款</a>
-        <a href="app/index.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-dashboard"/></svg>打开控制台</a>
+        <a href="login.html" data-app-entry><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-dashboard"/></svg>登录控制台</a>
         <span class="muted">有错漏？在 GitHub 提 issue 或写信 docs@windfonts.com</span>
       </nav>
     </article>
@@ -282,10 +415,15 @@ const status = await loadFonts([
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js?v=20260922g"></script>
-  <script src="js/wf-chrome.js?v=20260922rq"></script>
+  <script src="js/wf-proto.js?v=20260923l"></script>
+  <script src="js/wf-chrome.js?v=20260923c"></script>
   <script>
     (function () {
+      const entry = document.querySelector('[data-app-entry]');
+      if (entry && WFChrome.canAccessApp && WFChrome.canAccessApp()) {
+        entry.href = 'app/index.html';
+        entry.innerHTML = '<svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-dashboard"/></svg>打开控制台';
+      }
       const nav = document.getElementById('docsChapterNav');
       const toc = document.querySelector('.docs-chapters');
       const links = toc.querySelectorAll('a');
@@ -322,9 +460,15 @@ const status = await loadFonts([
         if (on && now) now.textContent = on.textContent;
         if (on && meta) meta.textContent = groupOf(on);
       }
-      if (/^#(url|link|import|css|npm|subset|display|preload|cache|projects|domains|versions|usage|upload|params|weights)$/.test(location.hash)) {
-        WFChrome.setView('dev');
+      function devSection(hash) {
+        return /^#(url|link|import|css|npm|subset|display|preload|cache|projects|domains|versions|usage|upload|params|weights)$/.test(hash || '');
       }
+      if (devSection(location.hash)) WFChrome.setView('dev');
+      document.querySelectorAll('.docs-body a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function () {
+          if (devSection(a.getAttribute('href'))) WFChrome.setView('dev');
+        });
+      });
       window.addEventListener('scroll', sync, { passive: true });
       requestAnimationFrame(sync);
 

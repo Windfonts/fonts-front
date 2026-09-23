@@ -1,7 +1,7 @@
 /* 文风字体 v4 · 嵌入代码生成 + 体积估算。依赖 wf-proto.js */
 (function () {
   const esc = WFProto.escapeHtml;
-  function apiOrigin() { return WFProto.cdnOrigin ? WFProto.cdnOrigin() : WFProto.CDN; }
+  function apiOrigin() { return WFProto.cdnOrigin(); }
   const BYTES_PER_GLYPH = 290; /* woff2 中文字形均值（估算） */
   const OVERHEAD = 2048;
 
@@ -22,15 +22,31 @@
     return estimateBytes(v.glyphs(font));
   }
 
+  function fileUrl(it, weight, structure) {
+    const version = it.version && it.version !== 'full' ? it.version : '';
+    const origin = WFProto.cdnOrigin();
+    if (structure === 'static') return WFProto.cssUrl(it.family, weight, version, origin);
+    return WFProto.cssApiUrl(it.family, weight, it.version || 'full', origin);
+  }
+
   /** items: [{ family, weights: ['400','700'], version }] */
-  function urls(items) {
+  function urls(items, structure) {
     const out = [];
     items.forEach(function (it) {
       (it.weights || ['400']).forEach(function (w) {
-        out.push(WFProto.embedCssUrl(it.family, w, it.version && it.version !== 'full' ? it.version : ''));
+        out.push(fileUrl(it, w, structure));
       });
     });
     return out;
+  }
+
+  function withQuery(url, key, value) {
+    if (!value) return url;
+    return url + (url.indexOf('?') === -1 ? '?' : '&') + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+  }
+
+  function weightToken(family, weight) {
+    return WFProto.weightName(family, weight);
   }
 
   /** 公开嵌入锁定 wenfeng-。opts.alias 只给付费 / 授权项目改名前缀。 */
@@ -45,28 +61,29 @@
 
   function code(kind, items, opts) {
     opts = opts || {};
-    const list = urls(items);
-    const display = opts.display ? '&display=' + opts.display : '';
+    const structure = opts.structure === 'static' ? 'static' : 'dynamic';
+    const list = urls(items, structure);
+    const display = opts.display || '';
     if (kind === 'link') {
       return WFProto.CDN_LICENSE_NOTE + '\n<link rel="preconnect" href="' + apiOrigin() + '" crossorigin>\n' +
-        (opts.preload ? list.map(function (u) { return '<link rel="preload" as="style" href="' + u + display + '">'; }).join('\n') + '\n' : '') +
-        list.map(function (u) { return '<link rel="stylesheet" href="' + u + display + '">'; }).join('\n');
+        (opts.preload ? list.map(function (u) { return '<link rel="preload" as="style" href="' + u + '">'; }).join('\n') + '\n' : '') +
+        list.map(function (u) { return '<link rel="stylesheet" href="' + u + '">'; }).join('\n');
     }
     if (kind === 'import') {
-      return list.map(function (u) { return "@import url('" + u + display + "');"; }).join('\n');
+      return list.map(function (u) { return "@import url('" + u + "');"; }).join('\n');
     }
     if (kind === 'css') {
       return items.map(function (it) {
-        const fam = familyName(it.family, opts);
-        return '.your-selector {\n  font-family: "' + fam + '",\n    "PingFang SC", "Microsoft YaHei", sans-serif;\n  font-weight: ' +
-          ((it.weights || ['400'])[0]) + ';\n  font-display: ' + (opts.display || 'swap') + ';\n}';
+        const wen = familyName(it.family, opts);
+        const wind = wen.replace(/^wenfeng-/, 'windfonts-');
+        return '.your-selector {\n  font-family: "' + wen + '",\n    "' + wind + '",\n    "PingFang SC", "Microsoft YaHei", sans-serif;\n  font-weight: ' +
+          ((it.weights || ['400'])[0]) + ';\n  font-display: ' + (display || 'swap') + ';\n}';
       }).join('\n\n');
     }
     if (kind === 'project') {
       const slug = opts.slug || '';
       const file = opts.file || 'index.css';
-      const display = opts.display ? '?display=' + encodeURIComponent(opts.display) : '';
-      const url = WFProto.projectCssUrl(slug, file) + display;
+      const url = withQuery(WFProto.projectCssUrl(slug, file), 'display', display);
       return WFProto.CDN_LICENSE_NOTE + '\n<link rel="preconnect" href="' + apiOrigin() + '" crossorigin>\n' +
         (opts.preload ? '<link rel="preload" as="style" href="' + url + '">\n' : '') +
         '<link rel="stylesheet" href="' + url + '">';
@@ -76,8 +93,9 @@
         "import { loadFonts } from '@windfonts/loader';\n\n" +
         'loadFonts([\n' +
         items.map(function (it) {
-          return "  { family: '" + it.family + "', weights: [" + (it.weights || ['400']).map(function (w) { return w; }).join(', ') + ']' +
-            (it.version && it.version !== 'full' ? ", subset: '" + it.version + "'" : '') + ' }';
+          const weights = (it.weights || ['400']).map(function (w) { return "'" + weightToken(it.family, w) + "'"; }).join(', ');
+          return "  { family: '" + familyName(it.family, opts) + "', weights: [" + weights + ']' +
+            (it.version && it.version !== 'full' ? ", version: '" + it.version + "'" : '') + ' }';
         }).join(',\n') +
         '\n], { display: \'' + (opts.display || 'swap') + '\' });';
     }
@@ -135,9 +153,16 @@
     let cur = items;
     let curOpts = opts;
     el.innerHTML =
-      '<div class="tabs" role="tablist">' + KINDS.map(function (k) {
-        return '<button type="button" role="tab" data-kind="' + k.id + '"' + (k.id === kind ? ' class="is-on"' : '') + '>' + k.label + '</button>';
-      }).join('') + '</div>' +
+      '<div class="use-bar">' +
+        (opts.cdn ? WFProto.cdnSwitchHtml() : '') +
+        '<div class="seg" role="group" aria-label="地址结构">' +
+          '<button type="button" data-struct="dynamic"' + (curOpts.structure === 'static' ? '' : ' class="is-on"') + '>动态</button>' +
+          '<button type="button" data-struct="static"' + (curOpts.structure === 'static' ? ' class="is-on"' : '') + '>静态</button>' +
+        '</div>' +
+        '<div class="tabs" role="tablist">' + KINDS.map(function (k) {
+          return '<button type="button" role="tab" data-kind="' + k.id + '"' + (k.id === kind ? ' class="is-on"' : '') + '>' + k.label + '</button>';
+        }).join('') + '</div>' +
+      '</div>' +
       '<div class="code" style="margin-top:var(--s-4)"><button type="button" class="copy">' + WFChrome.icon('copy') + '复制</button><pre></pre></div>';
     const pre = el.querySelector('pre');
     function paint() {
@@ -145,6 +170,13 @@
       pre.innerHTML = highlight(kind, code(kind, cur, curOpts));
     }
     document.addEventListener('wf:cdn', paint);
+    el.querySelectorAll('[data-struct]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        curOpts.structure = b.getAttribute('data-struct');
+        el.querySelectorAll('[data-struct]').forEach(function (x) { x.classList.toggle('is-on', x === b); });
+        paint();
+      });
+    });
     el.querySelectorAll('[data-kind]').forEach(function (b) {
       b.addEventListener('click', function () {
         kind = b.getAttribute('data-kind');

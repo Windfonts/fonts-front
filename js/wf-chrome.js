@@ -15,10 +15,29 @@
   function esc(s) { return WFProto.escapeHtml(s); }
 
   function user() {
-    try { return JSON.parse(localStorage.getItem(USER_KEY) || 'null'); } catch (e) { return null; }
+    try {
+      const u = JSON.parse(localStorage.getItem(USER_KEY) || 'null');
+      if (!u || typeof u !== 'object') return null;
+      if (!String(u.email || '').trim() && !String(u.name || '').trim()) return null;
+      return u;
+    } catch (e) { return null; }
+  }
+  /** 注册用户 / 管理员可进控制台；访客不显示入口。role 缺省视为已注册 user。 */
+  function canAccessApp(u) {
+    u = u || user();
+    if (!u) return false;
+    const role = String(u.role || 'user').toLowerCase();
+    return role === 'user' || role === 'admin' || role === 'owner' || role === 'editor';
   }
   function login(profile) {
-    localStorage.setItem(USER_KEY, JSON.stringify(profile || { name: '文派设计', email: 'design@wenpai.org' }));
+    const base = profile && typeof profile === 'object' ? profile : {};
+    const next = {
+      name: String(base.name || '').trim() || '文派设计',
+      email: String(base.email || '').trim() || 'design@wenpai.org',
+      role: String(base.role || 'user').toLowerCase()
+    };
+    if (next.role !== 'admin' && next.role !== 'owner' && next.role !== 'editor') next.role = 'user';
+    localStorage.setItem(USER_KEY, JSON.stringify(next));
   }
   function logout() { localStorage.removeItem(USER_KEY); }
 
@@ -137,6 +156,7 @@
   function renderTopbar(el) {
     const active = el.getAttribute('data-active') || '';
     const u = user();
+    const inApp = canAccessApp(u);
     const nav = navItems();
     el.classList.add('topbar');
     if (el.hasAttribute('data-dark')) el.classList.add('is-dark');
@@ -157,7 +177,7 @@
             '<button type="button" class="clear" id="navSearchClear" hidden aria-label="清除搜索">' + icon('close') + '</button>' +
           '</form>' +
           '<a href="' + href('shopping-bag.html') + '">' + icon('bag') + '<span>选字袋</span><span class="count" data-pick-count data-count="0">0</span></a>' +
-          (u
+          (inApp
             ? '<a href="' + href('app/index.html') + '">' + icon('dashboard') + '<span>控制台</span></a>'
             : '<a href="' + href('login.html') + '">' + icon('user') + '<span>登录</span></a>') +
           viewSwitchHtml() +
@@ -172,6 +192,9 @@
         nav.map(function (n) {
           return '<a href="' + href(n.path) + '"' + (n.id === active ? ' class="is-active"' : '') + '>' + n.label + '</a>';
         }).join('') +
+        (inApp
+          ? '<a href="' + href('app/index.html') + '">' + icon('dashboard') + '控制台</a>'
+          : '<a href="' + href('login.html') + '">' + icon('user') + '登录</a>') +
         viewSwitchHtml() +
       '</div>';
     const pickN = (WFProto.getPicks() || []).length;
@@ -185,6 +208,9 @@
     const menuBtn = el.querySelector('#navMenuBtn');
     const menu = el.querySelector('#navMenu');
     menuBtn.addEventListener('click', function () { setMenu(menu.hidden); });
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setMenu(false);
+    });
   }
 
   function setMenu(open) {
@@ -193,6 +219,7 @@
     if (!menu || !menuBtn) return;
     menu.hidden = !open;
     menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? '关闭菜单' : '菜单');
     menuBtn.innerHTML = icon(open ? 'close' : 'menu');
   }
 
@@ -485,7 +512,7 @@
   }
   function lineageRow(f, on, faceOf) {
     const face = faceOf ? faceOf(f) : '';
-    return '<a class="lin-row' + (on ? ' is-on' : '') + '" href="' + href('font-detail.html?id=' + encodeURIComponent(f.id)) + '">' +
+    return '<a class="lin-row' + (on ? ' is-on' : '') + '" href="' + href(WFProto.detailHref(f)) + '">' +
       '<span class="lin-name"' + (face ? ' style="' + face + '"' : '') + '>' + esc(f.name) + '</span>' +
       lineageMeta(f) +
       (on ? '<span class="lin-rel">当前</span>' : '') + '</a>';
@@ -629,6 +656,7 @@
     ROOT: ROOT,
     href: href,
     user: user,
+    canAccessApp: canAccessApp,
     login: login,
     logout: logout,
     toast: toast,

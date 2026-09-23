@@ -4,6 +4,14 @@
   const PAGE = 12;
   const listEl = document.getElementById('fontList');
   const railEl = document.getElementById('libRail');
+  const railFold = document.getElementById('libRailFold');
+  const railQuery = window.matchMedia('(min-width: 769px)');
+  function syncRailFold() {
+    if (!railFold) return;
+    if (railQuery.matches) railFold.open = true;
+  }
+  syncRailFold();
+  if (railQuery.addEventListener) railQuery.addEventListener('change', syncRailFold);
   const countEl = document.getElementById('countLine');
   const activeEl = document.getElementById('activeFilters');
   const moreBtn = document.getElementById('loadMore');
@@ -38,6 +46,7 @@
   };
   const SORTS = {
     featured: null,
+    popular: function (a, b) { return (b.viewCount || 0) - (a.viewCount || 0) || SORTS.name(a, b); },
     name: function (a, b) { return String(a.name).localeCompare(String(b.name), 'zh-Hans-CN'); },
     weights: function (a, b) { return (b.weights || []).length - (a.weights || []).length || SORTS.name(a, b); },
     newest: function (a, b) { return (parseInt(b.releaseYear, 10) || 0) - (parseInt(a.releaseYear, 10) || 0) || SORTS.name(a, b); }

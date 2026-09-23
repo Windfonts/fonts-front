@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/fonts.css?v=20260922a" />
   <link rel="stylesheet" href="css/tokens.css?v=20260922l" />
   <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css?v=20260922f" />
+  <link rel="stylesheet" href="css/components.css?v=20260922bf" />
   <link rel="stylesheet" href="css/site.css" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
@@ -38,7 +38,7 @@
 
   <footer id="wfExtraFooter"></footer>
   <script src="js/wf-proto.js"></script>
-  <script src="js/wf-chrome.js?v=20260922rq"></script>
+  <script src="js/wf-chrome.js?v=20260923c"></script>
   <script>
     (function () {
       const signup = WFProto.getQuery('mode') === 'signup';
@@ -66,7 +66,7 @@
       function enter() {
         const email = document.getElementById('email').value || 'design@wenpai.org';
         const name = (document.getElementById('displayName').value || '').trim() || email.split('@')[0];
-        WFChrome.login({ name: name, email: email });
+        WFChrome.login({ name: name, email: email, role: 'user' });
         location.href = dest();
       }
 

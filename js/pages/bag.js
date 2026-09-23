@@ -21,7 +21,7 @@
   WFSpecimen.controlBar(document.getElementById('controlbar'), {});
 
   function studioHref(id) {
-    return WFChrome.href('font-detail.html?id=' + encodeURIComponent(id) + '&from=bag');
+    return WFChrome.href(WFProto.detailHref(WFProto.getFont(id) || { id: id }, { from: 'bag' }));
   }
 
   function bindStudioLinks(root) {
@@ -46,7 +46,7 @@
     const its = items();
     if (!its.length) { embedWrap.hidden = true; return; }
     embedWrap.hidden = false;
-    const opts = { display: optDisplay.value, preload: optPreload.checked };
+    const opts = { cdn: true, display: optDisplay.value, preload: optPreload.checked };
     if (!embed) embed = WFEmbed.mount(document.getElementById('embed'), its, opts);
     else { embed.setItems(its); embed.setOpts(opts); }
     let total = 0;

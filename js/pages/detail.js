@@ -91,16 +91,19 @@
     const user = WFChrome.user();
     const sample = WFSpecimen.PRESETS.filter(function (p) { return p.id === 'poem'; })[0].text;
 
-    // 字体本身的属性两边都给；只有接入机制（版本、字形数）归开发。
+    // 字体本身的属性两边都给；只有接入机制（版本、字形数）归开发。浏览量改放「统计信息」。
     const kv = [
       maker ? { icon: 'palette', dt: '制作方', dd: '<a href="foundry.html?slug=' + encodeURIComponent(maker.id) + '">' + esc(maker.name) + '</a>', html: true } : null,
       { icon: 'classify', dt: '分类', dd: WFChrome.catLabel(font.category) || font.category },
       { icon: 'translate', dt: '语言', dd: (font.languages || []).map(function (l) { return l === '英语' ? '英文' : l; }).join(' · ') },
       { icon: 'calendar', dt: '发布', dd: font.releaseYear ? String(font.releaseYear) : '' },
-      { icon: 'eye', dt: '浏览', dd: font.viewCount ? WFProto.formatCount(font.viewCount) : '' },
       { icon: 'version', dt: '版本', dd: font.version, dev: true },
       { icon: 'text', dt: '字形数', dd: font.glyphCount ? WFProto.formatCount(font.glyphCount) : '', dev: true }
     ].filter(function (r) { return r && r.dd; });
+    const stats = WFProto.getFontStats(font);
+    function statNum(n) {
+      return String(Math.round(Number(n) || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
 
     const lineageBody = lineageBodyHtml(font, list);
     const wallText = sample || font.name;
@@ -126,7 +129,7 @@
           (weights.length > 1
             ? '<div class="weights" role="group" aria-label="字重">' + weights.map(function (w) {
                 const c = WFProto.weightToCss(w);
-                return '<button type="button" data-w="' + c + '"' + (c === w0 ? ' class="is-on"' : '') + '>' +
+                return '<button type="button" data-w="' + c + '" data-wn="' + esc(w) + '"' + (c === w0 ? ' class="is-on"' : '') + '>' +
                   esc(w) + '<span class="for-dev"> ' + c + '</span></button>';
               }).join('') + '</div>'
             : '') +
@@ -170,7 +173,7 @@
             ? '<section class="panel" id="weights"><div class="panel-head"><h2>' + WFChrome.icon('font') + '字重</h2></div>' +
               '<div class="panel-pad weights-sheet" id="sheet">' + WFSpecimen.weightsSheetHtml(font, sample, w0) + '</div></section>'
             : '') +
-          '<section class="panel" id="glyphs"><div class="panel-head"><h2>' + WFChrome.icon('hashtag') + '字符表</h2><div class="glyph-tools" id="glyphTools"></div></div>' +
+          '<section class="panel" id="glyphs"><div class="panel-head"><div class="glyph-title"><h2>' + WFChrome.icon('hashtag') + '字符表</h2><div id="glyphQuery"></div></div><div class="glyph-tools" id="glyphTools"></div></div>' +
             '<div class="panel-pad"><div class="glyph-summary" id="glyphSummary" aria-live="polite"></div><div class="glyph-blocks" id="glyphBlocks"></div></div></section>' +
           '<section class="panel" id="license"><div class="panel-head"><h2>' + WFChrome.icon('certificate') + '授权</h2>' +
             '<div class="license-head"><span class="tier">' + esc(WFChrome.licenseTier(font)) + '</span>' +
@@ -210,6 +213,15 @@
               return '<div' + (r.dev ? ' class="for-dev"' : '') + '><dt>' + WFChrome.icon(r.icon) + esc(r.dt) + '</dt><dd' + (!r.html && /^[\d,.\s]+$/.test(r.dd) ? ' class="num"' : '') + '>' +
                 (r.html ? r.dd : esc(r.dd)) + '</dd></div>';
             }).join('') + '</dl></div>' +
+          '</div>' +
+          '<div class="panel panel-pad side-stats" data-font-stats="' + esc(font.id) + '">' +
+            '<h3>' + WFChrome.icon('chart') + '统计信息</h3>' +
+            '<dl class="kv">' +
+              '<div><dt>' + WFChrome.icon('eye') + '浏览次数</dt><dd class="num" data-stat="views">' + statNum(stats.views) + '</dd></div>' +
+              '<div><dt>' + WFChrome.icon('download') + '下载次数</dt><dd class="num" data-stat="downloads">' + statNum(stats.downloads) + '</dd></div>' +
+              '<div class="for-dev"><dt>' + WFChrome.icon('code') + 'API 调用</dt><dd class="num" data-stat="api">' + statNum(stats.api) + '</dd></div>' +
+            '</dl>' +
+            '<p class="side-stats-note for-dev">下载含样张导出；API 为 CDN CSS 拉取次数（开发 / 厂商可见）。</p>' +
           '</div>' +
           '<div class="panel panel-pad"><h3>' + WFChrome.icon('star') + '标签</h3><div class="chips">' + (font.tags || []).map(function (t) {
             return '<a class="chip" href="fonts.html?tag=' + encodeURIComponent(t) + '">' + esc(t) + '</a>';
@@ -262,19 +274,27 @@
     });
     function syncWeightUi() {
       document.querySelectorAll('#wallTools [data-w], #sheet [data-w]').forEach(function (x) {
-        x.classList.toggle('is-on', x.getAttribute('data-w') === String(weight));
+        const wn = x.getAttribute('data-wn');
+        const on = wn
+          ? String(WFProto.weightToCss(wn)) === String(weight)
+          : x.getAttribute('data-w') === String(weight);
+        x.classList.toggle('is-on', on);
       });
     }
     function setWeight(w) {
-      weight = String(w);
+      const token = w;
+      weight = String(WFProto.weightToCss(token));
+      WFProto.ensureFontCss(font.family, token);
       hero.style.fontWeight = weight;
-      embed.setItems([{ family: font.family, weights: [weight], version: version }]);
+      embed.setItems([{ family: font.family, weights: [token], version: version }]);
       if (tester) tester.sync({ weight: weight });
-      if (glyphTable) glyphTable.setWeight(weight);
+      if (glyphTable) glyphTable.setWeight(token);
       syncWeightUi();
     }
     document.querySelectorAll('#wallTools [data-w], #sheet [data-w]').forEach(function (b) {
-      b.addEventListener('click', function () { setWeight(b.getAttribute('data-w')); });
+      b.addEventListener('click', function () {
+        setWeight(b.getAttribute('data-wn') || b.getAttribute('data-w'));
+      });
     });
     function syncTools() {
       sizeVal.textContent = size.value + 'px';
@@ -343,13 +363,30 @@
       weight
     );
 
+    WFProto.bumpFontStat(font.id, 'views', 1, { once: true });
+    WFProto.paintFontStats(root);
+    if (!root._wfStatsBound) {
+      root._wfStatsBound = true;
+      document.addEventListener('wf:stats', function (e) {
+        if (e.detail && e.detail.id === font.id) WFProto.paintFontStats(root);
+      });
+    }
+
   }
 
   WFProto.loadCatalog().then(function (list) {
     const id = WFProto.getQuery('id');
-    const font = WFProto.getFont(id) || list[0];
+    const slug = WFProto.getQuery('slug');
+    const font = (id && WFProto.getFont(id)) || (slug && WFProto.getFontBySlug(slug)) || list[0];
     if (!font) { root.innerHTML = '<p class="empty">未找到该字体。<a href="fonts.html">回到字体库</a></p>'; return; }
-    if (!id) history.replaceState(null, '', 'font-detail.html?id=' + encodeURIComponent(font.id));
+    const q = new URLSearchParams(location.search);
+    const extras = {};
+    ['from', 'view', 'tpl', 'frame', 't', 's'].forEach(function (k) {
+      if (q.get(k)) extras[k] = q.get(k);
+    });
+    const want = WFProto.detailHref(font, extras) + (location.hash || '');
+    const cur = (location.pathname.split('/').pop() || '') + location.search + location.hash;
+    if (cur !== want) history.replaceState(null, '', want);
     render(font);
   });
 })();

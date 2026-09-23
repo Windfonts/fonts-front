@@ -24,13 +24,15 @@
      页面预览固定走中国节点。嵌入代码可选中国 / 香港 / 国际，记在本地。 */
   const CDN = 'https://cn.windfonts.com';
   const CDN_KEY = 'wf-cdn';
+  const STATS_KEY = 'wf-font-stats.v1';
+  const VIEWED_KEY = 'wf-font-viewed';
   const CDN_HOSTS = [
     { id: 'cn', label: '中国', host: 'cn.windfonts.com' },
     { id: 'hk', label: '香港', host: 'hk.windfonts.com' },
     { id: 'en', label: '国际', host: 'en.windfonts.com' }
   ];
   const CDN_LICENSE_NOTE = '<!-- 此中文网页字体由文风字体（Windfonts）免费提供，您可以自由引用，请务必保留此授权许可标注 https://wenfeng.org/license -->';
-  const CSS_TO_NAME = { '100': 'thin', '200': 'extralight', '300': 'light', '350': 'demilight', '400': 'regular', '500': 'medium', '600': 'semibold', '700': 'bold', '800': 'heavy', '900': 'black' };
+  const CSS_TO_NAME = { '100': 'thin', '200': 'extralight', '300': 'light', '350': 'demilight', '400': 'regular', '450': 'text', '500': 'medium', '600': 'semibold', '700': 'bold', '800': 'heavy', '900': 'black' };
 
   const EXTRA_LINKS = [
     { label: '关于', path: 'about.html' },
@@ -48,7 +50,9 @@
 
   const WEIGHT_MAP = {
     thin: '100', extralight: '200', 'extra-light': '200', light: '300',
-    demilight: '350', 'demi-light': '350', book: '350', text: '400',
+    demilight: '350', 'demi-light': '350', book: '350',
+    /* Text 是独立字重文件（如 IBM Plex），不能与 Regular 同为 400，否则注入缓存会盖掉其中一款 */
+    text: '450',
     regular: '400', normal: '400', medium: '500',
     demibold: '600', 'demi-bold': '600', semibold: '600', 'semi-bold': '600',
     bold: '700', extrabold: '800', 'extra-bold': '800', heavy: '800',
@@ -116,7 +120,7 @@
       foundryInfo: resolveFoundry(raw),
       designerShort: designerShort,
       styles: weights.length,
-      detail: 'font-detail.html?id=' + encodeURIComponent(raw.id)
+      detail: detailHref(raw)
     });
   }
 
@@ -208,6 +212,112 @@
     return null;
   }
 
+  /** 详情页 slug：优先 normalized，否则 family 去 wenfeng- 前缀，一律小写（对齐线上 /fonts/{slug}）。 */
+  function fontSlug(font) {
+    if (!font) return '';
+    const n = String(font.normalized || '').trim();
+    if (n) return n.toLowerCase();
+    return familySlug(font.family).toLowerCase();
+  }
+
+  function getBySlug(slug) {
+    const s = String(slug || '').trim().toLowerCase();
+    if (!s) return null;
+    for (let i = 0; i < catalog.length; i++) {
+      const f = catalog[i];
+      if (String(f.normalized || '').toLowerCase() === s) return f;
+      if (familySlug(f.family).toLowerCase() === s) return f;
+    }
+    return null;
+  }
+
+  /** 字体详情链接：优先 ?slug=，可附带额外查询（如 from=bag）。 */
+  function detailHref(font, extra) {
+    const parts = [];
+    const slug = fontSlug(font);
+    if (slug) parts.push('slug=' + encodeURIComponent(slug));
+    else if (font && font.id) parts.push('id=' + encodeURIComponent(font.id));
+    if (extra) {
+      Object.keys(extra).forEach(function (k) {
+        if (extra[k] == null || extra[k] === '') return;
+        parts.push(encodeURIComponent(k) + '=' + encodeURIComponent(extra[k]));
+      });
+    }
+    return 'font-detail.html?' + parts.join('&');
+  }
+
+  /* —— 公开统计：目录基数 + 本机增量（样张导出→下载；CSS 拉取→API）—— */
+  function readLocalStats() {
+    try { return JSON.parse(localStorage.getItem(STATS_KEY) || '{}') || {}; } catch (e) { return {}; }
+  }
+  function writeLocalStats(map) {
+    try { localStorage.setItem(STATS_KEY, JSON.stringify(map)); } catch (e) { /* ignore */ }
+  }
+  function baseFontStats(font) {
+    const views = Math.max(0, Number(font && font.viewCount) || 0);
+    const downloads = font && font.downloadCount != null
+      ? Math.max(0, Number(font.downloadCount) || 0)
+      : Math.max(0, Math.round(views * 0.06));
+    const api = font && font.apiCount != null
+      ? Math.max(0, Number(font.apiCount) || 0)
+      : Math.max(0, Math.round(views * 5.2));
+    return { views: views, downloads: downloads, api: api };
+  }
+  function getFontStats(font) {
+    const id = font && font.id;
+    const base = baseFontStats(font || {});
+    if (!id) return base;
+    const local = readLocalStats()[id] || {};
+    return {
+      views: base.views + (Number(local.views) || 0),
+      downloads: base.downloads + (Number(local.downloads) || 0),
+      api: base.api + (Number(local.api) || 0)
+    };
+  }
+  function bumpFontStat(fontId, key, n, opts) {
+    const id = String(fontId || '');
+    if (!id) return null;
+    const field = key === 'downloads' || key === 'api' || key === 'views' ? key : '';
+    if (!field) return null;
+    const delta = Number(n);
+    const add = Number.isFinite(delta) && delta !== 0 ? delta : 1;
+    if (opts && opts.once && field === 'views') {
+      try {
+        const raw = sessionStorage.getItem(VIEWED_KEY) || '';
+        const seen = raw ? raw.split('|') : [];
+        if (seen.indexOf(id) !== -1) return getFontStats(getById(id) || { id: id });
+        seen.push(id);
+        sessionStorage.setItem(VIEWED_KEY, seen.slice(-80).join('|'));
+      } catch (e) { /* ignore */ }
+    }
+    const map = readLocalStats();
+    const row = map[id] || { views: 0, downloads: 0, api: 0 };
+    row[field] = Math.max(0, (Number(row[field]) || 0) + add);
+    map[id] = row;
+    writeLocalStats(map);
+    const font = getById(id) || { id: id };
+    const next = getFontStats(font);
+    try {
+      document.dispatchEvent(new CustomEvent('wf:stats', { detail: { id: id, stats: next, key: field } }));
+    } catch (e) { /* ignore */ }
+    return next;
+  }
+  function paintFontStats(root) {
+    const scope = root || document;
+    scope.querySelectorAll('[data-font-stats]').forEach(function (el) {
+      const id = el.getAttribute('data-font-stats');
+      const font = getById(id) || { id: id };
+      const s = getFontStats(font);
+      const set = function (k, n) {
+        const node = el.querySelector('[data-stat="' + k + '"]');
+        if (node) node.textContent = String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      };
+      set('views', s.views);
+      set('downloads', s.downloads);
+      set('api', s.api);
+    });
+  }
+
   function enrich(pick) {
     const meta = getById(pick.id) || {};
     return Object.assign({}, meta, pick, {
@@ -219,7 +329,7 @@
       styles: pick.styles || meta.styles || (pick.weights || meta.weights || []).length || 1,
       tags: pick.tags || meta.tags || [],
       category: pick.category || meta.category || '',
-      detail: pick.detail || meta.detail || ('font-detail.html?id=' + encodeURIComponent(pick.id))
+      detail: pick.detail || meta.detail || detailHref(Object.assign({}, meta, pick))
     });
   }
 
@@ -277,14 +387,79 @@
   /** 字体族 slug（CDN 路径段）：wenfeng-albbpht → albbpht */
   function familySlug(family) { return String(family || '').replace(/^wenfeng-/, ''); }
 
-  /** 数值字重 → CDN 目录里的字重名。优先用目录里该字体的真实字重名（Normal / Heavy / Extrabold 等） */
+  /** 数值字重 → CDN 路径里的小写字重名。同数字多名称时优先 Regular / normal。 */
   function weightName(family, weight) {
     const s = String(weight == null ? '400' : weight).trim();
     if (!/^\d{2,4}$/.test(s)) return s.toLowerCase().replace(/[\s-]+/g, '');
     const font = catalog.filter(function (f) { return f.family === family; })[0];
     const names = (font && font.weights) || [];
-    const hit = names.filter(function (n) { return weightToCss(n) === s; })[0];
+    const hits = names.filter(function (n) { return weightToCss(n) === s; });
+    if (hits.length > 1) {
+      const prefer = hits.filter(function (n) {
+        const k = String(n).toLowerCase().replace(/[\s-]+/g, '');
+        return k === 'regular' || k === 'normal';
+      })[0];
+      if (prefer) return prefer.toLowerCase().replace(/[\s-]+/g, '');
+    }
+    const hit = hits[0];
     return (hit || CSS_TO_NAME[s] || 'regular').toLowerCase().replace(/[\s-]+/g, '');
+  }
+
+  /** 动态地址用的字重名：保留字库里的大小写，如 Regular、Heavy。 */
+  function packageWeight(family, weight) {
+    const s = String(weight == null ? '400' : weight).trim();
+    const font = catalog.filter(function (f) { return f.family === family; })[0];
+    const names = (font && font.weights) || [];
+    if (!/^\d{2,4}$/.test(s)) {
+      const key = s.toLowerCase().replace(/[\s-]+/g, '');
+      const hit = names.filter(function (n) { return n.toLowerCase().replace(/[\s-]+/g, '') === key; })[0];
+      return hit || s;
+    }
+    return names.filter(function (n) { return weightToCss(n) === s; })[0] || CSS_TO_NAME[s] || 'Regular';
+  }
+
+  function packageName(family) {
+    const font = catalog.filter(function (f) { return f.family === family; })[0];
+    if (font && font.normalized) return font.normalized;
+    const slug = familySlug(family);
+    return slug ? slug.charAt(0).toUpperCase() + slug.slice(1) : '';
+  }
+
+  function packageSubset(version) {
+    const v = String(version || 'full').toLowerCase();
+    if (v === 'zh' || v === 'zh-common' || v === 'en') return v;
+    return 'full';
+  }
+
+  /** 动态引用。对外一律小写：family 用 slug，weight 用字重名，subset 仅在非完整字集时附上。
+   *  多款字体用 | 分隔或传入数组，如 albbpht|ibmps。接口不区分大小写。 */
+  function resolveCssFamilyName(token) {
+    const t = String(token || '').trim();
+    if (!t) return '';
+    if (t.indexOf('wenfeng-') === 0) return (packageName(t) || familySlug(t)).toLowerCase();
+    const lower = t.toLowerCase();
+    for (let i = 0; i < catalog.length; i++) {
+      const f = catalog[i];
+      if (familySlug(f.family).toLowerCase() === lower) return (packageName(f.family) || familySlug(f.family)).toLowerCase();
+      if (String(f.normalized || '').toLowerCase() === lower) return String(f.normalized || familySlug(f.family)).toLowerCase();
+    }
+    return lower;
+  }
+  function cssApiUrl(family, weight, version, origin) {
+    const parts = Array.isArray(family)
+      ? family
+      : String(family || '').split('|').map(function (s) { return s.trim(); }).filter(Boolean);
+    const names = parts.map(resolveCssFamilyName).filter(Boolean).join('|');
+    let famForWeight = parts[0] || '';
+    if (famForWeight && famForWeight.indexOf('wenfeng-') !== 0) {
+      const hit = getBySlug(famForWeight);
+      famForWeight = hit ? hit.family : ('wenfeng-' + String(famForWeight).toLowerCase());
+    }
+    const w = String(packageWeight(famForWeight, weight || '400')).toLowerCase().replace(/[\s-]+/g, '');
+    const params = ['family=' + encodeURIComponent(names), 'weight=' + encodeURIComponent(w)];
+    const subset = packageSubset(version);
+    if (subset !== 'full') params.push('subset=' + encodeURIComponent(subset));
+    return (origin || cdnOrigin()) + '/api/css?' + params.join('&');
   }
 
   function cdnHost() {
@@ -306,27 +481,32 @@
       }).join('') + '</div>';
   }
   function syncCdnUi(root) {
-    const on = cdnHost().id;
-    const host = cdnHost().host;
-    (root || document).querySelectorAll('.cdn-switch [data-cdn]').forEach(function (b) {
-      b.classList.toggle('is-on', b.getAttribute('data-cdn') === on);
-    });
-    const re = /(?:https:\/\/)?(?:cn|hk|en)\.windfonts\.com/g;
-    const scope = (root || document).querySelector('.docs-body') || null;
+    const host = cdnHost();
+    const origin = 'https://' + host.host;
+    const scope = root || document.body;
     if (!scope) return;
-    const walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT);
+    scope.querySelectorAll('.cdn-switch [data-cdn]').forEach(function (b) {
+      b.classList.toggle('is-on', b.getAttribute('data-cdn') === host.id);
+    });
+    const re = /(?:https?:\/\/)?(?:cn|hk|en)\.windfonts\.com/g;
+    const walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        const parent = node.parentElement;
+        if (!parent || parent.closest('script, style, noscript, .cdn-switch')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
     let node;
     while ((node = walker.nextNode())) {
-      if (node.parentElement && node.parentElement.closest('script, style, .cdn-switch')) continue;
       if (!re.test(node.nodeValue)) { re.lastIndex = 0; continue; }
       re.lastIndex = 0;
       node.nodeValue = node.nodeValue.replace(re, function (m) {
-        return m.indexOf('https://') === 0 ? 'https://' + host : host;
+        return m.indexOf('http') === 0 ? origin : host.host;
       });
     }
   }
   function cssUrl(family, weight, version, origin) {
-    const file = version === 'zh' ? 'zh_index.css' : 'index.css';
+    const file = (version === 'zh' || version === 'zh-common') ? 'zh_index.css' : 'index.css';
     return (origin || CDN) + '/wenfeng/fonts/' + familySlug(family) + '/' + weightName(family, weight || '400') + '/web/' + file;
   }
   function embedCssUrl(family, weight, version) {
@@ -335,36 +515,53 @@
 
   /**
    * 注入字体 CSS。CDN 的 CSS 只声明 font-family，没有 font-weight，且 font-style 写的是字重名（无效值）；
-   * 多个字重同页会互相覆盖。这里拉取后补上 font-weight / 修正 font-style / 把相对 url 转绝对，再以 <style> 注入。
+   * 多个字重同页会互相覆盖。这里拉取后：去掉 local()（避免本机 Regular 冒充 Bold）、
+   * 补上 font-weight / 修正 font-style / 把相对 url 转绝对，再以 <style> 注入。
+   * 缓存键按 CDN 字重名（text / regular / bold…），避免 Text 与 Regular 都映射成 400 时只加载一款。
    * 拉取失败时退回 <link>。
    */
   function ensureFontCss(family, weight) {
     if (!family) return Promise.resolve();
-    const w = weightToCss(weight || '400');
-    const key = family + '|' + w;
+    const pathName = weightName(family, weight);
+    const w = weightToCss(weight || pathName || '400');
+    const key = family + '|' + pathName;
     if (injectedCss[key]) return injectedCss[key];
-    const url = cssUrl(family, w);
+    const url = cssUrl(family, pathName);
     const base = url.replace(/[^/]+$/, '');
+    function noteApi() {
+      const hit = catalog.filter(function (f) { return f.family === family; })[0];
+      if (hit && hit.id) bumpFontStat(hit.id, 'api', 1);
+    }
     injectedCss[key] = fetch(url).then(function (r) {
       if (!r.ok) throw new Error(String(r.status));
       return r.text();
     }).then(function (css) {
+      /* CDN 的 src 常带 local("Family") / local("Family Bold")。本机装了同族时，
+         Bold 等字重的 local() 会命中 Regular 文件，整页粗细全错。只保留 url()。 */
       const fixed = css
+        .replace(/src:\s*[^;]+;/gi, function (srcDecl) {
+          const urls = srcDecl.match(/url\((?:\\?["']?)[^)]+\)(?:\s+format\((?:\\?["']?)[^)]+\))?/gi);
+          if (!urls || !urls.length) return srcDecl;
+          return 'src:' + urls.join(',') + ';';
+        })
         .replace(/font-style:\s*[a-z-]+;/gi, 'font-style:normal;font-weight:' + w + ';')
         .replace(/url\("\.\//g, 'url("' + base)
         .replace(/url\('\.\//g, "url('" + base);
       const style = document.createElement('style');
       style.setAttribute('data-wf-family', family);
       style.setAttribute('data-wf-weight', w);
+      style.setAttribute('data-wf-weight-name', pathName);
       style.textContent = fixed;
       document.head.appendChild(style);
+      noteApi();
     }).catch(function () {
       return new Promise(function (resolve) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = url;
         link.setAttribute('data-wf-family', family);
-        link.onload = function () { resolve(); };
+        link.setAttribute('data-wf-weight-name', pathName);
+        link.onload = function () { noteApi(); resolve(); };
         link.onerror = function () { resolve(); };
         document.head.appendChild(link);
       });
@@ -704,6 +901,12 @@
     isOpenFont: isOpenFont,
     slugify: slugify,
     getFont: function (id) { return getById(id); },
+    getFontBySlug: getBySlug,
+    fontSlug: fontSlug,
+    detailHref: detailHref,
+    getFontStats: getFontStats,
+    bumpFontStat: bumpFontStat,
+    paintFontStats: paintFontStats,
     getCatalog: function (id) {
       const f = getById(id);
       return f ? enrich({ id: id }) : null;
@@ -907,6 +1110,10 @@
     syncCdnUi: syncCdnUi,
     familySlug: familySlug,
     weightName: weightName,
+    packageWeight: packageWeight,
+    packageName: packageName,
+    packageCssUrl: cssApiUrl,
+    cssApiUrl: cssApiUrl,
     cssUrl: cssUrl,
     embedCssUrl: embedCssUrl,
     /** 项目对外地址：跟当前选的 CDN 节点走 */
@@ -1062,7 +1269,7 @@
               '<button type="button" class="btn-pill join-btn" data-join="' + escapeHtml(font.id) +
                 '" data-name="' + escapeHtml(font.name) + '">加入选字袋</button>' +
             '</div>' +
-            '<a class="font-row-preview" href="font-detail.html?id=' + encodeURIComponent(font.id) +
+            '<a class="font-row-preview" href="' + detailHref(font) +
               '" data-specimen style="font-family:' + escapeHtml(stack) + ';font-size:' + size + 'px">' +
               escapeHtml(sample) +
             '</a>' +

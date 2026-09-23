@@ -58,7 +58,8 @@
   }
   function embed(font, w0) {
     const fam = WFEmbed.familyName(font.family);
-    const url = WFProto.cssUrl(font.family, w0, '');
+    const origin = WFProto.cdnOrigin();
+    const url = WFProto.cssUrl(font.family, w0, '', origin);
     return '<section class="for-dev"><h2>使用</h2><div class="do-embed">' +
       '<div class="opts">' +
         '<div class="field"><label>子集</label><select class="select"><option>常用 3500</option><option>中文 7000</option><option>完整</option></select></div>' +
@@ -67,7 +68,7 @@
       '</div>' +
       '<div class="tabs" role="tablist"><button type="button" class="is-on">link</button><button type="button">@import</button><button type="button">css</button><button type="button">npm</button></div>' +
       '<div class="code"><button type="button" class="copy" data-copy>' + WFChrome.icon('copy') + '复制</button>' +
-      '<pre>' + esc('<!-- 此中文网页字体由文风字体（Windfonts）免费提供 -->\n<link rel="preconnect" href="https://cn.windfonts.com" crossorigin>\n<link rel="stylesheet" href="' + url + '">') + '</pre></div>' +
+      '<pre>' + esc('<!-- 此中文网页字体由文风字体（Windfonts）免费提供 -->\n<link rel="preconnect" href="' + origin + '" crossorigin>\n<link rel="stylesheet" href="' + url + '">') + '</pre></div>' +
       '<p class="do-note">font-family 以 <code>' + esc(fam) + '</code> 为准。体积为单字重估算。</p></div></section>';
   }
   function license(font) {

@@ -13,6 +13,23 @@
     return out.slice(0, n);
   }
 
+  function famOf(font) {
+    return String((font && font.family) || '').replace(/^wenfeng-/, '');
+  }
+
+  /* 与首页 hero 同一规则：用这款里最重的字重 */
+  function heavyWeight(font) {
+    const ws = (font && font.weights) || [];
+    if (!ws.length) return WFSpecimen.firstWeight(font);
+    let best = ws[0];
+    let bestN = Number(WFProto.weightToCss(best)) || 400;
+    ws.forEach(function (n) {
+      const css = Number(WFProto.weightToCss(n)) || 400;
+      if (css > bestN) { best = n; bestN = css; }
+    });
+    return WFProto.weightToCss(best);
+  }
+
   function foundries(list) {
     const map = {};
     list.forEach(function (f) {
@@ -28,25 +45,45 @@
     const featured = pickFeatured(list, 6);
     const live = document.getElementById('live');
     const liveName = document.getElementById('liveName');
+    const liveFamily = document.getElementById('liveFamily');
     const code = document.getElementById('ctaCode');
     let idx = 0;
+    let faceGen = 0;
+
+    function settleFace(font, weight) {
+      const gen = ++faceGen;
+      const timer = setTimeout(function () {
+        if (gen === faceGen) live.classList.add('is-pending');
+      }, 80);
+      const done = function () {
+        if (gen !== faceGen) return;
+        clearTimeout(timer);
+        clearTimeout(cap);
+        live.classList.remove('is-pending');
+      };
+      const cap = setTimeout(done, 1200);
+      WFProto.readyFace(font.family, weight, (live.textContent || '').replace(/\s+/g, '')).then(done, done);
+    }
 
     function applyLive() {
       const f = featured[idx % featured.length];
       if (!f) return;
-      const w = WFSpecimen.firstWeight(f);
+      const w = heavyWeight(f);
+      const stack = WFProto.cssFamilyStack(f.family);
       WFProto.ensureFontCss(f.family, w);
-      live.style.fontFamily = WFProto.cssFamilyStack(f.family);
+      live.style.fontFamily = stack;
       live.style.fontWeight = w;
       liveName.textContent = f.name;
-      liveName.href = 'font-detail.html?id=' + encodeURIComponent(f.id);
-      code.textContent = '<link rel="stylesheet" href="' + WFProto.embedCssUrl(f.family, w) + '">';
+      liveName.href = WFProto.detailHref(f);
+      if (liveFamily) liveFamily.textContent = famOf(f) + ' · ' + w;
+      code.textContent = '<link rel="stylesheet" href="' + WFProto.cssApiUrl(f.family, w, 'full') + '">';
+      settleFace(f, w);
     }
     applyLive();
     document.addEventListener('wf:cdn', applyLive);
     document.getElementById('liveNext').addEventListener('click', function () { idx += 1; applyLive(); });
     document.getElementById('ctaCopy').addEventListener('click', function () {
-      WFChrome.copy(code.textContent, '已复制 <link>');
+      WFChrome.copy(WFProto.CDN_LICENSE_NOTE + '\n' + code.textContent, '已复制 <link>');
     });
 
     WFSpecimen.renderRows(document.getElementById('homeRows'), featured, { size: 40 });

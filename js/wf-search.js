@@ -41,7 +41,7 @@
     const list = hits(kw.toLowerCase());
     pop.innerHTML = list.length
       ? list.map(function (f) {
-          return '<a class="search-hit" role="option" href="' + href('font-detail.html?id=' + encodeURIComponent(f.id)) + '">' +
+          return '<a class="search-hit" role="option" href="' + href(WFProto.detailHref(f)) + '">' +
             '<span class="search-face" style="' + faceStyle(f) + '">' + esc(f.name) + '</span>' +
             '<span class="search-meta">' + esc(WFChrome.brandName(f) || '') + '</span></a>';
         }).join('')

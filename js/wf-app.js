@@ -27,12 +27,18 @@
     walk(s);
     return true;
   }
+  function cloneFonts(fonts) { return JSON.parse(JSON.stringify(fonts || [])); }
   function ensureShape(s) {
     if (!s.settings) s.settings = { display: 'swap' };
     if (!s.team) s.team = defaultTeam();
     if (!s.audit) s.audit = [];
     if (!s.claims) s.claims = [];
-    if (renameLegacy(s)) {
+    let dirty = renameLegacy(s);
+    (s.projects || []).forEach(function (p) {
+      const cur = (p.versions || []).filter(function (v) { return v.current; })[0] || (p.versions || [])[0];
+      if (cur && !cur.fonts) { cur.fonts = cloneFonts(p.fonts); dirty = true; }
+    });
+    if (dirty) {
       try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) { /* ignore */ }
     }
     return s;
@@ -68,24 +74,33 @@
   function pushVersion(p, note, bytes) {
     const max = p.versions.reduce(function (m, v) { return Math.max(m, v.v); }, 0);
     p.versions.forEach(function (v) { v.current = false; });
-    p.versions.unshift({ v: max + 1, at: new Date().toISOString(), note: note, bytes: bytes || projectBytes(p), current: true });
+    p.versions.unshift({ v: max + 1, at: new Date().toISOString(), note: note, bytes: bytes || projectBytes(p), fonts: cloneFonts(p.fonts), current: true });
     log('发布版本', p.name + ' · ' + note);
     save();
   }
   function rollback(p, v) {
     const target = p.versions.filter(function (x) { return x.v === v; })[0];
-    if (!target) return;
+    if (!target) return false;
+    const restored = !!target.fonts;
+    if (restored) p.fonts = cloneFonts(target.fonts);
     const max = p.versions.reduce(function (m, x) { return Math.max(m, x.v); }, 0);
     p.versions.forEach(function (x) { x.current = false; });
-    p.versions.unshift({ v: max + 1, at: new Date().toISOString(), note: '回滚到 v' + v + '：' + target.note, bytes: target.bytes, current: true });
-    log('回滚版本', p.name + ' · v' + v);
+    p.versions.unshift({
+      v: max + 1, at: new Date().toISOString(),
+      note: '回滚到 v' + v + '：' + target.note,
+      bytes: restored ? projectBytes(p) : target.bytes,
+      fonts: cloneFonts(p.fonts),
+      current: true
+    });
+    log('回滚版本', p.name + ' · v' + v + (restored ? '' : ' · 无字体清单'));
     save();
+    return restored;
   }
 
   function createProject(name) {
     const id = 'p-' + Date.now().toString(36);
     const p = { id: id, name: name, slug: name.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-'), createdAt: new Date().toISOString(),
-      fonts: [], domains: [], versions: [{ v: 1, at: new Date().toISOString(), note: '初始版本', bytes: 0, current: true }],
+      fonts: [], domains: [], versions: [{ v: 1, at: new Date().toISOString(), note: '初始版本', bytes: 0, fonts: [], current: true }],
       usage: { requests30d: 0, bytes30d: 0, topPages: [], byDomain: [], byFont: [], status: { '200': 0, '304': 0, '403': 0 }, blockedHosts: [], perf: { fcpMs: 0, fontLoadMs: 0, hitRate: 0 } } };
     state.projects.unshift(p);
     log('新建项目', name);
@@ -99,7 +114,7 @@
     save();
   }
 
-  const HOST_RE = /^(\*\.)?[a-z0-9-]+(\.[a-z0-9-]+)+$/i;
+  const HOST_RE = /^(localhost|(\*\.)?[a-z0-9-]+(\.[a-z0-9-]+)+)$/i;
   function validHost(host) { return HOST_RE.test(String(host || '').trim()); }
   function addDomain(p, host, method) {
     host = String(host || '').trim().toLowerCase();
@@ -288,8 +303,8 @@
     if (on && on.scrollIntoView) on.scrollIntoView({ inline: 'center', block: 'nearest' });
   }
   function gate() {
-    if (!WFChrome.user() && WFProto.getQuery('demo')) WFChrome.login();
-    if (!WFChrome.user()) {
+    if (!WFChrome.user() && WFProto.getQuery('demo')) WFChrome.login({ role: 'admin' });
+    if (!(WFChrome.canAccessApp && WFChrome.canAccessApp())) {
       const back = location.pathname.split('/').slice(-1)[0];
       location.replace(WFChrome.href('login.html?next=app&back=' + encodeURIComponent(back)));
       return false;

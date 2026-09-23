@@ -259,10 +259,10 @@ html[data-view="dev"] body.page-bag main .for-design { display: unset; }
 }
 .foundry img { background: var(--face); }
 .foundry .mark { background: var(--ink); color: var(--on-ink); }
-.foundry > span { display: grid; gap: 0.1rem; min-width: 0; }
-.foundry .name { font-size: var(--fs-14); font-weight: var(--fw-title); display: flex; align-items: center; flex-wrap: wrap; gap: 0 0.35em; }
-.foundry .name .en { flex-basis: 100%; font-size: var(--fs-12); color: var(--gray-2); font-weight: var(--fw-body); font-family: var(--font-mono); letter-spacing: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.foundry .sub { font-size: var(--fs-12); color: var(--gray); }
+.foundry > span { display: grid; gap: 0.1rem; min-width: 0; overflow: hidden; }
+.foundry .name { font-size: var(--fs-14); font-weight: var(--fw-title); display: flex; align-items: center; flex-wrap: wrap; gap: 0 0.35em; min-width: 0; max-width: 100%; }
+.foundry .name .en { flex-basis: 100%; min-width: 0; max-width: 100%; font-size: var(--fs-12); color: var(--gray-2); font-weight: var(--fw-body); font-family: var(--font-mono); letter-spacing: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.foundry .sub { font-size: var(--fs-12); color: var(--gray); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .foundry-sm img, .foundry-sm .mark { width: 24px; height: 24px; font-size: var(--fs-12); }
 a.foundry:hover { text-decoration: none; }
 a.foundry:hover .name { text-decoration: underline; text-underline-offset: 0.2em; }
@@ -321,20 +321,40 @@ a.foundry:hover .name { text-decoration: underline; text-underline-offset: 0.2em
 .dialog-acts { display: flex; justify-content: flex-end; gap: var(--s-3); margin-top: var(--s-6); }
 
 @media (max-width: 1024px) { .topsearch input { width: 10rem; } }
-/* 移动端折叠菜单 */
+/* 移动端折叠菜单。960 以下完整顶栏（导航 + 搜索 + 文字按钮）会挤出屏幕。 */
 .menu-btn { display: none; }
-.topmenu { position: absolute; left: 0; right: 0; top: 100%; display: grid; gap: var(--s-1); padding: var(--s-3) var(--gutter) var(--s-4); background: var(--page); border-bottom: 1px solid var(--rule); z-index: 40; }
+.topmenu { position: absolute; left: 0; right: 0; top: 100%; display: grid; gap: var(--s-1); padding: var(--s-3) var(--gutter) var(--s-4); background: var(--surface); border-bottom: 1px solid var(--rule); z-index: 40; }
 .topmenu[hidden] { display: none; }
 .topmenu .topsearch { margin-bottom: var(--s-2); }
 .topmenu .topsearch input { width: 100%; }
 .topmenu a { padding: 0.6rem 0.9rem; border-radius: var(--radius-sm); color: var(--ink-2); font-weight: var(--fw-label); }
 .topmenu a.is-active { background: var(--fill); color: var(--ink); }
-@media (max-width: 768px) {
+@media (max-width: 960px) {
   .topnav { display: none; }
   .topbar-end > .topsearch { display: none; }
+  .topbar-end > .view-switch { display: none; }
   .menu-btn { display: inline-grid; }
+  .topbar-end { gap: 0; }
+  .topbar-end > a {
+    padding: 0 0.35rem;
+    min-width: 2rem;
+    height: 2rem;
+    justify-content: center;
+  }
+  .topbar-end > a .icon { width: 1.2rem; height: 1.2rem; }
   .topbar-end > a span:not(.count) { display: none; }
-  .topbar-inner { gap: var(--s-4); }
+  .topbar-inner { gap: var(--s-2); min-width: 0; }
+  .icon-btn { width: 2rem; height: 2rem; }
+  .topmenu {
+    max-height: min(70dvh, 28rem);
+    overflow: auto;
+  }
+  .topmenu .view-switch { display: flex; width: 100%; margin-top: var(--s-2); }
+  .topmenu .view-switch button { flex: 1; text-align: center; }
+}
+@media (max-width: 768px) {
   .site-extra-footer { margin-top: var(--s-12); padding: var(--s-6) var(--gutter); }
+  .site-extra-footer .extra-copy { overflow-wrap: anywhere; }
+  .site-extra-footer .extra-inner { flex-direction: column; align-items: flex-start; }
   .dialog { width: 100%; }
 }

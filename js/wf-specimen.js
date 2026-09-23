@@ -87,6 +87,11 @@
 
   function firstWeight(font) {
     const ws = (font.weights && font.weights.length) ? font.weights : ['Regular'];
+    const prefer = ws.filter(function (w) {
+      const k = String(w).toLowerCase().replace(/[\s-]+/g, '');
+      return k === 'regular' || k === 'normal';
+    })[0];
+    if (prefer) return WFProto.weightToCss(prefer);
     const reg = ws.filter(function (w) { return WFProto.weightToCss(w) === '400'; })[0];
     return WFProto.weightToCss(reg || ws[0]);
   }
@@ -96,7 +101,7 @@
     const sample = opts.sample != null ? opts.sample : WFProto.getSample();
     const size = opts.size != null ? opts.size : WFProto.getSize();
     const stack = WFProto.cssFamilyStack(font.family);
-    const detail = WFChrome.href('font-detail.html?id=' + encodeURIComponent(font.id));
+    const detail = WFChrome.href(WFProto.detailHref(font));
     const w = firstWeight(font);
     return '<li class="specimen" data-font-id="' + esc(font.id) + '" data-family="' + esc(font.family || '') +
         '" data-weight="' + w + '">' +
@@ -206,9 +211,10 @@
     const cur = current != null ? String(WFProto.weightToCss(current)) : '';
     return sortedWeights(font).map(function (w) {
       const css = String(WFProto.weightToCss(w));
-      WFProto.ensureFontCss(font.family, css);
+      /* 必须传字重名：同数字多名称（Text/Regular）时按名拉 CDN，不能只传 400 */
+      WFProto.ensureFontCss(font.family, w);
       const on = cur && css === cur;
-      return '<button type="button" class="weight-row' + (on ? ' is-on' : '') + '" data-w="' + css + '">' +
+      return '<button type="button" class="weight-row' + (on ? ' is-on' : '') + '" data-w="' + css + '" data-wn="' + esc(w) + '">' +
         '<span class="w">' + esc(w) + '<span class="for-dev"> · ' + css + '</span></span>' +
         '<span class="line" data-weight-line style="font-family:' + esc(stack) + ';font-weight:' + css + '">' + esc(sample) + '</span></button>';
     }).join('');
@@ -273,6 +279,26 @@
     return false;
   }
 
+  /* 切片 CSS 的 unicode-range 会把「cmap 有、轮廓为空」的字算进去。
+     这类字画出来是空的，而且挡住系统字体回退。用画布确认有没有墨。 */
+  const inkCanvas = document.createElement('canvas');
+  inkCanvas.width = 64;
+  inkCanvas.height = 64;
+  function glyphHasInk(ch, spec) {
+    const ctx = inkCanvas.getContext('2d', { willReadFrequently: true });
+    if (!ctx) return true;
+    ctx.clearRect(0, 0, 64, 64);
+    ctx.font = spec;
+    ctx.fillStyle = '#000';
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillText(ch, 4, 52);
+    const data = ctx.getImageData(0, 0, 64, 64).data;
+    for (let i = 3; i < data.length; i += 4) {
+      if (data[i] > 16) return true;
+    }
+    return false;
+  }
+
   function fetchCssRanges(family, weight) {
     const w = WFProto.weightToCss(weight || '400');
     const key = family + '|' + w;
@@ -291,7 +317,12 @@
     const skipCov = WFChrome.skipGlyphCov(font);
     let weight = String(WFProto.weightToCss(initialWeight || firstWeight(font)));
     let covGen = 0;
-    const st = { variant: 'hans', filter: 'all', marks: { hans: null, hant: null }, hit: { hans: 0, hant: 0 }, total: { hans: 0, hant: 0 } };
+    let pendingQuery = '';
+    const st = {
+      variant: 'hans', filter: 'all', ranges: null,
+      marks: { hans: null, hant: null }, hit: { hans: 0, hant: 0 }, total: { hans: 0, hant: 0 },
+      hollow: {}
+    };
 
     function qzw() { return QIANZIWEN[st.variant]; }
 
@@ -304,6 +335,106 @@
           : '<span>' + esc(ch) + '</span>';
       }
       return out;
+    }
+
+    /* 自由查字：搜索框跟在「字符表」标题旁；结果仍留在正文 */
+    const queryHost = document.getElementById('glyphQuery');
+    let queryEl = (queryHost && queryHost.querySelector('.glyph-query'))
+      || (summaryEl && summaryEl.parentNode && summaryEl.parentNode.querySelector('.glyph-query'));
+    if (!queryEl && summaryEl && summaryEl.parentNode && !skipCov) {
+      queryEl = document.createElement('form');
+      queryEl.className = 'glyph-query';
+      queryEl.setAttribute('role', 'search');
+      queryEl.innerHTML =
+        '<label class="glyph-query-label" for="glyphQueryInput">查字</label>' +
+        '<span class="glyph-query-field">' +
+          '<input type="search" id="glyphQueryInput" class="glyph-query-input" name="q" ' +
+            'placeholder="输入要核对的字符，例如：文风字体" autocomplete="off" enterkeyhint="search" />' +
+          '<button type="submit" class="btn glyph-query-go">查询</button>' +
+        '</span>' +
+        (queryHost ? '' : '<p class="glyph-query-out" data-glyph-query-out hidden aria-live="polite"></p>');
+      if (queryHost) {
+        queryHost.appendChild(queryEl);
+        const out = document.createElement('p');
+        out.className = 'glyph-query-out';
+        out.hidden = true;
+        out.setAttribute('data-glyph-query-out', '');
+        out.setAttribute('aria-live', 'polite');
+        summaryEl.parentNode.insertBefore(out, summaryEl);
+      } else {
+        summaryEl.parentNode.insertBefore(queryEl, summaryEl);
+      }
+    }
+    const queryOut = (queryEl && queryEl.querySelector('[data-glyph-query-out]'))
+      || (summaryEl && summaryEl.parentNode && summaryEl.parentNode.querySelector('[data-glyph-query-out]'));
+    const queryInput = queryEl ? queryEl.querySelector('.glyph-query-input') : null;
+
+    function uniqueChars(text) {
+      const out = [];
+      const seen = {};
+      const s = String(text || '');
+      for (let i = 0; i < s.length;) {
+        const cp = s.codePointAt(i);
+        const ch = String.fromCodePoint(cp);
+        i += ch.length;
+        if (/\s/.test(ch)) continue;
+        if (seen[ch]) continue;
+        seen[ch] = true;
+        out.push(ch);
+      }
+      return out;
+    }
+
+    function renderQuery(text) {
+      if (!queryOut) return;
+      const chars = uniqueChars(text);
+      pendingQuery = chars.join('');
+      if (!chars.length) {
+        queryOut.hidden = true;
+        queryOut.innerHTML = '';
+        return;
+      }
+      if (skipCov) {
+        queryOut.hidden = false;
+        queryOut.innerHTML = '<span class="glyph-query-note">这款字不做覆盖核对。</span>';
+        return;
+      }
+      if (!st.ranges) {
+        queryOut.hidden = false;
+        queryOut.innerHTML = '<span class="glyph-query-note">正在加载字集…</span>';
+        return;
+      }
+      let hit = 0;
+      let cells = '';
+      chars.forEach(function (ch) {
+        const ok = inRanges(st.ranges, ch.codePointAt(0)) && !st.hollow[ch];
+        if (ok) hit++;
+        cells += ok
+          ? '<span class="is-hit" title="已收录">' + esc(ch) + '</span>'
+          : '<span class="is-miss" title="未收录">' + esc(ch) + '</span>';
+      });
+      const miss = chars.length - hit;
+      queryOut.hidden = false;
+      queryOut.innerHTML =
+        '<span class="glyph-query-stat"><b>' + hit + '</b> / ' + chars.length + ' 已收录' +
+          (miss ? ' · 缺 ' + miss + ' 字' : ' · 全部收录') + '</span>' +
+        '<span class="glyph-query-cells" style="font-family:' + esc(stack) + ';font-weight:' + weight + '">' + cells + '</span>';
+    }
+
+    if (queryEl && !queryEl._wfBound) {
+      queryEl._wfBound = true;
+      queryEl.addEventListener('submit', function (e) {
+        e.preventDefault();
+        renderQuery(queryInput ? queryInput.value : '');
+      });
+      if (queryInput) {
+        queryInput.addEventListener('input', function () {
+          if (!String(queryInput.value || '').trim()) {
+            pendingQuery = '';
+            if (queryOut) { queryOut.hidden = true; queryOut.innerHTML = ''; }
+          }
+        });
+      }
     }
 
     function renderBlocks() {
@@ -370,6 +501,8 @@
     }
 
     function applyRanges(ranges) {
+      st.ranges = ranges;
+      st.hollow = {};
       let hansHits = 0, hantHits = 0;
       SCRIPT_PROBES.forEach(function (p) {
         if (inRanges(ranges, p.charCodeAt(0))) hansHits++;
@@ -394,6 +527,50 @@
       renderBlocks();
       renderSummary();
       syncTools();
+      if (pendingQuery) renderQuery(pendingQuery);
+      verifyPainted();
+    }
+
+    function verifyPainted() {
+      if (!document.fonts || !document.fonts.load) return;
+      const gen = covGen;
+      const family = '"' + fam.replace(/"/g, '') + '"';
+      const spec = weight + ' 56px ' + family;
+      const seen = {};
+      const chars = [];
+      ['hans', 'hant'].forEach(function (v) {
+        const marks = st.marks[v];
+        if (!marks) return;
+        Object.keys(marks).forEach(function (ch) {
+          if (!marks[ch] || seen[ch]) return;
+          seen[ch] = true;
+          chars.push(ch);
+        });
+      });
+      if (!chars.length) return;
+      document.fonts.load(spec, chars.join('')).then(function () {
+        if (gen !== covGen) return;
+        let changed = false;
+        chars.forEach(function (ch) {
+          if (glyphHasInk(ch, spec)) return;
+          st.hollow[ch] = true;
+          ['hans', 'hant'].forEach(function (v) {
+            if (st.marks[v] && st.marks[v][ch]) {
+              st.marks[v][ch] = false;
+              changed = true;
+            }
+          });
+        });
+        if (!changed) return;
+        ['hans', 'hant'].forEach(function (v) {
+          const stats = uniqueHits(QIANZIWEN[v], st.marks[v]);
+          st.hit[v] = stats.hit;
+          st.total[v] = stats.total;
+        });
+        renderBlocks();
+        renderSummary();
+        if (pendingQuery) renderQuery(pendingQuery);
+      }).catch(function () {});
     }
 
     toolsEl.innerHTML =
@@ -426,15 +603,31 @@
     });
 
     function paintFace() {
-      blocksEl.querySelectorAll('.glyphs').forEach(function (el) { el.style.fontWeight = weight; });
+      blocksEl.querySelectorAll('.glyphs').forEach(function (el) {
+        el.style.fontFamily = stack;
+        el.style.fontWeight = weight;
+      });
+      if (queryOut) {
+        const cells = queryOut.querySelector('.glyph-query-cells');
+        if (cells) {
+          cells.style.fontFamily = stack;
+          cells.style.fontWeight = weight;
+        }
+      }
     }
+
     function loadCoverage() {
       if (skipCov) return;
       const gen = ++covGen;
+      st.ranges = null;
       fetchCssRanges(fam, weight).then(function (ranges) {
         if (gen !== covGen) return;
         if (!ranges || !ranges.length) {
           renderSummary('暂时无法核对缺字，下面显示的是系统默认字形。');
+          if (pendingQuery && queryOut) {
+            queryOut.hidden = false;
+            queryOut.innerHTML = '<span class="glyph-query-note">暂时无法核对这几个字。</span>';
+          }
           return;
         }
         applyRanges(ranges);
@@ -454,7 +647,7 @@
     syncTools();
     WFProto.ensureFontCss(fam, weight);
     loadCoverage();
-    return { setWeight: setWeight };
+    return { setWeight: setWeight, queryChars: renderQuery };
   }
 
   document.addEventListener('wf:picks', syncActs);

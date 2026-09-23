@@ -8,9 +8,9 @@
   <link rel="stylesheet" href="css/fonts.css?v=20260922a" />
   <link rel="stylesheet" href="css/tokens.css?v=20260922l" />
   <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css?v=20260922h" />
-  <link rel="stylesheet" href="css/specimen.css?v=20260922d" />
-  <link rel="stylesheet" href="css/site.css?v=20260922ak" />
+  <link rel="stylesheet" href="css/components.css?v=20260922bf" />
+  <link rel="stylesheet" href="css/specimen.css?v=20260923a" />
+  <link rel="stylesheet" href="css/site.css?v=20260922bg" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-fonts">
@@ -19,12 +19,17 @@
 
   <main class="container">
     <div class="lib">
-      <aside class="lib-rail" id="libRail" aria-label="筛选"></aside>
+      <aside class="lib-rail" aria-label="筛选">
+        <details class="lib-rail-fold" id="libRailFold">
+          <summary>筛选</summary>
+          <div id="libRail"></div>
+        </details>
+      </aside>
       <section>
         <div class="count-line row-between">
           <span id="countLine">正在加载字体目录…</span>
           <div class="lib-active" id="activeFilters"></div>
-          <label class="lib-sort"><span class="sr-only">排序</span><select class="select" id="sortSel" aria-label="排序"><option value="featured">推荐排序</option><option value="name">按名称</option><option value="weights">字重多到少</option><option value="newest">最新发布</option></select></label>
+          <label class="lib-sort"><span class="sr-only">排序</span><select class="select" id="sortSel" aria-label="排序"><option value="featured">推荐排序</option><option value="popular">按热门</option><option value="name">按名称</option><option value="weights">字重多到少</option><option value="newest">最新发布</option></select></label>
         </div>
         <ul class="specimens" id="fontList"></ul>
         <div class="load-more"><button type="button" class="btn" id="loadMore" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-more"/></svg>加载更多</button></div>
@@ -35,9 +40,9 @@
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js"></script>
-  <script src="js/wf-chrome.js?v=20260922rq"></script>
-  <script src="js/wf-specimen.js"></script>
-  <script src="js/pages/fonts.js"></script>
+  <script src="js/wf-proto.js?v=20260923l"></script>
+  <script src="js/wf-chrome.js?v=20260923c"></script>
+  <script src="js/wf-specimen.js?v=20260923b"></script>
+  <script src="js/pages/fonts.js?v=20260923a"></script>
 </body>
 </html>

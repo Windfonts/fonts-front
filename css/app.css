@@ -165,4 +165,8 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
   .app-actions { flex-wrap: wrap; }
   .weight-bars > div { grid-template-columns: 5.5rem 1fr auto; }
   .cols-2 { grid-template-columns: minmax(0, 1fr); }
+  .app-main .tabs { display: flex; flex-wrap: wrap; max-width: 100%; }
+  .subset > div > .grid,
+  #uploadForm,
+  #uploadForm .grid { grid-template-columns: minmax(0, 1fr) !important; }
 }

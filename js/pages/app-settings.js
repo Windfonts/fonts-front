@@ -32,7 +32,7 @@
       '<section class="app-section"><h2>API 密钥</h2>' +
         '<div class="code"><button type="button" class="copy" id="copyKey">复制</button><pre id="apiKey">' + esc(s.settings.apiKey.slice(0, 12)) + '••••••••••••</pre></div>' +
         '<p class="t-13 muted" style="margin-top:var(--s-3)">创建于 ' + WFApp.fmtDate(s.settings.apiKeyCreatedAt) + ' · 用于动态子集化 API 与 CI 发布。 <button type="button" class="btn-text" id="rotateKey">' + WFChrome.icon('refresh') + '重新生成</button></p>' +
-        '<div class="code" style="margin-top:var(--s-4)"><pre>curl -X POST https://cn.windfonts.com/v1/subset \\\n  -H "Authorization: Bearer $WINDFONTS_KEY" \\\n  -d family=wenfeng-albbpht -d weight=400 \\\n  --data-urlencode text="让中文字体在网页上，一行代码可用。"</pre></div></section>' +
+        '<div class="code" style="margin-top:var(--s-4)"><pre>curl -X POST ' + esc(WFProto.cdnOrigin()) + '/v1/subset \\\n  -H "Authorization: Bearer $WINDFONTS_KEY" \\\n  -d family=wenfeng-albbpht \\\n  -d weight=regular \\\n  --data-urlencode text="让中文字体在网页上，一行代码可用。"</pre></div></section>' +
       '<section class="app-section" id="claim"><h2>认领厂商</h2>' +
         '<p class="t-14" style="max-width:40em;color:var(--ink-2)">代表字体厂商或独立设计师可认领品牌页，维护标志、介绍与官网。通过后名称旁显示认证徽记。</p>' +
         '<div class="grid cols-2" style="margin-top:var(--s-5)">' +

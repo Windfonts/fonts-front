@@ -541,6 +541,7 @@
         const btns = ctl.querySelectorAll('[data-copy],[data-export]');
         btns.forEach(function (x) { x.disabled = true; });
         WFCard.exportStage(stage, { name: font.name, family: font.family, weight: state.weight, copy: copy }).then(function (out) {
+          if (font && font.id) WFProto.bumpFontStat(font.id, 'downloads', 1);
           const kb = Math.round((out.bytes || 0) / 1024);
           const dim = out.label + ' · ' + out.w + '×' + out.h + ' · ' + kb + ' KB';
           const skip = out.skipped ? ' · ' + out.skipped + ' 张在线图片未能导出' : '';

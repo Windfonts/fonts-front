@@ -49,20 +49,20 @@
             '<td class="actions">' + (d.verified ? '' : '<button type="button" class="btn-text" data-verify="' + esc(d.host) + '">' + WFChrome.icon('check') + '我已完成验证</button> ') +
             '<button type="button" class="btn-text" data-remove-domain="' + esc(d.host) + '">' + WFChrome.icon('trash') + '移除</button></td></tr>';
         }).join('') + '</tbody></table>' : '<p class="empty">还没绑定域名，字体只能在本地开发环境加载。</p>') +
-      '<p class="t-13 muted" style="margin-top:var(--s-5)">验证方式：在站点根目录放置 <code>/.well-known/windfonts-verify.txt</code>，内容为项目 ID <code>' + esc(p.id) + '</code>；或添加 DNS TXT 记录 <code>windfonts=' + esc(p.id) + '</code>。全部域名与拦截记录见<a href="domains.html">域名</a>。</p></div>';
+      '<p class="t-13 muted" style="margin-top:var(--s-5)">验证方式任选：DNS TXT <code>_windfonts.example.com</code> 的值为 <code>windfonts=' + esc(p.id) + '</code>；或在站点根目录放置 <code>/.well-known/windfonts-verify.txt</code>，内容为项目 ID <code>' + esc(p.id) + '</code>。全部域名与拦截记录见<a href="domains.html">域名</a>。</p></div>';
   }
 
   function embedPanel() {
     return '<div class="panel"><div class="embed-opts">' +
         '<div class="field"><label>加载策略</label><select class="select" id="optDisplay"><option value="">项目默认（' + esc(WFApp.state().settings.display) + '）</option><option value="swap">swap</option><option value="block">block</option><option value="fallback">fallback</option><option value="optional">optional</option></select></div>' +
       '<div class="field"><label>提前加载</label><label class="check" style="margin-top:0.4rem"><input type="checkbox" id="optPreload" /> 提前加载字体样式</label></div>' +
-      '<div class="field"><label>项目 CDN</label><span class="mono t-13" style="padding-top:0.5rem;display:block;overflow-wrap:anywhere">cn.windfonts.com/p/' + esc(p.slug) + '/</span></div>' +
+      '<div class="field"><label>项目 CDN</label><span class="mono t-13" id="projectCdn" style="padding-top:0.5rem;display:block;overflow-wrap:anywhere"></span></div>' +
       '</div>' +
       '<div class="tabs" role="tablist" style="margin-bottom:var(--s-4)">' +
         '<button type="button" role="tab" data-embed-src="project" class="is-on">项目一份 CSS</button>' +
         '<button type="button" role="tab" data-embed-src="fonts">按字体拆开</button></div>' +
       '<div id="embed"></div>' +
-      '<p class="t-13 muted" style="margin-top:var(--s-4)">对外域名一律 <code>cn.windfonts.com</code>。项目地址指向当前版本，回滚或发布后无需改代码。' + (p.fonts.length ? '' : '项目里还没有字体，代码为空。') + '</p></div>';
+      '<p class="t-13 muted" style="margin-top:var(--s-4)">地址跟当前选的 CDN 节点走。项目地址指向当前版本，回滚或发布后无需改代码。' + (p.fonts.length ? '' : '项目里还没有字体，代码为空。') + '</p></div>';
   }
 
   function versionsPanel() {
@@ -141,8 +141,8 @@
         const v = parseInt(b.getAttribute('data-rollback'), 10);
         WFChrome.confirm({ title: '回滚到 v' + v, message: '会以 v' + v + ' 的内容生成一个新版本，当前版本仍保留在历史里。嵌入地址不变，发布后立刻生效。', ok: '回滚' }).then(function (ok) {
           if (!ok) return;
-          WFApp.rollback(p, v);
-          WFChrome.toast('已回滚');
+          const restored = WFApp.rollback(p, v);
+          WFChrome.toast(restored ? '已回滚，字体清单已恢复' : '已记下回滚；这一版没有字体清单，项目里的字体未改');
           render();
         });
       });
@@ -158,7 +158,18 @@
       function opts() {
         return { display: document.getElementById('optDisplay').value, preload: document.getElementById('optPreload').checked, slug: p.slug };
       }
+      function cdnLabel() {
+        const lab = document.getElementById('projectCdn');
+        if (lab) lab.textContent = WFProto.projectCssUrl(p.slug).replace(/^https:\/\//, '');
+      }
+      function onCdn() {
+        if (!embedEl.isConnected) { document.removeEventListener('wf:cdn', onCdn); return; }
+        cdnLabel();
+        if (src === 'project') paint();
+      }
+      document.addEventListener('wf:cdn', onCdn);
       function paint() {
+        cdnLabel();
         if (src === 'project') {
           embedEl.innerHTML = '<div class="code"><button type="button" class="copy">' + WFChrome.icon('copy') + '复制</button><pre></pre></div>';
           embedEl.querySelector('pre').textContent = WFEmbed.code('project', [], opts());

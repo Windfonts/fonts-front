@@ -9,9 +9,9 @@
   <link rel="stylesheet" href="css/fonts.css?v=20260922a" />
   <link rel="stylesheet" href="css/tokens.css?v=20260922l" />
   <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css?v=20260922f" />
+  <link rel="stylesheet" href="css/components.css?v=20260922bf" />
   <link rel="stylesheet" href="css/specimen.css" />
-  <link rel="stylesheet" href="css/site.css?v=20260922an" />
+  <link rel="stylesheet" href="css/site.css?v=20260923c" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-features">
@@ -20,22 +20,21 @@
   <main>
     <section class="home-hero">
       <div class="container">
-        <p class="kicker">中文网页字体</p>
-        <h1 class="live" id="live" contenteditable="true" spellcheck="false" aria-label="可编辑的活样张" data-placeholder="写几个字试试">文风字体，美事尽显。</h1>
-        <p class="lead">为中文网页而生：字体托管、按需子集化、域名白名单，一行代码接入。每款字的授权以出处原文为准。</p>
-        <p class="live-caption"><span>正在使用</span><a class="now" id="liveName" href="fonts.html">—</a><button type="button" id="liveNext"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-refresh"/></svg>换一款</button><span>· 点击标题可改写</span></p>
-        <div class="home-cta">
-          <a class="btn btn-ink btn-lg" href="fonts.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922sc#i-folder"/></svg>浏览字体库</a>
-          <a class="btn btn-lg" href="docs.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-book"/></svg>查看接入文档</a>
+        <div class="home-hero-top">
+          <p class="kicker">中文网页字体</p>
+          <p class="live-caption"><span class="live-using"><span>正在使用</span><a class="now" id="liveName" href="fonts.html">—</a><span class="for-dev mono" id="liveFamily"></span></span><button type="button" id="liveNext"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-refresh"/></svg>换一款</button><span>· 点击标题可改写</span></p>
+        </div>
+        <h1 class="live" id="live" contenteditable="true" spellcheck="false" aria-label="可编辑的活样张" data-placeholder="写几个字试试">文风字体，<br>美事尽显。</h1>
+        <div class="home-hero-foot">
+          <p class="lead">为中文网页而生：字体托管、按需子集化、域名白名单，一行代码接入。每款字的授权以出处原文为准。</p>
+          <div class="home-cta">
+            <a class="btn btn-ink btn-lg" href="fonts.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922sc#i-folder"/></svg>浏览字体库</a>
+            <a class="btn btn-lg" href="docs.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-book"/></svg>查看接入文档</a>
+          </div>
         </div>
         <div class="home-codebar">
           <span class="lbl">一行接入</span>
-          <div class="cdn-switch seg" role="group" aria-label="CDN 节点">
-            <button type="button" data-cdn="cn" class="is-on">中国</button>
-            <button type="button" data-cdn="hk">香港</button>
-            <button type="button" data-cdn="en">国际</button>
-          </div>
-          <pre id="ctaCode">&lt;link rel="stylesheet" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/index.css"&gt;</pre>
+          <pre id="ctaCode">&lt;link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=albbpht&amp;weight=heavy"&gt;</pre>
           <button type="button" class="btn btn-sm" id="ctaCopy"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-copy"/></svg>复制</button>
         </div>
       </div>
@@ -109,9 +108,9 @@
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js?v=20260922g"></script>
-  <script src="js/wf-chrome.js?v=20260922rq"></script>
+  <script src="js/wf-proto.js?v=20260923l"></script>
+  <script src="js/wf-chrome.js?v=20260923c"></script>
   <script src="js/wf-specimen.js"></script>
-  <script src="js/pages/features.js?v=20260922a"></script>
+  <script src="js/pages/features.js?v=20260923a"></script>
 </body>
 </html>

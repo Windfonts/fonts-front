@@ -64,7 +64,8 @@
         list.filter(function (f) { return f.id !== font.id && featured.indexOf(f) === -1; })
       ).slice(0, RELATED_N);
     }
-    const same = list.filter(function (f) { return f.id !== font.id && f.category === font.category; });
+    const same = list.filter(function (f) { return f.id !== font.id && f.category === font.category; })
+      .sort(function (a, b) { return (b.viewCount || 0) - (a.viewCount || 0); });
     const rest = featured.filter(function (f) { return f.id !== font.id && same.indexOf(f) === -1; });
     return same.concat(rest).slice(0, RELATED_N);
   }
@@ -72,7 +73,7 @@
   function nowHtml(font, glyph) {
     const w = heavyWeight(font);
     const stack = WFProto.cssFamilyStack(font.family);
-    const detail = 'font-detail.html?id=' + encodeURIComponent(font.id);
+    const detail = WFProto.detailHref(font);
     WFProto.ensureFontCss(font.family, w);
     return '<div class="home-now-card">' +
       '<p class="home-now-glyph" style="font-family:' + esc(stack) + ';font-weight:' + w + '">' + esc(glyph || '风') + '</p>' +
@@ -279,7 +280,7 @@
         closeMark.style.fontWeight = w;
       }
       liveName.textContent = f.name;
-      liveName.href = 'font-detail.html?id=' + encodeURIComponent(f.id);
+      liveName.href = WFProto.detailHref(f);
       const liveFamily = document.getElementById('liveFamily');
       if (liveFamily) liveFamily.textContent = famOf(f) + ' · ' + w;
       if (forest) {
