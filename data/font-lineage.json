@@ -43,7 +43,7 @@
     },
     "swei-b2-sugar": {
       "name": "狮尾 B2 加糖 / Swei B2 Sugar",
-      "upstreamName": "狮尾 B2 加糖"
+      "upstreamName": "狮尾B2加糖宋体"
     },
     "lxgw-wenkai": {
       "name": "霞鹜文楷 / LXGW WenKai",
@@ -86,14 +86,6 @@
       "ownerId": "aqua",
       "makerId": "aqua",
       "group": "swei-spring",
-      "relation": "original",
-      "licenseFollows": "inherit",
-      "upstreamOwnerId": "aqua"
-    },
-    "狮尾 B2 加糖": {
-      "ownerId": "aqua",
-      "makerId": "aqua",
-      "group": "swei-b2-sugar",
       "relation": "original",
       "licenseFollows": "inherit",
       "upstreamOwnerId": "aqua"
@@ -471,7 +463,7 @@
       "makerId": "maoken",
       "group": "swei-b2-sugar",
       "relation": "fork",
-      "upstreamName": "狮尾 B2 加糖",
+      "upstreamName": "狮尾B2加糖宋体",
       "upstreamOwnerId": "aqua",
       "licenseFollows": "inherit"
     },
@@ -1108,6 +1100,14 @@
       "upstreamName": "得意黑",
       "upstreamOwnerId": "atelier-anchor",
       "licenseFollows": "inherit"
+    },
+    "狮尾B2加糖宋体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "group": "swei-b2-sugar",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "aqua"
     }
   }
 }

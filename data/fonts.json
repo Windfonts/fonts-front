@@ -9694,7 +9694,7 @@
  },
  {
   "id": "481e009a-64c9-4e44-918d-1ab4336ea999",
-  "name": "swei 3t leg",
+  "name": "狮尾三腿黑体",
   "en": "swei-3t-leg",
   "family": "wenfeng-sw3tleg",
   "normalized": "Sw3tleg",
@@ -9705,7 +9705,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei 3t leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾三腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -9741,7 +9741,7 @@
  },
  {
   "id": "01ab7d2b-dfd4-4208-a19b-1b0cf642c239",
-  "name": "swei 3t sans",
+  "name": "狮尾三角黑体",
   "en": "swei-3t-sans",
   "family": "wenfeng-sw3tsans",
   "normalized": "Sw3tsans",
@@ -9752,7 +9752,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei 3t sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾三角黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -9788,7 +9788,7 @@
  },
  {
   "id": "9eb7f134-756a-439c-baed-98971134c0af",
-  "name": "swei alias leg",
+  "name": "狮尾锯腿黑体",
   "en": "swei-alias-leg",
   "family": "wenfeng-swaliasleg",
   "normalized": "Swaliasleg",
@@ -9799,7 +9799,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei alias leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾锯腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -9835,7 +9835,7 @@
  },
  {
   "id": "231ef7e1-d44e-41c0-93ee-ecaee74bef13",
-  "name": "swei alias sans",
+  "name": "狮尾锯齿黑体",
   "en": "swei-alias-sans",
   "family": "wenfeng-swaliassans",
   "normalized": "Swaliassans",
@@ -9846,7 +9846,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei alias sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾锯齿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -9882,7 +9882,7 @@
  },
  {
   "id": "3b6eaac1-cdce-4e99-9565-9cd8e5b573f2",
-  "name": "swei ax leg",
+  "name": "狮尾斧腿黑体",
   "en": "swei-ax-leg",
   "family": "wenfeng-swaxleg",
   "normalized": "Swaxleg",
@@ -9893,7 +9893,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei ax leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾斧腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -9929,7 +9929,7 @@
  },
  {
   "id": "47c79836-b1e7-4b81-a4e6-713db76869e5",
-  "name": "swei ax sans",
+  "name": "狮尾斧头黑体",
   "en": "swei-ax-sans",
   "family": "wenfeng-swaxsans",
   "normalized": "Swaxsans",
@@ -9940,7 +9940,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei ax sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾斧头黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -9976,7 +9976,7 @@
  },
  {
   "id": "5635f1e5-79cd-4e95-bb74-5c147f15a47a",
-  "name": "swei b2 leg",
+  "name": "狮尾B2腿黑体",
   "en": "swei-b2-leg",
   "family": "wenfeng-swb2leg",
   "normalized": "Swb2leg",
@@ -9987,7 +9987,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei b2 leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾B2腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10023,7 +10023,7 @@
  },
  {
   "id": "19c700a4-4a80-4f3e-af95-3a85db5e8f98",
-  "name": "swei b2 sans",
+  "name": "狮尾B2黑体",
   "en": "swei-b2-sans",
   "family": "wenfeng-swb2sans",
   "normalized": "Swb2sans",
@@ -10034,7 +10034,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei b2 sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾B2黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10070,7 +10070,7 @@
  },
  {
   "id": "1a424308-6311-4af1-a40c-353fc0dcac61",
-  "name": "swei b2 serif",
+  "name": "狮尾B2宋体",
   "en": "swei-b2-serif",
   "family": "wenfeng-swb2serif",
   "normalized": "Swb2serif",
@@ -10081,7 +10081,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei b2 serif（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾B2宋体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10117,7 +10117,7 @@
  },
  {
   "id": "fe7fbe98-5d47-4502-8c14-fcae756ca540",
-  "name": "swei bat sans",
+  "name": "狮尾蝙蝠圆体",
   "en": "swei-bat-sans",
   "family": "wenfeng-swbatsans",
   "normalized": "Swbatsans",
@@ -10128,7 +10128,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei bat sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾蝙蝠圆体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10164,7 +10164,7 @@
  },
  {
   "id": "4fd08fb5-d473-4ed2-8484-9ffb2fbd8ce9",
-  "name": "swei bell leg",
+  "name": "狮尾喇腿黑体",
   "en": "swei-bell-leg",
   "family": "wenfeng-swbellleg",
   "normalized": "Swbellleg",
@@ -10175,7 +10175,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei bell leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾喇腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10211,7 +10211,7 @@
  },
  {
   "id": "c14f509d-cfa0-458c-81c1-fea253177602",
-  "name": "swei bell sans",
+  "name": "狮尾喇叭黑体",
   "en": "swei-bell-sans",
   "family": "wenfeng-swbellsans",
   "normalized": "Swbellsans",
@@ -10222,7 +10222,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei bell sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾喇叭黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10258,7 +10258,7 @@
  },
  {
   "id": "c5d036f4-4d4f-44e2-b2d9-b5101bd365ac",
-  "name": "swei bone leg",
+  "name": "狮尾骨腿黑体",
   "en": "swei-bone-leg",
   "family": "wenfeng-swboneleg",
   "normalized": "Swboneleg",
@@ -10269,7 +10269,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei bone leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾骨腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10305,7 +10305,7 @@
  },
  {
   "id": "fd6c17de-8a6b-4759-ba9c-bb1ff48de185",
-  "name": "swei bone sans",
+  "name": "狮尾骨头黑体",
   "en": "swei-bone-sans",
   "family": "wenfeng-swbonesans",
   "normalized": "Swbonesans",
@@ -10316,7 +10316,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei bone sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾骨头黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10352,7 +10352,7 @@
  },
  {
   "id": "5ea4d310-7abb-4849-b0f3-83ec9bd32ec8",
-  "name": "swei bow leg",
+  "name": "狮尾霓腿黑体",
   "en": "swei-bow-leg",
   "family": "wenfeng-swbowleg",
   "normalized": "Swbowleg",
@@ -10363,7 +10363,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei bow leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾霓腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10399,7 +10399,7 @@
  },
  {
   "id": "e3965d09-4946-4136-9eb1-18611773eb80",
-  "name": "swei bow sans",
+  "name": "狮尾霓黑体",
   "en": "swei-bow-sans",
   "family": "wenfeng-swbowsans",
   "normalized": "Swbowsans",
@@ -10410,7 +10410,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei bow sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾霓黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10446,7 +10446,7 @@
  },
  {
   "id": "e583db79-9bf4-4810-a76b-4f4971940af6",
-  "name": "swei curve leg",
+  "name": "狮尾弯腿黑体",
   "en": "swei-curve-leg",
   "family": "wenfeng-swcurveleg",
   "normalized": "Swcurveleg",
@@ -10457,7 +10457,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei curve leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾弯腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10493,7 +10493,7 @@
  },
  {
   "id": "a1d6deec-f7a3-44ea-872d-5f8690e63828",
-  "name": "swei curve sans",
+  "name": "狮尾弯黑体",
   "en": "swei-curve-sans",
   "family": "wenfeng-swcurvesans",
   "normalized": "Swcurvesans",
@@ -10504,7 +10504,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei curve sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾弯黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10540,7 +10540,7 @@
  },
  {
   "id": "bf2fdd17-5e77-46f2-a92c-20d75ea6404c",
-  "name": "swei dart leg",
+  "name": "狮尾飞腿黑体",
   "en": "swei-dart-leg",
   "family": "wenfeng-swdartleg",
   "normalized": "Swdartleg",
@@ -10551,7 +10551,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei dart leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾飞腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10587,7 +10587,7 @@
  },
  {
   "id": "80a0b859-432c-4411-9064-60d02a4ba0f3",
-  "name": "swei dart sans",
+  "name": "狮尾飞镖黑体",
   "en": "swei-dart-sans",
   "family": "wenfeng-swdartsans",
   "normalized": "Swdartsans",
@@ -10598,7 +10598,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei dart sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾飞镖黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10634,7 +10634,7 @@
  },
  {
   "id": "9ca9a66c-f354-41e5-a66b-722c9e7551de",
-  "name": "swei del luna leg",
+  "name": "狮尾D卤腿黑体",
   "en": "swei-del-luna-leg",
   "family": "wenfeng-swdellunaleg",
   "normalized": "Swdellunaleg",
@@ -10645,7 +10645,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei del luna leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾D卤腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10681,7 +10681,7 @@
  },
  {
   "id": "98cb414e-b61a-43d6-a9ee-8e39f95765a0",
-  "name": "swei del luna sans",
+  "name": "狮尾德鲁纳黑体",
   "en": "swei-del-luna-sans",
   "family": "wenfeng-swdellunasans",
   "normalized": "Swdellunasans",
@@ -10692,7 +10692,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei del luna sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾德鲁纳黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10728,7 +10728,7 @@
  },
  {
   "id": "51e98c22-f0d9-4fa7-8ff4-43c679f826ee",
-  "name": "swei devil leg",
+  "name": "狮尾恶腿黑体",
   "en": "swei-devil-leg",
   "family": "wenfeng-swdevilleg",
   "normalized": "Swdevilleg",
@@ -10739,7 +10739,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei devil leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾恶腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10775,7 +10775,7 @@
  },
  {
   "id": "28d88beb-2b90-4091-a065-23bdd2796869",
-  "name": "swei devil sans",
+  "name": "狮尾恶魔黑体",
   "en": "swei-devil-sans",
   "family": "wenfeng-swdevilsans",
   "normalized": "Swdevilsans",
@@ -10786,7 +10786,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei devil sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾恶魔黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10822,7 +10822,7 @@
  },
  {
   "id": "20abeb12-0a5a-4194-91c2-169d535a6612",
-  "name": "swei d lucy",
+  "name": "狮尾D露西",
   "en": "swei-d-lucy",
   "family": "wenfeng-swdlucy",
   "normalized": "Swdlucy",
@@ -10833,7 +10833,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei d lucy（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾D露西（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -10869,7 +10869,7 @@
  },
  {
   "id": "0f75c033-d42d-486c-b953-531494ee0ae3",
-  "name": "狮尾 B2 加糖",
+  "name": "狮尾B2加糖宋体",
   "en": "Swei B2 Sugar CJK SC",
   "family": "wenfeng-swb2jt",
   "normalized": "SweiB2Sugar",
@@ -10953,7 +10953,7 @@
  },
  {
   "id": "f30ea9e4-b551-46be-8c3f-ca54c7db3326",
-  "name": "swei fan leg",
+  "name": "狮尾繁腿黑体",
   "en": "swei-fan-leg",
   "family": "wenfeng-swfanleg",
   "normalized": "Swfanleg",
@@ -10964,7 +10964,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei fan leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾繁腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -11000,7 +11000,7 @@
  },
  {
   "id": "e4ddb835-084b-489d-92b0-98acaa44ed65",
-  "name": "狮尾风扇黑",
+  "name": "狮尾繁中黑体",
   "en": "swei-fan-sans",
   "family": "wenfeng-swfansans",
   "normalized": "Swfansans",
@@ -11011,7 +11011,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "狮尾风扇黑（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾繁中黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -11047,7 +11047,7 @@
  },
  {
   "id": "2235733d-5ec1-45bf-a7dc-64657a42fb67",
-  "name": "狮尾仿宋",
+  "name": "狮尾繁中宋体",
   "en": "swei-fan-serif",
   "family": "wenfeng-swfanserif",
   "normalized": "Swfanserif",
@@ -11058,7 +11058,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "狮尾仿宋（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾繁中宋体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -11094,7 +11094,7 @@
  },
  {
   "id": "8e6cf2a5-772c-4de3-bfb1-ee85af9b0d4c",
-  "name": "swei fist leg",
+  "name": "狮尾咏腿黑体",
   "en": "swei-fist-leg",
   "family": "wenfeng-swfistleg",
   "normalized": "Swfistleg",
@@ -11105,7 +11105,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei fist leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾咏腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -11141,7 +11141,7 @@
  },
  {
   "id": "6b1f9cb9-2d58-4a18-b6c6-cbeff913d38d",
-  "name": "swei fist sans",
+  "name": "狮尾咏春黑体",
   "en": "swei-fist-sans",
   "family": "wenfeng-swfistsans",
   "normalized": "Swfistsans",
@@ -11152,7 +11152,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei fist sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾咏春黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -11188,7 +11188,7 @@
  },
  {
   "id": "409c0d03-b65e-4d53-a83d-a4a273c79744",
-  "name": "swei gospel leg",
+  "name": "狮尾福腿黑体",
   "en": "swei-gospel-leg",
   "family": "wenfeng-swgospelleg",
   "normalized": "Swgospelleg",
@@ -11199,7 +11199,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei gospel leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾福腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -11235,7 +11235,7 @@
  },
  {
   "id": "bd2aa2bb-9937-43da-a3ae-1cd05bfaac70",
-  "name": "swei gospel sans",
+  "name": "狮尾福音黑体",
   "en": "swei-gospel-sans",
   "family": "wenfeng-swgospelsans",
   "normalized": "Swgospelsans",
@@ -11246,7 +11246,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei gospel sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾福音黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -11282,10 +11282,762 @@
  },
  {
   "id": "dcae2e90-3ad0-480d-b9ee-0e40206e487c",
-  "name": "狮尾黑体",
+  "name": "狮尾圆体",
   "en": "swei-gothic",
   "family": "wenfeng-swgothic",
   "normalized": "Swgothic",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾圆体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 45217,
+  "glyphCount": 45022,
+  "viewCount": 0
+ },
+ {
+  "id": "deaa4bc2-96c9-49f4-b495-f994dc8708d7",
+  "name": "狮尾腿圆体",
+  "en": "swei-gothic-leg",
+  "family": "wenfeng-swgothicleg",
+  "normalized": "Swgothicleg",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾腿圆体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 44898,
+  "glyphCount": 44695,
+  "viewCount": 0
+ },
+ {
+  "id": "f9f7b4a6-f61e-4ff9-98b6-2370e1404980",
+  "name": "狮尾半月体",
+  "en": "swei-halfmoon",
+  "family": "wenfeng-swhalfmoon",
+  "normalized": "Swhalfmoon",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾半月体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 44618,
+  "glyphCount": 44422,
+  "viewCount": 0
+ },
+ {
+  "id": "ab3beb30-e14a-41c4-b266-5d904d36d49f",
+  "name": "狮尾简腿黑体",
+  "en": "swei-jay-leg",
+  "family": "wenfeng-swjayleg",
+  "normalized": "Swjayleg",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾简腿黑体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 44898,
+  "glyphCount": 44695,
+  "viewCount": 0
+ },
+ {
+  "id": "3a1950d1-2bc3-4f18-972c-649749b40075",
+  "name": "狮尾简中黑体",
+  "en": "swei-jay-sans",
+  "family": "wenfeng-swjaysans",
+  "normalized": "Swjaysans",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾简中黑体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 44898,
+  "glyphCount": 44695,
+  "viewCount": 0
+ },
+ {
+  "id": "3ac08dc7-a03b-4c6a-a3af-f33242bd713d",
+  "name": "狮尾简中宋体",
+  "en": "swei-jay-serif",
+  "family": "wenfeng-swjayserif",
+  "normalized": "Swjayserif",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "宋体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾简中宋体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 42758,
+  "glyphCount": 42570,
+  "viewCount": 0
+ },
+ {
+  "id": "70ae5462-6e2a-44ae-b098-e9ccf358d5ba",
+  "name": "狮尾麦腿黑体",
+  "en": "swei-marker-leg",
+  "family": "wenfeng-swmarkerleg",
+  "normalized": "Swmarkerleg",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾麦腿黑体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 44898,
+  "glyphCount": 44695,
+  "viewCount": 0
+ },
+ {
+  "id": "130eab09-1378-48da-9adb-3afb9a14feb5",
+  "name": "狮尾麦克黑体",
+  "en": "swei-marker-sans",
+  "family": "wenfeng-swmarkersans",
+  "normalized": "Swmarkersans",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾麦克黑体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 44898,
+  "glyphCount": 44695,
+  "viewCount": 0
+ },
+ {
+  "id": "4ba5f4db-ec98-4582-9fd2-b7e39daeba44",
+  "name": "狮尾火腿黑体",
+  "en": "swei-match-leg",
+  "family": "wenfeng-swmatchleg",
+  "normalized": "Swmatchleg",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾火腿黑体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 44898,
+  "glyphCount": 44695,
+  "viewCount": 0
+ },
+ {
+  "id": "ff155685-6aa8-4bef-bb81-171d81d64924",
+  "name": "狮尾火柴黑体",
+  "en": "swei-match-sans",
+  "family": "wenfeng-swmatchsans",
+  "normalized": "Swmatchsans",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾火柴黑体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 44898,
+  "glyphCount": 44695,
+  "viewCount": 0
+ },
+ {
+  "id": "148aecbd-4d1c-4202-8306-0aba7c242d24",
+  "name": "狮尾肉丸",
+  "en": "swei-meatball",
+  "family": "wenfeng-swmeatball",
+  "normalized": "Swmeatball",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾肉丸（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 42858,
+  "glyphCount": 42663,
+  "viewCount": 0
+ },
+ {
+  "id": "8dafbb3b-e6ee-4a43-b0ac-b4ead227ec6c",
+  "name": "狮尾螺帽腿黑体",
+  "en": "swei-nut-leg",
+  "family": "wenfeng-swnutleg",
+  "normalized": "Swnutleg",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾螺帽腿黑体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 44628,
+  "glyphCount": 44422,
+  "viewCount": 0
+ },
+ {
+  "id": "81e03ea1-8df4-4090-8d7d-1ee5fc07f608",
+  "name": "狮尾螺帽黑体",
+  "en": "swei-nut-sans",
+  "family": "wenfeng-swnutsans",
+  "normalized": "Swnutsans",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾螺帽黑体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 44618,
+  "glyphCount": 44422,
+  "viewCount": 0
+ },
+ {
+  "id": "b80cc1dc-a957-46af-9233-d36f840ddd10",
+  "name": "狮尾彩虹腿",
+  "en": "swei-rainbow-leg",
+  "family": "wenfeng-swrainbowleg",
+  "normalized": "Swrainbowleg",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾彩虹腿（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 44628,
+  "glyphCount": 44422,
+  "viewCount": 0
+ },
+ {
+  "id": "076548ae-84f5-4be6-8356-b4425ca8c246",
+  "name": "狮尾右下腿黑体",
+  "en": "swei-right-bottom-leg",
+  "family": "wenfeng-swrightbottoml",
+  "normalized": "Swrightbottoml",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾右下腿黑体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 44899,
+  "glyphCount": 44695,
+  "viewCount": 0
+ },
+ {
+  "id": "217110cd-4bd5-4b20-ba39-e61569792abd",
+  "name": "狮尾右下圆黑体",
+  "en": "swei-right-bottom-sans",
+  "family": "wenfeng-swrightbottoms",
+  "normalized": "Swrightbottoms",
+  "designer": "Aqua",
+  "designerShort": "Aqua",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "狮尾右下圆黑体（Aqua）。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright Aqua",
+  "foundry": "Aqua（阿杰）",
+  "brand": {
+   "name": "Aqua",
+   "slug": "aqua",
+   "logoUrl": "",
+   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+   "website": "",
+   "description": "Aqua / max32002"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch1 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 44899,
+  "glyphCount": 44695,
+  "viewCount": 0
+ },
+ {
+  "id": "6810aa85-e7c4-41d4-8a7f-7500857f8480",
+  "name": "狮尾黑体",
+  "en": "swei-sans",
+  "family": "wenfeng-swsans",
+  "normalized": "Swsans",
   "designer": "Aqua",
   "designerShort": "Aqua",
   "category": "无衬线字体",
@@ -11323,765 +12075,13 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 45217,
-  "glyphCount": 45022,
-  "viewCount": 0
- },
- {
-  "id": "deaa4bc2-96c9-49f4-b495-f994dc8708d7",
-  "name": "狮尾长腿黑",
-  "en": "swei-gothic-leg",
-  "family": "wenfeng-swgothicleg",
-  "normalized": "Swgothicleg",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "狮尾长腿黑（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 44898,
-  "glyphCount": 44695,
-  "viewCount": 0
- },
- {
-  "id": "f9f7b4a6-f61e-4ff9-98b6-2370e1404980",
-  "name": "swei halfmoon",
-  "en": "swei-halfmoon",
-  "family": "wenfeng-swhalfmoon",
-  "normalized": "Swhalfmoon",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "swei halfmoon（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 44618,
-  "glyphCount": 44422,
-  "viewCount": 0
- },
- {
-  "id": "ab3beb30-e14a-41c4-b266-5d904d36d49f",
-  "name": "swei jay leg",
-  "en": "swei-jay-leg",
-  "family": "wenfeng-swjayleg",
-  "normalized": "Swjayleg",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "swei jay leg（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 44898,
-  "glyphCount": 44695,
-  "viewCount": 0
- },
- {
-  "id": "3a1950d1-2bc3-4f18-972c-649749b40075",
-  "name": "swei jay sans",
-  "en": "swei-jay-sans",
-  "family": "wenfeng-swjaysans",
-  "normalized": "Swjaysans",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "swei jay sans（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 44898,
-  "glyphCount": 44695,
-  "viewCount": 0
- },
- {
-  "id": "3ac08dc7-a03b-4c6a-a3af-f33242bd713d",
-  "name": "swei jay serif",
-  "en": "swei-jay-serif",
-  "family": "wenfeng-swjayserif",
-  "normalized": "Swjayserif",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "宋体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "swei jay serif（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 42758,
-  "glyphCount": 42570,
-  "viewCount": 0
- },
- {
-  "id": "70ae5462-6e2a-44ae-b098-e9ccf358d5ba",
-  "name": "swei marker leg",
-  "en": "swei-marker-leg",
-  "family": "wenfeng-swmarkerleg",
-  "normalized": "Swmarkerleg",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "swei marker leg（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 44898,
-  "glyphCount": 44695,
-  "viewCount": 0
- },
- {
-  "id": "130eab09-1378-48da-9adb-3afb9a14feb5",
-  "name": "狮尾马克笔",
-  "en": "swei-marker-sans",
-  "family": "wenfeng-swmarkersans",
-  "normalized": "Swmarkersans",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "狮尾马克笔（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 44898,
-  "glyphCount": 44695,
-  "viewCount": 0
- },
- {
-  "id": "4ba5f4db-ec98-4582-9fd2-b7e39daeba44",
-  "name": "swei match leg",
-  "en": "swei-match-leg",
-  "family": "wenfeng-swmatchleg",
-  "normalized": "Swmatchleg",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "swei match leg（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 44898,
-  "glyphCount": 44695,
-  "viewCount": 0
- },
- {
-  "id": "ff155685-6aa8-4bef-bb81-171d81d64924",
-  "name": "狮尾火柴",
-  "en": "swei-match-sans",
-  "family": "wenfeng-swmatchsans",
-  "normalized": "Swmatchsans",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "狮尾火柴（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 44898,
-  "glyphCount": 44695,
-  "viewCount": 0
- },
- {
-  "id": "148aecbd-4d1c-4202-8306-0aba7c242d24",
-  "name": "swei meatball",
-  "en": "swei-meatball",
-  "family": "wenfeng-swmeatball",
-  "normalized": "Swmeatball",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "swei meatball（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 42858,
-  "glyphCount": 42663,
-  "viewCount": 0
- },
- {
-  "id": "8dafbb3b-e6ee-4a43-b0ac-b4ead227ec6c",
-  "name": "swei nut leg",
-  "en": "swei-nut-leg",
-  "family": "wenfeng-swnutleg",
-  "normalized": "Swnutleg",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "swei nut leg（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 44628,
-  "glyphCount": 44422,
-  "viewCount": 0
- },
- {
-  "id": "81e03ea1-8df4-4090-8d7d-1ee5fc07f608",
-  "name": "swei nut sans",
-  "en": "swei-nut-sans",
-  "family": "wenfeng-swnutsans",
-  "normalized": "Swnutsans",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "swei nut sans（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 44618,
-  "glyphCount": 44422,
-  "viewCount": 0
- },
- {
-  "id": "b80cc1dc-a957-46af-9233-d36f840ddd10",
-  "name": "swei rainbow leg",
-  "en": "swei-rainbow-leg",
-  "family": "wenfeng-swrainbowleg",
-  "normalized": "Swrainbowleg",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "swei rainbow leg（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 44628,
-  "glyphCount": 44422,
-  "viewCount": 0
- },
- {
-  "id": "076548ae-84f5-4be6-8356-b4425ca8c246",
-  "name": "swei right bottom leg",
-  "en": "swei-right-bottom-leg",
-  "family": "wenfeng-swrightbottoml",
-  "normalized": "Swrightbottoml",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "swei right bottom leg（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 44899,
-  "glyphCount": 44695,
-  "viewCount": 0
- },
- {
-  "id": "217110cd-4bd5-4b20-ba39-e61569792abd",
-  "name": "swei right bottom sans",
-  "en": "swei-right-bottom-sans",
-  "family": "wenfeng-swrightbottoms",
-  "normalized": "Swrightbottoms",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "swei right bottom sans（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
-  "charCount": 44899,
-  "glyphCount": 44695,
-  "viewCount": 0
- },
- {
-  "id": "6810aa85-e7c4-41d4-8a7f-7500857f8480",
-  "name": "swei sans",
-  "en": "swei-sans",
-  "family": "wenfeng-swsans",
-  "normalized": "Swsans",
-  "designer": "Aqua",
-  "designerShort": "Aqua",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "swei sans（Aqua）。SIL OFL 1.1。",
-  "license": "免费商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
-  "purchaseUrl": null,
-  "copyright": "Copyright Aqua",
-  "foundry": "Aqua（阿杰）",
-  "brand": {
-   "name": "Aqua",
-   "slug": "aqua",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
-   "website": "",
-   "description": "Aqua / max32002"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文",
-   "英语"
-  ],
-  "useCases": [
-   "正文",
-   "标题",
-   "屏幕阅读"
-  ],
   "charCount": 44899,
   "glyphCount": 44695,
   "viewCount": 0
  },
  {
   "id": "e0acfa9a-a7b6-4548-818a-4d6407d76832",
-  "name": "swei shear leg",
+  "name": "狮尾快腿黑体",
   "en": "swei-shear-leg",
   "family": "wenfeng-swshearleg",
   "normalized": "Swshearleg",
@@ -12092,7 +12092,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei shear leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾快腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -12128,7 +12128,7 @@
  },
  {
   "id": "35c1152d-fac9-4126-912f-b9f741b38188",
-  "name": "狮尾剪切黑体",
+  "name": "狮尾快剪黑体",
   "en": "swei-shear-sans",
   "family": "wenfeng-swshearsans",
   "normalized": "Swshearsans",
@@ -12139,7 +12139,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "狮尾剪切黑体（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾快剪黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -12175,7 +12175,7 @@
  },
  {
   "id": "b66a45f0-60ef-44c8-a153-7bf782560e8b",
-  "name": "swei spike leg",
+  "name": "狮尾尖腿黑体",
   "en": "swei-spike-leg",
   "family": "wenfeng-swspikeleg",
   "normalized": "Swspikeleg",
@@ -12186,7 +12186,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei spike leg（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾尖腿黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -12222,7 +12222,7 @@
  },
  {
   "id": "99a403a5-66e6-4787-b220-974df64787f7",
-  "name": "swei spike sans",
+  "name": "狮尾尖刺黑体",
   "en": "swei-spike-sans",
   "family": "wenfeng-swspikesans",
   "normalized": "Swspikesans",
@@ -12233,7 +12233,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei spike sans（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾尖刺黑体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -12269,7 +12269,7 @@
  },
  {
   "id": "32e187fd-c22b-4d72-87c0-ae4e6e2e832c",
-  "name": "swei sugar",
+  "name": "狮尾加糖宋体",
   "en": "swei-sugar",
   "family": "wenfeng-swsugar",
   "normalized": "Swsugar",
@@ -12280,7 +12280,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei sugar（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾加糖宋体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -12316,7 +12316,7 @@
  },
  {
   "id": "097fe9a7-9944-4849-8321-2cc3c63375ab",
-  "name": "swei toothpaste",
+  "name": "狮尾牙膏圆体",
   "en": "swei-toothpaste",
   "family": "wenfeng-swtoothpaste",
   "normalized": "Swtoothpaste",
@@ -12327,7 +12327,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei toothpaste（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾牙膏圆体（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",
@@ -12363,7 +12363,7 @@
  },
  {
   "id": "af9a014e-cdcb-457f-af15-cddb986017a2",
-  "name": "swei xd",
+  "name": "狮尾XD珍珠",
   "en": "swei-xd",
   "family": "wenfeng-swxd",
   "normalized": "Swxd",
@@ -12374,7 +12374,7 @@
   "weights": [
    "Regular"
   ],
-  "description": "swei xd（Aqua）。SIL OFL 1.1。",
+  "description": "狮尾XD珍珠（Aqua）。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "",

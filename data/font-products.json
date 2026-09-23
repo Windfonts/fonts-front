@@ -755,7 +755,7 @@
     },
     {
       "id": "swei-sw3t",
-      "name": "swei 3t sans",
+      "name": "狮尾三角黑体",
       "en": "sw3t",
       "default": "wenfeng-sw3tsans",
       "members": [
@@ -763,7 +763,7 @@
           "family": "wenfeng-sw3tsans",
           "chips": [
             "Sans",
-            "swei 3t sans"
+            "狮尾三角黑体"
           ],
           "tier": "primary"
         },
@@ -771,7 +771,7 @@
           "family": "wenfeng-sw3tleg",
           "chips": [
             "Leg",
-            "swei 3t leg"
+            "狮尾三腿黑体"
           ],
           "tier": "secondary"
         }
@@ -779,7 +779,7 @@
     },
     {
       "id": "swei-swalias",
-      "name": "swei alias sans",
+      "name": "狮尾锯齿黑体",
       "en": "swalias",
       "default": "wenfeng-swaliassans",
       "members": [
@@ -787,7 +787,7 @@
           "family": "wenfeng-swaliassans",
           "chips": [
             "Sans",
-            "swei alias sans"
+            "狮尾锯齿黑体"
           ],
           "tier": "primary"
         },
@@ -795,7 +795,7 @@
           "family": "wenfeng-swaliasleg",
           "chips": [
             "Leg",
-            "swei alias leg"
+            "狮尾锯腿黑体"
           ],
           "tier": "secondary"
         }
@@ -803,7 +803,7 @@
     },
     {
       "id": "swei-swax",
-      "name": "swei ax sans",
+      "name": "狮尾斧头黑体",
       "en": "swax",
       "default": "wenfeng-swaxsans",
       "members": [
@@ -811,7 +811,7 @@
           "family": "wenfeng-swaxsans",
           "chips": [
             "Sans",
-            "swei ax sans"
+            "狮尾斧头黑体"
           ],
           "tier": "primary"
         },
@@ -819,7 +819,7 @@
           "family": "wenfeng-swaxleg",
           "chips": [
             "Leg",
-            "swei ax leg"
+            "狮尾斧腿黑体"
           ],
           "tier": "secondary"
         }
@@ -827,7 +827,7 @@
     },
     {
       "id": "swei-swb2",
-      "name": "swei b2 sans",
+      "name": "狮尾B2黑体",
       "en": "swb2",
       "default": "wenfeng-swb2sans",
       "members": [
@@ -835,7 +835,7 @@
           "family": "wenfeng-swb2sans",
           "chips": [
             "Sans",
-            "swei b2 sans"
+            "狮尾B2黑体"
           ],
           "tier": "primary"
         },
@@ -843,7 +843,7 @@
           "family": "wenfeng-swb2leg",
           "chips": [
             "Leg",
-            "swei b2 leg"
+            "狮尾B2腿黑体"
           ],
           "tier": "secondary"
         }
@@ -851,7 +851,7 @@
     },
     {
       "id": "swei-swbell",
-      "name": "swei bell sans",
+      "name": "狮尾喇叭黑体",
       "en": "swbell",
       "default": "wenfeng-swbellsans",
       "members": [
@@ -859,7 +859,7 @@
           "family": "wenfeng-swbellsans",
           "chips": [
             "Sans",
-            "swei bell sans"
+            "狮尾喇叭黑体"
           ],
           "tier": "primary"
         },
@@ -867,7 +867,7 @@
           "family": "wenfeng-swbellleg",
           "chips": [
             "Leg",
-            "swei bell leg"
+            "狮尾喇腿黑体"
           ],
           "tier": "secondary"
         }
@@ -875,7 +875,7 @@
     },
     {
       "id": "swei-swbone",
-      "name": "swei bone sans",
+      "name": "狮尾骨头黑体",
       "en": "swbone",
       "default": "wenfeng-swbonesans",
       "members": [
@@ -883,7 +883,7 @@
           "family": "wenfeng-swbonesans",
           "chips": [
             "Sans",
-            "swei bone sans"
+            "狮尾骨头黑体"
           ],
           "tier": "primary"
         },
@@ -891,7 +891,7 @@
           "family": "wenfeng-swboneleg",
           "chips": [
             "Leg",
-            "swei bone leg"
+            "狮尾骨腿黑体"
           ],
           "tier": "secondary"
         }
@@ -899,7 +899,7 @@
     },
     {
       "id": "swei-swbow",
-      "name": "swei bow sans",
+      "name": "狮尾霓黑体",
       "en": "swbow",
       "default": "wenfeng-swbowsans",
       "members": [
@@ -907,7 +907,7 @@
           "family": "wenfeng-swbowsans",
           "chips": [
             "Sans",
-            "swei bow sans"
+            "狮尾霓黑体"
           ],
           "tier": "primary"
         },
@@ -915,7 +915,7 @@
           "family": "wenfeng-swbowleg",
           "chips": [
             "Leg",
-            "swei bow leg"
+            "狮尾霓腿黑体"
           ],
           "tier": "secondary"
         }
@@ -923,7 +923,7 @@
     },
     {
       "id": "swei-swcurve",
-      "name": "swei curve sans",
+      "name": "狮尾弯黑体",
       "en": "swcurve",
       "default": "wenfeng-swcurvesans",
       "members": [
@@ -931,7 +931,7 @@
           "family": "wenfeng-swcurvesans",
           "chips": [
             "Sans",
-            "swei curve sans"
+            "狮尾弯黑体"
           ],
           "tier": "primary"
         },
@@ -939,7 +939,7 @@
           "family": "wenfeng-swcurveleg",
           "chips": [
             "Leg",
-            "swei curve leg"
+            "狮尾弯腿黑体"
           ],
           "tier": "secondary"
         }
@@ -947,7 +947,7 @@
     },
     {
       "id": "swei-swdart",
-      "name": "swei dart sans",
+      "name": "狮尾飞镖黑体",
       "en": "swdart",
       "default": "wenfeng-swdartsans",
       "members": [
@@ -955,7 +955,7 @@
           "family": "wenfeng-swdartsans",
           "chips": [
             "Sans",
-            "swei dart sans"
+            "狮尾飞镖黑体"
           ],
           "tier": "primary"
         },
@@ -963,7 +963,7 @@
           "family": "wenfeng-swdartleg",
           "chips": [
             "Leg",
-            "swei dart leg"
+            "狮尾飞腿黑体"
           ],
           "tier": "secondary"
         }
@@ -971,7 +971,7 @@
     },
     {
       "id": "swei-swdelluna",
-      "name": "swei del luna sans",
+      "name": "狮尾德鲁纳黑体",
       "en": "swdelluna",
       "default": "wenfeng-swdellunasans",
       "members": [
@@ -979,7 +979,7 @@
           "family": "wenfeng-swdellunasans",
           "chips": [
             "Sans",
-            "swei del luna sans"
+            "狮尾德鲁纳黑体"
           ],
           "tier": "primary"
         },
@@ -987,7 +987,7 @@
           "family": "wenfeng-swdellunaleg",
           "chips": [
             "Leg",
-            "swei del luna leg"
+            "狮尾D卤腿黑体"
           ],
           "tier": "secondary"
         }
@@ -995,7 +995,7 @@
     },
     {
       "id": "swei-swdevil",
-      "name": "swei devil sans",
+      "name": "狮尾恶魔黑体",
       "en": "swdevil",
       "default": "wenfeng-swdevilsans",
       "members": [
@@ -1003,7 +1003,7 @@
           "family": "wenfeng-swdevilsans",
           "chips": [
             "Sans",
-            "swei devil sans"
+            "狮尾恶魔黑体"
           ],
           "tier": "primary"
         },
@@ -1011,7 +1011,7 @@
           "family": "wenfeng-swdevilleg",
           "chips": [
             "Leg",
-            "swei devil leg"
+            "狮尾恶腿黑体"
           ],
           "tier": "secondary"
         }
@@ -1019,7 +1019,7 @@
     },
     {
       "id": "swei-swfan",
-      "name": "狮尾风扇黑",
+      "name": "狮尾繁中黑体",
       "en": "swfan",
       "default": "wenfeng-swfansans",
       "members": [
@@ -1027,7 +1027,7 @@
           "family": "wenfeng-swfansans",
           "chips": [
             "Sans",
-            "狮尾风扇黑"
+            "狮尾繁中黑体"
           ],
           "tier": "primary"
         },
@@ -1035,7 +1035,7 @@
           "family": "wenfeng-swfanleg",
           "chips": [
             "Leg",
-            "swei fan leg"
+            "狮尾繁腿黑体"
           ],
           "tier": "secondary"
         }
@@ -1043,7 +1043,7 @@
     },
     {
       "id": "swei-swfist",
-      "name": "swei fist sans",
+      "name": "狮尾咏春黑体",
       "en": "swfist",
       "default": "wenfeng-swfistsans",
       "members": [
@@ -1051,7 +1051,7 @@
           "family": "wenfeng-swfistsans",
           "chips": [
             "Sans",
-            "swei fist sans"
+            "狮尾咏春黑体"
           ],
           "tier": "primary"
         },
@@ -1059,7 +1059,7 @@
           "family": "wenfeng-swfistleg",
           "chips": [
             "Leg",
-            "swei fist leg"
+            "狮尾咏腿黑体"
           ],
           "tier": "secondary"
         }
@@ -1067,7 +1067,7 @@
     },
     {
       "id": "swei-swgospel",
-      "name": "swei gospel sans",
+      "name": "狮尾福音黑体",
       "en": "swgospel",
       "default": "wenfeng-swgospelsans",
       "members": [
@@ -1075,7 +1075,7 @@
           "family": "wenfeng-swgospelsans",
           "chips": [
             "Sans",
-            "swei gospel sans"
+            "狮尾福音黑体"
           ],
           "tier": "primary"
         },
@@ -1083,7 +1083,7 @@
           "family": "wenfeng-swgospelleg",
           "chips": [
             "Leg",
-            "swei gospel leg"
+            "狮尾福腿黑体"
           ],
           "tier": "secondary"
         }
@@ -1091,7 +1091,7 @@
     },
     {
       "id": "swei-swjay",
-      "name": "swei jay sans",
+      "name": "狮尾简中黑体",
       "en": "swjay",
       "default": "wenfeng-swjaysans",
       "members": [
@@ -1099,7 +1099,7 @@
           "family": "wenfeng-swjaysans",
           "chips": [
             "Sans",
-            "swei jay sans"
+            "狮尾简中黑体"
           ],
           "tier": "primary"
         },
@@ -1107,7 +1107,7 @@
           "family": "wenfeng-swjayleg",
           "chips": [
             "Leg",
-            "swei jay leg"
+            "狮尾简腿黑体"
           ],
           "tier": "secondary"
         }
@@ -1115,7 +1115,7 @@
     },
     {
       "id": "swei-swmarker",
-      "name": "狮尾马克笔",
+      "name": "狮尾麦克黑体",
       "en": "swmarker",
       "default": "wenfeng-swmarkersans",
       "members": [
@@ -1123,7 +1123,7 @@
           "family": "wenfeng-swmarkersans",
           "chips": [
             "Sans",
-            "狮尾马克笔"
+            "狮尾麦克黑体"
           ],
           "tier": "primary"
         },
@@ -1131,7 +1131,7 @@
           "family": "wenfeng-swmarkerleg",
           "chips": [
             "Leg",
-            "swei marker leg"
+            "狮尾麦腿黑体"
           ],
           "tier": "secondary"
         }
@@ -1139,7 +1139,7 @@
     },
     {
       "id": "swei-swmatch",
-      "name": "狮尾火柴",
+      "name": "狮尾火柴黑体",
       "en": "swmatch",
       "default": "wenfeng-swmatchsans",
       "members": [
@@ -1147,7 +1147,7 @@
           "family": "wenfeng-swmatchsans",
           "chips": [
             "Sans",
-            "狮尾火柴"
+            "狮尾火柴黑体"
           ],
           "tier": "primary"
         },
@@ -1155,7 +1155,7 @@
           "family": "wenfeng-swmatchleg",
           "chips": [
             "Leg",
-            "swei match leg"
+            "狮尾火腿黑体"
           ],
           "tier": "secondary"
         }
@@ -1163,7 +1163,7 @@
     },
     {
       "id": "swei-swnut",
-      "name": "swei nut sans",
+      "name": "狮尾螺帽黑体",
       "en": "swnut",
       "default": "wenfeng-swnutsans",
       "members": [
@@ -1171,7 +1171,7 @@
           "family": "wenfeng-swnutsans",
           "chips": [
             "Sans",
-            "swei nut sans"
+            "狮尾螺帽黑体"
           ],
           "tier": "primary"
         },
@@ -1179,7 +1179,7 @@
           "family": "wenfeng-swnutleg",
           "chips": [
             "Leg",
-            "swei nut leg"
+            "狮尾螺帽腿黑体"
           ],
           "tier": "secondary"
         }
@@ -1187,7 +1187,7 @@
     },
     {
       "id": "swei-swshear",
-      "name": "狮尾剪切黑体",
+      "name": "狮尾快剪黑体",
       "en": "swshear",
       "default": "wenfeng-swshearsans",
       "members": [
@@ -1195,7 +1195,7 @@
           "family": "wenfeng-swshearsans",
           "chips": [
             "Sans",
-            "狮尾剪切黑体"
+            "狮尾快剪黑体"
           ],
           "tier": "primary"
         },
@@ -1203,7 +1203,7 @@
           "family": "wenfeng-swshearleg",
           "chips": [
             "Leg",
-            "swei shear leg"
+            "狮尾快腿黑体"
           ],
           "tier": "secondary"
         }
@@ -1211,7 +1211,7 @@
     },
     {
       "id": "swei-swspike",
-      "name": "swei spike sans",
+      "name": "狮尾尖刺黑体",
       "en": "swspike",
       "default": "wenfeng-swspikesans",
       "members": [
@@ -1219,7 +1219,7 @@
           "family": "wenfeng-swspikesans",
           "chips": [
             "Sans",
-            "swei spike sans"
+            "狮尾尖刺黑体"
           ],
           "tier": "primary"
         },
@@ -1227,7 +1227,7 @@
           "family": "wenfeng-swspikeleg",
           "chips": [
             "Leg",
-            "swei spike leg"
+            "狮尾尖腿黑体"
           ],
           "tier": "secondary"
         }
