@@ -144,7 +144,7 @@
       .catch(function () { return { foundries: [] }; });
     const evidenceReq = fetch(dataUrl('license-evidence.json')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
       .catch(function () { return { standards: {}, names: {} }; });
-    const lineageReq = fetch(dataUrl('font-lineage.json?v=20260924c')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
+    const lineageReq = fetch(dataUrl('font-lineage.json?v=20260924s')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
       .catch(function () { return { groups: {}, byName: {} }; });
     const avatarsReq = fetch(dataUrl('avatars.json?v=20260921d')).then(function (r) { return r.ok ? r.json() : {}; })
       .catch(function () { return {}; });
@@ -808,7 +808,7 @@
   function isOpenFont(font) {
     const ev = (font && font.licenseEvidence) || {};
     return /OFL|Apache|MIT|IPA|CC-BY/i.test(String(ev.spdx || '')) ||
-      /OFL|Open Font|Apache|\bMIT\b|IPA|CC-?BY/i.test(String((font && font.licenseName) || ''));
+      /OFL|Open Font|Apache|\bMIT\b|IPA|CC-?BY|0BSD|GPL/i.test(String((font && font.licenseName) || ''));
   }
 
   function matchFilter(font, tag, keyword, license) {

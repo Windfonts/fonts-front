@@ -903,7 +903,11 @@
         "WenQuanYi",
         "WenQuanYi (文泉驿)",
         "文泉驿 (WenQuanYi)",
-        "WenQuanYi Board of Trustees"
+        "WenQuanYi Board of Trustees",
+        "文泉驿点阵宋体"
+      ],
+      "fontNames": [
+        "文泉驿点阵宋体"
       ],
       "kind": "project",
       "openSource": true,
@@ -1094,7 +1098,8 @@
       "website": "https://mplusfonts.github.io",
       "aliases": [],
       "fontNames": [
-        "Mplus HZK 12 像素字体"
+        "Mplus HZK 12 像素字体",
+        "M+ gothic 12r"
       ],
       "kind": "project",
       "openSource": true,
@@ -1314,11 +1319,16 @@
       "name": "Aoyagi Kouzan",
       "en": "",
       "short": "青柳",
-      "website": "",
       "aliases": [
         "AoyagiKouzan",
-        "青柳衡山"
+        "青柳衡山",
+        "衡山毛笔",
+        "香山毛笔字体"
       ],
+      "fontNames": [
+        "衡山毛笔"
+      ],
+      "website": "https://opentype.jp/kouzanmouhitufont.htm",
       "kind": "author",
       "openSource": true,
       "claimed": false
@@ -1645,6 +1655,70 @@
       "openSource": true,
       "claimed": false,
       "description": "Dela Gothic One。SIL OFL 1.1。"
+    },
+    {
+      "id": "yuji",
+      "name": "佑字",
+      "en": "Yuji",
+      "short": "佑字",
+      "website": "https://github.com/Kinutafontfactory/Yuji",
+      "aliases": [
+        "Yuji Syuku",
+        "佑字肃",
+        "Kinuta Font Factory",
+        "Kataoka Yuji"
+      ],
+      "fontNames": [
+        "佑字肃"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "佑字肃（Yuji Syuku），片冈裕。寒蝉拙楷的上游。SIL OFL 1.1。"
+    },
+    {
+      "id": "ume",
+      "name": "梅字体",
+      "en": "Ume Font",
+      "short": "梅",
+      "website": "https://osdn.jp/projects/ume-font/",
+      "aliases": [
+        "Ume Gothic",
+        "梅ゴシック",
+        "梅黑体",
+        "梅明朝",
+        "Ume Mincho",
+        "蓬莱和多流",
+        "HORAI Wataru"
+      ],
+      "fontNames": [
+        "梅黑体",
+        "梅明朝"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "梅ゴシック / 梅明朝，蓬莱和多流。范美黑、范美明的上游。可免费使用、修改、再分发，无保证。不是 OFL。"
+    },
+    {
+      "id": "yoz",
+      "name": "Y.OzVox",
+      "en": "Y.OzFont",
+      "short": "Y.Oz",
+      "website": "http://yozvox.web.fc2.com/",
+      "aliases": [
+        "YozFont",
+        "Y.OzFont",
+        "YOzFont",
+        "Y.Oz"
+      ],
+      "fontNames": [
+        "YozFont"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "Y.OzFont。悠哉字体的上游。SIL OFL 1.1。"
     }
   ]
 }

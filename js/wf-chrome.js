@@ -636,7 +636,18 @@
     'KokoroMinchoutai': 'こころ明朝',
     '思源黑体': '思源黑体',
     '思源宋体': '思源宋体',
-    '龙藏体': '龙藏体'
+    '龙藏体': '龙藏体',
+    '红道字体': 'Zen Kurenaido',
+    'Ume Gothic': '梅黑体',
+    '梅ゴシック': '梅黑体',
+    'Yuji Syuku': '佑字肃',
+    '佑字肅': '佑字肃',
+    'Ume Mincho': '梅明朝',
+    '梅明朝': '梅明朝',
+    '香山毛笔字体': '衡山毛笔',
+    'KouzanBrushFont': '衡山毛笔',
+    'Y.OzFont': 'YozFont',
+    'YOzFont': 'YozFont'
   };
   /** 仍未入库的外源名：不造假字体行；可挂厂商页 / 原文。已入库源头走 UPSTREAM_FONT / fonts.json。 */
   const UPSTREAM_GHOST = {};

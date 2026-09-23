@@ -3622,8 +3622,8 @@
  },
  {
   "id": "4c31e658-6b06-4f06-afc6-c8479e1688a9",
-  "name": "香山毛笔字体",
-  "en": "Kouzan Brush Font OTF",
+  "name": "衡山毛笔",
+  "en": "Kouzan Brush Font",
   "family": "wenfeng-hsmbzt",
   "normalized": "Hsmbzt",
   "designer": "Aoyagi Kouzan",
@@ -3635,12 +3635,12 @@
   "weights": [
    "Regular"
   ],
-  "description": "KouzanBrushFontOTF 是一款日文毛笔书法字体，由书法家青柳衡山（Aoyagi Kouzan）创作。该字体模拟了毛笔书写的自然笔触和飞白效果，具有浓厚的日本书法艺术风格。字体设计旨在用于创建具有传统书法美感的日文文本，常见于需要体现日本文化特色的设计场景，如海报、包装、品牌标识以及相关移动应用（如 SyotaiConverter、GyousyoConverter）中。",
+  "description": "衡山毛笔（KouzanBrushFont）。书法家青柳衡山写的免费毛笔字。站点写明可免费商用，商用没有限制，无保证。爆呆在这款上补了字。",
   "license": "免费商用",
-  "licenseName": "免费商用",
-  "licenseUrl": "",
+  "licenseName": "免费商用，没有限制",
+  "licenseUrl": "https://opentype.jp/kouzanmouhitufont.htm",
   "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Hsmbzt/LICENSE",
-  "licenseNotes": "可免费商用。不可修改字体文件，不可再分发。",
+  "licenseNotes": "可免费商用，商用没有限制。无保证。",
   "licenseVerified": false,
   "purchaseUrl": null,
   "copyright": "AoyagiKouzan",
@@ -14950,12 +14950,12 @@
   "weights": [
    "Regular"
   ],
-  "description": "悠哉字体（Yozai）由 LXGW 基于 Y.OzVox 数据整理发布，SIL OFL 1.1。圆润亲和，适合标题与轻松阅读。",
+  "description": "悠哉字体（Yozai）由 LXGW 基于 Y.OzFont 整理发布。SIL OFL 1.1。",
   "license": "免费商用",
-  "licenseName": "免费商用",
-  "licenseUrl": "",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "https://github.com/lxgw/yozai-font/blob/master/OFL.txt",
   "licenseFileUrl": "",
-  "licenseNotes": "",
+  "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
   "licenseVerified": null,
   "purchaseUrl": null,
   "copyright": "",
@@ -16910,6 +16910,274 @@
   ],
   "charCount": 47174,
   "glyphCount": 50808,
+  "viewCount": 0
+ },
+ {
+  "id": "189de06f-e76b-4f6a-ba33-3402d7633071",
+  "name": "佑字肃",
+  "en": "Yuji Syuku",
+  "family": "wenfeng-yjsu",
+  "normalized": "Yjsu",
+  "designer": "Kataoka Yuji",
+  "designerShort": "片冈裕",
+  "category": "宋体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "佑字肃（Yuji Syuku）。寒蝉拙楷的直接上游。Kinuta Font Factory，片冈裕。SIL OFL 1.1。汉字约 6746，不是全字库。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "https://scripts.sil.org/OFL",
+  "licenseFileUrl": "",
+  "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+  "licenseVerified": true,
+  "purchaseUrl": null,
+  "copyright": "Copyright 2021 The Yuji Project Authors",
+  "foundry": "佑字",
+  "brand": {
+   "name": "佑字",
+   "slug": "yuji",
+   "logoUrl": "",
+   "avatarUrl": "",
+   "website": "https://github.com/Kinutafontfactory/Yuji",
+   "description": "佑字肃（Yuji Syuku）。SIL OFL 1.1。"
+  },
+  "releaseYear": 2021,
+  "version": "3.002",
+  "languages": [
+   "日文",
+   "简体中文"
+  ],
+  "useCases": [
+   "正文",
+   "标题"
+  ],
+  "charCount": 8013,
+  "glyphCount": 9504,
+  "viewCount": 0
+ },
+ {
+  "id": "5ba1a6ca-4713-4624-87c7-4a266b568e93",
+  "name": "梅黑体",
+  "en": "Ume Gothic",
+  "family": "wenfeng-umgh",
+  "normalized": "Umgh",
+  "designer": "蓬莱和多流",
+  "designerShort": "蓬莱和多流",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "梅黑体（梅ゴシック / Ume Gothic）。范美黑体的直接上游。作者蓬莱和多流。可免费使用、修改、再分发，无保证。不是 OFL。",
+  "license": "免费商用",
+  "licenseName": "梅字体许可",
+  "licenseUrl": "https://osdn.jp/projects/ume-font/",
+  "licenseFileUrl": "",
+  "licenseNotes": "可免费商用、可修改、可再分发。无保证。",
+  "licenseVerified": true,
+  "purchaseUrl": null,
+  "copyright": "Author: HORAI Wataru",
+  "foundry": "梅字体",
+  "brand": {
+   "name": "梅字体",
+   "slug": "ume",
+   "logoUrl": "",
+   "avatarUrl": "",
+   "website": "https://osdn.jp/projects/ume-font/",
+   "description": "梅ゴシック。可免费使用、修改、再分发，无保证。"
+  },
+  "releaseYear": 2019,
+  "version": "4",
+  "languages": [
+   "日文",
+   "简体中文"
+  ],
+  "useCases": [
+   "正文",
+   "屏幕阅读"
+  ],
+  "charCount": 14963,
+  "glyphCount": 15563,
+  "viewCount": 0
+ },
+ {
+  "id": "493bb04f-2944-47ec-a556-6584e926e02b",
+  "name": "梅明朝",
+  "en": "Ume Mincho",
+  "family": "wenfeng-ummc",
+  "normalized": "Ummc",
+  "designer": "蓬莱和多流",
+  "designerShort": "蓬莱和多流",
+  "category": "宋体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "梅明朝（Ume Mincho）。范美明体的直接上游。作者蓬莱和多流。可免费使用、修改、再分发，无保证。不是 OFL。",
+  "license": "免费商用",
+  "licenseName": "梅字体许可",
+  "licenseUrl": "https://osdn.jp/projects/ume-font/",
+  "licenseFileUrl": "",
+  "licenseNotes": "可免费商用、可修改、可再分发。无保证。",
+  "licenseVerified": true,
+  "purchaseUrl": null,
+  "copyright": "Author: HORAI Wataru",
+  "foundry": "梅字体",
+  "brand": {
+   "name": "梅字体",
+   "slug": "ume",
+   "logoUrl": "",
+   "avatarUrl": "",
+   "website": "https://osdn.jp/projects/ume-font/",
+   "description": "梅明朝。可免费使用、修改、再分发，无保证。"
+  },
+  "releaseYear": 2019,
+  "version": "3",
+  "languages": [
+   "日文",
+   "简体中文"
+  ],
+  "useCases": [
+   "正文"
+  ],
+  "charCount": 14963,
+  "glyphCount": 15563,
+  "viewCount": 0
+ },
+ {
+  "id": "ca8187f5-c38d-4f38-b6d9-f626c6a0c44c",
+  "name": "YozFont",
+  "en": "Y.OzFont",
+  "family": "wenfeng-yozf",
+  "normalized": "Yozf",
+  "designer": "Y.Oz",
+  "designerShort": "Y.Oz",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "Y.OzFont，作者 Y.OzVox。悠哉字体的上游。入库的是 YOzN Regular。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "http://yozvox.web.fc2.com/OFL.txt",
+  "licenseFileUrl": "",
+  "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+  "licenseVerified": true,
+  "purchaseUrl": null,
+  "copyright": "Copyright 2009 Y.Oz (Y.OzVox)",
+  "foundry": "Y.OzVox",
+  "brand": {
+   "name": "Y.OzVox",
+   "slug": "yoz",
+   "logoUrl": "",
+   "avatarUrl": "",
+   "website": "http://yozvox.web.fc2.com/",
+   "description": "Y.OzFont。SIL OFL 1.1。"
+  },
+  "releaseYear": 2009,
+  "version": "YOzN",
+  "languages": [
+   "日文",
+   "简体中文"
+  ],
+  "useCases": [
+   "正文",
+   "标题"
+  ],
+  "charCount": 15803,
+  "glyphCount": 17066,
+  "viewCount": 0
+ },
+ {
+  "id": "88c48eb4-ed74-48a9-b28b-1fbcd613464b",
+  "name": "M+ gothic 12r",
+  "en": "M+ gothic 12r",
+  "family": "wenfeng-mp12",
+  "normalized": "Mp12",
+  "designer": "COZ",
+  "designerShort": "COZ",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "M+ gothic 12r。俐方体11号的直接上游。12 像素位图按原像素画成静态字形。可免费使用、修改、再分发，无保证。不是轮廓版 M+。",
+  "license": "免费商用",
+  "licenseName": "M+ 位图许可",
+  "licenseUrl": "https://github.com/hikaen2/mplus_bitmap_fonts/blob/main/LICENSE_E",
+  "licenseFileUrl": "",
+  "licenseNotes": "可免费商用、可修改、可再分发。无保证。",
+  "licenseVerified": true,
+  "purchaseUrl": null,
+  "copyright": "Copyright 2002-2005 COZ",
+  "foundry": "M+ 字体计划",
+  "brand": {
+   "name": "M+ FONTS PROJECT",
+   "slug": "mplus",
+   "logoUrl": "",
+   "avatarUrl": "",
+   "website": "https://mplusfonts.github.io",
+   "description": "M+ BITMAP FONTS"
+  },
+  "releaseYear": 2005,
+  "version": "12",
+  "languages": [
+   "日文"
+  ],
+  "useCases": [
+   "像素",
+   "屏幕阅读"
+  ],
+  "charCount": 6879,
+  "glyphCount": 6880,
+  "viewCount": 0
+ },
+ {
+  "id": "99dd4638-1d63-48ec-aab4-ed4d80bf2dde",
+  "name": "文泉驿点阵宋体",
+  "en": "WenQuanYi Bitmap Song",
+  "family": "wenfeng-wqys",
+  "normalized": "Wqys",
+  "designer": "文泉驿",
+  "designerShort": "文泉驿",
+  "category": "宋体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "文泉驿点阵宋体 12pt。点点像素各款的上游。官方位图按原像素画成静态字形。GPL-2.0，带字体嵌入例外。",
+  "license": "免费商用",
+  "licenseName": "GPL-2.0",
+  "licenseUrl": "https://wenq.org/",
+  "licenseFileUrl": "",
+  "licenseNotes": "可按 GPL 使用、修改与再分发。再分发须遵守 GPL，不得单独售卖字体文件。",
+  "licenseVerified": true,
+  "purchaseUrl": null,
+  "copyright": "Copyright WenQuanYi",
+  "foundry": "文泉驿",
+  "brand": {
+   "name": "文泉驿",
+   "slug": "wenquanyi",
+   "logoUrl": "",
+   "avatarUrl": "",
+   "website": "http://wenq.org",
+   "description": "文泉驿点阵宋体。GPL-2.0。"
+  },
+  "releaseYear": 2010,
+  "version": "1.0.0-RC1",
+  "languages": [
+   "简体中文",
+   "繁体中文"
+  ],
+  "useCases": [
+   "像素",
+   "屏幕阅读"
+  ],
+  "charCount": 41295,
+  "glyphCount": 41296,
   "viewCount": 0
  }
 ]

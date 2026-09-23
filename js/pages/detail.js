@@ -14,6 +14,15 @@
     } else if (/OFL|Open Font|Apache|MIT|IPA/i.test(name + ' ' + (ev.spdx || ''))) {
       ok.push('网页、App、印刷、商业项目均可使用', '可嵌入网页并再分发（保留许可声明）', '可修改后以其他名称发布');
       no.push('不得单独售卖字体文件', '不得去除版权与许可声明');
+    } else if (/梅字体许可|M\+ 位图许可/.test(name)) {
+      ok.push('可免费用于商业项目与网页嵌入', '可修改、复制与再分发');
+      no.push('无保证');
+    } else if (/没有限制/.test(name)) {
+      ok.push('可免费用于商业项目与网页嵌入', '可修改与再分发');
+      no.push('无保证');
+    } else if (/0BSD/i.test(name)) {
+      ok.push('可免费用于商业项目与网页嵌入', '可修改与再分发');
+      no.push('无保证');
     } else if (tier === '免费商用') {
       ok.push('可免费用于商业项目与网页嵌入', '可用于品牌、电商、海报、界面');
       no.push('不得修改字体文件后再分发', '不得单独售卖字体文件');

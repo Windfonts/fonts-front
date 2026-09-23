@@ -1059,7 +1059,14 @@
       "makerId": "chilltype",
       "relation": "fork",
       "upstreamName": "佑字肃",
+      "upstreamOwnerId": "yuji",
       "licenseFollows": "inherit"
+    },
+    "佑字肃": {
+      "ownerId": "yuji",
+      "makerId": "yuji",
+      "relation": "original",
+      "licenseFollows": "own"
     },
     "荆南缘默体": {
       "ownerId": "jingnan",
@@ -1847,14 +1854,52 @@
       "ownerId": "lxgw",
       "makerId": "lxgw",
       "relation": "fork",
-      "upstreamName": "Ume Gothic",
+      "upstreamName": "梅黑体",
+      "upstreamOwnerId": "ume",
       "licenseFollows": "inherit"
+    },
+    "梅黑体": {
+      "ownerId": "ume",
+      "makerId": "ume",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "梅明朝": {
+      "ownerId": "ume",
+      "makerId": "ume",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "YozFont": {
+      "ownerId": "yoz",
+      "makerId": "yoz",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "衡山毛笔": {
+      "ownerId": "aoyagi-kouzan",
+      "makerId": "aoyagi-kouzan",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "文泉驿点阵宋体": {
+      "ownerId": "wenquanyi",
+      "makerId": "wenquanyi",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "M+ gothic 12r": {
+      "ownerId": "mplus",
+      "makerId": "mplus",
+      "relation": "original",
+      "licenseFollows": "own"
     },
     "范美明体": {
       "ownerId": "lxgw",
       "makerId": "lxgw",
       "relation": "fork",
-      "upstreamName": "Ume Mincho",
+      "upstreamName": "梅明朝",
+      "upstreamOwnerId": "ume",
       "licenseFollows": "inherit"
     },
     "霞鹜拼音体": {
@@ -1869,6 +1914,7 @@
       "makerId": "lxgw",
       "relation": "fork",
       "upstreamName": "YozFont",
+      "upstreamOwnerId": "yoz",
       "licenseFollows": "inherit"
     },
     "爆呆": {
@@ -1876,6 +1922,7 @@
       "makerId": "aqua",
       "relation": "fork",
       "upstreamName": "衡山毛笔",
+      "upstreamOwnerId": "aoyagi-kouzan",
       "licenseFollows": "inherit"
     },
     "假珍珠": {
@@ -1907,7 +1954,8 @@
       "ownerId": "aqua",
       "makerId": "aqua",
       "relation": "fork",
-      "upstreamName": "红道字体",
+      "upstreamName": "Zen Kurenaido",
+      "upstreamOwnerId": "google-fonts",
       "licenseFollows": "inherit"
     },
     "丸子黑": {
@@ -1961,26 +2009,31 @@
     "点点像素宋体": {
       "relation": "fork",
       "upstreamName": "文泉驿点阵宋体",
+      "upstreamOwnerId": "wenquanyi",
       "licenseFollows": "inherit"
     },
     "点点像素宋体钻石体": {
       "relation": "fork",
       "upstreamName": "文泉驿点阵宋体",
+      "upstreamOwnerId": "wenquanyi",
       "licenseFollows": "inherit"
     },
     "点点像素宋体圆": {
       "relation": "fork",
       "upstreamName": "文泉驿点阵宋体",
+      "upstreamOwnerId": "wenquanyi",
       "licenseFollows": "inherit"
     },
     "点点像素体-圆形": {
       "relation": "fork",
       "upstreamName": "文泉驿点阵宋体",
+      "upstreamOwnerId": "wenquanyi",
       "licenseFollows": "inherit"
     },
     "俐方体11号": {
       "relation": "fork",
       "upstreamName": "M+ gothic 12r",
+      "upstreamOwnerId": "mplus",
       "licenseFollows": "inherit"
     },
     "Unifont点阵黑": {
