@@ -32,6 +32,7 @@
           <div class="field"><label for="upLicense">授权来源</label><select class="select" id="upLicense"><option value="own">自己设计或委托设计</option><option value="bought">已购买商业授权（含网页嵌入）</option><option value="ofl">开源许可（OFL / Apache 等）</option></select></div>
         </div>
         <div class="field"><label for="upLicenseUrl">授权说明链接</label><input class="input" id="upLicenseUrl" type="url" placeholder="https://… 选填" /></div>
+        <div class="field"><label for="upProof">授权证明</label><input class="input" id="upProof" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,.md" /><span class="hint" id="proofHint">购买或自有字体：授权书、合同或发票。开源字体：上游 LICENSE 或 OFL.txt。</span></div>
         <label class="check"><input type="checkbox" id="upAgree" required /><span>我已确认有权在网页里用这款字体，并同意<a href="../upload-terms.html">《上传条款》</a>。</span></label>
       </div>
       <aside class="subset-side">
@@ -69,6 +70,7 @@
         { v: 'Medium', n: 500 }, { v: 'Bold', n: 700 }, { v: 'Black', n: 900 }
       ];
       let picks = [];
+      let proof = null;
       let locked = false;
       let previewUrl = '';
 
@@ -78,9 +80,14 @@
         WEIGHTS.forEach(function (s) { if (Math.abs(s.n - n) < Math.abs(best.n - n)) best = s; });
         return best.v;
       }
+      function needsProof() {
+        const src = document.getElementById('upLicense').value;
+        return src === 'own' || src === 'bought';
+      }
       function check() {
         const famOk = /^[a-z0-9-]+$/.test(fam.value);
-        btn.disabled = locked || !(picks.length && agree.checked && name.value.trim() && famOk);
+        const proofOk = !needsProof() || !!proof;
+        btn.disabled = locked || !(picks.length && agree.checked && name.value.trim() && famOk && proofOk);
       }
       WFApp.load().then(function (s) {
         const sel = document.getElementById('upProject');
@@ -220,12 +227,21 @@
       ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('is-over'); }); });
       ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('is-over'); }); });
       drop.addEventListener('drop', function (e) { Array.prototype.forEach.call(e.dataTransfer.files || [], addFile); });
-      [name, fam, agree].forEach(function (el) { el.addEventListener('input', check); el.addEventListener('change', check); });
+      [name, fam, agree, document.getElementById('upLicense')].forEach(function (el) { el.addEventListener('input', check); el.addEventListener('change', check); });
+      document.getElementById('upProof').addEventListener('change', function () {
+        const f = this.files && this.files[0];
+        if (!f) { proof = null; check(); return; }
+        if (f.size > 15 * 1024 * 1024) { WFChrome.toast('证明文件超过 15 MB'); this.value = ''; proof = null; check(); return; }
+        proof = f;
+        document.getElementById('proofHint').textContent = f.name + ' · ' + WFEmbed.fmtBytes(f.size);
+        check();
+      });
       name.addEventListener('input', function () { if (!preview.hidden) preview.textContent = name.value || '字体预览'; });
 
       document.getElementById('uploadForm').addEventListener('submit', function (e) {
         e.preventDefault();
         if (locked || btn.disabled) return;
+        if (needsProof() && !proof) { WFChrome.toast('请附上授权证明'); return; }
         const s = WFApp.state();
         const cap = (s.plan.quota && s.plan.quota.fonts) || 0;
         if (cap && s.uploads.length >= cap) { WFChrome.toast('已到字体配额'); return; }
@@ -242,6 +258,9 @@
           size: picks.reduce(function (a, p) { return a + p.file.size; }, 0),
           license: document.getElementById('upLicense').value,
           licenseUrl: document.getElementById('upLicenseUrl').value.trim(),
+          proofName: proof ? proof.name : '',
+          proofType: proof ? (proof.type || '') : '',
+          proofSize: proof ? proof.size : 0,
           uploadedAt: new Date().toISOString(),
           status: 'ready'
         });
