@@ -573,114 +573,6 @@
       "upstreamName": "霞鹜文楷",
       "upstreamOwnerId": "lxgw"
     },
-    "霞鹜文楷 KR": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷 Lite": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷 Screen": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷等宽 Lite": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷等宽 Screen": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷等宽 KR": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷 GB Lite": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷 GB",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷 GB Screen": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷 GB",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷 GB Fusion": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷 GB",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷等宽 GB Lite": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷 GB",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷等宽 GB Screen": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷 GB",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷等宽 GB Fusion": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷 GB",
-      "upstreamOwnerId": "lxgw"
-    },
     "霞鹜臻楷": {
       "ownerId": "lxgw",
       "makerId": "lxgw",
@@ -708,24 +600,6 @@
       "upstreamName": "霞鹜文楷",
       "upstreamOwnerId": "lxgw"
     },
-    "霞鹜文楷 Bright GB": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷 Bright",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷 Bright TC": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷 Bright",
-      "upstreamOwnerId": "lxgw"
-    },
     "霞鹜文楷 Bright Code": {
       "ownerId": "lxgw",
       "makerId": "lxgw",
@@ -733,24 +607,6 @@
       "licenseFollows": "inherit",
       "group": "lxgw-wenkai",
       "upstreamName": "霞鹜文楷 Bright",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷 Bright Code GB": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷 Bright Code",
-      "upstreamOwnerId": "lxgw"
-    },
-    "霞鹜文楷 Bright Code TC": {
-      "ownerId": "lxgw",
-      "makerId": "lxgw",
-      "relation": "locale",
-      "licenseFollows": "inherit",
-      "group": "lxgw-wenkai",
-      "upstreamName": "霞鹜文楷 Bright Code",
       "upstreamOwnerId": "lxgw"
     },
     "霞鹜新晰黑": {
