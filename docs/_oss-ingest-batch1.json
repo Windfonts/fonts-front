@@ -1,0 +1,847 @@
+{
+  "generated": "2026-09-23",
+  "count": 105,
+  "note": "首批入库清单：寒蝉全+Aqua全+Fontworks/霞鹜等；不含 source-han-super-otc",
+  "items": [
+    {
+      "author": "welai",
+      "githubLogin": "welai",
+      "repo": "glow-sans",
+      "label": "未来荧黑",
+      "url": "https://github.com/welai/glow-sans",
+      "stars": 1958
+    },
+    {
+      "author": "adobe-fonts",
+      "githubLogin": "adobe-fonts",
+      "repo": "source-han-mono",
+      "label": "思源等宽",
+      "url": "https://github.com/adobe-fonts/source-han-mono",
+      "stars": 1352
+    },
+    {
+      "author": "mplus",
+      "githubLogin": "mplusfonts",
+      "repo": "MPLUS_FONTS",
+      "label": "M+ FONTS",
+      "url": "https://github.com/coz-m/MPLUS_FONTS",
+      "stars": 1239
+    },
+    {
+      "author": "fontworks",
+      "githubLogin": "fontworks-fonts",
+      "repo": "Klee",
+      "label": "Klee One",
+      "url": "https://github.com/fontworks-fonts/Klee",
+      "stars": 1098
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "naikaifont",
+      "label": "奈楷",
+      "url": "https://github.com/max32002/naikaifont",
+      "stars": 560
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillBitmap",
+      "label": "寒蝉点阵体",
+      "url": "https://github.com/Warren2060/ChillBitmap",
+      "stars": 551
+    },
+    {
+      "author": "fontworks",
+      "githubLogin": "fontworks-fonts",
+      "repo": "DotGothic16",
+      "label": "DotGothic16",
+      "url": "https://github.com/fontworks-fonts/DotGothic16",
+      "stars": 498
+    },
+    {
+      "author": "justfont",
+      "githubLogin": "justfont",
+      "repo": "Elffont",
+      "label": "Elffont",
+      "url": "https://github.com/justfont/Elffont",
+      "stars": 454
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillRound",
+      "label": "寒蝉圆黑体",
+      "url": "https://github.com/Warren2060/ChillRound",
+      "stars": 374
+    },
+    {
+      "author": "fontworks",
+      "githubLogin": "fontworks-fonts",
+      "repo": "Reggae",
+      "label": "Reggae One",
+      "url": "https://github.com/fontworks-fonts/Reggae",
+      "stars": 246
+    },
+    {
+      "author": "fontworks",
+      "githubLogin": "fontworks-fonts",
+      "repo": "Train",
+      "label": "Train One",
+      "url": "https://github.com/fontworks-fonts/Train",
+      "stars": 243
+    },
+    {
+      "author": "fontworks",
+      "githubLogin": "fontworks-fonts",
+      "repo": "Rampart",
+      "label": "Rampart One",
+      "url": "https://github.com/fontworks-fonts/Rampart",
+      "stars": 227
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillMovableType",
+      "label": "寒蝉活字",
+      "url": "https://github.com/Warren2060/ChillMovableType",
+      "stars": 214
+    },
+    {
+      "author": "fontworks",
+      "githubLogin": "fontworks-fonts",
+      "repo": "Stick",
+      "label": "Stick",
+      "url": "https://github.com/fontworks-fonts/Stick",
+      "stars": 206
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-gothic",
+      "label": "狮尾黑体",
+      "url": "https://github.com/max32002/swei-gothic",
+      "stars": 204
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "bakudaifont",
+      "label": "爆呆",
+      "url": "https://github.com/max32002/bakudaifont",
+      "stars": 170
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillJinshuSong",
+      "label": "寒蝉锦书宋",
+      "url": "https://github.com/Warren2060/ChillJinshuSong",
+      "stars": 169
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "Chillkai",
+      "label": "寒蝉楷体",
+      "url": "https://github.com/Warren2060/Chillkai",
+      "stars": 141
+    },
+    {
+      "author": "atelier-anchor",
+      "githubLogin": "atelier-anchor",
+      "repo": "luohei-variable",
+      "label": "络黑",
+      "url": "https://github.com/atelier-anchor/luohei-variable",
+      "stars": 138
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillDuanHeiSong",
+      "label": "寒蝉端黑宋",
+      "url": "https://github.com/Warren2060/ChillDuanHeiSong",
+      "stars": 128
+    },
+    {
+      "author": "lxgw",
+      "githubLogin": "lxgw",
+      "repo": "LxgwSeal",
+      "label": "霞鹜篆体",
+      "url": "https://github.com/lxgw/LxgwSeal",
+      "stars": 123
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillDIN-ChillDINGothic",
+      "label": "寒蝉 DIN",
+      "url": "https://github.com/Warren2060/ChillDIN-ChillDINGothic",
+      "stars": 123
+    },
+    {
+      "author": "google-fonts",
+      "githubLogin": "googlefonts",
+      "repo": "zen-marugothic",
+      "label": "Zen Maru Gothic",
+      "url": "https://github.com/googlefonts/zen-marugothic",
+      "stars": 116
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillRoundGothic",
+      "label": "寒蝉圆黑体",
+      "url": "https://github.com/Warren2060/ChillRoundGothic",
+      "stars": 114
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "max-hana",
+      "label": "max hana",
+      "url": "https://github.com/max32002/max-hana",
+      "stars": 114
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "masafont",
+      "label": "masafont",
+      "url": "https://github.com/max32002/masafont",
+      "stars": 106
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "pop-gothic",
+      "label": "流行黑",
+      "url": "https://github.com/max32002/pop-gothic",
+      "stars": 105
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "nanifont",
+      "label": "nanifont",
+      "url": "https://github.com/max32002/nanifont",
+      "stars": 102
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "FakePearl",
+      "label": "假珍珠",
+      "url": "https://github.com/max32002/FakePearl",
+      "stars": 101
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillCalligraphy",
+      "label": "寒蝉书法",
+      "url": "https://github.com/Warren2060/ChillCalligraphy",
+      "stars": 89
+    },
+    {
+      "author": "lxgw",
+      "githubLogin": "lxgw",
+      "repo": "BlackSugarPlumCandy",
+      "label": "Black Sugar Plum Candy",
+      "url": "https://github.com/lxgw/BlackSugarPlumCandy",
+      "stars": 86
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "maruko-gothic",
+      "label": "丸子黑",
+      "url": "https://github.com/max32002/maruko-gothic",
+      "stars": 85
+    },
+    {
+      "author": "lxgw",
+      "githubLogin": "lxgw",
+      "repo": "975Hei",
+      "label": "975 黑体",
+      "url": "https://github.com/lxgw/975Hei",
+      "stars": 82
+    },
+    {
+      "author": "lxgw",
+      "githubLogin": "lxgw",
+      "repo": "Pengli",
+      "label": "鹏翎",
+      "url": "https://github.com/lxgw/Pengli",
+      "stars": 73
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "kurewa-gothic",
+      "label": "暮黑",
+      "url": "https://github.com/max32002/kurewa-gothic",
+      "stars": 71
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "TaiwanPearl",
+      "label": "台湾珍珠",
+      "url": "https://github.com/max32002/TaiwanPearl",
+      "stars": 70
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "YuPearl",
+      "label": "余珍珠",
+      "url": "https://github.com/max32002/YuPearl",
+      "stars": 64
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-fan-sans",
+      "label": "狮尾风扇黑",
+      "url": "https://github.com/max32002/swei-fan-sans",
+      "stars": 49
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-sans",
+      "label": "swei sans",
+      "url": "https://github.com/max32002/swei-sans",
+      "stars": 46
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-halfmoon",
+      "label": "swei halfmoon",
+      "url": "https://github.com/max32002/swei-halfmoon",
+      "stars": 39
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "JasonHandWritingFonts",
+      "label": "杰森手写",
+      "url": "https://github.com/max32002/JasonHandWritingFonts",
+      "stars": 38
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillTanHei",
+      "label": "寒蝉谭黑",
+      "url": "https://github.com/Warren2060/ChillTanHei",
+      "stars": 35
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillMatrixBlack",
+      "label": "寒蝉矩阵黑",
+      "url": "https://github.com/Warren2060/ChillMatrixBlack",
+      "stars": 32
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-sugar",
+      "label": "swei sugar",
+      "url": "https://github.com/max32002/swei-sugar",
+      "stars": 31
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillYunmoGothic",
+      "label": "寒蝉云墨黑",
+      "url": "https://github.com/Warren2060/ChillYunmoGothic",
+      "stars": 29
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillZhuoKai",
+      "label": "寒蝉拙楷",
+      "url": "https://github.com/Warren2060/ChillZhuoKai",
+      "stars": 26
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillPixels",
+      "label": "寒蝉像素",
+      "url": "https://github.com/Warren2060/ChillPixels",
+      "stars": 25
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillMatrix",
+      "label": "寒蝉矩阵体",
+      "url": "https://github.com/Warren2060/ChillMatrix",
+      "stars": 24
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillMoonmono",
+      "label": "寒蝉月等宽",
+      "url": "https://github.com/Warren2060/ChillMoonmono",
+      "stars": 23
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-marker-sans",
+      "label": "狮尾马克笔",
+      "url": "https://github.com/max32002/swei-marker-sans",
+      "stars": 23
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-b2-serif",
+      "label": "swei b2 serif",
+      "url": "https://github.com/max32002/swei-b2-serif",
+      "stars": 23
+    },
+    {
+      "author": "lxgw",
+      "githubLogin": "lxgw",
+      "repo": "Fanmei",
+      "label": "范美体",
+      "url": "https://github.com/lxgw/Fanmei",
+      "stars": 20
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-gothic-leg",
+      "label": "狮尾长腿黑",
+      "url": "https://github.com/max32002/swei-gothic-leg",
+      "stars": 20
+    },
+    {
+      "author": "lxgw",
+      "githubLogin": "lxgw",
+      "repo": "LxgwPinyinFont",
+      "label": "霞鹜拼音体",
+      "url": "https://github.com/lxgw/LxgwPinyinFont",
+      "stars": 18
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-toothpaste",
+      "label": "swei toothpaste",
+      "url": "https://github.com/max32002/swei-toothpaste",
+      "stars": 17
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-meatball",
+      "label": "swei meatball",
+      "url": "https://github.com/max32002/swei-meatball",
+      "stars": 17
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-fan-serif",
+      "label": "狮尾仿宋",
+      "url": "https://github.com/max32002/swei-fan-serif",
+      "stars": 16
+    },
+    {
+      "author": "google-fonts",
+      "githubLogin": "googlefonts",
+      "repo": "mashanzheng",
+      "label": "马善政",
+      "url": "https://github.com/googlefonts/mashanzheng",
+      "stars": 15
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-b2-sans",
+      "label": "swei b2 sans",
+      "url": "https://github.com/max32002/swei-b2-sans",
+      "stars": 15
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-xd",
+      "label": "swei xd",
+      "url": "https://github.com/max32002/swei-xd",
+      "stars": 14
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-fan-leg",
+      "label": "swei fan leg",
+      "url": "https://github.com/max32002/swei-fan-leg",
+      "stars": 13
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-jay-serif",
+      "label": "swei jay serif",
+      "url": "https://github.com/max32002/swei-jay-serif",
+      "stars": 12
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-shear-sans",
+      "label": "狮尾剪切黑体",
+      "url": "https://github.com/max32002/swei-shear-sans",
+      "stars": 10
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-fist-sans",
+      "label": "swei fist sans",
+      "url": "https://github.com/max32002/swei-fist-sans",
+      "stars": 10
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-b2-leg",
+      "label": "swei b2 leg",
+      "url": "https://github.com/max32002/swei-b2-leg",
+      "stars": 10
+    },
+    {
+      "author": "chilltype",
+      "githubLogin": "Warren2060",
+      "repo": "ChillLine",
+      "label": "寒蝉线体",
+      "url": "https://github.com/Warren2060/ChillLine",
+      "stars": 9
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-curve-sans",
+      "label": "swei curve sans",
+      "url": "https://github.com/max32002/swei-curve-sans",
+      "stars": 9
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-nut-sans",
+      "label": "swei nut sans",
+      "url": "https://github.com/max32002/swei-nut-sans",
+      "stars": 9
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-devil-sans",
+      "label": "swei devil sans",
+      "url": "https://github.com/max32002/swei-devil-sans",
+      "stars": 8
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-bell-sans",
+      "label": "swei bell sans",
+      "url": "https://github.com/max32002/swei-bell-sans",
+      "stars": 8
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-jay-leg",
+      "label": "swei jay leg",
+      "url": "https://github.com/max32002/swei-jay-leg",
+      "stars": 8
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-right-bottom-sans",
+      "label": "swei right bottom sans",
+      "url": "https://github.com/max32002/swei-right-bottom-sans",
+      "stars": 8
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-shear-leg",
+      "label": "swei shear leg",
+      "url": "https://github.com/max32002/swei-shear-leg",
+      "stars": 8
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-rainbow-leg",
+      "label": "swei rainbow leg",
+      "url": "https://github.com/max32002/swei-rainbow-leg",
+      "stars": 8
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-spike-sans",
+      "label": "swei spike sans",
+      "url": "https://github.com/max32002/swei-spike-sans",
+      "stars": 8
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-match-sans",
+      "label": "狮尾火柴",
+      "url": "https://github.com/max32002/swei-match-sans",
+      "stars": 7
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-dart-sans",
+      "label": "swei dart sans",
+      "url": "https://github.com/max32002/swei-dart-sans",
+      "stars": 7
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-del-luna-sans",
+      "label": "swei del luna sans",
+      "url": "https://github.com/max32002/swei-del-luna-sans",
+      "stars": 7
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-alias-sans",
+      "label": "swei alias sans",
+      "url": "https://github.com/max32002/swei-alias-sans",
+      "stars": 7
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-ax-sans",
+      "label": "swei ax sans",
+      "url": "https://github.com/max32002/swei-ax-sans",
+      "stars": 7
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-fist-leg",
+      "label": "swei fist leg",
+      "url": "https://github.com/max32002/swei-fist-leg",
+      "stars": 6
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-jay-sans",
+      "label": "swei jay sans",
+      "url": "https://github.com/max32002/swei-jay-sans",
+      "stars": 6
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-del-luna-leg",
+      "label": "swei del luna leg",
+      "url": "https://github.com/max32002/swei-del-luna-leg",
+      "stars": 6
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-gospel-sans",
+      "label": "swei gospel sans",
+      "url": "https://github.com/max32002/swei-gospel-sans",
+      "stars": 6
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-bell-leg",
+      "label": "swei bell leg",
+      "url": "https://github.com/max32002/swei-bell-leg",
+      "stars": 6
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-marker-leg",
+      "label": "swei marker leg",
+      "url": "https://github.com/max32002/swei-marker-leg",
+      "stars": 6
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-devil-leg",
+      "label": "swei devil leg",
+      "url": "https://github.com/max32002/swei-devil-leg",
+      "stars": 6
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-3t-sans",
+      "label": "swei 3t sans",
+      "url": "https://github.com/max32002/swei-3t-sans",
+      "stars": 5
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-dart-leg",
+      "label": "swei dart leg",
+      "url": "https://github.com/max32002/swei-dart-leg",
+      "stars": 5
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-right-bottom-leg",
+      "label": "swei right bottom leg",
+      "url": "https://github.com/max32002/swei-right-bottom-leg",
+      "stars": 5
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-d-lucy",
+      "label": "swei d lucy",
+      "url": "https://github.com/max32002/swei-d-lucy",
+      "stars": 5
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-ax-leg",
+      "label": "swei ax leg",
+      "url": "https://github.com/max32002/swei-ax-leg",
+      "stars": 4
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-match-leg",
+      "label": "swei match leg",
+      "url": "https://github.com/max32002/swei-match-leg",
+      "stars": 4
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-bow-sans",
+      "label": "swei bow sans",
+      "url": "https://github.com/max32002/swei-bow-sans",
+      "stars": 4
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-curve-leg",
+      "label": "swei curve leg",
+      "url": "https://github.com/max32002/swei-curve-leg",
+      "stars": 4
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-gospel-leg",
+      "label": "swei gospel leg",
+      "url": "https://github.com/max32002/swei-gospel-leg",
+      "stars": 4
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-bone-sans",
+      "label": "swei bone sans",
+      "url": "https://github.com/max32002/swei-bone-sans",
+      "stars": 4
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-nut-leg",
+      "label": "swei nut leg",
+      "url": "https://github.com/max32002/swei-nut-leg",
+      "stars": 3
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-bow-leg",
+      "label": "swei bow leg",
+      "url": "https://github.com/max32002/swei-bow-leg",
+      "stars": 3
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-alias-leg",
+      "label": "swei alias leg",
+      "url": "https://github.com/max32002/swei-alias-leg",
+      "stars": 3
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-3t-leg",
+      "label": "swei 3t leg",
+      "url": "https://github.com/max32002/swei-3t-leg",
+      "stars": 3
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-spike-leg",
+      "label": "swei spike leg",
+      "url": "https://github.com/max32002/swei-spike-leg",
+      "stars": 3
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-bone-leg",
+      "label": "swei bone leg",
+      "url": "https://github.com/max32002/swei-bone-leg",
+      "stars": 3
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-bat-sans",
+      "label": "swei bat sans",
+      "url": "https://github.com/max32002/swei-bat-sans",
+      "stars": 2
+    },
+    {
+      "author": "aqua",
+      "githubLogin": "max32002",
+      "repo": "swei-bat-leg",
+      "label": "swei bat leg",
+      "url": "https://github.com/max32002/swei-bat-leg",
+      "stars": 1
+    }
+  ]
+}

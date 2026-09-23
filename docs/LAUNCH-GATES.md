@@ -10,7 +10,7 @@
 | **详情路径** | `font-detail.html?slug=albbpht`（兼 `?id=`） | CDN/OSS/Nginx 将 `/fonts/{slug}` rewrite 到详情页；旧 UUID 链 301 到 slug | 打开 `/fonts/ibmps` 与线上一致；错误 slug → `404.html` |
 | **目录真相源** | 本地 `data/fonts.json` 等 | 公开站从 API 或构建流水线拉目录；禁止手改生产 JSON 不入库 | 构建产物含最新目录；字段与 HANDOFF §3 契约一致 |
 | **统计** | 浏览 / 下载 / API 为 `localStorage` 叠加演示 | 服务端计数；详情「统计信息」读 API；样张导出打 download；CDN CSS 打 api | 多端数字一致；刷新不丢；无登录也可增浏览 |
-| **CDN `@font-face`** | 前端 `ensureFontCss` 去 `local()`、补 `font-weight`、修 `font-style` | 拆包流水线输出的 CSS **默认无 local()**，并带正确 `font-weight` / `font-style:normal` | 本机安装 IBM Plex 等时，详情 Bold ≠ Regular（像素墨量可比） |
+| **CDN `@font-face`** | 预览走 `app.windfonts.com/api/css` → `fonts-packages/`；`ensureFontCss` 去 `local()`、统一 `wenfeng-*` family、补 weight | 流水线 CSS 默认无 local()；包内字重与目录一致（如思源 Regular 勿挂 ExtraLight） | `hckht` 等与现网预览同形；本机装同族时 Bold ≠ Regular |
 | **鉴权** | `login.html` 演示角色；控制台 `?demo=1` | 真实登录；`WFChrome.canAccessApp` 接会话；关掉 demo 旁路 | 未登录无「控制台」；demo 仅 staging |
 | **CORS / REST** | 文档写了 `/api/fonts` 等 | 实际网关、API Key、域名白名单、限流与文档一致 | 文档示例 curl 在生产域名可通 |
 
@@ -29,7 +29,7 @@ error_page 404 /404.html;
 ### A. 构建与缓存
 - [ ] 产品页 `wf-proto` / `wf-chrome` / `wf-specimen` / 页面脚本 `?v=` 与改动同步（禁止半仓旧版本）
 - [ ] 不提交 `*.bak`、本地密钥、`.env`
-- [ ] `v5-*.html`、`*-options.html` 不进生产入口（对照页；导航不链）
+- [ ] `v5-*.html`、`*-options.html`、`oss-audit.html`、`lab.html` 不进生产入口（对照 / 研究页；导航不链）。**保留勿删**，见 [LAB.md](LAB.md)。
 
 ### B. 公开主路径冒烟
 - [ ] 首页：字林可换字；字体库链可用

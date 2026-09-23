@@ -1,0 +1,676 @@
+[
+  {
+    "repo": "glow-sans",
+    "author": "welai",
+    "label": "未来荧黑",
+    "full": "welai/glow-sans",
+    "url": "https://github.com/welai/glow-sans",
+    "tag": "v0.93",
+    "assets": [
+      {
+        "name": "GlowSansJ-Compressed-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansJ-Compressed-v0.93.zip",
+        "size": 58761574
+      },
+      {
+        "name": "GlowSansJ-Condensed-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansJ-Condensed-v0.93.zip",
+        "size": 66549463
+      },
+      {
+        "name": "GlowSansJ-Extended-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansJ-Extended-v0.93.zip",
+        "size": 68691518
+      },
+      {
+        "name": "GlowSansJ-Normal-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansJ-Normal-v0.93.zip",
+        "size": 67634366
+      },
+      {
+        "name": "GlowSansJ-Wide-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansJ-Wide-v0.93.zip",
+        "size": 70353958
+      },
+      {
+        "name": "GlowSansSC-Compressed-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansSC-Compressed-v0.93.zip",
+        "size": 58701022
+      },
+      {
+        "name": "GlowSansSC-Condensed-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansSC-Condensed-v0.93.zip",
+        "size": 66410314
+      },
+      {
+        "name": "GlowSansSC-Extended-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansSC-Extended-v0.93.zip",
+        "size": 68511417
+      },
+      {
+        "name": "GlowSansSC-Normal-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansSC-Normal-v0.93.zip",
+        "size": 67419594
+      },
+      {
+        "name": "GlowSansSC-Wide-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansSC-Wide-v0.93.zip",
+        "size": 70139637
+      },
+      {
+        "name": "GlowSansTC-Compressed-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansTC-Compressed-v0.93.zip",
+        "size": 57432315
+      },
+      {
+        "name": "GlowSansTC-Condensed-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansTC-Condensed-v0.93.zip",
+        "size": 65044324
+      },
+      {
+        "name": "GlowSansTC-Extended-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansTC-Extended-v0.93.zip",
+        "size": 67141950
+      },
+      {
+        "name": "GlowSansTC-Normal-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansTC-Normal-v0.93.zip",
+        "size": 66115439
+      },
+      {
+        "name": "GlowSansTC-Wide-v0.93.zip",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/GlowSansTC-Wide-v0.93.zip",
+        "size": 68777683
+      },
+      {
+        "name": "md5-v0.93.txt",
+        "url": "https://github.com/welai/glow-sans/releases/download/v0.93/md5-v0.93.txt",
+        "size": 930
+      }
+    ],
+    "spdx": "MIT"
+  },
+  {
+    "repo": "source-han-mono",
+    "author": "adobe-fonts",
+    "label": "思源等宽",
+    "full": "adobe-fonts/source-han-mono",
+    "url": "https://github.com/adobe-fonts/source-han-mono",
+    "tag": "1.002",
+    "assets": [
+      {
+        "name": "SourceHanMono.ttc",
+        "url": "https://github.com/adobe-fonts/source-han-mono/releases/download/1.002/SourceHanMono.ttc",
+        "size": 122117628
+      }
+    ],
+    "spdx": "NOASSERTION"
+  },
+  {
+    "repo": "MPLUS_FONTS",
+    "author": "mplus",
+    "label": "M+ FONTS",
+    "full": "coz-m/MPLUS_FONTS",
+    "url": "https://github.com/coz-m/MPLUS_FONTS",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "Klee",
+    "author": "fontworks",
+    "label": "Klee One",
+    "full": "fontworks-fonts/Klee",
+    "url": "https://github.com/fontworks-fonts/Klee",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "ChillBitmap",
+    "author": "chilltype",
+    "label": "寒蝉点阵体",
+    "full": "Warren2060/ChillBitmap",
+    "url": "https://github.com/Warren2060/ChillBitmap",
+    "tag": "v2.502",
+    "assets": [
+      {
+        "name": "ChillBitmap_New.zip",
+        "url": "https://github.com/Warren2060/ChillBitmap/releases/download/v2.502/ChillBitmap_New.zip",
+        "size": 3738845
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "DotGothic16",
+    "author": "fontworks",
+    "label": "DotGothic16",
+    "full": "fontworks-fonts/DotGothic16",
+    "url": "https://github.com/fontworks-fonts/DotGothic16",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "Elffont",
+    "author": "justfont",
+    "label": "Elffont",
+    "full": "justfont/Elffont",
+    "url": "https://github.com/justfont/Elffont",
+    "tag": "v1.0",
+    "assets": [
+      {
+        "name": "elffont-fern.otf",
+        "url": "https://github.com/justfont/Elffont/releases/download/v1.0/elffont-fern.otf",
+        "size": 24648
+      },
+      {
+        "name": "elffont-rock.otf",
+        "url": "https://github.com/justfont/Elffont/releases/download/v1.0/elffont-rock.otf",
+        "size": 27668
+      }
+    ],
+    "spdx": "NOASSERTION"
+  },
+  {
+    "repo": "ChillRound",
+    "author": "chilltype",
+    "label": "寒蝉圆黑体",
+    "full": "Warren2060/ChillRound",
+    "url": "https://github.com/Warren2060/ChillRound",
+    "tag": "v1.805",
+    "assets": [
+      {
+        "name": "ChillRoundM_v1.805.zip",
+        "url": "https://github.com/Warren2060/ChillRound/releases/download/v1.805/ChillRoundM_v1.805.zip",
+        "size": 7019202
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "Reggae",
+    "author": "fontworks",
+    "label": "Reggae One",
+    "full": "fontworks-fonts/Reggae",
+    "url": "https://github.com/fontworks-fonts/Reggae",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "Train",
+    "author": "fontworks",
+    "label": "Train One",
+    "full": "fontworks-fonts/Train",
+    "url": "https://github.com/fontworks-fonts/Train",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "Rampart",
+    "author": "fontworks",
+    "label": "Rampart One",
+    "full": "fontworks-fonts/Rampart",
+    "url": "https://github.com/fontworks-fonts/Rampart",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "ChillMovableType",
+    "author": "chilltype",
+    "label": "寒蝉活字",
+    "full": "Warren2060/ChillMovableType",
+    "url": "https://github.com/Warren2060/ChillMovableType",
+    "tag": "HuoFangSongv0.100",
+    "assets": [
+      {
+        "name": "ChillHuoFangSong.zip",
+        "url": "https://github.com/Warren2060/ChillMovableType/releases/download/HuoFangSongv0.100/ChillHuoFangSong.zip",
+        "size": 23542208
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "Stick",
+    "author": "fontworks",
+    "label": "Stick",
+    "full": "fontworks-fonts/Stick",
+    "url": "https://github.com/fontworks-fonts/Stick",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "ChillJinshuSong",
+    "author": "chilltype",
+    "label": "寒蝉锦书宋",
+    "full": "Warren2060/ChillJinshuSong",
+    "url": "https://github.com/Warren2060/ChillJinshuSong",
+    "tag": "GBv2.0",
+    "assets": [
+      {
+        "name": "ChillJinshuSong_v2.0.zip",
+        "url": "https://github.com/Warren2060/ChillJinshuSong/releases/download/GBv2.0/ChillJinshuSong_v2.0.zip",
+        "size": 246849093
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "Chillkai",
+    "author": "chilltype",
+    "label": "寒蝉楷体",
+    "full": "Warren2060/Chillkai",
+    "url": "https://github.com/Warren2060/Chillkai",
+    "tag": "v2.000",
+    "assets": [
+      {
+        "name": "ChillKai.zip",
+        "url": "https://github.com/Warren2060/Chillkai/releases/download/v2.000/ChillKai.zip",
+        "size": 52435245
+      },
+      {
+        "name": "ChillKai_Big5.zip",
+        "url": "https://github.com/Warren2060/Chillkai/releases/download/v2.000/ChillKai_Big5.zip",
+        "size": 33065601
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "luohei-variable",
+    "author": "atelier-anchor",
+    "label": "络黑",
+    "full": "atelier-anchor/luohei-variable",
+    "url": "https://github.com/atelier-anchor/luohei-variable",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "ChillDuanHeiSong",
+    "author": "chilltype",
+    "label": "寒蝉端黑宋",
+    "full": "Warren2060/ChillDuanHeiSong",
+    "url": "https://github.com/Warren2060/ChillDuanHeiSong",
+    "tag": "v1.200",
+    "assets": [
+      {
+        "name": "ChillDuanHeiSongPro_v1.2.zip",
+        "url": "https://github.com/Warren2060/ChillDuanHeiSong/releases/download/v1.200/ChillDuanHeiSongPro_v1.2.zip",
+        "size": 24564555
+      },
+      {
+        "name": "ChillDuanHeiSong_v1.2.zip",
+        "url": "https://github.com/Warren2060/ChillDuanHeiSong/releases/download/v1.200/ChillDuanHeiSong_v1.2.zip",
+        "size": 100775649
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "LxgwSeal",
+    "author": "lxgw",
+    "label": "霞鹜篆体",
+    "full": "lxgw/LxgwSeal",
+    "url": "https://github.com/lxgw/LxgwSeal",
+    "tag": "v0.001-alpha.7.24",
+    "assets": [
+      {
+        "name": "LXGWSeal-Regular.ttf",
+        "url": "https://github.com/lxgw/LxgwSeal/releases/download/v0.001-alpha.7.24/LXGWSeal-Regular.ttf",
+        "size": 197744
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "ChillDIN-ChillDINGothic",
+    "author": "chilltype",
+    "label": "寒蝉 DIN",
+    "full": "Warren2060/ChillDIN-ChillDINGothic",
+    "url": "https://github.com/Warren2060/ChillDIN-ChillDINGothic",
+    "tag": "ChillDINGothic_v1.300",
+    "assets": [
+      {
+        "name": "ChillDINGothic.v1.300.zip",
+        "url": "https://github.com/Warren2060/ChillDIN-ChillDINGothic/releases/download/ChillDINGothic_v1.300/ChillDINGothic.v1.300.zip",
+        "size": 78371664
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "zen-marugothic",
+    "author": "google-fonts",
+    "label": "Zen Maru Gothic",
+    "full": "googlefonts/zen-marugothic",
+    "url": "https://github.com/googlefonts/zen-marugothic",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "ChillRoundGothic",
+    "author": "chilltype",
+    "label": "寒蝉圆黑体",
+    "full": "Warren2060/ChillRoundGothic",
+    "url": "https://github.com/Warren2060/ChillRoundGothic",
+    "tag": "v3.750",
+    "assets": [
+      {
+        "name": "ChillRoundGothic.v3.75.zip",
+        "url": "https://github.com/Warren2060/ChillRoundGothic/releases/download/v3.750/ChillRoundGothic.v3.75.zip",
+        "size": 52573703
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "ChillCalligraphy",
+    "author": "chilltype",
+    "label": "寒蝉书法",
+    "full": "Warren2060/ChillCalligraphy",
+    "url": "https://github.com/Warren2060/ChillCalligraphy",
+    "tag": "LongCangv3.52",
+    "assets": [
+      {
+        "name": "ChillLongCangKai_v3.520.zip",
+        "url": "https://github.com/Warren2060/ChillCalligraphy/releases/download/LongCangv3.52/ChillLongCangKai_v3.520.zip",
+        "size": 13478416
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "BlackSugarPlumCandy",
+    "author": "lxgw",
+    "label": "Black Sugar Plum Candy",
+    "full": "lxgw/BlackSugarPlumCandy",
+    "url": "https://github.com/lxgw/BlackSugarPlumCandy",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "975Hei",
+    "author": "lxgw",
+    "label": "975 黑体",
+    "full": "lxgw/975Hei",
+    "url": "https://github.com/lxgw/975Hei",
+    "tag": "26.06.20",
+    "assets": [
+      {
+        "name": "LXGW975HeiSC-200W.ttf",
+        "url": "https://github.com/lxgw/975Hei/releases/download/26.06.20/LXGW975HeiSC-200W.ttf",
+        "size": 10102890
+      },
+      {
+        "name": "LXGW975HeiSC-300W.ttf",
+        "url": "https://github.com/lxgw/975Hei/releases/download/26.06.20/LXGW975HeiSC-300W.ttf",
+        "size": 11181630
+      },
+      {
+        "name": "LXGW975HeiSC-400W.ttf",
+        "url": "https://github.com/lxgw/975Hei/releases/download/26.06.20/LXGW975HeiSC-400W.ttf",
+        "size": 10527274
+      },
+      {
+        "name": "LXGW975HeiSC-500W.ttf",
+        "url": "https://github.com/lxgw/975Hei/releases/download/26.06.20/LXGW975HeiSC-500W.ttf",
+        "size": 10461094
+      },
+      {
+        "name": "LXGW975HeiSC-700W.ttf",
+        "url": "https://github.com/lxgw/975Hei/releases/download/26.06.20/LXGW975HeiSC-700W.ttf",
+        "size": 9868146
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "Pengli",
+    "author": "lxgw",
+    "label": "鹏翎",
+    "full": "lxgw/Pengli",
+    "url": "https://github.com/lxgw/Pengli",
+    "tag": "v1.033",
+    "assets": [
+      {
+        "name": "PengliWenKai-Regular.ttf",
+        "url": "https://github.com/lxgw/Pengli/releases/download/v1.033/PengliWenKai-Regular.ttf",
+        "size": 10110212
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "ChillTanHei",
+    "author": "chilltype",
+    "label": "寒蝉谭黑",
+    "full": "Warren2060/ChillTanHei",
+    "url": "https://github.com/Warren2060/ChillTanHei",
+    "tag": "v1.00",
+    "assets": [
+      {
+        "name": "ChillTanHei_v1.00.zip",
+        "url": "https://github.com/Warren2060/ChillTanHei/releases/download/v1.00/ChillTanHei_v1.00.zip",
+        "size": 61599955
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "ChillMatrixBlack",
+    "author": "chilltype",
+    "label": "寒蝉矩阵黑",
+    "full": "Warren2060/ChillMatrixBlack",
+    "url": "https://github.com/Warren2060/ChillMatrixBlack",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "ChillYunmoGothic",
+    "author": "chilltype",
+    "label": "寒蝉云墨黑",
+    "full": "Warren2060/ChillYunmoGothic",
+    "url": "https://github.com/Warren2060/ChillYunmoGothic",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "ChillZhuoKai",
+    "author": "chilltype",
+    "label": "寒蝉拙楷",
+    "full": "Warren2060/ChillZhuoKai",
+    "url": "https://github.com/Warren2060/ChillZhuoKai",
+    "tag": "v1.300",
+    "assets": [
+      {
+        "name": "ChillZhuoKai_R.otf",
+        "url": "https://github.com/Warren2060/ChillZhuoKai/releases/download/v1.300/ChillZhuoKai_R.otf",
+        "size": 19904932
+      },
+      {
+        "name": "ChillZhuoKai_R.ttf",
+        "url": "https://github.com/Warren2060/ChillZhuoKai/releases/download/v1.300/ChillZhuoKai_R.ttf",
+        "size": 34952848
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "ChillPixels",
+    "author": "chilltype",
+    "label": "寒蝉像素",
+    "full": "Warren2060/ChillPixels",
+    "url": "https://github.com/Warren2060/ChillPixels",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "ChillMatrix",
+    "author": "chilltype",
+    "label": "寒蝉矩阵体",
+    "full": "Warren2060/ChillMatrix",
+    "url": "https://github.com/Warren2060/ChillMatrix",
+    "tag": "v2.000Ultra",
+    "assets": [
+      {
+        "name": "ChillMatrix-Demi.otf",
+        "url": "https://github.com/Warren2060/ChillMatrix/releases/download/v2.000Ultra/ChillMatrix-Demi.otf",
+        "size": 1818832
+      },
+      {
+        "name": "ChillMatrix-Normal.otf",
+        "url": "https://github.com/Warren2060/ChillMatrix/releases/download/v2.000Ultra/ChillMatrix-Normal.otf",
+        "size": 1758300
+      },
+      {
+        "name": "ChillMatrix-Ultra.otf",
+        "url": "https://github.com/Warren2060/ChillMatrix/releases/download/v2.000Ultra/ChillMatrix-Ultra.otf",
+        "size": 1883200
+      }
+    ],
+    "spdx": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/licenses/licenses#get-the-license-for-a-repository\",\"status\":\"404\"}"
+  },
+  {
+    "repo": "ChillMoonmono",
+    "author": "chilltype",
+    "label": "寒蝉月等宽",
+    "full": "Warren2060/ChillMoonmono",
+    "url": "https://github.com/Warren2060/ChillMoonmono",
+    "tag": "v1.000",
+    "assets": [
+      {
+        "name": "ChillMoonMono.zip",
+        "url": "https://github.com/Warren2060/ChillMoonmono/releases/download/v1.000/ChillMoonMono.zip",
+        "size": 25675
+      }
+    ],
+    "spdx": "OFL-1.1"
+  },
+  {
+    "repo": "Fanmei",
+    "author": "lxgw",
+    "label": "范美体",
+    "full": "lxgw/Fanmei",
+    "url": "https://github.com/lxgw/Fanmei",
+    "tag": "v0.004.1",
+    "assets": [
+      {
+        "name": "Fanmei-Hei.ttf",
+        "url": "https://github.com/lxgw/Fanmei/releases/download/v0.004.1/Fanmei-Hei.ttf",
+        "size": 4175556
+      },
+      {
+        "name": "Fanmei-Ming.ttf",
+        "url": "https://github.com/lxgw/Fanmei/releases/download/v0.004.1/Fanmei-Ming.ttf",
+        "size": 5532260
+      }
+    ],
+    "spdx": "0BSD"
+  },
+  {
+    "repo": "LxgwPinyinFont",
+    "author": "lxgw",
+    "label": "霞鹜拼音体",
+    "full": "lxgw/LxgwPinyinFont",
+    "url": "https://github.com/lxgw/LxgwPinyinFont",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "mashanzheng",
+    "author": "google-fonts",
+    "label": "马善政",
+    "full": "googlefonts/mashanzheng",
+    "url": "https://github.com/googlefonts/mashanzheng",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "ChillLine",
+    "author": "chilltype",
+    "label": "寒蝉线体",
+    "full": "Warren2060/ChillLine",
+    "url": "https://github.com/Warren2060/ChillLine",
+    "error": "no releases",
+    "hint": "no_releases"
+  },
+  {
+    "repo": "naikaifont",
+    "author": "aqua",
+    "label": "奈楷",
+    "full": "max32002/naikaifont",
+    "url": "https://github.com/max32002/naikaifont",
+    "tag": "1.89",
+    "assets": [],
+    "spdx": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/licenses/licenses#get-the-license-for-a-repository\",\"status\":\"404\"}"
+  },
+  {
+    "repo": "swei-gothic",
+    "author": "aqua",
+    "label": "狮尾黑体",
+    "full": "max32002/swei-gothic",
+    "url": "https://github.com/max32002/swei-gothic",
+    "tag": "2.143",
+    "assets": [],
+    "spdx": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/licenses/licenses#get-the-license-for-a-repository\",\"status\":\"404\"}"
+  },
+  {
+    "repo": "bakudaifont",
+    "author": "aqua",
+    "label": "爆呆",
+    "full": "max32002/bakudaifont",
+    "url": "https://github.com/max32002/bakudaifont",
+    "tag": "1.49",
+    "assets": [],
+    "spdx": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/licenses/licenses#get-the-license-for-a-repository\",\"status\":\"404\"}"
+  },
+  {
+    "repo": "max-hana",
+    "author": "aqua",
+    "label": "max hana",
+    "full": "max32002/max-hana",
+    "url": "https://github.com/max32002/max-hana",
+    "tag": "1.1",
+    "assets": [],
+    "spdx": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/licenses/licenses#get-the-license-for-a-repository\",\"status\":\"404\"}"
+  },
+  {
+    "repo": "masafont",
+    "author": "aqua",
+    "label": "masafont",
+    "full": "max32002/masafont",
+    "url": "https://github.com/max32002/masafont",
+    "tag": "2.1",
+    "assets": [],
+    "spdx": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/licenses/licenses#get-the-license-for-a-repository\",\"status\":\"404\"}"
+  },
+  {
+    "repo": "pop-gothic",
+    "author": "aqua",
+    "label": "流行黑",
+    "full": "max32002/pop-gothic",
+    "url": "https://github.com/max32002/pop-gothic",
+    "tag": "2.143",
+    "assets": [],
+    "spdx": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/licenses/licenses#get-the-license-for-a-repository\",\"status\":\"404\"}"
+  },
+  {
+    "repo": "nanifont",
+    "author": "aqua",
+    "label": "nanifont",
+    "full": "max32002/nanifont",
+    "url": "https://github.com/max32002/nanifont",
+    "tag": "1.046",
+    "assets": [],
+    "spdx": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/licenses/licenses#get-the-license-for-a-repository\",\"status\":\"404\"}"
+  },
+  {
+    "repo": "FakePearl",
+    "author": "aqua",
+    "label": "假珍珠",
+    "full": "max32002/FakePearl",
+    "url": "https://github.com/max32002/FakePearl",
+    "tag": "1.1",
+    "assets": [],
+    "spdx": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/licenses/licenses#get-the-license-for-a-repository\",\"status\":\"404\"}"
+  }
+]

@@ -19,7 +19,8 @@ pricing.html docs.html login.html styleguide.html                 内联少量�
 about.html 404.html upload-terms.html claim.html                  关于 / 404 / 上传条款 / 认领（claim.js）
 privacy.html terms.html disclaimer.html trademark.html            说明页（wf-docs-nav；文档独立）
 shopping-bag.html         选字袋                                  js/pages/bag.js
-design-options.html       设计方向对比（决策留档）                css/design-options.css
+design-options.html       设计方向对比（决策留档，勿删）         css/design-options.css · 索引 lab.html
+*-options.html · v5-*.html · oss-audit.html · lab.html          对照实验室（见 docs/LAB.md · data/lab-archive.json）
 detail-options.html       详情结构对照（甲乙丙丁，不进现页）     css/detail-options.css / js/pages/detail-options.js
 detail-meta-options.html  详情标题/资料/预览对照（不进现页）     css/detail-options.css / js/pages/detail-meta-options.js
 detail-license-options.html 详情授权/谱系对照（不进现页）         css/detail-options.css / js/pages/detail-license-options.js

@@ -1,0 +1,2979 @@
+{
+  "generated": "2026-09-23",
+  "source": "data/foundries.json openSource:true + adobe-fonts Source Han",
+  "avatarPolicy": "Front reads data/avatars.json (WFChrome.brandAvatar). Preserve local webp. Fill GitHub avatar URLs only for missing ids (skip mengshen/975maru/unifoundry).",
+  "avatarUpdates": {
+    "chilltype": "https://avatars.githubusercontent.com/u/87366329?v=4",
+    "mplus": "https://avatars.githubusercontent.com/u/64181979?v=4",
+    "fontworks": "https://avatars.githubusercontent.com/u/75841789?v=4",
+    "justfont": "https://avatars.githubusercontent.com/u/5063162?v=4",
+    "aqua": "https://avatars.githubusercontent.com/u/4498233?v=4",
+    "potta": "https://avatars.githubusercontent.com/u/55338493?v=4",
+    "chncwk": "https://avatars.githubusercontent.com/u/49968569?v=4"
+  },
+  "authors": [
+    {
+      "id": "lxgw",
+      "name": "落霞孤鹜",
+      "en": "LXGW",
+      "kind": "author",
+      "website": "https://github.com/lxgw",
+      "github": "https://github.com/lxgw",
+      "githubLogin": "lxgw",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/51902309?v=4",
+      "hasLocalAvatar": true,
+      "localAvatar": "assets/avatars/lxgw.webp",
+      "avatarFilled": false,
+      "note": "",
+      "fontsOnGithub": [
+        {
+          "repo": "LxgwWenKai",
+          "url": "https://github.com/lxgw/LxgwWenKai",
+          "stars": 26043,
+          "label": "霞鹜文楷",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜文楷",
+            "LXGW WenKai"
+          ]
+        },
+        {
+          "repo": "LxgwNeoXiHei",
+          "url": "https://github.com/lxgw/LxgwNeoXiHei",
+          "stars": 2663,
+          "label": "霞鹜新晰黑",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜新晰黑",
+            "LXGW Neo XiHei"
+          ]
+        },
+        {
+          "repo": "kose-font",
+          "url": "https://github.com/lxgw/kose-font",
+          "stars": 2306,
+          "label": "小赖字体",
+          "inCatalog": true,
+          "matchedAs": [
+            "Xiaolai SC"
+          ]
+        },
+        {
+          "repo": "LxgwWenKai-Screen",
+          "url": "https://github.com/lxgw/LxgwWenKai-Screen",
+          "stars": 2154,
+          "label": "霞鹜文楷 Screen",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜文楷 Screen",
+            "LXGW WenKai Screen"
+          ]
+        },
+        {
+          "repo": "LxgwWenkaiGB",
+          "url": "https://github.com/lxgw/LxgwWenkaiGB",
+          "stars": 1478,
+          "label": "霞鹜文楷 GB",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜文楷 GB",
+            "LXGW WenKai GB"
+          ]
+        },
+        {
+          "repo": "yozai-font",
+          "url": "https://github.com/lxgw/yozai-font",
+          "stars": 1252,
+          "label": "悠哉字体",
+          "inCatalog": true,
+          "matchedAs": [
+            "悠哉字体",
+            "Yozai"
+          ]
+        },
+        {
+          "repo": "LxgwNeoZhiSong",
+          "url": "https://github.com/lxgw/LxgwNeoZhiSong",
+          "stars": 1252,
+          "label": "霞鹜新致宋",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜新致宋",
+            "LXGW Neo ZhiSong"
+          ]
+        },
+        {
+          "repo": "LxgwZhenKai",
+          "url": "https://github.com/lxgw/LxgwZhenKai",
+          "stars": 891,
+          "label": "霞鹜臻楷",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜臻楷",
+            "LXGW ZhenKai"
+          ]
+        },
+        {
+          "repo": "LxgwWenkaiTC",
+          "url": "https://github.com/lxgw/LxgwWenkaiTC",
+          "stars": 858,
+          "label": "霞鹜文楷 TC",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜文楷 TC",
+            "LXGW WenKai TC"
+          ]
+        },
+        {
+          "repo": "LxgwBright",
+          "url": "https://github.com/lxgw/LxgwBright",
+          "stars": 679,
+          "label": "霞鹜文楷 Bright",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜文楷 Bright",
+            "LXGW Bright"
+          ]
+        },
+        {
+          "repo": "LxgwMarkerGothic",
+          "url": "https://github.com/lxgw/LxgwMarkerGothic",
+          "stars": 561,
+          "label": "霞鹜漫黑",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜漫黑",
+            "LXGW Marker Gothic"
+          ]
+        },
+        {
+          "repo": "LxgwWenKai-Lite",
+          "url": "https://github.com/lxgw/LxgwWenKai-Lite",
+          "stars": 560,
+          "label": "霞鹜文楷 Lite",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜文楷 Lite",
+            "LXGW WenKai Lite"
+          ]
+        },
+        {
+          "repo": "LxgwNeoXiZhi-Screen",
+          "url": "https://github.com/lxgw/LxgwNeoXiZhi-Screen",
+          "stars": 356,
+          "label": "霞鹜新晰黑 Screen",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜新晰黑 Screen"
+          ]
+        },
+        {
+          "repo": "LxgwXiHei",
+          "url": "https://github.com/lxgw/LxgwXiHei",
+          "stars": 293,
+          "label": "霞鹜晰黑",
+          "inCatalog": true,
+          "matchedAs": [
+            "LXGW XiHei CL"
+          ]
+        },
+        {
+          "repo": "LxgwBright-Code",
+          "url": "https://github.com/lxgw/LxgwBright-Code",
+          "stars": 253,
+          "label": "霞鹜文楷 Bright Code",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜文楷 Bright Code",
+            "LXGW Bright Code"
+          ]
+        },
+        {
+          "repo": "975Yuan",
+          "url": "https://github.com/lxgw/975Yuan",
+          "stars": 196,
+          "label": "975 圆体",
+          "inCatalog": true,
+          "matchedAs": [
+            "975 圆体"
+          ]
+        },
+        {
+          "repo": "LxgwZhiSong",
+          "url": "https://github.com/lxgw/LxgwZhiSong",
+          "stars": 144,
+          "label": "霞鹜致宋",
+          "inCatalog": true,
+          "matchedAs": [
+            "LXGW ZhiSong CL"
+          ]
+        },
+        {
+          "repo": "LxgwSeal",
+          "url": "https://github.com/lxgw/LxgwSeal",
+          "stars": 123,
+          "label": "霞鹜篆体",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "LxgwWenkaiGB-Fusion",
+          "url": "https://github.com/lxgw/LxgwWenkaiGB-Fusion",
+          "stars": 103,
+          "label": "霞鹜文楷 GB Fusion",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜文楷 GB Fusion",
+            "LXGW WenKai GB Fusion"
+          ]
+        },
+        {
+          "repo": "BlackSugarPlumCandy",
+          "url": "https://github.com/lxgw/BlackSugarPlumCandy",
+          "stars": 86,
+          "label": "Black Sugar Plum Candy",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "FusionKai",
+          "url": "https://github.com/lxgw/FusionKai",
+          "stars": 84,
+          "label": "Fusion Kai",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "975Hei",
+          "url": "https://github.com/lxgw/975Hei",
+          "stars": 82,
+          "label": "975 黑体",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "Pengli",
+          "url": "https://github.com/lxgw/Pengli",
+          "stars": 73,
+          "label": "鹏翎",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "NeoXiHei-Code",
+          "url": "https://github.com/lxgw/NeoXiHei-Code",
+          "stars": 68,
+          "label": "霞鹜新晰黑 Code",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜新晰黑 Code",
+            "Neo XiHei Code"
+          ]
+        },
+        {
+          "repo": "LxgwWenkaiGB-Lite",
+          "url": "https://github.com/lxgw/LxgwWenkaiGB-Lite",
+          "stars": 50,
+          "label": "霞鹜文楷 GB Lite",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜文楷 GB Lite",
+            "LXGW WenKai GB Lite"
+          ]
+        },
+        {
+          "repo": "LxgwHeartSerif",
+          "url": "https://github.com/lxgw/LxgwHeartSerif",
+          "stars": 38,
+          "label": "霞鹜铭心宋",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜铭心宋",
+            "LXGW Heart Serif"
+          ]
+        },
+        {
+          "repo": "975HazyGo",
+          "url": "https://github.com/lxgw/975HazyGo",
+          "stars": 38,
+          "label": "975Hazy Go",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "LxgwFasmartGothic",
+          "url": "https://github.com/lxgw/LxgwFasmartGothic",
+          "stars": 33,
+          "label": "霞鹜尚智黑",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜尚智黑",
+            "LXGW Fasmart Gothic"
+          ]
+        },
+        {
+          "repo": "LxgwWenkaiKR",
+          "url": "https://github.com/lxgw/LxgwWenkaiKR",
+          "stars": 32,
+          "label": "霞鹜文楷 KR",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜文楷 KR",
+            "LXGW WenKai KR"
+          ]
+        },
+        {
+          "repo": "Fanmei",
+          "url": "https://github.com/lxgw/Fanmei",
+          "stars": 20,
+          "label": "范美体",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "LxgwNeoXiZhi-Fusion",
+          "url": "https://github.com/lxgw/LxgwNeoXiZhi-Fusion",
+          "stars": 20,
+          "label": "霞鹜新晰黑 Plus",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜新晰黑 Plus"
+          ]
+        },
+        {
+          "repo": "LxgwPinyinFont",
+          "url": "https://github.com/lxgw/LxgwPinyinFont",
+          "stars": 18,
+          "label": "霞鹜拼音体",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "LxgwNeoXiHeiTC",
+          "url": "https://github.com/lxgw/LxgwNeoXiHeiTC",
+          "stars": 7,
+          "label": "霞鹜新晰黑 TC",
+          "inCatalog": true,
+          "matchedAs": [
+            "霞鹜新晰黑",
+            "LXGW Neo XiHei"
+          ]
+        }
+      ],
+      "fontsInCatalog": [
+        "975 圆体",
+        "LXGW Bright",
+        "LXGW Bright Code",
+        "LXGW Fasmart Gothic",
+        "LXGW Heart Serif",
+        "LXGW Marker Gothic",
+        "LXGW Neo XiHei",
+        "LXGW Neo ZhiSong",
+        "LXGW WenKai",
+        "LXGW WenKai GB",
+        "LXGW WenKai GB Fusion",
+        "LXGW WenKai GB Lite",
+        "LXGW WenKai KR",
+        "LXGW WenKai Lite",
+        "LXGW WenKai Screen",
+        "LXGW WenKai TC",
+        "LXGW XiHei CL",
+        "LXGW ZhenKai",
+        "LXGW ZhiSong CL",
+        "Neo XiHei Code",
+        "Xiaolai SC",
+        "Yozai",
+        "小赖字体",
+        "小赖字体 SC",
+        "小赖字体等宽 SC",
+        "悠哉字体",
+        "霞鹜尚智黑",
+        "霞鹜尚智黑 CL",
+        "霞鹜尚智黑 MN",
+        "霞鹜文楷",
+        "霞鹜文楷 Bright",
+        "霞鹜文楷 Bright Code",
+        "霞鹜文楷 Bright Code GB",
+        "霞鹜文楷 Bright Code TC",
+        "霞鹜文楷 Bright GB",
+        "霞鹜文楷 Bright TC",
+        "霞鹜文楷 GB",
+        "霞鹜文楷 GB Fusion",
+        "霞鹜文楷 GB Lite",
+        "霞鹜文楷 GB Screen",
+        "霞鹜文楷 KR",
+        "霞鹜文楷 Lite",
+        "霞鹜文楷 Screen",
+        "霞鹜文楷 TC",
+        "霞鹜文楷等宽 GB Fusion",
+        "霞鹜文楷等宽 GB Lite",
+        "霞鹜文楷等宽 GB Screen",
+        "霞鹜文楷等宽 KR",
+        "霞鹜文楷等宽 Lite",
+        "霞鹜文楷等宽 Screen",
+        "霞鹜新晰黑",
+        "霞鹜新晰黑 Code",
+        "霞鹜新晰黑 Plus",
+        "霞鹜新晰黑 Screen",
+        "霞鹜新晰黑 Screen Full",
+        "霞鹜新致宋",
+        "霞鹜新致宋 Plus",
+        "霞鹜新致宋 Screen",
+        "霞鹜新致宋 Screen Full",
+        "霞鹜晰黑 CL",
+        "霞鹜晰黑 MN",
+        "霞鹜漫黑",
+        "霞鹜致宋 CL",
+        "霞鹜致宋 MN",
+        "霞鹜臻楷",
+        "霞鹜臻楷 Slab",
+        "霞鹜铭心宋",
+        "霞鹜铭心宋 CL",
+        "霞鹜铭心宋 MN"
+      ],
+      "missing": [
+        {
+          "repo": "LxgwSeal",
+          "label": "霞鹜篆体",
+          "url": "https://github.com/lxgw/LxgwSeal",
+          "stars": 123
+        },
+        {
+          "repo": "BlackSugarPlumCandy",
+          "label": "Black Sugar Plum Candy",
+          "url": "https://github.com/lxgw/BlackSugarPlumCandy",
+          "stars": 86
+        },
+        {
+          "repo": "975Hei",
+          "label": "975 黑体",
+          "url": "https://github.com/lxgw/975Hei",
+          "stars": 82
+        },
+        {
+          "repo": "Pengli",
+          "label": "鹏翎",
+          "url": "https://github.com/lxgw/Pengli",
+          "stars": 73
+        },
+        {
+          "repo": "Fanmei",
+          "label": "范美体",
+          "url": "https://github.com/lxgw/Fanmei",
+          "stars": 20
+        },
+        {
+          "repo": "LxgwPinyinFont",
+          "label": "霞鹜拼音体",
+          "url": "https://github.com/lxgw/LxgwPinyinFont",
+          "stars": 18
+        }
+      ],
+      "missingCount": 6
+    },
+    {
+      "id": "chilltype",
+      "name": "寒蝉字型",
+      "en": "ChillType",
+      "kind": "author",
+      "website": "https://github.com/Warren2060",
+      "github": "https://github.com/Warren2060",
+      "githubLogin": "Warren2060",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/87366329?v=4",
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": true,
+      "note": "GitHub = Warren2060（勿用 chilltype 同名号）",
+      "fontsOnGithub": [
+        {
+          "repo": "ChillBitmap",
+          "url": "https://github.com/Warren2060/ChillBitmap",
+          "stars": 551,
+          "label": "寒蝉点阵体",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillRound",
+          "url": "https://github.com/Warren2060/ChillRound",
+          "stars": 374,
+          "label": "寒蝉圆黑体",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillMovableType",
+          "url": "https://github.com/Warren2060/ChillMovableType",
+          "stars": 214,
+          "label": "寒蝉活字",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillJinshuSong",
+          "url": "https://github.com/Warren2060/ChillJinshuSong",
+          "stars": 169,
+          "label": "寒蝉锦书宋",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "Chillkai",
+          "url": "https://github.com/Warren2060/Chillkai",
+          "stars": 141,
+          "label": "寒蝉楷体",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillDuanHeiSong",
+          "url": "https://github.com/Warren2060/ChillDuanHeiSong",
+          "stars": 128,
+          "label": "寒蝉端黑宋",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillDIN-ChillDINGothic",
+          "url": "https://github.com/Warren2060/ChillDIN-ChillDINGothic",
+          "stars": 123,
+          "label": "寒蝉 DIN",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillRoundGothic",
+          "url": "https://github.com/Warren2060/ChillRoundGothic",
+          "stars": 114,
+          "label": "寒蝉圆黑体",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillCalligraphy",
+          "url": "https://github.com/Warren2060/ChillCalligraphy",
+          "stars": 89,
+          "label": "寒蝉书法",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillDuanSans",
+          "url": "https://github.com/Warren2060/ChillDuanSans",
+          "stars": 73,
+          "label": "寒蝉端黑体",
+          "inCatalog": true,
+          "matchedAs": [
+            "ChillDuanSans ExtraLight"
+          ]
+        },
+        {
+          "repo": "ChillGSans",
+          "url": "https://github.com/Warren2060/ChillGSans",
+          "stars": 67,
+          "label": "寒蝉宽黑体",
+          "inCatalog": true,
+          "matchedAs": [
+            "寒蝉宽黑体"
+          ]
+        },
+        {
+          "repo": "ChillShouZhuo",
+          "url": "https://github.com/Warren2060/ChillShouZhuo",
+          "stars": 60,
+          "label": "寒蝉手拙体",
+          "inCatalog": true,
+          "matchedAs": [
+            "寒蝉手拙体",
+            "ChillZhuo"
+          ]
+        },
+        {
+          "repo": "ChillReunion",
+          "url": "https://github.com/Warren2060/ChillReunion",
+          "stars": 58,
+          "label": "寒蝉团圆体",
+          "inCatalog": true,
+          "matchedAs": [
+            "Chill Reunion Sans"
+          ]
+        },
+        {
+          "repo": "ChillKSans",
+          "url": "https://github.com/Warren2060/ChillKSans",
+          "stars": 38,
+          "label": "寒蝉宽黑体",
+          "inCatalog": true,
+          "matchedAs": [
+            "寒蝉宽黑体",
+            "Chill K Sans"
+          ]
+        },
+        {
+          "repo": "ChillTanHei",
+          "url": "https://github.com/Warren2060/ChillTanHei",
+          "stars": 35,
+          "label": "寒蝉谭黑",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillMatrixBlack",
+          "url": "https://github.com/Warren2060/ChillMatrixBlack",
+          "stars": 32,
+          "label": "寒蝉矩阵黑",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillYunmoGothic",
+          "url": "https://github.com/Warren2060/ChillYunmoGothic",
+          "stars": 29,
+          "label": "寒蝉云墨黑",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillZhuoKai",
+          "url": "https://github.com/Warren2060/ChillZhuoKai",
+          "stars": 26,
+          "label": "寒蝉拙楷",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillPixels",
+          "url": "https://github.com/Warren2060/ChillPixels",
+          "stars": 25,
+          "label": "寒蝉像素",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillMatrix",
+          "url": "https://github.com/Warren2060/ChillMatrix",
+          "stars": 24,
+          "label": "寒蝉矩阵体",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillMoonmono",
+          "url": "https://github.com/Warren2060/ChillMoonmono",
+          "stars": 23,
+          "label": "寒蝉月等宽",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "ChillLine",
+          "url": "https://github.com/Warren2060/ChillLine",
+          "stars": 9,
+          "label": "寒蝉线体",
+          "inCatalog": false,
+          "matchedAs": []
+        }
+      ],
+      "fontsInCatalog": [
+        "Chill K Sans",
+        "Chill Reunion Sans",
+        "ChillDuanSans ExtraLight",
+        "ChillZhuo",
+        "寒蝉团圆体",
+        "寒蝉团圆体 Sans",
+        "寒蝉宽黑体",
+        "寒蝉手拙体",
+        "寒蝉端黑体",
+        "寒蝉端黑体 Black",
+        "寒蝉龙藏楷书"
+      ],
+      "missing": [
+        {
+          "repo": "ChillBitmap",
+          "label": "寒蝉点阵体",
+          "url": "https://github.com/Warren2060/ChillBitmap",
+          "stars": 551
+        },
+        {
+          "repo": "ChillRound",
+          "label": "寒蝉圆黑体",
+          "url": "https://github.com/Warren2060/ChillRound",
+          "stars": 374
+        },
+        {
+          "repo": "ChillMovableType",
+          "label": "寒蝉活字",
+          "url": "https://github.com/Warren2060/ChillMovableType",
+          "stars": 214
+        },
+        {
+          "repo": "ChillJinshuSong",
+          "label": "寒蝉锦书宋",
+          "url": "https://github.com/Warren2060/ChillJinshuSong",
+          "stars": 169
+        },
+        {
+          "repo": "Chillkai",
+          "label": "寒蝉楷体",
+          "url": "https://github.com/Warren2060/Chillkai",
+          "stars": 141
+        },
+        {
+          "repo": "ChillDuanHeiSong",
+          "label": "寒蝉端黑宋",
+          "url": "https://github.com/Warren2060/ChillDuanHeiSong",
+          "stars": 128
+        },
+        {
+          "repo": "ChillDIN-ChillDINGothic",
+          "label": "寒蝉 DIN",
+          "url": "https://github.com/Warren2060/ChillDIN-ChillDINGothic",
+          "stars": 123
+        },
+        {
+          "repo": "ChillRoundGothic",
+          "label": "寒蝉圆黑体",
+          "url": "https://github.com/Warren2060/ChillRoundGothic",
+          "stars": 114
+        },
+        {
+          "repo": "ChillCalligraphy",
+          "label": "寒蝉书法",
+          "url": "https://github.com/Warren2060/ChillCalligraphy",
+          "stars": 89
+        },
+        {
+          "repo": "ChillTanHei",
+          "label": "寒蝉谭黑",
+          "url": "https://github.com/Warren2060/ChillTanHei",
+          "stars": 35
+        },
+        {
+          "repo": "ChillMatrixBlack",
+          "label": "寒蝉矩阵黑",
+          "url": "https://github.com/Warren2060/ChillMatrixBlack",
+          "stars": 32
+        },
+        {
+          "repo": "ChillYunmoGothic",
+          "label": "寒蝉云墨黑",
+          "url": "https://github.com/Warren2060/ChillYunmoGothic",
+          "stars": 29
+        },
+        {
+          "repo": "ChillZhuoKai",
+          "label": "寒蝉拙楷",
+          "url": "https://github.com/Warren2060/ChillZhuoKai",
+          "stars": 26
+        },
+        {
+          "repo": "ChillPixels",
+          "label": "寒蝉像素",
+          "url": "https://github.com/Warren2060/ChillPixels",
+          "stars": 25
+        },
+        {
+          "repo": "ChillMatrix",
+          "label": "寒蝉矩阵体",
+          "url": "https://github.com/Warren2060/ChillMatrix",
+          "stars": 24
+        },
+        {
+          "repo": "ChillMoonmono",
+          "label": "寒蝉月等宽",
+          "url": "https://github.com/Warren2060/ChillMoonmono",
+          "stars": 23
+        },
+        {
+          "repo": "ChillLine",
+          "label": "寒蝉线体",
+          "url": "https://github.com/Warren2060/ChillLine",
+          "stars": 9
+        }
+      ],
+      "missingCount": 17
+    },
+    {
+      "id": "atelier-anchor",
+      "name": "锚点工作室",
+      "en": "atelierAnchor",
+      "kind": "author",
+      "website": "https://atelier-anchor.com",
+      "github": "https://github.com/atelier-anchor",
+      "githubLogin": "atelier-anchor",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/88432959?v=4",
+      "hasLocalAvatar": true,
+      "localAvatar": "assets/avatars/atelier-anchor.webp",
+      "avatarFilled": false,
+      "note": "",
+      "fontsOnGithub": [
+        {
+          "repo": "smiley-sans",
+          "url": "https://github.com/atelier-anchor/smiley-sans",
+          "stars": 14865,
+          "label": "得意黑",
+          "inCatalog": true,
+          "matchedAs": [
+            "得意黑",
+            "Smiley Sans Oblique"
+          ]
+        },
+        {
+          "repo": "luohei-variable",
+          "url": "https://github.com/atelier-anchor/luohei-variable",
+          "stars": 138,
+          "label": "络黑",
+          "inCatalog": false,
+          "matchedAs": []
+        }
+      ],
+      "fontsInCatalog": [
+        "Smiley Sans Oblique",
+        "得意黑"
+      ],
+      "missing": [
+        {
+          "repo": "luohei-variable",
+          "label": "络黑",
+          "url": "https://github.com/atelier-anchor/luohei-variable",
+          "stars": 138
+        }
+      ],
+      "missingCount": 1
+    },
+    {
+      "id": "fontworks",
+      "name": "Fontworks",
+      "en": "Fontworks Inc.",
+      "kind": "foundry",
+      "website": "https://github.com/fontworks-fonts",
+      "github": "https://github.com/fontworks-fonts",
+      "githubLogin": "fontworks-fonts",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/75841789?v=4",
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": true,
+      "note": "",
+      "fontsOnGithub": [
+        {
+          "repo": "Klee",
+          "url": "https://github.com/fontworks-fonts/Klee",
+          "stars": 1098,
+          "label": "Klee One",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "DotGothic16",
+          "url": "https://github.com/fontworks-fonts/DotGothic16",
+          "stars": 498,
+          "label": "DotGothic16",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "RocknRoll",
+          "url": "https://github.com/fontworks-fonts/RocknRoll",
+          "stars": 302,
+          "label": "RocknRoll",
+          "inCatalog": true,
+          "matchedAs": [
+            "RocknRoll",
+            "RocknRoll One"
+          ]
+        },
+        {
+          "repo": "Reggae",
+          "url": "https://github.com/fontworks-fonts/Reggae",
+          "stars": 246,
+          "label": "Reggae One",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "Train",
+          "url": "https://github.com/fontworks-fonts/Train",
+          "stars": 243,
+          "label": "Train One",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "Rampart",
+          "url": "https://github.com/fontworks-fonts/Rampart",
+          "stars": 227,
+          "label": "Rampart One",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "Stick",
+          "url": "https://github.com/fontworks-fonts/Stick",
+          "stars": 206,
+          "label": "Stick",
+          "inCatalog": false,
+          "matchedAs": []
+        }
+      ],
+      "fontsInCatalog": [
+        "RocknRoll",
+        "RocknRoll One"
+      ],
+      "missing": [
+        {
+          "repo": "Klee",
+          "label": "Klee One",
+          "url": "https://github.com/fontworks-fonts/Klee",
+          "stars": 1098
+        },
+        {
+          "repo": "DotGothic16",
+          "label": "DotGothic16",
+          "url": "https://github.com/fontworks-fonts/DotGothic16",
+          "stars": 498
+        },
+        {
+          "repo": "Reggae",
+          "label": "Reggae One",
+          "url": "https://github.com/fontworks-fonts/Reggae",
+          "stars": 246
+        },
+        {
+          "repo": "Train",
+          "label": "Train One",
+          "url": "https://github.com/fontworks-fonts/Train",
+          "stars": 243
+        },
+        {
+          "repo": "Rampart",
+          "label": "Rampart One",
+          "url": "https://github.com/fontworks-fonts/Rampart",
+          "stars": 227
+        },
+        {
+          "repo": "Stick",
+          "label": "Stick",
+          "url": "https://github.com/fontworks-fonts/Stick",
+          "stars": 206
+        }
+      ],
+      "missingCount": 6
+    },
+    {
+      "id": "adobe-fonts",
+      "name": "Adobe Fonts（思源 / Source Han）",
+      "en": "adobe-fonts",
+      "kind": "project",
+      "website": "https://github.com/adobe-fonts",
+      "github": "https://github.com/adobe-fonts",
+      "githubLogin": "adobe-fonts",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/4028872?v=4",
+      "hasLocalAvatar": true,
+      "localAvatar": "assets/avatars/adobe.webp",
+      "avatarFilled": false,
+      "note": "adobe.openSource=false；思源专项。头像沿用 adobe.webp。",
+      "fontsOnGithub": [
+        {
+          "repo": "source-han-sans",
+          "url": "https://github.com/adobe-fonts/source-han-sans",
+          "stars": 17262,
+          "label": "思源黑体",
+          "inCatalog": true,
+          "matchedAs": [
+            "思源黑体",
+            "Noto Sans CJK Regular"
+          ]
+        },
+        {
+          "repo": "source-han-serif",
+          "url": "https://github.com/adobe-fonts/source-han-serif",
+          "stars": 9704,
+          "label": "思源宋体",
+          "inCatalog": true,
+          "matchedAs": [
+            "思源宋体",
+            "Source Han Serif CN"
+          ]
+        },
+        {
+          "repo": "source-han-code-jp",
+          "url": "https://github.com/adobe-fonts/source-han-code-jp",
+          "stars": 1749,
+          "label": "思源黑体 Code JP",
+          "inCatalog": true,
+          "matchedAs": [
+            "思源黑体"
+          ]
+        },
+        {
+          "repo": "source-han-mono",
+          "url": "https://github.com/adobe-fonts/source-han-mono",
+          "stars": 1352,
+          "label": "思源等宽",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "source-han-super-otc",
+          "url": "https://github.com/adobe-fonts/source-han-super-otc",
+          "stars": 213,
+          "label": "Source Han Super OTC",
+          "inCatalog": false,
+          "matchedAs": []
+        }
+      ],
+      "fontsInCatalog": [
+        "思源宋体",
+        "思源宋体 CN",
+        "思源宋体 CN Light",
+        "思源屏显臻宋 CN",
+        "思源黑体",
+        "思源黑体 CN",
+        "思源黑体 Regular",
+        "思源黑體 TW"
+      ],
+      "missing": [
+        {
+          "repo": "source-han-mono",
+          "label": "思源等宽",
+          "url": "https://github.com/adobe-fonts/source-han-mono",
+          "stars": 1352
+        },
+        {
+          "repo": "source-han-super-otc",
+          "label": "Source Han Super OTC",
+          "url": "https://github.com/adobe-fonts/source-han-super-otc",
+          "stars": 213
+        }
+      ],
+      "missingCount": 2
+    },
+    {
+      "id": "google-fonts",
+      "name": "谷歌字体",
+      "en": "Google Fonts",
+      "kind": "project",
+      "website": "https://fonts.google.com",
+      "github": "https://github.com/googlefonts",
+      "githubLogin": "googlefonts",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/6466306?v=4",
+      "hasLocalAvatar": true,
+      "localAvatar": "assets/avatars/google-fonts.webp",
+      "avatarFilled": false,
+      "note": "仅审计 CJK 相关：noto-cjk、mashanzheng、liujianmaocao、zcool-kuaile、zen-*、kosugi*",
+      "fontsOnGithub": [
+        {
+          "repo": "zen-marugothic",
+          "url": "https://github.com/googlefonts/zen-marugothic",
+          "stars": 116,
+          "label": "Zen Maru Gothic",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "zen-kurenaido",
+          "url": "https://github.com/googlefonts/zen-kurenaido",
+          "stars": 56,
+          "label": "Zen Kurenaido",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "zen-kakugothic",
+          "url": "https://github.com/googlefonts/zen-kakugothic",
+          "stars": 56,
+          "label": "Zen Kaku Gothic",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "zen-oldmincho",
+          "url": "https://github.com/googlefonts/zen-oldmincho",
+          "stars": 53,
+          "label": "Zen Old Mincho",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "kosugi-maru",
+          "url": "https://github.com/googlefonts/kosugi-maru",
+          "stars": 46,
+          "label": "Kosugi Maru",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "zen-antique",
+          "url": "https://github.com/googlefonts/zen-antique",
+          "stars": 30,
+          "label": "Zen Antique",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "kosugi",
+          "url": "https://github.com/googlefonts/kosugi",
+          "stars": 16,
+          "label": "Kosugi",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "mashanzheng",
+          "url": "https://github.com/googlefonts/mashanzheng",
+          "stars": 15,
+          "label": "马善政",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "noto-cjk",
+          "url": "https://github.com/googlefonts/noto-cjk",
+          "stars": 0,
+          "label": "思源黑体",
+          "inCatalog": true,
+          "matchedAs": [
+            "思源黑体",
+            "思源宋体",
+            "Noto Sans CJK Regular"
+          ]
+        }
+      ],
+      "fontsInCatalog": [
+        "Droid Sans",
+        "Droid Sans 后备体",
+        "Noto Sans CJK Regular",
+        "Pangolin",
+        "Roboto",
+        "思源宋体",
+        "思源黑体"
+      ],
+      "missing": [
+        {
+          "repo": "zen-marugothic",
+          "label": "Zen Maru Gothic",
+          "url": "https://github.com/googlefonts/zen-marugothic",
+          "stars": 116
+        },
+        {
+          "repo": "mashanzheng",
+          "label": "马善政",
+          "url": "https://github.com/googlefonts/mashanzheng",
+          "stars": 15
+        }
+      ],
+      "missingCount": 2
+    },
+    {
+      "id": "wenquanyi",
+      "name": "文泉驿",
+      "en": "WenQuanYi",
+      "kind": "project",
+      "website": "http://wenq.org",
+      "github": null,
+      "githubLogin": null,
+      "avatarUrl": null,
+      "hasLocalAvatar": true,
+      "localAvatar": "assets/avatars/wenquanyi.webp",
+      "avatarFilled": false,
+      "note": "无官方 GitHub；勿用 github.com/Wenq",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [
+        "文泉驿微米黑",
+        "文泉驿正黑体",
+        "文泉驿正黑等宽",
+        "文泉驿等宽微米黑"
+      ],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "justfont",
+      "name": "justfont",
+      "en": "justfont",
+      "kind": "project",
+      "website": "https://justfont.com",
+      "github": "https://github.com/justfont",
+      "githubLogin": "justfont",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/5063162?v=4",
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": true,
+      "note": "主推 open-huninn-font / Huninn（= jf open 粉圆 / huninn）。无 jf-openhunyuan 仓库名。",
+      "fontsOnGithub": [
+        {
+          "repo": "open-huninn-font",
+          "url": "https://github.com/justfont/open-huninn-font",
+          "stars": 1354,
+          "label": "jf open 粉圆",
+          "inCatalog": true,
+          "matchedAs": [
+            "jf open 粉圆",
+            "jf open huninn"
+          ]
+        },
+        {
+          "repo": "Elffont",
+          "url": "https://github.com/justfont/Elffont",
+          "stars": 454,
+          "label": "Elffont",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "The-Write-Right-Font",
+          "url": "https://github.com/justfont/The-Write-Right-Font",
+          "stars": 263,
+          "label": "The Write Right Font",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "AllPunType",
+          "url": "https://github.com/justfont/AllPunType",
+          "stars": 86,
+          "label": "AllPunType",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "jf7000",
+          "url": "https://github.com/justfont/jf7000",
+          "stars": 49,
+          "label": "jf7000",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "Huninn",
+          "url": "https://github.com/justfont/Huninn",
+          "stars": 31,
+          "label": "jf open 粉圆",
+          "inCatalog": true,
+          "matchedAs": [
+            "jf open 粉圆",
+            "jf open huninn"
+          ]
+        },
+        {
+          "repo": "AbbrFesFont",
+          "url": "https://github.com/justfont/AbbrFesFont",
+          "stars": 25,
+          "label": "AbbrFesFont",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "Snailfont",
+          "url": "https://github.com/justfont/Snailfont",
+          "stars": 2,
+          "label": "Snailfont",
+          "inCatalog": false,
+          "matchedAs": []
+        }
+      ],
+      "fontsInCatalog": [
+        "jf open huninn",
+        "jf open 粉圆"
+      ],
+      "missing": [
+        {
+          "repo": "Elffont",
+          "label": "Elffont",
+          "url": "https://github.com/justfont/Elffont",
+          "stars": 454
+        },
+        {
+          "repo": "The-Write-Right-Font",
+          "label": "The Write Right Font",
+          "url": "https://github.com/justfont/The-Write-Right-Font",
+          "stars": 263
+        },
+        {
+          "repo": "AllPunType",
+          "label": "AllPunType",
+          "url": "https://github.com/justfont/AllPunType",
+          "stars": 86
+        },
+        {
+          "repo": "jf7000",
+          "label": "jf7000",
+          "url": "https://github.com/justfont/jf7000",
+          "stars": 49
+        },
+        {
+          "repo": "AbbrFesFont",
+          "label": "AbbrFesFont",
+          "url": "https://github.com/justfont/AbbrFesFont",
+          "stars": 25
+        },
+        {
+          "repo": "Snailfont",
+          "label": "Snailfont",
+          "url": "https://github.com/justfont/Snailfont",
+          "stars": 2
+        }
+      ],
+      "missingCount": 6
+    },
+    {
+      "id": "aqua",
+      "name": "Aqua（阿杰）",
+      "en": "Aqua / max32002",
+      "kind": "project",
+      "website": "https://github.com/max32002",
+      "github": "https://github.com/max32002",
+      "githubLogin": "max32002",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": true,
+      "note": "Aqua/狮尾 = max32002",
+      "fontsOnGithub": [
+        {
+          "repo": "naikaifont",
+          "url": "https://github.com/max32002/naikaifont",
+          "stars": 560,
+          "label": "奈楷",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-gothic",
+          "url": "https://github.com/max32002/swei-gothic",
+          "stars": 204,
+          "label": "狮尾黑体",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "bakudaifont",
+          "url": "https://github.com/max32002/bakudaifont",
+          "stars": 170,
+          "label": "爆呆",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-spring",
+          "url": "https://github.com/max32002/swei-spring",
+          "stars": 115,
+          "label": "狮尾四季春",
+          "inCatalog": true,
+          "matchedAs": [
+            "狮尾四季春",
+            "Swei Spring CJK SC"
+          ]
+        },
+        {
+          "repo": "max-hana",
+          "url": "https://github.com/max32002/max-hana",
+          "stars": 114,
+          "label": "max hana",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "masafont",
+          "url": "https://github.com/max32002/masafont",
+          "stars": 106,
+          "label": "masafont",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "pop-gothic",
+          "url": "https://github.com/max32002/pop-gothic",
+          "stars": 105,
+          "label": "流行黑",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "nanifont",
+          "url": "https://github.com/max32002/nanifont",
+          "stars": 102,
+          "label": "nanifont",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "FakePearl",
+          "url": "https://github.com/max32002/FakePearl",
+          "stars": 101,
+          "label": "假珍珠",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "maruko-gothic",
+          "url": "https://github.com/max32002/maruko-gothic",
+          "stars": 85,
+          "label": "丸子黑",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "kurewa-gothic",
+          "url": "https://github.com/max32002/kurewa-gothic",
+          "stars": 71,
+          "label": "暮黑",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "TaiwanPearl",
+          "url": "https://github.com/max32002/TaiwanPearl",
+          "stars": 70,
+          "label": "台湾珍珠",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "YuPearl",
+          "url": "https://github.com/max32002/YuPearl",
+          "stars": 64,
+          "label": "余珍珠",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-b2-sugar",
+          "url": "https://github.com/max32002/swei-b2-sugar",
+          "stars": 56,
+          "label": "狮尾 B2 加糖",
+          "inCatalog": true,
+          "matchedAs": [
+            "狮尾 B2 加糖",
+            "Swei B2 Sugar CJK SC"
+          ]
+        },
+        {
+          "repo": "swei-fan-sans",
+          "url": "https://github.com/max32002/swei-fan-sans",
+          "stars": 49,
+          "label": "狮尾风扇黑",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-sans",
+          "url": "https://github.com/max32002/swei-sans",
+          "stars": 46,
+          "label": "swei sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-halfmoon",
+          "url": "https://github.com/max32002/swei-halfmoon",
+          "stars": 39,
+          "label": "swei halfmoon",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "JasonHandWritingFonts",
+          "url": "https://github.com/max32002/JasonHandWritingFonts",
+          "stars": 38,
+          "label": "杰森手写",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-sugar",
+          "url": "https://github.com/max32002/swei-sugar",
+          "stars": 31,
+          "label": "swei sugar",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-marker-sans",
+          "url": "https://github.com/max32002/swei-marker-sans",
+          "stars": 23,
+          "label": "狮尾马克笔",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-b2-serif",
+          "url": "https://github.com/max32002/swei-b2-serif",
+          "stars": 23,
+          "label": "swei b2 serif",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-gothic-leg",
+          "url": "https://github.com/max32002/swei-gothic-leg",
+          "stars": 20,
+          "label": "狮尾长腿黑",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-toothpaste",
+          "url": "https://github.com/max32002/swei-toothpaste",
+          "stars": 17,
+          "label": "swei toothpaste",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-meatball",
+          "url": "https://github.com/max32002/swei-meatball",
+          "stars": 17,
+          "label": "swei meatball",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-fan-serif",
+          "url": "https://github.com/max32002/swei-fan-serif",
+          "stars": 16,
+          "label": "狮尾仿宋",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-b2-sans",
+          "url": "https://github.com/max32002/swei-b2-sans",
+          "stars": 15,
+          "label": "swei b2 sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-xd",
+          "url": "https://github.com/max32002/swei-xd",
+          "stars": 14,
+          "label": "swei xd",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-fan-leg",
+          "url": "https://github.com/max32002/swei-fan-leg",
+          "stars": 13,
+          "label": "swei fan leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-jay-serif",
+          "url": "https://github.com/max32002/swei-jay-serif",
+          "stars": 12,
+          "label": "swei jay serif",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-shear-sans",
+          "url": "https://github.com/max32002/swei-shear-sans",
+          "stars": 10,
+          "label": "狮尾剪切黑体",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-fist-sans",
+          "url": "https://github.com/max32002/swei-fist-sans",
+          "stars": 10,
+          "label": "swei fist sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-b2-leg",
+          "url": "https://github.com/max32002/swei-b2-leg",
+          "stars": 10,
+          "label": "swei b2 leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-curve-sans",
+          "url": "https://github.com/max32002/swei-curve-sans",
+          "stars": 9,
+          "label": "swei curve sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-nut-sans",
+          "url": "https://github.com/max32002/swei-nut-sans",
+          "stars": 9,
+          "label": "swei nut sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-devil-sans",
+          "url": "https://github.com/max32002/swei-devil-sans",
+          "stars": 8,
+          "label": "swei devil sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-bell-sans",
+          "url": "https://github.com/max32002/swei-bell-sans",
+          "stars": 8,
+          "label": "swei bell sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-jay-leg",
+          "url": "https://github.com/max32002/swei-jay-leg",
+          "stars": 8,
+          "label": "swei jay leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-right-bottom-sans",
+          "url": "https://github.com/max32002/swei-right-bottom-sans",
+          "stars": 8,
+          "label": "swei right bottom sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-shear-leg",
+          "url": "https://github.com/max32002/swei-shear-leg",
+          "stars": 8,
+          "label": "swei shear leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-rainbow-leg",
+          "url": "https://github.com/max32002/swei-rainbow-leg",
+          "stars": 8,
+          "label": "swei rainbow leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-spike-sans",
+          "url": "https://github.com/max32002/swei-spike-sans",
+          "stars": 8,
+          "label": "swei spike sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-match-sans",
+          "url": "https://github.com/max32002/swei-match-sans",
+          "stars": 7,
+          "label": "狮尾火柴",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-dart-sans",
+          "url": "https://github.com/max32002/swei-dart-sans",
+          "stars": 7,
+          "label": "swei dart sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-del-luna-sans",
+          "url": "https://github.com/max32002/swei-del-luna-sans",
+          "stars": 7,
+          "label": "swei del luna sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-alias-sans",
+          "url": "https://github.com/max32002/swei-alias-sans",
+          "stars": 7,
+          "label": "swei alias sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-ax-sans",
+          "url": "https://github.com/max32002/swei-ax-sans",
+          "stars": 7,
+          "label": "swei ax sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-fist-leg",
+          "url": "https://github.com/max32002/swei-fist-leg",
+          "stars": 6,
+          "label": "swei fist leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-jay-sans",
+          "url": "https://github.com/max32002/swei-jay-sans",
+          "stars": 6,
+          "label": "swei jay sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-del-luna-leg",
+          "url": "https://github.com/max32002/swei-del-luna-leg",
+          "stars": 6,
+          "label": "swei del luna leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-gospel-sans",
+          "url": "https://github.com/max32002/swei-gospel-sans",
+          "stars": 6,
+          "label": "swei gospel sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-bell-leg",
+          "url": "https://github.com/max32002/swei-bell-leg",
+          "stars": 6,
+          "label": "swei bell leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-marker-leg",
+          "url": "https://github.com/max32002/swei-marker-leg",
+          "stars": 6,
+          "label": "swei marker leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-devil-leg",
+          "url": "https://github.com/max32002/swei-devil-leg",
+          "stars": 6,
+          "label": "swei devil leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-3t-sans",
+          "url": "https://github.com/max32002/swei-3t-sans",
+          "stars": 5,
+          "label": "swei 3t sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-dart-leg",
+          "url": "https://github.com/max32002/swei-dart-leg",
+          "stars": 5,
+          "label": "swei dart leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-right-bottom-leg",
+          "url": "https://github.com/max32002/swei-right-bottom-leg",
+          "stars": 5,
+          "label": "swei right bottom leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-d-lucy",
+          "url": "https://github.com/max32002/swei-d-lucy",
+          "stars": 5,
+          "label": "swei d lucy",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-ax-leg",
+          "url": "https://github.com/max32002/swei-ax-leg",
+          "stars": 4,
+          "label": "swei ax leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-match-leg",
+          "url": "https://github.com/max32002/swei-match-leg",
+          "stars": 4,
+          "label": "swei match leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-bow-sans",
+          "url": "https://github.com/max32002/swei-bow-sans",
+          "stars": 4,
+          "label": "swei bow sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-curve-leg",
+          "url": "https://github.com/max32002/swei-curve-leg",
+          "stars": 4,
+          "label": "swei curve leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-gospel-leg",
+          "url": "https://github.com/max32002/swei-gospel-leg",
+          "stars": 4,
+          "label": "swei gospel leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-bone-sans",
+          "url": "https://github.com/max32002/swei-bone-sans",
+          "stars": 4,
+          "label": "swei bone sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-nut-leg",
+          "url": "https://github.com/max32002/swei-nut-leg",
+          "stars": 3,
+          "label": "swei nut leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-bow-leg",
+          "url": "https://github.com/max32002/swei-bow-leg",
+          "stars": 3,
+          "label": "swei bow leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-alias-leg",
+          "url": "https://github.com/max32002/swei-alias-leg",
+          "stars": 3,
+          "label": "swei alias leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-3t-leg",
+          "url": "https://github.com/max32002/swei-3t-leg",
+          "stars": 3,
+          "label": "swei 3t leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-spike-leg",
+          "url": "https://github.com/max32002/swei-spike-leg",
+          "stars": 3,
+          "label": "swei spike leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-bone-leg",
+          "url": "https://github.com/max32002/swei-bone-leg",
+          "stars": 3,
+          "label": "swei bone leg",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-bat-sans",
+          "url": "https://github.com/max32002/swei-bat-sans",
+          "stars": 2,
+          "label": "swei bat sans",
+          "inCatalog": false,
+          "matchedAs": []
+        },
+        {
+          "repo": "swei-bat-leg",
+          "url": "https://github.com/max32002/swei-bat-leg",
+          "stars": 1,
+          "label": "swei bat leg",
+          "inCatalog": false,
+          "matchedAs": []
+        }
+      ],
+      "fontsInCatalog": [
+        "Swei B2 Sugar CJK SC",
+        "Swei Spring CJK SC",
+        "狮尾 B2 加糖",
+        "狮尾四季春"
+      ],
+      "missing": [
+        {
+          "repo": "naikaifont",
+          "label": "奈楷",
+          "url": "https://github.com/max32002/naikaifont",
+          "stars": 560
+        },
+        {
+          "repo": "swei-gothic",
+          "label": "狮尾黑体",
+          "url": "https://github.com/max32002/swei-gothic",
+          "stars": 204
+        },
+        {
+          "repo": "bakudaifont",
+          "label": "爆呆",
+          "url": "https://github.com/max32002/bakudaifont",
+          "stars": 170
+        },
+        {
+          "repo": "max-hana",
+          "label": "max hana",
+          "url": "https://github.com/max32002/max-hana",
+          "stars": 114
+        },
+        {
+          "repo": "masafont",
+          "label": "masafont",
+          "url": "https://github.com/max32002/masafont",
+          "stars": 106
+        },
+        {
+          "repo": "pop-gothic",
+          "label": "流行黑",
+          "url": "https://github.com/max32002/pop-gothic",
+          "stars": 105
+        },
+        {
+          "repo": "nanifont",
+          "label": "nanifont",
+          "url": "https://github.com/max32002/nanifont",
+          "stars": 102
+        },
+        {
+          "repo": "FakePearl",
+          "label": "假珍珠",
+          "url": "https://github.com/max32002/FakePearl",
+          "stars": 101
+        },
+        {
+          "repo": "maruko-gothic",
+          "label": "丸子黑",
+          "url": "https://github.com/max32002/maruko-gothic",
+          "stars": 85
+        },
+        {
+          "repo": "kurewa-gothic",
+          "label": "暮黑",
+          "url": "https://github.com/max32002/kurewa-gothic",
+          "stars": 71
+        },
+        {
+          "repo": "TaiwanPearl",
+          "label": "台湾珍珠",
+          "url": "https://github.com/max32002/TaiwanPearl",
+          "stars": 70
+        },
+        {
+          "repo": "YuPearl",
+          "label": "余珍珠",
+          "url": "https://github.com/max32002/YuPearl",
+          "stars": 64
+        },
+        {
+          "repo": "swei-fan-sans",
+          "label": "狮尾风扇黑",
+          "url": "https://github.com/max32002/swei-fan-sans",
+          "stars": 49
+        },
+        {
+          "repo": "swei-sans",
+          "label": "swei sans",
+          "url": "https://github.com/max32002/swei-sans",
+          "stars": 46
+        },
+        {
+          "repo": "swei-halfmoon",
+          "label": "swei halfmoon",
+          "url": "https://github.com/max32002/swei-halfmoon",
+          "stars": 39
+        },
+        {
+          "repo": "JasonHandWritingFonts",
+          "label": "杰森手写",
+          "url": "https://github.com/max32002/JasonHandWritingFonts",
+          "stars": 38
+        },
+        {
+          "repo": "swei-sugar",
+          "label": "swei sugar",
+          "url": "https://github.com/max32002/swei-sugar",
+          "stars": 31
+        },
+        {
+          "repo": "swei-marker-sans",
+          "label": "狮尾马克笔",
+          "url": "https://github.com/max32002/swei-marker-sans",
+          "stars": 23
+        },
+        {
+          "repo": "swei-b2-serif",
+          "label": "swei b2 serif",
+          "url": "https://github.com/max32002/swei-b2-serif",
+          "stars": 23
+        },
+        {
+          "repo": "swei-gothic-leg",
+          "label": "狮尾长腿黑",
+          "url": "https://github.com/max32002/swei-gothic-leg",
+          "stars": 20
+        },
+        {
+          "repo": "swei-toothpaste",
+          "label": "swei toothpaste",
+          "url": "https://github.com/max32002/swei-toothpaste",
+          "stars": 17
+        },
+        {
+          "repo": "swei-meatball",
+          "label": "swei meatball",
+          "url": "https://github.com/max32002/swei-meatball",
+          "stars": 17
+        },
+        {
+          "repo": "swei-fan-serif",
+          "label": "狮尾仿宋",
+          "url": "https://github.com/max32002/swei-fan-serif",
+          "stars": 16
+        },
+        {
+          "repo": "swei-b2-sans",
+          "label": "swei b2 sans",
+          "url": "https://github.com/max32002/swei-b2-sans",
+          "stars": 15
+        },
+        {
+          "repo": "swei-xd",
+          "label": "swei xd",
+          "url": "https://github.com/max32002/swei-xd",
+          "stars": 14
+        },
+        {
+          "repo": "swei-fan-leg",
+          "label": "swei fan leg",
+          "url": "https://github.com/max32002/swei-fan-leg",
+          "stars": 13
+        },
+        {
+          "repo": "swei-jay-serif",
+          "label": "swei jay serif",
+          "url": "https://github.com/max32002/swei-jay-serif",
+          "stars": 12
+        },
+        {
+          "repo": "swei-shear-sans",
+          "label": "狮尾剪切黑体",
+          "url": "https://github.com/max32002/swei-shear-sans",
+          "stars": 10
+        },
+        {
+          "repo": "swei-fist-sans",
+          "label": "swei fist sans",
+          "url": "https://github.com/max32002/swei-fist-sans",
+          "stars": 10
+        },
+        {
+          "repo": "swei-b2-leg",
+          "label": "swei b2 leg",
+          "url": "https://github.com/max32002/swei-b2-leg",
+          "stars": 10
+        },
+        {
+          "repo": "swei-curve-sans",
+          "label": "swei curve sans",
+          "url": "https://github.com/max32002/swei-curve-sans",
+          "stars": 9
+        },
+        {
+          "repo": "swei-nut-sans",
+          "label": "swei nut sans",
+          "url": "https://github.com/max32002/swei-nut-sans",
+          "stars": 9
+        },
+        {
+          "repo": "swei-devil-sans",
+          "label": "swei devil sans",
+          "url": "https://github.com/max32002/swei-devil-sans",
+          "stars": 8
+        },
+        {
+          "repo": "swei-bell-sans",
+          "label": "swei bell sans",
+          "url": "https://github.com/max32002/swei-bell-sans",
+          "stars": 8
+        },
+        {
+          "repo": "swei-jay-leg",
+          "label": "swei jay leg",
+          "url": "https://github.com/max32002/swei-jay-leg",
+          "stars": 8
+        },
+        {
+          "repo": "swei-right-bottom-sans",
+          "label": "swei right bottom sans",
+          "url": "https://github.com/max32002/swei-right-bottom-sans",
+          "stars": 8
+        },
+        {
+          "repo": "swei-shear-leg",
+          "label": "swei shear leg",
+          "url": "https://github.com/max32002/swei-shear-leg",
+          "stars": 8
+        },
+        {
+          "repo": "swei-rainbow-leg",
+          "label": "swei rainbow leg",
+          "url": "https://github.com/max32002/swei-rainbow-leg",
+          "stars": 8
+        },
+        {
+          "repo": "swei-spike-sans",
+          "label": "swei spike sans",
+          "url": "https://github.com/max32002/swei-spike-sans",
+          "stars": 8
+        },
+        {
+          "repo": "swei-match-sans",
+          "label": "狮尾火柴",
+          "url": "https://github.com/max32002/swei-match-sans",
+          "stars": 7
+        },
+        {
+          "repo": "swei-dart-sans",
+          "label": "swei dart sans",
+          "url": "https://github.com/max32002/swei-dart-sans",
+          "stars": 7
+        },
+        {
+          "repo": "swei-del-luna-sans",
+          "label": "swei del luna sans",
+          "url": "https://github.com/max32002/swei-del-luna-sans",
+          "stars": 7
+        },
+        {
+          "repo": "swei-alias-sans",
+          "label": "swei alias sans",
+          "url": "https://github.com/max32002/swei-alias-sans",
+          "stars": 7
+        },
+        {
+          "repo": "swei-ax-sans",
+          "label": "swei ax sans",
+          "url": "https://github.com/max32002/swei-ax-sans",
+          "stars": 7
+        },
+        {
+          "repo": "swei-fist-leg",
+          "label": "swei fist leg",
+          "url": "https://github.com/max32002/swei-fist-leg",
+          "stars": 6
+        },
+        {
+          "repo": "swei-jay-sans",
+          "label": "swei jay sans",
+          "url": "https://github.com/max32002/swei-jay-sans",
+          "stars": 6
+        },
+        {
+          "repo": "swei-del-luna-leg",
+          "label": "swei del luna leg",
+          "url": "https://github.com/max32002/swei-del-luna-leg",
+          "stars": 6
+        },
+        {
+          "repo": "swei-gospel-sans",
+          "label": "swei gospel sans",
+          "url": "https://github.com/max32002/swei-gospel-sans",
+          "stars": 6
+        },
+        {
+          "repo": "swei-bell-leg",
+          "label": "swei bell leg",
+          "url": "https://github.com/max32002/swei-bell-leg",
+          "stars": 6
+        },
+        {
+          "repo": "swei-marker-leg",
+          "label": "swei marker leg",
+          "url": "https://github.com/max32002/swei-marker-leg",
+          "stars": 6
+        },
+        {
+          "repo": "swei-devil-leg",
+          "label": "swei devil leg",
+          "url": "https://github.com/max32002/swei-devil-leg",
+          "stars": 6
+        },
+        {
+          "repo": "swei-3t-sans",
+          "label": "swei 3t sans",
+          "url": "https://github.com/max32002/swei-3t-sans",
+          "stars": 5
+        },
+        {
+          "repo": "swei-dart-leg",
+          "label": "swei dart leg",
+          "url": "https://github.com/max32002/swei-dart-leg",
+          "stars": 5
+        },
+        {
+          "repo": "swei-right-bottom-leg",
+          "label": "swei right bottom leg",
+          "url": "https://github.com/max32002/swei-right-bottom-leg",
+          "stars": 5
+        },
+        {
+          "repo": "swei-d-lucy",
+          "label": "swei d lucy",
+          "url": "https://github.com/max32002/swei-d-lucy",
+          "stars": 5
+        },
+        {
+          "repo": "swei-ax-leg",
+          "label": "swei ax leg",
+          "url": "https://github.com/max32002/swei-ax-leg",
+          "stars": 4
+        },
+        {
+          "repo": "swei-match-leg",
+          "label": "swei match leg",
+          "url": "https://github.com/max32002/swei-match-leg",
+          "stars": 4
+        },
+        {
+          "repo": "swei-bow-sans",
+          "label": "swei bow sans",
+          "url": "https://github.com/max32002/swei-bow-sans",
+          "stars": 4
+        },
+        {
+          "repo": "swei-curve-leg",
+          "label": "swei curve leg",
+          "url": "https://github.com/max32002/swei-curve-leg",
+          "stars": 4
+        },
+        {
+          "repo": "swei-gospel-leg",
+          "label": "swei gospel leg",
+          "url": "https://github.com/max32002/swei-gospel-leg",
+          "stars": 4
+        },
+        {
+          "repo": "swei-bone-sans",
+          "label": "swei bone sans",
+          "url": "https://github.com/max32002/swei-bone-sans",
+          "stars": 4
+        },
+        {
+          "repo": "swei-nut-leg",
+          "label": "swei nut leg",
+          "url": "https://github.com/max32002/swei-nut-leg",
+          "stars": 3
+        },
+        {
+          "repo": "swei-bow-leg",
+          "label": "swei bow leg",
+          "url": "https://github.com/max32002/swei-bow-leg",
+          "stars": 3
+        },
+        {
+          "repo": "swei-alias-leg",
+          "label": "swei alias leg",
+          "url": "https://github.com/max32002/swei-alias-leg",
+          "stars": 3
+        },
+        {
+          "repo": "swei-3t-leg",
+          "label": "swei 3t leg",
+          "url": "https://github.com/max32002/swei-3t-leg",
+          "stars": 3
+        },
+        {
+          "repo": "swei-spike-leg",
+          "label": "swei spike leg",
+          "url": "https://github.com/max32002/swei-spike-leg",
+          "stars": 3
+        },
+        {
+          "repo": "swei-bone-leg",
+          "label": "swei bone leg",
+          "url": "https://github.com/max32002/swei-bone-leg",
+          "stars": 3
+        },
+        {
+          "repo": "swei-bat-sans",
+          "label": "swei bat sans",
+          "url": "https://github.com/max32002/swei-bat-sans",
+          "stars": 2
+        },
+        {
+          "repo": "swei-bat-leg",
+          "label": "swei bat leg",
+          "url": "https://github.com/max32002/swei-bat-leg",
+          "stars": 1
+        }
+      ],
+      "missingCount": 69
+    },
+    {
+      "id": "welai",
+      "name": "未来荧坊",
+      "en": "Project Welai",
+      "kind": "project",
+      "website": "https://github.com/welai",
+      "github": "https://github.com/welai",
+      "githubLogin": "welai",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/42260660?v=4",
+      "hasLocalAvatar": true,
+      "localAvatar": "assets/avatars/welai.webp",
+      "avatarFilled": false,
+      "note": "；glow-sans 已 archived 但仍为发布仓，计入未收录。",
+      "fontsOnGithub": [
+        {
+          "repo": "glow-sans",
+          "url": "https://github.com/welai/glow-sans",
+          "stars": 1958,
+          "label": "未来荧黑",
+          "inCatalog": false,
+          "matchedAs": []
+        }
+      ],
+      "fontsInCatalog": [],
+      "missing": [
+        {
+          "repo": "glow-sans",
+          "label": "未来荧黑",
+          "url": "https://github.com/welai/glow-sans",
+          "stars": 1958
+        }
+      ],
+      "missingCount": 1
+    },
+    {
+      "id": "ichiten",
+      "name": "一点字坊",
+      "en": "Ichiten Fonts Project",
+      "kind": "project",
+      "website": "https://github.com/ichitenfont",
+      "github": "https://github.com/ichitenfont",
+      "githubLogin": "ichitenfont",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/24702063?v=4",
+      "hasLocalAvatar": true,
+      "localAvatar": "assets/avatars/ichiten.webp",
+      "avatarFilled": false,
+      "note": "",
+      "fontsOnGithub": [
+        {
+          "repo": "I.Ming",
+          "url": "https://github.com/ichitenfont/I.Ming",
+          "stars": 1075,
+          "label": "一点明体",
+          "inCatalog": true,
+          "matchedAs": [
+            "一点明体",
+            "I.Ming"
+          ]
+        },
+        {
+          "repo": "I.MingWebfont",
+          "url": "https://github.com/ichitenfont/I.MingWebfont",
+          "stars": 12,
+          "label": "I.Ming Webfont",
+          "inCatalog": true,
+          "matchedAs": [
+            "I.Ming"
+          ]
+        }
+      ],
+      "fontsInCatalog": [
+        "I.Ming",
+        "I.Ngaan刻石录颜体",
+        "一点明体",
+        "钢笔鹤-B"
+      ],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "mplus",
+      "name": "M+ 字体计划",
+      "en": "M+ FONTS PROJECT",
+      "kind": "project",
+      "website": "https://mplusfonts.github.io",
+      "github": "https://github.com/mplusfonts",
+      "githubLogin": "mplusfonts",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/64181979?v=4",
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": true,
+      "note": "",
+      "fontsOnGithub": [
+        {
+          "repo": "MPLUS_FONTS",
+          "url": "https://github.com/coz-m/MPLUS_FONTS",
+          "stars": 1239,
+          "label": "M+ FONTS",
+          "inCatalog": false,
+          "matchedAs": []
+        }
+      ],
+      "fontsInCatalog": [
+        "Mplus HZK 12 像素字体"
+      ],
+      "missing": [
+        {
+          "repo": "MPLUS_FONTS",
+          "label": "M+ FONTS",
+          "url": "https://github.com/coz-m/MPLUS_FONTS",
+          "stars": 1239
+        }
+      ],
+      "missingCount": 1
+    },
+    {
+      "id": "975maru",
+      "name": "975 圆体",
+      "en": "975 Maru",
+      "kind": "author",
+      "website": "",
+      "github": null,
+      "githubLogin": null,
+      "avatarUrl": null,
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": false,
+      "note": "仓在 lxgw 下；不挂 lxgw 头像",
+      "fontsOnGithub": [
+        {
+          "repo": "975Yuan",
+          "url": "https://github.com/lxgw/975Yuan",
+          "stars": 196,
+          "label": "975 圆体",
+          "inCatalog": true,
+          "matchedAs": [
+            "975 圆体"
+          ]
+        },
+        {
+          "repo": "975Hei",
+          "url": "https://github.com/lxgw/975Hei",
+          "stars": 82,
+          "label": "975 黑体",
+          "inCatalog": false,
+          "matchedAs": []
+        }
+      ],
+      "fontsInCatalog": [
+        "975 圆体"
+      ],
+      "missing": [
+        {
+          "repo": "975Hei",
+          "label": "975 黑体",
+          "url": "https://github.com/lxgw/975Hei",
+          "stars": 82
+        }
+      ],
+      "missingCount": 1
+    },
+    {
+      "id": "mengshen",
+      "name": "萌神PROJECT",
+      "en": "Mengshen Project",
+      "kind": "author",
+      "website": "https://github.com/MaruTama/Mengshen-pinyin-font",
+      "github": "https://github.com/MaruTama",
+      "githubLogin": "MaruTama",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/13286706?v=4",
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": false,
+      "note": "个人头像，不写入 avatars 白名单",
+      "fontsOnGithub": [
+        {
+          "repo": "Mengshen-pinyin-font",
+          "url": "https://github.com/MaruTama/Mengshen-pinyin-font",
+          "stars": 254,
+          "label": "萌神汉宋",
+          "inCatalog": false,
+          "matchedAs": []
+        }
+      ],
+      "fontsInCatalog": [
+        "萌神汉宋"
+      ],
+      "missing": [
+        {
+          "repo": "Mengshen-pinyin-font",
+          "label": "萌神汉宋",
+          "url": "https://github.com/MaruTama/Mengshen-pinyin-font",
+          "stars": 254
+        }
+      ],
+      "missingCount": 1
+    },
+    {
+      "id": "potta",
+      "name": "The Potta Project Authors",
+      "en": "",
+      "kind": "project",
+      "website": "",
+      "github": "https://github.com/go108go",
+      "githubLogin": "go108go",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/55338493?v=4",
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": true,
+      "note": "",
+      "fontsOnGithub": [
+        {
+          "repo": "Potta",
+          "url": "https://github.com/go108go/Potta",
+          "stars": 17,
+          "label": "波塔One",
+          "inCatalog": true,
+          "matchedAs": [
+            "波塔One",
+            "Potta One"
+          ]
+        },
+        {
+          "repo": "Chokokutai",
+          "url": "https://github.com/go108go/Chokokutai",
+          "stars": 2,
+          "label": "Chokokutai",
+          "inCatalog": false,
+          "matchedAs": []
+        }
+      ],
+      "fontsInCatalog": [
+        "Potta One",
+        "波塔One"
+      ],
+      "missing": [
+        {
+          "repo": "Chokokutai",
+          "label": "Chokokutai",
+          "url": "https://github.com/go108go/Chokokutai",
+          "stars": 2
+        }
+      ],
+      "missingCount": 1
+    },
+    {
+      "id": "aoyagi-kouzan",
+      "name": "Aoyagi Kouzan",
+      "en": "",
+      "kind": "author",
+      "website": "",
+      "github": null,
+      "githubLogin": null,
+      "avatarUrl": null,
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": false,
+      "note": "",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [
+        "衡山毛笔字体"
+      ],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "chncwk",
+      "name": "chncwk",
+      "en": "",
+      "kind": "author",
+      "website": "",
+      "github": "https://github.com/chncwk",
+      "githubLogin": "chncwk",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/49968569?v=4",
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": true,
+      "note": "",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [
+        "屏显臻宋"
+      ],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "cjkfonts",
+      "name": "中日韩字体计划",
+      "en": "cjkFonts",
+      "kind": "project",
+      "website": "",
+      "github": null,
+      "githubLogin": null,
+      "avatarUrl": null,
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": false,
+      "note": "无 cjkFonts GH",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [
+        "CJK手写字",
+        "随峰体 Beta"
+      ],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "gnu",
+      "name": "GNU 计划",
+      "en": "GNU Project",
+      "kind": "project",
+      "website": "https://www.gnu.org",
+      "github": null,
+      "githubLogin": null,
+      "avatarUrl": null,
+      "hasLocalAvatar": true,
+      "localAvatar": "assets/avatars/gnu.webp",
+      "avatarFilled": false,
+      "note": "无单一 GH",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "ipa",
+      "name": "日本 IPA",
+      "en": "IPA (Japan)",
+      "kind": "project",
+      "website": "https://moji.or.jp/ipafont/",
+      "github": null,
+      "githubLogin": null,
+      "avatarUrl": null,
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": false,
+      "note": "moji.or.jp",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [
+        "IPAexMincho"
+      ],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "jingnan",
+      "name": "荆南字坊",
+      "en": "Jingnan Type",
+      "kind": "author",
+      "website": "",
+      "github": null,
+      "githubLogin": null,
+      "avatarUrl": null,
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": false,
+      "note": "无 KingnamType GH",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [
+        "荆南缘默体"
+      ],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "longcang",
+      "name": "Long Cang",
+      "en": "YouZiKu",
+      "kind": "project",
+      "website": "",
+      "github": null,
+      "githubLogin": null,
+      "avatarUrl": null,
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": false,
+      "note": "站内龙藏体→zhongqi；无独立 GH",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "moe-tw",
+      "name": "台湾省教育部",
+      "en": "Ministry of Education, Taiwan Province",
+      "kind": "project",
+      "website": "https://language.moe.gov.tw",
+      "github": null,
+      "githubLogin": null,
+      "avatarUrl": null,
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": false,
+      "note": "language.moe.gov.tw",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [
+        "MOESongUN",
+        "教育部標準楷書"
+      ],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "myil",
+      "name": "綿飴",
+      "en": "",
+      "kind": "author",
+      "website": "",
+      "github": null,
+      "githubLogin": null,
+      "avatarUrl": null,
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": false,
+      "note": "",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [
+        "女書梧桐",
+        "女書鳳栖"
+      ],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "poppy-works",
+      "name": "波比工作室",
+      "en": "Poppy Works",
+      "kind": "author",
+      "website": "",
+      "github": null,
+      "githubLogin": null,
+      "avatarUrl": null,
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": false,
+      "note": "poppy-works 404",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [
+        "像素Silver字体"
+      ],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "raptortype",
+      "name": "瀞字型",
+      "en": "RAPTORTYPE",
+      "kind": "author",
+      "website": "",
+      "github": null,
+      "githubLogin": null,
+      "avatarUrl": null,
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": false,
+      "note": "无 RaptorType GH",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [
+        "瀞之库格尔黑体",
+        "瀞明朝"
+      ],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "seto",
+      "name": "濑户字体",
+      "en": "Seto Font (Nonty)",
+      "kind": "author",
+      "website": "",
+      "github": null,
+      "githubLogin": null,
+      "avatarUrl": null,
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": false,
+      "note": "",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [
+        "濑户字体"
+      ],
+      "missing": [],
+      "missingCount": 0
+    },
+    {
+      "id": "unifoundry",
+      "name": "Unifoundry",
+      "en": "Unifoundry",
+      "kind": "project",
+      "website": "https://unifoundry.com",
+      "github": "https://github.com/unifoundry",
+      "githubLogin": "unifoundry",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/268227606?v=4",
+      "hasLocalAvatar": false,
+      "localAvatar": null,
+      "avatarFilled": false,
+      "note": "GH 空号；不写入头像",
+      "fontsOnGithub": [],
+      "fontsInCatalog": [
+        "GNU Unifont",
+        "Unifont"
+      ],
+      "missing": [],
+      "missingCount": 0
+    }
+  ],
+  "summary": {
+    "authorsChecked": 28,
+    "openSourceInFoundries": 27,
+    "withGithub": 15,
+    "avatarsFilled": 7,
+    "totalMissing": 114,
+    "topMissingByAuthor": [
+      {
+        "id": "aqua",
+        "name": "Aqua（阿杰）",
+        "missingCount": 69,
+        "top": [
+          "奈楷",
+          "狮尾黑体",
+          "爆呆",
+          "max hana",
+          "masafont",
+          "流行黑",
+          "nanifont",
+          "假珍珠",
+          "丸子黑",
+          "暮黑"
+        ]
+      },
+      {
+        "id": "chilltype",
+        "name": "寒蝉字型",
+        "missingCount": 17,
+        "top": [
+          "寒蝉点阵体",
+          "寒蝉圆黑体",
+          "寒蝉活字",
+          "寒蝉锦书宋",
+          "寒蝉楷体",
+          "寒蝉端黑宋",
+          "寒蝉 DIN",
+          "寒蝉圆黑体",
+          "寒蝉书法",
+          "寒蝉谭黑"
+        ]
+      },
+      {
+        "id": "lxgw",
+        "name": "落霞孤鹜",
+        "missingCount": 6,
+        "top": [
+          "霞鹜篆体",
+          "Black Sugar Plum Candy",
+          "975 黑体",
+          "鹏翎",
+          "范美体",
+          "霞鹜拼音体"
+        ]
+      },
+      {
+        "id": "fontworks",
+        "name": "Fontworks",
+        "missingCount": 6,
+        "top": [
+          "Klee One",
+          "DotGothic16",
+          "Reggae One",
+          "Train One",
+          "Rampart One",
+          "Stick"
+        ]
+      },
+      {
+        "id": "justfont",
+        "name": "justfont",
+        "missingCount": 6,
+        "top": [
+          "Elffont",
+          "The Write Right Font",
+          "AllPunType",
+          "jf7000",
+          "AbbrFesFont",
+          "Snailfont"
+        ]
+      },
+      {
+        "id": "adobe-fonts",
+        "name": "Adobe Fonts（思源 / Source Han）",
+        "missingCount": 2,
+        "top": [
+          "思源等宽",
+          "Source Han Super OTC"
+        ]
+      },
+      {
+        "id": "google-fonts",
+        "name": "谷歌字体",
+        "missingCount": 2,
+        "top": [
+          "Zen Maru Gothic",
+          "马善政"
+        ]
+      },
+      {
+        "id": "atelier-anchor",
+        "name": "锚点工作室",
+        "missingCount": 1,
+        "top": [
+          "络黑"
+        ]
+      },
+      {
+        "id": "welai",
+        "name": "未来荧坊",
+        "missingCount": 1,
+        "top": [
+          "未来荧黑"
+        ]
+      },
+      {
+        "id": "mplus",
+        "name": "M+ 字体计划",
+        "missingCount": 1,
+        "top": [
+          "M+ FONTS"
+        ]
+      },
+      {
+        "id": "975maru",
+        "name": "975 圆体",
+        "missingCount": 1,
+        "top": [
+          "975 黑体"
+        ]
+      },
+      {
+        "id": "mengshen",
+        "name": "萌神PROJECT",
+        "missingCount": 1,
+        "top": [
+          "萌神汉宋"
+        ]
+      }
+    ]
+  }
+}

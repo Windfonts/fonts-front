@@ -14,6 +14,8 @@
 
 ```
 fonts-front/
+├─ lab.html              对照实验室索引（noindex）     data/lab-archive.json · docs/LAB.md
+├─ *-options.html · v5-*.html · oss-audit.html         原型/对照/研究留档（勿删）
 ├─ index.html            首页（字体库 + 侧卡）        js/pages/home.js + fonts.js
 ├─ fonts.html            字体库                        js/pages/fonts.js
 ├─ font-detail.html      字体详情                      js/pages/detail.js
@@ -87,6 +89,15 @@ fonts-front/
 
 ### `data/fonts.json`（由 `scripts/export-fonts.mjs` 生成，不手改）
 关键字段：`id name en family normalized designer category tags[] weights[] description license licenseName licenseUrl licenseFileUrl licenseNotes licenseVerified copyright foundry brand{name,slug,website,description} releaseYear version charCount glyphCount viewCount foundryAvatar`。
+
+**字体标识命名（硬约束）：**
+- `family`：`wenfeng-{短码}`。短码是**嵌入身份**，多为拼音缩写、小写、**不含字重**。正例：`wenfeng-albbpht`、`wenfeng-syhtcjk`、`wenfeng-systcn`、`wenfeng-ibmps`。
+- 同产品多规格（字集 / Lite / 等宽）历史会进短码后缀（`wenfeng-xwwkgblite`）；**目录展示**收成产品卡，见 `data/font-products.json` 与 [FAMILY-VARIANTS.md](FAMILY-VARIANTS.md)。嵌入仍用具体 `family=`，退役走 `family-aliases.json`，禁止为「好看」改已发布短码。
+- `normalized`：OSS 包目录名（PascalCase）。理想与短码同形（`Albbpht`）；历史包可能仍是文件名（`SourceHanSansSCRegular`），只给 `packageResultUrl` 用，**不当公开 slug**。
+- `weights[]`：字重单独列。禁止把 `Regular`/`Bold`/`Light` 粘进 `family`（禁止 `wenfeng-sourcehansansscregular` 这类）。
+- 公开 slug、动态 API 的 `family=`、卡片 meta：一律用 `family` 去前缀后的短码（`syhtsc`），不是英文全称堆砌。
+- 改 `family` 须同步 vault `font_family`，再导出目录；勿只改前端。
+
 运行时由 `normalizeFont` 补 `designerShort styles detail foundryInfo`。厂商头像不读这里的 `brand.avatarUrl` 当唯一源。
 
 ### `data/avatars.json`（`fetch-avatars.mjs` 产出，slug → 本地 WebP）
@@ -101,15 +112,26 @@ fonts-front/
 ```
 - `aliases`：目录里出现过的所有原始写法（含 `A;B` 合作署名整串）。
 - `fontNames`：目录未署名但可归属的字体名。
-- `kind`：`author` | `project` | `foundry` | `brand` | `platform`。`brand` 是出资持有版权的品牌方，不是画字的字库。`openSource` 标的是人/机构。`claimed` 为已认领。
+- `kind`：`author` | `project` | `foundry` | `brand` | `platform`。
+  - `author`＝个人或工作室署名（页上「作者」；`openSource` 时标「开源作者」）。
+  - `project`＝协作仓 / 机构发布线 / 计划名（页上「开源项目」）。**索引与筛选不得把 author 与 project 混成一节。**
+  - `brand`＝出资持有版权的品牌方，不是画字的字库。
+  - `openSource` 标的是人/机构。`claimed` 为已认领。认领后可改字段按 kind 不同，见 [CLAIM-SCOPES.md](CLAIM-SCOPES.md)；运行时经 `WFChrome.claimProfile`。
+- **地区命名（硬）**：台湾相关一律「台湾省」（例：`台湾省教育部`；英文 `Taiwan Province`）。禁止「中华民国」进主名或别名；旧称可作检索别名仅限「台湾教育部」这类中性写法。
 - `provisional: true`：中文名为拟定，厂商页会标注"待厂商确认"。
 - 新字体入库出现新厂商写法 → 先在这里加别名，页面自然归并；未收录的按原文生成临时条目（`unlisted`）。
+
+### 说明页结构（关于 / 许可 / FAQ / 法律）
+- `license.html`、`faq.html` 各自成页（对齐墨图爱可 `/licenses` + `/faq`）；`docs.html` 只留入口，旧锚 `#license` / `#faq` 跳转过去。
+- 说明页统一：左 TOC（`wf-docs-nav.js`）+ 正文 + 右「相关」栏（`data-docs-aside`）；与认领页 `docs-main` 同构，避免宽屏右侧空缺。
 
 ### `data/license-evidence.json`（手工维护，授权依据）
 `standards` 为 SPDX 短名；`names` 按字体名匹配。运行时解析为 `font.licenseEvidence`。字段与展示规则见 [LICENSE.md](LICENSE.md)。
 
 ### `data/font-lineage.json`（手工维护，归属与谱系）
-`groups` 为同系；`byName` 按字体名包含匹配。字段：`ownerId` `makerId` `group` `relation` `upstreamName` `licenseFollows`。运行时挂 `font.lineage` / `ownerInfo` / `makerInfo`。只写对得上的关系，见 [LICENSE.md](LICENSE.md) §7–8。
+`groups` 为同系；`byName` 按字体名包含匹配（长的优先）。字段：`ownerId` `makerId` `collaboratorIds`（联合作者，指向已有厂商页） `group` `relation` `upstreamName` `upstreamOwnerId` `licenseFollows`。运行时挂 `font.lineage` / `ownerInfo` / `makerInfo` / `collaboratorInfos`。
+
+`relation` 约定见 [LICENSE.md](LICENSE.md) §8：`locale` = 地区或规格切分；`fork` = 外源补字或同主再设计。厂商页把**外源 fork**显示为「源字」，origins 只亮外源根。只写对得上的关系。
 
 ### `data/mock-app.json`（控制台演示数据，键 `wf-app-state-v2`）
 `plan{quota} settings uploads[] projects[] team[] claims[] audit[]`；每个项目：`fonts[]{fontId,weights[],subset{mode,preset|text|ranges}} domains[]{host,verified,method,addedAt,verifiedAt,lastSeenAt} versions[]{v,at,note,bytes,current} usage{requests30d,bytes30d,topPages[],byDomain[],byFont[]{fontId,requests30d,bytes30d,weights{}},status{200,304,403},blockedHosts[],perf{fcpMs,fontLoadMs,hitRate}}`。`team/audit/claims` 由 `ensureShape` 补齐，不升 `KEY`。
@@ -123,10 +145,17 @@ fonts-front/
 
 ## 7. CDN 与嵌入口径
 
-- 公开 CDN：`https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/index.css`（`zh_index.css` 为中文子集）。`slug = family 去掉 wenfeng-`；`weight` 为小写字重名，优先用目录里该字体的真实字重名（`WFProto.weightName`）。
+**硬约束：字体页「动态」= Google Fonts 风格查询参数，不是直连文件。**
+
+- 公开嵌入默认：`https://cn.windfonts.com/api/css?family=&weight=&version=`（`WFProto.cssApiUrl`，字体页「动态」）。`family` / `weight` 写出小写；多款用 `|`。
+- 多规格产品：示例优先 `font-products.json` 的 `default`；用户在详情选中的规格则输出该规格 `family`。产品 / tier / 退役见 [FAMILY-VARIANTS.md](FAMILY-VARIANTS.md)。
+- **禁止**用 `fonts-packages/.../result.css` 顶替动态嵌入。包路径只给内部预览（`ensureFontCss` / `packageResultUrl`）。
+- **禁止**因 OSS 上 `/api/css` 404 就改前端口径；那是 CDN 边缘回源问题，见 [HANDOFF.md](HANDOFF.md) CDN 节。
+- 预览真源：`https://cn.windfonts.com/fonts-packages/{Normalized}/{Weight}/{full|zh-common}/result.css`。旧路径 `/wenfeng/fonts/{slug}/{weight}/web/` 仅兜底（「静态」）。
 - 生成的 `<link>` 代码前必须带授权标注注释（`WFProto.CDN_LICENSE_NOTE`）。
-- 项目 CDN：`https://cn.windfonts.com/p/{project-slug}/index.css`（控制台用，后端待实现）。对外域名一律 `cn.windfonts.com`。
-- 页面上任何写死的 CDN 示例（docs / features / styleguide）都要与 `WFProto.cssUrl` 的输出一致。
+- 项目 CDN：`https://cn.windfonts.com/p/{project-slug}/index.css`（控制台用，后端待实现）。对外域名一律地区节点 `cn|hk|en.windfonts.com`。
+- 页面写死的 CDN 示例（docs / features）须与上表一致；`styleguide` 若展示旧路径须标明「兼容」。
+- 改动态/静态形态前必须用户明确同意。
 
 ## 8. 质量门禁（提交前）
 

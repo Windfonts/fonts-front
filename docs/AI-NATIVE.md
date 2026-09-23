@@ -9,8 +9,9 @@
 3. `docs/FRONTEND-STANDARDS.md` — 代码规范与数据契约
 4. `docs/PLATFORMS.md` — 双平台分工（Windfonts 分发 / wenfeng.org 造字与授权）；动厂商、开源作者、缺字、造字时必读
 5. `docs/LICENSE.md` — 授权依据、来源分档、防钓鱼；动授权区 / 厂商认证时必读
-6. 与任务相关的页面 HTML、其 `js/pages/*.js`，以及被引用的 `wf-*.js`
-7. `styleguide.html`（可在浏览器打开）核对组件长相
+6. `docs/CLAIM-SCOPES.md` — 厂商认领权限矩阵；动认领页 / 厂商 CTA / 厂商后台时必读
+7. 与任务相关的页面 HTML、其 `js/pages/*.js`，以及被引用的 `wf-*.js`
+8. `styleguide.html`（可在浏览器打开）核对组件长相
 
 不读文件就动手、凭记忆猜类名或令牌名，是本仓最常见的返工来源。
 

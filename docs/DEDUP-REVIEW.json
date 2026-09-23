@@ -1,0 +1,753 @@
+{
+  "generated": true,
+  "clusters": [
+    {
+      "cluster": "同名·胡晓波骚包体",
+      "items": [
+        {
+          "family": "wenfeng-hxbsb",
+          "name": "胡晓波骚包体",
+          "normalized": "Hxbsb",
+          "weights": [
+            "Normal"
+          ],
+          "chars": 7414,
+          "glyphs": 7465,
+          "views": 19,
+          "downloads": 0,
+          "api": 133,
+          "log_recent": 1,
+          "license": "免费商用授权",
+          "designer": "胡晓波",
+          "foundry": "Hu Xiaobo",
+          "id": "d78ca7f5-7cbe-4889-8f8b-e6948e72976f",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-hxbsbt",
+          "name": "胡晓波骚包体",
+          "normalized": "Hxbsbt",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 7414,
+          "glyphs": 7465,
+          "views": 23,
+          "downloads": 0,
+          "api": 125,
+          "log_recent": 1,
+          "license": "免费可商用授权",
+          "designer": "胡晓波",
+          "foundry": "Hu Xiaobo",
+          "id": "d98aae88-ebc2-46fc-8af9-aee0cd2fbb22",
+          "oss_css": 200
+        }
+      ]
+    },
+    {
+      "cluster": "同名·江西拙楷体",
+      "items": [
+        {
+          "family": "wenfeng-hyqzpt",
+          "name": "江西拙楷体",
+          "normalized": "Hyqzpt",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 8099,
+          "glyphs": 8106,
+          "views": 17,
+          "downloads": 0,
+          "api": 68,
+          "log_recent": 1,
+          "license": "SIL Open Font License 1.1",
+          "designer": "黄煜臣",
+          "foundry": "",
+          "id": "62e41b2a-f8c4-456f-91f7-104c618cc401",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-jxzk",
+          "name": "江西拙楷体",
+          "normalized": "Jxzk",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 6248,
+          "glyphs": 6260,
+          "views": 32,
+          "downloads": 0,
+          "api": 103,
+          "log_recent": 2,
+          "license": "免费商用",
+          "designer": "黄煜臣",
+          "foundry": "HelloFont / Fontree",
+          "id": "3d6697db-260c-4dcb-a8d9-c9c74cb8e7c9",
+          "oss_css": 200
+        }
+      ]
+    },
+    {
+      "cluster": "同名·汉字拼音体",
+      "items": [
+        {
+          "family": "wenfeng-hzpy",
+          "name": "汉字拼音体",
+          "normalized": "Hzpy",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 26654,
+          "glyphs": 26655,
+          "views": 39,
+          "downloads": 0,
+          "api": 275,
+          "log_recent": 2,
+          "license": "CC-BY-SA-4.0",
+          "designer": "缪之初",
+          "foundry": "",
+          "id": "ab67bcf5-2c52-4e7f-823e-03710771ce49",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-hzpyt",
+          "name": "汉字拼音体",
+          "normalized": "Hzpyt",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 26654,
+          "glyphs": 26655,
+          "views": 16,
+          "downloads": 0,
+          "api": 53,
+          "log_recent": 1,
+          "license": "CC-BY-SA-4.0",
+          "designer": "—",
+          "foundry": "",
+          "id": "93fe1d3f-7790-43e0-a486-402426cf559f",
+          "oss_css": 200
+        }
+      ]
+    },
+    {
+      "cluster": "同名·一点明体",
+      "items": [
+        {
+          "family": "wenfeng-kslmt",
+          "name": "一点明体",
+          "normalized": "Kslmt",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 55352,
+          "glyphs": 55328,
+          "views": 32,
+          "downloads": 0,
+          "api": 99,
+          "log_recent": 2,
+          "license": "IPA Open Font License v1.0",
+          "designer": "Ichiten Fonts Project",
+          "foundry": "I.Font Project / Ichiten Font",
+          "id": "cdbbf2a5-12dd-4853-aedf-bab72d2b35a3",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-kslyt",
+          "name": "一点明体",
+          "normalized": "Kslyt",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 55352,
+          "glyphs": 55328,
+          "views": 158,
+          "downloads": 0,
+          "api": 428,
+          "log_recent": 5,
+          "license": "IPA Font License v1.0",
+          "designer": "Ichiten Fonts Project",
+          "foundry": "I.Font Project",
+          "id": "3c19eaab-50dd-4eaf-b9f6-4ebb77f393d9",
+          "oss_css": 200
+        }
+      ]
+    },
+    {
+      "cluster": "同名·沐瑶软笔手写体",
+      "items": [
+        {
+          "family": "wenfeng-myrbsxt",
+          "name": "沐瑶软笔手写体",
+          "normalized": "Myrbsxt",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 6890,
+          "glyphs": 6891,
+          "views": 26,
+          "downloads": 0,
+          "api": 172,
+          "log_recent": 1,
+          "license": "作者声明 (可免费商用)",
+          "designer": "春颜秋色",
+          "foundry": "",
+          "id": "1dee09c4-71b8-45e7-9ab6-bf7430078f51",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-mysxt",
+          "name": "沐瑶软笔手写体",
+          "normalized": "Mysxt",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 6890,
+          "glyphs": 6891,
+          "views": 319,
+          "downloads": 0,
+          "api": 1693,
+          "log_recent": 20,
+          "license": "免费商用",
+          "designer": "春颜秋色",
+          "foundry": "Reeji / Sharp Type",
+          "id": "03b5f7cd-e75d-4e31-86d1-28fbd473737c",
+          "oss_css": 200
+        }
+      ]
+    },
+    {
+      "cluster": "同名·庞门正道标题体",
+      "items": [
+        {
+          "family": "wenfeng-pmzdbtt",
+          "name": "庞门正道标题体",
+          "normalized": "Pmzdbtt",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 5563,
+          "glyphs": 6230,
+          "views": 14,
+          "downloads": 0,
+          "api": 30,
+          "log_recent": 1,
+          "license": "免费商用授权",
+          "designer": "胡晓波",
+          "foundry": "PangMenZhengDao",
+          "id": "3503cfad-10e3-49ff-8fc0-ee2838f7a1b8",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-pmzdcsd",
+          "name": "庞门正道标题体",
+          "normalized": "Pmzdcsd",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 7590,
+          "glyphs": 7618,
+          "views": 25,
+          "downloads": 0,
+          "api": 58,
+          "log_recent": 1,
+          "license": "免费商用",
+          "designer": "庞门正道",
+          "foundry": "PangMenZhengDao",
+          "id": "528c89d5-af53-4ac7-bca1-b3c23e28a4df",
+          "oss_css": 200
+        }
+      ]
+    },
+    {
+      "cluster": "同名·千图纤墨体",
+      "items": [
+        {
+          "family": "wenfeng-qtqmt",
+          "name": "千图纤墨体",
+          "normalized": "Qtqmt",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 7139,
+          "glyphs": 7152,
+          "views": 15,
+          "downloads": 0,
+          "api": 19,
+          "log_recent": 1,
+          "license": "免费商用",
+          "designer": "Shanghai PinTu Network Technology Co.",
+          "foundry": "拼图",
+          "id": "704c3e88-7bc4-4f4e-99fa-439bde608082",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-qtxmt",
+          "name": "千图纤墨体",
+          "normalized": "Qtxmt",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 7139,
+          "glyphs": 7152,
+          "views": 192,
+          "downloads": 0,
+          "api": 954,
+          "log_recent": 5,
+          "license": "免费商用授权",
+          "designer": "Shanghai PinTu Network Technology Co.",
+          "foundry": "拼图",
+          "id": "38de05ac-b960-42d3-9f75-997e300a96f6",
+          "oss_css": 200
+        }
+      ]
+    },
+    {
+      "cluster": "版本·站酷快乐体",
+      "items": [
+        {
+          "family": "wenfeng-zkklt",
+          "name": "站酷快乐体",
+          "normalized": "Zkklt",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 7809,
+          "glyphs": 7881,
+          "views": 28,
+          "downloads": 0,
+          "api": 200,
+          "log_recent": 2,
+          "license": "SIL Open Font License 1.1",
+          "designer": "LuiBingKe",
+          "foundry": "ZCOOL",
+          "id": "92bf46bf-ca37-4d48-ba4d-8b7dd2f75ed4",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-happyzcool2016",
+          "name": "站酷快乐体2016修订版",
+          "normalized": "HappyZcool2016",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 0,
+          "glyphs": 0,
+          "views": 16,
+          "downloads": 0,
+          "api": 1,
+          "log_recent": 15,
+          "license": "免费商用",
+          "designer": "—",
+          "foundry": "站酷字库",
+          "id": "3abb5495-5d87-4332-8c31-9327f64d5c00",
+          "oss_css": 200
+        }
+      ]
+    },
+    {
+      "cluster": "版本·庞门正道粗书体",
+      "items": [
+        {
+          "family": "wenfeng-pmzdcst",
+          "name": "庞门正道粗书体",
+          "normalized": "PangMenZhengDaoCu",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 0,
+          "glyphs": 0,
+          "views": 16,
+          "downloads": 0,
+          "api": 2,
+          "log_recent": 2,
+          "license": "免费商用",
+          "designer": "—",
+          "foundry": "庞门正道",
+          "id": "61d2ed6f-cf5f-4f5a-b523-42ae686e8931",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-pmzdcst60",
+          "name": "庞门正道粗书体6.0",
+          "normalized": "PangMenZhengDaoCu60",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 0,
+          "glyphs": 0,
+          "views": 16,
+          "downloads": 0,
+          "api": 1,
+          "log_recent": 1,
+          "license": "免费商用",
+          "designer": "—",
+          "foundry": "庞门正道",
+          "id": "62e1ab14-6219-4b8d-8d0f-beb2638552cc",
+          "oss_css": 200
+        }
+      ]
+    },
+    {
+      "cluster": "近名·酷黑（站酷酷黑 / 胡晓波酷黑体）",
+      "items": [
+        {
+          "family": "wenfeng-huxiaobokuhei",
+          "name": "站酷酷黑",
+          "normalized": "HuXiaoBoKuHei",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 0,
+          "glyphs": 0,
+          "views": 16,
+          "downloads": 0,
+          "api": 1,
+          "log_recent": 1,
+          "license": "免费商用",
+          "designer": "—",
+          "foundry": "",
+          "id": "f01e96d6-a60b-4467-a88d-6516c6addbce",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-zkkht",
+          "name": "胡晓波酷黑体",
+          "normalized": "Zkkht",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 4369,
+          "glyphs": 4427,
+          "views": 14,
+          "downloads": 0,
+          "api": 26,
+          "log_recent": 1,
+          "license": "免费商用",
+          "designer": "HuXiaoBo",
+          "foundry": "ZCOOL",
+          "id": "27b6b870-d623-4b75-90e4-7fc2f5b66034",
+          "oss_css": 200
+        }
+      ]
+    },
+    {
+      "cluster": "近名·屏显臻宋",
+      "items": [
+        {
+          "family": "wenfeng-pxzs",
+          "name": "屏显臻宋",
+          "normalized": "Pxzs",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 30847,
+          "glyphs": 30938,
+          "views": 196,
+          "downloads": 0,
+          "api": 910,
+          "log_recent": 7,
+          "license": "SIL Open Font License 1.1",
+          "designer": "chncwk",
+          "foundry": "",
+          "id": "cb7ed496-2255-4535-a75e-5c52e3a78241",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-sypscn",
+          "name": "思源屏显臻宋 CN",
+          "normalized": "SourceHanSerifCNforDisplay",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 0,
+          "glyphs": 0,
+          "views": 16,
+          "downloads": 0,
+          "api": 2,
+          "log_recent": 4,
+          "license": "免费商用",
+          "designer": "—",
+          "foundry": "",
+          "id": "e7a8f58e-c48e-4c60-9b02-818e63a6a520",
+          "oss_css": 200
+        }
+      ]
+    },
+    {
+      "cluster": "思源黑体系",
+      "items": [
+        {
+          "family": "wenfeng-syhtcjk",
+          "name": "思源黑体 常规体",
+          "normalized": "Syhtcjk",
+          "weights": [
+            "DemiLight",
+            "Medium",
+            "Light",
+            "Regular",
+            "Black",
+            "Thin",
+            "Bold"
+          ],
+          "chars": 44681,
+          "glyphs": 65535,
+          "views": 83,
+          "downloads": 0,
+          "api": 2496,
+          "log_recent": 1352,
+          "license": "SIL Open Font License",
+          "designer": "Ryoko NISHIZUKA (kana & ideographs)",
+          "foundry": "Adobe",
+          "id": "dabfdb8a-7eb3-4102-8087-6b404eac7def",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-syhtsc",
+          "name": "思源黑体",
+          "normalized": "SourceHanSansSCRegular",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 0,
+          "glyphs": 0,
+          "views": 16,
+          "downloads": 0,
+          "api": 4,
+          "log_recent": 13,
+          "license": "免费商用",
+          "designer": "—",
+          "foundry": "Adobe",
+          "id": "82dd541b-10c1-47ff-a148-764de20e53fa",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-syhtcn",
+          "name": "思源黑体 CN",
+          "normalized": "SourceHanSansCNRegular",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 0,
+          "glyphs": 0,
+          "views": 16,
+          "downloads": 0,
+          "api": 2,
+          "log_recent": 2,
+          "license": "免费商用",
+          "designer": "—",
+          "foundry": "Adobe",
+          "id": "d095caa9-08ea-44eb-a00c-e56b04819c3b",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-syhttw",
+          "name": "思源黑體 TW",
+          "normalized": "SourceHanSansTWRegular",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 0,
+          "glyphs": 0,
+          "views": 16,
+          "downloads": 0,
+          "api": 2,
+          "log_recent": 4,
+          "license": "免费商用",
+          "designer": "—",
+          "foundry": "Adobe",
+          "id": "7ddc361c-92ba-421b-ac88-6daabed71d77",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-syhtxt",
+          "name": "思源黑体斜体",
+          "normalized": "SourceHanSansXTRegular",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 0,
+          "glyphs": 0,
+          "views": 16,
+          "downloads": 0,
+          "api": 2,
+          "log_recent": 2,
+          "license": "免费商用",
+          "designer": "—",
+          "foundry": "",
+          "id": "96ddc949-dd35-42ea-895b-b67eeee2f8fc",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-cjkfqlt",
+          "name": "思源黑体 CJK 字体",
+          "normalized": "Cjkfqlt",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 42147,
+          "glyphs": 42156,
+          "views": 60,
+          "downloads": 0,
+          "api": 447,
+          "log_recent": 8,
+          "license": "SIL Open Font License 1.1",
+          "designer": "Adobe",
+          "foundry": "cjkFonts",
+          "id": "3efb5b84-658f-4f0c-8647-a6c4b1bb1b48",
+          "oss_css": 200
+        }
+      ]
+    },
+    {
+      "cluster": "思源宋体系",
+      "items": [
+        {
+          "family": "wenfeng-systcn",
+          "name": "思源宋体 CN",
+          "normalized": "Systcn",
+          "weights": [
+            "Heavy",
+            "Light",
+            "Bold",
+            "Extralight",
+            "Semibold",
+            "Medium",
+            "Regular"
+          ],
+          "chars": 30847,
+          "glyphs": 30995,
+          "views": 45,
+          "downloads": 0,
+          "api": 949,
+          "log_recent": 15,
+          "license": "SIL Open Font License 1.1",
+          "designer": "Ryoko NISHIZUKA 西塚涼子 (kana & ideographs)",
+          "foundry": "Adobe",
+          "id": "088b2c69-f1e1-4af8-9451-006c1db7ad1c",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-systcnl",
+          "name": "思源宋体 CN Light",
+          "normalized": "Light",
+          "weights": [
+            "Systcn"
+          ],
+          "chars": 30847,
+          "glyphs": 30995,
+          "views": 324,
+          "downloads": 0,
+          "api": 4045,
+          "log_recent": 42,
+          "license": "SIL Open Font License 1.1",
+          "designer": "Ryoko NISHIZUKA 西塚涼子 (kana & ideographs)",
+          "foundry": "Adobe",
+          "id": "f6efadc4-b5de-4343-9c57-65d54b7db3f8",
+          "oss_css": 200
+        },
+        {
+          "family": "wenfeng-systsc",
+          "name": "思源宋体",
+          "normalized": "SourceHanSerifSCRegular",
+          "weights": [
+            "Regular"
+          ],
+          "chars": 0,
+          "glyphs": 0,
+          "views": 18,
+          "downloads": 0,
+          "api": 4,
+          "log_recent": 12,
+          "license": "免费商用",
+          "designer": "—",
+          "foundry": "Adobe",
+          "id": "d95788bf-bd0b-448f-b4a1-5d23a19992d0",
+          "oss_css": 200
+        }
+      ]
+    }
+  ],
+  "log_top20": [
+    [
+      "wenfeng-syhtcjk",
+      1351
+    ],
+    [
+      "wenfeng-jnft",
+      173
+    ],
+    [
+      "wenfeng-almmsht",
+      108
+    ],
+    [
+      "wenfeng-light",
+      41
+    ],
+    [
+      "wenfeng-albbpht",
+      37
+    ],
+    [
+      "wenfeng-xwxxh",
+      33
+    ],
+    [
+      "wenfeng-ibmps",
+      32
+    ],
+    [
+      "ibmps",
+      30
+    ],
+    [
+      "xwxzs",
+      22
+    ],
+    [
+      "wenfeng-mysxt",
+      20
+    ],
+    [
+      "wenfeng-yjmct",
+      20
+    ],
+    [
+      "wenfeng-975maruscregular",
+      20
+    ],
+    [
+      "wenfeng-kslgbht",
+      19
+    ],
+    [
+      "wenfeng-alibabasansthai",
+      19
+    ],
+    [
+      "wenfeng-b2sclight",
+      19
+    ],
+    [
+      "wenfeng-dlzht",
+      18
+    ],
+    [
+      "wenfeng-jnbbh",
+      18
+    ],
+    [
+      "wenfeng-alibabasansviet",
+      18
+    ],
+    [
+      "wenfeng-aar",
+      18
+    ],
+    [
+      "wenfeng-aleoregular",
+      17
+    ]
+  ]
+}

@@ -1,6 +1,6 @@
 # 文风 · 授权依据与防钓鱼
 
-> 2026-09-20 定调。详情页「授权」、厂商页、选字袋、文档许可说明都以本文为准。参考墨图爱可（每套标作者 + SPDX、本站不二次授权），不参考素材站「可商用」截图。
+> 2026-09-20 定调。详情页「授权」、厂商页、选字袋、`license.html` 都以本文为准。参考墨图爱可（每套标作者 + SPDX、本站不二次授权），不参考素材站「可商用」截图。
 
 ## 1. 原则
 
@@ -30,21 +30,27 @@ Windfonts **转述**条款，不重新授权。版权归权利人。用户能否
 | 徽记 | 字段 | 含义 |
 |---|---|---|
 | 许可已核对 | `licenseEvidence.verified` | 这款字的条款按上表看过 |
-| 厂商已认领 | `foundries[].claimed` | 品牌方认领并通过 |
+| 厂商已认领 | `foundries[].claimed` | 该页维护方认领并通过（能力按 kind 不同，见 [CLAIM-SCOPES.md](CLAIM-SCOPES.md)） |
 
-现在没有已认领厂商，认证徽记不应出现。禁止再用 `font.licenseVerified` 当「已认证厂商」。
+现在没有已认领厂商，认证徽记不应出现。禁止再用 `font.licenseVerified` 当「已认证厂商」。认领通过也**不能**改许可档位或点亮「已核对」。
 
 ## 4. 厂商 `kind` / `openSource`
 
 写在 `data/foundries.json`。标的是人/机构，不是又一张许可贴纸。
 
-| kind | 例子 | 开源作者？ |
+| kind | 例子 | 页上怎么叫 |
 |---|---|---|
-| `author` | 落霞孤鹜、寒蝉、胡晓波 | 通常 `openSource: true` |
-| `project` | 文泉驿、一点字坊、GNU、M+ | 通常是 |
-| `foundry` | 汉仪、方正、华康、仓耳 | 否（某款字仍可以是 OFL） |
-| `brand` | 钉钉、OPPO、小米、字节、阿里 | 否；版权在品牌，字常由字库代做 |
-| `platform` | 千图、包图、站酷、字魂、猫啃 | 否 |
+| `author` | 落霞孤鹜、寒蝉、胡晓波 | 「作者」；`openSource` 时「开源作者」 |
+| `project` | 文泉驿、一点字坊、GNU、M+、台湾省教育部 | 「开源项目」 |
+| `foundry` | 汉仪、方正、华康、仓耳 | 「字库」 |
+| `brand` | 钉钉、OPPO、小米、字节、阿里 | 「品牌方」；版权在品牌，字常由字库代做 |
+| `platform` | 千图、包图、站酷、字魂、猫啃 | 「素材平台」 |
+
+厂商索引必须把 **作者**、**开源作者**、**开源项目** 分列分筛，禁止合成「开源作者 / 项目」。
+
+认领谁能改什么、材料要什么：见 [CLAIM-SCOPES.md](CLAIM-SCOPES.md)。素材平台可认领页资料，但永远不能动许可；制作方无单独协作通道，归属页只由 `ownerId` 认领。
+
+地区命名：台湾相关一律「台湾省」（英文 `Taiwan Province`），禁止「中华民国」进字典主名或别名。
 
 一款字可以同时是：开源（协议）+ 素材平台（分发方）。例如猫啃转载的 OFL 字。
 
@@ -95,11 +101,24 @@ sourceKind  sourceUrl  quote  verifiedAt  restrictions[]  spdx  verified
 
 | relation | 含义 | 许可默认 |
 |---|---|---|
-| `original` | 谱系源头 | 看本款依据 |
-| `locale` | 同一家族的地区切分（CN / TW / CJK） | `inherit` |
-| `fork` | 改过并**已改名**的派生 | `inherit`（OFL 仍须保留声明、尊重保留名） |
+| `original` | 谱系源头（本家族首发） | 看本款依据 |
+| `locale` | 同一家族的地区或规格切分（简繁、Lite / Screen / 等宽、CL·MN…） | `inherit` |
+| `fork` | 改过并**已改名**的派生：外源补字，或同主再设计 | `inherit`（OFL 仍须保留声明、尊重保留名） |
 | `commissioned` | 品牌委托定制 | `own` |
 | `collab` | 品牌与字库联名 | `own`，除非原文写明跟上游走 |
+
+`upstreamOwnerId`：外源 `fork` 时必须是上游机构，且**不得**等于本款 `ownerId`。同主再 `fork`（如臻楷 ← 文楷）或 `locale` 时，`upstreamOwnerId` 可与 `ownerId` 相同。
+
+厂商页展示（与原始 relation 可不同）：
+
+- 外源 `fork`（上游机构 ≠ 本页）→ 进「源字」：作者页上这是主款
+- `locale` →「地区版」；同名前缀规格收进主款脚注 / `font-products`
+- 同主再 `fork` →「派生」
+- 顶部外源条按上游族系分两行（都是 `fork`，不是两种法律类型）：**派生 · 开源**（IPA / Fontworks / Droid…）与 **派生 · 思源**（Source Han / Adobe）。「开源」是族系口令，不是说思源不开源；口语「二创」= 派生，不单独成类。勿写「改自」。可手工 `originVerb: remix|derive` 覆盖
+- 顶部只列**外源根**，不刷 GB / Lite
+- 页内「派生」段 = 同主再设计的 `fork`；「地区版」= `locale`
+
+后续同类作者（寒蝉、猫啃等）按同一套写：先标外源根，地区/规格用 `locale`，再设计才用同主 `fork`，不要一律 `fork`。
 
 `licenseFollows`：`inherit` 写清「沿用上游哪份许可」；`own` 写清「以品牌方为准」；不知道就 `unknown`，不写「应该也能商用」。
 
