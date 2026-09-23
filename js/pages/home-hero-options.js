@@ -27,7 +27,7 @@
       [list.length, '款', 'fonts.html'],
       [Object.keys(brands).length, '家', 'foundry.html'],
       [free, '免费', 'fonts.html?license=' + encodeURIComponent('免费商用')],
-      [verified, '已核对', 'docs.html#license']
+      [verified, '已核对', 'license.html']
     ];
   }
 

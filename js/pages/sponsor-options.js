@@ -14,7 +14,7 @@
       '<div>' +
         '<dl class="kv">' +
           '<div><dt>' + WFChrome.icon('building') + '类型</dt><dd>开源作者</dd></div>' +
-          '<div><dt>' + WFChrome.icon('font') + '归属字体</dt><dd>6</dd></div>' +
+          '<div><dt>' + WFChrome.icon('font') + '归属</dt><dd>6</dd></div>' +
           '<div><dt>' + WFChrome.icon('globe') + '官网</dt><dd>github.com/lxgw</dd></div>' +
         '</dl>' +
         '<p class="claim" style="margin-top:var(--s-5)">' + WFChrome.icon('idcard') +

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>厂商顶部 · 整页方案 · 文风字体</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/home-close-options.css" />
+  <link rel="stylesheet" href="css/foundry-hero-options.css" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+</head>
+<body class="page-foundry-hero-opts page-home-close">
+  <header data-topbar data-active="foundries"></header>
+
+  <div class="hc-switch">
+    <div class="container hc-switch-inner">
+      <p class="hc-switch-lead">丁 · 粘顶目录已定稿上正式站。此页仅归档对照。</p>
+      <nav class="seg-glyph" aria-label="设计稿">
+        <a href="#a">甲 检索优先</a>
+        <a href="#b">乙 类型导航</a>
+        <a href="#c">丙 信任先读</a>
+        <a href="#d">丁 粘顶目录</a>
+      </nav>
+      <a class="hc-back" href="foundry.html">回厂商页</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- 甲 -->
+    <article class="hc-block is-on" id="a">
+      <header class="hc-meta">
+        <b>甲 · 检索优先</b>
+        <span>主任务：找到某一家。标题收轻，搜索 + 类型筛进首屏；下面直接列表，不再重复工具条。</span>
+      </header>
+      <p class="fh-brief"><b>整页节奏</b> 首屏完成「搜 / 筛」→ 列表分段 → 底「合作」认领。适合从字体页、选字袋跳来找人。</p>
+      <div class="fh-stage">
+        <section class="fh-find" aria-label="厂商目录">
+          <div class="container">
+            <div class="fh-find-top">
+              <h1>厂商</h1>
+              <p class="sub"><span data-listed-n>65</span> 家在目录 · 字库与作者分列</p>
+            </div>
+            <div class="fh-find-tools">
+              <label class="fh-find-search">
+                <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-search"/></svg>
+                <span class="sr-only">搜索厂商</span>
+                <input type="search" placeholder="搜索名称、英文或简称" disabled />
+              </label>
+              <div class="fh-find-kinds" role="presentation" data-kind-btns></div>
+            </div>
+            <p class="fh-find-note">版权归品牌方；字库代做的款在「仅受托制作」。素材站声明不等于厂商官网。</p>
+          </div>
+        </section>
+        <div class="fh-peek" aria-hidden="true">
+          <div class="container">
+            <div class="section-head"><h2>字库 <span class="n" data-n-foundry>11</span></h2></div>
+            <div class="foundry-index" data-peek-cards></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 乙 -->
+    <article class="hc-block" id="b">
+      <header class="hc-meta">
+        <b>乙 · 类型导航</b>
+        <span>主任务：先搞清目录怎么分。六类卡片即导航（点进对应段）；搜索旁挂。解决「作者 / 开源项目 / 素材站」易混。</span>
+      </header>
+      <p class="fh-brief"><b>整页节奏</b> 类型地图 → 点一类滚到该段（或筛）→ 列表 → 底合作。适合第一次进厂商页、需要建立心智模型。</p>
+      <div class="fh-stage">
+        <section class="fh-kinds" aria-label="厂商目录">
+          <div class="container">
+            <div class="fh-kinds-head">
+              <div>
+                <h1>厂商</h1>
+                <p class="lead">信任与在库清单，不是品牌站。点类型进入对应分段。</p>
+              </div>
+              <label class="fh-kinds-search">
+                <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-search"/></svg>
+                <span class="sr-only">搜索厂商</span>
+                <input type="search" placeholder="搜索" disabled />
+              </label>
+            </div>
+            <ul class="fh-kind-grid">
+              <li><a href="#peek">
+                <div class="k"><b>字库</b><span data-n-foundry>11</span></div>
+                <p>制作方。有归属字列此；仅代做的见受托。</p>
+              </a></li>
+              <li><a href="#peek">
+                <div class="k"><b>品牌方</b><span data-n-brand>10</span></div>
+                <p>持有版权、认领页的主体。与制作方可能不同。</p>
+              </a></li>
+              <li><a href="#peek">
+                <div class="k"><b>作者</b><span data-n-author>25</span></div>
+                <p>个人或工作室署名；与开源项目分开。</p>
+              </a></li>
+              <li><a href="#peek">
+                <div class="k"><b>开源项目</b><span data-n-project>8</span></div>
+                <p>协作仓、机构发布线或计划名。</p>
+              </a></li>
+              <li><a href="#peek">
+                <div class="k"><b>素材平台</b><span data-n-platform>11</span></div>
+                <p>声明不等于厂商官网；许可另核。</p>
+              </a></li>
+              <li><a class="is-extra" href="#peek">
+                <div class="k"><b>仅受托 / 未核对</b><span data-n-extra>10</span></div>
+                <p>无归属代做，或目录尚未对上字典。</p>
+              </a></li>
+            </ul>
+          </div>
+        </section>
+        <div class="fh-peek" id="peek" aria-hidden="true">
+          <div class="container">
+            <div class="section-head"><h2>字库 <span class="n" data-n-foundry>11</span></h2></div>
+            <div class="foundry-index" data-peek-cards></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 丙 -->
+    <article class="hc-block" id="c">
+      <header class="hc-meta">
+        <b>丙 · 信任先读</b>
+        <span>主任务：先讲清口径（归属 / 受托 / 素材站），再给搜与筛。对齐 PLATFORMS「信任 + 清单」，减少误读。</span>
+      </header>
+      <p class="fh-brief"><b>整页节奏</b> 三条规则 → 轻量工具条 → 列表 → 底合作（权益说明已在底）。适合对外讲清楚「我们怎么标」。</p>
+      <div class="fh-stage">
+        <section class="fh-trust" aria-label="厂商目录">
+          <div class="container">
+            <div class="fh-trust-head">
+              <h1>厂商</h1>
+              <p class="lead">本页是在库出处目录：谁持有版权、谁制作、谁只是素材站声明。不二次授权；认领只改本页资料。</p>
+            </div>
+            <ul class="fh-trust-rules">
+              <li>
+                <b>归属 ≠ 制作</b>
+                <span>品牌方挂归属；字库代做另列「仅受托制作」，版权仍在品牌方。</span>
+              </li>
+              <li>
+                <b>作者 ≠ 开源项目</b>
+                <span>个人 / 工作室与协作仓、计划名分列，不混成「开源作者」。</span>
+              </li>
+              <li>
+                <b>素材站 ≠ 官网</b>
+                <span>千图、猫啃等声明不能当成厂商官网；实际许可看出处原文。</span>
+              </li>
+            </ul>
+            <div class="fh-trust-bar">
+              <p class="stat"><b data-listed-n>65</b>家</p>
+              <div class="foundry-kinds" data-kind-btns></div>
+              <label class="foundry-search">
+                <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-search"/></svg>
+                <span class="sr-only">搜索厂商</span>
+                <input type="search" placeholder="搜索" disabled />
+              </label>
+            </div>
+          </div>
+        </section>
+        <div class="fh-peek" aria-hidden="true">
+          <div class="container">
+            <div class="section-head"><h2>字库 <span class="n" data-n-foundry>11</span></h2></div>
+            <div class="foundry-index" data-peek-cards></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 丁 -->
+    <article class="hc-block" id="d">
+      <header class="hc-meta">
+        <b>丁 · 粘顶目录</b>
+        <span>已定稿上正式站。抬头一行 + 粘顶搜筛 + 入驻跳转。</span>
+      </header>
+      <p class="fh-brief"><b>整页节奏</b> 极短标题 → 粘顶工具全程可用 → 多段列表 → 底合作。适合目录已很长、反复上下对照的人。</p>
+      <div class="fh-stage">
+        <section class="fh-stick-hero" aria-label="厂商目录">
+          <div class="container">
+            <h1>厂商</h1>
+            <p class="lead"><span data-listed-n>65</span> 家在目录。字库、品牌方、作者与开源项目分列；版权归品牌方。</p>
+          </div>
+        </section>
+        <div class="fh-stick-bar">
+          <div class="container fh-stick-inner">
+            <label class="foundry-search">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-search"/></svg>
+              <span class="sr-only">搜索厂商</span>
+              <input type="search" placeholder="搜索名称、英文或简称" disabled />
+            </label>
+            <div class="foundry-kinds" data-kind-btns></div>
+            <a class="jump" href="#close-stub">入驻与认领 ↓</a>
+          </div>
+        </div>
+        <div class="fh-peek" aria-hidden="true">
+          <div class="container">
+            <div class="section-head"><h2>字库 <span class="n" data-n-foundry>11</span></h2></div>
+            <div class="foundry-index" data-peek-cards></div>
+            <div class="section-head" style="margin-top:var(--s-8)"><h2>品牌方 <span class="n" data-n-brand>10</span></h2></div>
+            <div class="foundry-index" data-peek-cards-b></div>
+          </div>
+        </div>
+        <p id="close-stub" class="fh-brief" style="padding-bottom:var(--s-8)">（此处接已定稿的「合作」竖排 CTA，本对照不重复画。）</p>
+      </div>
+    </article>
+  </main>
+
+  <script src="js/wf-proto.js"></script>
+  <script src="js/wf-chrome.js"></script>
+  <script src="js/pages/foundry-hero-options.js"></script>
+</body>
+</html>

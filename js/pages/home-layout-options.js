@@ -27,7 +27,7 @@
       [list.length, '在库字体', 'fonts.html'],
       [Object.keys(brands).length, '厂商与作者', 'foundry.html'],
       [free, '免费商用', 'fonts.html?license=' + encodeURIComponent('免费商用')],
-      [verified, '许可已核对', 'docs.html#license']
+      [verified, '许可已核对', 'license.html']
     ];
     return rows.map(function (r) {
       return '<a class="stat-cell" href="' + r[2] + '"><b>' + WFProto.formatCount(r[0]) + '</b><span>' + esc(r[1]) + '</span></a>';

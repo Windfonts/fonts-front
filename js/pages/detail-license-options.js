@@ -74,7 +74,7 @@
     const lic = lists(font);
     return wrapLic(font, '<p class="license-lead">' + esc(lead(font)) + '</p>' + grid(lic, false) +
       fold(WFChrome.licenseCiteHtml(font) + lineageSlim(font) +
-        '<p class="license-foot"><a href="docs.html#license">许可类型说明</a></p>', false));
+        '<p class="license-foot"><a href="license.html">许可类型说明</a></p>', false));
   }
   function licB(font) {
     const lic = lists(font);
@@ -87,19 +87,19 @@
       fold(WFChrome.licenseCiteHtml(font) + WFChrome.lineageHtml(font) +
         (lic.notes ? '<p class="license-notes">' + esc(lic.notes) + '</p>' : '') + extra +
         '<p class="license-foot">' + (font.copyright ? esc(font.copyright) + '<br>' : '') +
-        ' <a href="docs.html#license">许可类型说明</a></p>', true));
+        ' <a href="license.html">许可类型说明</a></p>', true));
   }
   function licC(font) {
     const lic = lists(font);
     return wrapLic(font, '<p class="license-lead">' + esc(lead(font)) + '</p>' +
       '<p class="lic-short"><b>可以</b> ' + esc(lic.ok.slice(0, 2).join(' · ')) +
       '<br><b>不可以</b> ' + esc(lic.no.slice(0, 2).join(' · ')) + '</p>' +
-      fold(WFChrome.licenseCiteHtml(font) + '<p class="license-foot"><a href="docs.html#license">许可类型说明</a></p>', false));
+      fold(WFChrome.licenseCiteHtml(font) + '<p class="license-foot"><a href="license.html">许可类型说明</a></p>', false));
   }
   function licD(font) {
     return wrapLic(font, '<p class="license-lead">' + esc(lead(font)) + '</p>' +
       fold(WFChrome.licenseCiteHtml(font) + grid(lists(font), false) +
-        '<p class="license-foot"><a href="docs.html#license">许可类型说明</a></p>', false));
+        '<p class="license-foot"><a href="license.html">许可类型说明</a></p>', false));
   }
 
   function kin(list, font) {

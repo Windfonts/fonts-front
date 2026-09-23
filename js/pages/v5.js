@@ -57,7 +57,7 @@
   function detailHref(font) { return h('v5-detail.html?id=' + encodeURIComponent(font.id)); }
 
   function picks(list) {
-    const names = ['阿里巴巴普惠体', '思源黑体', '思源宋体', '站酷快乐体', '得意黑', '霞鹜文楷', '萌神汉宋', '胡晓波酷黑体'];
+    const names = ['阿里巴巴普惠体', '思源黑体', '思源宋体', '站酷快乐体', '得意黑', '霞鹜文楷', '萌神汉宋', '站酷酷黑'];
     const hit = names.map(function (n) { return byName(list, n); }).filter(Boolean);
     return hit.length >= 4 ? hit : list.slice(0, 8);
   }
@@ -212,7 +212,8 @@
     const k = (info && info.kind) || '';
     if (k === 'foundry') return '字库';
     if (k === 'brand') return '品牌';
-    if (k === 'author' || k === 'project') return '开源作者';
+    if (k === 'author') return '作者';
+    if (k === 'project') return '开源项目';
     if (k === 'platform') return '素材平台';
     return '其他';
   }
@@ -237,7 +238,7 @@
     const slug = WFProto.getQuery('slug');
     const gs = groups(list);
     if (!slug) {
-      const order = ['字库', '品牌', '开源作者', '素材平台', '其他'];
+      const order = ['字库', '品牌', '作者', '开源项目', '素材平台', '其他'];
       root.innerHTML = '<div class="v5-wrap"><div class="v5-groups">' + order.map(function (name) {
         const rows = gs.filter(function (g) { return g.bucket === name && g.fonts.length; })
           .sort(function (a, b) { return b.fonts.length - a.fonts.length; });
