@@ -2,7 +2,7 @@
 
 > 面向接手后端 / 全栈的同学与智能体：原型现状、页面清单、需要后端提供的接口契约、已知待办。
 
-**2026-09-23 停点：** 公开主路径已基本对齐线上；工程批次已提交（`c78c4ce` 起）。上线硬门槛见 **[LAUNCH-GATES.md](LAUNCH-GATES.md)**（路径 rewrite、真统计、真登录、CDN 去 `local()`）。产品层（控制台 / 选字袋 / 认领等）见下文「产品层 backlog」，继续优化，不挡公开站上线。
+**2026-09-23 停点：** 公开主路径已基本对齐线上；工程批次已提交（`c78c4ce` 起）。上线硬门槛见 **[LAUNCH-GATES.md](LAUNCH-GATES.md)**（路径 rewrite、真统计、真登录、CDN 去 `local()`）。产品层（控制台 / 选字袋 / 认领等）见下文「产品层 backlog」，继续优化，不挡公开站上线。**完整会话交接见第 9 节**（谱系标准化、OSS 101、猫啃/寒蝉/站酷/荆南核实）；续页 [FONT-AUDIT-BACKLOG.md](FONT-AUDIT-BACKLOG.md)。
 
 **2026-09-22 停点：** 人要的是现站改进建议，不是重做整页。对照版 `v5.html` 等已否，不要合并。头像清单以 `data/avatars.json` 的 26 条为准，下面第 6 节里「45 家真标」已过时。详见第 8 节。
 
@@ -16,11 +16,11 @@
 | **选字袋 / 收藏** | 本地持久化，可对比与嵌入 | 登录态同步；清空/导出策略；与控制台「我的字体」关系说清 |
 | **样张工坊** | 详情设计视图出图 | 模板与默认文案接设置；OG 图需后端固定 URL |
 | **厂商认领** | `claim.html` 演示提交 | 真实工单、审核、claimed 回写目录 |
-| **谱系 / 从哪来** | 详情标题「从哪来」；开源才露出上传；厂商页按源字/地区版/派生分段 | 文案口径见 §8；勿补无把握关系 |
+| **谱系** | 详情标题「谱系」；开源才露出上传；厂商页归属按源字/地区版/派生分段 | 勿补无把握关系；上传入口仅开源 |
 | **上传** | 前端解析演示 | 对象存储 + 审核队列 |
-| **定价** | 默认隐藏 | 商务定稿后再露 |
+| **定价** | 三条产品线已落页；默认隐藏 | 商务定数字后再露 |
 
-双轨注意：只维护 `index` / `fonts` / `font-detail` / `foundry` / `docs` / `app/*` 主线；`v5-*`、`*-options.html` 不进生产入口。
+双轨注意：只维护 `index` / `fonts` / `font-detail` / `foundry` / `docs` / `app/*` 主线；`v5-*`、`*-options.html`、`oss-audit.html` **不进生产入口，但必须保留**（对照 / 研究留档）。索引：`lab.html`，说明：[LAB.md](LAB.md)。
 
 ## 1. 现状一览
 
@@ -39,15 +39,17 @@
 | 首页 | `index.html` | fonts.json + foundries.json | 完成 |
 | 字体库 | `fonts.html` | 同上；筛选含分类 / 风格 / 厂商 / 许可 / `?lineage=` `?kind=`；排序含热门；厂商默认 8 家、按当前筛选项计数排序 | 完成 |
 | 字体详情 | `font-detail.html?slug=`（兼 `?id=`） | 同上；查字、字重、字符表、授权、谱系、侧栏统计 | 完成；真路径 `/fonts/{slug}` 见 LAUNCH-GATES |
-| 文档 | `docs.html` | 静态 | CDN + REST + NPM；上线后门闸对文档示例 |
-| 厂商索引 / 单厂商 | `foundry.html[?slug=]` | foundries.json + font-lineage.json | 完成；归属与受托制作分列；认领去 `claim.html` |
+| 文档 | `docs.html` | 静态 | CDN：动态 `/api/css` + 拆包 `fonts-packages` + 静态旧路径；许可 / FAQ 各自成页 |
+| 许可说明 | `license.html` | 静态 | 注意 + 类型对照；侧栏 / 字体页授权脚注 |
+| 常见问题 | `faq.html` | 静态 | `<details>` 折叠；TOC / 页脚 / 文档入口 |
+| 厂商索引 / 单厂商 | `foundry.html[?slug=]` | foundries.json + font-lineage.json | 完成；分段见下「厂商口径」；认领去 `claim.html` |
 | 特点 | `features.html` | 静态 + 精选字体 | 完成 |
-| 定价 | `pricing.html` | 静态 | 仅开发模式 / 显式允许；正式站默认隐藏，见 `WFChrome.showPricing` |
+| 定价 | `pricing.html` | 静态 | **三条产品线**（云托管 / 开源自托管 / 私有化）；云内免费·专业；私有字=自有授权托管。数字仍占位。仅开发模式 / 显式允许，见 `WFChrome.showPricing` |
 | 关于 | `about.html` | 静态 | 完成；双平台分工 + 公司 |
 | 404 | `404.html` | 静态 | 完成；部署时需 `error_page 404 /404.html` |
 | 上传条款 | `upload-terms.html` | 静态 | 完成；上传页勾选链到此页 |
 | 认领流程 | `claim.html[?slug=]` | foundries.json + 控制台 claims | 完成；未登录给入口，登录后提交 |
-| 免责 / 隐私 / 服务条款 / 商标 | `disclaimer.html` `privacy.html` `terms.html` `trademark.html` | 静态 | 完成；薄页，写现况；许可说明链到 `docs.html#license` |
+| 免责 / 隐私 / 服务条款 / 商标 | `disclaimer.html` `privacy.html` `terms.html` `trademark.html` | 静态 | 完成；薄页，写现况；许可说明链到 `license.html` |
 | 选字袋 | `shopping-bag.html` | localStorage `wf-proto-picks` | 完成 |
 | 登录 / 注册 | `login.html` · `?mode=signup` | 演示登录（无鉴权） | 待接真实认证；`next=claim` 回到认领页 |
 | 样张 | `styleguide.html` | — | 完成，随设计系统维护 |
@@ -59,7 +61,8 @@
 | 控制台 · 用量 / 字体钻取 | `app/usage.html[?font=&range=]` | 同上 | 完成（7/30/90 天、CSV） |
 | 控制台 · 团队 | `app/team.html` | 同上 · team[] | 完成（邀请 / 角色 / 移除） |
 | 控制台 · 上传 / 设置 | `app/upload.html` `app/settings.html` | 同上 | 完成（认领与审计持久化；上传为前端解析演示） |
-| 设计对比 | `design-options.html` | — | 决策留档，可删 |
+| 设计对比 | `design-options.html` | — | **留档勿删**，见 [LAB.md](LAB.md) / `lab.html` |
+| 对照实验室 | `lab.html` + `*-options.html` + `v5-*.html` + `oss-audit.html` | `data/lab-archive.json` | 索引与政策；不进生产导航 |
 
 ## 3. 需要后端提供的接口（契约草案）
 
@@ -95,18 +98,34 @@
 | GET | `/v1/audit` | 操作审计 | `WFApp.state().audit` |
 
 ### CDN
-- 公开：`https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/index.css | zh_index.css`。**必须在拆包产物中去掉 `local()`，并补齐 `font-weight` 与合法 `font-style:normal`**。前端 `ensureFontCss` 仍会剥离 `local()` 作兜底；流水线修好后可评估简化。详见 [LAUNCH-GATES.md](LAUNCH-GATES.md)。
-- 项目：`https://cn.windfonts.com/p/{slug}/index.css`，按项目设置生成、校验 Referer/Origin、白名单外 403 并计入拦截统计。对外 CDN 域名一律 `cn.windfonts.com`。
+- **对外动态嵌入（硬约束）**：`{cn|hk|en}.windfonts.com/api/css?family=&weight=&version=`（Google 风格参数）。禁止用 `fonts-packages/` 顶替。OSS 上 `/api/css` 404 → 边缘回源 vault，不改前端口径。
+- 公开预览真源：`cn.windfonts.com/fonts-packages/{Normalized}/{Weight}/full/result.css`（与 `app.windfonts.com/api/css` 同源；本地 CORS 可 fetch）。嵌入示例仍写 API。旧路径 `/wenfeng/fonts/{slug}/{weight}/web/` 仅兜底。`ensureFontCss` 统一改写为目录 `wenfeng-*`、去掉 `local()`。全库 202 款 packages 路径已探通。详见 [LAUNCH-GATES.md](LAUNCH-GATES.md)。
+- 项目：`https://cn.windfonts.com/p/{slug}/index.css`，按项目设置生成、校验 Referer/Origin、白名单外 403 并计入拦截统计。对外 CDN 域名一律地区节点。
 - 用量口径：请求数、字节数按域名 / 字体 / 字重 / 状态码聚合，延迟 ≤ 5 分钟；性能指标来自 CSS 内置 Resource Timing 上报。
 
 ## 4. 已知待办与开放问题
+
+### 4.1 CDN 拆包与目录字重不一致（vault 侧，前端改不了源文件）
+
+预览已切到 `fonts-packages/{Normalized}/{Weight}/full/result.css`（202 款路径均通）。下列款 **目录字重名与包内实际字形不符**，需在 vault / 拆包流水线重挂或重拆；上线前应抽查：
+
+| 目录显示 | normalized | 目录字重 | 包内 name table（实测） |
+|---|---|---|---|
+| 思源黑体 | SourceHanSansSCRegular | Regular | Source Han Sans CN **ExtraLight** |
+| 思源黑體 TW | SourceHanSansTWRegular | Regular | Source Han Sans TW **Bold** |
+| 思源黑体 常规体 | Syhtcjk | 多字重（含 Regular） | 首字重 DemiLight 等与标签易错位 |
+| 寒蝉宽黑体 | Hckht | Normal | Chill K Sans **Medium**（可接受，但名表写 Bold/Medium） |
+
+另有若干拉丁款 name table 空/弱（AAR、Aleo、Railway 等），不影响加载，展示名依赖目录。旧路径 `/wenfeng/fonts/` 已停更，勿再作真源。
+
+### 4.2 其它
 
 - 厂商中文名标 `provisional: true` 的待确认名单（2026-09-20 品牌核验后剩）：阿森德、瀞字型、字体传奇、山石字库、字体树、频凡字库、上海睿翾创意设计、中日韩字体计划、SCF 字库、波比工作室、ymnk 设计、问藏书房。已由版权字段定案脱敏：沐瑶字库→FlexiFont、女书字库→綿飴、辰宇字型→置空（设计师个人）、日本系统开发→Aoyagi Kouzan、杭州火石→置空（无据）、智勇造字→贾智勇、鼎猎咨询→Miao Keming。
 - 目录里 18 款未署名字体中仍有 12 款无法归属（点点像素宋体系列等），待补元数据。
 - 登录、认领、上传为前端演示流程，需接真实认证与对象存储。
 - 破坏性操作已用 `WFChrome.confirm` 二次确认（移除字体 / 域名 / 成员、回滚、删项目、清空选字袋、轮换密钥、恢复示例数据）。
-- 定价档位与配额数字、超量单价为占位口径（专业版 200 GB / ¥0.8 per GB），等商务定稿。
-- `features.html` 与 `design-options.html` 在信息架构上是否长期保留待定。
+- 定价页结构已改为三条产品线（云 / 开源自托管 / 私有化）；云套餐数字与超量单价仍为占位（专业版 200 GB / ¥0.8 per GB），等商务定稿。私有字托管≠厂牌授权转售。
+- `features.html` 是否长期保留待定；`design-options.html` 与全部 `*-options` / `v5-*` / 审计页按 [LAB.md](LAB.md) **留档勿删**。
 - 无障碍：尚未做完整读屏走查；颜色对比已达标。
 - 授权依据与防钓鱼见 [LICENSE.md](LICENSE.md)。`licenseVerified` 不再当展示依据；厂商认领与许可核对拆开。
 - 样张默认文案数据层已加（`wf-proto-specimen-cfg.v1`），设置页与前台读取未接完。
@@ -167,10 +186,12 @@
 
 - 作者、能不能改、头像没稳之前，不加新栏目。看不出是不是二创的写成「未核对」，不要补谱系。
 - 详情标题下改成三句：谁做的、能不能用和改、`font-family` 写 `wenfeng-` 什么。授权「可以 / 不可以」收进这一句，「出处与依据」继续折着。
-- 详情「谱系」改叫「从哪来」，只在开源或真有上游时出现。上传按钮只给开源。不许改的，这一块不出现。
+- 详情「谱系」**保持叫「谱系」**（勿改成「从哪来」——该口径已否）。只在开源或真有上游时出现。上传按钮只给开源。不许改的，这一块不出现。
 - 「获取代码」设计视图和开发视图都在。顶栏设计 / 开发仍可分开字符表、字形数。换 `wenfeng-` 前缀只在登录后的控制台。
 - 首页留活样张和「换一款」。拿掉 `home-stats` 和底部「现在的库」三块统计。合作伙伴若是真合作，留在页尾。
-- 厂商索引按字库 / 品牌 / 开源作者 / 素材平台分四段，卡片不动。「改自」留着，主头像仍是这一家。
+- 厂商索引分段：**字库 / 品牌方 / 作者 / 开源作者 / 开源项目 / 素材平台**（不得混成一节）；开源项目不因只受托拆到「仅受托」；「仅受托」「未核对」置底。筛选是底栏式 tab。底部「入驻与认领」用通用文案。单页认领句：`这是你的品牌？认领此页。通过后可改标志与介绍。` 权限按 kind 的细则只写在 [CLAIM-SCOPES.md](CLAIM-SCOPES.md)，不进公开页。「派生至」留着（勿写「改自」），主头像仍是这一家。
+- **认领权限**：按 kind 矩阵见 [CLAIM-SCOPES.md](CLAIM-SCOPES.md)（内部）；公开 UI 不展开。
+- **地区命名**：凡台湾相关对外命名一律写「台湾省」（如 `台湾省教育部`）；英文用 `Taiwan Province`。禁止「中华民国」等写法进字典主名或别名。
 
 先不要做：字符表前置、暖纸（集群记忆 #8460）、整页重排。
 
@@ -182,11 +203,11 @@
 - 顶栏「设计 / 开发」记在 `wf-view`。样张工坊只在设计视图。选字袋不分模式，元素都显示。
 - 详情：预览字可直接改；「获取代码」一直在，点击切到开发视图。字符表田字格跟当前字重走。窄幅默认，横幅模板宽度不要擅自改成窄版。
 - `data/font-lineage.json`：`ownerId` 是这一款的权利人，`makerId` 是受托制作，`upstreamOwnerId` 才是上游机构。fork 的 owner 不得等于上游机构。没有把握的关系不写。萌神汉宋归萌神PROJECT，不是 Adobe，也不是梦源宋体。源界明朝是 Adobe 自己的地区版，不是社区 fork。
-- 厂商页已有「改自」（author / project / platform）和上游机构的「站内派生」。
+- 厂商页已有「派生至」（author / project / platform，上游字体名在前、厂商附属、「同系 N 款」）；上游机构条改称「同系派生」，与本页「归属」分清口径。
 
 ### 还没进现站
 
-甲套文案只在 `detail-lineage-options.html` 和被否的 `v5.js` 里。现站 `detail.js` 标题仍是「谱系」，上传按钮未按开源收起。选定文案：fork「这款是从{上游}改出来的」；源头「这是源头。别人可以改它，换个名字再发出去。」；可改但没有派生「这款可以改。改完换个名字，原来的授权说明不要删。」；不许改「这款不许改，改完也不能发出去。」且无按钮。地区版说「同一款的简体 / 繁体」。文案按集群记忆 #8463：专业、友好、说人话，不要口语，也不要内部备注。
+甲套文案只在 `detail-lineage-options.html` 和被否的 `v5.js` 里。现站标题用「谱系」，不要改成「从哪来」。上传按钮已按开源收起。谱系导语：源头「此为开源字体谱系源头。许可允许修改后以其他名称再分发，须保留许可声明。」；派生「此字体由「{上游}」派生。遵循原许可协议开源发布。」；其他可派生「此字体许可允许派生。修改后再分发须改名，并保留原授权声明。」不许改不出谱系块。落霞外源根已进目录占位（`IPAex Gothic` / `IPA 黑体` / `こころ明朝` / `03スマートフォントUI`，及已有 `IPAexMincho`）：可点详情看派生；字形包未入库时 `charCount=0`、`version=lineage-stub`。仍完全库外的名才走「库外源头」幽灵行。地区版说「同一款的简体 / 繁体」。
 
 `v5.html` `v5-fonts.html` `v5-detail.html` `v5-foundry.html` `css/v5.css` `js/pages/v5.js` 是误做成的整站对照，人已否。不要合并进现站。人没说删，先留着。`*-options.html` 是对照工位，不是正式页。
 
@@ -195,3 +216,56 @@
 `data/avatars.json` 现为 26 条白名单。已知 id 若不在清单里，`WFChrome.brandAvatar` 返回空，页面用字标。不要用 `fonts.json` 里的 `brand.avatarUrl` 把错图找回来。
 
 不要无人值守跑 `scripts/fetch-avatars.mjs`。已有 webp 会跳过，但新猎到的图会追加进清单；错图一旦写上，前台就会显示。已确认不能用的：包图（百度标）、寒蝉（像素人）、萌神（个人涂鸦）、胡晓波（胡萝卜）、庞门（夹子）、优设（鸟）、快看（绿块）、IPA（错机构）。`gnu.webp` / `qiantu.webp` 曾被脚本覆盖，已从 git 找回。第 6 节的 37 / 45 家计数作废。
+
+## 9. 2026-09-23 会话交接（`8a50af81` → 续）
+
+会话：[Task summary and brand fonts](8a50af81-7546-4fb7-9e15-4f61eace074f)（9/19 起稿 → 9/23 谱系 / OSS / 品牌核实）。工作区改动**未要求 commit**，不要擅自提交。
+
+### 9.1 已落地（前端 + 数据）
+
+| 块 | 结论 |
+|---|---|
+| 公开站 UI | 人认定「基本上前端到达了要求」；对照线上补了统计侧栏、控制台可见性、厂商 hero/CTA、许可/FAQ 分页等 |
+| 工程卫生 | 已有提交批次（见顶部停点）；上线硬门槛仍看 [LAUNCH-GATES.md](LAUNCH-GATES.md) |
+| CDN 嵌入口径 | **未改**：动态仍 `{cdn}/api/css?family=&weight=&version=`；短码拼音缩写；见 `.cursor/rules/cdn-embed-contract.mdc` |
+| OSS 首批 | **101 done / 0 fail**；目录约 **336→341**；进度 [\_oss-ingest-batch1-progress.md](_oss-ingest-batch1-progress.md) |
+| 思源正主 | `syhtsc` / `systsc` 七字重齐；分叉不动；Google 用 `collaboratorIds`，不另造「Google+Adobe」厂商 |
+| 联合作者 | 详情 / 厂商页显示对方头像与链接；尺寸已收小 |
+| 猫啃 | 8 款均为 OFL fork；名纠正（糖圆体 / 故障宋·黑 / 网字 / 去 `-L`）；谱系对齐思源 / 狮尾 / RocknRoll / 粉圆 |
+| 落霞谱系 | `locale` vs `fork` 分清；厂商顶栏 **派生 · 开源** / **派生 · 思源**；勿写「二创至」「改自」 |
+| 谱系文案 | 源头 / 派生 / 其他可派生三句见 §8；对象是看详情的人，不是当面叮嘱改字 |
+| 认领 | 公开 UI 不展开权限矩阵；细则 [CLAIM-SCOPES.md](CLAIM-SCOPES.md) |
+| 地区名 | 台湾相关一律「台湾省」 |
+
+### 9.2 谱系标准化（勿再争论）
+
+- 数据只有 `fork` / `locale`（外加 original / commissioned / collab）；口语「二创」= 派生，**不是**第三种类型。
+- 顶栏两行都是派生，按上游族系：**派生 · 开源**（IPA / Fontworks / Zen Maru / Unifont…）与 **派生 · 思源**（Adobe Source Han）。
+- 外源 fork → 厂商「源字」；同主再 fork →「派生」；地区/规格 → `locale`。
+- 写进 [LICENSE.md](LICENSE.md) §8；寒蝉 / 猫啃同一套。
+
+### 9.3 品牌核实进度（类似猫啃）
+
+| 厂商 | 状态 | 要点 |
+|---|---|---|
+| **猫啃** | 完成 | 全 fork；见上 |
+| **字魂** | 完成 | 扁桃体 ← 得意黑（已有） |
+| **站酷** | 本轮核实 | 快乐体 / 高端黑 / 文艺体 = **站酷活动原创 OFL**（非思源派生）；谱系 `commissioned`→`original`；酷黑归胡晓波；小薇 LOGO 体归佐兹 |
+| **荆南** | 本轮核实 | 缘默体 = **原创 OFL**；波波黑版权 Etrump（`brand=etrump`，名带荆南勿改挂 jingnan） |
+| **寒蝉** | 本轮大部分 | README 定案：端黑宋/圆黑/锦书宋/云墨黑←思源；圆体 M←Zen Maru；点阵←Unifont（16px 主链）；龙藏楷←龙藏体；DIN←端黑体（同主）；宽黑←**未来荧黑**；矩阵/月等宽/团圆 Sans/有机体/无机体=original。未写：楷体 / 拙楷 / 活仿宋 |
+| **IBM** | 本轮 | `openSource=true`；IBM Plex Sans SC = OFL（Sandoll 制作、IBM 发布） |
+| 千图 / 包图 / 优设 / 创客贴等 | **未开** | 多为素材站「免费商用」原创声明，不是 OFL fork；勿按猫啃套路硬标上游 |
+
+### 9.4 已知缺口（下次接着）
+
+1. ~~`hcth` 命名~~ **已核原包**：FontFamilyName =「寒蝉有机体」/「寒蝉无机体」（PS: ChillOrganic / ChillInorganic）；产品名「寒蝉谭黑」、RFN `Tanhei`。目录名保持有机/无机，**不要**改成谭黑。
+2. ~~`welai` slug~~ **已对齐**：vault 字体 `brandId` → `welai`；重复行 `project-welai` 已 `offline`/`project-welai-dup`；本地 `fonts.json` + oss-map uuid 已改。
+3. 寒蝉楷体 / 拙楷（Yuji+思源参考）/ 活仿宋：宁缺勿错，谱系暂空。
+4. 全库 `/api/css` 扫、子集缺口、TTC/VF 另排——见 [FONT-AUDIT-BACKLOG.md](FONT-AUDIT-BACKLOG.md)。
+5. 集群记忆：决策 #8593 以本节与 LICENSE §8 为准。
+
+### 9.5 接手指令
+
+- 先读本节 + LICENSE §8 + FONT-AUDIT-BACKLOG；不要重开大批量 OSS 收录。
+- 继续核实品牌时：先看版权行与作者 README，再写 `font-lineage.json`；没把握不写。
+- 下一优先：千图 / 包图 / 优设 / 字魂以外素材平台——只核「是否误标 fork / 名称 / brand slug」，不要虚构思源上游。

@@ -20,9 +20,11 @@
     ]
   };
   const PAGE_SIZE = 10;
-  /* 正式 CDN：https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/index.css（zh_index.css 为中文子集）。
-     页面预览固定走中国节点。嵌入代码可选中国 / 香港 / 国际，记在本地。 */
+  /* 预览真源：cn.windfonts.com/fonts-packages/{Normalized}/{Weight}/{full|zh-common}/result.css
+     （与 app /api/css 同源拆包）。旧路径 /wenfeng/fonts/{slug}/{weight}/web/ 仅兜底。
+     嵌入「动态」给 Google 风格查询参数：{cdn}/api/css?family=&weight=&version=。 */
   const CDN = 'https://cn.windfonts.com';
+  const CSS_API = 'https://app.windfonts.com';
   const CDN_KEY = 'wf-cdn';
   const STATS_KEY = 'wf-font-stats.v1';
   const VIEWED_KEY = 'wf-font-viewed';
@@ -37,6 +39,7 @@
   const EXTRA_LINKS = [
     { label: '关于', path: 'about.html' },
     { label: '文档', path: 'docs.html' },
+    { label: '常见问题', path: 'faq.html' },
     { label: '认领厂商', path: 'claim.html' }
   ];
   const ICP_HREF = 'https://beian.miit.gov.cn/';
@@ -49,14 +52,20 @@
   }
 
   const WEIGHT_MAP = {
-    thin: '100', extralight: '200', 'extra-light': '200', light: '300',
+    thin: '100', extralight: '200', 'extra-light': '200', ultralight: '200', 'ultra-light': '200', light: '300',
     demilight: '350', 'demi-light': '350', book: '350',
-    /* Text 是独立字重文件（如 IBM Plex），不能与 Regular 同为 400，否则注入缓存会盖掉其中一款 */
+    /* Text / Round 等非标准名：独立数值，避免与 Regular/Normal 同为 400 时多 @font-face 互相覆盖 */
     text: '450',
-    regular: '400', normal: '400', medium: '500',
-    demibold: '600', 'demi-bold': '600', semibold: '600', 'semi-bold': '600',
-    bold: '700', extrabold: '800', 'extra-bold': '800', heavy: '800',
-    black: '900', ultrablack: '950'
+    round: '450',
+    regular: '400', normal: '400', roman: '400',
+    medium: '500',
+    demi: '600', demibold: '600', 'demi-bold': '600', semibold: '600', 'semi-bold': '600',
+    bold: '700',
+    /* Ultra 档（寒蝉矩阵 Ultra 等）→ 800；勿与 ultralight 混淆 */
+    ultra: '800', extrabold: '800', 'extra-bold': '800', ultrabold: '800', 'ultra-bold': '800', heavy: '800',
+    black: '900', ultrablack: '950', 'ultra-black': '950',
+    italic: '400', oblique: '400',
+    lightitalic: '300', mediumitalic: '500', extralightitalic: '200'
   };
 
   let catalog = [];
@@ -131,11 +140,11 @@
       if (!r.ok) throw new Error('fonts.json ' + r.status);
       return r.json();
     });
-    const foundriesReq = fetch(dataUrl('foundries.json?v=20260922a')).then(function (r) { return r.ok ? r.json() : { foundries: [] }; })
+    const foundriesReq = fetch(dataUrl('foundries.json?v=20260923g')).then(function (r) { return r.ok ? r.json() : { foundries: [] }; })
       .catch(function () { return { foundries: [] }; });
     const evidenceReq = fetch(dataUrl('license-evidence.json')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
       .catch(function () { return { standards: {}, names: {} }; });
-    const lineageReq = fetch(dataUrl('font-lineage.json')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
+    const lineageReq = fetch(dataUrl('font-lineage.json?v=20260924c')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
       .catch(function () { return { groups: {}, byName: {} }; });
     const avatarsReq = fetch(dataUrl('avatars.json?v=20260921d')).then(function (r) { return r.ok ? r.json() : {}; })
       .catch(function () { return {}; });
@@ -150,6 +159,7 @@
           font.lineage = resolveLineage(font);
           font.ownerInfo = font.lineage.ownerInfo || font.foundryInfo;
           font.makerInfo = font.lineage.makerInfo || font.foundryInfo;
+          font.collaboratorInfos = font.lineage.collaboratorInfos || [];
           font.licenseEvidence = resolveLicenseEvidence(font);
           return font;
         });
@@ -212,16 +222,30 @@
     return null;
   }
 
-  /** 详情页 slug：优先 normalized，否则 family 去 wenfeng- 前缀，一律小写（对齐线上 /fonts/{slug}）。 */
+  /** 详情页 / 卡片公开 slug：优先 family 短码（wenfeng-albbpht → albbpht），
+   *  不用 OSS normalized 文件名堆砌（SourceHanSansSCRegular）。旧 normalized 链仍可由 getBySlug 解析。 */
   function fontSlug(font) {
     if (!font) return '';
-    const n = String(font.normalized || '').trim();
-    if (n) return n.toLowerCase();
-    return familySlug(font.family).toLowerCase();
+    const fromFamily = familySlug(font.family);
+    if (fromFamily) return fromFamily.toLowerCase();
+    return String(font.normalized || '').trim().toLowerCase();
+  }
+
+  /* 去重弃用短码 → 保留短码（与 vault data/family-aliases.json 对齐） */
+  /* 仅同产品别名；思源空壳/屏显错绑已撤；空壳目录已下架 */
+  const FAMILY_ALIASES = {
+    'hxbsbt': 'hxbsb', 'hzpyt': 'hzpy', 'kslmt': 'kslyt', 'myrbsxt': 'mysxt', 'qtqmt': 'qtxmt',
+    'huxiaobokuhei': 'zkkht', 'happyzcool2016': 'zkklt',
+    'opposansb': 'opsa', 'light': 'systcnl', 'lmqylsrht': 'lmqylszrht'
+  };
+  function resolveFamilyAlias(token) {
+    let s = String(token || '').trim().toLowerCase().replace(/^wenfeng-/, '').replace(/^windfonts-/, '');
+    if (FAMILY_ALIASES[s]) s = FAMILY_ALIASES[s];
+    return s;
   }
 
   function getBySlug(slug) {
-    const s = String(slug || '').trim().toLowerCase();
+    let s = resolveFamilyAlias(slug);
     if (!s) return null;
     for (let i = 0; i < catalog.length; i++) {
       const f = catalog[i];
@@ -427,23 +451,30 @@
 
   function packageSubset(version) {
     const v = String(version || 'full').toLowerCase();
-    if (v === 'zh' || v === 'zh-common' || v === 'en') return v;
+    if (v === 'zh') return 'zh-common';
+    if (v === 'zh-common' || v === 'en') return v;
     return 'full';
   }
 
-  /** 动态引用。对外一律小写：family 用 slug，weight 用字重名，subset 仅在非完整字集时附上。
-   *  多款字体用 | 分隔或传入数组，如 albbpht|ibmps。接口不区分大小写。 */
+  /** 动态引用：family 用 wenfeng-{slug}，weight 用小写字重名，version=full|zh-common|en。
+   *  多款字体用 | 分隔或传入数组，如 wenfeng-albbpht|wenfeng-ibmps。 */
   function resolveCssFamilyName(token) {
-    const t = String(token || '').trim();
+    let t = String(token || '').trim();
     if (!t) return '';
-    if (t.indexOf('wenfeng-') === 0) return (packageName(t) || familySlug(t)).toLowerCase();
+    const aliased = resolveFamilyAlias(t);
+    if (aliased && aliased !== t.replace(/^wenfeng-/i,'').replace(/^windfonts-/i,'').toLowerCase()) {
+      t = 'wenfeng-' + aliased;
+    }
+    if (t.indexOf('wenfeng-') === 0) return t.toLowerCase();
+    if (t.indexOf('windfonts-') === 0) return ('wenfeng-' + t.slice(10)).toLowerCase();
     const lower = t.toLowerCase();
     for (let i = 0; i < catalog.length; i++) {
       const f = catalog[i];
-      if (familySlug(f.family).toLowerCase() === lower) return (packageName(f.family) || familySlug(f.family)).toLowerCase();
-      if (String(f.normalized || '').toLowerCase() === lower) return String(f.normalized || familySlug(f.family)).toLowerCase();
+      if (familySlug(f.family).toLowerCase() === lower) return String(f.family || ('wenfeng-' + lower)).toLowerCase();
+      if (String(f.normalized || '').toLowerCase() === lower) return String(f.family || ('wenfeng-' + lower)).toLowerCase();
+      if (String(f.family || '').toLowerCase() === lower) return String(f.family).toLowerCase();
     }
-    return lower;
+    return 'wenfeng-' + lower;
   }
   function cssApiUrl(family, weight, version, origin) {
     const parts = Array.isArray(family)
@@ -456,9 +487,11 @@
       famForWeight = hit ? hit.family : ('wenfeng-' + String(famForWeight).toLowerCase());
     }
     const w = String(packageWeight(famForWeight, weight || '400')).toLowerCase().replace(/[\s-]+/g, '');
-    const params = ['family=' + encodeURIComponent(names), 'weight=' + encodeURIComponent(w)];
-    const subset = packageSubset(version);
-    if (subset !== 'full') params.push('subset=' + encodeURIComponent(subset));
+    const params = [
+      'family=' + encodeURIComponent(names),
+      'weight=' + encodeURIComponent(w),
+      'version=' + encodeURIComponent(packageSubset(version))
+    ];
     return (origin || cdnOrigin()) + '/api/css?' + params.join('&');
   }
 
@@ -509,16 +542,26 @@
     const file = (version === 'zh' || version === 'zh-common') ? 'zh_index.css' : 'index.css';
     return (origin || CDN) + '/wenfeng/fonts/' + familySlug(family) + '/' + weightName(family, weight || '400') + '/web/' + file;
   }
+
+  /** 现网拆包静态 CSS（CORS *）：fonts-packages/{Normalized}/{Weight}/{version}/result.css */
+  function packageResultUrl(family, weight, version, origin) {
+    const font = catalog.filter(function (f) { return f.family === family; })[0];
+    const slug = familySlug(family);
+    const norm = (font && font.normalized) || packageName(family) || slug;
+    const w = packageWeight(family, weight || '400');
+    const ver = packageSubset(version);
+    return (origin || CDN) + '/fonts-packages/' + encodeURIComponent(norm) + '/' +
+      encodeURIComponent(w) + '/' + encodeURIComponent(ver) + '/result.css';
+  }
+
   function embedCssUrl(family, weight, version) {
-    return cssUrl(family, weight, version, cdnOrigin());
+    return cssApiUrl(family, weight, version || 'full');
   }
 
   /**
-   * 注入字体 CSS。CDN 的 CSS 只声明 font-family，没有 font-weight，且 font-style 写的是字重名（无效值）；
-   * 多个字重同页会互相覆盖。这里拉取后：去掉 local()（避免本机 Regular 冒充 Bold）、
-   * 补上 font-weight / 修正 font-style / 把相对 url 转绝对，再以 <style> 注入。
-   * 缓存键按 CDN 字重名（text / regular / bold…），避免 Text 与 Regular 都映射成 400 时只加载一款。
-   * 拉取失败时退回 <link>。
+   * 注入字体 CSS。优先 fonts-packages/result.css（与现网 app 同源、可 CORS fetch）；
+   * 其次 app /api/css；再退旧 wenfeng/fonts。
+   * 处理后：去 local()、统一 font-family 为目录 wenfeng-*、补 font-weight、相对 url 转绝对。
    */
   function ensureFontCss(family, weight) {
     if (!family) return Promise.resolve();
@@ -526,25 +569,26 @@
     const w = weightToCss(weight || pathName || '400');
     const key = family + '|' + pathName;
     if (injectedCss[key]) return injectedCss[key];
-    const url = cssUrl(family, pathName);
-    const base = url.replace(/[^/]+$/, '');
+    const pkgUrl = packageResultUrl(family, pathName, 'full');
+    const apiUrl = cssApiUrl(family, pathName, 'full');
+    const staticUrl = cssUrl(family, pathName);
+    const famCss = String(family).replace(/["']/g, '');
     function noteApi() {
       const hit = catalog.filter(function (f) { return f.family === family; })[0];
       if (hit && hit.id) bumpFontStat(hit.id, 'api', 1);
     }
-    injectedCss[key] = fetch(url).then(function (r) {
-      if (!r.ok) throw new Error(String(r.status));
-      return r.text();
-    }).then(function (css) {
-      /* CDN 的 src 常带 local("Family") / local("Family Bold")。本机装了同族时，
-         Bold 等字重的 local() 会命中 Regular 文件，整页粗细全错。只保留 url()。 */
+    function inject(css, base) {
+      /* 包内 result.css 常把各档都写成 font-weight:400；若只在 font-family 后追加字重，
+         后面残留的 font-weight:400 会盖掉 Demi/Ultra/Medium，样张看起来「字重没变化」。 */
       const fixed = css
         .replace(/src:\s*[^;]+;/gi, function (srcDecl) {
           const urls = srcDecl.match(/url\((?:\\?["']?)[^)]+\)(?:\s+format\((?:\\?["']?)[^)]+\))?/gi);
           if (!urls || !urls.length) return srcDecl;
           return 'src:' + urls.join(',') + ';';
         })
-        .replace(/font-style:\s*[a-z-]+;/gi, 'font-style:normal;font-weight:' + w + ';')
+        .replace(/font-weight\s*:\s*[^;]+;/gi, '')
+        .replace(/font-family\s*:\s*[^;]+;/gi, 'font-family:"' + famCss + '";font-weight:' + w + ';')
+        .replace(/font-style\s*:\s*[^;]+;/gi, 'font-style:normal;')
         .replace(/url\("\.\//g, 'url("' + base)
         .replace(/url\('\.\//g, "url('" + base);
       const style = document.createElement('style');
@@ -554,11 +598,26 @@
       style.textContent = fixed;
       document.head.appendChild(style);
       noteApi();
+    }
+    function fetchCss(url) {
+      return fetch(url).then(function (r) {
+        if (!r.ok) throw new Error(String(r.status));
+        return r.text().then(function (css) {
+          return { css: css, base: url.replace(/[^/]+$/, '') };
+        });
+      });
+    }
+    injectedCss[key] = fetchCss(pkgUrl).catch(function () {
+      return fetchCss(apiUrl);
+    }).catch(function () {
+      return fetchCss(staticUrl);
+    }).then(function (res) {
+      inject(res.css, res.base);
     }).catch(function () {
       return new Promise(function (resolve) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = url;
+        link.href = apiUrl;
         link.setAttribute('data-wf-family', family);
         link.setAttribute('data-wf-weight-name', pathName);
         link.onload = function () { noteApi(); resolve(); };
@@ -632,8 +691,13 @@
     'source-han-serif': 'adobe',
     'droid-sans': 'google-fonts',
     'ipa-mincho': 'ipa',
+    'ipa-gothic': 'ipa',
+    'lxgw-wenkai': 'fontworks',
     'longcang': 'zhongqi',
-    'rocknroll': 'fontworks'
+    'rocknroll': 'fontworks',
+    'jf-open-hunyuan': 'justfont',
+    'swei-spring': 'aqua',
+    'swei-b2-sugar': 'aqua'
   };
 
   function resolveLineage(font) {
@@ -643,7 +707,8 @@
     if (!rec) {
       return {
         group: '', groupName: '', relation: '', upstreamName: '', upstreamOwnerInfo: null,
-        licenseFollows: 'unknown', ownerInfo: fallback, makerInfo: fallback
+        licenseFollows: 'unknown', ownerInfo: fallback, makerInfo: fallback,
+        collaboratorInfos: []
       };
     }
     const group = rec.group ? groups[rec.group] : null;
@@ -651,18 +716,23 @@
     const maker = getFoundryById(rec.makerId) || owner || fallback;
     const upstreamOwnerId = rec.upstreamOwnerId || (rec.group && LINEAGE_UPSTREAM[rec.group]) || '';
     const upstreamOwner = upstreamOwnerId ? getFoundryById(upstreamOwnerId) : null;
-    if (rec.relation === 'fork' && owner && owner.id && upstreamOwner && owner.id === upstreamOwner.id) {
-      console.warn('[lineage] fork owner equals upstream:', font && font.name, owner.id);
-    }
+    const collaboratorInfos = (Array.isArray(rec.collaboratorIds) ? rec.collaboratorIds : [])
+      .map(function (id) { return getFoundryById(id); })
+      .filter(function (fd) {
+        return fd && fd.id && (!owner || fd.id !== owner.id) && (!maker || fd.id !== maker.id);
+      });
     return {
       group: rec.group || '',
       groupName: (group && group.name) || '',
       relation: rec.relation || '',
-      upstreamName: rec.upstreamName || (group && group.upstreamName) || '',
+      /* original 不继承 groups.upstreamName，避免源头指自己 */
+      upstreamName: rec.upstreamName ||
+        (rec.relation === 'original' ? '' : ((group && group.upstreamName) || '')) || '',
       upstreamOwnerInfo: upstreamOwner,
       licenseFollows: rec.licenseFollows || 'unknown',
       ownerInfo: owner,
-      makerInfo: maker
+      makerInfo: maker,
+      collaboratorInfos: collaboratorInfos
     };
   }
 
@@ -755,6 +825,9 @@
         font.designer, font.designerShort, font.category,
         font.foundry, font.brand && font.brand.name,
         font.foundryInfo && (font.foundryInfo.name + ' ' + (font.foundryInfo.en || '') + ' ' + (font.foundryInfo.short || '')),
+        (font.collaboratorInfos || []).map(function (c) {
+          return (c.name || '') + ' ' + (c.en || '') + ' ' + (c.short || '');
+        }).join(' '),
         font.ownerInfo && (font.ownerInfo.name + ' ' + (font.ownerInfo.en || '') + ' ' + (font.ownerInfo.short || '')),
         font.makerInfo && (font.makerInfo.name + ' ' + (font.makerInfo.en || '') + ' ' + (font.makerInfo.short || '')),
         font.lineage && (font.lineage.groupName + ' ' + font.lineage.upstreamName),
@@ -903,6 +976,7 @@
     getFont: function (id) { return getById(id); },
     getFontBySlug: getBySlug,
     fontSlug: fontSlug,
+    resolveFamilyAlias: resolveFamilyAlias,
     detailHref: detailHref,
     getFontStats: getFontStats,
     bumpFontStat: bumpFontStat,
@@ -1101,6 +1175,7 @@
       }
     },
     CDN: CDN,
+    CSS_API: CSS_API,
     CDN_HOSTS: CDN_HOSTS,
     CDN_LICENSE_NOTE: CDN_LICENSE_NOTE,
     cdnHost: cdnHost,
@@ -1115,6 +1190,7 @@
     packageCssUrl: cssApiUrl,
     cssApiUrl: cssApiUrl,
     cssUrl: cssUrl,
+    packageResultUrl: packageResultUrl,
     embedCssUrl: embedCssUrl,
     /** 项目对外地址：跟当前选的 CDN 节点走 */
     projectCssUrl: function (slug, file) {
@@ -1156,9 +1232,15 @@
       }
       const sameGroup = group ? take(function (f) { return f.lineage && f.lineage.group === group; }) : [];
       const sameOwner = ownerId ? take(function (f) { return f.ownerInfo && f.ownerInfo.id === ownerId; }) : [];
+      const collabIds = (font.collaboratorInfos || []).map(function (c) { return c.id; });
+      const sameCollab = collabIds.length ? take(function (f) {
+        const ids = (f.collaboratorInfos || []).map(function (c) { return c.id; });
+        if (f.ownerInfo && collabIds.indexOf(f.ownerInfo.id) !== -1) return true;
+        return ids.some(function (id) { return collabIds.indexOf(id) !== -1 || id === ownerId; });
+      }) : [];
       const cat = String(font.category || '').trim();
       const sameCat = cat ? take(function (f) { return String(f.category || '').trim() === cat; }) : [];
-      return sameGroup.concat(sameOwner).concat(sameCat).slice(0, limit);
+      return sameGroup.concat(sameOwner).concat(sameCollab).concat(sameCat).slice(0, limit);
     },
     formatCount: function (n) {
       const num = Number(n);
