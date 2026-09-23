@@ -135,7 +135,15 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
 .presets-row { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-3); }
 
 /* 上传 */
-.drop { background: var(--paper); border-radius: var(--radius-sm); padding: var(--s-12); text-align: center; color: var(--gray); font-size: var(--fs-14); outline: 2px dashed var(--surface-2); outline-offset: -8px; }
+.upload-layout { display: grid; grid-template-columns: minmax(0, 1fr) 20rem; gap: var(--s-8); align-items: start; }
+.upload-pair { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
+.upload-layout .select,
+.upload-layout .input { width: 100%; max-width: 100%; }
+.upload-files { display: grid; gap: var(--s-2); }
+.upload-files li { display: grid; grid-template-columns: minmax(0, 1fr) 9rem auto; gap: var(--s-3); align-items: center; padding: var(--s-3) var(--s-4); background: var(--paper); border-radius: var(--radius-sm); }
+.upload-files .fn { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.upload-preview { margin: 0; padding: var(--s-5); background: var(--paper); border-radius: var(--radius-sm); font-size: var(--fs-28); line-height: 1.3; min-height: 1.3em; }
+.drop { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s-2); width: 100%; min-height: 8rem; box-sizing: border-box; background: var(--paper); border-radius: var(--radius-sm); padding: var(--s-8); text-align: center; color: var(--gray); font-size: var(--fs-14); outline: 2px dashed var(--surface-2); outline-offset: -8px; cursor: pointer; }
 .drop.is-over { outline-color: var(--ink); color: var(--ink); }
 .drop strong { color: var(--ink); font-weight: var(--fw-title); }
 .drop input { display: none; }
@@ -148,7 +156,8 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
 @media (max-width: 1024px) {
   .app-main { padding: var(--s-4) var(--s-6) var(--s-16); }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .subset { grid-template-columns: 1fr; }
+  .subset, .upload-layout, .upload-pair { grid-template-columns: 1fr; }
+  .upload-files li { grid-template-columns: minmax(0, 1fr); }
   .subset-side { position: static; }
   .usage-grid { grid-template-columns: minmax(0, 1fr); }
   .usage-grid > * { min-width: 0; }

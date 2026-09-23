@@ -9,67 +9,93 @@
   <link rel="stylesheet" href="../css/tokens.css?v=20260923qa" />
   <link rel="stylesheet" href="../css/base.css?v=20260924c" />
   <link rel="stylesheet" href="../css/components.css?v=20260924n" />
-  <link rel="stylesheet" href="../css/app.css?v=20260924q" />
+  <link rel="stylesheet" href="../css/app.css?v=20260924r" />
   <link rel="icon" type="image/webp" href="../assets/icon.webp" />
 </head>
 <body class="app">
   <aside class="rail" data-rail data-active="fonts"></aside>
   <main class="app-main">
     <div class="app-head"><div><p class="crumb"><a href="fonts.html">我的字体</a><span>/</span><span>上传</span></p><h1>上传字体</h1>
-      <p class="sub">支持 .ttf .otf .woff .woff2。上传后自动解析名称、字重、字符数，并生成全部格式；享受同样的子集化与托管。</p></div></div>
+      <p class="sub">同一家族可一次放入多个字重文件。ttf / otf 会读出名称、字重和字形数。woff / woff2 用文件名。上传后可直接放进一个项目。</p></div></div>
 
-    <form id="uploadForm" class="grid" style="grid-template-columns:minmax(0,1fr) 20rem;gap:var(--s-12);align-items:start">
+    <form id="uploadForm" class="upload-layout">
       <div class="stack">
-        <label class="drop" id="drop"><input type="file" id="file" accept=".ttf,.otf,.woff,.woff2" /><strong>拖入字体文件</strong>，或点击选择<br><span class="t-13" id="fileName">单个文件 ≤ 30 MB</span></label>
-        <div class="grid" style="grid-template-columns:1fr 1fr">
+        <label class="drop" id="drop"><input type="file" id="file" accept=".ttf,.otf,.woff,.woff2" multiple /><strong>拖入字体文件</strong><span>或点击选择，可多选</span><span class="t-13" id="fileName">单个文件 ≤ 30 MB · ttf / otf / woff / woff2</span></label>
+        <ul class="upload-files" id="fileList" hidden></ul>
+        <p class="upload-preview" id="preview" hidden>字体预览</p>
+        <div class="upload-pair">
           <div class="field"><label for="upName">字体名称</label><input class="input" id="upName" placeholder="解析后自动填入，可改" /></div>
-          <div class="field"><label for="upWeight">字重</label><select class="select" id="upWeight"><option value="Thin">Thin 100</option><option value="Light">Light 300</option><option value="Regular" selected>Regular 400</option><option value="Medium">Medium 500</option><option value="Bold">Bold 700</option><option value="Black">Black 900</option></select></div>
+          <div class="field"><label for="upFamily">嵌入用名称</label><input class="input mono" id="upFamily" placeholder="custom-your-font" /><span class="hint">小写字母、数字和连字符。</span></div>
         </div>
-        <div class="field"><label for="upFamily">嵌入用名称</label><input class="input mono" id="upFamily" placeholder="custom-your-font" /><span class="hint">只用小写字母、数字和连字符，写进嵌入代码。</span></div>
-        <div class="field"><label for="upLicense">授权来源</label><select class="select" id="upLicense"><option>自己设计或委托设计</option><option>已购买商业授权（含网页嵌入）</option><option>开源许可（OFL / Apache 等）</option></select></div>
-        <label class="check"><input type="checkbox" id="upAgree" required /> 我已确认有权在网页里用这款字体，并同意<a href="../upload-terms.html">《上传条款》</a>。</label>
+        <div class="upload-pair">
+          <div class="field"><label for="upProject">放进项目</label><select class="select" id="upProject"><option value="">先只保存，稍后再加入</option></select></div>
+          <div class="field"><label for="upLicense">授权来源</label><select class="select" id="upLicense"><option value="own">自己设计或委托设计</option><option value="bought">已购买商业授权（含网页嵌入）</option><option value="ofl">开源许可（OFL / Apache 等）</option></select></div>
+        </div>
+        <div class="field"><label for="upLicenseUrl">授权说明链接</label><input class="input" id="upLicenseUrl" type="url" placeholder="https://… 选填" /></div>
+        <label class="check"><input type="checkbox" id="upAgree" required /><span>我已确认有权在网页里用这款字体，并同意<a href="../upload-terms.html">《上传条款》</a>。</span></label>
       </div>
       <aside class="subset-side">
         <dl class="kv">
           <div><dt><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg?v=20260922ri#i-box"/></svg>文件</dt><dd class="num" id="kvSize">—</dd></div>
           <div><dt><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg?v=20260922ri#i-code"/></svg>格式</dt><dd class="mono" id="kvFormat">—</dd></div>
-          <div><dt><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg?v=20260922ri#i-download"/></svg>产物</dt><dd class="mono">woff2 · woff · ttf</dd></div>
+          <div><dt><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg?v=20260922ri#i-hashtag"/></svg>字形</dt><dd class="num" id="kvGlyphs">—</dd></div>
+          <div><dt><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg?v=20260922ri#i-text"/></svg>字重</dt><dd class="num" id="kvWeights">—</dd></div>
           <div><dt><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg?v=20260922ri#i-cloud"/></svg>配额</dt><dd class="num" id="kvQuota">—</dd></div>
         </dl>
-        <button type="submit" class="btn btn-ink btn-lg" id="btnUpload" disabled><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg?v=20260922ri#i-upload"/></svg>上传并解析</button>
-        <p class="t-12 muted">上传的字体仅对你的项目可见，不会进入公开字体库。</p>
+        <button type="submit" class="btn btn-ink btn-lg" id="btnUpload" disabled><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg?v=20260922ri#i-upload"/></svg>上传</button>
+        <p class="t-12 muted">只在你的项目里使用，不会进入公开字体库。格式转换在托管时进行，这一步不另生成文件。</p>
       </aside>
     </form>
   </main>
 
-  <script src="../js/wf-proto.js?v=20260924p"></script>
+  <script src="../js/wf-proto.js?v=20260924q"></script>
   <script src="../js/wf-chrome.js?v=20260923qc"></script>
-  <script src="../js/wf-embed.js?v=20260924p"></script>
+  <script src="../js/wf-embed.js?v=20260924q"></script>
   <script src="../js/wf-app.js?v=20260924q"></script>
   <script>
     (function () {
       if (!WFApp.gate()) return;
+      const esc = WFProto.escapeHtml;
       const drop = document.getElementById('drop');
       const file = document.getElementById('file');
       const name = document.getElementById('upName');
       const fam = document.getElementById('upFamily');
       const agree = document.getElementById('upAgree');
       const btn = document.getElementById('btnUpload');
-      let picked = null;
+      const listEl = document.getElementById('fileList');
+      const preview = document.getElementById('preview');
+      const WEIGHTS = [
+        { v: 'Thin', n: 100 }, { v: 'Light', n: 300 }, { v: 'Regular', n: 400 },
+        { v: 'Medium', n: 500 }, { v: 'Bold', n: 700 }, { v: 'Black', n: 900 }
+      ];
+      let picks = [];
+      let locked = false;
+      let previewUrl = '';
 
       function slug(s) { return s.toLowerCase().replace(/\.[a-z0-9]+$/, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
-      let locked = false;
-      function check() {
-        if (locked) { btn.disabled = true; return; }
-        btn.disabled = !(picked && agree.checked && name.value.trim() && /^[a-z0-9-]+$/.test(fam.value));
+      function weightOption(n) {
+        let best = WEIGHTS[2];
+        WEIGHTS.forEach(function (s) { if (Math.abs(s.n - n) < Math.abs(best.n - n)) best = s; });
+        return best.v;
       }
-      WFApp.load().then(function () {
+      function check() {
+        const famOk = /^[a-z0-9-]+$/.test(fam.value);
+        btn.disabled = locked || !(picks.length && agree.checked && name.value.trim() && famOk);
+      }
+      WFApp.load().then(function (s) {
+        const sel = document.getElementById('upProject');
+        (s.projects || []).forEach(function (p) {
+          const o = document.createElement('option');
+          o.value = p.id;
+          o.textContent = p.name;
+          sel.appendChild(o);
+        });
+        document.getElementById('kvQuota').textContent = s.uploads.length + ' / ' + s.plan.quota.fonts + ' 款';
         if (WFApp.isPro()) return;
         locked = true;
         btn.disabled = true;
         const note = document.createElement('p');
         note.className = 't-13 muted';
-        note.style.marginTop = '1rem';
         note.textContent = '上传自有授权字是专业档。免费档只用公共库。';
         btn.insertAdjacentElement('afterend', note);
       });
@@ -88,12 +114,14 @@
       }
       function parseSfnt(buf) {
         const view = new DataView(buf);
+        if (buf.byteLength < 12) return null;
         const sig = tagAt(view, 0);
         if (sig !== '\u0000\u0001\u0000\u0000' && sig !== 'OTTO' && sig !== 'true' && sig !== 'typ1') return null;
         const num = u16(view, 4);
         let nameOff = 0, os2 = 0, maxp = 0;
         for (let i = 0; i < num && i < 80; i++) {
           const rec = 12 + i * 16;
+          if (rec + 12 > buf.byteLength) break;
           const t = tagAt(view, rec);
           const off = view.getUint32(rec + 8);
           if (t === 'name') nameOff = off;
@@ -101,76 +129,135 @@
           if (t === 'maxp') maxp = off;
         }
         const out = { family: '', weight: os2 ? u16(view, os2 + 4) : 400, glyphs: maxp ? u16(view, maxp + 4) : 0 };
-        if (!nameOff) return out;
+        if (!nameOff || nameOff + 6 > buf.byteLength) return out;
         const count = u16(view, nameOff + 2);
         const strOff = u16(view, nameOff + 4);
         for (let i = 0; i < count && i < 80; i++) {
           const r = nameOff + 6 + i * 12;
+          if (r + 12 > buf.byteLength) break;
           const platform = u16(view, r);
           const nameId = u16(view, r + 6);
           const length = u16(view, r + 8);
           const offset = u16(view, r + 10);
           if (nameId !== 1 && nameId !== 4 && nameId !== 16) continue;
-          const text = readName(view, nameOff + strOff + offset, length, platform === 3 || platform === 0);
+          const start = nameOff + strOff + offset;
+          if (start + length > buf.byteLength) continue;
+          const text = readName(view, start, length, platform === 3 || platform === 0);
           if (!text) continue;
           if (nameId === 4 || nameId === 16) out.family = text;
           else if (!out.family) out.family = text;
         }
         return out;
       }
-      function weightOption(n) {
-        const steps = [100, 300, 400, 500, 700, 900];
-        const labels = ['Thin', 'Light', 'Regular', 'Medium', 'Bold', 'Black'];
-        let best = 2;
-        steps.forEach(function (s, i) { if (Math.abs(s - n) < Math.abs(steps[best] - n)) best = i; });
-        return labels[best];
+      function paintList() {
+        listEl.hidden = !picks.length;
+        listEl.innerHTML = picks.map(function (p, i) {
+          const opts = WEIGHTS.map(function (w) {
+            return '<option value="' + w.v + '"' + (w.v === p.weight ? ' selected' : '') + '>' + w.v + ' ' + w.n + '</option>';
+          }).join('');
+          return '<li><span class="fn" title="' + esc(p.file.name) + '">' + esc(p.file.name) + '</span><select class="select" data-weight="' + i + '" aria-label="字重">' + opts + '</select><button type="button" class="btn-text" data-remove="' + i + '">移除</button></li>';
+        }).join('');
+        const bytes = picks.reduce(function (a, p) { return a + p.file.size; }, 0);
+        const glyphs = picks.reduce(function (a, p) { return a + (p.glyphs || 0); }, 0);
+        document.getElementById('kvSize').textContent = picks.length ? WFEmbed.fmtBytes(bytes) : '—';
+        document.getElementById('kvFormat').textContent = picks.length ? picks.map(function (p) { return p.format; }).filter(function (v, i, arr) { return arr.indexOf(v) === i; }).join(' · ') : '—';
+        document.getElementById('kvGlyphs').textContent = glyphs ? String(glyphs) : '—';
+        document.getElementById('kvWeights').textContent = picks.length ? String(picks.length) : '—';
+        document.getElementById('fileName').textContent = picks.length ? ('已选 ' + picks.length + ' 个文件') : '单个文件 ≤ 30 MB · ttf / otf / woff / woff2';
+        listEl.querySelectorAll('[data-weight]').forEach(function (sel) {
+          sel.addEventListener('change', function () { picks[Number(sel.getAttribute('data-weight'))].weight = sel.value; });
+        });
+        listEl.querySelectorAll('[data-remove]').forEach(function (b) {
+          b.addEventListener('click', function () {
+            picks.splice(Number(b.getAttribute('data-remove')), 1);
+            paintList();
+            check();
+          });
+        });
+        check();
       }
-      function take(f) {
+      function showPreview(f) {
+        if (previewUrl) URL.revokeObjectURL(previewUrl);
+        previewUrl = URL.createObjectURL(f);
+        const face = new FontFace('wf-upload-preview', 'url(' + previewUrl + ')');
+        preview.hidden = false;
+        preview.textContent = name.value || f.name;
+        face.load().then(function (loaded) {
+          document.fonts.add(loaded);
+          preview.style.fontFamily = 'wf-upload-preview, sans-serif';
+        }).catch(function () { preview.style.fontFamily = ''; });
+      }
+      function addFile(f) {
         if (!f) return;
+        if (locked) { WFChrome.toast('上传自有授权字是专业档'); return; }
         if (!/\.(ttf|otf|woff2?)$/i.test(f.name)) { WFChrome.toast('只支持 ttf / otf / woff / woff2'); return; }
         if (f.size > 30 * 1024 * 1024) { WFChrome.toast('文件超过 30 MB'); return; }
-        picked = f;
-        picked.glyphs = 0;
-        document.getElementById('fileName').textContent = f.name;
-        document.getElementById('kvSize').textContent = WFEmbed.fmtBytes(f.size);
-        document.getElementById('kvFormat').textContent = f.name.split('.').pop().toLowerCase();
+        const item = { file: f, weight: 'Regular', glyphs: 0, format: f.name.split('.').pop().toLowerCase() };
+        picks.push(item);
         if (!name.value) name.value = f.name.replace(/\.[a-z0-9]+$/i, '').replace(/[-_]+/g, ' ');
         if (!fam.value) fam.value = 'custom-' + slug(f.name);
-        check();
+        preview.textContent = name.value;
+        paintList();
+        showPreview(f);
         if (!/\.(ttf|otf)$/i.test(f.name)) return;
         f.arrayBuffer().then(function (buf) {
           const meta = parseSfnt(buf);
           if (!meta) return;
-          if (meta.family) name.value = meta.family;
-          if (meta.glyphs) picked.glyphs = meta.glyphs;
-          if (meta.weight) document.getElementById('upWeight').value = weightOption(meta.weight);
-          if (meta.family) fam.value = 'custom-' + slug(meta.family);
-          check();
+          if (meta.family && picks.length === 1) {
+            name.value = meta.family;
+            fam.value = 'custom-' + slug(meta.family);
+            preview.textContent = name.value;
+          }
+          if (meta.glyphs) item.glyphs = meta.glyphs;
+          if (meta.weight) item.weight = weightOption(meta.weight);
+          paintList();
         }).catch(function () { WFChrome.toast('没能从文件里读出名称，已用文件名'); });
       }
-      file.addEventListener('change', function () { take(file.files[0]); });
+      file.addEventListener('change', function () {
+        Array.prototype.forEach.call(file.files || [], addFile);
+        file.value = '';
+      });
       ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('is-over'); }); });
       ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('is-over'); }); });
-      drop.addEventListener('drop', function (e) { take(e.dataTransfer.files[0]); });
+      drop.addEventListener('drop', function (e) { Array.prototype.forEach.call(e.dataTransfer.files || [], addFile); });
       [name, fam, agree].forEach(function (el) { el.addEventListener('input', check); el.addEventListener('change', check); });
+      name.addEventListener('input', function () { if (!preview.hidden) preview.textContent = name.value || '字体预览'; });
 
       document.getElementById('uploadForm').addEventListener('submit', function (e) {
         e.preventDefault();
-        if (btn.disabled) return;
+        if (locked || btn.disabled) return;
         const s = WFApp.state();
+        const cap = (s.plan.quota && s.plan.quota.fonts) || 0;
+        if (cap && s.uploads.length >= cap) { WFChrome.toast('已到字体配额'); return; }
+        const weights = picks.map(function (p) { return p.weight; }).filter(function (w, i, arr) { return arr.indexOf(w) === i; });
+        const id = 'up-' + Date.now().toString(36);
+        const glyphs = picks.reduce(function (a, p) { return a + (p.glyphs || 0); }, 0);
         s.uploads.unshift({
-          id: 'up-' + Date.now().toString(36), name: name.value.trim(), family: fam.value, weights: [document.getElementById('upWeight').value],
-          glyphCount: picked.glyphs || Math.round(picked.size / 320), format: picked.name.split('.').pop().toLowerCase(), size: picked.size,
-          uploadedAt: new Date().toISOString(), status: 'ready'
+          id: id,
+          name: name.value.trim(),
+          family: fam.value,
+          weights: weights,
+          glyphCount: glyphs || Math.round(picks[0].file.size / 320),
+          format: picks.map(function (p) { return p.format; }).filter(function (v, i, arr) { return arr.indexOf(v) === i; }).join('+'),
+          size: picks.reduce(function (a, p) { return a + p.file.size; }, 0),
+          license: document.getElementById('upLicense').value,
+          licenseUrl: document.getElementById('upLicenseUrl').value.trim(),
+          uploadedAt: new Date().toISOString(),
+          status: 'ready'
         });
-        WFApp.log('上传字体', name.value.trim());
+        const projectId = document.getElementById('upProject').value;
+        const project = projectId ? WFApp.project(projectId) : null;
+        if (project) {
+          const cssWeights = weights.map(function (w) {
+            const hit = WEIGHTS.filter(function (x) { return x.v === w; })[0];
+            return hit ? String(hit.n) : w;
+          });
+          WFApp.addFont(project, id, cssWeights, { mode: 'full' });
+        }
+        WFApp.log('上传字体', name.value.trim() + (project ? ' · ' + project.name : ''));
         WFApp.save();
-        WFChrome.toast('已上传。下一步把它加入项目');
-        location.href = 'fonts.html';
-      });
-
-      WFApp.load().then(function (s) {
-        document.getElementById('kvQuota').textContent = s.uploads.length + ' / ' + s.plan.quota.fonts + ' 款';
+        WFChrome.toast(project ? '已上传并放进「' + project.name + '」' : '已上传。可以稍后加入项目');
+        location.href = project ? 'project.html?id=' + encodeURIComponent(project.id) + '&tab=fonts' : 'fonts.html';
       });
     })();
   </script>
