@@ -191,12 +191,12 @@
       "licenseFollows": "inherit"
     },
     "Chill K Sans": {
-      "ownerId": "welai",
-      "makerId": "welai",
+      "ownerId": "chilltype",
+      "makerId": "chilltype",
       "group": "source-han-sans",
       "relation": "fork",
-      "upstreamName": "思源黑体",
-      "upstreamOwnerId": "adobe",
+      "upstreamName": "未来荧黑",
+      "upstreamOwnerId": "welai",
       "licenseFollows": "inherit"
     },
     "Droid Sans": {
@@ -370,8 +370,10 @@
     "寒蝉团圆体": {
       "ownerId": "chilltype",
       "makerId": "chilltype",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "得意黑",
+      "upstreamOwnerId": "atelier-anchor",
+      "licenseFollows": "inherit"
     },
     "得意黑": {
       "ownerId": "atelier-anchor",
@@ -1046,8 +1048,25 @@
     "寒蝉团圆体 Sans": {
       "ownerId": "chilltype",
       "makerId": "chilltype",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "得意黑",
+      "upstreamOwnerId": "atelier-anchor",
+      "licenseFollows": "inherit"
+    },
+    "寒蝉活仿宋": {
+      "ownerId": "chilltype",
+      "makerId": "chilltype",
+      "relation": "fork",
+      "upstreamName": "朱雀仿宋",
+      "upstreamOwnerId": "triones",
+      "licenseFollows": "inherit"
+    },
+    "寒蝉拙楷": {
+      "ownerId": "chilltype",
+      "makerId": "chilltype",
+      "relation": "fork",
+      "upstreamName": "佑字肃",
+      "licenseFollows": "inherit"
     },
     "荆南缘默体": {
       "ownerId": "jingnan",
@@ -1081,6 +1100,14 @@
       "upstreamName": "思源黑体",
       "upstreamOwnerId": "adobe",
       "licenseFollows": "own"
+    },
+    "斜月体": {
+      "ownerId": "smiley-moon",
+      "makerId": "smiley-moon",
+      "relation": "fork",
+      "upstreamName": "得意黑",
+      "upstreamOwnerId": "atelier-anchor",
+      "licenseFollows": "inherit"
     }
   }
 }

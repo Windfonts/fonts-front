@@ -1608,6 +1608,43 @@
       "openSource": true,
       "claimed": false,
       "description": "Belleve Invis 的更纱黑体。简体包为官方 SarasaGothicSC。SIL OFL 1.1。"
+    },
+    {
+      "id": "smiley-moon",
+      "name": "斜月",
+      "en": "Smiley Moon",
+      "short": "斜月",
+      "website": "https://github.com/onichan0923/smiley-moon",
+      "aliases": [
+        "Smiley Moon",
+        "斜月体"
+      ],
+      "fontNames": [
+        "斜月体"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "斜月体，由得意黑加宽。SIL OFL 1.1。"
+    },
+    {
+      "id": "dela",
+      "name": "Dela Gothic",
+      "en": "Dela Gothic",
+      "short": "Dela",
+      "website": "https://github.com/syakuzen/DelaGothic",
+      "aliases": [
+        "Dela Gothic One",
+        "馒头黑体",
+        "无界黑"
+      ],
+      "fontNames": [
+        "馒头黑体"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "Dela Gothic One。SIL OFL 1.1。"
     }
   ]
 }

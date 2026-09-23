@@ -1876,6 +1876,50 @@
   "viewCount": 53
  },
  {
+  "id": "25cefb5c-b67d-446d-b1af-e59414a98521",
+  "name": "馒头黑体",
+  "en": "Dela Gothic One",
+  "family": "wenfeng-dela",
+  "normalized": "Dela",
+  "designer": "syakuzen",
+  "designerShort": "syakuzen",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Regular"
+  ],
+  "description": "Dela Gothic One，粗黑体。报告里也叫无界黑。汉字约 7654，不是全字库。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright syakuzen",
+  "foundry": "Dela Gothic",
+  "brand": {
+   "name": "Dela Gothic",
+   "slug": "dela",
+   "logoUrl": "",
+   "avatarUrl": "",
+   "website": "https://github.com/syakuzen/DelaGothic",
+   "description": "Dela Gothic One。SIL OFL 1.1。"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch2 2026-09-23",
+  "languages": [
+   "日文",
+   "简体中文"
+  ],
+  "useCases": [
+   "标题"
+  ],
+  "charCount": 9030,
+  "glyphCount": 9194,
+  "viewCount": 0
+ },
+ {
   "id": "f3ba444d-79a2-4a3c-9a10-646ef7da0dde",
   "name": "鼎猎客家体",
   "en": "Dinglie Hakka Font",
@@ -15931,6 +15975,55 @@
   ],
   "charCount": 375,
   "glyphCount": 239,
+  "viewCount": 0
+ },
+ {
+  "id": "cd90343c-ecca-4ed8-b8c2-98ca72126033",
+  "name": "斜月体",
+  "en": "Smiley Moon",
+  "family": "wenfeng-xyt",
+  "normalized": "Xyt",
+  "designer": "onichan0923",
+  "designerShort": "onichan0923",
+  "category": "无衬线字体",
+  "tags": [],
+  "weights": [
+   "Light",
+   "Regular",
+   "Bold"
+  ],
+  "description": "斜月体，得意黑加宽后的屏显版。补入调整过的思源黑体、IBM Plex Sans KR 和遍黑体的部分字符。Light 由机械减淡得到。SIL OFL 1.1。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "",
+  "licenseFileUrl": "",
+  "licenseNotes": "",
+  "licenseVerified": null,
+  "purchaseUrl": null,
+  "copyright": "Copyright onichan0923",
+  "foundry": "斜月",
+  "brand": {
+   "name": "斜月",
+   "slug": "smiley-moon",
+   "logoUrl": "",
+   "avatarUrl": "",
+   "website": "https://github.com/onichan0923/smiley-moon",
+   "description": "斜月体，由得意黑加宽。SIL OFL 1.1。"
+  },
+  "releaseYear": 2024,
+  "version": "OSS ingest batch2 2026-09-23",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "正文",
+   "标题",
+   "屏幕阅读"
+  ],
+  "charCount": 61516,
+  "glyphCount": 61253,
   "viewCount": 0
  },
  {
