@@ -419,3 +419,27 @@ Cursor 会话 [01500391-9c7f-49af-bf92-046928b48838](01500391-9c7f-49af-bf92-046
 - 设计指南桌面全页已看：左栏当前项是设计指南，右侧相关有关于 / 认领 / 常见问题；色板、字阶、按钮、三行样张、页脚链接都在。`#sgCountAll` 为 343。
 - 关于页手机宽度：「相关」第一条是设计指南。
 - 深色：页面认 `?theme=dark` 和 `localStorage.wf-theme`，不认系统 `prefers-color-scheme`。`styleguide.html?theme=dark` 手机宽度已看：页底和面板转暗，墨黑色块转亮，字标仍是一行。
+
+## 13. 2026-09-24 OSS 许可原文
+
+桶 `wenfeng-fonts` 列了 271312 个对象，并读了旧路径 `wenfeng/fonts/` 下 184 个字体 zip 的目录。字体许可原文只有两份。已抄入 FeiCode `Windfonts/font-licenses` `main` `972b5ab`。说明写在该仓 README「2026-09-24 OSS 核对」。
+
+| 字体 | 对象 | 本仓 |
+|---|---|---|
+| 鼎猎珠海体 `Dlzht` | `wenfeng/fonts/dlzht/license.pdf` | `licenses/Dlzht/LICENSE` 摘录，`license.pdf` 原件 |
+| OPPO Sans `Opsa` | `wenfeng/fonts/opsa/license.0 License Notice` | `licenses/Opsa/LICENSE` |
+
+raw 已核对 200：`https://feicode.com/Windfonts/font-licenses/raw/branch/main/licenses/Opsa/LICENSE`、`.../Dlzht/LICENSE`、`.../Dlzht/license.pdf`。目录 `licenseFileUrl` 用的 `src/branch` 打开的是网页，不是文件正文。
+
+鼎猎珠海体授权说明日期 2024-09-03，登记号陕作登字-2024-F-00013790。允许设计、广告、包装里把字当画面用。电子文件嵌入网站、程序或带显示的电子产品不在授权范围内。原文没写能否改字、能否再发字体文件。`license-info.json`：`webUse` false，`embedding` false，`modification` 与 `distribution` 为 null，`verified` false。目录 `fonts.json` 里这款的 `licenseNotes` 仍是旧句「不可修改字体文件，不可再分发」。当时 `fonts.json` 有别人的未提交改动，没有改这句。
+
+OPPO Sans 是厂商自己的协议，不是 OFL。允许不修改地嵌入，并随非字体软件再分发；必须标明使用了 OPPO Sans；禁止单独再分发或出售字体文件。`attribution` true，`modification` false，`verified` false。
+
+不要入库：
+
+- `wenfeng/fonts/cszt/` 名叫 license 的文件是入户申请、Vue 笔记、Mantine README。
+- `wenfeng/fonts/test/license.pdf` 是心理健康报告，`license.docx` 是教学资源申请表。
+- 184 个 zip 里只有 woff2、css、`reporter.json`。
+- `fonts-packages/` 网页包旁边没有 LICENSE / OFL.txt。
+
+128 个许可目录里有 `LICENSE` 的是 10 个（本轮 2 个 + `6a1b7f2` 的 8 份 OFL）。另外 118 个仍只有 `license-info.json`。没有原文不要补许可正文。控制台上传仍只存证明文件名，没有按旧后台把文件写进 OSS。

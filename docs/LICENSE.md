@@ -133,3 +133,13 @@ sourceKind  sourceUrl  quote  verifiedAt  restrictions[]  spdx  verified
 - 本站另发一张「文风免费商用许可证」冒充权利人。
 - 把制作方写成权利人，或把委托定制当成开源派生。
 - 没有上游记录就提示「许可与思源相同」。
+- 没有许可原文时，用 AI 句子填 `LICENSE`，或把 OSS 里文件名带 license 的无关 PDF 当成授权书。
+
+## 10. OSS 桶里的许可原件（2026-09-24）
+
+桶 `wenfeng-fonts` 当时 271312 个对象。能当字体许可用的只有两份，已在 `Windfonts/font-licenses` `972b5ab`：
+
+- 鼎猎珠海体 `wenfeng/fonts/dlzht/license.pdf`。授权说明允许画面用途，并写明字体文件嵌入网站和程序不在范围内。目录里旧的「不可修改、不可再分发」不是这份原文。
+- OPPO Sans `wenfeng/fonts/opsa/license.0 License Notice`。厂商协议，不是 OFL。
+
+`wenfeng/fonts/cszt/` 和 `wenfeng/fonts/test/` 里名叫 license 的文件不是字体许可。184 个字体 zip 和 `fonts-packages/` 网页包里都没有 OFL 或授权书。128 个许可目录里有原文的是 10 个。过程与排除项见 [HANDOFF.md](HANDOFF.md) §13。
