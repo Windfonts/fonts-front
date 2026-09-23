@@ -77,7 +77,7 @@
 | 现网 | 本仓现状 |
 |---|---|
 | `GET /api/fonts?page&size&category&brand&search&sort`，`sort` 为 `name` / `createdAt` / `viewCount`。`data` 含 `total,page,pageTotal,dataList`。2026-09-24 抽样 total 410 | 目录仍读 `data/fonts.json` |
-| `GET /api/fonts/:id` 或 `:family`，带 `viewCount` / `downloadCount` / `apiCallCount`、`weights` 对象、`languages`、`useCases` | 详情用本地目录和本机计数 |
+| `GET /api/fonts/:id` 或 `:family`，带 `viewCount` / `downloadCount` / `apiCallCount`、`weights` 对象、`languages`、`useCases` | 详情仍用本地目录。打开详情时按 `fontFamily` 拉这一次计数，6 小时内缓存；跨域要等 vault 的 CORS 部署后才看得到 |
 | `GET /api/categories`、`GET /api/brands` | 分类和厂商用本地 JSON |
 | `GET /api/fonts/:id/analysis` 字符表，没有分析文件时 404 | 详情查字用本地数据 |
 | `GET /api/css?family&weight&subset`（`subset` 或 `lang`：`full` / `zh` / `zh-common` / `en`）。**不认 `version`**，`version=zh` 与不传得到同一份完整 CSS | 嵌入地址已同时写 `subset` 和 `version` |

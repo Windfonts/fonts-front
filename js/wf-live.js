@@ -1,0 +1,51 @@
+/* 现网 app.windfonts.com 单款读取。只在详情页按字体请求一次，6 小时内复用。失败保持本地数字。 */
+(function () {
+  var ORIGIN = 'https://app.windfonts.com';
+  var TTL = 6 * 60 * 60 * 1000;
+  var KEY = 'wf-live-counts';
+
+  function readMap() {
+    try { return JSON.parse(sessionStorage.getItem(KEY) || '{}') || {}; } catch (e) { return {}; }
+  }
+  function writeMap(map) {
+    try { sessionStorage.setItem(KEY, JSON.stringify(map)); } catch (e) { /* ignore */ }
+  }
+  function apply(font, row) {
+    if (!font || !row) return;
+    font.viewCount = row.views;
+    font.downloadCount = row.downloads;
+    font.apiCount = row.api;
+  }
+  function familyOf(font) {
+    return String((font && (font.family || font.fontFamily)) || '').trim();
+  }
+  function counts(font) {
+    var family = familyOf(font);
+    if (!family) return Promise.resolve(null);
+    var map = readMap();
+    var hit = map[family];
+    if (hit && Date.now() - hit.at < TTL) {
+      apply(font, hit);
+      return Promise.resolve(hit);
+    }
+    return fetch(ORIGIN + '/api/fonts/' + encodeURIComponent(family), { method: 'GET' })
+      .then(function (r) { return r.json(); })
+      .then(function (body) {
+        var data = body && body.code === 200 ? body.data : null;
+        if (!data) return null;
+        var row = {
+          views: Number(data.viewCount) || 0,
+          downloads: Number(data.downloadCount) || 0,
+          api: Number(data.apiCallCount) || 0,
+          at: Date.now()
+        };
+        map[family] = row;
+        writeMap(map);
+        apply(font, row);
+        return row;
+      })
+      .catch(function () { return null; });
+  }
+
+  window.WFLive = { origin: ORIGIN, counts: counts };
+})();

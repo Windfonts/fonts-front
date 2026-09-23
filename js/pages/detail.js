@@ -406,6 +406,11 @@
 
     WFProto.bumpFontStat(font.id, 'views', 1, { once: true });
     WFProto.paintFontStats(root);
+    if (window.WFLive) {
+      WFLive.counts(font).then(function (row) {
+        if (row) WFProto.paintFontStats(root);
+      });
+    }
     if (!root._wfStatsBound) {
       root._wfStatsBound = true;
       document.addEventListener('wf:stats', function (e) {
