@@ -102,6 +102,7 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
 .insight { display: grid; gap: var(--s-3); }
 .insight .row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-3); }
 .embed-opts #projectCdn { display: block; min-height: 2.25rem; line-height: 1.45; padding: 0.35rem 0; overflow-wrap: break-word; }
+.embed-more { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: calc(var(--s-4) * -1); }
 .panel > .tabs { margin-bottom: var(--s-4); }
 /* 固定列宽，保证版本 / 体积 / 时间 / 回滚在各行纵向对齐（不用 auto，否则每行各算各的） */
 .version-list li { display: grid; grid-template-columns: 5rem minmax(0, 1fr) 5.5rem 12.5rem; gap: var(--s-5); align-items: baseline; padding: var(--s-4) 0; border-bottom: 1px solid var(--rule); font-size: var(--fs-13); }

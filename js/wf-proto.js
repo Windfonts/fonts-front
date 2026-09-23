@@ -1203,8 +1203,12 @@
     packageResultUrl: packageResultUrl,
     embedCssUrl: embedCssUrl,
     /** 项目对外地址：跟当前选的 CDN 节点走 */
-    projectCssUrl: function (slug, file) {
-      return cdnOrigin() + '/p/' + encodeURIComponent(slug || '') + '/' + (file || 'index.css');
+    cdnOriginById: function (id) {
+      const h = CDN_HOSTS.filter(function (x) { return x.id === id; })[0] || CDN_HOSTS[0];
+      return 'https://' + h.host;
+    },
+    projectCssUrl: function (slug, file, origin) {
+      return (origin || cdnOrigin()) + '/p/' + encodeURIComponent(slug || '') + '/' + (file || 'index.css');
     },
     CSS_VERSIONS: [
       { id: 'full', hint: '完整字符集（推荐）' },

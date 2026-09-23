@@ -25,10 +25,20 @@
             '<div><dt>' + WFChrome.icon('group') + '团队</dt><dd><a href="team.html">' + (s.team || []).length + ' 人</a></dd></div></dl>' +
           '<p class="t-13 muted" style="margin-top:var(--s-4)">发票与付款方式在商务后台管理；企业版请<a href="mailto:hi@windfonts.com">联系销售</a>。</p></section>'
         : '') +
-      '<section class="app-section"><h2>项目默认</h2><div class="grid cols-2">' +
+      '<section class="app-section"><h2>新项目默认</h2><div class="grid cols-2">' +
         '<div class="field"><label for="setDisplay">字体加载策略</label><select class="select" id="setDisplay">' + ['swap', 'block', 'fallback', 'optional'].map(function (d) {
           return '<option' + (s.settings.display === d ? ' selected' : '') + '>' + d + '</option>';
-        }).join('') + '</select><span class="hint">新项目和没单独改过的嵌入代码会用这个。</span></div></div></section>' +
+        }).join('') + '</select><span class="hint">项目里选「跟随账号」时用这个。</span></div>' +
+        '<div class="field"><label for="setSubset">字符包</label><select class="select" id="setSubset">' +
+          [['full', '完整'], ['zh', '中文'], ['zh-common', '常用字'], ['en', '西文']].map(function (d) {
+            return '<option value="' + d[0] + '"' + (s.settings.subset === d[0] ? ' selected' : '') + '>' + d[1] + '</option>';
+          }).join('') + '</select><span class="hint">新项目按字体拆开时的 subset。</span></div>' +
+        '<div class="field"><label for="setCdn">节点</label><select class="select" id="setCdn">' +
+          [['cn', '中国'], ['hk', '香港'], ['en', '国际']].map(function (d) {
+            return '<option value="' + d[0] + '"' + (s.settings.cdn === d[0] ? ' selected' : '') + '>' + d[1] + '</option>';
+          }).join('') + '</select></div>' +
+        '<div class="field"><label>提前加载</label><label class="check"><input type="checkbox" id="setPreload"' + (s.settings.preload ? ' checked' : '') + ' /> 新项目默认提前加载样式</label></div>' +
+      '</div></section>' +
       '<section class="app-section"><h2>API 密钥</h2>' +
         '<div class="code"><button type="button" class="copy" id="copyKey">复制</button><pre id="apiKey">' + esc(s.settings.apiKey.slice(0, 12)) + '••••••••••••</pre></div>' +
         '<p class="t-13 muted" style="margin-top:var(--s-3)">创建于 ' + WFApp.fmtDate(s.settings.apiKeyCreatedAt) + ' · 用于动态子集化 API 与 CI 发布。 <button type="button" class="btn-text" id="rotateKey">' + WFChrome.icon('refresh') + '重新生成</button></p>' +
@@ -60,6 +70,15 @@
     });
     document.getElementById('setDisplay').addEventListener('change', function (e) {
       s.settings.display = e.target.value; WFApp.log('更新设置', '加载策略 = ' + e.target.value); WFApp.save(); WFChrome.toast('已更新默认加载策略');
+    });
+    document.getElementById('setSubset').addEventListener('change', function (e) {
+      s.settings.subset = e.target.value; WFApp.save(); WFChrome.toast('已更新新项目的字符包');
+    });
+    document.getElementById('setCdn').addEventListener('change', function (e) {
+      s.settings.cdn = e.target.value; WFApp.save(); WFChrome.toast('已更新新项目的节点');
+    });
+    document.getElementById('setPreload').addEventListener('change', function (e) {
+      s.settings.preload = e.target.checked; WFApp.save();
     });
     document.getElementById('copyKey').addEventListener('click', function () { WFChrome.copy(s.settings.apiKey, '已复制 API 密钥'); });
     document.getElementById('rotateKey').addEventListener('click', function () {

@@ -42,11 +42,30 @@
     ['fonts', 'domains', 'versions'].forEach(function (k) { if (!Array.isArray(p[k])) { p[k] = []; dirty = true; } });
     return dirty;
   }
+  const SUBSETS = ['full', 'zh', 'zh-common', 'en'];
+  const CDNS = ['cn', 'hk', 'en'];
+  function ensureDelivery(p, settings) {
+    settings = settings || {};
+    if (!p.delivery || typeof p.delivery !== 'object') p.delivery = {};
+    const d = p.delivery;
+    let dirty = false;
+    if (['', 'swap', 'block', 'fallback', 'optional'].indexOf(d.display) < 0) { d.display = ''; dirty = true; }
+    if (typeof d.preload !== 'boolean') { d.preload = !!settings.preload; dirty = true; }
+    if (SUBSETS.indexOf(d.subset) < 0) { d.subset = SUBSETS.indexOf(settings.subset) >= 0 ? settings.subset : 'full'; dirty = true; }
+    if (CDNS.indexOf(d.cdn) < 0) { d.cdn = CDNS.indexOf(settings.cdn) >= 0 ? settings.cdn : 'cn'; dirty = true; }
+    if (d.structure !== 'static' && d.structure !== 'dynamic') { d.structure = settings.structure === 'static' ? 'static' : 'dynamic'; dirty = true; }
+    if (typeof d.alias !== 'string') { d.alias = ''; dirty = true; }
+    return dirty;
+  }
   function ensureShape(s) {
     let dirty = renameLegacy(s);
     if (!s.plan || !s.plan.quota) { s.plan = JSON.parse(JSON.stringify(PLAN_DEFAULT)); dirty = true; }
     if (!s.settings) { s.settings = {}; dirty = true; }
     if (s.settings.display !== 'swap' && s.settings.display !== 'block' && s.settings.display !== 'fallback' && s.settings.display !== 'optional') { s.settings.display = 'swap'; dirty = true; }
+    if (['full', 'zh', 'zh-common', 'en'].indexOf(s.settings.subset) < 0) { s.settings.subset = 'full'; dirty = true; }
+    if (['cn', 'hk', 'en'].indexOf(s.settings.cdn) < 0) { s.settings.cdn = 'cn'; dirty = true; }
+    if (typeof s.settings.preload !== 'boolean') { s.settings.preload = false; dirty = true; }
+    if (s.settings.structure !== 'static' && s.settings.structure !== 'dynamic') { s.settings.structure = 'dynamic'; dirty = true; }
     if (!s.settings.apiKey) { s.settings.apiKey = 'wf_live_' + Math.random().toString(36).slice(2, 14) + Math.random().toString(36).slice(2, 10); dirty = true; }
     if (!s.settings.apiKeyCreatedAt) { s.settings.apiKeyCreatedAt = new Date().toISOString(); dirty = true; }
     if (!Array.isArray(s.uploads)) { s.uploads = []; dirty = true; }
@@ -56,6 +75,7 @@
     if (!Array.isArray(s.projects)) { s.projects = []; dirty = true; }
     s.projects.forEach(function (p) {
       if (ensureUsage(p)) dirty = true;
+      if (ensureDelivery(p, s.settings)) dirty = true;
       if (!p.slug) { p.slug = String(p.id || '').replace(/^p-/, ''); dirty = true; }
       if (!p.createdAt) { p.createdAt = new Date().toISOString(); dirty = true; }
       if (!p.versions.length) {
@@ -130,6 +150,14 @@
     const id = 'p-' + Date.now().toString(36);
     const p = { id: id, name: name, slug: name.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-'), createdAt: new Date().toISOString(),
       fonts: [], domains: [], versions: [{ v: 1, at: new Date().toISOString(), note: '初始版本', bytes: 0, fonts: [], current: true }],
+      delivery: {
+        display: '',
+        preload: !!state.settings.preload,
+        subset: state.settings.subset || 'full',
+        cdn: state.settings.cdn || 'cn',
+        structure: state.settings.structure === 'static' ? 'static' : 'dynamic',
+        alias: ''
+      },
       usage: { requests30d: 0, bytes30d: 0, topPages: [], byDomain: [], byFont: [], status: { '200': 0, '304': 0, '403': 0 }, blockedHosts: [], perf: { fcpMs: 0, fontLoadMs: 0, hitRate: 0 } } };
     state.projects.unshift(p);
     log('新建项目', name);

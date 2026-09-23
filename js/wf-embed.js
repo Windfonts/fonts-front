@@ -22,21 +22,21 @@
     return estimateBytes(v.glyphs(font));
   }
 
-  function fileUrl(it, weight, structure) {
+  function fileUrl(it, weight, structure, origin) {
     const version = it.version && it.version !== 'full' ? it.version : 'full';
-    const origin = WFProto.cdnOrigin();
+    const host = origin || WFProto.cdnOrigin();
     if (structure === 'static') {
-      return WFProto.cssUrl(it.family, weight, version === 'zh-common' ? 'zh' : version, origin);
+      return WFProto.cssUrl(it.family, weight, version === 'zh-common' ? 'zh' : version, host);
     }
-    return WFProto.cssApiUrl(it.family, weight, version, origin);
+    return WFProto.cssApiUrl(it.family, weight, version, host);
   }
 
   /** items: [{ family, weights: ['400','700'], version }] */
-  function urls(items, structure) {
+  function urls(items, structure, origin) {
     const out = [];
     items.forEach(function (it) {
       (it.weights || ['400']).forEach(function (w) {
-        out.push(fileUrl(it, w, structure));
+        out.push(fileUrl(it, w, structure, origin));
       });
     });
     return out;
@@ -64,7 +64,7 @@
   function code(kind, items, opts) {
     opts = opts || {};
     const structure = opts.structure === 'static' ? 'static' : 'dynamic';
-    const list = urls(items, structure);
+    const list = urls(items, structure, opts.origin);
     const display = opts.display || '';
     if (kind === 'link') {
       return WFProto.CDN_LICENSE_NOTE + '\n<link rel="preconnect" href="' + apiOrigin() + '" crossorigin>\n' +
@@ -85,8 +85,9 @@
     if (kind === 'project') {
       const slug = opts.slug || '';
       const file = opts.file || 'index.css';
-      const url = withQuery(WFProto.projectCssUrl(slug, file), 'display', display);
-      return WFProto.CDN_LICENSE_NOTE + '\n<link rel="preconnect" href="' + apiOrigin() + '" crossorigin>\n' +
+      const url = withQuery(WFProto.projectCssUrl(slug, file, opts.origin), 'display', display);
+      const host = opts.origin || apiOrigin();
+      return WFProto.CDN_LICENSE_NOTE + '\n<link rel="preconnect" href="' + host + '" crossorigin>\n' +
         (opts.preload ? '<link rel="preload" as="style" href="' + url + '">\n' : '') +
         '<link rel="stylesheet" href="' + url + '">';
     }
@@ -177,6 +178,7 @@
         curOpts.structure = b.getAttribute('data-struct');
         el.querySelectorAll('[data-struct]').forEach(function (x) { x.classList.toggle('is-on', x === b); });
         paint();
+        if (typeof curOpts.onChange === 'function') curOpts.onChange({ structure: curOpts.structure });
       });
     });
     el.querySelectorAll('[data-kind]').forEach(function (b) {

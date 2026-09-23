@@ -53,10 +53,35 @@
   }
 
   function embedPanel() {
+    const d = p.delivery;
+    const accountDisplay = WFApp.state().settings.display;
+    function sel(id, label, options, current) {
+      return '<div class="field"><label for="' + id + '">' + label + '</label><select class="select" id="' + id + '">' +
+        options.map(function (o) {
+          return '<option value="' + esc(o.value) + '"' + (o.value === current ? ' selected' : '') + '>' + esc(o.label) + '</option>';
+        }).join('') + '</select></div>';
+    }
     return '<div class="panel"><div class="embed-opts">' +
-        '<div class="field"><label for="optDisplay">加载策略</label><select class="select" id="optDisplay" aria-label="加载策略"><option value="">项目默认（' + esc(WFApp.state().settings.display) + '）</option><option value="swap">swap</option><option value="block">block</option><option value="fallback">fallback</option><option value="optional">optional</option></select></div>' +
-      '<div class="field"><label>提前加载</label><label class="check"><input type="checkbox" id="optPreload" /> 提前加载字体样式</label></div>' +
+        sel('optDisplay', '加载策略', [
+          { value: '', label: '跟随账号（' + accountDisplay + '）' },
+          { value: 'swap', label: 'swap' }, { value: 'block', label: 'block' },
+          { value: 'fallback', label: 'fallback' }, { value: 'optional', label: 'optional' }
+        ], d.display) +
+      '<div class="field"><label>提前加载</label><label class="check"><input type="checkbox" id="optPreload"' + (d.preload ? ' checked' : '') + ' /> 提前加载字体样式</label></div>' +
       '<div class="field field-cdn"><label>项目 CDN</label><span class="mono t-13" id="projectCdn"></span></div>' +
+      '</div>' +
+      '<div class="embed-opts embed-more">' +
+        sel('optSubset', '字符包', [
+          { value: 'full', label: '完整' }, { value: 'zh', label: '中文' },
+          { value: 'zh-common', label: '常用字' }, { value: 'en', label: '西文' }
+        ], d.subset) +
+        sel('optCdn', '节点', [
+          { value: 'cn', label: '中国' }, { value: 'hk', label: '香港' }, { value: 'en', label: '国际' }
+        ], d.cdn) +
+        sel('optStruct', '地址', [
+          { value: 'dynamic', label: '动态' }, { value: 'static', label: '静态' }
+        ], d.structure) +
+        '<div class="field"><label for="optAlias">字体名前缀</label><input class="input" id="optAlias" value="' + esc(d.alias) + '" placeholder="留空为 wenfeng-" autocomplete="off" /></div>' +
       '</div>' +
       '<div class="tabs" role="tablist">' +
         '<button type="button" role="tab" data-embed-src="project" class="is-on">项目一份 CSS</button>' +
@@ -204,16 +229,50 @@
     const embedEl = document.getElementById('embed');
     if (embedEl) {
       const items = p.fonts.map(function (f) {
-        return { family: (WFApp.fontMeta(f.fontId) || {}).family || f.fontId, weights: f.weights, version: f.subset && f.subset.mode === 'common' ? 'zh' : '' };
+        return {
+          family: (WFApp.fontMeta(f.fontId) || {}).family || f.fontId,
+          weights: f.weights,
+          version: p.delivery.subset || 'full'
+        };
       });
       let src = 'project';
       let m = null;
+      function readForm() {
+        const aliasEl = document.getElementById('optAlias');
+        const alias = aliasEl ? aliasEl.value.trim().toLowerCase().replace(/[^a-z0-9-]/g, '') : p.delivery.alias;
+        if (aliasEl && aliasEl.value.trim() && alias !== aliasEl.value.trim().toLowerCase()) {
+          aliasEl.value = alias;
+        }
+        p.delivery.display = document.getElementById('optDisplay').value;
+        p.delivery.preload = document.getElementById('optPreload').checked;
+        p.delivery.subset = document.getElementById('optSubset').value;
+        p.delivery.cdn = document.getElementById('optCdn').value;
+        p.delivery.structure = document.getElementById('optStruct').value;
+        p.delivery.alias = alias;
+        items.forEach(function (it) { it.version = p.delivery.subset || 'full'; });
+      }
       function opts() {
-        return { display: document.getElementById('optDisplay').value, preload: document.getElementById('optPreload').checked, slug: p.slug };
+        const d = p.delivery;
+        return {
+          display: d.display || WFApp.state().settings.display,
+          preload: d.preload,
+          slug: p.slug,
+          origin: WFProto.cdnOriginById(d.cdn),
+          structure: d.structure,
+          alias: d.alias,
+          onChange: function (o) {
+            if (o && o.structure) {
+              p.delivery.structure = o.structure;
+              const struct = document.getElementById('optStruct');
+              if (struct) struct.value = o.structure;
+              WFApp.save();
+            }
+          }
+        };
       }
       function cdnLabel() {
         const lab = document.getElementById('projectCdn');
-        if (lab) lab.innerHTML = esc(WFProto.projectCssUrl(p.slug).replace(/^https:\/\//, '')).replace(/\//g, '/<wbr>');
+        if (lab) lab.innerHTML = esc(WFProto.projectCssUrl(p.slug, 'index.css', WFProto.cdnOriginById(p.delivery.cdn)).replace(/^https:\/\//, '')).replace(/\//g, '/<wbr>');
       }
       function onCdn() {
         if (!embedEl.isConnected) { document.removeEventListener('wf:cdn', onCdn); return; }
@@ -239,12 +298,19 @@
           paint();
         });
       });
-      document.getElementById('optDisplay').addEventListener('change', function () {
-        if (src === 'project') paint(); else if (m) m.setOpts(opts());
+      function persist() {
+        readForm();
+        WFApp.save();
+        if (src === 'project') paint();
+        else if (m) m.setOpts(opts());
+        else paint();
+      }
+      ['optDisplay', 'optSubset', 'optCdn', 'optStruct'].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('change', persist);
       });
-      document.getElementById('optPreload').addEventListener('change', function () {
-        if (src === 'project') paint(); else if (m) m.setOpts(opts());
-      });
+      document.getElementById('optPreload').addEventListener('change', persist);
+      document.getElementById('optAlias').addEventListener('change', persist);
     }
   }
 
