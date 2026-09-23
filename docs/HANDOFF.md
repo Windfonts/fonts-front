@@ -269,3 +269,9 @@
 - 先读本节 + LICENSE §8 + FONT-AUDIT-BACKLOG；不要重开大批量 OSS 收录。
 - 继续核实品牌时：先看版权行与作者 README，再写 `font-lineage.json`；没把握不写。
 - 下一优先：千图 / 包图 / 优设 / 字魂以外素材平台——只核「是否误标 fork / 名称 / brand slug」，不要虚构思源上游。
+
+### 9.6 设计样张与剩余工作区（2026-09-23 晚）
+
+- **活样张**：`http://127.0.0.1:16016/styleguide.html`（规则真源 [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md)）。本轮已在浏览器打开核对。
+- **目录/谱系提交**：`cd1c5f4`（HANDOFF §9、FONT-AUDIT-BACKLOG、lineage、foundries、fonts、wf-proto）。
+- **其余工作区**按主题分批提交（文档口径 / 产品数据 / 站点功能 / 对照实验室）；排除 `*.bak` 与一次性探针 JSON（`_oss-aqua-probe*`、`_audit-*` 若仍未提交则继续留本地或进 lab 再议）。
