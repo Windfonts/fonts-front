@@ -78,10 +78,10 @@
 
         <h3>动态（推荐嵌入）</h3>
         <p>与 Google Fonts 类似，用查询参数指定字体。字体页默认给出这种地址。参数一律小写：<code>family</code> 用 <code>wenfeng-{slug}</code> 或 slug；<code>weight</code> 用字重名；子集用 <code>version</code>（<code>full</code> / <code>zh-common</code> / <code>en</code>，省略则完整）。</p>
-        <div class="code"><pre>https://cn.windfonts.com/api/css?family=<b>{family}</b>&amp;weight=<b>{weight}</b>&amp;version=<b>{version}</b></pre></div>
-        <div class="code"><pre>https://cn.windfonts.com/api/css?family=wenfeng-albbpht&amp;weight=heavy&amp;version=full</pre></div>
+        <div class="code"><pre>https://app.windfonts.com/api/css?family=<b>{family}</b>&amp;weight=<b>{weight}</b>&amp;subset=<b>{subset}</b></pre></div>
+        <div class="code"><pre>https://app.windfonts.com/api/css?family=wenfeng-albbpht&amp;weight=heavy&amp;subset=full</pre></div>
         <p>多款可写在同一条里，<code>family</code> 用竖线 <code>|</code> 分隔；该请求的 <code>weight</code> 对各款共用。需要不同字重时拆成多条 <code>&lt;link&gt;</code>。</p>
-        <div class="code"><pre>https://cn.windfonts.com/api/css?family=wenfeng-albbpht|wenfeng-ibmps&amp;weight=regular&amp;version=full</pre></div>
+        <div class="code"><pre>https://app.windfonts.com/api/css?family=wenfeng-albbpht|wenfeng-ibmps&amp;weight=regular&amp;subset=full</pre></div>
         <p>返回 CSS 里的 <code>font-family</code> 常为 <code>windfonts-{slug}</code>，页面上请同时写 <code>wenfeng-{slug}</code>。</p>
 
         <h3>拆包路径（预览真源）</h3>
@@ -111,7 +111,7 @@
         <p>放入页面 <code>&lt;head&gt;</code>。先 <code>preconnect</code> 再拉 CSS，可省一次 DNS + TLS 往返。免费提供的字体请保留授权标注注释。</p>
         <div class="code"><pre>&lt;!-- 此中文网页字体由文风字体（Windfonts）免费提供，您可以自由引用，请务必保留此授权许可标注 https://wenfeng.org/license --&gt;
 &lt;link rel="preconnect" href="https://cn.windfonts.com" crossorigin&gt;
-&lt;link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-albbpht&amp;weight=regular&amp;version=full"&gt;</pre></div>
+&lt;link rel="stylesheet" href="https://app.windfonts.com/api/css?family=wenfeng-albbpht&amp;weight=regular&amp;subset=full"&gt;</pre></div>
         <p>拆包路径同一款：</p>
         <div class="code"><pre>&lt;link rel="stylesheet" href="https://cn.windfonts.com/fonts-packages/Albbpht/Regular/full/result.css"&gt;</pre></div>
         <p>静态旧路径（仅兼容）：</p>
@@ -363,7 +363,7 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
             <tr><td><code>font-family</code></td><td>页面推荐写法；包内或为 <code>windfonts-*</code></td><td class="mono">"wenfeng-albbpht"</td></tr>
           </tbody>
         </table>
-        <div class="code"><pre>https://cn.windfonts.com/api/css?family=wenfeng-albbpht&amp;weight=regular&amp;version=full
+        <div class="code"><pre>https://app.windfonts.com/api/css?family=wenfeng-albbpht&amp;weight=regular&amp;subset=full
 https://cn.windfonts.com/fonts-packages/{Normalized}/{Weight}/{full|zh-common}/result.css
 https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/{index|zh_index}.css</pre></div>
       </section>
@@ -409,7 +409,7 @@ https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/{index|zh_index}.css<
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js?v=20260924k"></script>
+  <script src="js/wf-proto.js?v=20260924m"></script>
   <script src="js/wf-chrome.js?v=20260923d"></script>
   <script>
     (function () {

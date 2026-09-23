@@ -11,10 +11,11 @@
     try { sessionStorage.setItem(KEY, JSON.stringify(map)); } catch (e) { /* ignore */ }
   }
   function apply(font, row) {
-    if (!font || !row) return;
+    if (!font || !row || row.failed) return;
     font.viewCount = row.views;
     font.downloadCount = row.downloads;
     font.apiCount = row.api;
+    font._liveStats = true;
   }
   function familyOf(font) {
     return String((font && (font.family || font.fontFamily)) || '').trim();
@@ -24,27 +25,32 @@
     if (!family) return Promise.resolve(null);
     var map = readMap();
     var hit = map[family];
-    if (hit && Date.now() - hit.at < TTL) {
+    var fresh = hit && Date.now() - hit.at < (hit.failed ? 10 * 60 * 1000 : TTL);
+    if (fresh) {
+      if (hit.failed) return Promise.resolve(null);
       apply(font, hit);
       return Promise.resolve(hit);
+    }
+    function remember(row) {
+      map[family] = row;
+      writeMap(map);
+      return row.failed ? null : row;
     }
     return fetch(ORIGIN + '/api/fonts/' + encodeURIComponent(family), { method: 'GET' })
       .then(function (r) { return r.json(); })
       .then(function (body) {
         var data = body && body.code === 200 ? body.data : null;
-        if (!data) return null;
+        if (!data) return remember({ failed: true, at: Date.now() });
         var row = {
           views: Number(data.viewCount) || 0,
           downloads: Number(data.downloadCount) || 0,
           api: Number(data.apiCallCount) || 0,
           at: Date.now()
         };
-        map[family] = row;
-        writeMap(map);
         apply(font, row);
-        return row;
+        return remember(row);
       })
-      .catch(function () { return null; });
+      .catch(function () { return remember({ failed: true, at: Date.now() }); });
   }
 
   window.WFLive = { origin: ORIGIN, counts: counts };

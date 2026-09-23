@@ -288,6 +288,13 @@
     return { views: views, downloads: downloads, api: api };
   }
   function getFontStats(font) {
+    if (font && font._liveStats) {
+      return {
+        views: Math.max(0, Number(font.viewCount) || 0),
+        downloads: Math.max(0, Number(font.downloadCount) || 0),
+        api: Math.max(0, Number(font.apiCount) || 0)
+      };
+    }
     const id = font && font.id;
     const base = baseFontStats(font || {});
     if (!id) return base;
@@ -495,7 +502,8 @@
       'subset=' + encodeURIComponent(subset),
       'version=' + encodeURIComponent(subset)
     ];
-    return (origin || cdnOrigin()) + '/api/css?' + params.join('&');
+    /* cn/hk/en 的 /api/css 现在打到 OSS，返回 404。能出 CSS 的是 app.windfonts.com。 */
+    return 'https://app.windfonts.com/api/css?' + params.join('&');
   }
 
   function cdnHost() {

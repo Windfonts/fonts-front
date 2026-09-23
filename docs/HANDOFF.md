@@ -80,7 +80,7 @@
 | `GET /api/fonts/:id` 或 `:family`，带 `viewCount` / `downloadCount` / `apiCallCount`、`weights` 对象、`languages`、`useCases` | 详情仍用本地目录。打开详情时按 `fontFamily` 拉这一次计数，6 小时内缓存；跨域要等 vault 的 CORS 部署后才看得到 |
 | `GET /api/categories`、`GET /api/brands` | 分类和厂商用本地 JSON |
 | `GET /api/fonts/:id/analysis` 字符表，没有分析文件时 404 | 详情查字用本地数据 |
-| `GET /api/css?family&weight&subset`（`subset` 或 `lang`：`full` / `zh` / `zh-common` / `en`）。**不认 `version`**，`version=zh` 与不传得到同一份完整 CSS | 嵌入地址已同时写 `subset` 和 `version` |
+| `GET /api/css?family&weight&subset`（`subset` 或 `lang`：`full` / `zh` / `zh-common` / `en`）。**不认 `version`**。`cn.windfonts.com/api/css` 是 OSS 404 | 嵌入地址改到 `app.windfonts.com/api/css`，并同时写 `subset` 和 `version` |
 | 管理后台：字体 / 厂商 / 分类 / 风格、同步、安全开关、域名白名单、域名黑名单、API 密钥。IP 白名单在导航里被拿掉 | 顾客控制台不做这套运营后台 |
 
 现网还没有、仍只在本仓 localStorage 里的：项目、版本回滚、子集化工作台、用量四维、团队、认领工单、审计。这两套白名单不是一件事：REST 免密钥白名单只认完整 hostname、要带 `Origin`、不支持通配；项目 CDN 白名单仍可以写 `*.example.com`。
