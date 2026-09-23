@@ -1,5 +1,7 @@
 # OSS 首批入库进度（最终汇总）
 
+> 2026-09-23 晚：本表里的 skip「寒蝉像素 / 寒蝉线体 / 思源等宽」已在第二批改判并上目录。见 [_oss-ingest-batch2-progress.md](_oss-ingest-batch2-progress.md)。下面的 skip 行保留为首批当时的记录。
+
 生成：2026-09-23 · 真源 `docs/_oss-ingest-batch1.json`（105）  
 管线：`fonts-packages`（`SUBSET_ONLY=full`）→ OSS `fonts-packages/` → vault `feicode-prod` → `node scripts/export-fonts.mjs`
 

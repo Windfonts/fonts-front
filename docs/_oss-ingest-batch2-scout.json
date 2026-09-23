@@ -1,0 +1,141 @@
+{
+  "generated": "2026-09-23",
+  "note": "e8e864d5 子代理没写出清单。2026-09-23 晚父会话核对后，八款已登记，遍黑/更纱未进。",
+  "subagents_without_json": [
+    "aa2f65e0-fbe6-4bfc-91fa-6189e49e3d55",
+    "d3878301-8a0c-45ca-9d6e-56b997049aaa",
+    "9564763d-b09c-49b0-ac4f-e815d6270212",
+    "cc754fa7-aa5a-4d05-a5d3-2f6004f26614",
+    "40241316-1a4a-48cb-9278-316365bd40ec",
+    "9319854f-ec1f-408e-b71e-48182324bf68",
+    "ae48e40f-8cd1-434b-8b2f-72351cda8af7",
+    "b27736aa-30e7-4057-bdb2-c38795f561d7"
+  ],
+  "items": [
+    {
+      "status": "done",
+      "repo": "Warren2060/ChillPixels",
+      "norm": "Hcpixels",
+      "family": "wenfeng-hcpixels",
+      "name": "寒蝉像素体",
+      "note": "静态 OTF 已上传并登记。cmap 无汉字。Regular 是 Mono 的副本。"
+    },
+    {
+      "status": "done",
+      "repo": "Warren2060/ChillLine",
+      "norm": "Hcline",
+      "family": "wenfeng-hcline",
+      "name": "寒蝉线体",
+      "note": "仓库说明是等距等线英文。414 个字符，无汉字。部分字重文件名与 name 表不一致。"
+    },
+    {
+      "status": "done",
+      "repo": "adobe-fonts/source-han-mono",
+      "norm": "Sykd",
+      "family": "wenfeng-sykd",
+      "name": "思源等宽",
+      "note": "用仓内 SourceHanMonoSC 分面 OTF，不拆 TTC。cmap 44798，CJK 20976。"
+    },
+    {
+      "status": "skip",
+      "repo": "Warren2060/ChillMatrixBlack",
+      "note": "仍只有 Demo。介绍写 GB2312，发行物对不上。"
+    },
+    {
+      "status": "defer",
+      "repo": "atelier-anchor/luohei-variable",
+      "license": "MIT",
+      "note": "只有 VF woff2。"
+    },
+    {
+      "status": "skip",
+      "repo": "max32002/swei-bat-leg",
+      "note": "空仓。swei-bat-sans 已在目录 wenfeng-swbatsans。"
+    },
+    {
+      "status": "skip",
+      "repo": "lxgw/LxgwWenKai",
+      "license": "OFL-1.1",
+      "note": "霞鹜文楷各规格已在目录。"
+    },
+    {
+      "status": "done",
+      "repo": "ButTaiwan/iansui",
+      "license": "OFL-1.1",
+      "stars": 2116,
+      "asset": "iansui.zip",
+      "tag": "v1.020",
+      "assetBytes": 4803795,
+      "note": "可进静态管线。vault 没有 ButTaiwan 品牌行，本轮没建品牌、没登记。 2026-09-23 晚已登记。"
+    },
+    {
+      "status": "done",
+      "repo": "chiron-fonts/chiron-sung-hk",
+      "license": "OFL-1.1",
+      "tag": "v1.024",
+      "note": "latest release 没有附件。默认分支是 release，要翻仓内文件。 2026-09-23 晚已登记。"
+    },
+    {
+      "status": "done",
+      "repo": "TrionesType/zhuque",
+      "license": "OFL-1.1",
+      "stars": 3519,
+      "note": "没有 GitHub latest release。还没翻仓内静态文件。 2026-09-23 晚已登记。"
+    },
+    {
+      "status": "defer",
+      "repo": "be5invis/Sarasa-Gothic",
+      "stars": 12803,
+      "note": "latest 是 TTC 或 Sarasa-TTF 7z 约 850MB。TTC 不进现有管线。"
+    },
+    {
+      "status": "skip",
+      "repo": "FitzgeraldP/Plangothic",
+      "note": "仓库不存在。真仓见 Plangothic_Project，完整字是 TTC，未登记。"
+    },
+    {
+      "status": "done",
+      "repo": "ButTaiwan/gensen-font",
+      "stars": 858,
+      "note": "GitHub license 字段为空。没翻静态文件，没登记。 2026-09-23 晚已登记。"
+    },
+    {
+      "status": "done",
+      "repo": "ButTaiwan/genyo-font",
+      "stars": 888,
+      "note": "GitHub license 字段为空。没翻静态文件，没登记。 2026-09-23 晚已登记。"
+    },
+    {
+      "status": "done",
+      "repo": "ButTaiwan/genyog-font",
+      "stars": 552,
+      "note": "GitHub license 字段为空。没翻静态文件，没登记。 2026-09-23 晚已登记。"
+    },
+    {
+      "status": "done",
+      "repo": "chiron-fonts/chiron-hei-hk",
+      "norm": "Zyht",
+      "family": "wenfeng-zyht",
+      "name": "昭源黑体",
+      "license": "OFL-1.1",
+      "note": "香港静态 OTF 四字重，已登记。"
+    },
+    {
+      "status": "done",
+      "repo": "chiron-fonts/chiron-go-round-tc",
+      "norm": "Zyyt",
+      "family": "wenfeng-zyyt",
+      "name": "昭源圆体",
+      "license": "OFL-1.1",
+      "note": "繁体静态 OTF 四字重，已登记。"
+    },
+    {
+      "status": "defer",
+      "repo": "Fitzgerald-Porthmouth-Koenigsegg/Plangothic_Project",
+      "norm": "Bht",
+      "name": "遍黑体",
+      "license": "OFL-1.1",
+      "note": "字体 OFL。静态 zip 的完整字是 Plangothic.ttc，P1/P2 是分平面。未登记。"
+    }
+  ]
+}

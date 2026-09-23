@@ -1416,6 +1416,198 @@
       "kind": "author",
       "openSource": true,
       "claimed": false
+    },
+    {
+      "id": "buttaiwan",
+      "name": "但",
+      "en": "ButTaiwan",
+      "short": "但",
+      "website": "https://github.com/ButTaiwan",
+      "aliases": [
+        "ButTaiwan",
+        "但"
+      ],
+      "fontNames": [
+        "芫荽",
+        "源泉圆体",
+        "源样明体",
+        "源样黑体"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
+    },
+    {
+      "id": "chiron",
+      "name": "昭源",
+      "en": "Chiron",
+      "short": "昭源",
+      "website": "https://github.com/chiron-fonts",
+      "aliases": [
+        "Chiron",
+        "昭源",
+        "Tamcy"
+      ],
+      "fontNames": [
+        "昭源宋体",
+        "昭源黑体",
+        "昭源圆体"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "Tamcy 的昭源字型。宋、黑、圆均为 SIL OFL 1.1，基于思源。"
+    },
+    {
+      "id": "triones",
+      "name": "璇玑造字",
+      "en": "TrionesType",
+      "short": "璇玑",
+      "website": "https://github.com/TrionesType",
+      "aliases": [
+        "TrionesType",
+        "璇玑造字",
+        "朱雀"
+      ],
+      "fontNames": [
+        "朱雀仿宋"
+      ],
+      "kind": "foundry",
+      "openSource": true,
+      "claimed": false,
+      "description": "璇玑造字。开源产品朱雀仿宋，SIL OFL 1.1。"
+    },
+    {
+      "id": "plangothic",
+      "name": "遍黑体计划",
+      "en": "Plangothic",
+      "short": "遍黑",
+      "website": "https://github.com/Fitzgerald-Porthmouth-Koenigsegg/Plangothic_Project",
+      "aliases": [
+        "Plangothic",
+        "遍黑体"
+      ],
+      "fontNames": [
+        "遍黑体"
+      ],
+      "kind": "project",
+      "openSource": true,
+      "claimed": false,
+      "description": "基于思源黑体的扩展区补字项目。字体 SIL OFL 1.1。"
+    },
+    {
+      "id": "huiwen",
+      "name": "汇文",
+      "en": "Huiwen",
+      "short": "汇文",
+      "website": "https://github.com/bosswnx/huiwenmincho-improved",
+      "aliases": [
+        "汇文",
+        "Huiwen"
+      ],
+      "fontNames": [
+        "汇文明朝"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "汇文明朝修正版，CC0 1.0。"
+    },
+    {
+      "id": "guiwonder",
+      "name": "中文网字计划",
+      "en": "GuiWonder",
+      "short": "网字",
+      "website": "https://github.com/GuiWonder",
+      "aliases": [
+        "GuiWonder",
+        "中文网字计划"
+      ],
+      "fontNames": [
+        "月星楷",
+        "尚古明体",
+        "初夏明朝体",
+        "合简宋体"
+      ],
+      "kind": "project",
+      "openSource": true,
+      "claimed": false,
+      "description": "GuiWonder 的开源字体。月星楷、尚古明体、初夏明朝体、合简宋体为 SIL OFL 1.1。"
+    },
+    {
+      "id": "toneoz",
+      "name": "澳声通",
+      "en": "ToneOZ",
+      "short": "澳声通",
+      "website": "https://github.com/jeffreyxuan/toneoz-font-pinyin-wenkai",
+      "aliases": [
+        "ToneOZ",
+        "澳声通"
+      ],
+      "fontNames": [
+        "澳声通拼音文楷"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "澳声通拼音文楷。SIL OFL 1.1。"
+    },
+    {
+      "id": "zdic",
+      "name": "汉典",
+      "en": "ZDIC",
+      "short": "汉典",
+      "website": "https://github.com/AlainAlan/zdic-qx-font",
+      "aliases": [
+        "汉典",
+        "ZDIC"
+      ],
+      "fontNames": [
+        "汉典秦系文字体"
+      ],
+      "kind": "project",
+      "openSource": true,
+      "claimed": false,
+      "description": "汉典秦系文字体。CC0 1.0。"
+    },
+    {
+      "id": "gekifude",
+      "name": "激笔",
+      "en": "GEKIFUDE",
+      "short": "激笔",
+      "website": "https://github.com/ukr8b3g-cmyk/GEKIFUDE-SFX",
+      "aliases": [
+        "GEKIFUDE",
+        "激笔"
+      ],
+      "fontNames": [
+        "激笔 SFX"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "激笔 SFX。CC0 1.0。"
+    },
+    {
+      "id": "sarasa",
+      "name": "更纱",
+      "en": "Sarasa Gothic",
+      "short": "更纱",
+      "website": "https://github.com/be5invis/Sarasa-Gothic",
+      "aliases": [
+        "Sarasa Gothic",
+        "更纱",
+        "更紗",
+        "Belleve Invis"
+      ],
+      "fontNames": [
+        "更纱黑体"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "Belleve Invis 的更纱黑体。简体包为官方 SarasaGothicSC。SIL OFL 1.1。"
     }
   ]
 }

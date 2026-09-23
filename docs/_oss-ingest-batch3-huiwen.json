@@ -1,0 +1,527 @@
+{
+  "wave": "huiwen",
+  "items": [
+    {
+      "status": "skip",
+      "repo": "bosswnx/huiwenmincho-improved",
+      "norm": "Hwmc",
+      "family": "wenfeng-hwmc",
+      "name": "汇文明朝",
+      "en": "Huiwen Mincho",
+      "license": "CC0 1.0 Universal",
+      "spdx": "CC0-1.0",
+      "assetUrl": "https://github.com/bosswnx/huiwenmincho-improved/releases/download/20241203/Huiwenmincho-improved.ttf",
+      "assetBytes": 24866404,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 257,
+      "note": "skip。LICENSE 全文是 CC0 1.0 Universal，不是 OFL、Apache、MIT、0BSD。release 20241203 另有 Huiwenmincho-improved.otf 16625636，仓内还有 匯文明朝體.ttf 24866404。README 写原作者特里王的原字体在知乎，不在这个仓。"
+    },
+    {
+      "status": "ready",
+      "repo": "ButTaiwan/genryu-font",
+      "norm": "Ylmt",
+      "family": "wenfeng-ylmt",
+      "name": "源流明体",
+      "en": "GenRyu Mincho",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "assetUrl": "https://github.com/ButTaiwan/genryu-font/releases/download/v2.100/GenRyuMin2TW-otf.zip",
+      "assetBytes": 71345911,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 794,
+      "note": "ready。SIL_Open_Font_License_1.1.txt 是 SIL Open Font License Version 1.1 原文，GitHub license 字段为空。用静态包 GenRyuMin2TW-otf.zip，不要用 GenRyuMin2-ttc.zip。仓内 otf/TW 有 GenRyuMin2TW-R.otf 16449288，另有 EL、L、M、SB、B、H。"
+    },
+    {
+      "status": "ready",
+      "repo": "ButTaiwan/genwan-font",
+      "norm": "Yunmt",
+      "family": "wenfeng-yunmt",
+      "name": "源云明体",
+      "en": "GenWan Mincho",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "assetUrl": "https://github.com/ButTaiwan/genwan-font/releases/download/v2.100/GenWanMin2TW-otf.zip",
+      "assetBytes": 88261016,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 777,
+      "note": "ready。SIL_Open_Font_License_1.1.txt 是 SIL Open Font License Version 1.1 原文。用静态包 GenWanMin2TW-otf.zip，不要用 GenWanMin2-ttc.zip。仓内 otf/TW 有 GenWanMin2TW-R.otf 22772928，另有 EL、L、M、SB，没有 B、H。短码用 Yunmt，避开已有的源样明体 Yymt。"
+    },
+    {
+      "status": "ready",
+      "repo": "ButTaiwan/evilsung",
+      "norm": "Xsong",
+      "family": "wenfeng-xsong",
+      "name": "邪宋",
+      "en": "Evil Sung",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "assetUrl": "https://github.com/ButTaiwan/evilsung/raw/master/EvilSung-Regular.ttf",
+      "assetBytes": 6051048,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 96,
+      "note": "ready。没有 release。SIL_Open_Font_License_1.1.txt 是 SIL Open Font License Version 1.1 原文。静态文件 EvilSung-Regular.ttf 6051048。"
+    },
+    {
+      "status": "ready",
+      "repo": "GuiWonder/MoonStarsKai",
+      "norm": "Yxkt",
+      "family": "wenfeng-yxkt",
+      "name": "月星楷",
+      "en": "Moon Stars Kai",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "assetUrl": "https://github.com/GuiWonder/MoonStarsKai/releases/download/1.105/MoonStarsKaiTTF.7z",
+      "assetBytes": 22438442,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 128,
+      "note": "ready。LICENSE.txt 是 SIL Open Font License Version 1.1 原文。用 1.105 的 MoonStarsKaiTTF.7z，不要用同 tag 的 MoonStarsKaiTTC.7z。7z 未拆开。中文网字计划镜像里有静态 MoonStarsKai-Regular.ttf 16995352，另有 Light、Bold。"
+    },
+    {
+      "status": "ready",
+      "repo": "GuiWonder/Shanggu",
+      "norm": "Sgmt",
+      "family": "wenfeng-sgmt",
+      "name": "尙古明体",
+      "en": "Shanggu Serif",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "assetUrl": "https://github.com/GuiWonder/Shanggu/releases/download/1.028/ShangguSerifTTFs.7z",
+      "assetBytes": 57260024,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 432,
+      "note": "ready。只收明体。LICENSE.txt 是 SIL Open Font License Version 1.1 原文。用 1.028 的 ShangguSerifTTFs.7z，另有 ShangguSerifOTFs.7z 74489008。不要用 ShangguSerifTTCs.7z、ShangguSerifOTCs.7z 和 ShangguSerifVF 包。黑体、圆体、等宽不在本条。7z 未拆开。"
+    },
+    {
+      "status": "ready",
+      "repo": "GuiWonder/EarlySummerSerif",
+      "norm": "Cxmc",
+      "family": "wenfeng-cxmc",
+      "name": "初夏明朝体",
+      "en": "Early Summer Serif",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "assetUrl": "https://github.com/GuiWonder/EarlySummerSerif/releases/download/1.008/EarlySummerSerifTTF.zip",
+      "assetBytes": 64816394,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 87,
+      "note": "ready。LICENSE.txt 是 SIL Open Font License Version 1.1 原文。README 写 7 个静态字重。用 EarlySummerSerifTTF.zip，另有 EarlySummerSerifOTF.zip 79217732。不要用 EarlySummerSerifVF.zip、EarlySummerSerifTTFTTC.zip、EarlySummerSerifOTFTTC.zip。屏阅包 EarlySummerSerifScreen.zip 11327363 未单列。zip 未拆开。"
+    },
+    {
+      "status": "ready",
+      "repo": "GuiWonder/HeSimplFonts",
+      "norm": "Hjst",
+      "family": "wenfeng-hjst",
+      "name": "合简宋体",
+      "en": "HeSimpl Serif",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "assetUrl": "https://github.com/GuiWonder/HeSimplFonts/releases/download/1.007/HeSimplSerifTTF.zip",
+      "assetBytes": 67776736,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 26,
+      "note": "ready。只收宋体。LICENSE.txt 是 SIL Open Font License Version 1.1 原文。用 HeSimplSerifTTF.zip，另有 HeSimplSerifOTF.zip 83180806。不要用 HeSimplSerifVF.zip。合简黑体不是宋，不在本条。zip 未拆开。"
+    },
+    {
+      "status": "ready",
+      "repo": "jeffreyxuan/toneoz-font-pinyin-wenkai",
+      "norm": "Pywk",
+      "family": "wenfeng-pywk",
+      "name": "澳声通拼音文楷",
+      "en": "ToneOZ Pinyin WenKai",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "assetUrl": "https://github.com/jeffreyxuan/toneoz-font-pinyin-wenkai/raw/master/fonts/ttf/ToneOZ-Pinyin-WenKai-Regular.ttf",
+      "assetBytes": 20028708,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 98,
+      "note": "ready。OFL.txt 有 Copyright 2021 ToneOZ，正文是 SIL Open Font License Version 1.1。fonts/ttf 还有 ToneOZ-Pinyin-WenKai-Light.ttf 20664620、ToneOZ-Pinyin-WenKai-Bold.ttf 19629864。release v0.241128 只有变体 ToneOZ-PinyinW-WenKai-Regular.ttf 20028508。中文网字计划索引里的名字是澳声通拼音文楷。"
+    },
+    {
+      "status": "defer",
+      "repo": "Fitzgerald-Porthmouth-Koenigsegg/Planschrift_Project",
+      "norm": "Bjt",
+      "family": "wenfeng-bjt",
+      "name": "遍玨体",
+      "en": "Planschrift",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "assetUrl": "https://github.com/Fitzgerald-Porthmouth-Koenigsegg/Planschrift_Project/releases/download/V0.0.2008-pre/PlanschriftP1-Regular.ttf",
+      "assetBytes": 112386368,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 116,
+      "note": "defer。基于汇文明朝。LICENSE-OFL.txt 是字体的 SIL Open Font License Version 1.1 原文，LICENSE-MIT.txt 是代码的 MIT 原文。release V0.0.2008-pre 只有分平面 PlanschriftP1-Regular.ttf 112386368 和 PlanschriftP2-Regular.ttf 101708276，没有单一全字文件。"
+    },
+    {
+      "status": "skip",
+      "repo": "jaywcjlove/free-font",
+      "norm": "Jhlst",
+      "family": "wenfeng-jhlst",
+      "name": "京华老宋体",
+      "en": "KingHwa Old Song",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "",
+      "assetBytes": 36587506,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 4046,
+      "note": "skip。没有找到独立字体仓。合集仓 docs/fonts/其他字体/京華老宋体.ttf 36587506，和中文网字计划 packages/jhlst/fonts/京華老宋体v2.002.ttf 字节数相同，同目录还有京華老宋体v1.007.ttf 32570002。两处都没有 OFL、Apache、MIT、0BSD 原文。4046 是合集仓星数。"
+    },
+    {
+      "status": "skip",
+      "repo": "209-Tongji/cns11643",
+      "norm": "Qzsong",
+      "family": "wenfeng-qzsong",
+      "name": "全字库正宋",
+      "en": "CNS11643 Sung",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "",
+      "assetBytes": 35351888,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 4,
+      "note": "skip。静态文件 Open_Data/Fonts/TW-Sung-98_1.ttf 35351888，另有 TW-Sung-Plus-98_1.ttf 18315500、TW-Sung-Ext-B-98_1.ttf 67112500。README 同时写政府资料开放授权第1版，并提到 OFL-1.1，但仓内没有 OFL 原文。目录里已有教育部標準楷書、MOESongUN，不是这套文件。"
+    },
+    {
+      "status": "skip",
+      "repo": "209-Tongji/cns11643",
+      "norm": "Qzkai",
+      "family": "wenfeng-qzkai",
+      "name": "全字库正楷",
+      "en": "CNS11643 Kai",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "",
+      "assetBytes": 36825732,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 4,
+      "note": "skip。静态文件 Open_Data/Fonts/TW-Kai-98_1.ttf 36825732，另有 TW-Kai-Plus-98_1.ttf 24847152、TW-Kai-Ext-B-98_1.ttf 45717964。许可情况和正宋同一仓，没有 OFL 原文。"
+    },
+    {
+      "status": "skip",
+      "repo": "Skr-ZERO/FlyFlowerSong",
+      "norm": "Fhst",
+      "family": "wenfeng-fhst",
+      "name": "飞花宋体",
+      "en": "Fly Flower Song",
+      "license": "GlyphWiki 著作权与许可协议",
+      "spdx": "",
+      "assetUrl": "https://github.com/Skr-ZERO/FlyFlowerSong/releases/download/2.70/FlyFlowerSong-Regular.otf",
+      "assetBytes": 11560004,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 195,
+      "note": "skip。README 写遵循字形维基著作权与许可协议，不是 OFL、Apache、MIT、0BSD。仓内没有这四类许可文件。release 2.70 有 FlyFlowerSong-Regular.otf 11560004 和 FlyFlowerSong-Regular.ttf 15298480。"
+    },
+    {
+      "status": "skip",
+      "repo": "Skr-ZERO/Xuandong-Kaishu",
+      "norm": "Xdks",
+      "family": "wenfeng-xdks",
+      "name": "玄冬楷书",
+      "en": "Xuandong Kaishu",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "https://github.com/Skr-ZERO/Xuandong-Kaishu/releases/download/v0.12/XuandongKaishu.otf",
+      "assetBytes": 8344916,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 96,
+      "note": "skip。README 声称 SIL OFL 1.1，但仓内没有 LICENSE 或 OFL 文件，看不到许可原文。release v0.12 有 XuandongKaishu.otf 8344916 和 XuandongKaishu.ttf 7629268。"
+    },
+    {
+      "status": "skip",
+      "repo": "tonyhuan/GuanKiapTsingKhai",
+      "norm": "Yxzk",
+      "family": "wenfeng-yxzk",
+      "name": "原侠正楷",
+      "en": "GuanKiap TsingKhai",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "https://github.com/tonyhuan/GuanKiapTsingKhai/releases/download/V1.20/GuanKiapTsingKhai.ttf",
+      "assetBytes": 14675776,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 176,
+      "note": "skip。README 声称 SIL OFL 1.1，但 git 树和 release V1.20 附件里没有 OFL 原文。静态文件有 GuanKiapTsingKhai.ttf 14675776，另有 S、T、W、TW 和旋转 90 度版本。"
+    },
+    {
+      "status": "skip",
+      "repo": "Hansha2011/NanoOldSong",
+      "norm": "Nosong",
+      "family": "wenfeng-nosong",
+      "name": "纳米老宋",
+      "en": "Nano Old Song",
+      "license": "汇文明朝自定义授权",
+      "spdx": "",
+      "assetUrl": "https://github.com/Hansha2011/NanoOldSong/releases/download/v1.3/NanoOldSongA-Regular.ttf",
+      "assetBytes": 70325772,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 72,
+      "note": "skip。README 写授权与汇文明朝原字体一致，引用的是自定义免费条款，不是 OFL、Apache、MIT、0BSD 原文。release v1.3 是分平面 NanoOldSongA-Regular.ttf 70325772、B 111273884、C 9312944、D 677548。"
+    },
+    {
+      "status": "skip",
+      "repo": "lxgw/FusionKai",
+      "norm": "Fkai",
+      "family": "wenfeng-fkai",
+      "name": "缝合楷",
+      "en": "Fusion Kai",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "assetUrl": "https://github.com/lxgw/FusionKai/raw/main/FusionKaiT-Regular.ttf",
+      "assetBytes": 13448302,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 84,
+      "note": "skip。OFL.txt 是 SIL Open Font License Version 1.1 原文，静态文件有 FusionKaiT-Regular.ttf 13448302 和 FusionKaiJ-Regular.ttf 15261552。README 写字体站可以不收录，内容是已入库的霞鹜文楷、芫荽、Klee One 合并。release v24.134 没有附件。"
+    },
+    {
+      "status": "skip",
+      "repo": "GuiWonder/HuayingMincho",
+      "norm": "Hymc",
+      "family": "wenfeng-hymc",
+      "name": "华英明朝",
+      "en": "Huaying Mincho",
+      "license": "IPA Font License Agreement v1.0",
+      "spdx": "IPA",
+      "assetUrl": "https://github.com/GuiWonder/HuayingMincho/releases/download/1.017/HuayingMincho.7z",
+      "assetBytes": 12652955,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 87,
+      "note": "skip。LICENSE.txt 是 IPA Font License Agreement v1.0 原文，不是 OFL、Apache、MIT、0BSD。release 1.017 只有 HuayingMincho.7z 12652955，未拆开。"
+    },
+    {
+      "status": "skip",
+      "repo": "GuiWonder/LanternMing",
+      "norm": "Symc",
+      "family": "wenfeng-symc",
+      "name": "上元明朝",
+      "en": "Lantern Ming",
+      "license": "GlyphWiki 著作权与许可协议",
+      "spdx": "",
+      "assetUrl": "https://github.com/GuiWonder/LanternMing/releases/download/1.04/LanternMing.zip",
+      "assetBytes": 31844372,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "release",
+      "stars": 32,
+      "note": "skip。README 写遵循字形维基著作权与许可协议，仓内没有 OFL、Apache、MIT、0BSD 文件。release 1.04 是 LanternMing.zip 31844372。README 写和花园明朝一样拆成 A、B 两个文件。zip 未拆开。"
+    },
+    {
+      "status": "skip",
+      "repo": "KonghaYao/chinese-free-web-font-storage",
+      "norm": "Jyhp",
+      "family": "wenfeng-jyhp",
+      "name": "极影毁片文宋",
+      "en": "Jiying Huipian WenSong",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "",
+      "assetBytes": 22838072,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 1462,
+      "note": "skip。中文网字计划 packages/jyhpws/fonts/极影毁片文宋.ttf 22838072。package.json 的 MIT 是切分包许可，包内没有字体自己的 OFL、Apache、MIT、0BSD 原文。没找到独立字体仓。"
+    },
+    {
+      "status": "skip",
+      "repo": "KonghaYao/chinese-free-web-font-storage",
+      "norm": "Zjmc",
+      "family": "wenfeng-zjmc",
+      "name": "装甲明朝体",
+      "en": "Zhuangjia Mincho",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "",
+      "assetBytes": 9815820,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 1462,
+      "note": "skip。packages/zjmc/fonts/装甲明朝体.ttf 9815820。只有切分包的 MIT，没有字体许可原文，没找到独立字体仓。"
+    },
+    {
+      "status": "skip",
+      "repo": "KonghaYao/chinese-free-web-font-storage",
+      "norm": "Crgk",
+      "family": "wenfeng-crgk",
+      "name": "程荣光刻楷",
+      "en": "Chengrong Guangke Kai",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "",
+      "assetBytes": 6281180,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 1462,
+      "note": "skip。packages/crgkk/fonts/程荣光刻楷.ttf 6281180。只有切分包的 MIT，没有字体许可原文，没找到独立字体仓。"
+    },
+    {
+      "status": "skip",
+      "repo": "KonghaYao/chinese-free-web-font-storage",
+      "norm": "Ydyan",
+      "family": "wenfeng-ydyan",
+      "name": "一点颜",
+      "en": "Yidian Yan",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "",
+      "assetBytes": 8953760,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 1462,
+      "note": "skip。packages/yidianyan/fonts/yidianyan.ttf 8953760。只有切分包的 MIT，没有字体许可原文，没找到独立字体仓。"
+    },
+    {
+      "status": "skip",
+      "repo": "KonghaYao/chinese-free-web-font-storage",
+      "norm": "Ysyxk",
+      "family": "wenfeng-ysyxk",
+      "name": "演示悠然小楷",
+      "en": "Slide Youran Xiaokai",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "",
+      "assetBytes": 14327692,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 1462,
+      "note": "skip。packages/ysyrxk/fonts/slideyouran-Regular2.0.ttf 14327692。只有切分包的 MIT，没有字体许可原文，没找到独立字体仓。"
+    },
+    {
+      "status": "skip",
+      "repo": "KonghaYao/chinese-free-web-font-storage",
+      "norm": "Stdg",
+      "family": "wenfeng-stdg",
+      "name": "上图东观体",
+      "en": "ST Dongguan",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "",
+      "assetBytes": 11793068,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 1462,
+      "note": "skip。packages/stdgt/fonts 有上图东观体-常规.ttf 11793068、上图东观体-细体.ttf 12311620、上图东观体-粗体.ttf 11530160。只有切分包的 MIT，没有字体许可原文。"
+    },
+    {
+      "status": "skip",
+      "repo": "KonghaYao/chinese-free-web-font-storage",
+      "norm": "Ryzzk",
+      "family": "wenfeng-ryzzk",
+      "name": "润植家如印奏章楷",
+      "en": "Ruzhijia RuYin ZouZhang Kai",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "",
+      "assetBytes": 4476144,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 1462,
+      "note": "skip。packages/rzjryzzk/fonts/nzgrRuYinZouZhangKai.ttf 4476144。只有切分包的 MIT，没有字体许可原文，没找到独立字体仓。"
+    },
+    {
+      "status": "skip",
+      "repo": "KonghaYao/chinese-free-web-font-storage",
+      "norm": "Pydk",
+      "family": "wenfeng-pydk",
+      "name": "拼音鼎楷",
+      "en": "ToneOZ Pinyin Kai",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "",
+      "assetBytes": 16067056,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 1462,
+      "note": "skip。packages/ToneOZ-Pinyin-Kai/fonts 有 ToneOZ-Pinyin-Kai-Simplified.ttf 16067056 和 ToneOZ-PinyinW-Kai-Simplified.ttf 16066532。这个包没有 OFL 原文。搜到的同名仓 shenliehuozhi/toneoz-font-pinyin-kai 是 0 star。"
+    },
+    {
+      "status": "skip",
+      "repo": "KonghaYao/chinese-free-web-font-storage",
+      "norm": "Zyzk",
+      "family": "wenfeng-zyzk",
+      "name": "注音多音字型库楷",
+      "en": "ToneOZ RadicalZ Kai",
+      "license": "",
+      "spdx": "",
+      "assetUrl": "",
+      "assetBytes": 4981936,
+      "weightPrefer": [
+        "Regular"
+      ],
+      "source": "raw",
+      "stars": 1462,
+      "note": "skip。packages/ToneOZ-RadicalZ-Kai/fonts/ToneOZ-RadicalZ-KaiTraditional.ttf 4981936。包内没有 OFL、Apache、MIT、0BSD 原文。"
+    }
+  ]
+}

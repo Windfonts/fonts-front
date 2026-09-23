@@ -4,6 +4,8 @@
 
 **2026-09-23 停点：** 公开主路径已基本对齐线上；工程批次已提交（`c78c4ce` 起）。上线硬门槛见 **[LAUNCH-GATES.md](LAUNCH-GATES.md)**（路径 rewrite、真统计、真登录、CDN 去 `local()`）。产品层（控制台 / 选字袋 / 认领等）见下文「产品层 backlog」，继续优化，不挡公开站上线。**完整会话交接见第 9 节**（谱系标准化、OSS 101、猫啃/寒蝉/站酷/荆南核实）；续页 [FONT-AUDIT-BACKLOG.md](FONT-AUDIT-BACKLOG.md)。
 
+**2026-09-23 晚停点（OSS 第二批）：** 目录 401 款。又登记了思源宋体 TC `wenfeng-systtc`、源石黑体 `wenfeng-ysht`、更纱等宽 `wenfeng-gskd`。遍黑体仍只有扩展区，没进。
+
 **2026-09-22 停点：** 人要的是现站改进建议，不是重做整页。对照版 `v5.html` 等已否，不要合并。头像清单以 `data/avatars.json` 的 26 条为准，下面第 6 节里「45 家真标」已过时。详见第 8 节。
 
 ## 0. 产品层 backlog（继续打磨，非上线硬拦）
@@ -12,7 +14,7 @@
 
 | 模块 | 现状 | 下一步 |
 |---|---|---|
-| **控制台** | `app/*` + localStorage；`?demo=1` 免登；顶栏仅注册/管理员可见 | 接真实项目 / 域名 / 用量 API；关掉生产 demo；用量与公开「统计信息」同源 |
+| **控制台** | `app/*` + localStorage；`?demo=1` 免登；顶栏仅注册/管理员可见。2026-09-23 过了一轮对齐与可访问性：`.version-list` 固定列宽、表头 / 数据对齐、表单标签、`WFChrome.promptInput` 取代原生 `prompt`、数据层容错旧 localStorage、头像 onerror 修正、**大字 `zoom` 不再作用于 `body.app`**（此前开着大字进控制台会整屏放大 1.5 倍、看似全乱） | 接真实项目 / 域名 / 用量 API；关掉生产 demo；用量与公开「统计信息」同源 |
 | **选字袋 / 收藏** | 本地持久化，可对比与嵌入 | 登录态同步；清空/导出策略；与控制台「我的字体」关系说清 |
 | **样张工坊** | 详情设计视图出图 | 模板与默认文案接设置；OG 图需后端固定 URL |
 | **厂商认领** | `claim.html` 演示提交 | 真实工单、审核、claimed 回写目录 |
@@ -25,7 +27,7 @@
 ## 1. 现状一览
 
 - 纯静态原型，所有页面可直接打开；公开字体从正式 CDN `cn.windfonts.com` 实时加载（真实字形）。
-- 目录 202 款字体（`data/fonts.json`，由 vault API 导出，2026-09-20 全量品牌核验后重导出）；厂商字典 78 家（`data/foundries.json`），123 款挂品牌、79 款按「宁缺勿错」留空。品牌方 / 制作方 / 谱系见 `data/font-lineage.json`。
+- 目录 397 款字体（`data/fonts.json`，2026-09-23 晚含第三批；不是全量重导出）。厂商字典加了汇文、中文网字计划、澳声通、汉典、激笔。品牌方 / 制作方 / 谱系见 `data/font-lineage.json`。
 - 控制台完整可操作（localStorage 持久化）：项目、域名白名单与验证、子集化、版本回滚、用量四维统计、团队、认领、审计、上传、设置。
 - 设计系统 v4「柔和 · 圆润」已定稿，见 [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md)。
 - **双平台：** Windfonts = 分发（本仓）；`wenfeng.org` = 造字、授权、源文件。总则见 [PLATFORMS.md](PLATFORMS.md)。授权依据见 [LICENSE.md](LICENSE.md)。
@@ -275,3 +277,77 @@
 - **活样张**：`http://127.0.0.1:16016/styleguide.html`（规则真源 [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md)）。本轮已在浏览器打开核对。
 - **目录/谱系提交**：`cd1c5f4`（HANDOFF §9、FONT-AUDIT-BACKLOG、lineage、foundries、fonts、wf-proto）。
 - **其余工作区**按主题分批提交（文档口径 / 产品数据 / 站点功能 / 对照实验室）；排除 `*.bak` 与一次性探针 JSON（`_oss-aqua-probe*`、`_audit-*` 若仍未提交则继续留本地或进 lab 再议）。
+
+## 10. 2026-09-23 晚 OSS 第二批（`e8e864d5`）
+
+会话 [Zcode session continuation](e8e864d5-c0ce-49cc-be4a-7fcf7bff988d) 停在「四路搜源还在写清单」。续跑 [7634005f](7634005f-4458-4d40-9d8f-204c6f5224eb) 把三款拆包传到了 `cn.windfonts.com`，vault 没登记就停了。本轮补登记并改目录。
+
+### 10.1 子代理
+
+八路都没写出 `docs/_oss-ingest-batch2-*.json`：
+
+| 会话 | 子代理 | 结果 |
+|---|---|---|
+| `e8e864d5` | `aa2f65e0` ButTaiwan / 昭源、`d3878301` 遍黑 / 汇文 / 朱雀 | 本机没有 transcript |
+| `e8e864d5` | `9564763d` justfont / Aqua、`cc754fa7` 寒蝉复核 | transcript 停在中途，没有 JSON |
+| `7634005f` | `40241316` `9319854f` `ae48e40f` `b27736aa` | 同样停在中途，没有 JSON |
+
+### 10.2 已上目录（2026-09-23 晚）
+
+拆包在 CDN，vault 本轮才写入。备份 `feicode-prod:/www/wwwroot/fonts-vault/data/prod.db.bak-20260923-preBatch2`。`/api/css?family=…&weight=regular&version=full` 三款都是 200。`data/fonts.json` 341→344。未 git commit。
+
+| family | norm | 名称 | 字符 | 说明 |
+|---|---|---|---|---|
+| `wenfeng-hcpixels` | Hcpixels | 寒蝉像素体 | 最多 554 | 无汉字。Regular 与 Mono 是同一文件 |
+| `wenfeng-hcline` | Hcline | 寒蝉线体 | 414 | 仓库说明是等距等线英文，无汉字。Regular 文件实为 Normal，ExtraBold 实为 UltraBold，SemiBold 实为 DemiBold |
+| `wenfeng-sykd` | Sykd | 思源等宽 | cmap 44798，其中 CJK 20976 | 仓内分面 OTF，不是 TTC。简体 |
+
+像素体、线体的语言已改成英语 / 拉丁字母，不再标简体正文。
+
+### 10.3 复核过、本轮没拆的
+
+| 项 | 结论 |
+|---|---|
+| 寒蝉矩黑 ChillMatrixBlack | 仍只有 Demo，不进。仓库介绍写了 GB2312，发行物对不上 |
+| 络黑 | 仍是 VF woff2 |
+| 狮尾 bat-leg | 空。bat-sans 已在目录 `wenfeng-swbatsans` |
+| 霞鹜文楷 | 已在目录，不要再收一版 |
+| 芫荽、源泉圆、源样明、源样黑、昭源宋/黑/圆、朱雀仿宋 | 见 §10.5，已上目录 |
+| 更纱黑体 | 已登记简体 `wenfeng-gsht`。用的是官方 `SarasaGothicSC-TTF-1.0.41.7z`（约 60MB），不是全集 TTC |
+| 遍黑体 | 真仓是 `Fitzgerald-Porthmouth-Koenigsegg/Plangothic_Project`。完整字是 TTC，这轮不进 |
+
+进度：[\_oss-ingest-batch2-progress.md](_oss-ingest-batch2-progress.md)。侦察留档：[\_oss-ingest-batch2-scout.json](_oss-ingest-batch2-scout.json)。
+
+### 10.4 接手
+
+- 三款已在 `app.windfonts.com`。不要再跑一遍上传。
+- `fonts-packages` 工作区有约 170 个已跟踪字体文件显示删除，本轮没动。不要把这些删除提交进去。
+- 下一款若收芫荽，先定品牌行再走 `oss-batch1-download.py` / `oss-batch1-build.sh` / `register-oss-batch2.js`。
+- §9.5「不要重开大批量 OSS」管的是谱系核实那条线。这条线是人点名要收能进静态面的开源字；没核对到静态 TTF/OTF 的不要塞进去。
+
+### 10.5 同一晚续收的八款
+
+人说接着做。八款已上传并登记，`/api/css?weight=regular` 都是 200。`data/fonts.json` 344→352。新品牌：但 `buttaiwan`、昭源 `chiron`、璇玑造字 `triones`、遍黑体计划 `plangothic`（遍黑本身没登记字体）。备份在品牌写入前：`prod.db.bak-20260923-preBatch2b`（SQLite 还有 WAL，回滚时要连同当时的 `-wal` 看）。
+
+| family | 名称 | 取了什么 |
+|---|---|---|
+| `wenfeng-ysui` | 芫荽 | `iansui.zip` 单字重。繁体，汉字约 1.0 万 |
+| `wenfeng-yqyt` | 源泉圆体 | `GenSenRounded2TW-otf` 的 R/M/B/L。不是 TTC |
+| `wenfeng-yymt` | 源样明体 | `GenYoMin2TW-otf` 的 R/M/B/L |
+| `wenfeng-yyht` | 源样黑体 | `GenYoGothic2TW-otf` 的 R/M/B/L |
+| `wenfeng-zyst` | 昭源宋体 | 香港静态 OTF，Light/Regular/Medium/Bold，无斜体 |
+| `wenfeng-zyht` | 昭源黑体 | 同上 |
+| `wenfeng-zyyt` | 昭源圆体 | 繁体静态 OTF，四字重 |
+| `wenfeng-zqfs` | 朱雀仿宋 | v0.212 单字重。name 表是「朱雀仿宋（预览测试版）」 |
+
+自动拆字重时，`Rounded` 会被当成 Regular，源泉圆体第一次把 Bold 文件当成了 Regular。已按文件名后缀 `-R/-M/-B/-L` 重拆后再上传。
+
+没进的：遍黑体静态 zip 里完整字是 `Plangothic.ttc`，P1/P2 是分平面。更纱现行 Release 仍是 TTC 或约 850MB 的 TTF 包。未 git commit。
+
+## 11. 2026-09-23 夜第三批（能进的 + CC0）
+
+四路清单里 `status=ready` 的，加上 CC0 专路，共 45 款已上传并登记。`/api/css?weight=regular` 抽查为 200。`data/fonts.json` 352→397。新品牌：汇文、中文网字计划、澳声通、汉典、激笔。
+
+包括：源流明体、源云明体、邪宋、源起明体、源起黑体、月星楷、尚古明体、初夏明朝体、合简宋体、澳声通拼音文楷、就是不错字（吧）、谐灵附体、简语生活体、汇文明朝、汉典秦系文字体、激笔 SFX，以及 M+ 各切版、Zen 系列、Kosugi、Shippori、Kiwi Maru、Hachi Maru Pop、Yusei Magic。Zen Loop / Zen Dots / Zen Tokyo Zoo / M+ Code Latin / 激笔 SFX 没有汉字，也登记了。CC0 专路没有再找到第二套宋/楷/黑/仿宋。汉典金文仓里没有许可文件，cwTeX Q 不是 CC0。
+
+昭源缺的 ExtraLight / SemiBold / Heavy 和斜体还没补进已有行。未 git commit。
