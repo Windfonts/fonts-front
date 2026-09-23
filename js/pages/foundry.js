@@ -204,8 +204,8 @@
    * 社区口语里的二创 = OFL 派生 = relation:fork。顶栏按上游族系分列，
    * 方便扫读，不暗示法律类型不同。
    *
-   * - remix → 展示「派生 · 思源」（Source Han / Adobe）
-   * - derive → 展示「派生 · 开源」（IPA / Fontworks / Droid…）
+   * - remix → 开发视图「思源派生」（Source Han / Adobe）
+   * - derive → 开发视图「开源派生」（IPA / Fontworks / Droid…）
    * - 同系：locale / 规格；同主再设计：页内「派生」段
    * 勿写「改自」（HANDOFF 已否）。可手工 originVerb: remix|derive 覆盖。
    * 注：「开源」是族系口令（非思源的开源上游），不是说思源不开源。
@@ -222,7 +222,7 @@
   }
 
   function originVerbLabel(verb) {
-    return verb === 'remix' ? '派生 · 思源' : '派生 · 开源';
+    return verb === 'remix' ? '思源派生' : '开源派生';
   }
 
   function originVerbIcon(verb) {
@@ -303,17 +303,6 @@
   }
 
   function originClusterHtml(list, cluster) {
-    const up = cluster.owner;
-    const avatar = up ? WFChrome.brandAvatar(stubFont(up), up) : '';
-    const mark = up
-      ? (avatar
-        ? '<img src="' + esc(avatar) + '" alt="" width="16" height="16" loading="lazy" />'
-        : '<span class="mark">' + esc((up.short || up.name || '?').charAt(0)) + '</span>')
-      : '';
-    const who = up
-      ? '<a class="foundry-upstream-who" href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(up.id)) + '">' +
-          mark + '<span>' + esc(up.short || up.name) + '</span></a>'
-      : '';
     const fonts = cluster.rows.map(function (row) {
       return upstreamChip(list, row, { compact: true });
     }).filter(Boolean);
@@ -323,7 +312,8 @@
       return '<a class="foundry-origins-series-link" href="' + WFChrome.href('fonts.html?lineage=' + encodeURIComponent(s.id)) + '">' +
         esc(seriesLabel(s.name, s.id)) + '</a>';
     });
-    const parts = [who].concat(seriesBits).concat(fonts).filter(Boolean);
+    const parts = seriesBits.concat(fonts).filter(Boolean);
+    if (!parts.length) return '';
     return '<span class="foundry-upstream-item">' + parts.join('<span class="foundry-upstream-sep"> · </span>') + '</span>';
   }
 
@@ -343,7 +333,7 @@
       '</div>';
     });
     if (!rowsHtml.length) return '';
-    return '<div class="foundry-origins">' + rowsHtml.join('') + '</div>';
+    return '<div class="foundry-origins for-dev">' + rowsHtml.join('') + '</div>';
   }
 
   function ecosystemStrip(list, slug) {
@@ -360,7 +350,7 @@
     }));
     return '<div class="foundry-origins foundry-eco">' +
       '<span class="foundry-origins-label">' + WFChrome.icon('branch') + '同系派生</span>' +
-      '<span class="foundry-upstream-item">站内另有 <strong>' + total + '</strong> 款从本页开源线上改出，版权归改作者 · ' +
+      '<span class="foundry-upstream-item">站内另有 <strong>' + total + '</strong> 款从本页开源谱系衍生，版权归创作者 · ' +
       links.join(' · ') +
       '</span></div>';
   }
@@ -606,11 +596,29 @@
       const label = hit
         ? '<a href="' + WFChrome.href(WFProto.detailHref(hit)) + '">' + esc(L.upstreamName) + '</a>'
         : esc(L.upstreamName);
-      /* 外源 fork 在本页已进「源字」；脚注统一「派生至」，族系分列只在顶栏 */
-      const verb = L.relation === 'locale' ? '同系 ' : '派生至 ';
-      bits.push(verb + label);
+      if (L.relation === 'locale') bits.push({ html: '同系 ' + label });
+      else bits.push({ dev: true, html: '派生至 ' + label });
     }
-    return bits.join(' · ');
+    return bits;
+  }
+
+  function footHtml(parts) {
+    let html = '';
+    let shown = 0;
+    let any = 0;
+    parts.forEach(function (p) {
+      const bit = typeof p === 'string' ? { html: p } : p;
+      if (!bit || !bit.html) return;
+      if (bit.dev) html += '<span class="for-dev">' + (any ? ' · ' : '') + bit.html + '</span>';
+      else {
+        if (shown) html += ' · ';
+        else if (any) html += '<span class="for-dev"> · </span>';
+        html += bit.html;
+        shown++;
+      }
+      any++;
+    });
+    return html;
   }
 
   function ownedHtml(g) {
@@ -746,10 +754,10 @@
             }
           }
           const up = upstreamFoot(list, font, owned.packsOf[font.id]);
-          if (up) bits.push(up);
+          if (up && up.length) bits.push.apply(bits, up);
           const pc = window.WFProducts ? WFProducts.footHtml(font) : '';
           if (pc) bits.push(pc);
-          return bits.join(' · ');
+          return footHtml(bits);
         }
       });
     });

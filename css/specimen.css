@@ -71,6 +71,7 @@
 .specimen .name:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 .specimen .meta { font-size: var(--fs-12); color: var(--gray); display: inline-flex; align-items: center; gap: 0.35em; }
 .specimen .specimen-foot { flex-basis: 100%; font-size: var(--fs-12); color: var(--gray); }
+html:not([data-view="dev"]) .specimen .specimen-foot:not(:has(> :not(.for-dev))) { display: none; }
 .specimen .specimen-foot a { color: var(--ink); }
 .specimen .product-count {
   display: inline-block;

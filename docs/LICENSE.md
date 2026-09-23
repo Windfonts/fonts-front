@@ -114,7 +114,7 @@ sourceKind  sourceUrl  quote  verifiedAt  restrictions[]  spdx  verified
 - 外源 `fork`（上游机构 ≠ 本页）→ 进「源字」：作者页上这是主款
 - `locale` →「地区版」；同名前缀规格收进主款脚注 / `font-products`
 - 同主再 `fork` →「派生」
-- 顶部外源条按上游族系分两行（都是 `fork`，不是两种法律类型）：**派生 · 开源**（IPA / Fontworks / Droid…）与 **派生 · 思源**（Source Han / Adobe）。「开源」是族系口令，不是说思源不开源；口语「二创」= 派生，不单独成类。勿写「改自」。可手工 `originVerb: remix|derive` 覆盖
+- 顶部外源条按上游族系分两行（都是 `fork`，不是两种法律类型）：**开源派生**（IPA / Fontworks / Droid…）与 **思源派生**（Source Han / Adobe）。只在开发视图显示，设计视图不显示。列表「派生至」同样只在开发视图。同系脚注仍在设计视图。「开源」是族系口令，不是说思源不开源；口语「二创」= 派生，不单独成类。勿写「改自」。可手工 `originVerb: remix|derive` 覆盖
 - 顶部只列**外源根**，不刷 GB / Lite
 - 页内「派生」段 = 同主再设计的 `fork`；「地区版」= `locale`
 

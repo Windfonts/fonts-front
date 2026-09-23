@@ -473,8 +473,14 @@ body.is-index .page-head { padding-top: 0; }
   border-top: 1px solid var(--rule);
 }
 .foundry-hero-side .kv { margin: 0; }
+html:not([data-view="dev"]) .foundry-hero-side .kv > div:not(.for-dev):not(:has(~ div:not(.for-dev))) {
+  border-bottom: 0;
+}
+html:not([data-view="dev"]) .foundry-hero-side .claim {
+  border-top: 0;
+}
 .foundry-hero-side .claim {
-  margin-top: var(--s-6);
+  margin-top: 0;
   padding-top: var(--s-5);
   border-top: 1px solid var(--rule);
   font-size: var(--fs-13); color: var(--gray);
