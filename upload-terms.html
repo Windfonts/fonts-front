@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/tokens.css?v=20260922l" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css?v=20260922bf" />
-  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/site.css?v=20260923k" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-upload-terms">
@@ -18,7 +18,8 @@
 
   <main class="container docs">
     <aside class="docs-toc" aria-label="说明目录"><div data-docs-nav="upload-terms"></div></aside>
-    <article class="docs-body">
+    <div class="docs-main">
+      <article class="docs-body">
       <section>
         <p class="kicker">条款</p>
         <h1>上传条款</h1>
@@ -64,12 +65,20 @@
         <p>本页随产品更新。上传页勾选视为同意当时版本。</p>
         <p class="note">要上传请先<a href="login.html">登录控制台</a>，打开「我的字体 → 上传」。</p>
       </section>
+
+      <nav class="docs-foot" aria-label="页脚">
+        <a href="license.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-info"/></svg>许可说明</a>
+        <a href="docs.html#upload"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-book"/></svg>文档 · 上传</a>
+        <a href="terms.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-book"/></svg>服务条款</a>
+      </nav>
     </article>
+      <aside data-docs-aside="upload-terms" aria-label="相关"></aside>
+    </div>
   </main>
 
   <footer id="wfExtraFooter"></footer>
-  <script src="js/wf-proto.js"></script>
-  <script src="js/wf-chrome.js?v=20260922bd"></script>
-  <script src="js/wf-docs-nav.js"></script>
+  <script src="js/wf-proto.js?v=20260923r"></script>
+  <script src="js/wf-chrome.js?v=20260923d"></script>
+  <script src="js/wf-docs-nav.js?v=20260923c"></script>
 </body>
 </html>

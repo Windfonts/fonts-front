@@ -80,7 +80,10 @@
     if (skip !== 'weight' && !matchWeight(f, s.weight)) return false;
     if (skip !== 'lang' && s.lang && (f.languages || []).indexOf(s.lang) === -1) return false;
     if (skip !== 'license' && s.license && WFChrome.licenseTier(f) !== s.license) return false;
-    if (skip !== 'foundry' && s.foundry && WFChrome.brandSlug(f) !== s.foundry) return false;
+    if (skip !== 'foundry' && s.foundry && WFChrome.brandSlug(f) !== s.foundry) {
+      const cols = f.collaboratorInfos || [];
+      if (!cols.some(function (c) { return c && c.id === s.foundry; })) return false;
+    }
     if (skip !== 'lineage' && s.lineage && !(f.lineage && f.lineage.group === s.lineage)) return false;
     if (skip !== 'open' && s.open === '1' && !WFProto.isOpenFont(f)) return false;
     if (skip !== 'kind' && s.kind && WFChrome.brandKind(f) !== s.kind) return false;
@@ -101,12 +104,17 @@
     const names = {};
     const ids = [];
     const seen = {};
-    all.forEach(function (f) {
-      const id = WFChrome.brandSlug(f);
+    function add(id, name) {
       if (!id || seen[id]) return;
       seen[id] = true;
       ids.push(id);
-      names[id] = WFChrome.brandName(f) || id;
+      names[id] = name || id;
+    }
+    all.forEach(function (f) {
+      add(WFChrome.brandSlug(f), WFChrome.brandName(f));
+      (f.collaboratorInfos || []).forEach(function (c) {
+        if (c) add(c.id, c.name || c.short || c.id);
+      });
     });
     return { ids: ids, names: names };
   }
@@ -194,7 +202,10 @@
     const html =
       catFacetHtml(facetCounts('cat', cats, function (f, v) { return f.category === v; })) +
       facetHtml('风格', 'style', facetCounts('style', STYLE_TAGS, hasStyle)) +
-      brandFacetHtml(facetCounts('foundry', brands.ids, function (f, v) { return WFChrome.brandSlug(f) === v; }), brands.names) +
+      brandFacetHtml(facetCounts('foundry', brands.ids, function (f, v) {
+        if (WFChrome.brandSlug(f) === v) return true;
+        return (f.collaboratorInfos || []).some(function (c) { return c && c.id === v; });
+      }), brands.names) +
       facetHtml('字重', 'weight', facetCounts('weight', WEIGHT_BUCKETS.map(function (b) { return b.id; }), matchWeight),
         function (id) { return WEIGHT_BUCKETS.filter(function (b) { return b.id === id; })[0].label; }) +
       facetHtml('语言', 'lang', facetCounts('lang', langs, function (f, v) { return (f.languages || []).indexOf(v) !== -1; }),
@@ -283,14 +294,19 @@
   function appendPage() {
     if (shown >= filtered.length) { updateCount(); return; }
     const next = filtered.slice(shown, shown + PAGE);
-    WFSpecimen.appendRows(listEl, next);
+    const rowOpts = window.WFProducts ? {
+      foot: function (f) { return WFProducts.footHtml(f); }
+    } : null;
+    WFSpecimen.appendRows(listEl, next, rowOpts);
     shown += next.length;
     updateCount();
   }
 
   function refresh(next) {
     if (next) Object.keys(next).forEach(function (k) { if (next[k] != null) state[k] = next[k]; });
-    filtered = WFProto.getCatalogList().filter(function (f) { return matches(f, state); });
+    let raw = WFProto.getCatalogList().filter(function (f) { return matches(f, state); });
+    if (window.WFProducts) raw = WFProducts.collapseForList(raw);
+    filtered = raw;
     if (SORTS[state.sort]) filtered.sort(SORTS[state.sort]);
     shown = 0;
     listEl.innerHTML = '';
@@ -332,12 +348,15 @@
   };
 
   WFProto.loadCatalog().then(function () {
-    refresh();
-    document.addEventListener('DOMContentLoaded', function () {
+    const ready = window.WFProducts ? WFProducts.load() : Promise.resolve();
+    ready.then(function () {
+      refresh();
+      document.addEventListener('DOMContentLoaded', function () {
+        const s = document.getElementById('navSearch');
+        if (s && state.keyword) s.value = state.keyword;
+      });
       const s = document.getElementById('navSearch');
       if (s && state.keyword) s.value = state.keyword;
     });
-    const s = document.getElementById('navSearch');
-    if (s && state.keyword) s.value = state.keyword;
   });
 })();

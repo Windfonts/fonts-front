@@ -65,7 +65,7 @@
     const hasStory = !!(tree || L.upstreamName || L.upstreamOwnerInfo ||
       L.relation === 'fork' || L.relation === 'locale' || L.relation === 'original' ||
       (L.group && kinN > 1));
-    /* 开源可改、或真有上下游/同系时才出「从哪来」；上传入口只给开源 */
+    /* 有上下游/同系，或开源可改时才出谱系块；上传入口只给开源 */
     if (!hasStory && !open) return '';
     const kin = L.group && kinN > 1
       ? '<a class="btn" href="' + WFChrome.href('fonts.html?lineage=' + encodeURIComponent(L.group)) + '">' + WFChrome.icon('compare') + '查看全部同源字</a>'
@@ -81,7 +81,12 @@
 
   function render(font) {
     const list = WFProto.getCatalogList();
-    document.title = font.name + ' · 文风字体';
+    const product = window.WFProducts ? WFProducts.productOf(font) : null;
+    const member = window.WFProducts ? WFProducts.memberOf(font) : null;
+    const titleName = product ? product.name : font.name;
+    const titleEn = product ? (product.en || '') : (font.en || '');
+    const variantLabel = member ? WFProducts.chipLabel(member) : '';
+    document.title = titleName + (variantLabel ? ' · ' + variantLabel : '') + ' · 文风字体';
     const weights = WFSpecimen.sortedWeights(font);
     const stack = WFProto.cssFamilyStack(font.family);
     const w0 = WFSpecimen.firstWeight(font);
@@ -115,13 +120,13 @@
 
     const lineageBody = lineageBodyHtml(font, list);
     const lineageSection = lineageBody
-      ? '<section class="panel" id="lineage"><div class="panel-head"><h2>' + WFChrome.icon('branch') + '从哪来</h2></div>' +
+      ? '<section class="panel" id="lineage"><div class="panel-head"><h2>' + WFChrome.icon('branch') + '谱系</h2></div>' +
           '<div class="panel-pad">' + lineageBody + '</div></section>'
       : '';
-    const wallText = sample || font.name;
+    const wallText = sample || titleName;
     const crumb = '<p class="crumb"><a href="fonts.html">字体库</a><span>/</span>' +
       (font.category ? '<a href="fonts.html?cat=' + encodeURIComponent(font.category) + '">' + esc(WFChrome.catLabel(font.category) || font.category) + '</a><span>/</span>' : '') +
-      '<span>' + esc(font.name) + '</span></p>';
+      '<span>' + esc(titleName) + (variantLabel ? ' · ' + esc(variantLabel) : '') + '</span></p>';
     root.innerHTML =
       '<div class="container detail-crumb">' + crumb + '</div>' +
       '<section class="glyph-wall" id="glyphWall"><div class="container glyph-pair"><div class="glyph-wall-inner">' +
@@ -153,12 +158,21 @@
       '</div>' +
       '<div class="detail-title">' +
         '<div class="detail-title-main">' +
-          '<h1><span>' + esc(font.name) + '</span>' + WFChrome.favHtml('font', font.id, font.name) +
-            (font.en && font.en !== font.name ? '<small>' + esc(font.en) + '</small>' : '') + '</h1>' +
+          '<h1><span>' + esc(titleName) + '</span>' + WFChrome.favHtml('font', font.id, titleName) +
+            (titleEn && titleEn !== titleName ? '<small>' + esc(titleEn) + '</small>' : '') + '</h1>' +
+          (window.WFProducts ? WFProducts.variantBarHtml(font) : '') +
           '<p class="dotlist">' +
             '<a class="foundry-inline" href="foundry.html?slug=' + encodeURIComponent(WFChrome.brandSlug(font)) + '">' +
               (avatar ? '<img src="' + esc(avatar) + '" alt="" />' : '') + esc(brand || '未署名') +
               (WFChrome.brandVerified(font) ? WFChrome.VERIFIED_SVG : '') + '</a>' +
+            (function () {
+              const cols = font.collaboratorInfos || [];
+              if (!cols.length) return '';
+              return '<span class="dot-collab">' +
+                cols.map(function (c) { return WFChrome.partnerFaceHtml(c); }).join('') +
+              '</span>';
+            })() +
+            (variantLabel ? '<span>' + esc(variantLabel) + '</span>' : '') +
             '<span>' + weights.length + ' 字重</span>' +
             '<span>' + esc(WFChrome.licenseTier(font)) + '</span>' +
             (font.charCount ? '<span>' + WFProto.formatCount(font.charCount) + ' 字</span>' : '') +
@@ -202,7 +216,7 @@
               (lic.notes ? '<p class="license-notes">' + esc(lic.notes) + '</p>' : '') +
               '<p class="license-foot">' + (font.copyright ? esc(font.copyright) + '<br>' : '') +
                 (font.purchaseUrl ? '<a href="' + esc(font.purchaseUrl) + '" target="_blank" rel="noopener noreferrer">购买授权</a>' : '') +
-                ' <a href="docs.html#license">许可类型说明</a></p></details></div>' +
+                ' <a href="license.html">许可类型说明</a></p></details></div>' +
           '</section>' +
           lineageSection +
         '</div>' +
@@ -212,6 +226,15 @@
               WFChrome.foundryHtml(font, { sub: '在库 ' + brandCount + ' 款' }) +
               WFChrome.favHtml('author', WFChrome.brandSlug(font), brand) +
             '</div>' +
+            (function () {
+              const cols = font.collaboratorInfos || [];
+              if (!cols.length) return '';
+              return '<div class="collab-block">' +
+                '<h3 class="collab-head">' + WFChrome.icon('user') + '联合作者</h3>' +
+                '<div class="partners-list">' +
+                  cols.map(function (c) { return WFChrome.partnerFaceHtml(c); }).join('') +
+                '</div></div>';
+            })() +
             (brandDesc ? '<p class="brand-desc">' + esc(brandDesc) + '</p>' : '') +
             (font.description
               ? '<details class="side-fold"><summary>' + WFChrome.icon('chevron-down') + '简介</summary>' +
@@ -229,8 +252,8 @@
           '<div class="panel panel-pad side-stats" data-font-stats="' + esc(font.id) + '">' +
             '<h3>' + WFChrome.icon('chart') + '统计信息</h3>' +
             '<dl class="kv">' +
-              '<div><dt>' + WFChrome.icon('eye') + '浏览次数</dt><dd class="num" data-stat="views">' + statNum(stats.views) + '</dd></div>' +
-              '<div><dt>' + WFChrome.icon('download') + '下载次数</dt><dd class="num" data-stat="downloads">' + statNum(stats.downloads) + '</dd></div>' +
+              '<div><dt>' + WFChrome.icon('eye') + '浏览</dt><dd class="num" data-stat="views">' + statNum(stats.views) + '</dd></div>' +
+              '<div><dt>' + WFChrome.icon('download') + '下载</dt><dd class="num" data-stat="downloads">' + statNum(stats.downloads) + '</dd></div>' +
               '<div class="for-dev"><dt>' + WFChrome.icon('code') + 'API 调用</dt><dd class="num" data-stat="api">' + statNum(stats.api) + '</dd></div>' +
             '</dl>' +
             '<p class="side-stats-note for-dev">下载含样张导出；API 为 CDN CSS 拉取次数（开发 / 厂商可见）。</p>' +
@@ -393,18 +416,22 @@
   }
 
   WFProto.loadCatalog().then(function (list) {
-    const id = WFProto.getQuery('id');
-    const slug = WFProto.getQuery('slug');
-    const font = (id && WFProto.getFont(id)) || (slug && WFProto.getFontBySlug(slug)) || list[0];
-    if (!font) { root.innerHTML = '<p class="empty">未找到该字体。<a href="fonts.html">回到字体库</a></p>'; return; }
-    const q = new URLSearchParams(location.search);
-    const extras = {};
-    ['from', 'view', 'tpl', 'frame', 't', 's'].forEach(function (k) {
-      if (q.get(k)) extras[k] = q.get(k);
-    });
-    const want = WFProto.detailHref(font, extras) + (location.hash || '');
-    const cur = (location.pathname.split('/').pop() || '') + location.search + location.hash;
-    if (cur !== want) history.replaceState(null, '', want);
-    render(font);
+    const go = function () {
+      const id = WFProto.getQuery('id');
+      const slug = WFProto.getQuery('slug');
+      const font = (id && WFProto.getFont(id)) || (slug && WFProto.getFontBySlug(slug)) || list[0];
+      if (!font) { root.innerHTML = '<p class="empty">未找到该字体。<a href="fonts.html">回到字体库</a></p>'; return; }
+      const q = new URLSearchParams(location.search);
+      const extras = {};
+      ['from', 'view', 'tpl', 'frame', 't', 's'].forEach(function (k) {
+        if (q.get(k)) extras[k] = q.get(k);
+      });
+      const want = WFProto.detailHref(font, extras) + (location.hash || '');
+      const cur = (location.pathname.split('/').pop() || '') + location.search + location.hash;
+      if (cur !== want) history.replaceState(null, '', want);
+      render(font);
+    };
+    if (window.WFProducts) WFProducts.load().then(go);
+    else go();
   });
 })();

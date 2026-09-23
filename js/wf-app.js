@@ -359,12 +359,16 @@
     const c = {
       id: 'cl-' + Date.now().toString(36),
       slug: resolved.slug, name: resolved.name,
+      kind: payload.kind || '',
+      kindLabel: payload.kindLabel || '',
       website: payload.website || '', email: payload.email || '',
       licenseUrl: payload.licenseUrl || '',
+      proofUrl: payload.proofUrl || '',
+      platformNoteUrl: payload.platformNoteUrl || '',
       status: 'pending', submittedAt: new Date().toISOString()
     };
     state.claims.unshift(c);
-    log('提交认领', c.name);
+    log('提交认领', c.name + (c.kindLabel ? ' · ' + c.kindLabel : ''));
     save();
     return c;
   }

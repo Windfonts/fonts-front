@@ -20,11 +20,11 @@
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>定价 · 文风字体</title>
-  <link rel="stylesheet" href="css/fonts.css?v=20260922a" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260923u" />
   <link rel="stylesheet" href="css/tokens.css?v=20260922l" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css?v=20260922bf" />
-  <link rel="stylesheet" href="css/site.css?v=20260922bg" />
+  <link rel="stylesheet" href="css/site.css?v=20260923j" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-pricing">
@@ -34,75 +34,137 @@
     <section>
     <div class="container">
     <div class="page-head">
-      <h1>用多少，付多少</h1>
-      <p class="lead">按流量、域名数与字体数计费。免费额度足够让一个站点真正跑起来；项目上线有流量之后，再升级。</p>
+      <h1>字体怎么用，三种方式</h1>
+      <p class="lead">公共开源与免费商用库可直接嵌；自己已获授权的字可上传托管；要自建可选开源版或私有化部署。</p>
     </div>
 
-    <div class="plans">
+    <div class="plans plans-lines">
       <div class="plan">
-        <h2>免费</h2>
-        <div class="price">¥0<small> / 月</small></div>
-        <p class="for">个人站点、开源项目、试用与验证。</p>
+        <p class="plan-kicker">产品线</p>
+        <h2>云托管</h2>
+        <p class="for">个人站、品牌站、内容站。免运维 CDN、子集化、域名白名单与用量。含公共库；专业档可托管自有授权字。</p>
         <ul>
-          <li><span>字体库</span><span>开源与免费商用</span></li>
-          <li><span>项目</span><span>1</span></li>
-          <li><span>域名白名单</span><span>3</span></li>
-          <li><span>月流量</span><span>10 GB</span></li>
-          <li><span>子集化</span><span>按文字 · 常用字</span></li>
-          <li><span>格式</span><span>woff2 · woff</span></li>
-          <li><span>版本历史</span><span>保留 5 个</span></li>
-          <li><span>支持</span><span>社区</span></li>
+          <li><span>包含</span><span>托管 CDN · 白名单 · 子集</span></li>
+          <li><span>不含</span><span>自建集群 · 厂牌授权转售</span></li>
+          <li><span>计费</span><span>免费额度 + 专业加量</span></li>
         </ul>
-        <a class="btn" href="login.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-flash"/></svg>免费开始</a>
+        <a class="btn btn-ink" href="#cloud"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-rocket"/></svg>看云套餐</a>
       </div>
       <div class="plan">
-        <h2>专业</h2>
-        <div class="price">¥99<small> / 月 · 年付 ¥990</small></div>
-        <p class="for">上线的品牌站、电商、内容站；需要商业字体与稳定流量。</p>
+        <p class="plan-kicker">产品线</p>
+        <h2>开源自托管</h2>
+        <p class="for">技术团队、可接受自己运维。核心字体服务可自部署：管理、基础子集、<code>@font-face</code>、单项目。</p>
         <ul>
-          <li><span>字体库</span><span>含商业字体库</span></li>
-          <li><span>项目</span><span>10</span></li>
-          <li><span>域名白名单</span><span>不限</span></li>
-          <li><span>月流量</span><span>200 GB</span></li>
-          <li><span>子集化</span><span>+ 编码范围 · 动态 API</span></li>
-          <li><span>格式</span><span>woff2 · woff · ttf</span></li>
-          <li><span>版本历史</span><span>不限 · 一键回滚</span></li>
-          <li><span>用量分析</span><span>域名 · 页面 · 性能</span></li>
-          <li><span>支持</span><span>工作日邮件</span></li>
+          <li><span>包含</span><span>开源服务端 · 自建运行</span></li>
+          <li><span>不含</span><span>云 CDN · 托管私有字加速</span></li>
+          <li><span>费用</span><span>¥0（软件）</span></li>
         </ul>
-        <a class="btn btn-ink" href="login.html?plan=pro"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-rocket"/></svg>开始专业版</a>
+        <a class="btn" href="docs.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-book"/></svg>看文档</a>
       </div>
       <div class="plan">
-        <h2>企业</h2>
-        <div class="price">按需<small> 报价</small></div>
-        <p class="for">合规、安全、SLA 与合同发票有硬要求的团队。</p>
+        <p class="plan-kicker">产品线</p>
+        <h2>私有化部署</h2>
+        <p class="for">强合规、内网、SLA 与合同发票有硬要求的团队。Helm、高可用、SSO 与商业支持。</p>
         <ul>
-          <li><span>SSO</span><span>SAML · LDAP / AD</span></li>
-          <li><span>权限</span><span>按角色分配</span></li>
-          <li><span>审计日志</span><span>全部操作</span></li>
-          <li><span>部署</span><span>私有化 · Helm · HA</span></li>
-          <li><span>CDN</span><span>企业级多节点</span></li>
-          <li><span>SLA</span><span>99.9%</span></li>
-          <li><span>支持</span><span>7×24 · 2 小时响应</span></li>
-          <li><span>商务</span><span>合同 · 发票 · 采购</span></li>
+          <li><span>包含</span><span>私有化 · SSO · 审计 · SLA</span></li>
+          <li><span>不含</span><span>公有云免费额度</span></li>
+          <li><span>费用</span><span>按需报价</span></li>
         </ul>
         <a class="btn" href="mailto:hi@windfonts.com"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-mail"/></svg>联系销售</a>
       </div>
     </div>
+    <p class="plan-note">下列云套餐数字为示意，商务定稿后更新。超出月流量按 ¥0.8 / GB 计（示意）。</p>
+    </div>
+    </section>
 
-    <p class="plan-note">超出月流量按 ¥0.8 / GB 计；商业字体的授权费按厂商标价，平台与厂商分成，购买后在授权页可查证书与到期时间。厂商入驻不收费。</p>
+    <section id="cloud">
+    <div class="container">
+      <div class="section-head">
+        <h2><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-cloud"/></svg>云托管 · 套餐</h2>
+        <p class="section-sub">公共库走免费或专业额度。自有授权字上传托管仅在专业档；平台<strong>不另售</strong>厂牌授权。</p>
+      </div>
+      <div class="plans plans-cloud">
+        <div class="plan">
+          <h2>免费</h2>
+          <div class="price">¥0<small> / 月</small></div>
+          <p class="for">个人站点、开源项目、试用与验证。</p>
+          <ul>
+            <li><span>字体库</span><span>开源与免费商用</span></li>
+            <li><span>私有字托管</span><span>—</span></li>
+            <li><span>项目</span><span>1</span></li>
+            <li><span>域名白名单</span><span>3</span></li>
+            <li><span>月流量</span><span>10 GB</span></li>
+            <li><span>子集化</span><span>按文字 · 常用字</span></li>
+            <li><span>格式</span><span>woff2 · woff</span></li>
+            <li><span>版本历史</span><span>保留 5 个</span></li>
+            <li><span>支持</span><span>社区</span></li>
+          </ul>
+          <a class="btn" href="login.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-flash"/></svg>免费开始</a>
+        </div>
+        <div class="plan is-featured">
+          <h2>专业</h2>
+          <div class="price">¥99<small> / 月 · 年付 ¥990</small></div>
+          <p class="for">上线品牌站、电商、内容站；需要稳定流量，以及把已购授权字托管到 CDN。</p>
+          <ul>
+            <li><span>字体库</span><span>开源与免费商用</span></li>
+            <li><span>私有字托管</span><span>自有授权字上传</span></li>
+            <li><span>项目</span><span>10</span></li>
+            <li><span>域名白名单</span><span>不限</span></li>
+            <li><span>月流量</span><span>200 GB</span></li>
+            <li><span>子集化</span><span>+ 编码范围 · 动态 API</span></li>
+            <li><span>格式</span><span>woff2 · woff · ttf</span></li>
+            <li><span>版本历史</span><span>不限 · 一键回滚</span></li>
+            <li><span>用量分析</span><span>域名 · 页面 · 性能</span></li>
+            <li><span>支持</span><span>工作日邮件</span></li>
+          </ul>
+          <a class="btn" href="login.html?plan=pro"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-rocket"/></svg>开始专业版</a>
+        </div>
+      </div>
+      <p class="plan-note">上传私有字须承诺拥有合法授权，享受同样的子集化、托管与加速，并计入项目字体数。约定见<a href="upload-terms.html">上传条款</a>。厂商授权采购与入驻分成<strong>规划中</strong>，与自有字托管分开，不在本表计价。</p>
+    </div>
+    </section>
+
+    <section>
+    <div class="container">
+      <div class="section-head">
+        <h2><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-building"/></svg>厂商合作</h2>
+      </div>
+      <div class="pricing-aside">
+        <p>字库与品牌方可谈入驻与授权分发合作；开源作者 / 项目认领见<a href="claim.html">认领</a>。这是后续商务线，<strong>不是</strong>本页套餐项，也不替代用户自有授权字的托管。</p>
+        <p><a class="btn" href="mailto:hi@windfonts.com"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-mail"/></svg>谈合作</a>
+          <a class="btn" href="claim.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-user"/></svg>认领厂商页</a></p>
+      </div>
     </div>
     </section>
 
     <section>
     <div class="container">
       <div class="section-head"><h2><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-question"/></svg>常见问题</h2></div>
-      <div class="faq">
-        <div><h3>免费版能商用吗？</h3><p>能。免费版可使用全部开源与免费商用字体，授权范围以每款字体页「授权」区为准。限制在项目数、域名数与流量，不在用途。</p></div>
-        <div><h3>流量怎么算？</h3><p>只计字体文件（woff2 / woff / ttf）经 CDN 的出站流量。CSS 请求与被域名白名单拒绝的请求不计。子集化越充分，流量越省。</p></div>
-        <div><h3>域名白名单如何防盗用？</h3><p>字体文件只对你绑定的域名下发，别的站点请求会被拒绝。通配符 <code>*.example.com</code> 可覆盖子域。</p></div>
-        <div><h3>可以自己上传字体吗？</h3><p>可以。上传时需承诺拥有合法授权；上传字体享受同样的子集化、托管与加速，并计入项目字体数。</p></div>
-        <div><h3>开源版和这里的免费版是什么关系？</h3><p>核心字体服务器开源可自部署，包含字体管理、基础子集化、@font-face 生成与单项目管理。这里的云服务是托管版，免运维并附带 CDN 与商业字体库。</p></div>
+      <div class="faq-list">
+        <details class="faq-fold">
+          <summary><span>云免费档和开源自托管有什么区别？</span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-chevron-down"/></svg></summary>
+          <div class="faq-fold-body"><p>云免费档跑在我们的 CDN 上：免运维、有域名白名单与流量额度，可用全部开源与免费商用库。开源自托管是你自己部署开源服务端，无托管 CDN、无云上私有字加速；适合能运维的技术团队。接入边界见<a href="docs.html">文档</a>。</p></div>
+        </details>
+        <details class="faq-fold">
+          <summary><span>私有字体托管是不是买商业授权？</span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-chevron-down"/></svg></summary>
+          <div class="faq-fold-body"><p>不是。私有字托管只处理你<strong>已经买过或已获授权</strong>、给自己站点用的字：上传后走子集化与 CDN。授权责任在上传方；我们不转售厂牌授权。厂牌入驻与授权采购是另一条合作线，见上方「厂商合作」。</p></div>
+        </details>
+        <details class="faq-fold">
+          <summary><span>免费云能商用吗？</span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-chevron-down"/></svg></summary>
+          <div class="faq-fold-body"><p>能。免费档可使用全部开源与免费商用字体，授权范围以每款字体页「授权」区为准。限制在项目数、域名数与流量，不在用途。见<a href="faq.html">常见问题</a>。</p></div>
+        </details>
+        <details class="faq-fold">
+          <summary><span>流量怎么算？</span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-chevron-down"/></svg></summary>
+          <div class="faq-fold-body"><p>只计字体文件（woff2 / woff / ttf）经 CDN 的出站流量。CSS 请求与被域名白名单拒绝的请求不计。子集化越充分，流量越省。</p></div>
+        </details>
+        <details class="faq-fold">
+          <summary><span>域名白名单如何防盗用？</span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-chevron-down"/></svg></summary>
+          <div class="faq-fold-body"><p>字体文件只对你绑定的域名下发，别的站点请求会被拒绝。通配符 <code>*.example.com</code> 可覆盖子域。说明见<a href="docs.html#domains">域名白名单</a>。</p></div>
+        </details>
+        <details class="faq-fold">
+          <summary><span>私有化和开源版差在哪里？</span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-chevron-down"/></svg></summary>
+          <div class="faq-fold-body"><p>开源版自建：软件免费，运维与可用性自己负责。私有化：合同交付、Helm / HA、SSO、审计日志、SLA 与商务支持，适合合规与采购流程。详询 <a href="mailto:hi@windfonts.com">hi@windfonts.com</a>。</p></div>
+        </details>
       </div>
     </div>
     </section>
@@ -110,7 +172,7 @@
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js"></script>
-  <script src="js/wf-chrome.js?v=20260922bd"></script>
+  <script src="js/wf-proto.js?v=20260923u"></script>
+  <script src="js/wf-chrome.js?v=20260923d"></script>
 </body>
 </html>

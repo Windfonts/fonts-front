@@ -33,6 +33,7 @@
   --font-wordmark: "wenfeng-hckht", "Chill K Sans Medium", var(--font-ui);
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
+  --fs-11: 0.6875rem;
   --fs-12: 0.75rem;
   --fs-13: 0.8125rem;
   --fs-14: 0.875rem;

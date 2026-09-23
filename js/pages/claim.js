@@ -1,4 +1,4 @@
-/* 公开认领页：未登录给入口，已登录提交 WFApp.submitClaim */
+/* 公开认领页：未登录给入口，已登录提交 WFApp.submitClaim。权限矩阵见 docs/CLAIM-SCOPES.md，不在公开文案展开。 */
 (function () {
   const esc = WFProto.escapeHtml;
   const card = document.getElementById('claimCard');
@@ -21,21 +21,62 @@
     return q.toString();
   }
 
-  function renderGate() {
-    const fd = findFoundry(slugQ);
-    card.innerHTML =
-      (fd ? '<div class="claim-who">' + WFChrome.foundryHtml({ ownerInfo: fd, foundryInfo: fd }, { small: true, sub: '认领此页' }) + '</div>' : '') +
-      '<p>提交前先登录控制台。</p>' +
-      '<p class="home-cta" style="margin-top:var(--s-5)">' +
-        '<a class="btn btn-ink" href="login.html?' + loginQuery() + '">' + WFChrome.icon('user') + '登录后继续</a>' +
-        '<a class="btn" href="login.html?mode=signup&amp;' + loginQuery() + '">' + WFChrome.icon('user-add') + '免费注册</a>' +
-      '</p>';
+  function profileFor(fd) {
+    return WFChrome.claimProfile(fd || {});
   }
 
-  function renderForm() {
-    const fd = findFoundry(slugQ);
-    const claims = (WFApp.state().claims || []);
+  function formFields(fd, p) {
     const site = (fd && fd.website) || '';
+    let extra = '';
+    if (p.form && p.form.proof) {
+      extra +=
+        '<div class="field"><label for="claimProof">仓库或组织证明链接</label>' +
+          '<input class="input" id="claimProof" type="url" placeholder="https://github.com/… 或组织页" required /></div>';
+    } else if (p.form && p.form.platformNote) {
+      extra +=
+        '<div class="field"><label for="claimNote">平台关于页（可选）</label>' +
+          '<input class="input" id="claimNote" type="url" placeholder="https://…" /></div>';
+    } else {
+      extra +=
+        '<div class="field"><label for="claimLic">授权原文链接</label>' +
+          '<input class="input" id="claimLic" type="url" placeholder="https://…/license" /></div>';
+    }
+    return (
+      '<div class="field"><label for="claimSlug">厂商</label>' +
+        '<input class="input" id="claimSlug" value="' + esc((fd && fd.id) || slugQ || '') + '" placeholder="厂商名或页面地址" required /></div>' +
+      '<div class="field"><label for="claimSite">官网</label>' +
+        '<input class="input" id="claimSite" type="url" value="' + esc(site) + '" placeholder="https://" /></div>' +
+      '<div class="field"><label for="claimEmail">联系邮箱（请用官网域名）</label>' +
+        '<input class="input" id="claimEmail" type="email" placeholder="brand@foundry.com" /></div>' +
+      extra
+    );
+  }
+
+  function renderGate(fd) {
+    const p = profileFor(fd);
+    card.innerHTML =
+      (fd ? '<div class="claim-who">' + WFChrome.foundryHtml({ ownerInfo: fd, foundryInfo: fd }, { small: true, sub: '认领此页' }) + '</div>' : '') +
+      (fd && !p.canClaim
+        ? '<p>此条目尚未入厂商字典，请先到<a href="foundry.html">厂商索引</a>确认或联系本站归并后再提交。</p>'
+        : '<p>提交前先登录控制台。</p>' +
+          '<p class="home-cta" style="margin-top:var(--s-5)">' +
+            '<a class="btn btn-ink" href="login.html?' + loginQuery() + '">' + WFChrome.icon('user') + '登录后继续</a>' +
+            '<a class="btn" href="login.html?mode=signup&amp;' + loginQuery() + '">' + WFChrome.icon('user-add') + '免费注册</a>' +
+          '</p>');
+  }
+
+  function renderForm(fd) {
+    const p = profileFor(fd);
+    const claims = (WFApp.state().claims || []);
+
+    if (fd && !p.canClaim) {
+      card.innerHTML =
+        '<div class="claim-who">' + WFChrome.foundryHtml({ ownerInfo: fd, foundryInfo: fd }, { small: true, sub: '待归并' }) + '</div>' +
+        '<p>此条目尚未入厂商字典，请先归并后再认领。</p>' +
+        '<p class="home-cta" style="margin-top:var(--s-5)"><a class="btn" href="foundry.html">回厂商索引</a></p>';
+      return;
+    }
+
     card.innerHTML =
       (fd
         ? '<div class="claim-who">' + WFChrome.foundryHtml({ ownerInfo: fd, foundryInfo: fd }, {
@@ -44,14 +85,7 @@
           }) + '</div>'
         : '<p class="claim-who">提交认领</p>') +
       '<form id="claimForm">' +
-        '<div class="field"><label for="claimSlug">厂商</label>' +
-          '<input class="input" id="claimSlug" value="' + esc((fd && fd.id) || slugQ || '') + '" placeholder="厂商名或页面地址" required /></div>' +
-        '<div class="field"><label for="claimSite">官网</label>' +
-          '<input class="input" id="claimSite" type="url" value="' + esc(site) + '" placeholder="https://" /></div>' +
-        '<div class="field"><label for="claimEmail">联系邮箱（请用官网域名）</label>' +
-          '<input class="input" id="claimEmail" type="email" placeholder="brand@foundry.com" /></div>' +
-        '<div class="field"><label for="claimLic">授权原文链接</label>' +
-          '<input class="input" id="claimLic" type="url" placeholder="https://…/license" /></div>' +
+        formFields(fd, p) +
         '<button type="submit" class="btn btn-ink" style="margin-top:var(--s-2)">' + WFChrome.icon('idcard') + '提交认领</button>' +
       '</form>' +
       (claims.length
@@ -66,20 +100,35 @@
       e.preventDefault();
       const slug = document.getElementById('claimSlug').value.trim();
       if (!slug) { WFChrome.toast('填写厂商名'); return; }
+      const hit = findFoundry(slug) || fd;
+      const profile = profileFor(hit);
+      if (hit && !profile.canClaim) {
+        WFChrome.toast('此条目不可认领，请先归并字典');
+        return;
+      }
+      if (profile.form && profile.form.proof) {
+        const proof = (document.getElementById('claimProof') || {}).value || '';
+        if (!String(proof).trim()) { WFChrome.toast('请填写仓库或组织证明链接'); return; }
+      }
       WFApp.submitClaim({
         slug: slug,
-        name: (fd && fd.name) || slug,
+        name: (hit && hit.name) || slug,
+        kind: (hit && hit.kind) || '',
+        kindLabel: profile.title,
         website: document.getElementById('claimSite').value,
         email: document.getElementById('claimEmail').value,
-        licenseUrl: document.getElementById('claimLic').value
+        licenseUrl: (document.getElementById('claimLic') || {}).value || '',
+        proofUrl: (document.getElementById('claimProof') || {}).value || '',
+        platformNoteUrl: (document.getElementById('claimNote') || {}).value || ''
       });
       WFChrome.toast('已提交，审核通常 3 个工作日');
-      renderForm();
+      renderForm(hit || fd);
     });
   }
 
   Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(function () {
-    if (WFChrome.user()) renderForm();
-    else renderGate();
+    const fd = findFoundry(slugQ);
+    if (WFChrome.user()) renderForm(fd);
+    else renderGate(fd);
   });
 })();

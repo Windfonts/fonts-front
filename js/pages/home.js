@@ -203,17 +203,19 @@
 
   renderPartners();
   WFProto.loadCatalog().then(function (list) {
-    renderStats(list);
-    const featured = pickFeatured(list, 9);
-    const live = document.getElementById('live');
-    const liveName = document.getElementById('liveName');
-    const forest = document.getElementById('homeForest');
-    const now = document.getElementById('homeNow');
-    const related = document.getElementById('homeRelated');
-    const relatedCount = document.getElementById('homeRelatedCount');
-    const more = document.getElementById('homeMore');
-    let idx = 0;
-    let current = featured[0];
+    const start = function () {
+      const viewList = window.WFProducts ? WFProducts.collapseForList(list) : list;
+      renderStats(viewList);
+      const featured = pickFeatured(viewList, 9);
+      const live = document.getElementById('live');
+      const liveName = document.getElementById('liveName');
+      const forest = document.getElementById('homeForest');
+      const now = document.getElementById('homeNow');
+      const related = document.getElementById('homeRelated');
+      const relatedCount = document.getElementById('homeRelatedCount');
+      const more = document.getElementById('homeMore');
+      let idx = 0;
+      let current = featured[0];
 
     function forestGlyph() {
       const el = forest && forest.querySelector('[data-forest-glyph]');
@@ -233,11 +235,12 @@
           WFProto.ensureFontCss(f.family, hw);
           return '<div class="home-forest-cell is-on">' +
             '<p class="home-forest-glyph" data-forest-glyph contenteditable="true" spellcheck="false">' + esc(g) + '</p>' +
-            '<i>' + esc(f.name) + devTag(f, hw) + '</i></div>';
+            '<i>' + esc((window.WFProducts && WFProducts.listName(f)) || f.name) + devTag(f, hw) + '</i></div>';
         }
-        return '<button type="button" class="home-forest-cell" data-forest="' + esc(f.id) + '" title="' + esc(f.name) +
+        const label = (window.WFProducts && WFProducts.listName(f)) || f.name;
+        return '<button type="button" class="home-forest-cell" data-forest="' + esc(f.id) + '" title="' + esc(label) +
           '" style="font-family:' + esc(stack) + ';font-weight:' + w + '">' +
-          '<span class="home-forest-mark">' + esc(g) + '</span><i>' + esc(f.name) + devTag(f, w) + '</i></button>';
+          '<span class="home-forest-mark">' + esc(g) + '</span><i>' + esc(label) + devTag(f, w) + '</i></button>';
       }).join('');
     }
 
@@ -279,7 +282,7 @@
         closeMark.style.fontFamily = stack;
         closeMark.style.fontWeight = w;
       }
-      liveName.textContent = f.name;
+      liveName.textContent = (window.WFProducts && WFProducts.listName(f)) || f.name;
       liveName.href = WFProto.detailHref(f);
       const liveFamily = document.getElementById('liveFamily');
       if (liveFamily) liveFamily.textContent = famOf(f) + ' · ' + w;
@@ -296,11 +299,18 @@
         wirePick(f);
       }
       if (related) {
-        const rows = relatedOf(list, featured, f);
+        let rows = relatedOf(list, featured, f);
+        if (window.WFProducts) rows = WFProducts.collapseForList(rows);
         if (relatedCount) relatedCount.innerHTML = WFChrome.icon('list') + esc(catLabel(f)) + ' · 抽出 ' + rows.length + ' 款';
-        WFSpecimen.renderRows(related, rows, { size: 40 });
+        WFSpecimen.renderRows(related, rows, {
+          size: 40,
+          foot: window.WFProducts ? function (font) { return WFProducts.footHtml(font); } : null
+        });
       }
-      if (more) more.innerHTML = WFChrome.icon('arrow-right') + '全部 ' + list.length + ' 款';
+      if (more) {
+        const n = window.WFProducts ? WFProducts.collapseForList(list).length : list.length;
+        more.innerHTML = WFChrome.icon('arrow-right') + '全部 ' + n + ' 款';
+      }
       settleFace(f, w, ((live.textContent || '') + glyph).replace(/\s+/g, ''));
     }
 
@@ -357,5 +367,8 @@
         setCurrent(list.filter(function (f) { return f.id === row.getAttribute('data-font-id'); })[0]);
       });
     }
+    }; // end start
+    if (window.WFProducts) WFProducts.load().then(start);
+    else start();
   });
 })();

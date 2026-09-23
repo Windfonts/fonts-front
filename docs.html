@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>文档 · 文风字体</title>
   <meta name="description" content="文风字体接入文档：CDN、REST API、API Key / 白名单、link / @import / CSS / npm、子集化、font-display、域名与版本。" />
-  <link rel="stylesheet" href="css/fonts.css?v=20260922a" />
-  <link rel="stylesheet" href="css/tokens.css?v=20260922l" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260923u" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260923m" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css?v=20260922bf" />
-  <link rel="stylesheet" href="css/site.css?v=20260922bg" />
+  <link rel="stylesheet" href="css/site.css?v=20260923s" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-docs">
@@ -53,18 +53,17 @@
           <a class="for-dev" href="#params">地址参数</a>
           <a class="for-dev" href="#weights">字重名对照</a>
           <a href="#bag">选字袋</a>
-          <a href="#license">许可与注意</a>
-          <a href="#license-types">许可类型</a>
-          <a href="#faq">常见问题</a>
+          <a href="license.html">许可说明</a>
+          <a href="faq.html">常见问题</a>
         </nav>
       </div>
     </aside>
 
     <article class="docs-body">
       <section id="intro">
-        <p class="kicker">文档 · 更新于 2026-09-20</p>
+        <p class="kicker">文档 · 更新于 2026-09-23</p>
         <h1>接入文风字体</h1>
-        <p class="lead">一行 CSS 就能在网页中使用中文字体。公开字体走 <code>cn.windfonts.com</code> CDN，按字体族与字重取 CSS；正式站点建议创建项目、绑定域名白名单，并核对每款字体的授权范围。</p>
+        <p class="lead">一行 CSS 就能在网页中使用中文字体。公开字体走 <code>cn.windfonts.com</code> 的动态接口或拆包路径；正式站点建议创建项目、绑定域名，并核对每款字体的授权范围。卡住时先看<a href="faq.html">常见问题</a>。</p>
         <div class="docs-steps">
           <a href="fonts.html"><b>1</b><span>在字体库挑字体，看字重与授权</span></a>
           <a href="#link"><b>2</b><span>复制字体页「使用」区的代码放进 <code>&lt;head&gt;</code></span></a>
@@ -75,23 +74,36 @@
 
       <section id="url" class="for-dev">
         <h2>CDN 地址规则</h2>
-        <p>对外地址一律用 CDN 域名 <code>cn.windfonts.com</code>。字体页「使用」区可以在动态和静态之间切换。</p>
-        <h3>动态</h3>
-        <p>和 Google Fonts 一样，用查询参数指定字体。参数一律小写：<code>family</code> 用 slug（<code>yjmct</code>），<code>weight</code> 用字重名（<code>regular</code>）。接口不区分大小写，写出去的地址固定小写。子集用 <code>subset</code>，取值 <code>zh</code>、<code>zh-common</code>、<code>en</code>，不写就是完整字集。</p>
-        <div class="code"><pre>https://cn.windfonts.com/api/css?family=<b>{slug}</b>&amp;weight=<b>{weight}</b></pre></div>
-        <div class="code"><pre>https://cn.windfonts.com/api/css?family=albbpht&amp;weight=heavy</pre></div>
-        <p>多款字体可写在同一条动态地址里，<code>family</code> 用竖线 <code>|</code> 分隔。该请求的 <code>weight</code> 对各款共用；需要不同字重时请拆成多条 <code>&lt;link&gt;</code>。</p>
-        <div class="code"><pre>https://cn.windfonts.com/api/css?family=albbpht|ibmps&amp;weight=regular</pre></div>
-        <p>也可为每款各写一行 <code>&lt;link&gt;</code>。返回的 CSS 里 <code>font-family</code> 是 <code>windfonts-{slug}</code>，页面上同时写上 <code>wenfeng-{slug}</code>。</p>
-        <h3>静态</h3>
-        <p>每个字重一份 CSS，路径用小写字重名：</p>
+        <p>对外地址一律用 CDN 域名 <code>cn.windfonts.com</code>（可切香港 / 国际节点）。字体页「使用」区在<strong>动态</strong>与<strong>静态</strong>之间切换；本站预览另走拆包对象路径。</p>
+
+        <h3>动态（推荐嵌入）</h3>
+        <p>与 Google Fonts 类似，用查询参数指定字体。字体页默认给出这种地址。参数一律小写：<code>family</code> 用 <code>wenfeng-{slug}</code> 或 slug；<code>weight</code> 用字重名；子集用 <code>version</code>（<code>full</code> / <code>zh-common</code> / <code>en</code>，省略则完整）。</p>
+        <div class="code"><pre>https://cn.windfonts.com/api/css?family=<b>{family}</b>&amp;weight=<b>{weight}</b>&amp;version=<b>{version}</b></pre></div>
+        <div class="code"><pre>https://cn.windfonts.com/api/css?family=wenfeng-albbpht&amp;weight=heavy&amp;version=full</pre></div>
+        <p>多款可写在同一条里，<code>family</code> 用竖线 <code>|</code> 分隔；该请求的 <code>weight</code> 对各款共用。需要不同字重时拆成多条 <code>&lt;link&gt;</code>。</p>
+        <div class="code"><pre>https://cn.windfonts.com/api/css?family=wenfeng-albbpht|wenfeng-ibmps&amp;weight=regular&amp;version=full</pre></div>
+        <p>返回 CSS 里的 <code>font-family</code> 常为 <code>windfonts-{slug}</code>，页面上请同时写 <code>wenfeng-{slug}</code>。</p>
+
+        <h3>拆包路径（预览真源）</h3>
+        <p>OSS 上按族 / 字重 / 版本拆好的 <code>result.css</code>，与动态接口读同一批对象。本站样张优先走这条；也可直接 <code>&lt;link&gt;</code>，跨域头已放开。</p>
+        <div class="code"><pre>https://cn.windfonts.com/fonts-packages/<b>{Normalized}</b>/<b>{Weight}</b>/<b>{version}</b>/result.css</pre></div>
+        <div class="code"><pre>https://cn.windfonts.com/fonts-packages/Albbpht/Heavy/full/result.css</pre></div>
+        <ul>
+          <li><code>{Normalized}</code>：目录归一化名（元数据 <code>normalized</code>），如 <code>Albbpht</code>。</li>
+          <li><code>{Weight}</code>：包内字重目录，保留大小写（<code>Regular</code>、<code>Heavy</code>…）。</li>
+          <li><code>{version}</code>：<code>full</code> 或 <code>zh-common</code> 等。</li>
+        </ul>
+        <p>vault 查询拼装在 <code>app.windfonts.com/api/css</code>（读同一 OSS）；浏览器直链嵌入请用上面的 CDN 动态地址或拆包路径。</p>
+
+        <h3>静态（兼容旧嵌入）</h3>
+        <p>历史小写路径，多数已停更；新项目勿再当作真源。每个字重一份 CSS：</p>
         <div class="code"><pre>https://cn.windfonts.com/wenfeng/fonts/<b>{slug}</b>/<b>{weight}</b>/web/<b>index.css</b></pre></div>
         <ul>
-          <li><code>{slug}</code>：字体族标识去掉 <code>wenfeng-</code> 前缀，如 <code>wenfeng-albbpht</code> → <code>albbpht</code>。字体页「使用」区直接给出完整地址。</li>
-          <li><code>{weight}</code>：小写字重名，<code>regular</code> <code>bold</code> <code>light</code> <code>medium</code> <code>heavy</code>…以字体页列出的字重为准，见<a href="#weights">对照表</a>。</li>
-          <li>文件名 <code>index.css</code> 为完整字集；<code>zh_index.css</code> 为中文子集，体积更小，见<a href="#subset">子集化</a>。</li>
+          <li><code>{slug}</code>：族名去掉 <code>wenfeng-</code>，如 <code>albbpht</code>。</li>
+          <li><code>{weight}</code>：小写字重名，见<a href="#weights">对照表</a>。</li>
+          <li><code>index.css</code> 完整；<code>zh_index.css</code> 中文子集，见<a href="#subset">子集化</a>。</li>
         </ul>
-        <p>CSS 内部按 Unicode 区间切成多个 woff2 分片，浏览器只下载页面实际用到的分片；字体文件与 CSS 同目录，跨域头已放开。</p>
+        <p>三类地址的 CSS 都按 Unicode 区间切分片；浏览器只下载页面用到的 woff2。</p>
       </section>
 
       <section id="link" class="for-dev">
@@ -99,8 +111,10 @@
         <p>放入页面 <code>&lt;head&gt;</code>。先 <code>preconnect</code> 再拉 CSS，可省一次 DNS + TLS 往返。免费提供的字体请保留授权标注注释。</p>
         <div class="code"><pre>&lt;!-- 此中文网页字体由文风字体（Windfonts）免费提供，您可以自由引用，请务必保留此授权许可标注 https://wenfeng.org/license --&gt;
 &lt;link rel="preconnect" href="https://cn.windfonts.com" crossorigin&gt;
-&lt;link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=albbpht&amp;weight=regular"&gt;</pre></div>
-        <p>静态同一款字是：</p>
+&lt;link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-albbpht&amp;weight=regular&amp;version=full"&gt;</pre></div>
+        <p>拆包路径同一款：</p>
+        <div class="code"><pre>&lt;link rel="stylesheet" href="https://cn.windfonts.com/fonts-packages/Albbpht/Regular/full/result.css"&gt;</pre></div>
+        <p>静态旧路径（仅兼容）：</p>
         <div class="code"><pre>&lt;link rel="stylesheet" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/index.css"&gt;</pre></div>
         <p>需要多个字重就多写几行 <code>&lt;link&gt;</code>，每个字重一份 CSS；字体页「使用」区与<a href="shopping-bag.html">选字袋</a>可一次生成多款、多字重的合并代码。</p>
       </section>
@@ -108,19 +122,19 @@
       <section id="import" class="for-dev">
         <h2>用 @import 引入</h2>
         <p>写在 CSS 文件顶部（<code>@import</code> 必须位于其他规则之前）。相比 <code>&lt;link&gt;</code> 会晚一个解析阶段，首屏字体优先用 <code>&lt;link&gt;</code>。</p>
-        <div class="code"><pre>@import url('https://cn.windfonts.com/wenfeng/fonts/ibmps/regular/web/index.css');
-@import url('https://cn.windfonts.com/wenfeng/fonts/ibmps/bold/web/index.css');</pre></div>
+        <div class="code"><pre>@import url('https://cn.windfonts.com/fonts-packages/Ibmps/Regular/full/result.css');
+@import url('https://cn.windfonts.com/fonts-packages/Ibmps/Bold/full/result.css');</pre></div>
       </section>
 
       <section id="css" class="for-dev">
         <h2>在 CSS 中使用</h2>
-        <p>CSS 声明的 <code>font-family</code> 与字体族标识一致，为 <code>wenfeng-{slug}</code>。始终保留系统中文回退，避免加载期间空白。</p>
+        <p>CSS 声明的 <code>font-family</code> 请用目录标识 <code>wenfeng-{slug}</code>。包内 CSS 可能写 <code>windfonts-{slug}</code>，页面上两种都写最稳。始终保留系统中文回退，避免加载期间空白。</p>
         <div class="code"><pre>.title {
-  font-family: "wenfeng-albbpht",
+  font-family: "wenfeng-albbpht", "windfonts-albbpht",
                "PingFang SC", "Microsoft YaHei", sans-serif;
   font-weight: 400;
 }</pre></div>
-        <p class="note">同一页面同时引入一款字体的多个字重时，请在 <code>font-weight</code> 上区分；如果你自己拼接 CSS，需要为每个字重的 <code>@font-face</code> 补上对应 <code>font-weight</code>，否则后加载的字重会覆盖前者。项目 CDN 生成的 CSS 已处理好这一点。</p>
+        <p class="note">同一页面同时引入一款字体的多个字重时，请在 <code>font-weight</code> 上区分；如果你自己拼接 CSS，需要为每个字重的 <code>@font-face</code> 补上对应 <code>font-weight</code>，并去掉 <code>local()</code>，否则本机同名字体或后加载的字重会盖住前者。项目 CDN 生成的 CSS 已处理好这一点。</p>
       </section>
 
       <section id="npm" class="for-dev">
@@ -258,14 +272,15 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
         <table class="table">
           <thead><tr><th>方式</th><th>适用</th><th>在哪里</th></tr></thead>
           <tbody>
-            <tr><td><strong>预制 · 完整</strong> <code>index.css</code></td><td>正文内容不固定、需要生僻字</td><td>公开 CDN</td></tr>
-            <tr><td><strong>预制 · 中文</strong> <code>zh_index.css</code></td><td>常见中文内容，去掉了大量扩展区字符</td><td>公开 CDN</td></tr>
+            <tr><td><strong>预制 · 完整</strong> <code>…/full/result.css</code></td><td>正文不固定、需要生僻字</td><td>公开 CDN · fonts-packages</td></tr>
+            <tr><td><strong>预制 · 中文常用</strong> <code>…/zh-common/result.css</code></td><td>常见中文内容</td><td>公开 CDN · fonts-packages</td></tr>
+            <tr><td><strong>静态旧路径</strong> <code>zh_index.css</code></td><td>兼容旧嵌入；多数已停更</td><td><code>/wenfeng/fonts/…/web/</code></td></tr>
             <tr><td><strong>按文字</strong></td><td>标题、品牌名、固定文案；体积以 KB 计</td><td>控制台 · 子集化工作台</td></tr>
             <tr><td><strong>按常用字</strong> 3500 / 7000</td><td>正文不固定但不需要生僻字的站点</td><td>控制台 · 子集化工作台</td></tr>
             <tr><td><strong>按编码范围</strong></td><td>多语言、自定义字集</td><td>控制台 · 子集化工作台</td></tr>
           </tbody>
         </table>
-        <div class="code"><pre>https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/zh_index.css</pre></div>
+        <div class="code"><pre>https://cn.windfonts.com/fonts-packages/Albbpht/Regular/zh-common/result.css</pre></div>
         <p>控制台生成的自定义子集作为<a href="#versions">项目版本</a>发布，走项目 CDN 地址，改子集不需要改嵌入代码。</p>
         <h3>按文字即时切</h3>
         <p>标题、品牌名这类固定文案可以不建项目，用密钥直接按文字要一版。密钥在控制台「设置」。地址里的字重用字重名，不用数字。</p>
@@ -290,8 +305,8 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
         <h2>preload 与 preconnect</h2>
         <p>关键字体（首屏标题）可在 <code>&lt;head&gt;</code> 顶部预加载 CSS，再由 CSS 拉字体分片；配合 <code>preconnect</code> 效果最好。不要 preload 字体文件本身——分片由 <code>unicode-range</code> 决定，浏览器比你更清楚要哪几片。</p>
         <div class="code"><pre>&lt;link rel="preconnect" href="https://cn.windfonts.com" crossorigin&gt;
-&lt;link rel="preload" as="style" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/bold/web/index.css"&gt;
-&lt;link rel="stylesheet" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/bold/web/index.css"&gt;</pre></div>
+&lt;link rel="preload" as="style" href="https://cn.windfonts.com/fonts-packages/Albbpht/Bold/full/result.css"&gt;
+&lt;link rel="stylesheet" href="https://cn.windfonts.com/fonts-packages/Albbpht/Bold/full/result.css"&gt;</pre></div>
       </section>
 
       <section id="cache" class="for-dev">
@@ -337,29 +352,33 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
       <section id="params" class="for-dev">
         <h2>地址参数</h2>
         <table class="table">
-          <thead><tr><th>段</th><th>说明</th><th>示例</th></tr></thead>
+          <thead><tr><th>段 / 参数</th><th>说明</th><th>示例</th></tr></thead>
           <tbody>
-            <tr><td><code>{slug}</code></td><td>字体族标识去掉 <code>wenfeng-</code>；字体页「使用」区可复制</td><td class="mono">albbpht · syhtcjk · ibmps</td></tr>
-            <tr><td><code>{weight}</code></td><td>小写字重名，以字体页列出的为准</td><td class="mono">regular · bold · light · heavy</td></tr>
-            <tr><td>文件</td><td>完整字集 / 中文子集</td><td class="mono">index.css · zh_index.css</td></tr>
-            <tr><td><code>font-family</code></td><td>CSS 中声明的族名</td><td class="mono">"wenfeng-albbpht"</td></tr>
-            <tr><td><code>display</code></td><td>可选查询参数，只覆盖这一次 CSS 的 <code>font-display</code></td><td class="mono">?display=swap</td></tr>
+            <tr><td><code>family</code></td><td>动态查询：族名或 slug，多款用 <code>|</code></td><td class="mono">wenfeng-albbpht</td></tr>
+            <tr><td><code>weight</code></td><td>动态查询：小写字重名</td><td class="mono">regular · heavy</td></tr>
+            <tr><td><code>version</code></td><td>动态 / 拆包：完整或中文常用等</td><td class="mono">full · zh-common</td></tr>
+            <tr><td><code>{Normalized}</code></td><td>拆包路径：目录归一化名</td><td class="mono">Albbpht · Hckht · Ibmps</td></tr>
+            <tr><td><code>{Weight}</code></td><td>拆包路径：包内字重目录，保留大小写</td><td class="mono">Regular · Heavy · Normal</td></tr>
+            <tr><td><code>{slug}</code></td><td>静态旧路径：族名去掉 <code>wenfeng-</code></td><td class="mono">albbpht · syhtcjk</td></tr>
+            <tr><td><code>font-family</code></td><td>页面推荐写法；包内或为 <code>windfonts-*</code></td><td class="mono">"wenfeng-albbpht"</td></tr>
           </tbody>
         </table>
-        <div class="code"><pre>https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/{index|zh_index}.css</pre></div>
+        <div class="code"><pre>https://cn.windfonts.com/api/css?family=wenfeng-albbpht&amp;weight=regular&amp;version=full
+https://cn.windfonts.com/fonts-packages/{Normalized}/{Weight}/{full|zh-common}/result.css
+https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/{index|zh_index}.css</pre></div>
       </section>
 
       <section id="weights" class="for-dev">
         <h2>字重名对照</h2>
-        <p>地址里用字重名而不是数字；在 CSS 中用数字 <code>font-weight</code>。对照如下（个别字体使用自有命名如 <code>normal</code>、<code>extrabold</code>，以字体页为准）：</p>
+        <p>地址里用字重名而不是数字；CSS 里用数字 <code>font-weight</code>。拆包路径的 <code>{Weight}</code> 保留大小写（如 <code>Regular</code>）；旧静态路径用小写。个别字有自有命名（<code>Normal</code>、<code>ExtraBold</code>），以字体页为准：</p>
         <table class="table">
-          <thead><tr><th>地址段</th><th>font-weight</th><th>地址段</th><th>font-weight</th></tr></thead>
+          <thead><tr><th>地址段（小写 / 包内）</th><th>font-weight</th><th>地址段</th><th>font-weight</th></tr></thead>
           <tbody>
-            <tr><td class="mono">thin</td><td class="num">100</td><td class="mono">medium</td><td class="num">500</td></tr>
-            <tr><td class="mono">extralight</td><td class="num">200</td><td class="mono">semibold</td><td class="num">600</td></tr>
-            <tr><td class="mono">light</td><td class="num">300</td><td class="mono">bold</td><td class="num">700</td></tr>
-            <tr><td class="mono">regular · normal</td><td class="num">400</td><td class="mono">heavy · extrabold</td><td class="num">800</td></tr>
-            <tr><td class="mono">text</td><td class="num">450</td><td class="mono">black</td><td class="num">900</td></tr>
+            <tr><td class="mono">thin · Thin</td><td class="num">100</td><td class="mono">medium · Medium</td><td class="num">500</td></tr>
+            <tr><td class="mono">extralight · ExtraLight</td><td class="num">200</td><td class="mono">semibold · SemiBold</td><td class="num">600</td></tr>
+            <tr><td class="mono">light · Light</td><td class="num">300</td><td class="mono">bold · Bold</td><td class="num">700</td></tr>
+            <tr><td class="mono">regular · Regular · normal</td><td class="num">400</td><td class="mono">heavy · Heavy · extrabold</td><td class="num">800</td></tr>
+            <tr><td class="mono">text · Text</td><td class="num">450</td><td class="mono">black · Black</td><td class="num">900</td></tr>
           </tbody>
         </table>
       </section>
@@ -369,43 +388,18 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
         <p>在字体库或字体页「加入选字袋」，到<a href="shopping-bag.html">选字袋</a>统一预览、比较，并一次生成多款字体的合并嵌入代码。登录后可把选字袋整体添加到某个项目。选字袋存在浏览器本地。</p>
       </section>
 
-      <section id="license">
-        <h2>许可与注意</h2>
-        <ul>
-          <li>本站转述条款，不二次授权。每款字的范围以字体页「授权」区的出处为准；没有原文链接的不要当成已经核实。</li>
-          <li>「素材站声明」不是厂商官网。千图、包图、字魂等平台上的「可商用」须再核权利人。</li>
-          <li>归属看品牌方。字库代做的字，版权在出资的品牌，不能拿制作方其他款的许可来猜。</li>
-          <li>派生、地区版会标上游和同系。写明沿用上游许可的，仍须改名并保留声明；未写明的不要自行推断。</li>
-          <li>免费商用或开源字体请保留版权与授权标注注释；不得单独分发字体文件、不得二次托管 CDN 分片。</li>
-          <li>公开 CDN 有限流与突发保护；正式站点请创建项目并绑定域名，走项目 CDN 地址。</li>
-        </ul>
-      </section>
-
-      <section id="license-types">
-        <h2>许可类型</h2>
-        <p>字体按许可短名区分，不能把全部「免费商用」当成一种许可。</p>
-        <ul>
-          <li><b>宽松</b>（OFL、Apache、MIT）：多数商业项目可用。OFL 允许改字再分发，但必须换名字、保留声明，不得单独卖字体文件。</li>
-          <li><b>署名</b>（CC BY）：可商用，须按许可署名原作者。</li>
-          <li><b>相同方式共享</b>（CC BY-SA）：署名之外，衍生作品须用同一许可。</li>
-          <li><b>禁止改作</b>（CC BY-ND）：可传播原件，不得分发改过的版本。</li>
-          <li><b>Copyleft</b>（GPL）：再分发须遵守 GPL，不能当 MIT 用。</li>
-          <li><b>素材站 / 作者声明 / 未标明</b>：只有档位或口头声明，没有可核验原文。上线前自己找权利人。</li>
-        </ul>
-        <p>选字袋里多款字体混装时，按字核对出处，不要合成一张「均可商用」。</p>
-      </section>
-
-      <section id="faq" style="border-bottom:0">
-        <h2>常见问题</h2>
-        <dl class="faq">
-          <dt>页面上字体没生效？</dt><dd>检查三件事：CSS 能否打开；<code>font-family</code> 是否与 CSS 内声明一致（<code>wenfeng-{slug}</code>）；所用字重是否在该字体的字重列表里。</dd>
-          <dt>控制台里请求量很低，但站点访问不少？</dt><dd>正常——分片文件会长期缓存，回访用户走浏览器缓存就不会再请求；缓存命中占比高说明工作正常。</dd>
-          <dt>为什么字体打不开？</dt><dd>来源不在白名单。「域名」页会列出这些来源，是自己的站点就加上，别人的保持拦截即可。</dd>
-          <dt>能把字体文件下载到自己服务器吗？</dt><dd>免费商用字体请到 <a href="https://wenfeng.org" target="_blank" rel="noopener">wenfeng.org</a> 下载原始文件自行部署；CDN 分片文件不用于二次托管。</dd>
-        </dl>
+      <section id="license" style="border-bottom:0">
+        <h2>许可与常见问题</h2>
+        <p>许可注意、类型对照，以及嵌入 / 白名单 / 授权边界，已各自成页。</p>
+        <p style="display:flex;flex-wrap:wrap;gap:var(--s-3)">
+          <a class="btn" href="license.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-info"/></svg>许可说明</a>
+          <a class="btn" href="faq.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-question"/></svg>常见问题</a>
+        </p>
       </section>
 
       <nav class="docs-foot" aria-label="文档页脚">
+        <a href="license.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-info"/></svg>许可说明</a>
+        <a href="faq.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-question"/></svg>常见问题</a>
         <a href="fonts.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-font-size"/></svg>去字体库挑一款</a>
         <a href="login.html" data-app-entry><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260922ri#i-dashboard"/></svg>登录控制台</a>
         <span class="muted">有错漏？在 GitHub 提 issue 或写信 docs@windfonts.com</span>
@@ -415,10 +409,17 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js?v=20260923l"></script>
+  <script src="js/wf-proto.js?v=20260923u"></script>
   <script src="js/wf-chrome.js?v=20260923d"></script>
   <script>
     (function () {
+      const map = {
+        '#license': 'license.html',
+        '#license-types': 'license.html#types',
+        '#faq': 'faq.html'
+      };
+      const go = map[location.hash];
+      if (go) location.replace(go);
       const entry = document.querySelector('[data-app-entry]');
       if (entry && WFChrome.canAccessApp && WFChrome.canAccessApp()) {
         entry.href = 'app/index.html';
@@ -426,8 +427,11 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
       }
       const nav = document.getElementById('docsChapterNav');
       const toc = document.querySelector('.docs-chapters');
-      const links = toc.querySelectorAll('a');
-      const sections = Array.prototype.map.call(links, function (a) { return document.querySelector(a.getAttribute('href')); });
+      const allTocLinks = toc.querySelectorAll('a');
+      const links = Array.prototype.filter.call(allTocLinks, function (a) {
+        return (a.getAttribute('href') || '').charAt(0) === '#';
+      });
+      const sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
       const sw = nav.querySelector('.docs-nav-switch');
       const dim = nav.querySelector('.docs-nav-dim');
       const now = nav.querySelector('.docs-nav-switch-now');
@@ -475,8 +479,9 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
       /* 章节筛选 */
       document.getElementById('docsFilter').addEventListener('input', function (e) {
         const q = e.target.value.trim().toLowerCase();
-        links.forEach(function (a, i) {
-          const s = sections[i];
+        Array.prototype.forEach.call(allTocLinks, function (a) {
+          const href = a.getAttribute('href') || '';
+          const s = href.charAt(0) === '#' ? document.querySelector(href) : null;
           const hit = !q || a.textContent.toLowerCase().indexOf(q) !== -1 || (s && s.textContent.toLowerCase().indexOf(q) !== -1);
           a.hidden = !hit;
         });

@@ -107,8 +107,11 @@
     const w = firstWeight(font);
     return '<li class="specimen" data-font-id="' + esc(font.id) + '" data-family="' + esc(font.family || '') +
         '" data-weight="' + w + '">' +
-      '<div class="head"><span class="name-line"><a class="name" href="' + detail + '">' + esc(font.name) + '</a>' +
-        (opts.noAction ? '' : WFChrome.favHtml('font', font.id, font.name)) + '</span>' + metaHtml(font) + '</div>' +
+      '<div class="head"><span class="name-line"><a class="name" href="' + detail + '">' +
+        esc((opts.name != null ? opts.name : (font._listName || font.name))) + '</a>' +
+        (opts.noAction ? '' : WFChrome.favHtml('font', font.id, font.name)) + '</span>' + metaHtml(font) +
+        (opts.foot ? (function () { const foot = opts.foot(font); return foot ? '<span class="specimen-foot">' + foot + '</span>' : ''; })() : '') +
+        '</div>' +
       (opts.noAction ? '' :
         '<button type="button" class="act" data-join="' + esc(font.id) + '" data-name="' + esc(font.name) + '">' + WFChrome.icon('plus') + '加入选字袋</button>') +
       '<a class="preview" href="' + detail + '" data-specimen style="font-family:' + esc(stack) +
@@ -302,12 +305,22 @@
   }
 
   function fetchCssRanges(family, weight) {
-    const w = WFProto.weightToCss(weight || '400');
-    const key = family + '|' + w;
+    const pathName = WFProto.weightName(family, weight || '400');
+    const key = family + '|' + pathName;
     if (cssRangeCache[key]) return cssRangeCache[key];
-    cssRangeCache[key] = fetch(WFProto.cssUrl(family, w))
+    cssRangeCache[key] = fetch(WFProto.packageResultUrl(family, pathName, 'full'))
       .then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.text(); })
       .then(parseUnicodeRanges)
+      .catch(function () {
+        return fetch(WFProto.cssApiUrl(family, pathName, 'full'))
+          .then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.text(); })
+          .then(parseUnicodeRanges);
+      })
+      .catch(function () {
+        return fetch(WFProto.cssUrl(family, pathName))
+          .then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.text(); })
+          .then(parseUnicodeRanges);
+      })
       .catch(function () { return null; });
     return cssRangeCache[key];
   }

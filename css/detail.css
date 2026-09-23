@@ -20,9 +20,68 @@
 .detail-title h1 { font-size: var(--fs-28); font-weight: var(--fw-title); letter-spacing: -0.01em; line-height: var(--lh-snug); display: flex; align-items: center; flex-wrap: wrap; gap: 0.15em 0.35em; }
 .detail-title h1 .fav { font-size: var(--fs-16); width: 1.15em; height: 1.15em; }
 .detail-title h1 small { font-size: var(--fs-14); font-weight: var(--fw-body); color: var(--gray); margin-left: 0.4em; }
+.detail-title .product-variants {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-3);
+}
+.detail-title .product-variants .chip {
+  text-decoration: none;
+  font-size: var(--fs-12);
+}
+.detail-title .product-variants-more {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+}
+.detail-title .product-variants-more > summary {
+  list-style: none;
+  cursor: pointer;
+  font-size: var(--fs-12);
+  color: var(--gray);
+  font-weight: var(--fw-label);
+  padding: 0.15rem 0.55rem;
+  user-select: none;
+}
+.detail-title .product-variants-more > summary::-webkit-details-marker { display: none; }
+.detail-title .product-variants-more[open] > summary { color: var(--ink-2); }
+.detail-title .product-variants-more-list {
+  display: contents;
+}
 .detail-title .dotlist { margin-top: var(--s-2); font-size: var(--fs-13); }
 .detail-title .dotlist .foundry-inline { display: inline-flex; align-items: center; gap: 0.35em; color: var(--ink); font-weight: var(--fw-label); }
 .detail-title .dotlist .foundry-inline img { width: 18px; height: 18px; border-radius: 50%; }
+.detail-title .dotlist .dot-collab {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35em 0.6em;
+}
+.detail-title .dotlist .partner-face {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  color: var(--ink);
+  font-weight: var(--fw-label);
+  text-decoration: none;
+}
+.detail-title .dotlist .partner-face:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.detail-title .dotlist .partner-face img,
+.detail-title .dotlist .partner-face .mark {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.55rem;
+  background: var(--face);
+}
+.detail-title .dotlist .partner-face .mark { background: var(--ink); color: var(--on-ink); }
 .detail-actions { display: flex; align-items: center; gap: var(--s-3); }
 
 /* 丙：卡在左，标题行仍是名字左、按钮右。有样张时右侧不重复厂商身份和简介。 */
@@ -52,6 +111,7 @@
   grid-column: 1 / -1; grid-row: 2; margin-top: 0;
 }
 .page-detail:has(.wall-stage[data-card]) .side-brand .who-row,
+.page-detail:has(.wall-stage[data-card]) .side-brand .collab-block,
 .page-detail:has(.wall-stage[data-card]) .detail-side .foundry,
 .page-detail:has(.wall-stage[data-card]) .side-brand .brand-desc,
 .page-detail:has(.wall-stage[data-card]) .side-brand .side-fold,
@@ -86,14 +146,14 @@
 .detail-main .panel .chip.is-on { background: var(--ink); }
 .detail-main .panel .seg .is-on, .detail-main .panel .tabs .is-on { background: var(--paper); color: var(--ink); }
 .detail-main .panel .seg-ink .is-on { background: var(--ink); }
-.detail-main .code pre { white-space: pre-wrap; word-break: break-all; }
+.detail-main .code pre { white-space: pre-wrap; word-break: break-all; font-size: var(--fs-11); }
 .os-switch { font-size: var(--fs-12); }
 .os-meta { font-size: var(--fs-12); color: var(--gray); margin-bottom: var(--s-4); }
 /* OpenType / 变体轴（开发模式，挂在大字预览下面） */
 .feat-panel { margin-top: var(--s-6); display: grid; gap: var(--s-3); justify-items: start; }
 .feat-panel .tester-fold { width: 100%; }
 .feat-panel .feat-css { width: 100%; margin-top: var(--s-2); }
-.feat-panel .feat-css pre { font-size: var(--fs-13); }
+.feat-panel .feat-css pre { font-size: var(--fs-11); }
 
 /* 使用：地区单独一行；动态/静态与引用方式同一行，高度与地区开关一致 */
 .use-bar {

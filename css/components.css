@@ -14,7 +14,7 @@
   display: inline-flex; align-items: center; gap: var(--s-2);
   font-size: var(--fs-16); font-weight: var(--fw-title); letter-spacing: 0.01em; white-space: nowrap;
 }
-.wordmark span { font-family: var(--font-wordmark); font-weight: 400; }
+.wordmark span { font-family: var(--font-wordmark); font-weight: 500; }
 [data-theme="dark"] .wordmark img { filter: invert(1); }
 .wordmark img { width: 24px; height: 24px; border-radius: 6px; }
 .wordmark:hover { text-decoration: none; }
@@ -269,6 +269,118 @@ a.foundry:hover .name { text-decoration: underline; text-underline-offset: 0.2em
 
 .who-row { display: flex; align-items: center; gap: var(--s-2); }
 .who-row > .foundry { flex: 1; min-width: 0; }
+.collab-block {
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: var(--s-2);
+}
+.collab-block .collab-head {
+  margin: 0;
+  font-size: var(--fs-11);
+  font-weight: var(--fw-label);
+  color: var(--gray);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+}
+.collab-block .collab-head .icon { width: 0.9em; height: 0.9em; color: var(--gray-2); }
+.collab-block .collab-foundry { min-width: 0; gap: var(--s-2); }
+.collab-block .collab-foundry .name { font-size: var(--fs-13); }
+.collab-block .collab-foundry .sub { font-size: var(--fs-11); }
+.collab-block .partners-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35em 0.75em;
+}
+.collab-block .partner-face {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  color: var(--ink);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-label);
+  text-decoration: none;
+}
+.collab-block .partner-face:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.collab-block .partner-face img,
+.collab-block .partner-face .mark {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.6rem;
+  background: var(--face);
+}
+.collab-block .partner-face .mark { background: var(--ink); color: var(--on-ink); }
+.foundry-partners {
+  margin-top: var(--s-3);
+  display: grid;
+  gap: var(--s-2);
+}
+.foundry-partners .partners-label {
+  margin: 0;
+  font-size: var(--fs-11);
+  font-weight: var(--fw-label);
+  color: var(--gray);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+}
+.foundry-partners .partners-label .icon { width: 0.9em; height: 0.9em; color: var(--gray-2); }
+.foundry-partners .partners-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35em 0.75em;
+}
+.foundry-partners .partner-face,
+.kv dd .partner-face {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  color: var(--ink);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-label);
+  text-decoration: none;
+}
+.foundry-partners .partner-face:hover,
+.kv dd .partner-face:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.foundry-partners .partner-face img,
+.foundry-partners .partner-face .mark,
+.kv dd .partner-face img,
+.kv dd .partner-face .mark {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.6rem;
+  background: var(--face);
+}
+.foundry-partners .partner-face .mark,
+.kv dd .partner-face .mark { background: var(--ink); color: var(--on-ink); }
+.kv dd:has(.partner-face) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.35em 0.6em;
+}
+.license-cite .cite-links .meta-face {
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: -0.15em;
+}
 .fav {
   width: 1.15em; height: 1.15em; flex: none; padding: 0;
   display: inline-grid; place-items: center;

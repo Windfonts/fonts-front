@@ -23,10 +23,12 @@
   }
 
   function fileUrl(it, weight, structure) {
-    const version = it.version && it.version !== 'full' ? it.version : '';
+    const version = it.version && it.version !== 'full' ? it.version : 'full';
     const origin = WFProto.cdnOrigin();
-    if (structure === 'static') return WFProto.cssUrl(it.family, weight, version, origin);
-    return WFProto.cssApiUrl(it.family, weight, it.version || 'full', origin);
+    if (structure === 'static') {
+      return WFProto.cssUrl(it.family, weight, version === 'zh-common' ? 'zh' : version, origin);
+    }
+    return WFProto.cssApiUrl(it.family, weight, version, origin);
   }
 
   /** items: [{ family, weights: ['400','700'], version }] */

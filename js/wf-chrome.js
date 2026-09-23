@@ -365,7 +365,10 @@
   const TW_GLYPH_NAME = /(?:\bTW\b|繁体中文|繁體中文|PMingLiU|俐方体|MOESong|王[漢汉]宗|Cubic\s*11|教育部標準|辰宇|清松手写)/;
   function skipGlyphCov(font) {
     if (!font) return false;
-    const ids = [font.ownerInfo, font.foundryInfo, font.makerInfo].filter(Boolean).map(function (b) { return b.id; });
+    const ids = [font.ownerInfo, font.foundryInfo, font.makerInfo]
+      .concat(font.collaboratorInfos || [])
+      .filter(Boolean)
+      .map(function (b) { return b.id; });
     if (ids.some(function (id) { return TW_GLYPH_FOUNDRY.indexOf(id) !== -1; })) return true;
     if (/CMEX/i.test(font.designer || '')) return true;
     const blob = (font.name || '') + ' ' + (font.en || '');
@@ -375,9 +378,123 @@
     const fd = fontOrFoundry && fontOrFoundry.kind ? fontOrFoundry : brandInfo(fontOrFoundry);
     if (!fd || !fd.kind) return '';
     if (fd.kind === 'author' && fd.openSource) return '开源作者';
+    if (fd.kind === 'author') return '作者';
     if (fd.kind === 'project' && fd.openSource) return '开源项目';
+    if (fd.kind === 'project') return '项目';
     if (fd.kind === 'brand') return '品牌方';
     return KIND_LABEL[fd.kind] || '';
+  }
+
+  /* 认领能力按 kind 推导；真源 docs/CLAIM-SCOPES.md */
+  function claimProfile(foundry) {
+    const fd = foundry || {};
+    const kind = fd.kind || '';
+    const oss = !!fd.openSource;
+    const title = kindLabel(fd) || '厂商';
+    const base = {
+      kind: kind,
+      openSource: oss,
+      title: title,
+      canClaim: true,
+      materials: ['品牌法定名称或已收录的厂商名', '官网地址', '官网域名下的联系邮箱'],
+      allowedEdits: [],
+      forbidden: ['改任何字的许可档位或「已核对」状态'],
+      form: { license: true, proof: false, platformNote: false },
+      claimLead: '',
+      claimHint: '通过后可改本页资料；许可仍以每款字体出处为准。',
+      closeHint: '合作入驻，认领你的厂商页。',
+      closeLead: '准备法定名称、官网域名邮箱与授权原文。通过后可改本页标志与介绍；实际许可仍以每款字体出处为准。'
+    };
+
+    if (fd.unlisted || !kind) {
+      return Object.assign(base, {
+        canClaim: false,
+        title: '未核对',
+        materials: ['先到厂商索引确认是否已收录，或联系本站归并字典后再提交'],
+        allowedEdits: [],
+        forbidden: ['未入字典不可直接认领'],
+        form: { license: false, proof: false, platformNote: false },
+        claimLead: '此条目尚未入厂商字典。',
+        claimHint: '请先归并字典后再认领。',
+        closeHint: '合作入驻，认领你的厂商页。',
+        closeLead: '未入字典的条目需先核对归并，再提交认领。'
+      });
+    }
+
+    if (kind === 'brand') {
+      return Object.assign(base, {
+        materials: base.materials.concat(['授权原文链接（对照库内字体，不等于通过后可改许可）']),
+        allowedEdits: ['本页标志', '介绍', '官网'],
+        forbidden: base.forbidden.concat(['改制作方页', '改受托制作方的介绍']),
+        claimLead: '认领后维护品牌方页资料。',
+        claimHint: '通过后可改标志、介绍与官网。许可仍以每款字体出处为准；制作方页不在此认领范围。',
+        closeHint: '合作入驻，认领你的品牌方页。',
+        closeLead: '准备法定名称、官网域名邮箱与授权原文。通过后可改本页标志与介绍；实际许可仍以每款字体出处为准。'
+      });
+    }
+
+    if (kind === 'foundry') {
+      return Object.assign(base, {
+        materials: base.materials.concat(['授权原文链接（对照库内字体，不等于通过后可改许可）']),
+        allowedEdits: ['本页标志', '介绍', '官网'],
+        forbidden: base.forbidden.concat(['把受托款说成自有版权', '改品牌方页或品牌方许可']),
+        claimLead: '认领后维护字库页资料。',
+        claimHint: '通过后可改标志、介绍与官网。受托制作列表的版权在品牌方，不能改成自有。',
+        closeHint: '合作入驻，认领你的字库页。',
+        closeLead: '准备法定名称、官网域名邮箱与授权原文。通过后可改本页标志与介绍；受托款版权仍归品牌方。'
+      });
+    }
+
+    if (kind === 'author') {
+      return Object.assign(base, {
+        materials: base.materials.concat(['授权原文链接（对照库内字体，不等于通过后可改许可）']),
+        allowedEdits: oss
+          ? ['简介', '头像', '外链', '仓库链接']
+          : ['简介', '头像', '外链'],
+        forbidden: base.forbidden.concat(['把素材平台转载款认成「我的字」']),
+        claimLead: oss ? '认领后维护开源作者页资料。' : '认领后维护作者页资料。',
+        claimHint: oss
+          ? '通过后可改简介、头像与外链。派生、源文件与缺字请到 wenfeng.org。'
+          : '通过后可改简介、头像与外链。许可仍以每款字体出处为准。',
+        closeHint: oss ? '认领你的开源作者页。' : '认领你的作者页。',
+        closeLead: oss
+          ? '准备名称、官网或主页邮箱。通过后可改简介与外链；造字与源文件在 wenfeng.org。'
+          : '准备名称、官网或主页邮箱与授权原文。通过后可改简介与外链。'
+      });
+    }
+
+    if (kind === 'project') {
+      return Object.assign(base, {
+        materials: base.materials.concat(['仓库或组织证明链接（维护者 / 组织页，必填）']),
+        allowedEdits: ['项目说明', '仓库链接', '许可原文链（页资料）'],
+        forbidden: base.forbidden.concat(['个人无证明认领整仓']),
+        form: { license: false, proof: true, platformNote: false },
+        claimLead: '开源项目须提供仓库或组织证明。',
+        claimHint: '通过后可改项目说明与仓库链接。不能仅凭个人邮箱认领整仓；许可核对仍按每款字依据。',
+        closeHint: '认领你的开源项目页。',
+        closeLead: '准备组织邮箱与仓库 / 组织证明。通过后可改项目说明；实际许可仍以每款字体出处为准。'
+      });
+    }
+
+    if (kind === 'platform') {
+      return Object.assign(base, {
+        materials: base.materials.concat(['平台关于页或更正说明（可选）']),
+        allowedEdits: ['介绍', '官网', '标志'],
+        forbidden: ['改许可档位', '点亮「已核对」', '改 sourceKind', '自证「可商用」'],
+        form: { license: false, proof: false, platformNote: true },
+        claimLead: '素材平台可认领页资料，不能改许可。',
+        claimHint: '通过后可改介绍、官网与标志。许可档位与「已核对」永远不在认领范围内。',
+        closeHint: '认领你的素材平台页。',
+        closeLead: '准备平台名称、官网域名邮箱。通过后可改介绍与标志；不能改任何字的许可声明。'
+      });
+    }
+
+    return Object.assign(base, {
+      materials: base.materials.concat(['授权原文链接']),
+      allowedEdits: ['本页标志', '介绍', '官网'],
+      claimLead: '认领后维护本页资料。',
+      claimHint: '通过后可改标志与介绍。许可仍以每款字体出处为准。'
+    });
   }
 
   function licenseEvidence(font) {
@@ -425,29 +542,49 @@
   function lineageHtml(font) {
     const L = font && font.lineage;
     const maker = makerInfo(font);
+    const cols = (font && font.collaboratorInfos) || [];
     const has = L && (L.relation || L.group || L.upstreamName);
-    if (!has && !maker) return '';
+    if (!has && !maker && !cols.length) return '';
     const bits = [];
     if (L && L.relation) bits.push(REL_LABEL[L.relation] || L.relation);
     if (L && L.upstreamName) bits.push('上游 ' + L.upstreamName);
     if (L && L.groupName) bits.push('同系 ' + L.groupName);
     if (maker) bits.push(maker.name + ' 制作');
+    if (cols.length) bits.push('联合作者 ' + cols.map(function (c) { return c.name; }).join('、'));
     const follow = (L && FOLLOW_COPY[L.licenseFollows]) || '';
+    const colLinks = cols.map(function (c) {
+      return '<a href="' + href('foundry.html?slug=' + encodeURIComponent(c.id)) + '">' +
+        faceHtml(font, 16, c) + esc(c.name) + '</a>';
+    }).join('');
     return '<div class="license-cite lineage">' +
       (bits.length ? '<p class="cite-meta">' + icon(REL_ICON[(L && L.relation)] || 'branch') + '<span>' + esc(bits.join(' · ')) + '</span></p>' : '') +
       (follow ? '<p class="cite-warn">' + esc(follow) + '</p>' : '') +
-      (L && L.group
-        ? '<p class="cite-links"><a href="' + href('fonts.html?lineage=' + encodeURIComponent(L.group)) + '">' + icon('compare') + '查看同系字体</a></p>'
-        : '') +
+      '<p class="cite-links">' +
+        (L && L.group
+          ? '<a href="' + href('fonts.html?lineage=' + encodeURIComponent(L.group)) + '">' + icon('compare') + '查看同系字体</a>'
+          : '') +
+        colLinks +
+      '</p>' +
     '</div>';
   }
 
   const UPSTREAM_FONT = {
     'IPA 明朝': 'IPAexMincho',
+    'IPAex Mincho': 'IPAexMincho',
+    'IPAex明朝': 'IPAexMincho',
+    'IPA明朝': 'IPAexMincho',
+    'IPAexGothic': 'IPAex Gothic',
+    'IPA Gothic': 'IPA 黑体',
+    'IPA黑体': 'IPA 黑体',
+    'こころ明朝体': 'こころ明朝',
+    'Kokoro Mincho': 'こころ明朝',
+    'KokoroMinchoutai': 'こころ明朝',
     '思源黑体': '思源黑体',
     '思源宋体': '思源宋体',
     '龙藏体': '龙藏体'
   };
+  /** 仍未入库的外源名：不造假字体行；可挂厂商页 / 原文。已入库源头走 UPSTREAM_FONT / fonts.json。 */
+  const UPSTREAM_GHOST = {};
   function findFontByName(list, name) {
     if (!name || !list) return null;
     const hit = list.filter(function (f) { return f.name === name; })[0];
@@ -466,19 +603,51 @@
     if (!g || !list) return [];
     return list.filter(function (f) { return f.lineage && f.lineage.group === g; });
   }
+  /** 以本款名为 upstreamName 的派生（跨 group 也算，源头缺 group 时仍能亮） */
+  function lineageDownstream(list, font) {
+    if (!list || !font || !font.name) return [];
+    const name = font.name;
+    return list.filter(function (f) {
+      if (f.id === font.id) return false;
+      const fu = (f.lineage || {}).upstreamName;
+      if (!fu) return false;
+      if (fu === name) return true;
+      const mapped = UPSTREAM_FONT[fu];
+      if (mapped && mapped === name) return true;
+      const hit = findFontByName([font], fu);
+      return !!(hit && hit.id === font.id);
+    });
+  }
   function isLineagePack(f, rootName) {
     return !!(rootName && f.name !== rootName && f.name.indexOf(rootName) === 0);
   }
   function lineageSplit(font, list) {
-    const all = lineageKin(list, font);
     const L = (font && font.lineage) || {};
-    const up = L.upstreamName || '';
-    const root = findFontByName(list, up) ||
-      all.filter(function (f) { return (f.lineage || {}).relation === 'original'; })[0] ||
-      null;
+    let up = L.upstreamName || '';
+    if (up === font.name) up = '';
+    const byGroup = lineageKin(list, font);
+    const downs = lineageDownstream(list, font);
+    const seen = {};
+    const all = [];
+    function add(f) {
+      if (!f || seen[f.id]) return;
+      seen[f.id] = true;
+      all.push(f);
+    }
+    add(font);
+    byGroup.forEach(add);
+    downs.forEach(add);
+
+    const isRootFace = !up || L.relation === 'original' || (downs.length > 0 && !up);
+    const root = isRootFace
+      ? font
+      : (findFontByName(list, up) ||
+        all.filter(function (f) { return (f.lineage || {}).relation === 'original'; })[0] ||
+        null);
+    const rootName = (root && root.name) || up;
     const rest = all.filter(function (f) {
       if (root && f.id === root.id) return false;
-      if (isLineagePack(f, (root && root.name) || up)) return false;
+      if (isLineagePack(f, rootName)) return false;
       return true;
     });
     rest.sort(function (a, b) {
@@ -498,7 +667,7 @@
         return 0;
       });
     });
-    return { all: all, L: L, up: up, root: root, rest: rest, buckets: buckets, n: all.length || 1 };
+    return { all: all, L: L, up: up, root: root, rest: rest, buckets: buckets, n: all.length || 1, downs: downs };
   }
   function lineageMeta(f) {
     const parts = [];
@@ -517,10 +686,28 @@
       lineageMeta(f) +
       (on ? '<span class="lin-rel">当前</span>' : '') + '</a>';
   }
-  function lineageGhostRow(name) {
+  function lineageGhostRow(name, owner) {
+    const ghost = UPSTREAM_GHOST[name] || null;
+    let who = owner || null;
+    if (!who && ghost && ghost.ownerId && WFProto.getFoundryById) {
+      who = WFProto.getFoundryById(ghost.ownerId) || null;
+    }
+    const bits = [];
+    if (who) {
+      bits.push('<a href="' + href('foundry.html?slug=' + encodeURIComponent(who.id)) + '">' +
+        esc(who.short || who.name) + '</a>');
+    }
+    if (ghost && ghost.site) {
+      bits.push('<a href="' + esc(ghost.site) + '" target="_blank" rel="noopener">原文</a>');
+    }
+    if (!bits.length) {
+      bits.push(ghost ? '<span>库外源头 · 尚未入库</span>' : '<span>库里未收录</span>');
+    } else {
+      bits.unshift('<span>库外源头</span>');
+    }
     return '<span class="lin-row is-miss">' +
       '<span class="lin-name">' + esc(name) + '</span>' +
-      '<span class="lin-rel">库里没有</span></span>';
+      '<span class="lin-rel">' + bits.join(' · ') + '</span></span>';
   }
   function lineageBlock(title, rows) {
     return rows.length ? '<p class="lin-h">' + esc(title) + '</p>' + rows.join('') : '';
@@ -528,7 +715,7 @@
   function lineageListHtml(font, split, faceOf) {
     const originRow = split.root
       ? lineageRow(split.root, split.root.id === font.id, faceOf)
-      : (split.up ? lineageGhostRow(split.up) : '');
+      : (split.up ? lineageGhostRow(split.up, split.L && split.L.upstreamOwnerInfo) : '');
     const rowOf = function (f) { return lineageRow(f, f.id === font.id, faceOf); };
     return '<div class="lin-tree">' +
       lineageBlock('原作', originRow ? [originRow] : []) +
@@ -539,12 +726,29 @@
       lineageBlock('同系', split.buckets.other.map(rowOf)) +
       '</div>';
   }
+  function lineageInviteHtml(font, split) {
+    if (!font || !WFProto.isOpenFont(font)) return '';
+    const L = (font && font.lineage) || {};
+    if (L.relation === 'fork' && L.upstreamName) {
+      return '<p class="lin-invite">此字体由「' + esc(L.upstreamName) + '」派生。遵循原许可协议开源发布。</p>';
+    }
+    if (L.relation === 'original' || !L.upstreamName) {
+      return '<p class="lin-invite">此为开源字体谱系源头。许可允许修改后以其他名称再分发，须保留许可声明。</p>';
+    }
+    return '<p class="lin-invite">此字体许可允许派生。修改后再分发须改名，并保留原授权声明。</p>';
+  }
   function lineageTreeHtml(font, list, faceOf) {
     const split = lineageSplit(font, list);
-    if (!split.root && !split.up && split.all.length < 2) return '';
-    const lead = '<p class="lin-lead">' + esc(split.L.groupName || split.up || '同系') + ' · ' + split.n + ' 款' +
-      (!split.root && split.up ? ' · 原作不在库里' : '') + '</p>';
-    return lead + lineageListHtml(font, split, faceOf);
+    const invite = lineageInviteHtml(font, split);
+    const hasTree = !!(split.root || split.up || split.all.length > 1);
+    if (!hasTree && !invite) return '';
+    const lead = hasTree
+      ? '<p class="lin-lead">' + esc(split.L.groupName || split.up || (split.root && split.root.name) || '同系') +
+          ' · ' + split.n + ' 款' +
+          (!split.root && split.up ? ' · 原作不在库里' : '') + '</p>'
+      : '';
+    const listHtml = hasTree ? lineageListHtml(font, split, faceOf) : '';
+    return invite + lead + listHtml;
   }
 
   function paintFav(btn) {
@@ -622,6 +826,19 @@
     return '<img class="meta-face" src="' + esc(url) + '" alt="" width="' + s + '" height="' + s + '" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'meta-face mark\',textContent:' + JSON.stringify(letter) + '}))" />';
   }
 
+  /** 联合作者小条：头像 + 名，链到厂商页 */
+  function partnerFaceHtml(info) {
+    if (!info || !info.id) return '';
+    const stub = { ownerInfo: info, foundryInfo: info, makerInfo: info };
+    const avatar = brandAvatar(stub, info);
+    const name = info.short || info.name || info.id;
+    const mark = avatar
+      ? '<img src="' + esc(avatar) + '" alt="" width="18" height="18" loading="lazy" />'
+      : '<span class="mark">' + esc(String(name).charAt(0)) + '</span>';
+    return '<a class="partner-face" href="' + href('foundry.html?slug=' + encodeURIComponent(info.id)) + '">' +
+      mark + '<span>' + esc(info.name || name) + '</span></a>';
+  }
+
   function licenseTier(font) {
     if (WFProto.licenseTier) return WFProto.licenseTier(font);
     const t = String((font && font.license) || '').trim();
@@ -682,12 +899,14 @@
     brandSite: brandSite,
     brandAvatar: brandAvatar,
     faceHtml: faceHtml,
+    partnerFaceHtml: partnerFaceHtml,
     catLabel: catLabel,
     brandSlug: brandSlug,
     brandVerified: brandVerified,
     brandKind: brandKind,
     skipGlyphCov: skipGlyphCov,
     kindLabel: kindLabel,
+    claimProfile: claimProfile,
     foundryHtml: foundryHtml,
     favHtml: favHtml,
     syncFavs: syncFavs,

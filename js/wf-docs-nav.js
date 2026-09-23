@@ -1,17 +1,18 @@
-/* 说明页左侧目录：关于 / 认领 / 条款。文档是独立页，不走这里。依赖 wf-chrome.js */
+/* 说明页左侧目录 + 右侧相关：关于 / 认领 / 条款。文档是独立页，不走这里。依赖 wf-chrome.js */
 (function () {
   const GROUPS = [
     {
       title: '本站',
       items: [
         { id: 'about', label: '关于', path: 'about.html' },
-        { id: 'claim', label: '认领厂商', path: 'claim.html' }
+        { id: 'claim', label: '认领厂商', path: 'claim.html' },
+        { id: 'faq', label: '常见问题', path: 'faq.html' }
       ]
     },
     {
       title: '许可',
       items: [
-        { id: 'license', label: '许可说明', path: 'docs.html#license' },
+        { id: 'license', label: '许可说明', path: 'license.html' },
         { id: 'upload-terms', label: '上传条款', path: 'upload-terms.html' }
       ]
     },
@@ -26,11 +27,10 @@
     }
   ];
 
-  function fromHash() {
-    const h = (location.hash || '').replace('#', '');
-    if (h.indexOf('license') === 0) return 'license';
-    return '';
-  }
+  const EXTRA = [
+    { id: 'docs', label: '接入文档', path: 'docs.html' },
+    { id: 'fonts', label: '字体库', path: 'fonts.html' }
+  ];
 
   function locate(id) {
     let i, j;
@@ -42,8 +42,26 @@
     return { group: GROUPS[0], item: GROUPS[0].items[0] };
   }
 
-  function render(el, hint) {
-    const id = fromHash() || hint || '';
+  function asideItems(id) {
+    const cur = locate(id);
+    const seen = {};
+    const out = [];
+    function push(it) {
+      if (!it || it.id === id || seen[it.id]) return;
+      seen[it.id] = true;
+      out.push(it);
+    }
+    cur.group.items.forEach(push);
+    EXTRA.forEach(push);
+    GROUPS.forEach(function (g) {
+      if (g === cur.group) return;
+      g.items.slice(0, 1).forEach(push);
+    });
+    return out.slice(0, 6);
+  }
+
+  function renderNav(el, hint) {
+    const id = hint || '';
     const cur = locate(id);
     el.classList.add('docs-nav');
     el.classList.remove('is-open');
@@ -65,6 +83,18 @@
     bind(el);
   }
 
+  function renderAside(el, hint) {
+    const id = hint || el.getAttribute('data-docs-aside') || '';
+    const links = asideItems(id);
+    el.classList.add('docs-aside');
+    el.innerHTML =
+      '<h2>相关</h2>' +
+      links.map(function (it) {
+        return '<a href="' + WFChrome.href(it.path) + '">' + it.label + '</a>';
+      }).join('') +
+      '<p class="hint">侧栏可切换本站说明、许可与法律页。</p>';
+  }
+
   function bind(el) {
     const sw = el.querySelector('.docs-nav-switch');
     const dim = el.querySelector('.docs-nav-dim');
@@ -79,18 +109,24 @@
 
   function mount(el, hint) {
     if (!el) return;
-    render(el, hint);
-    window.addEventListener('hashchange', function () { render(el, hint); });
+    renderNav(el, hint);
+    window.addEventListener('hashchange', function () { renderNav(el, hint); });
   }
 
   function setActive(id) {
     document.querySelectorAll('[data-docs-nav]').forEach(function (el) {
-      render(el, id);
+      renderNav(el, id);
+    });
+    document.querySelectorAll('[data-docs-aside]').forEach(function (el) {
+      renderAside(el, id || el.getAttribute('data-docs-aside'));
     });
   }
 
   document.querySelectorAll('[data-docs-nav]').forEach(function (el) {
     mount(el, el.getAttribute('data-docs-nav'));
+  });
+  document.querySelectorAll('[data-docs-aside]').forEach(function (el) {
+    renderAside(el, el.getAttribute('data-docs-aside'));
   });
 
   window.WFDocsNav = { mount: mount, setActive: setActive };
