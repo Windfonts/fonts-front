@@ -1210,6 +1210,30 @@
           "tier": "secondary"
         }
       ]
+    },
+    {
+      "id": "elffont",
+      "name": "Elffont",
+      "en": "Elffont",
+      "default": "wenfeng-elffern",
+      "members": [
+        {
+          "family": "wenfeng-elffern",
+          "chips": [
+            "Fern"
+          ],
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-elfrock",
+          "chips": [
+            "Rock"
+          ],
+          "tier": "primary"
+        }
+      ],
+      "canonical": "elffont",
+      "status": "active"
     }
   ],
   "policy": {

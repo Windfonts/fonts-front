@@ -903,7 +903,7 @@
   function licenseTier(font) {
     if (WFProto.licenseTier) return WFProto.licenseTier(font);
     const t = String((font && font.license) || '').trim();
-    if (t === '免费商用') return '免费商用';
+    if (t === '免费商用' || t === '开源免费商用') return '免费商用';
     if (t === '联系授权' || t === '付费授权') return '需授权';
     if (t === '个人免费') return '个人免费';
     return '待核实';

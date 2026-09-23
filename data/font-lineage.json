@@ -1495,8 +1495,8 @@
       "relation": "fork",
       "licenseFollows": "inherit",
       "upstreamOwnerId": "adobe",
-      "upstreamName": "思源黑体",
-      "group": "source-han-sans"
+      "upstreamName": "思源宋体",
+      "group": "source-han-serif"
     },
     "狮尾螺帽腿黑体": {
       "ownerId": "aqua",
@@ -1614,6 +1614,387 @@
       "upstreamOwnerId": "adobe",
       "upstreamName": "思源黑体",
       "group": "source-han-sans"
+    },
+    "源起黑体": {
+      "ownerId": "buttaiwan",
+      "makerId": "buttaiwan",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "源样黑体": {
+      "ownerId": "buttaiwan",
+      "makerId": "buttaiwan",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "昭源黑体": {
+      "ownerId": "chiron",
+      "makerId": "chiron",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "更纱黑体": {
+      "ownerId": "sarasa",
+      "makerId": "sarasa",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "更纱等宽": {
+      "ownerId": "sarasa",
+      "makerId": "sarasa",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "975 黑体": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "台湾珍珠": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "思源等宽": {
+      "ownerId": "adobe",
+      "makerId": "adobe",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "邪宋": {
+      "ownerId": "buttaiwan",
+      "makerId": "buttaiwan",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-serif"
+    },
+    "源起明体": {
+      "ownerId": "buttaiwan",
+      "makerId": "buttaiwan",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-serif"
+    },
+    "源样明体": {
+      "ownerId": "buttaiwan",
+      "makerId": "buttaiwan",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-serif"
+    },
+    "昭源宋体": {
+      "ownerId": "chiron",
+      "makerId": "chiron",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-serif"
+    },
+    "初夏明朝体": {
+      "ownerId": "guiwonder",
+      "makerId": "guiwonder",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-serif"
+    },
+    "合简宋体": {
+      "ownerId": "guiwonder",
+      "makerId": "guiwonder",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-serif"
+    },
+    "尚古明体": {
+      "ownerId": "guiwonder",
+      "makerId": "guiwonder",
+      "relation": "fork",
+      "upstreamName": "思源宋体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-serif"
+    },
+    "源流明体": {
+      "ownerId": "buttaiwan",
+      "makerId": "buttaiwan",
+      "relation": "fork",
+      "upstreamName": "源起明体",
+      "upstreamOwnerId": "buttaiwan",
+      "licenseFollows": "inherit",
+      "group": "source-han-serif"
+    },
+    "源云明体": {
+      "ownerId": "buttaiwan",
+      "makerId": "buttaiwan",
+      "relation": "fork",
+      "upstreamName": "源流明体",
+      "upstreamOwnerId": "buttaiwan",
+      "licenseFollows": "inherit",
+      "group": "source-han-serif"
+    },
+    "源泉圆体": {
+      "ownerId": "buttaiwan",
+      "makerId": "buttaiwan",
+      "relation": "fork",
+      "upstreamName": "源起黑体",
+      "upstreamOwnerId": "buttaiwan",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "源石黑体": {
+      "ownerId": "buttaiwan",
+      "makerId": "buttaiwan",
+      "relation": "fork",
+      "upstreamName": "源起黑体",
+      "upstreamOwnerId": "buttaiwan",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "昭源圆体": {
+      "ownerId": "chiron",
+      "makerId": "chiron",
+      "relation": "fork",
+      "upstreamName": "昭源黑体",
+      "upstreamOwnerId": "chiron",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "芫荽": {
+      "ownerId": "buttaiwan",
+      "makerId": "buttaiwan",
+      "relation": "fork",
+      "upstreamName": "Klee One",
+      "upstreamOwnerId": "fontworks",
+      "licenseFollows": "inherit"
+    },
+    "月星楷": {
+      "ownerId": "guiwonder",
+      "makerId": "guiwonder",
+      "relation": "fork",
+      "upstreamName": "Klee One",
+      "upstreamOwnerId": "fontworks",
+      "licenseFollows": "inherit"
+    },
+    "澳声通拼音文楷": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "fork",
+      "upstreamName": "霞鹜文楷",
+      "upstreamOwnerId": "lxgw",
+      "licenseFollows": "inherit"
+    },
+    "鹏翎文楷": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "relation": "fork",
+      "upstreamName": "霞鹜文楷 GB",
+      "upstreamOwnerId": "lxgw",
+      "licenseFollows": "inherit"
+    },
+    "小赖字体等宽 SC": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "relation": "fork",
+      "upstreamName": "濑户字体",
+      "upstreamOwnerId": "seto",
+      "licenseFollows": "inherit"
+    },
+    "小赖字体 SC": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "relation": "fork",
+      "upstreamName": "濑户字体",
+      "upstreamOwnerId": "seto",
+      "licenseFollows": "inherit"
+    },
+    "范美黑体": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "relation": "fork",
+      "upstreamName": "Ume Gothic",
+      "licenseFollows": "inherit"
+    },
+    "范美明体": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "relation": "fork",
+      "upstreamName": "Ume Mincho",
+      "licenseFollows": "inherit"
+    },
+    "霞鹜拼音体": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "relation": "fork",
+      "upstreamName": "Lato",
+      "licenseFollows": "inherit"
+    },
+    "悠哉字体": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "relation": "fork",
+      "upstreamName": "YozFont",
+      "licenseFollows": "inherit"
+    },
+    "爆呆": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "upstreamName": "衡山毛笔",
+      "licenseFollows": "inherit"
+    },
+    "假珍珠": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "upstreamName": "jf open 粉圆",
+      "upstreamOwnerId": "justfont",
+      "licenseFollows": "inherit",
+      "group": "jf-open-hunyuan"
+    },
+    "余珍珠": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "upstreamName": "jf open 粉圆",
+      "upstreamOwnerId": "justfont",
+      "licenseFollows": "inherit",
+      "group": "jf-open-hunyuan"
+    },
+    "杰森手写": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "upstreamName": "清松手写体2",
+      "licenseFollows": "inherit"
+    },
+    "暮黑": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "upstreamName": "红道字体",
+      "licenseFollows": "inherit"
+    },
+    "丸子黑": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "upstreamName": "Zen Maru Gothic",
+      "upstreamOwnerId": "google-fonts",
+      "licenseFollows": "inherit"
+    },
+    "奈楷": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "upstreamName": "濑户字体",
+      "upstreamOwnerId": "seto",
+      "licenseFollows": "inherit"
+    },
+    "流行黑": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "upstreamName": "Hachi Maru Pop",
+      "upstreamOwnerId": "google-fonts",
+      "licenseFollows": "inherit"
+    },
+    "简语生活体": {
+      "ownerId": "justfont",
+      "makerId": "justfont",
+      "relation": "fork",
+      "upstreamName": "辰宇落雁体",
+      "licenseFollows": "inherit"
+    },
+    "谐灵附体": {
+      "ownerId": "justfont",
+      "makerId": "justfont",
+      "relation": "fork",
+      "upstreamName": "源流明体",
+      "upstreamOwnerId": "buttaiwan",
+      "licenseFollows": "inherit",
+      "group": "source-han-serif"
+    },
+    "就是不错字（吧）": {
+      "ownerId": "justfont",
+      "makerId": "justfont",
+      "relation": "fork",
+      "upstreamName": "芫荽",
+      "upstreamOwnerId": "buttaiwan",
+      "licenseFollows": "inherit"
+    },
+    "点点像素宋体": {
+      "relation": "fork",
+      "upstreamName": "文泉驿点阵宋体",
+      "licenseFollows": "inherit"
+    },
+    "点点像素宋体钻石体": {
+      "relation": "fork",
+      "upstreamName": "文泉驿点阵宋体",
+      "licenseFollows": "inherit"
+    },
+    "点点像素宋体圆": {
+      "relation": "fork",
+      "upstreamName": "文泉驿点阵宋体",
+      "licenseFollows": "inherit"
+    },
+    "点点像素体-圆形": {
+      "relation": "fork",
+      "upstreamName": "文泉驿点阵宋体",
+      "licenseFollows": "inherit"
+    },
+    "俐方体11号": {
+      "relation": "fork",
+      "upstreamName": "M+ gothic 12r",
+      "licenseFollows": "inherit"
+    },
+    "Unifont点阵黑": {
+      "ownerId": "unifoundry",
+      "makerId": "unifoundry",
+      "relation": "fork",
+      "upstreamName": "文泉驿正黑",
+      "upstreamOwnerId": "wenquanyi",
+      "licenseFollows": "inherit"
+    },
+    "Mplus HZK 12 像素字体": {
+      "relation": "fork",
+      "upstreamName": "M+",
+      "licenseFollows": "inherit"
     }
   }
 }
