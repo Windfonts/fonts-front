@@ -66,7 +66,28 @@
 | 设计对比 | `design-options.html` | — | **留档勿删**，见 [LAB.md](LAB.md) / `lab.html` |
 | 对照实验室 | `lab.html` + `*-options.html` + `v5-*.html` + `oss-audit.html` | `data/lab-archive.json` | 索引与政策；不进生产导航 |
 
-## 3. 需要后端提供的接口（契约草案）
+## 3. 需要后端提供的接口
+
+### 3.0 现网 `app.windfonts.com`（2026-09-24 核对）
+
+现网是 Next 应用（仓 `fonts-vault`），不是下面那份 `/v1/` 草案。公开响应信封是 `{ "code": 200, "message": "success", "data": … }`。匿名 GET 大约 100 次/天，不要在每个页面打开时拉全库。
+
+已经有、本仓静态页还没改成走它的：
+
+| 现网 | 本仓现状 |
+|---|---|
+| `GET /api/fonts?page&size&category&brand&search&sort`，`sort` 为 `name` / `createdAt` / `viewCount`。`data` 含 `total,page,pageTotal,dataList`。2026-09-24 抽样 total 410 | 目录仍读 `data/fonts.json` |
+| `GET /api/fonts/:id` 或 `:family`，带 `viewCount` / `downloadCount` / `apiCallCount`、`weights` 对象、`languages`、`useCases` | 详情用本地目录和本机计数 |
+| `GET /api/categories`、`GET /api/brands` | 分类和厂商用本地 JSON |
+| `GET /api/fonts/:id/analysis` 字符表，没有分析文件时 404 | 详情查字用本地数据 |
+| `GET /api/css?family&weight&subset`（`subset` 或 `lang`：`full` / `zh` / `zh-common` / `en`）。**不认 `version`**，`version=zh` 与不传得到同一份完整 CSS | 嵌入地址已同时写 `subset` 和 `version` |
+| 管理后台：字体 / 厂商 / 分类 / 风格、同步、安全开关、域名白名单、域名黑名单、API 密钥。IP 白名单在导航里被拿掉 | 顾客控制台不做这套运营后台 |
+
+现网还没有、仍只在本仓 localStorage 里的：项目、版本回滚、子集化工作台、用量四维、团队、认领工单、审计。这两套白名单不是一件事：REST 免密钥白名单只认完整 hostname、要带 `Origin`、不支持通配；项目 CDN 白名单仍可以写 `*.example.com`。
+
+密钥：`Authorization: Bearer`、`X-API-Key`，或 query `apiKey`（不要写进公开页面）。
+
+下面的 `/v1/` 表是尚未落地的顾客控制台契约，不是现网路径。
 
 统一响应：`{ "data": …, "error": null }` / `{ "data": null, "error": { "code", "message" } }`；带 `X-Request-Id`；从 `/v1/` 起版本化；列表接口分页 `?page=&size=`。
 
