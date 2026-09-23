@@ -3,6 +3,7 @@
   const esc = WFProto.escapeHtml;
   const FEATURED = ['阿里巴巴普惠体', '得意黑', '思源黑体', '站酷', '思源宋体', '霞鹙文楷', 'LXGW', '寒蝉', '钟齐'];
   const RELATED_N = 4;
+  const POPULAR_N = 6;
   const PARTNERS = [
     { name: '文派', slug: 'wenpai' },
     { name: '薇晓朵', slug: 'weixiaoduo' },
@@ -205,15 +206,23 @@
   WFProto.loadCatalog().then(function (list) {
     renderStats(list);
     const featured = pickFeatured(list, 9);
+    const popular = list.slice().sort(function (a, b) {
+      return (b.viewCount || 0) - (a.viewCount || 0) || String(a.name).localeCompare(String(b.name), 'zh-Hans-CN');
+    }).slice(0, POPULAR_N);
     const live = document.getElementById('live');
     const liveName = document.getElementById('liveName');
     const forest = document.getElementById('homeForest');
+    const popularEl = document.getElementById('homePopular');
     const now = document.getElementById('homeNow');
     const related = document.getElementById('homeRelated');
     const relatedCount = document.getElementById('homeRelatedCount');
     const more = document.getElementById('homeMore');
     let idx = 0;
     let current = featured[0];
+
+    if (popularEl && popular.length) {
+      WFSpecimen.renderRows(popularEl, popular, { size: 40 });
+    }
 
     function forestGlyph() {
       const el = forest && forest.querySelector('[data-forest-glyph]');

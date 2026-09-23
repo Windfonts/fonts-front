@@ -2,7 +2,25 @@
 
 > 面向接手后端 / 全栈的同学与智能体：原型现状、页面清单、需要后端提供的接口契约、已知待办。
 
+**2026-09-23 停点：** 公开主路径已基本对齐线上；工程批次已提交（`c78c4ce` 起）。上线硬门槛见 **[LAUNCH-GATES.md](LAUNCH-GATES.md)**（路径 rewrite、真统计、真登录、CDN 去 `local()`）。产品层（控制台 / 选字袋 / 认领等）见下文「产品层 backlog」，继续优化，不挡公开站上线。
+
 **2026-09-22 停点：** 人要的是现站改进建议，不是重做整页。对照版 `v5.html` 等已否，不要合并。头像清单以 `data/avatars.json` 的 26 条为准，下面第 6 节里「45 家真标」已过时。详见第 8 节。
+
+## 0. 产品层 backlog（继续打磨，非上线硬拦）
+
+公开站可先上；下列能力原型已有壳，上线后仍需产品与工程迭代：
+
+| 模块 | 现状 | 下一步 |
+|---|---|---|
+| **控制台** | `app/*` + localStorage；`?demo=1` 免登；顶栏仅注册/管理员可见 | 接真实项目 / 域名 / 用量 API；关掉生产 demo；用量与公开「统计信息」同源 |
+| **选字袋 / 收藏** | 本地持久化，可对比与嵌入 | 登录态同步；清空/导出策略；与控制台「我的字体」关系说清 |
+| **样张工坊** | 详情设计视图出图 | 模板与默认文案接设置；OG 图需后端固定 URL |
+| **厂商认领** | `claim.html` 演示提交 | 真实工单、审核、claimed 回写目录 |
+| **谱系 / 从哪来** | 有数据与展示；文案口径见 §8 | 按开源/可改收起上传与区块；勿补无把握关系 |
+| **上传** | 前端解析演示 | 对象存储 + 审核队列 |
+| **定价** | 默认隐藏 | 商务定稿后再露 |
+
+双轨注意：只维护 `index` / `fonts` / `font-detail` / `foundry` / `docs` / `app/*` 主线；`v5-*`、`*-options.html` 不进生产入口。
 
 ## 1. 现状一览
 
@@ -19,12 +37,12 @@
 | 页面 | 路径 | 数据来源 | 状态 |
 |---|---|---|---|
 | 首页 | `index.html` | fonts.json + foundries.json | 完成 |
-| 字体库 | `fonts.html` | 同上；筛选含 `?lineage=` `?kind=brand` | 完成 |
-| 字体详情 | `font-detail.html?id=` | 同上；字形墙、样张编辑、OG/横幅出图、字重、字符表、授权、谱系 | 完成 |
+| 字体库 | `fonts.html` | 同上；筛选含分类 / 风格 / 品牌 / 许可 / `?lineage=` `?kind=`；排序含热门 | 完成 |
+| 字体详情 | `font-detail.html?slug=`（兼 `?id=`） | 同上；查字、字重、字符表、授权、谱系、侧栏统计 | 完成；真路径 `/fonts/{slug}` 见 LAUNCH-GATES |
+| 文档 | `docs.html` | 静态 | CDN + REST + NPM；上线后门闸对文档示例 |
 | 厂商索引 / 单厂商 | `foundry.html[?slug=]` | foundries.json + font-lineage.json | 完成；归属与受托制作分列；认领去 `claim.html` |
 | 特点 | `features.html` | 静态 + 精选字体 | 完成 |
 | 定价 | `pricing.html` | 静态 | 仅开发模式 / 显式允许；正式站默认隐藏，见 `WFChrome.showPricing` |
-| 文档 | `docs.html` | 静态 | 完成，口径为 CDN 规则；独立页，左栏章节目录 |
 | 关于 | `about.html` | 静态 | 完成；双平台分工 + 公司 |
 | 404 | `404.html` | 静态 | 完成；部署时需 `error_page 404 /404.html` |
 | 上传条款 | `upload-terms.html` | 静态 | 完成；上传页勾选链到此页 |
@@ -77,7 +95,7 @@
 | GET | `/v1/audit` | 操作审计 | `WFApp.state().audit` |
 
 ### CDN
-- 公开：`https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/index.css | zh_index.css`。**建议后端在 CSS 中补齐 `font-weight` 与合法 `font-style`**，前端目前用 `ensureFontCss` 拉取后修正，接口修好后可去掉该修正。
+- 公开：`https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/index.css | zh_index.css`。**必须在拆包产物中去掉 `local()`，并补齐 `font-weight` 与合法 `font-style:normal`**。前端 `ensureFontCss` 仍会剥离 `local()` 作兜底；流水线修好后可评估简化。详见 [LAUNCH-GATES.md](LAUNCH-GATES.md)。
 - 项目：`https://cn.windfonts.com/p/{slug}/index.css`，按项目设置生成、校验 Referer/Origin、白名单外 403 并计入拦截统计。对外 CDN 域名一律 `cn.windfonts.com`。
 - 用量口径：请求数、字节数按域名 / 字体 / 字重 / 状态码聚合，延迟 ≤ 5 分钟；性能指标来自 CSS 内置 Resource Timing 上报。
 

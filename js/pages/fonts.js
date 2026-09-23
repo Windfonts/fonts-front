@@ -26,6 +26,9 @@
     { id: 'multi', label: '三字重以上', test: null }
   ];
   const LICENSES = ['免费商用', '需授权', '个人免费', '待核实'];
+  /* 风格：目录 tags 里的字形气质（与「分类」无衬线/手写体等正交；对齐线上侧栏） */
+  const STYLE_TAGS = ['黑体', '宋体', '楷体', '隶书', '硬笔手写', '毛笔书法', '卡通创意', '像素', '拼音', '其他'];
+  const BRAND_FACET_MAX = 14;
   /* 分类名用对应风格的系统字体呈现（汉仪式的分类入口） */
   const CAT_STYLE = { '无衬线字体': 'cat-sans', '衬线': 'cat-serif', '宋体': 'cat-serif', '手写体': 'cat-hand', '书法': 'cat-callig', '隶书': 'cat-li', 'Mono': 'cat-mono', '圆体': 'cat-round', '其他': 'cat-deco' };
   function catLabel(v) { return WFChrome.catLabel(v); }
@@ -39,6 +42,7 @@
     lineage: WFProto.getQuery('lineage'),
     open: WFProto.getQuery('open') === '1' ? '1' : '',
     kind: WFProto.getQuery('kind'),
+    style: WFProto.getQuery('style'),
     tag: WFProto.getQuery('tag'),
     keyword: WFProto.getQuery('keyword'),
     sort: WFProto.getQuery('sort') || 'featured',
@@ -65,6 +69,10 @@
     if (b.id === 'multi') return nums.length >= 3;
     return nums.some(b.test);
   }
+  function hasStyle(f, style) {
+    if (!style) return true;
+    return (f.tags || []).indexOf(style) !== -1;
+  }
   function matches(f, s, skip) {
     if (skip !== 'cat' && s.cat && String(f.category || '') !== s.cat) return false;
     if (skip !== 'weight' && !matchWeight(f, s.weight)) return false;
@@ -74,15 +82,34 @@
     if (skip !== 'lineage' && s.lineage && !(f.lineage && f.lineage.group === s.lineage)) return false;
     if (skip !== 'open' && s.open === '1' && !WFProto.isOpenFont(f)) return false;
     if (skip !== 'kind' && s.kind && WFChrome.brandKind(f) !== s.kind) return false;
+    if (skip !== 'style' && s.style && !hasStyle(f, s.style)) return false;
     return WFProto.matchFilter(f, s.tag, s.keyword, '');
   }
 
   function syncUrl() {
     const p = new URLSearchParams();
-    ['keyword', 'tag', 'cat', 'weight', 'lang', 'license', 'foundry', 'lineage', 'open', 'kind'].forEach(function (k) { if (state[k]) p.set(k, state[k]); });
+    ['keyword', 'tag', 'cat', 'weight', 'lang', 'license', 'foundry', 'lineage', 'open', 'kind', 'style'].forEach(function (k) { if (state[k]) p.set(k, state[k]); });
     if (state.sort && state.sort !== 'featured') p.set('sort', state.sort);
     const q = p.toString();
     history.replaceState(null, '', location.pathname + (q ? '?' + q : ''));
+  }
+
+  function brandFacetValues() {
+    const all = WFProto.getCatalogList();
+    const counts = {};
+    const names = {};
+    all.forEach(function (f) {
+      const id = WFChrome.brandSlug(f);
+      if (!id) return;
+      counts[id] = (counts[id] || 0) + 1;
+      if (!names[id]) names[id] = WFChrome.brandName(f) || id;
+    });
+    const ranked = Object.keys(counts).sort(function (a, b) {
+      return counts[b] - counts[a] || String(names[a]).localeCompare(String(names[b]), 'zh-Hans-CN');
+    });
+    const picked = ranked.slice(0, BRAND_FACET_MAX);
+    if (state.foundry && picked.indexOf(state.foundry) === -1) picked.push(state.foundry);
+    return { ids: picked, names: names };
   }
 
   function facetCounts(key, values, getter) {
@@ -116,8 +143,12 @@
     const all = WFProto.getCatalogList();
     const cats = uniq(all.map(function (f) { return f.category; }));
     const langs = ['简体中文', '繁体中文', '英语', '日文', '韩文'];
+    const brands = brandFacetValues();
     const html =
       catFacetHtml(facetCounts('cat', cats, function (f, v) { return f.category === v; })) +
+      facetHtml('风格', 'style', facetCounts('style', STYLE_TAGS, hasStyle)) +
+      facetHtml('品牌', 'foundry', facetCounts('foundry', brands.ids, function (f, v) { return WFChrome.brandSlug(f) === v; }),
+        function (id) { return brands.names[id] || id; }) +
       facetHtml('字重', 'weight', facetCounts('weight', WEIGHT_BUCKETS.map(function (b) { return b.id; }), matchWeight),
         function (id) { return WEIGHT_BUCKETS.filter(function (b) { return b.id === id; })[0].label; }) +
       facetHtml('语言', 'lang', facetCounts('lang', langs, function (f, v) { return (f.languages || []).indexOf(v) !== -1; }),
@@ -141,14 +172,14 @@
     });
     const reset = document.getElementById('resetFilters');
     if (reset) reset.addEventListener('click', function () {
-      state.cat = state.weight = state.lang = state.license = state.foundry = state.lineage = state.open = state.kind = state.tag = state.keyword = '';
+      state.cat = state.weight = state.lang = state.license = state.foundry = state.lineage = state.open = state.kind = state.style = state.tag = state.keyword = '';
       const s = document.getElementById('navSearch');
       if (s) s.value = '';
       refresh();
     });
   }
 
-  function hasAny() { return !!(state.cat || state.weight || state.lang || state.license || state.foundry || state.lineage || state.open || state.kind || state.tag || state.keyword); }
+  function hasAny() { return !!(state.cat || state.weight || state.lang || state.license || state.foundry || state.lineage || state.open || state.kind || state.style || state.tag || state.keyword); }
   function uniq(arr) {
     const seen = {};
     return arr.filter(function (x) { if (!x || seen[x]) return false; seen[x] = true; return true; });
@@ -159,6 +190,7 @@
     if (state.keyword) chips.push({ k: 'keyword', l: '搜索「' + state.keyword + '」' });
     if (state.tag) chips.push({ k: 'tag', l: '标签 ' + state.tag });
     if (state.cat) chips.push({ k: 'cat', l: catLabel(state.cat) || state.cat });
+    if (state.style) chips.push({ k: 'style', l: '风格 ' + state.style });
     if (state.weight) {
       const b = WEIGHT_BUCKETS.filter(function (x) { return x.id === state.weight; })[0];
       chips.push({ k: 'weight', l: b ? b.label : state.weight });
@@ -167,7 +199,7 @@
     if (state.license) chips.push({ k: 'license', l: state.license });
     if (state.foundry) {
       const fd = WFProto.getFoundries().filter(function (x) { return x.id === state.foundry; })[0];
-      chips.push({ k: 'foundry', l: ((fd && fd.kind === 'brand') ? '品牌方 ' : '厂商 ') + (fd ? fd.name : state.foundry) });
+      chips.push({ k: 'foundry', l: ((fd && fd.kind === 'brand') ? '品牌 ' : '厂商 ') + (fd ? fd.name : state.foundry) });
     }
     if (state.lineage) {
       const n = (WFProto.getCatalogList().filter(function (f) { return f.lineage && f.lineage.group === state.lineage; })[0] || {}).lineage;
@@ -243,7 +275,7 @@
 
   window.WFFontsList = {
     refresh: refresh,
-    getFilter: function () { return { tag: state.tag, keyword: state.keyword, license: state.license, cat: state.cat, weight: state.weight, lang: state.lang, foundry: state.foundry, lineage: state.lineage, open: state.open, kind: state.kind }; }
+    getFilter: function () { return { tag: state.tag, keyword: state.keyword, license: state.license, cat: state.cat, weight: state.weight, lang: state.lang, foundry: state.foundry, lineage: state.lineage, open: state.open, kind: state.kind, style: state.style }; }
   };
 
   WFProto.loadCatalog().then(function () {

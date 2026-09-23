@@ -72,13 +72,15 @@
   }
 
   function metaHtml(font) {
-    // 卡片元信息只留三项；开发模式追加 SPDX 与 family。制作方 / 派生 / 开源等放详情页。
+    // 卡片元信息：品牌 · 字重 · 许可 · 浏览；开发模式追加 SPDX 与 family。
     const n = (font.weights && font.weights.length) || 1;
     const ev = WFChrome.licenseEvidence(font);
     const fam = String(font.family || '').replace(/^wenfeng-/, '');
     const mark = WFChrome.faceHtml(font, 16);
+    const views = Number(font.viewCount) || 0;
+    const viewBit = views > 0 ? ' · ' + WFProto.formatCount(views) + ' 浏览' : '';
     return '<span class="meta">' + mark + esc(brandLine(font)) + ' · ' + n + ' 字重 · ' +
-      esc(WFChrome.licenseTier(font)) +
+      esc(WFChrome.licenseTier(font)) + viewBit +
       '<span class="for-dev">' +
         (ev.spdx ? ' · ' + esc(ev.spdx) : '') +
         (fam ? ' · <span class="mono">' + esc(fam) + '</span>' : '') +
