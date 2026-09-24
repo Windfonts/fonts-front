@@ -88,6 +88,21 @@
       (link || '') + '</div>' +
       (quote ? '<div class="sub">「' + esc(quote) + '」</div>' : '') + '</div>';
   }
+  /* 厂商信誉行：出处与依据首行先给结论。优秀=已调研无毁约；一般=有纠纷；待评估=未调研。 */
+  function vendorTrustHtml(font) {
+    const info = font.ownerInfo || font.foundryInfo || {};
+    const tr = info.trackRecord;
+    let grade = '待评估', cls = 'is-tbd', why = '';
+    if (tr && Array.isArray(tr.incidents)) {
+      const n = tr.incidents.filter(function (e) { return e.type !== '政策保持'; }).length;
+      if (n > 0) { grade = '一般'; cls = 'is-mid'; why = '有纠纷'; }
+      else { grade = '优秀'; cls = 'is-good'; why = '无毁约'; }
+    }
+    return '<p class="trust-line"><span class="trust-label">' + WFChrome.icon('shield') + '厂商信誉</span>' +
+      '<span class="trust-grade ' + cls + '">' + esc(grade) + '</span>' +
+      (why ? '<span class="trust-why">' + esc(why) + '</span>' : '') + '</p>';
+  }
+
   function proofMetaLine(font) {
     const std = OPEN_LICENSE.test(String(font.licenseName || ''));
     const host = hostOf(font.licenseUrl || '');
@@ -303,6 +318,7 @@
             '<div class="panel-pad">' +
             '<p class="license-lead">' + esc(licenseLead(proofTier(font))) + '</p>' +
             '<details class="side-fold license-fold"><summary>' + WFChrome.icon('chevron-down') + '出处与依据</summary>' +
+              vendorTrustHtml(font) +
               proofChainHtml(font) +
               '<div class="lp5-points">' +
                 tierPoints(proofTier(font), font.rfn).map(function (p) {

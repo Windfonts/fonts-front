@@ -384,3 +384,15 @@
 [data-theme="dark"] .license-head .tier.is-open { background: #2c8f52; border-color: #2c8f52; }
 .lp5-points .lp-badge-warn { border-color: #b08a2e; color: #7a6116; text-decoration: none; }
 [data-theme="dark"] .lp5-points .lp-badge-warn { border-color: #8a7434; color: #cbb06a; }
+
+/* ===== 出处与依据 · 厂商信誉行（首行结论）===== */
+.license-fold .trust-line { display: flex; align-items: center; gap: var(--s-3); margin: 0 0 var(--s-3); padding-bottom: var(--s-3); border-bottom: 1px solid var(--rule); }
+.trust-line .trust-label { display: inline-flex; align-items: center; gap: 0.35em; font-size: var(--fs-12); font-weight: var(--fw-label); color: var(--gray); }
+.trust-line .trust-label .icon { flex: none; }
+.trust-line .trust-grade { font-size: var(--fs-13); font-weight: var(--fw-title); padding: 0.15rem 0.75rem; border-radius: var(--radius-pill); }
+.trust-grade.is-good { background: #1f7a3f; color: #fff; }
+.trust-grade.is-mid { background: #b08a2e; color: #fff; }
+.trust-grade.is-tbd { background: transparent; border: 1px solid var(--rule); color: var(--gray); }
+.trust-line .trust-why { font-size: var(--fs-12); color: var(--gray-2); }
+[data-theme="dark"] .trust-grade.is-good { background: #2c8f52; }
+[data-theme="dark"] .trust-grade.is-mid { background: #8a7434; }
