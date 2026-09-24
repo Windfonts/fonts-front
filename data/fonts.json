@@ -153,11 +153,15 @@
       "黑体"
     ],
     "weights": [
-      "Heavy",
+      "Thin",
       "Light",
-      "Medium",
       "Regular",
-      "Bold"
+      "Medium",
+      "SemiBold",
+      "Bold",
+      "ExtraBold",
+      "Heavy",
+      "Black"
     ],
     "description": "阿里巴巴普惠体是阿里巴巴集团于2019年正式发布的一款免费商用中文字体，旨在为中小商家、设计师及普通用户提供一套合法、优质且免费的中文字体解决方案。该字体由阿里巴巴设计与汉仪字库合作开发，包含Light、Regular、Medium、Bold、Heavy等多种字重。字体设计采用现代简洁的笔画，造型偏瘦长，重心提高，以体现年轻感。针对不同字重，细节处理有所区别：较细的L/R/M字重更适合长文阅读，保留了口字的出脚以平衡阅读流畅感；较粗的B/H字重则切除了出脚，更适用于标题场景，以体现块面感。字体支持多语言，包含大量字符，可满足全球化业务下的多种应用场景需求。",
     "license": "免费商用",
@@ -178,7 +182,7 @@
       "description": "Alibaba Design出品的字体"
     },
     "releaseYear": 2019,
-    "version": "1.0.0",
+    "version": "3.0.0",
     "languages": [
       "简体中文",
       "繁体中文",
@@ -193,7 +197,7 @@
       "广告海报",
       "办公文档"
     ],
-    "charCount": 28937,
+    "charCount": 29197,
     "glyphCount": 28987,
     "viewCount": 212
   },
