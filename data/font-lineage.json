@@ -965,15 +965,6 @@
       "upstreamOwnerId": "atelier-anchor",
       "licenseFollows": "inherit"
     },
-    "狮尾B2加糖宋体": {
-      "ownerId": "aqua",
-      "makerId": "aqua",
-      "group": "source-han-serif",
-      "relation": "fork",
-      "licenseFollows": "inherit",
-      "upstreamOwnerId": "adobe",
-      "upstreamName": "思源宋体"
-    },
     "狮尾三腿黑体": {
       "ownerId": "aqua",
       "makerId": "aqua",
@@ -2143,6 +2134,79 @@
       "licenseFollows": "inherit",
       "upstreamOwnerId": "hanamin",
       "upstreamName": "花园明朝 A"
+    },
+    "尚古黑体": {
+      "ownerId": "guiwonder",
+      "makerId": "guiwonder",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "尚古圆体": {
+      "ownerId": "guiwonder",
+      "makerId": "guiwonder",
+      "relation": "fork",
+      "upstreamName": "尚古黑体",
+      "upstreamOwnerId": "guiwonder",
+      "licenseFollows": "inherit"
+    },
+    "尚古等宽": {
+      "ownerId": "guiwonder",
+      "makerId": "guiwonder",
+      "relation": "fork",
+      "upstreamName": "尚古黑体",
+      "upstreamOwnerId": "guiwonder",
+      "licenseFollows": "inherit"
+    },
+    "合简黑体": {
+      "ownerId": "guiwonder",
+      "makerId": "guiwonder",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "华英明朝": {
+      "ownerId": "guiwonder",
+      "makerId": "guiwonder",
+      "relation": "fork",
+      "upstreamName": "IPAmj明朝",
+      "upstreamOwnerId": "ipa",
+      "licenseFollows": "inherit"
+    },
+    "上元明朝 A": {
+      "ownerId": "guiwonder",
+      "makerId": "guiwonder",
+      "relation": "fork",
+      "upstreamName": "花园明朝 A",
+      "upstreamOwnerId": "hanamin",
+      "licenseFollows": "inherit"
+    },
+    "上元明朝 B": {
+      "ownerId": "guiwonder",
+      "makerId": "guiwonder",
+      "relation": "fork",
+      "upstreamName": "花园明朝 B",
+      "upstreamOwnerId": "hanamin",
+      "licenseFollows": "inherit"
+    },
+    "狮尾B2加糖宋体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "group": "source-han-serif",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体"
+    },
+    "何某手写体": {
+      "ownerId": "nanigashi",
+      "makerId": "nanigashi",
+      "relation": "original",
+      "licenseFollows": "inherit"
     }
   }
 }
