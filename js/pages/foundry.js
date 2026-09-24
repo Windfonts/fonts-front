@@ -453,7 +453,7 @@
           '<div class="foundry-close-body">' +
             '<div class="foundry-close-top">' +
               '<p class="kicker">入驻与认领</p>' +
-              '<h2>合作入驻，认领你的厂商页。</h2>' +
+              '<h2>欢迎字体厂商和作者入驻，认领你的厂商页。</h2>' +
               '<p class="lead">准备法定名称、官网域名邮箱与授权原文。通过后可改本页标志与介绍；实际许可仍以每款字体出处为准。</p>' +
             '</div>' +
             '<div class="foundry-close-foot">' +

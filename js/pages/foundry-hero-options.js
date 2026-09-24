@@ -1,4 +1,4 @@
-/* 厂商顶部整页方案对照。 */
+/* 厂商目录顶栏对照。只服务 foundry-hero-options.html。 */
 (function () {
   const blocks = document.querySelectorAll('.hc-block');
   const links = document.querySelectorAll('.hc-switch .seg-glyph a');
@@ -33,7 +33,6 @@
       show(id);
     });
   });
-
   window.addEventListener('hashchange', fromHash);
   fromHash();
 
@@ -48,7 +47,7 @@
       if (!map[info.id]) {
         map[info.id] = {
           slug: info.id, name: info.name, info: info, font: stubFont(info),
-          fonts: [], made: [], kind: info.kind || ''
+          fonts: [], made: [], kind: info.kind || '', openSource: !!info.openSource
         };
       }
       return map[info.id];
@@ -69,18 +68,26 @@
     return Object.keys(map).map(function (k) { return map[k]; });
   }
 
+  function bucketId(g) {
+    if ((g.info && g.info.unlisted) || !g.kind) return 'unlisted';
+    if (!g.fonts.length && g.made.length) return 'commissioned';
+    if (g.kind === 'author' && g.openSource) return 'oss-author';
+    return g.kind || 'unlisted';
+  }
+
   function setText(sel, n) {
     document.querySelectorAll(sel).forEach(function (el) {
       el.textContent = String(n);
     });
   }
 
-  function kindButtons(buckets, extra) {
+  function kindButtons(buckets, withExtra) {
     const primary = [
       ['', '全部', null],
       ['foundry', '字库', buckets.foundry],
       ['brand', '品牌方', buckets.brand],
       ['author', '作者', buckets.author],
+      ['oss-author', '开源作者', buckets['oss-author']],
       ['project', '开源项目', buckets.project],
       ['platform', '素材平台', buckets.platform]
     ];
@@ -89,61 +96,88 @@
       return '<button type="button"' + (i === 0 ? ' class="is-on"' : '') + ' disabled>' +
         row[1] + n + '</button>';
     }).join('');
-    if (extra) {
+    if (withExtra) {
       html += '<span class="foundry-kinds-gap" aria-hidden="true"></span>' +
-        '<button type="button" disabled>仅受托<span class="n">' + buckets.commissioned + '</span></button>' +
+        '<button type="button" disabled>仅受托制作<span class="n">' + buckets.commissioned + '</span></button>' +
         '<button type="button" disabled>未核对<span class="n">' + buckets.unlisted + '</span></button>';
     }
     return html;
   }
 
+  function compactButtons(buckets) {
+    const authorN = buckets.author + buckets['oss-author'];
+    const otherN = buckets.commissioned + buckets.unlisted;
+    const rows = [
+      ['', '全部', null],
+      ['foundry', '字库', buckets.foundry],
+      ['brand', '品牌方', buckets.brand],
+      ['author', '作者', authorN],
+      ['project', '开源项目', buckets.project],
+      ['platform', '素材', buckets.platform],
+      ['other', '其他', otherN]
+    ];
+    return rows.map(function (row, i) {
+      const n = row[2] == null ? '' : '<span class="n">' + row[2] + '</span>';
+      return '<button type="button"' + (i === 0 ? ' class="is-on"' : '') + ' disabled>' +
+        row[1] + n + '</button>';
+    }).join('');
+  }
+
+  function jumpLinks(buckets) {
+    const rows = [
+      ['foundry', '字库'],
+      ['brand', '品牌方'],
+      ['author', '作者'],
+      ['oss-author', '开源作者'],
+      ['project', '开源项目'],
+      ['platform', '素材平台']
+    ];
+    return rows.map(function (row) {
+      return '<a href="#peek-c">' + row[1] + '<span class="n">' + buckets[row[0]] + '</span></a>';
+    }).join('');
+  }
+
   WFProto.loadCatalog().then(function (list) {
-    const gs = groups(list).sort(function (a, b) {
-      return b.fonts.length - a.fonts.length || a.name.localeCompare(b.name, 'zh');
-    });
+    const gs = groups(list);
     const buckets = {
-      foundry: 0, brand: 0, author: 0, project: 0, platform: 0,
+      foundry: 0, brand: 0, author: 0, 'oss-author': 0, project: 0, platform: 0,
       commissioned: 0, unlisted: 0
     };
     let listed = 0;
     gs.forEach(function (g) {
-      if ((g.info && g.info.unlisted) || !g.kind) {
-        buckets.unlisted++;
-        return;
-      }
-      if (!g.fonts.length && g.made.length) {
-        buckets.commissioned++;
-        return;
-      }
-      listed++;
-      if (buckets[g.kind] != null) buckets[g.kind]++;
+      const id = bucketId(g);
+      if (buckets[id] == null) buckets.unlisted++;
+      else buckets[id]++;
+      if (id !== 'unlisted' && id !== 'commissioned') listed++;
     });
 
     setText('[data-listed-n]', listed);
     setText('[data-n-foundry]', buckets.foundry);
     setText('[data-n-brand]', buckets.brand);
-    setText('[data-n-author]', buckets.author);
-    setText('[data-n-project]', buckets.project);
-    setText('[data-n-platform]', buckets.platform);
-    setText('[data-n-extra]', buckets.commissioned + buckets.unlisted);
 
     document.querySelectorAll('[data-kind-btns]').forEach(function (el) {
-      el.innerHTML = kindButtons(buckets, true);
+      el.innerHTML = kindButtons(buckets, el.getAttribute('data-extra') === '1');
+    });
+    document.querySelectorAll('[data-kind-btns-compact]').forEach(function (el) {
+      el.innerHTML = compactButtons(buckets);
+    });
+    document.querySelectorAll('[data-jump-links]').forEach(function (el) {
+      el.innerHTML = jumpLinks(buckets);
     });
 
-    function cards(kind, n) {
-      return gs.filter(function (g) { return g.kind === kind && g.fonts.length; })
-        .slice(0, n)
-        .map(function (g) {
-          return WFChrome.foundryHtml(g.font, { sub: '归属 ' + g.fonts.length + ' 款' });
-        }).join('');
-    }
-
+    const peek = gs
+      .filter(function (g) { return bucketId(g) === 'foundry'; })
+      .sort(function (a, b) {
+        return b.fonts.length - a.fonts.length || a.name.localeCompare(b.name, 'zh');
+      })
+      .slice(0, 6);
+    const cards = peek.map(function (g) {
+      return WFChrome.foundryHtml(g.font, {
+        sub: '字库 · 归属 ' + g.fonts.length + ' 款'
+      });
+    }).join('');
     document.querySelectorAll('[data-peek-cards]').forEach(function (el) {
-      el.innerHTML = cards('foundry', 3);
-    });
-    document.querySelectorAll('[data-peek-cards-b]').forEach(function (el) {
-      el.innerHTML = cards('brand', 3);
+      el.innerHTML = cards;
     });
   });
 })();

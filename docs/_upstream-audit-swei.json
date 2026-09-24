@@ -1,0 +1,527 @@
+{
+  "wave": "swei",
+  "items": [
+    {
+      "name": "狮尾三腿黑体",
+      "family": "wenfeng-sw3tleg",
+      "repo": "https://github.com/max32002/swei-3t-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾三腿黑體基於思源黑體筆觸開花改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾三角黑体",
+      "family": "wenfeng-sw3tsans",
+      "repo": "https://github.com/max32002/swei-3t-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾三角黑體基於思源黑體筆觸開花和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾锯腿黑体",
+      "family": "wenfeng-swaliasleg",
+      "repo": "https://github.com/max32002/swei-alias-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾鋸腿黑體基於思源黑體的轉角挖空改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾锯齿黑体",
+      "family": "wenfeng-swaliassans",
+      "repo": "https://github.com/max32002/swei-alias-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾鋸齒黑體基於思源黑體的轉角挖空和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾斧腿黑体",
+      "family": "wenfeng-swaxleg",
+      "repo": "https://github.com/max32002/swei-ax-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾斧腿黑體基於思源黑體的筆觸變斧頭改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾斧头黑体",
+      "family": "wenfeng-swaxsans",
+      "repo": "https://github.com/max32002/swei-ax-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾斧頭黑體基於思源黑體的筆觸變斧頭和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾B2腿黑体",
+      "family": "wenfeng-swb2leg",
+      "repo": "https://github.com/max32002/swei-b2-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾B2腿黑體基於思源黑體的轉角的三角形轉成半圓形改造，腿黑指沒被拔腳的黑體，彷彿墨暈或是稍微過曝的效果。"
+    },
+    {
+      "name": "狮尾B2黑体",
+      "family": "wenfeng-swb2sans",
+      "repo": "https://github.com/max32002/swei-b2-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾B2黑體基於思源黑體的轉角的三角形轉成半圓形改造，彷彿墨暈或是稍微過曝的效果。"
+    },
+    {
+      "name": "狮尾B2宋体",
+      "family": "wenfeng-swb2serif",
+      "repo": "https://github.com/max32002/swei-b2-serif",
+      "recorded": "思源宋体",
+      "verdict": "confirm",
+      "upstream": "思源宋体",
+      "evidence": "獅尾B2宋朝字體基於思源宋體的三角形轉成半圓形改造，彷彿墨暈或是稍微過曝的效果。"
+    },
+    {
+      "name": "狮尾蝙蝠圆体",
+      "family": "wenfeng-swbatsans",
+      "repo": "https://github.com/max32002/swei-bat-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾蝙蝠圓體基於思源黑體筆觸長耳朵和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾喇腿黑体",
+      "family": "wenfeng-swbellleg",
+      "repo": "https://github.com/max32002/swei-bell-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾喇腿黑體基於思源黑體的筆觸變喇叭口改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾喇叭黑体",
+      "family": "wenfeng-swbellsans",
+      "repo": "https://github.com/max32002/swei-bell-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾喇叭黑體基於思源黑體的筆觸變喇叭口和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾骨腿黑体",
+      "family": "wenfeng-swboneleg",
+      "repo": "https://github.com/max32002/swei-bone-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾骨腿黑體基於思源黑體的筆觸變骨頭改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾骨头黑体",
+      "family": "wenfeng-swbonesans",
+      "repo": "https://github.com/max32002/swei-bone-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾骨頭黑體基於思源黑體的筆觸變骨頭和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾霓腿黑体",
+      "family": "wenfeng-swbowleg",
+      "repo": "https://github.com/max32002/swei-bow-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾霓腿黑體基於思源黑體的上半邊變圓改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾霓黑体",
+      "family": "wenfeng-swbowsans",
+      "repo": "https://github.com/max32002/swei-bow-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾霓黑體基於思源黑體的上半邊變圓和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾弯腿黑体",
+      "family": "wenfeng-swcurveleg",
+      "repo": "https://github.com/max32002/swei-curve-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾彎腿黑體基於思源黑體變圓改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾弯黑体",
+      "family": "wenfeng-swcurvesans",
+      "repo": "https://github.com/max32002/swei-curve-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾彎黑體基於思源黑體的變圓和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾飞腿黑体",
+      "family": "wenfeng-swdartleg",
+      "repo": "https://github.com/max32002/swei-dart-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾飛腿黑體基於思源黑體的筆觸變細長改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾飞镖黑体",
+      "family": "wenfeng-swdartsans",
+      "repo": "https://github.com/max32002/swei-dart-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾飛鏢黑體基於思源黑體的筆觸變細長和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾D卤腿黑体",
+      "family": "wenfeng-swdellunaleg",
+      "repo": "https://github.com/max32002/swei-del-luna-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾D滷腿黑體基於思源黑體的右側變圓改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾德鲁纳黑体",
+      "family": "wenfeng-swdellunasans",
+      "repo": "https://github.com/max32002/swei-del-luna-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾德魯納黑體基於思源黑體的右側變圓和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾恶腿黑体",
+      "family": "wenfeng-swdevilleg",
+      "repo": "https://github.com/max32002/swei-devil-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾惡腿黑體基於思源黑體的筆觸長箭頭改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾恶魔黑体",
+      "family": "wenfeng-swdevilsans",
+      "repo": "https://github.com/max32002/swei-devil-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾惡魔黑體基於思源黑體的筆觸長箭頭和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾D露西",
+      "family": "wenfeng-swdlucy",
+      "repo": "https://github.com/max32002/swei-d-lucy",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾D露西基於思源黑體的右半邊變圓改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾B2加糖宋体",
+      "family": "wenfeng-swb2jt",
+      "repo": "https://github.com/max32002/swei-b2-sugar",
+      "recorded": "思源宋体",
+      "verdict": "confirm",
+      "upstream": "思源宋体",
+      "evidence": "獅尾B2加糖宋體基於思源宋體的橫筆加粗和墨暈改造。"
+    },
+    {
+      "name": "狮尾四季春",
+      "family": "wenfeng-swsjc",
+      "repo": "https://github.com/max32002/swei-spring",
+      "recorded": "思源宋体",
+      "verdict": "confirm",
+      "upstream": "思源宋体",
+      "evidence": "獅尾四季春字體基於思源宋體的拔三角形改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾繁腿黑体",
+      "family": "wenfeng-swfanleg",
+      "repo": "https://github.com/max32002/swei-fan-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾繁腿黑體基於思源黑體的簡轉繁字型；"
+    },
+    {
+      "name": "狮尾繁中黑体",
+      "family": "wenfeng-swfansans",
+      "repo": "https://github.com/max32002/swei-fan-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾繁中黑體基於思源黑體的簡轉繁字型；"
+    },
+    {
+      "name": "狮尾繁中宋体",
+      "family": "wenfeng-swfanserif",
+      "repo": "https://github.com/max32002/swei-fan-serif",
+      "recorded": "思源宋体",
+      "verdict": "confirm",
+      "upstream": "思源宋体",
+      "evidence": "獅尾繁中宋體基於思源宋體的簡轉繁字型；"
+    },
+    {
+      "name": "狮尾咏腿黑体",
+      "family": "wenfeng-swfistleg",
+      "repo": "https://github.com/max32002/swei-fist-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾詠腿黑體基於思源黑體的筆觸長角改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾咏春黑体",
+      "family": "wenfeng-swfistsans",
+      "repo": "https://github.com/max32002/swei-fist-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾詠春黑體基於思源黑體的筆觸長角和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾福腿黑体",
+      "family": "wenfeng-swgospelleg",
+      "repo": "https://github.com/max32002/swei-gospel-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾福腿黑體基於思源黑體的筆觸增加三角形改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾福音黑体",
+      "family": "wenfeng-swgospelsans",
+      "repo": "https://github.com/max32002/swei-gospel-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾福音黑體基於思源黑體的筆觸增加三角形和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾圆体",
+      "family": "wenfeng-swgothic",
+      "repo": "https://github.com/max32002/swei-gothic",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾圓體基於思源黑體的拔腳和加圓改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾腿圆体",
+      "family": "wenfeng-swgothicleg",
+      "repo": "https://github.com/max32002/swei-gothic-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾腿圓體基於思源黑體變圓改造，和獅尾圓體的差別在有長腿，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾半月体",
+      "family": "wenfeng-swhalfmoon",
+      "repo": "https://github.com/max32002/swei-halfmoon",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾半月字體基於思源黑體的拔腳和加半圓改造，不圓也不方的字體，特色之一是「十」長的像忍者的手裏劍。"
+    },
+    {
+      "name": "狮尾简腿黑体",
+      "family": "wenfeng-swjayleg",
+      "repo": "https://github.com/max32002/swei-jay-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾簡腿黑體基於思源黑體的繁轉簡字型；"
+    },
+    {
+      "name": "狮尾简中黑体",
+      "family": "wenfeng-swjaysans",
+      "repo": "https://github.com/max32002/swei-jay-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾簡中黑體基於思源黑體的繁轉簡字型；"
+    },
+    {
+      "name": "狮尾简中宋体",
+      "family": "wenfeng-swjayserif",
+      "repo": "https://github.com/max32002/swei-jay-serif",
+      "recorded": "思源宋体",
+      "verdict": "confirm",
+      "upstream": "思源宋体",
+      "evidence": "獅尾簡中宋體基於思源宋體的繁轉簡字型；"
+    },
+    {
+      "name": "狮尾麦腿黑体",
+      "family": "wenfeng-swmarkerleg",
+      "repo": "https://github.com/max32002/swei-marker-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾麥腿黑體基於思源黑體的筆觸變斜改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾麦克黑体",
+      "family": "wenfeng-swmarkersans",
+      "repo": "https://github.com/max32002/swei-marker-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾麥克黑體基於思源黑體的筆觸變斜和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾火腿黑体",
+      "family": "wenfeng-swmatchleg",
+      "repo": "https://github.com/max32002/swei-match-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾火腿黑體基於思源黑體的筆觸變火柴改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾火柴黑体",
+      "family": "wenfeng-swmatchsans",
+      "repo": "https://github.com/max32002/swei-match-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾火柴黑體基於思源黑體的筆觸變火柴和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾肉丸",
+      "family": "wenfeng-swmeatball",
+      "repo": "https://github.com/max32002/swei-meatball",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源宋体",
+      "evidence": "獅尾肉丸字體基於思源宋體的三角形換半圓形改造，遊走於古典與可愛之間的字體。"
+    },
+    {
+      "name": "狮尾螺帽腿黑体",
+      "family": "wenfeng-swnutleg",
+      "repo": "https://github.com/max32002/swei-nut-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾螺帽腿黑體基於思源黑體增加斜角改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾螺帽黑体",
+      "family": "wenfeng-swnutsans",
+      "repo": "https://github.com/max32002/swei-nut-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾螺帽黑體基於思源黑體增加斜角和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾彩虹腿",
+      "family": "wenfeng-swrainbowleg",
+      "repo": "https://github.com/max32002/swei-rainbow-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾彩虹腿基於思源黑體的上半邊變圓改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾右下腿黑体",
+      "family": "wenfeng-swrightbottoml",
+      "repo": "https://github.com/max32002/swei-right-bottom-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾右下腿黑體基於思源黑體的右下角變圓改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾右下圆黑体",
+      "family": "wenfeng-swrightbottoms",
+      "repo": "https://github.com/max32002/swei-right-bottom-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾右下圓黑體基於思源黑體的右下角變圓和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾黑体",
+      "family": "wenfeng-swsans",
+      "repo": "https://github.com/max32002/swei-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾黑體基於思源黑體的拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾快腿黑体",
+      "family": "wenfeng-swshearleg",
+      "repo": "https://github.com/max32002/swei-shear-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾快腿黑體基於思源黑體的筆觸變斜改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾快剪黑体",
+      "family": "wenfeng-swshearsans",
+      "repo": "https://github.com/max32002/swei-shear-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾快剪黑體基於思源黑體的筆觸變斜和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾尖腿黑体",
+      "family": "wenfeng-swspikeleg",
+      "repo": "https://github.com/max32002/swei-spike-leg",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾尖腿黑體基於思源黑體的轉角長尖刺改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾尖刺黑体",
+      "family": "wenfeng-swspikesans",
+      "repo": "https://github.com/max32002/swei-spike-sans",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾尖刺黑體基於思源黑體的轉角長尖刺和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾加糖宋体",
+      "family": "wenfeng-swsugar",
+      "repo": "https://github.com/max32002/swei-sugar",
+      "recorded": "思源宋体",
+      "verdict": "confirm",
+      "upstream": "思源宋体",
+      "evidence": "獅尾加糖宋體基於思源宋體的橫筆加粗改造。"
+    },
+    {
+      "name": "狮尾牙膏圆体",
+      "family": "wenfeng-swtoothpaste",
+      "repo": "https://github.com/max32002/swei-toothpaste",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾牙膏圓體基於思源黑體的變圓和拔腳改造，更加簡明現代化的字體。"
+    },
+    {
+      "name": "狮尾XD珍珠",
+      "family": "wenfeng-swxd",
+      "repo": "https://github.com/max32002/swei-xd",
+      "recorded": "思源黑体",
+      "verdict": "confirm",
+      "upstream": "思源黑体",
+      "evidence": "獅尾XD珍珠基於思源黑體的下半邊變圓改造，更加簡明現代化的字體。"
+    }
+  ]
+}

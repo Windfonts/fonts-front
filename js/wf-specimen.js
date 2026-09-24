@@ -817,6 +817,46 @@
     mountGlyphTable: mountGlyphTable,
     openQianziwenStele: openQianziwenStele,
     QIANZIWEN: QIANZIWEN,
-    brandLine: brandLine
+    brandLine: brandLine,
+    fetchCssRanges: fetchCssRanges,
+    inRanges: inRanges,
+    /** 相对探测文（默认简繁千字文）比较两款 unicode-range：仅对方有 = 可补全字 */
+    coverageDiff: function (primaryFamily, otherFamily, weight, text) {
+      const probe = text || (QIANZIWEN.hans + QIANZIWEN.hant);
+      return Promise.all([
+        fetchCssRanges(primaryFamily, weight),
+        fetchCssRanges(otherFamily, weight)
+      ]).then(function (pair) {
+        const a = pair[0];
+        const b = pair[1];
+        if (!a || !b) return null;
+        let both = 0, onlyOther = 0, onlyPrimary = 0, neither = 0;
+        const fillSamples = [];
+        const seen = {};
+        for (let i = 0; i < probe.length;) {
+          const cp = probe.codePointAt(i);
+          const ch = String.fromCodePoint(cp);
+          i += ch.length;
+          if (seen[ch] || /\s/.test(ch)) continue;
+          seen[ch] = true;
+          const inA = inRanges(a, cp);
+          const inB = inRanges(b, cp);
+          if (inA && inB) both++;
+          else if (!inA && inB) {
+            onlyOther++;
+            if (fillSamples.length < 32) fillSamples.push(ch);
+          } else if (inA && !inB) onlyPrimary++;
+          else neither++;
+        }
+        return {
+          both: both,
+          onlyOther: onlyOther,
+          onlyPrimary: onlyPrimary,
+          neither: neither,
+          total: both + onlyOther + onlyPrimary + neither,
+          fillSamples: fillSamples
+        };
+      });
+    }
   };
 })();

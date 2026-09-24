@@ -348,19 +348,23 @@
               if (!upName || upName === font.name) return '';
               const up = WFChrome.findFontByName(WFProto.getCatalogList(), upName);
               if (!up || !up.family || up.id === font.id) return '';
-              return '<label class="use-fallback"><input type="checkbox" id="optFallback" value="' + esc(up.family) + '" data-up-name="' + esc(up.name) + '"> ' +
-                '缺字用上游「' + esc(up.name) + '」补全 <span class="hint">同档 subset · 体积约×2</span></label>';
+              return '<label class="use-fallback" id="fallbackLabel">' +
+                '<input type="checkbox" id="optFallback" value="' + esc(up.family) + '" data-up-name="' + esc(up.name) + '" data-up-id="' + esc(up.id) + '"> ' +
+                '缺字用上游「' + esc(up.name) + '」补全 ' +
+                '<span class="hint" id="fallbackHint">须同字重 · 同档 subset</span></label>';
             })() +
             '<div id="embed"></div>' +
             '<p class="use-note">体积按单字重估算；默认「常用」适合品牌短文案，正文站可选「中文」。只要页面里出现的字，用 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a>。' +
-              '<code>font-family</code> 用 <code>' + esc(WFEmbed.familyName(font.family)) + '</code>。</p></div>' +
+              '<code>font-family</code> 用 <code>' + esc(WFEmbed.familyName(font.family)) + '</code>；开启补全时请按生成代码写双 family 栈。</p></div>' +
           '</section>' +
           (weights.length > 1
             ? '<section class="panel" id="weights"><div class="panel-head"><h2>' + WFChrome.icon('font') + '字重</h2></div>' +
               '<div class="panel-pad weights-sheet" id="sheet">' + WFSpecimen.weightsSheetHtml(font, sample, w0) + '</div></section>'
             : '') +
           '<section class="panel" id="glyphs"><div class="panel-head"><div class="glyph-title"><h2>' + WFChrome.icon('hashtag') + '字符表</h2><div id="glyphQuery"></div></div><div class="glyph-tools" id="glyphTools"></div></div>' +
-            '<div class="panel-pad"><div class="glyph-summary" id="glyphSummary" aria-live="polite"></div><div class="glyph-blocks" id="glyphBlocks"></div></div></section>' +
+            '<div class="panel-pad"><div class="glyph-summary" id="glyphSummary" aria-live="polite"></div>' +
+            '<div class="glyph-diff for-dev" id="glyphDiff" hidden></div>' +
+            '<div class="glyph-blocks" id="glyphBlocks"></div></div></section>' +
           '<section class="panel" id="license"><div class="panel-head"><h2>' + WFChrome.icon('certificate') + '授权</h2>' +
             '<div class="license-head"><span class="tier' + (proofTier(font) === '开源' ? ' is-open' : '') + '">' + esc(tierLabel(proofTier(font))) + '</span>' +
               (font.licenseName ? '<span class="name">' + esc(font.licenseName) + '</span>' : '') + '</div></div>' +
@@ -434,17 +438,55 @@
     let weight = w0;
     let version = WFEmbed.DEFAULT_VERSION || 'zh-common';
     const fallbackEl = document.getElementById('optFallback');
-    function embedFamily() {
-      if (fallbackEl && fallbackEl.checked && fallbackEl.value) {
-        return font.family + '|' + fallbackEl.value;
-      }
-      return font.family;
+    const fallbackHint = document.getElementById('fallbackHint');
+    const upFont = (function () {
+      if (!fallbackEl) return null;
+      const id = fallbackEl.getAttribute('data-up-id');
+      const name = fallbackEl.getAttribute('data-up-name');
+      if (id && WFProto.getFont(id)) return WFProto.getFont(id);
+      return name ? WFChrome.findFontByName(WFProto.getCatalogList(), name) : null;
+    })();
+
+    function fallbackAlign() {
+      if (!upFont) return null;
+      return WFEmbed.alignWeight(font, upFont, weight);
     }
+
+    function syncFallbackUi() {
+      if (!fallbackEl || !upFont) return;
+      const align = fallbackAlign();
+      if (!align) return;
+      if (!align.ok) {
+        fallbackEl.checked = false;
+        fallbackEl.disabled = true;
+        if (fallbackHint) {
+          fallbackHint.textContent = align.reason || '字重无法对齐';
+          fallbackHint.classList.add('is-warn');
+        }
+      } else {
+        fallbackEl.disabled = false;
+        if (fallbackHint) {
+          fallbackHint.textContent = '同字重 ' + align.css + ' · 同档 subset · 体积约×2';
+          fallbackHint.classList.remove('is-warn');
+        }
+      }
+    }
+
     function embedItems() {
-      return [{ family: embedFamily(), weights: [weight], version: version }];
+      const primary = { family: font.family, weights: [weight], version: version };
+      if (!fallbackEl || !fallbackEl.checked || !upFont || fallbackEl.disabled) {
+        return [primary];
+      }
+      const align = fallbackAlign();
+      if (!align || !align.ok) return [primary];
+      return [
+        primary,
+        { family: upFont.family, weights: [align.weightName], version: version }
+      ];
     }
     const embed = WFEmbed.mount(document.getElementById('embed'), embedItems());
     function refreshEmbed() {
+      syncFallbackUi();
       embed.setItems(embedItems());
     }
     document.querySelectorAll('[data-version]').forEach(function (b) {
@@ -455,7 +497,17 @@
       });
     });
     if (fallbackEl) {
-      fallbackEl.addEventListener('change', refreshEmbed);
+      syncFallbackUi();
+      fallbackEl.addEventListener('change', function () {
+        if (fallbackEl.checked) {
+          const align = fallbackAlign();
+          if (!align || !align.ok) {
+            fallbackEl.checked = false;
+            WFChrome.toast(align && align.reason ? align.reason : '字重无法对齐，未开启补全');
+          }
+        }
+        refreshEmbed();
+      });
     }
 
     const pick = document.getElementById('btnPick');
@@ -499,6 +551,7 @@
       if (tester) tester.sync({ weight: weight });
       if (glyphTable) glyphTable.setWeight(token);
       syncWeightUi();
+      paintGlyphDiff();
     }
     document.querySelectorAll('#wallTools [data-w], #sheet [data-w]').forEach(function (b) {
       b.addEventListener('click', function () {
@@ -536,6 +589,7 @@
         refreshEmbed();
         if (glyphTable) glyphTable.setWeight(w);
         syncWeightUi();
+        paintGlyphDiff();
       },
       onClose: applyWallState,
       onRestore: applyWallState,
@@ -588,6 +642,39 @@
       font,
       weight
     );
+
+    function paintGlyphDiff() {
+      const el = document.getElementById('glyphDiff');
+      if (!el || !upFont || WFChrome.skipGlyphCov(font)) {
+        if (el) el.hidden = true;
+        return;
+      }
+      el.hidden = false;
+      el.innerHTML = '<p class="glyph-diff-line is-quiet">正在对比上游「' + esc(upFont.name) + '」覆盖差…</p>';
+      const align = fallbackAlign();
+      const otherW = (align && align.ok) ? align.weightName : weight;
+      WFSpecimen.coverageDiff(font.family, upFont.family, otherW).then(function (diff) {
+        if (!diff) {
+          el.innerHTML = '<p class="glyph-diff-line is-quiet">暂时无法对比上游覆盖（分包 CSS 未取到）。</p>';
+          return;
+        }
+        const samples = (diff.fillSamples || []).map(function (ch) {
+          return '<span class="glyph-diff-ch">' + esc(ch) + '</span>';
+        }).join('');
+        el.innerHTML =
+          '<p class="glyph-diff-line"><b>覆盖差 · 上游「' + esc(upFont.name) + '」</b>' +
+            ' · 千字文（简+繁）探测：主款缺、上游有 <b>' + diff.onlyOther + '</b> 字' +
+            ' · 两边都有 ' + diff.both +
+            ' · 两边都缺 ' + diff.neither +
+            (diff.onlyPrimary ? ' · 仅主款有 ' + diff.onlyPrimary : '') +
+          '</p>' +
+          (diff.onlyOther
+            ? '<p class="glyph-diff-samples" title="可被上游补全的样例">' + samples +
+              (diff.onlyOther > diff.fillSamples.length ? '<span class="is-quiet">…</span>' : '') + '</p>'
+            : '<p class="glyph-diff-line is-quiet">在这组常用字上，上游相对主款没有额外可补字。</p>');
+      });
+    }
+    paintGlyphDiff();
 
     WFProto.bumpFontStat(font.id, 'views', 1, { once: true });
     WFProto.paintFontStats(root);

@@ -1,0 +1,989 @@
+{
+  "probed": 60,
+  "gaps": [
+    {
+      "family": "wenfeng-albbpht",
+      "name": "阿里巴巴普惠体",
+      "norm": "Albbpht",
+      "chars": 28937,
+      "db": [
+        "Heavy",
+        "Light",
+        "Medium",
+        "Regular"
+      ],
+      "cdn": [
+        "Light",
+        "Regular",
+        "Medium",
+        "Bold",
+        "Heavy"
+      ],
+      "cdn_not_in_db": [
+        "Bold"
+      ],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-hclcks",
+      "name": "寒蝉龙藏楷书",
+      "norm": "Hclcks",
+      "chars": 7042,
+      "db": [
+        "Medium",
+        "Regular",
+        "Bold",
+        "Extrabold"
+      ],
+      "cdn": [
+        "Regular",
+        "Medium",
+        "Bold"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": [
+        "Extrabold"
+      ]
+    },
+    {
+      "family": "wenfeng-systcnl",
+      "name": "思源宋体 CN Light",
+      "norm": "Light",
+      "chars": 30847,
+      "db": [
+        "Systcn"
+      ],
+      "cdn": [],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": [
+        "Systcn"
+      ]
+    }
+  ],
+  "all": [
+    {
+      "family": "wenfeng-dyh",
+      "name": "得意黑",
+      "norm": "Dyh",
+      "chars": 7710,
+      "db": [
+        "Oblique"
+      ],
+      "cdn": [
+        "Oblique"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-albbpht",
+      "name": "阿里巴巴普惠体",
+      "norm": "Albbpht",
+      "chars": 28937,
+      "db": [
+        "Heavy",
+        "Light",
+        "Medium",
+        "Regular"
+      ],
+      "cdn": [
+        "Light",
+        "Regular",
+        "Medium",
+        "Bold",
+        "Heavy"
+      ],
+      "cdn_not_in_db": [
+        "Bold"
+      ],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-ddjbt",
+      "name": "钉钉进步体",
+      "norm": "Ddjbt",
+      "chars": 7498,
+      "db": [
+        "Normal",
+        "Regular"
+      ],
+      "cdn": [
+        "Regular",
+        "Normal"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-hckht",
+      "name": "寒蝉宽黑体",
+      "norm": "Hckht",
+      "chars": 30274,
+      "db": [
+        "Normal"
+      ],
+      "cdn": [
+        "Normal"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-jnymt",
+      "name": "荆南缘默体",
+      "norm": "Jnymt",
+      "chars": 8068,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-ddxstyx",
+      "name": "点点像素宋体圆",
+      "norm": "Ddxstyx",
+      "chars": 22791,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-ibmps",
+      "name": "IBM Plex Sans SC 简体中文",
+      "norm": "Ibmps",
+      "chars": 29286,
+      "db": [
+        "Light",
+        "Text",
+        "Extralight",
+        "Thin",
+        "Bold",
+        "Regular"
+      ],
+      "cdn": [
+        "Thin",
+        "Extralight",
+        "Light",
+        "Regular",
+        "Bold",
+        "Text"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-btot",
+      "name": "波塔",
+      "norm": "Btot",
+      "chars": 7286,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-hcdht",
+      "name": "寒蝉端黑体 特细体",
+      "norm": "Hcdht",
+      "chars": 30892,
+      "db": [
+        "Light",
+        "Black"
+      ],
+      "cdn": [
+        "Light",
+        "Black"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-ddxstfx",
+      "name": "点点像素宋体",
+      "norm": "Ddxstfx",
+      "chars": 22791,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-hyqzpt",
+      "name": "黄胤淇招牌体",
+      "norm": "Hyqzpt",
+      "chars": 8099,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-hsmbzt",
+      "name": "香山毛笔字体",
+      "norm": "Hsmbzt",
+      "chars": 9804,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-jzkgeht",
+      "name": "瀞之库格尔黑体",
+      "norm": "Jzkgeht",
+      "chars": 16732,
+      "db": [
+        "Heavy"
+      ],
+      "cdn": [
+        "Heavy"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-hclcks",
+      "name": "寒蝉龙藏楷书",
+      "norm": "Hclcks",
+      "chars": 7042,
+      "db": [
+        "Medium",
+        "Regular",
+        "Bold",
+        "Extrabold"
+      ],
+      "cdn": [
+        "Regular",
+        "Medium",
+        "Bold"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": [
+        "Extrabold"
+      ]
+    },
+    {
+      "family": "wenfeng-hctyt",
+      "name": "寒蝉团圆体 Sans",
+      "norm": "Hctyt",
+      "chars": 7869,
+      "db": [
+        "Normal",
+        "Round"
+      ],
+      "cdn": [
+        "Normal",
+        "Round"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-hzpy",
+      "name": "汉字拼音体",
+      "norm": "Hzpy",
+      "chars": 26654,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-cjkfqlt",
+      "name": "CJK手写字",
+      "norm": "Cjkfqlt",
+      "chars": 42147,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-azbzzwzt",
+      "name": "Droid Sans Fallback",
+      "norm": "Azbzzwzt",
+      "chars": 29436,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-cylyt",
+      "name": "辰宇落雁体 Thin",
+      "norm": "Cylyt",
+      "chars": 5166,
+      "db": [
+        "Monospaced",
+        "Regular"
+      ],
+      "cdn": [
+        "Regular",
+        "Monospaced"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-ddxstlx",
+      "name": "点点像素宋体钻石体",
+      "norm": "Ddxstlx",
+      "chars": 22791,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-klsyt",
+      "name": "I.Ngaan刻石录颜体",
+      "norm": "Klsyt",
+      "chars": 14471,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-jzkgemc",
+      "name": "瀞明朝",
+      "norm": "Jzkgemc",
+      "chars": 16691,
+      "db": [
+        "Heavy"
+      ],
+      "cdn": [
+        "Heavy"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-systcnl",
+      "name": "思源宋体 CN Light",
+      "norm": "Light",
+      "chars": 30847,
+      "db": [
+        "Systcn"
+      ],
+      "cdn": [],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": [
+        "Systcn"
+      ]
+    },
+    {
+      "family": "wenfeng-kslgbht",
+      "name": "钢笔鹤-B",
+      "norm": "Kslgbht",
+      "chars": 14448,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-lftsyh",
+      "name": "俐方体11号",
+      "norm": "Lftsyh",
+      "chars": 10244,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-kslyt",
+      "name": "一点明体",
+      "norm": "Kslyt",
+      "chars": 55352,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-opsa",
+      "name": "OPPO Sans",
+      "norm": "Opsa",
+      "chars": 29197,
+      "db": [
+        "Medium",
+        "Light",
+        "Bold",
+        "Regular"
+      ],
+      "cdn": [
+        "Light",
+        "Regular",
+        "Medium",
+        "Bold"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-mkwfys",
+      "name": "猫啃网风雅宋",
+      "norm": "Mkwfys",
+      "chars": 42767,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-mkzyt",
+      "name": "猫啃竹圆体",
+      "norm": "Mkzyt",
+      "chars": 14329,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-misa",
+      "name": "小米兰亭 Sans",
+      "norm": "Misa",
+      "chars": 29414,
+      "db": [
+        "Medium",
+        "Heavy",
+        "Semibold",
+        "Light",
+        "Extralight",
+        "Bold",
+        "Normal",
+        "Demibold",
+        "Regular",
+        "Thin"
+      ],
+      "cdn": [
+        "Thin",
+        "Extralight",
+        "Light",
+        "Regular",
+        "Normal",
+        "Medium",
+        "Semibold",
+        "Demibold",
+        "Bold",
+        "Heavy"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-mkwgzh",
+      "name": "猫啃故障黑体",
+      "norm": "Mkwgzh",
+      "chars": 30892,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-mspyt",
+      "name": "萌神汉宋",
+      "norm": "Mspyt",
+      "chars": 30847,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-lhls",
+      "name": "临海体",
+      "norm": "Lhls",
+      "chars": 9311,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-mkwgzs",
+      "name": "猫啃故障宋体",
+      "norm": "Mkwgzs",
+      "chars": 30847,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-lhzt",
+      "name": "濑户字体",
+      "norm": "Lhzt",
+      "chars": 57020,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-mksjh",
+      "name": "猫啃什锦黑",
+      "norm": "Mksjh",
+      "chars": 10382,
+      "db": [
+        "Bold"
+      ],
+      "cdn": [
+        "Bold"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-qtmksxt",
+      "name": "千图马克手写体",
+      "norm": "Qtmksxt",
+      "chars": 10467,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-nsfx",
+      "name": "女書鳳栖",
+      "norm": "Nsfx",
+      "chars": 29993,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-pxzs",
+      "name": "屏显臻宋",
+      "norm": "Pxzs",
+      "chars": 30847,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-nswt",
+      "name": "女書梧桐",
+      "norm": "Nswt",
+      "chars": 30034,
+      "db": [
+        "Italic",
+        "Regular"
+      ],
+      "cdn": [
+        "Regular",
+        "Italic"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-stfytz",
+      "name": "w",
+      "norm": "Stfytz",
+      "chars": 22060,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-qtxht",
+      "name": "千图学画体",
+      "norm": "Qtxht",
+      "chars": 10476,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-syhtcjk",
+      "name": "思源黑体 常规体",
+      "norm": "Syhtcjk",
+      "chars": 44681,
+      "db": [
+        "DemiLight",
+        "Medium",
+        "Light",
+        "Regular",
+        "Black",
+        "Thin",
+        "Bold"
+      ],
+      "cdn": [
+        "Thin",
+        "Light",
+        "Regular",
+        "Medium",
+        "DemiLight",
+        "Bold",
+        "Black"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-systcn",
+      "name": "思源宋体 CN",
+      "norm": "Systcn",
+      "chars": 30847,
+      "db": [
+        "Heavy",
+        "Light",
+        "Bold",
+        "Extralight",
+        "Semibold",
+        "Medium",
+        "Regular"
+      ],
+      "cdn": [
+        "Extralight",
+        "Light",
+        "Regular",
+        "Medium",
+        "Semibold",
+        "Bold",
+        "Heavy"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-wqydkwmh",
+      "name": "文泉驿微米黑等宽体",
+      "norm": "Wqydkwmh",
+      "chars": 34599,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-xwmh",
+      "name": "霞鹜漫黑",
+      "norm": "Xwmh",
+      "chars": 15285,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-twjybbzst",
+      "name": "MOESongUN",
+      "norm": "Twjybbzst",
+      "chars": 25511,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-twjybbzjs",
+      "name": "教育部標準楷書",
+      "norm": "Twjybbzjs",
+      "chars": 13840,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-wqywmh",
+      "name": "文泉驿微米黑",
+      "norm": "Wqywmh",
+      "chars": 34600,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-unfdzh",
+      "name": "Unifont点阵黑",
+      "norm": "Unfdzh",
+      "chars": 65352,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-xsslv",
+      "name": "像素Silver字体",
+      "norm": "Xsslv",
+      "chars": 13709,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-wqyzh",
+      "name": "文泉驿正黑",
+      "norm": "Wqyzh",
+      "chars": 35597,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-twjybxxmt",
+      "name": "PMingLiU 繁体中文版",
+      "norm": "Twjybxxmt",
+      "chars": 21905,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-wqydkzh",
+      "name": "文泉驿正黑等宽",
+      "norm": "Wqydkzh",
+      "chars": 35980,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-xwxxh",
+      "name": "霞鹜新晰黑",
+      "norm": "Xwxxh",
+      "chars": 26477,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-xet",
+      "name": "贤二体",
+      "norm": "Xet",
+      "chars": 10352,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-xwxzs",
+      "name": "霞鹜新致宋",
+      "norm": "Xwxzs",
+      "chars": 26477,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-zhbtt",
+      "name": "字魂扁桃体",
+      "norm": "Zhbtt",
+      "chars": 7639,
+      "db": [
+        "Oblique"
+      ],
+      "cdn": [
+        "Oblique"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-yjmct",
+      "name": "源界明朝",
+      "norm": "Yjmct",
+      "chars": 9804,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    },
+    {
+      "family": "wenfeng-zwxszt",
+      "name": "Mplus HZK 12 像素字体",
+      "norm": "Zwxszt",
+      "chars": 10640,
+      "db": [
+        "Regular"
+      ],
+      "cdn": [
+        "Regular"
+      ],
+      "cdn_not_in_db": [],
+      "db_not_on_cdn": []
+    }
+  ]
+}

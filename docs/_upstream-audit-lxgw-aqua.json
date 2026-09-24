@@ -1,0 +1,181 @@
+{
+  "wave": "lxgw-aqua",
+  "items": [
+    {
+      "name": "黑糖梅子糖",
+      "family": "wenfeng-bspsc",
+      "repo": "https://github.com/lxgw/BlackSugarPlumCandy",
+      "verdict": "found",
+      "upstream": "Rounded Mgen+、思源黑体、源泉圆体、Jua",
+      "evidence": "本字体是基于以下开源字体改造而成的衍生项目："
+    },
+    {
+      "name": "范美黑体",
+      "family": "wenfeng-fmthei",
+      "repo": "https://github.com/lxgw/Fanmei",
+      "verdict": "found",
+      "upstream": "梅ゴシック / Ume Gothic",
+      "evidence": "分別基於「梅ゴシック / Ume Gothic」與「梅明朝 / Ume Mincho」進行輕量增補與調整。"
+    },
+    {
+      "name": "范美明体",
+      "family": "wenfeng-fmtming",
+      "repo": "https://github.com/lxgw/Fanmei",
+      "verdict": "found",
+      "upstream": "梅明朝 / Ume Mincho",
+      "evidence": "分別基於「梅ゴシック / Ume Gothic」與「梅明朝 / Ume Mincho」進行輕量增補與調整。"
+    },
+    {
+      "name": "975 黑体",
+      "family": "wenfeng-975hei",
+      "repo": "https://github.com/lxgw/975Hei",
+      "verdict": "found",
+      "upstream": "思源黑体",
+      "evidence": "A Chinese Font Derived from Source Han Sans. 一款基于思源黑体的中文字体。"
+    },
+    {
+      "name": "鹏翎文楷",
+      "family": "wenfeng-plwk",
+      "repo": "https://github.com/lxgw/Pengli",
+      "verdict": "found",
+      "upstream": "霞鶩文楷 GB",
+      "evidence": "《彭蠡文楷》在《霞鶩文楷 GB》的基礎上"
+    },
+    {
+      "name": "小赖字体等宽 SC",
+      "family": "wenfeng-xiaolaimonosc",
+      "repo": "https://github.com/lxgw/kose-font",
+      "verdict": "found",
+      "upstream": "濑户字体",
+      "evidence": "A Chinese Font derived from SetoFont. 一款衍生于 濑户字体 的中文字体。"
+    },
+    {
+      "name": "小赖字体 SC",
+      "family": "wenfeng-xiaolaisc",
+      "repo": "https://github.com/lxgw/kose-font",
+      "verdict": "found",
+      "upstream": "濑户字体",
+      "evidence": "A Chinese Font derived from SetoFont. 一款衍生于 濑户字体 的中文字体。"
+    },
+    {
+      "name": "霞鹜拼音体",
+      "family": "wenfeng-xwpinyin",
+      "repo": "https://github.com/lxgw/LxgwPinyinFont",
+      "verdict": "found",
+      "upstream": "Lato",
+      "evidence": "A Hanyu Pinyin font derived from Lato."
+    },
+    {
+      "name": "霞鹜篆体",
+      "family": "wenfeng-xwzt",
+      "repo": "https://github.com/lxgw/LxgwSeal",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "篆字笔画来源：Klee One by Monotype KK，OFL 1.1"
+    },
+    {
+      "name": "悠哉字体",
+      "family": "wenfeng-yozai",
+      "repo": "https://github.com/lxgw/yozai-font",
+      "verdict": "found",
+      "upstream": "YozFont",
+      "evidence": "A Chinese font derived from Y.OzFont. 一款衍生于 YozFont 的中文字体。"
+    },
+    {
+      "name": "爆呆",
+      "family": "wenfeng-bkd",
+      "repo": "https://github.com/max32002/bakudaifont",
+      "verdict": "found",
+      "upstream": "衡山毛筆フォント",
+      "evidence": "「莫大毛筆字體」是基於衡山毛筆フォント的開放原始碼中文字型。"
+    },
+    {
+      "name": "假珍珠",
+      "family": "wenfeng-fkzl",
+      "repo": "https://github.com/max32002/FakePearl",
+      "verdict": "found",
+      "upstream": "jf open 粉圓",
+      "evidence": "「假粉圓體」是基於jf open 粉圓的開放原始碼中文字型。"
+    },
+    {
+      "name": "杰森手写",
+      "family": "wenfeng-jshw",
+      "repo": "https://github.com/max32002/JasonHandWritingFonts",
+      "verdict": "found",
+      "upstream": "清松手寫體",
+      "evidence": "目前修改清松手寫體的3個字體，分別是基於這幾個版本："
+    },
+    {
+      "name": "暮黑",
+      "family": "wenfeng-kwgh",
+      "repo": "https://github.com/max32002/kurewa-gothic",
+      "verdict": "found",
+      "upstream": "紅道字體",
+      "evidence": "苦累蛙圓體是紅道字體的補字計畫。"
+    },
+    {
+      "name": "丸子黑",
+      "family": "wenfeng-mkgh",
+      "repo": "https://github.com/max32002/maruko-gothic",
+      "verdict": "found",
+      "upstream": "ZenMaruGothic",
+      "evidence": "Maruko gothic derived from ZenMaruGothic Regular."
+    },
+    {
+      "name": "奈楷",
+      "family": "wenfeng-nk",
+      "repo": "https://github.com/max32002/naikaifont",
+      "verdict": "found",
+      "upstream": "瀨戶字體",
+      "evidence": "「內海字體」是基於瀨戶字體的開放原始碼中文字型，目前字型內文字和符號字數在：47,417個。"
+    },
+    {
+      "name": "流行黑",
+      "family": "wenfeng-popgh",
+      "repo": "https://github.com/max32002/pop-gothic",
+      "verdict": "found",
+      "upstream": "HachiMaruPop",
+      "evidence": "Pop Gothic Font derived from HachiMaruPop Font."
+    },
+    {
+      "name": "台湾珍珠",
+      "family": "wenfeng-twzl",
+      "repo": "https://github.com/max32002/TaiwanPearl",
+      "verdict": "found",
+      "upstream": "思源黑體、小杉圓體",
+      "evidence": "台灣圓體基於思源黑體與小杉圓體，大多的字是思源黑體為主，有部份的中文使用小杉圓體的中文字。"
+    },
+    {
+      "name": "余珍珠",
+      "family": "wenfeng-yuzl",
+      "repo": "https://github.com/max32002/YuPearl",
+      "verdict": "found",
+      "upstream": "jf open 粉圓",
+      "evidence": "「俊羽圓體」是基於jf open 粉圓的開放原始碼中文字型。"
+    },
+    {
+      "name": "简语生活体",
+      "family": "wenfeng-abbrfes",
+      "repo": "https://github.com/justfont/AbbrFesFont",
+      "verdict": "found",
+      "upstream": "辰宇落雁體",
+      "evidence": "簡語生活體改作於辰宇落雁體開源專案，並基於 SIL Open Font License 1.1 開源協議授權釋出。"
+    },
+    {
+      "name": "谐灵附体",
+      "family": "wenfeng-allpun",
+      "repo": "https://github.com/justfont/AllPunType",
+      "verdict": "found",
+      "upstream": "源流明體",
+      "evidence": "「諧靈附體」 是基於源流明體字型改作，由 justfont 的團隊製作，包含 7 種字重的字型家族。"
+    },
+    {
+      "name": "就是不错字（吧）",
+      "family": "wenfeng-writeright",
+      "repo": "https://github.com/justfont/The-Write-Right-Font",
+      "verdict": "found",
+      "upstream": "芫荽",
+      "evidence": "「就是不錯字（吧）」 是基於 芫荽 / Iansui 字型改作"
+    }
+  ]
+}

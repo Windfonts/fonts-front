@@ -1,0 +1,62 @@
+[
+  {
+    "name": "寒蝉矩阵体",
+    "family": "wenfeng-hcjz",
+    "repo": "https://github.com/Warren2060/ChillMatrix",
+    "recorded": "original",
+    "verdict": "confirm",
+    "upstream": "",
+    "evidence": "「寒蝉矩阵体」是一套像素⻛格的中文字体。",
+    "note": "README 未写基于某款字。「和点阵字体不同」是风格对比。「英文字符集部分已于之前独立发布」未点字名。仓库根目录无 LICENSE（license API 404）。"
+  },
+  {
+    "name": "寒蝉手拙体",
+    "family": "wenfeng-hcszt",
+    "repo": "https://github.com/Warren2060/ChillShouZhuo",
+    "recorded": "original",
+    "verdict": "confirm",
+    "upstream": "",
+    "evidence": "寒蝉手拙体，主要精髓为发掘手写字体的手拙之美，字体给人一种逼真手写的视觉体验。",
+    "note": "「基于…GB2312-80字符集标准」指收字标准，不是上游字型。仓库根目录无 LICENSE。发行说明只写修字、补缺字、增加 OTF。"
+  },
+  {
+    "name": "寒蝉有机体",
+    "family": "wenfeng-hcth",
+    "repo": "https://github.com/Warren2060/ChillTanHei",
+    "recorded": "original",
+    "verdict": "confirm",
+    "upstream": "",
+    "evidence": "逆反差美术风格字体探索，尝鲜版。",
+    "note": "与寒蝉无机体同仓。v1.00 发行说明作「寒蝉有机体&寒蝉无机体」，发行名寒蝉碳黑体。LICENSE 版权行只有 ©ChillTanHei 2023，无其他字型。未下载 61MB 发行包。"
+  },
+  {
+    "name": "寒蝉团圆体 Sans",
+    "family": "wenfeng-hctyt",
+    "repo": "https://github.com/Warren2060/ChillReunion",
+    "recorded": "original",
+    "verdict": "contradict",
+    "upstream": "得意黑",
+    "evidence": "得意黑二创字体。",
+    "note": "README「原字体项目」链接 https://github.com/atelier-anchor/smiley-sans 。LICENSE 只写 ©ChillReunion Copyright 2023 ChillType，未列得意黑。谱系「寒蝉团圆体」（无 Sans）与本条是同一款：作者标题和 v2.700 说明都称「寒蝉团圆体」，Warren2060 没有第二个团圆体仓库；fonts.json 只有 wenfeng-hctyt。正文未出现 Sans。未拆开发行包。"
+  },
+  {
+    "name": "寒蝉无机体",
+    "family": "wenfeng-hcwjt",
+    "repo": "https://github.com/Warren2060/ChillTanHei",
+    "recorded": "original",
+    "verdict": "confirm",
+    "upstream": "",
+    "evidence": "逆反差美术风格字体探索，尝鲜版。",
+    "note": "同 ChillTanHei。README 未单列此名，发行说明与有机体写在同一条，未写上游。LICENSE 同有机体。"
+  },
+  {
+    "name": "寒蝉月等宽",
+    "family": "wenfeng-hcydk",
+    "repo": "https://github.com/Warren2060/ChillMoonmono",
+    "recorded": "original",
+    "verdict": "confirm",
+    "upstream": "",
+    "evidence": "原创等宽像素字体ChillMoonmono，更具有手写感的人文像素字体。",
+    "note": "LICENSE 版权行为 Copyright 2023 The ChillMoon mono Project Authors，指向本仓库，无其他字型。"
+  }
+]

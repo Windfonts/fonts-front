@@ -69,6 +69,41 @@
       .map(function (tok) { return familyName(tok, opts); }).filter(Boolean);
   }
 
+  /**
+   * 补全用字重对齐：按 CSS font-weight 数字精确匹配另一款的字重名。
+   * 对不齐则 ok=false（拒用该补全），并带上最近一档供提示。
+   */
+  function alignWeight(primaryFont, otherFont, weightToken) {
+    const want = parseInt(WFProto.weightToCss(weightToken || '400'), 10) || 400;
+    const names = (otherFont && otherFont.weights && otherFont.weights.length)
+      ? otherFont.weights
+      : ['Regular'];
+    let best = null;
+    let bestDist = Infinity;
+    for (let i = 0; i < names.length; i++) {
+      const n = names[i];
+      const css = parseInt(WFProto.weightToCss(n), 10) || 400;
+      const d = Math.abs(css - want);
+      if (d < bestDist) {
+        bestDist = d;
+        best = { name: n, css: css };
+      }
+    }
+    if (!best) {
+      return { ok: false, reason: '补全款无可用字重', want: want };
+    }
+    if (bestDist === 0) {
+      return { ok: true, exact: true, weightName: best.name, css: best.css, want: want };
+    }
+    return {
+      ok: false,
+      exact: false,
+      reason: '补全款无 ' + want + ' 字重（最近 ' + best.css + ' · ' + best.name + '）',
+      nearest: best,
+      want: want
+    };
+  }
+
   function cssStack(family, opts) {
     const names = familyNames(family, opts);
     const lines = [];
@@ -96,6 +131,12 @@
       return list.map(function (u) { return "@import url('" + u + "');"; }).join('\n');
     }
     if (kind === 'css') {
+      if (items.length > 1) {
+        const merged = items.map(function (it) { return it.family; }).filter(Boolean).join('|');
+        const w0 = ((items[0] && items[0].weights) || ['400'])[0];
+        return '.your-selector {\n  font-family: ' + cssStack(merged, opts) + ';\n  font-weight: ' +
+          w0 + ';\n  font-display: ' + (display || 'swap') + ';\n}';
+      }
       return items.map(function (it) {
         return '.your-selector {\n  font-family: ' + cssStack(it.family, opts) + ';\n  font-weight: ' +
           ((it.weights || ['400'])[0]) + ';\n  font-display: ' + (display || 'swap') + ';\n}';
@@ -232,6 +273,7 @@
     code: code,
     mount: mount,
     familyName: familyName,
-    familyNames: familyNames
+    familyNames: familyNames,
+    alignWeight: alignWeight
   };
 })();

@@ -1,0 +1,52 @@
+[
+  {
+    "name": "寒蝉活仿宋",
+    "family": "wenfeng-hchfs",
+    "repo": "https://github.com/Warren2060/ChillMovableType",
+    "recorded": "空",
+    "verdict": "found",
+    "upstream": "朱雀仿宋、Simonetta",
+    "evidence": "基于朱雀仿宋和 Simonetta 修改的字体，新适配了英文并创建字符标点。",
+    "note": "这句话在同仓根目录《寒蝉活字系列_infor.pdf》。README 只在「相关项目」把 03 写成朱雀仿宋和 Simonetta，没有写「基于」。LICENSE 只有 © 2023 ChillType，Reserved Font Name 为 ChillMovableType。未打开发行包 ChillHuoFangSong.zip。"
+  },
+  {
+    "name": "寒蝉楷体",
+    "family": "wenfeng-hckt",
+    "repo": "https://github.com/Warren2060/Chillkai",
+    "recorded": "空",
+    "verdict": "none",
+    "upstream": "",
+    "evidence": "为优化中西文排版的楷体项目。",
+    "note": "README 与 LICENSE 都没有基于、改自、派生或 fork。LICENSE 版权行是 Copyright 2023 The ChillKai Project Authors。"
+  },
+  {
+    "name": "寒蝉线体",
+    "family": "wenfeng-hcline",
+    "repo": "https://github.com/Warren2060/ChillLine",
+    "recorded": "空",
+    "verdict": "none",
+    "upstream": "",
+    "evidence": "This font was made by Chill Type. All coyrights belong to Chill Type.",
+    "note": "仓库根目录没有 LICENSE/OFL。README 只写「等距等线英文字体」和 Free font。原句在包内 Information.pdf。name 表版权行 Copyright © 2020-2022 by Chill Type，设计人 Warren。未写其他字体。"
+  },
+  {
+    "name": "寒蝉像素体",
+    "family": "wenfeng-hcpixels",
+    "repo": "https://github.com/Warren2060/ChillPixels",
+    "recorded": "空",
+    "verdict": "none",
+    "upstream": "",
+    "evidence": "Chill Pixels 像素风格字体。4 styles。Free commercial use.",
+    "note": "仓库根目录没有 LICENSE/OFL，也没有说明 PDF。四款 OTF 版权行是 Copyright © 2021 by warren；Matrix、Minimalism 的 license 字段只有 Chill Type 2021。未写上游。"
+  },
+  {
+    "name": "寒蝉拙楷",
+    "family": "wenfeng-hczk",
+    "repo": "https://github.com/Warren2060/ChillZhuoKai",
+    "recorded": "空",
+    "verdict": "found",
+    "upstream": "Yuji Syuku（佑字肃）",
+    "evidence": "原字体 Yuji Syuku 佑字 肅",
+    "note": "直接上游按 README「原字体」和 LICENSE 的 ©Copyright 2021 The Yuji Project Authors。同页下一句是「参考字体骨架 SourceHanSerif 思源宋体 Regular」，没有写成基于、改自、派生或 fork，不记成思源。v1.270 说明写「以【佑字·肃】字体为范本」。"
+  }
+]

@@ -292,7 +292,7 @@ body.is-index .page-head { padding-top: 0; }
 /* —— 厂商索引：丁 · 粘顶目录 —— */
 .page-foundry.is-index { scroll-padding-top: calc(var(--topbar-h) + 4.25rem); }
 .foundry-index-hero {
-  padding: var(--s-6) 0 var(--s-4);
+  padding: var(--s-10) 0 var(--s-8);
 }
 .foundry-index-hero h1 {
   display: inline;
@@ -407,6 +407,11 @@ body.is-index .page-head { padding-top: 0; }
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-3);
+}
+.foundry-close-acts .btn {
+  height: 2.35rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 .foundry-close-stat {
   margin: 0;

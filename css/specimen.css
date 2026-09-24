@@ -518,6 +518,23 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
 .glyph-tools .gtoggle:hover { color: var(--ink); }
 .glyph-tools .gtoggle[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
 .glyph-summary { margin-bottom: var(--s-5); max-width: 34rem; }
+.glyph-diff {
+  margin: 0 0 var(--s-5);
+  padding: var(--s-3) var(--s-4);
+  background: var(--fill);
+  border-radius: var(--radius);
+  max-width: 40rem;
+}
+.glyph-diff-line { margin: 0; font-size: var(--fs-13); color: var(--ink); line-height: 1.6; }
+.glyph-diff-line.is-quiet { color: var(--gray); }
+.glyph-diff-line + .glyph-diff-line,
+.glyph-diff-line + .glyph-diff-samples { margin-top: var(--s-2); }
+.glyph-diff-samples {
+  margin: 0; font-size: var(--fs-15); line-height: 1.8; letter-spacing: 0.06em;
+  word-break: break-all;
+}
+.glyph-diff-ch { display: inline-block; min-width: 1.25em; text-align: center; }
+.glyph-diff .is-quiet { color: var(--gray); }
 .glyph-title { display: flex; align-items: center; gap: var(--s-5); min-width: 0; flex: 1 1 auto; }
 .glyph-title h2 { flex: none; }
 #glyphQuery { display: flex; flex: none; width: 22rem; max-width: 100%; }

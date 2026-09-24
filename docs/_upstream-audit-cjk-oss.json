@@ -1,0 +1,197 @@
+{
+  "wave": "cjk-oss",
+  "items": [
+    {
+      "name": "邪宋",
+      "family": "wenfeng-xsong",
+      "repo": "https://github.com/ButTaiwan/evilsung",
+      "verdict": "found",
+      "upstream": "思源宋体",
+      "evidence": "本字型是基於 SIL Open Font License 1.1 改造Adobe所開發、發表的「思源宋體」字型。"
+    },
+    {
+      "name": "源流明体",
+      "family": "wenfeng-ylmt",
+      "repo": "https://github.com/ButTaiwan/genryu-font",
+      "verdict": "found",
+      "upstream": "源起明体",
+      "evidence": "「源流明體」是基於「源起明體」改造的開放原始碼中文字型。"
+    },
+    {
+      "name": "源起黑体",
+      "family": "wenfeng-yqht",
+      "repo": "https://github.com/ButTaiwan/genyog-font",
+      "verdict": "found",
+      "upstream": "思源黑体",
+      "evidence": "底本全面升級至思源黑體 V2.0。"
+    },
+    {
+      "name": "源起明体",
+      "family": "wenfeng-yqmt",
+      "repo": "https://github.com/ButTaiwan/genyo-font",
+      "verdict": "found",
+      "upstream": "思源宋体",
+      "evidence": "底本全面升級至思源宋體 V2.0。"
+    },
+    {
+      "name": "源泉圆体",
+      "family": "wenfeng-yqyt",
+      "repo": "https://github.com/ButTaiwan/gensen-font",
+      "verdict": "found",
+      "upstream": "源起黑体",
+      "evidence": "「源泉圓體」是將「源起黑體」透過程式化圓角處理而成的開放原始碼中文字型。"
+    },
+    {
+      "name": "源石黑体",
+      "family": "wenfeng-ysht",
+      "repo": "https://github.com/ButTaiwan/genseki-font",
+      "verdict": "found",
+      "upstream": "源起黑体",
+      "evidence": "「源石黑體」是基於「源起黑體」改造的開放原始碼中文字型。"
+    },
+    {
+      "name": "芫荽",
+      "family": "wenfeng-ysui",
+      "repo": "https://github.com/ButTaiwan/iansui",
+      "verdict": "found",
+      "upstream": "Klee One",
+      "evidence": "基於 Fontworks 的 Klee One 衍生的開源繁體中文字型。"
+    },
+    {
+      "name": "源云明体",
+      "family": "wenfeng-yunmt",
+      "repo": "https://github.com/ButTaiwan/genwan-font",
+      "verdict": "found",
+      "upstream": "源流明体",
+      "evidence": "「源雲明體」是基於「源流明體」改造的開放原始碼中文字型。"
+    },
+    {
+      "name": "源样黑体",
+      "family": "wenfeng-yyht",
+      "repo": "https://github.com/ButTaiwan/genyog-font",
+      "verdict": "found",
+      "upstream": "思源黑体",
+      "evidence": "「源樣黑體」系列是基於思源黑體 (Source Han Sans) 的開放原始碼中文字型。"
+    },
+    {
+      "name": "源样明体",
+      "family": "wenfeng-yymt",
+      "repo": "https://github.com/ButTaiwan/genyo-font",
+      "verdict": "found",
+      "upstream": "思源宋体",
+      "evidence": "「源樣明體」系列是基於思源宋體 (Source Han Serif) 的開放原始碼中文字型。"
+    },
+    {
+      "name": "昭源黑体",
+      "family": "wenfeng-zyht",
+      "repo": "https://github.com/chiron-fonts/chiron-hei-hk",
+      "verdict": "found",
+      "upstream": "思源黑体香港版",
+      "evidence": "「昭源黑體」以「思源黑體香港」為基礎"
+    },
+    {
+      "name": "昭源宋体",
+      "family": "wenfeng-zyst",
+      "repo": "https://github.com/chiron-fonts/chiron-sung-hk",
+      "verdict": "found",
+      "upstream": "思源宋体香港版",
+      "evidence": "昭源宋體屬於思源宋體（香港）的衍生專案"
+    },
+    {
+      "name": "昭源圆体",
+      "family": "wenfeng-zyyt",
+      "repo": "https://github.com/chiron-fonts/chiron-go-round-tc",
+      "verdict": "found",
+      "upstream": "昭源黑体",
+      "evidence": "昭源環方 (Chiron GoRound TC) 是一款以昭源黑體為基礎製作的開源、免費仿圓設計字體。"
+    },
+    {
+      "name": "初夏明朝体",
+      "family": "wenfeng-cxmc",
+      "repo": "https://github.com/GuiWonder/EarlySummerSerif",
+      "verdict": "found",
+      "upstream": "思源宋体",
+      "evidence": "一款接近傳統印刷體的中文字型，基於思源宋體。"
+    },
+    {
+      "name": "合简宋体",
+      "family": "wenfeng-hjst",
+      "repo": "https://github.com/GuiWonder/HeSimplFonts",
+      "verdict": "found",
+      "upstream": "思源宋体",
+      "evidence": "HeSimpl Fonts 是一套基于思源黑体与思源宋体（简体版）开发的繁简转换字体。"
+    },
+    {
+      "name": "尚古明体",
+      "family": "wenfeng-sgmt",
+      "repo": "https://github.com/GuiWonder/Shanggu",
+      "verdict": "found",
+      "upstream": "思源宋体",
+      "evidence": "在思源黑體 (Source Han Sans)、思源宋體 (Source Han Serif) 日文版的基礎上"
+    },
+    {
+      "name": "月星楷",
+      "family": "wenfeng-yxkt",
+      "repo": "https://github.com/GuiWonder/MoonStarsKai",
+      "verdict": "found",
+      "upstream": "Klee One、霞鹜文楷、芫荽",
+      "evidence": "在 Klee 的基礎上，結合霞鶩文楷 TC、霞鶩文楷以及芫荽字形"
+    },
+    {
+      "name": "寒蝉楷体",
+      "family": "wenfeng-hckt",
+      "repo": "https://github.com/Warren2060/Chillkai",
+      "verdict": "none",
+      "upstream": "",
+      "evidence": "为优化中西文排版的楷体项目。"
+    },
+    {
+      "name": "寒蝉线体",
+      "family": "wenfeng-hcline",
+      "repo": "https://github.com/Warren2060/ChillLine",
+      "verdict": "none",
+      "upstream": "",
+      "evidence": "等距等线英文字体"
+    },
+    {
+      "name": "寒蝉像素体",
+      "family": "wenfeng-hcpixels",
+      "repo": "https://github.com/Warren2060/ChillPixels",
+      "verdict": "none",
+      "upstream": "",
+      "evidence": "Chill Pixels 像素风格字体。"
+    },
+    {
+      "name": "更纱黑体",
+      "family": "wenfeng-gsht",
+      "repo": "https://github.com/be5invis/Sarasa-Gothic",
+      "verdict": "found",
+      "upstream": "思源黑体、Inter",
+      "evidence": "西文字符基于 Inter 字型设计。"
+    },
+    {
+      "name": "更纱等宽",
+      "family": "wenfeng-gskd",
+      "repo": "https://github.com/be5invis/Sarasa-Gothic",
+      "verdict": "found",
+      "upstream": "思源黑体、Iosevka",
+      "evidence": "基于 Iosevka 和 Source Han Sans 字型设计"
+    },
+    {
+      "name": "汇文明朝",
+      "family": "wenfeng-hwmc",
+      "repo": "https://github.com/bosswnx/huiwenmincho-improved",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "原字体在知乎上发布"
+    },
+    {
+      "name": "澳声通拼音文楷",
+      "family": "wenfeng-pywk",
+      "repo": "https://github.com/jeffreyxuan/toneoz-font-pinyin-wenkai",
+      "verdict": "found",
+      "upstream": "Klee One、霞鹜文楷",
+      "evidence": "这是一款基于「FONTWORKS Klee One」以及「LXGW 霞鹜文楷」的中文字体"
+    }
+  ]
+}

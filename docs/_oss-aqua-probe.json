@@ -1,0 +1,264 @@
+[
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "naikaifont",
+    "label": "奈楷",
+    "url": "https://github.com/max32002/naikaifont",
+    "stars": 560,
+    "full": "max32002/naikaifont",
+    "fontCount": 11,
+    "pick": [
+      "jp/NaikaiFont-Regular.ttf"
+    ],
+    "sample": [
+      "jp/NaikaiFont-Bold.ttf",
+      "jp/NaikaiFont-ExtraLight.ttf",
+      "jp/NaikaiFont-Light.ttf",
+      "jp/NaikaiFont-Regular.ttf",
+      "jp/NaikaiFont-SemiBold.ttf",
+      "tw/NaikaiFont-Bold.ttf",
+      "tw/NaikaiFont-ExtraLight.ttf",
+      "tw/NaikaiFont-Light.ttf"
+    ]
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-gothic",
+    "label": "狮尾黑体",
+    "url": "https://github.com/max32002/swei-gothic",
+    "stars": 204,
+    "full": "max32002/swei-gothic",
+    "fontCount": 21,
+    "pick": [
+      "CJK SC/SweiGothicCJKsc-Regular.ttf",
+      "CJK SC/SweiGothicCJKsc-Bold.ttf",
+      "CJK SC/SweiGothicCJKsc-Medium.ttf"
+    ],
+    "sample": [
+      "CJK JP/SweiGothicCJKjp-Black.ttf",
+      "CJK JP/SweiGothicCJKjp-Bold.ttf",
+      "CJK JP/SweiGothicCJKjp-DemiLight.ttf",
+      "CJK JP/SweiGothicCJKjp-Light.ttf",
+      "CJK JP/SweiGothicCJKjp-Medium.ttf",
+      "CJK JP/SweiGothicCJKjp-Regular.ttf",
+      "CJK JP/SweiGothicCJKjp-Thin.ttf",
+      "CJK SC/SweiGothicCJKsc-Black.ttf"
+    ]
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "bakudaifont",
+    "label": "爆呆",
+    "url": "https://github.com/max32002/bakudaifont",
+    "stars": 170,
+    "full": "max32002/bakudaifont",
+    "fontCount": 5,
+    "pick": [
+      "tw/Bakudai-Regular.ttf"
+    ],
+    "sample": [
+      "tw/Bakudai-Bold.ttf",
+      "tw/Bakudai-ExtraLight.ttf",
+      "tw/Bakudai-Light.ttf",
+      "tw/Bakudai-Medium.ttf",
+      "tw/Bakudai-Regular.ttf"
+    ]
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "max-hana",
+    "label": "max hana",
+    "url": "https://github.com/max32002/max-hana",
+    "stars": 114,
+    "full": "max32002/max-hana",
+    "fontCount": 11,
+    "pick": [
+      "ttf/B2Hana-Regular-Lite.ttf"
+    ],
+    "sample": [
+      "ttf/B2Hana-Medium.ttf",
+      "ttf/B2Hana-Regular-Lite.ttf",
+      "ttf/B2Hana-Regular.ttf",
+      "ttf/B2HanaB-Medium.ttf",
+      "ttf/B2HanaB-Regular.ttf",
+      "ttf/HanaMeatball-Medium.ttf",
+      "ttf/HanaMeatball-Regular-Lite.ttf",
+      "ttf/HanaMeatball-Regular.ttf"
+    ]
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "masafont",
+    "label": "masafont",
+    "url": "https://github.com/max32002/masafont",
+    "stars": 106,
+    "full": "max32002/masafont",
+    "fontCount": 5,
+    "pick": [
+      "tw/MasaFont-Regular.ttf"
+    ],
+    "sample": [
+      "tw/MasaFont-Bold.ttf",
+      "tw/MasaFont-ExtraLight.ttf",
+      "tw/MasaFont-Light.ttf",
+      "tw/MasaFont-Medium.ttf",
+      "tw/MasaFont-Regular.ttf"
+    ]
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "pop-gothic",
+    "label": "流行黑",
+    "url": "https://github.com/max32002/pop-gothic",
+    "stars": 105,
+    "full": "max32002/pop-gothic",
+    "fontCount": 10,
+    "pick": [
+      "CJK JP/PopGothicCjkJp-Regular.ttf"
+    ],
+    "sample": [
+      "CJK JP/PopGothicCjkJp-Bold.ttf",
+      "CJK JP/PopGothicCjkJp-ExtraLight.ttf",
+      "CJK JP/PopGothicCjkJp-Light.ttf",
+      "CJK JP/PopGothicCjkJp-Regular.ttf",
+      "CJK JP/PopGothicCjkJp-SemiBold.ttf",
+      "CJK TC/PopGothicCjkTc-Bold.ttf",
+      "CJK TC/PopGothicCjkTc-ExtraLight.ttf",
+      "CJK TC/PopGothicCjkTc-Light.ttf"
+    ]
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "nanifont",
+    "label": "nanifont",
+    "url": "https://github.com/max32002/nanifont",
+    "stars": 102,
+    "full": "max32002/nanifont",
+    "fontCount": 5,
+    "pick": [
+      "ttf/NaniFont-Regular.ttf"
+    ],
+    "sample": [
+      "ttf/NaniFont-Bold.ttf",
+      "ttf/NaniFont-ExtraLight.ttf",
+      "ttf/NaniFont-Light.ttf",
+      "ttf/NaniFont-Regular.ttf",
+      "ttf/NaniFont-SemiBold.ttf"
+    ]
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "FakePearl",
+    "label": "假珍珠",
+    "url": "https://github.com/max32002/FakePearl",
+    "stars": 101,
+    "full": "max32002/FakePearl",
+    "fontCount": 5,
+    "pick": [
+      "tw/FakePearl-Regular.ttf"
+    ],
+    "sample": [
+      "tw/FakePearl-ExtraLight.ttf",
+      "tw/FakePearl-Light.ttf",
+      "tw/FakePearl-Medium.ttf",
+      "tw/FakePearl-Regular.ttf",
+      "tw/FakePearl-SemiBold.ttf"
+    ]
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "maruko-gothic",
+    "label": "丸子黑",
+    "url": "https://github.com/max32002/maruko-gothic",
+    "stars": 85,
+    "full": "max32002/maruko-gothic",
+    "fontCount": 11,
+    "pick": [
+      "CJK SC/MarukoGothicCJKsc-Regular.ttf",
+      "CJK SC/MarukoGothicCJKsc-Medium.ttf",
+      "CJK SC/MarukoGothicCJKsc-Light.ttf"
+    ],
+    "sample": [
+      "CJK JP/MarukoGothicCJKjp-Black.ttf",
+      "CJK JP/MarukoGothicCJKjp-Bold.ttf",
+      "CJK JP/MarukoGothicCJKjp-Light.ttf",
+      "CJK JP/MarukoGothicCJKjp-Medium.ttf",
+      "CJK JP/MarukoGothicCJKjp-Regular.ttf",
+      "CJK SC/MarukoGothicCJKsc-Light.ttf",
+      "CJK SC/MarukoGothicCJKsc-Medium.ttf",
+      "CJK SC/MarukoGothicCJKsc-Regular.ttf"
+    ]
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "kurewa-gothic",
+    "label": "暮黑",
+    "url": "https://github.com/max32002/kurewa-gothic",
+    "stars": 71,
+    "full": "max32002/kurewa-gothic",
+    "fontCount": 10,
+    "pick": [
+      "CJK JP/KurewaGothicCjkJp-Regular.ttf"
+    ],
+    "sample": [
+      "CJK JP/KurewaGothicCjkJp-Bold.ttf",
+      "CJK JP/KurewaGothicCjkJp-ExtraLight.ttf",
+      "CJK JP/KurewaGothicCjkJp-Light.ttf",
+      "CJK JP/KurewaGothicCjkJp-Regular.ttf",
+      "CJK JP/KurewaGothicCjkJp-SemiBold.ttf",
+      "CJK TC/KurewaGothicCjkTc-Bold.ttf",
+      "CJK TC/KurewaGothicCjkTc-ExtraLight.ttf",
+      "CJK TC/KurewaGothicCjkTc-Light.ttf"
+    ]
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "TaiwanPearl",
+    "label": "台湾珍珠",
+    "url": "https://github.com/max32002/TaiwanPearl",
+    "stars": 70,
+    "full": "max32002/TaiwanPearl",
+    "fontCount": 5,
+    "pick": [
+      "ttf/TaiwanPearl-Regular.ttf"
+    ],
+    "sample": [
+      "ttf/TaiwanPearl-ExtraLight.ttf",
+      "ttf/TaiwanPearl-Light.ttf",
+      "ttf/TaiwanPearl-Medium.ttf",
+      "ttf/TaiwanPearl-Regular.ttf",
+      "ttf/TaiwanPearl-SemiBold.ttf"
+    ]
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "YuPearl",
+    "label": "余珍珠",
+    "url": "https://github.com/max32002/YuPearl",
+    "stars": 64,
+    "full": "max32002/YuPearl",
+    "fontCount": 5,
+    "pick": [
+      "tw/YuPearl-Regular.ttf"
+    ],
+    "sample": [
+      "tw/YuPearl-ExtraLight.ttf",
+      "tw/YuPearl-Light.ttf",
+      "tw/YuPearl-Medium.ttf",
+      "tw/YuPearl-Regular.ttf",
+      "tw/YuPearl-SemiBold.ttf"
+    ]
+  }
+]

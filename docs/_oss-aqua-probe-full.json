@@ -1,0 +1,2847 @@
+[
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "naikaifont",
+    "label": "奈楷",
+    "url": "https://github.com/max32002/naikaifont",
+    "stars": 560,
+    "full": "max32002/naikaifont",
+    "paths": [
+      "jp/NaikaiFont-Bold.ttf",
+      "jp/NaikaiFont-ExtraLight.ttf",
+      "jp/NaikaiFont-Light.ttf",
+      "jp/NaikaiFont-Regular.ttf",
+      "jp/NaikaiFont-SemiBold.ttf",
+      "tw/NaikaiFont-Bold.ttf",
+      "tw/NaikaiFont-ExtraLight.ttf",
+      "tw/NaikaiFont-Light.ttf",
+      "tw/NaikaiFont-Regular-Lite.ttf",
+      "tw/NaikaiFont-Regular.ttf",
+      "tw/NaikaiFont-SemiBold.ttf"
+    ],
+    "picks": [
+      [
+        "jp/NaikaiFont-Regular.ttf",
+        "Regular"
+      ]
+    ],
+    "code": "nk",
+    "norm": "Nk"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-gothic",
+    "label": "狮尾黑体",
+    "url": "https://github.com/max32002/swei-gothic",
+    "stars": 204,
+    "full": "max32002/swei-gothic",
+    "paths": [
+      "CJK JP/SweiGothicCJKjp-Black.ttf",
+      "CJK JP/SweiGothicCJKjp-Bold.ttf",
+      "CJK JP/SweiGothicCJKjp-DemiLight.ttf",
+      "CJK JP/SweiGothicCJKjp-Light.ttf",
+      "CJK JP/SweiGothicCJKjp-Medium.ttf",
+      "CJK JP/SweiGothicCJKjp-Regular.ttf",
+      "CJK JP/SweiGothicCJKjp-Thin.ttf",
+      "CJK SC/SweiGothicCJKsc-Black.ttf",
+      "CJK SC/SweiGothicCJKsc-Bold.ttf",
+      "CJK SC/SweiGothicCJKsc-DemiLight.ttf",
+      "CJK SC/SweiGothicCJKsc-Light.ttf",
+      "CJK SC/SweiGothicCJKsc-Medium.ttf",
+      "CJK SC/SweiGothicCJKsc-Regular.ttf",
+      "CJK SC/SweiGothicCJKsc-Thin.ttf",
+      "CJK TC/SweiGothicCJKtc-Black.ttf",
+      "CJK TC/SweiGothicCJKtc-Bold.ttf",
+      "CJK TC/SweiGothicCJKtc-DemiLight.ttf",
+      "CJK TC/SweiGothicCJKtc-Light.ttf",
+      "CJK TC/SweiGothicCJKtc-Medium.ttf",
+      "CJK TC/SweiGothicCJKtc-Regular.ttf",
+      "CJK TC/SweiGothicCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiGothicCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiGothicCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swgothic",
+    "norm": "Swgothic"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "bakudaifont",
+    "label": "爆呆",
+    "url": "https://github.com/max32002/bakudaifont",
+    "stars": 170,
+    "full": "max32002/bakudaifont",
+    "paths": [
+      "tw/Bakudai-Bold.ttf",
+      "tw/Bakudai-ExtraLight.ttf",
+      "tw/Bakudai-Light.ttf",
+      "tw/Bakudai-Medium.ttf",
+      "tw/Bakudai-Regular.ttf"
+    ],
+    "picks": [
+      [
+        "tw/Bakudai-Regular.ttf",
+        "Regular"
+      ]
+    ],
+    "code": "bkd",
+    "norm": "Bkd"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "max-hana",
+    "label": "max hana",
+    "url": "https://github.com/max32002/max-hana",
+    "stars": 114,
+    "full": "max32002/max-hana",
+    "paths": [
+      "ttf/B2Hana-Medium.ttf",
+      "ttf/B2Hana-Regular-Lite.ttf",
+      "ttf/B2Hana-Regular.ttf",
+      "ttf/B2HanaB-Medium.ttf",
+      "ttf/B2HanaB-Regular.ttf",
+      "ttf/HanaMeatball-Medium.ttf",
+      "ttf/HanaMeatball-Regular-Lite.ttf",
+      "ttf/HanaMeatball-Regular.ttf",
+      "ttf/HanaMeatballB-Regular.ttf",
+      "ttf/HanaMinA.ttf",
+      "ttf/HanaMinB.ttf"
+    ],
+    "picks": [
+      [
+        "ttf/B2Hana-Regular.ttf",
+        "Regular"
+      ]
+    ],
+    "code": "mxhn",
+    "norm": "Mxhn"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "masafont",
+    "label": "masafont",
+    "url": "https://github.com/max32002/masafont",
+    "stars": 106,
+    "full": "max32002/masafont",
+    "paths": [
+      "tw/MasaFont-Bold.ttf",
+      "tw/MasaFont-ExtraLight.ttf",
+      "tw/MasaFont-Light.ttf",
+      "tw/MasaFont-Medium.ttf",
+      "tw/MasaFont-Regular.ttf"
+    ],
+    "picks": [
+      [
+        "tw/MasaFont-Regular.ttf",
+        "Regular"
+      ]
+    ],
+    "code": "masa",
+    "norm": "Masa"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "pop-gothic",
+    "label": "流行黑",
+    "url": "https://github.com/max32002/pop-gothic",
+    "stars": 105,
+    "full": "max32002/pop-gothic",
+    "paths": [
+      "CJK JP/PopGothicCjkJp-Bold.ttf",
+      "CJK JP/PopGothicCjkJp-ExtraLight.ttf",
+      "CJK JP/PopGothicCjkJp-Light.ttf",
+      "CJK JP/PopGothicCjkJp-Regular.ttf",
+      "CJK JP/PopGothicCjkJp-SemiBold.ttf",
+      "CJK TC/PopGothicCjkTc-Bold.ttf",
+      "CJK TC/PopGothicCjkTc-ExtraLight.ttf",
+      "CJK TC/PopGothicCjkTc-Light.ttf",
+      "CJK TC/PopGothicCjkTc-Regular.ttf",
+      "CJK TC/PopGothicCjkTc-SemiBold.ttf"
+    ],
+    "picks": [
+      [
+        "CJK TC/PopGothicCjkTc-Regular.ttf",
+        "Regular"
+      ]
+    ],
+    "code": "popgh",
+    "norm": "Popgh"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "nanifont",
+    "label": "nanifont",
+    "url": "https://github.com/max32002/nanifont",
+    "stars": 102,
+    "full": "max32002/nanifont",
+    "paths": [
+      "ttf/NaniFont-Bold.ttf",
+      "ttf/NaniFont-ExtraLight.ttf",
+      "ttf/NaniFont-Light.ttf",
+      "ttf/NaniFont-Regular.ttf",
+      "ttf/NaniFont-SemiBold.ttf"
+    ],
+    "picks": [
+      [
+        "ttf/NaniFont-Regular.ttf",
+        "Regular"
+      ]
+    ],
+    "code": "nani",
+    "norm": "Nani"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "FakePearl",
+    "label": "假珍珠",
+    "url": "https://github.com/max32002/FakePearl",
+    "stars": 101,
+    "full": "max32002/FakePearl",
+    "paths": [
+      "tw/FakePearl-ExtraLight.ttf",
+      "tw/FakePearl-Light.ttf",
+      "tw/FakePearl-Medium.ttf",
+      "tw/FakePearl-Regular.ttf",
+      "tw/FakePearl-SemiBold.ttf"
+    ],
+    "picks": [
+      [
+        "tw/FakePearl-Regular.ttf",
+        "Regular"
+      ]
+    ],
+    "code": "fkzl",
+    "norm": "Fkzl"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "maruko-gothic",
+    "label": "丸子黑",
+    "url": "https://github.com/max32002/maruko-gothic",
+    "stars": 85,
+    "full": "max32002/maruko-gothic",
+    "paths": [
+      "CJK JP/MarukoGothicCJKjp-Black.ttf",
+      "CJK JP/MarukoGothicCJKjp-Bold.ttf",
+      "CJK JP/MarukoGothicCJKjp-Light.ttf",
+      "CJK JP/MarukoGothicCJKjp-Medium.ttf",
+      "CJK JP/MarukoGothicCJKjp-Regular.ttf",
+      "CJK SC/MarukoGothicCJKsc-Light.ttf",
+      "CJK SC/MarukoGothicCJKsc-Medium.ttf",
+      "CJK SC/MarukoGothicCJKsc-Regular.ttf",
+      "CJK TC/MarukoGothicCJKtc-Light.ttf",
+      "CJK TC/MarukoGothicCJKtc-Medium.ttf",
+      "CJK TC/MarukoGothicCJKtc-Regular.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/MarukoGothicCJKsc-Regular.ttf",
+        "Regular"
+      ]
+    ],
+    "code": "mkgh",
+    "norm": "Mkgh"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "kurewa-gothic",
+    "label": "暮黑",
+    "url": "https://github.com/max32002/kurewa-gothic",
+    "stars": 71,
+    "full": "max32002/kurewa-gothic",
+    "paths": [
+      "CJK JP/KurewaGothicCjkJp-Bold.ttf",
+      "CJK JP/KurewaGothicCjkJp-ExtraLight.ttf",
+      "CJK JP/KurewaGothicCjkJp-Light.ttf",
+      "CJK JP/KurewaGothicCjkJp-Regular.ttf",
+      "CJK JP/KurewaGothicCjkJp-SemiBold.ttf",
+      "CJK TC/KurewaGothicCjkTc-Bold.ttf",
+      "CJK TC/KurewaGothicCjkTc-ExtraLight.ttf",
+      "CJK TC/KurewaGothicCjkTc-Light.ttf",
+      "CJK TC/KurewaGothicCjkTc-Regular.ttf",
+      "CJK TC/KurewaGothicCjkTc-SemiBold.ttf"
+    ],
+    "picks": [
+      [
+        "CJK TC/KurewaGothicCjkTc-Regular.ttf",
+        "Regular"
+      ]
+    ],
+    "code": "kwgh",
+    "norm": "Kwgh"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "TaiwanPearl",
+    "label": "台湾珍珠",
+    "url": "https://github.com/max32002/TaiwanPearl",
+    "stars": 70,
+    "full": "max32002/TaiwanPearl",
+    "paths": [
+      "ttf/TaiwanPearl-ExtraLight.ttf",
+      "ttf/TaiwanPearl-Light.ttf",
+      "ttf/TaiwanPearl-Medium.ttf",
+      "ttf/TaiwanPearl-Regular.ttf",
+      "ttf/TaiwanPearl-SemiBold.ttf"
+    ],
+    "picks": [
+      [
+        "ttf/TaiwanPearl-Regular.ttf",
+        "Regular"
+      ]
+    ],
+    "code": "twzl",
+    "norm": "Twzl"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "YuPearl",
+    "label": "余珍珠",
+    "url": "https://github.com/max32002/YuPearl",
+    "stars": 64,
+    "full": "max32002/YuPearl",
+    "paths": [
+      "tw/YuPearl-ExtraLight.ttf",
+      "tw/YuPearl-Light.ttf",
+      "tw/YuPearl-Medium.ttf",
+      "tw/YuPearl-Regular.ttf",
+      "tw/YuPearl-SemiBold.ttf"
+    ],
+    "picks": [
+      [
+        "tw/YuPearl-Regular.ttf",
+        "Regular"
+      ]
+    ],
+    "code": "yuzl",
+    "norm": "Yuzl"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-fan-sans",
+    "label": "狮尾风扇黑",
+    "url": "https://github.com/max32002/swei-fan-sans",
+    "stars": 49,
+    "full": "max32002/swei-fan-sans",
+    "paths": [
+      "CJK SC/SweiFanSansCJKsc-Black.ttf",
+      "CJK SC/SweiFanSansCJKsc-Bold.ttf",
+      "CJK SC/SweiFanSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiFanSansCJKsc-Light.ttf",
+      "CJK SC/SweiFanSansCJKsc-Medium.ttf",
+      "CJK SC/SweiFanSansCJKsc-Regular.ttf",
+      "CJK SC/SweiFanSansCJKsc-Thin.ttf",
+      "CJK TC/SweiFanSansCJKtc-Black.ttf",
+      "CJK TC/SweiFanSansCJKtc-Bold.ttf",
+      "CJK TC/SweiFanSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiFanSansCJKtc-Light.ttf",
+      "CJK TC/SweiFanSansCJKtc-Medium.ttf",
+      "CJK TC/SweiFanSansCJKtc-Regular.ttf",
+      "CJK TC/SweiFanSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiFanSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiFanSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swfansans",
+    "norm": "Swfansans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-sans",
+    "label": "swei sans",
+    "url": "https://github.com/max32002/swei-sans",
+    "stars": 46,
+    "full": "max32002/swei-sans",
+    "paths": [
+      "CJK JP/SweiSansCJKjp-Black.ttf",
+      "CJK JP/SweiSansCJKjp-Bold.ttf",
+      "CJK JP/SweiSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiSansCJKjp-Light.ttf",
+      "CJK JP/SweiSansCJKjp-Medium.ttf",
+      "CJK JP/SweiSansCJKjp-Regular.ttf",
+      "CJK JP/SweiSansCJKjp-Thin.ttf",
+      "CJK SC/SweiSansCJKsc-Black.ttf",
+      "CJK SC/SweiSansCJKsc-Bold.ttf",
+      "CJK SC/SweiSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiSansCJKsc-Light.ttf",
+      "CJK SC/SweiSansCJKsc-Medium.ttf",
+      "CJK SC/SweiSansCJKsc-Regular.ttf",
+      "CJK SC/SweiSansCJKsc-Thin.ttf",
+      "CJK TC/SweiSansCJKtc-Black.ttf",
+      "CJK TC/SweiSansCJKtc-Bold.ttf",
+      "CJK TC/SweiSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiSansCJKtc-Light.ttf",
+      "CJK TC/SweiSansCJKtc-Medium.ttf",
+      "CJK TC/SweiSansCJKtc-Regular.ttf",
+      "CJK TC/SweiSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swsans",
+    "norm": "Swsans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-halfmoon",
+    "label": "swei halfmoon",
+    "url": "https://github.com/max32002/swei-halfmoon",
+    "stars": 39,
+    "full": "max32002/swei-halfmoon",
+    "paths": [
+      "CJK JP/SweiHalfMoonCJKjp-Black.ttf",
+      "CJK JP/SweiHalfMoonCJKjp-Bold.ttf",
+      "CJK JP/SweiHalfMoonCJKjp-DemiLight.ttf",
+      "CJK JP/SweiHalfMoonCJKjp-Light.ttf",
+      "CJK JP/SweiHalfMoonCJKjp-Medium.ttf",
+      "CJK JP/SweiHalfMoonCJKjp-Regular.ttf",
+      "CJK JP/SweiHalfMoonCJKjp-Thin.ttf",
+      "CJK SC/SweiHalfMoonCJKsc-Black.ttf",
+      "CJK SC/SweiHalfMoonCJKsc-Bold.ttf",
+      "CJK SC/SweiHalfMoonCJKsc-DemiLight.ttf",
+      "CJK SC/SweiHalfMoonCJKsc-Light.ttf",
+      "CJK SC/SweiHalfMoonCJKsc-Medium.ttf",
+      "CJK SC/SweiHalfMoonCJKsc-Regular.ttf",
+      "CJK SC/SweiHalfMoonCJKsc-Thin.ttf",
+      "CJK TC/SweiHalfMoonCJKtc-Black.ttf",
+      "CJK TC/SweiHalfMoonCJKtc-Bold.ttf",
+      "CJK TC/SweiHalfMoonCJKtc-DemiLight.ttf",
+      "CJK TC/SweiHalfMoonCJKtc-Light.ttf",
+      "CJK TC/SweiHalfMoonCJKtc-Medium.ttf",
+      "CJK TC/SweiHalfMoonCJKtc-Regular.ttf",
+      "CJK TC/SweiHalfMoonCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiHalfMoonCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiHalfMoonCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swhalfmoon",
+    "norm": "Swhalfmoon"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "JasonHandWritingFonts",
+    "label": "杰森手写",
+    "url": "https://github.com/max32002/JasonHandWritingFonts",
+    "stars": 38,
+    "full": "max32002/JasonHandWritingFonts",
+    "paths": [
+      "latin/JasonHandwriting-Bold.ttf",
+      "latin/JasonHandwriting-Heavy.ttf",
+      "latin/JasonHandwriting-Light.ttf",
+      "latin/JasonHandwriting-Regular.ttf",
+      "latin/JasonHandwriting-SemiBold.ttf",
+      "tw/JasonHandwriting1-ExtraLight.ttf",
+      "tw/JasonHandwriting1-Light.ttf",
+      "tw/JasonHandwriting1-Medium.ttf",
+      "tw/JasonHandwriting1-Regular.ttf",
+      "tw/JasonHandwriting1-SemiBold.ttf",
+      "tw/JasonHandwriting2-ExtraLight.ttf",
+      "tw/JasonHandwriting2-Light.ttf",
+      "tw/JasonHandwriting2-Medium.ttf",
+      "tw/JasonHandwriting2-Regular.ttf",
+      "tw/JasonHandwriting2-SemiBold.ttf",
+      "tw/JasonHandwriting3-ExtraLight.ttf",
+      "tw/JasonHandwriting3-Light.ttf",
+      "tw/JasonHandwriting3-Regular.ttf",
+      "tw/JasonHandwriting3-SemiBold.ttf",
+      "tw/JasonHandwriting4-ExtraLight.ttf",
+      "tw/JasonHandwriting4-Light.ttf",
+      "tw/JasonHandwriting4-Medium.ttf",
+      "tw/JasonHandwriting4-Regular.ttf",
+      "tw/JasonHandwriting4-SemiBold.ttf",
+      "tw/JasonHandwriting5-ExtraLight.ttf",
+      "tw/JasonHandwriting5-Light.ttf",
+      "tw/JasonHandwriting5-Medium.ttf",
+      "tw/JasonHandwriting5-Regular.ttf",
+      "tw/JasonHandwriting5-SemiBold.ttf",
+      "tw/JasonHandwriting5p-ExtraLight.ttf",
+      "tw/JasonHandwriting5p-Light.ttf",
+      "tw/JasonHandwriting5p-Medium.ttf",
+      "tw/JasonHandwriting5p-Regular.ttf",
+      "tw/JasonHandwriting5p-SemiBold.ttf",
+      "tw/JasonHandwriting6-ExtraLight.ttf",
+      "tw/JasonHandwriting6-Light.ttf",
+      "tw/JasonHandwriting6-Medium.ttf",
+      "tw/JasonHandwriting6-Regular.ttf",
+      "tw/JasonHandwriting6-SemiBold.ttf",
+      "tw/JasonHandwriting6p-ExtraLight.ttf",
+      "tw/JasonHandwriting6p-Light.ttf",
+      "tw/JasonHandwriting6p-Medium.ttf",
+      "tw/JasonHandwriting6p-Regular.ttf",
+      "tw/JasonHandwriting6p-SemiBold.ttf",
+      "tw/JasonHandwriting7-ExtraLight.ttf",
+      "tw/JasonHandwriting7-Light.ttf",
+      "tw/JasonHandwriting7-Medium.ttf",
+      "tw/JasonHandwriting7-Regular.ttf",
+      "tw/JasonHandwriting7-SemiBold.ttf",
+      "tw/JasonHandwriting7p-ExtraLight.ttf",
+      "tw/JasonHandwriting7p-Light.ttf",
+      "tw/JasonHandwriting7p-Medium.ttf",
+      "tw/JasonHandwriting7p-Regular.ttf",
+      "tw/JasonHandwriting7p-SemiBold.ttf",
+      "tw/JasonHandwriting8-ExtraLight.ttf",
+      "tw/JasonHandwriting8-Light.ttf",
+      "tw/JasonHandwriting8-Medium.ttf",
+      "tw/JasonHandwriting8-Regular.ttf",
+      "tw/JasonHandwriting8-SemiBold.ttf",
+      "tw/JasonHandwriting8p-ExtraLight.ttf",
+      "tw/JasonHandwriting8p-Light.ttf",
+      "tw/JasonHandwriting8p-Medium.ttf",
+      "tw/JasonHandwriting8p-Regular.ttf",
+      "tw/JasonHandwriting8p-SemiBold.ttf"
+    ],
+    "picks": [
+      [
+        "latin/JasonHandwriting-Regular.ttf",
+        "Regular"
+      ]
+    ],
+    "code": "jshw",
+    "norm": "Jshw"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-sugar",
+    "label": "swei sugar",
+    "url": "https://github.com/max32002/swei-sugar",
+    "stars": 31,
+    "full": "max32002/swei-sugar",
+    "paths": [
+      "CJK JP/SweiSugarCJKjp-Black.ttf",
+      "CJK JP/SweiSugarCJKjp-Bold.ttf",
+      "CJK JP/SweiSugarCJKjp-ExtraLight.ttf",
+      "CJK JP/SweiSugarCJKjp-Light.ttf",
+      "CJK JP/SweiSugarCJKjp-Medium.ttf",
+      "CJK JP/SweiSugarCJKjp-Regular.ttf",
+      "CJK JP/SweiSugarCJKjp-SemiBold.ttf",
+      "CJK SC/SweiSugarCJKsc-Black.ttf",
+      "CJK SC/SweiSugarCJKsc-Bold.ttf",
+      "CJK SC/SweiSugarCJKsc-ExtraLight.ttf",
+      "CJK SC/SweiSugarCJKsc-Light.ttf",
+      "CJK SC/SweiSugarCJKsc-Medium.ttf",
+      "CJK SC/SweiSugarCJKsc-Regular.ttf",
+      "CJK SC/SweiSugarCJKsc-SemiBold.ttf",
+      "CJK TC/SweiSugarCJKtc-Black.ttf",
+      "CJK TC/SweiSugarCJKtc-Bold.ttf",
+      "CJK TC/SweiSugarCJKtc-ExtraLight.ttf",
+      "CJK TC/SweiSugarCJKtc-Light.ttf",
+      "CJK TC/SweiSugarCJKtc-Medium.ttf",
+      "CJK TC/SweiSugarCJKtc-Regular.ttf",
+      "CJK TC/SweiSugarCJKtc-SemiBold.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiSugarCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiSugarCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swsugar",
+    "norm": "Swsugar"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-marker-sans",
+    "label": "狮尾马克笔",
+    "url": "https://github.com/max32002/swei-marker-sans",
+    "stars": 23,
+    "full": "max32002/swei-marker-sans",
+    "paths": [
+      "CJK JP/SweiMarkerSansCJKjp-Black.ttf",
+      "CJK JP/SweiMarkerSansCJKjp-Bold.ttf",
+      "CJK JP/SweiMarkerSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiMarkerSansCJKjp-Light.ttf",
+      "CJK JP/SweiMarkerSansCJKjp-Medium.ttf",
+      "CJK JP/SweiMarkerSansCJKjp-Regular.ttf",
+      "CJK JP/SweiMarkerSansCJKjp-Thin.ttf",
+      "CJK SC/SweiMarkerSansCJKsc-Black.ttf",
+      "CJK SC/SweiMarkerSansCJKsc-Bold.ttf",
+      "CJK SC/SweiMarkerSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiMarkerSansCJKsc-Light.ttf",
+      "CJK SC/SweiMarkerSansCJKsc-Medium.ttf",
+      "CJK SC/SweiMarkerSansCJKsc-Regular.ttf",
+      "CJK SC/SweiMarkerSansCJKsc-Thin.ttf",
+      "CJK TC/SweiMarkerSansCJKtc-Black.ttf",
+      "CJK TC/SweiMarkerSansCJKtc-Bold.ttf",
+      "CJK TC/SweiMarkerSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiMarkerSansCJKtc-Light.ttf",
+      "CJK TC/SweiMarkerSansCJKtc-Medium.ttf",
+      "CJK TC/SweiMarkerSansCJKtc-Regular.ttf",
+      "CJK TC/SweiMarkerSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiMarkerSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiMarkerSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swmarkersans",
+    "norm": "Swmarkersans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-b2-serif",
+    "label": "swei b2 serif",
+    "url": "https://github.com/max32002/swei-b2-serif",
+    "stars": 23,
+    "full": "max32002/swei-b2-serif",
+    "paths": [
+      "CJK JP/SweiB2SerifCJKjp-Black.ttf",
+      "CJK JP/SweiB2SerifCJKjp-Bold.ttf",
+      "CJK JP/SweiB2SerifCJKjp-ExtraLight.ttf",
+      "CJK JP/SweiB2SerifCJKjp-Light.ttf",
+      "CJK JP/SweiB2SerifCJKjp-Medium.ttf",
+      "CJK JP/SweiB2SerifCJKjp-Regular.ttf",
+      "CJK JP/SweiB2SerifCJKjp-SemiBold.ttf",
+      "CJK SC/SweiB2SerifCJKsc-Black.ttf",
+      "CJK SC/SweiB2SerifCJKsc-Bold.ttf",
+      "CJK SC/SweiB2SerifCJKsc-ExtraLight.ttf",
+      "CJK SC/SweiB2SerifCJKsc-Light.ttf",
+      "CJK SC/SweiB2SerifCJKsc-Medium.ttf",
+      "CJK SC/SweiB2SerifCJKsc-Regular.ttf",
+      "CJK SC/SweiB2SerifCJKsc-SemiBold.ttf",
+      "CJK TC/SweiB2SerifCJKtc-Black.ttf",
+      "CJK TC/SweiB2SerifCJKtc-Bold.ttf",
+      "CJK TC/SweiB2SerifCJKtc-ExtraLight.ttf",
+      "CJK TC/SweiB2SerifCJKtc-Light.ttf",
+      "CJK TC/SweiB2SerifCJKtc-Medium.ttf",
+      "CJK TC/SweiB2SerifCJKtc-Regular.ttf",
+      "CJK TC/SweiB2SerifCJKtc-SemiBold.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiB2SerifCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiB2SerifCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swb2serif",
+    "norm": "Swb2serif"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-gothic-leg",
+    "label": "狮尾长腿黑",
+    "url": "https://github.com/max32002/swei-gothic-leg",
+    "stars": 20,
+    "full": "max32002/swei-gothic-leg",
+    "paths": [
+      "CJK JP/SweiGothicLegCJKjp-Black.ttf",
+      "CJK JP/SweiGothicLegCJKjp-Bold.ttf",
+      "CJK JP/SweiGothicLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiGothicLegCJKjp-Light.ttf",
+      "CJK JP/SweiGothicLegCJKjp-Medium.ttf",
+      "CJK JP/SweiGothicLegCJKjp-Regular.ttf",
+      "CJK JP/SweiGothicLegCJKjp-Thin.ttf",
+      "CJK SC/SweiGothicLegCJKsc-Black.ttf",
+      "CJK SC/SweiGothicLegCJKsc-Bold.ttf",
+      "CJK SC/SweiGothicLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiGothicLegCJKsc-Light.ttf",
+      "CJK SC/SweiGothicLegCJKsc-Medium.ttf",
+      "CJK SC/SweiGothicLegCJKsc-Regular.ttf",
+      "CJK SC/SweiGothicLegCJKsc-Thin.ttf",
+      "CJK TC/SweiGothicLegCJKtc-Black.ttf",
+      "CJK TC/SweiGothicLegCJKtc-Bold.ttf",
+      "CJK TC/SweiGothicLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiGothicLegCJKtc-Light.ttf",
+      "CJK TC/SweiGothicLegCJKtc-Medium.ttf",
+      "CJK TC/SweiGothicLegCJKtc-Regular.ttf",
+      "CJK TC/SweiGothicLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiGothicLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiGothicLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swgothicleg",
+    "norm": "Swgothicleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-toothpaste",
+    "label": "swei toothpaste",
+    "url": "https://github.com/max32002/swei-toothpaste",
+    "stars": 17,
+    "full": "max32002/swei-toothpaste",
+    "paths": [
+      "CJK JP/SweiToothpasteCJKjp-Black.ttf",
+      "CJK JP/SweiToothpasteCJKjp-Bold.ttf",
+      "CJK JP/SweiToothpasteCJKjp-DemiLight.ttf",
+      "CJK JP/SweiToothpasteCJKjp-Light.ttf",
+      "CJK JP/SweiToothpasteCJKjp-Medium.ttf",
+      "CJK JP/SweiToothpasteCJKjp-Regular.ttf",
+      "CJK JP/SweiToothpasteCJKjp-Thin.ttf",
+      "CJK SC/SweiToothpasteCJKsc-Black.ttf",
+      "CJK SC/SweiToothpasteCJKsc-Bold.ttf",
+      "CJK SC/SweiToothpasteCJKsc-DemiLight.ttf",
+      "CJK SC/SweiToothpasteCJKsc-Light.ttf",
+      "CJK SC/SweiToothpasteCJKsc-Medium.ttf",
+      "CJK SC/SweiToothpasteCJKsc-Regular.ttf",
+      "CJK SC/SweiToothpasteCJKsc-Thin.ttf",
+      "CJK TC/SweiToothpasteCJKtc-Black.ttf",
+      "CJK TC/SweiToothpasteCJKtc-Bold.ttf",
+      "CJK TC/SweiToothpasteCJKtc-DemiLight.ttf",
+      "CJK TC/SweiToothpasteCJKtc-Light.ttf",
+      "CJK TC/SweiToothpasteCJKtc-Medium.ttf",
+      "CJK TC/SweiToothpasteCJKtc-Regular.ttf",
+      "CJK TC/SweiToothpasteCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiToothpasteCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiToothpasteCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swtoothpaste",
+    "norm": "Swtoothpaste"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-meatball",
+    "label": "swei meatball",
+    "url": "https://github.com/max32002/swei-meatball",
+    "stars": 17,
+    "full": "max32002/swei-meatball",
+    "paths": [
+      "CJK JP/SweiMeatballCJKjp-Black.ttf",
+      "CJK JP/SweiMeatballCJKjp-Bold.ttf",
+      "CJK JP/SweiMeatballCJKjp-ExtraLight.ttf",
+      "CJK JP/SweiMeatballCJKjp-Light.ttf",
+      "CJK JP/SweiMeatballCJKjp-Medium.ttf",
+      "CJK JP/SweiMeatballCJKjp-Regular.ttf",
+      "CJK JP/SweiMeatballCJKjp-SemiBold.ttf",
+      "CJK SC/SweiMeatballCJKsc-Black.ttf",
+      "CJK SC/SweiMeatballCJKsc-Bold.ttf",
+      "CJK SC/SweiMeatballCJKsc-ExtraLight.ttf",
+      "CJK SC/SweiMeatballCJKsc-Light.ttf",
+      "CJK SC/SweiMeatballCJKsc-Medium.ttf",
+      "CJK SC/SweiMeatballCJKsc-Regular.ttf",
+      "CJK SC/SweiMeatballCJKsc-SemiBold.ttf",
+      "CJK TC/SweiMeatballCJKtc-Black.ttf",
+      "CJK TC/SweiMeatballCJKtc-Bold.ttf",
+      "CJK TC/SweiMeatballCJKtc-ExtraLight.ttf",
+      "CJK TC/SweiMeatballCJKtc-Light.ttf",
+      "CJK TC/SweiMeatballCJKtc-Medium.ttf",
+      "CJK TC/SweiMeatballCJKtc-Regular.ttf",
+      "CJK TC/SweiMeatballCJKtc-SemiBold.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiMeatballCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiMeatballCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swmeatball",
+    "norm": "Swmeatball"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-fan-serif",
+    "label": "狮尾仿宋",
+    "url": "https://github.com/max32002/swei-fan-serif",
+    "stars": 16,
+    "full": "max32002/swei-fan-serif",
+    "paths": [
+      "CJK JP/SweiFanSerifCJKjp-Black.ttf",
+      "CJK JP/SweiFanSerifCJKjp-Bold.ttf",
+      "CJK JP/SweiFanSerifCJKjp-ExtraLight.ttf",
+      "CJK JP/SweiFanSerifCJKjp-Light.ttf",
+      "CJK JP/SweiFanSerifCJKjp-Medium.ttf",
+      "CJK JP/SweiFanSerifCJKjp-Regular.ttf",
+      "CJK JP/SweiFanSerifCJKjp-SemiBold.ttf",
+      "CJK SC/SweiFanSerifCJKsc-Black.ttf",
+      "CJK SC/SweiFanSerifCJKsc-Bold.ttf",
+      "CJK SC/SweiFanSerifCJKsc-ExtraLight.ttf",
+      "CJK SC/SweiFanSerifCJKsc-Light.ttf",
+      "CJK SC/SweiFanSerifCJKsc-Medium.ttf",
+      "CJK SC/SweiFanSerifCJKsc-Regular.ttf",
+      "CJK SC/SweiFanSerifCJKsc-SemiBold.ttf",
+      "CJK TC/SweiFanSerifCJKtc-Black.ttf",
+      "CJK TC/SweiFanSerifCJKtc-Bold.ttf",
+      "CJK TC/SweiFanSerifCJKtc-ExtraLight.ttf",
+      "CJK TC/SweiFanSerifCJKtc-Light.ttf",
+      "CJK TC/SweiFanSerifCJKtc-Medium.ttf",
+      "CJK TC/SweiFanSerifCJKtc-Regular.ttf",
+      "CJK TC/SweiFanSerifCJKtc-SemiBold.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiFanSerifCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiFanSerifCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swfanserif",
+    "norm": "Swfanserif"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-b2-sans",
+    "label": "swei b2 sans",
+    "url": "https://github.com/max32002/swei-b2-sans",
+    "stars": 15,
+    "full": "max32002/swei-b2-sans",
+    "paths": [
+      "CJK JP/SweiB2SansCJKjp-Black.ttf",
+      "CJK JP/SweiB2SansCJKjp-Bold.ttf",
+      "CJK JP/SweiB2SansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiB2SansCJKjp-Light.ttf",
+      "CJK JP/SweiB2SansCJKjp-Medium.ttf",
+      "CJK JP/SweiB2SansCJKjp-Regular.ttf",
+      "CJK JP/SweiB2SansCJKjp-Thin.ttf",
+      "CJK SC/SweiB2SansCJKsc-Black.ttf",
+      "CJK SC/SweiB2SansCJKsc-Bold.ttf",
+      "CJK SC/SweiB2SansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiB2SansCJKsc-Light.ttf",
+      "CJK SC/SweiB2SansCJKsc-Medium.ttf",
+      "CJK SC/SweiB2SansCJKsc-Regular.ttf",
+      "CJK SC/SweiB2SansCJKsc-Thin.ttf",
+      "CJK TC/SweiB2SansCJKtc-Black.ttf",
+      "CJK TC/SweiB2SansCJKtc-Bold.ttf",
+      "CJK TC/SweiB2SansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiB2SansCJKtc-Light.ttf",
+      "CJK TC/SweiB2SansCJKtc-Medium.ttf",
+      "CJK TC/SweiB2SansCJKtc-Regular.ttf",
+      "CJK TC/SweiB2SansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiB2SansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiB2SansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swb2sans",
+    "norm": "Swb2sans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-xd",
+    "label": "swei xd",
+    "url": "https://github.com/max32002/swei-xd",
+    "stars": 14,
+    "full": "max32002/swei-xd",
+    "paths": [
+      "CJK JP/SweiXDPearlCJKjp-Black.ttf",
+      "CJK JP/SweiXDPearlCJKjp-Bold.ttf",
+      "CJK JP/SweiXDPearlCJKjp-DemiLight.ttf",
+      "CJK JP/SweiXDPearlCJKjp-Light.ttf",
+      "CJK JP/SweiXDPearlCJKjp-Medium.ttf",
+      "CJK JP/SweiXDPearlCJKjp-Regular.ttf",
+      "CJK JP/SweiXDPearlCJKjp-Thin.ttf",
+      "CJK SC/SweiXDPearlCJKsc-Black.ttf",
+      "CJK SC/SweiXDPearlCJKsc-Bold.ttf",
+      "CJK SC/SweiXDPearlCJKsc-DemiLight.ttf",
+      "CJK SC/SweiXDPearlCJKsc-Light.ttf",
+      "CJK SC/SweiXDPearlCJKsc-Medium.ttf",
+      "CJK SC/SweiXDPearlCJKsc-Regular.ttf",
+      "CJK SC/SweiXDPearlCJKsc-Thin.ttf",
+      "CJK TC/SweiXDPearlCJKtc-Black.ttf",
+      "CJK TC/SweiXDPearlCJKtc-Bold.ttf",
+      "CJK TC/SweiXDPearlCJKtc-DemiLight.ttf",
+      "CJK TC/SweiXDPearlCJKtc-Light.ttf",
+      "CJK TC/SweiXDPearlCJKtc-Medium.ttf",
+      "CJK TC/SweiXDPearlCJKtc-Regular.ttf",
+      "CJK TC/SweiXDPearlCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiXDPearlCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiXDPearlCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swxd",
+    "norm": "Swxd"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-fan-leg",
+    "label": "swei fan leg",
+    "url": "https://github.com/max32002/swei-fan-leg",
+    "stars": 13,
+    "full": "max32002/swei-fan-leg",
+    "paths": [
+      "CJK JP/SweiFanLegCJKjp-Black.ttf",
+      "CJK JP/SweiFanLegCJKjp-Bold.ttf",
+      "CJK JP/SweiFanLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiFanLegCJKjp-Light.ttf",
+      "CJK JP/SweiFanLegCJKjp-Medium.ttf",
+      "CJK JP/SweiFanLegCJKjp-Regular.ttf",
+      "CJK JP/SweiFanLegCJKjp-Thin.ttf",
+      "CJK SC/SweiFanLegCJKsc-Black.ttf",
+      "CJK SC/SweiFanLegCJKsc-Bold.ttf",
+      "CJK SC/SweiFanLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiFanLegCJKsc-Light.ttf",
+      "CJK SC/SweiFanLegCJKsc-Medium.ttf",
+      "CJK SC/SweiFanLegCJKsc-Regular.ttf",
+      "CJK SC/SweiFanLegCJKsc-Thin.ttf",
+      "CJK TC/SweiFanLegCJKtc-Black.ttf",
+      "CJK TC/SweiFanLegCJKtc-Bold.ttf",
+      "CJK TC/SweiFanLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiFanLegCJKtc-Light.ttf",
+      "CJK TC/SweiFanLegCJKtc-Medium.ttf",
+      "CJK TC/SweiFanLegCJKtc-Regular.ttf",
+      "CJK TC/SweiFanLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiFanLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiFanLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swfanleg",
+    "norm": "Swfanleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-jay-serif",
+    "label": "swei jay serif",
+    "url": "https://github.com/max32002/swei-jay-serif",
+    "stars": 12,
+    "full": "max32002/swei-jay-serif",
+    "paths": [
+      "CJK JP/SweiJaySerifCJKjp-Black.ttf",
+      "CJK JP/SweiJaySerifCJKjp-Bold.ttf",
+      "CJK JP/SweiJaySerifCJKjp-ExtraLight.ttf",
+      "CJK JP/SweiJaySerifCJKjp-Light.ttf",
+      "CJK JP/SweiJaySerifCJKjp-Medium.ttf",
+      "CJK JP/SweiJaySerifCJKjp-Regular.ttf",
+      "CJK JP/SweiJaySerifCJKjp-SemiBold.ttf",
+      "CJK SC/SweiJaySerifCJKsc-Black.ttf",
+      "CJK SC/SweiJaySerifCJKsc-Bold.ttf",
+      "CJK SC/SweiJaySerifCJKsc-ExtraLight.ttf",
+      "CJK SC/SweiJaySerifCJKsc-Light.ttf",
+      "CJK SC/SweiJaySerifCJKsc-Medium.ttf",
+      "CJK SC/SweiJaySerifCJKsc-Regular.ttf",
+      "CJK SC/SweiJaySerifCJKsc-SemiBold.ttf",
+      "CJK TC/SweiJaySerifCJKtc-Black.ttf",
+      "CJK TC/SweiJaySerifCJKtc-Bold.ttf",
+      "CJK TC/SweiJaySerifCJKtc-ExtraLight.ttf",
+      "CJK TC/SweiJaySerifCJKtc-Light.ttf",
+      "CJK TC/SweiJaySerifCJKtc-Medium.ttf",
+      "CJK TC/SweiJaySerifCJKtc-Regular.ttf",
+      "CJK TC/SweiJaySerifCJKtc-SemiBold.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiJaySerifCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiJaySerifCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swjayserif",
+    "norm": "Swjayserif"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-shear-sans",
+    "label": "狮尾剪切黑体",
+    "url": "https://github.com/max32002/swei-shear-sans",
+    "stars": 10,
+    "full": "max32002/swei-shear-sans",
+    "paths": [
+      "CJK JP/SweiShearSansCJKjp-Black.ttf",
+      "CJK JP/SweiShearSansCJKjp-Bold.ttf",
+      "CJK JP/SweiShearSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiShearSansCJKjp-Light.ttf",
+      "CJK JP/SweiShearSansCJKjp-Medium.ttf",
+      "CJK JP/SweiShearSansCJKjp-Regular.ttf",
+      "CJK JP/SweiShearSansCJKjp-Thin.ttf",
+      "CJK SC/SweiShearSansCJKsc-Black.ttf",
+      "CJK SC/SweiShearSansCJKsc-Bold.ttf",
+      "CJK SC/SweiShearSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiShearSansCJKsc-Light.ttf",
+      "CJK SC/SweiShearSansCJKsc-Medium.ttf",
+      "CJK SC/SweiShearSansCJKsc-Regular.ttf",
+      "CJK SC/SweiShearSansCJKsc-Thin.ttf",
+      "CJK TC/SweiShearSansCJKtc-Black.ttf",
+      "CJK TC/SweiShearSansCJKtc-Bold.ttf",
+      "CJK TC/SweiShearSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiShearSansCJKtc-Light.ttf",
+      "CJK TC/SweiShearSansCJKtc-Medium.ttf",
+      "CJK TC/SweiShearSansCJKtc-Regular.ttf",
+      "CJK TC/SweiShearSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiShearSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiShearSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swshearsans",
+    "norm": "Swshearsans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-fist-sans",
+    "label": "swei fist sans",
+    "url": "https://github.com/max32002/swei-fist-sans",
+    "stars": 10,
+    "full": "max32002/swei-fist-sans",
+    "paths": [
+      "CJK JP/SweiFistSansCJKjp-Black.ttf",
+      "CJK JP/SweiFistSansCJKjp-Bold.ttf",
+      "CJK JP/SweiFistSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiFistSansCJKjp-Light.ttf",
+      "CJK JP/SweiFistSansCJKjp-Medium.ttf",
+      "CJK JP/SweiFistSansCJKjp-Regular.ttf",
+      "CJK JP/SweiFistSansCJKjp-Thin.ttf",
+      "CJK SC/SweiFistSansCJKsc-Black.ttf",
+      "CJK SC/SweiFistSansCJKsc-Bold.ttf",
+      "CJK SC/SweiFistSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiFistSansCJKsc-Light.ttf",
+      "CJK SC/SweiFistSansCJKsc-Medium.ttf",
+      "CJK SC/SweiFistSansCJKsc-Regular.ttf",
+      "CJK SC/SweiFistSansCJKsc-Thin.ttf",
+      "CJK TC/SweiFistSansCJKtc-Black.ttf",
+      "CJK TC/SweiFistSansCJKtc-Bold.ttf",
+      "CJK TC/SweiFistSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiFistSansCJKtc-Light.ttf",
+      "CJK TC/SweiFistSansCJKtc-Medium.ttf",
+      "CJK TC/SweiFistSansCJKtc-Regular.ttf",
+      "CJK TC/SweiFistSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiFistSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiFistSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swfistsans",
+    "norm": "Swfistsans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-b2-leg",
+    "label": "swei b2 leg",
+    "url": "https://github.com/max32002/swei-b2-leg",
+    "stars": 10,
+    "full": "max32002/swei-b2-leg",
+    "paths": [
+      "CJK JP/SweiB2LegCJKjp-Black.ttf",
+      "CJK JP/SweiB2LegCJKjp-Bold.ttf",
+      "CJK JP/SweiB2LegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiB2LegCJKjp-Light.ttf",
+      "CJK JP/SweiB2LegCJKjp-Medium.ttf",
+      "CJK JP/SweiB2LegCJKjp-Regular.ttf",
+      "CJK JP/SweiB2LegCJKjp-Thin.ttf",
+      "CJK SC/SweiB2LegCJKsc-Black.ttf",
+      "CJK SC/SweiB2LegCJKsc-Bold.ttf",
+      "CJK SC/SweiB2LegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiB2LegCJKsc-Light.ttf",
+      "CJK SC/SweiB2LegCJKsc-Medium.ttf",
+      "CJK SC/SweiB2LegCJKsc-Regular.ttf",
+      "CJK SC/SweiB2LegCJKsc-Thin.ttf",
+      "CJK TC/SweiB2LegCJKtc-Black.ttf",
+      "CJK TC/SweiB2LegCJKtc-Bold.ttf",
+      "CJK TC/SweiB2LegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiB2LegCJKtc-Light.ttf",
+      "CJK TC/SweiB2LegCJKtc-Medium.ttf",
+      "CJK TC/SweiB2LegCJKtc-Regular.ttf",
+      "CJK TC/SweiB2LegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiB2LegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiB2LegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swb2leg",
+    "norm": "Swb2leg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-curve-sans",
+    "label": "swei curve sans",
+    "url": "https://github.com/max32002/swei-curve-sans",
+    "stars": 9,
+    "full": "max32002/swei-curve-sans",
+    "paths": [
+      "CJK JP/SweiCurveSansCJKjp-Black.ttf",
+      "CJK JP/SweiCurveSansCJKjp-Bold.ttf",
+      "CJK JP/SweiCurveSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiCurveSansCJKjp-Light.ttf",
+      "CJK JP/SweiCurveSansCJKjp-Medium.ttf",
+      "CJK JP/SweiCurveSansCJKjp-Regular.ttf",
+      "CJK JP/SweiCurveSansCJKjp-Thin.ttf",
+      "CJK SC/SweiCurveSansCJKsc-Black.ttf",
+      "CJK SC/SweiCurveSansCJKsc-Bold.ttf",
+      "CJK SC/SweiCurveSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiCurveSansCJKsc-Light.ttf",
+      "CJK SC/SweiCurveSansCJKsc-Medium.ttf",
+      "CJK SC/SweiCurveSansCJKsc-Regular.ttf",
+      "CJK SC/SweiCurveSansCJKsc-Thin.ttf",
+      "CJK TC/SweiCurveSansCJKtc-Black.ttf",
+      "CJK TC/SweiCurveSansCJKtc-Bold.ttf",
+      "CJK TC/SweiCurveSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiCurveSansCJKtc-Light.ttf",
+      "CJK TC/SweiCurveSansCJKtc-Medium.ttf",
+      "CJK TC/SweiCurveSansCJKtc-Regular.ttf",
+      "CJK TC/SweiCurveSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiCurveSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiCurveSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swcurvesans",
+    "norm": "Swcurvesans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-nut-sans",
+    "label": "swei nut sans",
+    "url": "https://github.com/max32002/swei-nut-sans",
+    "stars": 9,
+    "full": "max32002/swei-nut-sans",
+    "paths": [
+      "CJK JP/SweiNutSansCJKjp-Black.ttf",
+      "CJK JP/SweiNutSansCJKjp-Bold.ttf",
+      "CJK JP/SweiNutSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiNutSansCJKjp-Light.ttf",
+      "CJK JP/SweiNutSansCJKjp-Medium.ttf",
+      "CJK JP/SweiNutSansCJKjp-Regular.ttf",
+      "CJK JP/SweiNutSansCJKjp-Thin.ttf",
+      "CJK SC/SweiNutSansCJKsc-Black.ttf",
+      "CJK SC/SweiNutSansCJKsc-Bold.ttf",
+      "CJK SC/SweiNutSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiNutSansCJKsc-Light.ttf",
+      "CJK SC/SweiNutSansCJKsc-Medium.ttf",
+      "CJK SC/SweiNutSansCJKsc-Regular.ttf",
+      "CJK SC/SweiNutSansCJKsc-Thin.ttf",
+      "CJK TC/SweiNutSansCJKtc-Black.ttf",
+      "CJK TC/SweiNutSansCJKtc-Bold.ttf",
+      "CJK TC/SweiNutSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiNutSansCJKtc-Light.ttf",
+      "CJK TC/SweiNutSansCJKtc-Medium.ttf",
+      "CJK TC/SweiNutSansCJKtc-Regular.ttf",
+      "CJK TC/SweiNutSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiNutSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiNutSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swnutsans",
+    "norm": "Swnutsans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-devil-sans",
+    "label": "swei devil sans",
+    "url": "https://github.com/max32002/swei-devil-sans",
+    "stars": 8,
+    "full": "max32002/swei-devil-sans",
+    "paths": [
+      "CJK JP/SweiDevilSansCJKjp-Black.ttf",
+      "CJK JP/SweiDevilSansCJKjp-Bold.ttf",
+      "CJK JP/SweiDevilSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiDevilSansCJKjp-Light.ttf",
+      "CJK JP/SweiDevilSansCJKjp-Medium.ttf",
+      "CJK JP/SweiDevilSansCJKjp-Regular.ttf",
+      "CJK JP/SweiDevilSansCJKjp-Thin.ttf",
+      "CJK SC/SweiDevilSansCJKsc-Black.ttf",
+      "CJK SC/SweiDevilSansCJKsc-Bold.ttf",
+      "CJK SC/SweiDevilSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiDevilSansCJKsc-Light.ttf",
+      "CJK SC/SweiDevilSansCJKsc-Medium.ttf",
+      "CJK SC/SweiDevilSansCJKsc-Regular.ttf",
+      "CJK SC/SweiDevilSansCJKsc-Thin.ttf",
+      "CJK TC/SweiDevilSansCJKtc-Black.ttf",
+      "CJK TC/SweiDevilSansCJKtc-Bold.ttf",
+      "CJK TC/SweiDevilSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiDevilSansCJKtc-Light.ttf",
+      "CJK TC/SweiDevilSansCJKtc-Medium.ttf",
+      "CJK TC/SweiDevilSansCJKtc-Regular.ttf",
+      "CJK TC/SweiDevilSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiDevilSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiDevilSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swdevilsans",
+    "norm": "Swdevilsans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-bell-sans",
+    "label": "swei bell sans",
+    "url": "https://github.com/max32002/swei-bell-sans",
+    "stars": 8,
+    "full": "max32002/swei-bell-sans",
+    "paths": [
+      "CJK JP/SweiBellSansCJKjp-Black.ttf",
+      "CJK JP/SweiBellSansCJKjp-Bold.ttf",
+      "CJK JP/SweiBellSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiBellSansCJKjp-Light.ttf",
+      "CJK JP/SweiBellSansCJKjp-Medium.ttf",
+      "CJK JP/SweiBellSansCJKjp-Regular.ttf",
+      "CJK JP/SweiBellSansCJKjp-Thin.ttf",
+      "CJK SC/SweiBellSansCJKsc-Black.ttf",
+      "CJK SC/SweiBellSansCJKsc-Bold.ttf",
+      "CJK SC/SweiBellSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiBellSansCJKsc-Light.ttf",
+      "CJK SC/SweiBellSansCJKsc-Medium.ttf",
+      "CJK SC/SweiBellSansCJKsc-Regular.ttf",
+      "CJK SC/SweiBellSansCJKsc-Thin.ttf",
+      "CJK TC/SweiBellSansCJKtc-Black.ttf",
+      "CJK TC/SweiBellSansCJKtc-Bold.ttf",
+      "CJK TC/SweiBellSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiBellSansCJKtc-Light.ttf",
+      "CJK TC/SweiBellSansCJKtc-Medium.ttf",
+      "CJK TC/SweiBellSansCJKtc-Regular.ttf",
+      "CJK TC/SweiBellSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiBellSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiBellSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swbellsans",
+    "norm": "Swbellsans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-jay-leg",
+    "label": "swei jay leg",
+    "url": "https://github.com/max32002/swei-jay-leg",
+    "stars": 8,
+    "full": "max32002/swei-jay-leg",
+    "paths": [
+      "CJK JP/SweiJayLegCJKjp-Black.ttf",
+      "CJK JP/SweiJayLegCJKjp-Bold.ttf",
+      "CJK JP/SweiJayLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiJayLegCJKjp-Light.ttf",
+      "CJK JP/SweiJayLegCJKjp-Medium.ttf",
+      "CJK JP/SweiJayLegCJKjp-Regular.ttf",
+      "CJK JP/SweiJayLegCJKjp-Thin.ttf",
+      "CJK SC/SweiJayLegCJKsc-Black.ttf",
+      "CJK SC/SweiJayLegCJKsc-Bold.ttf",
+      "CJK SC/SweiJayLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiJayLegCJKsc-Light.ttf",
+      "CJK SC/SweiJayLegCJKsc-Medium.ttf",
+      "CJK SC/SweiJayLegCJKsc-Regular.ttf",
+      "CJK SC/SweiJayLegCJKsc-Thin.ttf",
+      "CJK TC/SweiJayLegCJKtc-Black.ttf",
+      "CJK TC/SweiJayLegCJKtc-Bold.ttf",
+      "CJK TC/SweiJayLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiJayLegCJKtc-Light.ttf",
+      "CJK TC/SweiJayLegCJKtc-Medium.ttf",
+      "CJK TC/SweiJayLegCJKtc-Regular.ttf",
+      "CJK TC/SweiJayLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiJayLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiJayLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swjayleg",
+    "norm": "Swjayleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-right-bottom-sans",
+    "label": "swei right bottom sans",
+    "url": "https://github.com/max32002/swei-right-bottom-sans",
+    "stars": 8,
+    "full": "max32002/swei-right-bottom-sans",
+    "paths": [
+      "CJK JP/SweiRightBottomSansCJKjp-Black.ttf",
+      "CJK JP/SweiRightBottomSansCJKjp-Bold.ttf",
+      "CJK JP/SweiRightBottomSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiRightBottomSansCJKjp-Light.ttf",
+      "CJK JP/SweiRightBottomSansCJKjp-Medium.ttf",
+      "CJK JP/SweiRightBottomSansCJKjp-Regular.ttf",
+      "CJK JP/SweiRightBottomSansCJKjp-Thin.ttf",
+      "CJK SC/SweiRightBottomSansCJKsc-Black.ttf",
+      "CJK SC/SweiRightBottomSansCJKsc-Bold.ttf",
+      "CJK SC/SweiRightBottomSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiRightBottomSansCJKsc-Light.ttf",
+      "CJK SC/SweiRightBottomSansCJKsc-Medium.ttf",
+      "CJK SC/SweiRightBottomSansCJKsc-Regular.ttf",
+      "CJK SC/SweiRightBottomSansCJKsc-Thin.ttf",
+      "CJK TC/SweiRightBottomSansCJKtc-Black.ttf",
+      "CJK TC/SweiRightBottomSansCJKtc-Bold.ttf",
+      "CJK TC/SweiRightBottomSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiRightBottomSansCJKtc-Light.ttf",
+      "CJK TC/SweiRightBottomSansCJKtc-Medium.ttf",
+      "CJK TC/SweiRightBottomSansCJKtc-Regular.ttf",
+      "CJK TC/SweiRightBottomSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiRightBottomSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiRightBottomSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swrightbottoms",
+    "norm": "Swrightbottoms"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-shear-leg",
+    "label": "swei shear leg",
+    "url": "https://github.com/max32002/swei-shear-leg",
+    "stars": 8,
+    "full": "max32002/swei-shear-leg",
+    "paths": [
+      "CJK JP/SweiShearLegCJKjp-Black.ttf",
+      "CJK JP/SweiShearLegCJKjp-Bold.ttf",
+      "CJK JP/SweiShearLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiShearLegCJKjp-Light.ttf",
+      "CJK JP/SweiShearLegCJKjp-Medium.ttf",
+      "CJK JP/SweiShearLegCJKjp-Regular.ttf",
+      "CJK JP/SweiShearLegCJKjp-Thin.ttf",
+      "CJK SC/SweiShearLegCJKsc-Black.ttf",
+      "CJK SC/SweiShearLegCJKsc-Bold.ttf",
+      "CJK SC/SweiShearLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiShearLegCJKsc-Light.ttf",
+      "CJK SC/SweiShearLegCJKsc-Medium.ttf",
+      "CJK SC/SweiShearLegCJKsc-Regular.ttf",
+      "CJK SC/SweiShearLegCJKsc-Thin.ttf",
+      "CJK TC/SweiShearLegCJKtc-Black.ttf",
+      "CJK TC/SweiShearLegCJKtc-Bold.ttf",
+      "CJK TC/SweiShearLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiShearLegCJKtc-Light.ttf",
+      "CJK TC/SweiShearLegCJKtc-Medium.ttf",
+      "CJK TC/SweiShearLegCJKtc-Regular.ttf",
+      "CJK TC/SweiShearLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiShearLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiShearLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swshearleg",
+    "norm": "Swshearleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-rainbow-leg",
+    "label": "swei rainbow leg",
+    "url": "https://github.com/max32002/swei-rainbow-leg",
+    "stars": 8,
+    "full": "max32002/swei-rainbow-leg",
+    "paths": [
+      "CJK JP/SweiRainbowLegCJKjp-Black.ttf",
+      "CJK JP/SweiRainbowLegCJKjp-Bold.ttf",
+      "CJK JP/SweiRainbowLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiRainbowLegCJKjp-Light.ttf",
+      "CJK JP/SweiRainbowLegCJKjp-Medium.ttf",
+      "CJK JP/SweiRainbowLegCJKjp-Regular.ttf",
+      "CJK JP/SweiRainbowLegCJKjp-Thin.ttf",
+      "CJK SC/SweiRainbowLegCJKsc-Black.ttf",
+      "CJK SC/SweiRainbowLegCJKsc-Bold.ttf",
+      "CJK SC/SweiRainbowLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiRainbowLegCJKsc-Light.ttf",
+      "CJK SC/SweiRainbowLegCJKsc-Medium.ttf",
+      "CJK SC/SweiRainbowLegCJKsc-Regular.ttf",
+      "CJK SC/SweiRainbowLegCJKsc-Thin.ttf",
+      "CJK TC/SweiRainbowLegCJKtc-Black.ttf",
+      "CJK TC/SweiRainbowLegCJKtc-Bold.ttf",
+      "CJK TC/SweiRainbowLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiRainbowLegCJKtc-Light.ttf",
+      "CJK TC/SweiRainbowLegCJKtc-Medium.ttf",
+      "CJK TC/SweiRainbowLegCJKtc-Regular.ttf",
+      "CJK TC/SweiRainbowLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiRainbowLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiRainbowLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swrainbowleg",
+    "norm": "Swrainbowleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-spike-sans",
+    "label": "swei spike sans",
+    "url": "https://github.com/max32002/swei-spike-sans",
+    "stars": 8,
+    "full": "max32002/swei-spike-sans",
+    "paths": [
+      "CJK JP/SweiSpikeSansCJKjp-Black.ttf",
+      "CJK JP/SweiSpikeSansCJKjp-Bold.ttf",
+      "CJK JP/SweiSpikeSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiSpikeSansCJKjp-Light.ttf",
+      "CJK JP/SweiSpikeSansCJKjp-Medium.ttf",
+      "CJK JP/SweiSpikeSansCJKjp-Regular.ttf",
+      "CJK JP/SweiSpikeSansCJKjp-Thin.ttf",
+      "CJK SC/SweiSpikeSansCJKsc-Black.ttf",
+      "CJK SC/SweiSpikeSansCJKsc-Bold.ttf",
+      "CJK SC/SweiSpikeSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiSpikeSansCJKsc-Light.ttf",
+      "CJK SC/SweiSpikeSansCJKsc-Medium.ttf",
+      "CJK SC/SweiSpikeSansCJKsc-Regular.ttf",
+      "CJK SC/SweiSpikeSansCJKsc-Thin.ttf",
+      "CJK TC/SweiSpikeSansCJKtc-Black.ttf",
+      "CJK TC/SweiSpikeSansCJKtc-Bold.ttf",
+      "CJK TC/SweiSpikeSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiSpikeSansCJKtc-Light.ttf",
+      "CJK TC/SweiSpikeSansCJKtc-Medium.ttf",
+      "CJK TC/SweiSpikeSansCJKtc-Regular.ttf",
+      "CJK TC/SweiSpikeSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiSpikeSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiSpikeSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swspikesans",
+    "norm": "Swspikesans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-match-sans",
+    "label": "狮尾火柴",
+    "url": "https://github.com/max32002/swei-match-sans",
+    "stars": 7,
+    "full": "max32002/swei-match-sans",
+    "paths": [
+      "CJK JP/SweiMatchSansCJKjp-Black.ttf",
+      "CJK JP/SweiMatchSansCJKjp-Bold.ttf",
+      "CJK JP/SweiMatchSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiMatchSansCJKjp-Light.ttf",
+      "CJK JP/SweiMatchSansCJKjp-Medium.ttf",
+      "CJK JP/SweiMatchSansCJKjp-Regular.ttf",
+      "CJK JP/SweiMatchSansCJKjp-Thin.ttf",
+      "CJK SC/SweiMatchSansCJKsc-Black.ttf",
+      "CJK SC/SweiMatchSansCJKsc-Bold.ttf",
+      "CJK SC/SweiMatchSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiMatchSansCJKsc-Light.ttf",
+      "CJK SC/SweiMatchSansCJKsc-Medium.ttf",
+      "CJK SC/SweiMatchSansCJKsc-Regular.ttf",
+      "CJK SC/SweiMatchSansCJKsc-Thin.ttf",
+      "CJK TC/SweiMatchSansCJKtc-Black.ttf",
+      "CJK TC/SweiMatchSansCJKtc-Bold.ttf",
+      "CJK TC/SweiMatchSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiMatchSansCJKtc-Light.ttf",
+      "CJK TC/SweiMatchSansCJKtc-Medium.ttf",
+      "CJK TC/SweiMatchSansCJKtc-Regular.ttf",
+      "CJK TC/SweiMatchSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiMatchSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiMatchSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swmatchsans",
+    "norm": "Swmatchsans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-dart-sans",
+    "label": "swei dart sans",
+    "url": "https://github.com/max32002/swei-dart-sans",
+    "stars": 7,
+    "full": "max32002/swei-dart-sans",
+    "paths": [
+      "CJK JP/SweiDartSansCJKjp-Black.ttf",
+      "CJK JP/SweiDartSansCJKjp-Bold.ttf",
+      "CJK JP/SweiDartSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiDartSansCJKjp-Light.ttf",
+      "CJK JP/SweiDartSansCJKjp-Medium.ttf",
+      "CJK JP/SweiDartSansCJKjp-Regular.ttf",
+      "CJK JP/SweiDartSansCJKjp-Thin.ttf",
+      "CJK SC/SweiDartSansCJKsc-Black.ttf",
+      "CJK SC/SweiDartSansCJKsc-Bold.ttf",
+      "CJK SC/SweiDartSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiDartSansCJKsc-Light.ttf",
+      "CJK SC/SweiDartSansCJKsc-Medium.ttf",
+      "CJK SC/SweiDartSansCJKsc-Regular.ttf",
+      "CJK SC/SweiDartSansCJKsc-Thin.ttf",
+      "CJK TC/SweiDartSansCJKtc-Black.ttf",
+      "CJK TC/SweiDartSansCJKtc-Bold.ttf",
+      "CJK TC/SweiDartSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiDartSansCJKtc-Light.ttf",
+      "CJK TC/SweiDartSansCJKtc-Medium.ttf",
+      "CJK TC/SweiDartSansCJKtc-Regular.ttf",
+      "CJK TC/SweiDartSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiDartSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiDartSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swdartsans",
+    "norm": "Swdartsans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-del-luna-sans",
+    "label": "swei del luna sans",
+    "url": "https://github.com/max32002/swei-del-luna-sans",
+    "stars": 7,
+    "full": "max32002/swei-del-luna-sans",
+    "paths": [
+      "CJK JP/SweiDelLunaSansCJKjp-Black.ttf",
+      "CJK JP/SweiDelLunaSansCJKjp-Bold.ttf",
+      "CJK JP/SweiDelLunaSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiDelLunaSansCJKjp-Light.ttf",
+      "CJK JP/SweiDelLunaSansCJKjp-Medium.ttf",
+      "CJK JP/SweiDelLunaSansCJKjp-Regular.ttf",
+      "CJK JP/SweiDelLunaSansCJKjp-Thin.ttf",
+      "CJK SC/SweiDelLunaSansCJKsc-Black.ttf",
+      "CJK SC/SweiDelLunaSansCJKsc-Bold.ttf",
+      "CJK SC/SweiDelLunaSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiDelLunaSansCJKsc-Light.ttf",
+      "CJK SC/SweiDelLunaSansCJKsc-Medium.ttf",
+      "CJK SC/SweiDelLunaSansCJKsc-Regular.ttf",
+      "CJK SC/SweiDelLunaSansCJKsc-Thin.ttf",
+      "CJK TC/SweiDelLunaSansCJKtc-Black.ttf",
+      "CJK TC/SweiDelLunaSansCJKtc-Bold.ttf",
+      "CJK TC/SweiDelLunaSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiDelLunaSansCJKtc-Light.ttf",
+      "CJK TC/SweiDelLunaSansCJKtc-Medium.ttf",
+      "CJK TC/SweiDelLunaSansCJKtc-Regular.ttf",
+      "CJK TC/SweiDelLunaSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiDelLunaSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiDelLunaSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swdellunasans",
+    "norm": "Swdellunasans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-alias-sans",
+    "label": "swei alias sans",
+    "url": "https://github.com/max32002/swei-alias-sans",
+    "stars": 7,
+    "full": "max32002/swei-alias-sans",
+    "paths": [
+      "CJK JP/SweiAliasSansCJKjp-Black.ttf",
+      "CJK JP/SweiAliasSansCJKjp-Bold.ttf",
+      "CJK JP/SweiAliasSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiAliasSansCJKjp-Light.ttf",
+      "CJK JP/SweiAliasSansCJKjp-Medium.ttf",
+      "CJK JP/SweiAliasSansCJKjp-Regular.ttf",
+      "CJK JP/SweiAliasSansCJKjp-Thin.ttf",
+      "CJK SC/SweiAliasSansCJKsc-Black.ttf",
+      "CJK SC/SweiAliasSansCJKsc-Bold.ttf",
+      "CJK SC/SweiAliasSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiAliasSansCJKsc-Light.ttf",
+      "CJK SC/SweiAliasSansCJKsc-Medium.ttf",
+      "CJK SC/SweiAliasSansCJKsc-Regular.ttf",
+      "CJK SC/SweiAliasSansCJKsc-Thin.ttf",
+      "CJK TC/SweiAliasSansCJKtc-Black.ttf",
+      "CJK TC/SweiAliasSansCJKtc-Bold.ttf",
+      "CJK TC/SweiAliasSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiAliasSansCJKtc-Light.ttf",
+      "CJK TC/SweiAliasSansCJKtc-Medium.ttf",
+      "CJK TC/SweiAliasSansCJKtc-Regular.ttf",
+      "CJK TC/SweiAliasSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiAliasSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiAliasSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swaliassans",
+    "norm": "Swaliassans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-ax-sans",
+    "label": "swei ax sans",
+    "url": "https://github.com/max32002/swei-ax-sans",
+    "stars": 7,
+    "full": "max32002/swei-ax-sans",
+    "paths": [
+      "CJK JP/SweiAxSansCJKjp-Black.ttf",
+      "CJK JP/SweiAxSansCJKjp-Bold.ttf",
+      "CJK JP/SweiAxSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiAxSansCJKjp-Light.ttf",
+      "CJK JP/SweiAxSansCJKjp-Medium.ttf",
+      "CJK JP/SweiAxSansCJKjp-Regular.ttf",
+      "CJK JP/SweiAxSansCJKjp-Thin.ttf",
+      "CJK SC/SweiAxSansCJKsc-Black.ttf",
+      "CJK SC/SweiAxSansCJKsc-Bold.ttf",
+      "CJK SC/SweiAxSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiAxSansCJKsc-Light.ttf",
+      "CJK SC/SweiAxSansCJKsc-Medium.ttf",
+      "CJK SC/SweiAxSansCJKsc-Regular.ttf",
+      "CJK SC/SweiAxSansCJKsc-Thin.ttf",
+      "CJK TC/SweiAxSansCJKtc-Black.ttf",
+      "CJK TC/SweiAxSansCJKtc-Bold.ttf",
+      "CJK TC/SweiAxSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiAxSansCJKtc-Light.ttf",
+      "CJK TC/SweiAxSansCJKtc-Medium.ttf",
+      "CJK TC/SweiAxSansCJKtc-Regular.ttf",
+      "CJK TC/SweiAxSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiAxSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiAxSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swaxsans",
+    "norm": "Swaxsans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-fist-leg",
+    "label": "swei fist leg",
+    "url": "https://github.com/max32002/swei-fist-leg",
+    "stars": 6,
+    "full": "max32002/swei-fist-leg",
+    "paths": [
+      "CJK JP/SweiFistLegCJKjp-Black.ttf",
+      "CJK JP/SweiFistLegCJKjp-Bold.ttf",
+      "CJK JP/SweiFistLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiFistLegCJKjp-Light.ttf",
+      "CJK JP/SweiFistLegCJKjp-Medium.ttf",
+      "CJK JP/SweiFistLegCJKjp-Regular.ttf",
+      "CJK JP/SweiFistLegCJKjp-Thin.ttf",
+      "CJK SC/SweiFistLegCJKsc-Black.ttf",
+      "CJK SC/SweiFistLegCJKsc-Bold.ttf",
+      "CJK SC/SweiFistLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiFistLegCJKsc-Light.ttf",
+      "CJK SC/SweiFistLegCJKsc-Medium.ttf",
+      "CJK SC/SweiFistLegCJKsc-Regular.ttf",
+      "CJK SC/SweiFistLegCJKsc-Thin.ttf",
+      "CJK TC/SweiFistLegCJKtc-Black.ttf",
+      "CJK TC/SweiFistLegCJKtc-Bold.ttf",
+      "CJK TC/SweiFistLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiFistLegCJKtc-Light.ttf",
+      "CJK TC/SweiFistLegCJKtc-Medium.ttf",
+      "CJK TC/SweiFistLegCJKtc-Regular.ttf",
+      "CJK TC/SweiFistLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiFistLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiFistLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swfistleg",
+    "norm": "Swfistleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-jay-sans",
+    "label": "swei jay sans",
+    "url": "https://github.com/max32002/swei-jay-sans",
+    "stars": 6,
+    "full": "max32002/swei-jay-sans",
+    "paths": [
+      "CJK JP/SweiJaySansCJKjp-Black.ttf",
+      "CJK JP/SweiJaySansCJKjp-Bold.ttf",
+      "CJK JP/SweiJaySansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiJaySansCJKjp-Light.ttf",
+      "CJK JP/SweiJaySansCJKjp-Medium.ttf",
+      "CJK JP/SweiJaySansCJKjp-Regular.ttf",
+      "CJK JP/SweiJaySansCJKjp-Thin.ttf",
+      "CJK SC/SweiJaySansCJKsc-Black.ttf",
+      "CJK SC/SweiJaySansCJKsc-Bold.ttf",
+      "CJK SC/SweiJaySansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiJaySansCJKsc-Light.ttf",
+      "CJK SC/SweiJaySansCJKsc-Medium.ttf",
+      "CJK SC/SweiJaySansCJKsc-Regular.ttf",
+      "CJK SC/SweiJaySansCJKsc-Thin.ttf",
+      "CJK TC/SweiJaySansCJKtc-Black.ttf",
+      "CJK TC/SweiJaySansCJKtc-Bold.ttf",
+      "CJK TC/SweiJaySansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiJaySansCJKtc-Light.ttf",
+      "CJK TC/SweiJaySansCJKtc-Medium.ttf",
+      "CJK TC/SweiJaySansCJKtc-Regular.ttf",
+      "CJK TC/SweiJaySansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiJaySansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiJaySansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swjaysans",
+    "norm": "Swjaysans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-del-luna-leg",
+    "label": "swei del luna leg",
+    "url": "https://github.com/max32002/swei-del-luna-leg",
+    "stars": 6,
+    "full": "max32002/swei-del-luna-leg",
+    "paths": [
+      "CJK JP/SweiDelLunaLegCJKjp-Black.ttf",
+      "CJK JP/SweiDelLunaLegCJKjp-Bold.ttf",
+      "CJK JP/SweiDelLunaLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiDelLunaLegCJKjp-Light.ttf",
+      "CJK JP/SweiDelLunaLegCJKjp-Medium.ttf",
+      "CJK JP/SweiDelLunaLegCJKjp-Regular.ttf",
+      "CJK JP/SweiDelLunaLegCJKjp-Thin.ttf",
+      "CJK SC/SweiDelLunaLegCJKsc-Black.ttf",
+      "CJK SC/SweiDelLunaLegCJKsc-Bold.ttf",
+      "CJK SC/SweiDelLunaLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiDelLunaLegCJKsc-Light.ttf",
+      "CJK SC/SweiDelLunaLegCJKsc-Medium.ttf",
+      "CJK SC/SweiDelLunaLegCJKsc-Regular.ttf",
+      "CJK SC/SweiDelLunaLegCJKsc-Thin.ttf",
+      "CJK TC/SweiDelLunaLegCJKtc-Black.ttf",
+      "CJK TC/SweiDelLunaLegCJKtc-Bold.ttf",
+      "CJK TC/SweiDelLunaLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiDelLunaLegCJKtc-Light.ttf",
+      "CJK TC/SweiDelLunaLegCJKtc-Medium.ttf",
+      "CJK TC/SweiDelLunaLegCJKtc-Regular.ttf",
+      "CJK TC/SweiDelLunaLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiDelLunaLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiDelLunaLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swdellunaleg",
+    "norm": "Swdellunaleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-gospel-sans",
+    "label": "swei gospel sans",
+    "url": "https://github.com/max32002/swei-gospel-sans",
+    "stars": 6,
+    "full": "max32002/swei-gospel-sans",
+    "paths": [
+      "CJK JP/SweiGospelSansCJKjp-Black.ttf",
+      "CJK JP/SweiGospelSansCJKjp-Bold.ttf",
+      "CJK JP/SweiGospelSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiGospelSansCJKjp-Light.ttf",
+      "CJK JP/SweiGospelSansCJKjp-Medium.ttf",
+      "CJK JP/SweiGospelSansCJKjp-Regular.ttf",
+      "CJK JP/SweiGospelSansCJKjp-Thin.ttf",
+      "CJK SC/SweiGospelSansCJKsc-Black.ttf",
+      "CJK SC/SweiGospelSansCJKsc-Bold.ttf",
+      "CJK SC/SweiGospelSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiGospelSansCJKsc-Light.ttf",
+      "CJK SC/SweiGospelSansCJKsc-Medium.ttf",
+      "CJK SC/SweiGospelSansCJKsc-Regular.ttf",
+      "CJK SC/SweiGospelSansCJKsc-Thin.ttf",
+      "CJK TC/SweiGospelSansCJKtc-Black.ttf",
+      "CJK TC/SweiGospelSansCJKtc-Bold.ttf",
+      "CJK TC/SweiGospelSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiGospelSansCJKtc-Light.ttf",
+      "CJK TC/SweiGospelSansCJKtc-Medium.ttf",
+      "CJK TC/SweiGospelSansCJKtc-Regular.ttf",
+      "CJK TC/SweiGospelSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiGospelSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiGospelSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swgospelsans",
+    "norm": "Swgospelsans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-bell-leg",
+    "label": "swei bell leg",
+    "url": "https://github.com/max32002/swei-bell-leg",
+    "stars": 6,
+    "full": "max32002/swei-bell-leg",
+    "paths": [
+      "CJK JP/SweiBellLegCJKjp-Black.ttf",
+      "CJK JP/SweiBellLegCJKjp-Bold.ttf",
+      "CJK JP/SweiBellLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiBellLegCJKjp-Light.ttf",
+      "CJK JP/SweiBellLegCJKjp-Medium.ttf",
+      "CJK JP/SweiBellLegCJKjp-Regular.ttf",
+      "CJK JP/SweiBellLegCJKjp-Thin.ttf",
+      "CJK SC/SweiBellLegCJKsc-Black.ttf",
+      "CJK SC/SweiBellLegCJKsc-Bold.ttf",
+      "CJK SC/SweiBellLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiBellLegCJKsc-Light.ttf",
+      "CJK SC/SweiBellLegCJKsc-Medium.ttf",
+      "CJK SC/SweiBellLegCJKsc-Regular.ttf",
+      "CJK SC/SweiBellLegCJKsc-Thin.ttf",
+      "CJK TC/SweiBellLegCJKtc-Black.ttf",
+      "CJK TC/SweiBellLegCJKtc-Bold.ttf",
+      "CJK TC/SweiBellLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiBellLegCJKtc-Light.ttf",
+      "CJK TC/SweiBellLegCJKtc-Medium.ttf",
+      "CJK TC/SweiBellLegCJKtc-Regular.ttf",
+      "CJK TC/SweiBellLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiBellLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiBellLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swbellleg",
+    "norm": "Swbellleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-marker-leg",
+    "label": "swei marker leg",
+    "url": "https://github.com/max32002/swei-marker-leg",
+    "stars": 6,
+    "full": "max32002/swei-marker-leg",
+    "paths": [
+      "CJK JP/SweiMarkerLegCJKjp-Black.ttf",
+      "CJK JP/SweiMarkerLegCJKjp-Bold.ttf",
+      "CJK JP/SweiMarkerLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiMarkerLegCJKjp-Light.ttf",
+      "CJK JP/SweiMarkerLegCJKjp-Medium.ttf",
+      "CJK JP/SweiMarkerLegCJKjp-Regular.ttf",
+      "CJK JP/SweiMarkerLegCJKjp-Thin.ttf",
+      "CJK SC/SweiMarkerLegCJKsc-Black.ttf",
+      "CJK SC/SweiMarkerLegCJKsc-Bold.ttf",
+      "CJK SC/SweiMarkerLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiMarkerLegCJKsc-Light.ttf",
+      "CJK SC/SweiMarkerLegCJKsc-Medium.ttf",
+      "CJK SC/SweiMarkerLegCJKsc-Regular.ttf",
+      "CJK SC/SweiMarkerLegCJKsc-Thin.ttf",
+      "CJK TC/SweiMarkerLegCJKtc-Black.ttf",
+      "CJK TC/SweiMarkerLegCJKtc-Bold.ttf",
+      "CJK TC/SweiMarkerLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiMarkerLegCJKtc-Light.ttf",
+      "CJK TC/SweiMarkerLegCJKtc-Medium.ttf",
+      "CJK TC/SweiMarkerLegCJKtc-Regular.ttf",
+      "CJK TC/SweiMarkerLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiMarkerLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiMarkerLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swmarkerleg",
+    "norm": "Swmarkerleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-devil-leg",
+    "label": "swei devil leg",
+    "url": "https://github.com/max32002/swei-devil-leg",
+    "stars": 6,
+    "full": "max32002/swei-devil-leg",
+    "paths": [
+      "CJK JP/SweiDevilLegCJKjp-Black.ttf",
+      "CJK JP/SweiDevilLegCJKjp-Bold.ttf",
+      "CJK JP/SweiDevilLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiDevilLegCJKjp-Light.ttf",
+      "CJK JP/SweiDevilLegCJKjp-Medium.ttf",
+      "CJK JP/SweiDevilLegCJKjp-Regular.ttf",
+      "CJK JP/SweiDevilLegCJKjp-Thin.ttf",
+      "CJK SC/SweiDevilLegCJKsc-Black.ttf",
+      "CJK SC/SweiDevilLegCJKsc-Bold.ttf",
+      "CJK SC/SweiDevilLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiDevilLegCJKsc-Light.ttf",
+      "CJK SC/SweiDevilLegCJKsc-Medium.ttf",
+      "CJK SC/SweiDevilLegCJKsc-Regular.ttf",
+      "CJK SC/SweiDevilLegCJKsc-Thin.ttf",
+      "CJK TC/SweiDevilLegCJKtc-Black.ttf",
+      "CJK TC/SweiDevilLegCJKtc-Bold.ttf",
+      "CJK TC/SweiDevilLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiDevilLegCJKtc-Light.ttf",
+      "CJK TC/SweiDevilLegCJKtc-Medium.ttf",
+      "CJK TC/SweiDevilLegCJKtc-Regular.ttf",
+      "CJK TC/SweiDevilLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiDevilLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiDevilLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swdevilleg",
+    "norm": "Swdevilleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-3t-sans",
+    "label": "swei 3t sans",
+    "url": "https://github.com/max32002/swei-3t-sans",
+    "stars": 5,
+    "full": "max32002/swei-3t-sans",
+    "paths": [
+      "CJK JP/Swei3TSansCJKjp-Black.ttf",
+      "CJK JP/Swei3TSansCJKjp-Bold.ttf",
+      "CJK JP/Swei3TSansCJKjp-DemiLight.ttf",
+      "CJK JP/Swei3TSansCJKjp-Light.ttf",
+      "CJK JP/Swei3TSansCJKjp-Medium.ttf",
+      "CJK JP/Swei3TSansCJKjp-Regular.ttf",
+      "CJK JP/Swei3TSansCJKjp-Thin.ttf",
+      "CJK SC/Swei3TSansCJKsc-Black.ttf",
+      "CJK SC/Swei3TSansCJKsc-Bold.ttf",
+      "CJK SC/Swei3TSansCJKsc-DemiLight.ttf",
+      "CJK SC/Swei3TSansCJKsc-Light.ttf",
+      "CJK SC/Swei3TSansCJKsc-Medium.ttf",
+      "CJK SC/Swei3TSansCJKsc-Regular.ttf",
+      "CJK SC/Swei3TSansCJKsc-Thin.ttf",
+      "CJK TC/Swei3TSansCJKtc-Black.ttf",
+      "CJK TC/Swei3TSansCJKtc-Bold.ttf",
+      "CJK TC/Swei3TSansCJKtc-DemiLight.ttf",
+      "CJK TC/Swei3TSansCJKtc-Light.ttf",
+      "CJK TC/Swei3TSansCJKtc-Medium.ttf",
+      "CJK TC/Swei3TSansCJKtc-Regular.ttf",
+      "CJK TC/Swei3TSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/Swei3TSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/Swei3TSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "sw3tsans",
+    "norm": "Sw3tsans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-dart-leg",
+    "label": "swei dart leg",
+    "url": "https://github.com/max32002/swei-dart-leg",
+    "stars": 5,
+    "full": "max32002/swei-dart-leg",
+    "paths": [
+      "CJK JP/SweiDartLegCJKjp-Black.ttf",
+      "CJK JP/SweiDartLegCJKjp-Bold.ttf",
+      "CJK JP/SweiDartLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiDartLegCJKjp-Light.ttf",
+      "CJK JP/SweiDartLegCJKjp-Medium.ttf",
+      "CJK JP/SweiDartLegCJKjp-Regular.ttf",
+      "CJK JP/SweiDartLegCJKjp-Thin.ttf",
+      "CJK SC/SweiDartLegCJKsc-Black.ttf",
+      "CJK SC/SweiDartLegCJKsc-Bold.ttf",
+      "CJK SC/SweiDartLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiDartLegCJKsc-Light.ttf",
+      "CJK SC/SweiDartLegCJKsc-Medium.ttf",
+      "CJK SC/SweiDartLegCJKsc-Regular.ttf",
+      "CJK SC/SweiDartLegCJKsc-Thin.ttf",
+      "CJK TC/SweiDartLegCJKtc-Black.ttf",
+      "CJK TC/SweiDartLegCJKtc-Bold.ttf",
+      "CJK TC/SweiDartLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiDartLegCJKtc-Light.ttf",
+      "CJK TC/SweiDartLegCJKtc-Medium.ttf",
+      "CJK TC/SweiDartLegCJKtc-Regular.ttf",
+      "CJK TC/SweiDartLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiDartLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiDartLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swdartleg",
+    "norm": "Swdartleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-right-bottom-leg",
+    "label": "swei right bottom leg",
+    "url": "https://github.com/max32002/swei-right-bottom-leg",
+    "stars": 5,
+    "full": "max32002/swei-right-bottom-leg",
+    "paths": [
+      "CJK JP/SweiRightBottomLegCJKjp-Black.ttf",
+      "CJK JP/SweiRightBottomLegCJKjp-Bold.ttf",
+      "CJK JP/SweiRightBottomLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiRightBottomLegCJKjp-Light.ttf",
+      "CJK JP/SweiRightBottomLegCJKjp-Medium.ttf",
+      "CJK JP/SweiRightBottomLegCJKjp-Regular.ttf",
+      "CJK JP/SweiRightBottomLegCJKjp-Thin.ttf",
+      "CJK SC/SweiRightBottomLegCJKsc-Black.ttf",
+      "CJK SC/SweiRightBottomLegCJKsc-Bold.ttf",
+      "CJK SC/SweiRightBottomLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiRightBottomLegCJKsc-Light.ttf",
+      "CJK SC/SweiRightBottomLegCJKsc-Medium.ttf",
+      "CJK SC/SweiRightBottomLegCJKsc-Regular.ttf",
+      "CJK SC/SweiRightBottomLegCJKsc-Thin.ttf",
+      "CJK TC/SweiRightBottomLegCJKtc-Black.ttf",
+      "CJK TC/SweiRightBottomLegCJKtc-Bold.ttf",
+      "CJK TC/SweiRightBottomLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiRightBottomLegCJKtc-Light.ttf",
+      "CJK TC/SweiRightBottomLegCJKtc-Medium.ttf",
+      "CJK TC/SweiRightBottomLegCJKtc-Regular.ttf",
+      "CJK TC/SweiRightBottomLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiRightBottomLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiRightBottomLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swrightbottoml",
+    "norm": "Swrightbottoml"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-d-lucy",
+    "label": "swei d lucy",
+    "url": "https://github.com/max32002/swei-d-lucy",
+    "stars": 5,
+    "full": "max32002/swei-d-lucy",
+    "paths": [
+      "CJK JP/SweiDLucyCJKjp-Black.ttf",
+      "CJK JP/SweiDLucyCJKjp-Bold.ttf",
+      "CJK JP/SweiDLucyCJKjp-DemiLight.ttf",
+      "CJK JP/SweiDLucyCJKjp-Light.ttf",
+      "CJK JP/SweiDLucyCJKjp-Medium.ttf",
+      "CJK JP/SweiDLucyCJKjp-Regular.ttf",
+      "CJK JP/SweiDLucyCJKjp-Thin.ttf",
+      "CJK SC/SweiDLucyCJKsc-Black.ttf",
+      "CJK SC/SweiDLucyCJKsc-Bold.ttf",
+      "CJK SC/SweiDLucyCJKsc-DemiLight.ttf",
+      "CJK SC/SweiDLucyCJKsc-Light.ttf",
+      "CJK SC/SweiDLucyCJKsc-Medium.ttf",
+      "CJK SC/SweiDLucyCJKsc-Regular.ttf",
+      "CJK SC/SweiDLucyCJKsc-Thin.ttf",
+      "CJK TC/SweiDLucyCJKtc-Black.ttf",
+      "CJK TC/SweiDLucyCJKtc-Bold.ttf",
+      "CJK TC/SweiDLucyCJKtc-DemiLight.ttf",
+      "CJK TC/SweiDLucyCJKtc-Light.ttf",
+      "CJK TC/SweiDLucyCJKtc-Medium.ttf",
+      "CJK TC/SweiDLucyCJKtc-Regular.ttf",
+      "CJK TC/SweiDLucyCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiDLucyCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiDLucyCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swdlucy",
+    "norm": "Swdlucy"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-ax-leg",
+    "label": "swei ax leg",
+    "url": "https://github.com/max32002/swei-ax-leg",
+    "stars": 4,
+    "full": "max32002/swei-ax-leg",
+    "paths": [
+      "CJK JP/SweiAxLegCJKjp-Black.ttf",
+      "CJK JP/SweiAxLegCJKjp-Bold.ttf",
+      "CJK JP/SweiAxLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiAxLegCJKjp-Light.ttf",
+      "CJK JP/SweiAxLegCJKjp-Medium.ttf",
+      "CJK JP/SweiAxLegCJKjp-Regular.ttf",
+      "CJK JP/SweiAxLegCJKjp-Thin.ttf",
+      "CJK SC/SweiAxLegCJKsc-Black.ttf",
+      "CJK SC/SweiAxLegCJKsc-Bold.ttf",
+      "CJK SC/SweiAxLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiAxLegCJKsc-Light.ttf",
+      "CJK SC/SweiAxLegCJKsc-Medium.ttf",
+      "CJK SC/SweiAxLegCJKsc-Regular.ttf",
+      "CJK SC/SweiAxLegCJKsc-Thin.ttf",
+      "CJK TC/SweiAxLegCJKtc-Black.ttf",
+      "CJK TC/SweiAxLegCJKtc-Bold.ttf",
+      "CJK TC/SweiAxLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiAxLegCJKtc-Light.ttf",
+      "CJK TC/SweiAxLegCJKtc-Medium.ttf",
+      "CJK TC/SweiAxLegCJKtc-Regular.ttf",
+      "CJK TC/SweiAxLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiAxLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiAxLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swaxleg",
+    "norm": "Swaxleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-match-leg",
+    "label": "swei match leg",
+    "url": "https://github.com/max32002/swei-match-leg",
+    "stars": 4,
+    "full": "max32002/swei-match-leg",
+    "paths": [
+      "CJK JP/SweiMatchLegCJKjp-Black.ttf",
+      "CJK JP/SweiMatchLegCJKjp-Bold.ttf",
+      "CJK JP/SweiMatchLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiMatchLegCJKjp-Light.ttf",
+      "CJK JP/SweiMatchLegCJKjp-Medium.ttf",
+      "CJK JP/SweiMatchLegCJKjp-Regular.ttf",
+      "CJK JP/SweiMatchLegCJKjp-Thin.ttf",
+      "CJK SC/SweiMatchLegCJKsc-Black.ttf",
+      "CJK SC/SweiMatchLegCJKsc-Bold.ttf",
+      "CJK SC/SweiMatchLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiMatchLegCJKsc-Light.ttf",
+      "CJK SC/SweiMatchLegCJKsc-Medium.ttf",
+      "CJK SC/SweiMatchLegCJKsc-Regular.ttf",
+      "CJK SC/SweiMatchLegCJKsc-Thin.ttf",
+      "CJK TC/SweiMatchLegCJKtc-Black.ttf",
+      "CJK TC/SweiMatchLegCJKtc-Bold.ttf",
+      "CJK TC/SweiMatchLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiMatchLegCJKtc-Light.ttf",
+      "CJK TC/SweiMatchLegCJKtc-Medium.ttf",
+      "CJK TC/SweiMatchLegCJKtc-Regular.ttf",
+      "CJK TC/SweiMatchLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiMatchLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiMatchLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swmatchleg",
+    "norm": "Swmatchleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-bow-sans",
+    "label": "swei bow sans",
+    "url": "https://github.com/max32002/swei-bow-sans",
+    "stars": 4,
+    "full": "max32002/swei-bow-sans",
+    "paths": [
+      "CJK JP/SweiBowSansCJKjp-Black.ttf",
+      "CJK JP/SweiBowSansCJKjp-Bold.ttf",
+      "CJK JP/SweiBowSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiBowSansCJKjp-Light.ttf",
+      "CJK JP/SweiBowSansCJKjp-Medium.ttf",
+      "CJK JP/SweiBowSansCJKjp-Regular.ttf",
+      "CJK JP/SweiBowSansCJKjp-Thin.ttf",
+      "CJK SC/SweiBowSansCJKsc-Black.ttf",
+      "CJK SC/SweiBowSansCJKsc-Bold.ttf",
+      "CJK SC/SweiBowSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiBowSansCJKsc-Light.ttf",
+      "CJK SC/SweiBowSansCJKsc-Medium.ttf",
+      "CJK SC/SweiBowSansCJKsc-Regular.ttf",
+      "CJK SC/SweiBowSansCJKsc-Thin.ttf",
+      "CJK TC/SweiBowSansCJKtc-Black.ttf",
+      "CJK TC/SweiBowSansCJKtc-Bold.ttf",
+      "CJK TC/SweiBowSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiBowSansCJKtc-Light.ttf",
+      "CJK TC/SweiBowSansCJKtc-Medium.ttf",
+      "CJK TC/SweiBowSansCJKtc-Regular.ttf",
+      "CJK TC/SweiBowSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiBowSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiBowSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swbowsans",
+    "norm": "Swbowsans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-curve-leg",
+    "label": "swei curve leg",
+    "url": "https://github.com/max32002/swei-curve-leg",
+    "stars": 4,
+    "full": "max32002/swei-curve-leg",
+    "paths": [
+      "CJK JP/SweiCurveLegCJKjp-Black.ttf",
+      "CJK JP/SweiCurveLegCJKjp-Bold.ttf",
+      "CJK JP/SweiCurveLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiCurveLegCJKjp-Light.ttf",
+      "CJK JP/SweiCurveLegCJKjp-Medium.ttf",
+      "CJK JP/SweiCurveLegCJKjp-Regular.ttf",
+      "CJK JP/SweiCurveLegCJKjp-Thin.ttf",
+      "CJK SC/SweiCurveLegCJKsc-Black.ttf",
+      "CJK SC/SweiCurveLegCJKsc-Bold.ttf",
+      "CJK SC/SweiCurveLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiCurveLegCJKsc-Light.ttf",
+      "CJK SC/SweiCurveLegCJKsc-Medium.ttf",
+      "CJK SC/SweiCurveLegCJKsc-Regular.ttf",
+      "CJK SC/SweiCurveLegCJKsc-Thin.ttf",
+      "CJK TC/SweiCurveLegCJKtc-Black.ttf",
+      "CJK TC/SweiCurveLegCJKtc-Bold.ttf",
+      "CJK TC/SweiCurveLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiCurveLegCJKtc-Light.ttf",
+      "CJK TC/SweiCurveLegCJKtc-Medium.ttf",
+      "CJK TC/SweiCurveLegCJKtc-Regular.ttf",
+      "CJK TC/SweiCurveLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiCurveLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiCurveLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swcurveleg",
+    "norm": "Swcurveleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-gospel-leg",
+    "label": "swei gospel leg",
+    "url": "https://github.com/max32002/swei-gospel-leg",
+    "stars": 4,
+    "full": "max32002/swei-gospel-leg",
+    "paths": [
+      "CJK JP/SweiGospelLegCJKjp-Black.ttf",
+      "CJK JP/SweiGospelLegCJKjp-Bold.ttf",
+      "CJK JP/SweiGospelLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiGospelLegCJKjp-Light.ttf",
+      "CJK JP/SweiGospelLegCJKjp-Medium.ttf",
+      "CJK JP/SweiGospelLegCJKjp-Regular.ttf",
+      "CJK JP/SweiGospelLegCJKjp-Thin.ttf",
+      "CJK SC/SweiGospelLegCJKsc-Black.ttf",
+      "CJK SC/SweiGospelLegCJKsc-Bold.ttf",
+      "CJK SC/SweiGospelLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiGospelLegCJKsc-Light.ttf",
+      "CJK SC/SweiGospelLegCJKsc-Medium.ttf",
+      "CJK SC/SweiGospelLegCJKsc-Regular.ttf",
+      "CJK SC/SweiGospelLegCJKsc-Thin.ttf",
+      "CJK TC/SweiGospelLegCJKtc-Black.ttf",
+      "CJK TC/SweiGospelLegCJKtc-Bold.ttf",
+      "CJK TC/SweiGospelLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiGospelLegCJKtc-Light.ttf",
+      "CJK TC/SweiGospelLegCJKtc-Medium.ttf",
+      "CJK TC/SweiGospelLegCJKtc-Regular.ttf",
+      "CJK TC/SweiGospelLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiGospelLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiGospelLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swgospelleg",
+    "norm": "Swgospelleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-bone-sans",
+    "label": "swei bone sans",
+    "url": "https://github.com/max32002/swei-bone-sans",
+    "stars": 4,
+    "full": "max32002/swei-bone-sans",
+    "paths": [
+      "CJK JP/SweiBoneSansCJKjp-Black.ttf",
+      "CJK JP/SweiBoneSansCJKjp-Bold.ttf",
+      "CJK JP/SweiBoneSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiBoneSansCJKjp-Light.ttf",
+      "CJK JP/SweiBoneSansCJKjp-Medium.ttf",
+      "CJK JP/SweiBoneSansCJKjp-Regular.ttf",
+      "CJK JP/SweiBoneSansCJKjp-Thin.ttf",
+      "CJK SC/SweiBoneSansCJKsc-Black.ttf",
+      "CJK SC/SweiBoneSansCJKsc-Bold.ttf",
+      "CJK SC/SweiBoneSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiBoneSansCJKsc-Light.ttf",
+      "CJK SC/SweiBoneSansCJKsc-Medium.ttf",
+      "CJK SC/SweiBoneSansCJKsc-Regular.ttf",
+      "CJK SC/SweiBoneSansCJKsc-Thin.ttf",
+      "CJK TC/SweiBoneSansCJKtc-Black.ttf",
+      "CJK TC/SweiBoneSansCJKtc-Bold.ttf",
+      "CJK TC/SweiBoneSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiBoneSansCJKtc-Light.ttf",
+      "CJK TC/SweiBoneSansCJKtc-Medium.ttf",
+      "CJK TC/SweiBoneSansCJKtc-Regular.ttf",
+      "CJK TC/SweiBoneSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiBoneSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiBoneSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swbonesans",
+    "norm": "Swbonesans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-nut-leg",
+    "label": "swei nut leg",
+    "url": "https://github.com/max32002/swei-nut-leg",
+    "stars": 3,
+    "full": "max32002/swei-nut-leg",
+    "paths": [
+      "CJK JP/SweiNutLegCJKjp-Black.ttf",
+      "CJK JP/SweiNutLegCJKjp-Bold.ttf",
+      "CJK JP/SweiNutLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiNutLegCJKjp-Light.ttf",
+      "CJK JP/SweiNutLegCJKjp-Medium.ttf",
+      "CJK JP/SweiNutLegCJKjp-Regular.ttf",
+      "CJK JP/SweiNutLegCJKjp-Thin.ttf",
+      "CJK SC/SweiNutLegCJKsc-Black.ttf",
+      "CJK SC/SweiNutLegCJKsc-Bold.ttf",
+      "CJK SC/SweiNutLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiNutLegCJKsc-Light.ttf",
+      "CJK SC/SweiNutLegCJKsc-Medium.ttf",
+      "CJK SC/SweiNutLegCJKsc-Regular.ttf",
+      "CJK SC/SweiNutLegCJKsc-Thin.ttf",
+      "CJK TC/SweiNutLegCJKtc-Black.ttf",
+      "CJK TC/SweiNutLegCJKtc-Bold.ttf",
+      "CJK TC/SweiNutLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiNutLegCJKtc-Light.ttf",
+      "CJK TC/SweiNutLegCJKtc-Medium.ttf",
+      "CJK TC/SweiNutLegCJKtc-Regular.ttf",
+      "CJK TC/SweiNutLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiNutLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiNutLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swnutleg",
+    "norm": "Swnutleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-bow-leg",
+    "label": "swei bow leg",
+    "url": "https://github.com/max32002/swei-bow-leg",
+    "stars": 3,
+    "full": "max32002/swei-bow-leg",
+    "paths": [
+      "CJK JP/SweiBowLegCJKjp-Black.ttf",
+      "CJK JP/SweiBowLegCJKjp-Bold.ttf",
+      "CJK JP/SweiBowLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiBowLegCJKjp-Light.ttf",
+      "CJK JP/SweiBowLegCJKjp-Medium.ttf",
+      "CJK JP/SweiBowLegCJKjp-Regular.ttf",
+      "CJK JP/SweiBowLegCJKjp-Thin.ttf",
+      "CJK SC/SweiBowLegCJKsc-Black.ttf",
+      "CJK SC/SweiBowLegCJKsc-Bold.ttf",
+      "CJK SC/SweiBowLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiBowLegCJKsc-Light.ttf",
+      "CJK SC/SweiBowLegCJKsc-Medium.ttf",
+      "CJK SC/SweiBowLegCJKsc-Regular.ttf",
+      "CJK SC/SweiBowLegCJKsc-Thin.ttf",
+      "CJK TC/SweiBowLegCJKtc-Black.ttf",
+      "CJK TC/SweiBowLegCJKtc-Bold.ttf",
+      "CJK TC/SweiBowLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiBowLegCJKtc-Light.ttf",
+      "CJK TC/SweiBowLegCJKtc-Medium.ttf",
+      "CJK TC/SweiBowLegCJKtc-Regular.ttf",
+      "CJK TC/SweiBowLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiBowLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiBowLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swbowleg",
+    "norm": "Swbowleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-alias-leg",
+    "label": "swei alias leg",
+    "url": "https://github.com/max32002/swei-alias-leg",
+    "stars": 3,
+    "full": "max32002/swei-alias-leg",
+    "paths": [
+      "CJK JP/SweiAliasLegCJKjp-Black.ttf",
+      "CJK JP/SweiAliasLegCJKjp-Bold.ttf",
+      "CJK JP/SweiAliasLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiAliasLegCJKjp-Light.ttf",
+      "CJK JP/SweiAliasLegCJKjp-Medium.ttf",
+      "CJK JP/SweiAliasLegCJKjp-Regular.ttf",
+      "CJK JP/SweiAliasLegCJKjp-Thin.ttf",
+      "CJK SC/SweiAliasLegCJKsc-Black.ttf",
+      "CJK SC/SweiAliasLegCJKsc-Bold.ttf",
+      "CJK SC/SweiAliasLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiAliasLegCJKsc-Light.ttf",
+      "CJK SC/SweiAliasLegCJKsc-Medium.ttf",
+      "CJK SC/SweiAliasLegCJKsc-Regular.ttf",
+      "CJK SC/SweiAliasLegCJKsc-Thin.ttf",
+      "CJK TC/SweiAliasLegCJKtc-Black.ttf",
+      "CJK TC/SweiAliasLegCJKtc-Bold.ttf",
+      "CJK TC/SweiAliasLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiAliasLegCJKtc-Light.ttf",
+      "CJK TC/SweiAliasLegCJKtc-Medium.ttf",
+      "CJK TC/SweiAliasLegCJKtc-Regular.ttf",
+      "CJK TC/SweiAliasLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiAliasLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiAliasLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swaliasleg",
+    "norm": "Swaliasleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-3t-leg",
+    "label": "swei 3t leg",
+    "url": "https://github.com/max32002/swei-3t-leg",
+    "stars": 3,
+    "full": "max32002/swei-3t-leg",
+    "paths": [
+      "CJK JP/Swei3TLegCJKjp-Black.ttf",
+      "CJK JP/Swei3TLegCJKjp-Bold.ttf",
+      "CJK JP/Swei3TLegCJKjp-DemiLight.ttf",
+      "CJK JP/Swei3TLegCJKjp-Light.ttf",
+      "CJK JP/Swei3TLegCJKjp-Medium.ttf",
+      "CJK JP/Swei3TLegCJKjp-Regular.ttf",
+      "CJK JP/Swei3TLegCJKjp-Thin.ttf",
+      "CJK SC/Swei3TLegCJKsc-Black.ttf",
+      "CJK SC/Swei3TLegCJKsc-Bold.ttf",
+      "CJK SC/Swei3TLegCJKsc-DemiLight.ttf",
+      "CJK SC/Swei3TLegCJKsc-Light.ttf",
+      "CJK SC/Swei3TLegCJKsc-Medium.ttf",
+      "CJK SC/Swei3TLegCJKsc-Regular.ttf",
+      "CJK SC/Swei3TLegCJKsc-Thin.ttf",
+      "CJK TC/Swei3TLegCJKtc-Black.ttf",
+      "CJK TC/Swei3TLegCJKtc-Bold.ttf",
+      "CJK TC/Swei3TLegCJKtc-DemiLight.ttf",
+      "CJK TC/Swei3TLegCJKtc-Light.ttf",
+      "CJK TC/Swei3TLegCJKtc-Medium.ttf",
+      "CJK TC/Swei3TLegCJKtc-Regular.ttf",
+      "CJK TC/Swei3TLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/Swei3TLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/Swei3TLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "sw3tleg",
+    "norm": "Sw3tleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-spike-leg",
+    "label": "swei spike leg",
+    "url": "https://github.com/max32002/swei-spike-leg",
+    "stars": 3,
+    "full": "max32002/swei-spike-leg",
+    "paths": [
+      "CJK JP/SweiSpikeLegCJKjp-Black.ttf",
+      "CJK JP/SweiSpikeLegCJKjp-Bold.ttf",
+      "CJK JP/SweiSpikeLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiSpikeLegCJKjp-Light.ttf",
+      "CJK JP/SweiSpikeLegCJKjp-Medium.ttf",
+      "CJK JP/SweiSpikeLegCJKjp-Regular.ttf",
+      "CJK JP/SweiSpikeLegCJKjp-Thin.ttf",
+      "CJK SC/SweiSpikeLegCJKsc-Black.ttf",
+      "CJK SC/SweiSpikeLegCJKsc-Bold.ttf",
+      "CJK SC/SweiSpikeLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiSpikeLegCJKsc-Light.ttf",
+      "CJK SC/SweiSpikeLegCJKsc-Medium.ttf",
+      "CJK SC/SweiSpikeLegCJKsc-Regular.ttf",
+      "CJK SC/SweiSpikeLegCJKsc-Thin.ttf",
+      "CJK TC/SweiSpikeLegCJKtc-Black.ttf",
+      "CJK TC/SweiSpikeLegCJKtc-Bold.ttf",
+      "CJK TC/SweiSpikeLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiSpikeLegCJKtc-Light.ttf",
+      "CJK TC/SweiSpikeLegCJKtc-Medium.ttf",
+      "CJK TC/SweiSpikeLegCJKtc-Regular.ttf",
+      "CJK TC/SweiSpikeLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiSpikeLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiSpikeLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swspikeleg",
+    "norm": "Swspikeleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-bone-leg",
+    "label": "swei bone leg",
+    "url": "https://github.com/max32002/swei-bone-leg",
+    "stars": 3,
+    "full": "max32002/swei-bone-leg",
+    "paths": [
+      "CJK JP/SweiBoneLegCJKjp-Black.ttf",
+      "CJK JP/SweiBoneLegCJKjp-Bold.ttf",
+      "CJK JP/SweiBoneLegCJKjp-DemiLight.ttf",
+      "CJK JP/SweiBoneLegCJKjp-Light.ttf",
+      "CJK JP/SweiBoneLegCJKjp-Medium.ttf",
+      "CJK JP/SweiBoneLegCJKjp-Regular.ttf",
+      "CJK JP/SweiBoneLegCJKjp-Thin.ttf",
+      "CJK SC/SweiBoneLegCJKsc-Black.ttf",
+      "CJK SC/SweiBoneLegCJKsc-Bold.ttf",
+      "CJK SC/SweiBoneLegCJKsc-DemiLight.ttf",
+      "CJK SC/SweiBoneLegCJKsc-Light.ttf",
+      "CJK SC/SweiBoneLegCJKsc-Medium.ttf",
+      "CJK SC/SweiBoneLegCJKsc-Regular.ttf",
+      "CJK SC/SweiBoneLegCJKsc-Thin.ttf",
+      "CJK TC/SweiBoneLegCJKtc-Black.ttf",
+      "CJK TC/SweiBoneLegCJKtc-Bold.ttf",
+      "CJK TC/SweiBoneLegCJKtc-DemiLight.ttf",
+      "CJK TC/SweiBoneLegCJKtc-Light.ttf",
+      "CJK TC/SweiBoneLegCJKtc-Medium.ttf",
+      "CJK TC/SweiBoneLegCJKtc-Regular.ttf",
+      "CJK TC/SweiBoneLegCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiBoneLegCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiBoneLegCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swboneleg",
+    "norm": "Swboneleg"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-bat-sans",
+    "label": "swei bat sans",
+    "url": "https://github.com/max32002/swei-bat-sans",
+    "stars": 2,
+    "full": "max32002/swei-bat-sans",
+    "paths": [
+      "CJK JP/SweiBatSansCJKjp-Black.ttf",
+      "CJK JP/SweiBatSansCJKjp-Bold.ttf",
+      "CJK JP/SweiBatSansCJKjp-DemiLight.ttf",
+      "CJK JP/SweiBatSansCJKjp-Light.ttf",
+      "CJK JP/SweiBatSansCJKjp-Medium.ttf",
+      "CJK JP/SweiBatSansCJKjp-Regular.ttf",
+      "CJK JP/SweiBatSansCJKjp-Thin.ttf",
+      "CJK SC/SweiBatSansCJKsc-Black.ttf",
+      "CJK SC/SweiBatSansCJKsc-Bold.ttf",
+      "CJK SC/SweiBatSansCJKsc-DemiLight.ttf",
+      "CJK SC/SweiBatSansCJKsc-Light.ttf",
+      "CJK SC/SweiBatSansCJKsc-Medium.ttf",
+      "CJK SC/SweiBatSansCJKsc-Regular.ttf",
+      "CJK SC/SweiBatSansCJKsc-Thin.ttf",
+      "CJK TC/SweiBatSansCJKtc-Black.ttf",
+      "CJK TC/SweiBatSansCJKtc-Bold.ttf",
+      "CJK TC/SweiBatSansCJKtc-DemiLight.ttf",
+      "CJK TC/SweiBatSansCJKtc-Light.ttf",
+      "CJK TC/SweiBatSansCJKtc-Medium.ttf",
+      "CJK TC/SweiBatSansCJKtc-Regular.ttf",
+      "CJK TC/SweiBatSansCJKtc-Thin.ttf"
+    ],
+    "picks": [
+      [
+        "CJK SC/SweiBatSansCJKsc-Regular.ttf",
+        "Regular"
+      ],
+      [
+        "CJK SC/SweiBatSansCJKsc-Bold.ttf",
+        "Bold"
+      ]
+    ],
+    "code": "swbatsans",
+    "norm": "Swbatsans"
+  },
+  {
+    "author": "aqua",
+    "githubLogin": "max32002",
+    "repo": "swei-bat-leg",
+    "label": "swei bat leg",
+    "url": "https://github.com/max32002/swei-bat-leg",
+    "stars": 1,
+    "full": "max32002/swei-bat-leg",
+    "paths": [],
+    "picks": [],
+    "code": "swbatleg",
+    "norm": "Swbatleg"
+  }
+]

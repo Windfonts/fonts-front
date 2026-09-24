@@ -176,6 +176,7 @@
 }
 .use-fallback input { margin-top: 0.2em; }
 .use-fallback .hint { color: var(--gray); font-weight: var(--fw-regular); }
+.use-fallback .hint.is-warn { color: var(--warn, #a65c00); }
 .use-note { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-4); line-height: 1.7; }
 .use-note code { background: var(--paper); padding: 0.05em 0.35em; border-radius: 6px; }
 .use-note a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }

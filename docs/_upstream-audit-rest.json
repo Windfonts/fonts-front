@@ -1,0 +1,717 @@
+{
+  "wave": "rest",
+  "items": [
+    {
+      "name": "波塔",
+      "family": "wenfeng-btot",
+      "repo": "https://github.com/go108go/Potta",
+      "verdict": "none",
+      "upstream": "",
+      "evidence": "日本語フォント。なんとなくポップ筆文字。"
+    },
+    {
+      "name": "包图小白体",
+      "family": "wenfeng-btxbt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "快去寫作業-CJK",
+      "family": "wenfeng-ceffontscjk",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "仓耳周珂正大榜书",
+      "family": "wenfeng-cezkzdbs",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "CJK手写字",
+      "family": "wenfeng-cjkfqlt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "创客贴金刚体",
+      "family": "wenfeng-cktjgt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "云峰字库重庆山城棒棒体",
+      "family": "wenfeng-cqscbbt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "辰宇落雁体 Thin",
+      "family": "wenfeng-cylyt",
+      "repo": "https://github.com/Chenyu-otf/chenyuluoyan_thin",
+      "verdict": "none",
+      "upstream": "",
+      "evidence": "由韋辰負責書寫，我進行後製而成。"
+    },
+    {
+      "name": "点点像素宋体",
+      "family": "wenfeng-ddxstfx",
+      "repo": "https://github.com/wixette/dotted-chinese-fonts",
+      "verdict": "found",
+      "upstream": "文泉驿点阵宋体",
+      "evidence": "它们是文泉驿点阵宋体经矢量化之后，通过变形、美化而得到的。"
+    },
+    {
+      "name": "点点像素宋体钻石体",
+      "family": "wenfeng-ddxstlx",
+      "repo": "https://github.com/wixette/dotted-chinese-fonts",
+      "verdict": "found",
+      "upstream": "文泉驿点阵宋体",
+      "evidence": "它们是文泉驿点阵宋体经矢量化之后，通过变形、美化而得到的。"
+    },
+    {
+      "name": "点点像素宋体圆",
+      "family": "wenfeng-ddxstyx",
+      "repo": "https://github.com/wixette/dotted-chinese-fonts",
+      "verdict": "found",
+      "upstream": "文泉驿点阵宋体",
+      "evidence": "它们是文泉驿点阵宋体经矢量化之后，通过变形、美化而得到的。"
+    },
+    {
+      "name": "馒头黑体",
+      "family": "wenfeng-dela",
+      "repo": "https://github.com/syakuzen/DelaGothic",
+      "verdict": "none",
+      "upstream": "",
+      "evidence": "太いゴシック体をテーマに製作したフォントです。"
+    },
+    {
+      "name": "鼎猎客家体",
+      "family": "wenfeng-dlkjt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "鼎猎珠海体",
+      "family": "wenfeng-dlzht",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "点点像素体-圆形",
+      "family": "wenfeng-ddxty",
+      "repo": "https://github.com/wixette/dotted-chinese-fonts",
+      "verdict": "found",
+      "upstream": "文泉驿点阵宋体",
+      "evidence": "它们是文泉驿点阵宋体经矢量化之后，通过变形、美化而得到的。"
+    },
+    {
+      "name": "斗鱼追光体",
+      "family": "wenfeng-dyzgt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "激笔 SFX",
+      "family": "wenfeng-gekifude",
+      "repo": "https://github.com/ukr8b3g-cmyk/GEKIFUDE-SFX",
+      "verdict": "none",
+      "upstream": "",
+      "evidence": "漫画・オノマトペ／SFX向けの筆文字フォントです。"
+    },
+    {
+      "name": "龚帆免费体3.0",
+      "family": "wenfeng-gfmft",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "光良酒-干杯体",
+      "family": "wenfeng-gljgbt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "黄凯桦律师手写体",
+      "family": "wenfeng-hkhlssxt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "香山毛笔字体",
+      "family": "wenfeng-hsmbzt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "汇文明朝",
+      "family": "wenfeng-hwmc",
+      "repo": "https://github.com/bosswnx/huiwenmincho-improved",
+      "verdict": "found",
+      "upstream": "汇文明朝（特里王知乎原版）",
+      "evidence": "因此修正了一些常用符号的宽度，使之符合中文全角字符宽度，符号作居中处理。"
+    },
+    {
+      "name": "胡晓波男神体",
+      "family": "wenfeng-hxbnst",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "胡晓波骚包体",
+      "family": "wenfeng-hxbsb",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "胡晓波真帅体",
+      "family": "wenfeng-hxbzst",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "黄胤淇招牌体",
+      "family": "wenfeng-hyqzpt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "汉字拼音体",
+      "family": "wenfeng-hzpy",
+      "repo": "https://github.com/parlr/hanzi-pinyin-font",
+      "verdict": "none",
+      "upstream": "",
+      "evidence": "A font created to help students learn and read Chinese"
+    },
+    {
+      "name": "荆南波波黑",
+      "family": "wenfeng-jnbbh",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "今年也要加油鸭",
+      "family": "wenfeng-jnyyjyy",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "江西拙楷体",
+      "family": "wenfeng-jxzk",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "I.Ngaan刻石录颜体",
+      "family": "wenfeng-klsyt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "钢笔鹤-B",
+      "family": "wenfeng-kslgbht",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "俐方体11号",
+      "family": "wenfeng-lftsyh",
+      "repo": "https://github.com/ACh-K/Cubic-11",
+      "verdict": "found",
+      "upstream": "M+ gothic 12r、JF Dot M+H 12、M+ BITMAP FONTS",
+      "evidence": "俐方體11號是基於 M⁺ gothic 12r 衍生的開源繁體中文點陣字型"
+    },
+    {
+      "name": "刘欢卡通手书",
+      "family": "wenfeng-lhktss",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "临海体",
+      "family": "wenfeng-lhls",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "濑户字体",
+      "family": "wenfeng-lhzt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "钟齐流江毛草",
+      "family": "wenfeng-ljmc",
+      "repo": "https://github.com/googlefonts/liujianmaocao",
+      "verdict": "found",
+      "upstream": "书法家刘正江（Liu Zhengjiang）",
+      "evidence": "based on the work of calligrapher Liu Zhengjiang."
+    },
+    {
+      "name": "联盟起艺卢帅正锐黑体",
+      "family": "wenfeng-lmqylszrht",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "马善政楷书",
+      "family": "wenfeng-msz",
+      "repo": "https://github.com/googlefonts/mashanzheng",
+      "verdict": "none",
+      "upstream": "",
+      "evidence": "Ma Shan Zheng by Ma ShanZheng"
+    },
+    {
+      "name": "沐瑶软笔手写体",
+      "family": "wenfeng-mysxt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "女書梧桐",
+      "family": "wenfeng-nswt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "庞门正道粗书体",
+      "family": "wenfeng-pmzdcst",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "庞门正道真贵楷体",
+      "family": "wenfeng-pangzhenguipmzd",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "PF频凡胡涂体",
+      "family": "wenfeng-pfhtt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "庞门正道标题体",
+      "family": "wenfeng-pmzdbtt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "庞门正道标题体 6.0",
+      "family": "wenfeng-pmzdcsd",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "庞门正道轻松体",
+      "family": "wenfeng-pmzdqst",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "庞振贵-PMZD",
+      "family": "wenfeng-pmzdzgkt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "品如手写体",
+      "family": "wenfeng-prsxt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "澳声通拼音文楷",
+      "family": "wenfeng-pywk",
+      "repo": "https://github.com/jeffreyxuan/toneoz-font-pinyin-wenkai",
+      "verdict": "found",
+      "upstream": "Klee One、霞鹜文楷",
+      "evidence": "这是一款基于「FONTWORKS Klee One」以及「LXGW 霞鹜文楷」的中文字体"
+    },
+    {
+      "name": "清松手写体2",
+      "family": "wenfeng-qssxt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "千图笔锋手写体",
+      "family": "wenfeng-qtbfsxt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "千图厚黑体",
+      "family": "wenfeng-qthht",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "千图马克手写体",
+      "family": "wenfeng-qtmksxt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "千图学画体",
+      "family": "wenfeng-qtxht",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "千图纤墨体",
+      "family": "wenfeng-qtxmt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "千图小兔体",
+      "family": "wenfeng-qtxtt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "EBAS 无衬线体",
+      "family": "wenfeng-qzkswjz",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "臻妍GB 常规体",
+      "family": "wenfeng-rzzyt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "素材集市康康体",
+      "family": "wenfeng-scjskkt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "随峰体",
+      "family": "wenfeng-sft",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "叁慕斜宋体",
+      "family": "wenfeng-smxst",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "书体坊颜体",
+      "family": "wenfeng-stfytz",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "书体坊禚效锋行草体",
+      "family": "wenfeng-stfzxfxct",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "思源等宽",
+      "family": "wenfeng-sykd",
+      "repo": "https://github.com/adobe-fonts/source-han-mono",
+      "verdict": "found",
+      "upstream": "Source Han Sans、Source Code Pro、Source Han Code JP",
+      "evidence": "derived from Source Han Sans and Source Code Pro"
+    },
+    {
+      "name": "摄图摩登小方体",
+      "family": "wenfeng-symdxft",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "仓耳舒圆体",
+      "family": "wenfeng-cesyt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "教育部標準楷書",
+      "family": "wenfeng-twjybbzjs",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "PMingLiU 繁体中文版",
+      "family": "wenfeng-twjybxxmt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "Unifont点阵黑",
+      "family": "wenfeng-unfdzh",
+      "repo": "https://github.com/anthonyfok/debian-unifont",
+      "verdict": "found",
+      "upstream": "文泉驿（wqy-cjk.hex / Unibit）",
+      "evidence": "wqy-cjk.hex, which is merged with other .hex files"
+    },
+    {
+      "name": "问藏书房",
+      "family": "wenfeng-wcsf",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "文泉驿正黑等宽",
+      "family": "wenfeng-wqydkzh",
+      "repo": "https://github.com/deepin-community/fonts-wqy-zenhei",
+      "verdict": "found",
+      "upstream": "M+ M Type-1 Light（非汉字）；M+ M2 Light（等宽拉丁）；cwTeX（注音）；Firefly 点阵；GB19966（12pt）",
+      "evidence": "were merged from M+ M Type-1 Light"
+    },
+    {
+      "name": "文泉驿正黑",
+      "family": "wenfeng-wqyzh",
+      "repo": "https://github.com/deepin-community/fonts-wqy-zenhei",
+      "verdict": "found",
+      "upstream": "UnDotum（非汉字）；cwTeX（注音）；Firefly 点阵；GB19966（12pt 汉字点阵）",
+      "evidence": "imported from GPL font cwTeX (cwming.ttf)"
+    },
+    {
+      "name": "贤二体",
+      "family": "wenfeng-xet",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "乡立方黑体",
+      "family": "wenfeng-xlfht",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "像素Silver字体",
+      "family": "wenfeng-xsslv",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "杨任东竹石体",
+      "family": "wenfeng-yrdzst",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "香蕉Plus字体",
+      "family": "wenfeng-ydwbnnsp",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "云峰飞云体",
+      "family": "wenfeng-yffyt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "优设标题黑",
+      "family": "wenfeng-ysbth",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "峄山碑篆体",
+      "family": "wenfeng-ysbzt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "汉典秦系文字体",
+      "family": "wenfeng-zdicqx",
+      "repo": "https://github.com/AlainAlan/zdic-qx-font",
+      "verdict": "none",
+      "upstream": "",
+      "evidence": "爬取了zdic.net的秦系文字字形（svg文件），去掉水印之后拼装成字体文件（ttf）。"
+    },
+    {
+      "name": "拙见橄榄简体",
+      "family": "wenfeng-zjgljt",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "站酷小薇LOGO体",
+      "family": "wenfeng-zkxwt",
+      "repo": "https://github.com/google/fonts/blob/main/ofl/zcoolxiaowei/DESCRIPTION.en_us.html",
+      "verdict": "none",
+      "upstream": "",
+      "evidence": "contributed to the ZCOOL font project by designer Li Dawei"
+    },
+    {
+      "name": "朱雀仿宋",
+      "family": "wenfeng-zqfs",
+      "repo": "https://github.com/TrionesType/zhuque",
+      "verdict": "found",
+      "upstream": "民国活字「南宋」；西文 Alegreya",
+      "evidence": "「朱雀仿宋」改刻自民国活字「南宋」，试图为这套沉睡数十年的字体赋予新生。"
+    },
+    {
+      "name": "郑庆科黄油体 Regular",
+      "family": "wenfeng-zqkhyt",
+      "repo": "https://github.com/google/fonts/blob/main/ofl/zcoolqingkehuangyou/DESCRIPTION.en_us.html",
+      "verdict": "none",
+      "upstream": "",
+      "evidence": "was designed and produced by Zheng Qingke"
+    },
+    {
+      "name": "字体圈-信谊吉祥宋",
+      "family": "wenfeng-ztqxyjxs",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    },
+    {
+      "name": "Mplus HZK 12 像素字体",
+      "family": "wenfeng-zwxszt",
+      "repo": "https://github.com/py-zhao/mplus_hzk_12",
+      "verdict": "found",
+      "upstream": "M+（英文与日文）、HZK12",
+      "evidence": "用mplus 英文 + 日文 作为基础, hzk12 作为补充"
+    },
+    {
+      "name": "智勇手书体",
+      "family": "wenfeng-zyss",
+      "repo": "",
+      "verdict": "unknown",
+      "upstream": "",
+      "evidence": "未找到作者 GitHub 仓库的 README 或 LICENSE"
+    }
+  ]
+}

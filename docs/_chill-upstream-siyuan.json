@@ -1,0 +1,62 @@
+[
+  {
+    "name": "寒蝉端黑宋",
+    "family": "wenfeng-hcdhs",
+    "repo": "https://github.com/Warren2060/ChillDuanHeiSong",
+    "recorded": "fork ← 思源宋体",
+    "verdict": "confirm",
+    "upstream": "思源宋体",
+    "evidence": "基于思源宋体（SourceHanSerifSC）修改，横向加粗，字体横竖粗细相差更小",
+    "note": "README 写明基于思源宋体。根目录 LICENSE 只有 ©ChillDuanHeiSong 2023，没有上游句。"
+  },
+  {
+    "name": "寒蝉端黑体",
+    "family": "wenfeng-hcdht",
+    "repo": "https://github.com/Warren2060/ChillDuanSans",
+    "recorded": "fork ← 思源黑体",
+    "verdict": "confirm",
+    "upstream": "思源黑体",
+    "evidence": "寒蝉端黑体是思源黑体的宽体和窄体版本，重新插值生成，没做其他任何改变。",
+    "note": "README 只写思源黑体。LICENSE 版权行另有 © 2022 The Figtree Project Authors，以及 © 2014-2021 Adobe、Reserved Font Name 'Source'。作者没有把 Figtree 写成上游。"
+  },
+  {
+    "name": "寒蝉 DIN 哥特",
+    "family": "wenfeng-hcdin",
+    "repo": "https://github.com/Warren2060/ChillDIN-ChillDINGothic",
+    "recorded": "fork ← 寒蝉端黑体",
+    "verdict": "confirm",
+    "upstream": "寒蝉端黑体",
+    "evidence": "中文字体的搭配从来源寒蝉端黑体（思源黑体），修改了参数和标点融合。",
+    "note": "同篇 README 把拉丁 ChillDIN 写成基于 D-DIN 的修缮；中文搭配的直接上游是寒蝉端黑体。括号里的思源黑体是端黑体的来源，不是这一款的直接上游。LICENSE 保留 Adobe Source 版权，没有出现 D-DIN 或端黑体字样。"
+  },
+  {
+    "name": "寒蝉锦书宋",
+    "family": "wenfeng-hcjss",
+    "repo": "https://github.com/Warren2060/ChillJinshuSong",
+    "recorded": "fork ← 思源宋体",
+    "verdict": "confirm",
+    "upstream": "思源宋体",
+    "evidence": "寒蝉锦书宋(ChillJinshuSong)基于思源宋体(SourceHanSerif)修改，添加圆角",
+    "note": "README 写明基于思源宋体。根目录 LICENSE 只有 ©ChillJinshuSong 2023，没有上游句。"
+  },
+  {
+    "name": "寒蝉圆黑体",
+    "family": "wenfeng-hcyht",
+    "repo": "https://github.com/Warren2060/ChillRoundGothic",
+    "recorded": "fork ← 思源黑体",
+    "verdict": "confirm",
+    "upstream": "思源黑体",
+    "evidence": "基于思源黑体(SourceHanSansSC)的圆角化改变。",
+    "note": "README 标题为寒蝉圆黑体 ChillRoundGothic，并写明基于思源黑体。License.txt 只有 Copyright 2023 The ChillRoundGothic Project Authors，没有上游句。不是 ChillRound 那个仓。"
+  },
+  {
+    "name": "寒蝉云墨黑",
+    "family": "wenfeng-hcymh",
+    "repo": "https://github.com/Warren2060/ChillYunmoGothic",
+    "recorded": "fork ← 思源黑体",
+    "verdict": "confirm",
+    "upstream": "思源黑体",
+    "evidence": "基于思源黑体(SourceHanSansSC) 修改，添加圆角，更加温润的黑体。",
+    "note": "README 标题作寒蝉雲墨黑，正文写明基于思源黑体。LICENSE 只有 ©ChillYunmoGothic 2023，没有上游句。"
+  }
+]

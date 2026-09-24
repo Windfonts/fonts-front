@@ -1,0 +1,66 @@
+{
+  "checked": "2026-09-24",
+  "fonts": [
+    {
+      "name": "寒蝉点阵体",
+      "family": "wenfeng-hcdzt",
+      "repo": "https://github.com/Warren2060/ChillBitmap",
+      "recorded": "fork ← Unifont",
+      "verdict": "confirm",
+      "upstream": "Unifont",
+      "evidence": "基于开源字体{Unifont}修改的字型，重新修改设计了英文部分字形和标点符号使其更加协调统一，并修正竖排文本特性，排版更加轻便。",
+      "note": "这句话在现行 README 的「寒蝉点阵体_16px」。入库 Regular 是发行包里的 ChillBitmap_16px.ttf：name 表家族「寒蝉点阵体」、样式 16px，版权行是 Roman Czyborra、Paul Hardy、Qianqian Fang 等。16px 许可是 OFL 1.1 与 GPL-2.0-or-later（含字体嵌入例外）双许可，正文未出现 Unifont 字样。同 README 的 7px 写「基于{美咲フォント}修改的字型」，LICENSE.md 与发行包 7px 许可另附美咲字体（Num Kadoma）；7px 不是这件入库文件。根目录 License 写 © 2024 ChillType，Reserved Font Name 'ChillBitmap''7px & 16px'，SIL OFL 1.1。"
+    },
+    {
+      "name": "寒蝉圆体 M",
+      "family": "wenfeng-hcrym",
+      "repo": "https://github.com/Warren2060/ChillRound",
+      "recorded": "fork ← Zen Maru Gothic",
+      "verdict": "confirm",
+      "upstream": "Zen Maru Gothic",
+      "evidence": "基于日本开源字型Zen Maru Gothic進行調整的圆体字型!",
+      "note": "这句话在 README「寒蝉半圆体 ChillRoundM」下。作者中文名是寒蝉半圆体，不是「圆体 M」。入库 Regular.otf 的 name 表家族为寒蝉半圆体 / ChillRoundM，版权行 Copyright 2021 The Zen Maru Gothic Authors，描述栏复述了上一句。根目录 LICENSE 版权行是 © 2023 ChillType, with Reserved Font Name 'ChillRoundF' 'ChillRoundM'，OFL 1.1，许可正文没有写上游。同仓寒蝉全圆体 ChillRoundF 作者写基于小杉圆体（Kosugi Maru），不是这一款。"
+    },
+    {
+      "name": "寒蝉龙藏楷",
+      "family": "wenfeng-hclck2",
+      "repo": "https://github.com/Warren2060/ChillCalligraphy",
+      "recorded": "fork ← 龙藏体",
+      "verdict": "confirm",
+      "upstream": "有字库龙藏体",
+      "evidence": "基于开源字体{有字库龙藏体}的拓展字形。",
+      "note": "README「寒蝉书体·龙藏」下紧接着写：原字体项目 Copyright 2018 The LongCang Project Authors（https://github.com/googlefonts/longcang）。入库来自 release LongCangv3.52，发布标题是「寒蝉龙藏楷书_v3.52」。name 表家族名是「寒蝉龙藏楷书」（繁体「寒蟬龍藏楷書」），版本 3.520，版权行即上一句 LongCang 项目；目录用的「寒蝉龙藏楷」不是作者现用家族名。发行包 LICENSE.txt 为 ©ChillLongCangKaishu 2023，仓库根 LICENSE 为 ©ChillCalligraphy 2023，都是 SIL OFL 1.1，上游不在许可版权行里。与 wenfeng-hclcks 是同一仓库里同一款的后一版，不是另一套上游。"
+    },
+    {
+      "name": "寒蝉龙藏楷书",
+      "family": "wenfeng-hclcks",
+      "repo": "https://github.com/Warren2060/ChillCalligraphy",
+      "recorded": "fork ← 龙藏体",
+      "verdict": "confirm",
+      "upstream": "有字库龙藏体",
+      "evidence": "基于开源字体{有字库龙藏体}的拓展字形。",
+      "note": "作者主页把「寒蝉龙藏楷书」链到本仓库。release LongCangv3.500 正文写「更改字体名称为“寒蝉龙藏楷书”」。目录 version 为 3.500.0，四档字重 Regular / Medium / Bold / Extrabold，与仓库目录 ChillLongCangKaiShu_v3.500 的四个文件同名。未再打开 hclcks 字体二进制。上游句子与龙藏楷相同，写在 README「寒蝉书体·龙藏」。仓库根 LICENSE 为 ©ChillCalligraphy 2023，SIL OFL 1.1。"
+    },
+    {
+      "name": "寒蝉宽黑体",
+      "family": "wenfeng-hckht",
+      "repo": "https://github.com/Warren2060/ChillKSans",
+      "recorded": "fork ← 未来荧黑",
+      "verdict": "confirm",
+      "upstream": "未来荧黑",
+      "evidence": "寒蝉宽黑体在未来荧黑的基础上加入“隶意”笔画设计，调整部分字型结构的避让关系，更简洁干净。",
+      "note": "与谱系另条「Chill K Sans」是同一款，不是两款。README 标题是 Chill-K-Sans；入库 Medium.otf 的 typographicFamily 同时有 Chill K Sans 与寒蝉宽黑体，PostScript 名 Chill-K-Sans。OFL 文件版权行 Copyright 2021 The Chill K Sans Project Authors，SIL OFL 1.1，没有 Reserved Font Name。name 表另保留 Glow Sans (c) 2020 Project Welai、Source Han Sans (c) 2014-2019 Adobe、Montserrat。README 后文写未来荧黑在思源黑体的基础上，宽黑体再改未来荧黑，英文改用 Montserrat。谱系「Chill K Sans」记 ownerId/makerId 为 welai、fork←思源黑体，把英文名当成了另一款，直接上游也写成了再上一层的思源黑体。另仓 Warren2060/ChillGSans 是寒蝉高黑体，不是这一款。"
+    }
+  ],
+  "确认": [
+    "寒蝉点阵体 wenfeng-hcdzt：16px ← Unifont",
+    "寒蝉圆体 M wenfeng-hcrym：寒蝉半圆体 ChillRoundM ← Zen Maru Gothic",
+    "寒蝉龙藏楷 wenfeng-hclck2：寒蝉龙藏楷书 v3.520 ← 有字库龙藏体",
+    "寒蝉龙藏楷书 wenfeng-hclcks：同仓 v3.500 ← 有字库龙藏体",
+    "寒蝉宽黑体 wenfeng-hckht ← 未来荧黑"
+  ],
+  "不一致": [
+    "谱系键「Chill K Sans」记 owner welai、fork←思源黑体。它和寒蝉宽黑体是同一款（英文名 Chill K Sans）。作者写的直接上游是未来荧黑；思源黑体是未来荧黑的上游。"
+  ],
+  "作者没写": []
+}
