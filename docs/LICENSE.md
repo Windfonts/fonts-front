@@ -143,3 +143,9 @@ sourceKind  sourceUrl  quote  verifiedAt  restrictions[]  spdx  verified
 - OPPO Sans `wenfeng/fonts/opsa/license.0 License Notice`。厂商协议，不是 OFL。
 
 `wenfeng/fonts/cszt/` 和 `wenfeng/fonts/test/` 里名叫 license 的文件不是字体许可。184 个字体 zip 和 `fonts-packages/` 网页包里都没有 OFL 或授权书。128 个许可目录里有原文的是 10 个。过程与排除项见 [HANDOFF.md](HANDOFF.md) §13。
+
+## 11. 授权名怎么写（licenseName）
+
+详情页展示的 `licenseName` 只写两种：`{字体名}授权协议`（自家或厂商的免费商用协议），或协议本名（OFL、GPL、CC、IPA Font License、M+ 位图许可、《MiSans 字体知识产权许可协议》、台湾省开放政府数据授权条款这类）。禁止拿档位口令（「免费商用」「免费商用，不可修改」）、整句许可说明或网址当协议名。档位写在 `license` / `licenseTier`，原文摘要写在 `licenseNotes`。出处与补扫见 [HANDOFF.md](HANDOFF.md) §16、§19。
+
+注意：字库 DB 的 `license_name` 要和目录一起改，只改目录会在下次导出时被冲回；新入库时登记脚本里就该写对。
