@@ -13,18 +13,7 @@
       ],
       "kind": "brand",
       "openSource": false,
-      "claimed": false,
-      "trackRecord": {
-        "incidents": [
-          {
-            "date": "2026-09-24",
-            "type": "政策保持",
-            "summary": "普惠体自 2019 发布起全球永久免费商用，3.0 并符合 GB 18030-2022",
-            "sourceUrl": "https://www.alibabafonts.com/"
-          }
-        ],
-        "lastChecked": "2026-09-24"
-      }
+      "claimed": false
     },
     {
       "id": "hanyi",
@@ -411,18 +400,7 @@
       ],
       "kind": "foundry",
       "openSource": false,
-      "claimed": false,
-      "trackRecord": {
-        "incidents": [
-          {
-            "date": "2020-11-11",
-            "type": "政策保持",
-            "summary": "发布免费开源字体授权声明，22 款字体永久免费开源并允许修改与再分发",
-            "sourceUrl": "https://www.tsanger.cn/category/114"
-          }
-        ],
-        "lastChecked": "2026-09-24"
-      }
+      "claimed": false
     },
     {
       "id": "chuangkit",
@@ -506,18 +484,7 @@
         "方正仿宋简体",
         "方正楷体简体",
         "方正黑体简体"
-      ],
-      "trackRecord": {
-        "incidents": [
-          {
-            "date": "2026-09-24",
-            "type": "政策保持",
-            "summary": "方正书宋、方正仿宋、方正楷体、方正黑体四款长期提供免费商用，官网在售",
-            "sourceUrl": "https://www.foundertype.com/"
-          }
-        ],
-        "lastChecked": "2026-09-24"
-      }
+      ]
     },
     {
       "id": "douyu",

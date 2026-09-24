@@ -123,9 +123,7 @@
     const info = font.ownerInfo || font.foundryInfo;
     const tr = info && info.trackRecord;
     if (!tr || !Array.isArray(tr.incidents) || !tr.incidents.length) return '';
-    const changed = tr.incidents.some(function (e) { return e.type !== '政策保持'; });
-    return '<a class="lp-badge lp-badge-warn" href="foundry.html?slug=' + encodeURIComponent(info.id) + '#record">' +
-      (changed ? '厂商有授权变更记录' : '厂商授权记录') + ' →</a>';
+    return '<a class="lp-badge lp-badge-warn" href="foundry.html?slug=' + encodeURIComponent(info.id) + '#record">厂商有授权变更记录 →</a>';
   }
 
   /* 条款徽章也按档位出固定三条，与句子同一张配置表。
