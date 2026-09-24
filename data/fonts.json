@@ -6615,7 +6615,7 @@
   {
     "id": "6b5fa63f-6f44-41f3-a715-6c7f09295df6",
     "name": "庞门正道真贵楷体",
-    "en": "庞门正道真贵楷体",
+    "en": "PangZhenGui-PMZD",
     "family": "wenfeng-pangzhenguipmzd",
     "normalized": "PangZhenGuiPMZD",
     "designer": "",
@@ -6634,13 +6634,13 @@
     "licenseVerified": null,
     "purchaseUrl": null,
     "copyright": "",
-    "foundry": "",
+    "foundry": "PangMenZhengDao",
     "brand": null,
     "releaseYear": null,
-    "version": "1.000",
+    "version": "3.12.0",
     "languages": [],
     "useCases": [],
-    "charCount": 1,
+    "charCount": 7826,
     "glyphCount": 1,
     "viewCount": 16
   },
@@ -6885,58 +6885,6 @@
     "charCount": 7369,
     "glyphCount": 7373,
     "viewCount": 33
-  },
-  {
-    "id": "85b51dbf-54f0-4a34-8b6a-4549ab96a5da",
-    "name": "庞振贵-PMZD",
-    "en": "PangZhenGui-PMZD",
-    "family": "wenfeng-pmzdzgkt",
-    "normalized": "Pmzdzgkt",
-    "designer": "庞振国",
-    "designerShort": "庞振国",
-    "category": "无衬线字体",
-    "tags": [
-      "黑体",
-      "其他"
-    ],
-    "weights": [
-      "Regular"
-    ],
-    "description": "旁门正道标题体（PangZhenGui-PMZD）是由设计师庞振国（庞门正道）于2018年发布的一款免费商用中文字体。该字体是一款现代风格的无衬线标题字体，字形结构方正、笔画粗壮有力，视觉冲击力强，尤其适用于海报、广告、品牌标识、网页标题等需要突出显示和吸引眼球的场景。字体设计上融合了黑体的稳重与美术字的创意，部分笔画处理带有独特的装饰性，整体风格硬朗且富有现代感。",
-    "license": "免费商用",
-    "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
-    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Pmzdzgkt/LICENSE",
-    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
-    "licenseVerified": false,
-    "purchaseUrl": null,
-    "copyright": "(c) Copyright PangMenZhengDao 2018",
-    "foundry": "PangMenZhengDao",
-    "brand": {
-      "name": "庞门正道",
-      "slug": "pangmen",
-      "logoUrl": "",
-      "avatarUrl": "",
-      "website": "",
-      "description": "PangMenZhengDao出品的字体"
-    },
-    "releaseYear": 2018,
-    "version": "3.12.0",
-    "languages": [
-      "简体中文",
-      "繁体中文",
-      "英语"
-    ],
-    "useCases": [
-      "海报设计",
-      "广告标题",
-      "品牌标识",
-      "网页标题",
-      "视频字幕"
-    ],
-    "charCount": 7826,
-    "glyphCount": 7954,
-    "viewCount": 16
   },
   {
     "id": "fafd8dbe-7035-4ca0-b82c-d4cc28ec6c5b",
