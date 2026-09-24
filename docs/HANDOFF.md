@@ -474,3 +474,7 @@ OPPO Sans 是厂商自己的协议，不是 OFL。允许不修改地嵌入，并
 - 实现：`js/wf-chrome.js` 的 `bindExternalExit`，样式 `.dialog-exit`。缓存 `wf-chrome.js?v=20260924v`、`components.css?v=20260924w`。
 - 左右留白：遮罩左右 `2.5rem`，白框内边距上下 `2rem`、左右 `2.5rem`。手机宽 390 时白框左右各空 40px。桌面框宽 512px，居中。
 - 核对过详情页备案链接：弹出、留下后停在原页、记住域名后第二次不再问。站内「字体库」不弹。手机宽度按钮在框内。
+
+## 16. 2026-09-24 详情页授权名改成「字体授权协议」
+
+未提交。`data/fonts.json` 里原先写成档位口令的 `licenseName`（如「免费商用」「免费商用，不可修改」「免费商用授权」「作者声明…」）改为 `{字体名}授权协议`，对齐阿里巴巴普惠体。档位芯片 `license` / `licenseTier` 仍是「免费商用」等，没动。OFL / Apache / GPL / 0BSD / CC0 等标准名保留。顺手把误标成「免费商用」的思源 CN/TW/斜体/屏显臻宋、小赖、Unifont 改回 OFL 或 GPL。备份 `data/fonts.json.bak-license-name-20260924033541`。
