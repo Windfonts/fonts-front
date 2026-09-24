@@ -151,3 +151,5 @@ sourceKind  sourceUrl  quote  verifiedAt  restrictions[]  spdx  verified
 注意：字库 DB 的 `license_name` 要和目录一起改，只改目录会在下次导出时被冲回；新入库时登记脚本里就该写对。
 
 RFN（保留字体名）是开源档的结构化字段 `rfn`：三态 true/false/缺省。判定依据是许可原文**版权行**有没有「with Reserved Font Name」——OFL 模板正文里的 RFN 定义条款不算声明。true→徽章「修改版须避开保留字体名」；false→「修改版可沿用原名」；缺省（未核对原文，如推断 OFL 的条目）→不显示。只读已核对的许可原文填写，不推断。
+
+`licenseQuote` 是原文摘录字段：只录许可原文/版权行里**逐字**的一句话（如普惠体官方声明句、得意黑版权行），渲染在授权协议节点下的引用行。已核对原文的字体才有；转录自扫描件时照转录稿。禁止改写、概括或生成。

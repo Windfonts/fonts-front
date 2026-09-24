@@ -204,7 +204,8 @@
     "standardClaim": {
       "standard": "GB 18030-2022",
       "url": "https://std.samr.gov.cn/search/std?q=GB18030-2022"
-    }
+    },
+    "licenseQuote": "阿里巴巴普惠体是一套全球永久免费正版商用的字体家族。"
   },
   {
     "id": "30c6ed1b-15aa-4ab1-8bb8-d11da053e5fc",
@@ -860,12 +861,12 @@
       "Regular"
     ],
     "description": "仓耳小丸子是由北京仓耳文字技术有限公司（仓耳字库）于2023年10月20日发布的一款免费商用中文字体。该字体是一款手写风格字体，笔画圆润丰满，结构灵活，采用夸张的粗细对比以增强视觉冲击力。其字型结构搞怪，空间调整出人意料，笔画错落有致，打破了固有的排列模式，整体营造出天真烂漫、调皮可爱的氛围，具有亲和力与童趣感。字体基于GB2312-80字符集标准，包含6763个汉字及245个英文与标点符号，识别性高，兼容性好。",
-    "license": "联系授权",
-    "licenseName": "仓耳小丸子授权协议",
-    "licenseUrl": "",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://github.com/cntrump/tsanger_free_fonts/blob/master/%E4%BB%93%E8%80%B3%E5%AD%97%E5%BA%93%E5%85%8D%E8%B4%B9%E5%95%86%E7%94%A8%E5%AD%97%E4%BD%93%E6%8E%88%E6%9D%83%E5%A3%B0%E6%98%8E.pdf",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
     "licenseNotes": "需联系字体厂商获取授权，具体条款以厂商说明为准",
-    "licenseVerified": false,
+    "licenseVerified": true,
     "purchaseUrl": null,
     "copyright": "Copyright  Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
     "foundry": "造字工房",
@@ -891,7 +892,9 @@
     ],
     "charCount": 7042,
     "glyphCount": 7011,
-    "viewCount": 15
+    "viewCount": 15,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
   },
   {
     "id": "9a6530c0-6e7a-49b4-a459-d733af845f51",
@@ -909,12 +912,12 @@
       "Regular"
     ],
     "description": "仓耳周珂正大榜书是由仓耳字库推出的一款永久免费商用的书法艺术字体。该字体由设计师周珂耗时七个月创作，笔画饱满圆润，收笔处形成平滑圆弧，钩画锋利坚毅，整体结构紧凑密实，字形端正稳重。字体基于GB2312-80字符集标准，包含6763个汉字和245个英文及标点字符。适用于艺术设计、平面宣传、网页设计、书法字帖、匾额、广告海报、产品包装及书籍装帧等领域。",
-    "license": "免费商用",
-    "licenseName": "仓耳周珂正大榜书授权协议",
-    "licenseUrl": "",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://github.com/cntrump/tsanger_free_fonts/blob/master/%E4%BB%93%E8%80%B3%E5%AD%97%E5%BA%93%E5%85%8D%E8%B4%B9%E5%95%86%E7%94%A8%E5%AD%97%E4%BD%93%E6%8E%88%E6%9D%83%E5%A3%B0%E6%98%8E.pdf",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cezkzdbs/LICENSE",
     "licenseNotes": "可免费商用。不可修改字体文件，不可再分发。",
-    "licenseVerified": false,
+    "licenseVerified": true,
     "purchaseUrl": null,
     "copyright": "Copyright  Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
     "foundry": "造字工房",
@@ -943,7 +946,9 @@
     ],
     "charCount": 6943,
     "glyphCount": 6912,
-    "viewCount": 17
+    "viewCount": 17,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
   },
   {
     "id": "3efb5b84-658f-4f0c-8647-a6c4b1bb1b48",
@@ -1711,7 +1716,8 @@
     "charCount": 7710,
     "glyphCount": 7764,
     "viewCount": 22,
-    "rfn": true
+    "rfn": true,
+    "licenseQuote": "Copyright (c) 2022--2024, atelierAnchor, with Reserved Font Name <Smiley> and <得意黑>."
   },
   {
     "id": "e6df8cbb-a672-482e-98e5-6540f70847a6",
@@ -4050,7 +4056,8 @@
     "charCount": 29286,
     "glyphCount": 29562,
     "viewCount": 432,
-    "rfn": true
+    "rfn": true,
+    "licenseQuote": "Copyright © 2017 IBM Corp. with Reserved Font Name \"Plex\""
   },
   {
     "id": "f0da370a-a587-4d7d-bcd3-f81bf9a1fd13",
@@ -11479,7 +11486,8 @@
     ],
     "charCount": 7271,
     "glyphCount": 7284,
-    "viewCount": 3
+    "viewCount": 3,
+    "licenseQuote": "现这款字体向所有个人和组织开放，永久免费商用。"
   },
   {
     "id": "6b79cf4f-1446-4fbf-8388-3aa736866423",
@@ -11542,12 +11550,12 @@
       "Regular"
     ],
     "description": "",
-    "license": "免费商用",
-    "licenseName": "仓耳舒圆体授权协议",
-    "licenseUrl": "",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://github.com/cntrump/tsanger_free_fonts/blob/master/%E4%BB%93%E8%80%B3%E5%AD%97%E5%BA%93%E5%85%8D%E8%B4%B9%E5%95%86%E7%94%A8%E5%AD%97%E4%BD%93%E6%8E%88%E6%9D%83%E5%A3%B0%E6%98%8E.pdf",
     "licenseFileUrl": "",
     "licenseNotes": "",
-    "licenseVerified": null,
+    "licenseVerified": true,
     "purchaseUrl": null,
     "copyright": "",
     "foundry": "造字工房",
@@ -11565,7 +11573,9 @@
     "useCases": [],
     "charCount": 1,
     "glyphCount": 1,
-    "viewCount": 16
+    "viewCount": 16,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
   },
   {
     "id": "db87f2ab-4475-48c1-a6ae-5088ed3c60df",

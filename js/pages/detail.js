@@ -58,8 +58,10 @@
 
   /* 出处与依据 · 三节出处链。句子全部由档位/核对态/国标字段按固定句式生成，无手写语句。 */
   var OPEN_LICENSE = /^(SIL Open Font License|OFL|GNU |GPL|Apache|CC0|CC |MIT|0BSD|Ubuntu Font|IPA |Dual license|M\+ )/i;
+  var OPEN_AGREEMENTS = { '仓耳字库免费开源字体授权声明': true };
   function proofTier(font) {
-    if (OPEN_LICENSE.test(String(font.licenseName || ''))) return '开源';
+    var n = String(font.licenseName || '');
+    if (OPEN_LICENSE.test(n) || OPEN_AGREEMENTS[n]) return '开源';
     return WFChrome.licenseTier(font);
   }
   function tierSentence(tier) {
@@ -77,15 +79,18 @@
     const rel = ownHost(host) ? 'noopener noreferrer' : 'nofollow noopener noreferrer';
     return '<a class="lp-act" href="' + esc(url) + '" target="_blank" rel="' + rel + '">' + esc(host) + ' ↗</a>';
   }
-  function proofRow(who, what, when, link) {
+  function proofRow(who, what, when, link, quote) {
     return '<div class="lp5-node"><div class="head"><span class="who">' + esc(who) + '</span>' +
       '<span class="what">' + what + '</span>' +
       (when ? '<span class="when">' + esc(when) + '</span>' : '') +
-      (link || '') + '</div></div>';
+      (link || '') + '</div>' +
+      (quote ? '<div class="sub">「' + esc(quote) + '」</div>' : '') + '</div>';
   }
   function proofMetaLine(font) {
     const std = OPEN_LICENSE.test(String(font.licenseName || ''));
-    const src = std ? '标准协议' : (font.licenseUrl ? '厂商官网' : '未附原文链接');
+    const host = hostOf(font.licenseUrl || '');
+    const repoHost = /(^|\.)(github\.com|gitee\.com|gitlab\.com)$/i.test(host);
+    const src = std ? '标准协议' : (host ? (repoHost ? '开源仓库' : '厂商官网') : '未附原文链接');
     const verified = !!font.licenseVerified;
     const parts = [src, verified ? '已核对原文' : '尚未核对原文'];
     if (verified && font.licenseVerifiedAt) parts.push(font.licenseVerifiedAt + ' 核对');
@@ -97,8 +102,10 @@
     const verified = !!font.licenseVerified;
     const date = verified ? (font.licenseVerifiedAt || '') : '';
     const slug = String(font.family || '').replace(/^wenfeng-/, '');
+    const purchase = (proofTier(font) === '需授权' && font.purchaseUrl) ? proofLink(font.purchaseUrl) : '';
     let html = proofMetaLine(font) + '<div class="lp5-chain">';
-    html += proofRow('授权协议', esc(tierSentence(proofTier(font))), date, proofLink(font.licenseUrl));
+    html += proofRow('授权协议', esc(tierSentence(proofTier(font))), date,
+      (proofLink(font.licenseUrl) + purchase) || '', font.licenseQuote);
     html += claim
       ? proofRow('国标声明', '厂商声明符合 <b>' + esc(claim.standard) + '</b>。', '', proofLink(claim.url))
       : proofRow('国标声明', '厂商声明未知。', '', '');
