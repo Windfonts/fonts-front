@@ -472,6 +472,7 @@ body.is-index .page-head { padding-top: 0; }
 .foundry-hero-id .foundry .name .badge-verified svg { width: 0.7em; height: 0.7em; }
 .foundry-hero-id .foundry .name .fav {
   font-size: var(--fs-16); width: 1.15em; height: 1.15em; align-self: center;
+  position: relative; top: 0.1em; /* CJK 名称视觉中心偏下，星标下移一档对齐 */
 }
 .foundry-hero .desc { margin-top: var(--s-6); color: var(--ink-2); max-width: 40em; line-height: 1.7; }
 .foundry-hero .foundry-partners {

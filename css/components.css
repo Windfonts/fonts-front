@@ -247,10 +247,11 @@ html[data-view="dev"] body.page-bag main .for-design { display: unset; }
 
 /* —— KV 表 —— */
 .kv { font-size: var(--fs-13); }
-.kv > div { display: flex; justify-content: space-between; gap: var(--s-4); padding: 0.55rem 0; border-bottom: 1px solid var(--rule); }
+.kv > div { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4); padding: 0.55rem 0; border-bottom: 1px solid var(--rule); }
 .kv > div:last-child { border-bottom: 0; }
 .kv dt { color: var(--gray); flex: 0 0 auto; display: inline-flex; align-items: center; gap: 0.35em; }
-.kv dt .icon { width: 1em; height: 1em; color: var(--gray-2); }
+/* 图标 1em 居中对拉丁基线合适，对 CJK 视觉中心偏低：下移一档光学补偿（同 claim 图标手法） */
+.kv dt .icon { width: 1em; height: 1em; color: var(--gray-2); position: relative; top: 0.12em; }
 .kv dd { text-align: right; color: var(--ink); font-weight: var(--fw-label); }
 
 /* —— 厂商标识 —— */
