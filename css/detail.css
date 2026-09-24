@@ -371,16 +371,37 @@
 .lp5-node .when { font-size: var(--fs-12); color: var(--gray-2); flex: none; }
 .lp5-node .lp-act { flex: none; }
 .lp5-points { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: var(--s-4); }
-.lp5-points .lp-badge { display: inline-flex; align-items: center; gap: 0.35em; font-size: var(--fs-12); padding: 0.22rem 0.7rem; border: 1px solid var(--rule); border-radius: var(--radius-pill); color: var(--ink-2); white-space: nowrap; }
+.lp5-points .lp-badge { display: inline-flex; align-items: center; gap: 0.35em; font-size: 11px; padding: 0.18rem 0.6rem; border: 1px solid var(--rule); border-radius: var(--radius-pill); color: var(--ink-2); white-space: nowrap; }
 .detail-main .lp-act { font-size: var(--fs-12); color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.3em; }
 @media (max-width: 720px) { .lp5-node .what { white-space: normal; } }
 
-/* 许可状态行：复用链条行结构（who 列同宽），空心点与实心事件点区分 */
-.license-fold .lp5-meta { position: relative; display: flex; align-items: baseline; gap: var(--s-3); margin: 0 0 var(--s-4) 0.35rem; padding-left: 1.3rem; font-size: var(--fs-12); }
-.license-fold .lp5-meta .icon { position: absolute; left: -0.4rem; top: 50%; transform: translateY(-50%); display: inline-flex; color: var(--gray); }
-.license-fold .lp5-meta .icon svg { width: 0.8rem; height: 0.8rem; }
-.license-fold .lp5-meta .who { width: 4.6em; flex: none; font-weight: var(--fw-label); color: var(--ink-2); }
-.license-fold .lp5-meta .what { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--gray); }
+/* 许可状态行：并入出处链；只定位外层 span，避免 svg.icon 再吃一份 left */
+.lp5-node.lp5-meta::before { content: none; }
+.lp5-node.lp5-meta > .icon {
+  position: absolute;
+  left: -1.7rem;
+  top: 0.93rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-2);
+  overflow: visible;
+}
+.lp5-node.lp5-meta > .icon svg.icon {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin: 0;
+  vertical-align: 0;
+  display: block;
+}
+.lp5-node.lp5-meta .what { color: var(--gray); }
+.lp5-node.lp5-meta .who { color: var(--ink-2); }
 .lp5-node .who, .lp5-node .what, .lp5-node .when { line-height: 1.5; }
 .lp5-node .sub { margin-left: calc(4.6em + 0.75rem); margin-top: 0.15rem; font-size: 11px; color: var(--gray); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* 开源商用档：绿底芯片（免费商用保持墨色） */
@@ -402,4 +423,3 @@
 [data-theme="dark"] .trust-grade.is-mid { color: #cbb06a; }
 .trust-line .trust-claim { display: inline-flex; align-items: center; gap: 0.3em; font-size: var(--fs-12); color: var(--gray); border: 1px solid var(--rule); border-radius: var(--radius-pill); padding: 0.15rem 0.6rem; }
 .trust-line .trust-site { font-size: var(--fs-12); color: #a05a2c; }
-.license-fold .lp5-meta .lp5-meta-label { font-weight: var(--fw-label); color: var(--ink-2); }
