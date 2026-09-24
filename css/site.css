@@ -1140,3 +1140,4 @@ body.is-index .site-extra-footer { margin-top: 0; padding-top: var(--s-6); }
 .record-list .rec-sum { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .record-list .rec-src { flex: none; font-size: var(--fs-12); color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
 .rec-note { margin: var(--s-3) 0 0; font-size: var(--fs-12); color: var(--gray-2); }
+.record-list .rec-scope { flex: none; font-size: var(--fs-12); color: var(--gray-2); border: 1px dashed var(--rule); border-radius: var(--radius-pill); padding: 0.1rem 0.5rem; }

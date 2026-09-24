@@ -669,6 +669,7 @@
       try { host = new URL(e.sourceUrl).hostname.replace(/^www\./, ''); } catch (err) {}
       return '<li><span class="rec-date">' + esc(e.date || '') + '</span>' +
         '<span class="rec-type">' + esc(e.type || '') + '</span>' +
+        (e.font ? '<span class="rec-scope">仅此款</span>' : '') +
         '<span class="rec-sum">' + esc(e.summary || '') + '</span>' +
         (e.sourceUrl ? '<a class="rec-src" href="' + esc(e.sourceUrl) + '" target="_blank" rel="nofollow noopener noreferrer">' + esc(host) + ' ↗</a>' : '') +
         '</li>';
@@ -680,7 +681,7 @@
     if (!hasInc) return '<section class="foundry-sec" id="record">' + siteNote + '</section>';
     return '<section class="foundry-sec" id="record"><div class="section-head"><h2>授权记录 <span class="n">' + tr.incidents.length + '</span></h2></div>' + siteNote +
       '<ul class="record-list">' + rows + '</ul>' +
-      '<p class="rec-note">仅收录可查证事件，每条附出处。' + esc(tr.lastChecked || '') + ' 核对。</p></section>';
+      '<p class="rec-note">仅收录可查证事件，每条附出处。记录仅描述所列字体在所列时间的情况，不代表该厂商全部产品；信息以权利人最新公示为准，如有出入可通过厂商认领页提出更正。' + esc(tr.lastChecked || '') + ' 核对。</p></section>';
   }
 
   function renderOne(list, g) {

@@ -94,9 +94,11 @@
     const tr = info.trackRecord;
     let grade = '待评估', cls = 'is-tbd', why = '';
     if (tr && Array.isArray(tr.incidents)) {
-      const n = tr.incidents.filter(function (e) { return e.type !== '政策保持'; }).length;
-      if (n > 0) { grade = '一般'; cls = 'is-mid'; why = '有纠纷'; }
-      else { grade = '优秀'; cls = 'is-good'; why = '无毁约'; }
+      const n = tr.incidents.filter(function (e) {
+        return e.type !== '政策保持' && (!e.font || e.font === font.family);
+      }).length;
+      if (n > 0) { grade = '一般'; cls = 'is-mid'; why = '有过授权调整'; }
+      else { grade = '优秀'; cls = 'is-good'; why = '未发现授权变更记录'; }
     }
     return '<p class="trust-line"><span class="trust-label">' + WFChrome.icon('shield') + '厂商信誉</span>' +
       '<span class="trust-grade ' + cls + '">' + esc(grade) + '</span>' +

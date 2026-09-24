@@ -565,3 +565,20 @@ OPPO Sans 是厂商自己的协议，不是 OFL。允许不修改地嵌入，并
 厂商信誉行上线（出处与依据首行）：盾标＋「厂商信誉」＋等级胶囊＋理由。三态：优秀（绿，无毁约）＝已调研无变更事件；一般（琥珀，有纠纷）＝有带出处的变更事件；待评估（灰描边）＝未调研（当前全库默认）。等级由 foundries trackRecord 派生，不手填。厂商页时间线机制保留不变。
 
 厂商记录简化定稿：事件条目零新增字段（维持 {date, type, summary, sourceUrl}，可选 font=仅此款），纪律替代字段——只录已证实事件（有争议不录）、后续结果作为新事件条目、不标出处类型（域名自明）。事件类型词表补：下架停发／高频维权／被指侵权。厂商状态两项上线：官网失效提示（trackRecord.siteOk=false + siteCheckedAt；详情页信誉行提示「官网失效 · X 确认」，厂商页记录区注「授权以已存档原文为准」，无事件也渲染）；已认领标（foundries claimed=true 时信誉行出「已认领」胶囊）。均经夹具验证后撤，真库零数据。
+
+## 24. 2026-09-24 仓耳免费开源 19 款入库（渔阳 / 与墨 / 非白 + 舒圆补档）
+
+来源镜像 `github.com/cntrump/tsanger_free_fonts`；官方站 tsanger.cn/category/114 只有「详细了解」产品页（声明句「本字体任何用户可以全球任何领域永久免费商用。」）+ 登录下载，无直链。《仓耳字库免费开源字体授权声明》（2020-11-11）附件 22 款名单覆盖渔阳 / 与墨 / 舒圆 / 非白各 W01-05，故舒圆 W02-05 一并从同一镜像补档入库。
+
+name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily 全 Regular、usWeightClass 400），不是一个家族的五字重——19 行各自单字重入库。渔阳 / 与墨 / 舒圆有 Windows 简体 zh FamilyName「仓耳xx W0x」，显示名照抄；**非白全无中文记录**（Windows Full name 是乱码「???? W0x」），显示名取官方产品名「仓耳非白 W0x」（tbmct 先例），乱码事实写进 licenseNotes。
+
+命名：norm=`TsangerYuYangTW01-05` / `TsangerYuMoW01-05` / `TsangerFeiBaiW01-05` / `TsangerShuYuanTW02-05`（与在库 cesyt=`TsangerShuYuanTW01` 同式，PS 名去连字符）；family/slug=`wenfeng-ceyyt1-5` / `ceym1-5` / `cefb1-5` / `cesyt2-5`（Mtk1/Mtk2 数字后缀先例）。
+
+- 授权字段照 cexwz 口径：license_type=`开源免费商用`、licenseName=`仓耳字库免费开源字体授权声明`、licenseUrl=tsanger.cn/category/114、licenseVerifiedAt=2026-09-24、licenseQuote=声明第二章句；自定义声明无 RFN 概念，全部不填 `rfn`。foundry/brand 抄在库 cexwz 行（foundry 串「造字工房」、brand_id `05a1be7d-…9a42`）。
+- 管线：fonts-packages `SUBSET_ONLY=full` 单轮顺序构建 19 norm → OSS `fonts-packages/<Norm>/`；19/19 `Regular/full/result.css` 200。
+- vault：`VACUUM INTO prod.db.bak-20260924-preTsanger15` 后先全量去重再 INSERT 19 行，487→506，SELECT 回读 license / license_type / brand_id / foundry 全对；脚本 `fonts-vault/scripts/register-tsanger15.js`（容器 /app 同名，纯 INSERT 未 UPDATE 任何既有行）。
+- 目录：fonts.json 文本级插入 19 条（备份 `data/fonts.json.bak-preTsanger15-20260924155723`），412→431；既有 412 条逐条比对零改动。charCount 按 cmap 实数（渔阳 7049 / 与墨 7042 / 非白 7010 / 舒圆 7042）。
+- 验收：19/19 详情页 200（16016）、19/19 slug 可解、foundry.html?slug=tsanger 归属款 3→22（按 foundry.js 分组口径复算）。
+- 备注：fonts-packages 工作区他人的 dist/Albbpht 在构建前挪至 /tmp、构建后原样归还；fonts/ 暂存 28 个他人 norm 由构建脚本 park/restore 未动。
+
+委婉文案与 scope 规则落地：信誉理由改「未发现授权变更记录／有过授权调整」（不再用毁约、纠纷字样）；事件可选 font 字段=仅此款——厂商页时间线出虚线「仅此款」标，详情页信誉只计「本款事件＋厂商级事件」，同厂商其它款的事件不牵连（夹具双向验证：仅小丸子有事件时，榜书页优秀、小丸子页一般）；时间线脚注固定两句「记录仅描述所列字体在所列时间的情况，不代表该厂商全部产品；信息以权利人最新公示为准，如有出入可通过厂商认领页提出更正」。
