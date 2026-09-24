@@ -2210,6 +2210,23 @@
       "makerId": "huangyuchen",
       "relation": "original",
       "licenseFollows": "inherit"
+    },
+    "煮豆黑体": {
+      "ownerId": "buernia",
+      "makerId": "buernia",
+      "relation": "fork",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
+    },
+    "铁蒺藜体": {
+      "ownerId": "buernia",
+      "makerId": "buernia",
+      "relation": "fork",
+      "upstreamName": "Reggae One",
+      "upstreamOwnerId": "fontworks",
+      "licenseFollows": "inherit"
     }
   }
 }

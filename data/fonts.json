@@ -13261,6 +13261,64 @@
   "foundryAvatar": "https://cravatar.com/avatar/7f26b9d8556f9e3994510d8805e0412186638e98903de79a63296efda6a5963d?s=144&d=identicon"
  },
  {
+  "id": "0a6ce1b8-0452-4fc4-af58-e53893b54661",
+  "name": "煮豆黑体",
+  "en": "Zhudou Sans",
+  "family": "wenfeng-zdht",
+  "normalized": "Zdht",
+  "designer": "Buernia",
+  "designerShort": "Buernia",
+  "category": "",
+  "tags": [
+   "开源",
+   "OFL",
+   "符号",
+   "标点"
+  ],
+  "weights": [
+   "ExtraLight",
+   "Light",
+   "Normal",
+   "Regular",
+   "Medium",
+   "Bold",
+   "Heavy"
+  ],
+  "description": "Noto 风格的中日韩标点符号字体，补齐搭配场景的符号与标点，七档字重，衍生自 Noto Sans。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "https://github.com/Buernia/Zhudou-Sans/blob/main/LICENSE",
+  "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Zdht/LICENSE",
+  "licenseNotes": "SIL OFL 1.1。衍生自 Noto Sans（Google），保留字体名 Zhudou。可商用、可修改、可再分发，不可单独售卖字体文件本体。",
+  "licenseVerified": true,
+  "purchaseUrl": null,
+  "copyright": "Copyright 2022 Buernia (https://github.com/Buernia), with Reserved Font Name 'Zhudou'.",
+  "foundry": "Buernia",
+  "brand": {
+   "name": "Buernia",
+   "slug": "buernia",
+   "logoUrl": "",
+   "avatarUrl": "https://cravatar.com/avatar/4955da8cb7889427f37350020ac82f3cc83dcbea68694cf85433e57f92869d77?s=144&d=identicon",
+   "website": "https://github.com/Buernia",
+   "description": "独立字体作者，煮豆黑体与铁蒺藜体作者。"
+  },
+  "releaseYear": 2023,
+  "version": "2.000",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "搭配",
+   "符号排版"
+  ],
+  "charCount": 190,
+  "glyphCount": 190,
+  "viewCount": 0,
+  "foundryAvatar": "https://cravatar.com/avatar/4955da8cb7889427f37350020ac82f3cc83dcbea68694cf85433e57f92869d77?s=144&d=identicon"
+ },
+ {
   "id": "284dd858-8a27-4dad-9151-20e422842ba1",
   "name": "爆呆",
   "en": "bakudaifont",
@@ -19168,6 +19226,57 @@
   "glyphCount": 14619,
   "viewCount": 347,
   "foundryAvatar": "https://cravatar.com/avatar/1f22628af5086c8b99ef155f8bf0eb3b5861bd3a3e3ad791507e57733cb910cc?s=144&d=identicon"
+ },
+ {
+  "id": "3cae79c2-3e13-413c-8674-d361c529a843",
+  "name": "铁蒺藜体",
+  "en": "Tiejili",
+  "family": "wenfeng-tjlt",
+  "normalized": "Tjlt",
+  "designer": "Buernia",
+  "designerShort": "Buernia",
+  "category": "",
+  "tags": [
+   "开源",
+   "OFL",
+   "展示"
+  ],
+  "weights": [
+   "Regular"
+  ],
+  "description": "基于 Fontworks 雷鬼体（Reggae One）扩展的开源中文字体，笔画张扬的展示风格。",
+  "license": "免费商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "https://github.com/Buernia/Tiejili/blob/main/LICENSE",
+  "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Tjlt/LICENSE",
+  "licenseNotes": "SIL OFL 1.1。基于 Fontworks Reggae One（OFL）扩展中文。可商用、可修改、可再分发，不可单独售卖字体文件本体。",
+  "licenseVerified": true,
+  "purchaseUrl": null,
+  "copyright": "Copyright 2022 Buernia (https://github.com/Buernia).",
+  "foundry": "Buernia",
+  "brand": {
+   "name": "Buernia",
+   "slug": "buernia",
+   "logoUrl": "",
+   "avatarUrl": "https://cravatar.com/avatar/4955da8cb7889427f37350020ac82f3cc83dcbea68694cf85433e57f92869d77?s=144&d=identicon",
+   "website": "https://github.com/Buernia",
+   "description": "独立字体作者，煮豆黑体与铁蒺藜体作者。"
+  },
+  "releaseYear": 2023,
+  "version": "1.100",
+  "languages": [
+   "简体中文",
+   "繁体中文",
+   "英语"
+  ],
+  "useCases": [
+   "标题",
+   "海报"
+  ],
+  "charCount": 13121,
+  "glyphCount": 13121,
+  "viewCount": 0,
+  "foundryAvatar": "https://cravatar.com/avatar/4955da8cb7889427f37350020ac82f3cc83dcbea68694cf85433e57f92869d77?s=144&d=identicon"
  },
  {
   "id": "c828ee26-21ca-4e50-a93d-8a6dd4513482",

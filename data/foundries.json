@@ -2142,6 +2142,24 @@
       "openSource": false,
       "claimed": false,
       "description": "独立字体作者，「江西拙楷体」作者。"
+    },
+    {
+      "id": "buernia",
+      "name": "Buernia",
+      "en": "Buernia",
+      "short": "Buernia",
+      "website": "https://github.com/Buernia",
+      "aliases": [
+        "Buernia"
+      ],
+      "fontNames": [
+        "煮豆黑体",
+        "铁蒺藜体"
+      ],
+      "kind": "individual",
+      "openSource": true,
+      "claimed": false,
+      "description": "独立字体作者，煮豆黑体与铁蒺藜体作者。"
     }
   ]
 }
