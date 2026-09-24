@@ -1898,8 +1898,10 @@
     "混菜写楷": {
       "ownerId": "fwhp",
       "makerId": "fwhp",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "霞鹜文楷",
+      "upstreamOwnerId": "lxgw",
+      "licenseFollows": "inherit"
     },
     "演示佛系体": {
       "ownerId": "keynote",
@@ -1940,62 +1942,75 @@
     "宅在家麦克笔": {
       "ownerId": "fwhp",
       "makerId": "fwhp",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "天天宅在家",
+      "licenseFollows": "inherit"
     },
     "宅在家自动笔": {
       "ownerId": "fwhp",
       "makerId": "fwhp",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "天天宅在家",
+      "licenseFollows": "inherit"
     },
     "宅在家粉条甜": {
       "ownerId": "fwhp",
       "makerId": "fwhp",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "天天宅在家",
+      "licenseFollows": "inherit"
     },
     "汲古明体A": {
       "ownerId": "fwhp",
       "makerId": "fwhp",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "源流明体",
+      "upstreamOwnerId": "buttaiwan",
+      "licenseFollows": "inherit"
     },
     "汲古明体B": {
       "ownerId": "fwhp",
       "makerId": "fwhp",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "源流明体",
+      "upstreamOwnerId": "buttaiwan",
+      "licenseFollows": "inherit"
     },
     "汲古明体C": {
       "ownerId": "fwhp",
       "makerId": "fwhp",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "源流明体",
+      "upstreamOwnerId": "buttaiwan",
+      "licenseFollows": "inherit"
     },
     "繁多全楷体": {
       "ownerId": "fwhp",
       "makerId": "fwhp",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "全字库正楷体",
+      "licenseFollows": "inherit"
     },
     "繁多全楷体2": {
       "ownerId": "fwhp",
       "makerId": "fwhp",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "全字库正楷体",
+      "licenseFollows": "inherit"
     },
     "繁多全宋体": {
       "ownerId": "fwhp",
       "makerId": "fwhp",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "全字库正宋体",
+      "licenseFollows": "inherit"
     },
     "繁多全宋体2": {
       "ownerId": "fwhp",
       "makerId": "fwhp",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "全字库正宋体",
+      "licenseFollows": "inherit"
     },
     "演示斜黑体": {
       "ownerId": "keynote",
