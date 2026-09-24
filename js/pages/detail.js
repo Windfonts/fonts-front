@@ -153,7 +153,6 @@
     const brandDesc = (brandInfoEntry.description ||
       ((font.brand && font.brand.description && !/出品的字体$/.test(font.brand.description)) ? font.brand.description : '')
     ).split(/\n+/).map(function (s) { return s.trim(); }).filter(Boolean)[0] || '';
-    const lic = licenseLists(font);
     const user = WFChrome.user();
     const sample = WFSpecimen.PRESETS.filter(function (p) { return p.id === 'poem'; })[0].text;
 
@@ -267,7 +266,6 @@
                   return '<span class="lp-badge">' + (p[0] === 'ok' ? '✓ ' : '× ') + esc(p[1]) + '</span>';
                 }).join('') +
               '</div>' +
-              (lic.notes ? '<p class="license-notes">' + esc(lic.notes) + '</p>' : '') +
               '<p class="license-foot">声明为厂商原文摘录，条款以权利人为准。 <a href="license.html">许可类型说明</a></p></details></div>' +
           '</section>' +
           lineageSection +
