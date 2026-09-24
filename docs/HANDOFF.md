@@ -514,3 +514,24 @@ OPPO Sans 是厂商自己的协议，不是 OFL。允许不修改地嵌入，并
 §16 的授权名规矩补扫了它定稿（`640a63c`）之后入库的批：方正四款、香萃三款、花园明朝 A/B、包图小白体、仓耳小丸子、精品点阵体、千图马克手写体共 13 款的 `licenseName` 从档位口令、整句说明或网址改成「{字体名}授权协议」；MiSans 去掉括号注记，只留《MiSans 字体知识产权许可协议》。IPA、CC、GPL、M+ 位图许可、OPPO Sans Free Use License、梅字体许可、台湾省开放政府数据授权条款这类协议本名保留。备份 `data/fonts.json.bak-license-name2-20260924130543` 未入库。
 
 注意：字库 DB 的 `license_name` 没同步这次改动，下次从库导出目录前要先把库里这 14 行改掉，否则会冲回来。
+
+## 20. 2026-09-24 淘宝买菜体入库
+
+已推送（本提交）。`data/fonts.json` 现为 413 条（HEAD 412 + 本条；本会话开工时工作区是 413，`a83841c` 普惠体 3.0 那笔把基线变成 412，本条净增 1）。
+
+新条目：`wenfeng-tbmct` / `Tbmct` / 淘宝买菜体 / TaoBaoMaiCaiTi，Regular 一档，简体 + 英语，charCount 7271。来源是用户指定的官方分发 `fonts.alibabadesign.com/TaoBaoMaiCaiTi/TaoBaoMaiCaiTi-Regular.zip`（CDN 有 Referer ACL，抓取须带 `Referer: https://fonts.alibabadesign.com/`）。管线照旧：`fonts-packages`（`SUBSET_ONLY=full`，`oss-batch1-build.sh maicai Tbmct`）→ OSS `fonts-packages/Tbmct/` → vault 登记 → 目录。
+
+规矩怎么落的：
+
+- 去重：目录与库都 0 命中后才进（nameID 里没有 Windows 简体中文，无法拿 name 表比对重名，按官方产品名入）。
+- 名称：name 表 nameID 1 只有英文 `TBMCYXT`，没有 Windows 简体中文记录；表内中文只出现在 nameID 9/16/19（langID 3076）「淘宝买菜营销体」。显示名取官方 portal 产品名「淘宝买菜体」（fonts.alibabadesign.com / www.alibabafonts.com 前端元数据 fontName 常量），name 表中文名已写进 licenseNotes 和 font-licenses 备查，不算丢证据。
+- 授权：发行包内无许可文件。官方声明原文「现这款字体向所有个人和组织开放，永久免费商用。」从 portal 前端元数据原样取出，摘录进 `font-licenses` `licenses/Tbmct/`（`a5b3e97`，main）。修改 / 再分发 / 嵌入 / 商标声明没写，字段留空不推断，`verified` false。`licenseName` = 「淘宝买菜体授权协议」（§11），档位 `license` = 免费商用。
+- foundry/brand 复用 Alibaba Design 现有行（brand_id `fd8cac88…`，照 albbpht）。谱系：官方口径是淘宝买菜 × 通义锦书原创 AI 字体，无开源上游，`font-lineage.json` 未加行。
+- DB 直写按红线：先 `wal_checkpoint(TRUNCATE)` 再 `cp prod.db.bak-20260924-preMaicai`（19.4MB，容器内）。只插本族一行，486→487 对拍，登记脚本 `register-maicai.js`（容器 `/app`，同 batch1/2 惯例）。
+- §19 欠账一并还了：导出前把库里 `license`（即导出的 licenseName）与目录逐行对拍，同步了 **102 行**（§16/§17/§19 拍过的 {字体名}授权协议、台湾省条款、MiSans 协议等），另有 8 行档位（cexwz→联系授权、dymht/dyzgt/jsyjst/kksjt→免费商用、ibmps→开源免费商用、zkwyt→联系授权、qzkswjz→待核实）。现在库里与目录一致，下次全量导出不会再冲回。同步清单在容器 `/app/maicai-license-sync.json`。
+
+验收：`http://127.0.0.1:16016/font-detail.html?slug=tbmct` 200（数据层 slug=tbmct，显示名「淘宝买菜体」）；`https://cn.windfonts.com/fonts-packages/Tbmct/Regular/full/result.css` 200；目录 licenseName/foundry 如上。只有 full 子集、无 zh-common，属正常（SUBSET_ONLY=full）。
+
+导出方式说明：本轮没跑全量 `export-fonts.mjs`——匿名 API 限流（约 100 次/天，全量要 800+ 请求），且本机到 feicode-prod 的 443 当天断了几十分钟（SSH 22 正常，服务器侧无封禁记录，纯线路问题）。改为服务器本地取 list+detail 两条 API 响应，按 mapFont 同款口径组装 Tbmct 一条、文本级插入 `Systtc` 与 `Train` 之间；其余 412 条一字未动，4 条 lineage-stub（ipaexgothic/ipagothic/kokoro/smartui）原样保留。下次全量导出可无脑覆盖，结果应与现状一致。
+
+另一个会话在同一天推进了 `a83841c`（普惠体 3.0），`fonts.json` 缩进随之变成 2 空格、顺序有 39 处局部乱序；本条插入按现状 2 空格缩进，没动别人内容。
