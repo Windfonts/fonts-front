@@ -55,6 +55,42 @@
     return '许可还没核对，用之前先联系权利人。';
   }
 
+  /* 出处与依据 · 三节出处链。句子全部由档位/核对态/国标字段按固定句式生成，无手写语句。 */
+  function tierSentence(tier) {
+    if (tier === '免费商用') return '字体向所有个人和组织开放，免费商用。';
+    if (tier === '个人免费') return '字体仅个人免费商用。';
+    if (tier === '需授权') return '字体需取得权利人授权后方可商用。';
+    return '字体授权档位待核实。';
+  }
+  function ownHost(h) { return /(^|\.)(wenfeng\.org|windfonts\.com)$/i.test(h); }
+  function hostOf(url) { try { return new URL(url).hostname.replace(/^www\./, ''); } catch (e) { return ''; } }
+  function proofLink(url) {
+    const host = hostOf(url);
+    if (!host) return '';
+    const rel = ownHost(host) ? 'noopener noreferrer' : 'nofollow noopener noreferrer';
+    return '<a class="lp-act" href="' + esc(url) + '" target="_blank" rel="' + rel + '">' + esc(host) + ' ↗</a>';
+  }
+  function proofRow(who, what, when, link) {
+    return '<div class="lp5-node"><div class="head"><span class="who">' + esc(who) + '</span>' +
+      '<span class="what">' + what + '</span>' +
+      (when ? '<span class="when">' + esc(when) + '</span>' : '') +
+      (link || '') + '</div></div>';
+  }
+  function proofChainHtml(font) {
+    const claim = font.standardClaim || null;
+    const verified = !!font.licenseVerified;
+    const date = verified ? (font.licenseVerifiedAt || '') : '';
+    const slug = String(font.family || '').replace(/^wenfeng-/, '');
+    let html = '<div class="lp5-chain">';
+    html += proofRow('授权协议', esc(tierSentence(WFChrome.licenseTier(font))), date, proofLink(font.licenseUrl));
+    html += claim
+      ? proofRow('国标声明', '厂商声明符合 <b>' + esc(claim.standard) + '</b>。', '', proofLink(claim.url))
+      : proofRow('国标声明', '厂商声明未知。', '', '');
+    html += proofRow('文风存档', verified ? '收录入库并已做原文核对。' : '请自行阅读查看原始授权。', date,
+      '<a class="lp-act" href="https://wenfeng.org/font/' + esc(slug) + '" rel="noopener noreferrer">wenfeng.org ↗</a>');
+    return html + '</div>';
+  }
+
   function lineageWeight(f) {
     const ws = ((f && f.weights) || []).map(function (n) { return Number(WFProto.weightToCss(n)) || 400; });
     if (!ws.length) return 400;
@@ -217,10 +253,10 @@
             '<div class="panel-pad">' +
             '<p class="license-lead">' + esc(licenseLead(WFChrome.licenseTier(font))) + '</p>' +
             '<details class="side-fold license-fold"><summary>' + WFChrome.icon('chevron-down') + '出处与依据</summary>' +
-              WFChrome.licenseCiteHtml(font) +
-              '<div class="license-grid">' +
-                '<div><h3>可以</h3><ul class="ok">' + lic.ok.slice(0, 3).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' +
-                '<div><h3>不可以</h3><ul class="no">' + lic.no.slice(0, 3).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' +
+              proofChainHtml(font) +
+              '<div class="lp5-points">' +
+                lic.ok.slice(0, 3).map(function (t) { return '<span class="lp-badge">✓ ' + esc(t) + '</span>'; }).join('') +
+                lic.no.slice(0, 3).map(function (t) { return '<span class="lp-badge">× ' + esc(t) + '</span>'; }).join('') +
               '</div>' +
               (lic.notes ? '<p class="license-notes">' + esc(lic.notes) + '</p>' : '') +
               '<p class="license-foot">' + (font.copyright ? esc(font.copyright) + '<br>' : '') +

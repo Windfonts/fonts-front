@@ -359,3 +359,18 @@
     white-space: normal;
   }
 }
+
+/* ===== 出处与依据 · 三节出处链（授权协议 / 国标声明 / 文风存档）===== */
+.license-fold .lp5-chain { position: relative; margin: 0 0 0 0.35rem; padding-left: 1.3rem; border-left: 1px solid var(--rule); }
+.lp5-node { position: relative; padding: 0.42rem 0; }
+.lp5-node::before { content: ""; position: absolute; left: -1.55rem; top: 0.85rem; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--ink); }
+.lp5-node .head { display: flex; align-items: baseline; gap: var(--s-3); min-width: 0; }
+.lp5-node .who { font-size: var(--fs-12); font-weight: var(--fw-label); color: var(--gray); width: 4.6em; flex: none; }
+.lp5-node .what { flex: 1; min-width: 0; font-size: var(--fs-13); color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lp5-node .what b { color: var(--ink); font-weight: var(--fw-label); }
+.lp5-node .when { font-size: var(--fs-12); color: var(--gray-2); flex: none; }
+.lp5-node .lp-act { flex: none; }
+.lp5-points { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: var(--s-4); }
+.lp5-points .lp-badge { display: inline-flex; align-items: center; gap: 0.35em; font-size: var(--fs-12); padding: 0.22rem 0.7rem; border: 1px solid var(--rule); border-radius: var(--radius-pill); color: var(--ink-2); white-space: nowrap; }
+.detail-main .lp-act { font-size: var(--fs-12); color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.3em; }
+@media (max-width: 720px) { .lp5-node .what { white-space: normal; } }
