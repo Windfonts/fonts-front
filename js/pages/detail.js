@@ -104,7 +104,8 @@
       '<span class="trust-grade ' + cls + '">' + esc(grade) + '</span>' +
       (why ? '<span class="trust-why">' + esc(why) + '</span>' : '') +
       (info.claimed ? '<span class="trust-claim">' + WFChrome.icon('check') + '已认领</span>' : '') +
-      (tr && tr.siteOk === false ? '<span class="trust-site">官网失效 · ' + esc(tr.siteCheckedAt || '') + '确认</span>' : '') + '</p>';
+      (tr && tr.siteOk === false ? '<span class="trust-site">官网失效 · ' + esc(tr.siteCheckedAt || '') + '确认</span>' : '') + '</p>' +
+      '<p class="trust-note">记录仅描述所列字体在所列时间的情况，不代表该厂商全部产品。信息以权利人最新公示为准，如有出入可通过厂商认领页提出更正。</p>';
   }
 
   function proofMetaLine(font) {
