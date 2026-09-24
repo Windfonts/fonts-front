@@ -149,3 +149,5 @@ sourceKind  sourceUrl  quote  verifiedAt  restrictions[]  spdx  verified
 详情页展示的 `licenseName` 只写两种：`{字体名}授权协议`（自家或厂商的免费商用协议），或协议本名（OFL、GPL、CC、IPA Font License、M+ 位图许可、《MiSans 字体知识产权许可协议》、台湾省开放政府数据授权条款这类）。禁止拿档位口令（「免费商用」「免费商用，不可修改」）、整句许可说明或网址当协议名。档位写在 `license` / `licenseTier`，原文摘要写在 `licenseNotes`。出处与补扫见 [HANDOFF.md](HANDOFF.md) §16、§19。
 
 注意：字库 DB 的 `license_name` 要和目录一起改，只改目录会在下次导出时被冲回；新入库时登记脚本里就该写对。
+
+RFN（保留字体名）是开源档的结构化字段 `rfn`：三态 true/false/缺省。判定依据是许可原文**版权行**有没有「with Reserved Font Name」——OFL 模板正文里的 RFN 定义条款不算声明。true→徽章「修改版须避开保留字体名」；false→「修改版可沿用原名」；缺省（未核对原文，如推断 OFL 的条目）→不显示。只读已核对的许可原文填写，不推断。

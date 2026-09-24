@@ -107,9 +107,16 @@
     return html + '</div>';
   }
 
-  /* 条款徽章也按档位出固定三条，与句子同一张配置表 */
-  function tierPoints(tier) {
-    if (tier === '开源') return [['ok', '个人与企业免费使用'], ['ok', '可修改与再分发'], ['no', '不得单独售卖字体文件']];
+  /* 条款徽章也按档位出固定三条，与句子同一张配置表。
+   * 开源档追加 RFN 徽章：版权行声明 with Reserved Font Name → 修改版须换名；
+   * 已核对且无声明 → 可沿用原名；未核对原文（rfn 缺省）→ 不显示。 */
+  function tierPoints(tier, rfn) {
+    if (tier === '开源') {
+      const pts = [['ok', '个人与企业免费使用'], ['ok', '可修改与再分发'], ['no', '不得单独售卖字体文件']];
+      if (rfn === true) pts.push(['no', '修改版须避开保留字体名']);
+      if (rfn === false) pts.push(['ok', '修改版可沿用原名']);
+      return pts;
+    }
     if (tier === '免费商用') return [['ok', '个人与企业商用免费'], ['no', '修改字体文件'], ['no', '再分发字体文件']];
     if (tier === '个人免费') return [['ok', '个人非商业使用免费'], ['no', '商业使用'], ['no', '再分发字体文件']];
     if (tier === '需授权') return [['ok', '取得授权后按合同使用'], ['no', '未授权公开使用'], ['no', '再分发字体文件']];
@@ -279,7 +286,7 @@
             '<details class="side-fold license-fold"><summary>' + WFChrome.icon('chevron-down') + '出处与依据</summary>' +
               proofChainHtml(font) +
               '<div class="lp5-points">' +
-                tierPoints(proofTier(font)).map(function (p) {
+                tierPoints(proofTier(font), font.rfn).map(function (p) {
                   return '<span class="lp-badge">' + (p[0] === 'ok' ? '✓ ' : '× ') + esc(p[1]) + '</span>';
                 }).join('') +
               '</div>' +

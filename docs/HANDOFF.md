@@ -535,3 +535,11 @@ OPPO Sans 是厂商自己的协议，不是 OFL。允许不修改地嵌入，并
 导出方式说明：本轮没跑全量 `export-fonts.mjs`——匿名 API 限流（约 100 次/天，全量要 800+ 请求），且本机到 feicode-prod 的 443 当天断了几十分钟（SSH 22 正常，服务器侧无封禁记录，纯线路问题）。改为服务器本地取 list+detail 两条 API 响应，按 mapFont 同款口径组装 Tbmct 一条、文本级插入 `Systtc` 与 `Train` 之间；其余 412 条一字未动，4 条 lineage-stub（ipaexgothic/ipagothic/kokoro/smartui）原样保留。下次全量导出可无脑覆盖，结果应与现状一致。
 
 另一个会话在同一天推进了 `a83841c`（普惠体 3.0），`fonts.json` 缩进随之变成 2 空格、顺序有 39 处局部乱序；本条插入按现状 2 空格缩进，没动别人内容。
+
+## 21. 2026-09-24 出处链定稿、开源档与 RFN
+
+出处与依据折叠最终形态（db46662/b12a2ec/1743fc7）：顶部状态行（来源·核对态·日期，由 licenseUrl/标准协议名/核对字段生成）→ 三节链（授权协议/国标声明/文风存档，固定句状态机）→ 档位徽章（固定三条）→ 固定脚注。licenseNotes 长文不再上页面（留目录档案）。
+
+开源档独立：licenseName 命中标准协议名（OFL/GPL/Apache/CC/MIT/IPA/M+ 等）走「开源」，句子与徽章独立（可修改可再分发），不再冒用免费商用那套（×修改字体文件对 OFL 是错的）。RFN 三态字段 `rfn` 按版权行证据填：true=得意黑(「Smiley」「得意黑」)/IBM Plex(「Plex」)；false=波塔/钟齐流江毛草/霞鹜漫黑/龙藏体/站酷快乐体；寒蝉龙藏楷书是推断 OFL，留空。规则在 LICENSE.md §11。
+
+真贵楷体一条化（478c4cd）：pangzhenguipmzd 补庞门正道署名+3.12.0+7826 字；同款 pmzdzgkt（库内名「旁正道-旁门正道标题体」）offline，备份 prod.db.bak-20260924-preZhangui。slyr/sly1 验证非重复（分块哈希全不同），保留。

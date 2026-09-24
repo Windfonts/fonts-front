@@ -754,7 +754,8 @@
     ],
     "charCount": 7286,
     "glyphCount": 7365,
-    "viewCount": 20
+    "viewCount": 20,
+    "rfn": false
   },
   {
     "id": "05cdb1ce-deda-4fae-930f-64a23f5089ac",
@@ -1709,7 +1710,8 @@
     ],
     "charCount": 7710,
     "glyphCount": 7764,
-    "viewCount": 22
+    "viewCount": 22,
+    "rfn": true
   },
   {
     "id": "e6df8cbb-a672-482e-98e5-6540f70847a6",
@@ -4047,7 +4049,8 @@
     ],
     "charCount": 29286,
     "glyphCount": 29562,
-    "viewCount": 432
+    "viewCount": 432,
+    "rfn": true
   },
   {
     "id": "f0da370a-a587-4d7d-bcd3-f81bf9a1fd13",
@@ -5140,7 +5143,8 @@
     ],
     "charCount": 7015,
     "glyphCount": 7018,
-    "viewCount": 200
+    "viewCount": 200,
+    "rfn": false
   },
   {
     "id": "8e53fded-f8bd-46f2-99be-60a3ed825eb1",
@@ -12597,7 +12601,8 @@
     ],
     "charCount": 15285,
     "glyphCount": 15570,
-    "viewCount": 29
+    "viewCount": 29,
+    "rfn": false
   },
   {
     "id": "e13e5699-4f72-4c91-8e9f-6006979b42b8",
@@ -14812,7 +14817,8 @@
     ],
     "charCount": 7015,
     "glyphCount": 7016,
-    "viewCount": 34
+    "viewCount": 34,
+    "rfn": false
   },
   {
     "id": "63cce015-7746-44bf-a9e3-deffc26c1b37",
@@ -15425,7 +15431,8 @@
     ],
     "charCount": 7809,
     "glyphCount": 7881,
-    "viewCount": 28
+    "viewCount": 28,
+    "rfn": false
   },
   {
     "id": "50b750e7-a572-4ddc-8a0e-315565e1cc87",
