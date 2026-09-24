@@ -119,9 +119,9 @@
 
   function proofMetaLine(font) {
     const verified = !!font.licenseVerified;
-    return '<p class="cite-meta lp5-meta">' + WFChrome.icon('certificate') +
-      '<span class="lp5-meta-label">许可状态</span>' +
-      '<span>' + (verified ? '已核对协议原文 · 文风字体（Windfonts）' : '协议原文待核对 · 文风字体（Windfonts）') + '</span></p>';
+    return '<div class="lp5-meta"><span class="icon">' + WFChrome.icon('certificate') + '</span>' +
+      '<span class="who">许可状态</span>' +
+      '<span class="what">' + (verified ? '已核对协议原文 · 文风字体（Windfonts）' : '协议原文待核对 · 文风字体（Windfonts）') + '</span></div>';
   }
 
   function proofChainHtml(font) {
