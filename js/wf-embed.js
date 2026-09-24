@@ -5,11 +5,14 @@
   const BYTES_PER_GLYPH = 290; /* woff2 中文字形均值（估算） */
   const OVERHEAD = 2048;
 
-  /* CDN 现有两种预制版本：index.css（完整）与 zh_index.css（中文子集）；更细的子集在控制台按项目生成 */
+  /* 公开预制四档（与 /api/css?subset= 对齐）；更细的自选字走控制台项目 */
   const VERSIONS = [
-    { id: 'full', label: '完整', hint: '全部字形 · index.css', glyphs: function (f) { return f.glyphCount || f.charCount || 8000; } },
-    { id: 'zh', label: '中文', hint: '中文字符子集 · zh_index.css', glyphs: function (f) { return Math.min(f.glyphCount || 7000, 7000); } }
+    { id: 'zh-common', label: '常用', hint: '常用字 · 品牌短文案首选', glyphs: function (f) { return Math.min(f.glyphCount || 3500, 3500); } },
+    { id: 'zh', label: '中文', hint: '中文正文向子集', glyphs: function (f) { return Math.min(f.glyphCount || 7000, 7000); } },
+    { id: 'en', label: '西文', hint: '拉丁字母与常用标点', glyphs: function () { return 230; } },
+    { id: 'full', label: '完整', hint: '尽量全量字形', glyphs: function (f) { return f.glyphCount || f.charCount || 8000; } }
   ];
+  const DEFAULT_VERSION = 'zh-common';
 
   function estimateBytes(glyphs) { return Math.max(OVERHEAD, Math.round(glyphs * BYTES_PER_GLYPH + OVERHEAD)); }
   function fmtBytes(b) {
@@ -55,10 +58,28 @@
   function familyName(family, opts) {
     opts = opts || {};
     if (opts.alias) return String(opts.alias);
-    const raw = String(family || '');
+    const raw = String(family || '').split('|')[0].trim();
     if (raw.indexOf('wenfeng-') === 0) return raw;
     if (raw.indexOf('windfonts-') === 0) return 'wenfeng-' + raw.slice(10);
     return raw ? 'wenfeng-' + raw.replace(/^wenfeng-/, '') : '';
+  }
+
+  function familyNames(family, opts) {
+    return String(family || '').split('|').map(function (s) { return s.trim(); }).filter(Boolean)
+      .map(function (tok) { return familyName(tok, opts); }).filter(Boolean);
+  }
+
+  function cssStack(family, opts) {
+    const names = familyNames(family, opts);
+    const lines = [];
+    names.forEach(function (wen) {
+      lines.push('"' + wen + '"');
+      lines.push('"' + wen.replace(/^wenfeng-/, 'windfonts-') + '"');
+    });
+    lines.push('"PingFang SC"', '"Microsoft YaHei"', 'sans-serif');
+    return lines.map(function (line, i) {
+      return (i === 0 ? '' : '    ') + line + (i < lines.length - 1 ? ',' : '');
+    }).join('\n');
   }
 
   function code(kind, items, opts) {
@@ -76,9 +97,7 @@
     }
     if (kind === 'css') {
       return items.map(function (it) {
-        const wen = familyName(it.family, opts);
-        const wind = wen.replace(/^wenfeng-/, 'windfonts-');
-        return '.your-selector {\n  font-family: "' + wen + '",\n    "' + wind + '",\n    "PingFang SC", "Microsoft YaHei", sans-serif;\n  font-weight: ' +
+        return '.your-selector {\n  font-family: ' + cssStack(it.family, opts) + ';\n  font-weight: ' +
           ((it.weights || ['400'])[0]) + ';\n  font-display: ' + (display || 'swap') + ';\n}';
       }).join('\n\n');
     }
@@ -92,14 +111,18 @@
         '<link rel="stylesheet" href="' + url + '">';
     }
     if (kind === 'npm') {
+      const rows = [];
+      items.forEach(function (it) {
+        const ver = it.version && it.version !== 'full' ? it.version : '';
+        familyNames(it.family, opts).forEach(function (wen) {
+          const weights = (it.weights || ['400']).map(function (w) { return "'" + weightToken(wen, w) + "'"; }).join(', ');
+          rows.push("  { family: '" + wen + "', weights: [" + weights + ']' +
+            (ver ? ", version: '" + ver + "'" : '') + ' }');
+        });
+      });
       return 'npm install @windfonts/loader\n\n' +
         "import { loadFonts } from '@windfonts/loader';\n\n" +
-        'loadFonts([\n' +
-        items.map(function (it) {
-          const weights = (it.weights || ['400']).map(function (w) { return "'" + weightToken(it.family, w) + "'"; }).join(', ');
-          return "  { family: '" + familyName(it.family, opts) + "', weights: [" + weights + ']' +
-            (it.version && it.version !== 'full' ? ", version: '" + it.version + "'" : '') + ' }';
-        }).join(',\n') +
+        'loadFonts([\n' + rows.join(',\n') +
         '\n], { display: \'' + (opts.display || 'swap') + '\' });';
     }
     return '';
@@ -200,6 +223,7 @@
   window.WFEmbed = {
     API: WFProto.CDN,
     VERSIONS: VERSIONS,
+    DEFAULT_VERSION: DEFAULT_VERSION,
     KINDS: KINDS,
     estimateBytes: estimateBytes,
     fmtBytes: fmtBytes,
@@ -207,6 +231,7 @@
     urls: urls,
     code: code,
     mount: mount,
-    familyName: familyName
+    familyName: familyName,
+    familyNames: familyNames
   };
 })();

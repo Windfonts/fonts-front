@@ -2,6 +2,9 @@
 
 对照日期：2026-09-24。现网是 `app.windfonts.com`（仓 `fonts-vault`）。本仓是公开站和顾客控制台。匿名 GET 大约每天 100 次，不能在每个页面打开时拉全库。
 
+产品向「还能提供哪些 API、价值与分期」见：  
+[`2026-09-24-api-surface-value.md`](2026-09-24-api-surface-value.md)。本文只谈**本仓如何接已有现网接口**。
+
 ## 不做
 
 - 不把运营后台搬进本仓：字体 / 厂商 / 分类 / 风格增删、OSS 同步、安全开关、域名黑名单、API 密钥管理、IP 白名单。
@@ -12,10 +15,13 @@
 
 - 嵌入地址同时写 `subset` 和 `version`。现网 `version=zh` 会被忽略，`subset` 或 `lang` 才换包（`full` / `zh` / `zh-common` / `en`）。
 - 交接 `docs/HANDOFF.md` §3.0 记下现网信封和路径。
+- 详情页 `WFLive.counts`：按 `family` 请求一次现网计数，6h `sessionStorage`；失败保持本地（仍待 vault CORS）。
+- 详情嵌入：四档 subset、默认 `zh-common`；库内上游可勾选 `family=主|上游`（`WFEmbed` + `detail.js`）。
+- `docs.html`：API 信封 / 配额 / CORS 提示、详情稳定字段、`subset` 参数表。
 
 ## 阶段
 
-### 1. 单款统计（本阶段）
+### 1. 单款统计（已接线，等 CORS）
 
 详情页按 `fontFamily` 请求一次 `GET /api/fonts/:family`，把 `viewCount`、`downloadCount`、`apiCallCount` 盖到「统计信息」。同一字体 6 小时内用 `sessionStorage` 缓存。失败就保持本地数字。
 

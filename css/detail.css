@@ -170,6 +170,12 @@
 .detail-main .panel .use-bar .is-on { background: var(--paper); color: var(--ink); }
 .use-versions { display: flex; flex-wrap: wrap; gap: var(--s-2); }
 .use-versions .chip .n { margin-left: 0.15em; }
+.use-fallback {
+  display: flex; align-items: flex-start; gap: var(--s-2);
+  margin: 0 0 var(--s-4); font-size: var(--fs-13); color: var(--ink); line-height: 1.5; cursor: pointer;
+}
+.use-fallback input { margin-top: 0.2em; }
+.use-fallback .hint { color: var(--gray); font-weight: var(--fw-regular); }
 .use-note { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-4); line-height: 1.7; }
 .use-note code { background: var(--paper); padding: 0.05em 0.35em; border-radius: 6px; }
 .use-note a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }

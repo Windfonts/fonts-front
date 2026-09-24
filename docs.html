@@ -183,6 +183,13 @@ function Title() {
   "data": { ... }
 }</pre></div>
         <p>CSS 嵌入仍走 <code>cn.windfonts.com</code>（见<a href="#url">CDN 地址规则</a>）；本段只描述元数据 API。</p>
+        <p>集成约定（摘要）：</p>
+        <ul>
+          <li>信封固定 <code>{ "code", "message", "data" }</code>；成功 <code>code === 200</code>。</li>
+          <li>匿名日配额约 100 次 —— <strong>勿在每个页面打开时拉全库</strong>；列表热度用构建期同步，详情可按需打单款。</li>
+          <li>浏览器跨域读正文需要响应带 CORS；未放开前，公开站详情计数可能仍显示本地数字。</li>
+          <li>投递三轨（css / 项目 / 鉴权子集）与增量 API 分期见仓库计划稿 <code>docs/plans/2026-09-24-api-surface-value.md</code>。</li>
+        </ul>
       </section>
 
       <section id="api-auth" class="for-dev">
@@ -242,6 +249,18 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
         <h3><code>GET /api/fonts/:family</code></h3>
         <p>单款详情，路径可为字体 ID 或族名 / slug（如 <code>albbpht</code>、<code>qtxtt</code>）。</p>
         <div class="code"><pre>GET https://app.windfonts.com/api/fonts/albbpht</pre></div>
+        <p>现网常见字段（集成方优先依赖下列稳定项；其余可能随同步演进）：</p>
+        <table class="table">
+          <thead><tr><th>字段</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">id · name · fontFamily</td><td>标识与名称（嵌入短码以公开站 <code>family=wenfeng-*</code> 为准）</td></tr>
+            <tr><td class="mono">weights</td><td>字重对象 / 列表</td></tr>
+            <tr><td class="mono">category · brand</td><td>分类、品牌</td></tr>
+            <tr><td class="mono">languages · useCases</td><td>语言与场景标签</td></tr>
+            <tr><td class="mono">viewCount · downloadCount · apiCallCount</td><td>浏览 / 下载 / CSS 拉取计数</td></tr>
+          </tbody>
+        </table>
+        <p>字符表：<code>GET /api/fonts/:id/analysis</code>（无分析文件时 404）。公开站查字默认用本地数据，仅在需要对照现网时再请求。</p>
       </section>
 
       <section id="api-categories" class="for-dev">
@@ -354,9 +373,10 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
         <table class="table">
           <thead><tr><th>段 / 参数</th><th>说明</th><th>示例</th></tr></thead>
           <tbody>
-            <tr><td><code>family</code></td><td>动态查询：族名或 slug，多款用 <code>|</code></td><td class="mono">wenfeng-albbpht</td></tr>
+            <tr><td><code>family</code></td><td>动态查询：<code>wenfeng-{短码}</code>，多款用 <code>|</code></td><td class="mono">wenfeng-albbpht</td></tr>
             <tr><td><code>weight</code></td><td>动态查询：小写字重名</td><td class="mono">regular · heavy</td></tr>
-            <tr><td><code>version</code></td><td>动态 / 拆包：完整或中文常用等</td><td class="mono">full · zh-common</td></tr>
+            <tr><td><code>subset</code></td><td>动态查询：换包认此参数（与预计算档对齐）</td><td class="mono">en · zh-common · zh · full</td></tr>
+            <tr><td><code>version</code></td><td>兼容双写：应与 <code>subset</code> 同值；现网 vault <strong>不认</strong>其换包</td><td class="mono">同 subset</td></tr>
             <tr><td><code>{Normalized}</code></td><td>拆包路径：目录归一化名</td><td class="mono">Albbpht · Hckht · Ibmps</td></tr>
             <tr><td><code>{Weight}</code></td><td>拆包路径：包内字重目录，保留大小写</td><td class="mono">Regular · Heavy · Normal</td></tr>
             <tr><td><code>{slug}</code></td><td>静态旧路径：族名去掉 <code>wenfeng-</code></td><td class="mono">albbpht · syhtcjk</td></tr>

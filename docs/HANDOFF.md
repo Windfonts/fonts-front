@@ -72,6 +72,8 @@
 
 ## 3. 需要后端提供的接口
 
+对外 API 的**价值地图与现在/近后续/更后分期**：[`plans/2026-09-24-api-surface-value.md`](plans/2026-09-24-api-surface-value.md)。本仓接现网计数等：[`plans/2026-09-24-app-windfonts-api.md`](plans/2026-09-24-app-windfonts-api.md)。
+
 ### 3.0 现网 `app.windfonts.com`（2026-09-24 核对）
 
 现网是 Next 应用（仓 `fonts-vault`），不是下面那份 `/v1/` 草案。公开响应信封是 `{ "code": 200, "message": "success", "data": … }`。匿名 GET 大约 100 次/天，不要在每个页面打开时拉全库。

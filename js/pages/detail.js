@@ -337,12 +337,22 @@
       '<div class="detail-body">' +
         '<div class="detail-main">' +
           '<section class="panel for-dev" id="use"><div class="panel-head"><h2>' + WFChrome.icon('code') + '使用</h2>' +
-            '<div class="use-versions" id="versions">' + WFEmbed.VERSIONS.map(function (v, i) {
-              return '<button type="button" class="chip' + (i === 0 ? ' is-on' : '') + '" data-version="' + v.id + '" title="' + esc(v.hint) + '">' +
+            '<div class="use-versions" id="versions">' + WFEmbed.VERSIONS.map(function (v) {
+              const on = v.id === (WFEmbed.DEFAULT_VERSION || 'zh-common');
+              return '<button type="button" class="chip' + (on ? ' is-on' : '') + '" data-version="' + v.id + '" title="' + esc(v.hint) + '">' +
                 v.label + ' <span class="n">≈ ' + WFEmbed.fmtBytes(WFEmbed.versionSize(font, v.id)) + '</span></button>';
             }).join('') + '</div></div>' +
-            '<div class="panel-pad"><div class="use-cdn">' + WFProto.cdnSwitchHtml() + '</div><div id="embed"></div>' +
-            '<p class="use-note">体积按单字重估算。只要页面里出现的字，用 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a>。' +
+            '<div class="panel-pad"><div class="use-cdn">' + WFProto.cdnSwitchHtml() + '</div>' +
+            (function () {
+              const upName = ((font.lineage || {}).upstreamName || '').trim();
+              if (!upName || upName === font.name) return '';
+              const up = WFChrome.findFontByName(WFProto.getCatalogList(), upName);
+              if (!up || !up.family || up.id === font.id) return '';
+              return '<label class="use-fallback"><input type="checkbox" id="optFallback" value="' + esc(up.family) + '" data-up-name="' + esc(up.name) + '"> ' +
+                '缺字用上游「' + esc(up.name) + '」补全 <span class="hint">同档 subset · 体积约×2</span></label>';
+            })() +
+            '<div id="embed"></div>' +
+            '<p class="use-note">体积按单字重估算；默认「常用」适合品牌短文案，正文站可选「中文」。只要页面里出现的字，用 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a>。' +
               '<code>font-family</code> 用 <code>' + esc(WFEmbed.familyName(font.family)) + '</code>。</p></div>' +
           '</section>' +
           (weights.length > 1
@@ -422,15 +432,31 @@
     WFSponsor.bind(root);
     const hero = document.getElementById('hero');
     let weight = w0;
-    let version = 'full';
-    const embed = WFEmbed.mount(document.getElementById('embed'), [{ family: font.family, weights: [weight], version: version }]);
+    let version = WFEmbed.DEFAULT_VERSION || 'zh-common';
+    const fallbackEl = document.getElementById('optFallback');
+    function embedFamily() {
+      if (fallbackEl && fallbackEl.checked && fallbackEl.value) {
+        return font.family + '|' + fallbackEl.value;
+      }
+      return font.family;
+    }
+    function embedItems() {
+      return [{ family: embedFamily(), weights: [weight], version: version }];
+    }
+    const embed = WFEmbed.mount(document.getElementById('embed'), embedItems());
+    function refreshEmbed() {
+      embed.setItems(embedItems());
+    }
     document.querySelectorAll('[data-version]').forEach(function (b) {
       b.addEventListener('click', function () {
         version = b.getAttribute('data-version');
         document.querySelectorAll('[data-version]').forEach(function (x) { x.classList.toggle('is-on', x === b); });
-        embed.setItems([{ family: font.family, weights: [weight], version: version }]);
+        refreshEmbed();
       });
     });
+    if (fallbackEl) {
+      fallbackEl.addEventListener('change', refreshEmbed);
+    }
 
     const pick = document.getElementById('btnPick');
     function syncPick() {
@@ -469,7 +495,7 @@
       weight = String(WFProto.weightToCss(token));
       WFProto.ensureFontCss(font.family, token);
       hero.style.fontWeight = weight;
-      embed.setItems([{ family: font.family, weights: [token], version: version }]);
+      refreshEmbed();
       if (tester) tester.sync({ weight: weight });
       if (glyphTable) glyphTable.setWeight(token);
       syncWeightUi();
@@ -507,7 +533,7 @@
       weight: weight,
       onWeight: function (w) {
         weight = w;
-        embed.setItems([{ family: font.family, weights: [w], version: version }]);
+        refreshEmbed();
         if (glyphTable) glyphTable.setWeight(w);
         syncWeightUi();
       },
