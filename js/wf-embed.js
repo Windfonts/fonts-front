@@ -34,7 +34,8 @@
     }
     return WFProto.cssApiUrl(it.family, weight, version, host, {
       fallback: it.fallbackFamily || '',
-      fallbackWeight: it.fallbackWeight || ''
+      fallbackWeight: it.fallbackWeight || '',
+      localeFallback: it.localeFallback || ''
     });
   }
 

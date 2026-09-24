@@ -600,4 +600,6 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 
 相关计划：`docs/plans/2026-09-24-api-surface-value.md`（N1/N2 标已通）、`docs/plans/2026-09-24-font-mix-subset-fallback.md` §3.8a。
 
-**仍待：** N5 构建期热度同步、N6 analysis 产品化对照、localeFallback 配对表、预算模式、项目烘焙 `/p/{slug}`。商用档 `albbpht` 等仍受许可门禁，CSS 侧勿当开源样例。
+**仍待：** N8 许可/谱系导出约定、预算模式、项目烘焙 `/p/{slug}`。商用档 `albbpht` 等仍受许可门禁，CSS 侧勿当开源样例。
+
+**本轮已收口（2026-09-25 续）：** N5 热度同步脚本与一次全量写回；N6 详情对照现网 analysis；`localeFallback` 配对表 + vault 参数 + 详情勾选（6 对简繁兄弟）。

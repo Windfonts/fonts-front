@@ -353,9 +353,24 @@
                 '缺字用上游「' + esc(up.name) + '」补全 ' +
                 '<span class="hint" id="fallbackHint">须同字重 · 服务端只挂缺口 unicode-range</span></label>';
             })() +
+            (function () {
+              const pair = (window.WFLocaleFallback && WFLocaleFallback.peerOf)
+                ? WFLocaleFallback.peerOf(font.family)
+                : null;
+              if (!pair || !pair.peer) return '';
+              const peerFont = WFProto.getFontBySlug
+                ? WFProto.getFontBySlug(String(pair.peer).replace(/^wenfeng-/, ''))
+                : null;
+              const peerName = (peerFont && peerFont.name) || pair.peer;
+              const roleLabel = pair.role === 'tc' ? '简体兄弟' : '繁体兄弟';
+              return '<label class="use-fallback" id="localeFallbackLabel">' +
+                '<input type="checkbox" id="optLocaleFallback" data-peer="' + esc(pair.peer) + '" data-role="' + esc(pair.role || '') + '"> ' +
+                '简繁补全：附带' + esc(roleLabel) + '「' + esc(peerName) + '」 ' +
+                '<span class="hint">文本须已是对应码点 · localeFallback=auto</span></label>';
+            })() +
             '<div id="embed"></div>' +
             '<p class="use-note">体积按单字重估算；默认「常用」适合品牌短文案，正文站可选「中文」。只要页面里出现的字，用 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a>。' +
-              '开启补全时一条 <code>/api/css</code> 带 <code>fallback=</code>，补全款仅含主款没有的码点，避免双倍分片。' +
+              '谱系补全写 <code>fallback=</code>；简繁补全写 <code>localeFallback=auto</code>（二者同时开时优先谱系 <code>fallback</code>）。' +
               '<code>font-family</code> 须写主款与补全款栈。</p></div>' +
           '</section>' +
           (weights.length > 1
@@ -365,6 +380,7 @@
           '<section class="panel" id="glyphs"><div class="panel-head"><div class="glyph-title"><h2>' + WFChrome.icon('hashtag') + '字符表</h2><div id="glyphQuery"></div></div><div class="glyph-tools" id="glyphTools"></div></div>' +
             '<div class="panel-pad"><div class="glyph-summary" id="glyphSummary" aria-live="polite"></div>' +
             '<div class="glyph-diff for-dev" id="glyphDiff" hidden></div>' +
+            '<div class="glyph-live for-dev" id="glyphLive" hidden></div>' +
             '<div class="glyph-blocks" id="glyphBlocks"></div></div></section>' +
           '<section class="panel" id="license"><div class="panel-head"><h2>' + WFChrome.icon('certificate') + '授权</h2>' +
             '<div class="license-head"><span class="tier' + (proofTier(font) === '开源' ? ' is-open' : '') + '">' + esc(tierLabel(proofTier(font))) + '</span>' +
@@ -440,6 +456,7 @@
     let version = WFEmbed.DEFAULT_VERSION || 'zh-common';
     const fallbackEl = document.getElementById('optFallback');
     const fallbackHint = document.getElementById('fallbackHint');
+    const localeEl = document.getElementById('optLocaleFallback');
     const upFont = (function () {
       if (!fallbackEl) return null;
       const id = fallbackEl.getAttribute('data-up-id');
@@ -475,18 +492,27 @@
 
     function embedItems() {
       const primary = { family: font.family, weights: [weight], version: version };
-      if (!fallbackEl || !fallbackEl.checked || !upFont || fallbackEl.disabled) {
-        return [primary];
+      if (fallbackEl && fallbackEl.checked && upFont && !fallbackEl.disabled) {
+        const align = fallbackAlign();
+        if (align && align.ok) {
+          return [{
+            family: font.family,
+            weights: [weight],
+            version: version,
+            fallbackFamily: upFont.family,
+            fallbackWeight: String(align.weightName).toLowerCase().replace(/[\s-]+/g, '')
+          }];
+        }
       }
-      const align = fallbackAlign();
-      if (!align || !align.ok) return [primary];
-      return [{
-        family: font.family,
-        weights: [weight],
-        version: version,
-        fallbackFamily: upFont.family,
-        fallbackWeight: String(align.weightName).toLowerCase().replace(/[\s-]+/g, '')
-      }];
+      if (localeEl && localeEl.checked) {
+        return [{
+          family: font.family,
+          weights: [weight],
+          version: version,
+          localeFallback: 'auto'
+        }];
+      }
+      return [primary];
     }
     const embed = WFEmbed.mount(document.getElementById('embed'), embedItems());
     function refreshEmbed() {
@@ -508,8 +534,16 @@
           if (!align || !align.ok) {
             fallbackEl.checked = false;
             WFChrome.toast(align && align.reason ? align.reason : '字重无法对齐，未开启补全');
+          } else if (localeEl) {
+            localeEl.checked = false;
           }
         }
+        refreshEmbed();
+      });
+    }
+    if (localeEl) {
+      localeEl.addEventListener('change', function () {
+        if (localeEl.checked && fallbackEl) fallbackEl.checked = false;
         refreshEmbed();
       });
     }
@@ -680,6 +714,72 @@
     }
     paintGlyphDiff();
 
+    (function bindLiveAnalysis() {
+      const tools = document.getElementById('glyphTools');
+      const panel = document.getElementById('glyphLive');
+      if (!tools || !panel || !window.WFLive || !WFLive.analysis) return;
+      if (tools.querySelector('[data-live-analysis]')) return;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'gtoggle';
+      btn.setAttribute('data-live-analysis', '');
+      btn.textContent = '对照现网字符表';
+      btn.title = '按需请求 vault analysis（无文件则 404；限流时回退 OSS metadata）';
+      tools.appendChild(btn);
+      btn.addEventListener('click', function () {
+        panel.hidden = false;
+        panel.innerHTML = '<p class="glyph-diff-line is-quiet">正在对照现网字符分析…</p>';
+        btn.disabled = true;
+        WFLive.analysis(font).then(function (row) {
+          btn.disabled = false;
+          if (!row || row.failed) {
+            panel.innerHTML = '<p class="glyph-diff-line is-quiet">暂时无法对照现网（网络或限流）。查字仍以本页本地数据为准。</p>';
+            return;
+          }
+          if (row.missing) {
+            panel.innerHTML =
+              '<p class="glyph-diff-line is-quiet">现网尚无此款 analysis 文件（normalized=<code>' +
+              esc(font.normalized || '') +
+              '</code>）。公开站查字继续用本地字符表。</p>';
+            return;
+          }
+          const d = row.data || {};
+          const liveChars = Number(d.char_count) || 0;
+          const liveGlyphs = Number(d.glyph_count) || 0;
+          const localChars = Number(font.charCount) || 0;
+          const localGlyphs = Number(font.glyphCount) || 0;
+          const src =
+            row.source === 'api'
+              ? 'vault <code>/api/fonts/…/analysis</code>'
+              : 'OSS <code>font-analysis.json</code>' +
+                (row.fallbackReason ? '（回退：' + esc(String(row.fallbackReason)) + '）' : '');
+          const charDelta = liveChars && localChars ? liveChars - localChars : null;
+          const glyphDelta = liveGlyphs && localGlyphs ? liveGlyphs - localGlyphs : null;
+          function deltaNote(n) {
+            if (n == null) return '';
+            if (n === 0) return ' · 与目录一致';
+            return ' · 相对目录 ' + (n > 0 ? '+' : '') + n;
+          }
+          panel.innerHTML =
+            '<p class="glyph-diff-line"><b>现网字符分析</b> · 来源 ' +
+            src +
+            ' · 字重样例 <code>' +
+            esc(String(d.name || d.subfamily_name || '—')) +
+            '</code></p>' +
+            '<p class="glyph-diff-line">字符数 <b>' +
+            (liveChars ? WFProto.formatCount(liveChars) : '—') +
+            '</b>' +
+            deltaNote(charDelta) +
+            ' · 字形数 <b>' +
+            (liveGlyphs ? WFProto.formatCount(liveGlyphs) : '—') +
+            '</b>' +
+            deltaNote(glyphDelta) +
+            '</p>' +
+            '<p class="glyph-diff-line is-quiet">对照只核计数与样例字重；逐字查缺仍用上方本地字符表。</p>';
+        });
+      });
+    })();
+
     WFProto.bumpFontStat(font.id, 'views', 1, { once: true });
     WFProto.paintFontStats(root);
     if (window.WFLive) {
@@ -712,7 +812,11 @@
       if (cur !== want) history.replaceState(null, '', want);
       render(font);
     };
-    if (window.WFProducts) WFProducts.load().then(go);
-    else go();
+    const boot = function () {
+      if (window.WFProducts) WFProducts.load().then(go);
+      else go();
+    };
+    if (window.WFLocaleFallback) WFLocaleFallback.load().then(boot).catch(boot);
+    else boot();
   });
 })();

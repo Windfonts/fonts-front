@@ -96,8 +96,8 @@ Webhook、OAuth 应用令牌、签名限频的 catalog dump → 让文风出现�
 | N2 | **公开目录 API 开 CORS** | 浏览器 / 插件能读 `fonts` / `:id` / `analysis` | fonts-vault | **已通**：`Access-Control-Allow-Origin: *`（匿名配额仍约 100 次/天） |
 | N3 | **把现网目录 API 写成正式契约** | 集成方知道字段与信封 | 文档 | `docs.html` 已补信封 / 配额 / CORS 说明与详情稳定字段表 |
 | N4 | **详情页拉单款计数** | 站内展示真实热度 | N2 | **本仓已接线**（`wf-live.js`）；N2 CORS 已通，可拉现网计数 |
-| N5 | **构建期同步热度进 `fonts.json`** | 列表不打运行时 API | 脚本 + 配额 | 同上阶段 3；匿名配额不够支撑每次筛选请求 |
-| N6 | **按需对照 `…/analysis`** | 开发者可核验字符表 | N2；无文件则 404 | CORS 已通；产品化对照仍待做；查字仍以本地为准 |
+| N5 | **构建期同步热度进 `fonts.json`** | 列表不打运行时 API | 脚本 + 配额 | **已做**：`scripts/sync-font-counts.mjs`（默认 ssh 查库）；写入 `viewCount`/`downloadCount`/`apiCallCount` |
+| N6 | **按需对照 `…/analysis`** | 开发者可核验字符表 | N2；无文件则 404 | **已做**：详情「对照现网字符表」；限流回退 OSS metadata；现网 analysis 覆盖仍稀 |
 | N7 | **嵌入生成器：档位默认 + 多 `family`** | 立刻减少误用 `full`、服务谱系补全 | 仅前端 | **本仓已做**：四档 chip、默认 `zh-common`；有库内上游时可勾选 `family=主\|上游` |
 | N8 | **本仓许可 / 谱系数据保持可导出** | 给 vault 同步或静态 dump 预留 | 已有 `fonts.json` / `font-lineage.json` / 许可库 | 「现在」做数据质量与字段约定，不一定新开 HTTP |
 
@@ -110,7 +110,9 @@ Webhook、OAuth 应用令牌、签名限频的 catalog dump → 让文风出现�
 | N7 四档 + 谱系补全勾选 | 已上详情「使用」区与选字袋档名对齐 |
 | N1 CDN `/api/css` 回源 | **已通**（devops ansible `origin_upstream: windfonts_vault`） |
 | N2 公开 CORS | **已通**（fonts-vault 生产） |
-| N5 / N6 / N8 | 仍待脚本 / 对照 / 数据约定 |
+| N5 构建期热度 | **已做**（`scripts/sync-font-counts.mjs`，本轮已跑 439 款） |
+| N6 analysis 对照 | **已做**（详情按需按钮 + WFLive.analysis） |
+| N8 | 仍待数据约定 |
 
 **现在不做实现、但现在就要写进契约的「字段期望」（供 vault 下轮同步）：**
 

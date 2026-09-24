@@ -260,7 +260,7 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
             <tr><td class="mono">viewCount · downloadCount · apiCallCount</td><td>浏览 / 下载 / CSS 拉取计数</td></tr>
           </tbody>
         </table>
-        <p>字符表：<code>GET /api/fonts/:id/analysis</code>（无分析文件时 404）。公开站查字默认用本地数据，仅在需要对照现网时再请求。</p>
+        <p>字符表：<code>GET /api/fonts/:id/analysis</code>（路径优先 <code>normalizedName</code>，如 <code>Ibmps</code>；无分析文件时 404）。公开站查字默认用本地数据；详情「字符表」工具栏可点<strong>对照现网字符表</strong>按需请求（限流时回退同源 <code>fonts-packages/metadata/font-analysis.json</code>）。现网 analysis 覆盖仍很稀，多数款会提示尚无文件。</p>
       </section>
 
       <section id="api-categories" class="for-dev">
@@ -377,6 +377,9 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
             <tr><td><code>weight</code></td><td>动态查询：小写字重名</td><td class="mono">regular · heavy</td></tr>
             <tr><td><code>subset</code></td><td>动态查询：换包认此参数（与预计算档对齐）</td><td class="mono">en · zh-common · zh · full</td></tr>
             <tr><td><code>version</code></td><td>兼容双写：应与 <code>subset</code> 同值；现网 vault <strong>不认</strong>其换包</td><td class="mono">同 subset</td></tr>
+            <tr><td><code>fallback</code></td><td>谱系补全第二款；服务端裁切 unicode-range 只留主款缺口</td><td class="mono">wenfeng-syhtsc</td></tr>
+            <tr><td><code>fallbackWeight</code></td><td>补全款字重；缺省与主款对齐</td><td class="mono">regular</td></tr>
+            <tr><td><code>localeFallback</code></td><td>简繁兄弟：<code>auto</code>/<code>sc</code>/<code>tc</code>；有配对且未传 <code>fallback</code> 时展开</td><td class="mono">auto</td></tr>
             <tr><td><code>{Normalized}</code></td><td>拆包路径：目录归一化名</td><td class="mono">Albbpht · Hckht · Ibmps</td></tr>
             <tr><td><code>{Weight}</code></td><td>拆包路径：包内字重目录，保留大小写</td><td class="mono">Regular · Heavy · Normal</td></tr>
             <tr><td><code>{slug}</code></td><td>静态旧路径：族名去掉 <code>wenfeng-</code></td><td class="mono">albbpht · syhtcjk</td></tr>

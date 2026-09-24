@@ -525,6 +525,16 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
   border-radius: var(--radius);
   max-width: 40rem;
 }
+.glyph-live {
+  margin: 0 0 var(--s-5);
+  padding: var(--s-3) var(--s-4);
+  background: var(--fill);
+  border-radius: var(--radius);
+  max-width: 40rem;
+}
+.glyph-live .glyph-diff-line { margin: 0; font-size: var(--fs-13); color: var(--ink); line-height: 1.6; }
+.glyph-live .glyph-diff-line + .glyph-diff-line { margin-top: var(--s-2); }
+.glyph-live .glyph-diff-line.is-quiet { color: var(--gray); }
 .glyph-diff-line { margin: 0; font-size: var(--fs-13); color: var(--ink); line-height: 1.6; }
 .glyph-diff-line.is-quiet { color: var(--gray); }
 .glyph-diff-line + .glyph-diff-line,

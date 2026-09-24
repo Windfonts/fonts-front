@@ -193,7 +193,7 @@ GET /api/css?family=wenfeng-xxxsc&weight=regular&subset=zh&localeFallback=auto
 
 两者都是「第二 family 从哪来」，**缓存键必须带上**，默认关。
 
-**落地顺序：** 先配对表进 vault 同步 → `/api/css` 认 `localeFallback` → 前台嵌入勾选只写该参数。N1 回源打通后，用户复制的 cn 链接才能带上这个选项生效。
+**落地顺序：** 配对表 → `/api/css` 认 `localeFallback` → 前台勾选。**2026-09-25 已落地**：`data/locale-fallback-pairs.json`（6 对）+ vault `localeFallback=auto|sc|tc` + 详情「简繁补全」勾选。
 
 ### 3.8 延伸想法取舍（2026-09-24）
 

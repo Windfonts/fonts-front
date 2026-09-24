@@ -513,6 +513,12 @@
         }
       }
     }
+    if (extra.localeFallback) {
+      const lf = String(extra.localeFallback).toLowerCase();
+      if (lf === 'auto' || lf === 'sc' || lf === 'tc') {
+        params.push('localeFallback=' + encodeURIComponent(lf));
+      }
+    }
     return (origin || cdnOrigin()) + '/api/css?' + params.join('&');
   }
 
