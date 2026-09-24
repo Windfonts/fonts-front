@@ -5115,12 +5115,12 @@
   "description": "用得意黑和斜月体改的。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
+  "licenseUrl": "https://github.com/FWHP-Enfun/Crooked-Black-Fun/blob/main/LICENSE.txt",
+  "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Ckbf/LICENSE",
+  "licenseNotes": "OFL 1.1 原文随上游仓携带并核对。衍生链：得意黑（atelierAnchor，OFL）× 斜月体（onichan0923）改作，三方版权行在字体 name 表与 LICENSE 中齐全。2026-09-25 与库内 wenfeng-ckbf 同 build 确认（字数 61516/版本 1.000 一致）。",
+  "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "Copyright FWHP",
+  "copyright": "Copyright 2023 FWHP (github.com/FWHP-Enfun/Crooked-Black-Fun). Copyright (c) 2022 onichan0923 (smiley-moon). Copyright (c) 2022-2023 atelierAnchor (Smiley Sans)",
   "foundry": "花乐",
   "brand": {
    "name": "花乐",
@@ -5131,7 +5131,7 @@
    "description": "FWHP。把别人的开源字改成自己的一份，许可随各款字体。"
   },
   "releaseYear": 2024,
-  "version": "OSS ingest batch2 2026-09-23",
+  "version": "1.000",
   "languages": [
    "繁体中文",
    "简体中文"
