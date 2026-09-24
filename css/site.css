@@ -505,7 +505,14 @@ html:not([data-view="dev"]) .foundry-hero-side .claim {
   font-size: var(--fs-13);
   color: var(--ink-2);
   line-height: 1.5;
+  min-width: 0;
 }
+/* grid 子项默认 min-width:auto 会把轨道撑出容器：窄窗下派生条横向溢出不换行 */
+.foundry-origins > * { min-width: 0; }
+.foundry-origins .foundry-upstream-item,
+.foundry-origins .foundry-upstream-item a,
+.foundry-origins .foundry-upstream-font,
+.foundry-origins .foundry-upstream-font a { font-size: var(--fs-11); }
 .foundry-origins-row {
   display: flex;
   flex-wrap: wrap;

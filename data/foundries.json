@@ -1535,9 +1535,9 @@
     },
     {
       "id": "guiwonder",
-      "name": "中文网字计划",
+      "name": "GuiWonder",
       "en": "GuiWonder",
-      "short": "网字",
+      "short": "GuiWonder",
       "website": "https://github.com/GuiWonder",
       "aliases": [
         "GuiWonder",
