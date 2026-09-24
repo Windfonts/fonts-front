@@ -351,11 +351,12 @@
               return '<label class="use-fallback" id="fallbackLabel">' +
                 '<input type="checkbox" id="optFallback" value="' + esc(up.family) + '" data-up-name="' + esc(up.name) + '" data-up-id="' + esc(up.id) + '"> ' +
                 '缺字用上游「' + esc(up.name) + '」补全 ' +
-                '<span class="hint" id="fallbackHint">须同字重 · 同档 subset</span></label>';
+                '<span class="hint" id="fallbackHint">须同字重 · 服务端只挂缺口 unicode-range</span></label>';
             })() +
             '<div id="embed"></div>' +
             '<p class="use-note">体积按单字重估算；默认「常用」适合品牌短文案，正文站可选「中文」。只要页面里出现的字，用 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a>。' +
-              '<code>font-family</code> 用 <code>' + esc(WFEmbed.familyName(font.family)) + '</code>；开启补全时请按生成代码写双 family 栈。</p></div>' +
+              '开启补全时一条 <code>/api/css</code> 带 <code>fallback=</code>，补全款仅含主款没有的码点，避免双倍分片。' +
+              '<code>font-family</code> 须写主款与补全款栈。</p></div>' +
           '</section>' +
           (weights.length > 1
             ? '<section class="panel" id="weights"><div class="panel-head"><h2>' + WFChrome.icon('font') + '字重</h2></div>' +
@@ -466,7 +467,7 @@
       } else {
         fallbackEl.disabled = false;
         if (fallbackHint) {
-          fallbackHint.textContent = '同字重 ' + align.css + ' · 同档 subset · 体积约×2';
+          fallbackHint.textContent = '同字重 ' + align.css + ' · 缺口裁切 · 同档 subset';
           fallbackHint.classList.remove('is-warn');
         }
       }
@@ -479,10 +480,13 @@
       }
       const align = fallbackAlign();
       if (!align || !align.ok) return [primary];
-      return [
-        primary,
-        { family: upFont.family, weights: [align.weightName], version: version }
-      ];
+      return [{
+        family: font.family,
+        weights: [weight],
+        version: version,
+        fallbackFamily: upFont.family,
+        fallbackWeight: String(align.weightName).toLowerCase().replace(/[\s-]+/g, '')
+      }];
     }
     const embed = WFEmbed.mount(document.getElementById('embed'), embedItems());
     function refreshEmbed() {

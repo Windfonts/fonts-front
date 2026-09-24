@@ -29,9 +29,13 @@
     const version = it.version && it.version !== 'full' ? it.version : 'full';
     const host = origin || WFProto.cdnOrigin();
     if (structure === 'static') {
+      /* 静态路径无法做缺口裁切；有 fallback 时仍只出主款，避免误导双链 */
       return WFProto.cssUrl(it.family, weight, version === 'zh-common' ? 'zh' : version, host);
     }
-    return WFProto.cssApiUrl(it.family, weight, version, host);
+    return WFProto.cssApiUrl(it.family, weight, version, host, {
+      fallback: it.fallbackFamily || '',
+      fallbackWeight: it.fallbackWeight || ''
+    });
   }
 
   /** items: [{ family, weights: ['400','700'], version }] */
@@ -131,14 +135,20 @@
       return list.map(function (u) { return "@import url('" + u + "');"; }).join('\n');
     }
     if (kind === 'css') {
-      if (items.length > 1) {
+      function stackFor(it) {
+        const fam = it.fallbackFamily
+          ? String(it.family) + '|' + String(it.fallbackFamily)
+          : it.family;
+        return cssStack(fam, opts);
+      }
+      if (items.length > 1 && !items.some(function (it) { return it.fallbackFamily; })) {
         const merged = items.map(function (it) { return it.family; }).filter(Boolean).join('|');
         const w0 = ((items[0] && items[0].weights) || ['400'])[0];
         return '.your-selector {\n  font-family: ' + cssStack(merged, opts) + ';\n  font-weight: ' +
           w0 + ';\n  font-display: ' + (display || 'swap') + ';\n}';
       }
       return items.map(function (it) {
-        return '.your-selector {\n  font-family: ' + cssStack(it.family, opts) + ';\n  font-weight: ' +
+        return '.your-selector {\n  font-family: ' + stackFor(it) + ';\n  font-weight: ' +
           ((it.weights || ['400'])[0]) + ';\n  font-display: ' + (display || 'swap') + ';\n}';
       }).join('\n\n');
     }
@@ -155,8 +165,13 @@
       const rows = [];
       items.forEach(function (it) {
         const ver = it.version && it.version !== 'full' ? it.version : '';
-        familyNames(it.family, opts).forEach(function (wen) {
-          const weights = (it.weights || ['400']).map(function (w) { return "'" + weightToken(wen, w) + "'"; }).join(', ');
+        const fams = it.fallbackFamily
+          ? [it.family, it.fallbackFamily]
+          : [it.family];
+        fams.forEach(function (raw, idx) {
+          const wen = familyName(raw, opts);
+          const wTok = idx === 1 && it.fallbackWeight ? it.fallbackWeight : ((it.weights || ['400'])[0]);
+          const weights = "'" + weightToken(wen, wTok) + "'";
           rows.push("  { family: '" + wen + "', weights: [" + weights + ']' +
             (ver ? ", version: '" + ver + "'" : '') + ' }');
         });

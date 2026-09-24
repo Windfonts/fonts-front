@@ -91,14 +91,19 @@ font-family: "wenfeng-derived", "wenfeng-upstream", sans-serif;
 - 控制台项目：为某字体绑定 `fallbackFamily`  
 - 不默认替用户打开（避免体积与意外换字）
 
-### 3.2 方案 B · `unicode-range` 分区
+### 3.2 方案 B · `unicode-range` 分区（根源做法 · 已开工 vault）
 
-主字体声明自己的 range；补全字体只挂「主字体没有的码点」。观感更可控，但要：
+主字体声明自己的 range；补全字体只挂「主字体没有的码点」。
 
-- 可靠的「主字体 cmap / 覆盖表」（现网字符表已有 unicode-range 核对能力）  
-- 服务端或构建时生成组合 CSS  
+现网实现（fonts-vault）：
 
-适合作为 A 的加强版，不是第一步。
+```
+GET /api/css?family=主&weight=&subset=&fallback=补全[&fallbackWeight=]
+```
+
+服务端取两份 OSS `result.css`，对补全款每个 `@font-face` 做 `unicode-range \ 主款覆盖`；差集为空则丢弃该 face。缓存键含 `fallback`。前台开启「缺字补全」只出**一条**带 `fallback=` 的 link，页面 CSS 仍写双 family 栈。
+
+适合作为默认补全路径；比「两条全量 CSS」从根源少下分片。
 
 ### 3.3 方案 C · 服务端拼字 / 运行时换 span
 
@@ -208,8 +213,9 @@ GET /api/css?family=wenfeng-xxxsc&weight=regular&subset=zh&localeFallback=auto
 
 | 项 | 状态 |
 |---|---|
-| 2 字重对齐补全 | **已做**：详情「缺字用上游补全」按 CSS weight 精确对齐；对不齐则禁用勾选并提示；开启后出两条 link（主款字重名 + 上游对齐字重名） |
-| 3 覆盖差 | **已做（前台）**：字符表下 `for-dev` 对比千字文简+繁：主缺且上游有的字数与样例；完整 HTTP API 仍后置 vault |
+| 2 字重对齐补全 | **已做**：详情勾选按 CSS weight 精确对齐；对不齐禁用 |
+| 3 覆盖差 | **已做（前台）**：字符表对比千字文简+繁 |
+| **根源裁切** | **vault 已做**：`fallback=` → 补全 face 只留主款缺口；前台改单 link。**须部署 vault** 后现网生效；N1 回源后 cn 链才通 |
 | 5 预算模式 | 未做 |
 | 6 项目烘焙 | 未做 |
 
@@ -655,3 +661,4 @@ CI / 脚本按文案切一版       →  POST /v1/subset → 把返回 URL 写�
 | 2026-09-24 | §3.7 系统预配对 + 用户只调 `localeFallback` |
 | 2026-09-24 | §3.8 延伸想法取舍：2/3 可做，5/6 后置，1/7 不做；澄清 en 有意拆分 |
 | 2026-09-24 | §3.8a：字重对齐补全 + 覆盖差前台落地 |
+| 2026-09-24 | §3.2 根源：vault `fallback=` unicode-range 缺口裁切 + 前台单 link |
