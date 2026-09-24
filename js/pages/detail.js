@@ -118,18 +118,12 @@
   }
 
   function proofMetaLine(font) {
-    const std = OPEN_LICENSE.test(String(font.licenseName || ''));
-    const host = hostOf(font.licenseUrl || '');
-    /* 有厂商官网（出处 host 非代码托管站）就是官网；仅当出处只挂在代码托管站才算开源仓库 */
-    const repoHost = /(^|\.)(github\.com|gitee\.com|gitlab\.com)$/i.test(host);
-    const hasBrandSite = !!(font.brand && font.brand.website);
-    const src = std ? '标准协议' : (host ? (repoHost && !hasBrandSite ? '开源仓库' : '厂商官网') : '未附原文链接');
     const verified = !!font.licenseVerified;
-    const parts = [src, verified ? '已核对原文' : '尚未核对原文'];
-    if (verified && font.licenseVerifiedAt) parts.push(font.licenseVerifiedAt + ' 核对');
     return '<p class="cite-meta lp5-meta">' + WFChrome.icon('certificate') +
-      parts.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</p>';
+      '<span class="lp5-meta-label">许可状态</span>' +
+      '<span>' + (verified ? '文风字体（Windfonts）已核对协议原文。' : '文风字体（Windfonts）尚未核对协议原文。') + '</span></p>';
   }
+
   function proofChainHtml(font) {
     const claim = font.standardClaim || null;
     const verified = !!font.licenseVerified;

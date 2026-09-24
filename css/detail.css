@@ -398,3 +398,4 @@
 [data-theme="dark"] .trust-grade.is-mid { color: #cbb06a; }
 .trust-line .trust-claim { display: inline-flex; align-items: center; gap: 0.3em; font-size: var(--fs-12); color: var(--gray); border: 1px solid var(--rule); border-radius: var(--radius-pill); padding: 0.15rem 0.6rem; }
 .trust-line .trust-site { font-size: var(--fs-12); color: #a05a2c; }
+.license-fold .lp5-meta .lp5-meta-label { font-weight: var(--fw-label); color: var(--ink-2); }
