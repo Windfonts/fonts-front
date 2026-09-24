@@ -514,8 +514,9 @@ html:not([data-view="dev"]) .foundry-hero-side .claim {
 .foundry-origins .foundry-upstream-item a,
 .foundry-origins .foundry-upstream-font,
 .foundry-origins .foundry-upstream-font a { font-size: var(--fs-11); }
-/* 开发视图：同系派生单行铺开不折行，超宽容器内横滚，不撑高不破版 */
-html[data-view="dev"] .foundry-eco { grid-template-columns: auto 1fr; align-items: baseline; overflow-x: auto; }
+/* 开发视图：同系派生单行铺开不折行，超宽容器内横滚，不撑高不破版。
+   标签首子项是图标（无文字基线，baseline 会取图标底边），单行用居中对齐 */
+html[data-view="dev"] .foundry-eco { grid-template-columns: auto 1fr; align-items: center; overflow-x: auto; }
 html[data-view="dev"] .foundry-eco .foundry-upstream-item { flex-wrap: nowrap; white-space: nowrap; }
 .foundry-origins-row {
   display: flex;
