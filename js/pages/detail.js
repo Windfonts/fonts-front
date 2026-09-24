@@ -59,6 +59,8 @@
   /* 出处与依据 · 三节出处链。句子全部由档位/核对态/国标字段按固定句式生成，无手写语句。 */
   var OPEN_LICENSE = /^(SIL Open Font License|OFL|GNU |GPL|Apache|CC0|CC |MIT|0BSD|Ubuntu Font|IPA |Dual license|M\+ )/i;
   var OPEN_AGREEMENTS = { '仓耳字库免费开源字体授权声明': true };
+  var TIER_LABEL = { 开源: '开源商用' };
+  function tierLabel(tier) { return TIER_LABEL[tier] || tier; }
   function proofTier(font) {
     var n = String(font.licenseName || '');
     if (OPEN_LICENSE.test(n) || OPEN_AGREEMENTS[n]) return '开源';
@@ -259,7 +261,7 @@
             })() +
             (variantLabel ? '<span>' + esc(variantLabel) + '</span>' : '') +
             '<span>' + weights.length + ' 字重</span>' +
-            '<span>' + esc(proofTier(font)) + '</span>' +
+            '<span>' + esc(tierLabel(proofTier(font))) + '</span>' +
             (font.charCount ? '<span>' + WFProto.formatCount(font.charCount) + ' 字</span>' : '') +
           '</p>' +
         '</div>' +
@@ -288,7 +290,7 @@
           '<section class="panel" id="glyphs"><div class="panel-head"><div class="glyph-title"><h2>' + WFChrome.icon('hashtag') + '字符表</h2><div id="glyphQuery"></div></div><div class="glyph-tools" id="glyphTools"></div></div>' +
             '<div class="panel-pad"><div class="glyph-summary" id="glyphSummary" aria-live="polite"></div><div class="glyph-blocks" id="glyphBlocks"></div></div></section>' +
           '<section class="panel" id="license"><div class="panel-head"><h2>' + WFChrome.icon('certificate') + '授权</h2>' +
-            '<div class="license-head"><span class="tier">' + esc(proofTier(font)) + '</span>' +
+            '<div class="license-head"><span class="tier' + (proofTier(font) === '开源' ? ' is-open' : '') + '">' + esc(tierLabel(proofTier(font))) + '</span>' +
               (font.licenseName ? '<span class="name">' + esc(font.licenseName) + '</span>' : '') + '</div></div>' +
             '<div class="panel-pad">' +
             '<p class="license-lead">' + esc(licenseLead(proofTier(font))) + '</p>' +
