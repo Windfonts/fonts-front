@@ -15,8 +15,6 @@
   font-size: var(--fs-16); font-weight: var(--fw-title); letter-spacing: 0.01em; white-space: nowrap;
 }
 .wordmark span { font-family: var(--font-wordmark); font-weight: 500; }
-/* 品牌名「文风云®」正文出现时用字标字体（寒蝉宽黑）；「云」分片在 fonts.css 单独声明 */
-.brand-wenfengyun { font-family: var(--font-wordmark); font-weight: 500; }
 [data-theme="dark"] .wordmark img { filter: invert(1); }
 .wordmark img { width: 24px; height: 24px; border-radius: 6px; }
 .wordmark:hover { text-decoration: none; }

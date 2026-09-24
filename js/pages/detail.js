@@ -127,7 +127,7 @@
   function proofMetaLine(font) {
     const verified = !!font.licenseVerified;
     const what = (verified ? '已核对协议原文' : '协议原文待核对') +
-      ' · <span class="brand-wenfengyun">文风云<sup>&reg;</sup></span> 免费提供在线字体托管和预览调用服务。';
+      ' · 文风云<sup>&reg;</sup> 免费提供在线字体托管和预览调用服务。';
     const d = new Date();
     const pad = function (n) { return n < 10 ? '0' + n : String(n); };
     const when = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
