@@ -1723,8 +1723,10 @@
     "文泉驿点阵宋体": {
       "ownerId": "wenquanyi",
       "makerId": "wenquanyi",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "locale",
+      "upstreamName": "文泉驿正黑体",
+      "upstreamOwnerId": "wenquanyi",
+      "licenseFollows": "inherit"
     },
     "M+ gothic 12r": {
       "ownerId": "mplus",
@@ -2241,6 +2243,28 @@
       "relation": "fork",
       "upstreamName": "Reggae One",
       "upstreamOwnerId": "fontworks",
+      "licenseFollows": "inherit"
+    },
+    "文泉驿正黑体": {
+      "ownerId": "wenquanyi",
+      "makerId": "wenquanyi",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "文泉驿正黑等宽": {
+      "ownerId": "wenquanyi",
+      "makerId": "wenquanyi",
+      "relation": "locale",
+      "upstreamName": "文泉驿正黑体",
+      "upstreamOwnerId": "wenquanyi",
+      "licenseFollows": "inherit"
+    },
+    "文泉驿等宽微米黑": {
+      "ownerId": "wenquanyi",
+      "makerId": "wenquanyi",
+      "relation": "locale",
+      "upstreamName": "文泉驿微米黑",
+      "upstreamOwnerId": "wenquanyi",
       "licenseFollows": "inherit"
     }
   }
