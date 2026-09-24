@@ -286,6 +286,24 @@
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .lin-row .lin-rel { font-size: var(--fs-12); color: var(--gray); flex: none; }
+.lin-pack { display: block; }
+.lin-pack > summary { list-style: none; cursor: pointer; }
+.lin-pack > summary::-webkit-details-marker { display: none; }
+.lin-pack > summary .lin-row { width: 100%; }
+.lin-pack[open] > summary .lin-row { background: var(--fill); }
+.lin-pack-sum { align-items: center; }
+.lin-pack-sum .lin-name { flex: 1 1 auto; }
+.lin-pack-stack { display: contents; }
+.lin-pack-sub { flex: none; max-width: 70%; }
+.lin-pack-mark {
+  width: 0.45rem; height: 0.45rem; flex: none; visibility: hidden;
+  border-right: 1.5px solid var(--gray); border-bottom: 1.5px solid var(--gray);
+  transform: rotate(-45deg);
+}
+.lin-pack-sum:hover .lin-pack-mark,
+.lin-pack[open] .lin-pack-mark { visibility: visible; }
+.lin-pack[open] .lin-pack-mark { transform: rotate(45deg); }
+.lin-pack-body { display: grid; gap: 2px; }
 
 .lin-from { font-size: var(--fs-16); line-height: 1.6; margin-bottom: var(--s-4); }
 .lin-from a { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }

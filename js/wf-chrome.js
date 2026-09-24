@@ -770,6 +770,36 @@
   function lineageBlock(title, rows) {
     return rows.length ? '<p class="lin-h">' + esc(title) + '</p>' + rows.join('') : '';
   }
+  /** 同一作者的成套派生先折起来。合上是名称加一行小字，点开仍是整行。 */
+  function lineagePack(rows, faceOf, currentId) {
+    const pack = [];
+    const rest = [];
+    rows.forEach(function (f) {
+      if (f && f.name && f.name.indexOf('狮尾') === 0) pack.push(f);
+      else rest.push(f);
+    });
+    const rowOf = function (f) { return lineageRow(f, f.id === currentId, faceOf); };
+    if (pack.length < 4) return rows.map(rowOf);
+    const prefer = ['狮尾圆体', '狮尾黑体', '狮尾尖刺黑体', '狮尾半月体', '狮尾宋体', '狮尾明体'];
+    const picked = [];
+    prefer.forEach(function (name) {
+      if (picked.length >= 4) return;
+      const hit = pack.filter(function (f) { return f.name === name; })[0];
+      if (hit) picked.push(hit);
+    });
+    pack.forEach(function (f) {
+      if (picked.length >= 4) return;
+      if (!picked.some(function (p) { return p.id === f.id; })) picked.push(f);
+    });
+    const sub = picked.map(function (f) { return f.name.replace(/^狮尾/, ''); }).join('、') + '等 ' + pack.length + ' 款';
+    const summary = '<span class="lin-row lin-pack-sum">' +
+      '<span class="lin-pack-stack"><span class="lin-name">狮尾字体</span>' +
+      '<span class="lin-meta lin-pack-sub">' + esc(sub) + '</span></span>' +
+      '<span class="lin-pack-mark" aria-hidden="true"></span></span>';
+    const fold = '<details class="lin-pack"><summary>' + summary + '</summary><div class="lin-pack-body">' +
+      pack.map(rowOf).join('') + '</div></details>';
+    return rest.map(rowOf).concat([fold]);
+  }
   function lineageListHtml(font, split, faceOf) {
     const originRow = split.root
       ? lineageRow(split.root, split.root.id === font.id, faceOf)
@@ -778,7 +808,7 @@
     return '<div class="lin-tree">' +
       lineageBlock('原作', originRow ? [originRow] : []) +
       lineageBlock('创作', (split.via || []).map(rowOf)) +
-      lineageBlock('派生', split.buckets.fork.map(rowOf)) +
+      lineageBlock('派生', lineagePack(split.buckets.fork, faceOf, font && font.id)) +
       lineageBlock('地区版', split.buckets.locale.map(rowOf)) +
       lineageBlock('合作', split.buckets.collab.map(rowOf)) +
       lineageBlock('委托定制', split.buckets.commissioned.map(rowOf)) +
@@ -876,13 +906,14 @@
     const enHtml = en && !opts.small && en !== name ? '<span class="en">' + esc(en) + '</span>' : '';
     const subHtml = sub ? '<span class="sub">' + esc(sub) + '</span>' : '';
     const cls = 'foundry' + (opts.small ? ' foundry-sm' : '') + (opts.cls ? ' ' + opts.cls : '');
+    const badge = verified ? VERIFIED_SVG : '';
     if (opts.fav) {
       return '<div class="' + cls + '">' + mark +
-        '<span><span class="name"><a href="' + link + '">' + esc(name) + (verified ? VERIFIED_SVG : '') + '</a>' +
-        opts.fav + enHtml + '</span>' + subHtml + '</span></div>';
+        '<span><span class="name"><a href="' + link + '">' + esc(name) + '</a>' +
+        badge + opts.fav + enHtml + '</span>' + subHtml + '</span></div>';
     }
     return '<a class="' + cls + '" href="' + link + '">' + mark +
-      '<span><span class="name">' + esc(name) + (verified ? VERIFIED_SVG : '') + enHtml + '</span>' +
+      '<span><span class="name">' + esc(name) + badge + enHtml + '</span>' +
       subHtml + '</span></a>';
   }
 

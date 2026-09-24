@@ -147,7 +147,7 @@ fonts-front/
 
 **硬约束：字体页「动态」= Google Fonts 风格查询参数，不是直连文件。**
 
-- 公开嵌入默认：`https://app.windfonts.com/api/css?family=&weight=&subset=`（`WFProto.cssApiUrl`）。`cn.windfonts.com/api/css` 目前是 OSS 404。`subset` 为 `full` / `zh` / `zh-common` / `en`。多款用 `|`。
+- 公开嵌入默认：`https://cn.windfonts.com/api/css?family=&weight=&subset=`（`WFProto.cssApiUrl`，随节点换成 `hk` / `en`）。`subset` 为 `full` / `zh` / `zh-common` / `en`。多款用 `|`。CDN 域名只有这三台。`/api/css` 以后做反代重写；复制出去的地址不要写成 `app.windfonts.com`。
 - 多规格产品：示例优先 `font-products.json` 的 `default`；用户在详情选中的规格则输出该规格 `family`。产品 / tier / 退役见 [FAMILY-VARIANTS.md](FAMILY-VARIANTS.md)。
 - **禁止**用 `fonts-packages/.../result.css` 顶替动态嵌入。包路径只给内部预览（`ensureFontCss` / `packageResultUrl`）。
 - **禁止**因 OSS 上 `/api/css` 404 就改前端口径；那是 CDN 边缘回源问题，见 [HANDOFF.md](HANDOFF.md) CDN 节。

@@ -15262,7 +15262,7 @@
   },
   {
     "id": "e21ae10e-8c68-4cec-af2c-0071940458b9",
-    "name": "拙见橄榄简体",
+    "name": "卓健橄榄简体",
     "en": "ZhuoJianGanLanJianTi",
     "family": "wenfeng-zjgljt",
     "normalized": "Zjgljt",
@@ -15275,9 +15275,9 @@
     "weights": [
       "Regular"
     ],
-    "description": "ZhuoJianGanLanJianTi 是一款由 zhuojianchina 于2019年发布的简体中文字体。其名称卓见橄榄简体暗示了字体可能具备清晰、易读且带有一定人文气息的设计特点。字体元信息显示为常规字重，适用于需要简洁、现代感的中文排版场景，如UI界面、品牌宣传材料等。具体的设计风格、笔画特征及更详细的设计背景需进一步查阅官方资料确认。",
+    "description": "ZhuoJianGanLanJianTi 是一款由 zhuojianchina 于2019年发布的简体中文字体。其名称卓健橄榄简体暗示了字体可能具备清晰、易读且带有一定人文气息的设计特点。字体元信息显示为常规字重，适用于需要简洁、现代感的中文排版场景，如UI界面、品牌宣传材料等。具体的设计风格、笔画特征及更详细的设计背景需进一步查阅官方资料确认。",
     "license": "免费商用",
-    "licenseName": "拙见橄榄简体授权协议",
+    "licenseName": "卓健橄榄简体授权协议",
     "licenseUrl": "",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Zjgljt/LICENSE",
     "licenseNotes": "",
@@ -16390,6 +16390,2775 @@
     ],
     "charCount": 41295,
     "glyphCount": 41296,
+    "viewCount": 0
+  },
+  {
+    "id": "9254fc10-768b-4828-bc27-5ce76e9d974e",
+    "name": "偏歪的黑趣体",
+    "en": "Crooked Black Fun",
+    "family": "wenfeng-ckbf",
+    "normalized": "Ckbf",
+    "designer": "FWHP",
+    "designerShort": "花乐",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "用得意黑和斜月体改的。SIL OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/FWHP-Enfun",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023 FWHP",
+    "foundry": "花乐",
+    "brand": {
+      "name": "花乐",
+      "slug": "fwhp",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/FWHP-Enfun",
+      "description": "FWHP。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 61516,
+    "glyphCount": 61253,
+    "viewCount": 0
+  },
+  {
+    "id": "0205db20-330a-4fe1-950c-2cac8ef1f340",
+    "name": "混菜写楷",
+    "en": "Mixed VsWeKai",
+    "family": "wenfeng-hxwk",
+    "normalized": "Hxwk",
+    "designer": "FWHP",
+    "designerShort": "花乐",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Light",
+      "Regular",
+      "Medium",
+      "Bold"
+    ],
+    "description": "把霞鹜文楷、霞鹜文楷 TC、芫荽混在一起。这一套收了细、常规、中、粗。SIL OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/FWHP-Enfun",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023 FWHP",
+    "foundry": "花乐",
+    "brand": {
+      "name": "花乐",
+      "slug": "fwhp",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/FWHP-Enfun",
+      "description": "FWHP。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 29482,
+    "glyphCount": 31916,
+    "viewCount": 0
+  },
+  {
+    "id": "18983a5b-b25f-4677-ad87-a17e73887934",
+    "name": "演示佛系体",
+    "en": "Slide Fu",
+    "family": "wenfeng-slfu",
+    "normalized": "Slfu",
+    "designer": "人生哥",
+    "designerShort": "人生哥",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "人生哥与秋叶PPT据纪国才手稿制。正式开源在 maoken-fonts/slidefont，版权人是 SlideFont Project Authors（2019–2020），OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/maoken-fonts/slidefont",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2019-2020 The SlideFont Project Authors",
+    "foundry": "Keynote研究所",
+    "brand": {
+      "name": "人生哥",
+      "slug": "keynote",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/maoken-fonts/slidefont",
+      "description": "Keynote 研究所。演示系列的作者。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 6986,
+    "glyphCount": 6987,
+    "viewCount": 0
+  },
+  {
+    "id": "04427b58-4554-462f-8cdc-0a4b1837018c",
+    "name": "演示悠然小楷",
+    "en": "Slide Youran",
+    "family": "wenfeng-slyr",
+    "normalized": "Slyr",
+    "designer": "人生哥",
+    "designerShort": "人生哥",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "人生哥与孟祥媛。正式开源在 maoken-fonts/slidefont，版权人是 SlideFont Project Authors（2019–2020），OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/maoken-fonts/slidefont",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2019-2020 The SlideFont Project Authors",
+    "foundry": "Keynote研究所",
+    "brand": {
+      "name": "人生哥",
+      "slug": "keynote",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/maoken-fonts/slidefont",
+      "description": "Keynote 研究所。演示系列的作者。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 6989,
+    "glyphCount": 6989,
+    "viewCount": 0
+  },
+  {
+    "id": "70484b9e-8832-4a00-95af-b024ba983978",
+    "name": "演示悠然小楷二",
+    "en": "Slide Youran 1",
+    "family": "wenfeng-sly1",
+    "normalized": "Sly1",
+    "designer": "人生哥",
+    "designerShort": "人生哥",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "字内名称是演示悠然小楷1，人生哥与孟祥媛。官方五款里没有这一份。版权人仍是 SlideFont Project Authors。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/maoken-fonts/slidefont",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2019-2020 The SlideFont Project Authors",
+    "foundry": "Keynote研究所",
+    "brand": {
+      "name": "人生哥",
+      "slug": "keynote",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/maoken-fonts/slidefont",
+      "description": "Keynote 研究所。演示系列的作者。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 7065,
+    "glyphCount": 7065,
+    "viewCount": 0
+  },
+  {
+    "id": "d8c62110-7ae3-4310-8da0-61f9b3fe3c1c",
+    "name": "演示春风楷",
+    "en": "Slide Chunfeng",
+    "family": "wenfeng-slcf",
+    "normalized": "Slcf",
+    "designer": "人生哥",
+    "designerShort": "人生哥",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "人生哥据徐战海手稿制。正式开源在 maoken-fonts/slidefont，版权人是 SlideFont Project Authors（2019–2020），OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/maoken-fonts/slidefont",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2019-2020 The SlideFont Project Authors",
+    "foundry": "Keynote研究所",
+    "brand": {
+      "name": "人生哥",
+      "slug": "keynote",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/maoken-fonts/slidefont",
+      "description": "Keynote 研究所。演示系列的作者。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 6977,
+    "glyphCount": 6978,
+    "viewCount": 0
+  },
+  {
+    "id": "06cbcdbb-00b3-46c0-acee-5c390b4ff0ab",
+    "name": "演示夏行楷",
+    "en": "Slide Xiaxing",
+    "family": "wenfeng-slxx",
+    "normalized": "Slxx",
+    "designer": "人生哥",
+    "designerShort": "人生哥",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "人生哥据刘锡栋手稿制。正式开源在 maoken-fonts/slidefont，版权人是 SlideFont Project Authors（2019–2020），OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/maoken-fonts/slidefont",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2019-2020 The SlideFont Project Authors",
+    "foundry": "Keynote研究所",
+    "brand": {
+      "name": "人生哥",
+      "slug": "keynote",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/maoken-fonts/slidefont",
+      "description": "Keynote 研究所。演示系列的作者。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 6977,
+    "glyphCount": 6978,
+    "viewCount": 0
+  },
+  {
+    "id": "7673e90d-c2e9-41de-8458-586cb6c2e546",
+    "name": "演示秋鸿楷",
+    "en": "Slide Qiuhong",
+    "family": "wenfeng-slqh",
+    "normalized": "Slqh",
+    "designer": "人生哥",
+    "designerShort": "人生哥",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "人生哥据叶运鹏手稿制。正式开源在 maoken-fonts/slidefont，版权人是 SlideFont Project Authors（2019–2020），OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/maoken-fonts/slidefont",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2019-2020 The SlideFont Project Authors",
+    "foundry": "Keynote研究所",
+    "brand": {
+      "name": "人生哥",
+      "slug": "keynote",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/maoken-fonts/slidefont",
+      "description": "Keynote 研究所。演示系列的作者。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 6976,
+    "glyphCount": 6977,
+    "viewCount": 0
+  },
+  {
+    "id": "82545127-96c6-4063-8419-ec0c7e9f2f46",
+    "name": "宅在家麦克笔",
+    "en": "Star Love Marker",
+    "family": "wenfeng-zzmk",
+    "normalized": "Zzmk",
+    "designer": "FWHP",
+    "designerShort": "花乐",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "宅在家系列。SIL OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/FWHP-Enfun",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023 FWHP",
+    "foundry": "花乐",
+    "brand": {
+      "name": "花乐",
+      "slug": "fwhp",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/FWHP-Enfun",
+      "description": "FWHP。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 21636,
+    "glyphCount": 21637,
+    "viewCount": 0
+  },
+  {
+    "id": "7d5e9267-3888-4904-8f58-c54d19860c42",
+    "name": "宅在家自动笔",
+    "en": "Star Love Pencil",
+    "family": "wenfeng-zzzd",
+    "normalized": "Zzzd",
+    "designer": "FWHP",
+    "designerShort": "花乐",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "宅在家系列。SIL OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/FWHP-Enfun",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023 FWHP",
+    "foundry": "花乐",
+    "brand": {
+      "name": "花乐",
+      "slug": "fwhp",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/FWHP-Enfun",
+      "description": "FWHP。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 21642,
+    "glyphCount": 21643,
+    "viewCount": 0
+  },
+  {
+    "id": "3d87e3c5-b9d0-4c96-834d-3cc6f5693dca",
+    "name": "宅在家粉条甜",
+    "en": "Star Love Sweety",
+    "family": "wenfeng-zzft",
+    "normalized": "Zzft",
+    "designer": "FWHP",
+    "designerShort": "花乐",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "宅在家系列。SIL OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/FWHP-Enfun",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023 FWHP",
+    "foundry": "花乐",
+    "brand": {
+      "name": "花乐",
+      "slug": "fwhp",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/FWHP-Enfun",
+      "description": "FWHP。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 21649,
+    "glyphCount": 21650,
+    "viewCount": 0
+  },
+  {
+    "id": "9a773962-c79c-4b70-a208-723df6354afa",
+    "name": "汲古明体A",
+    "en": "JiGu Ming A",
+    "family": "wenfeng-jgma",
+    "normalized": "Jgma",
+    "designer": "FWHP",
+    "designerShort": "花乐",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "齐汲体补了源流明体的英文。SIL OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/FWHP-Enfun",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023 FWHP",
+    "foundry": "花乐",
+    "brand": {
+      "name": "花乐",
+      "slug": "fwhp",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/FWHP-Enfun",
+      "description": "FWHP。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 22939,
+    "glyphCount": 22898,
+    "viewCount": 0
+  },
+  {
+    "id": "c5ae4a80-63bf-4dcd-b2e9-1ff1b78e4d04",
+    "name": "汲古明体B",
+    "en": "JiGu Ming B",
+    "family": "wenfeng-jgmb",
+    "normalized": "Jgmb",
+    "designer": "FWHP",
+    "designerShort": "花乐",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "汲古明体 B。SIL OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/FWHP-Enfun",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023 FWHP",
+    "foundry": "花乐",
+    "brand": {
+      "name": "花乐",
+      "slug": "fwhp",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/FWHP-Enfun",
+      "description": "FWHP。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 22939,
+    "glyphCount": 22898,
+    "viewCount": 0
+  },
+  {
+    "id": "075ba134-255f-485a-a53d-5e9438ad9610",
+    "name": "汲古明体C",
+    "en": "JiGu Ming C",
+    "family": "wenfeng-jgmc",
+    "normalized": "Jgmc",
+    "designer": "FWHP",
+    "designerShort": "花乐",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "汲古明体 C。SIL OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/FWHP-Enfun",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023 FWHP",
+    "foundry": "花乐",
+    "brand": {
+      "name": "花乐",
+      "slug": "fwhp",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/FWHP-Enfun",
+      "description": "FWHP。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 22971,
+    "glyphCount": 21541,
+    "viewCount": 0
+  },
+  {
+    "id": "c8950fc4-a4ea-4079-a090-31b618290baf",
+    "name": "繁多全楷体",
+    "en": "MoTc Kai",
+    "family": "wenfeng-mtk1",
+    "normalized": "Mtk1",
+    "designer": "FWHP",
+    "designerShort": "花乐",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "用 TCFontCreator 从全字库改的繁体楷体。SIL OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/FWHP-Enfun",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023 FWHP",
+    "foundry": "花乐",
+    "brand": {
+      "name": "花乐",
+      "slug": "fwhp",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/FWHP-Enfun",
+      "description": "FWHP。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 39948,
+    "glyphCount": 36470,
+    "viewCount": 0
+  },
+  {
+    "id": "d754f4f4-f04d-4640-abf1-f7c9814e3aab",
+    "name": "繁多全楷体2",
+    "en": "MoTc Kai 2",
+    "family": "wenfeng-mtk2",
+    "normalized": "Mtk2",
+    "designer": "FWHP",
+    "designerShort": "花乐",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "繁多全楷体的扩展档。SIL OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/FWHP-Enfun",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023 FWHP",
+    "foundry": "花乐",
+    "brand": {
+      "name": "花乐",
+      "slug": "fwhp",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/FWHP-Enfun",
+      "description": "FWHP。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 49662,
+    "glyphCount": 48576,
+    "viewCount": 0
+  },
+  {
+    "id": "41d79050-14bc-4c10-8159-7f38b565ed8f",
+    "name": "繁多全宋体",
+    "en": "MoTc Sung",
+    "family": "wenfeng-mts1",
+    "normalized": "Mts1",
+    "designer": "FWHP",
+    "designerShort": "花乐",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "用 TCFontCreator 从全字库改的繁体宋体。SIL OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/FWHP-Enfun",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023 FWHP",
+    "foundry": "花乐",
+    "brand": {
+      "name": "花乐",
+      "slug": "fwhp",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/FWHP-Enfun",
+      "description": "FWHP。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 39947,
+    "glyphCount": 36469,
+    "viewCount": 0
+  },
+  {
+    "id": "dc5162ea-69d1-42ff-a11b-631aa470c35d",
+    "name": "繁多全宋体2",
+    "en": "MoTc Sung 2",
+    "family": "wenfeng-mts2",
+    "normalized": "Mts2",
+    "designer": "FWHP",
+    "designerShort": "花乐",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "繁多全宋体的扩展档。SIL OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/FWHP-Enfun",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023 FWHP",
+    "foundry": "花乐",
+    "brand": {
+      "name": "花乐",
+      "slug": "fwhp",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/FWHP-Enfun",
+      "description": "FWHP。"
+    },
+    "releaseYear": 2023,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 49662,
+    "glyphCount": 48576,
+    "viewCount": 0
+  },
+  {
+    "id": "caf81e12-8291-4f02-9ef3-2e57e6faff6f",
+    "name": "演示斜黑体",
+    "en": "Slide Slant Sans",
+    "family": "wenfeng-ysxh",
+    "normalized": "Ysxh",
+    "designer": "人生哥",
+    "designerShort": "人生哥",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "Keynote 研究所人生哥用思源黑体做的斜体。猫啃标 OFL 1.1。字内版权行仍是 Adobe 2014，没有单独的 OFL 声明。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://www.maoken.com/freefonts/4535.html",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2014 Adobe Systems Incorporated. Designer: Keynoteart",
+    "foundry": "Keynote研究所",
+    "brand": {
+      "name": "人生哥",
+      "slug": "keynote",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/maoken-fonts/slidefont",
+      "description": "Keynote 研究所。演示系列的作者。"
+    },
+    "releaseYear": 2018,
+    "version": "1.000",
+    "languages": [
+      "简体中文",
+      "繁体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 30757,
+    "glyphCount": 30888,
+    "viewCount": 0
+  },
+  {
+    "id": "04cb78d9-4b57-4b5c-8c6c-5667e0637c99",
+    "name": "文津宋体",
+    "en": "WenJin Mincho",
+    "family": "wenfeng-wjmp",
+    "normalized": "Wjmp",
+    "designer": "Takushun Wu",
+    "designerShort": "Takushun Wu",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "Takushun Wu 以思源宋体和 Kage 引擎做的大字符集宋体，大陆字形。这一款是基本平面 P0。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/takushun-wu/WenJinMincho",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2024-2026, Takushun Wu, with Reserved Font Name 'WenJin Mincho' / '文津宋体'.",
+    "foundry": "Takushun Wu",
+    "brand": {
+      "name": "Takushun Wu",
+      "slug": "takushun",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/takushun-wu",
+      "description": "文津宋体、文渊宋黑圆。OFL 1.1。"
+    },
+    "releaseYear": 2024,
+    "version": "2.020",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 31527,
+    "glyphCount": 51357,
+    "viewCount": 0
+  },
+  {
+    "id": "a695c18e-ded5-4021-a7c1-f6810a2b3b3a",
+    "name": "文津宋体 P2",
+    "en": "WenJin Mincho P2",
+    "family": "wenfeng-wjm2",
+    "normalized": "Wjm2",
+    "designer": "Takushun Wu",
+    "designerShort": "Takushun Wu",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "文津宋体的扩展平面 P2，基本区汉字很少，主要是扩展区。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/takushun-wu/WenJinMincho",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2024-2026, Takushun Wu, with Reserved Font Name 'WenJin Mincho' / '文津宋体'.",
+    "foundry": "Takushun Wu",
+    "brand": {
+      "name": "Takushun Wu",
+      "slug": "takushun",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/takushun-wu",
+      "description": "文津宋体、文渊宋黑圆。OFL 1.1。"
+    },
+    "releaseYear": 2024,
+    "version": "2.020",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 61649,
+    "glyphCount": 63880,
+    "viewCount": 0
+  },
+  {
+    "id": "c43e2385-b520-473b-bccc-eb270a0763d3",
+    "name": "文渊宋体",
+    "en": "WenYuan Serif SC",
+    "family": "wenfeng-wysf",
+    "normalized": "Wysf",
+    "designer": "Takushun Wu",
+    "designerShort": "Takushun Wu",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Light",
+      "Regular",
+      "Medium",
+      "Bold"
+    ],
+    "description": "文渊宋体，基于思源宋体改的简体宋。收了细、常规、中、粗。英文名仍是 WenYuan。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/takushun-wu/WenYuanFonts",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2024-2026, Takushun Wu, with Reserved Font Name 'WenYuan Serif' / '文渊宋体'.",
+    "foundry": "Takushun Wu",
+    "brand": {
+      "name": "Takushun Wu",
+      "slug": "takushun",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/takushun-wu",
+      "description": "文津宋体、文渊宋黑圆。OFL 1.1。"
+    },
+    "releaseYear": 2026,
+    "version": "1.010",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 33029,
+    "glyphCount": 35099,
+    "viewCount": 0
+  },
+  {
+    "id": "85701037-308a-4b00-bf7d-21cfbb4c53be",
+    "name": "文渊黑体",
+    "en": "WenYuan Sans SC",
+    "family": "wenfeng-wyhk",
+    "normalized": "Wyhk",
+    "designer": "Takushun Wu",
+    "designerShort": "Takushun Wu",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Light",
+      "Regular",
+      "Medium",
+      "Bold"
+    ],
+    "description": "文渊黑体，基于思源黑体的简体黑体。收了标准宽度的细、常规、中、粗。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/takushun-wu/WenYuanFonts",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2024-2026, Takushun Wu, with Reserved Font Name 'WenYuan Sans' / '文渊黑体'.",
+    "foundry": "Takushun Wu",
+    "brand": {
+      "name": "Takushun Wu",
+      "slug": "takushun",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/takushun-wu",
+      "description": "文津宋体、文渊宋黑圆。OFL 1.1。"
+    },
+    "releaseYear": 2026,
+    "version": "1.010",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 33029,
+    "glyphCount": 35089,
+    "viewCount": 0
+  },
+  {
+    "id": "4e4b90e5-d962-4f30-80b6-a39a158d59f4",
+    "name": "文渊圆体",
+    "en": "WenYuan Rounded SC",
+    "family": "wenfeng-wyyt",
+    "normalized": "Wyyt",
+    "designer": "Takushun Wu",
+    "designerShort": "Takushun Wu",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Light",
+      "Regular",
+      "Medium",
+      "Bold"
+    ],
+    "description": "文渊圆体，作者在思源上新增的圆体。收了细、常规、中、粗。字内保留名仍写作文源圆体。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/takushun-wu/WenYuanFonts",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2024-2026, Takushun Wu, with Reserved Font Name 'WenYuan Rounded' / '文源圆体'.",
+    "foundry": "Takushun Wu",
+    "brand": {
+      "name": "Takushun Wu",
+      "slug": "takushun",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/takushun-wu",
+      "description": "文津宋体、文渊宋黑圆。OFL 1.1。"
+    },
+    "releaseYear": 2026,
+    "version": "1.010",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 33029,
+    "glyphCount": 35051,
+    "viewCount": 0
+  },
+  {
+    "id": "3d5c7eea-202e-49e9-8a92-09170d08da5b",
+    "name": "何某手写体",
+    "en": "NaniFont",
+    "family": "wenfeng-hmsx",
+    "normalized": "Hmsx",
+    "designer": "Nanigashitei",
+    "designerShort": "Nanigashitei",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Light",
+      "Regular",
+      "Bold"
+    ],
+    "description": "何某手写体，字内家族名 NaniFont。作者 Nanigashitei。收了细、常规、粗。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/max32002/nanifont",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2016-2020, Nanigashitei.",
+    "foundry": "Nanigashitei",
+    "brand": {
+      "name": "Nanigashitei",
+      "slug": "nanigashi",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/max32002/nanifont",
+      "description": "何某手写体。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文",
+      "繁体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 24038,
+    "glyphCount": 24070,
+    "viewCount": 0
+  },
+  {
+    "id": "835cf528-5065-4b61-b9b2-1568d72909e0",
+    "name": "芫茜雅楷",
+    "en": "Jyunsai Kaai",
+    "family": "wenfeng-yqyk",
+    "normalized": "Yqyk",
+    "designer": "ItMarki",
+    "designerShort": "ItMarki",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Light",
+      "Regular",
+      "Bold"
+    ],
+    "description": "芫茜雅楷，ItMarki 基于 Klee 做的楷体。收了细、常规、粗。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/ItMarki/jyunsaikaai",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright ItMarki / The Klee Project.",
+    "foundry": "ItMarki",
+    "brand": {
+      "name": "ItMarki",
+      "slug": "itmarki",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/ItMarki/jyunsaikaai",
+      "description": "芫茜雅楷。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 17612,
+    "glyphCount": 20026,
+    "viewCount": 0
+  },
+  {
+    "id": "2c4df848-4bf3-40c6-82d5-88626f707c6d",
+    "name": "苦累蛙圆体",
+    "en": "Kurewa Gothic CJK TC",
+    "family": "wenfeng-kywa",
+    "normalized": "Kywa",
+    "designer": "Max Yao",
+    "designerShort": "Max Yao",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Light",
+      "Regular",
+      "Bold"
+    ],
+    "description": "苦累蛙圆体，Max Yao 的繁体圆体。收了细、常规、粗。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/max32002/kurewa-gothic",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2021 The Kurewa Project Authors.",
+    "foundry": "Max Yao",
+    "brand": {
+      "name": "Aqua",
+      "slug": "aqua",
+      "logoUrl": "",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+      "website": "https://github.com/max32002",
+      "description": "Aqua / max32002"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "繁体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 9578,
+    "glyphCount": 9632,
+    "viewCount": 0
+  },
+  {
+    "id": "aed558d4-8779-4424-9be5-26655d4914ab",
+    "name": "马路口圆体",
+    "en": "Raw Maruko Gothic CJK SC",
+    "family": "wenfeng-mlyu",
+    "normalized": "Mlyu",
+    "designer": "Max Yao",
+    "designerShort": "Max Yao",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "马路口圆体，简体。字内中文名是生马路口圆体。仓库 max32002/maruko-gothic。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/max32002/maruko-gothic",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2020, Chun yu Yao.",
+    "foundry": "Max Yao",
+    "brand": {
+      "name": "Aqua",
+      "slug": "aqua",
+      "logoUrl": "",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/4498233?v=4",
+      "website": "https://github.com/max32002",
+      "description": "Aqua / max32002"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 44898,
+    "glyphCount": 44695,
+    "viewCount": 0
+  },
+  {
+    "id": "c828ee26-21ca-4e50-a93d-8a6dd4513482",
+    "name": "长坂点宋",
+    "en": "Changban Dian Song 16",
+    "family": "wenfeng-cbds",
+    "normalized": "Cbds",
+    "designer": "yzdnn",
+    "designerShort": "yzdnn",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "长坂点宋 16。字内还记了 X68000 原作 Keitaro Hiraki。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/yzdnn/ChangBanDianSong-16",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2025-2026, yzdnn.",
+    "foundry": "yzdnn",
+    "brand": {
+      "name": "yzdnn",
+      "slug": "yzdnn",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/yzdnn/ChangBanDianSong-16",
+      "description": "长坂点宋。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "屏幕阅读"
+    ],
+    "charCount": 15497,
+    "glyphCount": 15530,
+    "viewCount": 0
+  },
+  {
+    "id": "1a4964e1-0c64-4664-829b-31588296e6c3",
+    "name": "香萃刻宋",
+    "en": "Xiangcui Kesong",
+    "family": "wenfeng-xcks",
+    "normalized": "Xcks",
+    "designer": "香萃",
+    "designerShort": "香萃",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "香萃刻宋。字内许可是 OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/Miiiller/Xiangcui-Kesong",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "",
+    "foundry": "香萃",
+    "brand": {
+      "name": "香萃",
+      "slug": "xiangcui",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Miiiller",
+      "description": "香萃刻宋、等粗宋、自在。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文",
+      "繁体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 31170,
+    "glyphCount": 31307,
+    "viewCount": 0
+  },
+  {
+    "id": "de9fd1b1-f46c-46cb-be89-ca9f20d10201",
+    "name": "香萃等粗宋",
+    "en": "Xiangcui Dengcusong",
+    "family": "wenfeng-xcdc",
+    "normalized": "Xcdc",
+    "designer": "香萃",
+    "designerShort": "香萃",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "香萃等粗宋。字内许可是 OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/Miiiller/Xiangcui-Kesong",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "",
+    "foundry": "香萃",
+    "brand": {
+      "name": "香萃",
+      "slug": "xiangcui",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Miiiller",
+      "description": "香萃刻宋、等粗宋、自在。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文",
+      "繁体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 24587,
+    "glyphCount": 25307,
+    "viewCount": 0
+  },
+  {
+    "id": "6a131422-68f1-4937-a2e3-d44c912599ab",
+    "name": "香萃自在",
+    "en": "Xiangcui Wave Sans",
+    "family": "wenfeng-xczz",
+    "normalized": "Xczz",
+    "designer": "香萃",
+    "designerShort": "香萃",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "香萃自在，字内家族名 Xiangcui Wave Sans。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/Miiiller/Xiangcui-Kesong",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "",
+    "foundry": "香萃",
+    "brand": {
+      "name": "香萃",
+      "slug": "xiangcui",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Miiiller",
+      "description": "香萃刻宋、等粗宋、自在。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文",
+      "繁体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 29918,
+    "glyphCount": 29804,
+    "viewCount": 0
+  },
+  {
+    "id": "41cfbf38-a292-4db2-85cb-87f4a4dc35fc",
+    "name": "龙珠体",
+    "en": "LogoSC LongZhuTi ZHS",
+    "family": "wenfeng-lzti",
+    "normalized": "Lzti",
+    "designer": "龙珠体",
+    "designerShort": "龙珠体",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "龙珠体简体，基于 RocknRoll。字内写明标小智是注册商标。不是猫啃竹圆体。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/maoken-fonts/LongZhuTi",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2022-2023 LogoSC LongZhuTi Project Authors.",
+    "foundry": "龙珠体",
+    "brand": {
+      "name": "LogoSC",
+      "slug": "logosc",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/maoken-fonts/LongZhuTi",
+      "description": "龙珠体。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 10740,
+    "glyphCount": 11549,
+    "viewCount": 0
+  },
+  {
+    "id": "9905f62f-6607-4c91-a064-0f91f98fee6c",
+    "name": "余繁丹青宋",
+    "en": "YuFan DanQing Song",
+    "family": "wenfeng-yydq",
+    "normalized": "Yydq",
+    "designer": "余繁",
+    "designerShort": "余繁",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "余繁丹青宋。上游仓库许可是 OFL 1.1。汉字大约七千。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/chilingg/YufanDanQingSong",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2024, YuFan.",
+    "foundry": "余繁",
+    "brand": {
+      "name": "余繁",
+      "slug": "yufan",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/chilingg/YufanDanQingSong",
+      "description": "余繁丹青宋、真素、细柳。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 7491,
+    "glyphCount": 7492,
+    "viewCount": 0
+  },
+  {
+    "id": "163b895c-2ae3-4253-85cd-cde98cf8b645",
+    "name": "余繁真素",
+    "en": "YuFan ZhenSu",
+    "family": "wenfeng-yyzs",
+    "normalized": "Yyzs",
+    "designer": "余繁",
+    "designerShort": "余繁",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "余繁真素。字内许可行写 OFL。汉字大约七千。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/chilingg/YufanDanQingSong",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2023, YuFan.",
+    "foundry": "余繁",
+    "brand": {
+      "name": "余繁",
+      "slug": "yufan",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/chilingg/YufanDanQingSong",
+      "description": "余繁丹青宋、真素、细柳。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 7402,
+    "glyphCount": 7403,
+    "viewCount": 0
+  },
+  {
+    "id": "fa9d9c2e-1014-42dc-b553-75d06830ab5c",
+    "name": "余繁细柳",
+    "en": "YuFan XiLiu",
+    "family": "wenfeng-yyxl",
+    "normalized": "Yyxl",
+    "designer": "余繁",
+    "designerShort": "余繁",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "余繁细柳。字内许可行写 OFL。汉字大约七千。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/chilingg/YufanDanQingSong",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2024, YuFan.",
+    "foundry": "余繁",
+    "brand": {
+      "name": "余繁",
+      "slug": "yufan",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/chilingg/YufanDanQingSong",
+      "description": "余繁丹青宋、真素、细柳。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 7480,
+    "glyphCount": 7481,
+    "viewCount": 0
+  },
+  {
+    "id": "9254d228-a329-483e-89ed-702f6d8622ba",
+    "name": "无界黑",
+    "en": "Unbounded Sans",
+    "family": "wenfeng-ubss",
+    "normalized": "Ubss",
+    "designer": "Unbounded Sans",
+    "designerShort": "Unbounded Sans",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "无界黑，字内家族名 Unbounded Sans。不是 Dela Gothic One。OFL 1.1。汉字大约一万一千，不是全字库。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/NightFurySL2001/unbounded-sans",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2022-2023 The Unbounded Sans Project Authors.",
+    "foundry": "Unbounded Sans",
+    "brand": {
+      "name": "Unbounded Sans",
+      "slug": "unbounded",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/NightFurySL2001/unbounded-sans",
+      "description": "无界黑。不是 Dela Gothic One。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文",
+      "繁体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 13774,
+    "glyphCount": 13931,
+    "viewCount": 0
+  },
+  {
+    "id": "236c9c51-8993-44c7-8e1e-fd392b236e9e",
+    "name": "晓声通秋茄",
+    "en": "ToneOZ Tsuipita TC",
+    "family": "wenfeng-xstq",
+    "normalized": "Xstq",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "晓声通秋茄，繁体。ToneOZ Tsuipita。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-tsuipita",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/jeffreyxuan/toneoz-font-pinyin-wenkai",
+      "description": "澳声通、晓声通秋茄。SIL OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "繁体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 16262,
+    "glyphCount": 16356,
+    "viewCount": 0
+  },
+  {
+    "id": "8a85ea98-a2e2-4ed2-b9cd-8e4ff0f644e0",
+    "name": "源音黑体",
+    "en": "Genne Gothic",
+    "family": "wenfeng-yiny",
+    "normalized": "Yiny",
+    "designer": "MoneMizuno",
+    "designerShort": "MoneMizuno",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "源音黑体，把思源黑体的字图映射到旧字形。实验项目。这一档是常规。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/MoneMizuno/Genne-Gothic",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2017-2018 MoneMizuno. Portions Copyright 2014-2015 Adobe.",
+    "foundry": "MoneMizuno",
+    "brand": {
+      "name": "MoneMizuno",
+      "slug": "genne",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/MoneMizuno/Genne-Gothic",
+      "description": "源音黑体。基于思源黑体。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 44683,
+    "glyphCount": 65535,
+    "viewCount": 0
+  },
+  {
+    "id": "644be282-c162-4296-8452-fa138c062815",
+    "name": "滑油字",
+    "en": "WD-XL Lubrifont SC",
+    "family": "wenfeng-hyzi",
+    "normalized": "Hyzi",
+    "designer": "NightFurySL2001",
+    "designerShort": "NightFurySL2001",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "滑油字简体。NightFurySL2001。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/NightFurySL2001/WD-XL-font",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020-2022 NightFurySL2001",
+    "foundry": "WD-XL",
+    "brand": {
+      "name": "WD-XL",
+      "slug": "wdxl",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/NightFurySL2001/WD-XL-font",
+      "description": "滑油字。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 13360,
+    "glyphCount": 15985,
+    "viewCount": 0
+  },
+  {
+    "id": "79ee55c0-b430-4f71-a43c-e5cf302bbd2a",
+    "name": "秋水书体",
+    "en": "Qiushui Shotai",
+    "family": "wenfeng-qsst",
+    "normalized": "Qsst",
+    "designer": "NoHeartPen",
+    "designerShort": "NoHeartPen",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "秋水书体。作者写明基于 Klee One、Ysabeau 和霞鹜文楷。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/NoHeartPen/QiushuiShotai",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 The Klee Project Authors",
+    "foundry": "NoHeartPen",
+    "brand": {
+      "name": "NoHeartPen",
+      "slug": "qiushui",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/NoHeartPen/QiushuiShotai",
+      "description": "秋水书体。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文",
+      "繁体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 28872,
+    "glyphCount": 34152,
+    "viewCount": 0
+  },
+  {
+    "id": "6614152e-14c8-4bf2-ae77-f5822820b683",
+    "name": "秋水书体 Bright",
+    "en": "Qiushui Shotai Bright",
+    "family": "wenfeng-qssb",
+    "normalized": "Qssb",
+    "designer": "NoHeartPen",
+    "designerShort": "NoHeartPen",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "秋水书体 Bright。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/NoHeartPen/QiushuiShotai",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright Ysabeau Project Authors; Klee Project Authors",
+    "foundry": "NoHeartPen",
+    "brand": {
+      "name": "NoHeartPen",
+      "slug": "qiushui",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/NoHeartPen/QiushuiShotai",
+      "description": "秋水书体。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文",
+      "繁体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 29011,
+    "glyphCount": 29737,
+    "viewCount": 0
+  },
+  {
+    "id": "f51bdfd8-98d8-4375-a0d4-57b03236b0a9",
+    "name": "秋空黑体 M",
+    "en": "ChiuKong Gothic M",
+    "family": "wenfeng-qkhm",
+    "normalized": "Qkhm",
+    "designer": "ChiuMing-Neko",
+    "designerShort": "ChiuMing-Neko",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "秋空黑体 M。版权行写基于思源黑体 2.004。这一档是常规。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/ChiuMing-Neko/ChiuKongGothic",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2021-2022 ChiuMing-Neko. Based on Source Han Sans 2.004.",
+    "foundry": "ChiuMing-Neko",
+    "brand": {
+      "name": "ChiuMing-Neko",
+      "slug": "chiukong",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/ChiuMing-Neko/ChiuKongGothic",
+      "description": "秋空黑体。基于思源黑体。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 44886,
+    "glyphCount": 50713,
+    "viewCount": 0
+  },
+  {
+    "id": "5f8dacd7-3ea6-4fd2-948a-ddc2cb7e59dc",
+    "name": "秋空黑体 CL",
+    "en": "ChiuKong Gothic CL",
+    "family": "wenfeng-qkhc",
+    "normalized": "Qkhc",
+    "designer": "ChiuMing-Neko",
+    "designerShort": "ChiuMing-Neko",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "秋空黑体 CL。版权行写基于思源黑体 2.004。这一档是常规。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/ChiuMing-Neko/ChiuKongGothic",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2021-2022 ChiuMing-Neko. Based on Source Han Sans 2.004.",
+    "foundry": "ChiuMing-Neko",
+    "brand": {
+      "name": "ChiuMing-Neko",
+      "slug": "chiukong",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/ChiuMing-Neko/ChiuKongGothic",
+      "description": "秋空黑体。基于思源黑体。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 44886,
+    "glyphCount": 50713,
+    "viewCount": 0
+  },
+  {
+    "id": "1623f048-6921-42cd-bc01-170fe8aba203",
+    "name": "精品点阵体",
+    "en": "Boutique Bitmap 9x9",
+    "family": "wenfeng-jpdz",
+    "normalized": "Jpdz",
+    "designer": "字言字语",
+    "designerShort": "字言字语",
+    "category": "其他",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "精品点阵体 9×9。许可允许免费使用、复制、修改和分发，衍生版须用同样的授权，无保证。不是 SIL OFL。",
+    "license": "免费商用",
+    "licenseName": "可免费使用、复制、修改和分发，衍生版须使用同样授权",
+    "licenseUrl": "https://github.com/scott0107000/BoutiqueBitmap9x9",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费使用、复制、修改和分发。衍生版须使用同样的授权。无保证。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2022 字言字型",
+    "foundry": "字言字语",
+    "brand": {
+      "name": "字言字语",
+      "slug": "boutique",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/scott0107000/BoutiqueBitmap9x9",
+      "description": "精品点阵体。不是 SIL OFL。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文",
+      "繁体中文"
+    ],
+    "useCases": [
+      "屏幕阅读"
+    ],
+    "charCount": 12519,
+    "glyphCount": 12234,
+    "viewCount": 0
+  },
+  {
+    "id": "835a234e-4f4d-40bf-bb79-fc6923145f50",
+    "name": "美绩点阵体",
+    "en": "Miseki Bitmap",
+    "family": "wenfeng-mjdz",
+    "normalized": "Mjdz",
+    "designer": "ItMarki",
+    "designerShort": "ItMarki",
+    "category": "其他",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "美绩点阵体。ItMarki。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/ItMarki/MisekiBitmap",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2022-2023 ItMarki",
+    "foundry": "ItMarki",
+    "brand": {
+      "name": "ItMarki",
+      "slug": "itmarki",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/ItMarki/jyunsaikaai",
+      "description": "芫茜雅楷、美绩点阵。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "繁体中文"
+    ],
+    "useCases": [
+      "屏幕阅读"
+    ],
+    "charCount": 15622,
+    "glyphCount": 15623,
+    "viewCount": 0
+  },
+  {
+    "id": "cc5f26f5-de10-4095-83c8-a65428bef281",
+    "name": "美绩点阵体明朝",
+    "en": "Miseki Bitmap Mincho",
+    "family": "wenfeng-mjdm",
+    "normalized": "Mjdm",
+    "designer": "ItMarki",
+    "designerShort": "ItMarki",
+    "category": "其他",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "美绩点阵体的明朝一款。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/ItMarki/MisekiBitmap",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2022-2023 ItMarki",
+    "foundry": "ItMarki",
+    "brand": {
+      "name": "ItMarki",
+      "slug": "itmarki",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/ItMarki/jyunsaikaai",
+      "description": "芫茜雅楷、美绩点阵。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "繁体中文"
+    ],
+    "useCases": [
+      "屏幕阅读"
+    ],
+    "charCount": 15622,
+    "glyphCount": 15623,
+    "viewCount": 0
+  },
+  {
+    "id": "a30c759b-c80e-4e35-a68c-bcd14ed1ad29",
+    "name": "萌神手写体",
+    "en": "Mengshen Handwritten",
+    "family": "wenfeng-mshx",
+    "normalized": "Mshx",
+    "designer": "萌神",
+    "designerShort": "萌神",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "萌神手写体。字内中文名是萌神手写体 CN。版权行里还有 LXGW。OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/MaruTama/Mengshen-pinyin-font",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 mengshen project",
+    "foundry": "萌神",
+    "brand": {
+      "name": "萌神",
+      "slug": "mengshen",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/MaruTama/Mengshen-pinyin-font",
+      "description": "萌神手写体。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 32974,
+    "glyphCount": 62206,
+    "viewCount": 0
+  },
+  {
+    "id": "4ba03b48-f4c8-4891-8996-926695950f8b",
+    "name": "余繁新语",
+    "en": "YuFan XinYu",
+    "family": "wenfeng-yyxy",
+    "normalized": "Yyxy",
+    "designer": "余繁",
+    "designerShort": "余繁",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "余繁新语。仓库许可是 MIT。这一档是常规。汉字大约六千七百。",
+    "license": "免费商用",
+    "licenseName": "MIT License",
+    "licenseUrl": "https://github.com/chilingg/yufanxinyu",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改、可再分发，须保留版权声明。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2022, YuFan",
+    "foundry": "余繁",
+    "brand": {
+      "name": "余繁",
+      "slug": "yufan",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/chilingg/YufanDanQingSong",
+      "description": "余繁丹青宋、真素、细柳、新语。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 6915,
+    "glyphCount": 6918,
+    "viewCount": 0
+  },
+  {
+    "id": "94ea0702-0c27-44ff-ab86-98a094a72bb5",
+    "name": "齐伋体",
+    "en": "Qiji",
+    "family": "wenfeng-qiji",
+    "normalized": "Qiji",
+    "designer": "Lingdong Huang",
+    "designerShort": "Lingdong Huang",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "齐伋体。Lingdong Huang。仓库许可是 OFL 1.1。汉字大约五千八百。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/LingDong-/qiji-font",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2020, Lingdong Huang",
+    "foundry": "Lingdong Huang",
+    "brand": {
+      "name": "Lingdong Huang",
+      "slug": "lingdong",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/LingDong-/qiji-font",
+      "description": "齐伋体。OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 5953,
+    "glyphCount": 4550,
+    "viewCount": 0
+  },
+  {
+    "id": "6edd444a-6ad8-4900-aa2a-fe39767a6ede",
+    "name": "方正书宋简体",
+    "en": "FZ ShuSong",
+    "family": "wenfeng-fzss",
+    "normalized": "Fzss",
+    "designer": "方正",
+    "designerShort": "方正",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "方正书宋简体。方正公布这四款基础字可免费商用，不可修改字体文件，不可单独再分发。不是 OFL。",
+    "license": "免费商用",
+    "licenseName": "免费商用，不可修改",
+    "licenseUrl": "https://www.foundertype.com",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用。不可修改字体文件，不可再分发。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2015 Beijing Founder Electronics",
+    "foundry": "方正字库",
+    "brand": {
+      "name": "方正字库",
+      "slug": "founder",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.foundertype.com",
+      "description": "方正书宋、仿宋、楷体、黑体。可免费商用，不可修改。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 8104,
+    "glyphCount": 8112,
+    "viewCount": 0
+  },
+  {
+    "id": "0e4a6f1a-d579-44f5-bd20-64d035050b1e",
+    "name": "方正仿宋简体",
+    "en": "FZ FangSong",
+    "family": "wenfeng-fzfs",
+    "normalized": "Fzfs",
+    "designer": "方正",
+    "designerShort": "方正",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "方正仿宋简体。可免费商用，不可修改字体文件，不可单独再分发。不是 OFL。",
+    "license": "免费商用",
+    "licenseName": "免费商用，不可修改",
+    "licenseUrl": "https://www.foundertype.com",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用。不可修改字体文件，不可再分发。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2015 Beijing Founder Electronics",
+    "foundry": "方正字库",
+    "brand": {
+      "name": "方正字库",
+      "slug": "founder",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.foundertype.com",
+      "description": "方正书宋、仿宋、楷体、黑体。可免费商用，不可修改。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 8104,
+    "glyphCount": 8112,
+    "viewCount": 0
+  },
+  {
+    "id": "80a76c8e-d7e2-428f-a3a4-f6abad4c5168",
+    "name": "方正楷体简体",
+    "en": "FZ Kai",
+    "family": "wenfeng-fzkt",
+    "normalized": "Fzkt",
+    "designer": "方正",
+    "designerShort": "方正",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "方正楷体简体。可免费商用，不可修改字体文件，不可单独再分发。不是 OFL。",
+    "license": "免费商用",
+    "licenseName": "免费商用，不可修改",
+    "licenseUrl": "https://www.foundertype.com",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用。不可修改字体文件，不可再分发。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2015 Beijing Founder Electronics",
+    "foundry": "方正字库",
+    "brand": {
+      "name": "方正字库",
+      "slug": "founder",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.foundertype.com",
+      "description": "方正书宋、仿宋、楷体、黑体。可免费商用，不可修改。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 8104,
+    "glyphCount": 8112,
+    "viewCount": 0
+  },
+  {
+    "id": "b4dd542d-d378-4357-bc81-9254a41d35fb",
+    "name": "方正黑体简体",
+    "en": "FZ Hei",
+    "family": "wenfeng-fzht",
+    "normalized": "Fzht",
+    "designer": "方正",
+    "designerShort": "方正",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "方正黑体简体。可免费商用，不可修改字体文件，不可单独再分发。不是 OFL。",
+    "license": "免费商用",
+    "licenseName": "免费商用，不可修改",
+    "licenseUrl": "https://www.foundertype.com",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用。不可修改字体文件，不可再分发。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2017 Beijing Founder Electronics",
+    "foundry": "方正字库",
+    "brand": {
+      "name": "方正字库",
+      "slug": "founder",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.foundertype.com",
+      "description": "方正书宋、仿宋、楷体、黑体。可免费商用，不可修改。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 8089,
+    "glyphCount": 8097,
+    "viewCount": 0
+  },
+  {
+    "id": "cf168beb-bd70-4989-8e21-530a3178c544",
+    "name": "花园明朝 A",
+    "en": "HanaMin A",
+    "family": "wenfeng-hyma",
+    "normalized": "Hyma",
+    "designer": "GlyphWiki",
+    "designerShort": "GlyphWiki",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "花园明朝 A。GlyphWiki 制作。公开说明可自由使用、修改、再分发。不是 OFL。这一档覆盖基本区汉字。",
+    "license": "免费商用",
+    "licenseName": "可免费使用、修改、再分发",
+    "licenseUrl": "http://glyphwiki.org/",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费使用、修改、再分发。",
+    "licenseVerified": false,
+    "purchaseUrl": null,
+    "copyright": "Created by GlyphWiki",
+    "foundry": "GlyphWiki",
+    "brand": {
+      "name": "GlyphWiki",
+      "slug": "hanamin",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://glyphwiki.org/",
+      "description": "花园明朝。可免费使用、修改、再分发。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文",
+      "繁体中文",
+      "日文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 41494,
+    "glyphCount": 52008,
+    "viewCount": 0
+  },
+  {
+    "id": "3277ffd3-ed09-45c1-8df2-e9c189f3f1ef",
+    "name": "花园明朝 B",
+    "en": "HanaMin B",
+    "family": "wenfeng-hymb",
+    "normalized": "Hymb",
+    "designer": "GlyphWiki",
+    "designerShort": "GlyphWiki",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "花园明朝 B。扩展区为主，基本区汉字很少。和 A 是同一套的另一平面。",
+    "license": "免费商用",
+    "licenseName": "可免费使用、修改、再分发",
+    "licenseUrl": "http://glyphwiki.org/",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费使用、修改、再分发。",
+    "licenseVerified": false,
+    "purchaseUrl": null,
+    "copyright": "Created by GlyphWiki",
+    "foundry": "GlyphWiki",
+    "brand": {
+      "name": "GlyphWiki",
+      "slug": "hanamin",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://glyphwiki.org/",
+      "description": "花园明朝。可免费使用、修改、再分发。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文",
+      "繁体中文",
+      "日文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 60418,
+    "glyphCount": 60421,
+    "viewCount": 0
+  },
+  {
+    "id": "090f94e8-b1cc-4c16-aa21-f6693de0c0fc",
+    "name": "全字库正宋体",
+    "en": "TW-Sung",
+    "family": "wenfeng-qzss",
+    "normalized": "Qzss",
+    "designer": "台湾省",
+    "designerShort": "台湾省",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "全字库正宋体。属台湾省。授权条款是台湾省开放政府数据授权 1.0。可免费商用、可修改、可再分发，须保留授权声明。",
+    "license": "免费商用",
+    "licenseName": "台湾省开放政府数据授权条款 1.0",
+    "licenseUrl": "https://data.gov.tw/license",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改、可再分发，须保留授权声明。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2018 National Development Council. Open Government Data License, version 1.0",
+    "foundry": "全字库",
+    "brand": {
+      "name": "全字库",
+      "slug": "cns11643",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://data.gov.tw/license",
+      "description": "全字库正宋、正楷。属台湾省。开放政府数据授权 1.0。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "繁体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 39184,
+    "glyphCount": 39189,
+    "viewCount": 0
+  },
+  {
+    "id": "a6cd7642-0003-469f-83ce-666955f4b492",
+    "name": "全字库正楷体",
+    "en": "TW-Kai",
+    "family": "wenfeng-qzkt",
+    "normalized": "Qzkt",
+    "designer": "台湾省",
+    "designerShort": "台湾省",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "全字库正楷体。属台湾省。授权条款与正宋体相同，台湾省开放政府数据授权 1.0。",
+    "license": "免费商用",
+    "licenseName": "台湾省开放政府数据授权条款 1.0",
+    "licenseUrl": "https://data.gov.tw/license",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改、可再分发，须保留授权声明。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2018 National Development Council. Open Government Data License, version 1.0",
+    "foundry": "全字库",
+    "brand": {
+      "name": "全字库",
+      "slug": "cns11643",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://data.gov.tw/license",
+      "description": "全字库正宋、正楷。属台湾省。开放政府数据授权 1.0。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "繁体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 39185,
+    "glyphCount": 39191,
+    "viewCount": 0
+  },
+  {
+    "id": "25430e57-734e-4d70-b8f5-dcb5de01e8ff",
+    "name": "LINE Seed TW",
+    "en": "LINE Seed TW",
+    "family": "wenfeng-lnsw",
+    "normalized": "Lnsw",
+    "designer": "LY Corporation",
+    "designerShort": "LY Corporation",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Thin",
+      "Regular",
+      "Bold",
+      "ExtraBold"
+    ],
+    "description": "LINE Seed TW。字内写着 OFL 1.1，版权行是 LY Corporation。LY 公开的 LINE Seed 条款是另一份免费商用许可。放了特细、常规、粗、特粗。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright LY Corporation",
+    "foundry": "LY Corporation",
+    "brand": {
+      "name": "LY Corporation",
+      "slug": "lineseed",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/line/seed",
+      "description": "LINE Seed TW。字内写 OFL 1.1。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "繁体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 13918,
+    "glyphCount": 14038,
+    "viewCount": 0
+  },
+  {
+    "id": "49feea55-1ff6-41fc-839c-3f9986df918c",
+    "name": "莫大毛笔",
+    "en": "Bakudai",
+    "family": "wenfeng-mdmz",
+    "normalized": "Mdmz",
+    "designer": "Max Yao",
+    "designerShort": "Max Yao",
+    "category": "手写体",
+    "tags": [],
+    "weights": [
+      "Light",
+      "Regular",
+      "Medium",
+      "Bold"
+    ],
+    "description": "莫大毛笔。字内家族名 Bakudai，基于衡山毛笔。和库里的爆呆字符数相同，中文名不同，另列一款。OFL 1.1。放了细、常规、中、粗。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/max32002",
+    "licenseFileUrl": "",
+    "licenseNotes": "可免费商用、可修改。修改版须改名，不得单独售卖字体文件。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright Chun yu Yao. Based on Aoyagi Kouzan.",
+    "foundry": "Aqua",
+    "brand": {
+      "name": "Aqua",
+      "slug": "aqua",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/max32002",
+      "description": "Aqua / max32002"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "繁体中文",
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 24495,
+    "glyphCount": 24947,
+    "viewCount": 0
+  },
+  {
+    "id": "39a52c13-4618-4864-89df-d3c6336bc038",
+    "name": "香萃打字机",
+    "en": "Xiangcui Typewriter W15",
+    "family": "wenfeng-xcdz",
+    "normalized": "Xcdz",
+    "designer": "香萃",
+    "designerShort": "香萃",
+    "category": "Mono",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "香萃打字机 W15。字内没有许可正文。同目录的香萃刻宋写的是 OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "免费商用",
+    "licenseUrl": "https://github.com/Miiiller",
+    "licenseFileUrl": "",
+    "licenseNotes": "字内没有许可正文。同目录的香萃刻宋写的是 OFL 1.1。这一款只记免费商用，修改条款没有写在文件里。",
+    "licenseVerified": false,
+    "purchaseUrl": null,
+    "copyright": "",
+    "foundry": "香萃",
+    "brand": {
+      "name": "香萃",
+      "slug": "xiangcui",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Miiiller",
+      "description": "香萃。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 7297,
+    "glyphCount": 7300,
+    "viewCount": 0
+  },
+  {
+    "id": "73d8769d-fd8a-420a-a1d3-e4572021fe58",
+    "name": "香萃潮汐宋",
+    "en": "Xiangcui Tide Song W15",
+    "family": "wenfeng-xccx",
+    "normalized": "Xccx",
+    "designer": "香萃",
+    "designerShort": "香萃",
+    "category": "宋体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "香萃潮汐宋 W15。字内没有许可正文。同目录的香萃刻宋写的是 OFL 1.1。",
+    "license": "免费商用",
+    "licenseName": "免费商用",
+    "licenseUrl": "https://github.com/Miiiller",
+    "licenseFileUrl": "",
+    "licenseNotes": "字内没有许可正文。同目录的香萃刻宋写的是 OFL 1.1。这一款只记免费商用，修改条款没有写在文件里。",
+    "licenseVerified": false,
+    "purchaseUrl": null,
+    "copyright": "",
+    "foundry": "香萃",
+    "brand": {
+      "name": "香萃",
+      "slug": "xiangcui",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Miiiller",
+      "description": "香萃。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 7297,
+    "glyphCount": 7300,
+    "viewCount": 0
+  },
+  {
+    "id": "26abf312-2441-447a-a66d-e3d3c01188f4",
+    "name": "香萃零度黑",
+    "en": "Xiangcui Zero Hei",
+    "family": "wenfeng-xcld",
+    "normalized": "Xcld",
+    "designer": "香萃",
+    "designerShort": "香萃",
+    "category": "无衬线字体",
+    "tags": [],
+    "weights": [
+      "Regular"
+    ],
+    "description": "香萃零度黑 2.0。字内版权仍是 Adobe 2017，保留名 Source，没有另写 OFL。是思源的改作。",
+    "license": "免费商用",
+    "licenseName": "免费商用",
+    "licenseUrl": "https://github.com/Miiiller/Xiangcui-ZeroHei",
+    "licenseFileUrl": "",
+    "licenseNotes": "字内版权仍是 Adobe 2017，保留名 Source，没有另写 OFL。是思源的改作。",
+    "licenseVerified": false,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2017 Adobe Systems Incorporated. Reserved Font Name Source.",
+    "foundry": "香萃",
+    "brand": {
+      "name": "香萃",
+      "slug": "xiangcui",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Miiiller",
+      "description": "香萃。"
+    },
+    "releaseYear": null,
+    "version": "1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 11698,
+    "glyphCount": 11792,
     "viewCount": 0
   }
 ]

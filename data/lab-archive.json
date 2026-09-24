@@ -112,6 +112,13 @@
           "assets": ["css/foundry-hero-options.css", "js/pages/foundry-hero-options.js"]
         },
         {
+          "href": "foundry-profile-options.html",
+          "title": "厂商详情顶栏四套",
+          "status": "active",
+          "note": "单家页顶区偏挤；甲疏栏 / 乙通栏 / 丙简介 / 丁现页",
+          "assets": ["css/foundry-profile-options.css", "js/pages/foundry-profile-options.js"]
+        },
+        {
           "href": "foundry-join-options.html",
           "title": "入驻 CTA 四套",
           "status": "shipped-ref",

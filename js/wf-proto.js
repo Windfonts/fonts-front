@@ -463,7 +463,8 @@
   }
 
   /** 动态引用：family 用 wenfeng-{slug}，weight 用小写字重名。
-   *  现网 app.windfonts.com/api/css 认 subset（或 lang），不认 version；version 仍附上，给仍按旧参数读的边缘。
+   *  公开域名只有 cn / hk / en。/api/css 以后由反代改写到上游；复制出去的地址现在就用当前节点。
+   *  上游认 subset（或 lang），不认 version；version 仍附上，给仍按旧参数读的边缘。
    *  多款字体用 | 分隔或传入数组，如 wenfeng-albbpht|wenfeng-ibmps。 */
   function resolveCssFamilyName(token) {
     let t = String(token || '').trim();
@@ -501,8 +502,7 @@
       'subset=' + encodeURIComponent(subset),
       'version=' + encodeURIComponent(subset)
     ];
-    /* cn/hk/en 的 /api/css 现在打到 OSS，返回 404。能出 CSS 的是 app.windfonts.com。 */
-    return 'https://app.windfonts.com/api/css?' + params.join('&');
+    return (origin || cdnOrigin()) + '/api/css?' + params.join('&');
   }
 
   function cdnHost() {

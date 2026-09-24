@@ -249,9 +249,6 @@
               ? '<details class="side-fold"><summary>' + WFChrome.icon('chevron-down') + '简介</summary>' +
                 '<p class="desc" id="desc">' + esc(font.description) + '</p></details>'
               : '') +
-            (WFChrome.brandVerified(font)
-              ? '<p class="claim"><span class="badge-verified">' + WFChrome.VERIFIED_SVG + '</span> 已认领</p>'
-              : '<p class="claim is-quiet">' + WFChrome.icon('verified') + '未认领 · <a href="' + (WFChrome.brandSlug(font) ? 'claim.html?slug=' + encodeURIComponent(WFChrome.brandSlug(font)) : 'claim.html') + '">认领</a></p>') +
             WFSponsor.html(WFChrome.brandInfo(font)) +
             '<div class="side-meta"><h3>' + WFChrome.icon('info') + '资料</h3><dl class="kv">' + kv.map(function (r) {
               return '<div' + (r.dev ? ' class="for-dev"' : '') + '><dt>' + WFChrome.icon(r.icon) + esc(r.dt) + '</dt><dd' + (!r.html && /^[\d,.\s]+$/.test(r.dd) ? ' class="num"' : '') + '>' +
@@ -433,7 +430,7 @@
     const go = function () {
       const id = WFProto.getQuery('id');
       const slug = WFProto.getQuery('slug');
-      const font = (id && WFProto.getFont(id)) || (slug && WFProto.getFontBySlug(slug)) || list[0];
+      const font = (id && WFProto.getFont(id)) || (slug && WFProto.getFontBySlug(slug)) || (!id && !slug ? list[0] : null);
       if (!font) { root.innerHTML = '<p class="empty">未找到该字体。<a href="fonts.html">回到字体库</a></p>'; return; }
       const q = new URLSearchParams(location.search);
       const extras = {};
