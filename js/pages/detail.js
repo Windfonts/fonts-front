@@ -115,15 +115,21 @@
       : proofRow('国标声明', '厂商声明未知。', '', '');
     html += proofRow('文风存档', verified ? '收录入库并已做原文核对。' : '请自行阅读查看原始授权。', date,
       '<a class="lp-act" href="https://wenfeng.org/font/' + esc(slug) + '" rel="noopener noreferrer">wenfeng.org ↗</a>');
+    const vinfo = font.ownerInfo || font.foundryInfo || {};
+    const tr = vinfo.trackRecord;
+    let recWhat = '厂商记录待收录。', recWhen = '', recLink = '';
+    if (tr && Array.isArray(tr.incidents)) {
+      const n = tr.incidents.filter(function (e) { return e.type !== '政策保持'; }).length;
+      if (n > 0) {
+        recWhat = '厂商有 <b>' + n + '</b> 起授权变更记录。';
+        recLink = '<a class="lp-act" href="foundry.html?slug=' + encodeURIComponent(vinfo.id) + '#record">厂商页 ↗</a>';
+      } else {
+        recWhat = '未发现授权变更记录。';
+      }
+      recWhen = tr.lastChecked || '';
+    }
+    html += proofRow('厂商记录', recWhat, recWhen, recLink);
     return html + '</div>';
-  }
-
-  /* 厂商有授权变更记录（trackRecord）时出一枚中性徽章链到厂商页，无记录零显示 */
-  function trackBadgeHtml(font) {
-    const info = font.ownerInfo || font.foundryInfo;
-    const tr = info && info.trackRecord;
-    if (!tr || !Array.isArray(tr.incidents) || !tr.incidents.length) return '';
-    return '<a class="lp-badge lp-badge-warn" href="foundry.html?slug=' + encodeURIComponent(info.id) + '#record">厂商有授权变更记录 →</a>';
   }
 
   /* 条款徽章也按档位出固定三条，与句子同一张配置表。
@@ -308,7 +314,6 @@
                 tierPoints(proofTier(font), font.rfn).map(function (p) {
                   return '<span class="lp-badge">' + (p[0] === 'ok' ? '✓ ' : '× ') + esc(p[1]) + '</span>';
                 }).join('') +
-                trackBadgeHtml(font) +
               '</div>' +
               '<p class="license-foot">声明为厂商原文摘录，条款以权利人为准。 <a href="license.html">许可类型说明</a></p></details></div>' +
           '</section>' +
