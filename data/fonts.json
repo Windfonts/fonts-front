@@ -951,6 +951,880 @@
     "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
   },
   {
+    "id": "2f857187-d1c7-450a-a309-648326071a5b",
+    "name": "仓耳与墨 W01",
+    "en": "TsangerYuMo W01",
+    "family": "wenfeng-ceym1",
+    "normalized": "TsangerYuMoW01",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳与墨 W01」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7042,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "e09968b8-0a28-4de5-afa7-38d6416886de",
+    "name": "仓耳与墨 W02",
+    "en": "TsangerYuMo W02",
+    "family": "wenfeng-ceym2",
+    "normalized": "TsangerYuMoW02",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳与墨 W02」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7042,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "46ae858c-dd84-41ed-b9f5-de6a17506dac",
+    "name": "仓耳与墨 W03",
+    "en": "TsangerYuMo W03",
+    "family": "wenfeng-ceym3",
+    "normalized": "TsangerYuMoW03",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳与墨 W03」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7042,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "397d5a62-9b3a-4a78-9035-30c05df754a4",
+    "name": "仓耳与墨 W04",
+    "en": "TsangerYuMo W04",
+    "family": "wenfeng-ceym4",
+    "normalized": "TsangerYuMoW04",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳与墨 W04」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7042,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "2a6e445c-4572-4d84-b8e3-ad2626f1cdc5",
+    "name": "仓耳与墨 W05",
+    "en": "TsangerYuMo W05",
+    "family": "wenfeng-ceym5",
+    "normalized": "TsangerYuMoW05",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳与墨 W05」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7042,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "fc18c914-d6ff-4459-ba13-280d6c72dce4",
+    "name": "仓耳渔阳体 W01",
+    "en": "TsangerYuYangT W01",
+    "family": "wenfeng-ceyyt1",
+    "normalized": "TsangerYuYangTW01",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳渔阳体 W01」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7049,
+    "glyphCount": 7018,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "58bd58cb-3e1a-4f3c-8503-b8ff8d44fefa",
+    "name": "仓耳渔阳体 W02",
+    "en": "TsangerYuYangT W02",
+    "family": "wenfeng-ceyyt2",
+    "normalized": "TsangerYuYangTW02",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳渔阳体 W02」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7049,
+    "glyphCount": 7018,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "214cb4fe-a4ee-4d84-99c2-8c30f8b49b59",
+    "name": "仓耳渔阳体 W03",
+    "en": "TsangerYuYangT W03",
+    "family": "wenfeng-ceyyt3",
+    "normalized": "TsangerYuYangTW03",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳渔阳体 W03」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7049,
+    "glyphCount": 7018,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "11ac699e-3f0e-4d04-8f33-ed59bd58cbfa",
+    "name": "仓耳渔阳体 W04",
+    "en": "TsangerYuYangT W04",
+    "family": "wenfeng-ceyyt4",
+    "normalized": "TsangerYuYangTW04",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳渔阳体 W04」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7049,
+    "glyphCount": 7018,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "867189a5-84ea-46b2-b039-fc2b353c65c6",
+    "name": "仓耳渔阳体 W05",
+    "en": "TsangerYuYangT W05",
+    "family": "wenfeng-ceyyt5",
+    "normalized": "TsangerYuYangTW05",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳渔阳体 W05」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7049,
+    "glyphCount": 7018,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "475babd4-ff01-4451-b3dc-d0906953807a",
+    "name": "仓耳舒圆体 W02",
+    "en": "TsangerShuYuanT W02",
+    "family": "wenfeng-cesyt2",
+    "normalized": "TsangerShuYuanTW02",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳舒圆体 W02」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7042,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "31560b0e-c845-4b28-a0b0-8c7d3e8cab0f",
+    "name": "仓耳舒圆体 W03",
+    "en": "TsangerShuYuanT W03",
+    "family": "wenfeng-cesyt3",
+    "normalized": "TsangerShuYuanTW03",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳舒圆体 W03」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7042,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "ceb78de7-a297-4258-b38b-35214173cebf",
+    "name": "仓耳舒圆体 W04",
+    "en": "TsangerShuYuanT W04",
+    "family": "wenfeng-cesyt4",
+    "normalized": "TsangerShuYuanTW04",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳舒圆体 W04」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7042,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "b245f77e-c63e-444b-88ac-d54ea51b0381",
+    "name": "仓耳舒圆体 W05",
+    "en": "TsangerShuYuanT W05",
+    "family": "wenfeng-cesyt5",
+    "normalized": "TsangerShuYuanTW05",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。显示名取 name 表 Windows 简体中文 FamilyName「仓耳舒圆体 W05」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7042,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "5922b656-f028-4aa6-b893-196ae96fa5c2",
+    "name": "仓耳非白 W01",
+    "en": "TsangerFeiBai W01",
+    "family": "wenfeng-cefb1",
+    "normalized": "TsangerFeiBaiW01",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。name 表无中文记录（Windows Full name 为乱码「???? W0x」），显示名取官方产品名「仓耳非白」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7010,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "3f907936-3c3c-4832-9572-6e283f5e0be7",
+    "name": "仓耳非白 W02",
+    "en": "TsangerFeiBai W02",
+    "family": "wenfeng-cefb2",
+    "normalized": "TsangerFeiBaiW02",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。name 表无中文记录（Windows Full name 为乱码「???? W0x」），显示名取官方产品名「仓耳非白」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7010,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "f8d64f7b-8ac3-4cae-8904-a140b51acd76",
+    "name": "仓耳非白 W03",
+    "en": "TsangerFeiBai W03",
+    "family": "wenfeng-cefb3",
+    "normalized": "TsangerFeiBaiW03",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。name 表无中文记录（Windows Full name 为乱码「???? W0x」），显示名取官方产品名「仓耳非白」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7010,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "9742eef9-8511-4ea5-a76c-21d29ee92aba",
+    "name": "仓耳非白 W04",
+    "en": "TsangerFeiBai W04",
+    "family": "wenfeng-cefb4",
+    "normalized": "TsangerFeiBaiW04",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。name 表无中文记录（Windows Full name 为乱码「???? W0x」），显示名取官方产品名「仓耳非白」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7010,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
+    "id": "e58216ad-8b55-4a7b-8440-5e4d4e8c2ed5",
+    "name": "仓耳非白 W05",
+    "en": "TsangerFeiBai W05",
+    "family": "wenfeng-cefb5",
+    "normalized": "TsangerFeiBaiW05",
+    "designer": "Beijing Tsanger Character Technology Co., Ltd.",
+    "designerShort": "Beijing Tsanger Character Technology Co.",
+    "category": "",
+    "tags": [
+      "免费商用",
+      "仓耳字库"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "列入2020-11-11《仓耳字库免费开源字体授权声明》附件名单（22 款）的免费开源字体。官方产品页声明：本字体任何用户可以全球任何领域永久免费商用。",
+    "license": "开源免费商用",
+    "licenseName": "仓耳字库免费开源字体授权声明",
+    "licenseUrl": "https://www.tsanger.cn/category/114",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+    "licenseNotes": "来源：github.com/cntrump/tsanger_free_fonts 镜像（官方 tsanger.cn/category/114 免费字体栏，官方站下载须登录）。授权依《仓耳字库免费开源字体授权声明》2020-11-11，licenseUrl https://www.tsanger.cn/category/114。name 表无中文记录（Windows Full name 为乱码「???? W0x」），显示名取官方产品名「仓耳非白」。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
+    "foundry": "造字工房",
+    "brand": {
+      "name": "仓耳字库 (Tsanger)",
+      "slug": "tsanger",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.makefont.com",
+      "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
+    },
+    "releaseYear": null,
+    "version": "1.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [],
+    "charCount": 7010,
+    "glyphCount": 7011,
+    "viewCount": 0,
+    "licenseVerifiedAt": "2026-09-24",
+    "licenseQuote": "授予在全球所有领域任何用户永久免费商用的权力，可用于免费使用、研究、复制、合并、嵌入、修改、再分发已修改和未修改的字形副本"
+  },
+  {
     "id": "3efb5b84-658f-4f0c-8647-a6c4b1bb1b48",
     "name": "CJK手写字",
     "en": "cjkFonts",
