@@ -362,7 +362,7 @@
 
 /* ===== 出处与依据 · 三节出处链（授权协议 / 国标声明 / 文风存档）===== */
 .license-fold .lp5-chain { position: relative; margin: 0 0 0 0.35rem; padding-left: 1.3rem; border-left: 1px solid var(--rule); }
-.lp5-node { position: relative; padding: 0.42rem 0; }
+.lp5-node { position: relative; padding: 0.72rem 0; }
 .lp5-node::before { content: ""; position: absolute; left: -1.55rem; top: 0.85rem; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--ink); }
 .lp5-node .head { display: flex; align-items: baseline; gap: var(--s-3); min-width: 0; }
 .lp5-node .who { font-size: var(--fs-12); font-weight: var(--fw-label); color: var(--gray); width: 4.6em; flex: none; }

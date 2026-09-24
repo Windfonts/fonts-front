@@ -91,6 +91,14 @@
     return html + '</div>';
   }
 
+  /* 条款徽章也按档位出固定三条，与句子同一张配置表 */
+  function tierPoints(tier) {
+    if (tier === '免费商用') return [['ok', '个人与企业商用免费'], ['no', '修改字体文件'], ['no', '再分发字体文件']];
+    if (tier === '个人免费') return [['ok', '个人非商业使用免费'], ['no', '商业使用'], ['no', '再分发字体文件']];
+    if (tier === '需授权') return [['ok', '取得授权后按合同使用'], ['no', '未授权公开使用'], ['no', '再分发字体文件']];
+    return [];
+  }
+
   function lineageWeight(f) {
     const ws = ((f && f.weights) || []).map(function (n) { return Number(WFProto.weightToCss(n)) || 400; });
     if (!ws.length) return 400;
@@ -255,13 +263,12 @@
             '<details class="side-fold license-fold"><summary>' + WFChrome.icon('chevron-down') + '出处与依据</summary>' +
               proofChainHtml(font) +
               '<div class="lp5-points">' +
-                lic.ok.slice(0, 3).map(function (t) { return '<span class="lp-badge">✓ ' + esc(t) + '</span>'; }).join('') +
-                lic.no.slice(0, 3).map(function (t) { return '<span class="lp-badge">× ' + esc(t) + '</span>'; }).join('') +
+                tierPoints(WFChrome.licenseTier(font)).map(function (p) {
+                  return '<span class="lp-badge">' + (p[0] === 'ok' ? '✓ ' : '× ') + esc(p[1]) + '</span>';
+                }).join('') +
               '</div>' +
               (lic.notes ? '<p class="license-notes">' + esc(lic.notes) + '</p>' : '') +
-              '<p class="license-foot">' + (font.copyright ? esc(font.copyright) + '<br>' : '') +
-                (font.purchaseUrl ? '<a href="' + esc(font.purchaseUrl) + '" target="_blank" rel="noopener noreferrer">购买授权</a>' : '') +
-                ' <a href="license.html">许可类型说明</a></p></details></div>' +
+              '<p class="license-foot">声明为厂商原文摘录，条款以权利人为准。 <a href="license.html">许可类型说明</a></p></details></div>' +
           '</section>' +
           lineageSection +
         '</div>' +
