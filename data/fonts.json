@@ -11483,14 +11483,14 @@
   "licenseVerified": false,
   "purchaseUrl": null,
   "copyright": "",
-  "foundry": "HelloFont / Fontree",
+  "foundry": "黄煜臣",
   "brand": {
-   "name": "fontree",
-   "slug": "fontree",
+   "name": "黄煜臣",
+   "slug": "huangyuchen",
    "logoUrl": "",
-   "avatarUrl": "https://cravatar.com/avatar/8166bd2da28884109bb2d7324e88390d777074da2fa22e3dcd5561a5778d8e22?s=144&d=identicon",
-   "website": "",
-   "description": "fontree出品的字体"
+   "avatarUrl": "https://cravatar.com/avatar/ca7c8c0f433b60f3733d9fe984ea6e9124fe94ddf529713cf85542dd4d144d07?s=144&d=identicon",
+   "website": "https://www.zcool.com.cn/u/653645",
+   "description": "独立字体作者，「江西拙楷体」作者。"
   },
   "releaseYear": 2023,
   "version": "1.0.0",
@@ -11509,7 +11509,7 @@
   "charCount": 6248,
   "glyphCount": 6260,
   "viewCount": 33,
-  "foundryAvatar": "https://cravatar.com/avatar/8166bd2da28884109bb2d7324e88390d777074da2fa22e3dcd5561a5778d8e22?s=144&d=identicon"
+  "foundryAvatar": "https://cravatar.com/avatar/ca7c8c0f433b60f3733d9fe984ea6e9124fe94ddf529713cf85542dd4d144d07?s=144&d=identicon"
  },
  {
   "id": "9a773962-c79c-4b70-a208-723df6354afa",
@@ -21692,15 +21692,15 @@
   "licenseNotes": "可免费商用，不可修改字体文件后再分发，不可单独售卖字体文件",
   "licenseVerified": false,
   "purchaseUrl": null,
-  "copyright": "AllrightsreservedbyLawyerHuangKaihua",
-  "foundry": "ZiTiJia",
+  "copyright": "All rights reserved by Lawyer Huang Kaihua",
+  "foundry": "黄凯桦",
   "brand": {
-   "name": "ZiTiJia",
-   "slug": "zitijia",
+   "name": "黄凯桦",
+   "slug": "huangkaihua",
    "logoUrl": "",
-   "avatarUrl": "assets/avatars/zitijia.webp",
-   "website": "https://www.zitijia.com/",
-   "description": "字体下载与AI造字平台，提供免费商用字体下载、字体转换器、AI神笔造字等服务，部分字体免费商用。"
+   "avatarUrl": "https://cravatar.com/avatar/8a81be1dbc0c2af2a4078c8b44bca3c4c71373e8557161d992898c272a9be52a?s=144&d=identicon",
+   "website": "http://www.huangkaihua.com",
+   "description": "执业律师，个人手写字体「黄凯桦律师手写体」作者，免费商用。"
   },
   "releaseYear": 2024,
   "version": "1.0.0",
@@ -21717,7 +21717,7 @@
   "charCount": 7505,
   "glyphCount": 7415,
   "viewCount": 26,
-  "foundryAvatar": "https://cravatar.com/avatar/a8077a715a3f3341e83402173b2cec49d6fd5c9470b49c2454f6f7a18c0b3663?s=144&d=identicon"
+  "foundryAvatar": "https://cravatar.com/avatar/8a81be1dbc0c2af2a4078c8b44bca3c4c71373e8557161d992898c272a9be52a?s=144&d=identicon"
  },
  {
   "id": "62e41b2a-f8c4-456f-91f7-104c618cc401",

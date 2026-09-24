@@ -2104,6 +2104,44 @@
       "openSource": false,
       "claimed": false,
       "description": "LINE Seed TW。字内写 OFL 1.1。LY 公开条款是另一份免费商用许可。"
+    },
+    {
+      "id": "huangkaihua",
+      "name": "黄凯桦",
+      "en": "Huang Kaihua",
+      "short": "黄凯桦",
+      "website": "http://www.huangkaihua.com",
+      "aliases": [
+        "黄凯桦",
+        "Huang Kaihua",
+        "Lawyer Huang Kaihua"
+      ],
+      "fontNames": [
+        "黄凯桦律师手写体"
+      ],
+      "kind": "individual",
+      "openSource": false,
+      "claimed": false,
+      "description": "执业律师，「黄凯桦律师手写体」作者，字体免费商用。"
+    },
+    {
+      "id": "huangyuchen",
+      "name": "黄煜臣",
+      "en": "Huang Yuchen",
+      "short": "黄煜臣",
+      "website": "https://www.zcool.com.cn/u/653645",
+      "aliases": [
+        "黄煜臣",
+        "huang yu chen",
+        "Huang Yuchen"
+      ],
+      "fontNames": [
+        "江西拙楷体"
+      ],
+      "kind": "individual",
+      "openSource": false,
+      "claimed": false,
+      "description": "独立字体作者，「江西拙楷体」作者。"
     }
   ]
 }

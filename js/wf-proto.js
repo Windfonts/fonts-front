@@ -144,7 +144,7 @@
       .catch(function () { return { foundries: [] }; });
     const evidenceReq = fetch(dataUrl('license-evidence.json')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
       .catch(function () { return { standards: {}, names: {} }; });
-    const lineageReq = fetch(dataUrl('font-lineage.json?v=20260924w')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
+    const lineageReq = fetch(dataUrl('font-lineage.json?v=20260924x')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
       .catch(function () { return { groups: {}, byName: {} }; });
     const avatarsReq = fetch(dataUrl('avatars.json?v=20260921d')).then(function (r) { return r.ok ? r.json() : {}; })
       .catch(function () { return {}; });
@@ -484,7 +484,7 @@
     }
     return 'wenfeng-' + lower;
   }
-  function cssApiUrl(family, weight, version, origin) {
+  function cssApiUrl(family, weight, version, origin, extra) {
     const parts = Array.isArray(family)
       ? family
       : String(family || '').split('|').map(function (s) { return s.trim(); }).filter(Boolean);
@@ -502,6 +502,17 @@
       'subset=' + encodeURIComponent(subset),
       'version=' + encodeURIComponent(subset)
     ];
+    extra = extra || {};
+    if (extra.fallback) {
+      const fb = resolveCssFamilyName(extra.fallback);
+      if (fb) {
+        params.push('fallback=' + encodeURIComponent(fb));
+        if (extra.fallbackWeight) {
+          const fbw = String(extra.fallbackWeight).toLowerCase().replace(/[\s-]+/g, '');
+          params.push('fallbackWeight=' + encodeURIComponent(fbw));
+        }
+      }
+    }
     return (origin || cdnOrigin()) + '/api/css?' + params.join('&');
   }
 

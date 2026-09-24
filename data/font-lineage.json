@@ -2207,6 +2207,18 @@
       "makerId": "nanigashi",
       "relation": "original",
       "licenseFollows": "inherit"
+    },
+    "黄凯桦律师手写体": {
+      "ownerId": "huangkaihua",
+      "makerId": "huangkaihua",
+      "relation": "original",
+      "licenseFollows": "inherit"
+    },
+    "江西拙楷体": {
+      "ownerId": "huangyuchen",
+      "makerId": "huangyuchen",
+      "relation": "original",
+      "licenseFollows": "inherit"
     }
   }
 }
