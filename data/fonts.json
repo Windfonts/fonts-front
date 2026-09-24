@@ -6604,45 +6604,6 @@
     "viewCount": 40
   },
   {
-    "id": "61d2ed6f-cf5f-4f5a-b523-42ae686e8931",
-    "name": "庞门正道粗书体",
-    "en": "庞门正道粗书体",
-    "family": "wenfeng-pmzdcst",
-    "normalized": "PangMenZhengDaoCu",
-    "designer": "",
-    "designerShort": "—",
-    "category": "",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "",
-    "license": "免费商用",
-    "licenseName": "庞门正道粗书体授权协议",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "庞门正道",
-    "brand": {
-      "name": "庞门正道",
-      "slug": "pangmen",
-      "logoUrl": "",
-      "avatarUrl": "",
-      "website": "",
-      "description": "PangMenZhengDao出品的字体"
-    },
-    "releaseYear": null,
-    "version": "1.000",
-    "languages": [],
-    "useCases": [],
-    "charCount": 1,
-    "glyphCount": 1,
-    "viewCount": 16
-  },
-  {
     "id": "6b5fa63f-6f44-41f3-a715-6c7f09295df6",
     "name": "庞门正道真贵楷体",
     "en": "庞门正道真贵楷体",
@@ -6820,8 +6781,8 @@
   },
   {
     "id": "528c89d5-af53-4ac7-bca1-b3c23e28a4df",
-    "name": "庞门正道标题体 6.0",
-    "en": "PangMenZhengDao-Cu6.0",
+    "name": "庞门正道粗书体",
+    "en": "庞门正道粗书体",
     "family": "wenfeng-pmzdcsd",
     "normalized": "Pmzdcsd",
     "designer": "庞门正道",
@@ -6833,9 +6794,9 @@
     "weights": [
       "Regular"
     ],
-    "description": "庞门正道标题体是由庞门正道设计公众号联合自由空间创意工作室于2016年底发布的一款免费商用字体。该字体由12位设计师共同设计，整体字形方正，笔画均衡，融合了现代设计风格，兼具方与圆的特征，棱角与弧度并存。字体结构合理，线条较粗，视觉上坚毅大气，适用于品牌标题、广告、电商海报、宣传单页等需要吸引眼球的商业设计场景。",
+    "description": "庞门正道粗书体是庞门正道推出的免费商用字体，笔画粗壮厚重，视觉冲击力强，适用于品牌标题、广告、电商海报等大字号展示场景。可免费商用，不可修改字体文件，不可再分发。",
     "license": "免费商用",
-    "licenseName": "庞门正道标题体 6.0授权协议",
+    "licenseName": "庞门正道粗书体授权协议",
     "licenseUrl": "",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Pmzdcsd/LICENSE",
     "licenseNotes": "可免费商用。不可修改字体文件，不可再分发。",
