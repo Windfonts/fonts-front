@@ -121,7 +121,7 @@
     const verified = !!font.licenseVerified;
     return '<div class="lp5-meta"><span class="icon">' + WFChrome.icon('certificate') + '</span>' +
       '<span class="who">许可状态</span>' +
-      '<span class="what">' + (verified ? '已核对协议原文 · 文风字体（Windfonts）' : '协议原文待核对 · 文风字体（Windfonts）') + '</span></div>';
+      '<span class="what">' + (verified ? '已核对协议原文 · 文风字体（Windfonts.com）可为您提供免费服务。' : '协议原文待核对 · 文风字体（Windfonts.com）') + '</span></div>';
   }
 
   function proofChainHtml(font) {

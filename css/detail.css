@@ -377,7 +377,7 @@
 
 /* 许可状态行：复用链条行结构（who 列同宽），空心点与实心事件点区分 */
 .license-fold .lp5-meta { position: relative; display: flex; align-items: baseline; gap: var(--s-3); margin: 0 0 var(--s-4) 0.35rem; padding-left: 1.3rem; font-size: var(--fs-12); }
-.license-fold .lp5-meta .icon { position: absolute; left: -0.4rem; top: 0.05em; display: inline-flex; color: var(--gray); }
+.license-fold .lp5-meta .icon { position: absolute; left: -0.4rem; top: 50%; transform: translateY(-50%); display: inline-flex; color: var(--gray); }
 .license-fold .lp5-meta .icon svg { width: 0.8rem; height: 0.8rem; }
 .license-fold .lp5-meta .who { width: 4.6em; flex: none; font-weight: var(--fw-label); color: var(--ink-2); }
 .license-fold .lp5-meta .what { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--gray); }
