@@ -118,6 +118,14 @@
     return html + '</div>';
   }
 
+  /* 厂商有授权变更记录（trackRecord）时出一枚中性徽章链到厂商页，无记录零显示 */
+  function trackBadgeHtml(font) {
+    const info = font.ownerInfo || font.foundryInfo;
+    const tr = info && info.trackRecord;
+    if (!tr || !Array.isArray(tr.incidents) || !tr.incidents.length) return '';
+    return '<a class="lp-badge lp-badge-warn" href="foundry.html?slug=' + encodeURIComponent(info.id) + '#record">厂商有授权变更记录 →</a>';
+  }
+
   /* 条款徽章也按档位出固定三条，与句子同一张配置表。
    * 开源档追加 RFN 徽章：版权行声明 with Reserved Font Name → 修改版须换名；
    * 已核对且无声明 → 可沿用原名；未核对原文（rfn 缺省）→ 不显示。 */
@@ -300,6 +308,7 @@
                 tierPoints(proofTier(font), font.rfn).map(function (p) {
                   return '<span class="lp-badge">' + (p[0] === 'ok' ? '✓ ' : '× ') + esc(p[1]) + '</span>';
                 }).join('') +
+                trackBadgeHtml(font) +
               '</div>' +
               '<p class="license-foot">声明为厂商原文摘录，条款以权利人为准。 <a href="license.html">许可类型说明</a></p></details></div>' +
           '</section>' +

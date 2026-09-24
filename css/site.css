@@ -1131,3 +1131,12 @@ body.is-index .site-extra-footer { margin-top: 0; padding-top: var(--s-6); }
   }
   .home-partners-list img { height: 1.5rem; max-width: 100%; }
 }
+
+/* ===== 厂商页 · 授权记录时间线 ===== */
+.record-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.record-list li { display: flex; align-items: baseline; gap: var(--s-3); padding: 0.6rem 0; border-bottom: 1px solid var(--rule); font-size: var(--fs-13); }
+.record-list .rec-date { flex: none; color: var(--gray-2); font-size: var(--fs-12); min-width: 4.5em; }
+.record-list .rec-type { flex: none; font-size: var(--fs-12); font-weight: var(--fw-label); padding: 0.12rem 0.6rem; border: 1px solid var(--rule); border-radius: var(--radius-pill); color: var(--ink-2); }
+.record-list .rec-sum { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.record-list .rec-src { flex: none; font-size: var(--fs-12); color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
+.rec-note { margin: var(--s-3) 0 0; font-size: var(--fs-12); color: var(--gray-2); }

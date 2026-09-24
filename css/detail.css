@@ -382,3 +382,5 @@
 /* 开源商用档：绿底芯片（免费商用保持墨色） */
 .license-head .tier.is-open { background: #1f7a3f; border-color: #1f7a3f; }
 [data-theme="dark"] .license-head .tier.is-open { background: #2c8f52; border-color: #2c8f52; }
+.lp5-points .lp-badge-warn { border-color: #b08a2e; color: #7a6116; text-decoration: none; }
+[data-theme="dark"] .lp5-points .lp-badge-warn { border-color: #8a7434; color: #cbb06a; }

@@ -658,6 +658,24 @@
     return bits.join(' · ');
   }
 
+  /* 授权记录：厂商级 trackRecord，仅收录可查证事件（每条带出处），无记录零渲染 */
+  function recordSectionHtml(info) {
+    var tr = info && info.trackRecord;
+    if (!tr || !Array.isArray(tr.incidents) || !tr.incidents.length) return '';
+    var rows = tr.incidents.map(function (e) {
+      var host = '';
+      try { host = new URL(e.sourceUrl).hostname.replace(/^www\./, ''); } catch (err) {}
+      return '<li><span class="rec-date">' + esc(e.date || '') + '</span>' +
+        '<span class="rec-type">' + esc(e.type || '') + '</span>' +
+        '<span class="rec-sum">' + esc(e.summary || '') + '</span>' +
+        (e.sourceUrl ? '<a class="rec-src" href="' + esc(e.sourceUrl) + '" target="_blank" rel="nofollow noopener noreferrer">' + esc(host) + ' ↗</a>' : '') +
+        '</li>';
+    }).join('');
+    return '<section class="foundry-sec" id="record"><div class="section-head"><h2>授权记录 <span class="n">' + tr.incidents.length + '</span></h2></div>' +
+      '<ul class="record-list">' + rows + '</ul>' +
+      '<p class="rec-note">仅收录可查证事件，每条附出处。' + esc(tr.lastChecked || '') + ' 核对。</p></section>';
+  }
+
   function renderOne(list, g) {
     document.body.classList.remove('is-index');
     document.title = g.name + ' · 厂商 · 文风字体';
@@ -725,6 +743,7 @@
         '</aside>' +
       '</header>' +
       ownedHtml(g) +
+      recordSectionHtml(g.info) +
       (g.made.length
         ? '<div class="count-line">受托制作 <strong>' + g.made.length + '</strong> 款 · 版权归品牌方，不计入本页归属</div>' +
           '<ul class="specimens" id="made"></ul>'
