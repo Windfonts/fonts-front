@@ -93,19 +93,28 @@
     const info = font.ownerInfo || font.foundryInfo || {};
     if (!info || !info.id) return '';
     const tr = info.trackRecord;
-    let grade = '优秀', cls = 'is-good', why = '';
+    let n = 0, vendorWide = false;
     if (tr && Array.isArray(tr.incidents)) {
-      const n = tr.incidents.filter(function (e) {
-        return e.type !== '政策保持' && (!e.font || e.font === font.family);
-      }).length;
-      if (n > 0) { grade = '一般'; cls = 'is-mid'; why = '有过授权调整'; }
+      tr.incidents.forEach(function (e) {
+        if (e.type === '政策保持') return;
+        if (e.font && e.font !== font.family) return;
+        n += 1;
+        if (!e.font) vendorWide = true;
+      });
     }
-    return '<p class="trust-line"><span class="trust-label">' + WFChrome.icon('shield') + '厂商信誉</span>' +
+    const grade = n > 0 ? '一般' : '优秀';
+    const cls = n > 0 ? 'is-mid' : 'is-good';
+    const whyLine = n > 0
+      ? (vendorWide ? '所属厂商' : '此字体') + '有 ' + n + ' 项授权调整记录'
+      : '自发布以来未发现争议及授权变更记录';
+    return '<div class="trust-block">' +
+      '<p class="trust-line"><span class="trust-label">' + WFChrome.icon('shield') + '厂商信誉</span>' +
       '<span class="trust-grade ' + cls + '">' + esc(grade) + '</span>' +
-      (why ? '<span class="trust-why">' + esc(why) + '</span>' : '') +
       (info.claimed ? '<span class="trust-claim">' + WFChrome.icon('check') + '已认领</span>' : '') +
       (tr && tr.siteOk === false ? '<span class="trust-site">官网失效 · ' + esc(tr.siteCheckedAt || '') + '确认</span>' : '') + '</p>' +
-      '<p class="trust-note">记录仅描述所列字体在所列时间的情况，不代表该厂商全部产品。信息以权利人最新公示为准，如有出入可通过厂商认领页提出更正。</p>';
+      '<p class="trust-why-line">' + esc(whyLine) + '</p>' +
+      '<p class="trust-note">记录仅描述所列字体在所列时间的情况，不代表该厂商全部产品。信息以权利人最新公示为准，如有出入可通过厂商认领页提出更正。</p>' +
+      '</div>';
   }
 
   function proofMetaLine(font) {
