@@ -89,8 +89,10 @@
   function proofMetaLine(font) {
     const std = OPEN_LICENSE.test(String(font.licenseName || ''));
     const host = hostOf(font.licenseUrl || '');
+    /* 有厂商官网（出处 host 非代码托管站）就是官网；仅当出处只挂在代码托管站才算开源仓库 */
     const repoHost = /(^|\.)(github\.com|gitee\.com|gitlab\.com)$/i.test(host);
-    const src = std ? '标准协议' : (host ? (repoHost ? '开源仓库' : '厂商官网') : '未附原文链接');
+    const hasBrandSite = !!(font.brand && font.brand.website);
+    const src = std ? '标准协议' : (host ? (repoHost && !hasBrandSite ? '开源仓库' : '厂商官网') : '未附原文链接');
     const verified = !!font.licenseVerified;
     const parts = [src, verified ? '已核对原文' : '尚未核对原文'];
     if (verified && font.licenseVerifiedAt) parts.push(font.licenseVerifiedAt + ' 核对');
