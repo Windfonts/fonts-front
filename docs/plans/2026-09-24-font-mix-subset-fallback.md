@@ -215,7 +215,7 @@ GET /api/css?family=wenfeng-xxxsc&weight=regular&subset=zh&localeFallback=auto
 |---|---|
 | 2 字重对齐补全 | **已做**：详情勾选按 CSS weight 精确对齐；对不齐禁用 |
 | 3 覆盖差 | **已做（前台）**：字符表对比千字文简+繁 |
-| **根源裁切** | **vault 已做**：`fallback=` → 补全 face 只留主款缺口；前台改单 link。**须部署 vault** 后现网生效；N1 回源后 cn 链才通 |
+| **根源裁切** | **现网已通**：`fallback=` 只留缺口 face（例 ibmps→syhtsc 约 +0.7KB / 2 face）；`cn…/api/css` 已回源 vault |
 | 5 预算模式 | 未做 |
 | 6 项目烘焙 | 未做 |
 
@@ -341,7 +341,7 @@ GET /api/css?family=wenfeng-xxxsc&weight=regular&subset=zh&localeFallback=auto
 
 | 检查 | 结果 |
 |---|---|
-| `cn.windfonts.com/api/css?...` | **404**（OSS `NoSuchKey`）——边缘未回源，与 HANDOFF 一致 |
+| `cn.windfonts.com/api/css?...` | **200**（2026-09-25 N1 已回源 vault；此前 OSS 404） |
 | `app.windfonts.com/api/css?subset=full\|zh\|zh-common\|en` | **均 200** |
 | `version=zh`（不带有效 subset） | 200，但注释仍是 `(full)`——**version 不换包**，须用 `subset`/`lang` |
 | 字体格式 | CSS 内 **仅 `format("woff2")`**；抽查片为 WOFF2 / CFF |
@@ -350,7 +350,7 @@ GET /api/css?family=wenfeng-xxxsc&weight=regular&subset=zh&localeFallback=auto
 | 片数（`url(...woff2)` 约数） | full ~164 · zh ~186 · **zh-common ~4** · en ~1 |
 | 预览包路径 | `cn.windfonts.com/fonts-packages/Albbpht/Regular/{full\|zh\|zh-common\|en}/result.css` 均 200 |
 
-结论与此前判断一致：**效率最终落在「预计算哪一档子集包 + unicode-range 再切片」**；WOFF2 已是字形封装，再抠无损算法收益有限。公开 CDN 缺的是 `/api/css` 回源，不是缺一种新压缩格式。
+结论与此前判断一致：**效率最终落在「预计算哪一档子集包 + unicode-range 再切片」**；WOFF2 已是字形封装，再抠无损算法收益有限。公开 CDN `/api/css` 回源已于 2026-09-25 打通。
 
 ---
 
@@ -524,7 +524,7 @@ CI / 脚本按文案切一版       →  POST /v1/subset → 把返回 URL 写�
 
 ### 12.5 边缘与现状（参数谈了也要落地）
 
-1. `cn.windfonts.com/api/css` 须回源 vault（现网 OSS 404）；否则用户复制的链接无效。  
+1. `cn.windfonts.com/api/css` **已回源 vault**（2026-09-25）；用户复制的 cn 链接可用。  
 2. 边缘统一认 `subset`（`lang` 可作别名）；`version` 双写可逐步退役，退役须文档 + 前台同步。  
 3. 前台生成器：默认 `subset` 按场景（营销 `zh-common` / 阅读 `zh`）；多选字体输出 `|`；补全勾选只加第二个 family。
 

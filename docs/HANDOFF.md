@@ -83,10 +83,10 @@
 | 现网 | 本仓现状 |
 |---|---|
 | `GET /api/fonts?page&size&category&brand&search&sort`，`sort` 为 `name` / `createdAt` / `viewCount`。`data` 含 `total,page,pageTotal,dataList`。2026-09-24 抽样 total 410 | 目录仍读 `data/fonts.json` |
-| `GET /api/fonts/:id` 或 `:family`，带 `viewCount` / `downloadCount` / `apiCallCount`、`weights` 对象、`languages`、`useCases` | 详情仍用本地目录。打开详情时按 `fontFamily` 拉这一次计数，6 小时内缓存；跨域要等 vault 的 CORS 部署后才看得到 |
+| `GET /api/fonts/:id` 或 `:family`，带 `viewCount` / `downloadCount` / `apiCallCount`、`weights` 对象、`languages`、`useCases` | 详情仍用本地目录。打开详情时按 `fontFamily` 拉这一次计数，6 小时内缓存；**CORS 已通（2026-09-25）** |
 | `GET /api/categories`、`GET /api/brands` | 分类和厂商用本地 JSON |
 | `GET /api/fonts/:id/analysis` 字符表，没有分析文件时 404 | 详情查字用本地数据 |
-| `GET /api/css?family&weight&subset`（`subset` 或 `lang`：`full` / `zh` / `zh-common` / `en`）。**不认 `version`**。`cn.windfonts.com/api/css` 是 OSS 404 | 嵌入地址改到 `app.windfonts.com/api/css`，并同时写 `subset` 和 `version` |
+| `GET /api/css?family&weight&subset`（`subset`/`lang`：`full`/`zh`/`zh-common`/`en`）。可选 `fallback`/`fallbackWeight`（缺口裁切）。**不认 `version` 换包**。`cn.windfonts.com/api/css` **已回源 vault（2026-09-25）** | 嵌入写 CDN `/api/css`，双写 `subset`+`version`；有上游时可勾选补全 → `fallback=` |
 | 管理后台：字体 / 厂商 / 分类 / 风格、同步、安全开关、域名白名单、域名黑名单、API 密钥。IP 白名单在导航里被拿掉 | 顾客控制台不做这套运营后台 |
 
 现网还没有、仍只在本仓 localStorage 里的：项目、版本回滚、子集化工作台、用量四维、团队、认领工单、审计。顾客控制台按三套工作台拆开，见 [CONSOLE.md](CONSOLE.md)：用字、我的页、运营（运营不在本仓）。这两套白名单不是一件事：REST 免密钥白名单只认完整 hostname、要带 `Origin`、不支持通配；项目 CDN 白名单仍可以写 `*.example.com`。
@@ -127,7 +127,7 @@
 | GET | `/v1/audit` | 操作审计 | `WFApp.state().audit` |
 
 ### CDN
-- **对外动态嵌入（硬约束）**：`{cn|hk|en}.windfonts.com/api/css?family=&weight=&version=`（Google 风格参数）。禁止用 `fonts-packages/` 顶替。OSS 上 `/api/css` 404 → 边缘回源 vault，不改前端口径。
+- **对外动态嵌入（硬约束）**：`{cn|hk|en}.windfonts.com/api/css?family=&weight=&version=`（Google 风格参数）。禁止用 `fonts-packages/` 顶替。**N1 已通（2026-09-25）**：边缘 `= /api/css` → `windfonts_vault`（feicode-prod / `app.windfonts.com`）；静态 `fonts-packages` 仍走 OSS。
 - 公开预览真源：`cn.windfonts.com/fonts-packages/{Normalized}/{Weight}/full/result.css`（与 `app.windfonts.com/api/css` 同源；本地 CORS 可 fetch）。嵌入示例仍写 API。旧路径 `/wenfeng/fonts/{slug}/{weight}/web/` 仅兜底。`ensureFontCss` 统一改写为目录 `wenfeng-*`、去掉 `local()`。全库 202 款 packages 路径已探通。详见 [LAUNCH-GATES.md](LAUNCH-GATES.md)。
 - 项目：`https://cn.windfonts.com/p/{slug}/index.css`，按项目设置生成、校验 Referer/Origin、白名单外 403 并计入拦截统计。对外 CDN 域名一律地区节点。
 - 用量口径：请求数、字节数按域名 / 字体 / 字重 / 状态码聚合，延迟 ≤ 5 分钟；性能指标来自 CSS 内置 Resource Timing 上报。
@@ -507,7 +507,7 @@ OPPO Sans 是厂商自己的协议，不是 OFL。允许不修改地嵌入，并
 已随本提交推送。
 
 - 顶栏搜索框加到原先结果列表的宽度，两边都是 18rem。结果列表左右贴着搜索框。缓存 `components.css?v=20260925k`。
-- 公开动态地址是 `cn.windfonts.com` / `hk.windfonts.com` / `en.windfonts.com` 的 `/api/css`，跟节点走。不要写成 `app.windfonts.com`。`/api/css` 以后做反代重写。现在 `cn.windfonts.com/api/css` 仍是对象存储 404，复制出去的链接仍然用 CDN 域名。`5be3788` 因这次 404 改到 app，已改回。预览仍优先 `fonts-packages/…/result.css`。
+- 公开动态地址是 `cn.windfonts.com` / `hk.windfonts.com` / `en.windfonts.com` 的 `/api/css`，跟节点走。不要写成 `app.windfonts.com`。**2026-09-25 N1**：`cn…/api/css` 已边缘回源 vault（六边 200）；勿再改成 app。`5be3788` 曾因 404 改到 app，已改回。预览仍优先 `fonts-packages/…/result.css`。
 - 字体详情右侧不再显示「未认领 · 认领」。厂商页认领后，认证标志在名字右边、收藏星左边。简介改成一律用字体本身的说明，这次没做。
 - `wenfeng-zjgljt` 显示名改为「卓健橄榄简体」。依据是字体文件名称表（Windows 简体 name ID 1），不是「拙见」或「卓见」。厂商字典显示名改为「卓健」，旧写法留在别名。
 
@@ -586,3 +586,18 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 委婉文案与 scope 规则落地：信誉理由改「未发现授权变更记录／有过授权调整」（不再用毁约、纠纷字样）；事件可选 font 字段=仅此款——厂商页时间线出虚线「仅此款」标，详情页信誉只计「本款事件＋厂商级事件」，同厂商其它款的事件不牵连（夹具双向验证：仅小丸子有事件时，榜书页优秀、小丸子页一般）；时间线脚注固定两句「记录仅描述所列字体在所列时间的情况，不代表该厂商全部产品；信息以权利人最新公示为准，如有出入可通过厂商认领页提出更正」。
 
 厂商信誉默认档拍板（用户 2026-09-24）：不做调研铺底，默认＝优秀（含知名大厂与开源作者），仅有据变更事件触发降级为「一般 · 有过授权调整」；「待评估」态废弃。未署名字体的信誉行不显示。调研子代理已叫停，未产出数据。
+
+## 25. 2026-09-25 N1/N2 + fallback 缺口裁切（现网）
+
+投递与跨域缺口收口；对外 URL 形态未改。
+
+| 项 | 状态 | 落点 |
+|---|---|---|
+| **N1** CDN `/api/css` 回源 | **已通** | devops ansible：`windfonts.locations` `= /api/css` → `origin_upstream: windfonts_vault`（`45.117.8.70` / Host `app.windfonts.com`）；六边 bj/hz/sz/qd/wh/cd 直连探针 200 |
+| **N2** 公开 CORS | **已通** | fonts-vault 生产：`Access-Control-Allow-Origin: *`（目录 / CSS） |
+| **根源裁切** | **已通** | vault `fallback=` / `fallbackWeight=`：补全 face 只留主款 unicode-range 缺口。抽查 `ibmps`→`syhtsc` zh-common：约 +0.7KB / 2 face（注释 `fallback clipped … faces 2`） |
+| 前台 | 已接线 | 详情「使用」：四档默认 `zh-common`；有库内上游可勾选 → 单 link 带 `fallback=`（见 `wf-embed` / `wf-proto` / `detail.js`） |
+
+相关计划：`docs/plans/2026-09-24-api-surface-value.md`（N1/N2 标已通）、`docs/plans/2026-09-24-font-mix-subset-fallback.md` §3.8a。
+
+**仍待：** N5 构建期热度同步、N6 analysis 产品化对照、localeFallback 配对表、预算模式、项目烘焙 `/p/{slug}`。商用档 `albbpht` 等仍受许可门禁，CSS 侧勿当开源样例。
