@@ -477,4 +477,4 @@ OPPO Sans 是厂商自己的协议，不是 OFL。允许不修改地嵌入，并
 
 ## 16. 2026-09-24 详情页授权名改成「字体授权协议」
 
-未提交。`data/fonts.json` 里原先写成档位口令的 `licenseName`（如「免费商用」「免费商用，不可修改」「免费商用授权」「作者声明…」）改为 `{字体名}授权协议`，对齐阿里巴巴普惠体。档位芯片 `license` / `licenseTier` 仍是「免费商用」等，没动。OFL / Apache / GPL / 0BSD / CC0 等标准名保留。顺手把误标成「免费商用」的思源 CN/TW/斜体/屏显臻宋、小赖、Unifont 改回 OFL 或 GPL。备份 `data/fonts.json.bak-license-name-20260924033541`。
+已推送（本提交）。`data/fonts.json` 里原先写成档位口令的 `licenseName`（如「免费商用」「免费商用，不可修改」「免费商用授权」「作者声明…」）改为 `{字体名}授权协议`，对齐阿里巴巴普惠体。档位芯片 `license` / `licenseTier` 仍是「免费商用」等，没动。OFL / Apache / GPL / 0BSD / CC0 等标准名保留。顺手把误标成「免费商用」的思源 CN/TW/斜体/屏显臻宋、小赖、Unifont 改回 OFL 或 GPL。备份留在工作区，未入库。
