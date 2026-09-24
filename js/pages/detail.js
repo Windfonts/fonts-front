@@ -4,7 +4,7 @@
   const root = document.getElementById('detailRoot');
 
   function licenseLists(font) {
-    const tier = WFChrome.licenseTier(font);
+    const tier = proofTier(font);
     const ev = WFChrome.licenseEvidence(font);
     const name = String(font.licenseName || ev.label || font.license || '');
     const ok = [], no = [];
@@ -49,6 +49,7 @@
   }
 
   function licenseLead(tier) {
+    if (tier === '开源') return '开源许可，可免费使用、修改与再分发。';
     if (tier === '免费商用') return '可免费用于网页、App、印刷与商业项目。';
     if (tier === '个人免费') return '个人非商业用途免费，商用需另行授权。';
     if (tier === '需授权') return '取得厂商授权后才可公开使用。';
@@ -56,7 +57,13 @@
   }
 
   /* 出处与依据 · 三节出处链。句子全部由档位/核对态/国标字段按固定句式生成，无手写语句。 */
+  var OPEN_LICENSE = /^(SIL Open Font License|OFL|GNU |GPL|Apache|CC0|CC |MIT|0BSD|Ubuntu Font|IPA |Dual license|M\+ )/i;
+  function proofTier(font) {
+    if (OPEN_LICENSE.test(String(font.licenseName || ''))) return '开源';
+    return WFChrome.licenseTier(font);
+  }
   function tierSentence(tier) {
+    if (tier === '开源') return '字体以开源许可发布，可免费使用、修改与再分发。';
     if (tier === '免费商用') return '字体向所有个人和组织开放，免费商用。';
     if (tier === '个人免费') return '字体仅个人免费商用。';
     if (tier === '需授权') return '字体需取得权利人授权后方可商用。';
@@ -76,13 +83,22 @@
       (when ? '<span class="when">' + esc(when) + '</span>' : '') +
       (link || '') + '</div></div>';
   }
+  function proofMetaLine(font) {
+    const std = OPEN_LICENSE.test(String(font.licenseName || ''));
+    const src = std ? '标准协议' : (font.licenseUrl ? '厂商官网' : '未附原文链接');
+    const verified = !!font.licenseVerified;
+    const parts = [src, verified ? '已核对原文' : '尚未核对原文'];
+    if (verified && font.licenseVerifiedAt) parts.push(font.licenseVerifiedAt + ' 核对');
+    return '<p class="cite-meta lp5-meta">' + WFChrome.icon('certificate') +
+      parts.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</p>';
+  }
   function proofChainHtml(font) {
     const claim = font.standardClaim || null;
     const verified = !!font.licenseVerified;
     const date = verified ? (font.licenseVerifiedAt || '') : '';
     const slug = String(font.family || '').replace(/^wenfeng-/, '');
-    let html = '<div class="lp5-chain">';
-    html += proofRow('授权协议', esc(tierSentence(WFChrome.licenseTier(font))), date, proofLink(font.licenseUrl));
+    let html = proofMetaLine(font) + '<div class="lp5-chain">';
+    html += proofRow('授权协议', esc(tierSentence(proofTier(font))), date, proofLink(font.licenseUrl));
     html += claim
       ? proofRow('国标声明', '厂商声明符合 <b>' + esc(claim.standard) + '</b>。', '', proofLink(claim.url))
       : proofRow('国标声明', '厂商声明未知。', '', '');
@@ -93,6 +109,7 @@
 
   /* 条款徽章也按档位出固定三条，与句子同一张配置表 */
   function tierPoints(tier) {
+    if (tier === '开源') return [['ok', '个人与企业免费使用'], ['ok', '可修改与再分发'], ['no', '不得单独售卖字体文件']];
     if (tier === '免费商用') return [['ok', '个人与企业商用免费'], ['no', '修改字体文件'], ['no', '再分发字体文件']];
     if (tier === '个人免费') return [['ok', '个人非商业使用免费'], ['no', '商业使用'], ['no', '再分发字体文件']];
     if (tier === '需授权') return [['ok', '取得授权后按合同使用'], ['no', '未授权公开使用'], ['no', '再分发字体文件']];
@@ -226,7 +243,7 @@
             })() +
             (variantLabel ? '<span>' + esc(variantLabel) + '</span>' : '') +
             '<span>' + weights.length + ' 字重</span>' +
-            '<span>' + esc(WFChrome.licenseTier(font)) + '</span>' +
+            '<span>' + esc(proofTier(font)) + '</span>' +
             (font.charCount ? '<span>' + WFProto.formatCount(font.charCount) + ' 字</span>' : '') +
           '</p>' +
         '</div>' +
@@ -255,14 +272,14 @@
           '<section class="panel" id="glyphs"><div class="panel-head"><div class="glyph-title"><h2>' + WFChrome.icon('hashtag') + '字符表</h2><div id="glyphQuery"></div></div><div class="glyph-tools" id="glyphTools"></div></div>' +
             '<div class="panel-pad"><div class="glyph-summary" id="glyphSummary" aria-live="polite"></div><div class="glyph-blocks" id="glyphBlocks"></div></div></section>' +
           '<section class="panel" id="license"><div class="panel-head"><h2>' + WFChrome.icon('certificate') + '授权</h2>' +
-            '<div class="license-head"><span class="tier">' + esc(WFChrome.licenseTier(font)) + '</span>' +
+            '<div class="license-head"><span class="tier">' + esc(proofTier(font)) + '</span>' +
               (font.licenseName ? '<span class="name">' + esc(font.licenseName) + '</span>' : '') + '</div></div>' +
             '<div class="panel-pad">' +
-            '<p class="license-lead">' + esc(licenseLead(WFChrome.licenseTier(font))) + '</p>' +
+            '<p class="license-lead">' + esc(licenseLead(proofTier(font))) + '</p>' +
             '<details class="side-fold license-fold"><summary>' + WFChrome.icon('chevron-down') + '出处与依据</summary>' +
               proofChainHtml(font) +
               '<div class="lp5-points">' +
-                tierPoints(WFChrome.licenseTier(font)).map(function (p) {
+                tierPoints(proofTier(font)).map(function (p) {
                   return '<span class="lp-badge">' + (p[0] === 'ok' ? '✓ ' : '× ') + esc(p[1]) + '</span>';
                 }).join('') +
               '</div>' +
