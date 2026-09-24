@@ -375,7 +375,7 @@
 .detail-main .lp-act { font-size: var(--fs-12); color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.3em; }
 @media (max-width: 720px) { .lp5-node .what { white-space: normal; } }
 
-.license-fold .lp5-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.75rem; font-size: var(--fs-12); color: var(--gray); margin: 0 0 var(--s-3); }
+.license-fold .lp5-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.75rem; font-size: var(--fs-12); color: var(--gray); margin: 0 0 var(--s-4); padding-left: 1.7rem; }
 .license-fold .lp5-meta .icon { flex: none; }
 .lp5-node .who, .lp5-node .what, .lp5-node .when { line-height: 1.5; }
 .lp5-node .sub { margin-left: calc(4.6em + 0.75rem); margin-top: 0.15rem; font-size: 11px; color: var(--gray); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -386,7 +386,7 @@
 [data-theme="dark"] .lp5-points .lp-badge-warn { border-color: #8a7434; color: #cbb06a; }
 
 /* ===== 出处与依据 · 厂商信誉行（首行结论）===== */
-.license-fold .trust-block { padding: var(--s-4) 0; border-bottom: 1px solid var(--rule); margin-bottom: var(--s-4); }
+.license-fold .trust-block { padding: var(--s-6) 0 var(--s-5); border-bottom: 1px solid var(--rule); margin-bottom: var(--s-5); }
 .license-fold .trust-line { display: flex; align-items: center; gap: var(--s-3); margin: 0; }
 .trust-line .trust-label { display: inline-flex; align-items: center; gap: 0.35em; font-size: var(--fs-12); font-weight: var(--fw-label); color: var(--gray); }
 .trust-line .trust-label .icon { flex: none; }
