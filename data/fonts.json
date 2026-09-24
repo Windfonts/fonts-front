@@ -7706,8 +7706,8 @@
  },
  {
   "id": "174edcee-4b4e-4116-8d53-adf158608403",
-  "name": "寒蝉龙藏楷",
-  "en": "Chill LongCang Kai",
+  "name": "寒蝉龙藏楷书",
+  "en": "ChillLongCangKaiShu",
   "family": "wenfeng-hclck2",
   "normalized": "Hclck2",
   "designer": "ChillType",
@@ -7727,12 +7727,12 @@
   "description": "寒蝉龙藏楷。基于龙藏体风格化拓展。SIL OFL 1.1。",
   "license": "免费商用",
   "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "",
-  "licenseFileUrl": "",
-  "licenseNotes": "",
-  "licenseVerified": null,
+  "licenseUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/longcang/OFL.txt",
+  "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Hclcks/LICENSE",
+  "licenseNotes": "寒蝉字型 ChillLongCangKaiShu（fork 自 Google Fonts 龙藏体）。2026-09-25 去重：hclck2(3.520 新build) 保留并正名寒蝉龙藏楷书，hclcks(3.500) 转 archived + 家族别名。许可原文来自上游 OFL-1.1：https://raw.githubusercontent.com/google/fonts/main/ofl/longcang/OFL.txt",
+  "licenseVerified": false,
   "purchaseUrl": null,
-  "copyright": "Copyright ChillType",
+  "copyright": "Copyright 2018 The LongCang Project Authors (https://github.com/googlefonts/longcang)",
   "foundry": "寒蝉字型",
   "brand": {
    "name": "ChillType",
@@ -7743,7 +7743,7 @@
    "description": "ChillType出品的字体"
   },
   "releaseYear": 2024,
-  "version": "OSS ingest batch1 2026-09-23",
+  "version": "3.520",
   "languages": [
    "简体中文",
    "繁体中文",
@@ -7757,62 +7757,6 @@
   "charCount": 7041,
   "glyphCount": 7117,
   "viewCount": 2,
-  "foundryAvatar": "https://cravatar.com/avatar/01e131de64ecc63bb395a2dc5c9bb81f0c4708b7cc4f609fad1a1e8397f4db56?s=144&d=identicon"
- },
- {
-  "id": "1604bf32-254a-47e3-a915-8a3293f3bf09",
-  "name": "寒蝉龙藏楷书",
-  "en": "Chill LongCang KaiShu",
-  "family": "wenfeng-hclcks",
-  "normalized": "Hclcks",
-  "designer": "",
-  "designerShort": "—",
-  "category": "",
-  "tags": [
-   "开源",
-   "OFL",
-   "书法",
-   "传统"
-  ],
-  "weights": [
-   "Medium",
-   "Regular",
-   "Bold",
-   "Extrabold"
-  ],
-  "description": "寒蝉龙藏楷书是一款基于谷歌开源字体项目中的龙藏体（Long Cang）进行风格化拓展的楷书字体。其设计融合了传统毛笔书法的韵味与现代数字字体的清晰度，笔画带有明显的书法飞白和笔触感，结构舒展，风格古朴雅致。该字体遵循 SIL Open Font License 1.1 开源协议，允许个人和企业免费商用，并支持修改和再分发。它适用于需要展现传统文化、艺术氛围或手写温度的设计场景，如书籍装帧、品牌海报、文化宣传物料以及UI界面的标题设计。",
-  "license": "免费商用",
-  "licenseName": "OFL (推断)",
-  "licenseUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/longcang/OFL.txt",
-  "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Hclcks/LICENSE",
-  "licenseNotes": "许可原文来自上游 OFL-1.1：https://raw.githubusercontent.com/google/fonts/main/ofl/longcang/OFL.txt",
-  "licenseVerified": false,
-  "purchaseUrl": null,
-  "copyright": "Copyright 2018 The LongCang Project Authors (https://github.com/googlefonts/longcang)",
-  "foundry": "Long Cang (YouZiKu)",
-  "brand": {
-   "name": "ChillType",
-   "slug": "chilltype",
-   "logoUrl": "",
-   "avatarUrl": "https://avatars.githubusercontent.com/u/87366329?v=4",
-   "website": "",
-   "description": "ChillType出品的字体"
-  },
-  "releaseYear": 2018,
-  "version": "3.500.0",
-  "languages": [
-   "简体中文",
-   "繁体中文"
-  ],
-  "useCases": [
-   "书籍排版",
-   "文化宣传",
-   "品牌标识",
-   "UI标题"
-  ],
-  "charCount": 7042,
-  "glyphCount": 7113,
-  "viewCount": 38,
   "foundryAvatar": "https://cravatar.com/avatar/01e131de64ecc63bb395a2dc5c9bb81f0c4708b7cc4f609fad1a1e8397f4db56?s=144&d=identicon"
  },
  {
@@ -19548,7 +19492,7 @@
   ],
   "charCount": 29197,
   "glyphCount": 29296,
-  "viewCount": 224,
+  "viewCount": 225,
   "foundryAvatar": "https://cravatar.com/avatar/f9f700f291cf90da22c37b2d30827567fcce3be00e51aec1373fe57d63765d24?s=144&d=identicon"
  },
  {

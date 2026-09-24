@@ -864,15 +864,6 @@
       "upstreamOwnerId": "unifoundry",
       "licenseFollows": "inherit"
     },
-    "寒蝉龙藏楷": {
-      "ownerId": "chilltype",
-      "makerId": "chilltype",
-      "group": "longcang",
-      "relation": "fork",
-      "upstreamName": "龙藏体",
-      "upstreamOwnerId": "zhongqi",
-      "licenseFollows": "inherit"
-    },
     "寒蝉 DIN 哥特": {
       "ownerId": "chilltype",
       "makerId": "chilltype",
