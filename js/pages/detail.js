@@ -104,24 +104,54 @@
     }
     const grade = n > 0 ? '一般' : '优秀';
     const cls = n > 0 ? 'is-mid' : 'is-good';
+    const fname = String(font.name || '');
     const whyLine = n > 0
       ? (vendorWide ? '所属厂商' : '此字体') + '有 ' + n + ' 项授权调整记录'
-      : '自发布以来未发现争议及授权变更记录';
+      : fname + (/[A-Za-z0-9]$/.test(fname) ? ' ' : '') + '自发布以来未发现争议及授权变更记录';
+    const claimAct = '<a class="lp-act" href="claim.html?slug=' + encodeURIComponent(info.id) + '">认领主页 →</a>';
+    let what = '<span class="trust-grade ' + cls + '">' + esc(grade) + '</span>' +
+      '<span class="trust-why">' + esc(whyLine) + '</span>';
+    if (info.claimed) what += '<span class="trust-claim">' + WFChrome.icon('check') + '已认领</span>';
+    if (tr && tr.siteOk === false) {
+      what += '<span class="trust-site">官网失效 · ' + esc(tr.siteCheckedAt || '') + '确认</span>';
+    }
     return '<div class="trust-block">' +
-      '<p class="trust-line"><span class="trust-label">' + WFChrome.icon('shield') + '厂商信誉</span>' +
-      '<span class="trust-grade ' + cls + '">' + esc(grade) + '</span>' +
-      '<span class="trust-why">' + esc(whyLine) + '</span>' +
-      (info.claimed ? '<span class="trust-claim">' + WFChrome.icon('check') + '已认领</span>' : '') +
-      (tr && tr.siteOk === false ? '<span class="trust-site">官网失效 · ' + esc(tr.siteCheckedAt || '') + '确认</span>' : '') + '</p>' +
+      '<div class="lp5-node lp5-meta trust-row"><span class="icon">' + WFChrome.icon('shield') + '</span>' +
+      '<div class="head"><span class="who">厂商信誉</span>' +
+      '<span class="what">' + what + '</span>' +
+      claimAct + '</div></div>' +
       (n > 0 ? '<p class="trust-note">记录仅描述所列字体在所列时间的情况，不代表该厂商全部产品。信息以权利人最新公示为准，如有出入可通过厂商认领页提出更正。</p>' : '') +
       '</div>';
   }
 
   function proofMetaLine(font) {
     const verified = !!font.licenseVerified;
-    return '<div class="lp5-meta"><span class="icon">' + WFChrome.icon('certificate') + '</span>' +
-      '<span class="who">许可状态</span>' +
-      '<span class="what">' + (verified ? '已核对协议原文 · 文风字体（Windfonts.com）可为您提供免费服务。' : '协议原文待核对 · 文风字体（Windfonts.com）') + '</span></div>';
+    const what = (verified ? '已核对协议原文' : '协议原文待核对') +
+      ' · 文风云<sup>&reg;</sup> 免费提供在线字体托管和预览调用服务。';
+    const d = new Date();
+    const pad = function (n) { return n < 10 ? '0' + n : String(n); };
+    const when = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    return '<div class="lp5-node lp5-meta"><span class="icon">' + WFChrome.icon('cloud') + '</span>' +
+      '<div class="head"><span class="who">服务状态</span>' +
+      '<span class="what">' + what + '</span>' +
+      '<span class="when">' + esc(when) + '</span>' +
+      '<a class="lp-act" href="https://status.windfonts.com/" rel="noopener noreferrer">windfonts.com ↗</a></div></div>';
+  }
+
+  /* 版权归属：与服务状态同款行，夹在服务状态与出处链之间。 */
+  function proofOwnerLine(font) {
+    const owner = font.ownerInfo || font.foundryInfo;
+    if (!owner || !owner.id) return '';
+    const maker = WFChrome.makerInfo(font);
+    const kind = WFChrome.kindLabel(owner) || '权利人';
+    let what = '版权归 <b>' + esc(owner.name) + '</b>（' + esc(kind) + '）。';
+    if (maker && maker.id && maker.id !== owner.id) {
+      what += ' 制作：' + esc(maker.name) + '。';
+    }
+    return '<div class="lp5-node lp5-meta"><span class="icon">' + WFChrome.icon('building') + '</span>' +
+      '<div class="head"><span class="who">版权归属</span>' +
+      '<span class="what">' + what + '</span>' +
+      (proofLink(owner.website || '') || '') + '</div></div>';
   }
 
   function proofChainHtml(font) {
@@ -130,7 +160,8 @@
     const date = verified ? (font.licenseVerifiedAt || '') : '';
     const slug = String(font.family || '').replace(/^wenfeng-/, '');
     const purchase = (proofTier(font) === '需授权' && font.purchaseUrl) ? proofLink(font.purchaseUrl) : '';
-    let html = proofMetaLine(font) + '<div class="lp5-chain">';
+    let html = '<div class="lp5-meta-block">' + proofMetaLine(font) + proofOwnerLine(font) + '</div>';
+    html += '<div class="lp5-chain">';
     html += proofRow('授权协议', esc(tierSentence(proofTier(font))), date,
       (proofLink(font.licenseUrl) + purchase) || '', font.licenseQuote);
     html += claim
@@ -222,14 +253,14 @@
     const user = WFChrome.user();
     const sample = WFSpecimen.PRESETS.filter(function (p) { return p.id === 'poem'; })[0].text;
 
-    // 字体本身的属性两边都给；只有接入机制（版本、字形数）归开发。浏览量改放「统计信息」。
+    // 字体本身的属性两边都给；版本与发布年份仅开发模式。浏览量改放「统计信息」。
     const kv = [
       maker ? { icon: 'palette', dt: '制作方', dd: '<a href="foundry.html?slug=' + encodeURIComponent(maker.id) + '">' + esc(maker.name) + '</a>', html: true } : null,
       { icon: 'classify', dt: '分类', dd: WFChrome.catLabel(font.category) || font.category },
       { icon: 'translate', dt: '语言', dd: (font.languages || []).map(function (l) { return l === '英语' ? '英文' : l; }).join(' · ') },
-      { icon: 'calendar', dt: '发布', dd: font.releaseYear ? String(font.releaseYear) : '' },
+      { icon: 'calendar', dt: '发布', dd: font.releaseYear ? String(font.releaseYear) : '', dev: true },
       { icon: 'version', dt: '版本', dd: font.version, dev: true },
-      { icon: 'text', dt: '字形数', dd: font.glyphCount ? WFProto.formatCount(font.glyphCount) : '', dev: true }
+      { icon: 'text', dt: '字形数', dd: font.glyphCount ? WFProto.formatCount(font.glyphCount) : '' }
     ].filter(function (r) { return r && r.dd; });
     const stats = WFProto.getFontStats(font);
     function statNum(n) {
@@ -325,7 +356,9 @@
               (font.licenseName ? '<span class="name">' + esc(font.licenseName) + '</span>' : '') + '</div></div>' +
             '<div class="panel-pad">' +
             '<p class="license-lead">' + esc(licenseLead(proofTier(font))) + '</p>' +
-            '<details class="side-fold license-fold"><summary>' + WFChrome.icon('chevron-down') + '出处与依据</summary>' +
+            '<details class="side-fold license-fold"' +
+              (document.documentElement.getAttribute('data-view') === 'dev' ? ' open' : '') +
+              '><summary>' + WFChrome.icon('chevron-down') + '出处与依据</summary>' +
               vendorTrustHtml(font) +
               proofChainHtml(font) +
               '<div class="lp5-points">' +
@@ -498,6 +531,7 @@
     });
     function goUse() {
       WFChrome.setView('dev');
+      syncLicenseFold();
       const use = document.getElementById('use');
       if (use) use.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -506,10 +540,20 @@
     const btnPreview = document.getElementById('btnPreview');
     if (btnPreview) btnPreview.addEventListener('click', function () {
       WFChrome.setView('design');
+      syncLicenseFold();
       const wall = document.getElementById('glyphWall');
       if (wall) wall.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+    function syncLicenseFold() {
+      const fold = document.querySelector('.license-fold');
+      if (!fold) return;
+      fold.open = document.documentElement.getAttribute('data-view') === 'dev';
+    }
     if (/^#(use|glyphs|lineage)$/.test(location.hash)) WFChrome.setView('dev');
+    syncLicenseFold();
+    document.querySelectorAll('[data-view-switch] [data-mode]').forEach(function (b) {
+      b.addEventListener('click', syncLicenseFold);
+    });
 
     glyphTable = WFSpecimen.mountGlyphTable(
       document.getElementById('glyphBlocks'),

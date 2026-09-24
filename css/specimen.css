@@ -633,3 +633,203 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
 .glyph-blocks.only-miss .glyphs span:not(.is-miss) { display: none; }
 .chip-miss { border: 0; background: none; padding: 0; font: inherit; font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font-variant-numeric: tabular-nums; }
 .chip-miss:hover { opacity: 0.65; }
+.glyph-qz-link {
+  border: 0; background: none; padding: 0; font: inherit;
+  color: var(--ink); font-weight: var(--fw-label);
+  text-decoration: underline; text-underline-offset: 0.2em; cursor: pointer;
+}
+.glyph-qz-link:hover { opacity: 0.65; }
+
+/* —— 千字文通篇 · 乙碑格（定稿）—— */
+.qz-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: var(--page);
+  display: flex;
+  flex-direction: column;
+  color: var(--ink);
+}
+.qz-overlay[hidden] { display: none !important; }
+.qz-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+  padding: var(--s-3) var(--s-5);
+  border-bottom: 1px solid var(--rule);
+  background: var(--page);
+}
+.qz-bar .who {
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+  margin-right: var(--s-2);
+}
+.qz-bar .cov {
+  font-size: var(--fs-13);
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+.qz-bar .cov b { color: var(--ink); font-weight: var(--fw-title); }
+.qz-bar .spacer { flex: 1; }
+.qz-bar .seg {
+  display: inline-flex;
+  gap: 2px;
+  background: var(--fill);
+  border-radius: var(--radius-pill);
+  padding: 2px;
+}
+.qz-bar .seg button {
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-12);
+  color: var(--ink-2);
+}
+.qz-bar .seg button.is-on { background: var(--ink); color: var(--on-ink); }
+.qz-bar .size {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: var(--fs-12);
+  color: var(--gray);
+}
+.qz-bar .size input[type="range"] {
+  width: 7rem;
+  accent-color: var(--ink);
+}
+.qz-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 0 var(--s-4);
+  background: var(--page);
+}
+.qz-body.only-miss .qz-ch:not(.is-miss) { display: none; }
+.qz-b-frame { width: 100%; margin: 0; padding: 0; background: var(--page); }
+.qz-b-grid {
+  --qz-cell: var(--qz-b-size, 1.5rem);
+  display: grid;
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+.qz-b-grid .qz-ch {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  container-type: size;
+  font-size: min(var(--qz-cell), 58cqmin);
+  line-height: 1;
+  overflow: visible;
+  user-select: none;
+  cursor: default;
+  transform-origin: center center;
+  transition:
+    background var(--dur) var(--ease),
+    transform var(--dur) var(--ease),
+    opacity var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    font-size var(--dur) var(--ease);
+}
+.qz-b-grid .qz-ch:nth-child(20n) { border-right: 0; }
+.qz-b-grid .qz-ch:nth-child(4n):not(:nth-child(20n)) {
+  border-right-color: color-mix(in srgb, var(--ink) 28%, var(--rule));
+}
+@media (hover: hover) and (pointer: fine) {
+  .qz-b-grid:hover .qz-ch { opacity: 0.36; }
+  /* 放大用 transform；边线用逆缩放描边，避免 1px 被拉糊 */
+  .qz-b-grid:hover .qz-ch:hover {
+    --qz-zoom: 1.65;
+    opacity: 1;
+    z-index: 3;
+    position: relative;
+    background: var(--page);
+    transform: scale(var(--qz-zoom));
+    border-color: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+  .qz-b-grid:hover .qz-ch:hover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-sizing: border-box;
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+    transform: scale(calc(1 / var(--qz-zoom)));
+    transform-origin: center;
+    pointer-events: none;
+  }
+  .qz-b-grid:hover .qz-ch.is-miss { opacity: 0.48; }
+  .qz-b-grid:hover .qz-ch.is-miss:hover {
+    opacity: 1;
+    background: var(--fill);
+  }
+  .qz-b-grid:hover .qz-ch.is-miss:hover::after {
+    border-color: var(--gray);
+  }
+}
+.qz-b-grid .qz-ch.is-miss {
+  background: var(--fill);
+  color: var(--gray-2);
+  opacity: 1;
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--gray-2);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif !important;
+}
+.qz-body.only-miss .qz-b-grid {
+  grid-template-columns: repeat(auto-fill, minmax(2.6rem, 1fr));
+  gap: var(--s-2);
+  border: 0;
+  padding: var(--s-3) var(--s-4);
+}
+.qz-body.only-miss .qz-b-grid .qz-ch {
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--fill);
+  box-shadow: inset 0 0 0 1px dashed var(--gray-2);
+  font-size: var(--qz-cell);
+  container-type: normal;
+  overflow: hidden;
+}
+.qz-body.only-miss .qz-b-grid:hover .qz-ch { opacity: 1; }
+.qz-body.only-miss .qz-b-grid:hover .qz-ch:hover { transform: scale(1.2); }
+@media (max-width: 720px) {
+  .qz-b-grid { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+  .qz-b-grid .qz-ch:nth-child(20n) { border-right: 1px solid var(--rule); }
+  .qz-b-grid .qz-ch:nth-child(10n) { border-right: 0; }
+  .qz-b-grid .qz-ch:nth-child(4n):not(:nth-child(10n)) {
+    border-right-color: color-mix(in srgb, var(--ink) 28%, var(--rule));
+  }
+}
+@media (max-width: 420px) {
+  .qz-b-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .qz-b-grid .qz-ch:nth-child(10n) { border-right: 1px solid var(--rule); }
+  .qz-b-grid .qz-ch:nth-child(8n) { border-right: 0; }
+  .qz-b-grid .qz-ch:active {
+    --qz-zoom: 1.5;
+    z-index: 3;
+    position: relative;
+    transform: scale(var(--qz-zoom));
+    background: var(--page);
+    opacity: 1;
+    border-color: transparent;
+  }
+  .qz-b-grid .qz-ch:active::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-sizing: border-box;
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+    transform: scale(calc(1 / var(--qz-zoom)));
+    transform-origin: center;
+    pointer-events: none;
+  }
+}

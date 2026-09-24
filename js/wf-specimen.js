@@ -502,7 +502,8 @@
       else if (pct >= 95) suffix = '缺 <button type="button" class="chip-miss" data-filter="miss">' + miss + '</button> 字';
       else suffix = '覆盖 ' + pct + '%';
       summaryEl.innerHTML =
-        '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' 常用字已收录 · ' + suffix + '</p>' +
+        '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' 常用字已收录 · ' + suffix +
+          ' · <button type="button" class="glyph-qz-link">通篇预览</button></p>' +
         '<p class="glyph-legend">虚线框表示字体里没有这个字。</p>';
     }
 
@@ -611,10 +612,14 @@
     });
     summaryEl.addEventListener('click', function (e) {
       const chip = e.target.closest ? e.target.closest('.chip-miss') : null;
-      if (!chip) return;
-      st.filter = 'miss';
-      renderBlocks(); syncTools();
-      blocksEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      if (chip) {
+        st.filter = 'miss';
+        renderBlocks(); syncTools();
+        blocksEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
+      const qz = e.target.closest ? e.target.closest('.glyph-qz-link') : null;
+      if (qz) openQianziwenStele(font, { weight: weight, variant: st.variant });
     });
 
     function paintFace() {
@@ -665,6 +670,137 @@
     return { setWeight: setWeight, queryChars: renderQuery };
   }
 
+  /* —— 千字文通篇 · 乙碑格（定稿）—— */
+  let qzState = null;
+
+  function openQianziwenStele(font, opts) {
+    opts = opts || {};
+    const fam = String(font.family || '');
+    if (!fam) return;
+    const stack = WFProto.cssFamilyStack(fam);
+    let weight = String(WFProto.weightToCss(opts.weight || firstWeight(font)));
+    let variant = opts.variant === 'hant' ? 'hant' : 'hans';
+    if (WFChrome.skipGlyphCov && WFChrome.skipGlyphCov(font)) variant = 'hans';
+    const text = QIANZIWEN[variant] || QIANZIWEN.hans;
+    let marks = null;
+    let stats = { hit: 0, total: 0 };
+    let onlyMiss = false;
+    let sizePx = 26;
+
+    function ensureOverlay() {
+      let el = document.getElementById('qzStele');
+      if (el) return el;
+      el = document.createElement('div');
+      el.id = 'qzStele';
+      el.className = 'qz-overlay';
+      el.hidden = true;
+      el.setAttribute('role', 'dialog');
+      el.setAttribute('aria-modal', 'true');
+      el.setAttribute('aria-label', '千字文通篇预览');
+      document.body.appendChild(el);
+      return el;
+    }
+
+    function charSpan(ch, i) {
+      const miss = marks && marks[ch] === false;
+      return '<span class="qz-ch' + (miss ? ' is-miss' : '') + '" data-i="' + i + '" data-ch="' + esc(ch) + '">' + esc(ch) + '</span>';
+    }
+
+    function covLabel() {
+      if (!marks) return '覆盖核对中…';
+      const pct = stats.total ? Math.round(1000 * stats.hit / stats.total) / 10 : 0;
+      return '常用 <b>' + stats.hit + '</b> / ' + stats.total + ' · ' + pct + '%';
+    }
+
+    function gridHtml() {
+      let out = '';
+      for (let i = 0; i < text.length; i++) out += charSpan(text.charAt(i), i);
+      return '<div class="qz-b-frame"><div class="qz-b-grid" style="font-family:' + esc(stack) +
+        ';font-weight:' + weight + ';--qz-b-size:' + sizePx + 'px">' + out + '</div></div>';
+    }
+
+    function close() {
+      const el = document.getElementById('qzStele');
+      if (!el) return;
+      el.hidden = true;
+      el.innerHTML = '';
+      document.documentElement.style.overflow = '';
+      qzState = null;
+    }
+
+    function paint() {
+      const el = ensureOverlay();
+      const name = font.name || fam;
+      el.hidden = false;
+      el.innerHTML =
+        '<div class="qz-bar">' +
+          '<span class="who">' + esc(name) + ' · 千字文</span>' +
+          '<span class="cov">' + covLabel() + '</span>' +
+          '<div class="seg" role="group" aria-label="筛选">' +
+            '<button type="button" data-filter="all"' + (!onlyMiss ? ' class="is-on"' : '') + '>全部</button>' +
+            '<button type="button" data-filter="miss"' + (onlyMiss ? ' class="is-on"' : '') + '>只看缺字</button>' +
+          '</div>' +
+          '<label class="size">字号 <input type="range" min="14" max="40" value="' + sizePx + '" data-size /></label>' +
+          '<span class="spacer"></span>' +
+          '<button type="button" class="btn" data-close>关闭</button>' +
+        '</div>' +
+        '<div class="qz-body' + (onlyMiss ? ' only-miss' : '') + '">' + gridHtml() + '</div>';
+
+      el.querySelector('[data-close]').addEventListener('click', close);
+      el.querySelectorAll('[data-filter]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          onlyMiss = b.getAttribute('data-filter') === 'miss';
+          paint();
+        });
+      });
+      const sizeEl = el.querySelector('[data-size]');
+      if (sizeEl) {
+        sizeEl.addEventListener('input', function () {
+          sizePx = Number(sizeEl.value) || 26;
+          const grid = el.querySelector('.qz-b-grid');
+          if (grid) grid.style.setProperty('--qz-b-size', sizePx + 'px');
+        });
+      }
+      document.documentElement.style.overflow = 'hidden';
+      qzState = { close: close };
+    }
+
+    function buildMarks(ranges) {
+      const out = {};
+      const famSpec = '48px ' + stack;
+      for (let i = 0; i < text.length; i++) {
+        const ch = text.charAt(i);
+        if (ch in out) continue;
+        const cp = ch.codePointAt(0);
+        let ok = !ranges || inRanges(ranges, cp);
+        if (ok) ok = glyphHasInk(ch, famSpec);
+        out[ch] = !!ok;
+      }
+      return out;
+    }
+
+    WFProto.ensureFontCss(fam, weight);
+    paint();
+    if (WFChrome.skipGlyphCov && WFChrome.skipGlyphCov(font)) {
+      marks = {};
+      for (let i = 0; i < text.length; i++) marks[text.charAt(i)] = true;
+      stats = uniqueHits(text, marks);
+      paint();
+      return;
+    }
+    fetchCssRanges(fam, weight).then(function (ranges) {
+      return (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () {
+        marks = buildMarks(ranges);
+        stats = uniqueHits(text, marks);
+        paint();
+      });
+    });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && qzState && qzState.close) qzState.close();
+  });
+
   document.addEventListener('wf:picks', syncActs);
 
   window.WFSpecimen = {
@@ -679,8 +815,8 @@
     sortedWeights: sortedWeights,
     weightsSheetHtml: weightsSheetHtml,
     mountGlyphTable: mountGlyphTable,
+    openQianziwenStele: openQianziwenStele,
     QIANZIWEN: QIANZIWEN,
-    GLYPH_BLOCKS: GLYPH_BLOCKS,
     brandLine: brandLine
   };
 })();

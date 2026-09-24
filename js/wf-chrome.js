@@ -838,7 +838,7 @@
     if (L.relation === 'original' || !L.upstreamName) {
       return '<p class="lin-invite">此为开源字体谱系源头。许可允许修改后以其他名称再分发，须保留许可声明。</p>';
     }
-    return '<p class="lin-invite">此字体许可允许派生。修改后再分发须改名，并保留原授权声明。</p>';
+    return '<p class="lin-invite">此字体允许派生创作。修改后再分发须更名，并保留原授权声明。</p>';
   }
   function lineageTreeHtml(font, list, faceOf) {
     const split = lineageSplit(font, list);

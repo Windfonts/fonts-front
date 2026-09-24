@@ -93,6 +93,13 @@
           "assets": ["js/pages/detail-share-layout-options.js"]
         },
         {
+          "href": "qianziwen-preview-options.html",
+          "title": "千字文全屏预览",
+          "status": "shipped-ref",
+          "note": "乙碑格定稿：全宽·悬停放大；正式入口在字符表摘要「通篇预览」文字链",
+          "assets": ["css/qianziwen-preview-options.css", "js/pages/qianziwen-preview-options.js"]
+        },
+        {
           "href": "lineage-options.html",
           "title": "谱系对照",
           "status": "archive",
@@ -106,16 +113,16 @@
       "items": [
         {
           "href": "foundry-hero-options.html",
-          "title": "厂商顶部 / 整页",
-          "status": "shipped-ref",
-          "note": "丁·粘顶目录已上正式站；此页归档对照",
+          "title": "厂商目录顶栏",
+          "status": "active",
+          "note": "第二轮：解粘顶挤。甲两行 / 乙收束六类 / 丙搜先 / 丁现页",
           "assets": ["css/foundry-hero-options.css", "js/pages/foundry-hero-options.js"]
         },
         {
           "href": "foundry-profile-options.html",
           "title": "厂商详情顶栏四套",
-          "status": "active",
-          "note": "单家页顶区偏挤；甲疏栏 / 乙通栏 / 丙简介 / 丁现页",
+          "status": "archive",
+          "note": "单家页顶区；误开过一轮，留档",
           "assets": ["css/foundry-profile-options.css", "js/pages/foundry-profile-options.js"]
         },
         {
