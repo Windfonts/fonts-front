@@ -100,7 +100,9 @@
     }
     return '<p class="trust-line"><span class="trust-label">' + WFChrome.icon('shield') + '厂商信誉</span>' +
       '<span class="trust-grade ' + cls + '">' + esc(grade) + '</span>' +
-      (why ? '<span class="trust-why">' + esc(why) + '</span>' : '') + '</p>';
+      (why ? '<span class="trust-why">' + esc(why) + '</span>' : '') +
+      (info.claimed ? '<span class="trust-claim">' + WFChrome.icon('check') + '已认领</span>' : '') +
+      (tr && tr.siteOk === false ? '<span class="trust-site">官网失效 · ' + esc(tr.siteCheckedAt || '') + '确认</span>' : '') + '</p>';
   }
 
   function proofMetaLine(font) {

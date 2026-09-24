@@ -661,7 +661,9 @@
   /* 授权记录：厂商级 trackRecord，仅收录可查证事件（每条带出处），无记录零渲染 */
   function recordSectionHtml(info) {
     var tr = info && info.trackRecord;
-    if (!tr || !Array.isArray(tr.incidents) || !tr.incidents.length) return '';
+    var siteDown = !!(tr && tr.siteOk === false);
+    var hasInc = !!(tr && Array.isArray(tr.incidents) && tr.incidents.length);
+    if (!hasInc && !siteDown) return '';
     var rows = tr.incidents.map(function (e) {
       var host = '';
       try { host = new URL(e.sourceUrl).hostname.replace(/^www\./, ''); } catch (err) {}
@@ -671,7 +673,12 @@
         (e.sourceUrl ? '<a class="rec-src" href="' + esc(e.sourceUrl) + '" target="_blank" rel="nofollow noopener noreferrer">' + esc(host) + ' ↗</a>' : '') +
         '</li>';
     }).join('');
-    return '<section class="foundry-sec" id="record"><div class="section-head"><h2>授权记录 <span class="n">' + tr.incidents.length + '</span></h2></div>' +
+    var siteNote = '';
+    if (tr.siteOk === false) {
+      siteNote = '<p class="rec-note">厂商官网已失效（' + esc(tr.siteCheckedAt || '') + '确认），授权以已存档原文为准。</p>';
+    }
+    if (!hasInc) return '<section class="foundry-sec" id="record">' + siteNote + '</section>';
+    return '<section class="foundry-sec" id="record"><div class="section-head"><h2>授权记录 <span class="n">' + tr.incidents.length + '</span></h2></div>' + siteNote +
       '<ul class="record-list">' + rows + '</ul>' +
       '<p class="rec-note">仅收录可查证事件，每条附出处。' + esc(tr.lastChecked || '') + ' 核对。</p></section>';
   }
