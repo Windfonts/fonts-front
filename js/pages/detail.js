@@ -110,10 +110,10 @@
     return '<div class="trust-block">' +
       '<p class="trust-line"><span class="trust-label">' + WFChrome.icon('shield') + '厂商信誉</span>' +
       '<span class="trust-grade ' + cls + '">' + esc(grade) + '</span>' +
+      '<span class="trust-why">' + esc(whyLine) + '</span>' +
       (info.claimed ? '<span class="trust-claim">' + WFChrome.icon('check') + '已认领</span>' : '') +
       (tr && tr.siteOk === false ? '<span class="trust-site">官网失效 · ' + esc(tr.siteCheckedAt || '') + '确认</span>' : '') + '</p>' +
-      '<p class="trust-why-line">' + esc(whyLine) + '</p>' +
-      '<p class="trust-note">记录仅描述所列字体在所列时间的情况，不代表该厂商全部产品。信息以权利人最新公示为准，如有出入可通过厂商认领页提出更正。</p>' +
+      (n > 0 ? '<p class="trust-note">记录仅描述所列字体在所列时间的情况，不代表该厂商全部产品。信息以权利人最新公示为准，如有出入可通过厂商认领页提出更正。</p>' : '') +
       '</div>';
   }
 
