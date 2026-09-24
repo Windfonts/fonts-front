@@ -508,3 +508,9 @@ OPPO Sans 是厂商自己的协议，不是 OFL。允许不修改地嵌入，并
 - 公开动态地址是 `cn.windfonts.com` / `hk.windfonts.com` / `en.windfonts.com` 的 `/api/css`，跟节点走。不要写成 `app.windfonts.com`。`/api/css` 以后做反代重写。现在 `cn.windfonts.com/api/css` 仍是对象存储 404，复制出去的链接仍然用 CDN 域名。`5be3788` 因这次 404 改到 app，已改回。预览仍优先 `fonts-packages/…/result.css`。
 - 字体详情右侧不再显示「未认领 · 认领」。厂商页认领后，认证标志在名字右边、收藏星左边。简介改成一律用字体本身的说明，这次没做。
 - `wenfeng-zjgljt` 显示名改为「卓健橄榄简体」。依据是字体文件名称表（Windows 简体 name ID 1），不是「拙见」或「卓见」。厂商字典显示名改为「卓健」，旧写法留在别名。
+
+## 19. 2026-09-24 授权名规矩扫到新批
+
+§16 的授权名规矩补扫了它定稿（`640a63c`）之后入库的批：方正四款、香萃三款、花园明朝 A/B、包图小白体、仓耳小丸子、精品点阵体、千图马克手写体共 13 款的 `licenseName` 从档位口令、整句说明或网址改成「{字体名}授权协议」；MiSans 去掉括号注记，只留《MiSans 字体知识产权许可协议》。IPA、CC、GPL、M+ 位图许可、OPPO Sans Free Use License、梅字体许可、台湾省开放政府数据授权条款这类协议本名保留。备份 `data/fonts.json.bak-license-name2-20260924130543` 未入库。
+
+注意：字库 DB 的 `license_name` 没同步这次改动，下次从库导出目录前要先把库里这 14 行改掉，否则会冲回来。
