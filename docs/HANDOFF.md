@@ -8,7 +8,7 @@
 
 **2026-09-25 品牌 CSS 解钉：** 根因是 http 级 `proxy_cache cache_one` + `next.config` 给全部 `/api/css`（含 4xx/5xx）加 `s-maxage`，nginx/CyberCDN 按 URL 钉死旧 500。已：清 `proxy_cache_dir` 错误条目；`app.windfonts.com` `location ^~ /api/ { proxy_cache off; }`；`next.config` 去掉 `/api/css` 统一 Cache-Control；错误响应 `no-store`；镜像重建。现网抽查 albbpht/opsa/ddjbt 在 app+cn 均为 200；almmdlt 门禁 500+no-store。
 
-**P2 已落一截（2026-09-25）：** 详情「对照现网字符表」用 analysis `unicode_ranges` 的 CJK 统一汉字数，估算相对常用字 3500 / 扩充 7000 的覆盖与缺口上限（非逐字表）。
+**P2 已落一截（2026-09-25）：** 详情「对照现网」展示常用/扩充覆盖与**缺口上限**；有谱系上游时加「相对上游」CJK 差（`detail.js?v=20260925z`）。逐码点常用字表仍可再开。
 
 **2026-09-23 停点：** 公开主路径已基本对齐线上；工程批次已提交（`c78c4ce` 起）。上线硬门槛见 **[LAUNCH-GATES.md](LAUNCH-GATES.md)**（路径 rewrite、真统计、真登录、CDN 去 `local()`）。产品层（控制台 / 选字袋 / 认领等）见下文「产品层 backlog」，继续优化，不挡公开站上线。**完整会话交接见第 9 节**（谱系标准化、OSS 101、猫啃/寒蝉/站酷/荆南核实）；续页 [FONT-AUDIT-BACKLOG.md](FONT-AUDIT-BACKLOG.md)。
 

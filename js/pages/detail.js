@@ -755,7 +755,13 @@
         panel.hidden = false;
         panel.innerHTML = '<p class="glyph-live-note is-quiet">正在对照现网字符分析…</p>';
         btn.disabled = true;
-        WFLive.analysis(font).then(function (row) {
+        const upPromise =
+          upFont && window.WFLive && !WFChrome.skipGlyphCov(upFont)
+            ? WFLive.analysis(upFont)
+            : Promise.resolve(null);
+        Promise.all([WFLive.analysis(font), upPromise]).then(function (pack) {
+          const row = pack[0];
+          const upRow = pack[1];
           btn.disabled = false;
           if (!row || row.failed) {
             panel.innerHTML = '<p class="glyph-live-note is-quiet">暂时无法对照现网（网络或限流）。查字仍以本页本地数据为准。</p>';
@@ -775,6 +781,10 @@
           const localGlyphs = Number(font.glyphCount) || 0;
           const ranges = d.unicode_ranges && typeof d.unicode_ranges === 'object' ? d.unicode_ranges : null;
           const cjk = ranges ? Number(ranges['CJK Unified Ideographs']) || 0 : 0;
+          let upCjk = 0;
+          if (upRow && upRow.data && upRow.data.unicode_ranges) {
+            upCjk = Number(upRow.data.unicode_ranges['CJK Unified Ideographs']) || 0;
+          }
           const src =
             row.source === 'api'
               ? 'vault <code>/api/fonts/…/analysis</code>'
@@ -785,6 +795,11 @@
           function covPct(need) {
             if (!cjk) return '—';
             return '≈' + Math.round((Math.min(cjk, need) / need) * 100) + '%';
+          }
+          function gapSub(need) {
+            if (!cjk) return '';
+            const gap = Math.max(0, need - cjk);
+            return gap === 0 ? 'CJK 已盖过此档' : '缺口上限 ≈' + WFProto.formatCount(gap);
           }
           const face = esc(String(d.name || d.subfamily_name || '—'));
           const covCommon = covPct(3500);
@@ -804,21 +819,33 @@
             if (n === 0) return '与目录一致';
             return '相对目录 ' + (n > 0 ? '+' : '') + n;
           }
+          let upMetric = '';
+          if (upFont && upCjk) {
+            const delta = upCjk - cjk;
+            upMetric = metric(
+              '相对上游',
+              (delta > 0 ? '+' : '') + WFProto.formatCount(delta),
+              '上游「' + esc(upFont.name) + '」CJK ' + WFProto.formatCount(upCjk)
+            );
+          } else if (upFont && upRow && (upRow.missing || upRow.failed)) {
+            upMetric = metric('相对上游', '—', '上游 analysis 暂无');
+          }
           panel.innerHTML =
-            '<details class="glyph-live-fold">' +
+            '<details class="glyph-live-fold" open>' +
             '<summary>现网字符分析 · 覆盖常用' +
             covCommon +
             '</summary>' +
             '<div class="glyph-live-metrics">' +
             metric('字符数', liveChars ? WFProto.formatCount(liveChars) : '—', deltaSub(charDelta)) +
             metric('字形数', liveGlyphs ? WFProto.formatCount(liveGlyphs) : '—', deltaSub(glyphDelta)) +
-            metric('常用覆盖', covCommon, cjk ? 'CJK ' + WFProto.formatCount(cjk) : '') +
-            metric('扩充覆盖', covPct(7000), '') +
+            metric('常用覆盖', covCommon, gapSub(3500)) +
+            metric('扩充覆盖', covPct(7000), gapSub(7000)) +
+            upMetric +
             '</div>' +
             '<p class="glyph-live-note is-quiet">来源 ' +
             src +
             (face !== '—' ? ' · 字重样例 <code>' + face + '</code>' : '') +
-            '。覆盖按 analysis 的 CJK 计数估算（非逐字表）；逐字查缺用上方本地字符表。</p>' +
+            '。覆盖与缺口按 analysis 的 CJK 计数估算（非逐字表）；千字文上游差见上方；逐字查缺用本地字符表。</p>' +
             '</details>';
         });
       });
