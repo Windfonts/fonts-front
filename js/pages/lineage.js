@@ -1,7 +1,7 @@
 /* 谱系页（现网 lineage.html）
    - 四模式：激活 (plex) / 图 (flow) / 支线 (branch) / 墙 (wall)；URL ?mode=；tree→branch
-   - 激活/图：自 lineage-flow-lab（TheBrain 邻域 + L→R；宽扇叶「xx系字体」节点）
-   - 支线/墙：保留原 renderBranch / renderWall（乙/丙），不用实验室墙或簇
+   - 激活/图：画布邻域 + L→R；宽扇叶走主题支节点
+   - 支线/墙：renderBranch / renderWall
    - 大族默认激活，小族默认图；若 localStorage 为 branch/wall 则尊重 */
 (function () {
   const esc = WFProto.escapeHtml;
@@ -70,11 +70,14 @@
   let detectedClusters = []; /* [{id,kind,key,title,count,memberIds,parentName}] */
   let wallMembers = [];
   let focusId = '';
-  /* 激活模式：进入某主题支后只画该支上级+成员；点门闸进入，点卡激活时清除 */
+  /* 激活模式：进入某主题支后只画该支上级+成员；点主题支进入，点卡激活时清除 */
   let plexBranch = null; /* { key, parentId, memberIds: [] } | null */
   let view = { x: 40, y: 40, scale: 1 };
+  let lastCanvasView = null; /* restore when returning to canvas */
   let dragging = false;
   let dragStart = null;
+  const viewShell = document.getElementById('viewShell');
+  const FOOT_PLAIN = '激活看邻域，图看关系，支线看代际，墙看样张；字体名用它自己的字型排印。';
 
   /* —— 乙支线 / 丙墙（现网 HTML） —— */
   const REL_ICON = { locale: 'merge', collab: 'compare' };
@@ -1366,10 +1369,12 @@
   }
 
   function fitView(opts) {
-    if (!layout || curMode === 'wall') return;
+    if (!layout || curMode === 'wall' || curMode === 'branch') return;
     opts = opts || {};
     const keepScale = !!opts.keepScale;
+    const soft = !!opts.soft;
     const r = viewport.getBoundingClientRect();
+    if (!r.width || !r.height) return;
     const pad = 48;
 
     if (curMode === 'plex' && layout.focusId && layout.positions[layout.focusId]) {
@@ -1379,10 +1384,13 @@
         (r.height - pad * 2) / Math.max(layout.height, 1)
       )));
       if (!keepScale) view.scale = s;
-      const focusCx = (p.x + p.w / 2) * view.scale;
-      const focusCy = (p.y + p.h / 2) * view.scale;
-      view.x = r.width / 2 - focusCx;
-      view.y = r.height * 0.48 - focusCy;
+      /* soft+keepScale: keep pan; only update scale label path via applyView */
+      if (!(soft && keepScale)) {
+        const focusCx = (p.x + p.w / 2) * view.scale;
+        const focusCy = (p.y + p.h / 2) * view.scale;
+        view.x = r.width / 2 - focusCx;
+        view.y = r.height * 0.48 - focusCy;
+      }
       applyView();
       return;
     }
@@ -1391,9 +1399,35 @@
     const sy = (r.height - pad * 2) / layout.height;
     const s = Math.min(1.15, Math.max(0.4, Math.min(sx, sy)));
     if (!keepScale) view.scale = s;
-    view.x = (r.width - layout.width * view.scale) / 2;
-    view.y = Math.max(24, (r.height - layout.height * view.scale) / 2);
+    if (!(soft && keepScale)) {
+      view.x = (r.width - layout.width * view.scale) / 2;
+      view.y = Math.max(24, (r.height - layout.height * view.scale) / 2);
+    }
     applyView();
+  }
+
+  function restoreCanvasView(saved) {
+    if (!saved) return false;
+    view.x = saved.x;
+    view.y = saved.y;
+    view.scale = saved.scale;
+    applyView();
+    return true;
+  }
+
+  function rememberCanvasView() {
+    if (!isCanvasMode(curMode)) return;
+    lastCanvasView = { x: view.x, y: view.y, scale: view.scale };
+  }
+
+  function preserveWindowScroll(fn) {
+    const y = window.scrollY;
+    const stageTop = htmlStage ? htmlStage.scrollTop : 0;
+    fn();
+    requestAnimationFrame(function () {
+      window.scrollTo(0, y);
+      if (htmlStage) htmlStage.scrollTop = stageTop;
+    });
   }
 
   function neighborIds(id) {
@@ -1627,7 +1661,7 @@
   function activateFocus(id) {
     if (!id) return;
     const keepScale = view.scale !== 1;
-    /* 点具体字体：离开门闸支线坍缩，回到以该字为中心的邻域 */
+    /* 点具体字体：离开主题支坍缩，回到以该字为中心的邻域 */
     if (plexBranch && plexBranch.memberIds && plexBranch.memberIds.indexOf(id) === -1) {
       clearPlexBranch();
     } else if (plexBranch && plexBranch.parentId === id) {
@@ -1749,18 +1783,33 @@
         btn.setAttribute('aria-selected', on ? 'true' : 'false');
       });
     }
-    if (flowWrap) flowWrap.hidden = !isCanvasMode(mode);
-    if (htmlStage) htmlStage.hidden = isCanvasMode(mode);
-    if (flowTools) flowTools.hidden = !isCanvasMode(mode);
-    if (flowToolsSep) flowToolsSep.hidden = !isCanvasMode(mode);
+    /* Swap inside stable shell without display:none (keeps canvas metrics) */
+    if (flowWrap) {
+      flowWrap.classList.toggle('is-off', !isCanvasMode(mode));
+      flowWrap.removeAttribute('hidden');
+    }
+    if (htmlStage) {
+      htmlStage.classList.toggle('is-off', isCanvasMode(mode));
+      htmlStage.removeAttribute('hidden');
+    }
+    /* Reserve zoom-tool width so mode chips do not jump */
+    if (flowTools) {
+      flowTools.classList.toggle('is-reserved', !isCanvasMode(mode));
+      flowTools.removeAttribute('hidden');
+      flowTools.setAttribute('aria-hidden', isCanvasMode(mode) ? 'false' : 'true');
+    }
+    if (flowToolsSep) {
+      flowToolsSep.classList.toggle('is-reserved', !isCanvasMode(mode));
+      flowToolsSep.removeAttribute('hidden');
+    }
     if (modeHint) {
       modeHint.textContent = mode === 'plex'
-        ? '激活＝TheBrain 邻域 · 点卡重布中心 · 宽扇叶走门闸'
+        ? '激活：点卡片看上下级'
         : (mode === 'flow'
-          ? '滚轮缩放 · 拖拽平移 · 点卡片高亮边'
+          ? '图：滚轮缩放拖拽'
           : (mode === 'branch'
-            ? '支线＝根卡 + 代际支线'
-            : '墙＝分带样张格 + 左侧旁谱'));
+            ? '支线：浏览代际'
+            : '墙：浏览样张'));
     }
   }
 
@@ -1770,14 +1819,27 @@
 
   function setMode(mode, fromUser) {
     mode = normalizeMode(mode) || 'flow';
+    const prev = curMode;
+    rememberCanvasView();
     if (mode !== 'plex') clearPlexBranch();
-    curMode = mode;
-    if (fromUser) modeLocked = true;
-    setUrlParam('mode', mode);
-    persistMode(mode);
-    syncModeChrome(mode);
-    hidePlexPick();
-    render({ recenter: mode === 'plex' });
+    preserveWindowScroll(function () {
+      curMode = mode;
+      if (fromUser) modeLocked = true;
+      setUrlParam('mode', mode);
+      persistMode(mode);
+      syncModeChrome(mode);
+      hidePlexPick();
+      const canvasToCanvas = isCanvasMode(prev) && isCanvasMode(mode);
+      const backToCanvas = prev && !isCanvasMode(prev) && isCanvasMode(mode);
+      if (canvasToCanvas) {
+        /* keep zoom; still soft-fit pan to new layout */
+        render({ keepScale: true });
+      } else if (backToCanvas && lastCanvasView) {
+        render({ restoreView: lastCanvasView });
+      } else {
+        render();
+      }
+    });
   }
 
   function setClusterFilter(key) {
@@ -1873,9 +1935,6 @@
     const all = WFProto.getCatalogList();
     const ld = WFProto.getLineageData();
     const groups = ld.groups || {};
-    const withLineage = all.filter(function (f) { return f.lineage && f.lineage.group; }).length;
-    const noLineage = all.length - withLineage;
-
     if (!curGroup || !groups[curGroup]) {
       layout = null;
       famCap.textContent = '';
@@ -1950,9 +2009,13 @@
       const visibleN = Object.keys(layout.positions).length;
       famCap.textContent = (gd.name || curGroup) + ' · ' + modeLabel + ' · 激活「' +
         ((layout.byId[focusId] && layout.byId[focusId].name) || focusId) + '」· 邻域 ' + visibleN +
-        ' 卡' + (fan >= AUTO_PLEX_FAN ? ' · 族扇叶 ' + fan + '（门闸收束）' : '');
+        ' 卡' + (fan >= AUTO_PLEX_FAN ? ' · 主题支扇叶 ' + fan : '');
       renderGraph();
-      fitView({ keepScale: !!renderOpts.keepScale });
+      if (renderOpts.restoreView && restoreCanvasView(renderOpts.restoreView)) {
+        /* restored */
+      } else {
+        fitView({ keepScale: !!renderOpts.keepScale, soft: !!renderOpts.soft });
+      }
     } else {
       layout = layoutForest(forest, { mode: 'flow' });
       const edgeN = layout.edges.filter(function (e) {
@@ -1966,17 +2029,15 @@
         edgeN + ' 条边' +
         (ghostN ? ' · ' + ghostN + ' 个未收录上游' : '');
       renderGraph();
-      fitView();
+      if (renderOpts.restoreView && restoreCanvasView(renderOpts.restoreView)) {
+        /* restored */
+      } else {
+        fitView({ keepScale: !!renderOpts.keepScale, soft: !!renderOpts.soft });
+      }
     }
 
     if (footNote) {
-      footNote.textContent =
-        '四模式：激活＝TheBrain 邻域（点卡重布，宽扇叶走「xx系字体」门闸）；' +
-        '图＝左→右衍生导图（子卡封顶 ' + FLOW_CHILD_CAP + '）；' +
-        '支线＝根卡+代际支线；墙＝分带样张格+旁谱。' +
-        '大族（扇叶≥' + AUTO_PLEX_FAN + ' 或成员≥' + AUTO_PLEX_MEMBERS +
-        '）默认激活，小族默认图；已选支线/墙会记住。?mode=plex|flow|branch|wall（tree→branch）。' +
-        ' 全库 ' + all.length + ' 款里 ' + withLineage + ' 款已入谱，另有 ' + noLineage + ' 款尚未建谱。';
+      footNote.textContent = FOOT_PLAIN;
     }
 
     document.title = (gd.name ? String(gd.name).split(' / ')[0] + ' · ' : '') + '谱系 · 文风字体';

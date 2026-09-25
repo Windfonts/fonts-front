@@ -16,9 +16,14 @@
   height: 1.25rem;
   background: var(--rule-2);
   margin: 0 0.25rem;
+  flex: none;
 }
-.lg-tools-sep[hidden],
-.lg-flow-tools[hidden] { display: none !important; }
+/* Reserve zoom-tool slot on branch/wall so mode chips do not shift */
+.lg-tools-sep.is-reserved,
+.lg-flow-tools.is-reserved {
+  visibility: hidden;
+  pointer-events: none;
+}
 .lg-tool {
   appearance: none;
   border: none;
@@ -45,22 +50,51 @@
   color: var(--gray-2);
   margin-left: var(--s-2);
 }
-.count-line { padding: 0 0 var(--s-4); }
-.lg-flow-wrap {
+.count-line { padding: 0 0 var(--s-3); }
+
+/* Stable view shell: canvas + HTML stage swap inside fixed height */
+.lg-view-shell {
+  position: relative;
+  height: min(72vh, 52rem);
+  min-height: 28rem;
   margin-bottom: var(--s-6);
 }
-.lg-flow-wrap[hidden] { display: none !important; }
-.lg-stage[hidden] { display: none !important; }
-.lg-stage { padding: var(--s-2) 0 var(--s-6); }
+.lg-view-shell > .lg-flow-wrap,
+.lg-view-shell > .lg-stage {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  z-index: 0;
+}
+.lg-view-shell > .lg-flow-wrap.is-off,
+.lg-view-shell > .lg-stage.is-off {
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.lg-view-shell > .lg-flow-wrap:not(.is-off),
+.lg-view-shell > .lg-stage:not(.is-off) {
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 1;
+}
+.lg-view-shell > .lg-flow-wrap {
+  overflow: hidden;
+}
+.lg-view-shell > .lg-stage {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--s-2) 0 var(--s-4);
+}
 .lg-foot { font-size: var(--fs-13); color: var(--gray); padding-bottom: var(--s-10); }
 
 
 /* —— 画布（激活 / 图） —— */
 .lfl-viewport {
   position: relative;
-  height: min(72vh, 52rem);
-  min-height: 28rem;
-  margin: 0 var(--gutter);
+  height: 100%;
+  min-height: 0;
+  margin: 0;
   background: var(--surface);
   border-radius: var(--radius);
   overflow: hidden;
@@ -395,17 +429,20 @@ a.lfl-wall-name:hover { text-decoration: underline; }
 }
 
 @media (max-width: 720px) {
+  .lg-view-shell {
+    height: 60vh;
+    min-height: 20rem;
+  }
   .lfl-viewport {
     margin: 0;
     border-radius: 0;
-    height: 60vh;
   }
   .lg-hint { display: none; }
   .lg-tools-sep { display: none; }
 }
 
 
-/* —— 激活 (plex / TheBrain 邻域) —— */
+/* —— 激活 (plex 邻域) —— */
 .lfl-card.is-activated {
   opacity: 1;
   z-index: 5;
@@ -494,7 +531,7 @@ a.lfl-wall-name:hover { text-decoration: underline; }
 }
 .lfl-card.is-plex-gate.is-open .lfl-plex-gate-act { color: var(--ink); }
 
-/* 门闸展开：同款卡语言，贴着门闸，不另起弹层审美 */
+/* 主题支展开：同款卡语言，不另起弹层审美 */
 .lfl-plex-pick {
   position: absolute;
   z-index: 30;

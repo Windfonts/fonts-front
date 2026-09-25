@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>谱系 · 文风字体</title>
   <meta name="description" content="开源字体的传承谱系：激活邻域、关系图、支线与墙。字体名用它自己的字型排印。" />
-  <link rel="stylesheet" href="css/fonts.css?v=20260925s" />
-  <link rel="stylesheet" href="css/tokens.css?v=20260925s" />
-  <link rel="stylesheet" href="css/base.css?v=20260925s" />
-  <link rel="stylesheet" href="css/components.css?v=20260925s" />
-  <link rel="stylesheet" href="css/site.css?v=20260925s" />
-  <link rel="stylesheet" href="css/lineage.css?v=20260925s" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260925u" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260925u" />
+  <link rel="stylesheet" href="css/base.css?v=20260925u" />
+  <link rel="stylesheet" href="css/components.css?v=20260925u" />
+  <link rel="stylesheet" href="css/site.css?v=20260925u" />
+  <link rel="stylesheet" href="css/lineage.css?v=20260925u" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-lineage">
@@ -20,17 +20,17 @@
   <main class="container lg-page">
     <div class="page-head">
       <h1 id="heroTitle">字有师承。</h1>
-      <p class="lead">每一款开源字体都不是凭空来的。选一个字族，看它的上下传承——字体名用它自己的字型排印，谱系页本身就是样张。</p>
+      <p class="lead">每一款开源字体都不是凭空来的。选一个字族，看它的上下传承——字体名用它自己的字型排印。</p>
     </div>
 
     <div class="lg-toolbar row-between">
       <div class="chips" id="famNav" aria-label="字族"></div>
       <div class="lg-tools" role="toolbar" aria-label="视图与画布">
         <div class="seg" id="modeNav" role="tablist" aria-label="视图模式">
-          <button type="button" class="lg-mode" data-mode="plex" role="tab" title="TheBrain 邻域 · 点卡激活重布">激活</button>
-          <button type="button" class="lg-mode" data-mode="flow" role="tab" title="左→右衍生导图">图</button>
-          <button type="button" class="lg-mode" data-mode="branch" role="tab" title="根卡 + 代际支线">支线</button>
-          <button type="button" class="lg-mode" data-mode="wall" role="tab" title="分带样张格 + 旁谱">墙</button>
+          <button type="button" class="lg-mode" data-mode="plex" role="tab" title="激活：点卡片看上下级">激活</button>
+          <button type="button" class="lg-mode" data-mode="flow" role="tab" title="图：滚轮缩放与拖拽">图</button>
+          <button type="button" class="lg-mode" data-mode="branch" role="tab" title="支线：浏览代际">支线</button>
+          <button type="button" class="lg-mode" data-mode="wall" role="tab" title="墙：浏览样张">墙</button>
         </div>
         <span class="lg-tools-sep" id="flowToolsSep" aria-hidden="true"></span>
         <span class="lg-flow-tools" id="flowTools">
@@ -38,39 +38,39 @@
           <button type="button" class="lg-tool" id="btnZoomIn" title="放大">+</button>
           <button type="button" class="lg-tool" id="btnReset" title="重置视图">重置</button>
           <span class="lg-zoom" id="zoomLabel">100%</span>
-          <span class="lg-hint" id="modeHint">滚轮缩放 · 拖拽平移 · 点卡片高亮边</span>
         </span>
+        <span class="lg-hint" id="modeHint">激活：点卡片看上下级</span>
       </div>
     </div>
 
     <p class="count-line" id="famCap"></p>
-  </main>
 
-  <div class="lg-flow-wrap" id="flowWrap" hidden>
-    <div class="lfl-viewport" id="viewport" tabindex="0" aria-label="谱系关系图画布">
-      <div class="lfl-stage" id="flowStage">
-        <svg class="lfl-edges" id="edges" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
-        <div class="lfl-nodes" id="nodes"></div>
+    <div class="lg-view-shell" id="viewShell">
+      <div class="lg-flow-wrap" id="flowWrap">
+        <div class="lfl-viewport" id="viewport" tabindex="0" aria-label="谱系关系图画布">
+          <div class="lfl-stage" id="flowStage">
+            <svg class="lfl-edges" id="edges" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+            <div class="lfl-nodes" id="nodes"></div>
+          </div>
+          <div class="lfl-plex-pick" id="plexPick" hidden></div>
+          <p class="lfl-empty" id="empty" hidden>暂无谱系数据。</p>
+        </div>
       </div>
-      <div class="lfl-plex-pick" id="plexPick" hidden></div>
-      <p class="lfl-empty" id="empty" hidden>暂无谱系数据。</p>
+
+      <section class="lg-stage" id="stage" aria-live="polite">
+        <p class="loading">正在加载谱系…</p>
+      </section>
     </div>
-  </div>
 
-  <main class="container">
-    <section class="lg-stage" id="stage" aria-live="polite">
-      <p class="loading">正在加载谱系…</p>
-    </section>
-
-    <p class="lg-foot" id="footNote">激活＝邻域重布；图＝左→右关系图；支线＝根卡+代际；墙＝分带样张格+旁谱。</p>
+    <p class="lg-foot" id="footNote">激活看邻域，图看关系，支线看代际，墙看样张；字体名用它自己的字型排印。</p>
   </main>
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js?v=20260925s"></script>
-  <script src="js/wf-chrome.js?v=20260925s"></script>
-  <script src="js/wf-products.js?v=20260925s"></script>
-  <script src="js/wf-specimen.js?v=20260925s"></script>
-  <script src="js/pages/lineage.js?v=20260925s"></script>
+  <script src="js/wf-proto.js?v=20260925u"></script>
+  <script src="js/wf-chrome.js?v=20260925u"></script>
+  <script src="js/wf-products.js?v=20260925u"></script>
+  <script src="js/wf-specimen.js?v=20260925u"></script>
+  <script src="js/pages/lineage.js?v=20260925u"></script>
 </body>
 </html>
