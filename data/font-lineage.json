@@ -323,7 +323,8 @@
       "relation": "fork",
       "upstreamName": "光莹黑体",
       "upstreamOwnerId": "welai",
-      "licenseFollows": "inherit"
+      "licenseFollows": "inherit",
+      "group": "source-han-sans"
     },
     "寒蝉团圆体": {
       "ownerId": "chilltype",

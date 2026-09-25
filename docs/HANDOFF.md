@@ -647,3 +647,16 @@ feibisi 拍板 openfontree（ZeoSeven 的开源字体关系树仓，CC BY-SA）�
 - **foundries.json 131 行**：补 frex-sans（械黑计划）行，ownerId 走正路。
 - **lineage-visual-options.html**（设计轨，未定稿）：谱系总览页三方向并排——一 族谱树（画册纵向）/二 年代纵轴（大号衬线年份）/三 溯源河流（横向分代）+ 星图彩蛋。数据全为真实谱系节选。等 feibisi 挑方向。
 - 数据版本参数：font-lineage/foundries `20260927a`、wf-chrome `20260927e`。
+## 28. 2026-09-25 谱系页上线：lineage.html 甲乙双模式（谱/墙）
+
+feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合，两种模式可切换」。
+
+- **lineage.html + css/lineage.css + js/pages/lineage.js**：真实数据页（非设计稿）。
+  - 15 字族导航（按款数降序，当前项墨色下划线）；`?group=` 持久、`?mode=` 可指定。
+  - **谱（树）**：纵向家谱，纯函数递归渲染（walk 返回字符串——副作用拼接会让子节点错位到空 ul 外，已修）；同族变体根（思源黑体 CN/Regular/斜体）单向收编为主根孩子（短名为主、按已确认主根找宿主，防互相吸收清空——const 重赋值 + 双向吸收两坑连环）。
+  - **墙**：按谱系深度分带（源头/第 N 代），衬线年份区间立柱，辈分=字号（根 3rem→后代 2.3rem）。
+  - 节点全部用自身字体渲染（ensureFontCss+firstWeight 等价物 weightOf）；未收录上游出灰字幽灵节点（树内占位/墙模式收进注脚行）。
+  - 模式选择存 localStorage `wf-lineage-mode`；wf-proto 新增 `getLineageData()` 只读出口。
+  - 寒蝉宽黑体挂入 source-han-sans 组（上游光莹黑体=幽灵节点）。
+- 验证：思源黑体树 89 li（含幽灵）/墙 3 带 88 款、霞鹜族 7 li 根 33.6px 自渲染、specFonts 3/3、无横向溢出、外审 7/7 节点以字证字成立。
+- 版本：lineage.js `20260925d`、wf-proto `20260927n`（lineage 数据 `20260927b`）。
