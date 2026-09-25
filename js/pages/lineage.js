@@ -3848,6 +3848,28 @@
     });
   });
 
+  /* 内容宽度切换：标准（版心）/ 全宽（铺满视口），localStorage 记忆 */
+  var widthNav = document.getElementById('widthNav');
+  function applyWidth() {
+    var page = document.querySelector('.lg-page');
+    if (page) page.classList.toggle('lg-page-wide', width === 'wide');
+    if (widthNav) widthNav.querySelectorAll('button').forEach(function (b) {
+      var on = b.getAttribute('data-width') === width;
+      b.classList.toggle('is-on', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+  var width = 'normal';
+  try { width = localStorage.getItem('wf-lineage-width') === 'wide' ? 'wide' : 'normal'; } catch (e) {}
+  if (widthNav) widthNav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('button');
+    if (!btn) return;
+    width = btn.getAttribute('data-width') === 'wide' ? 'wide' : 'normal';
+    try { localStorage.setItem('wf-lineage-width', width); } catch (e) {}
+    applyWidth();
+  });
+  applyWidth();
+
   /* bootstrap URL cluster filter + focus */
   clusterFilter = qs('cluster') || '';
   focusId = qs('focus') || '';

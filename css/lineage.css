@@ -891,3 +891,6 @@ a.lg-node:hover .lg-name { text-decoration: underline; text-underline-offset: 0.
   letter-spacing: 0.01em;
   white-space: nowrap;
 }
+
+/* 内容宽度切换（C 版）：.lg-page-wide 时版心铺满视口，工具行与正文同步放宽 */
+.lg-page.container.lg-page-wide { max-width: none; }
