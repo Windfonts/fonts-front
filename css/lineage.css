@@ -499,6 +499,10 @@ a.lfl-wall-name:hover { text-decoration: underline; }
   padding-left: 0.85rem;
 }
 .lfl-card.is-series:hover { background: var(--surface-2); }
+.lfl-card.is-series.is-brand-family {
+  border-left-color: color-mix(in srgb, var(--ink) 55%, var(--accent, #c45) 45%);
+}
+.lfl-card.is-series.is-brand-family .lfl-series-sub { letter-spacing: 0.02em; }
 .lfl-card.is-series.is-activated,
 .lfl-card.is-series.is-hot {
   background: var(--paper);

@@ -235,7 +235,8 @@
       "ownerId": "dingtalk",
       "makerId": "hanyi",
       "relation": "commissioned",
-      "licenseFollows": "own"
+      "licenseFollows": "own",
+      "group": "alibaba-sans"
     },
     "OPPO Sans": {
       "ownerId": "oppo",
@@ -2206,6 +2207,13 @@
       "upstreamName": "文泉驿点阵宋体",
       "upstreamOwnerId": "wenquanyi",
       "licenseFollows": "inherit"
+    },
+    "淘宝买菜体": {
+      "ownerId": "alibaba",
+      "makerId": "alibaba",
+      "group": "alibaba-sans",
+      "relation": "commissioned",
+      "licenseFollows": "own"
     }
   }
 }

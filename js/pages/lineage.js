@@ -651,14 +651,144 @@
   }
 
 
+
+  /* 品牌方母公司枢纽：有 parentId 的厂商 → 顶节点为母公司，子品牌作中间系节点 */
+  function brandOwnerFd(font) {
+    if (!font || !WFProto.getFoundryById) return null;
+    const id = (font.ownerInfo && font.ownerInfo.id) ||
+      (font.lineage && font.lineage.ownerId) || '';
+    return id ? WFProto.getFoundryById(id) : null;
+  }
+
+  function brandTopFd(fd) {
+    if (!fd || !WFProto.getFoundryParent) return fd;
+    let cur = fd;
+    let guard = 0;
+    while (cur && cur.parentId && guard++ < 8) {
+      const p = WFProto.getFoundryParent(cur);
+      if (!p) break;
+      cur = p;
+    }
+    return cur;
+  }
+
+  function makeBrandFamilyNode(fd, fonts) {
+    let year = 9999;
+    (fonts || []).forEach(function (m) {
+      if (m.releaseYear && m.releaseYear < year) year = m.releaseYear;
+    });
+    return {
+      isSeries: true,
+      isBrandFamily: true,
+      id: 'brand:' + fd.id,
+      name: fd.name || fd.id,
+      seriesTitle: fd.name || fd.id,
+      seriesSub: '品牌 · 点此查看下属',
+      seriesCount: (fonts || []).length,
+      members: (fonts || []).slice(),
+      brandId: fd.id,
+      foundryInfo: fd,
+      ownerInfo: fd,
+      releaseYear: year === 9999 ? 0 : year
+    };
+  }
+
+  function injectBrandFamilyNodes(forest) {
+    if (!forest || !WFProto.getFoundryParent || !WFProto.getFoundryById) return forest;
+    const getKids = WFProto.getFoundryChildren || function () { return []; };
+
+    /* topId → { topFd, childBuckets: { id: { fd, fonts } }, direct: [] } */
+    const buckets = {};
+    forest.roots.forEach(function (r) {
+      if (!r || r.ghost || r.outgroup || r.isSeries || r.isCluster ||
+          r.isMore || r.isBrandFamily || r.isPlexGate) return;
+      const fd = brandOwnerFd(r);
+      if (!fd) return;
+      const parent = WFProto.getFoundryParent(fd);
+      if (parent) {
+        const top = brandTopFd(fd);
+        const b = buckets[top.id] || (buckets[top.id] = { topFd: top, childBuckets: {}, direct: [] });
+        const cb = b.childBuckets[fd.id] || (b.childBuckets[fd.id] = { fd: fd, fonts: [] });
+        cb.fonts.push(r);
+        return;
+      }
+      if (getKids(fd.id).length) {
+        const b = buckets[fd.id] || (buckets[fd.id] = { topFd: fd, childBuckets: {}, direct: [] });
+        b.direct.push(r);
+      }
+    });
+
+    function byYear(a, b) {
+      return (a.releaseYear || 9999) - (b.releaseYear || 9999) ||
+        String(a.name).localeCompare(b.name, 'zh');
+    }
+
+    Object.keys(buckets).forEach(function (topId) {
+      const b = buckets[topId];
+      const childIds = Object.keys(b.childBuckets);
+      /* 无子公司字体、也无挂在母公司名下的字 → 跳过 */
+      if (!childIds.length && !b.direct.length) return;
+      /* 仅母公司直属、字典里也无子公司：不造枢纽（避免误伤） */
+      if (!childIds.length && !getKids(topId).length) return;
+
+      const moved = {};
+      const allFonts = b.direct.slice();
+      childIds.forEach(function (cid) {
+        b.childBuckets[cid].fonts.forEach(function (f) {
+          allFonts.push(f);
+          moved[f.id] = true;
+        });
+      });
+      b.direct.forEach(function (f) { moved[f.id] = true; });
+
+      forest.roots = forest.roots.filter(function (r) { return !moved[r.id]; });
+
+      const hubFonts = [];
+      const hubKids = [];
+
+      childIds.sort(function (a, bId) {
+        return String(b.childBuckets[a].fd.name || a)
+          .localeCompare(String(b.childBuckets[bId].fd.name || bId), 'zh');
+      }).forEach(function (cid) {
+        const cb = b.childBuckets[cid];
+        const fonts = cb.fonts.slice().sort(byYear);
+        fonts.forEach(function (f) { hubFonts.push(f); });
+        const childNode = makeBrandFamilyNode(cb.fd, fonts);
+        forest.byId[childNode.id] = childNode;
+        forest.parentOf[childNode.id] = 'brand:' + topId;
+        forest.children[childNode.id] = fonts;
+        fonts.forEach(function (f) { forest.parentOf[f.id] = childNode.id; });
+        hubKids.push(childNode);
+      });
+
+      b.direct.slice().sort(byYear).forEach(function (f) {
+        hubFonts.push(f);
+        forest.parentOf[f.id] = 'brand:' + topId;
+        hubKids.push(f);
+      });
+
+      const hub = makeBrandFamilyNode(b.topFd, hubFonts);
+      /* hub.members 含全部叶子；children 为子品牌节点 + 直属字 */
+      forest.byId[hub.id] = hub;
+      forest.children[hub.id] = hubKids;
+      forest.parentOf[hub.id] = '';
+      forest.roots.push(hub);
+    });
+
+    forest.roots.sort(byYear);
+    return forest;
+  }
+
   /* 把宽扇叶收成真实中间节点：父 →「狮尾系字体」→ 成员 */
   function injectSeriesNodes(forest) {
     const parentIds = Object.keys(forest.children);
     parentIds.forEach(function (pid) {
       const parent = forest.byId[pid];
-      if (!parent || parent.isSeries || parent.isCluster || parent.isMore) return;
+      if (!parent || parent.isCluster || parent.isMore) return;
+      /* 品牌枢纽可继续收「阿里妈妈系」；普通主题支不再套娃 */
+      if (parent.isSeries && !parent.isBrandFamily) return;
       const sibs = (forest.children[pid] || []).filter(function (c) {
-        return c && !c.isSeries && !c.isCluster && !c.isMore && !c.isPlexGate && !c.ghost;
+        return c && !c.isSeries && !c.isCluster && !c.isMore && !c.isPlexGate && !c.ghost && !c.isBrandFamily;
       });
       const packed = clusterSiblings(parent, sibs, Math.max(PREFIX_MIN_MEMBERS, 3));
       if (!packed.clusters.length) return;
@@ -882,7 +1012,12 @@
   function pickDefaultFocus(forest, preferId) {
     if (preferId && forest.byId[preferId]) {
       const n = forest.byId[preferId];
-      if (!n.isCluster && !n.isMore && !n.isPlexGate) return n;
+      if (n) return n;
+    }
+    /* 品牌方母公司枢纽优先（如 阿里巴巴） */
+    for (let i = 0; i < forest.roots.length; i++) {
+      const r = forest.roots[i];
+      if (r && r.isBrandFamily) return r;
     }
     /* prefer a listed (non-ghost) node with the most children; else first root */
     let best = null;
@@ -891,9 +1026,9 @@
       const n = forest.byId[id];
       if (!n || n.ghost || n.outgroup || n.isCluster || n.isMore || n.isSeries || n.isPlexGate) return;
       const k = kidsOf(n, forest).length;
-      if (k > bestN) { bestN = k; best = n; }
+      if (k > bestN) { best = n; bestN = k; }
     });
-    if (best) return best;
+    if (best && bestN > 0) return best;
     for (let i = 0; i < forest.roots.length; i++) {
       const r = forest.roots[i];
       if (!r.isCluster && !r.isMore && !r.isSeries) return r;
@@ -995,12 +1130,14 @@
       return !k.isSeries && (k.isCluster || k.isMore || k.isPlexGate);
     });
 
-    if (focus.isSeries) {
+    if (focus.isSeries && !focus.isBrandFamily) {
+      /* 普通主题支（狮尾系等）：只展开字体成员 */
       const nodes = kids.filter(function (k) {
         return !k.isSeries && !k.isCluster && !k.isMore;
       });
       placeChildRows(place, edges, focus, nodes, focusX, focusY, cx, { compact: true });
-    } else if (childSeries.length || childOther.length) {
+    } else if (focus.isBrandFamily || childSeries.length || childOther.length) {
+      /* 品牌枢纽：子品牌系节点 + 直属字同屏 */
       const ordered = childSeries.concat(childOther).concat(childFonts);
       let show = ordered;
       if (show.length > PLEX_CHILD_CAP) {
@@ -1020,7 +1157,7 @@
         edges.push({
           from: focus.id,
           to: n.id,
-          label: n.isSeries ? '主题支' : (n.isCluster || n.isPlexGate ? '衍生' : relLabel(n, focus))
+          label: n.isBrandFamily ? '品牌' : (n.isSeries ? '主题支' : (n.isCluster || n.isPlexGate ? '衍生' : relLabel(n, focus)))
         });
         childX += CARD_W + PLEX_H_GAP;
       });
@@ -1547,12 +1684,14 @@
     const n = pos.node;
     const id = n.id;
     if (n.isSeries) {
-      return '<article class="lfl-card is-series' + (pos.activated ? ' is-activated' : '') +
-        '" data-id="' + esc(id) + '" data-series="1" style="left:' +
+      return '<article class="lfl-card is-series' + (n.isBrandFamily ? ' is-brand-family' : '') +
+        (pos.activated ? ' is-activated' : '') +
+        '" data-id="' + esc(id) + '" data-series="1"' +
+        (n.isBrandFamily ? ' data-brand="1"' : '') + ' style="left:' +
         pos.x + 'px;top:' + pos.y + 'px;width:' + pos.w + 'px" tabindex="0" role="button">' +
         '<div class="lfl-series-title"><span>' + esc(n.name) + '</span>' +
         '<span class="lfl-series-count">' + (n.seriesCount || (n.members && n.members.length) || 0) + '</span></div>' +
-        '<span class="lfl-series-sub">主题支 · 点此查看上下级</span>' +
+        '<span class="lfl-series-sub">' + esc(n.seriesSub || (n.isBrandFamily ? '品牌 · 点此查看下属' : '主题支 · 点此查看上下级')) + '</span>' +
         '</article>';
     }
     if (n.isPlexGate) {
@@ -2031,7 +2170,7 @@
     }
 
     const members = all.filter(function (f) { return f.lineage && f.lineage.group === curGroup; });
-    const forest = injectSeriesNodes(buildForest(members, all));
+    const forest = injectSeriesNodes(injectBrandFamilyNodes(buildForest(members, all)));
     forestCache = forest;
     detectedClusters = collectDetectedClusters(forest);
 
