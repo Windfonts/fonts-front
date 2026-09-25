@@ -236,19 +236,46 @@
     const kin = L.group && kinN > 1
       ? '<a class="btn" href="' + WFChrome.href('fonts.html?lineage=' + encodeURIComponent(L.group)) + '">' + WFChrome.icon('compare') + '查看全部同源字</a>'
       : '';
-    const brandGroups = { 'alibaba-sans': 1, zcool: 1, qiantu: 1, maoken: 1, pangmen: 1 };
+    /* 组织视图 URL 用厂商根 id；派生视图用 fork 字族 group */
+    const brandRoots = { alibaba: 1, zcool: 1, qiantu: 1, maoken: 1, pangmen: 1 };
     const deriveGroups = { 'source-han-sans': 1, 'source-han-serif': 1, 'lxgw-wenkai': 1 };
+    const legacyBrandGroup = { 'alibaba-sans': 'alibaba' };
+    function orgRootFromOwner(oid) {
+      if (!oid) return '';
+      if (brandRoots[oid]) return oid;
+      const fd = WFProto.getFoundryById ? WFProto.getFoundryById(oid) : null;
+      if (!fd) return '';
+      let cur = fd;
+      let guard = 0;
+      while (cur && cur.parentId && guard++ < 8) {
+        const p = WFProto.getFoundryParent ? WFProto.getFoundryParent(cur) : null;
+        if (!p) break;
+        cur = p;
+      }
+      const top = (cur && cur.id) || oid;
+      if (brandRoots[top]) return top;
+      if (fd.kind === 'brand' || fd.kind === 'platform' || fd.kind === 'author') return top;
+      return '';
+    }
     let graphGroup = L.group || '';
     let graphView = 'derive';
-    if (graphGroup && brandGroups[graphGroup]) {
+    if (graphGroup && legacyBrandGroup[graphGroup]) {
+      graphView = 'org';
+      graphGroup = legacyBrandGroup[graphGroup];
+    } else if (graphGroup && brandRoots[graphGroup]) {
       graphView = 'org';
     } else if (graphGroup && deriveGroups[graphGroup]) {
       graphView = 'derive';
     } else {
       const oid = L.ownerId || (font.ownerInfo && font.ownerInfo.id) || '';
-      if (oid && brandGroups[oid]) {
+      const orgRoot = orgRootFromOwner(oid);
+      if (orgRoot && brandRoots[orgRoot]) {
         graphView = 'org';
-        graphGroup = graphGroup || oid;
+        graphGroup = orgRoot;
+      } else if (orgRoot && !deriveGroups[graphGroup]) {
+        /* 深链单厂商（如胡晓波）：组织视图 */
+        graphView = 'org';
+        graphGroup = orgRoot;
       }
     }
     const graphHref = graphGroup

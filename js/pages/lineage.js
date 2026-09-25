@@ -16,7 +16,8 @@
   MAJOR_GROUPS.lineage.concat(MAJOR_GROUPS.brand).forEach(function (g) { MAJOR_GROUP_SET[g] = true; });
 
   function isBrandMajorGroup(g) {
-    return MAJOR_GROUPS.brand.indexOf(g) !== -1;
+    const n = (g === 'alibaba-sans') ? 'alibaba' : g;
+    return MAJOR_GROUPS.brand.indexOf(n) !== -1;
   }
   function isLineageMajorGroup(g) {
     return MAJOR_GROUPS.lineage.indexOf(g) !== -1;
@@ -2900,6 +2901,39 @@
     return fd.kind === 'author' && g === fd.id;
   }
 
+  /** 组织视图成员：厂商子树内 ownerId + 指向本根的合作回流 */
+  function membersForOrgFoundry(rootId, all) {
+    const seen = {};
+    const out = [];
+    function add(f) {
+      if (!f || !f.id || seen[f.id]) return;
+      seen[f.id] = true;
+      out.push(f);
+    }
+    if (!rootId) return out;
+    const subtree = (WFProto.getFoundrySubtreeIds
+      ? WFProto.getFoundrySubtreeIds(rootId)
+      : [rootId]);
+    const set = {};
+    subtree.forEach(function (id) { set[id] = true; });
+    (all || []).forEach(function (f) {
+      const oid = ownerIdOfFont(f);
+      if (oid && set[oid]) add(f);
+    });
+    (all || []).forEach(function (f) {
+      const lin = f.lineage || {};
+      if (lin.relatedGroup === rootId) add(f);
+      const ids = lin.collaboratorIds || [];
+      if (ids.indexOf(rootId) !== -1) add(f);
+      const infos = lin.collaboratorInfos || [];
+      for (let i = 0; i < infos.length; i++) {
+        if (infos[i] && infos[i].id === rootId) { add(f); break; }
+      }
+      if (rootId === 'zcool' && lin.ownerId === 'huxiaobo' && /站酷/.test(String(f.name || ''))) add(f);
+    });
+    return out;
+  }
+
   function membersForGroup(g, all) {
     const seen = {};
     const out = [];
@@ -2908,13 +2942,19 @@
       seen[f.id] = true;
       out.push(f);
     }
+    const norm = normalizeOrgGroup(g);
+    const rootId = rootFoundryIdForGroup(g);
+    /* 品牌/厂商芯片：按 foundry 子树聚合（猫啃 forks 仍属思源组，组织视图只看 owner） */
+    if (rootId && (isBrandMajorGroup(norm) || isCatalogGroup(norm) || isCatalogGroup(g) ||
+        g === 'alibaba-sans' || ORG_GROUP_FOUNDRY[g])) {
+      return membersForOrgFoundry(rootId, all);
+    }
     (all || []).forEach(function (f) {
       if (f.lineage && f.lineage.group === g) add(f);
     });
     if (isOwnerAggregatedGroup(g)) {
       (all || []).forEach(function (f) {
-        const oid = (f.lineage && f.lineage.ownerId) ||
-          (f.ownerInfo && f.ownerInfo.id) || '';
+        const oid = ownerIdOfFont(f);
         if (oid === g) add(f);
       });
     }
@@ -3005,8 +3045,12 @@
   /** URL ?view= 与字族对齐；仅有 view 时切到该视图下第一个大族 */
   function resolveViewWithGroup(counts) {
     const qView = normalizeView(qs('view'));
-    const qGroup = qs('group');
-    if (qGroup && counts[qGroup]) {
+    const qGroupRaw = qs('group');
+    const qGroup = normalizeOrgGroup(qGroupRaw) || qGroupRaw;
+    if (qGroup && (counts[qGroup] || counts[qGroupRaw])) {
+      if (counts[qGroup]) curGroup = qGroup;
+      else if (counts[qGroupRaw]) curGroup = normalizeOrgGroup(qGroupRaw) || qGroupRaw;
+      if (qGroupRaw && curGroup && qGroupRaw !== curGroup) setUrlParam('group', curGroup);
       curView = viewForGroup(curGroup);
     } else if (qView) {
       curView = qView;
@@ -3024,8 +3068,10 @@
   }
 
   function pickDefaultGroup(counts, ld, all) {
-    const q = qs('group');
+    const qRaw = qs('group');
+    const q = normalizeOrgGroup(qRaw) || qRaw;
     if (q && counts[q]) return q;
+    if (qRaw && counts[qRaw]) return normalizeOrgGroup(qRaw) || qRaw;
     const qView = normalizeView(qs('view'));
     if (qView === 'org') {
       const hit = firstMajorWithCount(MAJOR_GROUPS.brand, counts);
@@ -3167,8 +3213,8 @@
   }
 
   function setGroup(g) {
-    curGroup = g;
-    curView = viewForGroup(g);
+    curGroup = normalizeOrgGroup(g) || g;
+    curView = viewForGroup(curGroup);
     clearPlexBranch();
     focusId = '';
     expandedClusters = {};
@@ -3200,14 +3246,26 @@
       const n = collapseFaceVariants(membersForGroup(g, all)).length;
       if (n) counts[g] = n;
     });
+    /* 品牌顶栏按厂商根 id 计数（alibaba 等未必在 lineage.groups） */
+    MAJOR_GROUPS.brand.forEach(function (g) {
+      const rootId = rootFoundryIdForGroup(g) || g;
+      const n = collapseFaceVariants(membersForOrgFoundry(rootId, all)).length;
+      if (n) counts[g] = n;
+    });
+    if (counts.alibaba && !counts['alibaba-sans']) counts['alibaba-sans'] = counts.alibaba;
     if (!curGroup || !counts[curGroup]) {
       curGroup = pickDefaultGroup(counts, ld, all);
     }
+    curGroup = normalizeOrgGroup(curGroup) || curGroup;
     resolveViewWithGroup(counts);
     function chipHtml(g) {
       if (!counts[g]) return '';
-      const gd = ld.groups[g] || {};
-      const short = String(gd.name || g).split(' / ')[0];
+      const rootId = rootFoundryIdForGroup(g) || g;
+      const fd = WFProto.getFoundryById ? WFProto.getFoundryById(rootId) : null;
+      const gd = ld.groups[g] || ld.groups[rootId] || {};
+      const short = fd
+        ? String(fd.short || fd.name || g)
+        : String(gd.name || g).split(' / ')[0];
       return '<button type="button" class="chip' + (g === curGroup ? ' is-on' : '') + '" data-group="' + esc(g) + '">' +
         esc(short) + '<span class="n">' + counts[g] + '</span></button>';
     }
@@ -3221,8 +3279,8 @@
         '</span>' + chips + '</div>';
     }
     famNav.innerHTML =
-      clusterHtml('派生', '派生谱系 · 谁改自谁', MAJOR_GROUPS.lineage) +
-      clusterHtml('品牌', '组织归属 · 谁旗下有谁', MAJOR_GROUPS.brand);
+      clusterHtml('派生', '派生族谱 · 谁改自谁', MAJOR_GROUPS.lineage) +
+      clusterHtml('品牌', '品牌组织 · 按厂商', MAJOR_GROUPS.brand);
     famNav.querySelectorAll('.chip').forEach(function (btn) {
       btn.addEventListener('click', function () { setGroup(btn.getAttribute('data-group')); });
     });
@@ -3267,7 +3325,12 @@
     const all = WFProto.getCatalogList();
     const ld = WFProto.getLineageData();
     const groups = ld.groups || {};
-    if (!curGroup || !groups[curGroup]) {
+    const beforeNorm = curGroup;
+    curGroup = normalizeOrgGroup(curGroup) || curGroup;
+    if (beforeNorm && curGroup && beforeNorm !== curGroup) setUrlParam('group', curGroup);
+    const orgRoot = rootFoundryIdForGroup(curGroup);
+    const known = !!(groups[curGroup] || (orgRoot && (isBrandMajorGroup(curGroup) || isCatalogGroup(curGroup) || ORG_GROUP_FOUNDRY[curGroup])));
+    if (!curGroup || !known) {
       layout = null;
       famCap.textContent = '';
       if (htmlStage) htmlStage.innerHTML = '<p class="empty">暂无谱系数据。</p>';
@@ -3307,7 +3370,11 @@
       syncModeChrome(curMode);
     }
 
-    const gd = groups[curGroup] || {};
+    const gdBase = groups[curGroup] || groups['alibaba-sans'] || {};
+    const orgFd = orgRoot && WFProto.getFoundryById ? WFProto.getFoundryById(orgRoot) : null;
+    const gd = orgFd
+      ? { name: orgFd.name || orgFd.short || curGroup, upstreamName: gdBase.upstreamName || '' }
+      : gdBase;
     const fan = maxSiblingFan(forest);
     const modeLabel = curMode === 'wall' ? '墙'
       : (curMode === 'plex' ? '聚焦'
