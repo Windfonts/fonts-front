@@ -651,6 +651,61 @@ html[data-view="dev"] .foundry-eco .foundry-upstream-item { flex-wrap: nowrap; w
 .foundry-index .foundry:hover { background: var(--surface-2); }
 .foundry-index .foundry .sub { font-family: var(--font-mono); }
 .foundry-index .foundry[hidden] { display: none; }
+.foundry-index .foundry-tree {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-4) var(--s-5);
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.foundry-index .foundry-tree:hover { background: var(--surface-2); }
+.foundry-index .foundry-tree > .foundry {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+.foundry-index .foundry-tree > .foundry:hover { background: transparent; }
+.foundry-index .foundry-tree[hidden] { display: none; }
+.foundry-index .foundry-kids {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding-top: 0.15rem;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.foundry-index .foundry-kid {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+  color: var(--ink-2);
+  font-size: var(--fs-12);
+  text-decoration: none;
+}
+.foundry-index .foundry-kid:hover {
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
+  color: var(--ink);
+}
+.foundry-index .foundry-kid .kid-n {
+  font-family: var(--font-mono);
+  color: var(--gray);
+}
+.foundry-parent-link {
+  margin: var(--s-2) 0 0;
+  font-size: var(--fs-13);
+  color: var(--ink-2);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.foundry-parent-link a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+.foundry-units { margin-top: var(--s-3); }
 
 /* —— 定价 —— */
 .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); }

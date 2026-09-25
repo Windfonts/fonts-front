@@ -1,6 +1,22 @@
 {
-  "$schema": "厂商字典 · 全站厂商名称的唯一真相来源。name 一律中文；en 英文/原文名；short 简称；aliases 为目录原始写法；fontNames 为未署名可归属的字体；kind=author|project|foundry|platform；openSource 标机构；claimed 为已认领；provisional=true 表示中文名拟定。",
+  "$schema": "厂商字典 · 全站厂商名称的唯一真相来源。name 一律中文；en 英文/原文名；short 简称；aliases 为目录原始写法；fontNames 为未署名可归属的字体；kind=author|project|foundry|platform|brand；openSource 标机构；claimed 为已认领；provisional=true 表示中文名拟定；parentId 可选，指向母公司/集团（品牌方树根须为父公司）。",
   "foundries": [
+    {
+      "id": "alibaba",
+      "name": "阿里巴巴",
+      "en": "Alibaba",
+      "short": "阿里",
+      "website": "https://www.alibaba.com",
+      "aliases": [
+        "阿里巴巴集团",
+        "Alibaba Group",
+        "Alibaba"
+      ],
+      "kind": "brand",
+      "openSource": false,
+      "claimed": false,
+      "description": "阿里巴巴集团；其下设计、钉钉、淘宝、阿里妈妈等产品线的免费商用字体归入本树。"
+    },
     {
       "id": "alibaba-design",
       "name": "阿里巴巴设计",
@@ -13,7 +29,8 @@
       ],
       "kind": "brand",
       "openSource": false,
-      "claimed": false
+      "claimed": false,
+      "parentId": "alibaba"
     },
     {
       "id": "hanyi",
@@ -443,7 +460,8 @@
       ],
       "kind": "brand",
       "openSource": false,
-      "claimed": false
+      "claimed": false,
+      "parentId": "alibaba"
     },
     {
       "id": "atelier-anchor",

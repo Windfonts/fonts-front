@@ -132,6 +132,103 @@
       a.name.localeCompare(b.name, 'zh');
   }
 
+  function uniqFonts(arr) {
+    const seen = {};
+    const out = [];
+    (arr || []).forEach(function (f) {
+      if (!f || seen[f.id || f.name]) return;
+      seen[f.id || f.name] = 1;
+      out.push(f);
+    });
+    return out;
+  }
+
+  /** 从字典补出无直接归属字的母公司节点，并把子品牌字体汇总上去 */
+  function attachBrandParents(gs) {
+    const bySlug = {};
+    gs.forEach(function (g) { bySlug[g.slug] = g; });
+    const extras = [];
+    (WFProto.getFoundries ? WFProto.getFoundries() : []).forEach(function (info) {
+      if (!info || info.kind !== 'brand') return;
+      const kids = (WFProto.getFoundryChildren ? WFProto.getFoundryChildren(info.id) : [])
+        .map(function (ch) { return bySlug[ch.id]; })
+        .filter(Boolean);
+      if (!kids.length && !bySlug[info.id]) return;
+      let g = bySlug[info.id];
+      if (!g) {
+        g = {
+          slug: info.id, name: info.name, info: info, font: stubFont(info),
+          fonts: [], made: [], collab: [], claimed: !!info.claimed, kind: info.kind || ''
+        };
+        bySlug[info.id] = g;
+        extras.push(g);
+      }
+      if (kids.length) {
+        g.children = kids.slice().sort(sortGroups);
+        const fonts = g.fonts.slice();
+        const made = g.made.slice();
+        const collab = (g.collab || []).slice();
+        kids.forEach(function (ch) {
+          fonts.push.apply(fonts, ch.fonts || []);
+          made.push.apply(made, ch.made || []);
+          collab.push.apply(collab, ch.collab || []);
+        });
+        g.fonts = uniqFonts(fonts);
+        g.made = uniqFonts(made);
+        g.collab = uniqFonts(collab);
+        if (g.fonts[0]) g.font = g.fonts[0];
+        else if (!g.font) g.font = stubFont(info);
+      }
+    });
+    return gs.concat(extras);
+  }
+
+  /** 品牌方段：有 parentId 的子品牌不单独占顶卡 */
+  function brandIndexItems(items) {
+    return items.filter(function (g) {
+      return !(g.info && g.info.parentId);
+    }).sort(sortGroups);
+  }
+
+  function childChipsHtml(g) {
+    const kids = g.children || [];
+    if (!kids.length) return '';
+    return '<div class="foundry-kids" aria-label="下属品牌">' +
+      kids.map(function (ch) {
+        const n = (ch.fonts || []).length;
+        const sub = n ? (n + ' 款') : ((ch.collab || []).length ? ('合作 ' + (ch.collab || []).length + ' 款') : '0 款');
+        return '<a class="foundry-kid" href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(ch.slug)) + '">' +
+          '<span class="kid-name">' + esc(ch.name) + '</span>' +
+          '<span class="kid-n">' + esc(sub) + '</span></a>';
+      }).join('') +
+      '</div>';
+  }
+
+  function indexCardHtml(g) {
+    const card = WFChrome.foundryHtml(g.font, { info: g.info, sub: cardSub(g) });
+    if (!(g.children && g.children.length)) return card;
+    return '<div class="foundry-tree">' + card + childChipsHtml(g) + '</div>';
+  }
+
+  function buildGroupForSlug(list, slug) {
+    const all = attachBrandParents(groups(list));
+    let g = all.filter(function (x) { return x.slug === slug || x.name === slug; })[0];
+    if (g) return g;
+    const info = WFProto.getFoundryById ? WFProto.getFoundryById(slug) : null;
+    if (!info) return null;
+    /* 字典有、但无字也无子：仍给空页 */
+    return {
+      slug: info.id, name: info.name, info: info, font: stubFont(info),
+      fonts: [], made: [], collab: [], claimed: !!info.claimed, kind: info.kind || '',
+      children: (WFProto.getFoundryChildren ? WFProto.getFoundryChildren(info.id) : []).map(function (ch) {
+        return {
+          slug: ch.id, name: ch.name, info: ch, font: stubFont(ch),
+          fonts: [], made: [], collab: [], claimed: !!ch.claimed, kind: ch.kind || ''
+        };
+      })
+    };
+  }
+
   function findFontByName(list, name) {
     return WFChrome.findFontByName(list, name);
   }
@@ -364,17 +461,20 @@
       g.slug,
       ((g.info && g.info.aliases) || []).join(' ')
     ].join(' ').toLowerCase();
-    return blob.indexOf(q) !== -1;
+    if (blob.indexOf(q) !== -1) return true;
+    return (g.children || []).some(function (ch) { return matchQuery(ch, q); });
   }
 
   function renderIndex(list) {
-    const gs = groups(list).sort(sortGroups);
+    const gs = attachBrandParents(groups(list)).sort(sortGroups);
     const buckets = {};
     INDEX_SECTIONS.forEach(function (s) { buckets[s.id] = []; });
     gs.forEach(function (g) {
       const id = indexBucket(g);
       (buckets[id] || buckets.unlisted).push(g);
     });
+    /* 品牌方：顶卡只留母公司 / 无父节点；子品牌挂在母公司卡下 */
+    if (buckets.brand) buckets.brand = brandIndexItems(buckets.brand);
 
     const listed = INDEX_SECTIONS.filter(function (s) {
       return s.id !== 'unlisted' && s.id !== 'commissioned';
@@ -399,7 +499,7 @@
         '<div class="section-head"><h2>' + esc(sec.title) + ' <span class="n">' + items.length + '</span></h2></div>' +
         note +
         '<div class="foundry-index">' + items.map(function (g) {
-          return WFChrome.foundryHtml(g.font, { sub: cardSub(g) });
+          return indexCardHtml(g);
         }).join('') + '</div></section>';
     }
 
@@ -481,7 +581,7 @@
         const sid = sec.getAttribute('data-sec');
         const showSec = !kind || kind === sid;
         let secVisible = 0;
-        sec.querySelectorAll('.foundry-index > .foundry').forEach(function (card, i) {
+        sec.querySelectorAll('.foundry-index > .foundry, .foundry-index > .foundry-tree').forEach(function (card, i) {
           const g = buckets[sid][i];
           const ok = showSec && g && matchQuery(g, q);
           card.hidden = !ok;
@@ -711,8 +811,15 @@
           html: true
         }
       : null;
+    const parentInfo = (info && info.parentId && WFProto.getFoundryById)
+      ? WFProto.getFoundryById(info.parentId) : null;
     const kv = [
       { icon: 'building', dt: '类型', dd: WFChrome.kindLabel(info) || (info.unlisted ? '未核对' : '') },
+      parentInfo ? {
+        icon: 'building', dt: '母公司', html: true,
+        dd: '<a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(parentInfo.id)) + '">' +
+          esc(parentInfo.name) + '</a>'
+      } : null,
       { icon: 'font', dt: '归属', dd: g.fonts.length ? String(g.fonts.length) : '' },
       partnerKv,
       { icon: 'palette', dt: '受托', dd: g.made.length ? String(g.made.length) : '' },
@@ -725,19 +832,42 @@
     ].filter(function (r) { return r && r.dd; });
 
     const origins = [originsStrip(list, g), ecosystemStrip(list, g.slug)].filter(Boolean).join('');
+    const parent = (info && info.parentId && WFProto.getFoundryById)
+      ? WFProto.getFoundryById(info.parentId)
+      : null;
+    const parentLink = parent
+      ? '<p class="foundry-parent-link">' + WFChrome.icon('building') +
+        '母公司 <a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(parent.id)) + '">' +
+        esc(parent.name) + '</a></p>'
+      : '';
+    const kidsStrip = (g.children && g.children.length)
+      ? '<div class="foundry-partners foundry-units">' +
+        '<p class="partners-label">' + WFChrome.icon('building') + '下属品牌</p>' +
+        '<div class="partners-list">' +
+          g.children.map(function (ch) {
+            return partnerFace(ch.info);
+          }).join('') +
+        '</div></div>'
+      : '';
     const claimHtml = '<p class="claim">' + WFChrome.icon('idcard') + '<span>' + (g.claimed
       ? who + '已认领此页。许可仍以每款字体的出处为准。'
       : '这是你的品牌？<a href="claim.html?slug=' + encodeURIComponent(g.slug) + '">认领此页</a>。通过后可改标志与介绍。') + '</span></p>';
 
+    const crumbTail = parent
+      ? '<a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(parent.id)) + '">' + esc(parent.name) + '</a><span>/</span><span>' + esc(g.name) + '</span>'
+      : '<span>' + esc(g.name) + '</span>';
+
     root.innerHTML =
       '<div class="container">' +
-      '<div class="detail-top"><p class="crumb"><a href="foundry.html">厂商</a><span>/</span><span>' + esc(g.name) + '</span></p></div>' +
+      '<div class="detail-top"><p class="crumb"><a href="foundry.html">厂商</a><span>/</span>' + crumbTail + '</p></div>' +
       '<header class="foundry-hero">' +
         '<div class="foundry-hero-main">' +
           '<div class="foundry-hero-id">' +
             WFChrome.foundryHtml(g.font, { info: info, sub: heroSubHtml(g), fav: WFChrome.favHtml('author', g.slug, g.name) }) +
           '</div>' +
+          parentLink +
           (desc ? '<p class="desc">' + esc(desc) + '</p>' : '') +
+          kidsStrip +
           partnersStrip(g) +
           WFSponsor.html(info) +
           origins +
@@ -773,6 +903,13 @@
                 esc(owner.name) + '</a>');
             }
           } else {
+            if (g.children && g.children.length) {
+              const owner = font.ownerInfo || font.foundryInfo;
+              if (owner && owner.id && owner.id !== g.slug) {
+                bits.push('品牌线 <a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(owner.id)) + '">' +
+                  esc(owner.name) + '</a>');
+              }
+            }
             const cols = font.collaboratorInfos || [];
             if (cols.length) {
               bits.push('联合作者 ' + cols.map(function (c) {
@@ -799,7 +936,7 @@
     const go = function () {
       const slug = WFProto.getQuery('slug');
       if (!slug) { renderIndex(list); return; }
-      const g = groups(list).filter(function (x) { return x.slug === slug || x.name === slug; })[0];
+      const g = buildGroupForSlug(list, slug);
       if (!g) { root.innerHTML = '<p class="empty container">未找到该厂商。<a href="foundry.html">' + WFChrome.icon('building') + '查看全部厂商</a></p>'; return; }
       renderOne(list, g);
     };

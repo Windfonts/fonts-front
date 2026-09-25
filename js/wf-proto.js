@@ -153,7 +153,7 @@
       if (!r.ok) throw new Error('fonts.json ' + r.status);
       return r.json();
     });
-    const foundriesReq = fetch(dataUrl('foundries.json?v=20260927a')).then(function (r) { return r.ok ? r.json() : { foundries: [] }; })
+    const foundriesReq = fetch(dataUrl('foundries.json?v=20260925s')).then(function (r) { return r.ok ? r.json() : { foundries: [] }; })
       .catch(function () { return { foundries: [] }; });
     const evidenceReq = fetch(dataUrl('license-evidence.json?v=20260925b')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
       .catch(function () { return { standards: {}, names: {} }; });
@@ -741,6 +741,41 @@
     return null;
   }
 
+  /** 母公司条目；无 parentId 则 null */
+  function getFoundryParent(fdOrId) {
+    const fd = typeof fdOrId === 'string' ? getFoundryById(fdOrId) : fdOrId;
+    if (!fd || !fd.parentId) return null;
+    return getFoundryById(fd.parentId);
+  }
+
+  /** 直接子公司（一阶） */
+  function getFoundryChildren(id) {
+    if (!id) return [];
+    return foundries.filter(function (fd) { return fd && fd.parentId === id; });
+  }
+
+  /** 自身 + 全部后代 id（深度优先） */
+  function getFoundrySubtreeIds(id) {
+    if (!id) return [];
+    const out = [id];
+    getFoundryChildren(id).forEach(function (ch) {
+      getFoundrySubtreeIds(ch.id).forEach(function (x) {
+        if (out.indexOf(x) === -1) out.push(x);
+      });
+    });
+    return out;
+  }
+
+  /** 字体主归属或联合作者是否落在 foundryId 子树内 */
+  function fontBelongsToFoundry(font, foundryId) {
+    if (!font || !foundryId) return false;
+    const ids = getFoundrySubtreeIds(foundryId);
+    const owner = font.ownerInfo || font.foundryInfo;
+    if (owner && owner.id && ids.indexOf(owner.id) !== -1) return true;
+    const cols = font.collaboratorInfos || [];
+    return cols.some(function (c) { return c && c.id && ids.indexOf(c.id) !== -1; });
+  }
+
   function matchNamedRecord(map, name) {
     const keys = Object.keys(map || {}).sort(function (a, b) { return b.length - a.length; });
     for (let i = 0; i < keys.length; i++) {
@@ -1054,6 +1089,10 @@
     getCatalogList: function () { return catalog.slice(); },
     getFoundries: function () { return foundries.slice(); },
     getFoundryById: getFoundryById,
+    getFoundryParent: getFoundryParent,
+    getFoundryChildren: getFoundryChildren,
+    getFoundrySubtreeIds: getFoundrySubtreeIds,
+    fontBelongsToFoundry: fontBelongsToFoundry,
     getAvatarUrl: getAvatarUrl,
     licenseTier: licenseTier,
     resolveLicenseEvidence: resolveLicenseEvidence,

@@ -80,9 +80,13 @@
     if (skip !== 'weight' && !matchWeight(f, s.weight)) return false;
     if (skip !== 'lang' && s.lang && (f.languages || []).indexOf(s.lang) === -1) return false;
     if (skip !== 'license' && s.license && WFChrome.licenseTier(f) !== s.license) return false;
-    if (skip !== 'foundry' && s.foundry && WFChrome.brandSlug(f) !== s.foundry) {
-      const cols = f.collaboratorInfos || [];
-      if (!cols.some(function (c) { return c && c.id === s.foundry; })) return false;
+    if (skip !== 'foundry' && s.foundry) {
+      if (WFProto.fontBelongsToFoundry) {
+        if (!WFProto.fontBelongsToFoundry(f, s.foundry)) return false;
+      } else if (WFChrome.brandSlug(f) !== s.foundry) {
+        const cols = f.collaboratorInfos || [];
+        if (!cols.some(function (c) { return c && c.id === s.foundry; })) return false;
+      }
     }
     if (skip !== 'lineage' && s.lineage && !(f.lineage && f.lineage.group === s.lineage)) return false;
     if (skip !== 'open' && s.open === '1' && !WFProto.isOpenFont(f)) return false;
@@ -115,6 +119,13 @@
       (f.collaboratorInfos || []).forEach(function (c) {
         if (c) add(c.id, c.name || c.short || c.id);
       });
+    });
+    /* 母公司：无直接归属字时也进面片，便于 ?foundry=alibaba 子树筛选 */
+    (WFProto.getFoundries ? WFProto.getFoundries() : []).forEach(function (fd) {
+      if (!fd || !fd.id || fd.kind !== 'brand') return;
+      const kids = WFProto.getFoundryChildren ? WFProto.getFoundryChildren(fd.id) : [];
+      if (!kids.length) return;
+      add(fd.id, fd.name);
     });
     return { ids: ids, names: names };
   }
@@ -205,6 +216,7 @@
       facetHtml('风格', 'style', facetCounts('style', STYLE_TAGS, hasStyle)) +
       catFacetHtml(facetCounts('cat', cats, function (f, v) { return f.category === v; })) +
       brandFacetHtml(facetCounts('foundry', brands.ids, function (f, v) {
+        if (WFProto.fontBelongsToFoundry) return WFProto.fontBelongsToFoundry(f, v);
         if (WFChrome.brandSlug(f) === v) return true;
         return (f.collaboratorInfos || []).some(function (c) { return c && c.id === v; });
       }), brands.names) +
