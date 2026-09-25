@@ -24,7 +24,8 @@
      （与 app /api/css 同源拆包）。旧路径 /wenfeng/fonts/{slug}/{weight}/web/ 仅兜底。
      嵌入「动态」给 Google 风格查询参数：{cdn}/api/css?family=&weight=&version=。 */
   const CDN = 'https://cn.windfonts.com';
-  const CSS_API = 'https://app.windfonts.com';
+  const CSS_API = 'https://app.windfonts.com'; /* vault / 元数据 API 源，非地区 CDN */
+  const ANALYSIS_META_VER = '20260925a'; /* 边缘长缓存；升元数据时递增 */
   const CDN_KEY = 'wf-cdn';
   const STATS_KEY = 'wf-font-stats.v1';
   const VIEWED_KEY = 'wf-font-viewed';
@@ -87,6 +88,9 @@
     return 'data/' + file;
   }
   function catalogUrl() { return dataUrl('fonts.json'); }
+  function analysisMetaUrl() {
+    return CDN + '/fonts-packages/metadata/font-analysis.json?v=' + ANALYSIS_META_VER;
+  }
 
   /* —— 厂商字典：data/foundries.json 是厂商名称的唯一真相来源（中文名 / 英文 / 简称 / 官网） —— */
   let foundries = [];
@@ -1235,6 +1239,9 @@
     },
     CDN: CDN,
     CSS_API: CSS_API,
+    ANALYSIS_META_VER: ANALYSIS_META_VER,
+    analysisMetaUrl: analysisMetaUrl,
+    dataUrl: dataUrl,
     CDN_HOSTS: CDN_HOSTS,
     CDN_LICENSE_NOTE: CDN_LICENSE_NOTE,
     cdnHost: cdnHost,

@@ -2,9 +2,9 @@
 
 > 面向接手后端 / 全栈的同学与智能体：原型现状、页面清单、需要后端提供的接口契约、已知待办。
 
-**2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** 全量 `docker build` 曾因 `npm ci` 失败；分析 URL 版本串是热补 `.next` chunk 临时生效，下次成功构建会吃进 `sync.service.ts` 源码。详见 §25。
+**2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 
-**下一棒（按价值）：** ① vault 生产镜像已换 pnpm 正式构建（PR #29，热补已撤）；② P2 coverage 余量（上游差 / 真·常用字表逐码点）；③ 新入库后重跑 analysis / package-sizes / locale，并递增 `OSS_METADATA_VERSION`；④ 商用档 `albbpht` 许可门禁。
+**下一棒（按价值）：** ① vault 生产镜像已换 pnpm 正式构建（PR #29，热补已撤）；② P2 coverage 余量（上游差 / 真·常用字表逐码点）；③ 新入库后重跑 analysis / package-sizes / locale，并递增 `OSS_METADATA_VERSION`；④ 品牌协议 CSS 门禁：vault PR #30（webUse+embedding 放行；普惠体 overlay 已纠错）。
 
 **P2 已落一截（2026-09-25）：** 详情「对照现网字符表」用 analysis `unicode_ranges` 的 CJK 统一汉字数，估算相对常用字 3500 / 扩充 7000 的覆盖与缺口上限（非逐字表）。
 
@@ -617,7 +617,7 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 - **简繁配对（2026-09-25 再扩）：** 11 对 / 18 成员——在既有思源/霞鹜/狮尾/猫啃之上，补 `systcnl`（思源宋体 CN Light）→ `systtc`。当前目录内有把握的 SC↔TC 已齐；再扩需先入库对应繁/简款。构建 `scripts/build-locale-fallback-pairs.mjs`。
 - **analysis 覆盖（2026-09-25）：** fonts-packages `scripts/build-font-analysis-from-css.mjs` 从 CDN `full/result.css` 的 `unicode-range` 重建 → OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`source: css-unicode-range`）。字数来自分包 CSS，极少数包（如稀疏 `AAR`）会偏低；详情缺字真源仍是当面 CSS。重建后：`OSS_UPLOAD_DIRS=./metadata node scripts/upload.js`。metadata 上传现用 `max-age=300`（不再一年）；vault / 前台拉取带 `?v=`（`OSS_METADATA_VERSION` / `wf-live.js`）逼 CDN 换键——原地覆盖后边缘否则长期吃旧文件。
 
-**仍待：** 商用档 `albbpht` 等许可门禁；新入库字体后重跑 analysis / package-sizes / locale 配对。P2 coverage 产品化（相对常用字缺口 UI）可再开。
+**仍待：** 合并 vault PR #29/#30；新入库字体后重跑 analysis / package-sizes / locale 并递增 `OSS_METADATA_VERSION`。P2 逐码点常用字表可再开。
 
 ## 26. 2026-09-25 出处链核对态按证据链判定 + 源界明朝谱系
 
@@ -671,6 +671,7 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 - **谱系 git 线标**（§4 明文落地）：原作=commit、派生=branch、地区版=merge、合作=compare，树节点 meta 前缀 + 墙分带标题（源头 commit/第 N 代 branch）；委托定制不加标。
 - **数字撤衬线**：700+tabular-nums（衬线大数字是墨图爱可口味，文风系统不用）；字号全走 `--fs-*` 字阶（样张豁免条款保留大字 20/28/40）；CSS 零十六进制（grep 验证 0）。
 - 正文区（树/墙）按「只套一层盒子」细线平铺，不套面板。
+
 ## 30. 2026-09-25 谱系页三修：样张收「永」、宽族收纳、墙改灰底格（feibisi「很乱，没有设计美感」）
 
 - **根因**：「以字证字」用力过猛——88 节点 88 种字面全铺开，无对比无层级；全特殊=全不特殊。
@@ -678,6 +679,7 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 - **宽族收纳**：>16 款的族默认「根 + 一级前 12」，其余折进「展开其余 N 款」、深支线整支折叠（思源黑体 88 → 默认 15 行）；≤16 款小族全显（霞鹜 7/7 无折叠）。折叠钮 chevron-down，wireFolds 切换 hidden。
 - **墙=灰底圆角格**（stat-cell 语言）：格=fill 底/radius-sm/竖排「永」28px+名+meta；**黑格每屏一颗**=子嗣最多的主根（is-root，40px 永，排带首）；幽灵上游=虚线格。外审：「明显优于纯文字列表、成熟范式」。
 - 谱系线标降噪：fork（多数款）不标，只标 locale=merge / collab=compare；源头 commit、分带 branch 保留。
+
 ## 31. 2026-09-25 谱系页四修：分支导轨复活 + 接缝收紧
 
 - **根因**：item() 把每个 li 硬编码 `lg-last`，竖向导轨（`li::before`）全被 display:none——树退化成纯缩进列表，分支效果不可见（feibisi「分支谱系效果我没看到」）。

@@ -14,7 +14,7 @@
 
   function load() {
     if (loadPromise) return loadPromise;
-    loadPromise = fetch('data/font-products.json')
+    loadPromise = fetch((window.WFProto && WFProto.dataUrl) ? WFProto.dataUrl('font-products.json') : 'data/font-products.json')
       .then(function (r) { return r.ok ? r.json() : { products: [] }; })
       .then(function (data) {
         products = (data && data.products) || [];

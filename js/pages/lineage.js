@@ -1,21 +1,20 @@
-/* 谱系页：字族 × 双模式（谱=纵向家谱 / 墙=分带样张格）。
-   规则真源 docs/DESIGN-SYSTEM.md。样张=「永」字一列（一字识一款，名字走 UI 字体）；
-   谱系 git 线标：原作=commit、派生=branch（默认款不标，只标特殊关系）、地区版=merge、合作=compare；
-   宽族默认收纳：根 + 一级子款平铺，更深的支线与超长平级折进「展开」。 */
+/* 谱系页：字族 × 双模式（乙支线=根卡+代际支线 / 丙墙=分带样张格+旁谱）。
+   规则真源 docs/DESIGN-SYSTEM.md。样张=「永」；名字走 UI 字体；
+   宽族默认收纳。对照稿见 lineage-redesign-options.html。 */
 (function () {
   const esc = WFProto.escapeHtml;
   const YONG = '永';
-  const REL_ICON = { locale: 'merge', collab: 'compare', commissioned: '' };
+  const REL_ICON = { locale: 'merge', collab: 'compare' };
   const REL_TEXT = { locale: '地区版', collab: '合作' };
-  const FLAT_LIMIT = 12;   /* 平级超过此数折进「展开其余」 */
+  const FLAT_LIMIT = 12;
   const stage = document.getElementById('stage');
   const famNav = document.getElementById('famNav');
   const famCap = document.getElementById('famCap');
   const heroTitle = document.getElementById('heroTitle');
-  const btnTree = document.getElementById('modeTree');
+  const btnBranch = document.getElementById('modeBranch');
   const btnWall = document.getElementById('modeWall');
 
-  let mode = 'tree';
+  let mode = 'branch';
   let curGroup = '';
 
   function qs(name) {
@@ -54,11 +53,14 @@
       ? '<div class="' + cls + '">' + nodeInner(font) + '</div>'
       : '<a class="' + cls + '" href="' + WFChrome.href(WFProto.detailHref(font)) + '">' + nodeInner(font) + '</a>';
   }
-  function foldBtn(label, icon) {
-    return '<button type="button" class="lg-fold" data-fold>' + WFChrome.icon(icon) + esc(label) + '</button>';
+  function foldBtn(label) {
+    return '<button type="button" class="lg-fold" data-fold>' + WFChrome.icon('chevron-down') + esc(label) + '</button>';
+  }
+  function genLabel(g) {
+    if (g === 0) return '源 头';
+    return '第 ' + '一二三四五六七八九'[Math.min(g - 1, 8)] + ' 代';
   }
 
-  /* 家族森林：组内成员按 upstreamName 建边；上游不在库（或在组外）即为根，未收录上游出幽灵节点 */
   function buildForest(members, all) {
     const byId = {};
     members.forEach(function (f) { byId[f.id] = f; });
@@ -78,7 +80,6 @@
         roots.push(f);
       }
     });
-    /* 同族变体根（如「思源黑体 CN」对「思源黑体」）单向收编为主根孩子，防互相吸收清空 */
     const mains = roots.filter(function (r) { return !r.ghost; })
       .sort(function (a, b) { return String(a.name).length - String(b.name).length; });
     const kept = [];
@@ -94,11 +95,14 @@
       (children[pair[0].id] = children[pair[0].id] || []).push(pair[1]);
     });
     roots = roots.filter(function (r) { return r.ghost; }).concat(kept);
-    function byYear(a, b) { return (a.releaseYear || 9999) - (b.releaseYear || 9999) || String(a.name).localeCompare(b.name, 'zh'); }
+    function byYear(a, b) {
+      return (a.releaseYear || 9999) - (b.releaseYear || 9999) || String(a.name).localeCompare(b.name, 'zh');
+    }
     Object.keys(children).forEach(function (k) { children[k].sort(byYear); });
     roots.sort(byYear);
     return { roots: roots, children: children };
   }
+
   function depthMap(members, forest) {
     const d = {};
     function walk(node, depth) {
@@ -109,75 +113,115 @@
     return d;
   }
 
-  /* 谱：小族全显；宽族收纳——根 + 一级子款平铺（超 FLAT_LIMIT 折尾），更深支线整支折叠。
-     lg-last 只给真正的末子项——竖向导轨靠它截断，全标 last 会把树退化成纯缩进列表 */
-  function renderTree(members, forest) {
-    const allowFold = members.length > FLAT_LIMIT + 4;
-    function renderKids(kids, depth, lastIsLast) {
-      return kids.map(function (k, i) {
-        return item(k, depth, i === kids.length - 1 && lastIsLast);
-      }).join('');
-    }
-    function sublist(node, depth) {
-      const kids = node.ghost ? node.ghostChildren : (forest.children[node.id] || []);
-      if (!kids.length) return '';
-      if (allowFold && depth >= 1) {
-        return foldBtn('展开 ' + kids.length + ' 款', 'chevron-down') +
-          '<ul hidden>' + renderKids(kids, depth + 1, true) + '</ul>';
-      }
-      const shown = allowFold ? kids.slice(0, FLAT_LIMIT) : kids;
-      const rest = allowFold ? kids.slice(FLAT_LIMIT) : [];
-      return '<ul>' + renderKids(shown, depth + 1, rest.length === 0) +
-        (rest.length ? '<li class="lg-last">' + foldBtn('展开其余 ' + rest.length + ' 款', 'chevron-down') +
-          '<ul hidden>' + renderKids(rest, depth + 1, true) + '</ul></li>' : '') + '</ul>';
-    }
-    function item(node, depth, isLast) {
-      return '<li' + (isLast ? ' class="lg-last"' : '') + '>' + nodeRow(node, { root: node._root }) + sublist(node, depth) + '</li>';
-    }
-    const rows = forest.roots.map(function (r, i) {
-      r._root = !r.ghost;
-      return item(r, 0, i === forest.roots.length - 1);
-    }).join('');
-    return '<div class="lg-tree"><ul>' + rows + '</ul></div>';
+  function subtreeSize(node, forest) {
+    const kids = node.ghost ? node.ghostChildren : (forest.children[node.id] || []);
+    return 1 + kids.reduce(function (s, k) { return s + subtreeSize(k, forest); }, 0);
   }
 
-  /* 墙：按代分带，灰底圆角格。黑格（is-root）每屏只给主根一颗=子嗣最多的根 */
+  function mainRootId(forest) {
+    let best = null; let n = -1;
+    forest.roots.forEach(function (r) {
+      if (r.ghost) return;
+      const s = subtreeSize(r, forest);
+      if (s > n) { n = s; best = r; }
+    });
+    return best ? best.id : '';
+  }
+
+  /* —— 乙 · 根卡支线 —— */
+  function renderBranch(members, forest) {
+    const d = depthMap(members, forest);
+    const deep = members.length <= FLAT_LIMIT + 4;
+    let html = '';
+
+    forest.roots.forEach(function (r) {
+      if (r.ghost) {
+        html += '<div class="lg-b-root is-ghost">' + nodeRow(r, { root: true }) + '</div>';
+        (r.ghostChildren || []).forEach(function (k) {
+          html += renderBranchKids(k, forest, deep);
+        });
+        return;
+      }
+      html += '<div class="lg-b-root">' + nodeRow(r, { root: true }) + '</div>';
+      html += renderBranchKids(r, forest, deep);
+    });
+
+    const maxD = Math.max.apply(null, [0].concat(members.map(function (f) { return d[f.id] || 0; })));
+    if (members.length > 20 && maxD >= 1) {
+      const band = members.filter(function (f) { return (d[f.id] || 0) === 1; });
+      if (band.length) {
+        html += '<p class="lg-b-gen">' + esc(genLabel(1)) + ' · 平铺扫一眼</p>';
+        html += '<ul class="lg-b-flat">' + band.slice(0, 16).map(function (f) {
+          return '<li><a class="lg-chip" href="' + WFChrome.href(WFProto.detailHref(f)) + '">' +
+            '<span class="lg-yong" style="' + faceOf(f) + '" aria-hidden="true">' + YONG + '</span>' +
+            '<span class="lg-name">' + esc(f.name) + '</span></a></li>';
+        }).join('') +
+          (band.length > 16
+            ? '<li><span class="lg-meta">另 ' + (band.length - 16) + ' 款见支线</span></li>'
+            : '') +
+          '</ul>';
+      }
+    }
+
+    return html || '<p class="empty">暂无成员。</p>';
+  }
+
+  function renderBranchKids(parent, forest, deep) {
+    const kids = forest.children[parent.id] || [];
+    if (!kids.length) return '';
+    let html = '<p class="lg-b-gen">' + esc(genLabel(1)) + '</p><div class="lg-b-branch"><ul>';
+    kids.forEach(function (k, i) {
+      const isLast = i === kids.length - 1;
+      html += '<li' + (isLast ? ' class="lg-last"' : '') + '>' + nodeRow(k);
+      const grand = forest.children[k.id] || [];
+      if (grand.length) {
+        if (!deep) {
+          html += foldBtn('展开 ' + grand.length + ' 款') +
+            '<ul hidden>' + grand.map(function (g, j) {
+              return '<li' + (j === grand.length - 1 ? ' class="lg-last"' : '') + '>' + nodeRow(g) + '</li>';
+            }).join('') + '</ul>';
+        } else {
+          html += '<ul>' + grand.map(function (g, j) {
+            return '<li' + (j === grand.length - 1 ? ' class="lg-last"' : '') + '>' + nodeRow(g) + '</li>';
+          }).join('') + '</ul>';
+        }
+      }
+      html += '</li>';
+    });
+    html += '</ul></div>';
+    return html;
+  }
+
+  /* —— 丙 · 墙 + 旁谱 —— */
   function renderWall(members, forest) {
     const d = depthMap(members, forest);
-    function subtreeSize(node) {
-      const kids = node.ghost ? node.ghostChildren : (forest.children[node.id] || []);
-      return 1 + kids.reduce(function (s, k) { return s + subtreeSize(k); }, 0);
-    }
-    const mainRootId = (function () {
-      let best = null; let n = -1;
-      forest.roots.forEach(function (r) {
-        if (r.ghost) return;
-        const s = subtreeSize(r);
-        if (s > n) { n = s; best = r; }
-      });
-      return best ? best.id : '';
-    })();
+    const mid = mainRootId(forest);
+    const rail = renderSlimRail(forest);
     const maxD = Math.max.apply(null, [0].concat(members.map(function (f) { return d[f.id] || 0; })));
-    let html = '';
+    let wall = '';
     for (let g = 0; g <= maxD; g++) {
       const band = members.filter(function (f) { return (d[f.id] || 0) === g; })
         .sort(function (a, b) {
-          const ra = a.id === mainRootId ? -1 : 0; const rb = b.id === mainRootId ? -1 : 0;
+          const ra = a.id === mid ? -1 : 0; const rb = b.id === mid ? -1 : 0;
           if (ra !== rb) return ra - rb;
           return (a.releaseYear || 9999) - (b.releaseYear || 9999) || String(a.name).localeCompare(b.name, 'zh');
         });
       if (!band.length) continue;
-      const years = band.map(function (f) { return f.releaseYear; }).filter(Boolean);
-      const yr = years.length ? (years.length > 1 && years[0] !== years[years.length - 1] ? years[0] + ' – ' + years[years.length - 1] : String(years[0])) : '年份未记';
-      html += '<div class="lg-band"><p class="lg-band-cap"><span class="yr">' + esc(yr) + '</span>' +
-        '<span class="t">' + WFChrome.icon(g === 0 ? 'commit' : 'branch') + (g === 0 ? '源 头' : '第 ' + '一二三四五六七八九'[Math.min(g - 1, 8)] + ' 代') + '</span><span class="rule"></span></p><div class="lg-wall">' +
+      const years = band.map(function (f) { return f.releaseYear; }).filter(Boolean).sort();
+      const yr = years.length
+        ? (years[0] !== years[years.length - 1] ? years[0] + ' – ' + years[years.length - 1] : String(years[0]))
+        : '年份未记';
+      wall += '<div class="lg-band"><p class="lg-band-cap"><span class="yr">' + esc(yr) + '</span>' +
+        '<span class="t">' + WFChrome.icon(g === 0 ? 'commit' : 'branch') + esc(genLabel(g)) + '</span>' +
+        '<span class="rule"></span></p><div class="lg-wall">' +
         band.map(function (f) {
-          return '<a class="lg-cell' + (f.id === mainRootId ? ' is-root' : '') + '" href="' + WFChrome.href(WFProto.detailHref(f)) + '">' +
+          return '<a class="lg-cell' + (f.id === mid ? ' is-root' : '') + '" href="' + WFChrome.href(WFProto.detailHref(f)) + '">' +
             '<span class="lg-yong" style="' + faceOf(f) + '" aria-hidden="true">' + YONG + '</span>' +
             '<span class="lg-name">' + esc(f.name) + '</span>' +
             '<span class="lg-meta">' + metaOf(f) + '</span></a>';
         }).join('') + '</div></div>';
     }
+
     const ghosts = [];
     const all = WFProto.getCatalogList();
     members.forEach(function (f) {
@@ -187,8 +231,39 @@
         if (ghosts.indexOf(up) === -1) ghosts.push(up);
       }
     });
-    if (ghosts.length) html += '<p class="count-line" style="margin-top:var(--s-4)">另有未收录原作：' + ghosts.map(esc).join('、') + '</p>';
-    return html;
+    if (ghosts.length) {
+      wall += '<p class="count-line" style="margin-top:var(--s-4)">另有未收录原作：' + ghosts.map(esc).join('、') + '</p>';
+    }
+
+    return '<div class="lg-c"><aside class="lg-c-rail">' + rail + '</aside><div class="lg-c-main">' + wall + '</div></div>';
+  }
+
+  function renderSlimRail(forest) {
+    function walk(node, isLast) {
+      const kids = node.ghost ? node.ghostChildren : (forest.children[node.id] || []);
+      const cls = 'lg-slim' + (node.ghost ? ' is-ghost' : '') + (node._root ? ' is-root' : '');
+      const label = node.ghost
+        ? '<span class="' + cls + '">' + esc(node.name) + '</span>'
+        : '<a class="' + cls + '" href="' + WFChrome.href(WFProto.detailHref(node)) + '">' + esc(node.name) + '</a>';
+      let html = '<li' + (isLast ? ' class="lg-last"' : '') + '>' + label;
+      if (kids.length) {
+        const shown = kids.length > 10 ? kids.slice(0, 10) : kids;
+        html += '<ul>' + shown.map(function (k, i) {
+          return walk(k, i === shown.length - 1 && kids.length <= 10);
+        }).join('') +
+          (kids.length > 10
+            ? '<li class="lg-last"><span class="lg-slim is-ghost">…另 ' + (kids.length - 10) + ' 款</span></li>'
+            : '') +
+          '</ul>';
+      }
+      html += '</li>';
+      return html;
+    }
+    const rows = forest.roots.map(function (r, i) {
+      r._root = !r.ghost;
+      return walk(r, i === forest.roots.length - 1);
+    }).join('');
+    return '<p class="lg-cap">旁谱</p><ul>' + rows + '</ul>';
   }
 
   function wireFolds() {
@@ -208,12 +283,13 @@
   function setMode(m) {
     mode = m;
     try { localStorage.setItem('wf-lineage-mode', m); } catch (e) {}
-    btnTree.classList.toggle('is-on', m === 'tree');
+    btnBranch.classList.toggle('is-on', m === 'branch');
     btnWall.classList.toggle('is-on', m === 'wall');
-    btnTree.setAttribute('aria-selected', m === 'tree');
-    btnWall.setAttribute('aria-selected', m === 'wall');
+    btnBranch.setAttribute('aria-selected', m === 'branch' ? 'true' : 'false');
+    btnWall.setAttribute('aria-selected', m === 'wall' ? 'true' : 'false');
     render();
   }
+
   function setGroup(g) {
     curGroup = g;
     const url = new URL(location.href);
@@ -233,7 +309,9 @@
     });
     const keys = Object.keys(ld.groups || {}).filter(function (g) { return counts[g]; })
       .sort(function (a, b) { return counts[b] - counts[a]; });
-    if (!curGroup && keys.length) curGroup = qs('group') && counts[qs('group')] ? qs('group') : keys[0];
+    if (!curGroup && keys.length) {
+      curGroup = qs('group') && counts[qs('group')] ? qs('group') : keys[0];
+    }
     famNav.innerHTML = keys.map(function (g) {
       const gd = ld.groups[g] || {};
       const short = String(gd.name || g).split(' / ')[0];
@@ -249,29 +327,39 @@
     const all = WFProto.getCatalogList();
     const ld = WFProto.getLineageData();
     const groups = ld.groups || {};
-    if (!curGroup || !groups[curGroup]) { stage.innerHTML = '<p class="empty">暂无谱系数据。</p>'; return; }
+    if (!curGroup || !groups[curGroup]) {
+      stage.innerHTML = '<p class="empty">暂无谱系数据。</p>';
+      return;
+    }
     const members = all.filter(function (f) { return f.lineage && f.lineage.group === curGroup; });
     const forest = buildForest(members, all);
     const gd = groups[curGroup] || {};
     const mainRoot = forest.roots.filter(function (r) { return !r.ghost; })[0];
-    /* 首页惯例：大标题用当前样张字体（这里=该族主根的本字） */
     if (mainRoot) heroTitle.setAttribute('style', faceOf(mainRoot));
     famCap.textContent = (gd.name || curGroup) + ' · ' + members.length + ' 款' +
       (forest.roots.length > 1 ? ' · ' + forest.roots.length + ' 条支线' : '');
-    stage.innerHTML = mode === 'tree' ? renderTree(members, forest) : renderWall(members, forest);
+    stage.innerHTML = mode === 'branch' ? renderBranch(members, forest) : renderWall(members, forest);
     wireFolds();
     document.title = (gd.name ? String(gd.name).split(' / ')[0] : '谱系') + ' · 谱系 · 文风字体';
   }
 
-  btnTree.addEventListener('click', function () { setMode('tree'); });
+  btnBranch.addEventListener('click', function () { setMode('branch'); });
   btnWall.addEventListener('click', function () { setMode('wall'); });
 
   WFProto.loadCatalog().then(function () {
-    try { mode = localStorage.getItem('wf-lineage-mode') === 'wall' ? 'wall' : 'tree'; } catch (e) {}
+    try {
+      const saved = localStorage.getItem('wf-lineage-mode');
+      /* 旧键 tree → branch；未知值回落 branch */
+      if (saved === 'wall') mode = 'wall';
+      else mode = 'branch';
+    } catch (e) {}
     const qm = qs('mode');
-    if (qm === 'wall' || qm === 'tree') mode = qm;
-    btnTree.classList.toggle('is-on', mode === 'tree');
+    if (qm === 'wall') mode = 'wall';
+    else if (qm === 'branch' || qm === 'tree') mode = 'branch';
+    btnBranch.classList.toggle('is-on', mode === 'branch');
     btnWall.classList.toggle('is-on', mode === 'wall');
+    btnBranch.setAttribute('aria-selected', mode === 'branch' ? 'true' : 'false');
+    btnWall.setAttribute('aria-selected', mode === 'wall' ? 'true' : 'false');
     renderFamNav();
     render();
   });

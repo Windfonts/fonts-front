@@ -6,7 +6,7 @@
   function load() {
     if (data) return Promise.resolve(data);
     if (loading) return loading;
-    loading = fetch('data/locale-fallback-pairs.json', { cache: 'force-cache' })
+    loading = fetch((window.WFProto && WFProto.dataUrl) ? WFProto.dataUrl('locale-fallback-pairs.json') : 'data/locale-fallback-pairs.json', { cache: 'force-cache' })
       .then(function (r) {
         if (!r.ok) throw new Error(String(r.status));
         return r.json();

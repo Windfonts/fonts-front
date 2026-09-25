@@ -1,7 +1,8 @@
-/* 现网 app.windfonts.com 单款读取。详情页按需请求；失败保持本地。 */
+/* 现网 vault 单款读取。详情页按需请求；失败保持本地。依赖 wf-proto（CSS_API / CDN）。 */
 (function () {
-  var ORIGIN = 'https://app.windfonts.com';
-  var META = 'https://cn.windfonts.com/fonts-packages/metadata/font-analysis.json?v=20260925a';
+  var ORIGIN = (window.WFProto && WFProto.CSS_API) || 'https://app.windfonts.com';
+  var META = (window.WFProto && WFProto.analysisMetaUrl && WFProto.analysisMetaUrl()) ||
+    (((window.WFProto && WFProto.CDN) || 'https://cn.windfonts.com') + '/fonts-packages/metadata/font-analysis.json?v=20260925a');
   var TTL = 6 * 60 * 60 * 1000;
   var KEY = 'wf-live-counts';
   var KEY_A = 'wf-live-analysis';
@@ -161,9 +162,11 @@
   function loadPackageSizes() {
     if (sizesCache) return Promise.resolve(sizesCache);
     if (sizesPromise) return sizesPromise;
-    var url = (window.WFChrome && WFChrome.href)
-      ? WFChrome.href('data/package-sizes.json')
-      : 'data/package-sizes.json';
+    var url = (window.WFProto && WFProto.dataUrl)
+      ? WFProto.dataUrl('package-sizes.json')
+      : ((window.WFChrome && WFChrome.href)
+        ? WFChrome.href('data/package-sizes.json')
+        : 'data/package-sizes.json');
     sizesPromise = fetch(url, { method: 'GET' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (json) {
