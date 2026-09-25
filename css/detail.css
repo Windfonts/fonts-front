@@ -551,3 +551,55 @@
   color: var(--on-ok);
   border-color: var(--ok);
 }
+
+/* 丙：现网分析仅开发视图；结果用指标卡，不用 · 散文行 */
+.glyph-live {
+  margin: 0 0 var(--s-5);
+  padding: var(--s-4);
+  background: var(--fill);
+  border-radius: var(--radius);
+}
+.glyph-live-head {
+  margin: 0 0 var(--s-3);
+  font-size: var(--fs-13);
+  color: var(--ink);
+}
+.glyph-live-head .is-quiet { color: var(--gray); font-weight: var(--fw-body); }
+.glyph-live-dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+.glyph-live-dl > div {
+  display: grid;
+  gap: 0.2rem;
+  padding: var(--s-3);
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+}
+.glyph-live-dl > div.is-span2 { grid-column: 1 / -1; }
+.glyph-live-dl dt {
+  color: var(--gray-2);
+  font-weight: var(--fw-label);
+  font-size: var(--fs-12);
+}
+.glyph-live-dl dd {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: var(--fs-13);
+  line-height: 1.45;
+}
+.glyph-live-dl .is-quiet { color: var(--gray); font-size: var(--fs-12); }
+.glyph-live-dl code {
+  font-size: var(--fs-12);
+  background: var(--fill);
+  padding: 0.05em 0.35em;
+  border-radius: 6px;
+}
+.glyph-live-note {
+  margin: var(--s-3) 0 0;
+  font-size: var(--fs-12);
+  color: var(--gray);
+  line-height: 1.55;
+}

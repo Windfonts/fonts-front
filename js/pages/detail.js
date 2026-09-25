@@ -745,24 +745,25 @@
       if (tools.querySelector('[data-live-analysis]')) return;
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = 'gtoggle';
+      /* 丙：对照现网仅开发视图（与 #glyphLive.for-dev 同闸） */
+      btn.className = 'gtoggle for-dev';
       btn.setAttribute('data-live-analysis', '');
       btn.textContent = '对照现网字符表';
       btn.title = '按需请求 vault analysis（无文件则 404；限流时回退 OSS metadata）';
       tools.appendChild(btn);
       btn.addEventListener('click', function () {
         panel.hidden = false;
-        panel.innerHTML = '<p class="glyph-diff-line is-quiet">正在对照现网字符分析…</p>';
+        panel.innerHTML = '<p class="glyph-live-note is-quiet">正在对照现网字符分析…</p>';
         btn.disabled = true;
         WFLive.analysis(font).then(function (row) {
           btn.disabled = false;
           if (!row || row.failed) {
-            panel.innerHTML = '<p class="glyph-diff-line is-quiet">暂时无法对照现网（网络或限流）。查字仍以本页本地数据为准。</p>';
+            panel.innerHTML = '<p class="glyph-live-note is-quiet">暂时无法对照现网（网络或限流）。查字仍以本页本地数据为准。</p>';
             return;
           }
           if (row.missing) {
             panel.innerHTML =
-              '<p class="glyph-diff-line is-quiet">现网尚无此款 analysis 文件（normalized=<code>' +
+              '<p class="glyph-live-note is-quiet">现网尚无此款 analysis 文件（normalized=<code>' +
               esc(font.normalized || '') +
               '</code>）。公开站查字继续用本地字符表。</p>';
             return;
@@ -781,48 +782,43 @@
                 (row.fallbackReason ? '（回退：' + esc(String(row.fallbackReason)) + '）' : '');
           const charDelta = liveChars && localChars ? liveChars - localChars : null;
           const glyphDelta = liveGlyphs && localGlyphs ? liveGlyphs - localGlyphs : null;
-          function deltaNote(n) {
+          function deltaHint(n) {
             if (n == null) return '';
-            if (n === 0) return ' · 与目录一致';
-            return ' · 相对目录 ' + (n > 0 ? '+' : '') + n;
+            if (n === 0) return '<span class="is-quiet">与目录一致</span>';
+            return '<span class="is-quiet">' + (n > 0 ? '+' : '') + n + '</span>';
           }
-          function covLine(label, need) {
-            if (!cjk) return '';
-            const hit = Math.min(cjk, need);
-            const pct = Math.round((hit / need) * 100);
-            const gap = Math.max(0, need - cjk);
-            return (
-              '<p class="glyph-diff-line">相对' +
-              label +
-              '（' +
-              need +
-              '）· CJK 统一汉字 <b>' +
-              WFProto.formatCount(cjk) +
-              '</b> · 覆盖约 <b>' +
-              pct +
-              '%</b>' +
-              (gap ? ' · 缺口上限 ' + WFProto.formatCount(gap) : ' · 已盖过该档') +
-              '</p>'
-            );
+          function covPct(need) {
+            if (!cjk) return '—';
+            return '≈' + Math.round((Math.min(cjk, need) / need) * 100) + '%';
           }
+          const face = esc(String(d.name || d.subfamily_name || '—'));
           panel.innerHTML =
-            '<p class="glyph-diff-line"><b>现网字符分析</b> · 来源 ' +
-            src +
-            ' · 字重样例 <code>' +
-            esc(String(d.name || d.subfamily_name || '—')) +
-            '</code></p>' +
-            '<p class="glyph-diff-line">字符数 <b>' +
-            (liveChars ? WFProto.formatCount(liveChars) : '—') +
-            '</b>' +
-            deltaNote(charDelta) +
-            ' · 字形数 <b>' +
-            (liveGlyphs ? WFProto.formatCount(liveGlyphs) : '—') +
-            '</b>' +
-            deltaNote(glyphDelta) +
+            '<p class="glyph-live-head"><b>现网字符分析</b>' +
+            (face !== '—' ? ' <span class="is-quiet">字重样例 <code>' + face + '</code></span>' : '') +
             '</p>' +
-            covLine('常用字档', 3500) +
-            covLine('扩充常用', 7000) +
-            '<p class="glyph-diff-line is-quiet">覆盖按 analysis 的 CJK 统一汉字计数相对档位估算（非逐字表）；逐字查缺仍用上方本地字符表 / CSS unicode-range。</p>';
+            '<dl class="glyph-live-dl">' +
+            '<div><dt>字符数</dt><dd>' +
+            (liveChars ? WFProto.formatCount(liveChars) : '—') +
+            (deltaHint(charDelta) ? ' ' + deltaHint(charDelta) : '') +
+            '</dd></div>' +
+            '<div><dt>字形数</dt><dd>' +
+            (liveGlyphs ? WFProto.formatCount(liveGlyphs) : '—') +
+            (deltaHint(glyphDelta) ? ' ' + deltaHint(glyphDelta) : '') +
+            '</dd></div>' +
+            '<div><dt>常用覆盖</dt><dd>' +
+            covPct(3500) +
+            '</dd></div>' +
+            '<div><dt>扩充覆盖</dt><dd>' +
+            covPct(7000) +
+            '</dd></div>' +
+            (cjk
+              ? '<div class="is-span2"><dt>CJK 统一汉字</dt><dd>' + WFProto.formatCount(cjk) + '</dd></div>'
+              : '') +
+            '<div class="is-span2"><dt>来源</dt><dd>' +
+            src +
+            '</dd></div>' +
+            '</dl>' +
+            '<p class="glyph-live-note is-quiet">覆盖按 analysis 的 CJK 计数相对档位估算（非逐字表）；逐字查缺用上方本地字符表。</p>';
         });
       });
     })();
