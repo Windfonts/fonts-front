@@ -700,12 +700,6 @@ html[data-view="dev"] .foundry-eco .foundry-upstream-item { flex-wrap: nowrap; w
 .foundry-org-link {
   margin: var(--s-4) 0 0;
 }
-.foundry-org-link .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35em;
-  text-decoration: none;
-}
 .foundry-parent-link {
   margin: var(--s-2) 0 0;
   font-size: var(--fs-13);

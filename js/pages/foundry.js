@@ -851,9 +851,8 @@
       : '';
     const showOrg = WFProto.canShowOrgLineage && WFProto.canShowOrgLineage(g.slug);
     const orgEntry = showOrg
-      ? '<p class="foundry-org-link"><a class="btn" href="' +
-        WFChrome.href('lineage.html?group=' + encodeURIComponent(g.slug) + '&view=org&mode=flow') + '">' +
-        WFChrome.icon('branch') + '查看组织归属</a></p>'
+      ? '<p class="foundry-org-link"><a href="' +
+        WFChrome.href('lineage.html?group=' + encodeURIComponent(g.slug) + '&view=org&mode=flow') + '">谱系图</a></p>'
       : '';
     const claimHtml = '<p class="claim">' + WFChrome.icon('idcard') + '<span>' + (g.claimed
       ? who + '已认领此页。许可仍以每款字体的出处为准。'
