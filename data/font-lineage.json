@@ -225,8 +225,8 @@
       "licenseFollows": "own"
     },
     "阿里妈妈": {
-      "ownerId": "alibaba-design",
-      "makerId": "alibaba-design",
+      "ownerId": "alimama",
+      "makerId": "alimama",
       "group": "alibaba-sans",
       "relation": "commissioned",
       "licenseFollows": "own"
@@ -2209,8 +2209,8 @@
       "licenseFollows": "inherit"
     },
     "淘宝买菜体": {
-      "ownerId": "alibaba",
-      "makerId": "alibaba",
+      "ownerId": "taobao",
+      "makerId": "taobao",
       "group": "alibaba-sans",
       "relation": "commissioned",
       "licenseFollows": "own"

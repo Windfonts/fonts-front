@@ -33,6 +33,40 @@
       "parentId": "alibaba"
     },
     {
+      "id": "alimama",
+      "name": "阿里妈妈",
+      "en": "Alimama",
+      "short": "阿里妈妈",
+      "website": "https://www.alimama.com",
+      "aliases": [
+        "Alimama",
+        "阿里妈妈",
+        "阿里妈妈字体"
+      ],
+      "kind": "brand",
+      "openSource": false,
+      "claimed": false,
+      "parentId": "alibaba",
+      "description": "阿里巴巴集团营销科技平台；东方大楷、刀隶体、数黑体等免费商用字归入本支。"
+    },
+    {
+      "id": "taobao",
+      "name": "淘宝",
+      "en": "Taobao",
+      "short": "淘宝",
+      "website": "https://www.taobao.com",
+      "aliases": [
+        "Taobao",
+        "淘宝网",
+        "淘宝买菜"
+      ],
+      "kind": "brand",
+      "openSource": false,
+      "claimed": false,
+      "parentId": "alibaba",
+      "description": "阿里巴巴集团电商业务线；淘宝买菜体等免费商用字归入本支。"
+    },
+    {
       "id": "hanyi",
       "name": "汉仪字库",
       "en": "Hanyi Fonts",

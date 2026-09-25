@@ -13694,12 +13694,12 @@
     "copyright": "Copyright © 淘宝（中国）软件有限公司.",
     "foundry": "Alibaba Design",
     "brand": {
-      "name": "Alibaba Design",
-      "slug": "alibaba-design",
+      "name": "淘宝",
+      "slug": "taobao",
       "logoUrl": "",
-      "avatarUrl": "assets/avatars/alibaba-design.webp",
-      "website": "",
-      "description": "Alibaba Design出品的字体"
+      "avatarUrl": "",
+      "website": "https://www.taobao.com",
+      "description": "阿里巴巴集团电商业务线；淘宝买菜体等免费商用字归入本支。"
     },
     "releaseYear": 2024,
     "version": "1.0",
@@ -22072,12 +22072,12 @@
     "copyright": "Copyright (c) 2023 Alibaba (China) Co., Ltd. All rights reserved.",
     "foundry": "Alibaba Design",
     "brand": {
-      "name": "Alibaba Design",
-      "slug": "alibaba-design",
+      "name": "阿里妈妈",
+      "slug": "alimama",
       "logoUrl": "",
-      "avatarUrl": "assets/avatars/alibaba-design.webp",
-      "website": "",
-      "description": "Alibaba Design出品的字体"
+      "avatarUrl": "",
+      "website": "https://www.alimama.com",
+      "description": "阿里巴巴集团营销科技平台；东方大楷、刀隶体、数黑体等免费商用字归入本支。"
     },
     "releaseYear": 2023,
     "version": "1.0.0",
@@ -22131,12 +22131,12 @@
     "copyright": "Copyright (c) 2023 Alibaba (China) Co., Ltd. All rights reserved.",
     "foundry": "Alibaba Design",
     "brand": {
-      "name": "Alibaba Design",
-      "slug": "alibaba-design",
+      "name": "阿里妈妈",
+      "slug": "alimama",
       "logoUrl": "",
-      "avatarUrl": "assets/avatars/alibaba-design.webp",
-      "website": "",
-      "description": "Alibaba Design出品的字体"
+      "avatarUrl": "",
+      "website": "https://www.alimama.com",
+      "description": "阿里巴巴集团营销科技平台；东方大楷、刀隶体、数黑体等免费商用字归入本支。"
     },
     "releaseYear": 2023,
     "version": "1.0.0",
@@ -22188,12 +22188,12 @@
     "copyright": "Copyright ?2022 Alibaba (China) Co., Ltd. All rights reserved.",
     "foundry": "Alibaba Design",
     "brand": {
-      "name": "Alibaba Design",
-      "slug": "alibaba-design",
+      "name": "阿里妈妈",
+      "slug": "alimama",
       "logoUrl": "",
-      "avatarUrl": "assets/avatars/alibaba-design.webp",
-      "website": "",
-      "description": "Alibaba Design出品的字体"
+      "avatarUrl": "",
+      "website": "https://www.alimama.com",
+      "description": "阿里巴巴集团营销科技平台；东方大楷、刀隶体、数黑体等免费商用字归入本支。"
     },
     "releaseYear": 2022,
     "version": "1.0.0",
