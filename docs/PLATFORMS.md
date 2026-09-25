@@ -1,7 +1,7 @@
 # 文风 · 双平台分工与后续工作
 
 > 2026-09-20 定调。后续厂商页、开源作者、缺字、造字、授权、源文件下载、AI 补字，都以本文为准。本仓 `fonts-front` 只做 **Windfonts 分发前端**；造字与授权不在本仓硬做。
-> **域名 / 部署 / 故障隔离：** [DOMAIN-ARCHITECTURE.md](DOMAIN-ARCHITECTURE.md)。
+> **域名 / 部署 / 故障隔离：** [DOMAIN-ARCHITECTURE.md](DOMAIN-ARCHITECTURE.md) · [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md)。
 
 ## 1. 两个站点
 

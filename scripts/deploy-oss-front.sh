@@ -53,4 +53,5 @@ if [[ "$APPLY" -eq 0 ]]; then
 fi
 
 "$OSSUTIL" cp -r "$ROOT/" "oss://$BUCKET/" -e "$ENDPOINT" --update --force "${EXCLUDE[@]}"
-echo "done. 静态网站 / 自定义域仍须在控制台或 CDN 绑 app；桶 ACL 若禁 public-read，用桶策略或 CDN 回源。"
+echo "done. 桶 wenfeng-web 现为 private：账号禁 PutBucketAcl public-read。"
+echo "公网 app 仍以 feicode /www/wwwroot/fonts-front 为准；见 docs/ops/DOMAIN-DEPLOY-SOP.md §5。"

@@ -2,11 +2,13 @@
 
 > 面向接手后端 / 全栈的同学与智能体：原型现状、页面清单、需要后端提供的接口契约、已知待办。
 
-**2026-09-25 域名口径：** 详见 **[DOMAIN-ARCHITECTURE.md](DOMAIN-ARCHITECTURE.md)**（完整分析与建议）。摘要：`app`=OSS 前端；**`vault`**=Next 字体后端（勿把平台级 `api.` 直绑 Next）；`api.`=网关预留；`cn|hk|en|jp`=CDN；`windfonts.com`=WP（营销/登录/收费）。`CSS_API`→`vault`；嵌入仍写地区 CDN。
+**2026-09-25 域名口径：** 详见 **[DOMAIN-ARCHITECTURE.md](DOMAIN-ARCHITECTURE.md)**。运维操作见 **[ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md)**。摘要：`app`=静态前端（现网 feicode 目录；OSS `wenfeng-web` 私有备份）；**`vault`**=Next；**`api.`**=网关壳（反代 vault，可换上游）；`cn|hk|en|jp`=CDN；`windfonts.com`=WP。`CSS_API`→`vault`；嵌入仍写地区 CDN。
+
+**2026-09-25 infra 落地：** vault 双 Host、CDN N1b Host→vault、app 静态化、staging、`api.` 网关、www→apex、停 vault 演练通过。OSS 公网绑 `app` 待账号放开或 CDN 私有回源。
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 
-**下一棒（按价值）：** ① infra：`vault` DNS/TLS、前端 OSS 桶、CDN 回源 Host（见 [DOMAIN-ARCHITECTURE.md](DOMAIN-ARCHITECTURE.md) §5/§9）；② 真登录 / `WFApi` live→vault；③ 选字袋同步 / 认领；④ CF 节点验收。入库见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
+**下一棒（按价值）：** ① `app` 真绑 OSS/CDN（账号禁 public-read，见 SOP §5）；② 真登录 / `WFApi` live→vault；③ 选字袋同步 / 认领；④ CF `hk|en|jp` 验收。入库见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
 
 **已合（2026-09-25，wapuu）：** vault [#29](https://feicode.com/Windfonts/fonts-vault/pulls/29) pnpm Docker、[#30](https://feicode.com/Windfonts/fonts-vault/pulls/30) 品牌 CSS 门禁、[#31](https://feicode.com/Windfonts/fonts-vault/pulls/31) `/api/css` 错误 `no-store` → `main` @ `22454e0`。
 

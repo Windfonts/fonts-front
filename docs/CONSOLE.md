@@ -1,6 +1,6 @@
 # 文风控制台 · 三套工作台
 
-2026-09-24。顾客用的是本仓 `app/`（正式挂 `app.windfonts.com` OSS）。运营在 `vault.windfonts.com/admin`（仓 `fonts-vault`；过渡期现网仍可能是 `app…/admin`）。域名总则见 [DOMAIN-ARCHITECTURE.md](DOMAIN-ARCHITECTURE.md)。认领能改什么，以 [CLAIM-SCOPES.md](CLAIM-SCOPES.md) 为准。
+2026-09-24。顾客用的是本仓 `app/`（正式挂 `app.windfonts.com` OSS）。运营在 `vault.windfonts.com/admin`（仓 `fonts-vault`；过渡期现网仍可能是 `app…/admin`）。域名总则见 [DOMAIN-ARCHITECTURE.md](DOMAIN-ARCHITECTURE.md)；运维见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md)。认领能改什么，以 [CLAIM-SCOPES.md](CLAIM-SCOPES.md) 为准。
 
 一个账号可以同时用字、又维护已认领的页。侧栏上方切换「用字 / 我的页」。没有通过的认领时，不出现第二个入口。
 

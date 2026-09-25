@@ -2,7 +2,7 @@
 
 > 定稿日期：2026-09-25。  
 > 本文是 **域名分配、服务边界、故障隔离、迁移顺序** 的唯一口径。  
-> 相关：双平台产品边界见 [PLATFORMS.md](PLATFORMS.md)；上线门闸见 [LAUNCH-GATES.md](LAUNCH-GATES.md)；嵌入口径硬约束见仓库规则 `cdn-embed-contract`。
+> 相关：双平台产品边界见 [PLATFORMS.md](PLATFORMS.md)；上线门闸见 [LAUNCH-GATES.md](LAUNCH-GATES.md)；**运维 SOP** 见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md)；嵌入口径硬约束见仓库规则 `cdn-embed-contract`。
 
 ## 目录
 
@@ -233,7 +233,7 @@ https://{cn|hk|en|jp}.windfonts.com/api/css?family=&weight=&version=
 | `staging-app` / `staging-vault` | **已通**（同机静态 / Next） |
 | `cn.windfonts.com` | `/api/css` 十边 Host 已改 **`vault`**（N1b sed+reload）；ansible defaults 已固化 |
 | `www.windfonts.com` | **已定**：301 → `https://windfonts.com/`（CyberCDN canonical） |
-| OSS `wenfeng-web` | **已建并灌入**约 445 文件；账号禁 public-read/policy，暂不能直接当公网根；内容同步自 feicode 静态树 |
+| OSS `wenfeng-web` | **已建并灌入**；ACL=private（账号禁 `PutBucketAcl public-read`）；公网 `app` 仍走 feicode 静态；见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md) §5 |
 | `hk` / `en` / `jp` | CF 规划；CDN 边缘已有 jp/sg/hk 节点 |
 
 **迁移进度：**
@@ -295,7 +295,7 @@ WF_API_ORIGIN=https://app.windfonts.com node scripts/sync-font-counts.mjs --writ
 - [x] `app.windfonts.com` 公开页为 fonts-front 静态；`/fonts/ibmps` rewrite 正确；**未**把整站交给 Next（`/api` `/admin` 过渡反代仍在；OSS 公网绑域待账号放开）
 - [x] `cn…/api/css?...` 回源 Host 为 vault（十边 + ansible）
 - [x] 前台 `CSS_API` 指向 vault；嵌入示例仍为地区 CDN
-- [ ] 停 vault 容器做演练：WP（`windfonts.com`）与静态首页仍可打开；仅字体 API / 动态 CSS 失败
+- [x] 停 vault 容器做演练（2026-09-25）：WP / app 静态 200；vault/api/cn 502；`/gateway/health` 仍 200；约 4s 恢复
 - [x] `api.windfonts.com` 网关壳反代 vault（`Host` 改写）；`/gateway/health` 200；响应头 `X-Windfonts-Gateway: api`
 - [x] `www` → apex 301 已定
 
@@ -444,3 +444,4 @@ P3 有余力
 | 2026-09-25 | §9：其余域名与 OSS/邮件/预发/webhook 等资源分配清单与优先级。 |
 | 2026-09-25 | 目录 + §9 总览表；CONSOLE / FRONTEND-STANDARDS / HANDOFF 交叉链对齐。 |
 | 2026-09-25 | 落地 vault DNS/TLS/nginx；建 OSS `wenfeng-web`；CDN Host→vault 待边缘应用。 |
+| 2026-09-25 | 停 vault 演练通过；新增 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md)；OSS 公网绑域仍受账号禁 public-read 限制。 |
