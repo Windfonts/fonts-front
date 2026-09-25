@@ -4,7 +4,7 @@
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** 全量 `docker build` 曾因 `npm ci` 失败；分析 URL 版本串是热补 `.next` chunk 临时生效，下次成功构建会吃进 `sync.service.ts` 源码。详见 §25。
 
-**下一棒（按价值）：** ① 修 vault 生产镜像（Dockerfile 已改 pnpm + 阿里云 apk，PR #29；现网仍热补 `.next`）；② P2 coverage 余量（上游差 / 真·常用字表逐码点）；③ 新入库后重跑 analysis / package-sizes / locale，并递增 `OSS_METADATA_VERSION`；④ 商用档 `albbpht` 许可门禁。
+**下一棒（按价值）：** ① vault 生产镜像已换 pnpm 正式构建（PR #29，热补已撤）；② P2 coverage 余量（上游差 / 真·常用字表逐码点）；③ 新入库后重跑 analysis / package-sizes / locale，并递增 `OSS_METADATA_VERSION`；④ 商用档 `albbpht` 许可门禁。
 
 **P2 已落一截（2026-09-25）：** 详情「对照现网字符表」用 analysis `unicode_ranges` 的 CJK 统一汉字数，估算相对常用字 3500 / 扩充 7000 的覆盖与缺口上限（非逐字表）。
 
@@ -647,6 +647,7 @@ feibisi 拍板 openfontree（ZeoSeven 的开源字体关系树仓，CC BY-SA）�
 - **foundries.json 131 行**：补 frex-sans（械黑计划）行，ownerId 走正路。
 - **lineage-visual-options.html**（设计轨，未定稿）：谱系总览页三方向并排——一 族谱树（画册纵向）/二 年代纵轴（大号衬线年份）/三 溯源河流（横向分代）+ 星图彩蛋。数据全为真实谱系节选。等 feibisi 挑方向。
 - 数据版本参数：font-lineage/foundries `20260927a`、wf-chrome `20260927e`。
+
 ## 28. 2026-09-25 谱系页上线：lineage.html 甲乙双模式（谱/墙）
 
 feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合，两种模式可切换」。
@@ -660,6 +661,7 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
   - 寒蝉宽黑体挂入 source-han-sans 组（上游光莹黑体=幽灵节点）。
 - 验证：思源黑体树 89 li（含幽灵）/墙 3 带 88 款、霞鹜族 7 li 根 33.6px 自渲染、specFonts 3/3、无横向溢出、外审 7/7 节点以字证字成立。
 - 版本：lineage.js `20260925d`、wf-proto `20260927n`（lineage 数据 `20260927b`）。
+
 ## 29. 2026-09-25 谱系页对齐 DESIGN-SYSTEM 重写（feibisi 点「没看设计风格指南吗」）
 
 初版走了被系统明确否决的「白底黑字+细线 Type Specimen」编辑风。按 docs/DESIGN-SYSTEM.md 重写：
