@@ -492,8 +492,9 @@ https://cn.windfonts.com/api/css?family={family}&weight={weight}&subset={subset}
 | 鉴权 | Referer / 域名白名单（项目绑定）；公开 `/api/css` 不校验域名但限流 |
 | 更新 | 发布新版本 → 同 URL 切内容；嵌入代码不改 |
 | 与公开关系 | 品牌长尾、固定文案、多角色字体栈 → 优先项目；试水 / 文档示例 → `/api/css` |
+| **状态（2026-09-25）** | vault 骨架已通（`data/projects/{slug}.json` + bake + `POST /api/projects/publish`）；边缘 `^~ /p/` 回源待上 |
 
-可选（未拍板）：`/p/{slug}/v/{n}.css` 钉版本；默认 `index.css` = current。
+可选（未拍板）：`/p/{slug}/v/{n}.css` 钉版本；默认 `index.css` = current。发布写入走 `app.windfonts.com`；嵌入仍用地区 CDN `/p/…`。
 
 ### 12.3 鉴权编译：`POST /v1/subset`
 

@@ -153,7 +153,7 @@ fonts-front/
 - **禁止**因 OSS 上 `/api/css` 404 就改前端口径；那是 CDN 边缘回源问题，见 [HANDOFF.md](HANDOFF.md) CDN 节。
 - 预览真源：`https://cn.windfonts.com/fonts-packages/{Normalized}/{Weight}/{full|zh-common}/result.css`。旧路径 `/wenfeng/fonts/{slug}/{weight}/web/` 仅兜底（「静态」）。
 - 生成的 `<link>` 代码前必须带授权标注注释（`WFProto.CDN_LICENSE_NOTE`）。
-- 项目 CDN：`https://cn.windfonts.com/p/{project-slug}/index.css`（控制台用，后端待实现）。对外域名一律地区节点 `cn|hk|en.windfonts.com`。
+- 项目 CDN：`https://cn.windfonts.com/p/{project-slug}/index.css`（vault 读 `data/projects/{slug}.json` 烘焙；控制台「发布到 CDN」→ `POST app…/api/projects/publish`）。对外域名一律地区节点 `cn|hk|en.windfonts.com`。
 - 页面写死的 CDN 示例（docs / features）须与上表一致；`styleguide` 若展示旧路径须标明「兼容」。
 - 改动态/静态形态前必须用户明确同意。
 

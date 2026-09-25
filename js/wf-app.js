@@ -514,6 +514,78 @@
     return c;
   }
 
+  /** 子集设置 → 公开预计算档（text/unicode 暂落到项目 delivery.subset） */
+  function packageSubset(subset, deliverySubset) {
+    const fallback = ['en', 'zh', 'zh-common', 'full'].indexOf(deliverySubset) >= 0 ? deliverySubset : 'full';
+    if (!subset || subset.mode === 'full') return 'full';
+    if (subset.mode === 'common') {
+      const p = String(subset.preset || '');
+      if (p === 'en' || p === 'zh' || p === 'zh-common') return p;
+      if (/3500|常用/.test(p)) return 'zh-common';
+      return 'zh-common';
+    }
+    return fallback;
+  }
+
+  /** 控制台项目 → vault 发布清单（不改公开 /api/css 形态） */
+  function projectManifest(p) {
+    const d = (p && p.delivery) || {};
+    const display = d.display || (state && state.settings && state.settings.display) || 'swap';
+    const fonts = (p.fonts || []).map(function (f) {
+      const meta = fontMeta(f.fontId) || {};
+      const family = String(meta.family || '').toLowerCase() || ('wenfeng-' + String(f.fontId || '').toLowerCase());
+      const weights = (f.weights && f.weights.length ? f.weights : ['regular']).map(function (w) {
+        return WFProto.weightName(family, w);
+      });
+      return {
+        family: family,
+        weights: weights,
+        subset: packageSubset(f.subset, d.subset)
+      };
+    });
+    return {
+      slug: String(p.slug || '').toLowerCase(),
+      name: p.name || p.slug,
+      version: (currentVersion(p) && currentVersion(p).v) || 1,
+      display: display || 'swap',
+      domains: (p.domains || []).filter(function (x) { return x.verified; }).map(function (x) { return x.host; }),
+      fonts: fonts
+    };
+  }
+
+  /**
+   * 发布到 vault：POST {apiOrigin}/api/projects/publish。
+   * 写入走 app（vault）；嵌入 URL 仍是地区 CDN /p/{slug}/index.css。
+   */
+  function publishOrigin() {
+    return 'https://app.windfonts.com';
+  }
+
+  function publishProject(p) {
+    const manifest = projectManifest(p);
+    if (!manifest.slug) return Promise.reject(new Error('项目 slug 为空'));
+    if (!manifest.fonts.length) return Promise.reject(new Error('项目里还没有字体'));
+    const key = state && state.settings && state.settings.apiKey;
+    const headers = { 'Content-Type': 'application/json' };
+    if (key) headers['Authorization'] = 'Bearer ' + key;
+    return fetch(publishOrigin() + '/api/projects/publish', {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(manifest)
+    }).then(function (res) {
+      return res.json().then(function (body) {
+        if (!res.ok || (body && body.status === 'fail')) {
+          const err = new Error((body && body.message) || ('HTTP ' + res.status));
+          err.status = res.status;
+          err.body = body;
+          throw err;
+        }
+        log('发布项目', manifest.slug + ' · v' + ((body.data && body.data.version) || manifest.version));
+        return body;
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('[data-rail]').forEach(renderRail);
   });
@@ -534,6 +606,7 @@
     fontMeta: fontMeta,
     uniqueChars: uniqueChars, parseRanges: parseRanges, subsetGlyphs: subsetGlyphs, subsetBytes: subsetBytes,
     subsetLabel: subsetLabel, projectBytes: projectBytes,
+    projectManifest: projectManifest, publishProject: publishProject, publishOrigin: publishOrigin,
     series: series, sparkline: sparkline, fmtDate: fmtDate, fmtGB: fmtGB,
     NAV: NAV_USE
   };

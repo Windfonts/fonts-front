@@ -26,7 +26,7 @@
 
 | 层 | 干什么 | 现网 / 草案 |
 |---|---|---|
-| **投递** | 页面能显示字 | `GET /api/css` · 项目 `/p/{slug}/index.css`（未落地）· `POST /v1/subset`（草） |
+| **投递** | 页面能显示字 | `GET /api/css` · 项目 `/p/{slug}/index.css`（vault 骨架已通，边缘待 `/p/` 回源）· `POST /v1/subset`（草） |
 | **目录** | 工具链能选字、合规、估体积 | vault `GET /api/fonts` · `:id` · `categories` · `brands` · `…/analysis` |
 | **控制台** | 项目发布、域名、用量、团队 | HANDOFF `/v1/*` 草案；现网顾客侧仍多在本仓 localStorage |
 
@@ -140,7 +140,7 @@ Webhook、OAuth 应用令牌、签名限频的 catalog dump → 让文风出现�
 
 | # | 项 | 价值 | 前置 |
 |---|---|---|---|
-| L1 | 项目 CDN `GET /p/{slug}/index.css` | 品牌长尾稳定嵌入 | 项目存储、发布、域名白名单 |
+| L1 | 项目 CDN `GET /p/{slug}/index.css` | 品牌长尾稳定嵌入 | **骨架已通**（vault 清单 + publish；边缘 `/p/` 待上） |
 | L2 | `POST /v1/subset`（Bearer） | CI / 脚本按文案编译 | 编译队列、结果落哈希 URL |
 | L3 | 用量 / 域名 / 版本 / 回滚 API | 可运维 CDN | 边缘日志、计量、顾客账号 |
 | L4 | 团队 / 认领 / 审计 | 厂商与代理商 | 账号体系、工单 |

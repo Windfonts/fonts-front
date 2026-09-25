@@ -86,8 +86,11 @@
       '<div class="tabs" role="tablist">' +
         '<button type="button" role="tab" data-embed-src="project" class="is-on">项目一份 CSS</button>' +
         '<button type="button" role="tab" data-embed-src="fonts">按字体拆开</button></div>' +
+      '<div class="app-actions" style="margin:var(--s-4) 0">' +
+        '<button type="button" class="btn btn-ink" id="btnPublish"' + (p.fonts.length ? '' : ' disabled') + '>' + WFChrome.icon('cloud') + '发布到 CDN</button>' +
+        '<button type="button" class="btn" id="btnExportManifest"' + (p.fonts.length ? '' : ' disabled') + '>' + WFChrome.icon('download') + '导出清单</button></div>' +
       '<div id="embed"></div>' +
-      '<p class="t-13 muted" style="margin-top:var(--s-4)">项目地址指向当前版本。节点上还没有 <code>/p/…/index.css</code> 时，这条链接会打开失败。' + (p.fonts.length ? '' : '项目里还没有字体，代码为空。') + '</p></div>';
+      '<p class="t-13 muted" style="margin-top:var(--s-4)">发布后对外地址是地区节点 <code>/p/{slug}/index.css</code>（多字体已烘焙）。写入走 vault；边缘须把 <code>/p/</code> 回源（同 <code>/api/css</code>）。按文案子集成清单时落到项目字符包档。' + (p.fonts.length ? '' : ' 项目里还没有字体，无法发布。') + '</p></div>';
   }
 
   function versionsPanel() {
@@ -311,6 +314,29 @@
       });
       document.getElementById('optPreload').addEventListener('change', persist);
       document.getElementById('optAlias').addEventListener('change', persist);
+      const btnPub = document.getElementById('btnPublish');
+      if (btnPub) {
+        btnPub.addEventListener('click', function () {
+          btnPub.disabled = true;
+          WFApp.publishProject(p).then(function (body) {
+            const v = (body && body.data && body.data.version) || '';
+            WFChrome.toast('已发布 · v' + v + ' · ' + WFProto.projectCssUrl(p.slug, 'index.css', WFProto.cdnOriginById(p.delivery.cdn)).replace(/^https:\/\//, ''));
+          }).catch(function (err) {
+            WFChrome.toast((err && err.message) || '发布失败');
+            if (err && (err.status === 401 || err.status === 403)) {
+              WFChrome.toast('密钥未登记时请先「导出清单」交运维写入 vault');
+            }
+          }).then(function () { btnPub.disabled = !p.fonts.length; });
+        });
+      }
+      const btnEx = document.getElementById('btnExportManifest');
+      if (btnEx) {
+        btnEx.addEventListener('click', function () {
+          const m = WFApp.projectManifest(p);
+          WFApp.download(m.slug + '.project.json', JSON.stringify(m, null, 2), 'application/json');
+          WFChrome.toast('已下载清单');
+        });
+      }
     }
   }
 

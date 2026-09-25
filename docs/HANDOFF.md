@@ -600,6 +600,11 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 
 相关计划：`docs/plans/2026-09-24-api-surface-value.md`（N1/N2 标已通）、`docs/plans/2026-09-24-font-mix-subset-fallback.md` §3.8a。
 
-**本轮已收口（2026-09-25 续）：** N5 热度同步脚本与一次全量写回；N6 详情对照现网 analysis；`localeFallback` 配对表 + vault 参数 + 详情勾选（现 8 对，含狮尾简中/繁中）；N8 `export-license-lineage.mjs`。
+**本轮已收口（2026-09-25 续）：** N5 热度同步脚本与一次全量写回；N6 详情对照现网 analysis；`localeFallback` 配对表 + vault 参数 + 详情勾选（现 8 对，含狮尾简中/繁中）；N8 `export-license-lineage.mjs`；预算条。
 
-**仍待：** 项目烘焙 `/p/{slug}`、analysis 文件覆盖率、包体清单 API（P3）、扩更多简繁 `localePeerProduct`。商用档 `albbpht` 等仍受许可门禁。
+**项目烘焙 `/p/{slug}`（2026-09-25 骨架）：**
+- vault：`GET /p/{slug}/index.css`（`data/projects/{slug}.json` → 多字体展开，域名白名单）；`POST /api/projects/publish`（API Key / `PROJECT_PUBLISH_KEY` / `PROJECT_PUBLISH_OPEN`）；种子 `demo`。
+- 前台控制台：嵌入页「发布到 CDN」+「导出清单」；对外 URL 仍是 `{cdn}/p/{slug}/index.css`。
+- 边缘：待 ansible 加 `^~ /p/` → `windfonts_vault`（脚本 `cybercdn/ansible/scripts/p-patch-windfonts-project-css.py`）；部署 vault 后探针 `…/p/demo/index.css`。
+
+**仍待：** 边缘 `/p/` 回源上线、analysis 文件覆盖率、包体清单 API（P3）、扩更多简繁 `localePeerProduct`、项目发布与正式 API Key 打通。商用档 `albbpht` 等仍受许可门禁。
