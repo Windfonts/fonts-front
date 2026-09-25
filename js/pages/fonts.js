@@ -29,7 +29,7 @@
   /* 风格：目录 tags 里的字形气质（与「分类」无衬线/手写体等正交；对齐线上侧栏） */
   const STYLE_TAGS = ['黑体', '宋体', '楷体', '隶书', '硬笔手写', '毛笔书法', '卡通创意', '像素', '拼音', '其他'];
   /* 品牌侧栏：默认只露前 N 家（按款数），其余折叠；展开后区内滚动，避免侧栏被拉穿 */
-  const BRAND_FACET_PREVIEW = 8;
+  const BRAND_FACET_PREVIEW = 6;
   let brandRailOpen = false;
   /* 分类名用对应风格的系统字体呈现（汉仪式的分类入口） */
   const CAT_STYLE = { '无衬线字体': 'cat-sans', '衬线': 'cat-serif', '宋体': 'cat-serif', '手写体': 'cat-hand', '书法': 'cat-callig', '隶书': 'cat-li', 'Mono': 'cat-mono', '圆体': 'cat-round', '其他': 'cat-deco' };
@@ -183,6 +183,7 @@
     const rows = items.filter(function (it) { return it.n > 0 || state[key] === it.v; }).map(function (it) {
       return chipBtn(key, it.v, labelOf ? labelOf(it.v) : it.v, it.n, state[key] === it.v);
     }).join('');
+    if (!rows) return '';
     return '<div class="facet"><h3>' + title + '</h3><div class="chips">' + rows + '</div></div>';
   }
   function catFacetHtml(items) {
@@ -191,6 +192,7 @@
       return '<li' + (on ? ' class="is-on"' : '') + '><button type="button" class="' + (CAT_STYLE[it.v] || '') + '" data-facet="cat" data-v="' + esc(it.v) + '">' +
         '<span>' + esc(catLabel(it.v) || it.v) + '</span><span class="n">' + it.n + '</span></button></li>';
     }).join('');
+    if (!rows) return '';
     return '<div class="facet facet-cat"><h3>分类</h3><ul>' + rows + '</ul></div>';
   }
 
@@ -200,8 +202,8 @@
     const langs = ['简体中文', '繁体中文', '英语', '日文', '韩文'];
     const brands = brandFacetValues();
     const html =
-      catFacetHtml(facetCounts('cat', cats, function (f, v) { return f.category === v; })) +
       facetHtml('风格', 'style', facetCounts('style', STYLE_TAGS, hasStyle)) +
+      catFacetHtml(facetCounts('cat', cats, function (f, v) { return f.category === v; })) +
       brandFacetHtml(facetCounts('foundry', brands.ids, function (f, v) {
         if (WFChrome.brandSlug(f) === v) return true;
         return (f.collaboratorInfos || []).some(function (c) { return c && c.id === v; });
@@ -287,7 +289,24 @@
   }
 
   function updateCount() {
-    countEl.innerHTML = '共 <strong>' + filtered.length + '</strong> 款，已显示 <strong>' + shown + '</strong> 款';
+    if (!filtered.length) {
+      countEl.innerHTML = hasAny()
+        ? '没有匹配结果 · <button type="button" class="btn-text" id="countClear">清除筛选</button>'
+        : '字库暂时为空';
+      moreBtn.hidden = true;
+      const clr = document.getElementById('countClear');
+      if (clr) clr.addEventListener('click', function () {
+        state.cat = state.weight = state.lang = state.license = state.foundry = state.lineage = state.open = state.kind = state.style = state.tag = state.keyword = '';
+        const s = document.getElementById('navSearch');
+        if (s) s.value = '';
+        refresh();
+      });
+      return;
+    }
+    const hint = shown < filtered.length
+      ? ' <span class="count-hint">· 下滑加载更多</span>'
+      : (shown > PAGE ? ' <span class="count-hint">· 已全部加载</span>' : '');
+    countEl.innerHTML = '库内 <strong>' + filtered.length + '</strong> 款 · 已加载 <strong>' + shown + '</strong> / ' + filtered.length + hint;
     moreBtn.hidden = shown >= filtered.length;
   }
 
@@ -314,8 +333,17 @@
     renderRail();
     renderActive();
     if (!filtered.length) {
-      listEl.innerHTML = '<li class="empty">没有匹配的字体。<a href="fonts.html">清除筛选</a></li>';
+      listEl.innerHTML = hasAny()
+        ? '<li class="empty empty-filter"><p>没有符合当前筛选的字体。</p><p class="empty-sub">试试放宽风格 / 分类，或 <button type="button" class="btn-text" id="emptyClear">清除全部筛选</button></p></li>'
+        : '<li class="empty"><p>字库暂时为空。</p></li>';
       updateCount();
+      const emptyClr = document.getElementById('emptyClear');
+      if (emptyClr) emptyClr.addEventListener('click', function () {
+        state.cat = state.weight = state.lang = state.license = state.foundry = state.lineage = state.open = state.kind = state.style = state.tag = state.keyword = '';
+        const s = document.getElementById('navSearch');
+        if (s) s.value = '';
+        refresh();
+      });
       return;
     }
     appendPage();
@@ -336,10 +364,19 @@
     if (SORTS.hasOwnProperty(state.sort)) sortSel.value = state.sort;
     sortSel.addEventListener('change', function () { refresh({ sort: sortSel.value }); });
   }
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting && shown > 0 && shown < filtered.length) appendPage();
-    }, { rootMargin: '400px 0px' }).observe(sentinel);
+  if ('IntersectionObserver' in window && sentinel) {
+    const io = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      if (shown <= 0 || shown >= filtered.length) return;
+      appendPage();
+      /* 首屏不满一页时继续补页，直到哨兵离开视口或加载完毕 */
+      if (shown < filtered.length && entries[0].isIntersecting) {
+        requestAnimationFrame(function () {
+          if (sentinel.getBoundingClientRect().top < (window.innerHeight + 600)) appendPage();
+        });
+      }
+    }, { rootMargin: '600px 0px' });
+    io.observe(sentinel);
   }
 
   window.WFFontsList = {

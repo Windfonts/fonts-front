@@ -1158,3 +1158,23 @@ body.is-index .site-extra-footer { margin-top: 0; padding-top: var(--s-6); }
 .record-list .rec-src { flex: none; font-size: var(--fs-12); color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
 .rec-note { margin: var(--s-3) 0 0; font-size: var(--fs-12); color: var(--gray-2); }
 .record-list .rec-scope { flex: none; font-size: var(--fs-12); color: var(--gray-2); border: 1px dashed var(--rule); border-radius: var(--radius-pill); padding: 0.1rem 0.5rem; }
+
+/* —— 字库页 Phase 1 补强 —— */
+.lib-rail .facet-brand > .chips:first-of-type { max-height: none; }
+.lib-rail .facet-brand-foot .facet-more {
+  font-weight: var(--fw-label);
+  color: var(--ink-2);
+}
+.page-fonts .empty-filter {
+  padding: var(--s-16) var(--s-6);
+  background: var(--surface);
+  border-radius: var(--radius);
+}
+.page-fonts .empty-filter .empty-sub { margin-top: var(--s-3); color: var(--gray); }
+.page-fonts .empty-filter .btn-text {
+  color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em;
+  font: inherit; padding: 0; background: none; border: 0; cursor: pointer;
+}
+#controlbar.controlbar { /* sticky already; keep stacking under topbar */
+  z-index: 30;
+}

@@ -72,15 +72,19 @@
   }
 
   function metaHtml(font) {
-    // 卡片元信息：品牌 · 字重 · 许可 · 浏览；开发模式追加 SPDX 与 family。
+    // 卡片元信息：品牌 · 字重 · 许可芯片 · 浏览；开发模式追加 SPDX 与 family。
     const n = (font.weights && font.weights.length) || 1;
     const ev = WFChrome.licenseEvidence(font);
     const fam = String(font.family || '').replace(/^wenfeng-/, '');
     const mark = WFChrome.faceHtml(font, 16);
     const views = Number(font.viewCount) || 0;
-    const viewBit = views > 0 ? ' · ' + WFProto.formatCount(views) + ' 浏览' : '';
-    return '<span class="meta">' + mark + esc(brandLine(font)) + ' · ' + n + ' 字重 · ' +
-      esc(WFChrome.licenseTier(font)) + viewBit +
+    const viewBit = views > 0 ? '<span class="meta-views">' + WFProto.formatCount(views) + ' 浏览</span>' : '';
+    const tier = WFChrome.licenseTier(font) || '';
+    const lic = tier ? '<span class="lic-chip" data-tier="' + esc(tier) + '">' + esc(tier) + '</span>' : '';
+    return '<span class="meta">' + mark + '<span class="meta-brand">' + esc(brandLine(font)) + '</span>' +
+      '<span class="meta-sep">·</span><span class="meta-weights">' + n + ' 字重</span>' +
+      (lic ? '<span class="meta-sep">·</span>' + lic : '') +
+      (viewBit ? '<span class="meta-sep">·</span>' + viewBit : '') +
       '<span class="for-dev">' +
         (ev.spdx ? ' · ' + esc(ev.spdx) : '') +
         (fam ? ' · <span class="mono">' + esc(fam) + '</span>' : '') +
