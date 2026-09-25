@@ -1891,6 +1891,21 @@
         set[e.to] = true;
       }
     });
+    /* nested brand font leaves under focused brand: same weight as direct kids */
+    const focusNode = layout.byId && layout.byId[id];
+    if (focusNode && focusNode.isBrandFamily) {
+      Object.keys(set).forEach(function (hid) {
+        if (hid === id) return;
+        const hn = layout.byId && layout.byId[hid];
+        if (!hn || !hn.isBrandFamily) return;
+        layout.edges.forEach(function (e) {
+          if (e.from === hid || e.to === hid) {
+            set[e.from] = true;
+            set[e.to] = true;
+          }
+        });
+      });
+    }
     /* if focus is cluster, include members */
     const n = layout.positions[id] && layout.positions[id].node;
     if (n && n.isCluster && n.members) {
@@ -1909,7 +1924,12 @@
     edgesSvg.querySelectorAll('[data-edge]').forEach(function (el) {
       const fr = el.getAttribute('data-from');
       const to = el.getAttribute('data-to');
-      const on = !!(hot && hot[fr] && hot[to] && (fr === focusId || to === focusId));
+      const touchFocus = (fr === focusId || to === focusId);
+      const brandLeafEdge = !!(
+        (layout.positions[fr] && layout.positions[fr].role === 'brand-leaf') ||
+        (layout.positions[to] && layout.positions[to].role === 'brand-leaf')
+      );
+      const on = !!(hot && hot[fr] && hot[to] && (touchFocus || brandLeafEdge));
       el.classList.toggle('is-hot', on);
       el.classList.toggle('is-dim', !!(hot && !on));
     });
@@ -1926,9 +1946,6 @@
       const nestedToggle = !!(n.isBrandFamily && focusId && layout && layout.parentOf &&
         layout.parentOf[id] === focusId && layout.byId[focusId] && layout.byId[focusId].isBrandFamily);
       const brandOpen = nestedToggle ? isBrandHubExpanded(id) : true;
-      const brandAct = nestedToggle
-        ? ('<span class="lfl-brand-act">' + (brandOpen ? '▾ 收起字体' : '▸ 展开字体') + '</span>')
-        : '';
       return '<article class="lfl-card is-series' + (n.isBrandFamily ? ' is-brand-family' : '') +
         (n.isBrandFamily && brandOpen ? ' is-open' : '') +
         (pos.activated ? ' is-activated' : '') +
@@ -1940,7 +1957,6 @@
         '<div class="lfl-series-title"><span>' + esc(n.name) + '</span>' +
         '<span class="lfl-series-count">' + (n.seriesCount || (n.members && n.members.length) || 0) + '</span></div>' +
         '<span class="lfl-series-sub">' + esc(n.seriesSub || (n.isBrandFamily ? ('品牌 · 旗下 ' + (n.seriesCount || (n.members && n.members.length) || 0) + ' 款') : '同出一脉 · 点开看上下游')) + '</span>' +
-        brandAct +
         '</article>';
     }
     if (n.isPlexGate) {

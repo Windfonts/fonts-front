@@ -498,15 +498,6 @@ a.lfl-wall-name:hover { text-decoration: underline; }
 .lfl-card.is-series.is-brand-family.is-open {
   background: var(--paper);
 }
-.lfl-brand-act {
-  display: block;
-  margin-top: 0.3rem;
-  font-size: var(--fs-11);
-  color: var(--gray);
-  letter-spacing: 0.02em;
-}
-.lfl-card.is-series.is-brand-family.is-open .lfl-brand-act { color: var(--ink); }
-
 .lfl-card.is-series.is-activated,
 .lfl-card.is-series.is-hot {
   background: var(--paper);
