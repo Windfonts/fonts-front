@@ -17,7 +17,7 @@
   const OWNED_SECTIONS = [
     { id: 'original', title: '源字', note: '本页主款；含自外源改出的首发' },
     { id: 'locale', title: '地区版', note: '同一原作的简繁或屏显 / Lite / 等宽等规格' },
-    { id: 'fork', title: '衍生', note: '从本页源字再改、已换名' },
+    { id: 'fork', title: '派生', note: '从本页源字再改、已换名' },
     { id: 'collab', title: '联合作者', note: '与本页共同署名；点头像进对方主页' },
     { id: 'commissioned', title: '委托定制', note: '版权归本页品牌方' },
     { id: 'other', title: '归属', note: '' }
@@ -319,7 +319,7 @@
   }
 
   function originVerbLabel(verb) {
-    return verb === 'remix' ? '思源衍生' : '开源衍生';
+    return verb === 'remix' ? '思源派生' : '开源派生';
   }
 
   function originVerbIcon(verb) {
@@ -446,7 +446,7 @@
       return '<a href="' + WFChrome.href(WFProto.detailHref(f)) + '">' + esc(f.name) + '</a>';
     }));
     return '<div class="foundry-origins foundry-eco">' +
-      '<span class="foundry-origins-label">' + WFChrome.icon('branch') + '同系衍生</span>' +
+      '<span class="foundry-origins-label">' + WFChrome.icon('branch') + '同系派生</span>' +
       '<span class="foundry-upstream-item">站内另有 <strong>' + total + '</strong> 款从本页开源谱系衍生，版权归创作者 · ' +
       links.join(' · ') +
       '</span></div>';
@@ -697,7 +697,7 @@
         ? '<a href="' + WFChrome.href(WFProto.detailHref(hit)) + '">' + esc(L.upstreamName) + '</a>'
         : esc(L.upstreamName);
       if (L.relation === 'locale') bits.push({ html: '同系 ' + label });
-      else bits.push({ dev: true, html: '衍生出 ' + label });
+      else bits.push({ dev: true, html: '派生至 ' + label });
     }
     return bits;
   }

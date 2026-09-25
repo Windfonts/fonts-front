@@ -73,13 +73,13 @@
       (font.ownerInfo && font.ownerInfo.id) || '';
   }
   function famKindTag() {
-    return isOrgView() ? '品牌归属' : '衍生谱系';
+    return isOrgView() ? '品牌归属' : '派生谱系';
   }
   function footForView() {
     if (isOrgView()) {
       return '这里看品牌归属：哪款字体属于哪个品牌。可用右上角切换聚焦、关系图、分支、样张四种查看方式。';
     }
-    return '这里看衍生关系：哪款字体改自哪款。可用右上角切换聚焦、关系图、分支、样张四种查看方式；字体名用各自的字型显示。';
+    return '这里看派生关系：哪款字体改自哪款。可用右上角切换聚焦、关系图、分支、样张四种查看方式；字体名用各自的字型显示。';
   }
 
   const CARD_W = 184;
@@ -111,7 +111,7 @@
   const MODES = ['plex', 'flow', 'branch', 'wall'];
 
   const REL_LABEL = {
-    fork: '衍生',
+    fork: '派生',
     locale: '地区版',
     collab: '合作',
     commissioned: '委托',
@@ -163,7 +163,7 @@
   let dragging = false;
   let dragStart = null;
   const viewShell = document.getElementById('viewShell');
-  const FOOT_PLAIN = '这里看衍生关系：哪款字体改自哪款。可用右上角切换聚焦、关系图、分支、样张四种查看方式；字体名用各自的字型显示。';
+  const FOOT_PLAIN = '这里看派生关系：哪款字体改自哪款。可用右上角切换聚焦、关系图、分支、样张四种查看方式；字体名用各自的字型显示。';
 
   /* —— 乙支线 / 丙墙（现网 HTML） —— */
   const REL_ICON = { locale: 'merge', collab: 'compare' };
@@ -659,8 +659,8 @@
     const rec = node.lineage || {};
     const r = rec.relation || '';
     if (Object.prototype.hasOwnProperty.call(REL_LABEL, r)) return REL_LABEL[r];
-    if (parent && (parent.ghost || parent.outgroup)) return '衍生';
-    return r ? String(r) : '衍生';
+    if (parent && (parent.ghost || parent.outgroup)) return '派生';
+    return r ? String(r) : '派生';
   }
 
   function edgeLabelFor(n, parent) {
@@ -673,7 +673,7 @@
     }
     if (n.isBrandFamily) return '品牌';
     if (n.isSeries) return '主题支';
-    if (n.isCluster || n.isPlexGate) return '衍生';
+    if (n.isCluster || n.isPlexGate) return '派生';
     return relLabel(n, parent);
   }
 
@@ -3281,7 +3281,7 @@
         '</span>' + chips + '</div>';
     }
     famNav.innerHTML =
-      clusterHtml('衍生', '衍生谱系 · 谁改自谁', MAJOR_GROUPS.lineage) +
+      clusterHtml('派生', '派生谱系 · 谁改自谁', MAJOR_GROUPS.lineage) +
       clusterHtml('品牌', '品牌组织 · 按厂商', MAJOR_GROUPS.brand);
     famNav.querySelectorAll('.chip').forEach(function (btn) {
       btn.addEventListener('click', function () { setGroup(btn.getAttribute('data-group')); });
