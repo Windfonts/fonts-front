@@ -602,9 +602,9 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 
 **本轮已收口（2026-09-25 续）：** N5 热度同步脚本与一次全量写回；N6 详情对照现网 analysis；`localeFallback` 配对表 + vault 参数 + 详情勾选（现 8 对，含狮尾简中/繁中）；N8 `export-license-lineage.mjs`；预算条。
 
-**项目烘焙 `/p/{slug}`（2026-09-25 骨架）：**
-- vault：`GET /p/{slug}/index.css`（`data/projects/{slug}.json` → 多字体展开，域名白名单）；`POST /api/projects/publish`（API Key / `PROJECT_PUBLISH_KEY` / `PROJECT_PUBLISH_OPEN`）；种子 `demo`。
+**项目烘焙 `/p/{slug}`（2026-09-25）：**
+- vault：`GET /p/{slug}/index.css`（`data/projects/{slug}.json` → 多字体展开，域名白名单）；`POST /api/projects/publish`；种子 `demo`。**现网 vault 已部署**，`app…/p/demo/index.css` 200。
 - 前台控制台：嵌入页「发布到 CDN」+「导出清单」；对外 URL 仍是 `{cdn}/p/{slug}/index.css`。
-- 边缘：待 ansible 加 `^~ /p/` → `windfonts_vault`（脚本 `cybercdn/ansible/scripts/p-patch-windfonts-project-css.py`）；部署 vault 后探针 `…/p/demo/index.css`。
+- 边缘：`^~ /p/` → `windfonts_vault`（devops ansible）；**cn 多节点已通**（探针 `cn…/p/demo/index.css` 200，`X-Windfonts-Project: demo`）。`cravatar-sh` 缺 `origin_windfonts_vault` upstream，待补 nginx.conf。
 
-**仍待：** 边缘 `/p/` 回源上线、analysis 文件覆盖率、包体清单 API（P3）、扩更多简繁 `localePeerProduct`、项目发布与正式 API Key 打通。商用档 `albbpht` 等仍受许可门禁。
+**仍待：** `cravatar-sh` upstream 补齐、analysis 文件覆盖率、包体清单 API（P3）、扩更多简繁 `localePeerProduct`、项目发布与正式 API Key 打通。商用档 `albbpht` 等仍受许可门禁。
