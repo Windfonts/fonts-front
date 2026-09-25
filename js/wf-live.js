@@ -1,7 +1,7 @@
 /* 现网 app.windfonts.com 单款读取。详情页按需请求；失败保持本地。 */
 (function () {
   var ORIGIN = 'https://app.windfonts.com';
-  var META = 'https://cn.windfonts.com/fonts-packages/metadata/font-analysis.json';
+  var META = 'https://cn.windfonts.com/fonts-packages/metadata/font-analysis.json?v=20260925a';
   var TTL = 6 * 60 * 60 * 1000;
   var KEY = 'wf-live-counts';
   var KEY_A = 'wf-live-analysis';

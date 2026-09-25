@@ -97,7 +97,7 @@ Webhook、OAuth 应用令牌、签名限频的 catalog dump → 让文风出现�
 | N3 | **把现网目录 API 写成正式契约** | 集成方知道字段与信封 | 文档 | `docs.html` 已补信封 / 配额 / CORS 说明与详情稳定字段表 |
 | N4 | **详情页拉单款计数** | 站内展示真实热度 | N2 | **本仓已接线**（`wf-live.js`）；N2 CORS 已通，可拉现网计数 |
 | N5 | **构建期同步热度进 `fonts.json`** | 列表不打运行时 API | 脚本 + 配额 | **已做**：`scripts/sync-font-counts.mjs`（默认 ssh 查库）；写入 `viewCount`/`downloadCount`/`apiCallCount` |
-| N6 | **按需对照 `…/analysis`** | 开发者可核验字符表 | N2；无文件则 404 | **已做**：详情「对照现网字符表」；限流回退 OSS metadata；现网 analysis ≈ 128/471 款（稀） |
+| N6 | **按需对照 `…/analysis`** | 开发者可核验字符表 | N2；无文件则 404 | **已做**：详情「对照现网字符表」；限流回退 OSS metadata；现网 analysis **471/471**（CSS unicode-range 重建，2026-09-25） |
 | N7 | （预留） | | | |
 | N8 | **许可 / 谱系导出** | 合规台账 | | **已做** |
 | N7 | **嵌入生成器：档位默认 + 多 `family`** | 立刻减少误用 `full`、服务谱系补全 | 仅前端 | **本仓已做**：四档 chip、默认 `zh-common`；有库内上游时可勾选 `family=主\|上游` |
@@ -130,7 +130,7 @@ Webhook、OAuth 应用令牌、签名限频的 catalog dump → 让文风出现�
 | # | 项 | 价值 | 为何不是「现在」 |
 |---|---|---|---|
 | P1 | **详情补齐许可 + 谱系字段**（或 `GET …/license`、`…/lineage`） | CMS / 法务机读 | vault 需从本仓许可库与 `font-lineage.json` 同步；现网详情字段尚未对齐 |
-| P2 | **`analysis` 产品化（coverage）** | 缺字决策 | 现网 analysis ≈ 128/471；详情字符表真源已是 CSS `unicode-range`；补文件属 fonts-packages 管线 |
+| P2 | **`analysis` 产品化（coverage）** | 缺字决策 | 文件覆盖已满（471/471）；余下是 UI/API（相对常用字缺口、与上游差），非补文件 |
 | P3 | **包体清单 / `estimate?subset=`** | 选型算体积 | **已做**：`data/package-sizes.json`（~438 款）+ `GET /api/fonts/:id/estimate`；预算条优先 CSS 档字节 |
 | P4 | **推荐 subset（规则版）** | 降 `full` 误用 | 依赖 P3 或固定启发式；可先做文档 + 前端，再升 API |
 | P5 | **厂商 `foundries/{id}` 丰富化** | 厂商页 / 认领预备 | brands 已有列表；缺旗下字体聚合与认领态 |

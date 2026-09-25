@@ -2,6 +2,10 @@
 
 > 面向接手后端 / 全栈的同学与智能体：原型现状、页面清单、需要后端提供的接口契约、已知待办。
 
+**2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** 全量 `docker build` 曾因 `npm ci` 失败；分析 URL 版本串是热补 `.next` chunk 临时生效，下次成功构建会吃进 `sync.service.ts` 源码。详见 §25。
+
+**下一棒（按价值）：** ① P2 coverage 产品化（相对常用字缺口 UI，文件已齐）；② 修 vault 生产镜像构建（`npm ci`）并正式部署，去掉热补；③ 新入库后重跑 analysis / package-sizes / locale，并递增 `OSS_METADATA_VERSION`；④ 商用档 `albbpht` 许可门禁。
+
 **2026-09-23 停点：** 公开主路径已基本对齐线上；工程批次已提交（`c78c4ce` 起）。上线硬门槛见 **[LAUNCH-GATES.md](LAUNCH-GATES.md)**（路径 rewrite、真统计、真登录、CDN 去 `local()`）。产品层（控制台 / 选字袋 / 认领等）见下文「产品层 backlog」，继续优化，不挡公开站上线。**完整会话交接见第 9 节**（谱系标准化、OSS 101、猫啃/寒蝉/站酷/荆南核实）；续页 [FONT-AUDIT-BACKLOG.md](FONT-AUDIT-BACKLOG.md)。
 
 **2026-09-23 晚停点（OSS 第二批）：** 目录 401 款。又登记了思源宋体 TC `wenfeng-systtc`、源石黑体 `wenfeng-ysht`、更纱等宽 `wenfeng-gskd`。遍黑体仍只有扩展区，没进。
@@ -609,8 +613,10 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 - **发布鉴权（2026-09-25）：** 控制台自签 `wf_{prefix}_{random}_{checksum}` Key；vault `PROJECT_PUBLISH_ALLOW_CLIENT` 默认开，形态校验通过即可发布（`ownerKeyHash` 防他人覆盖同 slug）。库内 Key / `PROJECT_PUBLISH_KEY` / `PROJECT_PUBLISH_OPEN` 仍可用。
 - **P3 包体清单（2026-09-25）：** `data/package-sizes.json`（扫 CDN `result.css` Content-Length，~438 款）+ vault `GET /api/fonts/:id/estimate?subset=`；详情预算条有清单则标「CSS 档」，否则启发式。脚本 `scripts/build-package-sizes.mjs`。
 - **简繁配对（2026-09-25 再扩）：** 11 对 / 18 成员——在既有思源/霞鹜/狮尾/猫啃之上，补 `systcnl`（思源宋体 CN Light）→ `systtc`。当前目录内有把握的 SC↔TC 已齐；再扩需先入库对应繁/简款。构建 `scripts/build-locale-fallback-pairs.mjs`。
+- **analysis 覆盖（2026-09-25）：** fonts-packages `scripts/build-font-analysis-from-css.mjs` 从 CDN `full/result.css` 的 `unicode-range` 重建 → OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`source: css-unicode-range`）。字数来自分包 CSS，极少数包（如稀疏 `AAR`）会偏低；详情缺字真源仍是当面 CSS。重建后：`OSS_UPLOAD_DIRS=./metadata node scripts/upload.js`。metadata 上传现用 `max-age=300`（不再一年）；vault / 前台拉取带 `?v=`（`OSS_METADATA_VERSION` / `wf-live.js`）逼 CDN 换键——原地覆盖后边缘否则长期吃旧文件。
 
-**仍待：** analysis 文件扩覆盖（fonts-packages 管线）。商用档 `albbpht` 等仍受许可门禁。
+**仍待：** 商用档 `albbpht` 等许可门禁；新入库字体后重跑 analysis / package-sizes / locale 配对。P2 coverage 产品化（相对常用字缺口 UI）可再开。
+
 ## 26. 2026-09-25 出处链核对态按证据链判定 + 源界明朝谱系
 
 feibisi 在 yjmct 页点名「字体详情的 出处和依据」后拍板「**跳过核查就是开源字体**」——licenseName 命中标准开源许可的款，跳过逐款核查不得显示「待核对」（标准文本全网同文，命中即视同核对）。
