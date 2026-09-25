@@ -513,7 +513,7 @@
 .trust-row .trust-site { font-size: var(--fs-12); color: var(--caution); }
 
 
-/* Phase 2: 与字库同款许可芯片 */
+/* Phase 2: 与字库同款许可芯片；开源商用语义绿 */
 .detail-title .lic-chip,
 .license-head .lic-chip {
   display: inline-flex; align-items: center;
@@ -526,4 +526,12 @@
   letter-spacing: 0.01em;
   line-height: 1.4;
 }
-.license-head .lic-chip.is-open { color: var(--ink); }
+.detail-title .lic-chip[data-tier="开源商用"],
+.detail-title .lic-chip[data-tier="开源"],
+.license-head .lic-chip[data-tier="开源商用"],
+.license-head .lic-chip[data-tier="开源"],
+.license-head .lic-chip.is-open {
+  color: var(--on-ok);
+  background: var(--ok);
+  border-color: var(--ok);
+}
