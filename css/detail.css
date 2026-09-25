@@ -511,3 +511,19 @@
   padding: 0.15rem 0.6rem;
 }
 .trust-row .trust-site { font-size: var(--fs-12); color: var(--caution); }
+
+
+/* Phase 2: 与字库同款许可芯片 */
+.detail-title .lic-chip,
+.license-head .lic-chip {
+  display: inline-flex; align-items: center;
+  padding: 0.1em 0.55em;
+  font-size: var(--fs-11);
+  font-weight: var(--fw-label);
+  color: var(--ink-2);
+  background: var(--fill);
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+.license-head .lic-chip.is-open { color: var(--ink); }

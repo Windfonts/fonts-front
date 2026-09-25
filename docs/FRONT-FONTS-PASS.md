@@ -57,3 +57,35 @@
 - `wf-features.js` — 保留  
 - 选字袋 / 详情 — Phase 2  
 - 暗色 — Phase 3  
+
+---
+
+# Phase 2 · 选字袋 + 字体详情
+
+## 改了什么
+
+| 项 | 文件 | 说明 |
+| --- | --- | --- |
+| `bag.html` → `shopping-bag.html` | （已有） | 验收：query/hash 保留（`?x=1#y`） |
+| 袋内行与库同款许可芯片 | `js/pages/bag.js` | 对比列 + 表「授权」列用 `.lic-chip` |
+| 袋内产品脚注 | `shopping-bag.html` + `bag.js` | 补载 `wf-products.js`；`renderRows` 传 `foot` |
+| 详情许可芯片 | `js/pages/detail.js` `css/detail.css` | 标题 meta + 授权头与库同款 |
+| 缓存戳 | `shopping-bag.html` `font-detail.html` | `20260925s` |
+
+## 截图
+
+`~/Downloads/wf-audit/fonts-phase2/`
+
+- `01-bag-empty.png` / `02-bag-filled.png` / `03-bag-compare.png` / `04-detail.png`（改前）
+- `05-bag-after.png` / `06-bag-compare-after.png` / `07-detail-after.png`（改后）
+
+## CDP 验收
+
+- 袋内 3 行 → 3× `.lic-chip`；对比视图 6×（列+表）
+- `bag.html?x=1#y` → `/shopping-bag.html?x=1#y`
+- 详情 `阿里巴巴普惠体`：2× chip；按钮「加入选字袋」
+
+## 未做 / 余量
+
+- 「添加到项目」仍进登录（产品决策，未改）
+- 授权文案逻辑（开源/免费商用/需授权）未改口径，只统一芯片外观

@@ -339,7 +339,7 @@
             })() +
             (variantLabel ? '<span>' + esc(variantLabel) + '</span>' : '') +
             '<span>' + weights.length + ' 字重</span>' +
-            '<span>' + esc(tierLabel(proofTier(font))) + '</span>' +
+            '<span class="lic-chip" data-tier="' + esc(proofTier(font)) + '">' + esc(tierLabel(proofTier(font))) + '</span>' +
             (font.charCount ? '<span>' + WFProto.formatCount(font.charCount) + ' 字</span>' : '') +
           '</p>' +
         '</div>' +
@@ -400,7 +400,7 @@
             '<div class="glyph-live for-dev" id="glyphLive" hidden></div>' +
             '<div class="glyph-blocks" id="glyphBlocks"></div></div></section>' +
           '<section class="panel" id="license"><div class="panel-head"><h2>' + WFChrome.icon('certificate') + '授权</h2>' +
-            '<div class="license-head"><span class="tier' + (proofTier(font) === '开源' ? ' is-open' : '') + '">' + esc(tierLabel(proofTier(font))) + '</span>' +
+            '<div class="license-head"><span class="lic-chip tier' + (proofTier(font) === '开源' ? ' is-open' : '') + '" data-tier="' + esc(proofTier(font)) + '">' + esc(tierLabel(proofTier(font))) + '</span>' +
               (font.licenseName ? '<span class="name">' + esc(font.licenseName) + '</span>' : '') + '</div></div>' +
             '<div class="panel-pad">' +
             '<p class="license-lead">' + esc(licenseLead(proofTier(font))) + '</p>' +

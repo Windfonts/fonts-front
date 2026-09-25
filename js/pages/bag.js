@@ -66,7 +66,7 @@
         return '<article class="compare-col">' +
           '<a class="name" href="' + studioHref(f.id) + '">' + esc(f.name) + '</a>' +
           '<p class="meta">' + WFChrome.faceHtml(f, 16) + esc(WFChrome.brandName(f) || '未署名') + ' · ' + (f.weights || []).length + ' 字重 · ' +
-            esc(WFChrome.licenseTier(f)) +
+            '<span class="lic-chip" data-tier="' + esc(WFChrome.licenseTier(f)) + '">' + esc(WFChrome.licenseTier(f)) + '</span>' +
             ' · ' + esc(WFChrome.sourceKindLabel(WFChrome.licenseEvidence(f).sourceKind)) + '</p>' +
           '<p class="preview" data-specimen style="font-family:' + esc(stack) + ';font-weight:' + w + ';font-size:' + size + 'px">' + esc(sample) + '</p>' +
           '<button type="button" class="act" data-join="' + esc(f.id) + '" data-name="' + esc(f.name) + '">' + WFChrome.icon('close') + '移除</button></article>';
@@ -81,7 +81,7 @@
           '<td>' + esc(maker ? maker.name : '—') + '</td>' +
           '<td class="num">' + (f.weights || []).length + '</td>' +
           '<td class="num">' + (f.charCount ? WFProto.formatCount(f.charCount) : '—') + '</td>' +
-          '<td>' + esc(WFChrome.licenseTier(f)) + (ev.spdx ? ' · ' + esc(ev.spdx) : '') + '</td>' +
+          '<td><span class="lic-chip" data-tier="' + esc(WFChrome.licenseTier(f)) + '">' + esc(WFChrome.licenseTier(f)) + '</span>' + (ev.spdx ? ' · ' + esc(ev.spdx) : '') + '</td>' +
           '<td>' + esc(WFChrome.sourceKindLabel(ev.sourceKind)) + '</td>' +
           '<td class="num">' + WFEmbed.fmtBytes(WFEmbed.versionSize(f, 'zh')) + '</td></tr>';
       }).join('') + '</tbody></table></div>';
@@ -197,7 +197,9 @@
     if (view === 'compare') paintCompare(fonts);
     else if (view === 'pair') paintPair(fonts);
     else {
-      WFSpecimen.renderRows(list, fonts);
+      WFSpecimen.renderRows(list, fonts, window.WFProducts ? {
+        foot: function (f) { return WFProducts.footHtml(f); }
+      } : null);
       list.querySelectorAll('.act[data-join]').forEach(function (b) {
         b.innerHTML = WFChrome.icon('close') + '移除';
         b.classList.remove('is-picked');
