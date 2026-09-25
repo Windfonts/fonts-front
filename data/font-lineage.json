@@ -459,17 +459,17 @@
       "makerId": "maoken",
       "group": "swei-b2-sugar",
       "relation": "fork",
-      "upstreamName": "狮尾B2加糖宋体",
-      "upstreamOwnerId": "aqua",
+      "upstreamName": "狮尾B2加糖",
+      "upstreamOwnerId": "swei-b2-sugar",
       "licenseFollows": "inherit"
     },
     "猫啃网风雅宋": {
       "ownerId": "maoken",
       "makerId": "maoken",
-      "group": "swei-spring",
+      "group": "swei",
       "relation": "fork",
       "upstreamName": "狮尾四季春",
-      "upstreamOwnerId": "aqua",
+      "upstreamOwnerId": "swei-spring",
       "licenseFollows": "inherit"
     },
     "猫啃网糖圆体": {
@@ -2288,16 +2288,20 @@
     "猫啃扛重族宋": {
       "ownerId": "maoken",
       "makerId": "maoken",
-      "group": "maoken",
-      "relation": "original",
-      "licenseFollows": "own"
+      "group": "source-han-serif",
+      "relation": "fork",
+      "licenseFollows": "own",
+      "upstreamName": "思源宋体",
+      "upstreamOwnerId": "adobe"
     },
     "猫啃扛重族黑": {
       "ownerId": "maoken",
       "makerId": "maoken",
-      "group": "maoken",
-      "relation": "original",
-      "licenseFollows": "own"
+      "group": "source-han-sans",
+      "relation": "fork",
+      "licenseFollows": "own",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe"
     },
     "猫啃硬笔楷书": {
       "ownerId": "maoken",

@@ -652,7 +652,7 @@
         const r = (node.lineage || {}).relation || '';
         if (r === 'collab') return '合作';
         if (r === 'commissioned') return '委托';
-        if (r === 'fork') return '改作';
+        if (r === 'fork') return '创作';
         if (r === 'locale') return '地区版';
         return '出品'; /* 原创或无谱系记录才标出品；分叉改作不冒充出品 */
       }
@@ -678,7 +678,7 @@
       return relLabel(n, parent);
     }
     if (n.isBrandFamily) return '品牌';
-    if (n.isSeries) return '主题支';
+    if (n.isSeries) return '系列';
     if (n.isCluster || n.isPlexGate) return '派生';
     return relLabel(n, parent);
   }
@@ -1247,7 +1247,7 @@
           id: sid,
           name: label,
           seriesTitle: title,
-          seriesSub: '同出一脉 · 点开看上下游',
+          seriesSub: '同一上游的衍生字体 · 点开看上下游',
           seriesCount: c.members.length,
           members: c.members.slice(),
           clusterKey: c.key,
@@ -1700,7 +1700,7 @@
         const gx = focusX + CARD_W + PLEX_H_GAP + right.length * (CARD_W + PLEX_H_GAP) + gi * (CARD_W + PLEX_H_GAP);
         const gy = focusY - PLEX_V_GAP - 8;
         place(s, Math.max(gx, focusX + CARD_W + PLEX_H_GAP), gy, CARD_H_CLUSTER, { role: 'series-jump' });
-        edges.push({ from: parent.id, to: s.id, label: '主题支', soft: true });
+        edges.push({ from: parent.id, to: s.id, label: '系列', soft: true });
       });
     } else if (!parentId && kids.length === 0 && forest.roots.length > 1) {
       const others = forest.roots.filter(function (r) {
@@ -1987,7 +1987,7 @@
       sideSeries.forEach(function (s) {
         if (seen[s.id]) return;
         addNode(s, 'series-jump');
-        edges.push({ from: parent.id, to: s.id, label: '主题支', soft: true });
+        edges.push({ from: parent.id, to: s.id, label: '系列', soft: true });
       });
     } else if (!parentId && kids.length === 0 && forest.roots.length > 1) {
       const others = forest.roots.filter(function (r) {
@@ -2153,7 +2153,7 @@
             name: c.title,
             clusterTitle: c.title,
             clusterCount: c.members.length,
-            clusterSub: '主题支 · 同改自 · ' + (c.parentName || parent.name),
+            clusterSub: '系列 · 同出 ' + (c.parentName || parent.name),
             clusterKey: c.key,
             clusterKind: c.kind,
             members: c.members,
@@ -2677,7 +2677,7 @@
         pos.x + 'px;top:' + pos.y + 'px;width:' + pos.w + 'px" tabindex="0" role="button">' +
         '<div class="lfl-plex-gate-title"><span>' + esc(n.gateTitle || n.name) + '</span>' +
         '<span class="lfl-plex-gate-count">' + (n.gateCount || (n.members && n.members.length) || 0) + '</span></div>' +
-        '<span class="lfl-plex-gate-sub">' + esc(n.gateSub || '同出一脉 · 点开看本支上下游') + '</span>' +
+        '<span class="lfl-plex-gate-sub">' + esc(n.gateSub || '同一上游的衍生字体 · 点开查看') + '</span>' +
         '<span class="lfl-plex-gate-act">▸ 展开本支</span>' +
         '</article>';
     }
@@ -2689,7 +2689,7 @@
         '<div class="lfl-cluster-title"><span>' + esc(n.clusterTitle || n.name) + '</span>' +
         '<span class="lfl-cluster-count">' + (n.clusterCount || 0) + '</span></div>' +
         '<span class="lfl-cluster-sub">' + esc(n.clusterSub || '') + '</span>' +
-        '<span class="lfl-cluster-act">' + (open ? '▾ 收起主题支' : '▸ 展开主题支') + '</span>' +
+        '<span class="lfl-cluster-act">' + (open ? '▾ 收起该系列' : '▸ 展开该系列') + '</span>' +
         '</article>';
     }
     if (n.isMore) {
@@ -3320,7 +3320,7 @@
       return;
     }
     clusterNav.hidden = false;
-    let html = '<span class="lfl-clusters-label">主题支</span>';
+    let html = '<span class="lfl-clusters-label">系列</span>';
     html += '<button type="button" class="chip' + (!clusterFilter ? ' is-on' : '') + '" data-cluster="">全部</button>';
     detectedClusters.forEach(function (c) {
       const label = c.kind === 'prefix' ? c.key : c.title.replace(/系$/, '');
