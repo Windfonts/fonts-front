@@ -950,8 +950,8 @@
 
   function isOpenFont(font) {
     const ev = (font && font.licenseEvidence) || {};
-    return /OFL|Apache|MIT|IPA|CC-BY/i.test(String(ev.spdx || '')) ||
-      /OFL|Open Font|Apache|\bMIT\b|IPA|CC-?BY|0BSD|GPL/i.test(String((font && font.licenseName) || '')) ||
+    return /OFL|Apache|MIT|IPA|CC0|CC-BY|0BSD/i.test(String(ev.spdx || '')) ||
+      /OFL|Open Font|Apache|\bMIT\b|IPA|CC-?BY|CC0|0BSD|GPL/i.test(String((font && font.licenseName) || '')) ||
       /* 证据链核对过的开源授权（标准文本/仓库 LICENSE/权利人开源声明，如仓耳）同属可衍生 */
       !!(ev.verified && ev.sourceUrl);
   }
