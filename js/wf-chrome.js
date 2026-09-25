@@ -1092,6 +1092,95 @@
     fix(); requestAnimationFrame(fix); requestAnimationFrame(function () { requestAnimationFrame(fix); });
   }
 
+  /* —— 谱系图模态：当前页 iframe 嵌入；点「全宽」才进 lineage 整页 —— */
+  function lineageModalSrc(opts) {
+    opts = opts || {};
+    let src = '';
+    if (opts.href) {
+      try {
+        const u = new URL(opts.href, location.href);
+        u.searchParams.set('embed', '1');
+        u.searchParams.delete('width');
+        src = u.href;
+      } catch (e) {
+        src = String(opts.href || '');
+        src += (src.indexOf('?') >= 0 ? '&' : '?') + 'embed=1';
+      }
+      return src;
+    }
+    const p = new URLSearchParams();
+    if (opts.group) p.set('group', opts.group);
+    if (opts.view) p.set('view', opts.view);
+    if (opts.mode) p.set('mode', opts.mode);
+    if (opts.focus) p.set('focus', opts.focus);
+    p.set('embed', '1');
+    return href('lineage.html?' + p.toString());
+  }
+
+  function openLineageModal(opts) {
+    opts = opts || {};
+    const prev = document.getElementById('wfLineageModal');
+    if (prev) prev.remove();
+    const src = lineageModalSrc(opts);
+    if (!src) return;
+    const wrap = document.createElement('div');
+    wrap.id = 'wfLineageModal';
+    wrap.className = 'dialog-back dialog-back-lineage';
+    wrap.innerHTML =
+      '<div class="dialog dialog-lineage" role="dialog" aria-modal="true" aria-labelledby="wfLineageModalTitle">' +
+        '<div class="dialog-lineage-head">' +
+          '<h3 id="wfLineageModalTitle">谱系图</h3>' +
+          '<button type="button" class="icon-btn dialog-lineage-close" data-close aria-label="关闭">' + icon('close') + '</button>' +
+        '</div>' +
+        '<iframe class="dialog-lineage-frame" title="谱系图" src="' + esc(src) + '"></iframe>' +
+      '</div>';
+    document.body.appendChild(wrap);
+    const dialog = wrap.querySelector('.dialog-lineage');
+    const closeBtn = wrap.querySelector('[data-close]');
+    const frame = wrap.querySelector('iframe');
+    const prior = document.activeElement;
+    document.body.style.overflow = 'hidden';
+    let closed = false;
+    const done = function () {
+      if (closed) return;
+      closed = true;
+      wrap.remove();
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKey);
+      window.removeEventListener('message', onMsg);
+      if (prior && prior.focus) prior.focus();
+    };
+    const onKey = function (e) {
+      if (e.key === 'Escape') { e.preventDefault(); done(); return; }
+      if (e.key !== 'Tab') return;
+      /* 焦点在关闭钮与 iframe 之间轮转；iframe 内 Esc 由 embed 发 postMessage */
+      const nodes = [closeBtn, frame];
+      const i = nodes.indexOf(document.activeElement);
+      e.preventDefault();
+      const next = e.shiftKey ? (i <= 0 ? nodes.length - 1 : i - 1) : (i === nodes.length - 1 || i < 0 ? 0 : i + 1);
+      nodes[next].focus();
+    };
+    const onMsg = function (e) {
+      if (!e || !e.data || e.data.type !== 'wf-lineage-embed-close') return;
+      if (frame && e.source && e.source !== frame.contentWindow) return;
+      done();
+    };
+    closeBtn.addEventListener('click', done);
+    wrap.addEventListener('click', function (e) { if (e.target === wrap) done(); });
+    document.addEventListener('keydown', onKey);
+    window.addEventListener('message', onMsg);
+    closeBtn.focus();
+  }
+
+  document.addEventListener('click', function (e) {
+    const a = e.target && e.target.closest ? e.target.closest('a[data-lineage-modal]') : null;
+    if (!a) return;
+    if (e.defaultPrevented) return;
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    openLineageModal({ href: a.getAttribute('href') });
+  });
+
   window.WFChrome = {
     ROOT: ROOT,
     href: href,
@@ -1140,6 +1229,7 @@
     REL_LABEL: REL_LABEL,
     showPricing: showPricing,
     VERIFIED_SVG: VERIFIED_SVG,
-    holdScroll: holdScroll
+    holdScroll: holdScroll,
+    openLineageModal: openLineageModal
   };
 })();

@@ -484,3 +484,49 @@ a.foundry:hover .name { text-decoration: underline; text-underline-offset: 0.2em
   .site-extra-footer .extra-inner { flex-direction: column; align-items: flex-start; }
   .dialog { width: 100%; }
 }
+
+/* —— 谱系图大模态（详情 / 厂商页嵌入） —— */
+.dialog-back-lineage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-4);
+}
+.dialog.dialog-lineage {
+  width: min(72rem, 100%);
+  height: min(90vh, 52rem);
+  max-height: calc(100dvh - 2rem);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.dialog-lineage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--rule);
+  flex: 0 0 auto;
+}
+.dialog-lineage-head h3 {
+  margin: 0;
+  font-size: var(--fs-16);
+  font-weight: var(--fw-title);
+}
+.dialog-lineage-close { flex: none; }
+.dialog-lineage-frame {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  border: 0;
+  background: var(--paper);
+}
+@media (max-width: 768px) {
+  .dialog.dialog-lineage {
+    width: 100%;
+    height: calc(100dvh - 1.5rem);
+    max-height: none;
+  }
+}

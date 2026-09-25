@@ -3994,8 +3994,31 @@
     });
   });
 
-  /* 内容宽度：单钮「全宽」开关，localStorage 记忆 */
+  /* 嵌入模态：显式 ?embed=1；全宽跳出到顶层整页，不在 iframe 内切 lg-wide */
+  var isEmbed = qs('embed') === '1';
+  if (isEmbed) {
+    document.documentElement.classList.add('lg-embed');
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      try {
+        window.parent.postMessage({ type: 'wf-lineage-embed-close' }, '*');
+      } catch (err) { /* cross-origin */ }
+    });
+  }
+
+  /* 内容宽度：单钮「全宽」开关，localStorage 记忆；整页可带 ?width=wide 落地即开 */
   function applyWidth() {
+    if (isEmbed) {
+      document.documentElement.classList.remove('lg-wide');
+      var pageEmb = document.querySelector('.lg-page');
+      if (pageEmb) pageEmb.classList.remove('lg-page-wide');
+      if (widthToggle) {
+        widthToggle.classList.remove('is-on');
+        widthToggle.setAttribute('aria-pressed', 'false');
+        widthToggle.title = '全宽';
+      }
+      return;
+    }
     document.documentElement.classList.toggle('lg-wide', width === 'wide');
     var page = document.querySelector('.lg-page');
     if (page) page.classList.toggle('lg-page-wide', width === 'wide');
@@ -4006,7 +4029,24 @@
   }
   var width = 'normal';
   try { width = localStorage.getItem('wf-lineage-width') === 'wide' ? 'wide' : 'normal'; } catch (e) {}
+  if (!isEmbed && qs('width') === 'wide') {
+    width = 'wide';
+    try { localStorage.setItem('wf-lineage-width', 'wide'); } catch (e) {}
+    setUrlParam('width', '');
+  }
   if (widthToggle) widthToggle.addEventListener('click', function () {
+    if (isEmbed) {
+      try {
+        var u = new URL(location.href);
+        u.searchParams.delete('embed');
+        u.searchParams.set('width', 'wide');
+        (window.top || window).location.href = u.href;
+      } catch (err) {
+        location.href = location.href.replace(/([?&])embed=1(&|$)/, '$1').replace(/[?&]$/, '') +
+          (location.search.indexOf('width=') >= 0 ? '' : (location.search ? '&' : '?') + 'width=wide');
+      }
+      return;
+    }
     width = width === 'wide' ? 'normal' : 'wide';
     try { localStorage.setItem('wf-lineage-width', width); } catch (e) {}
     applyWidth();
