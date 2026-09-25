@@ -75,9 +75,9 @@
       "items": [
         {
           "href": "lineage-flow-lab.html",
-          "title": "谱系关系图实验室（激活/图/簇/墙）",
-          "status": "active",
-          "note": "实验室 · 四模式：激活(TheBrain邻域)/图/簇/墙 · 大族默认激活 · 现网 lineage.html 未改 · 经 lab.html 索引",
+          "title": "谱系关系图实验室（已并入 lineage.html）",
+          "status": "archive",
+          "note": "已定稿并入现网 lineage.html（激活/图/支线/墙；簇与实验室墙未上现网）· 本页保留对照",
           "assets": [
             "css/lineage-flow-lab.css",
             "js/pages/lineage-flow-lab.js"

@@ -1,14 +1,646 @@
-/* 谱系页 · 乙支线 / 丙墙+旁谱。规则真源 docs/DESIGN-SYSTEM.md。
-   样张=「永」；名字走 UI 字体；宽族默认收纳。 */
+/* 谱系页 · 激活/图（画布）+ 支线/墙（HTML）。规则真源 docs/DESIGN-SYSTEM.md。 */
 
-.lg-toolbar { gap: var(--s-4); padding: var(--s-3) 0; flex-wrap: wrap; }
+.lg-page { padding-bottom: 0; }
+.lg-toolbar { gap: var(--s-4); padding: var(--s-3) 0; flex-wrap: wrap; align-items: flex-start; }
 .lg-toolbar .chips { flex-wrap: wrap; row-gap: 0.4rem; }
-
+.lg-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  margin-left: auto;
+}
+.lg-tools .seg { flex: none; }
+.lg-tools-sep {
+  width: 1px;
+  height: 1.25rem;
+  background: var(--rule-2);
+  margin: 0 0.25rem;
+}
+.lg-tools-sep[hidden],
+.lg-flow-tools[hidden] { display: none !important; }
+.lg-tool {
+  appearance: none;
+  border: none;
+  background: var(--fill);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  line-height: 1;
+  min-width: 2.25rem;
+}
+.lg-tool:hover { background: var(--surface-2); }
+.lg-zoom {
+  font-size: var(--fs-12);
+  color: var(--gray);
+  font-variant-numeric: tabular-nums;
+  min-width: 3rem;
+}
+.lg-hint {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+  margin-left: var(--s-2);
+}
 .count-line { padding: 0 0 var(--s-4); }
-
+.lg-flow-wrap {
+  margin-bottom: var(--s-6);
+}
+.lg-flow-wrap[hidden] { display: none !important; }
+.lg-stage[hidden] { display: none !important; }
 .lg-stage { padding: var(--s-2) 0 var(--s-6); }
 .lg-foot { font-size: var(--fs-13); color: var(--gray); padding-bottom: var(--s-10); }
 
+
+/* —— 画布（激活 / 图） —— */
+.lfl-viewport {
+  position: relative;
+  height: min(72vh, 52rem);
+  min-height: 28rem;
+  margin: 0 var(--gutter);
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  outline: none;
+}
+.lfl-viewport.is-panning { cursor: grabbing; }
+.lfl-viewport:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+.lfl-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.lfl-edges {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+.lfl-edges path {
+  fill: none;
+  stroke: var(--gray-2);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  transition: stroke var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+.lfl-edges path.is-dim { opacity: 0.18; }
+.lfl-edges path.is-hot {
+  stroke: var(--ink);
+  stroke-width: 2.2;
+  opacity: 1;
+}
+.lfl-edges path.is-soft {
+  stroke-dasharray: 5 5;
+  stroke-width: 1.25;
+  opacity: 0.55;
+}
+.lfl-edges .lfl-elabel.is-soft { opacity: 0.55; font-size: 10px; }
+.lfl-edges .lfl-arrow {
+  fill: var(--gray-2);
+  transition: fill var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+.lfl-edges .lfl-arrow.is-dim { opacity: 0.18; }
+.lfl-edges .lfl-arrow.is-hot { fill: var(--ink); opacity: 1; }
+.lfl-edges .lfl-elabel {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  fill: var(--gray);
+  pointer-events: none;
+  transition: opacity var(--dur) var(--ease), fill var(--dur) var(--ease);
+}
+.lfl-edges .lfl-elabel.is-dim { opacity: 0.2; }
+.lfl-edges .lfl-elabel.is-hot { fill: var(--ink); opacity: 1; font-weight: var(--fw-title); }
+
+.lfl-nodes {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.lfl-card {
+  position: absolute;
+  box-sizing: border-box;
+  width: var(--lfl-card-w, 11.5rem);
+  min-height: 3.85rem;
+  padding: 0.55rem 0.75rem 0.5rem;
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+  border: none;
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  transition: opacity var(--dur) var(--ease), background var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    left 280ms var(--ease), top 280ms var(--ease);
+  box-shadow: inset 0 0 0 1px transparent;
+}
+.lfl-card:hover { background: var(--fill); }
+.lfl-card.is-dim { opacity: 0.28; }
+.lfl-card.is-hot {
+  opacity: 1;
+  box-shadow: inset 0 0 0 2px var(--ink);
+  background: var(--paper);
+  z-index: 3;
+}
+.lfl-card.is-ghost {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px dashed var(--gray-2);
+  color: var(--gray);
+}
+.lfl-card.is-ghost:hover { background: var(--fill); }
+.lfl-card.is-outgroup {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px dashed var(--gray-2);
+  color: var(--gray);
+}
+.lfl-card.is-outgroup:hover { background: var(--fill); }
+.lfl-card.is-outgroup.is-hot {
+  box-shadow: inset 0 0 0 2px var(--ink);
+  color: var(--ink);
+}
+.lfl-card.is-compact {
+  min-height: 3.4rem;
+  padding: 0.45rem 0.65rem 0.4rem;
+}
+.lfl-card.is-compact .lfl-en { display: none; }
+.lfl-card.is-compact .lfl-yong { font-size: 1rem; }
+
+/* 主题支卡（簇＝可折 mind-map branch） */
+.lfl-card.is-cluster {
+  background: var(--fill);
+  box-shadow: inset 0 0 0 1.5px var(--rule-2);
+  min-height: 4.5rem;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--ink);
+}
+.lfl-card.is-cluster:hover { background: var(--surface-2); }
+.lfl-card.is-cluster.is-hot,
+.lfl-card.is-cluster.is-open {
+  box-shadow: inset 0 0 0 2px var(--ink);
+  background: var(--paper);
+}
+.lfl-card.is-cluster.is-open {
+  border-left-color: var(--ink);
+}
+.lfl-cluster-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-snug);
+}
+.lfl-cluster-count {
+  font-variant-numeric: tabular-nums;
+  color: var(--gray);
+  font-weight: var(--fw-body);
+  font-size: var(--fs-13);
+}
+.lfl-cluster-count::before { content: none; }
+.lfl-cluster-sub {
+  display: block;
+  font-size: var(--fs-11);
+  color: var(--gray);
+  margin-top: 0.2rem;
+  line-height: var(--lh-snug);
+}
+.lfl-cluster-act {
+  display: block;
+  font-size: 10px;
+  color: var(--gray-2);
+  margin-top: 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+/* 还有 k 款 expander */
+.lfl-card.is-more {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px dashed var(--gray-2);
+  color: var(--gray);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 3.4rem;
+}
+.lfl-card.is-more:hover { background: var(--fill); color: var(--ink); }
+.lfl-more-label {
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+}
+
+.lfl-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  min-width: 0;
+}
+.lfl-card-names { flex: 1; min-width: 0; }
+.lfl-name {
+  display: block;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-snug);
+  color: inherit;
+  text-decoration: none;
+  word-break: break-word;
+}
+a.lfl-name:hover { text-decoration: underline; }
+.lfl-card.is-compact .lfl-name { font-size: var(--fs-13); }
+.lfl-en {
+  display: block;
+  font-size: var(--fs-11);
+  color: var(--gray-2);
+  line-height: var(--lh-snug);
+  margin-top: 0.1rem;
+  word-break: break-word;
+}
+.lfl-yong {
+  flex: none;
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--gray-2);
+  opacity: 0.55;
+  margin-top: 0.05rem;
+  user-select: none;
+}
+.lfl-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: var(--fs-11);
+  color: var(--gray);
+  line-height: 1.2;
+}
+.lfl-lic { flex: none; }
+.lfl-who {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lfl-badge {
+  display: inline-block;
+  font-size: 10px;
+  color: var(--gray-2);
+  margin-top: 0.15rem;
+}
+
+/* 墙模式 */
+.lfl-wall {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  padding: var(--s-5);
+  box-sizing: border-box;
+}
+.lfl-wall[hidden] { display: none; }
+.lfl-wall-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 0.65rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.lfl-wall-card {
+  appearance: none;
+  border: none;
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.7rem 0.65rem;
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 6.5rem;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.lfl-wall-card:hover { background: var(--fill); }
+.lfl-wall-card.is-hot {
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+.lfl-wall-yong {
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--ink);
+  opacity: 0.85;
+  user-select: none;
+}
+.lfl-wall-name {
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-snug);
+  word-break: break-word;
+  color: inherit;
+  text-decoration: none;
+}
+a.lfl-wall-name:hover { text-decoration: underline; }
+.lfl-wall-meta {
+  font-size: var(--fs-11);
+  color: var(--gray);
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+  margin-top: auto;
+}
+.lfl-wall-empty {
+  text-align: center;
+  color: var(--gray);
+  font-size: var(--fs-14);
+  padding: 3rem 1rem;
+}
+
+.lfl-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: var(--gray);
+  font-size: var(--fs-14);
+  pointer-events: none;
+}
+
+.lfl-note {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+  margin: var(--s-5) 0 0;
+  line-height: var(--lh-body);
+  max-width: 48rem;
+}
+
+@media (max-width: 720px) {
+  .lfl-viewport {
+    margin: 0;
+    border-radius: 0;
+    height: 60vh;
+  }
+  .lg-hint { display: none; }
+  .lg-tools-sep { display: none; }
+}
+
+
+/* —— 激活 (plex / TheBrain 邻域) —— */
+.lfl-card.is-activated {
+  opacity: 1;
+  z-index: 5;
+  background: var(--paper);
+  box-shadow: inset 0 0 0 2.5px var(--ink), 0 8px 28px color-mix(in srgb, var(--ink) 12%, transparent);
+  min-height: 4.1rem;
+}
+.lfl-card.is-activated .lfl-name { font-size: var(--fs-15, var(--fs-14)); }
+
+.lfl-card.is-series {
+  background: var(--fill);
+  box-shadow: inset 0 0 0 1.5px var(--rule-2);
+  border-left: 3px solid var(--ink);
+  min-height: 4.1rem;
+  padding-left: 0.85rem;
+}
+.lfl-card.is-series:hover { background: var(--surface-2); }
+.lfl-card.is-series.is-activated,
+.lfl-card.is-series.is-hot {
+  background: var(--paper);
+  box-shadow: inset 0 0 0 2.5px var(--ink), 0 8px 28px color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.lfl-series-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-snug);
+}
+.lfl-series-count {
+  font-variant-numeric: tabular-nums;
+  color: var(--gray);
+  font-weight: var(--fw-body);
+  font-size: var(--fs-13);
+}
+.lfl-series-sub {
+  display: block;
+  font-size: var(--fs-11);
+  color: var(--gray);
+  margin-top: 0.25rem;
+}
+.lfl-card.is-plex-gate {
+  background: var(--fill);
+  box-shadow: inset 0 0 0 1.5px var(--rule-2);
+  border-left: 3px solid var(--ink);
+  min-height: 4.1rem;
+  padding-left: 0.85rem;
+}
+.lfl-card.is-plex-gate:hover { background: var(--surface-2); }
+.lfl-card.is-plex-gate.is-hot {
+  box-shadow: inset 0 0 0 2px var(--ink);
+  background: var(--paper);
+}
+.lfl-plex-gate-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-snug);
+}
+.lfl-plex-gate-count {
+  font-variant-numeric: tabular-nums;
+  color: var(--gray);
+  font-weight: var(--fw-body);
+  font-size: var(--fs-13);
+}
+.lfl-plex-gate-sub {
+  display: block;
+  font-size: var(--fs-11);
+  color: var(--gray);
+  margin-top: 0.2rem;
+}
+.lfl-plex-gate-act {
+  display: block;
+  font-size: 10px;
+  color: var(--gray-2);
+  margin-top: 0.3rem;
+}
+
+.lfl-card.is-plex-gate.is-open {
+  background: var(--paper);
+  box-shadow: inset 0 0 0 2px var(--ink);
+  z-index: 6;
+}
+.lfl-card.is-plex-gate.is-open .lfl-plex-gate-act { color: var(--ink); }
+
+/* 门闸展开：同款卡语言，贴着门闸，不另起弹层审美 */
+.lfl-plex-pick {
+  position: absolute;
+  z-index: 30;
+  width: min(17.5rem, calc(100% - 1rem));
+  max-height: min(26rem, 72%);
+  overflow: auto;
+  box-sizing: border-box;
+  padding: 0.35rem;
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+  box-shadow:
+    inset 0 0 0 1.5px var(--rule-2),
+    0 10px 28px color-mix(in srgb, var(--ink) 10%, transparent);
+}
+.lfl-plex-pick, .lfl-plex-pick[hidden] { display: none !important; }
+.lfl-plex-pick::before {
+  content: "";
+  position: absolute;
+  left: 1.1rem;
+  top: -6px;
+  width: 10px;
+  height: 10px;
+  background: var(--paper);
+  border-left: 1.5px solid var(--rule-2);
+  border-top: 1.5px solid var(--rule-2);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+.lfl-plex-pick-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.35rem 0.45rem 0.45rem;
+  font-size: var(--fs-12);
+  font-weight: var(--fw-title);
+  color: var(--gray);
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 1;
+}
+.lfl-plex-pick-head > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lfl-plex-pick-close {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--gray);
+  font: inherit;
+  font-size: var(--fs-14);
+  line-height: 1;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.lfl-plex-pick-close:hover {
+  background: var(--fill);
+  color: var(--ink);
+}
+.lfl-plex-pick-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.lfl-plex-pick-item {
+  appearance: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  box-sizing: border-box;
+  min-height: 3.2rem;
+  padding: 0.4rem 0.55rem 0.35rem;
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  box-shadow: inset 0 0 0 1px transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.lfl-plex-pick-item:hover { background: var(--fill); }
+.lfl-plex-pick-item.is-on {
+  background: var(--paper);
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+.lfl-plex-pick-item .lfl-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+.lfl-plex-pick-item .lfl-card-names { flex: 1; min-width: 0; }
+.lfl-plex-pick-item .lfl-name {
+  display: block;
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-snug);
+  color: inherit;
+  text-decoration: none;
+  word-break: break-word;
+}
+.lfl-plex-pick-item .lfl-yong {
+  font-size: 1rem;
+  line-height: 1;
+  opacity: 0.85;
+  flex-shrink: 0;
+  user-select: none;
+}
+.lfl-plex-pick-item .lfl-card-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+  font-size: var(--fs-11);
+  color: var(--gray);
+}
+.lfl-plex-pick-item .lfl-lic,
+.lfl-plex-pick-item .lfl-who {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.page-lineage.is-plex .lfl-edges path {
+  stroke-width: 1.45;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lfl-card {
+    transition: opacity var(--dur) var(--ease), background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+}
+
+
+/* —— 乙支线 / 丙墙 —— */
 /* —— 共用节点 —— */
 .lg-yong { flex: none; width: 2rem; font-size: var(--fs-20); line-height: 1; color: var(--ink); text-align: left; font-weight: var(--fw-body); }
 .lg-name { font-size: var(--fs-14); color: var(--ink); display: inline-flex; align-items: center; gap: 0.45em; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
