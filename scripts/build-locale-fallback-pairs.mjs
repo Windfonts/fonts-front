@@ -37,23 +37,61 @@ function addPair(sc, tc, meta) {
   });
 }
 
-/* 1) font-products axes.charset */
+/* 1) font-products axes.charset（同产品内 sc↔tc） */
+const productById = new Map((products.products || []).map((p) => [p.id, p]));
 for (const prod of products.products || []) {
   const bucket = { sc: [], tc: [] };
   for (const m of prod.members || []) {
     const cs = String((m.axes && m.axes.charset) || '').toLowerCase();
-    if (SC.has(cs)) bucket.sc.push(m.family);
-    if (TC.has(cs)) bucket.tc.push(m.family);
+    if (SC.has(cs)) bucket.sc.push(m);
+    if (TC.has(cs)) bucket.tc.push(m);
   }
   /* full/std 主款也可对 TC（霞鹜文楷） */
-  const fullish = (prod.members || [])
-    .filter((m) => {
-      const cs = String((m.axes && m.axes.charset) || '').toLowerCase();
-      return !cs || cs === 'full';
-    })
-    .map((m) => m.family);
+  const fullish = (prod.members || []).filter((m) => {
+    const cs = String((m.axes && m.axes.charset) || '').toLowerCase();
+    return !cs || cs === 'full';
+  });
   for (const sc of bucket.sc.length ? bucket.sc : fullish) {
-    for (const tc of bucket.tc) addPair(sc, tc, { productId: prod.id, source: 'font-products' });
+    for (const tc of bucket.tc) {
+      addPair(sc.family, tc.family, { productId: prod.id, source: 'font-products' });
+    }
+  }
+}
+
+/* 1b) 跨产品简繁对：localePeerProduct（如狮尾简中↔繁中）按 purpose/width/tier 对齐成员 */
+for (const prod of products.products || []) {
+  const peerId = prod.localePeerProduct;
+  if (!peerId || !productById.has(peerId)) continue;
+  if (String(prod.id) > String(peerId)) continue; /* 每对只处理一次 */
+  const peer = productById.get(peerId);
+  const left = prod.members || [];
+  const right = peer.members || [];
+  function axisKey(m) {
+    const ax = m.axes || {};
+    return [ax.purpose || 'std', ax.width || 'proportional', m.tier || 'primary'].join('|');
+  }
+  const rightByKey = new Map();
+  for (const m of right) rightByKey.set(axisKey(m), m);
+  for (const m of left) {
+    const other = rightByKey.get(axisKey(m));
+    if (!other) continue;
+    const csL = String((m.axes && m.axes.charset) || '').toLowerCase();
+    const csR = String((other.axes && other.axes.charset) || '').toLowerCase();
+    let scFam = null;
+    let tcFam = null;
+    if (SC.has(csL) && TC.has(csR)) {
+      scFam = m.family;
+      tcFam = other.family;
+    } else if (TC.has(csL) && SC.has(csR)) {
+      scFam = other.family;
+      tcFam = m.family;
+    }
+    if (scFam && tcFam) {
+      addPair(scFam, tcFam, {
+        productId: prod.id + '+' + peer.id,
+        source: 'localePeerProduct',
+      });
+    }
   }
 }
 
@@ -83,6 +121,8 @@ const EXPLICIT = [
   ['wenfeng-syhtsc', 'wenfeng-syhttw'],
   ['wenfeng-systsc', 'wenfeng-systtc'],
   ['wenfeng-xwwk', 'wenfeng-xwwktc'],
+  ['wenfeng-swjaysans', 'wenfeng-swfansans'],
+  ['wenfeng-swjayleg', 'wenfeng-swfanleg'],
 ];
 for (const [sc, tc] of EXPLICIT) {
   addPair(sc, tc, { source: 'explicit' });

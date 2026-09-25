@@ -797,6 +797,11 @@
             "Sans",
             "狮尾繁中黑体"
           ],
+          "axes": {
+            "charset": "tc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         },
         {
@@ -805,9 +810,15 @@
             "Leg",
             "狮尾繁腿黑体"
           ],
+          "axes": {
+            "charset": "tc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "secondary"
         }
-      ]
+      ],
+      "localePeerProduct": "swei-swjay"
     },
     {
       "id": "swei-swfist",
@@ -869,6 +880,11 @@
             "Sans",
             "狮尾简中黑体"
           ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         },
         {
@@ -877,9 +893,15 @@
             "Leg",
             "狮尾简腿黑体"
           ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "secondary"
         }
-      ]
+      ],
+      "localePeerProduct": "swei-swfan"
     },
     {
       "id": "swei-swmarker",

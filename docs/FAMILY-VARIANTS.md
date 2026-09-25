@@ -30,6 +30,7 @@
    - `advanced`：折叠进「更多规格」（Fusion、Screen Full、冷门组合）
 4. **禁止**：为第四维再发明短码（例如再叠 NF / Hint / Region）而不进产品表；禁止改已发布 `family` 字符串。
 5. **嵌入示例**：详情「获取代码」始终输出**当前规格**的具体 `family=`；列表 CTA / 文档默认示例只用 `products[].default`。
+6. **简繁配对**：同产品用 `axes.charset`（`sc`/`tc`/…）；跨产品用 `localePeerProduct`（如狮尾简中↔繁中）。构建 `scripts/build-locale-fallback-pairs.mjs` → `data/locale-fallback-pairs.json`，vault `/api/css?localeFallback=` 认此表。
 
 ## 4. 退役流程
 

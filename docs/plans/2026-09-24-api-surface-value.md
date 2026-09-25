@@ -99,7 +99,7 @@ Webhook、OAuth 应用令牌、签名限频的 catalog dump → 让文风出现�
 | N5 | **构建期同步热度进 `fonts.json`** | 列表不打运行时 API | 脚本 + 配额 | **已做**：`scripts/sync-font-counts.mjs`（默认 ssh 查库）；写入 `viewCount`/`downloadCount`/`apiCallCount` |
 | N6 | **按需对照 `…/analysis`** | 开发者可核验字符表 | N2；无文件则 404 | **已做**：详情「对照现网字符表」；限流回退 OSS metadata；现网 analysis 覆盖仍稀 |
 | N7 | **嵌入生成器：档位默认 + 多 `family`** | 立刻减少误用 `full`、服务谱系补全 | 仅前端 | **本仓已做**：四档 chip、默认 `zh-common`；有库内上游时可勾选 `family=主\|上游` |
-| N8 | **本仓许可 / 谱系数据保持可导出** | 给 vault 同步或静态 dump 预留 | 已有 `fonts.json` / `font-lineage.json` / 许可库 | 「现在」做数据质量与字段约定，不一定新开 HTTP |
+| N8 | **本仓许可 / 谱系数据保持可导出** | 给 vault 同步或静态 dump 预留 | 已有 `fonts.json` / `font-lineage.json` / 许可库 | **已做**：`scripts/export-license-lineage.mjs` 导出机读快照 |
 
 ### 3.1a 本仓进度（2026-09-24）
 
@@ -112,7 +112,8 @@ Webhook、OAuth 应用令牌、签名限频的 catalog dump → 让文风出现�
 | N2 公开 CORS | **已通**（fonts-vault 生产） |
 | N5 构建期热度 | **已做**（`scripts/sync-font-counts.mjs`，本轮已跑 439 款） |
 | N6 analysis 对照 | **已做**（详情按需按钮 + WFLive.analysis） |
-| N8 | 仍待数据约定 |
+| N8 许可/谱系导出 | **已做**（`scripts/export-license-lineage.mjs`） |
+| localeFallback 配对 | **已通**（8 对 / 含狮尾简繁、思源、霞鹜） |
 
 **现在不做实现、但现在就要写进契约的「字段期望」（供 vault 下轮同步）：**
 
