@@ -513,9 +513,8 @@
 .trust-row .trust-site { font-size: var(--fs-12); color: var(--caution); }
 
 
-/* Phase 2: 与字库同款许可芯片；开源商用语义绿 */
-.detail-title .lic-chip,
-.license-head .lic-chip {
+/* 标题 meta：跟字库同款灰胶囊（不开绿） */
+.detail-title .lic-chip {
   display: inline-flex; align-items: center;
   padding: 0.1em 0.55em;
   font-size: var(--fs-11);
@@ -526,12 +525,24 @@
   letter-spacing: 0.01em;
   line-height: 1.4;
 }
-.detail-title .lic-chip[data-tier="开源商用"],
-.detail-title .lic-chip[data-tier="开源"],
-.license-head .lic-chip[data-tier="开源商用"],
-.license-head .lic-chip[data-tier="开源"],
-.license-head .lic-chip.is-open {
-  color: var(--on-ok);
+/* 授权区档位：恢复原 .tier 样式；开源商用绿底（.tier.is-open 见上） */
+.license-head .lic-chip.tier {
+  /* 走上方 .license-head .tier，不被字库胶囊盖掉 */
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.7rem;
+  font-size: var(--fs-13);
+  font-weight: var(--fw-label);
+  letter-spacing: 0;
+  line-height: inherit;
+  background: var(--ink);
+  color: var(--on-ink);
+  border-radius: var(--radius-pill);
+}
+.license-head .lic-chip.tier.is-open,
+.license-head .lic-chip.tier[data-tier="开源"],
+.license-head .lic-chip.tier[data-tier="开源商用"] {
   background: var(--ok);
+  color: var(--on-ok);
   border-color: var(--ok);
 }

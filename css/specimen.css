@@ -83,12 +83,7 @@
   letter-spacing: 0.01em;
   line-height: 1.4;
 }
-/* 开源商用：语义绿；免费商用保持墨色（非绿） */
 .specimen .lic-chip[data-tier="开源商用"],
-.specimen .lic-chip[data-tier="开源"] {
-  color: var(--on-ok);
-  background: var(--ok);
-}
 .specimen .lic-chip[data-tier="免费商用"] { color: var(--ink); background: var(--fill); }
 .specimen .lic-chip[data-tier="需授权"] { color: var(--ink-2); }
 .specimen .lic-chip[data-tier="待核实"] { color: var(--gray); }
