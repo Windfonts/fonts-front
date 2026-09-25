@@ -766,6 +766,33 @@
     return out;
   }
 
+
+  /**
+   * 统计厂商在库字体数（按主归属 ownerId）。
+   * opts.includeDescendants !== false 时含子公司子树（getFoundryChildren 递归）。
+   */
+  function countFontsUnderFoundry(foundryId, opts) {
+    opts = opts || {};
+    if (!foundryId) return 0;
+    const includeDescendants = opts.includeDescendants !== false;
+    const ids = includeDescendants ? getFoundrySubtreeIds(foundryId) : [foundryId];
+    const set = {};
+    ids.forEach(function (id) { set[id] = true; });
+    let n = 0;
+    for (let i = 0; i < catalog.length; i++) {
+      const f = catalog[i];
+      const oid = (f.lineage && f.lineage.ownerId) ||
+        (f.ownerInfo && f.ownerInfo.id) || '';
+      if (oid && set[oid]) n++;
+    }
+    return n;
+  }
+
+  /** 组织图入口：子树内归属字体 ≥ 2 才展示 */
+  function canShowOrgLineage(foundryId) {
+    return countFontsUnderFoundry(foundryId, { includeDescendants: true }) >= 2;
+  }
+
   /** 字体主归属或联合作者是否落在 foundryId 子树内 */
   function fontBelongsToFoundry(font, foundryId) {
     if (!font || !foundryId) return false;
@@ -805,7 +832,8 @@
     if (!rec) {
       return {
         group: '', groupName: '', relation: '', upstreamName: '', upstreamOwnerInfo: null,
-        licenseFollows: 'unknown', ownerInfo: fallback, makerInfo: fallback,
+        licenseFollows: 'unknown', ownerId: (fallback && fallback.id) || '',
+        ownerInfo: fallback, makerInfo: fallback,
         collaboratorIds: [], relatedGroup: '', collaboratorInfos: []
       };
     }
@@ -828,6 +856,7 @@
         (rec.relation === 'original' ? '' : ((group && group.upstreamName) || '')) || '',
       upstreamOwnerInfo: upstreamOwner,
       licenseFollows: rec.licenseFollows || 'unknown',
+      ownerId: (owner && owner.id) || rec.ownerId || '',
       ownerInfo: owner,
       makerInfo: maker,
       collaboratorIds: Array.isArray(rec.collaboratorIds) ? rec.collaboratorIds.slice() : [],
@@ -1095,6 +1124,8 @@
     getFoundryChildren: getFoundryChildren,
     getFoundrySubtreeIds: getFoundrySubtreeIds,
     fontBelongsToFoundry: fontBelongsToFoundry,
+    countFontsUnderFoundry: countFontsUnderFoundry,
+    canShowOrgLineage: canShowOrgLineage,
     getAvatarUrl: getAvatarUrl,
     licenseTier: licenseTier,
     resolveLicenseEvidence: resolveLicenseEvidence,

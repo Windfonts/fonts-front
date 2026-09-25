@@ -849,6 +849,12 @@
           }).join('') +
         '</div></div>'
       : '';
+    const showOrg = WFProto.canShowOrgLineage && WFProto.canShowOrgLineage(g.slug);
+    const orgEntry = showOrg
+      ? '<p class="foundry-org-link"><a class="btn" href="' +
+        WFChrome.href('lineage.html?group=' + encodeURIComponent(g.slug) + '&view=org&mode=flow') + '">' +
+        WFChrome.icon('branch') + '查看组织归属</a></p>'
+      : '';
     const claimHtml = '<p class="claim">' + WFChrome.icon('idcard') + '<span>' + (g.claimed
       ? who + '已认领此页。许可仍以每款字体的出处为准。'
       : '这是你的品牌？<a href="claim.html?slug=' + encodeURIComponent(g.slug) + '">认领此页</a>。通过后可改标志与介绍。') + '</span></p>';
@@ -866,6 +872,7 @@
             WFChrome.foundryHtml(g.font, { info: info, sub: heroSubHtml(g), fav: WFChrome.favHtml('author', g.slug, g.name) }) +
           '</div>' +
           parentLink +
+          orgEntry +
           (desc ? '<p class="desc">' + esc(desc) + '</p>' : '') +
           kidsStrip +
           partnersStrip(g) +

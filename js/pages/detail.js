@@ -278,6 +278,19 @@
         graphGroup = orgRoot;
       }
     }
+    /* 组织图入口：归属厂商（含子公司）不足两款则不链到空组织图；能回落到派生组则改 derive */
+    if (graphView === 'org' && graphGroup) {
+      const orgOk = !WFProto.canShowOrgLineage || WFProto.canShowOrgLineage(graphGroup);
+      if (!orgOk) {
+        if (L.group && deriveGroups[L.group]) {
+          graphView = 'derive';
+          graphGroup = L.group;
+        } else {
+          graphView = 'derive';
+          graphGroup = '';
+        }
+      }
+    }
     const graphHref = graphGroup
       ? 'lineage.html?group=' + encodeURIComponent(graphGroup) + '&view=' + graphView +
         '&mode=plex&focus=' + encodeURIComponent(font.id)

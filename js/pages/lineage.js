@@ -67,6 +67,12 @@
     }
     return cur && cur.id ? cur.id : fd.id;
   }
+  /** 组织图作用域：URL/芯片指向的厂商本身（含子公司计数与建林），不爬到顶母公司 */
+  function orgScopeFoundryId(g) {
+    const norm = normalizeOrgGroup(g) || g || '';
+    if (norm && WFProto.getFoundryById && WFProto.getFoundryById(norm)) return norm;
+    return rootFoundryIdForGroup(g);
+  }
   function ownerIdOfFont(font) {
     if (!font) return '';
     return (font.lineage && font.lineage.ownerId) ||
@@ -2945,7 +2951,7 @@
       out.push(f);
     }
     const norm = normalizeOrgGroup(g);
-    const rootId = rootFoundryIdForGroup(g);
+    const rootId = orgScopeFoundryId(g);
     /* 品牌/厂商芯片：按 foundry 子树聚合（猫啃 forks 仍属思源组，组织视图只看 owner） */
     if (rootId && (isBrandMajorGroup(norm) || isCatalogGroup(norm) || isCatalogGroup(g) ||
         g === 'alibaba-sans' || ORG_GROUP_FOUNDRY[g])) {
@@ -3049,9 +3055,11 @@
     const qView = normalizeView(qs('view'));
     const qGroupRaw = qs('group');
     const qGroup = normalizeOrgGroup(qGroupRaw) || qGroupRaw;
-    if (qGroup && (counts[qGroup] || counts[qGroupRaw])) {
-      if (counts[qGroup]) curGroup = qGroup;
-      else if (counts[qGroupRaw]) curGroup = normalizeOrgGroup(qGroupRaw) || qGroupRaw;
+    const qIsFoundry = !!(qGroup && WFProto.getFoundryById && WFProto.getFoundryById(qGroup)) ||
+      !!(qGroupRaw && WFProto.getFoundryById && WFProto.getFoundryById(qGroupRaw));
+    if (qGroup && (counts[qGroup] || counts[qGroupRaw] || qIsFoundry)) {
+      if (counts[qGroup] || (qGroup && WFProto.getFoundryById && WFProto.getFoundryById(qGroup))) curGroup = qGroup;
+      else if (counts[qGroupRaw] || qIsFoundry) curGroup = normalizeOrgGroup(qGroupRaw) || qGroupRaw;
       if (qGroupRaw && curGroup && qGroupRaw !== curGroup) setUrlParam('group', curGroup);
       curView = viewForGroup(curGroup);
     } else if (qView) {
@@ -3072,6 +3080,11 @@
   function pickDefaultGroup(counts, ld, all) {
     const qRaw = qs('group');
     const q = normalizeOrgGroup(qRaw) || qRaw;
+    /* 深链厂商 id（含 1 款）保留，不回落到顶栏大芯片 */
+    if (q && WFProto.getFoundryById && WFProto.getFoundryById(q)) return q;
+    if (qRaw && WFProto.getFoundryById && WFProto.getFoundryById(qRaw)) {
+      return normalizeOrgGroup(qRaw) || qRaw;
+    }
     if (q && counts[q]) return q;
     if (qRaw && counts[qRaw]) return normalizeOrgGroup(qRaw) || qRaw;
     const qView = normalizeView(qs('view'));
@@ -3204,7 +3217,7 @@
   /** 派生=字形上下游树；组织=厂商树（foundries parent/children + ownerId），不画 fork */
   function assembleForest(members, all) {
     if (isOrgView()) {
-      const rootId = rootFoundryIdForGroup(curGroup);
+      const rootId = orgScopeFoundryId(curGroup);
       if (rootId) return buildOrgForest(rootId, members);
       /* 无厂商字典时回退旧品牌枢纽逻辑 */
       return injectZcoolHuxiaoboLink(injectBrandFamilyNodes(
@@ -3255,7 +3268,19 @@
       if (n) counts[g] = n;
     });
     if (counts.alibaba && !counts['alibaba-sans']) counts['alibaba-sans'] = counts.alibaba;
-    if (!curGroup || !counts[curGroup]) {
+    /* 深链 ?group=厂商id：写入 counts，避免被顶栏大芯片替换 */
+    (function seedUrlFoundry() {
+      const qRaw = qs('group');
+      const q = normalizeOrgGroup(qRaw) || qRaw;
+      const fid = (q && WFProto.getFoundryById && WFProto.getFoundryById(q)) ? q
+        : ((qRaw && WFProto.getFoundryById && WFProto.getFoundryById(qRaw)) ? qRaw : '');
+      if (!fid) return;
+      if (counts[fid] == null) {
+        const n = collapseFaceVariants(membersForOrgFoundry(orgScopeFoundryId(fid), all)).length;
+        counts[fid] = n;
+      }
+    })();
+    if (!curGroup || counts[curGroup] == null) {
       curGroup = pickDefaultGroup(counts, ld, all);
     }
     curGroup = normalizeOrgGroup(curGroup) || curGroup;
@@ -3331,7 +3356,9 @@
     curGroup = normalizeOrgGroup(curGroup) || curGroup;
     if (beforeNorm && curGroup && beforeNorm !== curGroup) setUrlParam('group', curGroup);
     const orgRoot = rootFoundryIdForGroup(curGroup);
-    const known = !!(groups[curGroup] || (orgRoot && (isBrandMajorGroup(curGroup) || isCatalogGroup(curGroup) || ORG_GROUP_FOUNDRY[curGroup])));
+    const known = !!(groups[curGroup] ||
+      (orgRoot && (isBrandMajorGroup(curGroup) || isCatalogGroup(curGroup) || ORG_GROUP_FOUNDRY[curGroup])) ||
+      (curGroup && WFProto.getFoundryById && WFProto.getFoundryById(curGroup)));
     if (!curGroup || !known) {
       layout = null;
       famCap.textContent = '';
@@ -3344,6 +3371,54 @@
     const members = collapseFaceVariants(membersForGroup(curGroup, all));
     if (!curView) curView = viewForGroup(curGroup);
     syncViewChrome();
+
+    /* 组织图门槛：URL 厂商（含子公司）在库归属 < 2 不画孤卡图，给空态文案 */
+    const gateFoundry = orgScopeFoundryId(curGroup) || orgRoot;
+    if (isOrgView() && gateFoundry && WFProto.canShowOrgLineage && !WFProto.canShowOrgLineage(gateFoundry)) {
+      layout = null;
+      forestCache = null;
+      detectedClusters = [];
+      const msg = '该厂商在库不足两款，暂不提供组织图';
+      const orgFdGate = WFProto.getFoundryById ? WFProto.getFoundryById(gateFoundry) : null;
+      const gateName = (orgFdGate && (orgFdGate.name || orgFdGate.short)) || curGroup;
+      if (!curMode) {
+        const qMode = normalizeMode(qs('mode'));
+        curMode = qMode || 'flow';
+        modeLocked = !!qMode;
+        setUrlParam('mode', curMode);
+        persistMode(curMode);
+      }
+      syncModeChrome(curMode);
+      if (famCap) famCap.textContent = gateName + ' · 品牌归属 · 暂无组织图';
+      if (heroTitle) {
+        heroTitle.textContent = gateName;
+        heroTitle.removeAttribute('style');
+        heroTitle.removeAttribute('data-face');
+        heroTitle.classList.remove('is-face-ready');
+      }
+      if (footNote) footNote.textContent = msg;
+      if (emptyEl) {
+        emptyEl.textContent = msg;
+        emptyEl.hidden = false;
+      }
+      if (htmlStage) {
+        htmlStage.innerHTML = '<p class="empty">' + msg + '</p>';
+        htmlStage.classList.toggle('is-off', isCanvasMode(curMode));
+      }
+      if (nodesEl) nodesEl.innerHTML = '';
+      if (edgesSvg) edgesSvg.innerHTML = '';
+      if (isCanvasMode(curMode)) {
+        if (stage) stage.style.display = '';
+        renderGraph();
+      } else if (stage) {
+        stage.style.display = 'none';
+      }
+      return;
+    }
+    if (emptyEl && emptyEl.textContent !== '暂无谱系数据。') {
+      emptyEl.textContent = '暂无谱系数据。';
+    }
+
     const forest = assembleForest(members, all);
     forestCache = forest;
     detectedClusters = collectDetectedClusters(forest);
