@@ -27,11 +27,13 @@
     if (v === 'derive' || v === 'lineage') return 'derive';
     return '';
   }
-  /** 字族 → 视图：品牌组=组织，师承组=派生；其余按 catalog/作者归属推断 */
+  /** 字族 → 视图：品牌组=组织，师承组=派生；厂商字典命中（字库等）=组织 */
   function viewForGroup(g) {
     if (isBrandMajorGroup(g)) return 'org';
     if (isLineageMajorGroup(g)) return 'derive';
     if (isCatalogGroup(g)) return 'org';
+    /* 普通字库/工作室 等：深链与芯片默认组织图，勿当派生组 */
+    if (g && WFProto.getFoundryById && WFProto.getFoundryById(g)) return 'org';
     return 'derive';
   }
   function isOrgView() {
@@ -2952,6 +2954,10 @@
     }
     const norm = normalizeOrgGroup(g);
     const rootId = orgScopeFoundryId(g);
+    /* 组织视图：任意可解析厂商（含普通字库）按子树 owner 聚合 */
+    if (isOrgView() && rootId) {
+      return membersForOrgFoundry(rootId, all);
+    }
     /* 品牌/厂商芯片：按 foundry 子树聚合（猫啃 forks 仍属思源组，组织视图只看 owner） */
     if (rootId && (isBrandMajorGroup(norm) || isCatalogGroup(norm) || isCatalogGroup(g) ||
         g === 'alibaba-sans' || ORG_GROUP_FOUNDRY[g])) {
@@ -3050,7 +3056,7 @@
     return '';
   }
 
-  /** URL ?view= 与字族对齐；仅有 view 时切到该视图下第一个大族 */
+  /** URL ?view= 优先；有 group 深链时保留 group，不再用 viewForGroup 盖掉显式 view */
   function resolveViewWithGroup(counts) {
     const qView = normalizeView(qs('view'));
     const qGroupRaw = qs('group');
@@ -3061,7 +3067,8 @@
       if (counts[qGroup] || (qGroup && WFProto.getFoundryById && WFProto.getFoundryById(qGroup))) curGroup = qGroup;
       else if (counts[qGroupRaw] || qIsFoundry) curGroup = normalizeOrgGroup(qGroupRaw) || qGroupRaw;
       if (qGroupRaw && curGroup && qGroupRaw !== curGroup) setUrlParam('group', curGroup);
-      curView = viewForGroup(curGroup);
+      /* 厂商页谱系图带 ?view=org：必须尊重，勿被 viewForGroup(字库→旧 derive) 盖掉 */
+      curView = qView || viewForGroup(curGroup);
     } else if (qView) {
       curView = qView;
       if (viewForGroup(curGroup) !== curView) {
@@ -3417,6 +3424,49 @@
     }
     if (emptyEl && emptyEl.textContent !== '暂无谱系数据。') {
       emptyEl.textContent = '暂无谱系数据。';
+    }
+
+    /* 组织图门槛已过但成员为空：给明确空态，避免空白画布 */
+    if (isOrgView() && !members.length) {
+      layout = null;
+      forestCache = null;
+      detectedClusters = [];
+      const msg = '该厂商暂无归属字体可展示';
+      const orgFdEmpty = WFProto.getFoundryById ? WFProto.getFoundryById(gateFoundry || curGroup) : null;
+      const emptyName = (orgFdEmpty && (orgFdEmpty.name || orgFdEmpty.short)) || curGroup;
+      if (!curMode) {
+        const qMode = normalizeMode(qs('mode'));
+        curMode = qMode || 'flow';
+        modeLocked = !!qMode;
+        setUrlParam('mode', curMode);
+        persistMode(curMode);
+      }
+      syncModeChrome(curMode);
+      if (famCap) famCap.textContent = emptyName + ' · 品牌归属 · 暂无字体';
+      if (heroTitle) {
+        heroTitle.textContent = emptyName;
+        heroTitle.removeAttribute('style');
+        heroTitle.removeAttribute('data-face');
+        heroTitle.classList.remove('is-face-ready');
+      }
+      if (footNote) footNote.textContent = msg;
+      if (emptyEl) {
+        emptyEl.textContent = msg;
+        emptyEl.hidden = false;
+      }
+      if (htmlStage) {
+        htmlStage.innerHTML = '<p class="empty">' + msg + '</p>';
+        htmlStage.classList.toggle('is-off', isCanvasMode(curMode));
+      }
+      if (nodesEl) nodesEl.innerHTML = '';
+      if (edgesSvg) edgesSvg.innerHTML = '';
+      if (isCanvasMode(curMode)) {
+        if (stage) stage.style.display = '';
+        renderGraph();
+      } else if (stage) {
+        stage.style.display = 'none';
+      }
+      return;
     }
 
     const forest = assembleForest(members, all);
