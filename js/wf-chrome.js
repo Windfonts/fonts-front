@@ -516,7 +516,7 @@
         forbidden: base.forbidden.concat(['把素材平台转载款认成「我的字」']),
         claimLead: oss ? '认领后维护开源作者页资料。' : '认领后维护作者页资料。',
         claimHint: oss
-          ? '通过后可改简介、头像与外链。派生、源文件与缺字请到 wenfeng.org。'
+          ? '通过后可改简介、头像与外链。衍生、源文件与缺字请到 wenfeng.org。'
           : '通过后可改简介、头像与外链。许可仍以每款字体出处为准。',
         closeHint: oss ? '认领你的开源作者页。' : '认领你的作者页。',
         closeLead: oss
@@ -593,7 +593,7 @@
         ' <span>条款以权利人为准。</span></p></div>';
   }
 
-  const REL_LABEL = { original: '原作', locale: '地区版', fork: '派生', commissioned: '委托定制', collab: '合作' };
+  const REL_LABEL = { original: '原作', locale: '地区版', fork: '衍生', commissioned: '委托定制', collab: '合作' };
   const REL_ICON = { original: 'commit', locale: 'merge', fork: 'branch', collab: 'merge' };
   const FOLLOW_COPY = {
     inherit: '沿用上游许可，改完要换名并保留声明。',
@@ -817,7 +817,7 @@
     return '<div class="lin-tree">' +
       lineageBlock('原作', originRow ? [originRow] : []) +
       lineageBlock('创作', (split.via || []).map(rowOf)) +
-      lineageBlock('派生', lineagePack(split.buckets.fork, faceOf, font && font.id)) +
+      lineageBlock('衍生', lineagePack(split.buckets.fork, faceOf, font && font.id)) +
       lineageBlock('地区版', split.buckets.locale.map(rowOf)) +
       lineageBlock('合作', split.buckets.collab.map(rowOf)) +
       lineageBlock('委托定制', split.buckets.commissioned.map(rowOf)) +
@@ -838,7 +838,7 @@
         if (chain[i].id === font.id) {
           bits.push('此字体基于「' + esc(parent.name) + '」创作' + (i > 1 ? '，' : '。'));
         } else {
-          bits.push(esc(chain[i].name) + '由「' + esc(parent.name) + '」派生。');
+          bits.push(esc(chain[i].name) + '由「' + esc(parent.name) + '」衍生。');
         }
       }
       bits.push('遵循原许可协议开源发布。');
@@ -847,7 +847,7 @@
     if (L.relation === 'original' || !L.upstreamName) {
       return '<p class="lin-invite">此为开源字体谱系源头。许可允许修改后以其他名称再分发，须保留许可声明。</p>';
     }
-    return '<p class="lin-invite">此字体允许派生创作。修改后再分发须更名，并保留原授权声明。</p>';
+    return '<p class="lin-invite">此字体允许衍生创作。修改后再分发须更名，并保留原授权声明。</p>';
   }
   function lineageTreeHtml(font, list, faceOf) {
     const split = lineageSplit(font, list);

@@ -73,13 +73,13 @@
       (font.ownerInfo && font.ownerInfo.id) || '';
   }
   function famKindTag() {
-    return isOrgView() ? '品牌归属' : '派生谱系';
+    return isOrgView() ? '品牌归属' : '衍生谱系';
   }
   function footForView() {
     if (isOrgView()) {
       return '这里看品牌归属：哪款字体属于哪个品牌。可用右上角切换聚焦、关系图、分支、样张四种查看方式。';
     }
-    return '这里看派生关系：哪款字体改自哪款。可用右上角切换聚焦、关系图、分支、样张四种查看方式；字体名用各自的字型显示。';
+    return '这里看衍生关系：哪款字体改自哪款。可用右上角切换聚焦、关系图、分支、样张四种查看方式；字体名用各自的字型显示。';
   }
 
   const CARD_W = 184;
@@ -163,7 +163,7 @@
   let dragging = false;
   let dragStart = null;
   const viewShell = document.getElementById('viewShell');
-  const FOOT_PLAIN = '这里看派生关系：哪款字体改自哪款。可用右上角切换聚焦、关系图、分支、样张四种查看方式；字体名用各自的字型显示。';
+  const FOOT_PLAIN = '这里看衍生关系：哪款字体改自哪款。可用右上角切换聚焦、关系图、分支、样张四种查看方式；字体名用各自的字型显示。';
 
   /* —— 乙支线 / 丙墙（现网 HTML） —— */
   const REL_ICON = { locale: 'merge', collab: 'compare' };
@@ -646,7 +646,9 @@
         const r = (node.lineage || {}).relation || '';
         if (r === 'collab') return '合作';
         if (r === 'commissioned') return '委托';
-        return '出品';
+        if (r === 'fork') return '改作';
+        if (r === 'locale') return '地区版';
+        return '出品'; /* 原创或无谱系记录才标出品；分叉改作不冒充出品 */
       }
       return '';
     }
@@ -3279,7 +3281,7 @@
         '</span>' + chips + '</div>';
     }
     famNav.innerHTML =
-      clusterHtml('派生', '派生族谱 · 谁改自谁', MAJOR_GROUPS.lineage) +
+      clusterHtml('衍生', '衍生谱系 · 谁改自谁', MAJOR_GROUPS.lineage) +
       clusterHtml('品牌', '品牌组织 · 按厂商', MAJOR_GROUPS.brand);
     famNav.querySelectorAll('.chip').forEach(function (btn) {
       btn.addEventListener('click', function () { setGroup(btn.getAttribute('data-group')); });
