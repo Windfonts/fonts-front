@@ -816,6 +816,19 @@
             "width": "proportional"
           },
           "tier": "secondary"
+        },
+        {
+          "family": "wenfeng-swfanserif",
+          "chips": [
+            "Serif",
+            "狮尾繁中宋体"
+          ],
+          "axes": {
+            "charset": "tc",
+            "purpose": "serif",
+            "width": "proportional"
+          },
+          "tier": "secondary"
         }
       ],
       "localePeerProduct": "swei-swjay"
@@ -899,9 +912,94 @@
             "width": "proportional"
           },
           "tier": "secondary"
+        },
+        {
+          "family": "wenfeng-swjayserif",
+          "chips": [
+            "Serif",
+            "狮尾简中宋体"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "serif",
+            "width": "proportional"
+          },
+          "tier": "secondary"
         }
       ],
       "localePeerProduct": "swei-swfan"
+    },
+    {
+      "id": "adobe-source-han-sans",
+      "name": "思源黑体",
+      "en": "Source Han Sans",
+      "default": "wenfeng-syhtsc",
+      "members": [
+        {
+          "family": "wenfeng-syhtsc",
+          "chips": ["SC"],
+          "axes": { "charset": "sc", "purpose": "std", "width": "proportional" },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-syhtcn",
+          "chips": ["CN"],
+          "axes": { "charset": "cn", "purpose": "std", "width": "proportional" },
+          "tier": "secondary"
+        },
+        {
+          "family": "wenfeng-syhttw",
+          "chips": ["TW"],
+          "axes": { "charset": "tc", "purpose": "std", "width": "proportional" },
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "id": "adobe-source-han-serif",
+      "name": "思源宋体",
+      "en": "Source Han Serif",
+      "default": "wenfeng-systsc",
+      "members": [
+        {
+          "family": "wenfeng-systsc",
+          "chips": ["SC"],
+          "axes": { "charset": "sc", "purpose": "std", "width": "proportional" },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-systcn",
+          "chips": ["CN"],
+          "axes": { "charset": "cn", "purpose": "std", "width": "proportional" },
+          "tier": "secondary"
+        },
+        {
+          "family": "wenfeng-systtc",
+          "chips": ["TC"],
+          "axes": { "charset": "tc", "purpose": "std", "width": "proportional" },
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "id": "maoken-shijinhei",
+      "name": "猫啃什锦黑",
+      "en": "Maoken Shijin Hei",
+      "default": "wenfeng-mksjh",
+      "members": [
+        {
+          "family": "wenfeng-mksjh",
+          "chips": ["简", "什锦黑"],
+          "axes": { "charset": "sc", "purpose": "std", "width": "proportional" },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-matc",
+          "chips": ["繁", "什锦黑"],
+          "axes": { "charset": "tc", "purpose": "std", "width": "proportional" },
+          "tier": "primary"
+        }
+      ]
     },
     {
       "id": "swei-swmarker",

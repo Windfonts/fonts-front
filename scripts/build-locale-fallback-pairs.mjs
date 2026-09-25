@@ -123,6 +123,8 @@ const EXPLICIT = [
   ['wenfeng-xwwk', 'wenfeng-xwwktc'],
   ['wenfeng-swjaysans', 'wenfeng-swfansans'],
   ['wenfeng-swjayleg', 'wenfeng-swfanleg'],
+  ['wenfeng-swjayserif', 'wenfeng-swfanserif'],
+  ['wenfeng-mksjh', 'wenfeng-matc'],
 ];
 for (const [sc, tc] of EXPLICIT) {
   addPair(sc, tc, { source: 'explicit' });
