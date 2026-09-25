@@ -210,3 +210,10 @@ curl -sS https://staging-app.windfonts.com/api/auth/csrf
 
 登录页：`https://app.windfonts.com/login.html`（管理员账号，非 WP 顾客号）。  
 顾客统一账号仍待 windfonts.com ↔ vault hooks（§11）。
+
+## 13. 详情页 `/fonts/{slug}` 踩坑
+
+nginx `rewrite … last` **不改浏览器地址**。若 HTML 里是相对 `js/…`，会请求 `/fonts/js/…` → 404，页面一直「正在加载字体…」。
+
+**现网：** `font-detail.html` 使用 `<base href="/" />` 且资源写根路径 `/js/…`；`/fonts/` location 与 `.html` 加 `Cache-Control: no-store`。详情脚本从 pathname 解析 slug。
+

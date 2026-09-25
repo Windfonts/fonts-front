@@ -280,7 +280,7 @@
   /** 站内详情链：在 app 主机上走 /fonts/{slug}；本地静态原型仍用 font-detail.html。 */
   function detailHref(font, extra) {
     const host = String((typeof location !== 'undefined' && location.hostname) || '').toLowerCase();
-    const onApp = host === 'app.windfonts.com';
+    const onApp = host === 'app.windfonts.com' || host === 'staging-app.windfonts.com';
     if (onApp && !extra) return publicDetailPath(font);
     const parts = [];
     const slug = fontSlug(font);

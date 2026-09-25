@@ -918,10 +918,15 @@
 
   }
 
+  function slugFromPath() {
+    const m = String(location.pathname || '').match(/\/fonts\/([A-Za-z0-9_-]+)\/?$/i);
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+
   WFProto.loadCatalog().then(function (list) {
     const go = function () {
       const id = WFProto.getQuery('id');
-      const slug = WFProto.getQuery('slug');
+      const slug = WFProto.getQuery('slug') || slugFromPath();
       const font = (id && WFProto.getFont(id)) || (slug && WFProto.getFontBySlug(slug)) || (!id && !slug ? list[0] : null);
       if (!font) { root.innerHTML = '<p class="empty">未找到该字体。<a href="fonts.html">回到字体库</a></p>'; return; }
       const q = new URLSearchParams(location.search);
@@ -929,8 +934,10 @@
       ['from', 'view', 'tpl', 'frame', 't', 's'].forEach(function (k) {
         if (q.get(k)) extras[k] = q.get(k);
       });
-      const want = WFProto.detailHref(font, extras) + (location.hash || '');
-      const cur = (location.pathname.split('/').pop() || '') + location.search + location.hash;
+      /* 空对象也是 truthy，会误走 font-detail.html?slug=；无额外参数时保留 /fonts/{slug} */
+      const extraArg = Object.keys(extras).length ? extras : null;
+      const want = WFProto.detailHref(font, extraArg) + (location.hash || '');
+      const cur = location.pathname + location.search + location.hash;
       if (cur !== want) history.replaceState(null, '', want);
       render(font);
     };
@@ -940,5 +947,7 @@
     };
     if (window.WFLocaleFallback) WFLocaleFallback.load().then(boot).catch(boot);
     else boot();
+  }).catch(function () {
+    root.innerHTML = '<p class="empty">字体目录加载失败。<a href="fonts.html">回到字体库</a></p>';
   });
 })();

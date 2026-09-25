@@ -30,7 +30,7 @@
    * vault 现有：publish、key/status、fonts…；尚无 /api/projects CRUD。
    * live 模式下项目/域名/用量仍走本机，避免 404 打爆控制台。
    */
-  function vaultHasProjectCrud() { return false; }
+  function vaultHasProjectCrud() { return true; }
 
   function useLocalProjects() { return isMock() || !vaultHasProjectCrud(); }
 
