@@ -892,5 +892,10 @@ a.lg-node:hover .lg-name { text-decoration: underline; text-underline-offset: 0.
   white-space: nowrap;
 }
 
-/* 内容宽度切换（C 版）：.lg-page-wide 时版心铺满视口，工具行与正文同步放宽 */
-.lg-page.container.lg-page-wide { max-width: none; }
+/* 内容宽度切换（C 版）：全宽时页眉/正文/页脚三段容器同步铺满视口，留安全边距 */
+html.lg-wide .lg-page.container,
+html.lg-wide .topbar .container,
+html.lg-wide .site-extra-footer .extra-inner {
+  max-width: none;
+  padding-inline: clamp(1rem, 2.5vw, 2rem);
+}

@@ -3851,6 +3851,7 @@
   /* 内容宽度切换：标准（版心）/ 全宽（铺满视口），localStorage 记忆 */
   var widthNav = document.getElementById('widthNav');
   function applyWidth() {
+    document.documentElement.classList.toggle('lg-wide', width === 'wide');
     var page = document.querySelector('.lg-page');
     if (page) page.classList.toggle('lg-page-wide', width === 'wide');
     if (widthNav) widthNav.querySelectorAll('button').forEach(function (b) {
