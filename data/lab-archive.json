@@ -258,6 +258,23 @@
       "title": "壳层与互动",
       "items": [
         {
+          "href": "wide-lab.html",
+          "title": "宽阅读壳（样式指南 / 永字墙 / 谱系）",
+          "status": "active",
+          "note": "全宽阅读壳 Option A：顶栏中文 tab + iframe 挂 styleguide.html / yong-wall.html / lineage.html；?tab=guide|yong|lineage；子页深链不变；lab/noindex",
+          "assets": [
+            "css/wide-lab.css",
+            "js/pages/wide-lab.js"
+          ]
+        },
+        {
+          "href": "styleguide.html",
+          "title": "设计指南（v4 · 柔和圆润 B）",
+          "status": "shipped-ref",
+          "note": "正式设计指南页；宽阅读壳 tab=guide 挂此页。对照见 design-options.html",
+          "assets": []
+        },
+        {
           "href": "design-options.html",
           "title": "设计系统候选",
           "status": "archive",

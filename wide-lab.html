@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>宽阅读 · 文风字体</title>
+  <meta name="description" content="实验室宽阅读壳：样式指南、永字墙、谱系。不进生产导航。" />
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260925y" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260925y" />
+  <link rel="stylesheet" href="css/base.css?v=20260925y" />
+  <link rel="stylesheet" href="css/wide-lab.css?v=20260925y" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+</head>
+<body class="page-wide-lab">
+  <div class="wl-shell">
+    <header class="wl-bar" role="banner">
+      <a class="wl-brand" href="index.html" title="回店面首页">
+        <span class="wl-brand-mark" aria-hidden="true">文</span>
+        <span>文风字体</span>
+        <span class="wl-brand-sub">宽阅读</span>
+      </a>
+
+      <nav class="wl-tabs" role="tablist" aria-label="宽阅读栏目">
+        <a class="wl-tab" role="tab" data-tab="guide" href="wide-lab.html?tab=guide" aria-selected="false">样式指南</a>
+        <a class="wl-tab" role="tab" data-tab="yong" href="wide-lab.html?tab=yong" aria-selected="false">永字墙</a>
+        <a class="wl-tab" role="tab" data-tab="lineage" href="wide-lab.html?tab=lineage" aria-selected="false">谱系</a>
+      </nav>
+
+      <a class="wl-home" href="lab.html">实验室</a>
+    </header>
+
+    <div class="wl-frame-wrap">
+      <iframe
+        class="wl-frame"
+        id="wlFrame"
+        title="宽阅读内容"
+        src="about:blank"
+      ></iframe>
+    </div>
+  </div>
+
+  <script src="js/pages/wide-lab.js?v=20260925y"></script>
+</body>
+</html>
