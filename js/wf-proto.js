@@ -26,6 +26,8 @@
   const CDN = 'https://cn.windfonts.com';
   const CSS_API = 'https://app.windfonts.com'; /* vault / 元数据 API 源，非地区 CDN */
   const ANALYSIS_META_VER = '20260925b'; /* 边缘长缓存；升元数据时递增 */
+  /** 生产禁止；仅 staging 构建可改 true */
+  const ALLOW_DEMO = false;
   const CDN_KEY = 'wf-cdn';
   const STATS_KEY = 'wf-font-stats.v1';
   const VIEWED_KEY = 'wf-font-viewed';
@@ -1241,6 +1243,7 @@
     CSS_API: CSS_API,
     API_MODE: 'mock', /* override via localStorage['wf-api-mode'] = 'live'|'mock' */
     ANALYSIS_META_VER: ANALYSIS_META_VER,
+    ALLOW_DEMO: ALLOW_DEMO,
     analysisMetaUrl: analysisMetaUrl,
     dataUrl: dataUrl,
     CDN_HOSTS: CDN_HOSTS,

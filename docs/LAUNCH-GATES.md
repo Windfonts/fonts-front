@@ -3,6 +3,19 @@
 > 静态原型（本仓）上线正式域前的硬门槛。未勾完不应切流量。  
 > 对照现网：`app.windfonts.com`。原型预览：`python3 -m http.server 16016`。
 
+
+## 0. 进度备忘（2026-09-25）
+
+| 项 | 状态 |
+|---|---|
+| CDN `/api/css` 回源 + 品牌门禁 + 错误 `no-store` | **已通**（app + cn） |
+| analysis 满覆盖 + `OSS_METADATA_VERSION` | **已通**（`20260925b`） |
+| 详情路径 `/fonts/{slug}` | **snippet 已备** [`deploy/nginx-fonts-front.snippet.conf`](../deploy/nginx-fonts-front.snippet.conf)；正式域尚未挂（现 `windfonts.com` 仍是 WP） |
+| 真统计 | 详情已 `WFLive.counts`；目录热度用 [`scripts/sync-font-counts.mjs`](../scripts/sync-font-counts.mjs)（需 API Key 全量） |
+| `?demo=1` | **已收口**：仅 localhost / `WFProto.ALLOW_DEMO` |
+| 真登录 | 仍待；控制台已有 `WFApi` mock/live 壳（usage/upload/projects/domains） |
+| 对照页不进导航 | 保持；谱系实验室已进 `lab-archive` |
+
 ## 1. 必须先落地的基础设施（不能只靠前端假装）
 
 | 项 | 现状 | 上线要求 | 验收 |

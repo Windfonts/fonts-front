@@ -488,7 +488,17 @@
     if (on && on.scrollIntoView) on.scrollIntoView({ inline: 'center', block: 'nearest' });
   }
   function gate() {
-    if (!WFChrome.user() && WFProto.getQuery('demo')) WFChrome.login({ role: 'admin' });
+    /* ?demo=1 仅本机 / 显式允许；生产域名禁止免登管理员 */
+    if (!WFChrome.user() && WFProto.getQuery('demo')) {
+      var host = String(location.hostname || '').toLowerCase();
+      var allow =
+        host === 'localhost' ||
+        host === '127.0.0.1' ||
+        host === '0.0.0.0' ||
+        host.endsWith('.local') ||
+        !!(window.WFProto && WFProto.ALLOW_DEMO);
+      if (allow) WFChrome.login({ role: 'admin' });
+    }
     if (!(WFChrome.canAccessApp && WFChrome.canAccessApp())) {
       const back = location.pathname.split('/').slice(-1)[0];
       location.replace(WFChrome.href('login.html?next=app&back=' + encodeURIComponent(back)));

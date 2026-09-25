@@ -4,7 +4,7 @@
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 
-**下一棒（按价值）：** 谱系/亲属实验室未提交改动另线（`v4-specimen` 本地 WIP）。analysis/package-sizes/locale 已于 2026-09-25 重跑；`OSS_METADATA_VERSION=20260925b`。
+**下一棒（按价值）：** ① LAUNCH-GATES（`/fonts/{slug}` rewrite、demo 收口、真统计）；② 控制台 WFApi 接线（`pro/console-api-client`）；③ 选字袋登录同步 / 认领真工单。入库习惯见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
 
 **已合（2026-09-25，wapuu）：** vault [#29](https://feicode.com/Windfonts/fonts-vault/pulls/29) pnpm Docker、[#30](https://feicode.com/Windfonts/fonts-vault/pulls/30) 品牌 CSS 门禁、[#31](https://feicode.com/Windfonts/fonts-vault/pulls/31) `/api/css` 错误 `no-store` → `main` @ `22454e0`。
 
@@ -28,10 +28,10 @@
 
 | 模块 | 现状 | 下一步 |
 |---|---|---|
-| **控制台** | `app/*` + localStorage；`?demo=1` 免登；顶栏仅注册/管理员可见。2026-09-23 过了一轮对齐与可访问性：`.version-list` 固定列宽、表头 / 数据对齐、表单标签、`WFChrome.promptInput` 取代原生 `prompt`、数据层容错旧 localStorage、头像 onerror 修正、**大字 `zoom` 不再作用于 `body.app`**（此前开着大字进控制台会整屏放大 1.5 倍、看似全乱） | 接真实项目 / 域名 / 用量 API；关掉生产 demo；用量与公开「统计信息」同源 |
-| **选字袋 / 收藏** | 本地持久化，可对比与嵌入 | 登录态同步；清空/导出策略；与控制台「我的字体」关系说清 |
+| **控制台** | `app/*` + localStorage；`WFApi` mock/live 壳已接 projects/domains/usage/upload（`js/wf-api.js`）。`?demo=1` **仅本机**（生产禁）。 | live 模式对接 vault 真项目 API；关掉 staging 外 demo；用量与公开统计同源 |
+| **选字袋 / 收藏** | 本地 `wf-proto-picks`，可对比与嵌入 | 登录后与「我的字体」双向同步（等控制台 live）；导出 JSON；清空需确认 |
 | **样张工坊** | 详情设计视图出图 | 模板与默认文案接设置；OG 图需后端固定 URL |
-| **厂商认领** | `claim.html` 演示提交 | 真实工单、审核、claimed 回写目录 |
+| **厂商认领** | `claim.html` 演示提交（localStorage claims） | vault 工单 API + 审核回写 `foundries.json` / claimed |
 | **谱系** | 详情标题「谱系」；开源才露出上传；厂商页归属按源字/地区版/派生分段 | 勿补无把握关系；上传入口仅开源 |
 | **上传** | 前端解析演示 | 对象存储 + 审核队列 |
 | **定价** | 三条产品线已落页；默认隐藏 | 商务定数字后再露 |
@@ -621,7 +621,7 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 - **简繁配对（2026-09-25 再扩）：** 11 对 / 18 成员——在既有思源/霞鹜/狮尾/猫啃之上，补 `systcnl`（思源宋体 CN Light）→ `systtc`。当前目录内有把握的 SC↔TC 已齐；再扩需先入库对应繁/简款。构建 `scripts/build-locale-fallback-pairs.mjs`。
 - **analysis 覆盖（2026-09-25）：** fonts-packages `scripts/build-font-analysis-from-css.mjs` 从 CDN `full/result.css` 的 `unicode-range` 重建 → OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`source: css-unicode-range`）。字数来自分包 CSS，极少数包（如稀疏 `AAR`）会偏低；详情缺字真源仍是当面 CSS。重建后：`OSS_UPLOAD_DIRS=./metadata node scripts/upload.js`。metadata 上传现用 `max-age=300`（不再一年）；vault / 前台拉取带 `?v=`（`OSS_METADATA_VERSION` / `wf-live.js`）逼 CDN 换键——原地覆盖后边缘否则长期吃旧文件。
 
-**仍待：** 谱系/亲属实验 WIP。vault #29–#32 已合；P2 常用3500 与 metadata `20260925b` 已落。
+**仍待：** LAUNCH-GATES；控制台 live API；选字袋/认领。谱系实验室已收进 lab（`lineage-flow-lab` 等，noindex）。vault #29–#32 已合；P2 常用3500 与 metadata `20260925b` 已落。
 
 ## 26. 2026-09-25 出处链核对态按证据链判定 + 源界明朝谱系
 
