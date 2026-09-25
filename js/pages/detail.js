@@ -745,10 +745,10 @@
       if (tools.querySelector('[data-live-analysis]')) return;
       const btn = document.createElement('button');
       btn.type = 'button';
-      /* 甲：两视图均可对照；结果默认折在 details 里 */
+      /* 己：两视图均可对照；一击后立刻展开横条，无 fold */
       btn.className = 'gtoggle';
       btn.setAttribute('data-live-analysis', '');
-      btn.textContent = '对照现网字符表';
+      btn.textContent = '对照表';
       btn.title = '按需请求 vault analysis（无文件则 404；限流时回退 OSS metadata）';
       tools.appendChild(btn);
       btn.addEventListener('click', function () {
@@ -796,57 +796,49 @@
             if (!cjk) return '—';
             return '≈' + Math.round((Math.min(cjk, need) / need) * 100) + '%';
           }
-          function gapSub(need) {
-            if (!cjk) return '';
-            const gap = Math.max(0, need - cjk);
-            return gap === 0 ? 'CJK 已盖过此档' : '缺口上限 ≈' + WFProto.formatCount(gap);
-          }
           const face = esc(String(d.name || d.subfamily_name || '—'));
           const covCommon = covPct(3500);
-          function metric(k, v, sub) {
+          function cell(k, v) {
             return (
-              '<div class="glyph-live-metric"><span class="k">' +
+              '<div class="glyph-live-cell"><span class="k">' +
               k +
               '</span><b class="v">' +
               v +
-              '</b>' +
-              (sub ? '<span class="sub">' + sub + '</span>' : '') +
-              '</div>'
+              '</b></div>'
             );
           }
-          function deltaSub(n) {
-            if (n == null) return '';
-            if (n === 0) return '与目录一致';
-            return '相对目录 ' + (n > 0 ? '+' : '') + n;
+          function fmtDelta(n) {
+            /* formatCount maps ≤0 → —; 缺/多需要显示 0 */
+            if (n == null || !Number.isFinite(Number(n))) return '—';
+            return String(Math.round(Number(n))).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
           }
-          let upMetric = '';
+          const miss = charDelta == null ? '—' : fmtDelta(Math.max(0, -charDelta));
+          const extra = glyphDelta == null ? '—' : fmtDelta(Math.max(0, glyphDelta));
+          let upNote = '';
           if (upFont && upCjk) {
             const delta = upCjk - cjk;
-            upMetric = metric(
-              '相对上游',
-              (delta > 0 ? '+' : '') + WFProto.formatCount(delta),
-              '上游「' + esc(upFont.name) + '」CJK ' + WFProto.formatCount(upCjk)
-            );
+            upNote =
+              ' · 相对上游「' +
+              esc(upFont.name) +
+              '」CJK ' +
+              (delta > 0 ? '+' : '') +
+              fmtDelta(delta);
           } else if (upFont && upRow && (upRow.missing || upRow.failed)) {
-            upMetric = metric('相对上游', '—', '上游 analysis 暂无');
+            upNote = ' · 上游 analysis 暂无';
           }
+          btn.setAttribute('aria-pressed', 'true');
           panel.innerHTML =
-            '<details class="glyph-live-fold" open>' +
-            '<summary>现网字符分析 · 覆盖常用' +
-            covCommon +
-            '</summary>' +
-            '<div class="glyph-live-metrics">' +
-            metric('字符数', liveChars ? WFProto.formatCount(liveChars) : '—', deltaSub(charDelta)) +
-            metric('字形数', liveGlyphs ? WFProto.formatCount(liveGlyphs) : '—', deltaSub(glyphDelta)) +
-            metric('常用覆盖', covCommon, gapSub(3500)) +
-            metric('扩充覆盖', covPct(7000), gapSub(7000)) +
-            upMetric +
+            '<div class="glyph-live-strip" role="status">' +
+            cell('常用', covCommon) +
+            cell('扩展', covPct(7000)) +
+            cell('缺', miss) +
+            cell('多', extra) +
             '</div>' +
             '<p class="glyph-live-note is-quiet">来源 ' +
             src +
             (face !== '—' ? ' · 字重样例 <code>' + face + '</code>' : '') +
-            '。覆盖与缺口按 analysis 的 CJK 计数估算（非逐字表）；千字文上游差见上方；逐字查缺用本地字符表。</p>' +
-            '</details>';
+            upNote +
+            '。覆盖与缺/多按 analysis 的 CJK / 目录差估算（非逐字表）；千字文上游差见上方；逐字查缺用本地字符表。</p>';
         });
       });
     })();
