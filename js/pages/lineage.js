@@ -1257,7 +1257,7 @@
           id: sid,
           name: label,
           seriesTitle: title,
-          seriesSub: '派生合集 · 点开查看',
+          seriesSub: '派生合集 · ' + c.members.length + ' 款',
           seriesCount: c.members.length,
           members: c.members.slice(),
           clusterKey: c.key,
@@ -1276,9 +1276,47 @@
         });
         newKids.push(series);
       });
+      const leftovers = [];
       packed.leftover.forEach(function (s) {
-        if (!used[s.id]) newKids.push(s);
+        if (!used[s.id]) leftovers.push(s);
       });
+      /* ≥3 散款收成「其他派生」卡，避免 plex/flow 根下长平铺或静默裁切 */
+      if (leftovers.length >= Math.max(PREFIX_MIN_MEMBERS, 3)) {
+        const oid = 'series:' + parent.id + ':other:其他派生';
+        if (forest.byId[oid] && forest.byId[oid].isSeries) {
+          newKids.push(forest.byId[oid]);
+        } else {
+          let oyear = 9999;
+          leftovers.forEach(function (m) {
+            if (m.releaseYear && m.releaseYear < oyear) oyear = m.releaseYear;
+          });
+          const otherSeries = {
+            isSeries: true,
+            id: oid,
+            name: '其他派生',
+            seriesTitle: '其他派生',
+            seriesSub: '派生合集 · ' + leftovers.length + ' 款',
+            seriesCount: leftovers.length,
+            members: leftovers.slice(),
+            clusterKey: '其他派生',
+            clusterKind: 'other',
+            releaseYear: oyear === 9999 ? 0 : oyear
+          };
+          forest.byId[oid] = otherSeries;
+          forest.parentOf[oid] = parent.id;
+          forest.children[oid] = leftovers.slice().sort(function (a, b) {
+            return (a.releaseYear || 9999) - (b.releaseYear || 9999) ||
+              String(a.name).localeCompare(b.name, 'zh');
+          });
+          leftovers.forEach(function (m) {
+            forest.parentOf[m.id] = oid;
+            used[m.id] = true;
+          });
+          newKids.push(otherSeries);
+        }
+      } else {
+        leftovers.forEach(function (s) { newKids.push(s); });
+      }
       (forest.children[pid] || []).forEach(function (c) {
         if (c && c.isSeries && newKids.indexOf(c) === -1) newKids.push(c);
       });
@@ -1473,6 +1511,38 @@
       moreRest: rest
     };
     synthetic[moreId] = moreNode;
+    return shown.concat([moreNode]);
+  }
+
+  /* 系列优先；超 cap 时保留系列卡，余下字体/系列收进「还有 N 款」，不静默丢弃 */
+  function capPlexSeriesFirstKids(childSeries, childOther, childFonts, parent, synthetic) {
+    const seriesFirst = (childSeries || []).concat(childOther || []);
+    const fonts = (childFonts || []).slice();
+    const ordered = seriesFirst.concat(fonts);
+    const moreId = 'more:' + parent.id;
+    if (expandedMores[moreId]) return ordered;
+    if (ordered.length <= PLEX_CHILD_CAP) return ordered;
+
+    let shown;
+    let rest;
+    if (seriesFirst.length >= PLEX_CHILD_CAP) {
+      shown = seriesFirst.slice(0, PLEX_CHILD_CAP);
+      rest = seriesFirst.slice(PLEX_CHILD_CAP).concat(fonts);
+    } else {
+      const room = PLEX_CHILD_CAP - seriesFirst.length;
+      shown = seriesFirst.concat(fonts.slice(0, room));
+      rest = fonts.slice(room);
+    }
+    if (!rest.length) return shown;
+    const moreNode = {
+      isMore: true,
+      id: moreId,
+      name: '还有 ' + rest.length + ' 款',
+      moreCount: rest.length,
+      moreParentId: parent.id,
+      moreRest: rest
+    };
+    if (synthetic) synthetic[moreId] = moreNode;
     return shown.concat([moreNode]);
   }
 
@@ -1804,13 +1874,10 @@
       placeChildRows(place, edges, focus, nodes, focusX, focusY, cx, { compact: true });
     } else if (focus.isBrandFamily || childSeries.length || childOther.length) {
       /* 品牌枢纽：子品牌 / 直属字各占一列；嵌套叶子居中落在该列下，避免共用底行交叉 */
-      const ordered = childSeries.concat(childOther).concat(childFonts);
-      let show = ordered;
-      if (show.length > PLEX_CHILD_CAP) {
-        const seriesFirst = childSeries.concat(childOther);
-        const room = Math.max(0, PLEX_CHILD_CAP - seriesFirst.length);
-        show = seriesFirst.concat(childFonts.slice(0, room));
-      }
+      const show = capPlexSeriesFirstKids(childSeries, childOther, childFonts, focus, synthetic);
+      show.forEach(function (n) {
+        if (n && n.isMore && !forest.byId[n.id]) forest.byId[n.id] = n;
+      });
       const nestH = PLEX_NEST_H_GAP;
       const nestV = PLEX_NEST_V_GAP;
       const leafGap = PLEX_H_GAP;
@@ -2140,14 +2207,9 @@
         addChild(n, 'child', compact);
       });
     } else if (focus.isBrandFamily || childSeries.length || childOther.length) {
-      const ordered = childSeries.concat(childOther).concat(childFonts);
-      let show = ordered;
-      if (show.length > PLEX_CHILD_CAP) {
-        const seriesFirst = childSeries.concat(childOther);
-        const room = Math.max(0, PLEX_CHILD_CAP - seriesFirst.length);
-        show = seriesFirst.concat(childFonts.slice(0, room));
-      }
+      const show = capPlexSeriesFirstKids(childSeries, childOther, childFonts, focus, synthetic);
       show.forEach(function (n) {
+        if (n && n.isMore && !forest.byId[n.id]) forest.byId[n.id] = n;
         const compact = !(n.isSeries || n.isCluster || n.isPlexGate);
         addChild(n, 'child', compact);
         if (n.isBrandFamily && isBrandHubExpanded(n.id)) {
