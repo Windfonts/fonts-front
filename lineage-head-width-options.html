@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>谱系页 · 标题区与宽度切换 · 设计对照 · 文风字体</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260925r" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260925r" />
+  <link rel="stylesheet" href="css/base.css?v=20260925r" />
+  <link rel="stylesheet" href="css/components.css?v=20260925r" />
+  <link rel="stylesheet" href="css/site.css?v=20260925r" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+  <link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-systsc&weight=Regular" />
+  <link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-xwwk&weight=Light" />
+  <style>
+    .oh-wrap { max-width: 72rem; margin: 0 auto; padding: var(--s-8) var(--gutter) var(--s-12); }
+    .oh-wrap > h1 { font-size: var(--fs-20); font-weight: var(--fw-title); margin: 0 0 var(--s-2); }
+    .oh-wrap > .note { font-size: var(--fs-13); color: var(--gray); margin: 0 0 var(--s-8); }
+    .oh-sec { margin-bottom: var(--s-10); }
+    .oh-sec > .cap { display: flex; align-items: baseline; gap: var(--s-3); margin-bottom: var(--s-3); }
+    .oh-sec > .cap .no { font-size: var(--fs-12); font-weight: var(--fw-title); background: var(--ink); color: var(--on-ink); padding: 0.1rem 0.6rem; border-radius: var(--radius-pill); }
+    .oh-sec > .cap h2 { font-size: var(--fs-14); margin: 0; font-weight: var(--fw-title); }
+    .oh-sec > .cap p { font-size: var(--fs-12); color: var(--gray); margin: 0; }
+
+    /* 演示壳：头部变体 + 可切换宽度的内容条 */
+    .demo { border: 1px solid var(--rule); border-radius: var(--radius); padding: var(--s-5); background: var(--paper); }
+    .demo .stage { margin-top: var(--s-4); border-top: 1px solid var(--rule); padding-top: var(--s-4); }
+    .demo .strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: var(--s-3); transition: max-width var(--dur,160ms) var(--ease,cubic-bezier(.2,0,0,1)); }
+    .demo .cell { background: var(--fill); border-radius: var(--radius-sm); padding: var(--s-3) var(--s-4); font-size: var(--fs-13); color: var(--ink-2); }
+    .demo.wide .strip { max-width: none; }
+    .demo:not(.wide) .strip { max-width: 44rem; }
+
+    /* 宽度切换：seg 两钮（标准/全宽） */
+    .width-seg { display: inline-flex; }
+
+    /* 版本A：单行头 */
+    .hd-a { display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+    .hd-a .t { font-size: var(--fs-20); font-weight: var(--fw-title); }
+    .hd-a .d { font-size: var(--fs-13); color: var(--gray); }
+    .hd-a .width-seg { margin-left: auto; }
+
+    /* 版本B：字族名大字头 */
+    .hd-b { display: flex; align-items: baseline; gap: var(--s-4); flex-wrap: wrap; }
+    .hd-b .fam { font-size: var(--fs-40); font-weight: var(--fw-title); line-height: 1.1; }
+    .hd-b .d { font-size: var(--fs-13); color: var(--gray); }
+    .hd-b .width-seg { margin-left: auto; }
+
+    /* 版本C：现状头 + 工具行挂切换 */
+    .hd-c .page-head { padding: var(--s-6) 0 var(--s-3); }
+    .hd-c .page-head h1 { font-size: var(--fs-40); }
+  </style>
+</head>
+<body>
+  <div class="oh-wrap">
+    <h1>谱系页 · 标题区三版 + 内容宽度切换</h1>
+    <p class="note">宽度切换为两段开关（标准 / 全宽），记住选择；以下开关可直接点，内容条会实时变宽收窄。</p>
+
+    <section class="oh-sec">
+      <div class="cap"><span class="no">A</span><h2>单行头</h2><p>标题与说明并作一行，宽度切换靠右。最省纵向空间。</p></div>
+      <div class="demo" id="demoA">
+        <div class="hd-a">
+          <span class="t">字体谱系</span>
+          <span class="d">按字族查看谁改自谁，字体名用各自的字型显示。</span>
+          <span class="seg width-seg" data-width><button type="button" class="is-on">标准</button><button type="button">全宽</button></span>
+        </div>
+        <div class="stage"><div class="strip"><div class="cell">思源宋体</div><div class="cell">狮尾四季春</div><div class="cell">源样明体</div><div class="cell">文津宋体</div><div class="cell">猫啃网风雅宋</div><div class="cell">源界明朝</div></div></div>
+      </div>
+    </section>
+
+    <section class="oh-sec">
+      <div class="cap"><span class="no">B</span><h2>字族名大字头</h2><p>固定标题退场，顶格放当前字族名（用该字族本字渲染，随切换字族变化），说明缩为角标。</p></div>
+      <div class="demo" id="demoB">
+        <div class="hd-b">
+          <span class="fam" style="font-family:'wenfeng-systsc'">思源宋体</span>
+          <span class="d">派生谱系 · 29 款</span>
+          <span class="seg width-seg" data-width><button type="button" class="is-on">标准</button><button type="button">全宽</button></span>
+        </div>
+        <div class="stage"><div class="strip"><div class="cell">思源宋体</div><div class="cell">狮尾四季春</div><div class="cell">源样明体</div><div class="cell">文津宋体</div><div class="cell">猫啃网风雅宋</div><div class="cell">源界明朝</div></div></div>
+      </div>
+    </section>
+
+    <section class="oh-sec">
+      <div class="cap"><span class="no">C</span><h2>现状头 + 工具行挂切换</h2><p>标题区维持现状，宽度切换放进模式开关旁边，改动最小。</p></div>
+      <div class="demo" id="demoC">
+        <div class="hd-c">
+          <div class="page-head">
+            <h1>字体谱系</h1>
+            <p class="lead">开源字体大多派生自更早的字库，同一字族的字体有共同的源头。这里按字族展示派生关系与品牌归属，字体名用各自的字型显示。</p>
+          </div>
+          <div class="hd-a">
+            <span class="seg"><button type="button" class="is-on">聚焦</button><button type="button">关系图</button><button type="button">分支</button><button type="button">样张</button></span>
+            <span class="seg width-seg" data-width style="margin-left:auto"><button type="button" class="is-on">标准</button><button type="button">全宽</button></span>
+          </div>
+        </div>
+        <div class="stage"><div class="strip"><div class="cell">思源宋体</div><div class="cell">狮尾四季春</div><div class="cell">源样明体</div><div class="cell">文津宋体</div><div class="cell">猫啃网风雅宋</div><div class="cell">源界明朝</div></div></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      document.querySelectorAll('.demo').forEach(function (demo) {
+        var seg = demo.querySelector('[data-width]');
+        if (!seg) return;
+        seg.addEventListener('click', function (ev) {
+          var btn = ev.target.closest('button');
+          if (!btn) return;
+          var wide = btn.textContent === '全宽';
+          demo.classList.toggle('wide', wide);
+          seg.querySelectorAll('button').forEach(function (b) { b.classList.toggle('is-on', b === btn); });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
