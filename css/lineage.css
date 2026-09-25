@@ -1,5 +1,6 @@
-/* 谱系页。规则真源 docs/DESIGN-SYSTEM.md：chrome 只有黑白灰，工具用现成组件（chips/seg），
-   正文（树/墙）细线平铺；字体名样张不受 UI 字阶限制；数字 700 + tabular-nums，不用衬线。 */
+/* 谱系页。规则真源 docs/DESIGN-SYSTEM.md。
+   样张=「永」字一列（永字八法，一字识一款）；名字走 UI 字体建立秩序；
+   宽族默认收纳按需展开；墙=灰底圆角格（stat-cell 语言）。 */
 
 .lg-toolbar { gap: var(--s-4); padding: var(--s-3) 0; flex-wrap: wrap; }
 .lg-toolbar .chips { flex-wrap: wrap; row-gap: 0.4rem; }
@@ -9,46 +10,58 @@
 .lg-stage { padding: var(--s-2) 0 var(--s-6); }
 .lg-foot { font-size: var(--fs-13); color: var(--gray); padding-bottom: var(--s-10); }
 
-/* 排印原子 */
-.lg-spec { line-height: var(--lh-snug); color: var(--ink); white-space: nowrap; }
-.lg-meta { font-size: var(--fs-12); color: var(--gray-2); font-variant-numeric: tabular-nums; white-space: nowrap; display: inline-flex; align-items: baseline; gap: 0.4em; }
-.lg-meta b { color: var(--gray); font-weight: var(--fw-label); }
-.lg-meta .icon { color: var(--gray-2); align-self: center; }
-
-/* ===== 谱 · 纵向家谱（正文区细线平铺） ===== */
-.lg-tree { --step: 2.4rem; }
+/* ===== 谱 · 纵向家谱（正文细线平铺） ===== */
+.lg-tree { --step: 1.9rem; }
 .lg-tree ul { list-style: none; margin: 0; padding: 0; }
-.lg-tree li { position: relative; padding-left: calc(var(--step) + 0.7rem); }
+.lg-tree li { position: relative; padding-left: calc(var(--step) + 0.6rem); }
 .lg-tree li::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--rule); }
 .lg-tree li.lg-last::before { display: none; }
-.lg-tree li > .lg-node { position: relative; }
-.lg-tree li > .lg-node::before { content: ""; position: absolute; left: calc(-0.7rem - 1px); top: 50%; width: 0.7rem; height: 1px; background: var(--rule); }
-.lg-node { display: flex; align-items: baseline; gap: var(--s-4); padding: 0.55rem 0; text-decoration: none; }
-a.lg-node:hover .lg-spec { text-decoration: underline; text-underline-offset: 0.32em; text-decoration-thickness: 1px; }
-.lg-node .lg-spec { font-size: var(--fs-20); }
-.lg-node .lg-meta { margin-left: auto; }
-.lg-node.is-root > .lg-spec { font-size: var(--fs-28); font-weight: var(--fw-title); }
-.lg-node.is-ghost > .lg-spec { color: var(--gray-2); font-size: var(--fs-14); }
+.lg-tree li > .lg-node, .lg-tree li > .lg-fold { position: relative; }
+.lg-tree li > .lg-node::before { content: ""; position: absolute; left: calc(-0.6rem - 1px); top: 50%; width: 0.6rem; height: 1px; background: var(--rule); }
 
-/* ===== 墙 · 分带样张墙（正文区细线平铺） ===== */
+.lg-node { display: flex; align-items: center; gap: var(--s-3); padding: 0.42rem 0; text-decoration: none; min-height: 2.4rem; }
+a.lg-node:hover .lg-name { text-decoration: underline; text-underline-offset: 0.32em; text-decoration-thickness: 1px; }
+
+.lg-yong { flex: none; width: 2.1rem; font-size: var(--fs-20); line-height: 1; color: var(--ink); text-align: center; font-weight: var(--fw-body); }
+.lg-name { font-size: var(--fs-14); color: var(--ink); display: inline-flex; align-items: center; gap: 0.45em; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lg-name .icon { color: var(--gray-2); flex: none; }
+.lg-meta { margin-left: auto; font-size: var(--fs-12); color: var(--gray-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lg-meta b { color: var(--gray); font-weight: var(--fw-label); }
+
+.lg-node.is-root { min-height: 3.4rem; }
+.lg-node.is-root .lg-yong { width: 2.6rem; font-size: var(--fs-28); }
+.lg-node.is-root .lg-name { font-size: var(--fs-16); font-weight: var(--fw-title); }
+.lg-node.is-ghost .lg-name { color: var(--gray-2); }
+.lg-node.is-ghost .lg-yong { color: var(--gray-2); }
+
+/* 展开收起 */
+.lg-fold { appearance: none; background: none; border: none; padding: 0.3rem 0; font: inherit; font-size: var(--fs-12); color: var(--gray); cursor: pointer; display: inline-flex; align-items: center; gap: 0.4em; }
+.lg-fold:hover { color: var(--ink); }
+.lg-fold .icon { flex: none; }
+
+/* ===== 墙 · 分带样张格（灰底圆角，stat-cell 语言） ===== */
 .lg-band + .lg-band { margin-top: var(--s-6); }
-.lg-band-cap { display: flex; align-items: baseline; gap: var(--s-3); margin-bottom: var(--s-3); border-bottom: 1px solid var(--rule); padding-bottom: var(--s-2); }
-.lg-band-cap .yr { font-size: var(--fs-16); font-weight: var(--fw-title); font-variant-numeric: tabular-nums; color: var(--ink); }
+.lg-band-cap { display: flex; align-items: center; gap: var(--s-3); margin-bottom: var(--s-3); border-bottom: 1px solid var(--rule); padding-bottom: var(--s-2); }
+.lg-band-cap .yr { font-size: var(--fs-14); font-weight: var(--fw-title); font-variant-numeric: tabular-nums; color: var(--ink); }
 .lg-band-cap .t { font-size: var(--fs-12); letter-spacing: 0.14em; color: var(--gray); display: inline-flex; align-items: center; gap: 0.4em; }
 .lg-band-cap .t .icon { color: var(--gray); }
-.lg-band-cap .rule { flex: 0 0 var(--s-6); }
-.lg-wall { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 2.4rem; row-gap: var(--s-4); }
-.lg-item { text-decoration: none; }
-.lg-item .lg-spec { font-size: var(--fs-28); }
-.lg-item.is-root .lg-spec { font-size: var(--fs-40); }
-.lg-item.is-ghost .lg-spec { color: var(--gray-2); font-size: var(--fs-16); }
-.lg-item .lg-meta { display: flex; margin-top: 0.4rem; }
+.lg-band-cap .rule { flex: 1; border-bottom: 1px solid transparent; }
+
+.lg-wall { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.lg-cell { display: flex; flex-direction: column; gap: 0.35rem; background: var(--fill); border-radius: var(--radius-sm); padding: var(--s-4) var(--s-5); color: inherit; text-decoration: none; min-width: 9.5rem; flex: 0 1 auto; }
+.lg-cell:hover { background: var(--surface-2); }
+.lg-cell .lg-yong { width: auto; font-size: var(--fs-28); text-align: left; }
+.lg-cell .lg-name { font-size: var(--fs-13); }
+.lg-cell .lg-meta { display: block; margin: 0; }
+.lg-cell.is-root { background: var(--ink); }
+.lg-cell.is-root .lg-yong, .lg-cell.is-root .lg-name { color: var(--on-ink); }
+.lg-cell.is-root .lg-meta { color: var(--on-ink-2); }
+.lg-cell.is-root .lg-yong { font-size: var(--fs-40); }
+.lg-cell.is-ghost { background: none; border: 1px dashed var(--rule); }
+.lg-cell.is-ghost .lg-yong { color: var(--gray-2); font-size: var(--fs-20); }
 
 @media (max-width: 40rem) {
-  .lg-node { flex-wrap: wrap; row-gap: 0.15rem; }
+  .lg-node { flex-wrap: wrap; row-gap: 0.1rem; }
   .lg-node .lg-meta { margin-left: 0; flex-basis: 100%; }
-  .lg-node .lg-spec { font-size: var(--fs-16); }
-  .lg-node.is-root > .lg-spec { font-size: var(--fs-20); }
-  .lg-item .lg-spec { font-size: var(--fs-20); }
-  .lg-item.is-root .lg-spec { font-size: var(--fs-28); }
+  .lg-cell { min-width: calc(50% - var(--s-3)); }
 }
