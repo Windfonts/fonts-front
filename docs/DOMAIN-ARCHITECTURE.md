@@ -227,20 +227,21 @@ https://{cn|hk|en|jp}.windfonts.com/api/css?family=&weight=&version=
 
 | 主机 | 状态 |
 |---|---|
-| `app.windfonts.com` | 仍指向 **Next 服务器**（同时有 `/api/*` 与部分 `/fonts` 页） |
-| `api.windfonts.com` | 本机探测 **DNS/TLS 未通** |
-| `vault.windfonts.com` | 需新建 DNS + 证书 + 指到现网 Next |
-| `cn.windfonts.com` | CyberCDN 可用；`/api/css` 已回源 vault（Host 现为 app） |
-| `hk` / `en` / `jp` | 规划 CF；部分解析环境无 A，需 infra 验收 |
+| `app.windfonts.com` | 仍指向 **Next**（过渡）；终态改绑 OSS |
+| `api.windfonts.com` | 未开（网关预留） |
+| `vault.windfonts.com` | **已通（2026-09-25）**：DNS A→`45.117.8.70`，通配证 `*.windfonts.com`，nginx 双 Host→`:4000`；`/api/fonts` `/api/css` 公网 200 |
+| `cn.windfonts.com` | CyberCDN 可用；`/api/css` 仍回源 Host=`app`（待 N1b 改 `vault`） |
+| OSS `wenfeng-web` | **已建**（广州，与 `wenfeng-fonts` 分桶）；账号禁桶级 public-read，上线靠桶策略或 CDN 回源；同步脚本 `scripts/deploy-oss-front.sh` |
+| `hk` / `en` / `jp` | 规划 CF；需 infra 验收 |
 
-**迁移顺序建议（降低一次切死）：**
+**迁移进度：**
 
-1. **给现网 Next 增加证书主机名 `vault.windfonts.com`**（与现 app 同上游，双 Host）。
-2. CDN `/api/css` 回源 Host 逐步改为 `vault.`（或先并存）。
-3. 前台 `WFProto.CSS_API` → `https://vault.windfonts.com`；脚本 `WF_API_ORIGIN` 同。
-4. **`app.windfonts.com` 改绑 OSS**（fonts-front），摘掉 Next 静态页职责；Next 只响应 vault Host（及过渡期 app 上的 `/api` 可 301/反代到 vault）。
-5. 需要时再立 **`api.windfonts.com` 网关**，把 vault（及以后 WP API）接在后面。
-6. WP（`windfonts.com`）与 vault 的账号/订阅打通单独立项，不阻塞 OSS 上线。
+1. ~~vault 双 Host~~ **完成**
+2. CDN `/api/css` origin_host → vault：**脚本已备**（cybercdn `n1b-windfonts-origin-host-vault.py`），待边缘 ansible 应用
+3. ~~前台 `CSS_API` → vault~~ **完成**（本仓）
+4. **`app` → OSS**：桶已建；内容同步 + 自定义域/CDN + 从 Next 摘 DNS **未做**
+5. `api.` 网关：未开
+6. WP 账号打通：未做
 
 ---
 
@@ -287,7 +288,7 @@ WF_API_ORIGIN=https://app.windfonts.com node scripts/sync-font-counts.mjs --writ
 
 ## 8. 验收清单（infra + 前端）
 
-- [ ] `vault.windfonts.com` 解析到 Next 上游，HTTPS 有效；`GET /api/fonts?page=1&size=1` → 200
+- [x] `vault.windfonts.com` 解析到 Next 上游，HTTPS 有效；`GET /api/fonts?page=1&size=1` → 200
 - [ ] `app.windfonts.com` 绑 OSS 后，HTML 为 fonts-front；`/fonts/ibmps` rewrite 正确；**无**把整站交给 Next
 - [ ] `cn…/api/css?...` 回源 Host 为 vault（或经可配置网关）
 - [ ] 前台 `CSS_API` 指向 vault；嵌入示例仍为地区 CDN
@@ -437,3 +438,4 @@ P3 有余力
 | 2026-09-25 | 初稿。纠正「api 直绑 Next」；定稿 vault / app OSS / WP / CDN / api 网关预留。 |
 | 2026-09-25 | §9：其余域名与 OSS/邮件/预发/webhook 等资源分配清单与优先级。 |
 | 2026-09-25 | 目录 + §9 总览表；CONSOLE / FRONTEND-STANDARDS / HANDOFF 交叉链对齐。 |
+| 2026-09-25 | 落地 vault DNS/TLS/nginx；建 OSS `wenfeng-web`；CDN Host→vault 待边缘应用。 |
