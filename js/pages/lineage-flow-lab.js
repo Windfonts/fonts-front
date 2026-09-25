@@ -1,6 +1,6 @@
 /* 谱系关系图实验室
    - 四模式：激活 (plex) / 图 (flow) / 簇 (cluster) / 墙 (wall)；URL ?mode=
-   - 激活：TheBrain 邻域 — 父上、子下、旁侧兄弟（封顶）；宽扇叶先收成门闸；点门闸在图内展开该支上下级（收起其他支），无下拉名单；点卡 ?focus= 重布
+   - 激活：TheBrain 邻域 — 父上、子下、旁侧兄弟（封顶）；宽扇叶插入真实「xx系字体」中间节点；点该节点激活即见上级+下级；同类主题支同理
    - 簇：宽扇叶（≥8 子）按 CJK 前缀 / owner 收成簇卡；展开为 L→R 分层小图
    - 图：每父可见子卡封顶 +「还有 k 款」
    - 墙：标本/名墙，可滤簇
@@ -149,14 +149,14 @@
   }
 
   function faceOf(font) {
-    if (!font || font.ghost || font.isCluster || font.isMore || !font.family) return '';
+    if (!font || font.ghost || font.isCluster || font.isMore || font.isSeries || !font.family) return '';
     const w = weightOf(font);
     WFProto.ensureFontCss(font.family, w);
     return 'font-family:' + WFProto.cssFamilyStack(font.family) + ';font-weight:' + w;
   }
 
   function licShort(font) {
-    if (!font || font.ghost || font.isCluster || font.isMore) return '';
+    if (!font || font.ghost || font.isCluster || font.isMore || font.isSeries) return '';
     const ln = String(font.licenseName || font.license || '');
     if (/OFL|Open Font License/i.test(ln)) return 'OFL';
     if (/IPA/i.test(ln)) return 'IPA';
@@ -171,7 +171,7 @@
   }
 
   function whoOf(font) {
-    if (!font || font.ghost || font.isCluster || font.isMore) return '';
+    if (!font || font.ghost || font.isCluster || font.isMore || font.isSeries) return '';
     const info = font.ownerInfo || font.foundryInfo || font.makerInfo || font.brand;
     if (info) return info.short || info.name || info.en || '';
     return font.foundry || '';
@@ -194,7 +194,7 @@
   }
 
   function relLabel(node, parent) {
-    if (!node || node.ghost || node.outgroup || node.isCluster || node.isMore) return '';
+    if (!node || node.ghost || node.outgroup || node.isCluster || node.isMore || node.isSeries) return '';
     const rec = node.lineage || {};
     const r = rec.relation || '';
     if (REL_LABEL[r]) return REL_LABEL[r];
@@ -303,6 +303,76 @@
     return forest.children[node.id] || [];
   }
 
+
+  /* 把宽扇叶收成真实中间节点：父 →「狮尾系字体」→ 成员 */
+  function injectSeriesNodes(forest) {
+    const parentIds = Object.keys(forest.children);
+    parentIds.forEach(function (pid) {
+      const parent = forest.byId[pid];
+      if (!parent || parent.isSeries || parent.isCluster || parent.isMore) return;
+      const sibs = (forest.children[pid] || []).filter(function (c) {
+        return c && !c.isSeries && !c.isCluster && !c.isMore && !c.isPlexGate && !c.ghost;
+      });
+      const packed = clusterSiblings(parent, sibs, Math.max(PREFIX_MIN_MEMBERS, 3));
+      if (!packed.clusters.length) return;
+
+      const used = {};
+      const newKids = [];
+      packed.clusters.forEach(function (c) {
+        const sid = 'series:' + parent.id + ':' + c.kind + ':' + c.key;
+        if (forest.byId[sid] && forest.byId[sid].isSeries) {
+          newKids.push(forest.byId[sid]);
+          c.members.forEach(function (m) { used[m.id] = true; });
+          return;
+        }
+        const title = c.title || (c.key + '系');
+        const label = /字体$/.test(title) ? title : (title + '字体');
+        let year = 9999;
+        c.members.forEach(function (m) {
+          if (m.releaseYear && m.releaseYear < year) year = m.releaseYear;
+        });
+        const series = {
+          isSeries: true,
+          id: sid,
+          name: label,
+          seriesTitle: title,
+          seriesCount: c.members.length,
+          members: c.members.slice(),
+          clusterKey: c.key,
+          clusterKind: c.kind,
+          releaseYear: year === 9999 ? 0 : year
+        };
+        forest.byId[sid] = series;
+        forest.parentOf[sid] = parent.id;
+        forest.children[sid] = c.members.slice().sort(function (a, b) {
+          return (a.releaseYear || 9999) - (b.releaseYear || 9999) ||
+            String(a.name).localeCompare(b.name, 'zh');
+        });
+        c.members.forEach(function (m) {
+          forest.parentOf[m.id] = sid;
+          used[m.id] = true;
+        });
+        newKids.push(series);
+      });
+      packed.leftover.forEach(function (s) {
+        if (!used[s.id]) newKids.push(s);
+      });
+      (forest.children[pid] || []).forEach(function (c) {
+        if (c && c.isSeries && newKids.indexOf(c) === -1) newKids.push(c);
+      });
+      newKids.sort(function (a, b) {
+        const ac = a.isSeries ? (a.seriesCount || 0) : 0;
+        const bc = b.isSeries ? (b.seriesCount || 0) : 0;
+        if (bc !== ac) return bc - ac;
+        return (a.releaseYear || 9999) - (b.releaseYear || 9999) ||
+          String(a.name).localeCompare(b.name, 'zh');
+      });
+      forest.children[pid] = newKids;
+    });
+    return forest;
+  }
+
+
   /* —— prefix / owner clustering —— */
   function cjkBrandPrefix(name) {
     const m = String(name || '').match(/^[\u4e00-\u9fff]{2,8}/);
@@ -361,9 +431,10 @@
     return groups;
   }
 
-  function clusterSiblings(parent, siblings) {
-    if (!siblings || siblings.length < FAN_CLUSTER_MIN) {
-      return { clusters: [], leftover: siblings.slice() };
+  function clusterSiblings(parent, siblings, minFan) {
+    if (minFan == null) minFan = FAN_CLUSTER_MIN;
+    if (!siblings || siblings.length < minFan) {
+      return { clusters: [], leftover: (siblings || []).slice() };
     }
     const pref = detectPrefixGroups(siblings);
     const ownerGroups = detectOwnerGroups(siblings, pref.used);
@@ -464,21 +535,21 @@
   function pickDefaultFocus(forest, preferId) {
     if (preferId && forest.byId[preferId]) {
       const n = forest.byId[preferId];
-      if (!n.isCluster && !n.isMore) return n;
+      if (!n.isCluster && !n.isMore && !n.isPlexGate) return n;
     }
     /* prefer a listed (non-ghost) node with the most children; else first root */
     let best = null;
     let bestN = -1;
     Object.keys(forest.byId).forEach(function (id) {
       const n = forest.byId[id];
-      if (!n || n.ghost || n.outgroup || n.isCluster || n.isMore) return;
+      if (!n || n.ghost || n.outgroup || n.isCluster || n.isMore || n.isSeries || n.isPlexGate) return;
       const k = kidsOf(n, forest).length;
       if (k > bestN) { bestN = k; best = n; }
     });
     if (best) return best;
     for (let i = 0; i < forest.roots.length; i++) {
       const r = forest.roots[i];
-      if (!r.isCluster && !r.isMore) return r;
+      if (!r.isCluster && !r.isMore && !r.isSeries) return r;
     }
     return forest.roots[0] || null;
   }
@@ -532,7 +603,7 @@
     const cy = 300;
 
     function place(node, x, y, h, extra) {
-      const hh = h || (node.isCluster || node.isPlexGate ? CARD_H_CLUSTER : CARD_H);
+      const hh = h || (node.isCluster || node.isPlexGate || node.isSeries ? CARD_H_CLUSTER : CARD_H);
       const pos = { x: x, y: y, w: CARD_W, h: hh, node: node };
       if (extra) Object.keys(extra).forEach(function (k) { pos[k] = extra[k]; });
       positions[node.id] = pos;
@@ -569,182 +640,93 @@
       py -= PLEX_V_GAP + CARD_H;
     }
 
-    /* —— children below：有 plexBranch 时只展开该支成员；否则宽扇叶收成门闸 —— */
-    const branchOn = !!(plexBranch && plexBranch.parentId === focus.id && plexBranch.memberIds && plexBranch.memberIds.length);
+    /* —— children below：系节点已在 forest 里，直接画 kids —— */
     const kids = kidsOf(focus, forest).slice();
-    let childFontNodes = [];
-    let childGateRows = [];
+    const childFonts = kids.filter(function (k) { return !k.isSeries && !k.isCluster && !k.isMore && !k.isPlexGate; });
+    const childSeries = kids.filter(function (k) { return k.isSeries; });
+    const childOther = kids.filter(function (k) {
+      return !k.isSeries && (k.isCluster || k.isMore || k.isPlexGate);
+    });
 
-    if (branchOn) {
-      const allow = memberIdSet(plexBranch.memberIds);
-      childFontNodes = kids.filter(function (k) { return allow[k.id]; });
-      /* 成员可能不在 kidsOf（数据扁平时仍按名单画，挂到当前焦点下） */
-      if (!childFontNodes.length) {
-        plexBranch.memberIds.forEach(function (id) {
-          const n = forest.byId[id];
-          if (n && !n.isCluster && !n.isMore && !n.isPlexGate) childFontNodes.push(n);
-        });
-      }
-      childFontNodes.sort(function (a, b) {
-        return String(a.name).localeCompare(b.name, 'zh');
+    if (focus.isSeries) {
+      const nodes = kids.filter(function (k) {
+        return !k.isSeries && !k.isCluster && !k.isMore;
       });
-    } else {
-      const childRows = [];
-      if (kids.length >= FAN_CLUSTER_MIN) {
-        const packed = clusterSiblings(focus, kids);
-        packed.clusters.forEach(function (c) {
-          const gate = {
-            isPlexGate: true,
-            id: 'plexgate:' + c.id,
-            name: c.title,
-            gateTitle: c.title,
-            gateCount: c.members.length,
-            gateSub: '主题支 · 点开后只留本支上下级',
-            members: c.members,
-            clusterKey: c.key,
-            clusterKind: c.kind,
-            parentId: focus.id
-          };
-          synthetic[gate.id] = gate;
-          childRows.push({ type: 'gate', node: gate });
-        });
-        packed.leftover.forEach(function (k) { childRows.push({ type: 'font', node: k }); });
-      } else {
-        kids.forEach(function (k) { childRows.push({ type: 'font', node: k }); });
+      placeChildRows(place, edges, focus, nodes, focusX, focusY, cx, { compact: true });
+    } else if (childSeries.length || childOther.length) {
+      const ordered = childSeries.concat(childOther).concat(childFonts);
+      let show = ordered;
+      if (show.length > PLEX_CHILD_CAP) {
+        const seriesFirst = childSeries.concat(childOther);
+        const room = Math.max(0, PLEX_CHILD_CAP - seriesFirst.length);
+        show = seriesFirst.concat(childFonts.slice(0, room));
       }
-
-      let visibleChildren = childRows;
-      if (visibleChildren.length > PLEX_CHILD_CAP) {
-        const rest = visibleChildren.slice(PLEX_CHILD_CAP);
-        visibleChildren = visibleChildren.slice(0, PLEX_CHILD_CAP);
-        const moreMembers = [];
-        rest.forEach(function (r) {
-          if (r.type === 'font') moreMembers.push(r.node);
-          else if (r.node && r.node.members) moreMembers.push.apply(moreMembers, r.node.members);
-        });
-        const childMore = {
-          isPlexGate: true,
-          id: 'plexgate:more-kids:' + focus.id,
-          name: '还有 ' + rest.length + ' 项',
-          gateTitle: '还有 ' + rest.length + ' 项',
-          gateCount: moreMembers.length || rest.length,
-          gateSub: '其余子级 · 点开后在图内展开',
-          members: moreMembers.length ? moreMembers : rest.map(function (r) { return r.node; }).filter(Boolean),
-          parentId: focus.id
-        };
-        synthetic[childMore.id] = childMore;
-        visibleChildren.push({ type: 'gate', node: childMore });
-      }
-      visibleChildren.forEach(function (row) {
-        if (row.type === 'gate') childGateRows.push(row.node);
-        else childFontNodes.push(row.node);
-      });
-    }
-
-    if (branchOn || (!childGateRows.length && childFontNodes.length)) {
-      placeChildRows(place, edges, focus, childFontNodes, focusX, focusY, cx, { compact: true });
-    } else {
-      /* 门闸 + 零散字体同一行 */
-      const visibleChildren = childGateRows.map(function (n) { return { type: 'gate', node: n }; })
-        .concat(childFontNodes.map(function (n) { return { type: 'font', node: n }; }));
-      /* 保持门闸在前、leftover 在后的大致顺序：上面已分，这里按 gate 再 font */
-      const ordered = [];
-      childGateRows.forEach(function (n) { ordered.push(n); });
-      childFontNodes.forEach(function (n) { ordered.push(n); });
       const childY = focusY + CARD_H + PLEX_V_GAP;
-      const childTotalW = ordered.length * CARD_W + Math.max(0, ordered.length - 1) * PLEX_H_GAP;
+      const childTotalW = show.length * CARD_W + Math.max(0, show.length - 1) * PLEX_H_GAP;
       let childX = cx - childTotalW / 2;
-      ordered.forEach(function (n) {
-        const h = n.isPlexGate ? CARD_H_CLUSTER : CARD_H_COMPACT;
-        place(n, childX, childY, h, { role: 'child', compact: !n.isPlexGate });
+      show.forEach(function (n) {
+        const h = (n.isSeries || n.isCluster || n.isPlexGate) ? CARD_H_CLUSTER : CARD_H_COMPACT;
+        place(n, childX, childY, h, {
+          role: 'child',
+          compact: !(n.isSeries || n.isCluster || n.isPlexGate)
+        });
         edges.push({
           from: focus.id,
           to: n.id,
-          label: n.isPlexGate ? '衍生' : relLabel(n, focus)
+          label: n.isSeries ? '主题支' : (n.isCluster || n.isPlexGate ? '衍生' : relLabel(n, focus))
         });
         childX += CARD_W + PLEX_H_GAP;
       });
+    } else {
+      placeChildRows(place, edges, focus, childFonts, focusX, focusY, cx, { compact: true });
     }
 
-    /* —— siblings / 旁系：进入主题支后不画其他支门闸 —— */
+    /* —— siblings：同级系节点与近旁字体 —— */
     const parentId = forest.parentOf[focus.id];
-    if (!branchOn && parentId && forest.byId[parentId]) {
+    if (parentId && forest.byId[parentId]) {
       const parent = forest.byId[parentId];
       const allSibs = kidsOf(parent, forest).filter(function (s) { return s.id !== focus.id; });
-      const packed = clusterSiblings(parent, kidsOf(parent, forest));
-      const homeCluster = packed.clusters.filter(function (c) {
-        return c.members.some(function (m) { return m.id === focus.id; });
-      })[0];
+      const seriesSibs = allSibs.filter(function (s) { return s.isSeries; });
+      const fontSibs = allSibs.filter(function (s) { return !s.isSeries && !s.isCluster && !s.isMore; });
 
       let left = [];
       let right = [];
-      let sideGates = [];
+      let sideSeries = [];
 
-      if (homeCluster && homeCluster.members.length >= PLEX_GATE_FAN) {
-        const others = homeCluster.members.filter(function (m) { return m.id !== focus.id; });
-        const near = pickNearSiblings(others, focus, PLEX_SIBLING_SIDE * 2);
+      if (focus.isSeries) {
+        sideSeries = seriesSibs.slice(0, 4);
+      } else if (fontSibs.length >= PLEX_GATE_FAN || seriesSibs.length) {
+        const near = pickNearSiblings(fontSibs, focus, PLEX_SIBLING_SIDE * 2);
         left = near.slice(0, PLEX_SIBLING_SIDE);
         right = near.slice(PLEX_SIBLING_SIDE);
-        /* 同前缀内不再侧挂大门闸；其他主题支可侧挂入口 */
-        packed.clusters.forEach(function (c) {
-          if (c.id === homeCluster.id) return;
-          sideGates.push({
-            isPlexGate: true,
-            id: 'plexgate:fan:' + c.id,
-            name: c.title,
-            gateTitle: c.title,
-            gateCount: c.members.length,
-            gateSub: '宽扇叶 · 点开只留本支',
-            members: c.members,
-            clusterKey: c.key,
-            clusterKind: c.kind,
-            parentId: parent.id
-          });
-        });
-      } else if (allSibs.length >= PLEX_GATE_FAN) {
-        const near = pickNearSiblings(allSibs, focus, PLEX_SIBLING_SIDE * 2);
-        left = near.slice(0, PLEX_SIBLING_SIDE);
-        right = near.slice(PLEX_SIBLING_SIDE);
-        packed.clusters.forEach(function (c) {
-          sideGates.push({
-            isPlexGate: true,
-            id: 'plexgate:fan:' + c.id,
-            name: c.title,
-            gateTitle: c.title,
-            gateCount: c.members.length,
-            gateSub: '宽扇叶 · 点开只留本支',
-            members: c.members,
-            clusterKey: c.key,
-            clusterKind: c.kind,
-            parentId: parent.id
-          });
-        });
+        sideSeries = seriesSibs.slice(0, 4);
       } else {
-        const near = allSibs.slice(0, PLEX_SIBLING_SIDE * 2);
+        const near = fontSibs.slice(0, PLEX_SIBLING_SIDE * 2);
         left = near.slice(0, Math.ceil(near.length / 2));
         right = near.slice(Math.ceil(near.length / 2));
       }
 
-      const sibY = focusY;
       left.forEach(function (s, i) {
         const x = focusX - (i + 1) * (CARD_W + PLEX_H_GAP);
-        place(s, x, sibY, CARD_H_COMPACT, { role: 'sibling', compact: true });
+        place(s, x, focusY, CARD_H_COMPACT, { role: 'sibling', compact: true });
         edges.push({ from: focus.id, to: s.id, label: '旁', soft: true });
       });
       right.forEach(function (s, i) {
         const x = focusX + CARD_W + (i + 1) * PLEX_H_GAP + i * CARD_W;
-        place(s, x, sibY, CARD_H_COMPACT, { role: 'sibling', compact: true });
+        place(s, x, focusY, CARD_H_COMPACT, { role: 'sibling', compact: true });
         edges.push({ from: focus.id, to: s.id, label: '旁', soft: true });
       });
-      sideGates.forEach(function (sideGate, gi) {
-        synthetic[sideGate.id] = sideGate;
-        const gx = focusX + CARD_W + PLEX_H_GAP + (right.length) * (CARD_W + PLEX_H_GAP) + gi * (CARD_W + PLEX_H_GAP);
+      sideSeries.forEach(function (s, gi) {
+        if (positions[s.id]) return;
+        const gx = focusX + CARD_W + PLEX_H_GAP + right.length * (CARD_W + PLEX_H_GAP) + gi * (CARD_W + PLEX_H_GAP);
         const gy = focusY - PLEX_V_GAP - 8;
-        place(sideGate, Math.max(gx, focusX + CARD_W + PLEX_H_GAP), gy, CARD_H_CLUSTER, { role: 'gate' });
-        edges.push({ from: parent.id, to: sideGate.id, label: '', soft: true });
+        place(s, Math.max(gx, focusX + CARD_W + PLEX_H_GAP), gy, CARD_H_CLUSTER, { role: 'series-jump' });
+        edges.push({ from: parent.id, to: s.id, label: '主题支', soft: true });
       });
-    } else if (!branchOn && !parentId && kids.length === 0 && forest.roots.length > 1) {
-      const others = forest.roots.filter(function (r) { return r.id !== focus.id; }).slice(0, 4);
+    } else if (!parentId && kids.length === 0 && forest.roots.length > 1) {
+      const others = forest.roots.filter(function (r) {
+        return r.id !== focus.id && !r.isSeries;
+      }).slice(0, 4);
       others.forEach(function (s, i) {
         const leftSide = i % 2 === 0;
         const idx = Math.floor(i / 2);
@@ -754,28 +736,6 @@
         place(s, x, focusY, CARD_H_COMPACT, { role: 'jump', compact: true });
         edges.push({ from: focus.id, to: s.id, label: '跳', soft: true });
       });
-    } else if (branchOn && parentId && forest.byId[parentId]) {
-      /* 支线模式：旁侧不铺其他支，仅保留焦点近旁同支成员（若焦点是成员之一） */
-      const allow = memberIdSet(plexBranch.memberIds);
-      if (allow[focus.id]) {
-        const parent = forest.byId[parentId];
-        const sibs = kidsOf(parent, forest).filter(function (s) {
-          return s.id !== focus.id && allow[s.id];
-        });
-        const near = pickNearSiblings(sibs, focus, PLEX_SIBLING_SIDE * 2);
-        const left = near.slice(0, PLEX_SIBLING_SIDE);
-        const right = near.slice(PLEX_SIBLING_SIDE);
-        left.forEach(function (s, i) {
-          const x = focusX - (i + 1) * (CARD_W + PLEX_H_GAP);
-          place(s, x, focusY, CARD_H_COMPACT, { role: 'sibling', compact: true });
-          edges.push({ from: focus.id, to: s.id, label: '旁', soft: true });
-        });
-        right.forEach(function (s, i) {
-          const x = focusX + CARD_W + (i + 1) * PLEX_H_GAP + i * CARD_W;
-          place(s, x, focusY, CARD_H_COMPACT, { role: 'sibling', compact: true });
-          edges.push({ from: focus.id, to: s.id, label: '旁', soft: true });
-        });
-      }
     }
 
     Object.keys(synthetic).forEach(function (id) {
@@ -1208,6 +1168,15 @@
   function cardHtml(pos) {
     const n = pos.node;
     const id = n.id;
+    if (n.isSeries) {
+      return '<article class="lfl-card is-series' + (pos.activated ? ' is-activated' : '') +
+        '" data-id="' + esc(id) + '" data-series="1" style="left:' +
+        pos.x + 'px;top:' + pos.y + 'px;width:' + pos.w + 'px" tabindex="0" role="button">' +
+        '<div class="lfl-series-title"><span>' + esc(n.name) + '</span>' +
+        '<span class="lfl-series-count">' + (n.seriesCount || (n.members && n.members.length) || 0) + '</span></div>' +
+        '<span class="lfl-series-sub">主题支 · 点此查看上下级</span>' +
+        '</article>';
+    }
     if (n.isPlexGate) {
       return '<article class="lfl-card is-plex-gate" data-id="' + esc(id) + '" data-plex-gate="1" style="left:' +
         pos.x + 'px;top:' + pos.y + 'px;width:' + pos.w + 'px" tabindex="0" role="button">' +
@@ -1329,8 +1298,12 @@
         if (ev.target.closest('[data-nav]')) return;
         const id = el.getAttribute('data-id');
         const node = layout.positions[id] && layout.positions[id].node;
+        if (node && node.isSeries) {
+          activateFocus(id);
+          return;
+        }
         if (node && node.isPlexGate) {
-          enterPlexBranch(node);
+          if (node.parentId) activateFocus(node.parentId);
           return;
         }
         if (node && node.isCluster) {
@@ -1613,7 +1586,7 @@
     }
 
     const members = all.filter(function (f) { return f.lineage && f.lineage.group === curGroup; });
-    const forest = buildForest(members, all);
+    const forest = injectSeriesNodes(buildForest(members, all));
     forestCache = forest;
     detectedClusters = collectDetectedClusters(forest);
     renderClusterNav();
