@@ -296,13 +296,13 @@
         '&mode=plex&focus=' + encodeURIComponent(font.id)
       : (font.id ? 'lineage.html?view=' + graphView + '&mode=plex&focus=' + encodeURIComponent(font.id) : '');
     const graph = graphHref
-      ? '<a class="btn ink" href="' + WFChrome.href(graphHref) + '">' + WFChrome.icon('branch') + '在谱系图中查看</a>'
+      ? '<a class="btn-text" href="' + WFChrome.href(graphHref) + '">' + WFChrome.icon('branch') + '在谱系图中查看</a>'
       : '';
     const upload = open
       ? '<a class="btn ink-design" href="' + WFChrome.href('app/upload.html?upstream=' + encodeURIComponent(font.id)) + '">' + WFChrome.icon('upload') + '上传你的字体</a>'
       : '';
     const acts = upload || kin || graph
-      ? '<div class="lin-acts">' + graph + kin + upload + '</div>'
+      ? '<div class="lin-acts">' + kin + upload + graph + '</div>'
       : '';
     return tree + acts;
   }
