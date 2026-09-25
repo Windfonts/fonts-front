@@ -74,10 +74,20 @@
       "title": "详情",
       "items": [
         {
+          "href": "lineage-flow-lab.html",
+          "title": "谱系关系图（zeoseven 范式）",
+          "status": "active",
+          "note": "实验室 · 对齐 zeoseven 关系图范式 · 现网 lineage.html 未改 · 亲属对比页可弃",
+          "assets": [
+            "css/lineage-flow-lab.css",
+            "js/pages/lineage-flow-lab.js"
+          ]
+        },
+        {
           "href": "lineage-kinship-options.html",
           "title": "谱系亲属角色",
           "status": "active",
-          "note": "还原 v4：直系上+旁系下+摘要链；现网未改",
+          "note": "还原 v4：直系上+旁系下+摘要链；现网未改 · 可弃，改看关系图实验室",
           "assets": [
             "css/lineage-kinship-options.css",
             "js/pages/lineage-kinship-options.js"
@@ -87,7 +97,7 @@
           "href": "lineage-kinship-compare.html",
           "title": "谱系亲属四套对照",
           "status": "active",
-          "note": "甲分栏 / 乙单脊 / 丙时间轴 / 丁双栏；现网未改",
+          "note": "甲分栏 / 乙单脊 / 丙时间轴 / 丁双栏；可弃，改看 lineage-flow-lab.html",
           "assets": [
             "css/lineage-kinship-compare.css",
             "js/pages/lineage-kinship-compare.js"
@@ -115,10 +125,20 @@
           "href": "detail-glyphs-options.html",
           "title": "字符表与现网分析",
           "status": "active",
-          "note": "甲折叠卡 / 乙并进摘要 / 丙仅开发 / 丁现页灰盒；现页未改",
+          "note": "甲已否（两击+空fold+2×2卡）；见 v2。乙并进/丙仅开发/丁现页灰盒仍留档",
           "assets": [
             "css/detail-glyphs-options.css",
             "js/pages/detail-glyphs-options.js"
+          ]
+        },
+        {
+          "href": "detail-glyphs-v2-options.html",
+          "title": "现网对照密度 v2",
+          "status": "active",
+          "note": "戊一行结果 / 己紧凑条带；顶栏含已否甲基线。一击见数、无 fold。现页未改",
+          "assets": [
+            "css/detail-glyphs-v2-options.css",
+            "js/pages/detail-glyphs-v2-options.js"
           ]
         },
         {
