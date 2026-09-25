@@ -647,7 +647,8 @@
     '香山毛笔字体': '衡山毛笔',
     'KouzanBrushFont': '衡山毛笔',
     'Y.OzFont': 'YozFont',
-    'YOzFont': 'YozFont'
+    'YOzFont': 'YozFont',
+    'IBM Plex Sans SC': 'IBM Plex 无衬线简体中文'
   };
   /** 仍未入库的外源名：不造假字体行；可挂厂商页 / 原文。已入库源头走 UPSTREAM_FONT / fonts.json。 */
   const UPSTREAM_GHOST = {};

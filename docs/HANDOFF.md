@@ -631,3 +631,16 @@ feibisi 在 yjmct 页点名「字体详情的 出处和依据」后拍板「**�
 - **源界明朝 yjmct**：feibisi 给 fonts.adobe.com/fonts/genkaimincho 拍板「就是 adobe」（Ken Lunde 架构、基于源ノ明朝加破坏效果）——DB 描述/版权归属本来就对，没改作者；只把 `font-lineage.json` 从误挂的 original 改 **fork ← 思源宋体**（group source-han-serif、upstreamOwnerId adobe、licenseFollows inherit），详情页自动串出思源宋体上下游、同源字组、缺字补全对照（上游 250 字）。
 - 验证：yjmct（标准）/ ceym1（出处）/ opsa（待核对）三款 DOM 断言各归各位。
 - 版本参数：detail `20260927m`、wf-proto `20260927k`（全站 HTML 已进位）。提交 `4bf9ee6` 已推 v4-specimen。
+## 27. 2026-09-25 openfontree 对拍 + 谱系四修正 + 可视化三方向小样
+
+feibisi 拍板 openfontree（ZeoSeven 的开源字体关系树仓，CC BY-SA）三条：当货源、可视化自研、繁/日文后续补录扩覆盖。
+
+- **对拍结论**：160 边中 14 条两端在库、12 条我们已有（独立印证）；真缺口 2 + 疑点 2 全部核掉（见下）。他们 1309 款目录=后续 TC/JP 补录选品清单。
+- **谱系修正（font-lineage.json，byName 258 条）**：
+  - 械黑 ← IBM Plex 无衬线简体中文 fork（版权行/maoken 口径互证）；upstreamName 走 UPSTREAM_FONT 别名 `IBM Plex Sans SC`→目录名（wf-chrome.js）
+  - 天王星像素 ← 文泉驿点阵宋体 fork（版权行明写 GPLv2+FE 继承）；ownerId=scott0107000
+  - 寒蝉宽黑体 original→fork ← 光莹黑体（Glow Sans，不在库 lead；版权行三方 Glow/思源/Montserrat）
+  - 文津宋体 upstreamName 思源宋体→源样明体（README 自述「思源宋体及其衍生版本」二次开发，挂最近在库上游）
+- **foundries.json 131 行**：补 frex-sans（械黑计划）行，ownerId 走正路。
+- **lineage-visual-options.html**（设计轨，未定稿）：谱系总览页三方向并排——一 族谱树（画册纵向）/二 年代纵轴（大号衬线年份）/三 溯源河流（横向分代）+ 星图彩蛋。数据全为真实谱系节选。等 feibisi 挑方向。
+- 数据版本参数：font-lineage/foundries `20260927a`、wf-chrome `20260927e`。

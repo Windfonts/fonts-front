@@ -320,8 +320,10 @@
     "寒蝉宽黑体": {
       "ownerId": "chilltype",
       "makerId": "chilltype",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "upstreamName": "光莹黑体",
+      "upstreamOwnerId": "welai",
+      "licenseFollows": "inherit"
     },
     "寒蝉团圆体": {
       "ownerId": "chilltype",
@@ -1876,8 +1878,8 @@
       "group": "source-han-serif",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamOwnerId": "adobe",
-      "upstreamName": "思源宋体"
+      "upstreamOwnerId": "buttaiwan",
+      "upstreamName": "源样明体"
     },
     "文津宋体 P2": {
       "ownerId": "takushun",
@@ -2187,6 +2189,22 @@
       "makerId": "chilltype",
       "relation": "original",
       "licenseFollows": "own"
+    },
+    "械黑": {
+      "ownerId": "frex-sans",
+      "makerId": "frex-sans",
+      "relation": "fork",
+      "upstreamName": "IBM Plex Sans SC",
+      "upstreamOwnerId": "ibm",
+      "licenseFollows": "inherit"
+    },
+    "天王星像素": {
+      "ownerId": "scott0107000",
+      "makerId": "scott0107000",
+      "relation": "fork",
+      "upstreamName": "文泉驿点阵宋体",
+      "upstreamOwnerId": "wenquanyi",
+      "licenseFollows": "inherit"
     }
   }
 }
