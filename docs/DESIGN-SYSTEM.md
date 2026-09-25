@@ -1,5 +1,7 @@
 # 文风字体 · 设计系统（v4 · B「柔和 · 圆润」）
 
+> **微观细节**（许可标签 / 胶囊 / 密度等）：先出多版对照给人选，定稿再进真源。见 [FRONTEND-STANDARDS.md §4.1](FRONTEND-STANDARDS.md)。
+
 > 本文是 UI 的唯一真源。改样式先改这里的规则，再改 `css/tokens.css`；`styleguide.html` 是它的活样张。
 > 配套：[前端规范](FRONTEND-STANDARDS.md) · [AI 原生工作要求](AI-NATIVE.md) · [交接与后续开发](HANDOFF.md)
 

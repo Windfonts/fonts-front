@@ -73,6 +73,16 @@ fonts-front/
 - **响应式**：断点只有 `1024px` 与 `768px`，写在各文件末尾的同名 media 块里；优先用 `auto-fill / minmax` 让网格自适应而不是加断点。
 - **文件归属**：全站可复用 → `components.css`；只在一类页面出现 → `site.css` / `app.css` / `detail.css`；样张相关 → `specimen.css`。
 
+## 4.1 微观视觉：先对照，再定稿
+
+Feng 定规（2026-09-25）：调整**许可标签、胶囊、色块、密度、圆角、字阶微差**这类细节时：
+
+1. **禁止**单方案直接改真源（`fonts.html` / `font-detail.html` / `specimen.css` 等生产页）并推全站。
+2. **必须**先做 **≥2 个可见版本**（优先仓根 `*-options.html` 对照页，或同屏并排截图），写清差异与取舍。
+3. 人选定后再改真源；对照页按 [LAB.md](LAB.md) 留档，并登记 `data/lab-archive.json`。
+4. **例外**：人明确点名「只改这一处、按我说的做」时可单方案落地（仍尽量附前后截图）。
+5. 系统级方向（整站壳、首页留白、顶栏大改）仍走既有 options / 讨论闸，本条管的是微观细节。
+
 ## 5. JavaScript 规范
 
 - IIFE 模块，`'use strict'` 语义（无 `var` 泄漏）；对外只挂一个命名空间 `window.WF*`；页面脚本不导出。
