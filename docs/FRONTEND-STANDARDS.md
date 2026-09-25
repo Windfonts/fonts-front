@@ -157,13 +157,13 @@ Feng 定规（2026-09-25）：调整**许可标签、胶囊、色块、密度、
 
 **硬约束：字体页「动态」= Google Fonts 风格查询参数，不是直连文件。**
 
-- 公开嵌入默认：`https://cn.windfonts.com/api/css?family=&weight=&subset=`（`WFProto.cssApiUrl`，随节点换成 `hk` / `en` / `jp`）。`subset` 为 `full` / `zh` / `zh-common` / `en`。多款用 `|`。CDN：`cn`=CyberCDN，`hk`/`en`/`jp`=Cloudflare。`/api/css` 边缘回源 vault；复制出去的地址不要写成 `app.windfonts.com`（那是字体站）。
+- 公开嵌入默认：`https://cn.windfonts.com/api/css?family=&weight=&subset=`（`WFProto.cssApiUrl`，随节点换成 `hk` / `en` / `jp`）。`subset` 为 `full` / `zh` / `zh-common` / `en`。多款用 `|`。`cn|hk|en|jp` **只做 CDN**；前端 `app`（OSS）；字体 API `vault`（Next）；`api.` 为网关预留。嵌入用地区 CDN。详见 [DOMAIN-ARCHITECTURE.md](DOMAIN-ARCHITECTURE.md)。
 - 多规格产品：示例优先 `font-products.json` 的 `default`；用户在详情选中的规格则输出该规格 `family`。产品 / tier / 退役见 [FAMILY-VARIANTS.md](FAMILY-VARIANTS.md)。
 - **禁止**用 `fonts-packages/.../result.css` 顶替动态嵌入。包路径只给内部预览（`ensureFontCss` / `packageResultUrl`）。
 - **禁止**因 OSS 上 `/api/css` 404 就改前端口径；那是 CDN 边缘回源问题，见 [HANDOFF.md](HANDOFF.md) CDN 节。
 - 预览真源：`https://cn.windfonts.com/fonts-packages/{Normalized}/{Weight}/{full|zh-common}/result.css`。旧路径 `/wenfeng/fonts/{slug}/{weight}/web/` 仅兜底（「静态」）。
 - 生成的 `<link>` 代码前必须带授权标注注释（`WFProto.CDN_LICENSE_NOTE`）。
-- 项目 CDN：`https://cn.windfonts.com/p/{project-slug}/index.css`（vault 读 `data/projects/{slug}.json` 烘焙；控制台「发布到 CDN」→ `POST app…/api/projects/publish`）。对外域名一律地区节点 `cn|hk|en.windfonts.com`。
+- 项目 CDN：`https://cn.windfonts.com/p/{project-slug}/index.css`（vault 读 `data/projects/{slug}.json` 烘焙；控制台「发布到 CDN」→ `POST vault…/api/projects/publish`）。对外域名一律地区节点 `cn|hk|en.windfonts.com`。
 - 页面写死的 CDN 示例（docs / features）须与上表一致；`styleguide` 若展示旧路径须标明「兼容」。
 - 改动态/静态形态前必须用户明确同意。
 

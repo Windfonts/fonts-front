@@ -5,14 +5,15 @@
  *
  *   node scripts/sync-font-counts.mjs              # dry-run 第 1 页
  *   WF_API_KEY=... node scripts/sync-font-counts.mjs --write
- *   WF_API_ORIGIN=https://app.windfonts.com node scripts/sync-font-counts.mjs --write --max-pages=20
+ *   WF_API_ORIGIN=https://vault.windfonts.com node scripts/sync-font-counts.mjs --write --max-pages=20
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const ORIGIN = process.env.WF_API_ORIGIN || 'https://app.windfonts.com';
+/* 过渡期 vault DNS 未通时可：WF_API_ORIGIN=https://app.windfonts.com */
+const ORIGIN = process.env.WF_API_ORIGIN || 'https://vault.windfonts.com';
 const KEY = (process.env.WF_API_KEY || '').trim();
 const WRITE = process.argv.includes('--write');
 const maxPages = Number(

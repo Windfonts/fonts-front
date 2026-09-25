@@ -1,12 +1,13 @@
 # 文风 · 双平台分工与后续工作
 
 > 2026-09-20 定调。后续厂商页、开源作者、缺字、造字、授权、源文件下载、AI 补字，都以本文为准。本仓 `fonts-front` 只做 **Windfonts 分发前端**；造字与授权不在本仓硬做。
+> **域名 / 部署 / 故障隔离：** [DOMAIN-ARCHITECTURE.md](DOMAIN-ARCHITECTURE.md)。
 
 ## 1. 两个站点
 
 | | Windfonts | 文风 org |
 |---|---|---|
-| 域名 | `windfonts.com` · CDN `cn.windfonts.com` | `wenfeng.org` |
+| 域名 | 前端 **`app`**（OSS）；字体后端 **`vault`**（Next）；平台网关预留 **`api.`**；CDN `cn|hk|en|jp`；营销站根域 WP。详见 [DOMAIN-ARCHITECTURE.md](DOMAIN-ARCHITECTURE.md) | `wenfeng.org` |
 | 干什么 | 自有 **分发** 平台：逛库、挑字、子集化、项目 CDN、域名白名单、用量 | **造字、授权、源文件下载**；缺字报告、开源工具、以后 AI 补字 |
 | 用户 | 设计师 / 前端 / 站点运营 | 字体作者、开源贡献者、要补字或下源文件的人 |
 | 产物 | woff2 / 项目 CSS / 嵌入代码 | 源文件（ttf/otf/工程）、许可原文、补字包、改名后的派生字体 |

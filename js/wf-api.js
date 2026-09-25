@@ -16,7 +16,7 @@
   }
 
   function base() {
-    return (window.WFProto && WFProto.CSS_API) || 'https://app.windfonts.com';
+    return (window.WFProto && WFProto.CSS_API) || 'https://vault.windfonts.com';
   }
 
   function isMock() { return mode() !== 'live'; }

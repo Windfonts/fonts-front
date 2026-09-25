@@ -1,6 +1,6 @@
 # 文风控制台 · 三套工作台
 
-2026-09-24。顾客用的是本仓 `app/`。运营不在这里，在现网 `app.windfonts.com/admin`（仓 `fonts-vault`）。认领能改什么，以 [CLAIM-SCOPES.md](CLAIM-SCOPES.md) 为准。
+2026-09-24。顾客用的是本仓 `app/`（正式挂 `app.windfonts.com` OSS）。运营在 `vault.windfonts.com/admin`（仓 `fonts-vault`；过渡期现网仍可能是 `app…/admin`）。域名总则见 [DOMAIN-ARCHITECTURE.md](DOMAIN-ARCHITECTURE.md)。认领能改什么，以 [CLAIM-SCOPES.md](CLAIM-SCOPES.md) 为准。
 
 一个账号可以同时用字、又维护已认领的页。侧栏上方切换「用字 / 我的页」。没有通过的认领时，不出现第二个入口。
 
@@ -40,6 +40,6 @@
 | 要嵌字体的人 | 登录 → 用字 | 项目和嵌入 |
 | 免费 / 专业 | 同一用字台 | 专业才开上传和字体名前缀 |
 | 作者或厂商 | 公开认领页提交；通过后侧栏多「我的页」 | 自己的页 |
-| 文风运营 | `app.windfonts.com/admin` | 字典和审核 |
+| 文风运营 | `vault.windfonts.com/admin` | 字典和审核 |
 
 示例数据里有一条已通过的「阿里巴巴设计」页，只为看切换，不表示该页已由本站认领。`foundries.json` 的 `claimed` 不因此改成 true。

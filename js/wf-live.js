@@ -1,6 +1,6 @@
 /* 现网 vault 单款读取。详情页按需请求；失败保持本地。依赖 wf-proto（CSS_API / CDN）。 */
 (function () {
-  var ORIGIN = (window.WFProto && WFProto.CSS_API) || 'https://app.windfonts.com';
+  var ORIGIN = (window.WFProto && WFProto.CSS_API) || 'https://vault.windfonts.com';
   var META = (window.WFProto && WFProto.analysisMetaUrl && WFProto.analysisMetaUrl()) ||
     (((window.WFProto && WFProto.CDN) || 'https://cn.windfonts.com') + '/fonts-packages/metadata/font-analysis.json?v=20260925b');
   var TTL = 6 * 60 * 60 * 1000;

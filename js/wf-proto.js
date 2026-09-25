@@ -23,13 +23,14 @@
   /* 预览真源：cn.windfonts.com/fonts-packages/{Normalized}/{Weight}/{full|zh-common}/result.css
      （与 app /api/css 同源拆包）。旧路径 /wenfeng/fonts/{slug}/{weight}/web/ 仅兜底。
      嵌入「动态」给 Google 风格查询参数：{cdn}/api/css?family=&weight=&version=。 */
-  /* 域名口径：
-     - app.windfonts.com = 正式字体站（目录/详情 /fonts/{slug}）+ 暂兼 API（/api/*）
-     - API 可日后拆到独立域（如 api.windfonts.com）；CSS_API / SITE_ORIGIN 分开便于换
-     - cn = 自建 CyberCDN；hk / en / jp = Cloudflare */
+  /* 域名口径：详见 docs/DOMAIN-ARCHITECTURE.md
+     - app = fonts-front → OSS（纯前端）
+     - vault = fonts-vault Next（字体后端）；api. = 平台网关预留，勿直绑 Next
+     - cn/hk/en/jp = CDN only；嵌入写 CDN，回源 vault
+     - 本地预览：127.0.0.1:16016 */
   const CDN = 'https://cn.windfonts.com';
-  const SITE_ORIGIN = 'https://app.windfonts.com'; /* 正式字体站 */
-  const CSS_API = 'https://app.windfonts.com'; /* API 暂同域；拆域只改这里 */
+  const SITE_ORIGIN = 'https://app.windfonts.com'; /* OSS 前端正式域 */
+  const CSS_API = 'https://vault.windfonts.com'; /* Next 字体后端；过渡可临时改回 app */
   const ANALYSIS_META_VER = '20260925b'; /* 边缘长缓存；升元数据时递增 */
   /** 生产禁止；仅 staging 构建可改 true */
   const ALLOW_DEMO = false;
@@ -267,7 +268,7 @@
     return null;
   }
 
-  /** 正式站详情：app /fonts/{slug}（vault Next 已实现）。 */
+  /** 正式站详情：app /fonts/{slug}（OSS 静态 + 边缘 rewrite → font-detail.html）。 */
   function publicDetailPath(font) {
     const slug = fontSlug(font) || (font && font.normalized);
     if (!slug) return '/fonts';

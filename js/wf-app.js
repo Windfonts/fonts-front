@@ -613,7 +613,7 @@
    * 写入走 app（vault）；嵌入 URL 仍是地区 CDN /p/{slug}/index.css。
    */
   function publishOrigin() {
-    return (window.WFProto && WFProto.CSS_API) || 'https://app.windfonts.com';
+    return (window.WFProto && WFProto.CSS_API) || 'https://vault.windfonts.com';
   }
 
   function publishProject(p) {
