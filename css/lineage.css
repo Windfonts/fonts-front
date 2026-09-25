@@ -899,3 +899,19 @@ html.lg-wide .site-extra-footer .extra-inner {
   max-width: none;
   padding-inline: clamp(1rem, 2.5vw, 2rem);
 }
+/* 全宽给图谱让空间：页眉/页脚收起，标题区与说明行隐藏，模式/宽度开关吸顶随用随在 */
+html.lg-wide header[data-topbar],
+html.lg-wide .site-extra-footer,
+html.lg-wide .lg-page > .page-head,
+html.lg-wide .lg-page > .lg-foot {
+  display: none;
+}
+html.lg-wide .lg-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 25;
+  background: var(--paper);
+  padding-block: var(--s-2);
+  border-bottom: 1px solid var(--rule);
+}
+html.lg-wide .lg-stage { padding-block: var(--s-2); }
