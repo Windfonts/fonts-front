@@ -39,7 +39,7 @@
   const PLEX_V_GAP = 64;
   const PLEX_H_GAP = 36;
   const PLEX_NEST_H_GAP = 64; /* column gap between nested brand subtrees */
-  const PLEX_NEST_V_GAP = 80; /* hub → leaf vertical; room for ortho stubs */
+  const PLEX_NEST_V_GAP = 80; /* hub → leaf vertical; room for curved stubs */
   const MODES = ['plex', 'flow', 'branch', 'wall'];
 
   const REL_LABEL = {
@@ -1785,49 +1785,33 @@
   }
 
   function edgePath(a, b, soft) {
-    /* orthogonal / elbow: prefer parent-bottom → mid-Y bus → child-top when stacked */
+    /* cubic Bezier: vertical-ish → C with cy1/cy2; horizontal-ish → side control points */
     const acx = a.x + a.w / 2;
     const acy = a.y + a.h / 2;
     const bcx = b.x + b.w / 2;
     const bcy = b.y + b.h / 2;
     const dx = bcx - acx;
     const dy = bcy - acy;
-    let x1, y1, x2, y2, d, mx, my;
-    const labelLift = soft ? 10 : 8;
-    const clearlyBelow = b.y >= a.y + a.h - 4;
-    const clearlyAbove = a.y >= b.y + b.h - 4;
-    const useVertical = clearlyBelow || clearlyAbove || Math.abs(dy) >= Math.abs(dx) * 0.55;
-    if (useVertical) {
-      if (clearlyBelow || (!clearlyAbove && dy >= 0)) {
-        x1 = acx; y1 = a.y + a.h; x2 = bcx; y2 = b.y;
-      } else {
-        x1 = acx; y1 = a.y; x2 = bcx; y2 = b.y + b.h;
-      }
-      const midY = Math.round((y1 + y2) / 2);
-      if (Math.abs(x2 - x1) < 1.5) {
-        d = 'M' + x1 + ',' + y1 + ' L' + x2 + ',' + y2;
-        mx = x1;
-        my = midY - labelLift;
-      } else {
-        d = 'M' + x1 + ',' + y1 + ' L' + x1 + ',' + midY + ' L' + x2 + ',' + midY + ' L' + x2 + ',' + y2;
-        mx = (x1 + x2) / 2;
-        my = midY - labelLift;
-      }
+    let x1, y1, x2, y2, d;
+    if (Math.abs(dy) >= Math.abs(dx) * 0.85) {
+      if (dy >= 0) { x1 = acx; y1 = a.y + a.h; x2 = bcx; y2 = b.y; }
+      else { x1 = acx; y1 = a.y; x2 = bcx; y2 = b.y + b.h; }
+      const cy1 = y1 + (y2 - y1) * 0.4;
+      const cy2 = y2 - (y2 - y1) * 0.4;
+      d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy1 + ' ' + x2 + ',' + cy2 + ' ' + x2 + ',' + y2;
     } else {
       if (dx >= 0) { x1 = a.x + a.w; y1 = acy; x2 = b.x; y2 = bcy; }
       else { x1 = a.x; y1 = acy; x2 = b.x + b.w; y2 = bcy; }
-      const midX = Math.round((x1 + x2) / 2);
-      if (Math.abs(y2 - y1) < 1.5) {
-        d = 'M' + x1 + ',' + y1 + ' L' + x2 + ',' + y2;
-        mx = midX;
-        my = y1 - labelLift;
-      } else {
-        d = 'M' + x1 + ',' + y1 + ' L' + midX + ',' + y1 + ' L' + midX + ',' + y2 + ' L' + x2 + ',' + y2;
-        mx = midX;
-        my = (y1 + y2) / 2 - labelLift;
-      }
+      const cdx = Math.max(36, Math.abs(x2 - x1) * 0.45);
+      const s = dx >= 0 ? 1 : -1;
+      d = 'M' + x1 + ',' + y1 + ' C' + (x1 + s * cdx) + ',' + y1 + ' ' + (x2 - s * cdx) + ',' + y2 + ' ' + x2 + ',' + y2;
     }
-    return { d: d, mx: mx, my: my, soft: !!soft };
+    return {
+      d: d,
+      mx: (x1 + x2) / 2,
+      my: (y1 + y2) / 2 - (soft ? 10 : 8),
+      soft: !!soft
+    };
   }
 
   function applyView() {
