@@ -142,7 +142,7 @@
     });
     const foundriesReq = fetch(dataUrl('foundries.json?v=20260923g')).then(function (r) { return r.ok ? r.json() : { foundries: [] }; })
       .catch(function () { return { foundries: [] }; });
-    const evidenceReq = fetch(dataUrl('license-evidence.json')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
+    const evidenceReq = fetch(dataUrl('license-evidence.json?v=20260925b')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
       .catch(function () { return { standards: {}, names: {} }; });
     const lineageReq = fetch(dataUrl('font-lineage.json?v=20260925h')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
       .catch(function () { return { groups: {}, byName: {} }; });
@@ -770,14 +770,25 @@
     };
   }
 
+  /* 标准 SPDX 推断：精确版本优先（GPL-3 不许落到 2.0；GPL+字体例外单列，
+     webfont 场景例外条款即上下游许可的关键差异） */
   function inferStandardKey(text) {
     const t = String(text || '');
+    if (/with-font-exception|字体嵌入?例外/i.test(t)) return 'GPL-2.0-with-font-exception';
     if (/OFL|Open Font License/i.test(t)) return 'OFL-1.1';
     if (/Apache/i.test(t)) return 'Apache-2.0';
-    if (/GPL/i.test(t)) return 'GPL-2.0';
+    if (/GPL-?3|GPL\s*v?3/i.test(t)) return 'GPL-3.0';
+    if (/GPL|GNU General Public License/i.test(t)) return 'GPL-2.0';
     if (/CC-?BY-?SA/i.test(t)) return 'CC-BY-SA-4.0';
     if (/CC-?BY-?ND/i.test(t)) return 'CC-BY-ND-3.0';
+    if (/CC0/i.test(t)) return 'CC0-1.0';
+    if (/CC[- ]?BY/i.test(t)) return 'CC-BY-4.0';
+    if (/M\+ 位图许可|M\+ OUTLINE/i.test(t)) return 'Mplus';
+    if (/\b0BSD\b/i.test(t)) return '0BSD';
+    if (/\bMIT\b|MIT License/i.test(t)) return 'MIT';
     if (/IPA/i.test(t)) return 'IPA-1.0';
+    if (/GlyphWiki/i.test(t)) return 'GlyphWiki';
+    if (/开放政府数据|政府资料开放/i.test(t)) return 'OGDL-1.0';
     return '';
   }
 
@@ -802,10 +813,10 @@
       label: licName,
       verified: false
     };
+    /* 顺序：先名称条目（补充引文/限制），后标准推断（身份字段以 licenseName 精确匹配为准——
+       名称条目可能按同厂另一款写，如文泉驿条目按微米黑写了 Apache，不能盖掉正黑的 GPL+字体例外） */
     const stdKey = inferStandardKey(licName);
-    if (stdKey && standards[stdKey]) {
-      ev = Object.assign({}, ev, standards[stdKey], { label: licName || standards[stdKey].label });
-    }
+    const std = (stdKey && standards[stdKey]) || null;
     const keys = Object.keys(names).sort(function (a, b) { return b.length - a.length; });
     for (let i = 0; i < keys.length; i++) {
       if (String((font && font.name) || '').indexOf(keys[i]) === -1) continue;
@@ -818,6 +829,19 @@
         if (!ev.spdx) ev.spdx = n.spdx;
       }
       break;
+    }
+    if (std) {
+      const named = {
+        quote: ev.quote,
+        restrictions: ev.restrictions,
+        verifiedAt: ev.verifiedAt
+      };
+      ev = Object.assign({}, ev, std, {
+        label: licName || std.label,
+        quote: named.quote || std.quote,
+        restrictions: named.restrictions && named.restrictions.length ? named.restrictions : std.restrictions,
+        verifiedAt: named.verifiedAt || std.verifiedAt || ''
+      });
     }
     if (foundry.kind === 'platform' && ev.sourceKind !== 'standard' && ev.sourceKind !== 'github_license') {
       ev.sourceKind = 'platform';
