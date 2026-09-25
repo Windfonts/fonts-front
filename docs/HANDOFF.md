@@ -4,7 +4,7 @@
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 
-**下一棒（按价值）：** ① 重跑 analysis / package-sizes / locale 并递增 `OSS_METADATA_VERSION`；② 谱系/亲属实验室未提交改动另线。
+**下一棒（按价值）：** 谱系/亲属实验室未提交改动另线（`v4-specimen` 本地 WIP）。analysis/package-sizes/locale 已于 2026-09-25 重跑；`OSS_METADATA_VERSION=20260925b`。
 
 **已合（2026-09-25，wapuu）：** vault [#29](https://feicode.com/Windfonts/fonts-vault/pulls/29) pnpm Docker、[#30](https://feicode.com/Windfonts/fonts-vault/pulls/30) 品牌 CSS 门禁、[#31](https://feicode.com/Windfonts/fonts-vault/pulls/31) `/api/css` 错误 `no-store` → `main` @ `22454e0`。
 
@@ -621,7 +621,7 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 - **简繁配对（2026-09-25 再扩）：** 11 对 / 18 成员——在既有思源/霞鹜/狮尾/猫啃之上，补 `systcnl`（思源宋体 CN Light）→ `systtc`。当前目录内有把握的 SC↔TC 已齐；再扩需先入库对应繁/简款。构建 `scripts/build-locale-fallback-pairs.mjs`。
 - **analysis 覆盖（2026-09-25）：** fonts-packages `scripts/build-font-analysis-from-css.mjs` 从 CDN `full/result.css` 的 `unicode-range` 重建 → OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`source: css-unicode-range`）。字数来自分包 CSS，极少数包（如稀疏 `AAR`）会偏低；详情缺字真源仍是当面 CSS。重建后：`OSS_UPLOAD_DIRS=./metadata node scripts/upload.js`。metadata 上传现用 `max-age=300`（不再一年）；vault / 前台拉取带 `?v=`（`OSS_METADATA_VERSION` / `wf-live.js`）逼 CDN 换键——原地覆盖后边缘否则长期吃旧文件。
 
-**仍待：** 新入库后重跑 analysis / package-sizes / locale 并递增 `OSS_METADATA_VERSION`；P2 逐码点常用字表。vault #29/#30/#31 已合。
+**仍待：** 谱系/亲属实验 WIP。vault #29–#32 已合；P2 常用3500 与 metadata `20260925b` 已落。
 
 ## 26. 2026-09-25 出处链核对态按证据链判定 + 源界明朝谱系
 
@@ -637,6 +637,8 @@ feibisi 在 yjmct 页点名「字体详情的 出处和依据」后拍板「**�
 - **源界明朝 yjmct**：feibisi 给 fonts.adobe.com/fonts/genkaimincho 拍板「就是 adobe」（Ken Lunde 架构、基于源ノ明朝加破坏效果）——DB 描述/版权归属本来就对，没改作者；只把 `font-lineage.json` 从误挂的 original 改 **fork ← 思源宋体**（group source-han-serif、upstreamOwnerId adobe、licenseFollows inherit），详情页自动串出思源宋体上下游、同源字组、缺字补全对照（上游 250 字）。
 - 验证：yjmct（标准）/ ceym1（出处）/ opsa（待核对）三款 DOM 断言各归各位。
 - 版本参数：detail `20260927m`、wf-proto `20260927k`（全站 HTML 已进位）。提交 `4bf9ee6` 已推 v4-specimen。
+
+- **更正（09-25 晚，feibisi 指正）**：光莹黑体=未来荧黑（welai/glow-sans 同一项目，README 标题「未来荧黑·Wêlai Glow Sans」）——寒蝉宽黑体上游改挂库内未来荧黑（6618451），幽灵节点撤销；UPSTREAM_FONT 补「光莹黑体→未来荧黑」别名。§27 的「光莹黑体不在库」口径作废。
 
 ## 27. 2026-09-25 openfontree 对拍 + 谱系四修正 + 可视化三方向小样
 
