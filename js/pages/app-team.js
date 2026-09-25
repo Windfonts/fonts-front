@@ -1,4 +1,4 @@
-/* 控制台 · 团队：成员、角色、邀请 */
+/* 控制台 · 团队：成员、角色、邀请（经 WFApi mock） */
 (function () {
   if (!WFApp.gate()) return;
   const esc = WFProto.escapeHtml;
@@ -41,15 +41,21 @@
       e.preventDefault();
       const email = document.getElementById('inviteEmail').value;
       const role = document.getElementById('inviteRole').value;
-      const added = WFApp.inviteMember(email, role);
-      if (added === true) { WFChrome.toast('邀请已发送'); render(); }
-      else if (added === 'full') WFChrome.toast('席位已满，专业版最多 5 人');
-      else WFChrome.toast('该邮箱已在团队中');
+      WFApi.inviteMember(email, role).then(function () {
+        WFChrome.toast('邀请已发送');
+        render();
+      }).catch(function (err) {
+        WFChrome.toast((err && err.message) || '邀请失败');
+      });
     });
     root.querySelectorAll('[data-role]').forEach(function (sel) {
       sel.addEventListener('change', function () {
-        WFApp.setMemberRole(sel.getAttribute('data-role'), sel.value);
-        WFChrome.toast('已更新角色');
+        WFApi.setMemberRole(sel.getAttribute('data-role'), sel.value).then(function () {
+          WFChrome.toast('已更新角色');
+        }).catch(function (err) {
+          WFChrome.toast((err && err.message) || '更新失败');
+          render();
+        });
       });
     });
     root.querySelectorAll('[data-remove]').forEach(function (b) {
@@ -58,13 +64,16 @@
         const m = team.filter(function (x) { return x.id === id; })[0];
         WFChrome.confirm({ title: '移除成员', message: '将 ' + (m ? m.email : id) + ' 移出团队。对方将立刻失去项目访问。', ok: '移除' }).then(function (ok) {
           if (!ok) return;
-          WFApp.removeMember(id);
-          WFChrome.toast('已移除');
-          render();
+          WFApi.removeMember(id).then(function () {
+            WFChrome.toast('已移除');
+            render();
+          }).catch(function (err) {
+            WFChrome.toast((err && err.message) || '移除失败');
+          });
         });
       });
     });
   }
 
-  Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(render);
+  Promise.all([WFProto.loadCatalog(), WFApp.load(), WFApi.listTeam()]).then(function () { render(); });
 })();

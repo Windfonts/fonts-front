@@ -667,6 +667,149 @@
     return request('/api/usage/blocked');
   }
 
+  /* —— Team —— */
+  function liveTeamNotReady() {
+    return Promise.reject(apiError('not_implemented', 'vault 尚未提供团队 REST', 501));
+  }
+
+  function listTeam() {
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const s = WFApp.state();
+        return ((s && s.team) || []).slice();
+      });
+    }
+    return liveTeamNotReady();
+  }
+
+  function inviteMember(email, role) {
+    email = String(email || '').trim().toLowerCase();
+    role = role || 'editor';
+    if (!email) return Promise.reject(apiError('validation_error', '邮箱不能为空', 422));
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const result = WFApp.inviteMember(email, role);
+        if (result === 'full') throw apiError('quota_exceeded', '席位已满，专业版最多 5 人', 422);
+        if (!result) throw apiError('conflict', '该邮箱已在团队中', 409);
+        const s = WFApp.state();
+        return (s.team || []).filter(function (m) { return m.email === email; })[0];
+      });
+    }
+    return liveTeamNotReady();
+  }
+
+  function setMemberRole(id, role) {
+    id = String(id || '');
+    role = String(role || '');
+    if (!id || !role) return Promise.reject(apiError('validation_error', '成员或角色无效', 422));
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const s = WFApp.state();
+        const m = ((s && s.team) || []).filter(function (x) { return x.id === id; })[0];
+        if (!m) throw apiError('not_found', '成员不存在', 404);
+        if (m.role === 'owner') throw apiError('forbidden', '不能变更所有者角色', 403);
+        if (role === 'owner') throw apiError('validation_error', '不能直接设为所有者', 422);
+        WFApp.setMemberRole(id, role);
+        return ((WFApp.state().team) || []).filter(function (x) { return x.id === id; })[0];
+      });
+    }
+    return liveTeamNotReady();
+  }
+
+  function removeMember(id) {
+    id = String(id || '');
+    if (!id) return Promise.reject(apiError('validation_error', '成员无效', 422));
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const s = WFApp.state();
+        const m = ((s && s.team) || []).filter(function (x) { return x.id === id; })[0];
+        if (!m) throw apiError('not_found', '成员不存在', 404);
+        if (!WFApp.removeMember(id)) throw apiError('forbidden', '无法移除该成员', 403);
+        return { ok: true };
+      });
+    }
+    return liveTeamNotReady();
+  }
+
+  /* —— Settings / Account —— */
+  function liveSettingsNotReady() {
+    return Promise.reject(apiError('not_implemented', 'vault 尚未提供设置 REST', 501));
+  }
+
+  function getSettings() {
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const s = WFApp.state();
+        return Object.assign({}, (s && s.settings) || {});
+      });
+    }
+    return liveSettingsNotReady();
+  }
+
+  function patchSettings(body) {
+    body = body || {};
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const s = WFApp.state();
+        if (!s || !s.settings) throw apiError('internal', '设置不可用');
+        const changed = [];
+        if (body.display != null) { s.settings.display = String(body.display); changed.push('加载策略'); }
+        if (body.subset != null) { s.settings.subset = String(body.subset); changed.push('字符包'); }
+        if (body.cdn != null) { s.settings.cdn = String(body.cdn); changed.push('节点'); }
+        if (body.preload != null) { s.settings.preload = !!body.preload; changed.push('提前加载'); }
+        if (changed.length) {
+          WFApp.log('更新设置', changed.join(' · '));
+          WFApp.save();
+        }
+        return Object.assign({}, s.settings);
+      });
+    }
+    return liveSettingsNotReady();
+  }
+
+  function rotateApiKey() {
+    if (isMock()) {
+      return ensureApp().then(function () {
+        if (!WFApp.mintApiKeyAsync) throw apiError('internal', '无法生成密钥');
+        return WFApp.mintApiKeyAsync('live').then(function (k) {
+          const s = WFApp.state();
+          s.settings.apiKey = k;
+          s.settings.apiKeyCreatedAt = new Date().toISOString();
+          WFApp.log('轮换 API 密钥', '');
+          WFApp.save();
+          return { apiKey: k, apiKeyCreatedAt: s.settings.apiKeyCreatedAt };
+        });
+      });
+    }
+    return liveSettingsNotReady();
+  }
+
+  function updateAccount(body) {
+    body = body || {};
+    if (isMock()) {
+      return Promise.resolve().then(function () {
+        if (!window.WFChrome || !WFChrome.login) throw apiError('internal', 'WFChrome 未加载');
+        const u = WFChrome.user() || {};
+        const name = body.name != null ? String(body.name).trim() : (u.name || '');
+        if (!name) throw apiError('validation_error', '显示名不能为空', 422);
+        WFChrome.login({ name: name, email: u.email || body.email });
+        return WFChrome.user();
+      });
+    }
+    return Promise.reject(apiError('not_implemented', 'vault 尚未提供账号 REST', 501));
+  }
+
+  function listAudit(limit) {
+    limit = Number(limit) || 10;
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const s = WFApp.state();
+        return ((s && s.audit) || []).slice(0, limit);
+      });
+    }
+    return Promise.reject(apiError('not_implemented', 'vault 尚未提供审计 REST', 501));
+  }
+
   /**
    * EXISTING publish：旧信封 { status, data, message }，短期豁免 { ok, error }。
    * body 应为 projectManifest(p)。
@@ -738,6 +881,15 @@
     getUsage: getUsage,
     getUsageSeries: getUsageSeries,
     listBlocked: listBlocked,
+    listTeam: listTeam,
+    inviteMember: inviteMember,
+    setMemberRole: setMemberRole,
+    removeMember: removeMember,
+    getSettings: getSettings,
+    patchSettings: patchSettings,
+    rotateApiKey: rotateApiKey,
+    updateAccount: updateAccount,
+    listAudit: listAudit,
     publish: publish,
     publishProject: publishProject
   };

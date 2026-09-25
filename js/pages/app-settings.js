@@ -1,4 +1,4 @@
-/* 控制台 · 设置：账号、套餐、默认、API、认领、审计、原型数据 */
+/* 控制台 · 设置：账号、套餐、默认、API、认领、审计、原型数据（经 WFApi mock） */
 (function () {
   if (!WFApp.gate()) return;
   const esc = WFProto.escapeHtml;
@@ -18,8 +18,9 @@
           '<p style="margin-top:var(--s-4)"><button type="button" class="btn" id="saveAcc">' + WFChrome.icon('check') + '保存</button></p></section>' +
         '<p class="t-13 muted">页资料在「我的页」。用字项目、域名和用量在「用字」。</p>';
       document.getElementById('saveAcc').addEventListener('click', function () {
-        WFChrome.login({ name: document.getElementById('accName').value || u.name, email: u.email });
-        location.reload();
+        WFApi.updateAccount({ name: document.getElementById('accName').value || u.name }).then(function () {
+          location.reload();
+        }).catch(function (err) { WFChrome.toast((err && err.message) || '保存失败'); });
       });
       return;
     }
@@ -65,33 +66,38 @@
       (WFChrome.showPricing() ? '<section class="app-section"><h2>本地数据</h2><p class="t-13 muted">控制台数据保存在本机浏览器。 <button type="button" class="btn-text" id="resetData">' + WFChrome.icon('refresh') + '恢复示例数据</button></p></section>' : '');
 
     document.getElementById('saveAcc').addEventListener('click', function () {
-      WFChrome.login({ name: document.getElementById('accName').value || u.name, email: u.email });
-      location.reload();
+      WFApi.updateAccount({ name: document.getElementById('accName').value || u.name }).then(function () {
+        location.reload();
+      }).catch(function (err) { WFChrome.toast((err && err.message) || '保存失败'); });
     });
     document.getElementById('setDisplay').addEventListener('change', function (e) {
-      s.settings.display = e.target.value; WFApp.log('更新设置', '加载策略 = ' + e.target.value); WFApp.save(); WFChrome.toast('已更新默认加载策略');
+      WFApi.patchSettings({ display: e.target.value }).then(function () {
+        WFChrome.toast('已更新默认加载策略');
+      }).catch(function (err) { WFChrome.toast((err && err.message) || '更新失败'); render(); });
     });
     document.getElementById('setSubset').addEventListener('change', function (e) {
-      s.settings.subset = e.target.value; WFApp.save(); WFChrome.toast('已更新新项目的字符包');
+      WFApi.patchSettings({ subset: e.target.value }).then(function () {
+        WFChrome.toast('已更新新项目的字符包');
+      }).catch(function (err) { WFChrome.toast((err && err.message) || '更新失败'); render(); });
     });
     document.getElementById('setCdn').addEventListener('change', function (e) {
-      s.settings.cdn = e.target.value; WFApp.save(); WFChrome.toast('已更新新项目的节点');
+      WFApi.patchSettings({ cdn: e.target.value }).then(function () {
+        WFChrome.toast('已更新新项目的节点');
+      }).catch(function (err) { WFChrome.toast((err && err.message) || '更新失败'); render(); });
     });
     document.getElementById('setPreload').addEventListener('change', function (e) {
-      s.settings.preload = e.target.checked; WFApp.save();
+      WFApi.patchSettings({ preload: e.target.checked }).catch(function (err) {
+        WFChrome.toast((err && err.message) || '更新失败'); render();
+      });
     });
     document.getElementById('copyKey').addEventListener('click', function () { WFChrome.copy(s.settings.apiKey, '已复制 API 密钥'); });
     document.getElementById('rotateKey').addEventListener('click', function () {
       WFChrome.confirm({ title: '重新生成密钥', message: '旧密钥会立刻失效。已发布项目的覆盖权跟密钥绑定，换钥后需用新钥才能再发同 slug。', ok: '重新生成' }).then(function (ok) {
         if (!ok) return;
-        WFApp.mintApiKeyAsync('live').then(function (k) {
-          s.settings.apiKey = k;
-          s.settings.apiKeyCreatedAt = new Date().toISOString();
-          WFApp.log('轮换 API 密钥', '');
-          WFApp.save();
+        WFApi.rotateApiKey().then(function () {
           WFChrome.toast('已生成新密钥，旧密钥立即失效');
           render();
-        });
+        }).catch(function (err) { WFChrome.toast((err && err.message) || '生成失败'); });
       });
     });
     const reset = document.getElementById('resetData');
@@ -103,5 +109,5 @@
     });
   }
 
-  Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(render);
+  Promise.all([WFProto.loadCatalog(), WFApp.load(), WFApi.getSettings(), WFApi.listAudit(10)]).then(function () { render(); });
 })();
