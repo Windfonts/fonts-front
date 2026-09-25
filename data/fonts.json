@@ -25216,5 +25216,56 @@
     "downloadCount": 0,
     "apiCallCount": 140,
     "apiCount": 140
+  },
+  {
+    "id": "673e59f8-b62d-4cf7-a0cc-bcd99c80d482",
+    "name": "钟齐志莽行书",
+    "en": "Zhi Mang Xing",
+    "family": "wenfeng-zmxs",
+    "normalized": "Zmxs",
+    "designer": "钟齐",
+    "designerShort": "钟齐",
+    "category": "手写体",
+    "tags": [
+      "开源",
+      "OFL",
+      "singles"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "钟齐志莽行书：行书风格手写字体，Google Fonts 收录，SIL OFL 1.1 开源授权。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://fonts.google.com/specimen/Zhi+Mang+Xing",
+    "licenseFileUrl": "",
+    "licenseNotes": "OFL 1.1（googlefonts/zhimangxing 随仓原文）：可免费商用、可修改与再分发，修改版须改名。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2018 The ZhiMangXing Project Authors (https://github.com/googlefonts/zhimangxing)",
+    "foundry": "Google Fonts",
+    "brand": {
+      "name": "Google",
+      "slug": "google-fonts",
+      "logoUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
+      "website": "https://fonts.google.com",
+      "description": "Google Fonts 开源字体计划。"
+    },
+    "releaseYear": 2018,
+    "version": "2.001",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题",
+      "手写风格排版"
+    ],
+    "charCount": 7015,
+    "glyphCount": 7017,
+    "viewCount": 0,
+    "downloadCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/bbdefa2950f49882f295b1285d4fa9dec45fc4144bfb07ee6acc68762d12c2e3?s=144&d=identicon",
+    "apiCallCount": 0
   }
 ]
