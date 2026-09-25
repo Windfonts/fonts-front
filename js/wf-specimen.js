@@ -116,28 +116,11 @@
         '<button type="button" class="act" data-join="' + esc(font.id) + '" data-name="' + esc(font.name) + '">' + WFChrome.icon('plus') + '加入选字袋</button>') +
       '<a class="preview" href="' + detail + '" data-specimen style="font-family:' + esc(stack) +
         ';font-weight:' + w + ';font-size:' + size + 'px">' + esc(sample) + '</a>' +
-      (opts.sub ? (function () {
-        /* 同系折叠的子款直接平铺小样（名 + 各自字体的预览行），不藏脚注 */
-        const subs = opts.sub(font) || [];
-        if (!subs.length) return '';
-        return '<div class="pack-rows">' + subs.map(function (sf) {
-          const sw = firstWeight(sf);
-          const sd = WFChrome.href(WFProto.detailHref(sf));
-          return '<div class="pack-row">' +
-            '<a class="pack-name" href="' + sd + '">' + esc(sf.name) + '</a>' +
-            '<a class="pack-prev" href="' + sd + '" data-pack-specimen data-family="' + esc(sf.family || '') +
-              '" data-weight="' + sw + '" style="font-family:' + esc(WFProto.cssFamilyStack(sf.family)) + ';font-weight:' + sw + '">' + esc(sample) + '</a>' +
-          '</div>';
-        }).join('') + '</div>';
-      })() : '') +
     '</li>';
   }
 
   function wireRow(li) {
     WFProto.ensureFontCss(li.getAttribute('data-family'), li.getAttribute('data-weight') || '400');
-    li.querySelectorAll('.pack-prev[data-family]').forEach(function (p) {
-      WFProto.ensureFontCss(p.getAttribute('data-family'), p.getAttribute('data-weight') || '400');
-    });
     const btn = li.querySelector('[data-join]');
     if (btn && !btn._wfBound) {
       btn._wfBound = true;

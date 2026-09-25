@@ -584,8 +584,12 @@
   }
 
   function upstreamFoot(list, font, packs) {
-    /* 同系子款已平铺为 pack-row 小样，脚注不再重复列「含 N 款」 */
     const bits = [];
+    if (packs && packs.length) {
+      bits.push('含 ' + packs.length + ' 款 ' + packs.map(function (p) {
+        return '<a href="' + WFChrome.href(WFProto.detailHref(p)) + '">' + esc(p.name) + '</a>';
+      }).join(' · '));
+    }
     const L = font.lineage || {};
     if (L.upstreamName && L.relation && L.relation !== 'original') {
       const hit = findFontByName(list, L.upstreamName);
@@ -760,7 +764,6 @@
       const rows = window.WFProducts ? WFProducts.collapseForList(s.fonts) : s.fonts;
       WFSpecimen.renderRows(el, rows, {
         size: 56,
-        sub: function (font) { return owned.packsOf[font.id] || []; },
         foot: function (font) {
           const bits = [];
           if (s.id === 'collab') {

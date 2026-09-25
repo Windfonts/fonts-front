@@ -567,14 +567,6 @@ html[data-view="dev"] .foundry-eco .foundry-upstream-item { flex-wrap: nowrap; w
   background: var(--fill); display: grid; place-items: center; font-size: 0.55rem;
 }
 .foundry-eco .foundry-upstream-item strong { font-weight: var(--fw-title); }
-/* 同系折叠子款：主款样张下方平铺小样行（名 + 各自字体预览），随预览文字实时走、不跟字号滑杆 */
-.pack-rows { margin-top: var(--s-2); display: grid; gap: var(--s-1); border-left: 2px solid var(--rule); padding-left: var(--s-3); }
-.pack-row { display: grid; grid-template-columns: minmax(6em, 9em) 1fr; gap: var(--s-3); align-items: baseline; min-width: 0; }
-.pack-name { font-size: var(--fs-12); color: var(--gray); font-weight: var(--fw-label); text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.pack-name:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
-.pack-prev { font-size: var(--fs-16); line-height: 1.6; color: var(--ink-2); text-decoration: none; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.pack-prev:hover { color: var(--ink); }
-@media (max-width: 720px) { .pack-row { grid-template-columns: 1fr; gap: 0.1rem; } }
 
 .sp-box { margin-top: var(--s-5); }
 .sp-box > .btn,
