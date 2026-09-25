@@ -660,3 +660,12 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
   - 寒蝉宽黑体挂入 source-han-sans 组（上游光莹黑体=幽灵节点）。
 - 验证：思源黑体树 89 li（含幽灵）/墙 3 带 88 款、霞鹜族 7 li 根 33.6px 自渲染、specFonts 3/3、无横向溢出、外审 7/7 节点以字证字成立。
 - 版本：lineage.js `20260925d`、wf-proto `20260927n`（lineage 数据 `20260927b`）。
+## 29. 2026-09-25 谱系页对齐 DESIGN-SYSTEM 重写（feibisi 点「没看设计风格指南吗」）
+
+初版走了被系统明确否决的「白底黑字+细线 Type Specimen」编辑风。按 docs/DESIGN-SYSTEM.md 重写：
+
+- **chrome 全换现成组件**：页头 `.page-head`（h1 40px+lead）、字族导航 `.chips`/`.chip.is-on`（含 `.n` 计数，未选灰胶囊 hover 深选中翻黑）、模式切换 `.seg`（谱/墙）、加载 `.loading`、空态 `.empty`。
+- **首页惯例接线**：`.page-head h1`「字有师承。」用当前族主根的本字渲染（切族跟随）。坑：`setAttribute('style')` 不解码 HTML 实体，`esc()` 过的引号变字面 `&#39;` 弄坏 CSS——setAttribute 路径直拼（`faceAttr`），HTML 字符串路径照旧 esc。
+- **谱系 git 线标**（§4 明文落地）：原作=commit、派生=branch、地区版=merge、合作=compare，树节点 meta 前缀 + 墙分带标题（源头 commit/第 N 代 branch）；委托定制不加标。
+- **数字撤衬线**：700+tabular-nums（衬线大数字是墨图爱可口味，文风系统不用）；字号全走 `--fs-*` 字阶（样张豁免条款保留大字 20/28/40）；CSS 零十六进制（grep 验证 0）。
+- 正文区（树/墙）按「只套一层盒子」细线平铺，不套面板。

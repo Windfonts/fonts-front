@@ -1,74 +1,54 @@
-/* 谱系页：以字证字 · 发丝线 · 编辑排印。只有字和线，没有框。 */
+/* 谱系页。规则真源 docs/DESIGN-SYSTEM.md：chrome 只有黑白灰，工具用现成组件（chips/seg），
+   正文（树/墙）细线平铺；字体名样张不受 UI 字阶限制；数字 700 + tabular-nums，不用衬线。 */
 
-.lg-hero { padding: var(--s-8) 0 var(--s-2); }
-.lg-hero .kicker { font-size: var(--fs-11); letter-spacing: 0.22em; color: var(--gray); font-weight: var(--fw-label); margin: 0; }
-.lg-hero h1 { font-family: "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", serif; font-size: 2rem; font-weight: var(--fw-title); margin: 0.4rem 0 0.5rem; letter-spacing: 0.01em; }
-.lg-hero .lead { font-size: var(--fs-13); color: var(--gray); margin: 0; max-width: 36em; }
-.lg-hero .lg-count { font-family: "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", serif; color: var(--ink); font-variant-numeric: tabular-nums; }
+.lg-toolbar { gap: var(--s-4); padding: var(--s-3) 0; flex-wrap: wrap; }
+.lg-toolbar .chips { flex-wrap: wrap; row-gap: 0.4rem; }
 
-/* 字族导航：一行文字链，当前项墨色下划线 */
-.lg-fams { display: flex; flex-wrap: wrap; gap: 0.4rem 1.3rem; padding: var(--s-4) 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); }
-.lg-fams a { font-size: var(--fs-13); color: var(--gray); text-decoration: none; padding: 0.15rem 0; border-bottom: 1px solid transparent; white-space: nowrap; }
-.lg-fams a .n { font-size: var(--fs-11); color: var(--gray-2); font-variant-numeric: tabular-nums; margin-left: 0.25em; }
-.lg-fams a:hover { color: var(--ink); }
-.lg-fams a.is-on { color: var(--ink); border-bottom-color: var(--ink); font-weight: var(--fw-label); }
-.lg-fams a.is-on .n { color: var(--gray); }
+.count-line { padding: 0 0 var(--s-4); }
 
-/* 工具行：模式切换 + 家族说明 */
-.lg-toolbar { padding: var(--s-4) 0 var(--s-2); }
-.lg-mode { display: inline-flex; align-items: center; gap: 0.55rem; }
-.lg-mode-btn { appearance: none; background: none; border: none; padding: 0.1rem 0.05rem; font-size: var(--fs-13); color: var(--gray); cursor: pointer; border-bottom: 1px solid transparent; font-family: inherit; }
-.lg-mode-btn:hover { color: var(--ink); }
-.lg-mode-btn.is-on { color: var(--ink); border-bottom-color: var(--ink); font-weight: var(--fw-title); }
-.lg-mode-sep { width: 1px; height: 0.9em; background: var(--rule); }
-.lg-cap { font-size: var(--fs-12); color: var(--gray); }
-
-.lg-stage { padding: var(--s-5) var(--s-2) var(--s-5); }
-@media (min-width: 60rem) { .lg-stage { padding: var(--s-6) var(--s-5) var(--s-6); } }
-.lg-loading { font-size: var(--fs-13); color: var(--gray-2); }
-.lg-foot { font-size: var(--fs-12); color: var(--gray-2); padding: var(--s-4) 0 var(--s-8); }
+.lg-stage { padding: var(--s-2) 0 var(--s-6); }
+.lg-foot { font-size: var(--fs-13); color: var(--gray); padding-bottom: var(--s-10); }
 
 /* 排印原子 */
-.lg-spec { line-height: 1.25; color: var(--ink); white-space: nowrap; }
-.lg-meta { font-size: var(--fs-11); color: var(--gray-2); letter-spacing: 0.02em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lg-spec { line-height: var(--lh-snug); color: var(--ink); white-space: nowrap; }
+.lg-meta { font-size: var(--fs-12); color: var(--gray-2); font-variant-numeric: tabular-nums; white-space: nowrap; display: inline-flex; align-items: baseline; gap: 0.4em; }
 .lg-meta b { color: var(--gray); font-weight: var(--fw-label); }
-.lg-yr { font-family: "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", serif; font-variant-numeric: tabular-nums; color: var(--ink); }
+.lg-meta .icon { color: var(--gray-2); align-self: center; }
 
-/* ===== 谱（甲）· 纵向家谱 ===== */
+/* ===== 谱 · 纵向家谱（正文区细线平铺） ===== */
 .lg-tree { --step: 2.4rem; }
 .lg-tree ul { list-style: none; margin: 0; padding: 0; }
 .lg-tree li { position: relative; padding-left: calc(var(--step) + 0.7rem); }
-.lg-tree li::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--rule), var(--rule) 78%, transparent); }
+.lg-tree li::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--rule); }
 .lg-tree li.lg-last::before { display: none; }
 .lg-tree li > .lg-node { position: relative; }
 .lg-tree li > .lg-node::before { content: ""; position: absolute; left: calc(-0.7rem - 1px); top: 50%; width: 0.7rem; height: 1px; background: var(--rule); }
 .lg-node { display: flex; align-items: baseline; gap: var(--s-4); padding: 0.55rem 0; text-decoration: none; }
 a.lg-node:hover .lg-spec { text-decoration: underline; text-underline-offset: 0.32em; text-decoration-thickness: 1px; }
-.lg-node .lg-spec { font-size: 1.6rem; }
+.lg-node .lg-spec { font-size: var(--fs-20); }
 .lg-node .lg-meta { margin-left: auto; }
-.lg-node.is-root > .lg-spec { font-size: 2.1rem; }
-.lg-node.is-ghost > .lg-spec { color: var(--gray-2); font-size: 1.15rem; }
-.lg-node.is-ghost .lg-meta { color: var(--gray-2); }
+.lg-node.is-root > .lg-spec { font-size: var(--fs-28); font-weight: var(--fw-title); }
+.lg-node.is-ghost > .lg-spec { color: var(--gray-2); font-size: var(--fs-14); }
 
-/* ===== 墙（乙）· 年代分带样张墙 ===== */
+/* ===== 墙 · 分带样张墙（正文区细线平铺） ===== */
 .lg-band + .lg-band { margin-top: var(--s-6); }
-.lg-band .lg-band-cap { display: flex; align-items: baseline; gap: var(--s-4); margin-bottom: var(--s-3); }
-.lg-band .lg-band-cap .lg-yr { font-size: 1.7rem; }
-.lg-band .lg-band-cap .t { font-size: var(--fs-11); letter-spacing: 0.2em; color: var(--gray); }
-.lg-band .lg-band-cap .rule { flex: 1; border-bottom: 1px solid var(--rule); align-self: center; }
-.lg-band .lg-wall { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 2.4rem; row-gap: var(--s-4); }
-.lg-band .lg-item { text-decoration: none; }
-.lg-band .lg-item .lg-spec { font-size: 2.3rem; transition: opacity 0.15s; }
-.lg-band .lg-item:hover .lg-spec { opacity: 0.66; }
-.lg-band .lg-item .lg-meta { display: block; margin-top: 0.45rem; }
-.lg-band .lg-item.is-root .lg-spec { font-size: 3rem; }
-.lg-band .lg-item.is-ghost .lg-spec { color: var(--gray-2); font-size: 1.3rem; }
+.lg-band-cap { display: flex; align-items: baseline; gap: var(--s-3); margin-bottom: var(--s-3); border-bottom: 1px solid var(--rule); padding-bottom: var(--s-2); }
+.lg-band-cap .yr { font-size: var(--fs-16); font-weight: var(--fw-title); font-variant-numeric: tabular-nums; color: var(--ink); }
+.lg-band-cap .t { font-size: var(--fs-12); letter-spacing: 0.14em; color: var(--gray); display: inline-flex; align-items: center; gap: 0.4em; }
+.lg-band-cap .t .icon { color: var(--gray); }
+.lg-band-cap .rule { flex: 0 0 var(--s-6); }
+.lg-wall { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 2.4rem; row-gap: var(--s-4); }
+.lg-item { text-decoration: none; }
+.lg-item .lg-spec { font-size: var(--fs-28); }
+.lg-item.is-root .lg-spec { font-size: var(--fs-40); }
+.lg-item.is-ghost .lg-spec { color: var(--gray-2); font-size: var(--fs-16); }
+.lg-item .lg-meta { display: flex; margin-top: 0.4rem; }
 
 @media (max-width: 40rem) {
   .lg-node { flex-wrap: wrap; row-gap: 0.15rem; }
   .lg-node .lg-meta { margin-left: 0; flex-basis: 100%; }
-  .lg-node .lg-spec { font-size: 1.35rem; }
-  .lg-node.is-root > .lg-spec { font-size: 1.7rem; }
-  .lg-band .lg-item .lg-spec { font-size: 1.7rem; }
-  .lg-band .lg-item.is-root .lg-spec { font-size: 2.2rem; }
+  .lg-node .lg-spec { font-size: var(--fs-16); }
+  .lg-node.is-root > .lg-spec { font-size: var(--fs-20); }
+  .lg-item .lg-spec { font-size: var(--fs-20); }
+  .lg-item.is-root .lg-spec { font-size: var(--fs-28); }
 }

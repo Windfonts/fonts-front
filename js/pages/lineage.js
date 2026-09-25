@@ -1,11 +1,14 @@
-/* 谱系页：字族 × 双模式（谱=纵向家谱 / 墙=年代分带样张墙）。
-   节点用它自己的字体渲染（以字证字）；未收录上游以灰字幽灵节点注出。 */
+/* 谱系页：字族 × 双模式（谱=纵向家谱 / 墙=分带样张墙）。
+   规则真源 docs/DESIGN-SYSTEM.md：节点样张用自身字体（以字证字）；
+   谱系 git 线标：原作/改自=commit、派生=branch、地区版/合作=merge、同支=compare（委托定制不加）。 */
 (function () {
   const esc = WFProto.escapeHtml;
+  const REL_ICON = { original: 'commit', fork: 'branch', locale: 'merge', collab: 'compare' };
+  const REL_TEXT = { original: '原作', fork: '派生', locale: '地区版', collab: '合作' };
   const stage = document.getElementById('stage');
   const famNav = document.getElementById('famNav');
   const famCap = document.getElementById('famCap');
-  const heroCount = document.getElementById('heroCount');
+  const heroTitle = document.getElementById('heroTitle');
   const btnTree = document.getElementById('modeTree');
   const btnWall = document.getElementById('modeWall');
 
@@ -25,13 +28,24 @@
     WFProto.ensureFontCss(font.family, w);
     return 'font-family:' + esc(WFProto.cssFamilyStack(font.family)) + ';font-weight:' + w;
   }
+  /* setAttribute 不解码 HTML 实体，esc 过的引号会变成字面 &#39; 弄坏 CSS——直拼（栈内无尖括号，安全） */
+  function faceAttr(font) {
+    const w = weightOf(font);
+    WFProto.ensureFontCss(font.family, w);
+    return 'font-family:' + WFProto.cssFamilyStack(font.family) + ';font-weight:' + w;
+  }
+  function relMark(font) {
+    const rel = font.lineage && font.lineage.relation;
+    if (!rel || !REL_ICON[rel]) return '';
+    return WFChrome.icon(REL_ICON[rel]) + '<b>' + REL_TEXT[rel] + '</b>';
+  }
   function metaOf(font) {
     const parts = [];
     if (font.charCount) parts.push('<b>' + WFProto.formatCount(font.charCount) + '</b> 字');
-    if (font.releaseYear) parts.push(font.releaseYear);
+    if (font.releaseYear) parts.push('<span>' + font.releaseYear + '</span>');
     const tier = WFProto.licenseTier(font);
-    if (tier === '开源商用') parts.push('开源');
-    return parts.join(' · ');
+    if (tier === '开源商用') parts.push('<span>开源</span>');
+    return parts.join('');
   }
 
   /* 家族森林：组内成员按 upstreamName 建边；上游不在库（或在组外）即为根，未收录上游出幽灵节点 */
@@ -91,7 +105,7 @@
     const ghost = font.ghost;
     const cls = 'lg-node' + (ghost ? ' is-ghost' : '') + (opts && opts.root ? ' is-root' : '');
     const style = ghost ? '' : ' style="' + faceOf(font) + '"';
-    const meta = ghost ? '未收录原作' : metaOf(font);
+    const meta = ghost ? '未收录原作' : (relMark(font) + metaOf(font));
     const inner = '<span class="lg-spec"' + style + '>' + esc(font.name) + '</span>' +
       '<span class="lg-meta">' + meta + '</span>';
     return ghost ? '<div class="' + cls + '">' + inner + '</div>'
@@ -125,8 +139,8 @@
       if (!band.length) continue;
       const years = band.map(function (f) { return f.releaseYear; }).filter(Boolean);
       const yr = years.length ? (years.length > 1 && years[0] !== years[years.length - 1] ? years[0] + ' – ' + years[years.length - 1] : String(years[0])) : '年份未记';
-      html += '<div class="lg-band"><div class="lg-band-cap"><span class="lg-yr">' + esc(yr) + '</span>' +
-        '<span class="t">' + (g === 0 ? '源 头' : '第 ' + '一二三四五六七八九'[Math.min(g - 1, 8)] + ' 代') + '</span><span class="rule"></span></div><div class="lg-wall">' +
+      html += '<div class="lg-band"><p class="lg-band-cap"><span class="yr">' + esc(yr) + '</span>' +
+        '<span class="t">' + WFChrome.icon(g === 0 ? 'commit' : 'branch') + (g === 0 ? '源 头' : '第 ' + '一二三四五六七八九'[Math.min(g - 1, 8)] + ' 代') + '</span></p><div class="lg-wall">' +
         band.map(function (f) {
           return '<a class="lg-item' + (g === 0 ? ' is-root' : '') + '" href="' + WFChrome.href(WFProto.detailHref(f)) + '">' +
             '<span class="lg-spec" style="' + faceOf(f) + '">' + esc(f.name) + '</span>' +
@@ -135,14 +149,15 @@
     }
     /* 未收录上游注脚（墙模式不占位，收进说明行） */
     const ghosts = [];
+    const all = WFProto.getCatalogList();
     members.forEach(function (f) {
       const rec = f.lineage || {};
       const up = rec.upstreamName || '';
-      if (up && rec.relation !== 'original' && !WFChrome.findFontByName(members, up) && !WFChrome.findFontByName(WFProto.getCatalogList(), up)) {
+      if (up && rec.relation !== 'original' && !WFChrome.findFontByName(members, up) && !WFChrome.findFontByName(all, up)) {
         if (ghosts.indexOf(up) === -1) ghosts.push(up);
       }
     });
-    if (ghosts.length) html += '<p class="lg-cap" style="margin-top:var(--s-4)">另有未收录原作：' + ghosts.map(esc).join('、') + '</p>';
+    if (ghosts.length) html += '<p class="count-line" style="margin-top:var(--s-4)">另有未收录原作：' + ghosts.map(esc).join('、') + '</p>';
     return html;
   }
 
@@ -164,7 +179,7 @@
     render();
   }
 
-  function renderFamNav(groups) {
+  function renderFamNav() {
     const all = WFProto.getCatalogList();
     const ld = WFProto.getLineageData();
     const counts = {};
@@ -179,28 +194,30 @@
       const gd = ld.groups[g] || {};
       const nm = gd.name || g;
       const short = String(nm).split(' / ')[0];
-      return '<a href="' + WFChrome.href('lineage.html?group=' + encodeURIComponent(g) + '&mode=' + mode) + '"' +
-        (g === curGroup ? ' class="is-on"' : '') + ' data-group="' + esc(g) + '">' + esc(short) + '<span class="n">' + counts[g] + '</span></a>';
+      return '<button type="button" class="chip' + (g === curGroup ? ' is-on' : '') + '" data-group="' + esc(g) + '">' +
+        esc(short) + '<span class="n">' + counts[g] + '</span></button>';
     }).join('');
-    famNav.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function (ev) {
-        ev.preventDefault();
-        setGroup(a.getAttribute('data-group'));
-      });
+    famNav.querySelectorAll('.chip').forEach(function (a) {
+      a.addEventListener('click', function () { setGroup(a.getAttribute('data-group')); });
     });
-    return { keys: keys, counts: counts };
   }
 
   function render() {
     const all = WFProto.getCatalogList();
     const ld = WFProto.getLineageData();
     const groups = ld.groups || {};
-    if (!curGroup || !groups[curGroup]) { stage.innerHTML = '<p class="lg-loading">暂无谱系数据。</p>'; return; }
+    if (!curGroup || !groups[curGroup]) { stage.innerHTML = '<p class="empty">暂无谱系数据。</p>'; return; }
     const members = all.filter(function (f) { return f.lineage && f.lineage.group === curGroup; });
     const forest = buildForest(members, all);
     const gd = groups[curGroup] || {};
-    heroCount.textContent = WFProto.formatCount(members.length);
-    famCap.textContent = (gd.name || curGroup) + ' · ' + members.length + ' 款' + (forest.roots.length > 1 ? ' · ' + forest.roots.length + ' 条支线' : '');
+    const mainRoot = forest.roots.filter(function (r) { return !r.ghost; })[0];
+    /* 首页惯例：大标题用当前样张字体渲染（这里=该族主根的本字） */
+    if (mainRoot) {
+      heroTitle.setAttribute('style', faceAttr(mainRoot));
+      heroTitle.textContent = '字有师承。';
+    }
+    famCap.textContent = (gd.name || curGroup) + ' · ' + members.length + ' 款' +
+      (forest.roots.length > 1 ? ' · ' + forest.roots.length + ' 条支线' : '');
     stage.innerHTML = mode === 'tree' ? renderTree(members, forest) : renderWall(members, forest);
     document.title = (gd.name ? String(gd.name).split(' / ')[0] : '谱系') + ' · 谱系 · 文风字体';
   }
