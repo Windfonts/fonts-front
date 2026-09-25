@@ -214,7 +214,7 @@
   padding: 0.45rem 0.65rem 0.4rem;
 }
 .lfl-card.is-compact .lfl-en { display: none; }
-.lfl-card.is-compact .lfl-yong { font-size: 1rem; }
+.lfl-card.is-compact .lfl-yong { font-size: 1.45rem; }
 
 /* 主题支卡（簇＝可折 mind-map branch） */
 .lfl-card.is-cluster {
@@ -307,16 +307,16 @@ a.lfl-name:hover { text-decoration: underline; }
 }
 .lfl-yong {
   flex: none;
-  font-size: 1.15rem;
+  font-size: 1.65rem;
   line-height: 1;
   color: var(--ink);
-  opacity: 0.78;
+  opacity: 0.42;
   margin-top: 0.05rem;
   user-select: none;
   transition: opacity var(--dur) var(--ease);
 }
 .lfl-yong.is-face-ready {
-  opacity: 0.95;
+  opacity: 1;
 }
 .lfl-card-meta {
   display: flex;
@@ -389,7 +389,7 @@ a.lfl-name:hover { text-decoration: underline; }
   user-select: none;
   transition: opacity var(--dur) var(--ease);
 }
-.lfl-wall-yong.is-face-ready { opacity: 0.95; }
+.lfl-wall-yong.is-face-ready { opacity: 1; }
 .lfl-wall-name {
   font-size: var(--fs-13);
   font-weight: var(--fw-title);
@@ -652,14 +652,14 @@ a.lfl-wall-name:hover { text-decoration: underline; }
   word-break: break-word;
 }
 .lfl-plex-pick-item .lfl-yong {
-  font-size: 1rem;
+  font-size: 1.45rem;
   line-height: 1;
   color: var(--ink);
-  opacity: 0.78;
+  opacity: 0.42;
   flex-shrink: 0;
   user-select: none;
 }
-.lfl-plex-pick-item .lfl-yong.is-face-ready { opacity: 0.95; }
+.lfl-plex-pick-item .lfl-yong.is-face-ready { opacity: 1; }
 .lfl-plex-pick-item .lfl-card-meta {
   display: flex;
   justify-content: space-between;
@@ -687,7 +687,7 @@ a.lfl-wall-name:hover { text-decoration: underline; }
 
 /* —— 乙支线 / 丙墙 —— */
 /* —— 共用节点 —— */
-.lg-yong { flex: none; width: 2rem; font-size: var(--fs-20); line-height: 1; color: var(--ink); text-align: left; font-weight: var(--fw-body); opacity: 0.88; transition: opacity var(--dur) var(--ease); }
+.lg-yong { flex: none; width: 2.6rem; font-size: 1.5rem; line-height: 1; color: var(--ink); text-align: left; font-weight: var(--fw-body); opacity: 0.42; transition: opacity var(--dur) var(--ease); }
 .lg-yong.is-face-ready { opacity: 1; }
 .lg-name { font-size: var(--fs-14); color: var(--ink); display: inline-flex; align-items: center; gap: 0.45em; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .lg-name .icon { color: var(--gray-2); flex: none; }
@@ -755,7 +755,7 @@ a.lg-node:hover .lg-name { text-decoration: underline; text-underline-offset: 0.
   padding: var(--s-3) var(--s-4); text-decoration: none; color: inherit; min-width: 10rem;
 }
 .lg-b-flat .lg-chip:hover { background: var(--surface-2); }
-.lg-b-flat .lg-yong { width: auto; font-size: var(--fs-20); }
+.lg-b-flat .lg-yong { width: auto; font-size: 1.5rem; }
 .lg-b-flat .lg-name { font-size: var(--fs-13); }
 
 /* ===== 丙 · 墙 + 旁谱 ===== */

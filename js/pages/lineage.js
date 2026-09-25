@@ -89,11 +89,15 @@
     const reg = ws.filter(function (w) { return /regular|normal/i.test(String(w)); })[0];
     return WFProto.weightToCss(reg || ws[0]);
   }
+  /** Inline style for HTML attrs: single-quoted family only.
+   *  cssFamilyStack uses "PingFang SC" etc.; those " break style="..." and leave a trailing
+   *  comma so the whole font-family decl is invalid → 永 inherits site UI (all look identical). */
   function htmlFaceOf(font) {
     if (!font || !font.family || font.ghost) return '';
     const w = htmlWeightOf(font);
     WFProto.ensureFontCss(font.family, w);
-    return 'font-family:' + WFProto.cssFamilyStack(font.family) + ';font-weight:' + w;
+    const fam = String(font.family).replace(/['"]/g, '');
+    return "font-family:'" + fam + "';font-weight:" + w;
   }
   function relMark(font) {
     const rel = font.lineage && font.lineage.relation;
@@ -445,7 +449,9 @@
     if (!font || font.ghost || font.outgroup || font.isCluster || font.isMore || font.isSeries || font.isPlexGate || !font.family) return '';
     const w = weightOf(font);
     WFProto.ensureFontCss(font.family, w);
-    return 'font-family:' + WFProto.cssFamilyStack(font.family) + ';font-weight:' + w;
+    const fam = String(font.family).replace(/['"]/g, '');
+    /* Specimen glyph: primary wenfeng family only (HTML-attr safe). Fallbacks mask load bugs. */
+    return "font-family:'" + fam + "';font-weight:" + w;
   }
 
   function canSpecimenFace(font) {
@@ -458,24 +464,41 @@
     return font.family + '|' + weightOf(font);
   }
 
+  function debugFaceOn() {
+    try { return /(?:^|[?&])debugFace=1(?:&|$)/.test(location.search); } catch (e) { return false; }
+  }
+
   /** Batch-load 永 for visible real fonts; dedupe by family|weight; mark spans ready. */
   function readyVisibleFaces(fonts) {
     const seen = {};
+    const dbg = debugFaceOn();
     (fonts || []).forEach(function (font) {
       const key = faceSpecKey(font);
       if (!key || seen[key]) return;
       seen[key] = true;
-      const fam = font.family;
+      const fam = String(font.family).replace(/['"]/g, '');
       const w = weightOf(font);
       WFProto.readyFace(fam, w, YONG).then(function () {
-        /* document-wide mark: DOM may have been re-rendered with same data-face */
+        /* Re-assert face on elements: survives re-render with same data-face; also fixes any
+           leftover broken style="...\"PingFang...\"..." from older HTML. */
         document.querySelectorAll('.lfl-yong[data-face], .lg-yong[data-face], .lfl-wall-yong[data-face]').forEach(function (el) {
-          if (el.getAttribute('data-face') === key) el.classList.add('is-face-ready');
+          if (el.getAttribute('data-face') !== key) return;
+          el.style.fontFamily = "'" + fam + "'";
+          el.style.fontWeight = w;
+          el.classList.add('is-face-ready');
         });
         if (heroTitle && heroTitle.getAttribute('data-face') === key) {
+          heroTitle.style.fontFamily = "'" + fam + "'";
+          heroTitle.style.fontWeight = w;
           heroTitle.classList.add('is-face-ready');
         }
-      }, function () { /* package missing / CDN fail — leave muted */ });
+        if (dbg && document.fonts && document.fonts.check) {
+          const ok = document.fonts.check(w + ' 32px "' + fam + '"', YONG);
+          if (!ok) console.warn('[debugFace] loaded but check failed', key);
+        }
+      }, function (err) {
+        if (dbg) console.warn('[debugFace] face load failed', key, err || '');
+      });
     });
   }
 
