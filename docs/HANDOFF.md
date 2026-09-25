@@ -607,5 +607,7 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 - 前台控制台：嵌入页「发布到 CDN」+「导出清单」；对外 URL 仍是 `{cdn}/p/{slug}/index.css`。
 - 边缘：`^~ /p/` → `windfonts_vault`（devops ansible）；**cn 已通**（探针 `cn…/p/demo/index.css` 200，`X-Windfonts-Project: demo`）。
 - **发布鉴权（2026-09-25）：** 控制台自签 `wf_{prefix}_{random}_{checksum}` Key；vault `PROJECT_PUBLISH_ALLOW_CLIENT` 默认开，形态校验通过即可发布（`ownerKeyHash` 防他人覆盖同 slug）。库内 Key / `PROJECT_PUBLISH_KEY` / `PROJECT_PUBLISH_OPEN` 仍可用。
+- **P3 包体清单（2026-09-25）：** `data/package-sizes.json`（扫 CDN `result.css` Content-Length，~438 款）+ vault `GET /api/fonts/:id/estimate?subset=`；详情预算条有清单则标「CSS 档」，否则启发式。脚本 `scripts/build-package-sizes.mjs`。
+- **analysis：** OSS metadata 约 128 族；详情字符表真源仍是 CSS `unicode-range`。扩 analysis 文件属 fonts-packages 管线，不挡选型。
 
-**仍待：** analysis 文件覆盖率、包体清单 API（P3）、扩更多简繁 `localePeerProduct`。商用档 `albbpht` 等仍受许可门禁。
+**仍待：** analysis 文件扩覆盖（管线）、扩更多简繁 `localePeerProduct`。商用档 `albbpht` 等仍受许可门禁。

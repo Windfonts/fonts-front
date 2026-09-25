@@ -39,24 +39,33 @@
     });
   }
 
-  /** 嵌入体积预算（启发式；补全走缺口裁切时给主款 + 同档上限） */
+  /** 嵌入体积预算：有包体清单用 CSS 档字节，否则启发式 */
   function budgetEstimate(items, resolveFont) {
     resolveFont = resolveFont || function () { return null; };
     let primary = 0;
     let ceiling = 0;
     let mode = 'solo';
     let peerName = '';
+    let fromManifest = false;
     (items || []).forEach(function (it) {
       const font = resolveFont(it.family) || { glyphCount: it.glyphCount || 8000 };
       const n = (it.weights && it.weights.length) || 1;
-      const base = versionSize(font, it.version || DEFAULT_VERSION) * n;
+      const subset = it.version || DEFAULT_VERSION;
+      let base = null;
+      if (window.WFLive && WFLive.packageCssBytes) {
+        const b = WFLive.packageCssBytes(font, subset);
+        if (b != null) { base = b * n; fromManifest = true; }
+      }
+      if (base == null) base = versionSize(font, subset) * n;
       primary += base;
       const peerFam = it.fallbackFamily || it.localePeer || '';
       if (peerFam || it.localeFallback) {
         mode = 'clipped';
         const peer = resolveFont(peerFam) || font;
         peerName = (peer && peer.name) || peerFam || '补全款';
-        ceiling += base + versionSize(peer, it.version || DEFAULT_VERSION) * n;
+        let peerBytes = null;
+        if (window.WFLive && WFLive.packageCssBytes) peerBytes = WFLive.packageCssBytes(peer, subset);
+        ceiling += base + (peerBytes != null ? peerBytes * n : versionSize(peer, subset) * n);
       } else {
         ceiling += base;
       }
@@ -66,6 +75,7 @@
       primary: primary,
       ceiling: ceiling,
       peerName: peerName,
+      fromManifest: fromManifest,
       primaryLabel: fmtBytes(primary),
       ceilingLabel: fmtBytes(ceiling)
     };
@@ -73,10 +83,11 @@
 
   function budgetHtml(est) {
     if (!est) return '';
+    const tag = est.fromManifest ? 'CSS 档' : '估';
     if (est.mode === 'clipped') {
       return (
         '<div class="use-budget" id="useBudget">' +
-          '<span class="use-budget-main">预估 ≈ <b>' + esc(est.primaryLabel) + '</b>（主款 · 当前档）</span>' +
+          '<span class="use-budget-main">预估 ≈ <b>' + esc(est.primaryLabel) + '</b>（主款 · 当前档 · ' + tag + '）</span>' +
           '<span class="use-budget-extra">开补全后主款不变；补全只挂缺口片，上限另 + 同档「' +
           esc(est.peerName) +
           '」≈ ' +
@@ -87,7 +98,7 @@
     }
     return (
       '<div class="use-budget" id="useBudget">' +
-        '<span class="use-budget-main">预估传输 ≈ <b>' + esc(est.primaryLabel) + '</b>（当前档 · 单字重启发式）</span>' +
+        '<span class="use-budget-main">预估传输 ≈ <b>' + esc(est.primaryLabel) + '</b>（当前档 · ' + tag + '）</span>' +
       '</div>'
     );
   }
@@ -320,6 +331,9 @@
       if (!pre.isConnected) return;
       pre.innerHTML = highlight(kind, code(kind, cur, curOpts));
       paintBudget();
+      if (window.WFLive && WFLive.loadPackageSizes) {
+        WFLive.loadPackageSizes().then(function () { paintBudget(); });
+      }
     }
     document.addEventListener('wf:cdn', paint);
     el.querySelectorAll('[data-struct]').forEach(function (b) {

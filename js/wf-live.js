@@ -155,5 +155,69 @@
       });
   }
 
-  window.WFLive = { origin: ORIGIN, counts: counts, analysis: analysis };
+  var sizesCache = null;
+  var sizesPromise = null;
+
+  function loadPackageSizes() {
+    if (sizesCache) return Promise.resolve(sizesCache);
+    if (sizesPromise) return sizesPromise;
+    var url = (window.WFChrome && WFChrome.href)
+      ? WFChrome.href('data/package-sizes.json')
+      : 'data/package-sizes.json';
+    sizesPromise = fetch(url, { method: 'GET' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (json) {
+        sizesCache = json || { byNormalized: {} };
+        return sizesCache;
+      })
+      .catch(function () {
+        sizesCache = { byNormalized: {} };
+        return sizesCache;
+      });
+    return sizesPromise;
+  }
+
+  /** 本地包体清单：CSS 档字节；无则 null */
+  function packageCssBytes(font, subset) {
+    if (!sizesCache || !sizesCache.byNormalized) return null;
+    var keys = [
+      normalizedOf(font),
+      familyOf(font),
+      String(familyOf(font) || '').toLowerCase()
+    ];
+    var sub = String(subset || 'full').toLowerCase();
+    for (var i = 0; i < keys.length; i++) {
+      var k = keys[i];
+      if (!k) continue;
+      var entry = sizesCache.byNormalized[k] || sizesCache.byNormalized[String(k).toLowerCase()];
+      if (!entry || !entry.subsets) continue;
+      var hit = entry.subsets[sub] || entry.subsets.full;
+      if (hit && hit.cssBytes) return hit.cssBytes;
+    }
+    return null;
+  }
+
+  function estimate(font, subset) {
+    var normalized = normalizedOf(font);
+    if (!normalized) return Promise.resolve(null);
+    if (liveOff()) return Promise.resolve(null);
+    return fetch(ORIGIN + '/api/fonts/' + encodeURIComponent(normalized) + '/estimate?subset=' + encodeURIComponent(subset || 'full'), { method: 'GET' })
+      .then(function (r) { return r.json().then(function (body) { return { ok: r.ok, body: body }; }); })
+      .then(function (pack) {
+        if (pack.body && pack.body.code === 200 && pack.body.data) return pack.body.data;
+        return null;
+      })
+      .catch(function () { return null; });
+  }
+
+  loadPackageSizes();
+
+  window.WFLive = {
+    origin: ORIGIN,
+    counts: counts,
+    analysis: analysis,
+    estimate: estimate,
+    packageCssBytes: packageCssBytes,
+    loadPackageSizes: loadPackageSizes
+  };
 })();

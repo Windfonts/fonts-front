@@ -260,7 +260,8 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
             <tr><td class="mono">viewCount · downloadCount · apiCallCount</td><td>浏览 / 下载 / CSS 拉取计数</td></tr>
           </tbody>
         </table>
-        <p>字符表：<code>GET /api/fonts/:id/analysis</code>（路径优先 <code>normalizedName</code>，如 <code>Ibmps</code>；无分析文件时 404）。公开站查字默认用本地数据；详情「字符表」工具栏可点<strong>对照现网字符表</strong>按需请求（限流时回退同源 <code>fonts-packages/metadata/font-analysis.json</code>）。现网 analysis 覆盖仍很稀，多数款会提示尚无文件。</p>
+        <p>字符表：<code>GET /api/fonts/:id/analysis</code>（路径优先 <code>normalizedName</code>，如 <code>Ibmps</code>；无分析文件时 404）。公开站查字默认用本地数据；详情「字符表」工具栏可点<strong>对照现网字符表</strong>按需请求（限流时回退同源 <code>fonts-packages/metadata/font-analysis.json</code>）。现网 analysis 约覆盖 128 族；详情缺字判定真源仍是分包 CSS 的 <code>unicode-range</code>。</p>
+        <p>包体预估：<code>GET /api/fonts/:id/estimate?subset=</code>（预计算 CSS 档字节清单）；详情嵌入预算条优先用清单，无则启发式。</p>
       </section>
 
       <section id="api-categories" class="for-dev">
