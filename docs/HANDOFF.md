@@ -602,4 +602,4 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 
 **本轮已收口（2026-09-25 续）：** N5 热度同步脚本与一次全量写回；N6 详情对照现网 analysis；`localeFallback` 配对表 + vault 参数 + 详情勾选（现 8 对，含狮尾简中/繁中）；N8 `export-license-lineage.mjs`。
 
-**仍待：** 预算模式、项目烘焙 `/p/{slug}`、analysis 文件覆盖率、扩更多简繁产品 `localePeerProduct`。商用档 `albbpht` 等仍受许可门禁。
+**仍待：** 项目烘焙 `/p/{slug}`、analysis 文件覆盖率、包体清单 API（P3）、扩更多简繁 `localePeerProduct`。商用档 `albbpht` 等仍受许可门禁。

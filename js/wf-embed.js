@@ -39,6 +39,60 @@
     });
   }
 
+  /** 嵌入体积预算（启发式；补全走缺口裁切时给主款 + 同档上限） */
+  function budgetEstimate(items, resolveFont) {
+    resolveFont = resolveFont || function () { return null; };
+    let primary = 0;
+    let ceiling = 0;
+    let mode = 'solo';
+    let peerName = '';
+    (items || []).forEach(function (it) {
+      const font = resolveFont(it.family) || { glyphCount: it.glyphCount || 8000 };
+      const n = (it.weights && it.weights.length) || 1;
+      const base = versionSize(font, it.version || DEFAULT_VERSION) * n;
+      primary += base;
+      const peerFam = it.fallbackFamily || it.localePeer || '';
+      if (peerFam || it.localeFallback) {
+        mode = 'clipped';
+        const peer = resolveFont(peerFam) || font;
+        peerName = (peer && peer.name) || peerFam || '补全款';
+        ceiling += base + versionSize(peer, it.version || DEFAULT_VERSION) * n;
+      } else {
+        ceiling += base;
+      }
+    });
+    return {
+      mode: mode,
+      primary: primary,
+      ceiling: ceiling,
+      peerName: peerName,
+      primaryLabel: fmtBytes(primary),
+      ceilingLabel: fmtBytes(ceiling)
+    };
+  }
+
+  function budgetHtml(est) {
+    if (!est) return '';
+    if (est.mode === 'clipped') {
+      return (
+        '<div class="use-budget" id="useBudget">' +
+          '<span class="use-budget-main">预估 ≈ <b>' + esc(est.primaryLabel) + '</b>（主款 · 当前档）</span>' +
+          '<span class="use-budget-extra">开补全后主款不变；补全只挂缺口片，上限另 + 同档「' +
+          esc(est.peerName) +
+          '」≈ ' +
+          esc(est.ceilingLabel) +
+          '（含主款，实际远小于双倍）</span>' +
+        '</div>'
+      );
+    }
+    return (
+      '<div class="use-budget" id="useBudget">' +
+        '<span class="use-budget-main">预估传输 ≈ <b>' + esc(est.primaryLabel) + '</b>（当前档 · 单字重启发式）</span>' +
+      '</div>'
+    );
+  }
+
+
   /** items: [{ family, weights: ['400','700'], version }] */
   function urls(items, structure, origin) {
     const out = [];
@@ -137,12 +191,11 @@
     }
     if (kind === 'css') {
       function stackFor(it) {
-        const fam = it.fallbackFamily
-          ? String(it.family) + '|' + String(it.fallbackFamily)
-          : it.family;
+        const peer = it.fallbackFamily || it.localePeer || '';
+        const fam = peer ? String(it.family) + '|' + String(peer) : it.family;
         return cssStack(fam, opts);
       }
-      if (items.length > 1 && !items.some(function (it) { return it.fallbackFamily; })) {
+      if (items.length > 1 && !items.some(function (it) { return it.fallbackFamily || it.localePeer; })) {
         const merged = items.map(function (it) { return it.family; }).filter(Boolean).join('|');
         const w0 = ((items[0] && items[0].weights) || ['400'])[0];
         return '.your-selector {\n  font-family: ' + cssStack(merged, opts) + ';\n  font-weight: ' +
@@ -166,8 +219,8 @@
       const rows = [];
       items.forEach(function (it) {
         const ver = it.version && it.version !== 'full' ? it.version : '';
-        const fams = it.fallbackFamily
-          ? [it.family, it.fallbackFamily]
+        const fams = it.fallbackFamily || it.localePeer
+          ? [it.family, it.fallbackFamily || it.localePeer]
           : [it.family];
         fams.forEach(function (raw, idx) {
           const wen = familyName(raw, opts);
@@ -246,11 +299,27 @@
           return '<button type="button" role="tab" data-kind="' + k.id + '"' + (k.id === kind ? ' class="is-on"' : '') + '>' + k.label + '</button>';
         }).join('') + '</div>' +
       '</div>' +
+      '<div class="use-budget-host" data-budget></div>' +
       '<div class="code" style="margin-top:var(--s-4)"><button type="button" class="copy">' + WFChrome.icon('copy') + '复制</button><pre></pre></div>';
     const pre = el.querySelector('pre');
+    const budgetHost = el.querySelector('[data-budget]');
+    function paintBudget() {
+      if (!budgetHost) return;
+      if (curOpts.budget === false) {
+        budgetHost.innerHTML = '';
+        return;
+      }
+      const resolve = curOpts.resolveFont || function (fam) {
+        return (window.WFProto && WFProto.getFontBySlug)
+          ? WFProto.getFontBySlug(String(fam || '').replace(/^wenfeng-/, ''))
+          : null;
+      };
+      budgetHost.innerHTML = budgetHtml(budgetEstimate(cur, resolve));
+    }
     function paint() {
       if (!pre.isConnected) return;
       pre.innerHTML = highlight(kind, code(kind, cur, curOpts));
+      paintBudget();
     }
     document.addEventListener('wf:cdn', paint);
     el.querySelectorAll('[data-struct]').forEach(function (b) {
@@ -285,6 +354,8 @@
     estimateBytes: estimateBytes,
     fmtBytes: fmtBytes,
     versionSize: versionSize,
+    budgetEstimate: budgetEstimate,
+    budgetHtml: budgetHtml,
     urls: urls,
     code: code,
     mount: mount,

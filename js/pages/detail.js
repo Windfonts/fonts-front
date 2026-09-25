@@ -371,6 +371,7 @@
             '<div id="embed"></div>' +
             '<p class="use-note">体积按单字重估算；默认「常用」适合品牌短文案，正文站可选「中文」。只要页面里出现的字，用 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a>。' +
               '谱系补全写 <code>fallback=</code>；简繁补全写 <code>localeFallback=auto</code>（二者同时开时优先谱系 <code>fallback</code>）。' +
+              '上方预算条为启发式；开补全后主款字节不变，补全只加缺口片。' +
               '<code>font-family</code> 须写主款与补全款栈。</p></div>' +
           '</section>' +
           (weights.length > 1
@@ -505,16 +506,23 @@
         }
       }
       if (localeEl && localeEl.checked) {
+        const peer = localeEl.getAttribute('data-peer') || '';
         return [{
           family: font.family,
           weights: [weight],
           version: version,
-          localeFallback: 'auto'
+          localeFallback: 'auto',
+          localePeer: peer
         }];
       }
       return [primary];
     }
-    const embed = WFEmbed.mount(document.getElementById('embed'), embedItems());
+    const embed = WFEmbed.mount(document.getElementById('embed'), embedItems(), {
+      resolveFont: function (fam) {
+        const slug = String(fam || '').replace(/^wenfeng-/, '');
+        return WFProto.getFontBySlug(slug) || null;
+      }
+    });
     function refreshEmbed() {
       syncFallbackUi();
       embed.setItems(embedItems());

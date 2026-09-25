@@ -180,6 +180,15 @@
 .use-note { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-4); line-height: 1.7; }
 .use-note code { background: var(--paper); padding: 0.05em 0.35em; border-radius: 6px; }
 .use-note a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }
+.use-budget-host { margin-top: var(--s-3); }
+.use-budget {
+  display: flex; flex-direction: column; gap: 0.25rem;
+  padding: var(--s-3) var(--s-4);
+  background: var(--fill); border-radius: var(--radius);
+  font-size: var(--fs-13); color: var(--ink); line-height: 1.55;
+}
+.use-budget-main b { font-variant-numeric: tabular-nums; }
+.use-budget-extra { color: var(--gray); }
 
 /* 授权 */
 .license-lead { font-size: var(--fs-16); line-height: 1.6; margin-bottom: var(--s-5); }
