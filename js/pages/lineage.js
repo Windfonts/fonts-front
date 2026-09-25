@@ -34,6 +34,7 @@
   const PLEX_PARENT_DEPTH = 2;
   const PLEX_SIBLING_SIDE = 2; /* each side */
   const PLEX_CHILD_CAP = 8;
+  const NESTED_BRAND_LEAF_CAP = 8; /* fonts under a nested brand hub */
   const PLEX_GATE_FAN = 8;
   const PLEX_V_GAP = 64;
   const PLEX_H_GAP = 36;
@@ -73,6 +74,7 @@
   let clusterFilter = ''; /* prefix / owner key / '' */
   let expandedClusters = {}; /* clusterId → true */
   let expandedMores = {}; /* moreId → true */
+  let expandedBrandHubs = {}; /* nested brandHubId → true/false; unset = expanded */
   let layout = null;
   let forestCache = null;
   let detectedClusters = []; /* [{id,kind,key,title,count,memberIds,parentName}] */
@@ -1259,6 +1261,28 @@
     }
   }
 
+
+  function isBrandHubExpanded(id) {
+    /* unset → default expanded when nested under a focused parent brand */
+    return expandedBrandHubs[id] !== false;
+  }
+
+  function collectNestedBrandLeaves(hub, forest) {
+    const leaves = [];
+    kidsOf(hub, forest).forEach(function (k) {
+      if (!k || k.isBrandFamily) return;
+      if (k.isSeries || k.isCluster) {
+        kidsOf(k, forest).forEach(function (f) {
+          if (f && !f.isSeries && !f.isCluster && !f.isMore && !f.isPlexGate && !f.isBrandFamily)
+            leaves.push(f);
+        });
+      } else if (!k.isMore && !k.isPlexGate) {
+        leaves.push(k);
+      }
+    });
+    return leaves;
+  }
+
   function layoutPlex(forest, focusId) {
     const positions = {};
     const edges = [];
@@ -1349,23 +1373,15 @@
         });
         childX += CARD_W + PLEX_H_GAP;
       });
-      /* 合作嵌套枢纽（站酷→胡）：自动展开一层字体，无需再点；母子公司品牌树不展 */
+      /* 嵌套品牌枢纽（阿里子公司 / 站酷→胡等）：默认展开一层字体；点击可收起 */
       show.forEach(function (n) {
         if (!n.isBrandFamily || !positions[n.id]) return;
-        if (n.edgeLabel !== '合作' && !n.isRelatedHub) return;
-        const leaves = [];
-        kidsOf(n, forest).forEach(function (k) {
-          if (!k || k.isBrandFamily) return;
-          if (k.isSeries || k.isCluster) {
-            kidsOf(k, forest).forEach(function (f) {
-              if (f && !f.isSeries && !f.isCluster && !f.isMore && !f.isPlexGate && !f.isBrandFamily)
-                leaves.push(f);
-            });
-          } else if (!k.isMore && !k.isPlexGate) {
-            leaves.push(k);
-          }
-        });
+        if (!isBrandHubExpanded(n.id)) return;
+        let leaves = collectNestedBrandLeaves(n, forest);
         if (!leaves.length) return;
+        if (leaves.length > NESTED_BRAND_LEAF_CAP) {
+          leaves = leaves.slice(0, NESTED_BRAND_LEAF_CAP);
+        }
         const hubPos = positions[n.id];
         const grandY = hubPos.y + hubPos.h + PLEX_V_GAP * 0.75;
         const totalW = leaves.length * CARD_W + Math.max(0, leaves.length - 1) * PLEX_H_GAP;
@@ -1375,7 +1391,7 @@
             gx += CARD_W + PLEX_H_GAP;
             return;
           }
-          place(f, gx, grandY, CARD_H_COMPACT, { role: 'collab-leaf', compact: true });
+          place(f, gx, grandY, CARD_H_COMPACT, { role: 'brand-leaf', compact: true });
           edges.push({
             from: n.id,
             to: f.id,
@@ -1907,14 +1923,24 @@
     const n = pos.node;
     const id = n.id;
     if (n.isSeries) {
+      const nestedToggle = !!(n.isBrandFamily && focusId && layout && layout.parentOf &&
+        layout.parentOf[id] === focusId && layout.byId[focusId] && layout.byId[focusId].isBrandFamily);
+      const brandOpen = nestedToggle ? isBrandHubExpanded(id) : true;
+      const brandAct = nestedToggle
+        ? ('<span class="lfl-brand-act">' + (brandOpen ? '▾ 收起字体' : '▸ 展开字体') + '</span>')
+        : '';
       return '<article class="lfl-card is-series' + (n.isBrandFamily ? ' is-brand-family' : '') +
+        (n.isBrandFamily && brandOpen ? ' is-open' : '') +
         (pos.activated ? ' is-activated' : '') +
         '" data-id="' + esc(id) + '" data-series="1"' +
-        (n.isBrandFamily ? ' data-brand="1"' : '') + ' style="left:' +
+        (n.isBrandFamily ? ' data-brand="1"' : '') +
+        (nestedToggle ? ' aria-expanded="' + (brandOpen ? 'true' : 'false') + '"' : '') +
+        ' style="left:' +
         pos.x + 'px;top:' + pos.y + 'px;width:' + pos.w + 'px" tabindex="0" role="button">' +
         '<div class="lfl-series-title"><span>' + esc(n.name) + '</span>' +
         '<span class="lfl-series-count">' + (n.seriesCount || (n.members && n.members.length) || 0) + '</span></div>' +
         '<span class="lfl-series-sub">' + esc(n.seriesSub || (n.isBrandFamily ? ('品牌 · 旗下 ' + (n.seriesCount || (n.members && n.members.length) || 0) + ' 款') : '同出一脉 · 点开看上下游')) + '</span>' +
+        brandAct +
         '</article>';
     }
     if (n.isPlexGate) {
@@ -2045,6 +2071,17 @@
         if (ev.target.closest('[data-nav]')) return;
         const id = el.getAttribute('data-id');
         const node = layout.positions[id] && layout.positions[id].node;
+        if (node && node.isBrandFamily) {
+          const focusNode = layout && layout.byId && layout.byId[focusId];
+          const parentId = layout && layout.parentOf && layout.parentOf[id];
+          if (focusNode && focusNode.isBrandFamily && parentId === focusId && id !== focusId) {
+            expandedBrandHubs[id] = !isBrandHubExpanded(id);
+            render({ keepScale: true });
+            return;
+          }
+          activateFocus(id);
+          return;
+        }
         if (node && node.isSeries) {
           activateFocus(id);
           return;
@@ -2355,6 +2392,7 @@
     focusId = '';
     expandedClusters = {};
     expandedMores = {};
+    expandedBrandHubs = {};
     clusterFilter = '';
     setUrlParam('group', g);
     setUrlParam('cluster', '');
