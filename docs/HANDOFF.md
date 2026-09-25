@@ -611,3 +611,17 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 - **简繁配对（2026-09-25 再扩）：** 11 对 / 18 成员——在既有思源/霞鹜/狮尾/猫啃之上，补 `systcnl`（思源宋体 CN Light）→ `systtc`。当前目录内有把握的 SC↔TC 已齐；再扩需先入库对应繁/简款。构建 `scripts/build-locale-fallback-pairs.mjs`。
 
 **仍待：** analysis 文件扩覆盖（fonts-packages 管线）。商用档 `albbpht` 等仍受许可门禁。
+## 26. 2026-09-25 出处链核对态按证据链判定 + 源界明朝谱系
+
+feibisi 在 yjmct 页点名「字体详情的 出处和依据」后拍板「**跳过核查就是开源字体**」——licenseName 命中标准开源许可的款，跳过逐款核查不得显示「待核对」（标准文本全网同文，命中即视同核对）。
+
+- **核对态四档**（`js/pages/detail.js` `proofVerifyKind`，取代旧 `font.licenseVerified` 二值叉，服务状态行+文风存档行同步）：
+  1. **原文**（逐款 licenseVerified=true）→「已核对协议原文」/「收录入库并已做原文核对。」
+  2. **标准**（licenseName 经 inferStandardKey 命中 license-evidence.json standards）→「已核对开源标准许可文本」/「收录入库，按开源标准许可文本核对。」
+  3. **出处**（github_license / rights_holder 命名条目，仓耳属此档）→「已核对许可出处」/「收录入库，许可出处已核对。」——自定义声明不冒充标准文本
+  4. 空 →「协议原文待核对」（合法保留态）
+- **分布 471 = 31 原文 + 351 证据链 + 89 真待核对**（OPPO Sans / 975 圆体等自定义协议，无标准文本也不在命名条目）。
+- `wf-proto.js` `licenseCanDo` 同步加 checked 分支（逐款或证据链任一 verified 即不出「授权还没核对」），开源商用档（如仓耳）不再落兜底句。
+- **源界明朝 yjmct**：feibisi 给 fonts.adobe.com/fonts/genkaimincho 拍板「就是 adobe」（Ken Lunde 架构、基于源ノ明朝加破坏效果）——DB 描述/版权归属本来就对，没改作者；只把 `font-lineage.json` 从误挂的 original 改 **fork ← 思源宋体**（group source-han-serif、upstreamOwnerId adobe、licenseFollows inherit），详情页自动串出思源宋体上下游、同源字组、缺字补全对照（上游 250 字）。
+- 验证：yjmct（标准）/ ceym1（出处）/ opsa（待核对）三款 DOM 断言各归各位。
+- 版本参数：detail `20260927m`、wf-proto `20260927k`（全站 HTML 已进位）。提交 `4bf9ee6` 已推 v4-specimen。
