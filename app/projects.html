@@ -16,10 +16,11 @@
   <aside class="rail" data-rail data-active="projects"></aside>
   <main class="app-main" id="root"><p class="loading">正在加载…</p></main>
 
-  <script src="../js/wf-proto.js?v=20260925g"></script>
+  <script src="../js/wf-proto.js?v=20260925pro1"></script>
   <script src="../js/wf-chrome.js?v=20260927e"></script>
   <script src="../js/wf-embed.js?v=20260924p"></script>
-  <script src="../js/wf-app.js?v=20260924q"></script>
+  <script src="../js/wf-app.js?v=20260925pro1"></script>
+  <script src="../js/wf-api.js?v=20260925pro1"></script>
   <script>
     (function () {
       if (!WFApp.gate()) return;
@@ -46,8 +47,14 @@
           e.preventDefault();
           const name = document.getElementById('newName').value.trim();
           if (!name) return;
-          const p = WFApp.createProject(name);
-          location.href = 'project.html?id=' + encodeURIComponent(p.id) + '&tab=fonts';
+          const btn = e.target.querySelector('[type=submit]');
+          if (btn) btn.disabled = true;
+          WFApi.createProject(name).then(function (p) {
+            location.href = 'project.html?id=' + encodeURIComponent(p.id) + '&tab=fonts';
+          }).catch(function (err) {
+            WFChrome.toast((err && err.message) || '创建失败');
+            if (btn) btn.disabled = false;
+          });
         });
         root.querySelectorAll('[data-del]').forEach(function (b) {
           b.addEventListener('click', function (e) {
@@ -56,15 +63,16 @@
             const p = WFApp.project(id);
             WFChrome.confirm({ title: '删除项目', message: '将删除「' + (p ? p.name : id) + '」及其域名、版本与用量记录。已对外的项目 CSS 会立刻失效。', ok: '删除' }).then(function (ok) {
               if (!ok) return;
-              WFApp.removeProject(id);
-              WFChrome.toast('已删除项目');
-              render();
+              WFApi.deleteProject(id).then(function () {
+                WFChrome.toast('已删除项目');
+                render();
+              }).catch(function (err) { WFChrome.toast((err && err.message) || '删除失败'); });
             });
           });
         });
         if (WFProto.getQuery('new')) document.getElementById('newName').focus();
       }
-      Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(render);
+      Promise.all([WFProto.loadCatalog(), WFApp.load(), WFApi.listProjects()]).then(function () { render(); });
     })();
   </script>
 </body>
