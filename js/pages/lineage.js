@@ -1,9 +1,10 @@
 /* 谱系页（现网 lineage.html）
-   - 双视图：派生 (derive / 师承) vs 组织 (org / 品牌)；URL ?view=derive|org，与顶栏字族组同步
-   - 四模式：激活 (plex) / 图 (flow) / 支线 (branch) / 墙 (wall)；URL ?mode=；tree→branch
+   - 双视图：派生 (derive) vs 组织 (org / 品牌)；顶栏 seg 派生|品牌，只露一侧大族芯片
+   - 三模式（主栏）：聚焦 (plex) / 图 (flow) / 墙 (wall)；URL ?mode=；tree→branch
+   - 分支 (branch) 仅深链 ?mode=branch 可达；记忆里的 branch 回落为 flow
    - 激活/图：画布 + HTML 卡 + Bezier；ELK layered 算坐标（plex=DOWN，flow=RIGHT），手写 layout 兜底
-   - 支线/墙：renderBranch / renderWall
-   - 大族默认激活，小族默认图；若 localStorage 为 branch/wall 则尊重 */
+   - 墙：renderWall；支线 HTML 仍保留供深链
+   - 大族默认聚焦，小族默认图；localStorage wall 尊重；branch→flow */
 (function () {
   const esc = WFProto.escapeHtml;
   const DEFAULT_GROUP = 'lxgw-wenkai';
@@ -85,10 +86,34 @@
   }
   function footForView() {
     if (isOrgView()) {
-      return '这里看品牌归属：哪款字体属于哪个品牌。可用右上角切换聚焦、关系图、分支、样张四种查看方式。';
+      return '这里看品牌归属：哪款字体属于哪个品牌。字体名用各自的字型显示。';
     }
-    return '这里看派生关系：哪款字体改自哪款。可用右上角切换聚焦、关系图、分支、样张四种查看方式；字体名用各自的字型显示。';
+    return '这里看派生关系：哪款字体改自哪款。字体名用各自的字型显示。';
   }
+
+  function groupShortName(g, ld) {
+    const rootId = rootFoundryIdForGroup(g) || g;
+    const fd = WFProto.getFoundryById ? WFProto.getFoundryById(rootId) : null;
+    const groups = (ld && ld.groups) || {};
+    const gd = groups[g] || groups[rootId] || {};
+    if (fd) return String(fd.short || fd.name || g);
+    return String(gd.name || g).split(' / ')[0];
+  }
+
+  function syncHeroChrome(shortName, count) {
+    if (heroTitle) {
+      heroTitle.textContent = shortName || '字体谱系';
+    }
+    if (heroMeta) {
+      const kind = isOrgView() ? '品牌' : '派生';
+      if (count != null && count !== '' && !isNaN(Number(count))) {
+        heroMeta.textContent = Number(count) + ' 款 · ' + kind;
+      } else {
+        heroMeta.textContent = kind;
+      }
+    }
+  }
+
 
   const CARD_W = 184;
   const CARD_H = 72;
@@ -129,10 +154,12 @@
   };
 
   const famNav = document.getElementById('famNav');
+  const viewNav = document.getElementById('viewNav');
   const modeNav = document.getElementById('modeNav');
-  const famCap = document.getElementById('famCap');
+  const famCap = document.getElementById('famCap'); /* optional; title meta replaces count-line */
   const footNote = document.getElementById('footNote');
   const heroTitle = document.getElementById('heroTitle');
+  const heroMeta = document.getElementById('heroMeta');
   const flowWrap = document.getElementById('flowWrap');
   const flowTools = document.getElementById('flowTools');
   const flowToolsSep = document.getElementById('flowToolsSep');
@@ -145,6 +172,7 @@
   const zoomLabel = document.getElementById('zoomLabel');
   const modeHint = document.getElementById('modeHint');
   const plexPick = document.getElementById('plexPick');
+  const widthToggle = document.getElementById('widthToggle');
   const clusterNav = { hidden: true, innerHTML: '', querySelectorAll: function () { return []; } };
   const wallEl = { hidden: true, innerHTML: '', querySelectorAll: function () { return []; } };
 
@@ -173,7 +201,7 @@
   let dragging = false;
   let dragStart = null;
   const viewShell = document.getElementById('viewShell');
-  const FOOT_PLAIN = '这里看派生关系：哪款字体改自哪款。可用右上角切换聚焦、关系图、分支、样张四种查看方式；字体名用各自的字型显示。';
+  const FOOT_PLAIN = '这里看派生关系：哪款字体改自哪款。字体名用各自的字型显示。';
 
   /* —— 乙支线 / 丙墙（现网 HTML） —— */
   const REL_ICON = { locale: 'merge', collab: 'compare' };
@@ -2338,7 +2366,7 @@
       if (layout.focusId) focusId = layout.focusId;
       const gd = (WFProto.getLineageData().groups || {})[curGroup] || {};
       const visibleN = Object.keys(layout.positions).length;
-      famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag() + ' · 聚焦「' +
+      if (famCap) famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag() + ' · 聚焦「' +
         ((layout.byId[focusId] && layout.byId[focusId].name) || focusId) + '」 · 相关 ' + visibleN +
         ' 卡 · ELK';
       renderGraph();
@@ -2693,7 +2721,7 @@
       if (gen !== flowLayoutGen) return;
       if (curMode !== 'flow') return;
       layout = elkLayout;
-      famCap.textContent = flowCapText(gd, modeLabel, members, layout, null);
+      if (famCap) famCap.textContent = flowCapText(gd, modeLabel, members, layout, null);
       renderGraph();
       if (renderOpts && renderOpts.restoreView && restoreCanvasView(renderOpts.restoreView)) {
         /* restored */
@@ -3411,6 +3439,7 @@
     document.body.classList.toggle('is-canvas', isCanvasMode(mode));
     if (modeNav) {
       modeNav.querySelectorAll('.lg-mode').forEach(function (btn) {
+        /* 深链 branch：主栏无按钮，不强行点亮「图」 */
         const on = btn.getAttribute('data-mode') === mode;
         btn.classList.toggle('is-on', on);
         btn.setAttribute('aria-selected', on ? 'true' : 'false');
@@ -3425,27 +3454,24 @@
       htmlStage.classList.toggle('is-off', isCanvasMode(mode));
       htmlStage.removeAttribute('hidden');
     }
-    /* Reserve zoom-tool width so mode chips do not jump */
+    /* 缩放工具仅「图」(flow) 可见；聚焦/墙隐藏，不占位 */
+    const showZoom = mode === 'flow';
     if (flowTools) {
-      flowTools.classList.toggle('is-reserved', !isCanvasMode(mode));
-      flowTools.removeAttribute('hidden');
-      flowTools.setAttribute('aria-hidden', isCanvasMode(mode) ? 'false' : 'true');
+      flowTools.classList.toggle('is-hidden', !showZoom);
+      flowTools.classList.remove('is-reserved');
+      if (showZoom) flowTools.removeAttribute('hidden');
+      else flowTools.setAttribute('hidden', '');
+      flowTools.setAttribute('aria-hidden', showZoom ? 'false' : 'true');
     }
     if (flowToolsSep) {
-      flowToolsSep.classList.toggle('is-reserved', !isCanvasMode(mode));
-      flowToolsSep.removeAttribute('hidden');
+      flowToolsSep.classList.toggle('is-hidden', !showZoom);
+      flowToolsSep.classList.remove('is-reserved');
+      if (showZoom) flowToolsSep.removeAttribute('hidden');
+      else flowToolsSep.setAttribute('hidden', '');
     }
     if (modeHint) {
-      const brand = isOrgView();
-      if (mode === 'plex') {
-        modeHint.textContent = brand ? '聚焦：点开一款字体，查看同品牌的字体' : '聚焦：点开一款字体，查看它的上游与下游';
-      } else if (mode === 'flow') {
-        modeHint.textContent = brand ? '关系图：滚轮缩放，查看品牌归属' : '关系图：滚轮缩放，可拖拽';
-      } else if (mode === 'branch') {
-        modeHint.textContent = brand ? '分支：按品牌查看旗下字体' : '分支：按代际查看';
-      } else {
-        modeHint.textContent = '样张：按年代查看字体样张';
-      }
+      modeHint.textContent = '';
+      modeHint.hidden = true;
     }
   }
 
@@ -3491,6 +3517,67 @@
     document.body.classList.toggle('is-view-org', org);
     document.body.classList.toggle('is-view-derive', !org);
     if (curView) setUrlParam('view', curView);
+    if (viewNav) {
+      viewNav.querySelectorAll('button[data-view]').forEach(function (btn) {
+        const v = btn.getAttribute('data-view');
+        const on = (v === 'org' && org) || (v === 'derive' && !org);
+        btn.classList.toggle('is-on', on);
+        btn.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+    }
+  }
+
+  /** 顶栏 派生|品牌：切侧并只露对应大族；当前组不在新侧则取该侧首个有款数大族 */
+  function setViewSide(side) {
+    const next = normalizeView(side) || 'derive';
+    if (next === curView) {
+      syncViewChrome();
+      return;
+    }
+    curView = next;
+    syncViewChrome();
+    const all = WFProto.getCatalogList();
+    const ld = WFProto.getLineageData();
+    const counts = {};
+    Object.keys(ld.groups || {}).forEach(function (g) {
+      const n = collapseFaceVariants(membersForGroup(g, all)).length;
+      if (n) counts[g] = n;
+    });
+    MAJOR_GROUPS.brand.forEach(function (g) {
+      const rootId = rootFoundryIdForGroup(g) || g;
+      const n = collapseFaceVariants(membersForOrgFoundry(rootId, all)).length;
+      if (n) counts[g] = n;
+    });
+    if (counts.alibaba && !counts['alibaba-sans']) counts['alibaba-sans'] = counts.alibaba;
+    const keys = curView === 'org' ? MAJOR_GROUPS.brand : MAJOR_GROUPS.lineage;
+    const norm = normalizeOrgGroup(curGroup) || curGroup;
+    const onSide = keys.indexOf(norm) !== -1 || keys.indexOf(curGroup) !== -1;
+    if (!onSide) {
+      const hit = firstMajorWithCount(keys, counts);
+      if (hit) {
+        curGroup = hit;
+        clearPlexBranch();
+        focusId = '';
+        expandedClusters = {};
+        expandedMores = {};
+        expandedBrandHubs = {};
+        clusterFilter = '';
+        setUrlParam('group', hit);
+        setUrlParam('cluster', '');
+        setUrlParam('focus', '');
+        hidePlexPick();
+        if (!modeLocked) {
+          let saved = '';
+          try { saved = localStorage.getItem('wf-lineage-mode') || ''; } catch (e) {}
+          saved = normalizeMode(saved);
+          /* branch 记忆回落；wall 保留 */
+          curMode = (saved === 'wall') ? 'wall' : '';
+        }
+      }
+    }
+    setUrlParam('view', curView);
+    renderFamNav();
+    render();
   }
 
   /** 派生=字形上下游树；组织=厂商树（foundries parent/children + ownerId），不画 fork */
@@ -3521,12 +3608,12 @@
     setUrlParam('focus', '');
     hidePlexPick();
     syncViewChrome();
-    /* re-suggest unless URL/user locked; keep remembered branch/wall */
+    /* re-suggest unless URL/user locked; wall 记忆保留，branch→交由 suggest/flow */
     if (!modeLocked) {
       let saved = '';
       try { saved = localStorage.getItem('wf-lineage-mode') || ''; } catch (e) {}
       saved = normalizeMode(saved);
-      curMode = (saved === 'branch' || saved === 'wall') ? saved : '';
+      curMode = (saved === 'wall') ? 'wall' : '';
     }
     renderFamNav();
     render();
@@ -3566,27 +3653,12 @@
     resolveViewWithGroup(counts);
     function chipHtml(g) {
       if (!counts[g]) return '';
-      const rootId = rootFoundryIdForGroup(g) || g;
-      const fd = WFProto.getFoundryById ? WFProto.getFoundryById(rootId) : null;
-      const gd = ld.groups[g] || ld.groups[rootId] || {};
-      const short = fd
-        ? String(fd.short || fd.name || g)
-        : String(gd.name || g).split(' / ')[0];
+      const short = groupShortName(g, ld);
       return '<button type="button" class="chip' + (g === curGroup ? ' is-on' : '') + '" data-group="' + esc(g) + '">' +
         esc(short) + '<span class="n">' + counts[g] + '</span></button>';
     }
-    function clusterHtml(label, help, keys) {
-      const chips = keys.map(chipHtml).join('');
-      if (!chips) return '';
-      return '<div class="lfl-fam-cluster">' +
-        '<span class="lfl-fam-head">' +
-        '<span class="lfl-fam-label">' + esc(label) + '</span>' +
-        '<span class="lfl-fam-help">' + esc(help) + '</span>' +
-        '</span>' + chips + '</div>';
-    }
-    famNav.innerHTML =
-      clusterHtml('派生', '派生谱系 · 谁改自谁', MAJOR_GROUPS.lineage) +
-      clusterHtml('品牌', '品牌组织 · 按厂商', MAJOR_GROUPS.brand);
+    const sideKeys = isOrgView() ? MAJOR_GROUPS.brand : MAJOR_GROUPS.lineage;
+    famNav.innerHTML = sideKeys.map(chipHtml).join('');
     famNav.querySelectorAll('.chip').forEach(function (btn) {
       btn.addEventListener('click', function () { setGroup(btn.getAttribute('data-group')); });
     });
@@ -3640,7 +3712,8 @@
       (curGroup && WFProto.getFoundryById && WFProto.getFoundryById(curGroup)));
     if (!curGroup || !known) {
       layout = null;
-      famCap.textContent = '';
+      if (famCap) famCap.textContent = '';
+      syncHeroChrome('', '');
       if (htmlStage) htmlStage.innerHTML = '<p class="empty">暂无谱系数据。</p>';
       if (isCanvasMode(curMode)) renderGraph();
       if (footNote) footNote.textContent = '暂无谱系数据。';
@@ -3669,8 +3742,8 @@
       }
       syncModeChrome(curMode);
       if (famCap) famCap.textContent = gateName + ' · 品牌归属 · 暂无组织图';
+      syncHeroChrome(gateName, 0);
       if (heroTitle) {
-        heroTitle.textContent = gateName;
         heroTitle.removeAttribute('style');
         heroTitle.removeAttribute('data-face');
         heroTitle.classList.remove('is-face-ready');
@@ -3715,8 +3788,8 @@
       }
       syncModeChrome(curMode);
       if (famCap) famCap.textContent = emptyName + ' · 品牌归属 · 暂无字体';
+      syncHeroChrome(emptyName, 0);
       if (heroTitle) {
-        heroTitle.textContent = emptyName;
         heroTitle.removeAttribute('style');
         heroTitle.removeAttribute('data-face');
         heroTitle.classList.remove('is-face-ready');
@@ -3748,14 +3821,19 @@
     if (!curMode) {
       const qMode = normalizeMode(qs('mode'));
       if (qMode) {
+        /* 深链 ?mode=branch 仍可达；无主栏按钮 */
         curMode = qMode;
         modeLocked = true;
       } else {
         let saved = '';
         try { saved = localStorage.getItem('wf-lineage-mode') || ''; } catch (e) {}
         saved = normalizeMode(saved);
-        if (saved === 'branch' || saved === 'wall') {
-          curMode = saved;
+        if (saved === 'wall') {
+          curMode = 'wall';
+          modeLocked = false;
+        } else if (saved === 'branch') {
+          /* 旧书签/记忆的分支 → 图 */
+          curMode = 'flow';
           modeLocked = false;
         } else {
           curMode = suggestMode(forest, members.length);
@@ -3777,10 +3855,12 @@
     const fan = maxSiblingFan(forest);
     const modeLabel = curMode === 'wall' ? '墙'
       : (curMode === 'plex' ? '聚焦'
-        : (curMode === 'branch' ? '分支' : '关系图'));
+        : (curMode === 'branch' ? '分支' : '图'));
     const renderOpts = opts;
 
     const mainRoot = forest.roots.filter(function (r) { return !r.ghost && !r.outgroup && !r.isSeries; })[0];
+    const shortTitle = groupShortName(curGroup, ld) || (gd.name ? String(gd.name).split(' / ')[0] : curGroup);
+    syncHeroChrome(shortTitle, members.length);
     if (heroTitle && mainRoot) {
       const face = faceOf(mainRoot);
       if (face) {
@@ -3792,12 +3872,16 @@
         heroTitle.removeAttribute('data-face');
         heroTitle.classList.remove('is-face-ready');
       }
+    } else if (heroTitle) {
+      heroTitle.removeAttribute('style');
+      heroTitle.removeAttribute('data-face');
+      heroTitle.classList.remove('is-face-ready');
     }
 
     if (curMode === 'branch' || curMode === 'wall') {
       layout = null;
       const htmlForest = buildHtmlForest(members, all);
-      famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag() + ' · ' + modeLabel + ' · ' + members.length + ' 款' +
+      if (famCap) famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag() + ' · ' + modeLabel + ' · ' + members.length + ' 款' +
         (htmlForest.roots.length > 1 ? ' · ' + htmlForest.roots.length + ' 个分支' : '');
       if (htmlStage) {
         htmlStage.innerHTML = curMode === 'branch'
@@ -3820,7 +3904,7 @@
       layout = layoutPlex(forest, focusId);
       if (layout.focusId) focusId = layout.focusId;
       const visibleN = Object.keys(layout.positions).length;
-      famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag() + ' · ' + modeLabel + ' · 激活「' +
+      if (famCap) famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag() + ' · ' + modeLabel + ' · 激活「' +
         ((layout.byId[focusId] && layout.byId[focusId].name) || focusId) + '」 · 相关 ' + visibleN +
         ' 款' + (fan >= AUTO_PLEX_FAN ? ' · 展开分支 ' + fan + ' 款' : '');
       renderGraph();
@@ -3834,7 +3918,7 @@
       flowLayoutGen += 1;
       const flowGen = flowLayoutGen;
       layout = layoutForest(forest, { mode: 'flow' });
-      famCap.textContent = flowCapText(gd, modeLabel, members, layout, fan);
+      if (famCap) famCap.textContent = flowCapText(gd, modeLabel, members, layout, fan);
       renderGraph();
       if (renderOpts.restoreView && restoreCanvasView(renderOpts.restoreView)) {
         /* restored */
@@ -3910,28 +3994,30 @@
     });
   });
 
-  /* 内容宽度切换：标准（版心）/ 全宽（铺满视口），localStorage 记忆 */
-  var widthNav = document.getElementById('widthNav');
+  /* 内容宽度：单钮「全宽」开关，localStorage 记忆 */
   function applyWidth() {
     document.documentElement.classList.toggle('lg-wide', width === 'wide');
     var page = document.querySelector('.lg-page');
     if (page) page.classList.toggle('lg-page-wide', width === 'wide');
-    if (widthNav) widthNav.querySelectorAll('button').forEach(function (b) {
-      var on = b.getAttribute('data-width') === width;
-      b.classList.toggle('is-on', on);
-      b.setAttribute('aria-selected', on ? 'true' : 'false');
-    });
+    if (widthToggle) {
+      widthToggle.classList.toggle('is-on', width === 'wide');
+      widthToggle.setAttribute('aria-pressed', width === 'wide' ? 'true' : 'false');
+    }
   }
   var width = 'normal';
   try { width = localStorage.getItem('wf-lineage-width') === 'wide' ? 'wide' : 'normal'; } catch (e) {}
-  if (widthNav) widthNav.addEventListener('click', function (ev) {
-    var btn = ev.target.closest('button');
-    if (!btn) return;
-    width = btn.getAttribute('data-width') === 'wide' ? 'wide' : 'normal';
+  if (widthToggle) widthToggle.addEventListener('click', function () {
+    width = width === 'wide' ? 'normal' : 'wide';
     try { localStorage.setItem('wf-lineage-width', width); } catch (e) {}
     applyWidth();
   });
   applyWidth();
+
+  if (viewNav) viewNav.addEventListener('click', function (ev) {
+    var btn = ev.target.closest('button[data-view]');
+    if (!btn) return;
+    setViewSide(btn.getAttribute('data-view'));
+  });
 
   /* bootstrap URL cluster filter + focus */
   clusterFilter = qs('cluster') || '';

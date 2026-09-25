@@ -27,6 +27,7 @@ body.page-lineage > footer {
   width: 100%;
 }
 .lg-page > .page-head,
+.lg-page > .hd-a-title,
 .lg-page > .lg-toolbar,
 .lg-page > .count-line {
   flex: 0 0 auto;
@@ -858,38 +859,113 @@ a.lg-node:hover .lg-name { text-decoration: underline; text-underline-offset: 0.
 }
 
 
-/* 顶栏：师承 | 品牌 两组大族 */
-#famNav.chips {
+/* 甲 · 收紧顶栏：紧凑标题 + 单侧大族芯片 */
+.hd-a-title {
   display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
   flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 0.55rem 1rem;
+  margin: 0 0 var(--s-3);
+  padding: var(--s-3) 0 0;
 }
-.lfl-fam-cluster {
+.hd-a-title .t,
+.hd-a-title #heroTitle {
+  font-size: var(--fs-20);
+  font-weight: var(--fw-title);
+  margin: 0;
+  line-height: 1.25;
+}
+.hd-a-title .meta,
+.hd-a-title #heroMeta {
+  font-size: var(--fs-13);
+  color: var(--gray);
+  font-weight: var(--fw-body);
+}
+.tb-a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+.tb-a .left,
+.tb-a .right {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+}
+.tb-a .right.lg-tools { margin-left: 0; }
+/* 顶栏控件统一高度：seg 外胶囊 = chip = 全宽 = 缩放，同 2rem */
+.tb-a .seg {
+  box-sizing: border-box;
   display: inline-flex;
+  align-items: center;
+  height: 2rem;
+  min-height: 2rem;
+  padding: 2px;
+  border-radius: var(--radius-pill);
+}
+.tb-a .seg button,
+.tb-a .chip,
+.tb-a #famNav .chip,
+.tb-a .width-btn,
+.tb-a .lg-tool {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(2rem - 4px);
+  min-height: calc(2rem - 4px);
+  padding: 0 0.75rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-13);
+  font-weight: var(--fw-label);
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+/* chip / 全宽 / 缩放无内轨，外高直接 2rem，与 .seg 外胶囊齐 */
+.tb-a .chip,
+.tb-a #famNav .chip,
+.tb-a .width-btn,
+.tb-a .lg-tool {
+  height: 2rem;
+  min-height: 2rem;
+}
+.tb-a .lg-tool {
+  min-width: 2rem;
+  padding: 0 0.55rem;
+}
+.tb-a .lg-zoom {
+  font-size: var(--fs-13);
+  line-height: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+}
+.tb-a .width-btn {
+  background: var(--fill);
+  color: var(--gray);
+  cursor: pointer;
+  font-family: inherit;
+}
+.tb-a .width-btn:hover { color: var(--ink); }
+.tb-a .width-btn.is-on {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.tb-a .width-btn.is-on:hover { color: var(--on-ink); }
+.tb-a #famNav.chips {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.35rem;
 }
-.lfl-fam-head {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.05rem;
-  margin-right: 0.15rem;
-  line-height: 1.2;
-}
-.lfl-fam-label {
-  flex: none;
-  font-size: var(--fs-12);
-  color: var(--gray);
-  letter-spacing: 0.02em;
-}
-.lfl-fam-help {
-  font-size: 10px;
-  color: var(--gray-2);
-  letter-spacing: 0.01em;
-  white-space: nowrap;
+.lg-flow-tools.is-hidden,
+.lg-tools-sep.is-hidden {
+  display: none !important;
 }
 
 /* 内容宽度切换（C 版）：全宽时页眉/正文/页脚三段容器同步铺满视口，留安全边距 */
@@ -903,6 +979,7 @@ html.lg-wide .site-extra-footer .extra-inner {
 html.lg-wide header[data-topbar],
 html.lg-wide .site-extra-footer,
 html.lg-wide .lg-page > .page-head,
+html.lg-wide .lg-page > .hd-a-title,
 html.lg-wide .lg-page > .lg-foot {
   display: none;
 }
@@ -922,21 +999,16 @@ html.lg-wide .lg-stage { padding-block: var(--s-2); }
   row-gap: 0.5rem;
   align-items: center;
 }
-/* 开关与芯片：13px + 舒适内距（原 seg 12px/3px 偏小难点） */
-.lg-tools .seg button,
-.lg-toolbar .chip {
+/* 甲顶栏高度由 .tb-a 统一；此处只保非 tb-a 旧工具条不塌 */
+.lg-toolbar:not(.tb-a) .lg-tools .seg button,
+.lg-toolbar:not(.tb-a) .chip {
   font-size: var(--fs-13);
   padding-block: 0.35rem;
 }
 .lg-toolbar .chips { row-gap: 0.45rem; }
-/* 区头（字族名 · 视图 · 款数）升为区级标题 */
+/* count-line 已并入 hd-a-title meta；若残留节点则弱化 */
 .lg-page > .count-line {
-  font-size: var(--fs-16);
-  font-weight: var(--fw-title);
-  color: var(--ink);
-  padding: var(--s-4) clamp(1rem, 2.5vw, 2rem) var(--s-3);
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: 0;
+  display: none;
 }
 /* 根卡：永字与名字再提一级，meta 放大可读 */
 .lg-b-root { padding: var(--s-5) var(--s-6); }
@@ -949,5 +1021,5 @@ html.lg-wide .lg-stage { padding-block: var(--s-2); }
 .lfl-card .lfl-name { font-size: var(--fs-14); }
 .lfl-card .lfl-meta,
 .lfl-card.is-compact .lfl-name { font-size: var(--fs-13); }
-/* 提示行（分支：按代际查看）缩小右移，不与开关抢焦 */
-.lg-hint { font-size: var(--fs-12); }
+/* 提示行已移除；保留弱样式以免残留 */
+.lg-hint { display: none; }

@@ -173,8 +173,8 @@
         {
           "href": "lineage-toolbar-options.html",
           "title": "谱系顶栏两套",
-          "status": "active",
-          "note": "收紧 vs 沉浸细条；定稿前不并进 lineage.html"
+          "status": "shipped-ref",
+          "note": "甲收紧已并进 lineage；乙沉浸细条仍对照"
         },
         {
           "href": "detail-lineage-tree-options.html",
