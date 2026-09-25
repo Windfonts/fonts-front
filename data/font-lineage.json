@@ -60,6 +60,22 @@
     "smart-font-ui": {
       "name": "03スマートフォントUI",
       "upstreamName": "03スマートフォントUI"
+    },
+    "qiantu": {
+      "name": "千图字库",
+      "upstreamName": ""
+    },
+    "maoken": {
+      "name": "猫啃网",
+      "upstreamName": ""
+    },
+    "pangmen": {
+      "name": "庞门正道",
+      "upstreamName": ""
+    },
+    "huxiaobo": {
+      "name": "胡晓波",
+      "upstreamName": ""
     }
   },
   "byName": {
@@ -299,7 +315,8 @@
       "ownerId": "huxiaobo",
       "makerId": "huxiaobo",
       "relation": "original",
-      "licenseFollows": "own"
+      "licenseFollows": "own",
+      "group": "huxiaobo"
     },
     "龙藏体": {
       "ownerId": "zhongqi",
@@ -2213,6 +2230,139 @@
       "makerId": "taobao",
       "group": "alibaba-sans",
       "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "千图厚黑体": {
+      "ownerId": "qiantu",
+      "makerId": "qiantu",
+      "group": "qiantu",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "千图学画体": {
+      "ownerId": "qiantu",
+      "makerId": "qiantu",
+      "group": "qiantu",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "千图小兔体": {
+      "ownerId": "qiantu",
+      "makerId": "qiantu",
+      "group": "qiantu",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "千图笔锋手写体": {
+      "ownerId": "qiantu",
+      "makerId": "qiantu",
+      "group": "qiantu",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "千图纤墨体": {
+      "ownerId": "qiantu",
+      "makerId": "qiantu",
+      "group": "qiantu",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "千图马克手写体": {
+      "ownerId": "qiantu",
+      "makerId": "qiantu",
+      "group": "qiantu",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "猫啃扛重族宋": {
+      "ownerId": "maoken",
+      "makerId": "maoken",
+      "group": "maoken",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "猫啃扛重族黑": {
+      "ownerId": "maoken",
+      "makerId": "maoken",
+      "group": "maoken",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "猫啃硬笔楷书": {
+      "ownerId": "maoken",
+      "makerId": "maoken",
+      "group": "maoken",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "阿里妈妈东方大楷": {
+      "ownerId": "alimama",
+      "makerId": "alimama",
+      "group": "alibaba-sans",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "阿里妈妈刀隶体": {
+      "ownerId": "alimama",
+      "makerId": "alimama",
+      "group": "alibaba-sans",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "阿里妈妈数黑体": {
+      "ownerId": "alimama",
+      "makerId": "alimama",
+      "group": "alibaba-sans",
+      "relation": "commissioned",
+      "licenseFollows": "own"
+    },
+    "庞门正道标题体": {
+      "ownerId": "pangmen",
+      "makerId": "pangmen",
+      "group": "pangmen",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "庞门正道真贵楷体": {
+      "ownerId": "pangmen",
+      "makerId": "pangmen",
+      "group": "pangmen",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "庞门正道粗书体": {
+      "ownerId": "pangmen",
+      "makerId": "pangmen",
+      "group": "pangmen",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "庞门正道轻松体": {
+      "ownerId": "pangmen",
+      "makerId": "pangmen",
+      "group": "pangmen",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "胡晓波男神体": {
+      "ownerId": "huxiaobo",
+      "makerId": "huxiaobo",
+      "group": "huxiaobo",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "胡晓波真帅体": {
+      "ownerId": "huxiaobo",
+      "makerId": "huxiaobo",
+      "group": "huxiaobo",
+      "relation": "original",
+      "licenseFollows": "own"
+    },
+    "胡晓波骚包体": {
+      "ownerId": "huxiaobo",
+      "makerId": "huxiaobo",
+      "group": "huxiaobo",
+      "relation": "original",
       "licenseFollows": "own"
     }
   }

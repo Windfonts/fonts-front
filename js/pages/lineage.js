@@ -550,7 +550,10 @@
   }
 
   /* —— forest —— */
-  function buildForest(members, all) {
+  function buildForest(members, all, opts) {
+    opts = opts || {};
+    /* 品牌/平台芯片：成员作品牌目录，忽略跨组 upstream，避免幽灵思源顶卡 */
+    const catalogMode = !!opts.catalogMode;
     const byId = {};
     members.forEach(function (f) { byId[f.id] = f; });
     const children = {};
@@ -580,6 +583,9 @@
       if (parent && byId[parent.id]) {
         (children[parent.id] = children[parent.id] || []).push(f);
         parentOf[f.id] = parent.id;
+      } else if (catalogMode) {
+        /* 上游不在本芯片成员集：目录视图下作平级根，交给品牌枢纽 */
+        roots.push(f);
       } else if (parent && !byId[parent.id]) {
         const oid = 'out:' + parent.id;
         let og = byId[oid];
@@ -701,6 +707,13 @@
       return !!(fd && (fd.kind === 'brand' || fd.kind === 'platform'));
     }
 
+    /* 专属芯片（group id === ownerId）下 author 也造顶卡：庞门/胡晓波 */
+    function shouldFlatHub(fd) {
+      if (!fd) return false;
+      if (isBrandOrPlatform(fd)) return true;
+      return fd.kind === 'author' && curGroup === fd.id;
+    }
+
     /* topId → { topFd, childBuckets: { id: { fd, fonts } }, direct: [], flatMulti?: true } */
     const buckets = {};
     forest.roots.forEach(function (r) {
@@ -723,8 +736,8 @@
         b.direct.push(r);
         return;
       }
-      /* 无 parentId、无子公司：brand/platform 且本林 ≥2 根时造品牌枢纽（站酷/猫啃等） */
-      if (isBrandOrPlatform(fd)) {
+      /* 无 parentId、无子公司：brand/platform（或专属 author 芯片）且本林 ≥2 根时造品牌枢纽 */
+      if (shouldFlatHub(fd)) {
         const b = buckets[fd.id] || (buckets[fd.id] = {
           topFd: fd, childBuckets: {}, direct: [], flatMulti: true
         });
@@ -744,7 +757,7 @@
       if (!childIds.length && !b.direct.length) return;
       /* 仅母公司直属、字典里也无子公司：默认不造枢纽；例外=平台/品牌多款扁平原主 */
       if (!childIds.length && !getKids(topId).length) {
-        if (!(b.flatMulti && isBrandOrPlatform(b.topFd) && b.direct.length >= 2)) return;
+        if (!(b.flatMulti && shouldFlatHub(b.topFd) && b.direct.length >= 2)) return;
       }
 
       const moved = {};
@@ -1022,8 +1035,7 @@
   }
 
   function countGroupMembers(groupKey) {
-    const all = WFProto.getCatalogList();
-    return all.filter(function (f) { return f.lineage && f.lineage.group === groupKey; }).length;
+    return membersForGroup(groupKey, WFProto.getCatalogList()).length;
   }
 
   function pickNearSiblings(list, focus, cap) {
@@ -1936,11 +1948,50 @@
     render({ keepScale: keepScale, recenter: true });
   }
 
+
+  function foundryForGroupId(g) {
+    if (!g || !WFProto.getFoundryById) return null;
+    return WFProto.getFoundryById(g) || null;
+  }
+
+  /* brand|platform 芯片：按 ownerId 聚合（猫啃 forks 仍属思源组） */
+  function isOwnerAggregatedGroup(g) {
+    const fd = foundryForGroupId(g);
+    return !!(fd && (fd.kind === 'brand' || fd.kind === 'platform'));
+  }
+
+  function isCatalogGroup(g) {
+    const fd = foundryForGroupId(g);
+    if (!fd) return false;
+    if (fd.kind === 'brand' || fd.kind === 'platform') return true;
+    /* 专属作者芯片：group id 即 ownerId */
+    return fd.kind === 'author' && g === fd.id;
+  }
+
+  function membersForGroup(g, all) {
+    const seen = {};
+    const out = [];
+    function add(f) {
+      if (!f || !f.id || seen[f.id]) return;
+      seen[f.id] = true;
+      out.push(f);
+    }
+    (all || []).forEach(function (f) {
+      if (f.lineage && f.lineage.group === g) add(f);
+    });
+    if (isOwnerAggregatedGroup(g)) {
+      (all || []).forEach(function (f) {
+        const oid = (f.lineage && f.lineage.ownerId) ||
+          (f.ownerInfo && f.ownerInfo.id) || '';
+        if (oid === g) add(f);
+      });
+    }
+    return out;
+  }
+
   function wallListForRender() {
     const all = WFProto.getCatalogList();
-    let members = all.filter(function (f) {
-      return f.lineage && f.lineage.group === curGroup;
-    });
+    let members = membersForGroup(curGroup, all);
     if (clusterFilter) {
       members = members.filter(memberMatchesFilter);
     }
@@ -1991,7 +2042,7 @@
   }
 
   function edgeCountForGroup(groupKey, all) {
-    const members = all.filter(function (f) { return f.lineage && f.lineage.group === groupKey; });
+    const members = membersForGroup(groupKey, all);
     let edges = 0;
     members.forEach(function (f) {
       const rec = f.lineage || {};
@@ -2137,12 +2188,11 @@
     const all = WFProto.getCatalogList();
     const ld = WFProto.getLineageData();
     const counts = {};
-    all.forEach(function (f) {
-      const g = (f.lineage && f.lineage.group) || '';
-      if (g) counts[g] = (counts[g] || 0) + 1;
+    Object.keys(ld.groups || {}).forEach(function (g) {
+      const n = membersForGroup(g, all).length;
+      if (n) counts[g] = n;
     });
-    const keys = Object.keys(ld.groups || {}).filter(function (g) { return counts[g]; })
-      .sort(function (a, b) { return counts[b] - counts[a]; });
+    const keys = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a]; });
     if (!curGroup || !counts[curGroup]) {
       curGroup = pickDefaultGroup(counts, ld, all);
     }
@@ -2177,7 +2227,7 @@
       c.memberIds.forEach(function (id) { clusteredIds[id] = true; });
     });
     const all = WFProto.getCatalogList();
-    const members = all.filter(function (f) { return f.lineage && f.lineage.group === curGroup; });
+    const members = membersForGroup(curGroup, all);
     const otherN = members.filter(function (f) { return !clusteredIds[f.id]; }).length;
     if (otherN > 0 && detectedClusters.length) {
       html += '<button type="button" class="chip' + (clusterFilter === '__other__' ? ' is-on' : '') +
@@ -2205,8 +2255,10 @@
       return;
     }
 
-    const members = all.filter(function (f) { return f.lineage && f.lineage.group === curGroup; });
-    const forest = injectSeriesNodes(injectBrandFamilyNodes(buildForest(members, all)));
+    const members = membersForGroup(curGroup, all);
+    const forest = injectSeriesNodes(injectBrandFamilyNodes(
+      buildForest(members, all, { catalogMode: isCatalogGroup(curGroup) })
+    ));
     forestCache = forest;
     detectedClusters = collectDetectedClusters(forest);
 
