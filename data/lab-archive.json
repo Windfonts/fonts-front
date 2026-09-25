@@ -77,10 +77,20 @@
           "href": "lineage-kinship-options.html",
           "title": "谱系亲属角色",
           "status": "active",
-          "note": "中心字 → 祖/父/子/孙/旁系/混合；现网未改",
+          "note": "还原 v4：直系上+旁系下+摘要链；现网未改",
           "assets": [
             "css/lineage-kinship-options.css",
             "js/pages/lineage-kinship-options.js"
+          ]
+        },
+        {
+          "href": "lineage-kinship-compare.html",
+          "title": "谱系亲属四套对照",
+          "status": "active",
+          "note": "甲分栏 / 乙单脊 / 丙时间轴 / 丁双栏；现网未改",
+          "assets": [
+            "css/lineage-kinship-compare.css",
+            "js/pages/lineage-kinship-compare.js"
           ]
         },
         {
@@ -99,6 +109,16 @@
           "assets": [
             "css/detail-options.css",
             "js/pages/detail-meta-options.js"
+          ]
+        },
+        {
+          "href": "detail-glyphs-options.html",
+          "title": "字符表与现网分析",
+          "status": "active",
+          "note": "甲折叠卡 / 乙并进摘要 / 丙仅开发 / 丁现页灰盒；现页未改",
+          "assets": [
+            "css/detail-glyphs-options.css",
+            "js/pages/detail-glyphs-options.js"
           ]
         },
         {
