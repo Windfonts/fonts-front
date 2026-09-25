@@ -100,7 +100,30 @@
   margin-left: var(--s-2);
 }
 
-.lfl-main { padding-bottom: var(--s-16); }
+html:has(body.page-lfl) {
+  height: 100%;
+}
+body.page-lfl {
+  height: 100dvh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+body.page-lfl > header[data-topbar],
+body.page-lfl > .lfl-switch {
+  flex: 0 0 auto;
+}
+.lfl-main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding-bottom: var(--s-4);
+}
+.lfl-main > .container {
+  flex: 0 0 auto;
+}
 .lfl-cap {
   font-size: var(--fs-13);
   color: var(--gray);
@@ -109,8 +132,9 @@
 
 .lfl-viewport {
   position: relative;
-  height: min(72vh, 52rem);
-  min-height: 28rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
   margin: 0 var(--gutter);
   background: var(--surface);
   border-radius: var(--radius);
@@ -455,7 +479,9 @@ a.lfl-wall-name:hover { text-decoration: underline; }
   .lfl-viewport {
     margin: 0;
     border-radius: 0;
-    height: 60vh;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
   }
   .lfl-hint { display: none; }
   .lfl-tools-sep { display: none; }

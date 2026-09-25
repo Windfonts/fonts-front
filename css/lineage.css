@@ -1,6 +1,36 @@
 /* 谱系页 · 激活/图（画布）+ 支线/墙（HTML）。规则真源 docs/DESIGN-SYSTEM.md。 */
 
-.lg-page { padding-bottom: 0; }
+/* Fill remaining viewport: body column → main column → shell flexes */
+html:has(body.page-lineage) {
+  height: 100%;
+}
+body.page-lineage {
+  height: 100dvh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+body.page-lineage > header[data-topbar] {
+  flex: 0 0 auto;
+}
+body.page-lineage > #wfExtraFooter,
+body.page-lineage > footer {
+  flex: 0 0 auto;
+}
+.lg-page {
+  padding-bottom: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: 100%;
+}
+.lg-page > .page-head,
+.lg-page > .lg-toolbar,
+.lg-page > .count-line {
+  flex: 0 0 auto;
+}
 .lg-toolbar { gap: var(--s-4); padding: var(--s-3) 0; flex-wrap: wrap; align-items: flex-start; }
 .lg-toolbar .chips { flex-wrap: wrap; row-gap: 0.4rem; }
 .lg-tools {
@@ -52,12 +82,13 @@
 }
 .count-line { padding: 0 0 var(--s-3); }
 
-/* Stable view shell: canvas + HTML stage swap inside fixed height */
+/* Stable view shell: canvas + HTML stage swap; fills leftover viewport */
 .lg-view-shell {
   position: relative;
-  height: min(72vh, 52rem);
-  min-height: 28rem;
-  margin-bottom: var(--s-6);
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
+  margin-bottom: var(--s-4);
 }
 .lg-view-shell > .lg-flow-wrap,
 .lg-view-shell > .lg-stage {
@@ -80,13 +111,14 @@
 }
 .lg-view-shell > .lg-flow-wrap {
   overflow: hidden;
+  height: 100%;
 }
 .lg-view-shell > .lg-stage {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   padding: var(--s-2) 0 var(--s-4);
 }
-.lg-foot { font-size: var(--fs-13); color: var(--gray); padding-bottom: var(--s-10); }
+.lg-foot { flex: 0 0 auto; font-size: var(--fs-13); color: var(--gray); padding-bottom: var(--s-4); }
 
 
 /* —— 画布（激活 / 图） —— */
@@ -436,8 +468,9 @@ a.lfl-wall-name:hover { text-decoration: underline; }
 
 @media (max-width: 720px) {
   .lg-view-shell {
-    height: 60vh;
-    min-height: 20rem;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
   }
   .lfl-viewport {
     margin: 0;

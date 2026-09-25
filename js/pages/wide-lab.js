@@ -9,7 +9,7 @@
   };
   var DEFAULT_TAB = 'guide';
   var PASS_KEYS = ['mode', 'group', 'focus', 'q', 'filter', 'id', 'fam'];
-  var WIDE_CSS = 'css/wide-embed.css?v=20260925z';
+  var WIDE_CSS = 'css/wide-embed.css?v=20260925aa';
 
   function qs() {
     try { return new URLSearchParams(location.search); } catch (e) { return new URLSearchParams(); }

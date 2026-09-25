@@ -82,9 +82,20 @@ html[data-wide="1"] .lg-foot {
   max-width: none;
 }
 
+/* 谱系 — fill iframe leftover after page-head + toolbar (no vh cap) */
+html[data-wide="1"] {
+  height: 100%;
+}
+html[data-wide="1"] body.page-lineage {
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
 html[data-wide="1"] .lg-view-shell {
-  /* give the canvas a bit more vertical room in the lab shell */
-  height: min(78vh, 56rem);
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
+  margin-bottom: var(--s-3, 0.75rem);
 }
 
 html[data-wide="1"] .lfl-viewport {
