@@ -19495,8 +19495,8 @@
   },
   {
     "id": "d234612e-ab92-40b5-b739-86c070f078b0",
-    "name": "站酷小薇LOGO体",
-    "en": "ZCOOL XiaoWei LOGO",
+    "name": "站酷小薇体",
+    "en": "ZCOOL XiaoWei",
     "family": "wenfeng-zkxwt",
     "normalized": "Zkxwt",
     "designer": "李大卫",
@@ -19511,15 +19511,15 @@
     "weights": [
       "Regular"
     ],
-    "description": "站酷小薇LOGO体是设计师李大卫（David 小马哥）为女儿三周岁创作的礼物，由上海佐兹品牌设计工作室团队完成。字体设计大胆创新，笔画修长灵秀，在精简部分笔画的同时保持了高识别度，字形空隙均匀，印刷效果清晰明快。该字体旨在填补免费字体中LOGO体的空缺，收录了6763个汉字，适用于标志、标题、广告宣传及平面设计。",
-    "license": "免费商用",
-    "licenseName": "站酷字库免费授权声明",
-    "licenseUrl": "https://www.zcool.com.cn/special/zcoolfonts/",
+    "description": "站酷小薇体：宋风展示字体，Google Fonts 收录，SIL OFL 1.1 开源授权。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://fonts.google.com/specimen/ZCOOL+XiaoWei",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Zkxwt/LICENSE",
-    "licenseNotes": "站酷官方免费授权：可免费商用；禁止修改字体名称、禁止转售。",
+    "licenseNotes": "OFL 1.1（googlefonts/zcool-xiaowei 随仓原文）：可免费商用、可修改与再分发，修改版须改名。",
     "licenseVerified": false,
     "purchaseUrl": null,
-    "copyright": "本字库所有权归上海佐兹品牌设计公司",
+    "copyright": "Copyright 2018 The ZCOOL XiaoWei Project Authors (https://www.github.com/googlefonts/xiaowei)",
     "foundry": "上海佐兹 / ZCOOL",
     "brand": {
       "name": "上海佐兹品牌设计",
@@ -19530,7 +19530,7 @@
       "description": "做字（Zuozi）为字体设计者或工作室，相关信息极少，未找到以做字为名的字体厂商官方页面。"
     },
     "releaseYear": 2018,
-    "version": "1.0.0",
+    "version": "1.000",
     "languages": [
       "简体中文"
     ],
@@ -19540,7 +19540,7 @@
       "平面设计",
       "印刷品标题"
     ],
-    "charCount": 7713,
+    "charCount": 7016,
     "glyphCount": 7728,
     "viewCount": 31,
     "foundryAvatar": "https://cravatar.com/avatar/05642c657f7e7589a50ea7431a6dfda95dca05ea10b3d1b59d928fda78eb318a?s=144&d=identicon",
