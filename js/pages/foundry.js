@@ -190,24 +190,8 @@
     }).sort(sortGroups);
   }
 
-  function childChipsHtml(g) {
-    const kids = g.children || [];
-    if (!kids.length) return '';
-    return '<div class="foundry-kids" aria-label="下属品牌">' +
-      kids.map(function (ch) {
-        const n = (ch.fonts || []).length;
-        const sub = n ? (n + ' 款') : ((ch.collab || []).length ? ('合作 ' + (ch.collab || []).length + ' 款') : '0 款');
-        return '<a class="foundry-kid" href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(ch.slug)) + '">' +
-          '<span class="kid-name">' + esc(ch.name) + '</span>' +
-          '<span class="kid-n">' + esc(sub) + '</span></a>';
-      }).join('') +
-      '</div>';
-  }
-
   function indexCardHtml(g) {
-    const card = WFChrome.foundryHtml(g.font, { info: g.info, sub: cardSub(g) });
-    if (!(g.children && g.children.length)) return card;
-    return '<div class="foundry-tree">' + card + childChipsHtml(g) + '</div>';
+    return WFChrome.foundryHtml(g.font, { info: g.info, sub: cardSub(g) });
   }
 
   function buildGroupForSlug(list, slug) {
@@ -840,15 +824,6 @@
         '母公司 <a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(parent.id)) + '">' +
         esc(parent.name) + '</a></p>'
       : '';
-    const kidsStrip = (g.children && g.children.length)
-      ? '<div class="foundry-partners foundry-units">' +
-        '<p class="partners-label">' + WFChrome.icon('building') + '下属品牌</p>' +
-        '<div class="partners-list">' +
-          g.children.map(function (ch) {
-            return partnerFace(ch.info);
-          }).join('') +
-        '</div></div>'
-      : '';
     const showOrg = WFProto.canShowOrgLineage && WFProto.canShowOrgLineage(g.slug);
     const orgEntry = showOrg
       ? '<p class="foundry-org-link"><a href="' +
@@ -873,7 +848,6 @@
           parentLink +
           orgEntry +
           (desc ? '<p class="desc">' + esc(desc) + '</p>' : '') +
-          kidsStrip +
           partnersStrip(g) +
           WFSponsor.html(info) +
           origins +
@@ -905,15 +879,15 @@
           if (s.id === 'collab') {
             const owner = font.ownerInfo || font.foundryInfo;
             if (owner) {
-              bits.push('主归属 <a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(owner.id)) + '">' +
-                esc(owner.name) + '</a>');
+              bits.push({ dev: true, html: '主归属 <a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(owner.id)) + '">' +
+                esc(owner.name) + '</a>' });
             }
           } else {
             if (g.children && g.children.length) {
               const owner = font.ownerInfo || font.foundryInfo;
               if (owner && owner.id && owner.id !== g.slug) {
-                bits.push('品牌线 <a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(owner.id)) + '">' +
-                  esc(owner.name) + '</a>');
+                bits.push({ dev: true, html: '品牌线 <a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(owner.id)) + '">' +
+                  esc(owner.name) + '</a>' });
               }
             }
             const cols = font.collaboratorInfos || [];
