@@ -827,18 +827,55 @@
             upNote = ' · 上游 analysis 暂无';
           }
           btn.setAttribute('aria-pressed', 'true');
-          panel.innerHTML =
-            '<div class="glyph-live-strip" role="status">' +
-            cell('常用', covCommon) +
-            cell('扩展', covPct(7000)) +
-            cell('缺', miss) +
-            cell('多', extra) +
-            '</div>' +
-            '<p class="glyph-live-note is-quiet">来源 ' +
-            src +
-            (face !== '—' ? ' · 字重样例 <code>' + face + '</code>' : '') +
-            upNote +
-            '。覆盖与缺/多按 analysis 的 CJK / 目录差估算（非逐字表）；千字文上游差见上方；逐字查缺用本地字符表。</p>';
+          function paintPanel(c3500) {
+            let exactCell = cell('常用估', covCommon);
+            let missHtml = '';
+            let noteExtra = '覆盖与缺/多按 analysis 的 CJK / 目录差估算；';
+            if (c3500 && c3500.total) {
+              exactCell = cell('3500', c3500.hit + '/' + c3500.total);
+              noteExtra =
+                '常用3500 按 CSS unicode-range 逐码点 ' +
+                c3500.pct +
+                '%（缺 ' +
+                (c3500.total - c3500.hit) +
+                '）；CJK 估算仅供对照；';
+              if (c3500.missSamples && c3500.missSamples.length) {
+                missHtml =
+                  '<p class="glyph-diff-samples" title="常用3500 缺字样例">' +
+                  c3500.missSamples
+                    .map(function (ch) {
+                      return '<span class="glyph-diff-ch">' + esc(ch) + '</span>';
+                    })
+                    .join('') +
+                  (c3500.total - c3500.hit > c3500.missSamples.length
+                    ? '<span class="is-quiet">…</span>'
+                    : '') +
+                  '</p>';
+              }
+            }
+            panel.innerHTML =
+              '<div class="glyph-live-strip" role="status">' +
+              exactCell +
+              cell('扩展估', covPct(7000)) +
+              cell('缺', miss) +
+              cell('多', extra) +
+              '</div>' +
+              missHtml +
+              '<p class="glyph-live-note is-quiet">来源 ' +
+              src +
+              (face !== '—' ? ' · 字重样例 <code>' + face + '</code>' : '') +
+              upNote +
+              '。' +
+              noteExtra +
+              '字符表可切「常用3500」通览；千字文上游差见上方。</p>';
+          }
+          const covP =
+            window.WFSpecimen && WFSpecimen.coverCommon3500
+              ? WFSpecimen.coverCommon3500(font.family, weight)
+              : Promise.resolve(null);
+          covP.then(paintPanel).catch(function () {
+            paintPanel(null);
+          });
         });
       });
     })();

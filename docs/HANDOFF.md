@@ -4,11 +4,13 @@
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 
-**下一棒（按价值）：** ① 合并 vault PR #29/#30（需 FeiCode/Forgejo token；gh 对 feicode.com 405）；② P2 coverage 余量（上游差 / 逐码点常用字表）；③ 新入库后重跑 analysis / package-sizes / locale，并递增 `OSS_METADATA_VERSION`。
+**下一棒（按价值）：** ① 重跑 analysis / package-sizes / locale 并递增 `OSS_METADATA_VERSION`；② 谱系/亲属实验室未提交改动另线。
+
+**已合（2026-09-25，wapuu）：** vault [#29](https://feicode.com/Windfonts/fonts-vault/pulls/29) pnpm Docker、[#30](https://feicode.com/Windfonts/fonts-vault/pulls/30) 品牌 CSS 门禁、[#31](https://feicode.com/Windfonts/fonts-vault/pulls/31) `/api/css` 错误 `no-store` → `main` @ `22454e0`。
 
 **2026-09-25 品牌 CSS 解钉：** 根因是 http 级 `proxy_cache cache_one` + `next.config` 给全部 `/api/css`（含 4xx/5xx）加 `s-maxage`，nginx/CyberCDN 按 URL 钉死旧 500。已：清 `proxy_cache_dir` 错误条目；`app.windfonts.com` `location ^~ /api/ { proxy_cache off; }`；`next.config` 去掉 `/api/css` 统一 Cache-Control；错误响应 `no-store`；镜像重建。现网抽查 albbpht/opsa/ddjbt 在 app+cn 均为 200；almmdlt 门禁 500+no-store。
 
-**P2 已落一截（2026-09-25）：** 详情「对照现网」展示常用/扩充覆盖与**缺口上限**；有谱系上游时加「相对上游」CJK 差（`detail.js?v=20260925z`）。逐码点常用字表仍可再开。
+**P2 已落（2026-09-25）：** 字符表可切「常用3500」（GB2312 一级截取，CSS unicode-range 逐码点）；对照现网展示精确命中/缺字样例（`common-chars-3500.json`，`detail.js?v=20260925aa` / `wf-specimen.js?v=20260925t`）。
 
 **2026-09-23 停点：** 公开主路径已基本对齐线上；工程批次已提交（`c78c4ce` 起）。上线硬门槛见 **[LAUNCH-GATES.md](LAUNCH-GATES.md)**（路径 rewrite、真统计、真登录、CDN 去 `local()`）。产品层（控制台 / 选字袋 / 认领等）见下文「产品层 backlog」，继续优化，不挡公开站上线。**完整会话交接见第 9 节**（谱系标准化、OSS 101、猫啃/寒蝉/站酷/荆南核实）；续页 [FONT-AUDIT-BACKLOG.md](FONT-AUDIT-BACKLOG.md)。
 
@@ -619,7 +621,7 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 - **简繁配对（2026-09-25 再扩）：** 11 对 / 18 成员——在既有思源/霞鹜/狮尾/猫啃之上，补 `systcnl`（思源宋体 CN Light）→ `systtc`。当前目录内有把握的 SC↔TC 已齐；再扩需先入库对应繁/简款。构建 `scripts/build-locale-fallback-pairs.mjs`。
 - **analysis 覆盖（2026-09-25）：** fonts-packages `scripts/build-font-analysis-from-css.mjs` 从 CDN `full/result.css` 的 `unicode-range` 重建 → OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`source: css-unicode-range`）。字数来自分包 CSS，极少数包（如稀疏 `AAR`）会偏低；详情缺字真源仍是当面 CSS。重建后：`OSS_UPLOAD_DIRS=./metadata node scripts/upload.js`。metadata 上传现用 `max-age=300`（不再一年）；vault / 前台拉取带 `?v=`（`OSS_METADATA_VERSION` / `wf-live.js`）逼 CDN 换键——原地覆盖后边缘否则长期吃旧文件。
 
-**仍待：** 合并 vault PR #29/#30；新入库字体后重跑 analysis / package-sizes / locale 并递增 `OSS_METADATA_VERSION`。P2 逐码点常用字表可再开。
+**仍待：** 新入库后重跑 analysis / package-sizes / locale 并递增 `OSS_METADATA_VERSION`；P2 逐码点常用字表。vault #29/#30/#31 已合。
 
 ## 26. 2026-09-25 出处链核对态按证据链判定 + 源界明朝谱系
 

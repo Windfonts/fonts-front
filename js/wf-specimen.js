@@ -58,6 +58,54 @@
       '朗曜璇璣懸斡晦魄環照指薪修祜永綏吉劭矩步引領俯仰廊廟束帶矜莊徘徊瞻眺孤陋寡聞愚蒙等誚謂語助者焉哉乎也'
   };
   const QIANZIWEN_EXCERPT = 80;
+  const COMMON_3500_EXCERPT = 120;
+  let COMMON_3500 = null;
+  let COMMON_3500_PROMISE = null;
+  function loadCommon3500() {
+    if (COMMON_3500) return Promise.resolve(COMMON_3500);
+    if (COMMON_3500_PROMISE) return COMMON_3500_PROMISE;
+    const url = (window.WFProto && WFProto.dataUrl)
+      ? WFProto.dataUrl('common-chars-3500.json')
+      : ((window.WFChrome && WFChrome.href) ? WFChrome.href('data/common-chars-3500.json') : 'data/common-chars-3500.json');
+    COMMON_3500_PROMISE = fetch(url, { method: 'GET' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        COMMON_3500 = (j && typeof j.chars === 'string' && j.chars.length) ? j.chars : '';
+        return COMMON_3500;
+      })
+      .catch(function () {
+        COMMON_3500 = '';
+        return COMMON_3500;
+      });
+    return COMMON_3500_PROMISE;
+  }
+  function coverAgainstRanges(ranges, text) {
+    const marks = {};
+    let hit = 0;
+    let total = 0;
+    const missSamples = [];
+    if (!ranges || !text) return { hit: 0, total: 0, marks: marks, missSamples: missSamples, pct: 0 };
+    const seen = {};
+    for (let i = 0; i < text.length;) {
+      const cp = text.codePointAt(i);
+      const ch = String.fromCodePoint(cp);
+      i += ch.length;
+      if (seen[ch] || /\s/.test(ch)) continue;
+      seen[ch] = true;
+      total++;
+      const ok = inRanges(ranges, cp);
+      marks[ch] = ok;
+      if (ok) hit++;
+      else if (missSamples.length < 48) missSamples.push(ch);
+    }
+    return {
+      hit: hit,
+      total: total,
+      marks: marks,
+      missSamples: missSamples,
+      pct: total ? Math.round((hit / total) * 1000) / 10 : 0
+    };
+  }
   /* 简/繁探测对：两岸写法不同的高频字，哪边覆盖率高就用哪边的千字文 */
   const SCRIPT_PROBES = ['国國', '这這', '们們', '东東', '马馬', '长長', '时時', '门門', '为為', '发發'];
   const GLYPH_BLOCKS = [
@@ -338,12 +386,18 @@
     let covGen = 0;
     let pendingQuery = '';
     const st = {
-      variant: 'hans', filter: 'all', ranges: null,
-      marks: { hans: null, hant: null }, hit: { hans: 0, hant: 0 }, total: { hans: 0, hant: 0 },
+      variant: 'hans', filter: 'all', ranges: null, charset: 'qz',
+      marks: { hans: null, hant: null, c3500: null },
+      hit: { hans: 0, hant: 0, c3500: 0 },
+      total: { hans: 0, hant: 0, c3500: 0 },
       hollow: {}
     };
 
-    function qzw() { return QIANZIWEN[st.variant]; }
+    function qzw() {
+      if (st.charset === 'c3500') return COMMON_3500 || '';
+      return QIANZIWEN[st.variant];
+    }
+    function activeKey() { return st.charset === 'c3500' ? 'c3500' : st.variant; }
 
     function cellsHtml(text, marks) {
       let out = '';
@@ -457,15 +511,20 @@
     }
 
     function renderBlocks() {
-      const marks = st.marks[st.variant];
+      const key = activeKey();
+      const marks = st.marks[key];
       const full = qzw();
       /* 缺字视图必须扫全文——缺字常在节选之外，否则筛出来是空的 */
-      const shown = st.filter === 'miss' ? full : full.slice(0, QIANZIWEN_EXCERPT);
+      const excerpt = st.charset === 'c3500' ? COMMON_3500_EXCERPT : QIANZIWEN_EXCERPT;
+      const shown = st.filter === 'miss' ? full : full.slice(0, excerpt);
+      const title = st.charset === 'c3500'
+        ? '常用汉字 · 3500（GB2312 一级截取）'
+        : (st.variant === 'hant' ? '常用漢字 · 千字文（繁體）' : '常用汉字 · 千字文（简体）');
       let html =
-        '<h3>' + (st.variant === 'hant' ? '常用漢字 · 千字文（繁體）' : '常用汉字 · 千字文（简体）') +
+        '<h3>' + title +
           '<span class="h3-r">' +
-            (marks ? '<span class="cov">覆盖 ' + st.hit[st.variant] + ' / ' + st.total[st.variant] + '</span>' : '') +
-            '<span class="mono for-dev">U+4E00–9FFF</span></span></h3>' +
+            (marks ? '<span class="cov">覆盖 ' + st.hit[key] + ' / ' + st.total[key] + '</span>' : '') +
+            '<span class="mono for-dev">逐码点</span></span></h3>' +
         '<div class="glyphs" style="font-family:' + esc(stack) + ';font-weight:' + weight + '">' + cellsHtml(shown, marks) + '</div>';
       GLYPH_BLOCKS.forEach(function (b) {
         let n = null;
@@ -491,13 +550,14 @@
         summaryEl.innerHTML = '<p class="glyph-sum-line is-quiet">' + esc(fail) + '</p>';
         return;
       }
-      const marks = st.marks[st.variant];
+      const key = activeKey();
+      const marks = st.marks[key];
       if (!marks) {
         summaryEl.innerHTML = '<p class="glyph-sum-line is-quiet">正在核对这款字收录了哪些字…</p>';
         return;
       }
-      const total = st.total[st.variant] || uniqueHits(qzw(), {}).total;
-      const hit = st.hit[st.variant];
+      const total = st.total[key] || uniqueHits(qzw(), {}).total;
+      const hit = st.hit[key];
       const miss = total - hit;
       const pct = total ? Math.round(hit / total * 100) : 0;
       /* 高覆盖时进度条与满条无法区分，改把缺口直接说出口；「缺 N 字」可点，直接筛出缺的字 */
@@ -505,19 +565,30 @@
       if (miss === 0) suffix = '全部收录';
       else if (pct >= 95) suffix = '缺 <button type="button" class="chip-miss" data-filter="miss">' + miss + '</button> 字';
       else suffix = '覆盖 ' + pct + '%';
+      const label = st.charset === 'c3500' ? '常用 3500' : '常用字';
+      const extraBtn = st.charset === 'c3500'
+        ? ''
+        : ' · <button type="button" class="glyph-qz-link">通篇预览</button>';
       summaryEl.innerHTML =
-        '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' 常用字已收录 · ' + suffix +
-          ' · <button type="button" class="glyph-qz-link">通篇预览</button></p>' +
-        '<p class="glyph-legend">虚线框表示字体里没有这个字。</p>';
+        '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' ' + label + '已收录 · ' + suffix +
+          extraBtn + '</p>' +
+        '<p class="glyph-legend">虚线框表示字体里没有这个字。' +
+          (st.charset === 'c3500' ? '字表为 GB2312 一级按码位截取的 3500 字，逐 unicode-range 核对。' : '') +
+        '</p>';
     }
 
     function syncTools() {
+      toolsEl.querySelectorAll('[data-cs]').forEach(function (b) {
+        b.classList.toggle('is-on', b.getAttribute('data-cs') === st.charset);
+      });
       toolsEl.querySelectorAll('[data-sc]').forEach(function (b) {
         b.classList.toggle('is-on', b.getAttribute('data-sc') === st.variant);
       });
       toolsEl.querySelectorAll('[data-f]').forEach(function (b) {
         b.classList.toggle('is-on', b.getAttribute('data-f') === st.filter);
       });
+      const qzOnly = toolsEl.querySelector('[data-qz-only]');
+      if (qzOnly) qzOnly.hidden = st.charset === 'c3500';
     }
 
     function applyRanges(ranges) {
@@ -543,6 +614,19 @@
         const stats = uniqueHits(QIANZIWEN[v], marks);
         st.hit[v] = stats.hit;
         st.total[v] = stats.total;
+      });
+      function paintC3500(text) {
+        if (!text) return;
+        const cov = coverAgainstRanges(ranges, text);
+        st.marks.c3500 = cov.marks;
+        st.hit.c3500 = cov.hit;
+        st.total.c3500 = cov.total;
+      }
+      if (COMMON_3500) paintC3500(COMMON_3500);
+      else loadCommon3500().then(function (text) {
+        if (!st.ranges) return;
+        paintC3500(text);
+        if (st.charset === 'c3500') { renderBlocks(); renderSummary(); syncTools(); }
       });
       renderBlocks();
       renderSummary();
@@ -594,7 +678,10 @@
     }
 
     toolsEl.innerHTML =
-      '<div class="seg-glyph" role="group" aria-label="写法">' +
+      '<div class="seg-glyph" role="group" aria-label="字表">' +
+        '<button type="button" data-cs="qz">千字文</button>' +
+        '<button type="button" data-cs="c3500">常用3500</button></div>' +
+      '<div class="seg-glyph" role="group" aria-label="写法" data-qz-only>' +
         '<button type="button" data-sc="hans">简</button>' +
         '<button type="button" data-sc="hant">繁</button></div>' +
       (skipCov ? '' :
@@ -605,9 +692,24 @@
     toolsEl.addEventListener('click', function (e) {
       const btn = e.target.closest ? e.target.closest('button') : null;
       if (!btn) return;
+      const cs = btn.getAttribute('data-cs');
+      if (cs && cs !== st.charset) {
+        st.charset = cs;
+        st.filter = 'all';
+        if (cs === 'c3500' && !COMMON_3500) {
+          loadCommon3500().then(function () {
+            if (st.ranges) applyRanges(st.ranges);
+            else { renderBlocks(); renderSummary(); syncTools(); }
+          });
+        } else {
+          renderBlocks(); renderSummary(); syncTools();
+        }
+        return;
+      }
       const sc = btn.getAttribute('data-sc');
       if (sc && sc !== st.variant) {
         st.variant = sc;
+        if (st.charset === 'c3500') st.charset = 'qz';
         renderBlocks(); renderSummary(); syncTools();
         return;
       }
@@ -824,6 +926,16 @@
     brandLine: brandLine,
     fetchCssRanges: fetchCssRanges,
     inRanges: inRanges,
+    loadCommon3500: loadCommon3500,
+    coverAgainstRanges: coverAgainstRanges,
+    coverCommon3500: function (family, weight) {
+      return Promise.all([fetchCssRanges(family, weight), loadCommon3500()]).then(function (pair) {
+        const ranges = pair[0];
+        const text = pair[1];
+        if (!ranges || !text) return null;
+        return coverAgainstRanges(ranges, text);
+      });
+    },
     /** 相对探测文（默认简繁千字文）比较两款 unicode-range：仅对方有 = 可补全字 */
     coverageDiff: function (primaryFamily, otherFamily, weight, text) {
       const probe = text || (QIANZIWEN.hans + QIANZIWEN.hant);
