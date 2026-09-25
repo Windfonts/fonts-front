@@ -552,54 +552,73 @@
   border-color: var(--ok);
 }
 
-/* 丙：现网分析仅开发视图；结果用指标卡，不用 · 散文行 */
+
+/* 甲：现网分析默认折叠；展开为 2×2 指标卡（两视图可见） */
 .glyph-live {
   margin: 0 0 var(--s-5);
-  padding: var(--s-4);
+}
+.glyph-live-fold {
+  margin: 0;
+  padding: var(--s-3) var(--s-4);
   background: var(--fill);
   border-radius: var(--radius);
+  max-width: 40rem;
 }
-.glyph-live-head {
-  margin: 0 0 var(--s-3);
+.glyph-live-fold > summary {
+  list-style: none;
+  cursor: pointer;
   font-size: var(--fs-13);
+  font-weight: var(--fw-label);
   color: var(--ink);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
 }
-.glyph-live-head .is-quiet { color: var(--gray); font-weight: var(--fw-body); }
-.glyph-live-dl {
-  margin: 0;
+.glyph-live-fold > summary::-webkit-details-marker { display: none; }
+.glyph-live-fold > summary::before {
+  content: "";
+  width: 0.4rem; height: 0.4rem; flex: none;
+  border-right: 1.5px solid var(--gray);
+  border-bottom: 1.5px solid var(--gray);
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+}
+.glyph-live-fold[open] > summary::before { transform: rotate(45deg); }
+.glyph-live-fold[open] > summary { margin-bottom: var(--s-4); }
+.glyph-live-metrics {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--s-3);
 }
-.glyph-live-dl > div {
-  display: grid;
-  gap: 0.2rem;
-  padding: var(--s-3);
+.glyph-live-metric {
+  padding: var(--s-3) var(--s-4);
   background: var(--paper);
   border-radius: var(--radius-sm);
+  display: grid;
+  gap: 0.15rem;
 }
-.glyph-live-dl > div.is-span2 { grid-column: 1 / -1; }
-.glyph-live-dl dt {
+.glyph-live-metric .k {
+  font-size: var(--fs-12);
   color: var(--gray-2);
   font-weight: var(--fw-label);
-  font-size: var(--fs-12);
 }
-.glyph-live-dl dd {
-  margin: 0;
-  color: var(--ink-2);
-  font-size: var(--fs-13);
-  line-height: 1.45;
+.glyph-live-metric .v {
+  font-size: var(--fs-18);
+  font-weight: var(--fw-title);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 }
-.glyph-live-dl .is-quiet { color: var(--gray); font-size: var(--fs-12); }
-.glyph-live-dl code {
-  font-size: var(--fs-12);
-  background: var(--fill);
-  padding: 0.05em 0.35em;
-  border-radius: 6px;
-}
+.glyph-live-metric .sub { font-size: var(--fs-12); color: var(--gray); }
 .glyph-live-note {
   margin: var(--s-3) 0 0;
   font-size: var(--fs-12);
   color: var(--gray);
   line-height: 1.55;
+}
+.glyph-live-note code {
+  font-size: var(--fs-12);
+  background: var(--paper);
+  padding: 0.05em 0.35em;
+  border-radius: 6px;
 }

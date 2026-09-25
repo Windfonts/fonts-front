@@ -397,7 +397,7 @@
           '<section class="panel" id="glyphs"><div class="panel-head"><div class="glyph-title"><h2>' + WFChrome.icon('hashtag') + '字符表</h2><div id="glyphQuery"></div></div><div class="glyph-tools" id="glyphTools"></div></div>' +
             '<div class="panel-pad"><div class="glyph-summary" id="glyphSummary" aria-live="polite"></div>' +
             '<div class="glyph-diff for-dev" id="glyphDiff" hidden></div>' +
-            '<div class="glyph-live for-dev" id="glyphLive" hidden></div>' +
+            '<div class="glyph-live" id="glyphLive" hidden></div>' +
             '<div class="glyph-blocks" id="glyphBlocks"></div></div></section>' +
           '<section class="panel" id="license"><div class="panel-head"><h2>' + WFChrome.icon('certificate') + '授权</h2>' +
             '<div class="license-head"><span class="lic-chip tier' + (proofTier(font) === '开源' ? ' is-open' : '') + '" data-tier="' + esc(proofTier(font)) + '">' + esc(tierLabel(proofTier(font))) + '</span>' +
@@ -745,8 +745,8 @@
       if (tools.querySelector('[data-live-analysis]')) return;
       const btn = document.createElement('button');
       btn.type = 'button';
-      /* 丙：对照现网仅开发视图（与 #glyphLive.for-dev 同闸） */
-      btn.className = 'gtoggle for-dev';
+      /* 甲：两视图均可对照；结果默认折在 details 里 */
+      btn.className = 'gtoggle';
       btn.setAttribute('data-live-analysis', '');
       btn.textContent = '对照现网字符表';
       btn.title = '按需请求 vault analysis（无文件则 404；限流时回退 OSS metadata）';
@@ -782,43 +782,44 @@
                 (row.fallbackReason ? '（回退：' + esc(String(row.fallbackReason)) + '）' : '');
           const charDelta = liveChars && localChars ? liveChars - localChars : null;
           const glyphDelta = liveGlyphs && localGlyphs ? liveGlyphs - localGlyphs : null;
-          function deltaHint(n) {
-            if (n == null) return '';
-            if (n === 0) return '<span class="is-quiet">与目录一致</span>';
-            return '<span class="is-quiet">' + (n > 0 ? '+' : '') + n + '</span>';
-          }
           function covPct(need) {
             if (!cjk) return '—';
             return '≈' + Math.round((Math.min(cjk, need) / need) * 100) + '%';
           }
           const face = esc(String(d.name || d.subfamily_name || '—'));
+          const covCommon = covPct(3500);
+          function metric(k, v, sub) {
+            return (
+              '<div class="glyph-live-metric"><span class="k">' +
+              k +
+              '</span><b class="v">' +
+              v +
+              '</b>' +
+              (sub ? '<span class="sub">' + sub + '</span>' : '') +
+              '</div>'
+            );
+          }
+          function deltaSub(n) {
+            if (n == null) return '';
+            if (n === 0) return '与目录一致';
+            return '相对目录 ' + (n > 0 ? '+' : '') + n;
+          }
           panel.innerHTML =
-            '<p class="glyph-live-head"><b>现网字符分析</b>' +
-            (face !== '—' ? ' <span class="is-quiet">字重样例 <code>' + face + '</code></span>' : '') +
-            '</p>' +
-            '<dl class="glyph-live-dl">' +
-            '<div><dt>字符数</dt><dd>' +
-            (liveChars ? WFProto.formatCount(liveChars) : '—') +
-            (deltaHint(charDelta) ? ' ' + deltaHint(charDelta) : '') +
-            '</dd></div>' +
-            '<div><dt>字形数</dt><dd>' +
-            (liveGlyphs ? WFProto.formatCount(liveGlyphs) : '—') +
-            (deltaHint(glyphDelta) ? ' ' + deltaHint(glyphDelta) : '') +
-            '</dd></div>' +
-            '<div><dt>常用覆盖</dt><dd>' +
-            covPct(3500) +
-            '</dd></div>' +
-            '<div><dt>扩充覆盖</dt><dd>' +
-            covPct(7000) +
-            '</dd></div>' +
-            (cjk
-              ? '<div class="is-span2"><dt>CJK 统一汉字</dt><dd>' + WFProto.formatCount(cjk) + '</dd></div>'
-              : '') +
-            '<div class="is-span2"><dt>来源</dt><dd>' +
+            '<details class="glyph-live-fold">' +
+            '<summary>现网字符分析 · 覆盖常用' +
+            covCommon +
+            '</summary>' +
+            '<div class="glyph-live-metrics">' +
+            metric('字符数', liveChars ? WFProto.formatCount(liveChars) : '—', deltaSub(charDelta)) +
+            metric('字形数', liveGlyphs ? WFProto.formatCount(liveGlyphs) : '—', deltaSub(glyphDelta)) +
+            metric('常用覆盖', covCommon, cjk ? 'CJK ' + WFProto.formatCount(cjk) : '') +
+            metric('扩充覆盖', covPct(7000), '') +
+            '</div>' +
+            '<p class="glyph-live-note is-quiet">来源 ' +
             src +
-            '</dd></div>' +
-            '</dl>' +
-            '<p class="glyph-live-note is-quiet">覆盖按 analysis 的 CJK 计数相对档位估算（非逐字表）；逐字查缺用上方本地字符表。</p>';
+            (face !== '—' ? ' · 字重样例 <code>' + face + '</code>' : '') +
+            '。覆盖按 analysis 的 CJK 计数估算（非逐字表）；逐字查缺用上方本地字符表。</p>' +
+            '</details>';
         });
       });
     })();
