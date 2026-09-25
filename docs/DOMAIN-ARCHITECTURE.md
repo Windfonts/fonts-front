@@ -227,21 +227,22 @@ https://{cn|hk|en|jp}.windfonts.com/api/css?family=&weight=&version=
 
 | 主机 | 状态 |
 |---|---|
-| `app.windfonts.com` | 仍指向 **Next**（过渡）；终态改绑 OSS |
+| `app.windfonts.com` | **已切静态 fonts-front**（`/www/wwwroot/fonts-front`）；`/api` `/admin` `/_next` 仍反代 Next 过渡 |
 | `api.windfonts.com` | 未开（网关预留） |
-| `vault.windfonts.com` | **已通（2026-09-25）**：DNS A→`45.117.8.70`，通配证 `*.windfonts.com`，nginx 双 Host→`:4000`；`/api/fonts` `/api/css` 公网 200 |
-| `cn.windfonts.com` | CyberCDN 可用；`/api/css` 仍回源 Host=`app`（待 N1b 改 `vault`） |
-| OSS `wenfeng-web` | **已建**（广州，与 `wenfeng-fonts` 分桶）；账号禁桶级 public-read，上线靠桶策略或 CDN 回源；同步脚本 `scripts/deploy-oss-front.sh` |
-| `hk` / `en` / `jp` | 规划 CF；需 infra 验收 |
+| `vault.windfonts.com` | **已通**：DNS+通配证+nginx→`:4000` |
+| `staging-app` / `staging-vault` | **已通**（同机静态 / Next） |
+| `cn.windfonts.com` | `/api/css` 十边 Host 已改 **`vault`**（N1b sed+reload） |
+| OSS `wenfeng-web` | **已建并灌入**约 445 文件；账号禁 public-read/policy，暂不能直接当公网根；内容同步自 feicode 静态树 |
+| `hk` / `en` / `jp` | CF 规划；CDN 边缘已有 jp/sg/hk 节点 |
 
 **迁移进度：**
 
 1. ~~vault 双 Host~~ **完成**
-2. CDN `/api/css` origin_host → vault：**脚本已备**（cybercdn `n1b-windfonts-origin-host-vault.py`），待边缘 ansible 应用
-3. ~~前台 `CSS_API` → vault~~ **完成**（本仓）
-4. **`app` → OSS**：桶已建；内容同步 + 自定义域/CDN + 从 Next 摘 DNS **未做**
-5. `api.` 网关：未开
-6. WP 账号打通：未做
+2. ~~CDN origin_host → vault~~ **完成**（十边）
+3. ~~前台 `CSS_API` → vault~~ **完成**
+4. ~~`app` 公开页静态化~~ **完成**（机上静态目录；OSS 公网绑域待账号放开或走 CDN 回源）
+5. ~~staging-app / staging-vault~~ **完成**
+6. `api.` 网关 / WP 账号打通：未做
 
 ---
 
