@@ -110,6 +110,8 @@
   const PLEX_PARENT_DEPTH = 2;
   const PLEX_SIBLING_SIDE = 2; /* each side */
   const PLEX_CHILD_CAP = 8;
+  const SERIES_SUB_MIN = 10; /* 主题支成员数达此才再拆小系列 */
+  const STYLE_GROUP_MIN = 3;
   const NESTED_BRAND_LEAF_CAP = 8; /* fonts under a nested brand hub */
   const PLEX_GATE_FAN = 8;
   const PLEX_V_GAP = 64;
@@ -524,7 +526,11 @@
     const compact = opts.compact !== false;
     const cols = Math.max(3, Math.min(7, nodes.length <= 4 ? nodes.length : (nodes.length <= 12 ? 4 : 6)));
     const rows = Math.ceil(nodes.length / cols) || 1;
-    const rowH = CARD_H_COMPACT + PLEX_V_GAP * 0.55;
+    const hasSeries = nodes.some(function (n) {
+      return n && (n.isSeries || n.isCluster || n.isPlexGate);
+    });
+    const baseH = hasSeries ? CARD_H_CLUSTER : CARD_H_COMPACT;
+    const rowH = baseH + PLEX_V_GAP * 0.55;
     nodes.forEach(function (n, i) {
       const col = i % cols;
       const row = Math.floor(i / cols);
@@ -533,11 +539,13 @@
       const rowLeft = cx - rowW / 2;
       const x = rowLeft + col * (CARD_W + PLEX_H_GAP);
       const y = focusY + CARD_H + PLEX_V_GAP + row * rowH;
-      place(n, x, y, CARD_H_COMPACT, { role: 'child', compact: compact });
+      const tall = !!(n && (n.isSeries || n.isCluster || n.isPlexGate));
+      const h = tall ? CARD_H_CLUSTER : CARD_H_COMPACT;
+      place(n, x, y, h, { role: 'child', compact: compact && !tall });
       edges.push({
         from: focus.id,
         to: n.id,
-        label: relLabel(n, focus)
+        label: edgeLabelFor(n, focus)
       });
     });
     return rows;
@@ -1287,6 +1295,205 @@
   }
 
 
+  /* 大主题支再拆小系列：先剥系列前缀，再按黑体/宋体/圆体等后缀成支 */
+  const STYLE_SUFFIXES = [
+    { key: '腿黑体', title: '腿黑体' },
+    { key: '黑体', title: '黑体' },
+    { key: '宋体', title: '宋体' },
+    { key: '楷体', title: '楷体' },
+    { key: '圆体', title: '圆体' }
+  ];
+
+  function seriesStripPrefix(seriesNode) {
+    let key = String(
+      (seriesNode && (seriesNode.clusterKey || seriesNode.seriesTitle || seriesNode.name)) || ''
+    );
+    key = key.replace(/系(字体)?$/u, '').replace(/字体$/u, '');
+    return key;
+  }
+
+  function packSeriesSubBranches(seriesNode, members) {
+    members = (members || []).filter(function (m) {
+      return m && !m.ghost && !m.isSeries && !m.isCluster && !m.isMore && !m.isPlexGate && !m.isBrandFamily;
+    });
+    if (members.length < SERIES_SUB_MIN) {
+      return { branches: [], leftover: members.slice() };
+    }
+    const prefix = seriesStripPrefix(seriesNode);
+    const used = {};
+    const branches = [];
+
+    function strippedName(m) {
+      let name = String(m.name || '');
+      if (prefix && name.indexOf(prefix) === 0) name = name.slice(prefix.length);
+      return name;
+    }
+
+    STYLE_SUFFIXES.forEach(function (style) {
+      const group = [];
+      members.forEach(function (m) {
+        if (used[m.id]) return;
+        if (strippedName(m).endsWith(style.key)) group.push(m);
+      });
+      if (group.length >= STYLE_GROUP_MIN) {
+        group.forEach(function (m) { used[m.id] = true; });
+        branches.push({
+          id: 'subseries:' + seriesNode.id + ':style:' + style.key,
+          key: style.key,
+          kind: 'style',
+          title: style.title,
+          members: group
+        });
+      }
+    });
+
+    let leftover = members.filter(function (s) { return !used[s.id]; });
+    if (leftover.length >= STYLE_GROUP_MIN) {
+      const proxies = leftover.map(function (m) {
+        const sn = strippedName(m);
+        return { id: m.id, name: sn || m.name, _orig: m };
+      });
+      const pref = detectPrefixGroups(proxies);
+      pref.groups.forEach(function (g) {
+        if (!g.key || g.key === prefix) return;
+        const mems = [];
+        const seen = {};
+        g.members.forEach(function (p) {
+          const m = p._orig || p;
+          if (!m || used[m.id] || seen[m.id]) return;
+          seen[m.id] = true;
+          mems.push(m);
+        });
+        if (mems.length < STYLE_GROUP_MIN) return;
+        mems.forEach(function (m) { used[m.id] = true; });
+        branches.push({
+          id: 'subseries:' + seriesNode.id + ':prefix:' + g.key,
+          key: g.key,
+          kind: 'prefix',
+          title: g.key,
+          members: mems
+        });
+      });
+      leftover = members.filter(function (s) { return !used[s.id]; });
+    }
+
+    if (leftover.length >= STYLE_GROUP_MIN) {
+      branches.push({
+        id: 'subseries:' + seriesNode.id + ':other',
+        key: '其他',
+        kind: 'other',
+        title: '其他',
+        members: leftover.slice()
+      });
+      leftover = [];
+    }
+
+    branches.sort(function (a, b) { return b.members.length - a.members.length; });
+    return { branches: branches, leftover: leftover };
+  }
+
+  function injectSeriesSubBranches(forest) {
+    const seriesIds = Object.keys(forest.byId).filter(function (id) {
+      const n = forest.byId[id];
+      return n && n.isSeries && !n.isBrandFamily && !n.isSubSeries;
+    });
+    seriesIds.forEach(function (sid) {
+      const series = forest.byId[sid];
+      const curKids = forest.children[sid] || [];
+      if (curKids.some(function (k) { return k && k.isSubSeries; })) return;
+      const fontKids = curKids.filter(function (c) {
+        return c && !c.isSeries && !c.isCluster && !c.isMore && !c.isPlexGate && !c.ghost && !c.isBrandFamily;
+      });
+      const packed = packSeriesSubBranches(series, fontKids);
+      const engage = packed.branches.length >= 2 ||
+        (packed.branches.length === 1 && packed.leftover.length > 0);
+      if (!engage) return;
+
+      const stem = seriesStripPrefix(series) || '同系';
+      const used = {};
+      const newKids = [];
+      packed.branches.forEach(function (b) {
+        let year = 9999;
+        b.members.forEach(function (m) {
+          if (m.releaseYear && m.releaseYear < year) year = m.releaseYear;
+        });
+        const sub = {
+          isSeries: true,
+          isSubSeries: true,
+          id: b.id,
+          name: b.title,
+          seriesTitle: b.title,
+          seriesSub: stem + '支 · ' + b.members.length + ' 款',
+          seriesCount: b.members.length,
+          members: b.members.slice(),
+          clusterKey: b.key,
+          clusterKind: b.kind,
+          releaseYear: year === 9999 ? 0 : year
+        };
+        forest.byId[b.id] = sub;
+        forest.parentOf[b.id] = sid;
+        forest.children[b.id] = b.members.slice().sort(function (a, c) {
+          return (a.releaseYear || 9999) - (c.releaseYear || 9999) ||
+            String(a.name).localeCompare(c.name, 'zh');
+        });
+        b.members.forEach(function (m) {
+          forest.parentOf[m.id] = b.id;
+          used[m.id] = true;
+        });
+        newKids.push(sub);
+      });
+      packed.leftover.forEach(function (s) {
+        if (!used[s.id]) newKids.push(s);
+      });
+      newKids.sort(function (a, b) {
+        const ac = a.isSubSeries ? (a.seriesCount || 0) : 0;
+        const bc = b.isSubSeries ? (b.seriesCount || 0) : 0;
+        if (bc !== ac) return bc - ac;
+        return (a.releaseYear || 9999) - (b.releaseYear || 9999) ||
+          String(a.name).localeCompare(b.name, 'zh');
+      });
+      forest.children[sid] = newKids;
+    });
+    return forest;
+  }
+
+  function capPlexFontKids(nodes, parent, synthetic) {
+    nodes = (nodes || []).slice();
+    if (nodes.length <= PLEX_CHILD_CAP) return nodes;
+    const moreId = 'more:' + parent.id;
+    if (expandedMores[moreId]) return nodes;
+    const shown = nodes.slice(0, PLEX_CHILD_CAP);
+    const rest = nodes.slice(PLEX_CHILD_CAP);
+    const moreNode = {
+      isMore: true,
+      id: moreId,
+      name: '还有 ' + rest.length + ' 款',
+      moreCount: rest.length,
+      moreParentId: parent.id,
+      moreRest: rest
+    };
+    synthetic[moreId] = moreNode;
+    return shown.concat([moreNode]);
+  }
+
+  function plexSeriesChildNodes(focus, forest, synthetic) {
+    const kids = kidsOf(focus, forest).slice();
+    if (focus.isSubSeries) {
+      const fonts = kids.filter(function (k) {
+        return k && !k.isSeries && !k.isCluster && !k.isMore && !k.isPlexGate;
+      });
+      return capPlexFontKids(fonts, focus, synthetic);
+    }
+    const subs = kids.filter(function (k) { return k && k.isSubSeries; });
+    const fonts = kids.filter(function (k) {
+      return k && !k.isSeries && !k.isCluster && !k.isMore && !k.isPlexGate;
+    });
+    if (subs.length >= 2 || (subs.length >= 1 && fonts.length)) {
+      return subs.concat(fonts);
+    }
+    return capPlexFontKids(fonts, focus, synthetic);
+  }
+
   /* —— prefix / owner clustering —— */
   function cjkBrandPrefix(name) {
     const m = String(name || '').match(/^[\u4e00-\u9fff]{2,8}/);
@@ -1589,9 +1796,10 @@
     });
 
     if (focus.isSeries && !focus.isBrandFamily) {
-      /* 普通主题支（狮尾系等）：只展开字体成员 */
-      const nodes = kids.filter(function (k) {
-        return !k.isSeries && !k.isCluster && !k.isMore;
+      /* 大主题支 → 小系列卡；小系列 / 小支 → 字卡（超 cap 用 more） */
+      const nodes = plexSeriesChildNodes(focus, forest, synthetic);
+      nodes.forEach(function (n) {
+        if (n && n.isMore && !forest.byId[n.id]) forest.byId[n.id] = n;
       });
       placeChildRows(place, edges, focus, nodes, focusX, focusY, cx, { compact: true });
     } else if (focus.isBrandFamily || childSeries.length || childOther.length) {
@@ -1925,10 +2133,12 @@
     }
 
     if (focus.isSeries && !focus.isBrandFamily) {
-      const list = kids.filter(function (k) {
-        return !k.isSeries && !k.isCluster && !k.isMore;
+      const list = plexSeriesChildNodes(focus, forest, synthetic);
+      list.forEach(function (n) {
+        if (n && n.isMore && !forest.byId[n.id]) forest.byId[n.id] = n;
+        const compact = !(n.isSeries || n.isCluster || n.isPlexGate);
+        addChild(n, 'child', compact);
       });
-      list.forEach(function (n) { addChild(n, 'child', true); });
     } else if (focus.isBrandFamily || childSeries.length || childOther.length) {
       const ordered = childSeries.concat(childOther).concat(childFonts);
       let show = ordered;
@@ -3231,7 +3441,7 @@
         buildForest(members, all, { orgOnly: true })
       ));
     }
-    return injectSeriesNodes(buildForest(members, all, { catalogMode: false }));
+    return injectSeriesSubBranches(injectSeriesNodes(buildForest(members, all, { catalogMode: false })));
   }
 
   function setGroup(g) {
