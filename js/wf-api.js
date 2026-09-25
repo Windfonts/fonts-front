@@ -12,6 +12,11 @@
       if (m === 'live' || m === 'mock') return m;
     } catch (e) { /* ignore */ }
     if (window.WFProto && (WFProto.API_MODE === 'live' || WFProto.API_MODE === 'mock')) return WFProto.API_MODE;
+    /* 生产 / 预发默认 live（发布与密钥打 vault）；本机仍 mock */
+    try {
+      const host = String(location.hostname || '').toLowerCase();
+      if (host === 'app.windfonts.com' || host === 'staging-app.windfonts.com') return 'live';
+    } catch (e) { /* ignore */ }
     return 'mock';
   }
 
@@ -20,6 +25,14 @@
   }
 
   function isMock() { return mode() !== 'live'; }
+
+  /**
+   * vault 现有：publish、key/status、fonts…；尚无 /api/projects CRUD。
+   * live 模式下项目/域名/用量仍走本机，避免 404 打爆控制台。
+   */
+  function vaultHasProjectCrud() { return false; }
+
+  function useLocalProjects() { return isMock() || !vaultHasProjectCrud(); }
 
   function apiError(code, message, status) {
     const err = new Error(message || code || '请求失败');
@@ -73,7 +86,7 @@
 
   /* —— Projects —— */
   function listProjects(q) {
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         let ps = WFApp.projects();
         const needle = String(q || '').trim().toLowerCase();
@@ -90,7 +103,7 @@
   }
 
   function getProject(id) {
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         const p = WFApp.project(id);
         if (!p) throw apiError('not_found', '项目不存在', 404);
@@ -103,14 +116,14 @@
   function createProject(name) {
     name = String(name || '').trim();
     if (!name) return Promise.reject(apiError('validation_error', '项目名称不能为空', 422));
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () { return WFApp.createProject(name); });
     }
     return request('/api/projects', { method: 'POST', body: { name: name } });
   }
 
   function patchProject(id, body) {
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         const p = WFApp.project(id);
         if (!p) throw apiError('not_found', '项目不存在', 404);
@@ -127,7 +140,7 @@
   }
 
   function deleteProject(id) {
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         if (!WFApp.project(id)) throw apiError('not_found', '项目不存在', 404);
         WFApp.removeProject(id);
@@ -139,7 +152,7 @@
 
   /* —— Domains —— */
   function listDomains() {
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         return WFApp.allDomains().map(function (d) {
           return Object.assign({}, d, {
@@ -153,7 +166,7 @@
   }
 
   function listProjectDomains(projectId) {
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         const p = WFApp.project(projectId);
         if (!p) throw apiError('not_found', '项目不存在', 404);
@@ -166,7 +179,7 @@
   function addDomain(projectId, host, method) {
     host = String(host || '').trim().toLowerCase();
     method = method || 'dns';
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         const p = WFApp.project(projectId);
         if (!p) throw apiError('not_found', '项目不存在', 404);
@@ -183,7 +196,7 @@
 
   function removeDomain(projectId, host) {
     host = String(host || '').trim().toLowerCase();
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         const p = WFApp.project(projectId);
         if (!p) throw apiError('not_found', '项目不存在', 404);
@@ -197,7 +210,7 @@
   /** POST …/verify → pending；生产探测 DNS/文件。mock 仅标记 pending。 */
   function verifyStart(projectId, host) {
     host = String(host || '').trim().toLowerCase();
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         const p = WFApp.project(projectId);
         if (!p) throw apiError('not_found', '项目不存在', 404);
@@ -214,7 +227,7 @@
   /** GET …/verify 轮询。mock：首次 poll 即置 verified（对齐原型「我已完成验证」）。 */
   function verifyPoll(projectId, host) {
     host = String(host || '').trim().toLowerCase();
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         const p = WFApp.project(projectId);
         if (!p) throw apiError('not_found', '项目不存在', 404);
@@ -271,7 +284,7 @@
   }
 
   function listUploads() {
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         const s = WFApp.state();
         return (s && s.uploads) ? s.uploads.slice() : [];
@@ -281,7 +294,7 @@
   }
 
   function getUpload(id) {
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         const u = findUpload(id);
         if (!u) throw apiError('not_found', '上传不存在', 404);
@@ -293,7 +306,7 @@
 
   function initUpload(body) {
     body = body || {};
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         const s = WFApp.state();
         const name = String(body.name || '').trim();
@@ -409,7 +422,7 @@
   }
 
   function completeUpload(id) {
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         const u = findUpload(id);
         if (!u) throw apiError('not_found', '上传不存在', 404);
@@ -483,7 +496,7 @@
   }
 
   function deleteUpload(id) {
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         if (!findUpload(id)) throw apiError('not_found', '上传不存在', 404);
         WFApp.removeUpload(id);
@@ -639,7 +652,7 @@
 
   function getUsage(params) {
     params = params || {};
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () { return buildUsageMock(params); });
     }
     return request('/api/usage' + qsFromParams(params));
@@ -647,14 +660,14 @@
 
   function getUsageSeries(params) {
     params = params || {};
-    if (isMock()) {
+    if (useLocalProjects()) {
       return getUsage(params).then(function (u) { return u.series; });
     }
     return request('/api/usage/series' + qsFromParams(params));
   }
 
   function listBlocked() {
-    if (isMock()) {
+    if (useLocalProjects()) {
       return ensureApp().then(function () {
         return WFApp.blockedHosts().map(function (b) {
           return Object.assign({}, b, {
@@ -714,6 +727,8 @@
     },
     base: base,
     isMock: isMock,
+    useLocalProjects: useLocalProjects,
+    vaultHasProjectCrud: vaultHasProjectCrud,
     request: request,
     listProjects: listProjects,
     getProject: getProject,

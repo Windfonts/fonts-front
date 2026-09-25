@@ -184,7 +184,29 @@ curl -sS -o /dev/null -w "stg=%{http_code}\n" https://staging-app.windfonts.com/
 
 ## 11. 未做（不要假装完成）
 
-- WP ↔ vault 真登录 / 订阅 hooks  
+- WP 顾客 SSO ↔ vault hooks（控制台管理员 NextAuth 已通）  
 - `hk` / `en` / `jp` CF 节点产品验收  
 - `app` DNS 真正绑 OSS/CDN（等 §5 放行）  
 - 预发独立 Next 进程（现 `staging-vault` 与生产同容器）
+
+## 12. 控制台登录（NextAuth / WFAuth）
+
+| 项 | 现网 |
+|---|---|
+| 会话 | vault NextAuth Credentials（管理员账号）；cookie 挂在 **`app.windfonts.com`**（`NEXTAUTH_URL`） |
+| 前端 | `js/wf-auth.js` → 同域 `/api/auth/*`（app nginx 反代 `:4000`） |
+| 门禁 | `app` / `staging-app` **必须** vault 会话（`source=vault-nextauth`）；清掉纯 localStorage 假壳 |
+| demo | `?demo=1` 仅本机 / `ALLOW_DEMO`；生产禁 |
+| WFApi | 生产默认 **live**（发布 / 密钥打 vault）；项目 CRUD 仍本机，待 vault `/api/projects` |
+| 预发 | `staging-app` 已反代 `/api` `/admin` `/_next`，可联调登录 |
+
+探针：
+
+```bash
+curl -sS https://app.windfonts.com/api/auth/csrf
+curl -sS https://app.windfonts.com/api/auth/providers
+curl -sS https://staging-app.windfonts.com/api/auth/csrf
+```
+
+登录页：`https://app.windfonts.com/login.html`（管理员账号，非 WP 顾客号）。  
+顾客统一账号仍待 windfonts.com ↔ vault hooks（§11）。

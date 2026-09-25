@@ -15,7 +15,7 @@
 | 详情路径 `/fonts/{slug}` | **现网已通**（feicode 静态 + rewrite）；snippet [`deploy/nginx-fonts-front.snippet.conf`](../deploy/nginx-fonts-front.snippet.conf)；OSS 公网绑域见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md) §5 |
 | 真统计 | 详情 `WFLive.counts`（app API）；目录热度已用 [`scripts/sync-font-counts.mjs`](../scripts/sync-font-counts.mjs) 写回 `fonts.json`（2026-09-25，553 条分页） |
 | `?demo=1` | **已收口**：仅 localhost / `WFProto.ALLOW_DEMO` |
-| 真登录 | 仍待；控制台已有 `WFApi` mock/live 壳（usage/upload/projects/domains） |
+| 真登录 | **管理员 NextAuth 已通**（app 同域 `/api/auth`）；生产禁假壳；顾客 WP SSO 仍待 |
 | 对照页不进导航 | 保持；谱系实验室已进 `lab-archive` |
 
 ## 1. 必须先落地的基础设施（不能只靠前端假装）
@@ -26,7 +26,7 @@
 | **目录真相源** | 本地 `data/fonts.json` 等 | 公开站从 API 或构建流水线拉目录；禁止手改生产 JSON 不入库 | 构建产物含最新目录；字段与 HANDOFF §3 契约一致 |
 | **统计** | 浏览 / 下载 / API 为 `localStorage` 叠加演示 | 服务端计数；详情「统计信息」读 API；样张导出打 download；CDN CSS 打 api | 多端数字一致；刷新不丢；无登录也可增浏览 |
 | **CDN `@font-face`** | 公开动态：`cn`（CyberCDN）/ `hk`·`en`·`jp`（Cloudflare）的 `/api/css`。预览优先 `cn…/fonts-packages/…/result.css`；`ensureFontCss` 去 `local()`、统一 `wenfeng-*` | 流水线 CSS 默认无 local()；包内字重与目录一致 | `ibmps` 等与现网预览同形；本机装同族时 Bold ≠ Regular |
-| **鉴权** | `login.html` 演示角色；控制台 `?demo=1` | 真实登录；`WFChrome.canAccessApp` 接会话；关掉 demo 旁路 | 未登录无「控制台」；demo 仅 staging |
+| **鉴权** | vault NextAuth + `WFAuth`；生产清假壳 | 顾客 WP SSO；vault 项目 CRUD | 未登录无控制台；demo 仅本机；生产 `WFApi`=live |
 | **CORS / REST** | 文档写了 `/api/fonts` 等 | 实际网关、API Key、域名白名单、限流与文档一致 | 文档示例 curl 在生产域名可通 |
 
 Rewrite 示例（Nginx）：

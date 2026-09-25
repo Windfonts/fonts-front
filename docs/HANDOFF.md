@@ -8,7 +8,9 @@
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 
-**下一棒（按价值）：** ① `app` 真绑 OSS/CDN（账号禁 public-read，见 SOP §5）；② 真登录 / `WFApi` live→vault；③ 选字袋同步 / 认领；④ CF `hk|en|jp` 验收。入库见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
+**下一棒（按价值）：** ① vault `/api/projects` CRUD（WFApi live 仍本地项目）；② WP 顾客 SSO；③ 选字袋同步 / 认领；④ `app` 真绑 OSS/CDN；⑤ CF `hk|en|jp` 验收。入库见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
+
+**2026-09-25 登录收口：** 生产强制 vault NextAuth（`wf-auth`/`gate`）；`staging-app` 补 `/api` 反代；WFApi 生产默认 live。见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md) §12。
 
 **已合（2026-09-25，wapuu）：** vault [#29](https://feicode.com/Windfonts/fonts-vault/pulls/29) pnpm Docker、[#30](https://feicode.com/Windfonts/fonts-vault/pulls/30) 品牌 CSS 门禁、[#31](https://feicode.com/Windfonts/fonts-vault/pulls/31) `/api/css` 错误 `no-store` → `main` @ `22454e0`。
 
@@ -32,7 +34,7 @@
 
 | 模块 | 现状 | 下一步 |
 |---|---|---|
-| **控制台** | `app/*` + localStorage；`WFApi` mock/live 壳已接 projects/domains/usage/upload（`js/wf-api.js`）。`?demo=1` **仅本机**（生产禁）。 | live 模式对接 vault 真项目 API；关掉 staging 外 demo；用量与公开统计同源 |
+| **控制台** | 生产须 vault 会话；`WFApi` 生产默认 live；publish/密钥打 vault；projects 仍 localStorage。`?demo=1` **仅本机**。 | vault `/api/projects` CRUD；用量与公开统计同源；WP SSO |
 | **选字袋 / 收藏** | 本地 `wf-proto-picks`，可对比与嵌入 | 登录后与「我的字体」双向同步（等控制台 live）；导出 JSON；清空需确认 |
 | **样张工坊** | 详情设计视图出图 | 模板与默认文案接设置；OG 图需后端固定 URL |
 | **厂商认领** | `claim.html` 演示提交（localStorage claims） | vault 工单 API + 审核回写 `foundries.json` / claimed |
@@ -71,7 +73,7 @@
 | 认领流程 | `claim.html[?slug=]` | foundries.json + 控制台 claims | 完成；未登录给入口，登录后提交 |
 | 免责 / 隐私 / 服务条款 / 商标 | `disclaimer.html` `privacy.html` `terms.html` `trademark.html` | 静态 | 完成；薄页，写现况；许可说明链到 `license.html` |
 | 选字袋 | `shopping-bag.html` | localStorage `wf-proto-picks` | 完成 |
-| 登录 / 注册 | `login.html` · `?mode=signup` | 演示登录（无鉴权） | 待接真实认证；`next=claim` 回到认领页 |
+| 登录 / 注册 | `login.html` · `?mode=signup` | **vault NextAuth**（管理员）；注册说明指向 WP | 顾客 SSO 待 WP hooks；`next=claim` 回认领页 |
 | 样张 | `styleguide.html` | — | 完成，随设计系统维护 |
 | 控制台 · 概览 | `app/index.html` | mock-app.json | 完成 |
 | 控制台 · 项目 / 项目详情 | `app/projects.html` `app/project.html?id=&tab=` | 同上 | 完成 |

@@ -2123,6 +2123,22 @@
     applyView();
   }
 
+  function plexContentBounds() {
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    const pos = layout && layout.positions;
+    if (!pos) return null;
+    Object.keys(pos).forEach(function (id) {
+      const q = pos[id];
+      if (!q) return;
+      minX = Math.min(minX, q.x);
+      minY = Math.min(minY, q.y);
+      maxX = Math.max(maxX, q.x + q.w);
+      maxY = Math.max(maxY, q.y + q.h);
+    });
+    if (!isFinite(minX)) return null;
+    return { minX: minX, minY: minY, maxX: maxX, maxY: maxY, w: maxX - minX, h: maxY - minY };
+  }
+
   function fitView(opts) {
     if (!layout || curMode === 'wall' || curMode === 'branch') return;
     opts = opts || {};
@@ -2134,17 +2150,39 @@
 
     if (curMode === 'plex' && layout.focusId && layout.positions[layout.focusId]) {
       const p = layout.positions[layout.focusId];
+      const bb = plexContentBounds();
+      const contentW = bb ? Math.max(bb.w, 1) : Math.max(layout.width, 1);
+      const contentH = bb ? Math.max(bb.h, 1) : Math.max(layout.height, 1);
       const s = keepScale ? view.scale : Math.min(1.2, Math.max(0.55, Math.min(
-        (r.width - pad * 2) / Math.max(layout.width, 1),
-        (r.height - pad * 2) / Math.max(layout.height, 1)
+        (r.width - pad * 2) / contentW,
+        (r.height - pad * 2) / contentH
       )));
       if (!keepScale) view.scale = s;
       /* soft+keepScale: keep pan; only update scale label path via applyView */
       if (!(soft && keepScale)) {
-        const focusCx = (p.x + p.w / 2) * view.scale;
-        const focusCy = (p.y + p.h / 2) * view.scale;
-        view.x = r.width / 2 - focusCx;
-        view.y = r.height * 0.48 - focusCy;
+        const minX = bb ? bb.minX : 0;
+        const minY = bb ? bb.minY : 0;
+        const scaledW = contentW * view.scale;
+        const scaledH = contentH * view.scale;
+        /* Prefer equal-ish vertical padding around the card bbox so tall ELK
+           trees are not pinned into the lower half by a focus-at-0.48 bias. */
+        view.x = (r.width - scaledW) / 2 - minX * view.scale;
+        if (scaledH <= r.height - pad) {
+          view.y = (r.height - scaledH) / 2 - minY * view.scale;
+        } else {
+          /* Content taller than viewport: keep focus slightly above center,
+             but clamp so we do not leave a large empty band above content. */
+          const focusCy = (p.y + p.h / 2) * view.scale;
+          let y = r.height * 0.42 - focusCy;
+          const topLimit = pad - minY * view.scale;
+          const botLimit = r.height - pad - (minY + contentH) * view.scale;
+          if (topLimit >= botLimit) {
+            y = (r.height - scaledH) / 2 - minY * view.scale;
+          } else {
+            y = Math.min(topLimit, Math.max(botLimit, y));
+          }
+          view.y = y;
+        }
       }
       applyView();
       return;

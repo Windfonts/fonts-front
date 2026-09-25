@@ -1308,7 +1308,7 @@
     CDN: CDN,
     SITE_ORIGIN: SITE_ORIGIN,
     CSS_API: CSS_API,
-    API_MODE: 'mock', /* override via localStorage['wf-api-mode'] = 'live'|'mock' */
+    API_MODE: 'mock', /* 本机默认；app/staging 由 wf-api 默认 live。override: localStorage['wf-api-mode'] */
     ANALYSIS_META_VER: ANALYSIS_META_VER,
     ALLOW_DEMO: ALLOW_DEMO,
     analysisMetaUrl: analysisMetaUrl,

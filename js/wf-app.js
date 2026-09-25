@@ -483,7 +483,15 @@
         '<button type="button" class="btn-text" id="railLogout">' + WFChrome.icon('exit') + '退出</button></div>';
     el.querySelector('[data-theme-toggle]').addEventListener('click', WFChrome.toggleTheme);
     const out = el.querySelector('#railLogout');
-    if (out) out.addEventListener('click', function () { WFChrome.logout(); location.href = WFChrome.href('index.html'); });
+    if (out) out.addEventListener('click', function () {
+      const go = function () { location.href = WFChrome.href('index.html'); };
+      if (window.WFAuth && WFAuth.signOut) {
+        WFAuth.signOut().then(function () { WFChrome.logout(); go(); }).catch(function () { WFChrome.logout(); go(); });
+      } else {
+        WFChrome.logout();
+        go();
+      }
+    });
     const on = el.querySelector('.rail-nav a.is-active');
     if (on && on.scrollIntoView) on.scrollIntoView({ inline: 'center', block: 'nearest' });
   }
@@ -497,12 +505,47 @@
         host === '0.0.0.0' ||
         host.endsWith('.local') ||
         !!(window.WFProto && WFProto.ALLOW_DEMO);
-      if (allow) WFChrome.login({ role: 'admin' });
+      if (allow) WFChrome.login({ role: 'admin', source: 'demo' });
     }
-    if (!(WFChrome.canAccessApp && WFChrome.canAccessApp())) {
-      const back = location.pathname.split('/').slice(-1)[0];
-      location.replace(WFChrome.href('login.html?next=app&back=' + encodeURIComponent(back)));
+    const back = location.pathname.split('/').slice(-1)[0];
+    const loginUrl = WFChrome.href('login.html?next=app&back=' + encodeURIComponent(back));
+    const needVault = window.WFAuth && WFAuth.requiresVaultSession && WFAuth.requiresVaultSession();
+
+    function deny() {
+      location.replace(loginUrl);
       return false;
+    }
+
+    if (needVault && window.WFAuth && WFAuth.syncFromVault) {
+      /* 生产：每次进控制台都对一下 vault 会话；清掉假 localStorage 壳 */
+      WFAuth.syncFromVault().then(function (profile) {
+        if (profile && WFChrome.canAccessApp()) {
+          if (!WFChrome.user() || WFChrome.user().source !== WFAuth.AUTH_USER_SOURCE) {
+            location.reload();
+          }
+          return;
+        }
+        if (WFAuth.clearOrphanLocalUser) WFAuth.clearOrphanLocalUser();
+        location.replace(loginUrl);
+      }).catch(function () {
+        if (WFAuth.clearOrphanLocalUser) WFAuth.clearOrphanLocalUser();
+        location.replace(loginUrl);
+      });
+      /* 同步完成前先挡住渲染；有有效 vault 壳则短暂放行避免闪白 */
+      const u = WFChrome.user();
+      if (u && u.source === (WFAuth.AUTH_USER_SOURCE || 'vault-nextauth') && WFChrome.canAccessApp()) return true;
+      return false;
+    }
+
+    if (!(WFChrome.canAccessApp && WFChrome.canAccessApp())) {
+      if (window.WFAuth && WFAuth.syncFromVault) {
+        WFAuth.syncFromVault().then(function (profile) {
+          if (profile && WFChrome.canAccessApp()) location.reload();
+          else deny();
+        }).catch(function () { deny(); });
+        return false;
+      }
+      return deny();
     }
     return true;
   }

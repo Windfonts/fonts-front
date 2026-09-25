@@ -37,9 +37,16 @@
       role: String(base.role || 'user').toLowerCase()
     };
     if (next.role !== 'admin' && next.role !== 'owner' && next.role !== 'editor') next.role = 'user';
+    if (base.source) next.source = String(base.source);
+    if (base.id) next.id = String(base.id);
     localStorage.setItem(USER_KEY, JSON.stringify(next));
   }
-  function logout() { localStorage.removeItem(USER_KEY); }
+  function logout() {
+    localStorage.removeItem(USER_KEY);
+    if (window.WFAuth && WFAuth.signOut) {
+      try { WFAuth.signOut(); } catch (e) { /* ignore */ }
+    }
+  }
 
   /* —— 主题：亮 / 暗，记在 localStorage，首屏在 <head> 之前由 applyTheme 同步 —— */
   const THEME_KEY = 'wf-theme';

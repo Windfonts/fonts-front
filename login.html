@@ -19,13 +19,14 @@
     <form id="authForm">
       <div>
         <h1 id="authTitle">登录控制台</h1>
-        <p class="sub" id="authSub">管理项目、域名白名单、子集化与用量。</p>
+        <p class="sub" id="authSub">使用字体后端会话管理项目发布与 API 密钥。顾客统一账号将由 windfonts.com 承接。</p>
       </div>
+      <p class="t-13" id="authError" hidden style="color:var(--danger, #b42318);margin:0"></p>
       <div class="field" id="nameField" hidden>
         <label for="displayName">显示名</label>
         <input class="input" id="displayName" autocomplete="nickname" placeholder="怎么称呼你" />
       </div>
-      <div class="field"><label for="email">邮箱</label><input class="input" id="email" type="email" autocomplete="email" placeholder="you@example.com" required autofocus /></div>
+      <div class="field"><label for="account">账号</label><input class="input" id="account" type="text" autocomplete="username" placeholder="用户名" required autofocus /></div>
       <div class="field"><label for="password">密码</label><input class="input" id="password" type="password" autocomplete="current-password" placeholder="••••••••" required /></div>
       <div class="field" id="confirmField" hidden>
         <label for="confirm">确认密码</label>
@@ -37,12 +38,15 @@
   </main>
 
   <footer id="wfExtraFooter"></footer>
-  <script src="js/wf-proto.js?v=20260925r"></script>
-  <script src="js/wf-chrome.js?v=20260925r"></script>
+  <script src="js/wf-proto.js?v=20260925auth2"></script>
+  <script src="js/wf-chrome.js?v=20260925auth2"></script>
+  <script src="js/wf-auth.js?v=20260925auth2"></script>
   <script>
     (function () {
       const signup = WFProto.getQuery('mode') === 'signup';
       const q = new URLSearchParams(location.search);
+      const errEl = document.getElementById('authError');
+      const btn = document.getElementById('authBtn');
 
       function dest() {
         const next = WFProto.getQuery('next');
@@ -63,39 +67,84 @@
         return 'login.html' + (s ? '?' + s : '');
       }
 
-      function enter() {
-        const email = document.getElementById('email').value || 'design@wenpai.org';
-        const name = (document.getElementById('displayName').value || '').trim() || email.split('@')[0];
-        WFChrome.login({ name: name, email: email, role: 'user' });
-        location.href = dest();
+      function showError(msg) {
+        if (!msg) { errEl.hidden = true; errEl.textContent = ''; return; }
+        errEl.hidden = false;
+        errEl.textContent = msg;
       }
+
+      function setBusy(on) {
+        btn.disabled = !!on;
+        btn.setAttribute('aria-busy', on ? 'true' : 'false');
+      }
+
+      /* Auth.js 失败回跳 ?error=CredentialsSignin */
+      (function () {
+        const e = WFProto.getQuery('error');
+        if (!e) return;
+        if (/CredentialsSignin|credentials/i.test(e)) showError('账号或密码错误');
+        else if (/MissingCSRF/i.test(e)) showError('登录令牌失效，请重试');
+        else showError('登录失败（' + e + '）');
+      })();
 
       if (signup) {
         document.title = '注册 · 文风字体';
         document.getElementById('authTitle').textContent = '注册控制台';
-        document.getElementById('authSub').textContent = '创建账号后可管理项目、上传字体、认领厂商页。';
-        document.getElementById('nameField').hidden = false;
-        document.getElementById('confirmField').hidden = false;
-        document.getElementById('confirm').required = true;
-        document.getElementById('password').autocomplete = 'new-password';
-        document.getElementById('authBtn').innerHTML = WFChrome.icon('user-add') + '创建账号';
-        document.getElementById('authAlt').innerHTML = '已有账号？<a href="' + hrefFor('login') + '">登录</a>';
+        document.getElementById('authSub').textContent = '顾客账号由 windfonts.com 统一注册；字体后端会话暂不开放自助开户。';
+        document.getElementById('nameField').hidden = true;
+        document.getElementById('confirmField').hidden = true;
+        document.getElementById('account').required = false;
+        document.getElementById('password').required = false;
+        document.getElementById('authForm').querySelectorAll('.field').forEach(function (el) {
+          if (el.id !== 'nameField' && el.id !== 'confirmField') el.hidden = true;
+        });
+        btn.innerHTML = WFChrome.icon('user-add') + '去 windfonts.com 注册';
+        btn.type = 'button';
+        btn.addEventListener('click', function () {
+          location.href = 'https://windfonts.com/';
+        });
+        document.getElementById('authAlt').innerHTML = '已有后端账号？<a href="' + hrefFor('login') + '">登录控制台</a>';
       } else {
-        document.getElementById('authAlt').innerHTML = '还没有账号？<a href="' + hrefFor('signup') + '">免费注册</a>' +
+        document.getElementById('authAlt').innerHTML = '还没有站点账号？<a href="https://windfonts.com/">先到 windfonts.com</a>' +
+          ' · <a href="' + hrefFor('signup') + '">说明</a>' +
           '<span data-pricing hidden> · <a href="pricing.html">查看定价</a></span>';
       }
 
-      document.getElementById('authForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (signup) {
-          const a = document.getElementById('password').value;
-          const b = document.getElementById('confirm').value;
-          if (a !== b) { WFChrome.toast('两次密码不一致'); return; }
-        }
-        enter();
-      });
+      if (!signup) {
+        document.getElementById('authForm').addEventListener('submit', function (e) {
+          e.preventDefault();
+          showError('');
+          setBusy(true);
+          const account = document.getElementById('account').value;
+          const password = document.getElementById('password').value;
+          WFAuth.signIn(account, password).then(function (r) {
+            setBusy(false);
+            if (!r.ok) { showError(r.error || '登录失败'); return; }
+            location.href = dest();
+          }).catch(function (err) {
+            setBusy(false);
+            showError((err && err.message) || '登录失败');
+          });
+        });
+      }
 
-      if (WFChrome.user()) location.replace(dest());
+      /* 有 vault 会话则进控制台；生产不认纯 localStorage 假壳 */
+      WFAuth.syncFromVault().then(function (profile) {
+        if (profile) { location.replace(dest()); return; }
+        if (WFAuth.requiresVaultSession && WFAuth.requiresVaultSession()) {
+          if (WFAuth.clearOrphanLocalUser) WFAuth.clearOrphanLocalUser();
+          return;
+        }
+        if (WFChrome.user()) location.replace(dest());
+      }).catch(function () {
+        if (WFChrome.user() && WFChrome.user().source === 'vault-nextauth') {
+          WFChrome.logout();
+        } else if (!(WFAuth.requiresVaultSession && WFAuth.requiresVaultSession()) && WFChrome.user()) {
+          location.replace(dest());
+        } else if (WFAuth.clearOrphanLocalUser) {
+          WFAuth.clearOrphanLocalUser();
+        }
+      });
     })();
   </script>
 </body>
