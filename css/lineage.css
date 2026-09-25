@@ -871,10 +871,23 @@ a.lg-node:hover .lg-name { text-decoration: underline; text-underline-offset: 0.
   align-items: center;
   gap: 0.35rem;
 }
+.lfl-fam-head {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.05rem;
+  margin-right: 0.15rem;
+  line-height: 1.2;
+}
 .lfl-fam-label {
   flex: none;
   font-size: var(--fs-12);
   color: var(--gray);
-  margin-right: 0.1rem;
   letter-spacing: 0.02em;
+}
+.lfl-fam-help {
+  font-size: 10px;
+  color: var(--gray-2);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
 }
