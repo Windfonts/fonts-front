@@ -689,7 +689,14 @@
     });
   }
 
+  /* 开源商用 SPDX 白名单：命中即归「开源商用」（可修改、可再分发的开源许可证）。
+     仓耳「免费开源字体授权声明」按 2026-09-25 口径也归开源商用。
+     白名单宁缺勿滥：未命中的免费商用字体留在「免费商用」桶。 */
+  const OSS_LICENSE_RE = /OFL|SIL Open Font License|\bMIT\b|MIT License|Apache|GPL|CC0|0BSD|IPA Font License|GlyphWiki|开放政府数据|Ubuntu Font License|仓耳字库免费开源字体授权声明/i;
+
   function licenseTier(font) {
+    const ln = String((font && font.licenseName) || '');
+    if (OSS_LICENSE_RE.test(ln)) return '开源商用';
     const t = String((font && font.license) || '').trim();
     if (t === '免费商用' || t === '开源免费商用') return '免费商用';
     if (t === '联系授权' || t === '付费授权') return '需授权';
@@ -1313,7 +1320,7 @@
       function renderLicenseChips() {
         const box = document.getElementById('licenseChips');
         if (!box) return;
-        const order = ['免费商用', '需授权', '个人免费', '待核实'];
+        const order = ['开源商用', '免费商用', '需授权', '个人免费', '待核实'];
         const counts = {};
         catalog.forEach(function (f) {
           const t = licenseTier(f);

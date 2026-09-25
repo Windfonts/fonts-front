@@ -92,7 +92,7 @@
   function renderStats(list) {
     const band = document.getElementById('statsBand');
     if (!band) return;
-    const tierOrder = ['免费商用', '需授权', '个人免费', '待核实'];
+    const tierOrder = ['开源商用', '免费商用', '需授权', '个人免费', '待核实'];
     const tiers = {};
     const brandCount = {};
     const brandNameBySlug = {};

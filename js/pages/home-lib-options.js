@@ -12,7 +12,7 @@
     { id: 'bold', label: '粗体' }, { id: 'heavy', label: '特粗' }
   ];
   const LANGS = ['简体中文', '繁体中文', '英语', '日文', '韩文'];
-  const LICENSES = ['免费商用', '需授权', '个人免费', '待核实'];
+  const LICENSES = ['开源商用', '免费商用', '需授权', '个人免费', '待核实'];
 
   function pickFeatured(list, n) {
     const out = [];
@@ -126,7 +126,7 @@
     function panel(title, body) {
       return '<div class="panel panel-pad stat-panel"><h3>' + esc(title) + '</h3>' + body + '</div>';
     }
-    const tierItems = ['免费商用', '需授权', '个人免费', '待核实'].filter(function (t) { return tiers[t]; })
+    const tierItems = ['开源商用', '免费商用', '需授权', '个人免费', '待核实'].filter(function (t) { return tiers[t]; })
       .map(function (t) { return { label: t, n: tiers[t] }; });
     const top = Object.keys(brandCount).map(function (s) {
       return { label: brandName[s], n: brandCount[s] };
