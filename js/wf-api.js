@@ -257,7 +257,19 @@
     return new Promise(function (resolve) { setTimeout(resolve, ms); });
   }
 
-  /* —— Uploads / Usage stubs（P0 类型+入口，UI 未改接） —— */
+  /* —— Uploads（init → binary → complete；mock 只存元数据，不进 vault） —— */
+  const mockUploadTimers = {};
+
+  function ymd(d) {
+    const p = function (n) { return (n < 10 ? '0' : '') + n; };
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
+  }
+
+  function findUpload(id) {
+    const s = WFApp.state();
+    return ((s && s.uploads) || []).filter(function (x) { return x.id === id; })[0] || null;
+  }
+
   function listUploads() {
     if (isMock()) {
       return ensureApp().then(function () {
@@ -270,32 +282,210 @@
 
   function getUpload(id) {
     if (isMock()) {
-      return listUploads().then(function (rows) {
-        const u = rows.filter(function (x) { return x.id === id; })[0];
+      return ensureApp().then(function () {
+        const u = findUpload(id);
         if (!u) throw apiError('not_found', '上传不存在', 404);
-        return u;
+        return Object.assign({}, u);
       });
     }
     return request('/api/uploads/' + encodeURIComponent(id));
   }
 
   function initUpload(body) {
+    body = body || {};
     if (isMock()) {
-      return Promise.reject(apiError('processing', 'mock 未实现上传 init；请继续用现有 upload.html', 501));
+      return ensureApp().then(function () {
+        const s = WFApp.state();
+        const name = String(body.name || '').trim();
+        const family = String(body.family || '').trim().toLowerCase();
+        const license = body.license || 'own';
+        const files = Array.isArray(body.files) ? body.files : [];
+        if (!name) throw apiError('validation_error', '字体名称不能为空', 422);
+        if (!/^[a-z0-9-]+$/.test(family)) throw apiError('validation_error', '嵌入用名称格式不对', 422);
+        if (!files.length) throw apiError('validation_error', '请选择字体文件', 422);
+        if ((license === 'own' || license === 'bought') && !body.proof) {
+          throw apiError('validation_error', '请附上授权证明', 422);
+        }
+        const cap = (s.plan && s.plan.quota && s.plan.quota.fonts) || 0;
+        if (cap && (s.uploads || []).length >= cap) throw apiError('quota_exceeded', '已到字体配额', 422);
+        const id = 'up-' + Date.now().toString(36);
+        const weights = [];
+        files.forEach(function (f) {
+          const w = f.weight || 'Regular';
+          if (weights.indexOf(w) === -1) weights.push(w);
+        });
+        const size = files.reduce(function (a, f) { return a + (Number(f.size) || 0); }, 0);
+        const formats = [];
+        files.forEach(function (f) {
+          const ext = String(f.filename || '').split('.').pop().toLowerCase();
+          if (ext && formats.indexOf(ext) === -1) formats.push(ext);
+        });
+        const glyphCount = Number(body.glyphCount) || Math.round(size / 320) || 0;
+        const row = {
+          id: id,
+          name: name,
+          family: family,
+          weights: weights,
+          glyphCount: glyphCount,
+          format: formats.join('+') || 'ttf',
+          size: size,
+          license: license,
+          licenseUrl: String(body.licenseUrl || '').trim(),
+          proofName: (body.proof && body.proof.filename) || '',
+          proofType: (body.proof && body.proof.contentType) || '',
+          proofSize: (body.proof && body.proof.size) || 0,
+          uploadedAt: new Date().toISOString(),
+          status: 'pending_upload',
+          review: { state: 'auto_pass', note: '', reviewedAt: null },
+          projectId: body.projectId || '',
+          _mockFiles: files.map(function (f) {
+            return { filename: f.filename, size: f.size || 0, contentType: f.contentType || '', weight: f.weight || 'Regular', received: false };
+          }),
+          _mockProofReceived: false
+        };
+        s.uploads.unshift(row);
+        WFApp.save();
+        return {
+          id: id,
+          status: 'pending_upload',
+          uploadUrls: files.map(function (f) {
+            return {
+              weight: f.weight || 'Regular',
+              url: 'mock://upload/' + id + '/' + encodeURIComponent(f.weight || 'Regular'),
+              headers: {}
+            };
+          }),
+          proofUrl: body.proof ? ('mock://upload/' + id + '/proof') : null
+        };
+      });
     }
-    return request('/api/uploads/init', { method: 'POST', body: body || {} });
+    return request('/api/uploads/init', { method: 'POST', body: body });
+  }
+
+  /** mock：只记元数据已收；live：PUT 直传。不声称二进制进了 vault。 */
+  function putUploadBinary(url, blob, headers) {
+    url = String(url || '');
+    if (isMock() || url.indexOf('mock://') === 0) {
+      return ensureApp().then(function () {
+        const m = url.match(/^mock:\/\/upload\/([^/]+)\/(.+)$/);
+        if (!m) throw apiError('validation_error', '无效的上传地址', 422);
+        const u = findUpload(decodeURIComponent(m[1]));
+        if (!u) throw apiError('not_found', '上传不存在', 404);
+        const part = decodeURIComponent(m[2]);
+        if (part === 'proof') {
+          u._mockProofReceived = true;
+        } else if (u._mockFiles) {
+          u._mockFiles.forEach(function (f) {
+            if (f.weight === part || encodeURIComponent(f.weight) === part) f.received = true;
+          });
+        }
+        WFApp.save();
+        return { ok: true, bytes: blob && blob.size != null ? blob.size : 0 };
+      });
+    }
+    const h = Object.assign({}, headers || {});
+    return fetch(url, { method: 'PUT', headers: h, body: blob }).then(function (res) {
+      if (!res.ok) throw apiError('internal', '上传二进制失败 HTTP ' + res.status, res.status);
+      return { ok: true };
+    });
+  }
+
+  function scheduleMockReady(id) {
+    if (mockUploadTimers[id]) clearTimeout(mockUploadTimers[id]);
+    mockUploadTimers[id] = setTimeout(function () {
+      try {
+        if (!window.WFApp) return;
+        const u = findUpload(id);
+        if (!u || u.status !== 'processing') return;
+        u.status = 'ready';
+        u.review = u.review || { state: 'auto_pass', note: '', reviewedAt: null };
+        u.review.reviewedAt = new Date().toISOString();
+        delete u._mockFiles;
+        delete u._mockProofReceived;
+        WFApp.save();
+      } catch (e) { /* ignore */ }
+      delete mockUploadTimers[id];
+    }, 900);
   }
 
   function completeUpload(id) {
     if (isMock()) {
-      return Promise.reject(apiError('processing', 'mock 未实现上传 complete', 501));
+      return ensureApp().then(function () {
+        const u = findUpload(id);
+        if (!u) throw apiError('not_found', '上传不存在', 404);
+        if (u.status !== 'pending_upload' && u.status !== 'processing') {
+          if (u.status === 'ready') return { id: id, status: 'ready' };
+          throw apiError('validation_error', '当前状态无法 complete', 422);
+        }
+        u.status = 'processing';
+        WFApp.save();
+        scheduleMockReady(id);
+        return { id: id, status: 'processing' };
+      });
     }
     return request('/api/uploads/' + encodeURIComponent(id) + '/complete', { method: 'POST', body: {} });
+  }
+
+  /** 轮询至 ready / rejected；mock 约 1s。 */
+  function waitUploadReady(id, maxMs) {
+    maxMs = maxMs || 8000;
+    const start = Date.now();
+    function once() {
+      return getUpload(id).then(function (u) {
+        if (u.status === 'ready' || u.status === 'rejected') return u;
+        if (Date.now() - start > maxMs) return u;
+        return delay(350).then(once);
+      });
+    }
+    return once();
+  }
+
+  /**
+   * 便捷：init →（mock）记文件名/体积 → complete → 等到 ready。
+   * opts: { name, family, license, licenseUrl, files:[{file,weight,glyphs}], proof:File|null, projectId, glyphCount }
+   */
+  function runUpload(opts) {
+    opts = opts || {};
+    const files = (opts.files || []).map(function (f) {
+      const file = f.file || f;
+      return {
+        filename: file.name,
+        size: file.size,
+        contentType: file.type || 'application/octet-stream',
+        weight: f.weight || 'Regular',
+        _blob: file
+      };
+    });
+    const proof = opts.proof || null;
+    const body = {
+      name: opts.name,
+      family: opts.family,
+      license: opts.license,
+      licenseUrl: opts.licenseUrl || '',
+      files: files.map(function (f) {
+        return { filename: f.filename, size: f.size, contentType: f.contentType, weight: f.weight };
+      }),
+      proof: proof ? { filename: proof.name, size: proof.size, contentType: proof.type || 'application/octet-stream' } : null,
+      projectId: opts.projectId || '',
+      glyphCount: opts.glyphCount || 0
+    };
+    return initUpload(body).then(function (init) {
+      const puts = (init.uploadUrls || []).map(function (slot, i) {
+        return putUploadBinary(slot.url, files[i] && files[i]._blob);
+      });
+      if (init.proofUrl && proof) puts.push(putUploadBinary(init.proofUrl, proof));
+      return Promise.all(puts).then(function () {
+        return completeUpload(init.id);
+      }).then(function () {
+        return waitUploadReady(init.id);
+      });
+    });
   }
 
   function deleteUpload(id) {
     if (isMock()) {
       return ensureApp().then(function () {
+        if (!findUpload(id)) throw apiError('not_found', '上传不存在', 404);
         WFApp.removeUpload(id);
         return { ok: true };
       });
@@ -303,56 +493,174 @@
     return request('/api/uploads/' + encodeURIComponent(id), { method: 'DELETE' }).then(function () { return { ok: true }; });
   }
 
+  /* —— Usage —— */
+  function buildUsageMock(params) {
+    params = params || {};
+    const range = Number(params.range) || 30;
+    const scale = range / 30;
+    const st = WFApp.statusTotals();
+    const projectId = params.projectId || '';
+    const fontId = params.fontId || '';
+    const groupBy = params.groupBy || 'project';
+    let projects = WFApp.projects();
+    if (projectId) projects = projects.filter(function (p) { return p.id === projectId; });
+
+    let requests = 0;
+    let bytes = 0;
+    const projectGroups = [];
+    projects.forEach(function (p) {
+      const r = Math.round((p.usage.requests30d || 0) * scale);
+      const b = Math.round((p.usage.bytes30d || 0) * scale);
+      requests += r; bytes += b;
+      projectGroups.push({
+        key: p.id,
+        label: p.name,
+        requests: r,
+        bytes: b,
+        hitRate: (p.usage.perf && p.usage.perf.hitRate) || 0
+      });
+    });
+
+    let byFont = WFApp.usageByFont().map(function (r) {
+      const weights = {};
+      Object.keys(r.weights || {}).forEach(function (w) {
+        weights[w] = Math.round((r.weights[w] || 0) * scale);
+      });
+      return {
+        fontId: r.fontId,
+        requests30d: Math.round(r.requests30d * scale),
+        bytes30d: Math.round(r.bytes30d * scale),
+        weights: weights,
+        projects: (r.projects || []).map(function (x) {
+          return {
+            projectId: x.p && x.p.id,
+            name: x.p && x.p.name,
+            requests30d: Math.round(x.requests30d * scale),
+            bytes30d: Math.round(x.bytes30d * scale),
+            weights: x.weights || {}
+          };
+        })
+      };
+    });
+    if (fontId) byFont = byFont.filter(function (r) { return r.fontId === fontId; });
+    if (projectId) {
+      byFont = byFont.map(function (r) {
+        const hits = (r.projects || []).filter(function (x) { return x.projectId === projectId; });
+        if (!hits.length) return null;
+        return Object.assign({}, r, {
+          requests30d: hits.reduce(function (a, x) { return a + x.requests30d; }, 0),
+          bytes30d: hits.reduce(function (a, x) { return a + x.bytes30d; }, 0),
+          projects: hits
+        });
+      }).filter(Boolean);
+    }
+    if (fontId && byFont.length) {
+      requests = byFont.reduce(function (a, r) { return a + r.requests30d; }, 0);
+      bytes = byFont.reduce(function (a, r) { return a + r.bytes30d; }, 0);
+    }
+
+    const domainGroups = [];
+    WFApp.allDomains().filter(function (d) { return d.verified; }).forEach(function (d) {
+      if (projectId && d.project && d.project.id !== projectId) return;
+      domainGroups.push({
+        key: d.host,
+        label: d.host,
+        projectId: d.project && d.project.id,
+        projectName: d.project && d.project.name,
+        requests: Math.round((d.requests30d || 0) * scale),
+        bytes: Math.round((d.bytes30d || 0) * scale)
+      });
+    });
+    domainGroups.sort(function (a, b) { return b.requests - a.requests; });
+
+    let groups = projectGroups;
+    if (groupBy === 'domain') groups = domainGroups;
+    else if (groupBy === 'font') {
+      groups = byFont.map(function (r) {
+        const meta = WFApp.fontMeta(r.fontId);
+        return {
+          key: r.fontId,
+          label: meta ? meta.name : r.fontId,
+          requests: r.requests30d,
+          bytes: r.bytes30d,
+          weights: r.weights,
+          projects: r.projects
+        };
+      });
+    } else if (groupBy === 'status') {
+      groups = [
+        { key: '200', label: '成功下发', requests: Math.round((st['200'] || 0) * scale) },
+        { key: '304', label: '缓存命中', requests: Math.round((st['304'] || 0) * scale) },
+        { key: '403', label: '被拒', requests: Math.round((st['403'] || 0) * scale) }
+      ];
+    }
+
+    const blocked = WFApp.blockedHosts().reduce(function (a, b) {
+      if (projectId && b.project && b.project.id !== projectId) return a;
+      return a + (b.requests30d || 0);
+    }, 0);
+    const s = WFApp.state();
+    const seedKey = 'usage-' + range + '-' + (projectId || 'all') + '-' + (fontId || 'all');
+    const seriesReqs = WFApp.series(seedKey, range, requests || 1);
+    const to = new Date();
+    const from = new Date(to.getTime() - (range - 1) * 86400000);
+
+    return {
+      range: range,
+      totals: {
+        requests: requests,
+        bytes: bytes,
+        quotaGB: (s.plan && s.plan.quota && s.plan.quota.trafficGB) || 200,
+        blocked: Math.round(blocked * scale)
+      },
+      status: {
+        '200': Math.round((st['200'] || 0) * scale),
+        '304': Math.round((st['304'] || 0) * scale),
+        '403': Math.round((st['403'] || 0) * scale)
+      },
+      series: { from: ymd(from), to: ymd(to), requests: seriesReqs },
+      groups: groups,
+      byFont: byFont,
+      byDomain: domainGroups,
+      perf: projects.map(function (p) {
+        const pf = p.usage.perf || {};
+        return { projectId: p.id, name: p.name, fcpMs: pf.fcpMs || 0, fontLoadMs: pf.fontLoadMs || 0, hitRate: pf.hitRate || 0 };
+      })
+    };
+  }
+
+  function qsFromParams(params) {
+    const q = [];
+    Object.keys(params || {}).forEach(function (k) {
+      if (params[k] != null && params[k] !== '') q.push(encodeURIComponent(k) + '=' + encodeURIComponent(params[k]));
+    });
+    return q.length ? ('?' + q.join('&')) : '';
+  }
+
   function getUsage(params) {
     params = params || {};
     if (isMock()) {
-      return ensureApp().then(function () {
-        const range = Number(params.range) || 30;
-        const scale = range / 30;
-        const st = WFApp.statusTotals();
-        const byFont = WFApp.usageByFont();
-        let requests = 0;
-        let bytes = 0;
-        const groups = [];
-        WFApp.projects().forEach(function (p) {
-          const r = Math.round((p.usage.requests30d || 0) * scale);
-          const b = Math.round((p.usage.bytes30d || 0) * scale);
-          requests += r; bytes += b;
-          groups.push({ key: p.id, label: p.name, requests: r, bytes: b, hitRate: (p.usage.perf && p.usage.perf.hitRate) || 0 });
-        });
-        const blocked = WFApp.blockedHosts().reduce(function (a, b) { return a + (b.requests30d || 0); }, 0);
-        const s = WFApp.state();
-        return {
-          range: range,
-          totals: {
-            requests: requests,
-            bytes: bytes,
-            quotaGB: (s.plan && s.plan.quota && s.plan.quota.trafficGB) || 200,
-            blocked: Math.round(blocked * scale)
-          },
-          status: { '200': Math.round((st['200'] || 0) * scale), '304': Math.round((st['304'] || 0) * scale), '403': Math.round((st['403'] || 0) * scale) },
-          series: { from: '', to: '', requests: WFApp.series ? WFApp.series(Math.min(range, 30)) : [] },
-          groups: groups,
-          byFont: byFont,
-          perf: WFApp.projects().map(function (p) {
-            const pf = p.usage.perf || {};
-            return { projectId: p.id, fcpMs: pf.fcpMs || 0, fontLoadMs: pf.fontLoadMs || 0, hitRate: pf.hitRate || 0 };
-          })
-        };
-      });
+      return ensureApp().then(function () { return buildUsageMock(params); });
     }
-    const q = [];
-    Object.keys(params).forEach(function (k) {
-      if (params[k] != null && params[k] !== '') q.push(encodeURIComponent(k) + '=' + encodeURIComponent(params[k]));
-    });
-    return request('/api/usage' + (q.length ? '?' + q.join('&') : ''));
+    return request('/api/usage' + qsFromParams(params));
+  }
+
+  function getUsageSeries(params) {
+    params = params || {};
+    if (isMock()) {
+      return getUsage(params).then(function (u) { return u.series; });
+    }
+    return request('/api/usage/series' + qsFromParams(params));
   }
 
   function listBlocked() {
     if (isMock()) {
       return ensureApp().then(function () {
         return WFApp.blockedHosts().map(function (b) {
-          return Object.assign({}, b, { projectId: b.project && b.project.id });
+          return Object.assign({}, b, {
+            projectId: b.project && b.project.id,
+            projectName: b.project && b.project.name
+          });
         });
       });
     }
@@ -422,9 +730,13 @@
     listUploads: listUploads,
     getUpload: getUpload,
     initUpload: initUpload,
+    putUploadBinary: putUploadBinary,
     completeUpload: completeUpload,
+    waitUploadReady: waitUploadReady,
+    runUpload: runUpload,
     deleteUpload: deleteUpload,
     getUsage: getUsage,
+    getUsageSeries: getUsageSeries,
     listBlocked: listBlocked,
     publish: publish,
     publishProject: publishProject

@@ -1,0 +1,598 @@
+/* 谱系关系图实验室 · Windfonts tokens
+   激活(plex) / 图(flow) / 簇(cluster) / 墙(wall) */
+
+.page-lfl .lfl-switch {
+  position: sticky;
+  top: var(--topbar-h);
+  z-index: 20;
+  background: var(--page);
+  border-bottom: 1px solid var(--rule-2);
+}
+.lfl-switch-inner {
+  padding: var(--s-5) 0 var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.lfl-lead {
+  margin: 0;
+  font-size: var(--fs-13);
+  color: var(--gray);
+  line-height: var(--lh-body);
+  max-width: 52rem;
+}
+.lfl-lead a { color: var(--ink); }
+.lfl-fams,
+.lfl-clusters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.lfl-clusters {
+  padding-top: 0.15rem;
+}
+.lfl-clusters[hidden] { display: none; }
+.lfl-fams .chip .n,
+.lfl-clusters .chip .n {
+  margin-left: 0.35em;
+  color: var(--gray-2);
+  font-variant-numeric: tabular-nums;
+}
+.lfl-clusters .chip.is-on .n { color: var(--on-ink-2); }
+.lfl-clusters-label {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+  align-self: center;
+  margin-right: 0.15rem;
+}
+
+.lfl-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+}
+.lfl-modes {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.lfl-modes .chip {
+  min-width: 2.5rem;
+  justify-content: center;
+}
+.lfl-tools-sep {
+  width: 1px;
+  height: 1.25rem;
+  background: var(--rule-2);
+  margin: 0 0.25rem;
+}
+.lfl-tool {
+  appearance: none;
+  border: none;
+  background: var(--fill);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  line-height: 1;
+  min-width: 2.25rem;
+}
+.lfl-tool:hover { background: var(--surface-2); }
+.lfl-tool:disabled,
+.page-lfl.is-wall .lfl-tool {
+  opacity: 0.35;
+  pointer-events: none;
+}
+.page-lfl.is-wall .lfl-zoom { opacity: 0.35; }
+.lfl-zoom {
+  font-size: var(--fs-12);
+  color: var(--gray);
+  font-variant-numeric: tabular-nums;
+  min-width: 3rem;
+}
+.lfl-hint {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+  margin-left: var(--s-2);
+}
+
+.lfl-main { padding-bottom: var(--s-16); }
+.lfl-cap {
+  font-size: var(--fs-13);
+  color: var(--gray);
+  margin: var(--s-5) 0 var(--s-3);
+}
+
+.lfl-viewport {
+  position: relative;
+  height: min(72vh, 52rem);
+  min-height: 28rem;
+  margin: 0 var(--gutter);
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  outline: none;
+}
+.lfl-viewport.is-panning { cursor: grabbing; }
+.page-lfl.is-wall .lfl-viewport {
+  cursor: default;
+  overflow: auto;
+  touch-action: auto;
+}
+.lfl-viewport:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+.lfl-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+.page-lfl.is-wall .lfl-stage { display: none; }
+
+.lfl-edges {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+.lfl-edges path {
+  fill: none;
+  stroke: var(--gray-2);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  transition: stroke var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+.lfl-edges path.is-dim { opacity: 0.18; }
+.lfl-edges path.is-hot {
+  stroke: var(--ink);
+  stroke-width: 2.2;
+  opacity: 1;
+}
+.lfl-edges path.is-soft {
+  stroke-dasharray: 5 5;
+  stroke-width: 1.25;
+  opacity: 0.55;
+}
+.lfl-edges .lfl-elabel.is-soft { opacity: 0.55; font-size: 10px; }
+.lfl-edges .lfl-arrow {
+  fill: var(--gray-2);
+  transition: fill var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+.lfl-edges .lfl-arrow.is-dim { opacity: 0.18; }
+.lfl-edges .lfl-arrow.is-hot { fill: var(--ink); opacity: 1; }
+.lfl-edges .lfl-elabel {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  fill: var(--gray);
+  pointer-events: none;
+  transition: opacity var(--dur) var(--ease), fill var(--dur) var(--ease);
+}
+.lfl-edges .lfl-elabel.is-dim { opacity: 0.2; }
+.lfl-edges .lfl-elabel.is-hot { fill: var(--ink); opacity: 1; font-weight: var(--fw-title); }
+
+.lfl-nodes {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.lfl-card {
+  position: absolute;
+  box-sizing: border-box;
+  width: var(--lfl-card-w, 11.5rem);
+  min-height: 3.85rem;
+  padding: 0.55rem 0.75rem 0.5rem;
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+  border: none;
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  transition: opacity var(--dur) var(--ease), background var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    left 280ms var(--ease), top 280ms var(--ease);
+  box-shadow: inset 0 0 0 1px transparent;
+}
+.lfl-card:hover { background: var(--fill); }
+.lfl-card.is-dim { opacity: 0.28; }
+.lfl-card.is-hot {
+  opacity: 1;
+  box-shadow: inset 0 0 0 2px var(--ink);
+  background: var(--paper);
+  z-index: 3;
+}
+.lfl-card.is-ghost {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px dashed var(--gray-2);
+  color: var(--gray);
+}
+.lfl-card.is-ghost:hover { background: var(--fill); }
+.lfl-card.is-outgroup {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px dashed var(--gray-2);
+  color: var(--gray);
+}
+.lfl-card.is-outgroup:hover { background: var(--fill); }
+.lfl-card.is-outgroup.is-hot {
+  box-shadow: inset 0 0 0 2px var(--ink);
+  color: var(--ink);
+}
+.lfl-card.is-compact {
+  min-height: 3.4rem;
+  padding: 0.45rem 0.65rem 0.4rem;
+}
+.lfl-card.is-compact .lfl-en { display: none; }
+.lfl-card.is-compact .lfl-yong { font-size: 1rem; }
+
+/* 主题支卡（簇＝可折 mind-map branch） */
+.lfl-card.is-cluster {
+  background: var(--fill);
+  box-shadow: inset 0 0 0 1.5px var(--rule-2);
+  min-height: 4.5rem;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--ink);
+}
+.lfl-card.is-cluster:hover { background: var(--surface-2); }
+.lfl-card.is-cluster.is-hot,
+.lfl-card.is-cluster.is-open {
+  box-shadow: inset 0 0 0 2px var(--ink);
+  background: var(--paper);
+}
+.lfl-card.is-cluster.is-open {
+  border-left-color: var(--ink);
+}
+.lfl-cluster-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-snug);
+}
+.lfl-cluster-count {
+  font-variant-numeric: tabular-nums;
+  color: var(--gray);
+  font-weight: var(--fw-body);
+  font-size: var(--fs-13);
+}
+.lfl-cluster-count::before { content: none; }
+.lfl-cluster-sub {
+  display: block;
+  font-size: var(--fs-11);
+  color: var(--gray);
+  margin-top: 0.2rem;
+  line-height: var(--lh-snug);
+}
+.lfl-cluster-act {
+  display: block;
+  font-size: 10px;
+  color: var(--gray-2);
+  margin-top: 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+/* 还有 k 款 expander */
+.lfl-card.is-more {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px dashed var(--gray-2);
+  color: var(--gray);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 3.4rem;
+}
+.lfl-card.is-more:hover { background: var(--fill); color: var(--ink); }
+.lfl-more-label {
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+}
+
+.lfl-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  min-width: 0;
+}
+.lfl-card-names { flex: 1; min-width: 0; }
+.lfl-name {
+  display: block;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-snug);
+  color: inherit;
+  text-decoration: none;
+  word-break: break-word;
+}
+a.lfl-name:hover { text-decoration: underline; }
+.lfl-card.is-compact .lfl-name { font-size: var(--fs-13); }
+.lfl-en {
+  display: block;
+  font-size: var(--fs-11);
+  color: var(--gray-2);
+  line-height: var(--lh-snug);
+  margin-top: 0.1rem;
+  word-break: break-word;
+}
+.lfl-yong {
+  flex: none;
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--gray-2);
+  opacity: 0.55;
+  margin-top: 0.05rem;
+  user-select: none;
+}
+.lfl-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: var(--fs-11);
+  color: var(--gray);
+  line-height: 1.2;
+}
+.lfl-lic { flex: none; }
+.lfl-who {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lfl-badge {
+  display: inline-block;
+  font-size: 10px;
+  color: var(--gray-2);
+  margin-top: 0.15rem;
+}
+
+/* 墙模式 */
+.lfl-wall {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  padding: var(--s-5);
+  box-sizing: border-box;
+}
+.lfl-wall[hidden] { display: none; }
+.lfl-wall-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 0.65rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.lfl-wall-card {
+  appearance: none;
+  border: none;
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.7rem 0.65rem;
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 6.5rem;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.lfl-wall-card:hover { background: var(--fill); }
+.lfl-wall-card.is-hot {
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+.lfl-wall-yong {
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--ink);
+  opacity: 0.85;
+  user-select: none;
+}
+.lfl-wall-name {
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-snug);
+  word-break: break-word;
+  color: inherit;
+  text-decoration: none;
+}
+a.lfl-wall-name:hover { text-decoration: underline; }
+.lfl-wall-meta {
+  font-size: var(--fs-11);
+  color: var(--gray);
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+  margin-top: auto;
+}
+.lfl-wall-empty {
+  text-align: center;
+  color: var(--gray);
+  font-size: var(--fs-14);
+  padding: 3rem 1rem;
+}
+
+.lfl-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: var(--gray);
+  font-size: var(--fs-14);
+  pointer-events: none;
+}
+
+.lfl-note {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+  margin: var(--s-5) 0 0;
+  line-height: var(--lh-body);
+  max-width: 48rem;
+}
+
+@media (max-width: 720px) {
+  .lfl-viewport {
+    margin: 0;
+    border-radius: 0;
+    height: 60vh;
+  }
+  .lfl-hint { display: none; }
+  .lfl-tools-sep { display: none; }
+}
+
+
+/* —— 激活 (plex / TheBrain 邻域) —— */
+.lfl-card.is-activated {
+  opacity: 1;
+  z-index: 5;
+  background: var(--paper);
+  box-shadow: inset 0 0 0 2.5px var(--ink), 0 8px 28px color-mix(in srgb, var(--ink) 12%, transparent);
+  min-height: 4.1rem;
+}
+.lfl-card.is-activated .lfl-name { font-size: var(--fs-15, var(--fs-14)); }
+.lfl-card.is-plex-gate {
+  background: var(--fill);
+  box-shadow: inset 0 0 0 1.5px var(--rule-2);
+  border-left: 3px solid var(--ink);
+  min-height: 4.1rem;
+  padding-left: 0.85rem;
+}
+.lfl-card.is-plex-gate:hover { background: var(--surface-2); }
+.lfl-card.is-plex-gate.is-hot {
+  box-shadow: inset 0 0 0 2px var(--ink);
+  background: var(--paper);
+}
+.lfl-plex-gate-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-snug);
+}
+.lfl-plex-gate-count {
+  font-variant-numeric: tabular-nums;
+  color: var(--gray);
+  font-weight: var(--fw-body);
+  font-size: var(--fs-13);
+}
+.lfl-plex-gate-sub {
+  display: block;
+  font-size: var(--fs-11);
+  color: var(--gray);
+  margin-top: 0.2rem;
+}
+.lfl-plex-gate-act {
+  display: block;
+  font-size: 10px;
+  color: var(--gray-2);
+  margin-top: 0.3rem;
+}
+
+.lfl-plex-pick {
+  position: absolute;
+  z-index: 30;
+  min-width: 14rem;
+  max-width: min(22rem, 92%);
+  max-height: min(22rem, 70%);
+  overflow: auto;
+  background: var(--paper);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 40px color-mix(in srgb, var(--ink) 18%, transparent),
+    inset 0 0 0 1px var(--rule-2);
+  padding: 0.55rem 0.45rem;
+}
+.lfl-plex-pick[hidden] { display: none; }
+.lfl-plex-pick-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25rem 0.45rem 0.55rem;
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule-2);
+  margin-bottom: 0.35rem;
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 1;
+}
+.lfl-plex-pick-close {
+  appearance: none;
+  border: none;
+  background: var(--fill);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-12);
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+.lfl-plex-pick-close:hover { background: var(--surface-2); }
+.lfl-plex-pick-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.lfl-plex-pick-item {
+  appearance: none;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  padding: 0.45rem 0.55rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.lfl-plex-pick-item:hover { background: var(--fill); }
+.lfl-plex-pick-item.is-on { background: var(--fill); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.lfl-plex-pick-name {
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-snug);
+}
+.lfl-plex-pick-meta {
+  font-size: var(--fs-11);
+  color: var(--gray);
+}
+.page-lfl.is-plex .lfl-edges path {
+  stroke-width: 1.45;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lfl-card {
+    transition: opacity var(--dur) var(--ease), background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+}

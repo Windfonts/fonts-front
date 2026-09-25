@@ -49,11 +49,11 @@
     </form>
   </main>
 
-  <script src="../js/wf-proto.js?v=20260925pro1"></script>
+  <script src="../js/wf-proto.js?v=20260925pro2"></script>
   <script src="../js/wf-chrome.js?v=20260927e"></script>
   <script src="../js/wf-embed.js?v=20260924q"></script>
-  <script src="../js/wf-app.js?v=20260925pro1"></script>
-  <script src="../js/wf-api.js?v=20260925pro1"></script>
+  <script src="../js/wf-app.js?v=20260925pro2"></script>
+  <script src="../js/wf-api.js?v=20260925pro2"></script>
   <script>
     (function () {
       if (!WFApp.gate()) return;
@@ -90,15 +90,19 @@
         const proofOk = !needsProof() || !!proof;
         btn.disabled = locked || !(picks.length && agree.checked && name.value.trim() && famOk && proofOk);
       }
-      WFApp.load().then(function (s) {
+      Promise.all([WFApp.load(), WFApi.listProjects(), WFApi.listUploads()]).then(function (pair) {
+        const s = pair[0];
+        const projects = pair[1] || [];
+        const uploads = pair[2] || [];
         const sel = document.getElementById('upProject');
-        (s.projects || []).forEach(function (p) {
+        projects.forEach(function (p) {
           const o = document.createElement('option');
           o.value = p.id;
           o.textContent = p.name;
           sel.appendChild(o);
         });
-        document.getElementById('kvQuota').textContent = s.uploads.length + ' / ' + s.plan.quota.fonts + ' 款';
+        const cap = (s.plan && s.plan.quota && s.plan.quota.fonts) || 0;
+        document.getElementById('kvQuota').textContent = uploads.length + ' / ' + cap + ' 款';
         if (WFApp.isPro()) return;
         locked = true;
         btn.disabled = true;
@@ -243,41 +247,40 @@
         e.preventDefault();
         if (locked || btn.disabled) return;
         if (needsProof() && !proof) { WFChrome.toast('请附上授权证明'); return; }
-        const s = WFApp.state();
-        const cap = (s.plan.quota && s.plan.quota.fonts) || 0;
-        if (cap && s.uploads.length >= cap) { WFChrome.toast('已到字体配额'); return; }
-        const weights = picks.map(function (p) { return p.weight; }).filter(function (w, i, arr) { return arr.indexOf(w) === i; });
-        const id = 'up-' + Date.now().toString(36);
         const glyphs = picks.reduce(function (a, p) { return a + (p.glyphs || 0); }, 0);
-        s.uploads.unshift({
-          id: id,
+        const projectId = document.getElementById('upProject').value;
+        const weights = picks.map(function (p) { return p.weight; }).filter(function (w, i, arr) { return arr.indexOf(w) === i; });
+        btn.disabled = true;
+        WFChrome.toast(WFApi.isMock() ? '处理中（mock，未写入 vault）…' : '上传中…');
+        WFApi.runUpload({
           name: name.value.trim(),
           family: fam.value,
-          weights: weights,
-          glyphCount: glyphs || Math.round(picks[0].file.size / 320),
-          format: picks.map(function (p) { return p.format; }).filter(function (v, i, arr) { return arr.indexOf(v) === i; }).join('+'),
-          size: picks.reduce(function (a, p) { return a + p.file.size; }, 0),
           license: document.getElementById('upLicense').value,
           licenseUrl: document.getElementById('upLicenseUrl').value.trim(),
-          proofName: proof ? proof.name : '',
-          proofType: proof ? (proof.type || '') : '',
-          proofSize: proof ? proof.size : 0,
-          uploadedAt: new Date().toISOString(),
-          status: 'ready'
+          files: picks.map(function (p) { return { file: p.file, weight: p.weight, glyphs: p.glyphs }; }),
+          proof: proof,
+          projectId: projectId,
+          glyphCount: glyphs || Math.round(picks[0].file.size / 320)
+        }).then(function (row) {
+          const project = projectId ? WFApp.project(projectId) : null;
+          if (project && row && row.id) {
+            const cssWeights = weights.map(function (w) {
+              const hit = WEIGHTS.filter(function (x) { return x.v === w; })[0];
+              return hit ? String(hit.n) : w;
+            });
+            WFApp.addFont(project, row.id, cssWeights, { mode: 'full' });
+          }
+          WFApp.log('上传字体', name.value.trim() + (project ? ' · ' + project.name : ''));
+          WFApp.save();
+          const st = (row && row.status) || 'ready';
+          if (st === 'processing') WFChrome.toast('已提交，格式转换中…');
+          else WFChrome.toast(project ? '已上传并放进「' + project.name + '」' : '已上传。可以稍后加入项目');
+          location.href = project ? 'project.html?id=' + encodeURIComponent(project.id) + '&tab=fonts' : 'fonts.html';
+        }).catch(function (err) {
+          btn.disabled = false;
+          check();
+          WFChrome.toast((err && err.message) || '上传失败');
         });
-        const projectId = document.getElementById('upProject').value;
-        const project = projectId ? WFApp.project(projectId) : null;
-        if (project) {
-          const cssWeights = weights.map(function (w) {
-            const hit = WEIGHTS.filter(function (x) { return x.v === w; })[0];
-            return hit ? String(hit.n) : w;
-          });
-          WFApp.addFont(project, id, cssWeights, { mode: 'full' });
-        }
-        WFApp.log('上传字体', name.value.trim() + (project ? ' · ' + project.name : ''));
-        WFApp.save();
-        WFChrome.toast(project ? '已上传并放进「' + project.name + '」' : '已上传。可以稍后加入项目');
-        location.href = project ? 'project.html?id=' + encodeURIComponent(project.id) + '&tab=fonts' : 'fonts.html';
       });
     })();
   </script>
