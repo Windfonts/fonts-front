@@ -53,7 +53,7 @@
   <script src="../js/wf-chrome.js?v=20260927e"></script>
   <script src="../js/wf-embed.js?v=20260924q"></script>
   <script src="../js/wf-app.js?v=20260925pro2"></script>
-  <script src="../js/wf-api.js?v=20260925pro2"></script>
+  <script src="../js/wf-api.js?v=20260925pro4"></script>
   <script>
     (function () {
       if (!WFApp.gate()) return;
@@ -262,20 +262,22 @@
           projectId: projectId,
           glyphCount: glyphs || Math.round(picks[0].file.size / 320)
         }).then(function (row) {
-          const project = projectId ? WFApp.project(projectId) : null;
-          if (project && row && row.id) {
+          const attach = (projectId && row && row.id) ? (function () {
             const cssWeights = weights.map(function (w) {
               const hit = WEIGHTS.filter(function (x) { return x.v === w; })[0];
               return hit ? String(hit.n) : w;
             });
-            WFApp.addFont(project, row.id, cssWeights, { mode: 'full' });
-          }
-          WFApp.log('上传字体', name.value.trim() + (project ? ' · ' + project.name : ''));
-          WFApp.save();
-          const st = (row && row.status) || 'ready';
-          if (st === 'processing') WFChrome.toast('已提交，格式转换中…');
-          else WFChrome.toast(project ? '已上传并放进「' + project.name + '」' : '已上传。可以稍后加入项目');
-          location.href = project ? 'project.html?id=' + encodeURIComponent(project.id) + '&tab=fonts' : 'fonts.html';
+            return WFApi.addFont(projectId, row.id, cssWeights, { mode: 'full' });
+          })() : Promise.resolve(null);
+          return attach.then(function (project) {
+            const pname = (project && project.name) || (projectId ? ((WFApp.project(projectId) || {}).name) : '');
+            WFApp.log('上传字体', name.value.trim() + (pname ? ' · ' + pname : ''));
+            WFApp.save();
+            const st = (row && row.status) || 'ready';
+            if (st === 'processing') WFChrome.toast('已提交，格式转换中…');
+            else WFChrome.toast(pname ? '已上传并放进「' + pname + '」' : '已上传。可以稍后加入项目');
+            location.href = projectId ? 'project.html?id=' + encodeURIComponent(projectId) + '&tab=fonts' : 'fonts.html';
+          });
         }).catch(function (err) {
           btn.disabled = false;
           check();

@@ -137,6 +137,81 @@
     return request('/api/projects/' + encodeURIComponent(id), { method: 'DELETE' }).then(function () { return { ok: true }; });
   }
 
+  /* —— Project fonts / versions —— */
+  function liveFontsNotReady() {
+    return Promise.reject(apiError('not_implemented', 'vault 尚未提供项目字体 REST', 501));
+  }
+
+  function addFont(projectId, fontId, weights, subset) {
+    projectId = String(projectId || '');
+    fontId = String(fontId || '');
+    weights = Array.isArray(weights) ? weights.slice() : [];
+    if (!projectId || !fontId) return Promise.reject(apiError('validation_error', '项目或字体无效', 422));
+    if (!weights.length) return Promise.reject(apiError('validation_error', '至少选择一个字重', 422));
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const p = WFApp.project(projectId);
+        if (!p) throw apiError('not_found', '项目不存在', 404);
+        WFApp.addFont(p, fontId, weights, subset || { mode: 'full' });
+        return p;
+      });
+    }
+    return liveFontsNotReady();
+  }
+
+  function removeFont(projectId, fontId) {
+    projectId = String(projectId || '');
+    fontId = String(fontId || '');
+    if (!projectId || !fontId) return Promise.reject(apiError('validation_error', '项目或字体无效', 422));
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const p = WFApp.project(projectId);
+        if (!p) throw apiError('not_found', '项目不存在', 404);
+        if (!(p.fonts || []).some(function (f) { return f.fontId === fontId; })) {
+          throw apiError('not_found', '项目中无此字体', 404);
+        }
+        WFApp.removeFont(p, fontId);
+        return { ok: true };
+      });
+    }
+    return liveFontsNotReady();
+  }
+
+  function removeWeight(projectId, fontId, weight) {
+    projectId = String(projectId || '');
+    fontId = String(fontId || '');
+    weight = weight == null ? '' : String(weight);
+    if (!projectId || !fontId || !weight) return Promise.reject(apiError('validation_error', '项目、字体或字重无效', 422));
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const p = WFApp.project(projectId);
+        if (!p) throw apiError('not_found', '项目不存在', 404);
+        if (!WFApp.removeWeight(p, fontId, weight)) {
+          throw apiError('validation_error', '这款字至少要留一个字重', 422);
+        }
+        return { ok: true };
+      });
+    }
+    return liveFontsNotReady();
+  }
+
+  function rollbackVersion(projectId, v) {
+    projectId = String(projectId || '');
+    v = parseInt(v, 10);
+    if (!projectId || !v) return Promise.reject(apiError('validation_error', '项目或版本无效', 422));
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const p = WFApp.project(projectId);
+        if (!p) throw apiError('not_found', '项目不存在', 404);
+        const target = (p.versions || []).filter(function (x) { return x.v === v; })[0];
+        if (!target) throw apiError('not_found', '版本不存在', 404);
+        const restored = WFApp.rollback(p, v);
+        return { ok: true, restored: !!restored, version: WFApp.currentVersion(p) };
+      });
+    }
+    return Promise.reject(apiError('not_implemented', 'vault 尚未提供版本回滚 REST', 501));
+  }
+
   /* —— Domains —— */
   function listDomains() {
     if (isMock()) {
@@ -863,6 +938,10 @@
     createProject: createProject,
     patchProject: patchProject,
     deleteProject: deleteProject,
+    addFont: addFont,
+    removeFont: removeFont,
+    removeWeight: removeWeight,
+    rollbackVersion: rollbackVersion,
     listDomains: listDomains,
     listProjectDomains: listProjectDomains,
     addDomain: addDomain,

@@ -168,9 +168,15 @@
         const meta = WFApp.fontMeta(id);
         WFChrome.confirm({ title: '从项目移除字体', message: '将「' + (meta ? meta.name : id) + '」移出本项目，并生成新版本。已上线的嵌入代码会在发布后不再包含这款字体。', ok: '移除' }).then(function (ok) {
           if (!ok) return;
-          WFApp.removeFont(p, id);
-          WFChrome.toast('已移除，生成新版本');
-          render();
+          WFApi.removeFont(p.id, id).then(function () {
+            return WFApi.getProject(p.id);
+          }).then(function (fresh) {
+            p = fresh;
+            WFChrome.toast('已移除，生成新版本');
+            render();
+          }).catch(function (err) {
+            WFChrome.toast((err && err.message) || '移除失败');
+          });
         });
       });
     });
@@ -228,8 +234,15 @@
         const meta = WFApp.fontMeta(parts[0]);
         WFChrome.confirm({ title: '去掉字重', message: '从「' + (meta ? meta.name : parts[0]) + '」去掉 ' + parts[1] + '，并生成新版本。', ok: '去掉' }).then(function (ok) {
           if (!ok) return;
-          if (WFApp.removeWeight(p, parts[0], parts[1])) { WFChrome.toast('已去掉，生成新版本'); render(); }
-          else WFChrome.toast('这款字至少要留一个字重');
+          WFApi.removeWeight(p.id, parts[0], parts[1]).then(function () {
+            return WFApi.getProject(p.id);
+          }).then(function (fresh) {
+            p = fresh;
+            WFChrome.toast('已去掉，生成新版本');
+            render();
+          }).catch(function (err) {
+            WFChrome.toast((err && err.message) || '去掉失败');
+          });
         });
       });
     });
@@ -256,9 +269,15 @@
           : 'v' + v + ' 没有记下当时的字体清单。回滚只会多一条记录，项目里的字体不会变。';
         WFChrome.confirm({ title: '回滚到 v' + v, message: msg, ok: '回滚' }).then(function (ok) {
           if (!ok) return;
-          const restored = WFApp.rollback(p, v);
-          WFChrome.toast(restored ? '已回滚，字体清单已恢复' : '已记下回滚；这一版没有字体清单，项目里的字体未改');
-          render();
+          WFApi.rollbackVersion(p.id, v).then(function (body) {
+            return WFApi.getProject(p.id).then(function (fresh) {
+              p = fresh;
+              WFChrome.toast(body && body.restored ? '已回滚，字体清单已恢复' : '已记下回滚；这一版没有字体清单，项目里的字体未改');
+              render();
+            });
+          }).catch(function (err) {
+            WFChrome.toast((err && err.message) || '回滚失败');
+          });
         });
       });
     });
@@ -302,7 +321,7 @@
               p.delivery.structure = o.structure;
               const struct = document.getElementById('optStruct');
               if (struct) struct.value = o.structure;
-              WFApp.save();
+              WFApi.patchProject(p.id, { delivery: { structure: o.structure } }).catch(function () {});
             }
           }
         };
@@ -337,7 +356,7 @@
       });
       function persist() {
         readForm();
-        WFApp.save();
+        WFApi.patchProject(p.id, { delivery: Object.assign({}, p.delivery) }).catch(function () {});
         if (src === 'project') paint();
         else if (m) m.setOpts(opts());
         else paint();

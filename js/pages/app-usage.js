@@ -82,8 +82,12 @@
           ok: '去掉'
         }).then(function (ok) {
           if (!ok || !p) return;
-          if (WFApp.removeWeight(p, parts[1], parts[2])) { WFChrome.toast('已去掉，生成新版本'); render(); }
-          else WFChrome.toast('这款字至少要留一个字重');
+          WFApi.removeWeight(p.id, parts[1], parts[2]).then(function () {
+            WFChrome.toast('已去掉，生成新版本');
+            render();
+          }).catch(function (err) {
+            WFChrome.toast((err && err.message) || '去掉失败');
+          });
         });
       });
     });

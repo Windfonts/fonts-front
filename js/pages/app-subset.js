@@ -155,8 +155,14 @@
     document.getElementById('projPick').addEventListener('change', function (e) {
       if (e.target.value === '__new') {
         WFChrome.promptInput({ title: '新建项目', label: '项目名称', placeholder: '如 品牌官网', ok: '新建' }).then(function (name) {
-          if (name) project = WFApp.createProject(name);
-          loadExisting(); render();
+          if (!name) { loadExisting(); render(); return; }
+          WFApi.createProject(name).then(function (p) {
+            project = p;
+            loadExisting(); render();
+          }).catch(function (err) {
+            WFChrome.toast((err && err.message) || '新建失败');
+            loadExisting(); render();
+          });
         });
         return;
       }
@@ -253,11 +259,18 @@
     if (add) add.addEventListener('click', function () {
       if (!project) { WFChrome.toast('先选择项目'); return; }
       if (st.mode === 'text' && !st.text.trim()) { WFChrome.toast('先粘贴要打包的文字'); return; }
-      WFApp.addFont(project, font.id, st.weights.slice(), subset());
-      WFChrome.toast('已加入 ' + project.name + '，生成 v' + WFApp.currentVersion(project).v);
-      queue = queue.filter(function (q) { return q.id !== font.id; });
-      if (queue.length) { font = queue[0]; loadExisting(); render(); }
-      else location.href = 'project.html?id=' + encodeURIComponent(project.id) + '&tab=fonts';
+      add.disabled = true;
+      WFApi.addFont(project.id, font.id, st.weights.slice(), subset()).then(function (fresh) {
+        project = fresh || project;
+        const ver = WFApp.currentVersion(project);
+        WFChrome.toast('已加入 ' + project.name + '，生成 v' + (ver && ver.v));
+        queue = queue.filter(function (q) { return q.id !== font.id; });
+        if (queue.length) { font = queue[0]; loadExisting(); render(); }
+        else location.href = 'project.html?id=' + encodeURIComponent(project.id) + '&tab=fonts';
+      }).catch(function (err) {
+        add.disabled = false;
+        WFChrome.toast((err && err.message) || '加入失败');
+      });
     });
   }
 
