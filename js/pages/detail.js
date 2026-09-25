@@ -236,11 +236,17 @@
     const kin = L.group && kinN > 1
       ? '<a class="btn" href="' + WFChrome.href('fonts.html?lineage=' + encodeURIComponent(L.group)) + '">' + WFChrome.icon('compare') + '查看全部同源字</a>'
       : '';
+    const graphHref = L.group
+      ? 'lineage.html?group=' + encodeURIComponent(L.group) + '&mode=plex&focus=' + encodeURIComponent(font.id)
+      : (font.id ? 'lineage.html?mode=plex&focus=' + encodeURIComponent(font.id) : '');
+    const graph = graphHref
+      ? '<a class="btn ink" href="' + WFChrome.href(graphHref) + '">' + WFChrome.icon('branch') + '在谱系图中查看</a>'
+      : '';
     const upload = open
       ? '<a class="btn ink-design" href="' + WFChrome.href('app/upload.html?upstream=' + encodeURIComponent(font.id)) + '">' + WFChrome.icon('upload') + '上传你的字体</a>'
       : '';
-    const acts = upload || kin
-      ? '<div class="lin-acts">' + upload + kin + '</div>'
+    const acts = upload || kin || graph
+      ? '<div class="lin-acts">' + graph + kin + upload + '</div>'
       : '';
     return tree + acts;
   }

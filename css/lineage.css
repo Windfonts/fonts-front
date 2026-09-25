@@ -853,3 +853,25 @@ a.lg-node:hover .lg-name { text-decoration: underline; text-underline-offset: 0.
   .lg-node .lg-meta { margin-left: 0; flex-basis: 100%; }
   .lg-cell { min-width: calc(50% - var(--s-3)); }
 }
+
+
+/* 顶栏：师承 | 品牌 两组大族 */
+#famNav.chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.55rem 1rem;
+}
+.lfl-fam-cluster {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+.lfl-fam-label {
+  flex: none;
+  font-size: var(--fs-12);
+  color: var(--gray);
+  margin-right: 0.1rem;
+  letter-spacing: 0.02em;
+}

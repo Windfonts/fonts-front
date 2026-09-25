@@ -6,6 +6,14 @@
 (function () {
   const esc = WFProto.escapeHtml;
   const DEFAULT_GROUP = 'lxgw-wenkai';
+  /* 顶栏只放大族；其余组数据保留，URL ?group= 仍可进 */
+  const MAJOR_GROUPS = {
+    lineage: ['source-han-sans', 'source-han-serif', 'lxgw-wenkai'],
+    brand: ['alibaba-sans', 'zcool', 'qiantu', 'maoken', 'pangmen']
+  };
+  const MAJOR_GROUP_SET = {};
+  MAJOR_GROUPS.lineage.concat(MAJOR_GROUPS.brand).forEach(function (g) { MAJOR_GROUP_SET[g] = true; });
+
   const CARD_W = 184;
   const CARD_H = 72;
   const CARD_H_CLUSTER = 84;
@@ -70,6 +78,8 @@
   let detectedClusters = []; /* [{id,kind,key,title,count,memberIds,parentName}] */
   let wallMembers = [];
   let focusId = '';
+  let faceMergeAlias = {}; /* variant font id → collapsed card id */
+
   /* 激活模式：进入某主题支后只画该支上级+成员；点主题支进入，点卡激活时清除 */
   let plexBranch = null; /* { key, parentId, memberIds: [] } | null */
   let view = { x: 40, y: 40, scale: 1 };
@@ -541,15 +551,98 @@
   }
 
   function relLabel(node, parent) {
-    if (!node || node.ghost || node.outgroup || node.isCluster || node.isMore || node.isSeries) return '';
+    if (!node || node.ghost || node.outgroup || node.isCluster || node.isMore) return '';
+    if (node.edgeLabel) return node.edgeLabel;
+    if (node.isSeries) {
+      if (node.isBrandFamily && parent && parent.isBrandFamily) return node.edgeLabel || '合作';
+      return '';
+    }
     const rec = node.lineage || {};
     const r = rec.relation || '';
-    if (REL_LABEL[r]) return REL_LABEL[r];
+    if (Object.prototype.hasOwnProperty.call(REL_LABEL, r)) return REL_LABEL[r];
     if (parent && (parent.ghost || parent.outgroup)) return '衍生';
     return r ? String(r) : '衍生';
   }
 
   /* —— forest —— */
+  /* 同字面合并：字重 / Screen·Plus·Full / 地区切分 → 一张卡 */
+  const FACE_TRIM_RE = /(?:\s+|[-·‧])(?:W0[1-9]|Screen\s+Full|Screen|Plus|Full|Light|Bold|Regular|Medium|TC|SC|GB|CL|MN|CN|TW|HK|JP|KR|Code|Slab)$/i;
+
+  function faceBaseName(name) {
+    let n = String(name || '').trim();
+    let guard = 0;
+    while (guard++ < 8) {
+      const next = n.replace(FACE_TRIM_RE, '');
+      if (next === n) break;
+      n = next.trim();
+    }
+    return n || String(name || '').trim();
+  }
+
+  function faceSuffixTokens(name, base) {
+    let rest = String(name || '');
+    if (base && rest.indexOf(base) === 0) rest = rest.slice(base.length);
+    return rest.split(/[\s·‧_-]+/).map(function (s) { return s.trim(); }).filter(Boolean);
+  }
+
+  function collapseFaceVariants(members) {
+    faceMergeAlias = {};
+    const buckets = {};
+    (members || []).forEach(function (f) {
+      if (!f || !f.id) return;
+      const base = faceBaseName(f.name);
+      (buckets[base] = buckets[base] || []).push(f);
+    });
+    const out = [];
+    Object.keys(buckets).forEach(function (base) {
+      const list = buckets[base];
+      if (list.length === 1) {
+        out.push(list[0]);
+        return;
+      }
+      list.sort(function (a, b) {
+        function score(f) {
+          const r = (f.lineage && f.lineage.relation) || '';
+          let s = 0;
+          if (f.name === base) s += 200;
+          if (r === 'original') s += 100;
+          if (r === 'fork') s += 40;
+          if (r === 'locale') s -= 20;
+          s += Math.max(0, 80 - String(f.name).length);
+          return s;
+        }
+        return score(b) - score(a) || String(a.name).localeCompare(b.name, 'zh');
+      });
+      const main = Object.assign({}, list[0]);
+      const tokens = [];
+      list.forEach(function (f) {
+        faceSuffixTokens(f.name, base).forEach(function (tok) {
+          const up = tok.toUpperCase();
+          if (tokens.indexOf(up) === -1) tokens.push(up);
+        });
+        if (f.id !== main.id) faceMergeAlias[f.id] = main.id;
+      });
+      if (main.name !== base) main.name = base;
+      main.mergeNote = tokens.length ? ('含 ' + tokens.join('·')) : ('同族 ' + list.length + ' 款');
+      main.mergedCount = list.length;
+      main.mergedIds = list.map(function (f) { return f.id; });
+      out.push(main);
+    });
+    out.sort(function (a, b) {
+      return (a.releaseYear || 9999) - (b.releaseYear || 9999) ||
+        String(a.name).localeCompare(b.name, 'zh');
+    });
+    return out;
+  }
+
+  function resolveFocusId(id, forest) {
+    if (!id) return '';
+    if (forest && forest.byId[id]) return id;
+    const mapped = faceMergeAlias[id];
+    if (mapped && forest && forest.byId[mapped]) return mapped;
+    return forest && forest.byId[id] ? id : (mapped || id);
+  }
+
   function buildForest(members, all, opts) {
     opts = opts || {};
     /* 品牌/平台芯片：成员作品牌目录，忽略跨组 upstream，避免幽灵思源顶卡 */
@@ -689,7 +782,7 @@
       id: 'brand:' + fd.id,
       name: fd.name || fd.id,
       seriesTitle: fd.name || fd.id,
-      seriesSub: '品牌 · 点此查看下属',
+      seriesSub: '品牌 · 旗下 ' + ((fonts || []).length) + ' 款',
       seriesCount: (fonts || []).length,
       members: (fonts || []).slice(),
       brandId: fd.id,
@@ -711,7 +804,10 @@
     function shouldFlatHub(fd) {
       if (!fd) return false;
       if (isBrandOrPlatform(fd)) return true;
-      return fd.kind === 'author' && curGroup === fd.id;
+      if (fd.kind === 'author' && curGroup === fd.id) return true;
+      /* 站酷视图：胡晓波合作方也出枢纽卡 */
+      if (fd.kind === 'author' && curGroup === 'zcool' && fd.id === 'huxiaobo') return true;
+      return false;
     }
 
     /* topId → { topFd, childBuckets: { id: { fd, fonts } }, direct: [], flatMulti?: true } */
@@ -808,6 +904,48 @@
     return forest;
   }
 
+  /* 站酷 ↔ 胡晓波：品牌枢纽互挂，边标「合作」 */
+  function injectZcoolHuxiaoboLink(forest) {
+    if (!forest) return forest;
+    const zHub = forest.byId['brand:zcool'];
+    const hHub = forest.byId['brand:huxiaobo'];
+
+    function nestUnder(parent, child, label) {
+      if (!parent || !child || parent.id === child.id) return;
+      forest.roots = forest.roots.filter(function (r) { return r.id !== child.id; });
+      forest.parentOf[child.id] = parent.id;
+      const kids = forest.children[parent.id] || (forest.children[parent.id] = []);
+      if (kids.indexOf(child) === -1) kids.push(child);
+      child.edgeLabel = label || '合作';
+    }
+
+    if (curGroup === 'zcool' && zHub && hHub) {
+      nestUnder(zHub, hHub, '合作');
+      if (!hHub.seriesSub || /旗下/.test(hHub.seriesSub)) {
+        hHub.seriesSub = '合作 · 点开看胡晓波字体';
+      }
+      return forest;
+    }
+
+    if (curGroup === 'huxiaobo' && hHub && !zHub) {
+      const zcFd = WFProto.getFoundryById ? WFProto.getFoundryById('zcool') : null;
+      const zc = makeBrandFamilyNode(zcFd || { id: 'zcool', name: '站酷' }, []);
+      zc.seriesSub = '站酷出品 · 合作相关';
+      zc.seriesCount = zc.seriesCount || 0;
+      zc.isRelatedHub = true;
+      forest.byId[zc.id] = zc;
+      forest.parentOf[zc.id] = '';
+      forest.children[zc.id] = [];
+      nestUnder(zc, hHub, '合作');
+      if (forest.roots.indexOf(zc) === -1) forest.roots.push(zc);
+      forest.roots.sort(function (a, b) {
+        return (a.releaseYear || 9999) - (b.releaseYear || 9999) ||
+          String(a.name).localeCompare(b.name, 'zh');
+      });
+    }
+    return forest;
+  }
+
   /* 把宽扇叶收成真实中间节点：父 →「狮尾系字体」→ 成员 */
   function injectSeriesNodes(forest) {
     const parentIds = Object.keys(forest.children);
@@ -862,6 +1000,7 @@
           id: sid,
           name: label,
           seriesTitle: title,
+          seriesSub: '同出一脉 · 点开看上下游',
           seriesCount: c.members.length,
           members: c.members.slice(),
           clusterKey: c.key,
@@ -1205,7 +1344,7 @@
         edges.push({
           from: focus.id,
           to: n.id,
-          label: n.isBrandFamily ? '品牌' : (n.isSeries ? '主题支' : (n.isCluster || n.isPlexGate ? '衍生' : relLabel(n, focus)))
+          label: n.edgeLabel || (n.isBrandFamily ? '品牌' : (n.isSeries ? '主题支' : (n.isCluster || n.isPlexGate ? '衍生' : relLabel(n, focus))))
         });
         childX += CARD_W + PLEX_H_GAP;
       });
@@ -1739,7 +1878,7 @@
         pos.x + 'px;top:' + pos.y + 'px;width:' + pos.w + 'px" tabindex="0" role="button">' +
         '<div class="lfl-series-title"><span>' + esc(n.name) + '</span>' +
         '<span class="lfl-series-count">' + (n.seriesCount || (n.members && n.members.length) || 0) + '</span></div>' +
-        '<span class="lfl-series-sub">' + esc(n.seriesSub || (n.isBrandFamily ? '品牌 · 点此查看下属' : '主题支 · 点此查看上下级')) + '</span>' +
+        '<span class="lfl-series-sub">' + esc(n.seriesSub || (n.isBrandFamily ? ('品牌 · 旗下 ' + (n.seriesCount || (n.members && n.members.length) || 0) + ' 款') : '同出一脉 · 点开看上下游')) + '</span>' +
         '</article>';
     }
     if (n.isPlexGate) {
@@ -1747,7 +1886,7 @@
         pos.x + 'px;top:' + pos.y + 'px;width:' + pos.w + 'px" tabindex="0" role="button">' +
         '<div class="lfl-plex-gate-title"><span>' + esc(n.gateTitle || n.name) + '</span>' +
         '<span class="lfl-plex-gate-count">' + (n.gateCount || (n.members && n.members.length) || 0) + '</span></div>' +
-        '<span class="lfl-plex-gate-sub">' + esc(n.gateSub || '点开后只留本支上下级') + '</span>' +
+        '<span class="lfl-plex-gate-sub">' + esc(n.gateSub || '同出一脉 · 点开看本支上下游') + '</span>' +
         '<span class="lfl-plex-gate-act">▸ 展开本支</span>' +
         '</article>';
     }
@@ -1805,7 +1944,7 @@
       '</div>' +
       '<div class="lfl-card-meta">' +
         '<span class="lfl-lic">' + esc(lic) + '</span>' +
-        '<span class="lfl-who">' + esc(who) + '</span>' +
+        '<span class="lfl-who">' + esc(n.mergeNote || who) + '</span>' +
       '</div>' +
       '</article>';
   }
@@ -1986,12 +2125,24 @@
         if (oid === g) add(f);
       });
     }
+    /* 合作回流：胡晓波字标 relatedGroup/collaboratorIds → 站酷芯片也列出 */
+    (all || []).forEach(function (f) {
+      const lin = f.lineage || {};
+      if (lin.relatedGroup === g) add(f);
+      const ids = lin.collaboratorIds || [];
+      if (ids.indexOf(g) !== -1) add(f);
+      const infos = lin.collaboratorInfos || [];
+      for (let i = 0; i < infos.length; i++) {
+        if (infos[i] && infos[i].id === g) { add(f); break; }
+      }
+      if (g === 'zcool' && lin.ownerId === 'huxiaobo' && /站酷/.test(String(f.name || ''))) add(f);
+    });
     return out;
   }
 
   function wallListForRender() {
     const all = WFProto.getCatalogList();
-    let members = membersForGroup(curGroup, all);
+    let members = collapseFaceVariants(membersForGroup(curGroup, all));
     if (clusterFilter) {
       members = members.filter(memberMatchesFilter);
     }
@@ -2189,19 +2340,28 @@
     const ld = WFProto.getLineageData();
     const counts = {};
     Object.keys(ld.groups || {}).forEach(function (g) {
-      const n = membersForGroup(g, all).length;
+      const n = collapseFaceVariants(membersForGroup(g, all)).length;
       if (n) counts[g] = n;
     });
-    const keys = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a]; });
     if (!curGroup || !counts[curGroup]) {
       curGroup = pickDefaultGroup(counts, ld, all);
     }
-    famNav.innerHTML = keys.map(function (g) {
+    function chipHtml(g) {
+      if (!counts[g]) return '';
       const gd = ld.groups[g] || {};
       const short = String(gd.name || g).split(' / ')[0];
       return '<button type="button" class="chip' + (g === curGroup ? ' is-on' : '') + '" data-group="' + esc(g) + '">' +
         esc(short) + '<span class="n">' + counts[g] + '</span></button>';
-    }).join('');
+    }
+    function clusterHtml(label, keys) {
+      const chips = keys.map(chipHtml).join('');
+      if (!chips) return '';
+      return '<div class="lfl-fam-cluster">' +
+        '<span class="lfl-fam-label">' + esc(label) + '</span>' + chips + '</div>';
+    }
+    famNav.innerHTML =
+      clusterHtml('师承', MAJOR_GROUPS.lineage) +
+      clusterHtml('品牌', MAJOR_GROUPS.brand);
     famNav.querySelectorAll('.chip').forEach(function (btn) {
       btn.addEventListener('click', function () { setGroup(btn.getAttribute('data-group')); });
     });
@@ -2255,10 +2415,10 @@
       return;
     }
 
-    const members = membersForGroup(curGroup, all);
-    const forest = injectSeriesNodes(injectBrandFamilyNodes(
+    const members = collapseFaceVariants(membersForGroup(curGroup, all));
+    const forest = injectZcoolHuxiaoboLink(injectSeriesNodes(injectBrandFamilyNodes(
       buildForest(members, all, { catalogMode: isCatalogGroup(curGroup) })
-    ));
+    )));
     forestCache = forest;
     detectedClusters = collectDetectedClusters(forest);
 
@@ -2323,7 +2483,7 @@
       }
     } else if (curMode === 'plex') {
       if (!focusId || !forest.byId[focusId]) {
-        const qf = qs('focus');
+        const qf = resolveFocusId(qs('focus'), forest);
         focusId = (qf && forest.byId[qf]) ? qf : (pickDefaultFocus(forest, qf) || {}).id || '';
         if (focusId) setUrlParam('focus', focusId);
       }

@@ -157,7 +157,7 @@
       .catch(function () { return { foundries: [] }; });
     const evidenceReq = fetch(dataUrl('license-evidence.json?v=20260925b')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
       .catch(function () { return { standards: {}, names: {} }; });
-    const lineageReq = fetch(dataUrl('font-lineage.json?v=20260925af')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
+    const lineageReq = fetch(dataUrl('font-lineage.json?v=20260925ag')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
       .catch(function () { return { groups: {}, byName: {} }; });
     const avatarsReq = fetch(dataUrl('avatars.json?v=20260921d')).then(function (r) { return r.ok ? r.json() : {}; })
       .catch(function () { return {}; });
@@ -806,7 +806,7 @@
       return {
         group: '', groupName: '', relation: '', upstreamName: '', upstreamOwnerInfo: null,
         licenseFollows: 'unknown', ownerInfo: fallback, makerInfo: fallback,
-        collaboratorInfos: []
+        collaboratorIds: [], relatedGroup: '', collaboratorInfos: []
       };
     }
     const group = rec.group ? groups[rec.group] : null;
@@ -830,6 +830,8 @@
       licenseFollows: rec.licenseFollows || 'unknown',
       ownerInfo: owner,
       makerInfo: maker,
+      collaboratorIds: Array.isArray(rec.collaboratorIds) ? rec.collaboratorIds.slice() : [],
+      relatedGroup: rec.relatedGroup || '',
       collaboratorInfos: collaboratorInfos
     };
   }

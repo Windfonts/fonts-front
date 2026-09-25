@@ -316,7 +316,11 @@
       "makerId": "huxiaobo",
       "relation": "original",
       "licenseFollows": "own",
-      "group": "huxiaobo"
+      "group": "huxiaobo",
+      "collaboratorIds": [
+        "zcool"
+      ],
+      "relatedGroup": "zcool"
     },
     "龙藏体": {
       "ownerId": "zhongqi",
@@ -2349,21 +2353,33 @@
       "makerId": "huxiaobo",
       "group": "huxiaobo",
       "relation": "original",
-      "licenseFollows": "own"
+      "licenseFollows": "own",
+      "collaboratorIds": [
+        "zcool"
+      ],
+      "relatedGroup": "zcool"
     },
     "胡晓波真帅体": {
       "ownerId": "huxiaobo",
       "makerId": "huxiaobo",
       "group": "huxiaobo",
       "relation": "original",
-      "licenseFollows": "own"
+      "licenseFollows": "own",
+      "collaboratorIds": [
+        "zcool"
+      ],
+      "relatedGroup": "zcool"
     },
     "胡晓波骚包体": {
       "ownerId": "huxiaobo",
       "makerId": "huxiaobo",
       "group": "huxiaobo",
       "relation": "original",
-      "licenseFollows": "own"
+      "licenseFollows": "own",
+      "collaboratorIds": [
+        "zcool"
+      ],
+      "relatedGroup": "zcool"
     }
   }
 }
