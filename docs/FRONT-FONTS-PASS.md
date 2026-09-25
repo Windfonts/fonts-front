@@ -89,3 +89,42 @@
 
 - 「添加到项目」仍进登录（产品决策，未改）
 - 授权文案逻辑（开源/免费商用/需授权）未改口径，只统一芯片外观
+
+---
+
+# Phase 3 · 深色主题抽检
+
+## 方法
+
+- `?theme=dark` 走 `wf-chrome`（写入 `localStorage.wf-theme`）
+- CDP 对比度抽样 + 截图：首页 / 字库 / 详情 / 选字袋 / 文档
+- 另测：`prefers-color-scheme: dark` **且无** `data-theme` → 应保持浅色默认（不跟系统强行翻黑）
+
+## 结果
+
+| 页 | 对比度 | sticky | 备注 |
+| --- | --- | --- | --- |
+| 首页 | body/ink ≥16 | topbar ok | 无坏点 |
+| 字库 | controlbar sticky top=64, z=30；bg=`--page` 不透 | 下滚后控制条仍盖住内容 | 分类/风格/芯片可读 |
+| 详情 | CTA 为 ink-on-paper（有意） | 侧栏 sticky | 许可芯片可读 |
+| 选字袋 | ok | controlbar ok | 空态可读 |
+| 文档 | ok | — | — |
+| OS dark 偏好 + 无 data-theme | 仍浅色 token | — | **无强行翻黑回归** |
+
+硬编码浅色：仅 `.sp-qr { background:#fff }`（二维码需白底），保留。
+
+## 改动
+
+- `css/tokens.css`：`:root { color-scheme: light }` / `[data-theme=dark] { color-scheme: dark }`，原生控件（滚动条/表单）跟主题
+- 相关页 `tokens.css` 缓存戳 → `20260925t`
+
+## 截图
+
+`~/Downloads/wf-audit/fonts-phase3/`
+
+`01`…`05` 深色五页；`06` OS 偏好深色但 UI 浅色；`07` 字库深色下滚 sticky
+
+## 余量
+
+- 未改浅色默认视觉
+- 未动 app 控制台
