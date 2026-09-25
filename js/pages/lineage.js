@@ -38,6 +38,8 @@
   const PLEX_GATE_FAN = 8;
   const PLEX_V_GAP = 64;
   const PLEX_H_GAP = 36;
+  const PLEX_NEST_H_GAP = 64; /* column gap between nested brand subtrees */
+  const PLEX_NEST_V_GAP = 80; /* hub → leaf vertical; room for ortho stubs */
   const MODES = ['plex', 'flow', 'branch', 'wall'];
 
   const REL_LABEL = {
@@ -1349,7 +1351,7 @@
       });
       placeChildRows(place, edges, focus, nodes, focusX, focusY, cx, { compact: true });
     } else if (focus.isBrandFamily || childSeries.length || childOther.length) {
-      /* 品牌枢纽：子品牌系节点 + 直属字同屏 */
+      /* 品牌枢纽：子品牌 / 直属字各占一列；嵌套叶子居中落在该列下，避免共用底行交叉 */
       const ordered = childSeries.concat(childOther).concat(childFonts);
       let show = ordered;
       if (show.length > PLEX_CHILD_CAP) {
@@ -1357,12 +1359,32 @@
         const room = Math.max(0, PLEX_CHILD_CAP - seriesFirst.length);
         show = seriesFirst.concat(childFonts.slice(0, room));
       }
-      const childY = focusY + CARD_H + PLEX_V_GAP;
-      const childTotalW = show.length * CARD_W + Math.max(0, show.length - 1) * PLEX_H_GAP;
-      let childX = cx - childTotalW / 2;
-      show.forEach(function (n) {
+      const nestH = PLEX_NEST_H_GAP;
+      const nestV = PLEX_NEST_V_GAP;
+      const leafGap = PLEX_H_GAP;
+      const cols = show.map(function (n) {
         const h = (n.isSeries || n.isCluster || n.isPlexGate) ? CARD_H_CLUSTER : CARD_H_COMPACT;
-        place(n, childX, childY, h, {
+        let leaves = [];
+        if (n.isBrandFamily && isBrandHubExpanded(n.id)) {
+          leaves = collectNestedBrandLeaves(n, forest);
+          if (leaves.length > NESTED_BRAND_LEAF_CAP) {
+            leaves = leaves.slice(0, NESTED_BRAND_LEAF_CAP);
+          }
+        }
+        const leafW = leaves.length
+          ? leaves.length * CARD_W + Math.max(0, leaves.length - 1) * leafGap
+          : 0;
+        return { n: n, h: h, leaves: leaves, colW: Math.max(CARD_W, leafW) };
+      });
+      const hasNestedLeaves = cols.some(function (c) { return c.leaves.length > 0; });
+      const childY = focusY + CARD_H + (hasNestedLeaves ? nestV : PLEX_V_GAP);
+      const totalW = cols.reduce(function (s, c) { return s + c.colW; }, 0) +
+        Math.max(0, cols.length - 1) * nestH;
+      let x0 = cx - totalW / 2;
+      cols.forEach(function (col) {
+        const n = col.n;
+        const hubX = x0 + (col.colW - CARD_W) / 2;
+        place(n, hubX, childY, col.h, {
           role: 'child',
           compact: !(n.isSeries || n.isCluster || n.isPlexGate)
         });
@@ -1371,34 +1393,26 @@
           to: n.id,
           label: n.edgeLabel || (n.isBrandFamily ? '品牌' : (n.isSeries ? '主题支' : (n.isCluster || n.isPlexGate ? '衍生' : relLabel(n, focus))))
         });
-        childX += CARD_W + PLEX_H_GAP;
-      });
-      /* 嵌套品牌枢纽（阿里子公司 / 站酷→胡等）：默认展开一层字体；点击可收起 */
-      show.forEach(function (n) {
-        if (!n.isBrandFamily || !positions[n.id]) return;
-        if (!isBrandHubExpanded(n.id)) return;
-        let leaves = collectNestedBrandLeaves(n, forest);
-        if (!leaves.length) return;
-        if (leaves.length > NESTED_BRAND_LEAF_CAP) {
-          leaves = leaves.slice(0, NESTED_BRAND_LEAF_CAP);
-        }
-        const hubPos = positions[n.id];
-        const grandY = hubPos.y + hubPos.h + PLEX_V_GAP * 0.75;
-        const totalW = leaves.length * CARD_W + Math.max(0, leaves.length - 1) * PLEX_H_GAP;
-        let gx = hubPos.x + hubPos.w / 2 - totalW / 2;
-        leaves.forEach(function (f) {
-          if (positions[f.id]) {
-            gx += CARD_W + PLEX_H_GAP;
-            return;
-          }
-          place(f, gx, grandY, CARD_H_COMPACT, { role: 'brand-leaf', compact: true });
-          edges.push({
-            from: n.id,
-            to: f.id,
-            label: relLabel(f, n)
+        if (col.leaves.length) {
+          const hubPos = positions[n.id];
+          const grandY = hubPos.y + hubPos.h + nestV;
+          const leafTotalW = col.leaves.length * CARD_W + Math.max(0, col.leaves.length - 1) * leafGap;
+          let gx = x0 + (col.colW - leafTotalW) / 2;
+          col.leaves.forEach(function (f) {
+            if (positions[f.id]) {
+              gx += CARD_W + leafGap;
+              return;
+            }
+            place(f, gx, grandY, CARD_H_COMPACT, { role: 'brand-leaf', compact: true });
+            edges.push({
+              from: n.id,
+              to: f.id,
+              label: relLabel(f, n)
+            });
+            gx += CARD_W + leafGap;
           });
-          gx += CARD_W + PLEX_H_GAP;
-        });
+        }
+        x0 += col.colW + nestH;
       });
     } else {
       placeChildRows(place, edges, focus, childFonts, focusX, focusY, cx, { compact: true });
@@ -1771,32 +1785,49 @@
   }
 
   function edgePath(a, b, soft) {
+    /* orthogonal / elbow: prefer parent-bottom → mid-Y bus → child-top when stacked */
     const acx = a.x + a.w / 2;
     const acy = a.y + a.h / 2;
     const bcx = b.x + b.w / 2;
     const bcy = b.y + b.h / 2;
     const dx = bcx - acx;
     const dy = bcy - acy;
-    let x1, y1, x2, y2, d;
-    if (Math.abs(dy) >= Math.abs(dx) * 0.85) {
-      if (dy >= 0) { x1 = acx; y1 = a.y + a.h; x2 = bcx; y2 = b.y; }
-      else { x1 = acx; y1 = a.y; x2 = bcx; y2 = b.y + b.h; }
-      const cy1 = y1 + (y2 - y1) * 0.4;
-      const cy2 = y2 - (y2 - y1) * 0.4;
-      d = 'M' + x1 + ',' + y1 + ' C' + x1 + ',' + cy1 + ' ' + x2 + ',' + cy2 + ' ' + x2 + ',' + y2;
+    let x1, y1, x2, y2, d, mx, my;
+    const labelLift = soft ? 10 : 8;
+    const clearlyBelow = b.y >= a.y + a.h - 4;
+    const clearlyAbove = a.y >= b.y + b.h - 4;
+    const useVertical = clearlyBelow || clearlyAbove || Math.abs(dy) >= Math.abs(dx) * 0.55;
+    if (useVertical) {
+      if (clearlyBelow || (!clearlyAbove && dy >= 0)) {
+        x1 = acx; y1 = a.y + a.h; x2 = bcx; y2 = b.y;
+      } else {
+        x1 = acx; y1 = a.y; x2 = bcx; y2 = b.y + b.h;
+      }
+      const midY = Math.round((y1 + y2) / 2);
+      if (Math.abs(x2 - x1) < 1.5) {
+        d = 'M' + x1 + ',' + y1 + ' L' + x2 + ',' + y2;
+        mx = x1;
+        my = midY - labelLift;
+      } else {
+        d = 'M' + x1 + ',' + y1 + ' L' + x1 + ',' + midY + ' L' + x2 + ',' + midY + ' L' + x2 + ',' + y2;
+        mx = (x1 + x2) / 2;
+        my = midY - labelLift;
+      }
     } else {
       if (dx >= 0) { x1 = a.x + a.w; y1 = acy; x2 = b.x; y2 = bcy; }
       else { x1 = a.x; y1 = acy; x2 = b.x + b.w; y2 = bcy; }
-      const cdx = Math.max(36, Math.abs(x2 - x1) * 0.45);
-      const s = dx >= 0 ? 1 : -1;
-      d = 'M' + x1 + ',' + y1 + ' C' + (x1 + s * cdx) + ',' + y1 + ' ' + (x2 - s * cdx) + ',' + y2 + ' ' + x2 + ',' + y2;
+      const midX = Math.round((x1 + x2) / 2);
+      if (Math.abs(y2 - y1) < 1.5) {
+        d = 'M' + x1 + ',' + y1 + ' L' + x2 + ',' + y2;
+        mx = midX;
+        my = y1 - labelLift;
+      } else {
+        d = 'M' + x1 + ',' + y1 + ' L' + midX + ',' + y1 + ' L' + midX + ',' + y2 + ' L' + x2 + ',' + y2;
+        mx = midX;
+        my = (y1 + y2) / 2 - labelLift;
+      }
     }
-    return {
-      d: d,
-      mx: (x1 + x2) / 2,
-      my: (y1 + y2) / 2 - (soft ? 10 : 8),
-      soft: !!soft
-    };
+    return { d: d, mx: mx, my: my, soft: !!soft };
   }
 
   function applyView() {
