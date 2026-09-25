@@ -697,7 +697,11 @@
     if (!forest || !WFProto.getFoundryParent || !WFProto.getFoundryById) return forest;
     const getKids = WFProto.getFoundryChildren || function () { return []; };
 
-    /* topId → { topFd, childBuckets: { id: { fd, fonts } }, direct: [] } */
+    function isBrandOrPlatform(fd) {
+      return !!(fd && (fd.kind === 'brand' || fd.kind === 'platform'));
+    }
+
+    /* topId → { topFd, childBuckets: { id: { fd, fonts } }, direct: [], flatMulti?: true } */
     const buckets = {};
     forest.roots.forEach(function (r) {
       if (!r || r.ghost || r.outgroup || r.isSeries || r.isCluster ||
@@ -706,6 +710,7 @@
       if (!fd) return;
       const parent = WFProto.getFoundryParent(fd);
       if (parent) {
+        /* 子公司路径优先：挂到母公司枢纽，不另走平台多款规则 */
         const top = brandTopFd(fd);
         const b = buckets[top.id] || (buckets[top.id] = { topFd: top, childBuckets: {}, direct: [] });
         const cb = b.childBuckets[fd.id] || (b.childBuckets[fd.id] = { fd: fd, fonts: [] });
@@ -713,7 +718,16 @@
         return;
       }
       if (getKids(fd.id).length) {
+        /* 字典已有子公司（阿里巴巴）：母公司直属字进 direct，既有路径胜出 */
         const b = buckets[fd.id] || (buckets[fd.id] = { topFd: fd, childBuckets: {}, direct: [] });
+        b.direct.push(r);
+        return;
+      }
+      /* 无 parentId、无子公司：brand/platform 且本林 ≥2 根时造品牌枢纽（站酷/猫啃等） */
+      if (isBrandOrPlatform(fd)) {
+        const b = buckets[fd.id] || (buckets[fd.id] = {
+          topFd: fd, childBuckets: {}, direct: [], flatMulti: true
+        });
         b.direct.push(r);
       }
     });
@@ -728,8 +742,10 @@
       const childIds = Object.keys(b.childBuckets);
       /* 无子公司字体、也无挂在母公司名下的字 → 跳过 */
       if (!childIds.length && !b.direct.length) return;
-      /* 仅母公司直属、字典里也无子公司：不造枢纽（避免误伤） */
-      if (!childIds.length && !getKids(topId).length) return;
+      /* 仅母公司直属、字典里也无子公司：默认不造枢纽；例外=平台/品牌多款扁平原主 */
+      if (!childIds.length && !getKids(topId).length) {
+        if (!(b.flatMulti && isBrandOrPlatform(b.topFd) && b.direct.length >= 2)) return;
+      }
 
       const moved = {};
       const allFonts = b.direct.slice();
@@ -791,6 +807,26 @@
         return c && !c.isSeries && !c.isCluster && !c.isMore && !c.isPlexGate && !c.ghost && !c.isBrandFamily;
       });
       const packed = clusterSiblings(parent, sibs, Math.max(PREFIX_MIN_MEMBERS, 3));
+      /* 品牌枢纽下勿再套同名「站酷系」：直属字保持挂在枢纽下 */
+      if (parent.isBrandFamily && packed.clusters.length) {
+        const brandName = String(parent.seriesTitle || parent.name || '');
+        const brandId = parent.brandId ||
+          (parent.foundryInfo && parent.foundryInfo.id) || '';
+        packed.clusters = packed.clusters.filter(function (c) {
+          if (c.kind === 'prefix') {
+            return !(brandName && (brandName.indexOf(c.key) === 0 || c.key.indexOf(brandName) === 0));
+          }
+          if (c.kind === 'owner' && brandId) {
+            return String(c.key).indexOf(brandId) === -1;
+          }
+          return true;
+        });
+        const usedKeep = {};
+        packed.clusters.forEach(function (c) {
+          c.members.forEach(function (m) { usedKeep[m.id] = true; });
+        });
+        packed.leftover = sibs.filter(function (s) { return !usedKeep[s.id]; });
+      }
       if (!packed.clusters.length) return;
 
       const used = {};

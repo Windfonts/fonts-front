@@ -153,11 +153,11 @@
       if (!r.ok) throw new Error('fonts.json ' + r.status);
       return r.json();
     });
-    const foundriesReq = fetch(dataUrl('foundries.json?v=20260925ac')).then(function (r) { return r.ok ? r.json() : { foundries: [] }; })
+    const foundriesReq = fetch(dataUrl('foundries.json?v=20260925ae')).then(function (r) { return r.ok ? r.json() : { foundries: [] }; })
       .catch(function () { return { foundries: [] }; });
     const evidenceReq = fetch(dataUrl('license-evidence.json?v=20260925b')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
       .catch(function () { return { standards: {}, names: {} }; });
-    const lineageReq = fetch(dataUrl('font-lineage.json?v=20260925ac')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
+    const lineageReq = fetch(dataUrl('font-lineage.json?v=20260925ae')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
       .catch(function () { return { groups: {}, byName: {} }; });
     const avatarsReq = fetch(dataUrl('avatars.json?v=20260921d')).then(function (r) { return r.ok ? r.json() : {}; })
       .catch(function () { return {}; });
