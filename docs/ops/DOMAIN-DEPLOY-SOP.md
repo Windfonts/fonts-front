@@ -226,7 +226,7 @@ curl -sS -o /dev/null -w "stg=%{http_code}\n" https://staging-app.windfonts.com/
 
 ## 11. 未做（不要假装完成）
 
-- WP 顾客 SSO ↔ vault hooks（控制台管理员 NextAuth 已通）  
+- WP 顾客 SSO ↔ vault hooks（**薇晓朵 OAuth 已通** `sso.weixiaoduo.com`；windfonts.com 统一账号 / API Key 绑定仍待）  
 - 独立 Cloudflare zone 做 `hk`/`en`/`jp`（现网已用 **同一套 CyberCDN 十边** 验收 `/api/css`；CF 非阻塞）  
 - `app` 真绑 **OSS 公网**（账号仍禁 public-read；过渡见 §5.1 CyberCDN）  
 - 预发独立 Next 进程（现 `staging-vault` 与生产同容器）
@@ -239,7 +239,7 @@ curl -sS -o /dev/null -w "stg=%{http_code}\n" https://staging-app.windfonts.com/
 | 前端 | `js/wf-auth.js` → 同域 `/api/auth/*`（app nginx 反代 `:4000`） |
 | 门禁 | `app` / `staging-app` **必须** vault 会话（`source=vault-nextauth`）；清掉纯 localStorage 假壳 |
 | demo | `?demo=1` 仅本机 / `ALLOW_DEMO`；生产禁 |
-| WFApi | 生产默认 **live**；项目 CRUD → vault `/api/projects`（PR #33 / `0f98293`） |
+| WFApi | 生产默认 **live**；项目/域名/子集加字 → vault `/api/projects`；用量 `/api/usage*` 暂为空壳（`stub: true`） |
 | 预发 | `staging-app` 已反代 `/api` `/admin` `/_next`，可联调登录 |
 
 探针：

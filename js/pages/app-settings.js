@@ -53,18 +53,21 @@
         '<div class="field"><label>提前加载</label><label class="check"><input type="checkbox" id="setPreload"' + (s.settings.preload ? ' checked' : '') + ' /> 新项目默认提前加载样式</label></div>' +
       '</div></section>' +
             '<section class="app-section"><h2>API 连接</h2>' +
-        '<p class="t-13 muted" style="margin-bottom:var(--s-3)">会话走 vault NextAuth（同域 <code>/api/auth</code>）。项目/域名/用量仍存本机；发布与密钥校验打 vault。</p>' +
+        '<p class="t-13 muted" style="margin-bottom:var(--s-3)">会话走 vault NextAuth。登录后自动签发/恢复控制台 API 密钥；项目/域名走该钥。</p>' +
         '<div class="grid cols-2">' +
           '<div class="field"><label for="apiMode">WFApi 模式</label><select class="select" id="apiMode">' +
             '<option value="mock"' + (WFApi.mode() === 'mock' ? ' selected' : '') + '>mock（本机）</option>' +
-            '<option value="live"' + (WFApi.mode() === 'live' ? ' selected' : '') + '>live（vault 密钥/发布）</option></select></div>' +
-          '<div class="field"><label for="vaultKey">Vault API 密钥</label><input class="input" id="vaultKey" type="password" autocomplete="off" placeholder="粘贴 vault 颁发的 wf_live_…" /></div></div>' +
+            '<option value="live"' + (WFApi.mode() === 'live' ? ' selected' : '') + '>live（vault）</option></select></div>' +
+          '<div class="field"><label for="vaultKey">Vault API 密钥（可选覆盖）</label><input class="input" id="vaultKey" type="password" autocomplete="off" placeholder="一般无需粘贴；SSO 会自动绑定" /></div></div>' +
         '<p style="margin-top:var(--s-4)"><button type="button" class="btn" id="saveApiMode">' + WFChrome.icon('check') + '保存模式</button> ' +
-          '<button type="button" class="btn" id="verifyKey">' + WFChrome.icon('cloud') + '校验并采用密钥</button> ' +
+          '<button type="button" class="btn" id="syncKey">' + WFChrome.icon('cloud') + '从会话同步密钥</button> ' +
+          '<button type="button" class="btn" id="verifyKey">' + WFChrome.icon('check') + '校验并采用</button> ' +
           '<span class="t-13 muted" id="apiConnStatus"></span></p></section>' +
       '<section class="app-section"><h2>API 密钥</h2>' +
         '<div class="code"><button type="button" class="copy" id="copyKey">复制</button><pre id="apiKey">' + esc(s.settings.apiKey.slice(0, 12)) + '••••••••••••</pre></div>' +
-        '<p class="t-13 muted" style="margin-top:var(--s-3)">创建于 ' + WFApp.fmtDate(s.settings.apiKeyCreatedAt) + ' · 本机钥须在 vault 登记后才能发布；推荐上方粘贴已颁发密钥。 <button type="button" class="btn-text" id="rotateKey">' + WFChrome.icon('refresh') + '重新生成本机钥</button></p>' +
+        '<p class="t-13 muted" style="margin-top:var(--s-3)">创建于 ' + WFApp.fmtDate(s.settings.apiKeyCreatedAt) +
+          (s.settings.apiKeySource === 'vault-sso' ? ' · 已绑定会话' : '') +
+          '。 <button type="button" class="btn-text" id="rotateKey">' + WFChrome.icon('refresh') + '轮换密钥</button></p>' +
         '<div class="code" style="margin-top:var(--s-4)"><pre>curl -X POST ' + ((window.WFProto && WFProto.CSS_API) || 'https://vault.windfonts.com') + '/api/projects/publish \\\n  -H "Authorization: Bearer $WINDFONTS_KEY" \\\n  -H "Content-Type: application/json" \\\n  -d @project.json</pre></div></section>' +
 '<section class="app-section"><h2>认领</h2><p class="t-14" style="max-width:40em;color:var(--ink-2)">作者、字库、品牌方、开源项目和素材平台到<a href="' + WFChrome.href('claim.html') + '">认领页</a>提交。通过后在侧栏「我的页」改本页资料，不能改许可档位。</p></section>' +
       '<section class="app-section"><h2>审计日志<a class="more" href="team.html">' + WFChrome.icon('group') + '团队</a></h2>' +
@@ -92,6 +95,20 @@
       if (st) st.textContent = '已设为 ' + m + (WFApi.useLocalProjects() ? '（项目仍本机）' : '');
       WFChrome.toast('API 模式：' + m);
     });
+    const syncBtn = document.getElementById('syncKey');
+    if (syncBtn) syncBtn.addEventListener('click', function () {
+      const st = document.getElementById('apiConnStatus');
+      if (st) st.textContent = '同步中…';
+      syncBtn.disabled = true;
+      WFApp.ensureVaultApiKey().then(function (k) {
+        if (st) st.textContent = k ? ('已同步 · ' + String(k).slice(0, 12) + '…') : '无会话密钥';
+        WFChrome.toast(k ? '已从会话同步密钥' : '未拿到密钥');
+        render();
+      }).catch(function (err) {
+        if (st) st.textContent = (err && err.message) || '同步失败';
+        WFChrome.toast((err && err.message) || '同步失败');
+      }).then(function () { syncBtn.disabled = false; });
+    });
     const verifyBtn = document.getElementById('verifyKey');
     if (verifyBtn) verifyBtn.addEventListener('click', function () {
       const key = (document.getElementById('vaultKey').value || '').trim();
@@ -102,6 +119,7 @@
       WFAuth.verifyApiKey(key).then(function (data) {
         s.settings.apiKey = key;
         s.settings.apiKeyCreatedAt = new Date().toISOString();
+        s.settings.apiKeySource = 'manual';
         WFApp.log('采用 vault API 密钥', (data && data.prefix) || key.slice(0, 12));
         WFApp.save();
         if (st) st.textContent = '密钥有效' + (data && data.plan ? ' · ' + data.plan : '');
@@ -126,16 +144,37 @@
     });
     document.getElementById('copyKey').addEventListener('click', function () { WFChrome.copy(s.settings.apiKey, '已复制 API 密钥'); });
     document.getElementById('rotateKey').addEventListener('click', function () {
-      WFChrome.confirm({ title: '重新生成密钥', message: '旧密钥会立刻失效。已发布项目的覆盖权跟密钥绑定，换钥后需用新钥才能再发同 slug。', ok: '重新生成' }).then(function (ok) {
+      WFChrome.confirm({
+        title: '轮换密钥',
+        message: '将吊销当前会话密钥并签发新钥。旧钥绑定的项目数据仍在，但需用新钥访问；若只是丢了本机缓存，请先点「从会话同步密钥」。',
+        ok: '轮换'
+      }).then(function (ok) {
         if (!ok) return;
-        WFApp.mintApiKeyAsync('live').then(function (k) {
-          s.settings.apiKey = k;
-          s.settings.apiKeyCreatedAt = new Date().toISOString();
-          WFApp.log('轮换 API 密钥', '');
-          WFApp.save();
-          WFChrome.toast('已生成新密钥，旧密钥立即失效');
-          render();
-        });
+        const goLocal = function () {
+          return WFApp.mintApiKeyAsync('live').then(function (k) {
+            s.settings.apiKey = k;
+            s.settings.apiKeyCreatedAt = new Date().toISOString();
+            s.settings.apiKeySource = 'local';
+            WFApp.log('轮换 API 密钥', 'local');
+            WFApp.save();
+            WFChrome.toast('已生成本机新密钥');
+            render();
+          });
+        };
+        if (WFAuth.ensureConsoleKey && WFAuth.requiresVaultSession && WFAuth.requiresVaultSession()) {
+          WFAuth.ensureConsoleKey({ rotate: true }).then(function (data) {
+            if (!data || !data.apiKey) return goLocal();
+            s.settings.apiKey = data.apiKey;
+            s.settings.apiKeyCreatedAt = new Date().toISOString();
+            s.settings.apiKeySource = 'vault-sso';
+            WFApp.log('轮换 API 密钥', 'vault-sso');
+            WFApp.save();
+            WFChrome.toast('已轮换会话密钥');
+            render();
+          }).catch(function () { return goLocal(); });
+        } else {
+          goLocal();
+        }
       });
     });
     const reset = document.getElementById('resetData');

@@ -33,20 +33,27 @@
         <input class="input" id="confirm" type="password" autocomplete="new-password" placeholder="再输入一次" />
       </div>
       <button type="submit" class="btn btn-ink btn-lg" id="authBtn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260925r#i-user"/></svg>登录</button>
+      <div id="ssoSlot" hidden style="margin-top:var(--s-4)">
+        <p class="t-13 muted" style="margin:0 0 var(--s-3);text-align:center">或</p>
+        <button type="button" class="btn btn-lg" id="ssoBtn" style="width:100%">用站点账号登录</button>
+      </div>
       <p class="alt" id="authAlt"></p>
     </form>
   </main>
 
   <footer id="wfExtraFooter"></footer>
-  <script src="js/wf-proto.js?v=20260925auth2"></script>
-  <script src="js/wf-chrome.js?v=20260925auth2"></script>
-  <script src="js/wf-auth.js?v=20260925auth2"></script>
+  <script src="js/wf-proto.js?v=20260926c"></script>
+  <script src="js/wf-chrome.js?v=20260926d"></script>
+  <script src="js/wf-auth.js?v=20260926sso2"></script>
+  <script src="js/wf-app.js?v=20260926sso2"></script>
   <script>
     (function () {
       const signup = WFProto.getQuery('mode') === 'signup';
       const q = new URLSearchParams(location.search);
       const errEl = document.getElementById('authError');
       const btn = document.getElementById('authBtn');
+      const ssoSlot = document.getElementById('ssoSlot');
+      const ssoBtn = document.getElementById('ssoBtn');
 
       function dest() {
         const next = WFProto.getQuery('next');
@@ -76,14 +83,16 @@
       function setBusy(on) {
         btn.disabled = !!on;
         btn.setAttribute('aria-busy', on ? 'true' : 'false');
+        if (ssoBtn) ssoBtn.disabled = !!on;
       }
 
-      /* Auth.js 失败回跳 ?error=CredentialsSignin */
+      /* Auth.js 失败回跳 ?error=CredentialsSignin / OAuthCallback */
       (function () {
         const e = WFProto.getQuery('error');
         if (!e) return;
         if (/CredentialsSignin|credentials/i.test(e)) showError('账号或密码错误');
         else if (/MissingCSRF/i.test(e)) showError('登录令牌失效，请重试');
+        else if (/OAuth|Callback|AccessDenied/i.test(e)) showError('站点账号登录失败（' + e + '）');
         else showError('登录失败（' + e + '）');
       })();
 
@@ -98,6 +107,7 @@
         document.getElementById('authForm').querySelectorAll('.field').forEach(function (el) {
           if (el.id !== 'nameField' && el.id !== 'confirmField') el.hidden = true;
         });
+        if (ssoSlot) ssoSlot.hidden = true;
         btn.innerHTML = WFChrome.icon('user-add') + '去 windfonts.com 注册';
         btn.type = 'button';
         btn.addEventListener('click', function () {
@@ -118,12 +128,34 @@
           const account = document.getElementById('account').value;
           const password = document.getElementById('password').value;
           WFAuth.signIn(account, password).then(function (r) {
-            setBusy(false);
-            if (!r.ok) { showError(r.error || '登录失败'); return; }
-            location.href = dest();
+            if (!r.ok) { setBusy(false); showError(r.error || '登录失败'); return; }
+            const go = function () { location.href = dest(); };
+            if (window.WFApp && WFApp.load) {
+              WFApp.load().then(go).catch(go);
+            } else if (WFAuth.ensureConsoleKey) {
+              WFAuth.ensureConsoleKey().then(go).catch(go);
+            } else {
+              go();
+            }
           }).catch(function (err) {
             setBusy(false);
             showError((err && err.message) || '登录失败');
+          });
+        });
+
+        /* 顾客 SSO：vault 配置 WEIXIAODUO_OAUTH_* 后 providers 会出现 weixiaoduo */
+        WFAuth.listProviders().then(function (providers) {
+          if (!providers || !providers.weixiaoduo) return;
+          ssoSlot.hidden = false;
+          const label = (providers.weixiaoduo.name || '站点账号');
+          ssoBtn.textContent = '用' + label + '登录';
+          ssoBtn.addEventListener('click', function () {
+            showError('');
+            setBusy(true);
+            WFAuth.signInOAuth('weixiaoduo', location.origin + '/' + dest()).catch(function (err) {
+              setBusy(false);
+              showError((err && err.message) || '无法开始站点登录');
+            });
           });
         });
       }

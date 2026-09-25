@@ -27,8 +27,7 @@
   function isMock() { return mode() !== 'live'; }
 
   /**
-   * vault 现有：publish、key/status、fonts…；尚无 /api/projects CRUD。
-   * live 模式下项目/域名/用量仍走本机，避免 404 打爆控制台。
+   * vault 已有 /api/projects CRUD（PR #33）；live 时项目/域名走 vault。
    */
   function vaultHasProjectCrud() { return true; }
 
@@ -650,12 +649,40 @@
     return q.length ? ('?' + q.join('&')) : '';
   }
 
+  /** live 尚无聚合用量时的诚实空壳（避免控制台 404）。 */
+  function emptyUsage(params) {
+    params = params || {};
+    const range = Number(params.range) || 30;
+    const to = new Date();
+    const from = new Date(to.getTime() - (range - 1) * 864e5);
+    function ymd(d) {
+      return d.toISOString().slice(0, 10);
+    }
+    const series = [];
+    for (let i = 0; i < range; i++) {
+      const d = new Date(from.getTime() + i * 864e5);
+      series.push({ day: ymd(d), requests: 0, bytes: 0 });
+    }
+    return {
+      totals: { requests: 0, bytes: 0, blocked: 0, quotaGB: 200 },
+      series: { from: ymd(from), to: ymd(to), requests: series },
+      byFont: [],
+      byDomain: [],
+      status: { '200': 0, '304': 0, '403': 0 },
+      groups: [],
+      perf: []
+    };
+  }
+
   function getUsage(params) {
     params = params || {};
     if (useLocalProjects()) {
       return ensureApp().then(function () { return buildUsageMock(params); });
     }
-    return request('/api/usage' + qsFromParams(params));
+    return request('/api/usage' + qsFromParams(params)).catch(function (err) {
+      if (err && (err.status === 404 || err.code === 'not_found')) return emptyUsage(params);
+      throw err;
+    });
   }
 
   function getUsageSeries(params) {
@@ -663,7 +690,12 @@
     if (useLocalProjects()) {
       return getUsage(params).then(function (u) { return u.series; });
     }
-    return request('/api/usage/series' + qsFromParams(params));
+    return request('/api/usage/series' + qsFromParams(params)).catch(function (err) {
+      if (err && (err.status === 404 || err.code === 'not_found')) {
+        return emptyUsage(params).series;
+      }
+      throw err;
+    });
   }
 
   function listBlocked() {
@@ -677,7 +709,48 @@
         });
       });
     }
-    return request('/api/usage/blocked');
+    return request('/api/usage/blocked').catch(function (err) {
+      if (err && (err.status === 404 || err.code === 'not_found')) return [];
+      throw err;
+    });
+  }
+
+  /**
+   * 往项目加/更新字体并记版本；live 走 patch，mock 走 WFApp.addFont。
+   * @returns {Promise<object>} 更新后的项目
+   */
+  function addFontToProject(projectId, fontId, weights, subsetObj) {
+    return getProject(projectId).then(function (p) {
+      if (useLocalProjects() && window.WFApp && WFApp.addFont) {
+        WFApp.addFont(p, fontId, weights, subsetObj);
+        return WFApp.project(projectId) || p;
+      }
+      const fonts = (p.fonts || []).slice();
+      let exists = null;
+      for (let i = 0; i < fonts.length; i++) {
+        if (fonts[i].fontId === fontId) { exists = fonts[i]; break; }
+      }
+      if (exists) {
+        exists.weights = weights;
+        exists.subset = subsetObj;
+      } else {
+        fonts.push({ fontId: fontId, weights: weights, subset: subsetObj });
+      }
+      const versions = (p.versions || []).slice();
+      const max = versions.reduce(function (m, v) { return Math.max(m, Number(v.v) || 0); }, 0);
+      versions.forEach(function (v) { v.current = false; });
+      const meta = window.WFApp && WFApp.fontMeta ? WFApp.fontMeta(fontId) : null;
+      const note = (exists ? '更新 ' : '新增 ') + (meta ? meta.name : fontId);
+      versions.unshift({
+        v: max + 1,
+        at: new Date().toISOString(),
+        note: note,
+        bytes: 0,
+        fonts: fonts.slice(),
+        current: true
+      });
+      return patchProject(projectId, { fonts: fonts, versions: versions });
+    });
   }
 
   /**
@@ -753,6 +826,8 @@
     getUsage: getUsage,
     getUsageSeries: getUsageSeries,
     listBlocked: listBlocked,
+    emptyUsage: emptyUsage,
+    addFontToProject: addFontToProject,
     publish: publish,
     publishProject: publishProject
   };

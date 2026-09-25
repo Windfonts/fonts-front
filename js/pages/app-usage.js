@@ -7,6 +7,15 @@
   let range = parseInt(WFProto.getQuery('range') || '30', 10);
   if ([7, 30, 90].indexOf(range) === -1) range = 30;
   const fontId = WFProto.getQuery('font');
+  /** @type {any[]} */
+  let projectList = [];
+
+  function projectById(id) {
+    for (let i = 0; i < projectList.length; i++) {
+      if (projectList[i].id === id) return projectList[i];
+    }
+    return WFApp.project(id) || null;
+  }
 
   function rangeTabs() {
     return '<div class="app-actions tabs" role="tablist">' + [7, 30, 90].map(function (d) {
@@ -52,7 +61,7 @@
     const blocked = (blockedRows || []).map(function (b) {
       const host = String(b.host || '').replace(/:\d+$/, '').toLowerCase();
       if (!host || host === 'localhost' || host === '127.0.0.1' || !WFApp.validHost(host)) return null;
-      const project = b.project || WFApp.project(b.projectId);
+      const project = b.project || projectById(b.projectId);
       if (!project) return null;
       return { host: host, project: project, requests30d: b.requests30d };
     }).filter(Boolean).slice(0, 3);
@@ -74,7 +83,7 @@
     root.querySelectorAll('[data-drop-weight]').forEach(function (b) {
       b.addEventListener('click', function () {
         const parts = b.getAttribute('data-drop-weight').split('|');
-        const p = WFApp.project(parts[0]);
+        const p = projectById(parts[0]);
         const meta = WFApp.fontMeta(parts[1]);
         WFChrome.confirm({
           title: '去掉字重',
@@ -82,8 +91,37 @@
           ok: '去掉'
         }).then(function (ok) {
           if (!ok || !p) return;
-          if (WFApp.removeWeight(p, parts[1], parts[2])) { WFChrome.toast('已去掉，生成新版本'); render(); }
-          else WFChrome.toast('这款字至少要留一个字重');
+          if (WFApi.useLocalProjects() && WFApp.removeWeight(p, parts[1], parts[2])) {
+            WFChrome.toast('已去掉，生成新版本');
+            render();
+            return;
+          }
+          const fonts = (p.fonts || []).slice();
+          const row = fonts.filter(function (f) { return f.fontId === parts[1]; })[0];
+          if (!row) { WFChrome.toast('项目里没有这款字'); return; }
+          const nextW = (row.weights || []).filter(function (w) { return String(w) !== String(parts[2]); });
+          if (!nextW.length || nextW.length === (row.weights || []).length) {
+            WFChrome.toast('这款字至少要留一个字重');
+            return;
+          }
+          row.weights = nextW;
+          const versions = (p.versions || []).slice();
+          const max = versions.reduce(function (m, v) { return Math.max(m, Number(v.v) || 0); }, 0);
+          versions.forEach(function (v) { v.current = false; });
+          versions.unshift({
+            v: max + 1,
+            at: new Date().toISOString(),
+            note: '去掉字重 ' + parts[2] + ' · ' + (meta ? meta.name : parts[1]),
+            bytes: 0,
+            fonts: fonts.slice(),
+            current: true
+          });
+          WFApi.patchProject(p.id, { fonts: fonts, versions: versions }).then(function () {
+            WFChrome.toast('已去掉，生成新版本');
+            render();
+          }).catch(function (err) {
+            WFChrome.toast((err && err.message) || '更新失败');
+          });
         });
       });
     });
@@ -106,7 +144,7 @@
   /* —— 总览 —— */
   function paintAll(u, blockedRows) {
     const s = WFApp.state();
-    const ps = WFApp.projects();
+    const ps = projectList;
     const req = (u.totals && u.totals.requests) || 0;
     const bytes = (u.totals && u.totals.bytes) || 0;
     const quotaGB = (u.totals && u.totals.quotaGB) || (s.plan && s.plan.quota && s.plan.quota.trafficGB) || 200;
@@ -199,15 +237,16 @@
     const daily = (u.series && u.series.requests) || [];
     const domains = [];
     (row.projects || []).forEach(function (x) {
-      const p = WFApp.project(x.projectId);
+      const p = projectById(x.projectId);
       if (!p) return;
-      (p.usage.byDomain || []).forEach(function (d) {
-        const share = p.usage.requests30d ? x.requests30d / (p.usage.requests30d * (range / 30)) : 0;
+      const usage = p.usage || {};
+      (usage.byDomain || []).forEach(function (d) {
+        const share = usage.requests30d ? x.requests30d / (usage.requests30d * (range / 30)) : 0;
         domains.push({
           host: d.host,
           project: p,
-          requests30d: Math.round(d.requests30d * (range / 30) * (p.usage.requests30d ? x.requests30d / (Math.round(p.usage.requests30d * range / 30) || 1) : 0)),
-          bytes30d: d.bytes30d * (range / 30) * (p.usage.requests30d ? x.requests30d / (Math.round(p.usage.requests30d * range / 30) || 1) : 0)
+          requests30d: Math.round(d.requests30d * (range / 30) * (usage.requests30d ? x.requests30d / (Math.round(usage.requests30d * range / 30) || 1) : 0)),
+          bytes30d: d.bytes30d * (range / 30) * (usage.requests30d ? x.requests30d / (Math.round(usage.requests30d * range / 30) || 1) : 0)
         });
       });
     });
@@ -230,7 +269,7 @@
           weightActions(row) + '</section>' +
         '<section class="app-section"><h2>按项目</h2><table class="table"><thead><tr><th>项目</th><th>字重 · 子集</th><th class="num">请求</th><th class="num">流量</th></tr></thead><tbody>' +
           (row.projects || []).map(function (x) {
-            const p = WFApp.project(x.projectId);
+            const p = projectById(x.projectId);
             const pf = p && (p.fonts || []).filter(function (f) { return f.fontId === fontId; })[0];
             return '<tr><td><a href="project.html?id=' + esc(x.projectId) + '&tab=fonts">' + esc(x.name || x.projectId) + '</a></td>' +
               '<td>' + (pf ? '<span class="mono">' + pf.weights.join(' · ') + '</span> · ' + esc(WFApp.subsetLabel(pf.subset)) : '—') + '</td>' +
@@ -255,7 +294,7 @@
     if (!lows.length) return '<p class="t-13 muted" style="margin-top:var(--s-4)">各字重都有明显请求。</p>';
     return '<div class="insight" style="margin-top:var(--s-4)">' + lows.map(function (w) {
       return (u.projects || []).map(function (x) {
-        const p = WFApp.project(x.projectId);
+        const p = projectById(x.projectId);
         const pf = p && (p.fonts || []).filter(function (f) { return f.fontId === fontId; })[0];
         if (!pf || (pf.weights || []).length < 2 || (pf.weights || []).map(String).indexOf(String(w)) === -1) return '';
         return '<div class="row"><span>' + esc(x.name || x.projectId) + ' · ' + esc(w) + ' 占 ' + Math.round(ws[w] / total * 100) + '%</span>' +
@@ -269,11 +308,13 @@
     const params = { range: range, groupBy: 'project' };
     if (fontId) params.fontId = fontId;
     Promise.all([
+      WFApi.listProjects().catch(function () { return projectList; }),
       WFApi.getUsage(params),
       WFApi.listBlocked().catch(function () { return []; })
     ]).then(function (pair) {
-      if (fontId) paintFont(pair[0]);
-      else paintAll(pair[0], pair[1]);
+      projectList = pair[0] || [];
+      if (fontId) paintFont(pair[1]);
+      else paintAll(pair[1], pair[2]);
     }).catch(function (err) {
       root.innerHTML = '<p class="empty">用量加载失败：' + esc((err && err.message) || '未知错误') + '</p>';
     });

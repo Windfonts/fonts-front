@@ -10,6 +10,8 @@
 
   let font = null;
   let project = null;
+  /** @type {any[]} */
+  let projectList = [];
   let queue = [];
   let st = { mode: 'text', text: '', preset: '3500', ranges: 'U+4E00-9FFF', weights: [], formats: ['woff2'] };
 
@@ -46,7 +48,7 @@
 
   function render() {
     const list = pickable();
-    const projects = WFApp.projects();
+    const projects = projectList;
     const ws = WFSpecimen.sortedWeights(font);
     const sample = st.mode === 'text' && st.text.trim() ? st.text : WFProto.getSample();
 
@@ -155,12 +157,32 @@
     document.getElementById('projPick').addEventListener('change', function (e) {
       if (e.target.value === '__new') {
         WFChrome.promptInput({ title: '新建项目', label: '项目名称', placeholder: '如 品牌官网', ok: '新建' }).then(function (name) {
-          if (name) project = WFApp.createProject(name);
-          loadExisting(); render();
+          if (!name) { loadExisting(); render(); return; }
+          WFApi.createProject(name).then(function (p) {
+            project = p;
+            projectList = [p].concat(projectList.filter(function (x) { return x.id !== p.id; }));
+            loadExisting();
+            render();
+          }).catch(function (err) {
+            WFChrome.toast((err && err.message) || '新建失败');
+            loadExisting();
+            render();
+          });
         });
         return;
       }
-      project = WFApp.project(e.target.value);
+      project = projectList.filter(function (p) { return p.id === e.target.value; })[0] || null;
+      if (project) {
+        WFApi.getProject(project.id).then(function (p) {
+          project = p;
+          loadExisting();
+          render();
+        }).catch(function () {
+          loadExisting();
+          render();
+        });
+        return;
+      }
       loadExisting(); render();
     });
     root.querySelectorAll('[data-weight]').forEach(function (c) {
@@ -253,24 +275,38 @@
     if (add) add.addEventListener('click', function () {
       if (!project) { WFChrome.toast('先选择项目'); return; }
       if (st.mode === 'text' && !st.text.trim()) { WFChrome.toast('先粘贴要打包的文字'); return; }
-      WFApp.addFont(project, font.id, st.weights.slice(), subset());
-      WFChrome.toast('已加入 ' + project.name + '，生成 v' + WFApp.currentVersion(project).v);
-      queue = queue.filter(function (q) { return q.id !== font.id; });
-      if (queue.length) { font = queue[0]; loadExisting(); render(); }
-      else location.href = 'project.html?id=' + encodeURIComponent(project.id) + '&tab=fonts';
+      add.disabled = true;
+      WFApi.addFontToProject(project.id, font.id, st.weights.slice(), subset()).then(function (p) {
+        project = p;
+        const ver = (p.versions || []).filter(function (v) { return v.current; })[0] || (p.versions || [])[0];
+        WFChrome.toast('已加入 ' + p.name + (ver ? '，生成 v' + ver.v : ''));
+        queue = queue.filter(function (q) { return q.id !== font.id; });
+        if (queue.length) { font = queue[0]; loadExisting(); render(); }
+        else location.href = 'project.html?id=' + encodeURIComponent(project.id) + '&tab=fonts';
+      }).catch(function (err) {
+        add.disabled = false;
+        WFChrome.toast((err && err.message) || '加入失败');
+      });
     });
   }
 
-  Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(function (r) {
+  Promise.all([WFProto.loadCatalog(), WFApp.load(), WFApi.listProjects()]).then(function (r) {
     const list = r[0];
-    project = WFApp.project(WFProto.getQuery('project')) || WFApp.projects()[0] || null;
+    projectList = r[2] || [];
+    const qid = WFProto.getQuery('project');
+    project = (qid && projectList.filter(function (p) { return p.id === qid; })[0]) || projectList[0] || null;
     if (WFProto.getQuery('from') === 'bag') {
       queue = WFProto.getPicks().map(function (p) { return WFProto.getFont(p.id); }).filter(Boolean);
     }
     font = WFApp.fontMeta(WFProto.getQuery('upload')) || WFProto.getFont(WFProto.getQuery('font')) || queue[0] || list.filter(function (f) { return (f.glyphCount || f.charCount || 0) > 1; })[0] || list[0];
     if (!font) { root.innerHTML = '<p class="empty">字体目录为空。</p>'; return; }
-    loadExisting();
-    WFSpecimen.sortedWeights(font).forEach(function (w) { WFProto.ensureFontCss(font.family, w); });
-    render();
+    const ready = project
+      ? WFApi.getProject(project.id).then(function (p) { project = p; }).catch(function () { /* keep list row */ })
+      : Promise.resolve();
+    ready.then(function () {
+      loadExisting();
+      WFSpecimen.sortedWeights(font).forEach(function (w) { WFProto.ensureFontCss(font.family, w); });
+      render();
+    });
   });
 })();

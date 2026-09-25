@@ -3,18 +3,69 @@
   if (!WFApp.gate()) return;
   const esc = WFProto.escapeHtml;
   const root = document.getElementById('root');
+  /** @type {{ projects: any[], domains: any[], blocked: any[] }} */
+  let cache = { projects: [], domains: [], blocked: [] };
+
+  function projectById(id) {
+    for (let i = 0; i < cache.projects.length; i++) {
+      if (cache.projects[i].id === id) return cache.projects[i];
+    }
+    return null;
+  }
+
+  function normalizeDomains(raw) {
+    return (raw || []).map(function (d) {
+      const projectId = d.projectId || (d.project && d.project.id) || '';
+      const projectName = d.projectName || (d.project && d.project.name) || projectId;
+      const project = projectById(projectId) || { id: projectId, name: projectName };
+      return Object.assign({}, d, {
+        projectId: projectId,
+        projectName: projectName,
+        project: project,
+        requests30d: Number(d.requests30d) || 0,
+        bytes30d: Number(d.bytes30d) || 0
+      });
+    });
+  }
+
+  function normalizeBlocked(raw) {
+    return (raw || []).map(function (b) {
+      const projectId = b.projectId || (b.project && b.project.id) || '';
+      const project = projectById(projectId) || {
+        id: projectId,
+        name: b.projectName || (b.project && b.project.name) || projectId
+      };
+      return Object.assign({}, b, {
+        projectId: projectId,
+        project: project,
+        requests30d: Number(b.requests30d) || 0
+      });
+    });
+  }
 
   function statusHtml(d) {
     if (d.verified) return '<span class="status-dot">已验证 · ' + (d.method === 'file' ? '文件' : 'DNS') + '</span>';
     return '<span class="status-dot is-pending">待验证</span>';
   }
 
+  function reload() {
+    return Promise.all([
+      WFApi.listProjects(),
+      WFApi.listDomains(),
+      WFApi.listBlocked().catch(function () { return []; })
+    ]).then(function (pair) {
+      cache.projects = pair[0] || [];
+      cache.domains = normalizeDomains(pair[1]);
+      cache.blocked = normalizeBlocked(pair[2]);
+    });
+  }
+
   function render() {
-    const ps = WFApp.projects();
-    const ds = WFApp.allDomains().sort(function (a, b) { return b.requests30d - a.requests30d; });
+    const ps = cache.projects;
+    const ds = cache.domains.slice().sort(function (a, b) { return b.requests30d - a.requests30d; });
     const verified = ds.filter(function (d) { return d.verified; });
     const pending = ds.filter(function (d) { return !d.verified; });
-    const blocked = WFApp.blockedHosts();
+    const blocked = cache.blocked;
     const req = ds.reduce(function (a, d) { return a + d.requests30d; }, 0);
     const blockedReq = blocked.reduce(function (a, b) { return a + b.requests30d; }, 0);
     const first = ps[0];
@@ -73,20 +124,23 @@
       if (!projectId) return;
       WFApi.addDomain(projectId, host, method).then(function () {
         WFChrome.toast('已添加，待验证');
-        render();
+        return reload().then(render);
       }).catch(function (err) { WFChrome.toast((err && err.message) || '添加失败'); });
     });
-    function pair(v) { const i = v.indexOf('|'); return { p: WFApp.project(v.slice(0, i)), host: v.slice(i + 1) }; }
+    function pair(v) {
+      const i = v.indexOf('|');
+      return { projectId: v.slice(0, i), host: v.slice(i + 1), p: projectById(v.slice(0, i)) };
+    }
     root.querySelectorAll('[data-verify]').forEach(function (b) {
       b.addEventListener('click', function () {
         const x = pair(b.getAttribute('data-verify'));
-        if (!x.p) return;
+        if (!x.projectId) return;
         b.disabled = true;
         WFChrome.toast('正在校验…');
-        WFApi.verifyDomain(x.p.id, x.host).then(function (data) {
+        WFApi.verifyDomain(x.projectId, x.host).then(function (data) {
           if (data && data.status === 'failed') WFChrome.toast((data.detail) || '验证失败');
           else WFChrome.toast('验证通过');
-          render();
+          return reload().then(render);
         }).catch(function (err) {
           WFChrome.toast((err && err.message) || '验证失败');
           b.disabled = false;
@@ -98,9 +152,9 @@
         const x = pair(b.getAttribute('data-remove'));
         WFChrome.confirm({ title: '移除域名', message: '将 ' + x.host + ' 从「' + (x.p ? x.p.name : '') + '」白名单移除。该域名将无法加载字体。', ok: '移除' }).then(function (ok) {
           if (!ok) return;
-          WFApi.removeDomain(x.p.id, x.host).then(function () {
+          WFApi.removeDomain(x.projectId, x.host).then(function () {
             WFChrome.toast('已移除');
-            render();
+            return reload().then(render);
           }).catch(function (err) { WFChrome.toast((err && err.message) || '移除失败'); });
         });
       });
@@ -108,9 +162,9 @@
     root.querySelectorAll('[data-allow]').forEach(function (b) {
       b.addEventListener('click', function () {
         const x = pair(b.getAttribute('data-allow'));
-        WFApi.addDomain(x.p.id, x.host, 'dns').then(function () {
+        WFApi.addDomain(x.projectId, x.host, 'dns').then(function () {
           WFChrome.toast('已加入白名单，待验证');
-          render();
+          return reload().then(render);
         }).catch(function (err) {
           WFChrome.toast((err && err.code === 'conflict') ? '已在白名单' : ((err && err.message) || '添加失败'));
         });
@@ -124,5 +178,10 @@
     });
   }
 
-  Promise.all([WFProto.loadCatalog(), WFApp.load(), WFApi.listDomains()]).then(function () { render(); });
+  root.innerHTML = '<p class="loading">正在加载…</p>';
+  Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(function () {
+    return reload().then(render);
+  }).catch(function (err) {
+    root.innerHTML = '<p class="empty">域名加载失败：' + esc((err && err.message) || '未知错误') + '</p>';
+  });
 })();

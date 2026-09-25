@@ -61,10 +61,45 @@
   }
   function ensureVaultApiKey() {
     if (!state || !state.settings) return Promise.resolve(null);
-    if (apiKeyLooksVault(state.settings.apiKey)) return Promise.resolve(state.settings.apiKey);
+    const existing = state.settings.apiKey;
+    const looksOk = apiKeyLooksVault(existing);
+
+    if (window.WFAuth && WFAuth.ensureConsoleKey && WFAuth.requiresVaultSession && WFAuth.requiresVaultSession()) {
+      return WFAuth.ensureConsoleKey({ apiKey: looksOk ? existing : undefined }).then(function (data) {
+        if (data && data.apiKey) {
+          state.settings.apiKey = data.apiKey;
+          if (!state.settings.apiKeyCreatedAt || data.created || data.rotated) {
+            state.settings.apiKeyCreatedAt = new Date().toISOString();
+          }
+          state.settings.apiKeySource = 'vault-sso';
+          save();
+          return data.apiKey;
+        }
+        if (looksOk) return existing;
+        return mintApiKeyAsync('live').then(function (k) {
+          state.settings.apiKey = k;
+          state.settings.apiKeyCreatedAt = new Date().toISOString();
+          state.settings.apiKeySource = 'local';
+          save();
+          return k;
+        });
+      }).catch(function () {
+        if (looksOk) return existing;
+        return mintApiKeyAsync('live').then(function (k) {
+          state.settings.apiKey = k;
+          state.settings.apiKeyCreatedAt = new Date().toISOString();
+          state.settings.apiKeySource = 'local';
+          save();
+          return k;
+        });
+      });
+    }
+
+    if (looksOk) return Promise.resolve(existing);
     return mintApiKeyAsync('live').then(function (k) {
       state.settings.apiKey = k;
       state.settings.apiKeyCreatedAt = new Date().toISOString();
+      state.settings.apiKeySource = 'local';
       save();
       return k;
     });
@@ -520,10 +555,11 @@
       /* 生产：每次进控制台都对一下 vault 会话；清掉假 localStorage 壳 */
       WFAuth.syncFromVault().then(function (profile) {
         if (profile && WFChrome.canAccessApp()) {
-          if (!WFChrome.user() || WFChrome.user().source !== WFAuth.AUTH_USER_SOURCE) {
-            location.reload();
-          }
-          return;
+          return load().then(function () {
+            if (!WFChrome.user() || WFChrome.user().source !== WFAuth.AUTH_USER_SOURCE) {
+              location.reload();
+            }
+          });
         }
         if (WFAuth.clearOrphanLocalUser) WFAuth.clearOrphanLocalUser();
         location.replace(loginUrl);

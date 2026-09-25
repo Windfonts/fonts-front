@@ -94,8 +94,49 @@
     });
   }
 
+  /** @returns {Promise<Record<string, { id: string, name?: string }>>} */
+  function listProviders() {
+    return fetchJson('/api/auth/providers').then(function (x) {
+      if (!x.res.ok || !x.body || typeof x.body !== 'object') return {};
+      return x.body;
+    }).catch(function () { return {}; });
+  }
+
   /**
-   * NextAuth Credentials 登录（vault 现为管理员账号；顾客 WP SSO 另议）。
+   * OAuth 跳转（如 weixiaoduo）。未配置时 /api/auth/providers 无该键。
+   * @param {string} providerId
+   * @param {string} [callbackUrl]
+   */
+  function signInOAuth(providerId, callbackUrl) {
+    providerId = String(providerId || '').trim();
+    if (!providerId) return Promise.reject(new Error('未指定登录方式'));
+    const dest = callbackUrl || (location.origin + '/app/index.html');
+    return getCsrf().then(function (csrfToken) {
+      const body = new URLSearchParams();
+      body.set('csrfToken', csrfToken);
+      body.set('callbackUrl', dest);
+      body.set('json', 'true');
+      return fetch(url('/api/auth/signin/' + encodeURIComponent(providerId)), {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-Auth-Return-Redirect': '1'
+        },
+        body: body.toString()
+      }).then(function (res) {
+        return res.json().then(function (data) {
+          const redirect = String((data && data.url) || '');
+          if (!redirect) throw new Error('无法开始站点登录');
+          location.href = redirect;
+          return { ok: true, redirect: redirect };
+        });
+      });
+    });
+  }
+
+  /**
+   * NextAuth Credentials 登录（vault 现为管理员账号；顾客走 signInOAuth）。
    * @returns {Promise<{ ok: boolean, error?: string, profile?: object }>}
    */
   function signIn(username, password) {
@@ -180,12 +221,48 @@
     });
   }
 
+  /**
+   * 会话 → 控制台 API Key（同域 /api/console/ensure-key）。
+   * @param {{ apiKey?: string, rotate?: boolean }} [opts]
+   * @returns {Promise<{ apiKey: string, created?: boolean, reused?: boolean, restored?: boolean, rotated?: boolean, email?: string }|null>}
+   */
+  function ensureConsoleKey(opts) {
+    opts = opts || {};
+    if (isLocalHost() && !isProdAppHost()) {
+      /* 本机无会话代理时跳过 */
+      return Promise.resolve(null);
+    }
+    const body = {};
+    if (opts.apiKey) body.apiKey = String(opts.apiKey);
+    if (opts.rotate) body.rotate = true;
+    return fetchJson('/api/console/ensure-key', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(body)
+    }).then(function (x) {
+      if (!x.res.ok || !x.body || x.body.ok === false) {
+        const msg =
+          (x.body && x.body.error && x.body.error.message) ||
+          (x.body && x.body.message) ||
+          ('HTTP ' + (x.res && x.res.status));
+        const err = new Error(msg);
+        err.status = x.res && x.res.status;
+        err.body = x.body;
+        throw err;
+      }
+      return (x.body && x.body.data) || null;
+    });
+  }
+
   window.WFAuth = {
     getSession: getSession,
     syncFromVault: syncFromVault,
+    listProviders: listProviders,
     signIn: signIn,
+    signInOAuth: signInOAuth,
     signOut: signOut,
     verifyApiKey: verifyApiKey,
+    ensureConsoleKey: ensureConsoleKey,
     isLocalHost: isLocalHost,
     isProdAppHost: isProdAppHost,
     requiresVaultSession: requiresVaultSession,
