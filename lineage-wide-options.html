@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>谱系页 · 全宽设计对照 · 文风字体</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260925r" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260925r" />
+  <link rel="stylesheet" href="css/base.css?v=20260925r" />
+  <link rel="stylesheet" href="css/components.css?v=20260925r" />
+  <link rel="stylesheet" href="css/site.css?v=20260925r" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+  <link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-systsc&weight=Regular" />
+  <link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-yymt&weight=Regular" />
+  <link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-swsjc&weight=Regular" />
+  <link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-mkwfys&weight=Regular" />
+  <link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-wjmp&weight=Regular" />
+  <link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-yjmct&weight=Regular" />
+  <link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-syhtsc&weight=Regular" />
+  <link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-gsht&weight=Regular" />
+  <link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-xwwk&weight=Light" />
+  <style>
+    .gw-head { max-width: 72rem; margin: 0 auto; padding: var(--s-8) var(--gutter) var(--s-4); }
+    .gw-head h1 { font-size: var(--fs-28); font-weight: var(--fw-title); margin: 0 0 var(--s-2); }
+    .gw-head p { font-size: var(--fs-13); color: var(--gray); margin: 0; }
+    .gw-sec { margin: var(--s-9) 0 var(--s-12); }
+    .gw-sec > .cap { max-width: 72rem; margin: 0 auto var(--s-4); padding: 0 var(--gutter); display: flex; align-items: baseline; gap: var(--s-3); }
+    .gw-sec > .cap .no { font-size: var(--fs-13); font-weight: var(--fw-title); background: var(--ink); color: var(--on-ink); padding: 0.1rem 0.6rem; border-radius: var(--radius-pill); }
+    .gw-sec > .cap h2 { font-size: var(--fs-16); margin: 0; font-weight: var(--fw-title); }
+    .gw-sec > .cap p { font-size: var(--fs-12); color: var(--gray); margin: 0; }
+    /* 全宽舞台：破出容器 */
+    .bleed { width: 100vw; margin-inline: calc(50% - 50vw); }
+
+    /* 全宽公共原子 */
+    .yong { line-height: 1; color: var(--ink); }
+    .m { font-size: var(--fs-12); color: var(--gray-2); font-variant-numeric: tabular-nums; }
+    .m b { color: var(--gray); font-weight: var(--fw-label); }
+
+    /* ===== 甲 · 源流长卷 ===== */
+    .a-scroll { overflow-x: auto; overflow-y: hidden; }
+    .a-canvas { display: flex; align-items: stretch; min-width: 1680px; padding: var(--s-6) clamp(1.5rem, 4vw, 4rem) var(--s-7); gap: 0; position: relative; }
+    .a-famcap { flex: 0 0 7.5rem; border-right: 1px solid var(--ink); padding-right: var(--s-4); margin-right: var(--s-6); }
+    .a-famcap .fm { writing-mode: vertical-rl; font-size: 1.9rem; font-weight: var(--fw-title); letter-spacing: 0.14em; margin: var(--s-2) 0 0; }
+    .a-famcap .m { writing-mode: horizontal-tb; display: block; margin-top: var(--s-3); }
+    .a-gen { flex: 1 0 15rem; position: relative; padding: 0 var(--s-6) 0 var(--s-8); }
+    .a-gen + .a-gen::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--rule); }
+    .a-gen .g { font-size: var(--fs-11); letter-spacing: 0.2em; color: var(--gray); margin: 0 0 var(--s-4); }
+    .a-card { display: block; text-decoration: none; color: inherit; padding: var(--s-3) 0; border-top: 1px solid var(--rule); }
+    .a-card:first-of-type { border-top: 0; }
+    .a-card:hover .yong { opacity: 0.7; }
+    .a-card .yong { font-size: 2.6rem; }
+    .a-card.is-root .yong { font-size: 4rem; }
+    .a-card .nm { display: block; font-size: var(--fs-13); font-weight: var(--fw-label); color: var(--ink); margin-top: 0.5rem; }
+    .a-card .m { display: block; margin-top: 0.2rem; }
+
+    /* ===== 乙 · 年谱墙（粘性年份栏） ===== */
+    .b-band { display: grid; grid-template-columns: 9rem 1fr; border-top: 1px solid var(--rule); }
+    .b-band:first-child { border-top: 0; }
+    .b-yr { position: sticky; top: 0; align-self: start; padding: var(--s-5) var(--s-5) var(--s-5) clamp(1.5rem, 3vw, 3rem); }
+    .b-yr .y { font-size: var(--fs-28); font-weight: var(--fw-title); font-variant-numeric: tabular-nums; line-height: 1.1; }
+    .b-yr .g { font-size: var(--fs-11); letter-spacing: 0.18em; color: var(--gray); margin-top: 0.3rem; }
+    .b-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: var(--s-3); padding: var(--s-5) clamp(1.5rem, 3vw, 3rem) var(--s-6) 0; }
+    .b-cell { display: flex; flex-direction: column; gap: 0.3rem; background: var(--fill); border-radius: var(--radius-sm); padding: var(--s-4) var(--s-4) var(--s-3); text-decoration: none; color: inherit; }
+    .b-cell:hover { background: var(--surface-2); }
+    .b-cell .yong { font-size: var(--fs-28); }
+    .b-cell.is-root { background: var(--ink); }
+    .b-cell.is-root .yong, .b-cell.is-root .nm { color: var(--on-ink); }
+    .b-cell.is-root .m { color: var(--on-ink-2); }
+    .b-cell.is-root .yong { font-size: var(--fs-40); }
+    .b-cell .nm { font-size: var(--fs-13); color: var(--ink); font-weight: var(--fw-label); }
+
+    /* ===== 丙 · 全幅关系图画布 ===== */
+    .c-canvas { position: relative; height: 34rem; background:
+      radial-gradient(var(--rule) 1px, transparent 1.4px);
+      background-size: 26px 26px; overflow: hidden; }
+    .c-dock { position: absolute; top: var(--s-4); left: clamp(1.5rem, 3vw, 3rem); display: flex; gap: 0.4rem; flex-wrap: wrap; max-width: 34rem; }
+    .c-dock .chip { background: var(--paper); }
+    .c-tools { position: absolute; top: var(--s-4); right: clamp(1.5rem, 3vw, 3rem); display: flex; gap: 0.4rem; }
+    .c-tools .pill { background: var(--paper); border-radius: var(--radius-pill); padding: 0.3rem 0.8rem; font-size: var(--fs-12); color: var(--ink-2); }
+    .c-node { position: absolute; transform: translate(-50%, -50%); text-align: center; text-decoration: none; color: inherit; }
+    .c-node .yong { font-size: var(--fs-28); }
+    .c-node .nm { display: block; font-size: var(--fs-12); color: var(--ink); font-weight: var(--fw-label); margin-top: 0.3rem; }
+    .c-node.is-root .yong { font-size: var(--fs-40); }
+    .c-node.is-root .nm { font-size: var(--fs-13); }
+    .c-node.is-sat .yong { font-size: var(--fs-20); }
+    .c-node.is-sat .nm { color: var(--gray); }
+    .c-hint { position: absolute; bottom: var(--s-4); left: 50%; transform: translateX(-50%); font-size: var(--fs-12); color: var(--gray); background: var(--paper); border-radius: var(--radius-pill); padding: 0.3rem 0.9rem; }
+    .c-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <div class="gw-head">
+    <h1>谱系页 · 全宽设计对照</h1>
+    <p>三版全宽（破出 96rem 版心，贴边到视口）。数据为思源宋体族真实谱系节选，样张用各字体本字。设计/开发视图与令牌全部沿用站点系统。</p>
+  </div>
+
+  <!-- ===== 甲 · 源流长卷 ===== -->
+  <section class="gw-sec" id="a">
+    <div class="cap"><span class="no">甲</span><h2>源流长卷</h2><p>全宽横向卷轴：字族立轴封在左，代际向右展开，细线分代。滚动方向与派生方向一致，宽屏天然多列。</p></div>
+    <div class="bleed">
+      <div class="a-scroll">
+        <div class="a-canvas">
+          <div class="a-famcap">
+            <span class="m">思源宋体族</span>
+            <div class="fm" style="font-family:'wenfeng-systsc'">思源宋体</div>
+            <span class="m"><b>29</b> 款 · 14 起源</span>
+          </div>
+          <div class="a-gen">
+            <p class="g">源头</p>
+            <a class="a-card is-root" href="#"><span class="yong" style="font-family:'wenfeng-systsc'">永</span><span class="nm">思源宋体</span><span class="m"><b>44,779</b> 字 · Adobe × Google</span></a>
+          </div>
+          <div class="a-gen">
+            <p class="g">第一代</p>
+            <a class="a-card" href="#"><span class="yong" style="font-family:'wenfeng-swsjc'">永</span><span class="nm">狮尾四季春</span><span class="m"><b>42,858</b> 字 · 2021</span></a>
+            <a class="a-card" href="#"><span class="yong" style="font-family:'wenfeng-yymt'">永</span><span class="nm">源样明体</span><span class="m"><b>35,349</b> 字 · 2024</span></a>
+            <a class="a-card" href="#"><span class="yong" style="font-family:'wenfeng-yjmct'">永</span><span class="nm">源界明朝</span><span class="m"><b>9,804</b> 字 · 2014</span></a>
+          </div>
+          <div class="a-gen">
+            <p class="g">第二代</p>
+            <a class="a-card" href="#"><span class="yong" style="font-family:'wenfeng-mkwfys'">永</span><span class="nm">猫啃网风雅宋</span><span class="m"><b>42,767</b> 字 · 2020</span></a>
+            <a class="a-card" href="#"><span class="yong" style="font-family:'wenfeng-wjmp'">永</span><span class="nm">文津宋体</span><span class="m"><b>31,527</b> 字 · 2024</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 乙 · 年谱墙 ===== -->
+  <section class="gw-sec" id="b">
+    <div class="cap"><span class="no">乙</span><h2>年谱墙</h2><p>灰底样张格铺满全宽：年份栏粘性钉在左侧随滚动常驻，右侧格数随屏宽自动增减（宽屏多到 8 列）。全宽收益最大的一版。</p></div>
+    <div class="bleed">
+      <div class="b-band">
+        <div class="b-yr"><div class="y">2014</div><div class="g">源头</div></div>
+        <div class="b-grid">
+          <a class="b-cell is-root" href="#"><span class="yong" style="font-family:'wenfeng-systsc'">永</span><span class="nm">思源宋体</span><span class="m"><b>44,779</b> 字 · Adobe</span></a>
+          <a class="b-cell" href="#"><span class="yong" style="font-family:'wenfeng-yjmct'">永</span><span class="nm">源界明朝</span><span class="m"><b>9,804</b> 字 · 破坏风</span></a>
+        </div>
+      </div>
+      <div class="b-band">
+        <div class="b-yr"><div class="y">2020–21</div><div class="g">第一代</div></div>
+        <div class="b-grid">
+          <a class="b-cell" href="#"><span class="yong" style="font-family:'wenfeng-swsjc'">永</span><span class="nm">狮尾四季春</span><span class="m"><b>42,858</b> 字 · 台湾省</span></a>
+          <a class="b-cell" href="#"><span class="yong" style="font-family:'wenfeng-mkwfys'">永</span><span class="nm">猫啃网风雅宋</span><span class="m"><b>42,767</b> 字 · 改良</span></a>
+          <a class="b-cell" href="#"><span class="yong" style="font-family:'wenfeng-xwwk'">永</span><span class="nm">霞鹜文楷</span><span class="m"><b>46,490</b> 字 ← Klee One</span></a>
+        </div>
+      </div>
+      <div class="b-band">
+        <div class="b-yr"><div class="y">2024</div><div class="g">第二代</div></div>
+        <div class="b-grid">
+          <a class="b-cell" href="#"><span class="yong" style="font-family:'wenfeng-yymt'">永</span><span class="nm">源样明体</span><span class="m"><b>35,349</b> 字 · 台湾省</span></a>
+          <a class="b-cell" href="#"><span class="yong" style="font-family:'wenfeng-wjmp'">永</span><span class="nm">文津宋体</span><span class="m"><b>31,527</b> 字 · 全字面</span></a>
+          <a class="b-cell" href="#"><span class="yong" style="font-family:'wenfeng-systsc'">永</span><span class="nm">屏显臻宋</span><span class="m">屏幕优化 · 2022</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 丙 · 全幅关系图 ===== -->
+  <section class="gw-sec" id="c">
+    <div class="cap"><span class="no">丙</span><h2>全幅关系图</h2><p>关系图画布真正铺满视口：点阵纸面、悬浮字族芯片与缩放工具、卡片以「永」为锚散布画布。整页只留画布，沉浸查看大族。</p></div>
+    <div class="bleed">
+      <div class="c-canvas">
+        <svg class="c-svg" viewBox="0 0 1200 540" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="380" y1="270" x2="620" y2="150" stroke="var(--rule)" stroke-width="1.5"/>
+          <line x1="380" y1="270" x2="620" y2="300" stroke="var(--rule)" stroke-width="1.5"/>
+          <line x1="380" y1="270" x2="620" y2="410" stroke="var(--rule)" stroke-width="1.5"/>
+          <line x1="700" y1="150" x2="940" y2="220" stroke="var(--rule)" stroke-width="1.5"/>
+          <line x1="700" y1="300" x2="940" y2="360" stroke="var(--rule)" stroke-width="1.5"/>
+        </svg>
+        <div class="c-dock">
+          <button type="button" class="chip is-on">思源宋体族 <span class="n">29</span></button>
+          <button type="button" class="chip">思源黑体族 <span class="n">88</span></button>
+          <button type="button" class="chip">霞鹜文楷族 <span class="n">7</span></button>
+        </div>
+        <div class="c-tools"><span class="pill">−</span><span class="pill">＋</span><span class="pill">100%</span><span class="pill">重置</span></div>
+        <a class="c-node is-root" href="#" style="left:32%;top:50%"><span class="yong" style="font-family:'wenfeng-systsc'">永</span><span class="nm">思源宋体</span></a>
+        <a class="c-node" href="#" style="left:58%;top:28%"><span class="yong" style="font-family:'wenfeng-swsjc'">永</span><span class="nm">狮尾四季春</span></a>
+        <a class="c-node" href="#" style="left:58%;top:56%"><span class="yong" style="font-family:'wenfeng-yymt'">永</span><span class="nm">源样明体</span></a>
+        <a class="c-node" href="#" style="left:58%;top:76%"><span class="yong" style="font-family:'wenfeng-yjmct'">永</span><span class="nm">源界明朝</span></a>
+        <a class="c-node" href="#" style="left:80%;top:41%"><span class="yong" style="font-family:'wenfeng-mkwfys'">永</span><span class="nm">猫啃网风雅宋</span></a>
+        <a class="c-node" href="#" style="left:80%;top:67%"><span class="yong" style="font-family:'wenfeng-wjmp'">永</span><span class="nm">文津宋体</span></a>
+        <p class="c-hint">滚轮缩放 · 拖拽平移 · 点卡片聚焦</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
