@@ -124,9 +124,22 @@
       '</div>';
   }
 
+  /* 核对态四档：逐款原文核对 > 标准开源许可（licenseName 命中 OFL/GPL/MIT 等标准文本，
+     标准文本全网同文，命中即视同核对——跳过逐款核查的就是开源字体）
+     > 出处核对（仓库 LICENSE / 权利人条目）> 待核对 */
+  function proofVerifyKind(font) {
+    if (font.licenseVerified) return '原文';
+    const ev = font.licenseEvidence || {};
+    if (ev.verified) return ev.sourceKind === 'standard' ? '标准' : '出处';
+    return '';
+  }
+
   function proofMetaLine(font) {
-    const verified = !!font.licenseVerified;
-    const what = (verified ? '已核对协议原文' : '协议原文待核对') +
+    const kind = proofVerifyKind(font);
+    const what = (kind === '原文' ? '已核对协议原文'
+      : kind === '标准' ? '已核对开源标准许可文本'
+      : kind === '出处' ? '已核对许可出处'
+      : '协议原文待核对') +
       ' · 文风云<sup>&reg;</sup> 免费提供在线字体托管和预览调用服务。';
     const d = new Date();
     const pad = function (n) { return n < 10 ? '0' + n : String(n); };
@@ -156,8 +169,8 @@
 
   function proofChainHtml(font) {
     const claim = font.standardClaim || null;
-    const verified = !!font.licenseVerified;
-    const date = verified ? (font.licenseVerifiedAt || '') : '';
+    const kind = proofVerifyKind(font);
+    const date = kind === '原文' ? (font.licenseVerifiedAt || '') : '';
     const slug = String(font.family || '').replace(/^wenfeng-/, '');
     const purchase = (proofTier(font) === '需授权' && font.purchaseUrl) ? proofLink(font.purchaseUrl) : '';
     let html = '<div class="lp5-meta-block">' + proofMetaLine(font) + proofOwnerLine(font) + '</div>';
@@ -167,7 +180,10 @@
     html += claim
       ? proofRow('国标声明', '厂商声明符合 <b>' + esc(claim.standard) + '</b>。', '', proofLink(claim.url))
       : proofRow('国标声明', '厂商声明未知。', '', '');
-    html += proofRow('文风存档', verified ? '收录入库并已做原文核对。' : '请自行阅读查看原始授权。', date,
+    html += proofRow('文风存档', kind === '原文' ? '收录入库并已做原文核对。'
+        : kind === '标准' ? '收录入库，按开源标准许可文本核对。'
+        : kind === '出处' ? '收录入库，许可出处已核对。'
+        : '请自行阅读查看原始授权。', date,
       '<a class="lp-act" href="https://wenfeng.org/font/' + esc(slug) + '" rel="noopener noreferrer">wenfeng.org ↗</a>');
     return html + '</div>';
   }

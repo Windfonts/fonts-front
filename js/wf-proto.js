@@ -1265,6 +1265,9 @@
     licenseCanDo: function (font) {
       const name = String((font && (font.licenseName || font.license)) || '');
       const tier = licenseTier(font);
+      const ev = (font && font.licenseEvidence) || {};
+      /* 证据链已核对（逐款原文 / 标准开源文本 / 仓库 LICENSE / 权利人条目）都不再走「还没核对」 */
+      const checked = !!(font && font.licenseVerified) || !!ev.verified;
       if (/OFL|Open Font License/i.test(name)) {
         return '可免费用于网站与产品；保留许可声明；勿单独售卖字体文件。';
       }
@@ -1273,8 +1276,11 @@
       }
       if (tier === '需授权') return '需向权利方取得授权或购买后再用。';
       if (tier === '个人免费') return '个人可用，商用或改字要看原文。';
-      if (tier === '免费商用' && font && font.licenseVerified) {
+      if (tier === '免费商用' && checked) {
         return '可按声明免费用于商业项目；再分发或改字前请读原文。';
+      }
+      if (checked) {
+        return '许可已核对，按条款使用即可。';
       }
       return '授权还没核对，用之前先看原文。';
     },

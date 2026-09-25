@@ -153,8 +153,10 @@
     "源界明朝": {
       "ownerId": "adobe",
       "makerId": "adobe",
-      "relation": "original",
-      "licenseFollows": "own"
+      "group": "source-han-serif",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe"
     },
     "975 圆体": {
       "ownerId": "975maru",
