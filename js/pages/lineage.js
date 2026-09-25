@@ -921,8 +921,9 @@
 
     if (curGroup === 'zcool' && zHub && hHub) {
       nestUnder(zHub, hHub, '合作');
-      if (!hHub.seriesSub || /旗下/.test(hHub.seriesSub)) {
-        hHub.seriesSub = '合作 · 点开看胡晓波字体';
+      const nFonts = hHub.seriesCount || (hHub.members && hHub.members.length) || 0;
+      if (!hHub.seriesSub || /旗下|点开看/.test(hHub.seriesSub)) {
+        hHub.seriesSub = '合作 · 旗下 ' + nFonts + ' 款';
       }
       return forest;
     }
@@ -1347,6 +1348,41 @@
           label: n.edgeLabel || (n.isBrandFamily ? '品牌' : (n.isSeries ? '主题支' : (n.isCluster || n.isPlexGate ? '衍生' : relLabel(n, focus))))
         });
         childX += CARD_W + PLEX_H_GAP;
+      });
+      /* 合作嵌套枢纽（站酷→胡）：自动展开一层字体，无需再点；母子公司品牌树不展 */
+      show.forEach(function (n) {
+        if (!n.isBrandFamily || !positions[n.id]) return;
+        if (n.edgeLabel !== '合作' && !n.isRelatedHub) return;
+        const leaves = [];
+        kidsOf(n, forest).forEach(function (k) {
+          if (!k || k.isBrandFamily) return;
+          if (k.isSeries || k.isCluster) {
+            kidsOf(k, forest).forEach(function (f) {
+              if (f && !f.isSeries && !f.isCluster && !f.isMore && !f.isPlexGate && !f.isBrandFamily)
+                leaves.push(f);
+            });
+          } else if (!k.isMore && !k.isPlexGate) {
+            leaves.push(k);
+          }
+        });
+        if (!leaves.length) return;
+        const hubPos = positions[n.id];
+        const grandY = hubPos.y + hubPos.h + PLEX_V_GAP * 0.75;
+        const totalW = leaves.length * CARD_W + Math.max(0, leaves.length - 1) * PLEX_H_GAP;
+        let gx = hubPos.x + hubPos.w / 2 - totalW / 2;
+        leaves.forEach(function (f) {
+          if (positions[f.id]) {
+            gx += CARD_W + PLEX_H_GAP;
+            return;
+          }
+          place(f, gx, grandY, CARD_H_COMPACT, { role: 'collab-leaf', compact: true });
+          edges.push({
+            from: n.id,
+            to: f.id,
+            label: relLabel(f, n)
+          });
+          gx += CARD_W + PLEX_H_GAP;
+        });
       });
     } else {
       placeChildRows(place, edges, focus, childFonts, focusX, focusY, cx, { compact: true });
