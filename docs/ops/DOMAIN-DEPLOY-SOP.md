@@ -7,11 +7,11 @@
 
 | 主机 | 挂什么 | 机器 / 上游 | 证书 |
 |---|---|---|---|
-| `app.windfonts.com` | fonts-front **静态**（`/www/wwwroot/fonts-front`）；`/api` `/admin` `/_next` 过渡反代 Next | feicode-prod `45.117.8.70` | 本机 vhost 证（通配可用） |
+| `app.windfonts.com` | fonts-front **静态**（feicode `/www/wwwroot/fonts-front`）；`/api` `/admin` `/_next` 过渡反代 Next；**公网 DNS → CyberCDN 十边**（§5.1） | 源 `45.117.8.70`；解析见十边 | 通配 / CDN `windfonts` |
 | `vault.windfonts.com` | fonts-vault（Docker `fonts-vault` → `127.0.0.1:4000`） | 同上 | `*.windfonts.com` |
 | `api.windfonts.com` | **平台网关壳**：反代上游，`Host` 改写为 `vault.windfonts.com` | 同上 | 通配（目录 `cert/api.windfonts.com`） |
 | `staging-app.` / `staging-vault.` | 预发静态 / 同机 Next | 同上 | 通配 |
-| `cn.windfonts.com` | CyberCDN：字形走 OSS `wenfeng-fonts`；`/api/css` `/p/` 回源 **vault** | 十边 | CDN 证 `windfonts` |
+| `cn` / `hk` / `en` / `jp.windfonts.com` | CyberCDN：字形走 OSS `wenfeng-fonts`；`/api/css` `/p/` 回源 **vault** | 十边（含 hk/sg/jp） | CDN 证 `windfonts`（`*.windfonts.com`） |
 | `www.windfonts.com` | 301 → `https://windfonts.com/` | CyberCDN → WP | — |
 | `windfonts.com` | WordPress | feicode + CDN | — |
 
@@ -116,17 +116,53 @@ curl -sS -o /dev/null -w "%{http_code}\n" \
 
 在放行前 **不要** 把 `app` A 记录改成 OSS 网站 endpoint。
 
-## 6. CDN（cn）回源 vault
+### 5.1 过渡：`app` 走 CyberCDN（源站仍 feicode）
+
+OSS 公网未放行时的可行路径：边缘站点键 **`windfonts_app`** → 源 `45.117.8.70`，`Host: app.windfonts.com`。
+
+| 项 | 值 |
+|---|---|
+| Ansible | `roles/openresty-edge-cache/defaults/main.yml` → `sites.windfonts_app` |
+| 边缘 conf | `/usr/local/openresty/nginx/conf/conf.d/windfonts_app-edge.conf` |
+| `/api/` `/admin` | **不缓存** passthrough（登录 / NextAuth） |
+| `/_next/` 与静态后缀 | 可缓存 |
+| DNS | 与 `cn` 同十边 A 池；源站 IP 勿从解析里单独依赖（发布仍 scp→feicode） |
+
+部署：
+
+```bash
+# devops
+cd ~/Projects/ansible
+ansible-playbook playbooks/deploy-openresty-edge-cache.yml --limit cdn_edge
+```
+
+切流前 `--resolve` 抽查（把 `<edge-ip>` 换成十边之一）：
+
+```bash
+curl -sS -o /dev/null -w "%{http_code}\n" \
+  --resolve app.windfonts.com:443:<edge-ip> https://app.windfonts.com/
+curl -sS -o /dev/null -w "%{http_code}\n" \
+  --resolve app.windfonts.com:443:<edge-ip> https://app.windfonts.com/fonts/ibmps
+curl -sS -o /dev/null -w "%{http_code}\n" \
+  --resolve app.windfonts.com:443:<edge-ip> https://app.windfonts.com/api/auth/csrf
+```
+
+## 6. CDN（cn|hk|en|jp）回源 vault
 
 - 现网：十边 `/api/css`、`/p/` 的 `origin_host` = `vault.windfonts.com`
 - Ansible 真相源（devops）：`roles/openresty-edge-cache/defaults/main.yml` 键 `windfonts` + upstream `windfonts_vault`
 - 仓备份：`cybercdn` 同角色 defaults + 脚本 `ansible/scripts/n1b-windfonts-origin-host-vault.py`
+- **`hk` / `en` / `jp`**：与 `cn` **同一套 CyberCDN 十边**（非独立 Cloudflare zone；证书已含 `*.windfonts.com`）。DNS A 池与 `cn` 对齐。
 
 抽查：
 
 ```bash
-curl -sS -o /dev/null -w "%{http_code}\n" \
-  "https://cn.windfonts.com/api/css?family=wenfeng-ibmps&weight=regular&version=full&_=$(date +%s)"
+FAM='wenfeng-ibmps&weight=regular&subset=zh-common'
+for h in cn hk en jp; do
+  curl -sS -o /dev/null -w "$h=%{http_code} " \
+    "https://$h.windfonts.com/api/css?family=$FAM&_=$(date +%s)"
+done
+echo
 ```
 
 **对外 URL 形态禁止改成 app/vault/api。**
@@ -167,6 +203,12 @@ curl -sS -o /dev/null -w "api=%{http_code} " "https://api.windfonts.com/api/font
 curl -sS -o /dev/null -w "health=%{http_code} " https://api.windfonts.com/gateway/health
 curl -sS -o /dev/null -w "cn=%{http_code} " \
   "https://cn.windfonts.com/api/css?family=wenfeng-ibmps&weight=regular&version=full&_=$(date +%s)"
+curl -sS -o /dev/null -w "hk=%{http_code} " \
+  "https://hk.windfonts.com/api/css?family=wenfeng-ibmps&weight=regular&subset=zh-common&_=$(date +%s)"
+curl -sS -o /dev/null -w "en=%{http_code} " \
+  "https://en.windfonts.com/api/css?family=wenfeng-ibmps&weight=regular&subset=zh-common&_=$(date +%s)"
+curl -sS -o /dev/null -w "jp=%{http_code} " \
+  "https://jp.windfonts.com/api/css?family=wenfeng-ibmps&weight=regular&subset=zh-common&_=$(date +%s)"
 curl -sS -o /dev/null -w "stg=%{http_code}\n" https://staging-app.windfonts.com/
 ```
 
@@ -185,8 +227,8 @@ curl -sS -o /dev/null -w "stg=%{http_code}\n" https://staging-app.windfonts.com/
 ## 11. 未做（不要假装完成）
 
 - WP 顾客 SSO ↔ vault hooks（控制台管理员 NextAuth 已通）  
-- `hk` / `en` / `jp` CF 节点产品验收  
-- `app` DNS 真正绑 OSS/CDN（等 §5 放行）  
+- 独立 Cloudflare zone 做 `hk`/`en`/`jp`（现网已用 **同一套 CyberCDN 十边** 验收 `/api/css`；CF 非阻塞）  
+- `app` 真绑 **OSS 公网**（账号仍禁 public-read；过渡见 §5.1 CyberCDN）  
 - 预发独立 Next 进程（现 `staging-vault` 与生产同容器）
 
 ## 12. 控制台登录（NextAuth / WFAuth）
@@ -197,7 +239,7 @@ curl -sS -o /dev/null -w "stg=%{http_code}\n" https://staging-app.windfonts.com/
 | 前端 | `js/wf-auth.js` → 同域 `/api/auth/*`（app nginx 反代 `:4000`） |
 | 门禁 | `app` / `staging-app` **必须** vault 会话（`source=vault-nextauth`）；清掉纯 localStorage 假壳 |
 | demo | `?demo=1` 仅本机 / `ALLOW_DEMO`；生产禁 |
-| WFApi | 生产默认 **live**（发布 / 密钥打 vault）；项目 CRUD 仍本机，待 vault `/api/projects` |
+| WFApi | 生产默认 **live**；项目 CRUD → vault `/api/projects`（PR #33 / `0f98293`） |
 | 预发 | `staging-app` 已反代 `/api` `/admin` `/_next`，可联调登录 |
 
 探针：

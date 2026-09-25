@@ -4,13 +4,13 @@
 
 **2026-09-25 域名口径：** 详见 **[DOMAIN-ARCHITECTURE.md](DOMAIN-ARCHITECTURE.md)**。运维操作见 **[ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md)**。摘要：`app`=静态前端（现网 feicode 目录；OSS `wenfeng-web` 私有备份）；**`vault`**=Next；**`api.`**=网关壳（反代 vault，可换上游）；`cn|hk|en|jp`=CDN；`windfonts.com`=WP。`CSS_API`→`vault`；嵌入仍写地区 CDN。
 
-**2026-09-25 infra 落地：** vault 双 Host、CDN N1b Host→vault、app 静态化、staging、`api.` 网关、www→apex、停 vault 演练通过。OSS 公网绑 `app` 待账号放开或 CDN 私有回源。
+**2026-09-25 infra 落地：** vault 双 Host、CDN N1b Host→vault、app 静态化、staging、`api.` 网关、www→apex、停 vault 演练通过。OSS 公网绑 `app` 仍受账号禁 public-read；过渡走 CyberCDN `windfonts_app`（源仍 feicode）。
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 
-**下一棒（按价值）：** ① WP 顾客 SSO；② 选字袋同步 / 认领；③ `app` 真绑 OSS/CDN；④ CF `hk|en|jp` 验收。入库见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
+**下一棒（按价值）：** ① WP 顾客 SSO；② 选字袋同步 / 认领；③ OSS 公网放行后真绑桶（现已有 CyberCDN 过渡）；④ 可选独立 CF zone（`hk|en|jp` 已在 CyberCDN 通）。入库见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
 
-**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33）。
+**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33 @ `0f98293`）。`hk|en|jp` DNS+`/api/css` 与 `cn` 同边验收通过。
 
 **2026-09-25 登录收口：** 生产强制 vault NextAuth（`wf-auth`/`gate`）；`staging-app` 补 `/api` 反代；WFApi 生产默认 live。见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md) §12。
 

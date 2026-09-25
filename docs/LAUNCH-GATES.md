@@ -10,12 +10,13 @@
 
 | 项 | 状态 |
 |---|---|
-| CDN `/api/css` 回源 + 品牌门禁 + 错误 `no-store` | **已通**（app + cn） |
+| CDN `/api/css` 回源 + 品牌门禁 + 错误 `no-store` | **已通**（`cn`/`hk`/`en`/`jp` 同 CyberCDN） |
 | analysis 满覆盖 + `OSS_METADATA_VERSION` | **已通**（`20260925b`） |
-| 详情路径 `/fonts/{slug}` | **现网已通**（feicode 静态 + rewrite）；snippet [`deploy/nginx-fonts-front.snippet.conf`](../deploy/nginx-fonts-front.snippet.conf)；OSS 公网绑域见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md) §5 |
+| 详情路径 `/fonts/{slug}` | **现网已通**（feicode rewrite + CDN 透传）；OSS 公网绑域仍见 SOP §5 |
 | 真统计 | 详情 `WFLive.counts`（app API）；目录热度已用 [`scripts/sync-font-counts.mjs`](../scripts/sync-font-counts.mjs) 写回 `fonts.json`（2026-09-25，553 条分页） |
 | `?demo=1` | **已收口**：仅 localhost / `WFProto.ALLOW_DEMO` |
 | 真登录 | **管理员 NextAuth 已通**（app 同域 `/api/auth`）；生产禁假壳；顾客 WP SSO 仍待 |
+| `app` CDN | **DNS 已切十边**（`windfonts_app`→feicode）；OSS 公网未放行 |
 | 对照页不进导航 | 保持；谱系实验室已进 `lab-archive` |
 
 ## 1. 必须先落地的基础设施（不能只靠前端假装）

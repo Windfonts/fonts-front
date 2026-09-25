@@ -165,7 +165,7 @@ vault 挂了 → 逛库动态计数、动态 CSS、运营后台、分析接口�
 
 | | |
 |---|---|
-| 边缘 | `cn` = 自建 CyberCDN；`hk` / `en` / `jp` = Cloudflare（规划） |
+| 边缘 | `cn` / `hk` / `en` / `jp` = **同一套** CyberCDN 十边（证书 `*.windfonts.com`）。独立 Cloudflare zone **非**现网前置 |
 | 内容 | woff2、`fonts-packages/…`、项目 `/p/…`、**边缘** `/api/css` |
 | 回源 | `/api/css`（及需动态的路径）→ **vault 上游**（Host 用 `vault.windfonts.com`） |
 | 不当 | 整站前端、运营后台、WP |
@@ -227,14 +227,13 @@ https://{cn|hk|en|jp}.windfonts.com/api/css?family=&weight=&version=
 
 | 主机 | 状态 |
 |---|---|
-| `app.windfonts.com` | **已切静态 fonts-front**（`/www/wwwroot/fonts-front`）；`/api` `/admin` `/_next` 仍反代 Next 过渡 |
+| `app.windfonts.com` | **已切静态 fonts-front**；`/api` `/admin` `/_next` 仍反代 Next；**DNS 已切 CyberCDN 十边**（源仍 feicode；OSS 公网未放行） |
 | `api.windfonts.com` | **已开网关壳**：DNS A→`45.117.8.70`；nginx 反代上游 vault（`Host: vault.windfonts.com`）；`/gateway/health` 自答；响应头 `X-Windfonts-Gateway: api` |
 | `vault.windfonts.com` | **已通**：DNS+通配证+nginx→`:4000` |
-| `staging-app` / `staging-vault` | **已通**（同机静态 / Next） |
-| `cn.windfonts.com` | `/api/css` 十边 Host 已改 **`vault`**（N1b sed+reload）；ansible defaults 已固化 |
+| `staging-app` / `staging-vault` | **已通**（同机静态 / Next；staging-app 仍可直指源站便于发布验收） |
+| `cn` / `hk` / `en` / `jp.windfonts.com` | `/api/css` 十边 Host→**vault**；四子域同池（非独立 CF） |
 | `www.windfonts.com` | **已定**：301 → `https://windfonts.com/`（CyberCDN canonical） |
-| OSS `wenfeng-web` | **已建并灌入**；ACL=private（账号禁 `PutBucketAcl public-read`）；公网 `app` 仍走 feicode 静态；见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md) §5 |
-| `hk` / `en` / `jp` | CF 规划；CDN 边缘已有 jp/sg/hk 节点 |
+| OSS `wenfeng-web` | **已建并灌入**；ACL=private；公网 `app` 走 CyberCDN→feicode，见 SOP §5 / §5.1 |
 
 **迁移进度：**
 
@@ -445,3 +444,4 @@ P3 有余力
 | 2026-09-25 | 目录 + §9 总览表；CONSOLE / FRONTEND-STANDARDS / HANDOFF 交叉链对齐。 |
 | 2026-09-25 | 落地 vault DNS/TLS/nginx；建 OSS `wenfeng-web`；CDN Host→vault 待边缘应用。 |
 | 2026-09-25 | 停 vault 演练通过；新增 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md)；OSS 公网绑域仍受账号禁 public-read 限制。 |
+| 2026-09-26 | `hk|en|jp` 与 `cn` 同 CyberCDN 验收；`app` DNS 切十边（`windfonts_app`→feicode）；OSS 公网仍未放行。 |
