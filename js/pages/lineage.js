@@ -109,28 +109,34 @@
     return d;
   }
 
-  /* 谱：小族全显；宽族收纳——根 + 一级子款平铺（超 FLAT_LIMIT 折尾），更深支线整支折叠 */
+  /* 谱：小族全显；宽族收纳——根 + 一级子款平铺（超 FLAT_LIMIT 折尾），更深支线整支折叠。
+     lg-last 只给真正的末子项——竖向导轨靠它截断，全标 last 会把树退化成纯缩进列表 */
   function renderTree(members, forest) {
     const allowFold = members.length > FLAT_LIMIT + 4;
+    function renderKids(kids, depth, lastIsLast) {
+      return kids.map(function (k, i) {
+        return item(k, depth, i === kids.length - 1 && lastIsLast);
+      }).join('');
+    }
     function sublist(node, depth) {
       const kids = node.ghost ? node.ghostChildren : (forest.children[node.id] || []);
       if (!kids.length) return '';
       if (allowFold && depth >= 1) {
         return foldBtn('展开 ' + kids.length + ' 款', 'chevron-down') +
-          '<ul hidden>' + kids.map(function (k) { return item(k, depth + 1); }).join('') + '</ul>';
+          '<ul hidden>' + renderKids(kids, depth + 1, true) + '</ul>';
       }
       const shown = allowFold ? kids.slice(0, FLAT_LIMIT) : kids;
       const rest = allowFold ? kids.slice(FLAT_LIMIT) : [];
-      return '<ul>' + shown.map(function (k) { return item(k, depth + 1); }).join('') +
+      return '<ul>' + renderKids(shown, depth + 1, rest.length === 0) +
         (rest.length ? '<li class="lg-last">' + foldBtn('展开其余 ' + rest.length + ' 款', 'chevron-down') +
-          '<ul hidden>' + rest.map(function (k) { return item(k, depth + 1); }).join('') + '</ul></li>' : '') + '</ul>';
+          '<ul hidden>' + renderKids(rest, depth + 1, true) + '</ul></li>' : '') + '</ul>';
     }
-    function item(node, depth) {
-      return '<li class="lg-last">' + nodeRow(node, { root: node._root }) + sublist(node, depth) + '</li>';
+    function item(node, depth, isLast) {
+      return '<li' + (isLast ? ' class="lg-last"' : '') + '>' + nodeRow(node, { root: node._root }) + sublist(node, depth) + '</li>';
     }
-    const rows = forest.roots.map(function (r) {
+    const rows = forest.roots.map(function (r, i) {
       r._root = !r.ghost;
-      return item(r, 0);
+      return item(r, 0, i === forest.roots.length - 1);
     }).join('');
     return '<div class="lg-tree"><ul>' + rows + '</ul></div>';
   }

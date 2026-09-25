@@ -11,18 +11,18 @@
 .lg-foot { font-size: var(--fs-13); color: var(--gray); padding-bottom: var(--s-10); }
 
 /* ===== 谱 · 纵向家谱（正文细线平铺） ===== */
-.lg-tree { --step: 1.9rem; }
+.lg-tree { --step: 1.6rem; }
 .lg-tree ul { list-style: none; margin: 0; padding: 0; }
 .lg-tree li { position: relative; padding-left: calc(var(--step) + 0.6rem); }
 .lg-tree li::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--rule); }
 .lg-tree li.lg-last::before { display: none; }
 .lg-tree li > .lg-node, .lg-tree li > .lg-fold { position: relative; }
-.lg-tree li > .lg-node::before { content: ""; position: absolute; left: calc(-0.6rem - 1px); top: 50%; width: 0.6rem; height: 1px; background: var(--rule); }
+.lg-tree li > .lg-node::before, .lg-tree li > .lg-fold::before { content: ""; position: absolute; left: calc(-0.6rem - 1px); top: 50%; width: 0.6rem; height: 1px; background: var(--rule); }
 
 .lg-node { display: flex; align-items: center; gap: var(--s-3); padding: 0.42rem 0; text-decoration: none; min-height: 2.4rem; }
 a.lg-node:hover .lg-name { text-decoration: underline; text-underline-offset: 0.32em; text-decoration-thickness: 1px; }
 
-.lg-yong { flex: none; width: 2.1rem; font-size: var(--fs-20); line-height: 1; color: var(--ink); text-align: center; font-weight: var(--fw-body); }
+.lg-yong { flex: none; width: 2rem; font-size: var(--fs-20); line-height: 1; color: var(--ink); text-align: left; font-weight: var(--fw-body); }
 .lg-name { font-size: var(--fs-14); color: var(--ink); display: inline-flex; align-items: center; gap: 0.45em; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .lg-name .icon { color: var(--gray-2); flex: none; }
 .lg-meta { margin-left: auto; font-size: var(--fs-12); color: var(--gray-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
