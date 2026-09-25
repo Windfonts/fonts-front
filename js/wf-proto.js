@@ -692,7 +692,7 @@
   /* 开源商用 SPDX 白名单：命中即归「开源商用」（可修改、可再分发的开源许可证）。
      仓耳「免费开源字体授权声明」按 2026-09-25 口径也归开源商用。
      白名单宁缺勿滥：未命中的免费商用字体留在「免费商用」桶。 */
-  const OSS_LICENSE_RE = /OFL|SIL Open Font License|\bMIT\b|MIT License|Apache|GPL|CC0|0BSD|IPA Font License|GlyphWiki|开放政府数据|Ubuntu Font License|仓耳字库免费开源字体授权声明/i;
+  const OSS_LICENSE_RE = /OFL|SIL Open Font License|\bMIT\b|MIT License|Apache|GPL|GNU General Public License|CC0|CC BY|0BSD|IPA Font License|GlyphWiki|开放政府数据|Ubuntu Font License|M\+ 位图许可|仓耳字库免费开源字体授权声明/i;
 
   function licenseTier(font) {
     const ln = String((font && font.licenseName) || '');
