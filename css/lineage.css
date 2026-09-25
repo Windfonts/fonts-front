@@ -917,20 +917,20 @@ html.lg-wide .lg-toolbar {
 html.lg-wide .lg-stage { padding-block: var(--s-2); }
 
 /* ===== 全宽沉浸态排版调优：文本间距 / 控件大小 / 内容层级 ===== */
-html.lg-wide .lg-toolbar {
-  padding: var(--s-2) clamp(1rem, 2.5vw, 2rem);
+.lg-toolbar {
+  padding: var(--s-3) 0;
   row-gap: 0.5rem;
   align-items: center;
 }
 /* 开关与芯片：13px + 舒适内距（原 seg 12px/3px 偏小难点） */
-html.lg-wide .lg-tools .seg button,
-html.lg-wide .lg-toolbar .chip {
+.lg-tools .seg button,
+.lg-toolbar .chip {
   font-size: var(--fs-13);
   padding-block: 0.35rem;
 }
-html.lg-wide .lg-toolbar .chips { row-gap: 0.45rem; }
+.lg-toolbar .chips { row-gap: 0.45rem; }
 /* 区头（字族名 · 视图 · 款数）升为区级标题 */
-html.lg-wide .lg-page > .count-line {
+.lg-page > .count-line {
   font-size: var(--fs-16);
   font-weight: var(--fw-title);
   color: var(--ink);
@@ -939,15 +939,15 @@ html.lg-wide .lg-page > .count-line {
   margin-bottom: 0;
 }
 /* 根卡：永字与名字再提一级，meta 放大可读 */
-html.lg-wide .lg-b-root { padding: var(--s-5) clamp(1rem, 2.5vw, 2.5rem); }
-html.lg-wide .lg-b-root .lg-yong { font-size: var(--fs-40); }
-html.lg-wide .lg-b-root .lg-name { font-size: var(--fs-20); }
-html.lg-wide .lg-b-root .lg-meta { font-size: var(--fs-13); }
+.lg-b-root { padding: var(--s-5) var(--s-6); }
+.lg-b-root .lg-yong { font-size: var(--fs-40); }
+.lg-b-root .lg-name { font-size: var(--fs-20); }
+.lg-b-root .lg-meta { font-size: var(--fs-13); }
 /* 分支行：永字 1.7rem、名字 14px、行距放宽；meta 13px */
-html.lg-wide .lfl-card { padding: var(--s-4) var(--s-5); }
-html.lg-wide .lfl-card.is-compact .lfl-yong { font-size: 1.7rem; }
-html.lg-wide .lfl-card .lfl-name { font-size: var(--fs-14); }
-html.lg-wide .lfl-card .lfl-meta,
-html.lg-wide .lfl-card.is-compact .lfl-name { font-size: var(--fs-13); }
+.lfl-card { padding: var(--s-4) var(--s-5); }
+.lfl-card.is-compact .lfl-yong { font-size: 1.7rem; }
+.lfl-card .lfl-name { font-size: var(--fs-14); }
+.lfl-card .lfl-meta,
+.lfl-card.is-compact .lfl-name { font-size: var(--fs-13); }
 /* 提示行（分支：按代际查看）缩小右移，不与开关抢焦 */
-html.lg-wide .lg-hint { font-size: var(--fs-12); }
+.lg-hint { font-size: var(--fs-12); }

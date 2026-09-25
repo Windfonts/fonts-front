@@ -800,7 +800,7 @@
     const showOrg = WFProto.canShowOrgLineage && WFProto.canShowOrgLineage(g.slug);
     const orgKv = showOrg
       ? { icon: 'branch', dt: '谱系图', html: true,
-          dd: '<a href="' + WFChrome.href('lineage.html?group=' + encodeURIComponent(g.slug) + '&view=org&mode=flow') + '">查看品牌谱系图</a>' }
+          dd: '<a href="' + WFChrome.href('lineage.html?group=' + encodeURIComponent(g.slug) + '&view=org&mode=flow') + '">查看</a>' }
       : null;
     const kv = [
       { icon: 'building', dt: '类型', dd: WFChrome.kindLabel(info) || (info.unlisted ? '未核对' : '') },
