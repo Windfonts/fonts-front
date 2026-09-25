@@ -25,7 +25,7 @@
      嵌入「动态」给 Google 风格查询参数：{cdn}/api/css?family=&weight=&version=。 */
   const CDN = 'https://cn.windfonts.com';
   const CSS_API = 'https://app.windfonts.com'; /* vault / 元数据 API 源，非地区 CDN */
-  const ANALYSIS_META_VER = '20260925a'; /* 边缘长缓存；升元数据时递增 */
+  const ANALYSIS_META_VER = '20260925b'; /* 边缘长缓存；升元数据时递增 */
   const CDN_KEY = 'wf-cdn';
   const STATS_KEY = 'wf-font-stats.v1';
   const VIEWED_KEY = 'wf-font-viewed';
@@ -148,7 +148,7 @@
       .catch(function () { return { foundries: [] }; });
     const evidenceReq = fetch(dataUrl('license-evidence.json?v=20260925b')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
       .catch(function () { return { standards: {}, names: {} }; });
-    const lineageReq = fetch(dataUrl('font-lineage.json?v=20260927b')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
+    const lineageReq = fetch(dataUrl('font-lineage.json?v=20260927c')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
       .catch(function () { return { groups: {}, byName: {} }; });
     const avatarsReq = fetch(dataUrl('avatars.json?v=20260921d')).then(function (r) { return r.ok ? r.json() : {}; })
       .catch(function () { return {}; });
