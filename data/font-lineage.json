@@ -1714,6 +1714,8 @@
       "licenseFollows": "inherit"
     },
     "点点像素体-圆形": {
+      "ownerId": "wixette",
+      "makerId": "wixette",
       "relation": "fork",
       "upstreamName": "文泉驿点阵宋体",
       "upstreamOwnerId": "wenquanyi",
@@ -2121,18 +2123,24 @@
       "upstreamOwnerId": "adobe"
     },
     "点阵像素宋体 常规体": {
+      "ownerId": "wixette",
+      "makerId": "wixette",
       "relation": "fork",
       "upstreamName": "文泉驿点阵宋体",
       "upstreamOwnerId": "wenquanyi",
       "licenseFollows": "inherit"
     },
     "点点像素宋体菱形": {
+      "ownerId": "wixette",
+      "makerId": "wixette",
       "relation": "fork",
       "upstreamName": "文泉驿点阵宋体",
       "upstreamOwnerId": "wenquanyi",
       "licenseFollows": "inherit"
     },
     "点点像素圆体": {
+      "ownerId": "wixette",
+      "makerId": "wixette",
       "relation": "fork",
       "upstreamName": "文泉驿点阵宋体",
       "upstreamOwnerId": "wenquanyi",

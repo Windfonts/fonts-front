@@ -2160,6 +2160,27 @@
       "openSource": true,
       "claimed": false,
       "description": "独立字体作者，煮豆黑体与铁蒺藜体作者。"
+    },
+    {
+      "id": "wixette",
+      "name": "wixette",
+      "en": "wixette",
+      "short": "wixette",
+      "website": "https://github.com/wixette/dotted-chinese-fonts",
+      "aliases": [
+        "wixette",
+        "点点像素"
+      ],
+      "fontNames": [
+        "点点像素体-圆形",
+        "点点像素圆体",
+        "点点像素宋体菱形",
+        "点阵像素宋体 常规体"
+      ],
+      "kind": "individual",
+      "openSource": true,
+      "claimed": false,
+      "description": "点点像素（Dotted Chinese Pixel Fonts）作者，文泉驿点阵宋体的矢量化变形重制。"
     }
   ]
 }
