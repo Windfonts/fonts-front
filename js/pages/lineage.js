@@ -90,6 +90,7 @@
     return WFProto.weightToCss(reg || ws[0]);
   }
   function htmlFaceOf(font) {
+    if (!font || !font.family || font.ghost) return '';
     const w = htmlWeightOf(font);
     WFProto.ensureFontCss(font.family, w);
     return 'font-family:' + WFProto.cssFamilyStack(font.family) + ';font-weight:' + w;
@@ -106,8 +107,18 @@
     return parts.join(' · ');
   }
   function nodeInner(font) {
-    const style = font.ghost ? '' : ' style="' + htmlFaceOf(font) + '"';
-    return '<span class="lg-yong"' + style + ' aria-hidden="true">' + (font.ghost ? '·' : YONG) + '</span>' +
+    let yongHtml;
+    if (font.ghost) {
+      yongHtml = '<span class="lg-yong" aria-hidden="true">·</span>';
+    } else if (!font.family) {
+      yongHtml = '<span class="lg-yong" aria-hidden="true"></span>';
+    } else {
+      const w = htmlWeightOf(font);
+      const face = htmlFaceOf(font);
+      yongHtml = '<span class="lg-yong" data-face="' + esc(font.family) + '|' + w + '"' +
+        (face ? ' style="' + face + '"' : '') + ' aria-hidden="true">' + YONG + '</span>';
+    }
+    return yongHtml +
       '<span class="lg-name">' + relMark(font) + esc(font.name) + '</span>' +
       '<span class="lg-meta">' + (font.ghost ? '未收录原作' : metaOf(font)) + '</span>';
   }
@@ -216,8 +227,13 @@
       if (band.length) {
         html += '<p class="lg-b-gen">' + esc(genLabel(1)) + ' · 平铺扫一眼</p>';
         html += '<ul class="lg-b-flat">' + band.slice(0, 16).map(function (f) {
+          const chipFace = htmlFaceOf(f);
+          const chipW = f.family ? htmlWeightOf(f) : '';
+          const chipYong = (f.family && chipFace)
+            ? '<span class="lg-yong" data-face="' + esc(f.family) + '|' + chipW + '" style="' + chipFace + '" aria-hidden="true">' + YONG + '</span>'
+            : '<span class="lg-yong" aria-hidden="true"></span>';
           return '<li><a class="lg-chip" href="' + WFChrome.href(WFProto.detailHref(f)) + '">' +
-            '<span class="lg-yong" style="' + htmlFaceOf(f) + '" aria-hidden="true">' + YONG + '</span>' +
+            chipYong +
             '<span class="lg-name">' + esc(f.name) + '</span></a></li>';
         }).join('') +
           (band.length > 16
@@ -279,8 +295,13 @@
         '<span class="t">' + WFChrome.icon(g === 0 ? 'commit' : 'branch') + esc(genLabel(g)) + '</span>' +
         '<span class="rule"></span></p><div class="lg-wall">' +
         band.map(function (f) {
+          const cellFace = htmlFaceOf(f);
+          const cellW = f.family ? htmlWeightOf(f) : '';
+          const cellYong = (f.family && cellFace)
+            ? '<span class="lg-yong" data-face="' + esc(f.family) + '|' + cellW + '" style="' + cellFace + '" aria-hidden="true">' + YONG + '</span>'
+            : '<span class="lg-yong" aria-hidden="true"></span>';
           return '<a class="lg-cell' + (f.id === mid ? ' is-root' : '') + '" href="' + WFChrome.href(WFProto.detailHref(f)) + '">' +
-            '<span class="lg-yong" style="' + htmlFaceOf(f) + '" aria-hidden="true">' + YONG + '</span>' +
+            cellYong +
             '<span class="lg-name">' + esc(f.name) + '</span>' +
             '<span class="lg-meta">' + metaOf(f) + '</span></a>';
         }).join('') + '</div></div>';
@@ -421,10 +442,41 @@
   }
 
   function faceOf(font) {
-    if (!font || font.ghost || font.isCluster || font.isMore || font.isSeries || !font.family) return '';
+    if (!font || font.ghost || font.outgroup || font.isCluster || font.isMore || font.isSeries || font.isPlexGate || !font.family) return '';
     const w = weightOf(font);
     WFProto.ensureFontCss(font.family, w);
     return 'font-family:' + WFProto.cssFamilyStack(font.family) + ';font-weight:' + w;
+  }
+
+  function canSpecimenFace(font) {
+    return !!(font && font.family && !font.ghost && !font.outgroup &&
+      !font.isCluster && !font.isMore && !font.isSeries && !font.isPlexGate);
+  }
+
+  function faceSpecKey(font) {
+    if (!canSpecimenFace(font)) return '';
+    return font.family + '|' + weightOf(font);
+  }
+
+  /** Batch-load 永 for visible real fonts; dedupe by family|weight; mark spans ready. */
+  function readyVisibleFaces(fonts) {
+    const seen = {};
+    (fonts || []).forEach(function (font) {
+      const key = faceSpecKey(font);
+      if (!key || seen[key]) return;
+      seen[key] = true;
+      const fam = font.family;
+      const w = weightOf(font);
+      WFProto.readyFace(fam, w, YONG).then(function () {
+        /* document-wide mark: DOM may have been re-rendered with same data-face */
+        document.querySelectorAll('.lfl-yong[data-face], .lg-yong[data-face], .lfl-wall-yong[data-face]').forEach(function (el) {
+          if (el.getAttribute('data-face') === key) el.classList.add('is-face-ready');
+        });
+        if (heroTitle && heroTitle.getAttribute('data-face') === key) {
+          heroTitle.classList.add('is-face-ready');
+        }
+      }, function () { /* package missing / CDN fail — leave muted */ });
+    });
   }
 
   function licShort(font) {
@@ -1524,8 +1576,8 @@
     const lic = licShort(n);
     const who = whoOf(n);
     const face = faceOf(n);
-    const yong = (listed && n.family)
-      ? '<span class="lfl-yong" style="' + face + '" aria-hidden="true">' + YONG + '</span>'
+    const yong = (listed && canSpecimenFace(n) && face)
+      ? '<span class="lfl-yong" data-face="' + esc(n.family) + '|' + weightOf(n) + '" style="' + face + '" aria-hidden="true">' + YONG + '</span>'
       : '';
     const nameInner = listed
       ? '<a class="lfl-name" href="font-detail.html?id=' + encodeURIComponent(n.id) + '" data-nav>' + esc(n.name) + '</a>'
@@ -1595,6 +1647,13 @@
     nodesEl.innerHTML = html;
     nodesEl.style.width = layout.width + 'px';
     nodesEl.style.height = layout.height + 'px';
+
+    const faceFonts = [];
+    Object.keys(layout.positions).forEach(function (id) {
+      const n = layout.positions[id] && layout.positions[id].node;
+      if (canSpecimenFace(n)) faceFonts.push(n);
+    });
+    readyVisibleFaces(faceFonts);
 
     nodesEl.querySelectorAll('.lfl-card').forEach(function (el) {
       el.addEventListener('click', function (ev) {
@@ -1709,8 +1768,11 @@
       const face = faceOf(n);
       const lic = licShort(n);
       const who = whoOf(n);
+      const yong = (canSpecimenFace(n) && face)
+        ? '<span class="lfl-wall-yong" data-face="' + esc(n.family) + '|' + weightOf(n) + '" style="' + face + '" aria-hidden="true">' + YONG + '</span>'
+        : '<span class="lfl-wall-yong" aria-hidden="true"></span>';
       html += '<button type="button" class="lfl-wall-card" data-id="' + esc(n.id) + '">' +
-        '<span class="lfl-wall-yong" style="' + face + '" aria-hidden="true">' + YONG + '</span>' +
+        yong +
         '<a class="lfl-wall-name" href="font-detail.html?id=' + encodeURIComponent(n.id) + '" data-nav>' +
         esc(n.name) + '</a>' +
         '<div class="lfl-wall-meta"><span>' + esc(lic) + '</span><span>' + esc(who) + '</span></div>' +
@@ -1718,6 +1780,7 @@
     });
     html += '</div>';
     wallEl.innerHTML = html;
+    readyVisibleFaces(members);
     wallEl.querySelectorAll('.lfl-wall-card').forEach(function (el) {
       el.addEventListener('click', function (ev) {
         if (ev.target.closest('[data-nav]')) return;
@@ -1983,7 +2046,15 @@
     const mainRoot = forest.roots.filter(function (r) { return !r.ghost && !r.outgroup && !r.isSeries; })[0];
     if (heroTitle && mainRoot) {
       const face = faceOf(mainRoot);
-      if (face) heroTitle.setAttribute('style', face);
+      if (face) {
+        heroTitle.setAttribute('style', face);
+        heroTitle.setAttribute('data-face', mainRoot.family + '|' + weightOf(mainRoot));
+        heroTitle.classList.remove('is-face-ready');
+      } else {
+        heroTitle.removeAttribute('style');
+        heroTitle.removeAttribute('data-face');
+        heroTitle.classList.remove('is-face-ready');
+      }
     }
 
     if (curMode === 'branch' || curMode === 'wall') {
@@ -1996,6 +2067,9 @@
           ? renderBranch(members, htmlForest)
           : renderWallHtml(members, htmlForest);
         wireFolds();
+        const htmlFaces = members.slice();
+        if (mainRoot) htmlFaces.push(mainRoot);
+        readyVisibleFaces(htmlFaces);
       }
     } else if (curMode === 'plex') {
       if (!focusId || !forest.byId[focusId]) {
@@ -2034,6 +2108,10 @@
       } else {
         fitView({ keepScale: !!renderOpts.keepScale, soft: !!renderOpts.soft });
       }
+    }
+
+    if (mainRoot && isCanvasMode(curMode)) {
+      readyVisibleFaces([mainRoot]);
     }
 
     if (footNote) {

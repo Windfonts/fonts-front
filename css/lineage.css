@@ -309,10 +309,14 @@ a.lfl-name:hover { text-decoration: underline; }
   flex: none;
   font-size: 1.15rem;
   line-height: 1;
-  color: var(--gray-2);
-  opacity: 0.55;
+  color: var(--ink);
+  opacity: 0.78;
   margin-top: 0.05rem;
   user-select: none;
+  transition: opacity var(--dur) var(--ease);
+}
+.lfl-yong.is-face-ready {
+  opacity: 0.95;
 }
 .lfl-card-meta {
   display: flex;
@@ -381,9 +385,11 @@ a.lfl-name:hover { text-decoration: underline; }
   font-size: 2rem;
   line-height: 1;
   color: var(--ink);
-  opacity: 0.85;
+  opacity: 0.8;
   user-select: none;
+  transition: opacity var(--dur) var(--ease);
 }
+.lfl-wall-yong.is-face-ready { opacity: 0.95; }
 .lfl-wall-name {
   font-size: var(--fs-13);
   font-weight: var(--fw-title);
@@ -648,10 +654,12 @@ a.lfl-wall-name:hover { text-decoration: underline; }
 .lfl-plex-pick-item .lfl-yong {
   font-size: 1rem;
   line-height: 1;
-  opacity: 0.85;
+  color: var(--ink);
+  opacity: 0.78;
   flex-shrink: 0;
   user-select: none;
 }
+.lfl-plex-pick-item .lfl-yong.is-face-ready { opacity: 0.95; }
 .lfl-plex-pick-item .lfl-card-meta {
   display: flex;
   justify-content: space-between;
@@ -679,7 +687,8 @@ a.lfl-wall-name:hover { text-decoration: underline; }
 
 /* —— 乙支线 / 丙墙 —— */
 /* —— 共用节点 —— */
-.lg-yong { flex: none; width: 2rem; font-size: var(--fs-20); line-height: 1; color: var(--ink); text-align: left; font-weight: var(--fw-body); }
+.lg-yong { flex: none; width: 2rem; font-size: var(--fs-20); line-height: 1; color: var(--ink); text-align: left; font-weight: var(--fw-body); opacity: 0.88; transition: opacity var(--dur) var(--ease); }
+.lg-yong.is-face-ready { opacity: 1; }
 .lg-name { font-size: var(--fs-14); color: var(--ink); display: inline-flex; align-items: center; gap: 0.45em; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .lg-name .icon { color: var(--gray-2); flex: none; }
 .lg-meta { margin-left: auto; font-size: var(--fs-12); color: var(--gray-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
