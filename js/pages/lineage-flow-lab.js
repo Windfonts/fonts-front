@@ -1,6 +1,6 @@
 /* 谱系关系图实验室
    - 四模式：激活 (plex) / 图 (flow) / 簇 (cluster) / 墙 (wall)；URL ?mode=
-   - 激活：TheBrain 邻域 — 父上、子下、旁侧兄弟（封顶）；宽扇叶用「狮尾系」门闸，不一次铺 51 卡；点卡 ?focus= 重布
+   - 激活：TheBrain 邻域 — 父上、子下、旁侧兄弟（封顶）；宽扇叶先收成门闸；点门闸在图内展开该支上下级（收起其他支），无下拉名单；点卡 ?focus= 重布
    - 簇：宽扇叶（≥8 子）按 CJK 前缀 / owner 收成簇卡；展开为 L→R 分层小图
    - 图：每父可见子卡封顶 +「还有 k 款」
    - 墙：标本/名墙，可滤簇
@@ -67,6 +67,8 @@
   let detectedClusters = []; /* [{id,kind,key,title,count,memberIds,parentName}] */
   let wallMembers = [];
   let focusId = '';
+  /* 激活模式：进入某主题支后只画该支上级+成员；点门闸进入，点卡激活时清除 */
+  let plexBranch = null; /* { key, parentId, memberIds: [] } | null */
   let view = { x: 40, y: 40, scale: 1 };
   let dragging = false;
   let dragStart = null;
@@ -80,6 +82,64 @@
     if (val == null || val === '') url.searchParams.delete(key);
     else url.searchParams.set(key, val);
     history.replaceState(null, '', url);
+  }
+
+
+  function branchKeyOf(gate) {
+    if (!gate) return '';
+    if (gate.clusterKey) return String(gate.clusterKind || 'prefix') + ':' + gate.clusterKey;
+    if (gate.id) return 'gate:' + gate.id;
+    return '';
+  }
+
+  function setPlexBranch(gate) {
+    if (!gate || !gate.members || !gate.members.length) {
+      plexBranch = null;
+      setUrlParam('branch', '');
+      return;
+    }
+    plexBranch = {
+      key: branchKeyOf(gate),
+      parentId: gate.parentId || '',
+      memberIds: gate.members.map(function (m) { return m.id; }),
+      title: gate.gateTitle || gate.name || ''
+    };
+    setUrlParam('branch', plexBranch.key);
+  }
+
+  function clearPlexBranch() {
+    plexBranch = null;
+    setUrlParam('branch', '');
+  }
+
+  function memberIdSet(ids) {
+    const s = {};
+    (ids || []).forEach(function (id) { s[id] = true; });
+    return s;
+  }
+
+  function placeChildRows(place, edges, focus, nodes, focusX, focusY, cx, opts) {
+    opts = opts || {};
+    const compact = opts.compact !== false;
+    const cols = Math.max(3, Math.min(7, nodes.length <= 4 ? nodes.length : (nodes.length <= 12 ? 4 : 6)));
+    const rows = Math.ceil(nodes.length / cols) || 1;
+    const rowH = CARD_H_COMPACT + PLEX_V_GAP * 0.55;
+    nodes.forEach(function (n, i) {
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+      const rowNodes = Math.min(cols, nodes.length - row * cols);
+      const rowW = rowNodes * CARD_W + Math.max(0, rowNodes - 1) * PLEX_H_GAP;
+      const rowLeft = cx - rowW / 2;
+      const x = rowLeft + col * (CARD_W + PLEX_H_GAP);
+      const y = focusY + CARD_H + PLEX_V_GAP + row * rowH;
+      place(n, x, y, CARD_H_COMPACT, { role: 'child', compact: compact });
+      edges.push({
+        from: focus.id,
+        to: n.id,
+        label: relLabel(n, focus)
+      });
+    });
+    return rows;
   }
 
   function weightOf(font) {
@@ -423,6 +483,41 @@
     return forest.roots[0] || null;
   }
 
+
+  function tryRestoreBranchFromUrl(forest) {
+    const b = qs('branch');
+    if (!b || plexBranch) return;
+    const parts = b.split(':');
+    if (parts.length < 2) return;
+    const kind = parts[0];
+    const key = parts.slice(1).join(':');
+    /* 在当前焦点父级下重找同名簇 */
+    const focus = pickDefaultFocus(forest, focusId);
+    const parent = focus ? (forest.byId[forest.parentOf[focus.id]] || focus) : null;
+    const scanParents = [];
+    if (focus) scanParents.push(focus);
+    if (parent && parent !== focus) scanParents.push(parent);
+    forest.roots.forEach(function (r) { scanParents.push(r); });
+    for (let i = 0; i < scanParents.length; i++) {
+      const p = scanParents[i];
+      if (!p) continue;
+      const packed = clusterSiblings(p, kidsOf(p, forest));
+      for (let j = 0; j < packed.clusters.length; j++) {
+        const c = packed.clusters[j];
+        if (c.kind === kind && c.key === key) {
+          plexBranch = {
+            key: b,
+            parentId: p.id,
+            memberIds: c.members.map(function (m) { return m.id; }),
+            title: c.title
+          };
+          if (!focusId) focusId = p.id;
+          return;
+        }
+      }
+    }
+  }
+
   function layoutPlex(forest, focusId) {
     const positions = {};
     const edges = [];
@@ -474,74 +569,106 @@
       py -= PLEX_V_GAP + CARD_H;
     }
 
-    /* —— children below (cluster gates if wide fan) —— */
+    /* —— children below：有 plexBranch 时只展开该支成员；否则宽扇叶收成门闸 —— */
+    const branchOn = !!(plexBranch && plexBranch.parentId === focus.id && plexBranch.memberIds && plexBranch.memberIds.length);
     const kids = kidsOf(focus, forest).slice();
-    const childRows = [];
-    if (kids.length >= FAN_CLUSTER_MIN) {
-      const packed = clusterSiblings(focus, kids);
-      packed.clusters.forEach(function (c) {
-        const gate = {
+    let childFontNodes = [];
+    let childGateRows = [];
+
+    if (branchOn) {
+      const allow = memberIdSet(plexBranch.memberIds);
+      childFontNodes = kids.filter(function (k) { return allow[k.id]; });
+      /* 成员可能不在 kidsOf（数据扁平时仍按名单画，挂到当前焦点下） */
+      if (!childFontNodes.length) {
+        plexBranch.memberIds.forEach(function (id) {
+          const n = forest.byId[id];
+          if (n && !n.isCluster && !n.isMore && !n.isPlexGate) childFontNodes.push(n);
+        });
+      }
+      childFontNodes.sort(function (a, b) {
+        return String(a.name).localeCompare(b.name, 'zh');
+      });
+    } else {
+      const childRows = [];
+      if (kids.length >= FAN_CLUSTER_MIN) {
+        const packed = clusterSiblings(focus, kids);
+        packed.clusters.forEach(function (c) {
+          const gate = {
+            isPlexGate: true,
+            id: 'plexgate:' + c.id,
+            name: c.title,
+            gateTitle: c.title,
+            gateCount: c.members.length,
+            gateSub: '主题支 · 点开后只留本支上下级',
+            members: c.members,
+            clusterKey: c.key,
+            clusterKind: c.kind,
+            parentId: focus.id
+          };
+          synthetic[gate.id] = gate;
+          childRows.push({ type: 'gate', node: gate });
+        });
+        packed.leftover.forEach(function (k) { childRows.push({ type: 'font', node: k }); });
+      } else {
+        kids.forEach(function (k) { childRows.push({ type: 'font', node: k }); });
+      }
+
+      let visibleChildren = childRows;
+      if (visibleChildren.length > PLEX_CHILD_CAP) {
+        const rest = visibleChildren.slice(PLEX_CHILD_CAP);
+        visibleChildren = visibleChildren.slice(0, PLEX_CHILD_CAP);
+        const moreMembers = [];
+        rest.forEach(function (r) {
+          if (r.type === 'font') moreMembers.push(r.node);
+          else if (r.node && r.node.members) moreMembers.push.apply(moreMembers, r.node.members);
+        });
+        const childMore = {
           isPlexGate: true,
-          id: 'plexgate:' + c.id,
-          name: c.title,
-          gateTitle: c.title,
-          gateCount: c.members.length,
-          gateSub: '主题支 · 点开挑选（不铺 ' + c.members.length + ' 卡）',
-          members: c.members,
-          clusterKey: c.key,
-          clusterKind: c.kind,
+          id: 'plexgate:more-kids:' + focus.id,
+          name: '还有 ' + rest.length + ' 项',
+          gateTitle: '还有 ' + rest.length + ' 项',
+          gateCount: moreMembers.length || rest.length,
+          gateSub: '其余子级 · 点开后在图内展开',
+          members: moreMembers.length ? moreMembers : rest.map(function (r) { return r.node; }).filter(Boolean),
           parentId: focus.id
         };
-        synthetic[gate.id] = gate;
-        childRows.push({ type: 'gate', node: gate });
+        synthetic[childMore.id] = childMore;
+        visibleChildren.push({ type: 'gate', node: childMore });
+      }
+      visibleChildren.forEach(function (row) {
+        if (row.type === 'gate') childGateRows.push(row.node);
+        else childFontNodes.push(row.node);
       });
-      packed.leftover.forEach(function (k) { childRows.push({ type: 'font', node: k }); });
+    }
+
+    if (branchOn || (!childGateRows.length && childFontNodes.length)) {
+      placeChildRows(place, edges, focus, childFontNodes, focusX, focusY, cx, { compact: true });
     } else {
-      kids.forEach(function (k) { childRows.push({ type: 'font', node: k }); });
+      /* 门闸 + 零散字体同一行 */
+      const visibleChildren = childGateRows.map(function (n) { return { type: 'gate', node: n }; })
+        .concat(childFontNodes.map(function (n) { return { type: 'font', node: n }; }));
+      /* 保持门闸在前、leftover 在后的大致顺序：上面已分，这里按 gate 再 font */
+      const ordered = [];
+      childGateRows.forEach(function (n) { ordered.push(n); });
+      childFontNodes.forEach(function (n) { ordered.push(n); });
+      const childY = focusY + CARD_H + PLEX_V_GAP;
+      const childTotalW = ordered.length * CARD_W + Math.max(0, ordered.length - 1) * PLEX_H_GAP;
+      let childX = cx - childTotalW / 2;
+      ordered.forEach(function (n) {
+        const h = n.isPlexGate ? CARD_H_CLUSTER : CARD_H_COMPACT;
+        place(n, childX, childY, h, { role: 'child', compact: !n.isPlexGate });
+        edges.push({
+          from: focus.id,
+          to: n.id,
+          label: n.isPlexGate ? '衍生' : relLabel(n, focus)
+        });
+        childX += CARD_W + PLEX_H_GAP;
+      });
     }
 
-    let visibleChildren = childRows;
-    let childMore = null;
-    if (visibleChildren.length > PLEX_CHILD_CAP) {
-      const rest = visibleChildren.slice(PLEX_CHILD_CAP);
-      visibleChildren = visibleChildren.slice(0, PLEX_CHILD_CAP);
-      const moreMembers = [];
-      rest.forEach(function (r) {
-        if (r.type === 'font') moreMembers.push(r.node);
-        else if (r.node && r.node.members) moreMembers.push.apply(moreMembers, r.node.members);
-      });
-      childMore = {
-        isPlexGate: true,
-        id: 'plexgate:more-kids:' + focus.id,
-        name: '还有 ' + rest.length + ' 项',
-        gateTitle: '还有 ' + rest.length + ' 项',
-        gateCount: moreMembers.length || rest.length,
-        gateSub: '子级未尽 · 点开挑选',
-        members: moreMembers.length ? moreMembers : rest.map(function (r) { return r.node; }),
-        parentId: focus.id
-      };
-      synthetic[childMore.id] = childMore;
-      visibleChildren.push({ type: 'gate', node: childMore });
-    }
-
-    const childY = focusY + CARD_H + PLEX_V_GAP;
-    const childTotalW = visibleChildren.length * CARD_W + Math.max(0, visibleChildren.length - 1) * PLEX_H_GAP;
-    let childX = cx - childTotalW / 2;
-    visibleChildren.forEach(function (row) {
-      const n = row.node;
-      const h = n.isPlexGate ? CARD_H_CLUSTER : CARD_H_COMPACT;
-      place(n, childX, childY, h, { role: 'child', compact: !n.isPlexGate });
-      edges.push({
-        from: focus.id,
-        to: n.id,
-        label: n.isPlexGate ? '衍生' : relLabel(n, focus)
-      });
-      childX += CARD_W + PLEX_H_GAP;
-    });
-
-    /* —— siblings / near旁 to the sides —— */
+    /* —— siblings / 旁系：进入主题支后不画其他支门闸 —— */
     const parentId = forest.parentOf[focus.id];
-    if (parentId && forest.byId[parentId]) {
+    if (!branchOn && parentId && forest.byId[parentId]) {
       const parent = forest.byId[parentId];
       const allSibs = kidsOf(parent, forest).filter(function (s) { return s.id !== focus.id; });
       const packed = clusterSiblings(parent, kidsOf(parent, forest));
@@ -551,52 +678,47 @@
 
       let left = [];
       let right = [];
-      let sideGate = null;
+      let sideGates = [];
 
       if (homeCluster && homeCluster.members.length >= PLEX_GATE_FAN) {
         const others = homeCluster.members.filter(function (m) { return m.id !== focus.id; });
         const near = pickNearSiblings(others, focus, PLEX_SIBLING_SIDE * 2);
         left = near.slice(0, PLEX_SIBLING_SIDE);
         right = near.slice(PLEX_SIBLING_SIDE);
-        const nearIds = {};
-        near.forEach(function (s) { nearIds[s.id] = true; });
-        const restN = others.filter(function (m) { return !nearIds[m.id]; });
-        if (restN.length) {
-          sideGate = {
-            isPlexGate: true,
-            id: 'plexgate:sib:' + homeCluster.id,
-            name: homeCluster.title,
-            gateTitle: homeCluster.title,
-            gateCount: homeCluster.members.length,
-            gateSub: '同支旁系 · 邻域仅示近旁，点开挑选',
-            members: homeCluster.members,
-            clusterKey: homeCluster.key,
-            clusterKind: homeCluster.kind,
-            parentId: parent.id
-          };
-          synthetic[sideGate.id] = sideGate;
-        }
-      } else if (allSibs.length >= PLEX_GATE_FAN) {
-        /* wide fan without a home prefix cluster — leftover near + cluster gates as side chips */
-        const near = pickNearSiblings(allSibs, focus, PLEX_SIBLING_SIDE * 2);
-        left = near.slice(0, PLEX_SIBLING_SIDE);
-        right = near.slice(PLEX_SIBLING_SIDE);
-        if (packed.clusters.length) {
-          const c = packed.clusters[0];
-          sideGate = {
+        /* 同前缀内不再侧挂大门闸；其他主题支可侧挂入口 */
+        packed.clusters.forEach(function (c) {
+          if (c.id === homeCluster.id) return;
+          sideGates.push({
             isPlexGate: true,
             id: 'plexgate:fan:' + c.id,
             name: c.title,
             gateTitle: c.title,
             gateCount: c.members.length,
-            gateSub: '宽扇叶入口 · 点开挑选',
+            gateSub: '宽扇叶 · 点开只留本支',
             members: c.members,
             clusterKey: c.key,
             clusterKind: c.kind,
             parentId: parent.id
-          };
-          synthetic[sideGate.id] = sideGate;
-        }
+          });
+        });
+      } else if (allSibs.length >= PLEX_GATE_FAN) {
+        const near = pickNearSiblings(allSibs, focus, PLEX_SIBLING_SIDE * 2);
+        left = near.slice(0, PLEX_SIBLING_SIDE);
+        right = near.slice(PLEX_SIBLING_SIDE);
+        packed.clusters.forEach(function (c) {
+          sideGates.push({
+            isPlexGate: true,
+            id: 'plexgate:fan:' + c.id,
+            name: c.title,
+            gateTitle: c.title,
+            gateCount: c.members.length,
+            gateSub: '宽扇叶 · 点开只留本支',
+            members: c.members,
+            clusterKey: c.key,
+            clusterKind: c.kind,
+            parentId: parent.id
+          });
+        });
       } else {
         const near = allSibs.slice(0, PLEX_SIBLING_SIDE * 2);
         left = near.slice(0, Math.ceil(near.length / 2));
@@ -607,7 +729,6 @@
       left.forEach(function (s, i) {
         const x = focusX - (i + 1) * (CARD_W + PLEX_H_GAP);
         place(s, x, sibY, CARD_H_COMPACT, { role: 'sibling', compact: true });
-        /* soft link via parent already; optional jump edge from focus */
         edges.push({ from: focus.id, to: s.id, label: '旁', soft: true });
       });
       right.forEach(function (s, i) {
@@ -615,15 +736,14 @@
         place(s, x, sibY, CARD_H_COMPACT, { role: 'sibling', compact: true });
         edges.push({ from: focus.id, to: s.id, label: '旁', soft: true });
       });
-      if (sideGate) {
-        /* place gate upper-right of focus */
-        const gx = focusX + CARD_W + PLEX_H_GAP + (right.length) * (CARD_W + PLEX_H_GAP);
+      sideGates.forEach(function (sideGate, gi) {
+        synthetic[sideGate.id] = sideGate;
+        const gx = focusX + CARD_W + PLEX_H_GAP + (right.length) * (CARD_W + PLEX_H_GAP) + gi * (CARD_W + PLEX_H_GAP);
         const gy = focusY - PLEX_V_GAP - 8;
         place(sideGate, Math.max(gx, focusX + CARD_W + PLEX_H_GAP), gy, CARD_H_CLUSTER, { role: 'gate' });
         edges.push({ from: parent.id, to: sideGate.id, label: '', soft: true });
-      }
-    } else if (!parentId && kids.length === 0 && forest.roots.length > 1) {
-      /* root with no parent: show other roots as side jumps (capped) */
+      });
+    } else if (!branchOn && !parentId && kids.length === 0 && forest.roots.length > 1) {
       const others = forest.roots.filter(function (r) { return r.id !== focus.id; }).slice(0, 4);
       others.forEach(function (s, i) {
         const leftSide = i % 2 === 0;
@@ -634,6 +754,28 @@
         place(s, x, focusY, CARD_H_COMPACT, { role: 'jump', compact: true });
         edges.push({ from: focus.id, to: s.id, label: '跳', soft: true });
       });
+    } else if (branchOn && parentId && forest.byId[parentId]) {
+      /* 支线模式：旁侧不铺其他支，仅保留焦点近旁同支成员（若焦点是成员之一） */
+      const allow = memberIdSet(plexBranch.memberIds);
+      if (allow[focus.id]) {
+        const parent = forest.byId[parentId];
+        const sibs = kidsOf(parent, forest).filter(function (s) {
+          return s.id !== focus.id && allow[s.id];
+        });
+        const near = pickNearSiblings(sibs, focus, PLEX_SIBLING_SIDE * 2);
+        const left = near.slice(0, PLEX_SIBLING_SIDE);
+        const right = near.slice(PLEX_SIBLING_SIDE);
+        left.forEach(function (s, i) {
+          const x = focusX - (i + 1) * (CARD_W + PLEX_H_GAP);
+          place(s, x, focusY, CARD_H_COMPACT, { role: 'sibling', compact: true });
+          edges.push({ from: focus.id, to: s.id, label: '旁', soft: true });
+        });
+        right.forEach(function (s, i) {
+          const x = focusX + CARD_W + (i + 1) * PLEX_H_GAP + i * CARD_W;
+          place(s, x, focusY, CARD_H_COMPACT, { role: 'sibling', compact: true });
+          edges.push({ from: focus.id, to: s.id, label: '旁', soft: true });
+        });
+      }
     }
 
     Object.keys(synthetic).forEach(function (id) {
@@ -1071,8 +1213,8 @@
         pos.x + 'px;top:' + pos.y + 'px;width:' + pos.w + 'px" tabindex="0" role="button">' +
         '<div class="lfl-plex-gate-title"><span>' + esc(n.gateTitle || n.name) + '</span>' +
         '<span class="lfl-plex-gate-count">' + (n.gateCount || (n.members && n.members.length) || 0) + '</span></div>' +
-        '<span class="lfl-plex-gate-sub">' + esc(n.gateSub || '点开挑选') + '</span>' +
-        '<span class="lfl-plex-gate-act">▸ 打开名单</span>' +
+        '<span class="lfl-plex-gate-sub">' + esc(n.gateSub || '点开后只留本支上下级') + '</span>' +
+        '<span class="lfl-plex-gate-act">▸ 展开本支</span>' +
         '</article>';
     }
     if (n.isCluster) {
@@ -1188,7 +1330,7 @@
         const id = el.getAttribute('data-id');
         const node = layout.positions[id] && layout.positions[id].node;
         if (node && node.isPlexGate) {
-          openPlexPick(node, el);
+          enterPlexBranch(node);
           return;
         }
         if (node && node.isCluster) {
@@ -1228,73 +1370,34 @@
     if (!plexPick) return;
     plexPick.hidden = true;
     plexPick.innerHTML = '';
-    clearPlexGateOpen();
   }
 
-  function clearPlexGateOpen() {
-    if (!nodesEl) return;
-    nodesEl.querySelectorAll('.lfl-card.is-plex-gate.is-open').forEach(function (el) {
-      el.classList.remove('is-open');
-    });
-  }
-
-  function openPlexPick(gate, anchorEl) {
-    if (!plexPick || !gate || !gate.members || !gate.members.length) return;
-    clearPlexGateOpen();
-    if (anchorEl) anchorEl.classList.add('is-open');
-    const members = gate.members.slice().sort(function (a, b) {
-      return String(a.name).localeCompare(b.name, 'zh');
-    });
-    let html = '<div class="lfl-plex-pick-head"><span>' + esc(gate.gateTitle || gate.name) +
-      ' · ' + members.length + '</span>' +
-      '<button type="button" class="lfl-plex-pick-close" id="plexPickClose" aria-label="收起">×</button></div>';
-    html += '<ul class="lfl-plex-pick-list">';
-    members.forEach(function (m) {
-      const lic = licShort(m);
-      const who = whoOf(m);
-      const face = faceOf(m);
-      const yong = m.family
-        ? '<span class="lfl-yong" style="' + face + '" aria-hidden="true">' + YONG + '</span>'
-        : '';
-      html += '<li><button type="button" class="lfl-plex-pick-item' +
-        (focusId === m.id ? ' is-on' : '') + '" data-activate="' + esc(m.id) + '">' +
-        '<div class="lfl-card-top"><div class="lfl-card-names"><span class="lfl-name">' +
-        esc(m.name) + '</span></div>' + yong + '</div>' +
-        '<div class="lfl-card-meta">' +
-        '<span class="lfl-lic">' + esc(lic) + '</span>' +
-        '<span class="lfl-who">' + esc(who) + '</span>' +
-        '</div></button></li>';
-    });
-    html += '</ul>';
-    plexPick.innerHTML = html;
-    plexPick.hidden = false;
-
-    const vr = viewport.getBoundingClientRect();
-    const pickW = Math.min(280, vr.width - 16);
-    let left = 16;
-    let top = 16;
-    if (anchorEl) {
-      const ar = anchorEl.getBoundingClientRect();
-      left = Math.min(Math.max(8, ar.left - vr.left), Math.max(8, vr.width - pickW - 8));
-      top = Math.min(Math.max(8, ar.bottom - vr.top + 10), Math.max(8, vr.height - 140));
+  function enterPlexBranch(gate) {
+    if (!gate || !gate.members || !gate.members.length) return;
+    hidePlexPick();
+    const parentId = gate.parentId || '';
+    setPlexBranch(gate);
+    if (parentId) focusId = parentId;
+    setUrlParam('focus', focusId);
+    if (curMode !== 'plex') {
+      setMode('plex', true);
+      return;
     }
-    plexPick.style.width = pickW + 'px';
-    plexPick.style.left = left + 'px';
-    plexPick.style.top = top + 'px';
-
-    const closeBtn = document.getElementById('plexPickClose');
-    if (closeBtn) closeBtn.addEventListener('click', hidePlexPick);
-    plexPick.querySelectorAll('[data-activate]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        hidePlexPick();
-        activateFocus(btn.getAttribute('data-activate'));
-      });
-    });
+    render({ keepScale: view.scale !== 1, recenter: true });
   }
 
   function activateFocus(id) {
     if (!id) return;
     const keepScale = view.scale !== 1;
+    /* 点具体字体：离开门闸支线坍缩，回到以该字为中心的邻域 */
+    if (plexBranch && plexBranch.memberIds && plexBranch.memberIds.indexOf(id) === -1) {
+      clearPlexBranch();
+    } else if (plexBranch && plexBranch.parentId === id) {
+      /* 回到支线父级，保持支线展开 */
+    } else if (plexBranch && plexBranch.memberIds && plexBranch.memberIds.indexOf(id) !== -1) {
+      /* 仍在支线内激活某一成员：收起支线网格，改邻域居中 */
+      clearPlexBranch();
+    }
     focusId = id;
     setUrlParam('focus', id);
     if (curMode !== 'plex') {
@@ -1387,6 +1490,7 @@
 
   function setMode(mode, fromUser) {
     if (MODES.indexOf(mode) === -1) mode = 'flow';
+    if (mode !== 'plex') clearPlexBranch();
     curMode = mode;
     if (fromUser) modeLocked = true;
     setUrlParam('mode', mode);
@@ -1418,6 +1522,7 @@
 
   function setGroup(g) {
     curGroup = g;
+    clearPlexBranch();
     focusId = '';
     expandedClusters = {};
     expandedMores = {};
@@ -1566,7 +1671,8 @@
         focusId = (qf && forest.byId[qf]) ? qf : (pickDefaultFocus(forest, qf) || {}).id || '';
         if (focusId) setUrlParam('focus', focusId);
       }
-      layout = layoutPlex(forest, focusId);
+      tryRestoreBranchFromUrl(forest);
+    layout = layoutPlex(forest, focusId);
       if (layout.focusId) focusId = layout.focusId;
       const visibleN = Object.keys(layout.positions).length;
       famCap.textContent = (gd.name || curGroup) + ' · ' + modeLabel + ' · 激活「' +

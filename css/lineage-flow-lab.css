@@ -532,7 +532,7 @@ a.lfl-wall-name:hover { text-decoration: underline; }
     inset 0 0 0 1.5px var(--rule-2),
     0 10px 28px color-mix(in srgb, var(--ink) 10%, transparent);
 }
-.lfl-plex-pick[hidden] { display: none; }
+.lfl-plex-pick, .lfl-plex-pick[hidden] { display: none !important; }
 .lfl-plex-pick::before {
   content: "";
   position: absolute;
