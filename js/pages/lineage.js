@@ -1,4 +1,5 @@
 /* 谱系页（现网 lineage.html）
+   - 双视图：派生 (derive / 师承) vs 组织 (org / 品牌)；URL ?view=derive|org，与顶栏字族组同步
    - 四模式：激活 (plex) / 图 (flow) / 支线 (branch) / 墙 (wall)；URL ?mode=；tree→branch
    - 激活/图：画布 + HTML 卡 + Bezier；ELK layered 算坐标（plex=DOWN，flow=RIGHT），手写 layout 兜底
    - 支线/墙：renderBranch / renderWall
@@ -17,12 +18,30 @@
   function isBrandMajorGroup(g) {
     return MAJOR_GROUPS.brand.indexOf(g) !== -1;
   }
-  function famKindTag(g) {
-    return isBrandMajorGroup(g) ? '品牌组织' : '派生族谱';
+  function isLineageMajorGroup(g) {
+    return MAJOR_GROUPS.lineage.indexOf(g) !== -1;
   }
-  function footForGroup(g) {
-    if (isBrandMajorGroup(g)) {
-      return '这里看的是品牌归属，不是字形改自谁。激活看邻域，图看关系，支线看结构，墙看样张。';
+  function normalizeView(v) {
+    if (v === 'org' || v === 'brand') return 'org';
+    if (v === 'derive' || v === 'lineage') return 'derive';
+    return '';
+  }
+  /** 字族 → 视图：品牌组=组织，师承组=派生；其余按 catalog/作者归属推断 */
+  function viewForGroup(g) {
+    if (isBrandMajorGroup(g)) return 'org';
+    if (isLineageMajorGroup(g)) return 'derive';
+    if (isCatalogGroup(g)) return 'org';
+    return 'derive';
+  }
+  function isOrgView() {
+    return curView === 'org';
+  }
+  function famKindTag() {
+    return isOrgView() ? '品牌组织' : '派生族谱';
+  }
+  function footForView() {
+    if (isOrgView()) {
+      return '这里看品牌归属，不是字形改自谁。激活看邻域，图看关系，支线看结构，墙看样张。';
     }
     return '这里看谁改自谁。激活看邻域，图看关系，支线看代际，墙看样张；字体名用它自己的字型排印。';
   }
@@ -84,6 +103,7 @@
   const wallEl = { hidden: true, innerHTML: '', querySelectorAll: function () { return []; } };
 
   let curGroup = '';
+  let curView = ''; /* derive | org — synced with 师承/品牌 + ?view= */
   let curMode = ''; /* plex | flow | cluster | wall — '' until decided */
   let modeLocked = false; /* URL ?mode= locks until user picks */
   let clusterFilter = ''; /* prefix / owner key / '' */
@@ -107,7 +127,7 @@
   let dragging = false;
   let dragStart = null;
   const viewShell = document.getElementById('viewShell');
-  const FOOT_PLAIN = footForGroup(''); /* default = 派生族谱口吻 */
+  const FOOT_PLAIN = '这里看谁改自谁。激活看邻域，图看关系，支线看代际，墙看样张；字体名用它自己的字型排印。';
 
   /* —— 乙支线 / 丙墙（现网 HTML） —— */
   const REL_ICON = { locale: 'merge', collab: 'compare' };
@@ -170,11 +190,21 @@
     return '第 ' + '一二三四五六七八九'[Math.min(g - 1, 8)] + ' 代';
   }
 
-  function buildHtmlForest(members, all) {
+  function buildHtmlForest(members, all, opts) {
+    opts = opts || {};
     const byId = {};
     members.forEach(function (f) { byId[f.id] = f; });
     const children = {};
     let roots = [];
+    /* 组织视图：不画字形上游树，成员平铺（结构留给品牌枢纽画布） */
+    if (opts.orgOnly || isOrgView()) {
+      members.forEach(function (f) { roots.push(f); });
+      roots.sort(function (a, b) {
+        return (a.releaseYear || 9999) - (b.releaseYear || 9999) ||
+          String(a.name).localeCompare(b.name, 'zh');
+      });
+      return { roots: roots, children: children };
+    }
     members.forEach(function (f) {
       const rec = f.lineage || {};
       const up = rec.relation === 'original' ? '' : (rec.upstreamName || '');
@@ -573,8 +603,20 @@
   function relLabel(node, parent) {
     if (!node || node.ghost || node.outgroup || node.isCluster || node.isMore) return '';
     if (node.edgeLabel) return node.edgeLabel;
+    /* 组织视图：边只谈归属/合作，不谈字形衍生 */
+    if (isOrgView()) {
+      if (node.isBrandFamily && parent && parent.isBrandFamily) return '合作';
+      if (parent && parent.isBrandFamily) {
+        const r = (node.lineage || {}).relation || '';
+        if (r === 'collab') return '合作';
+        if (r === 'commissioned') return '委托';
+        return '出品';
+      }
+      if (node.isBrandFamily) return '品牌';
+      return '品牌';
+    }
     if (node.isSeries) {
-      if (node.isBrandFamily && parent && parent.isBrandFamily) return node.edgeLabel || '合作';
+      if (node.isBrandFamily && parent && parent.isBrandFamily) return '合作';
       return '';
     }
     const rec = node.lineage || {};
@@ -582,6 +624,15 @@
     if (Object.prototype.hasOwnProperty.call(REL_LABEL, r)) return REL_LABEL[r];
     if (parent && (parent.ghost || parent.outgroup)) return '衍生';
     return r ? String(r) : '衍生';
+  }
+
+  function edgeLabelFor(n, parent) {
+    if (!n) return '';
+    if (n.edgeLabel) return n.edgeLabel;
+    if (n.isBrandFamily) return '品牌';
+    if (n.isSeries) return isOrgView() ? '品牌' : '主题支';
+    if (n.isCluster || n.isPlexGate) return isOrgView() ? '品牌' : '衍生';
+    return relLabel(n, parent);
   }
 
   /* —— forest —— */
@@ -665,8 +716,9 @@
 
   function buildForest(members, all, opts) {
     opts = opts || {};
-    /* 品牌/平台芯片：成员作品牌目录，忽略跨组 upstream，避免幽灵思源顶卡 */
+    /* catalogMode：忽略跨组 upstream；orgOnly：完全忽略字形上游，只交给品牌枢纽 */
     const catalogMode = !!opts.catalogMode;
+    const orgOnly = !!opts.orgOnly;
     const byId = {};
     members.forEach(function (f) { byId[f.id] = f; });
     const children = {};
@@ -685,6 +737,16 @@
       return g;
     }
 
+    if (orgOnly) {
+      members.forEach(function (f) { roots.push(f); });
+      function byYearOrg(a, b) {
+        return (a.releaseYear || 9999) - (b.releaseYear || 9999) ||
+          String(a.name).localeCompare(b.name, 'zh');
+      }
+      roots.sort(byYearOrg);
+      return { roots: roots, children: children, parentOf: parentOf, byId: byId };
+    }
+
     members.forEach(function (f) {
       const rec = f.lineage || {};
       const up = rec.relation === 'original' ? '' : (rec.upstreamName || '');
@@ -697,7 +759,7 @@
         (children[parent.id] = children[parent.id] || []).push(f);
         parentOf[f.id] = parent.id;
       } else if (catalogMode) {
-        /* 上游不在本芯片成员集：目录视图下作平级根，交给品牌枢纽 */
+        /* 上游不在本组成员集：目录视图下作平级根，交给品牌枢纽 */
         roots.push(f);
       } else if (parent && !byId[parent.id]) {
         const oid = 'out:' + parent.id;
@@ -1407,7 +1469,7 @@
         edges.push({
           from: focus.id,
           to: n.id,
-          label: n.edgeLabel || (n.isBrandFamily ? '品牌' : (n.isSeries ? '主题支' : (n.isCluster || n.isPlexGate ? '衍生' : relLabel(n, focus))))
+          label: edgeLabelFor(n, focus)
         });
         if (col.leaves.length) {
           const hubPos = positions[n.id];
@@ -1692,7 +1754,7 @@
       edges.push({
         from: focus.id,
         to: n.id,
-        label: n.edgeLabel || (n.isBrandFamily ? '品牌' : (n.isSeries ? '主题支' : (n.isCluster || n.isPlexGate ? '衍生' : relLabel(n, focus))))
+        label: edgeLabelFor(n, focus)
       });
     }
 
@@ -1838,7 +1900,7 @@
       if (layout.focusId) focusId = layout.focusId;
       const gd = (WFProto.getLineageData().groups || {})[curGroup] || {};
       const visibleN = Object.keys(layout.positions).length;
-      famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag(curGroup) + ' · 激活·邻域 · 激活「' +
+      famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag() + ' · 激活·邻域 · 激活「' +
         ((layout.byId[focusId] && layout.byId[focusId].name) || focusId) + '」· 邻域 ' + visibleN +
         ' 卡 · ELK';
       renderGraph();
@@ -1988,7 +2050,7 @@
         if (row.type === 'cluster') {
           const cy = childCursor;
           placeNode(row.node, depth + 1, cy, CARD_H_CLUSTER);
-          edges.push({ from: node.id, to: row.node.id, label: '衍生' });
+          edges.push({ from: node.id, to: row.node.id, label: edgeLabelFor(row.node, node) });
           let used = CARD_H_CLUSTER;
           if (row.open) {
             const visible = row.members.filter(function (m) {
@@ -2178,9 +2240,9 @@
     const ghostN = Object.keys(layoutRef.byId).filter(function (id) {
       return layoutRef.byId[id].ghost;
     }).length;
-    const brand = isBrandMajorGroup(curGroup);
+    const brand = isOrgView();
     const countBit = brand ? (members.length + ' 款') : (members.length + ' 款在谱');
-    return (gd.name || curGroup) + ' · ' + famKindTag(curGroup) + ' · ' + modeLabel + ' · ' + countBit + ' · ' +
+    return (gd.name || curGroup) + ' · ' + famKindTag() + ' · ' + modeLabel + ' · ' + countBit + ' · ' +
       edgeN + ' 条边' +
       (ghostN ? ' · ' + ghostN + ' 个未收录上游' : '') +
       (layoutRef.engine === 'elk' ? ' · ELK' : '');
@@ -2778,9 +2840,46 @@
     return edges;
   }
 
+  function firstMajorWithCount(keys, counts) {
+    for (let i = 0; i < keys.length; i++) {
+      if (counts[keys[i]]) return keys[i];
+    }
+    return '';
+  }
+
+  /** URL ?view= 与字族对齐；仅有 view 时切到该视图下第一个大族 */
+  function resolveViewWithGroup(counts) {
+    const qView = normalizeView(qs('view'));
+    const qGroup = qs('group');
+    if (qGroup && counts[qGroup]) {
+      curView = viewForGroup(curGroup);
+    } else if (qView) {
+      curView = qView;
+      if (viewForGroup(curGroup) !== curView) {
+        const hit = firstMajorWithCount(
+          curView === 'org' ? MAJOR_GROUPS.brand : MAJOR_GROUPS.lineage,
+          counts
+        );
+        if (hit) curGroup = hit;
+      }
+    } else {
+      curView = viewForGroup(curGroup);
+    }
+    syncViewChrome();
+  }
+
   function pickDefaultGroup(counts, ld, all) {
     const q = qs('group');
     if (q && counts[q]) return q;
+    const qView = normalizeView(qs('view'));
+    if (qView === 'org') {
+      const hit = firstMajorWithCount(MAJOR_GROUPS.brand, counts);
+      if (hit) return hit;
+    }
+    if (qView === 'derive') {
+      const hit = firstMajorWithCount(MAJOR_GROUPS.lineage, counts);
+      if (hit) return hit;
+    }
     if (counts[DEFAULT_GROUP]) return DEFAULT_GROUP;
     const keys = Object.keys(ld.groups || {}).filter(function (g) { return counts[g]; });
     keys.sort(function (a, b) {
@@ -2842,7 +2941,7 @@
       flowToolsSep.removeAttribute('hidden');
     }
     if (modeHint) {
-      const brand = isBrandMajorGroup(curGroup);
+      const brand = isOrgView();
       if (mode === 'plex') {
         modeHint.textContent = brand ? '激活：点卡片看旗下关系' : '激活：点卡片看上下级';
       } else if (mode === 'flow') {
@@ -2892,8 +2991,26 @@
     render();
   }
 
+  function syncViewChrome() {
+    const org = isOrgView();
+    document.body.classList.toggle('is-view-org', org);
+    document.body.classList.toggle('is-view-derive', !org);
+    if (curView) setUrlParam('view', curView);
+  }
+
+  /** 派生=字形上下游树；组织=品牌枢纽+归属（不画 fork 树） */
+  function assembleForest(members, all) {
+    if (isOrgView()) {
+      return injectZcoolHuxiaoboLink(injectSeriesNodes(injectBrandFamilyNodes(
+        buildForest(members, all, { orgOnly: true })
+      )));
+    }
+    return injectSeriesNodes(buildForest(members, all, { catalogMode: false }));
+  }
+
   function setGroup(g) {
     curGroup = g;
+    curView = viewForGroup(g);
     clearPlexBranch();
     focusId = '';
     expandedClusters = {};
@@ -2901,9 +3018,11 @@
     expandedBrandHubs = {};
     clusterFilter = '';
     setUrlParam('group', g);
+    setUrlParam('view', curView);
     setUrlParam('cluster', '');
     setUrlParam('focus', '');
     hidePlexPick();
+    syncViewChrome();
     /* re-suggest unless URL/user locked; keep remembered branch/wall */
     if (!modeLocked) {
       let saved = '';
@@ -2926,6 +3045,7 @@
     if (!curGroup || !counts[curGroup]) {
       curGroup = pickDefaultGroup(counts, ld, all);
     }
+    resolveViewWithGroup(counts);
     function chipHtml(g) {
       if (!counts[g]) return '';
       const gd = ld.groups[g] || {};
@@ -2999,9 +3119,9 @@
     }
 
     const members = collapseFaceVariants(membersForGroup(curGroup, all));
-    const forest = injectZcoolHuxiaoboLink(injectSeriesNodes(injectBrandFamilyNodes(
-      buildForest(members, all, { catalogMode: isCatalogGroup(curGroup) })
-    )));
+    if (!curView) curView = viewForGroup(curGroup);
+    syncViewChrome();
+    const forest = assembleForest(members, all);
     forestCache = forest;
     detectedClusters = collectDetectedClusters(forest);
 
@@ -3053,7 +3173,7 @@
     if (curMode === 'branch' || curMode === 'wall') {
       layout = null;
       const htmlForest = buildHtmlForest(members, all);
-      famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag(curGroup) + ' · ' + modeLabel + ' · ' + members.length + ' 款' +
+      famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag() + ' · ' + modeLabel + ' · ' + members.length + ' 款' +
         (htmlForest.roots.length > 1 ? ' · ' + htmlForest.roots.length + ' 条支线' : '');
       if (htmlStage) {
         htmlStage.innerHTML = curMode === 'branch'
@@ -3076,7 +3196,7 @@
       layout = layoutPlex(forest, focusId);
       if (layout.focusId) focusId = layout.focusId;
       const visibleN = Object.keys(layout.positions).length;
-      famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag(curGroup) + ' · ' + modeLabel + ' · 激活「' +
+      famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag() + ' · ' + modeLabel + ' · 激活「' +
         ((layout.byId[focusId] && layout.byId[focusId].name) || focusId) + '」· 邻域 ' + visibleN +
         ' 卡' + (fan >= AUTO_PLEX_FAN ? ' · 主题支扇叶 ' + fan : '');
       renderGraph();
@@ -3105,7 +3225,7 @@
     }
 
     if (footNote) {
-      footNote.textContent = footForGroup(curGroup);
+      footNote.textContent = footForView();
     }
 
     document.title = (gd.name ? String(gd.name).split(' / ')[0] + ' · ' : '') + '谱系 · 文风字体';

@@ -236,9 +236,25 @@
     const kin = L.group && kinN > 1
       ? '<a class="btn" href="' + WFChrome.href('fonts.html?lineage=' + encodeURIComponent(L.group)) + '">' + WFChrome.icon('compare') + '查看全部同源字</a>'
       : '';
-    const graphHref = L.group
-      ? 'lineage.html?group=' + encodeURIComponent(L.group) + '&mode=plex&focus=' + encodeURIComponent(font.id)
-      : (font.id ? 'lineage.html?mode=plex&focus=' + encodeURIComponent(font.id) : '');
+    const brandGroups = { 'alibaba-sans': 1, zcool: 1, qiantu: 1, maoken: 1, pangmen: 1 };
+    const deriveGroups = { 'source-han-sans': 1, 'source-han-serif': 1, 'lxgw-wenkai': 1 };
+    let graphGroup = L.group || '';
+    let graphView = 'derive';
+    if (graphGroup && brandGroups[graphGroup]) {
+      graphView = 'org';
+    } else if (graphGroup && deriveGroups[graphGroup]) {
+      graphView = 'derive';
+    } else {
+      const oid = L.ownerId || (font.ownerInfo && font.ownerInfo.id) || '';
+      if (oid && brandGroups[oid]) {
+        graphView = 'org';
+        graphGroup = graphGroup || oid;
+      }
+    }
+    const graphHref = graphGroup
+      ? 'lineage.html?group=' + encodeURIComponent(graphGroup) + '&view=' + graphView +
+        '&mode=plex&focus=' + encodeURIComponent(font.id)
+      : (font.id ? 'lineage.html?view=' + graphView + '&mode=plex&focus=' + encodeURIComponent(font.id) : '');
     const graph = graphHref
       ? '<a class="btn ink" href="' + WFChrome.href(graphHref) + '">' + WFChrome.icon('branch') + '在谱系图中查看</a>'
       : '';
