@@ -52,11 +52,21 @@
           }).join('') + '</select></div>' +
         '<div class="field"><label>提前加载</label><label class="check"><input type="checkbox" id="setPreload"' + (s.settings.preload ? ' checked' : '') + ' /> 新项目默认提前加载样式</label></div>' +
       '</div></section>' +
+            '<section class="app-section"><h2>API 连接</h2>' +
+        '<p class="t-13 muted" style="margin-bottom:var(--s-3)">会话走 vault NextAuth（同域 <code>/api/auth</code>）。项目/域名/用量仍存本机；发布与密钥校验打 vault。</p>' +
+        '<div class="grid cols-2">' +
+          '<div class="field"><label for="apiMode">WFApi 模式</label><select class="select" id="apiMode">' +
+            '<option value="mock"' + (WFApi.mode() === 'mock' ? ' selected' : '') + '>mock（本机）</option>' +
+            '<option value="live"' + (WFApi.mode() === 'live' ? ' selected' : '') + '>live（vault 密钥/发布）</option></select></div>' +
+          '<div class="field"><label for="vaultKey">Vault API 密钥</label><input class="input" id="vaultKey" type="password" autocomplete="off" placeholder="粘贴 vault 颁发的 wf_live_…" /></div></div>' +
+        '<p style="margin-top:var(--s-4)"><button type="button" class="btn" id="saveApiMode">' + WFChrome.icon('check') + '保存模式</button> ' +
+          '<button type="button" class="btn" id="verifyKey">' + WFChrome.icon('cloud') + '校验并采用密钥</button> ' +
+          '<span class="t-13 muted" id="apiConnStatus"></span></p></section>' +
       '<section class="app-section"><h2>API 密钥</h2>' +
         '<div class="code"><button type="button" class="copy" id="copyKey">复制</button><pre id="apiKey">' + esc(s.settings.apiKey.slice(0, 12)) + '••••••••••••</pre></div>' +
-        '<p class="t-13 muted" style="margin-top:var(--s-3)">创建于 ' + WFApp.fmtDate(s.settings.apiKeyCreatedAt) + ' · 用于项目 CDN 发布与鉴权 API。形态与 vault 一致（含校验和）。 <button type="button" class="btn-text" id="rotateKey">' + WFChrome.icon('refresh') + '重新生成</button></p>' +
+        '<p class="t-13 muted" style="margin-top:var(--s-3)">创建于 ' + WFApp.fmtDate(s.settings.apiKeyCreatedAt) + ' · 本机钥须在 vault 登记后才能发布；推荐上方粘贴已颁发密钥。 <button type="button" class="btn-text" id="rotateKey">' + WFChrome.icon('refresh') + '重新生成本机钥</button></p>' +
         '<div class="code" style="margin-top:var(--s-4)"><pre>curl -X POST ' + ((window.WFProto && WFProto.CSS_API) || 'https://vault.windfonts.com') + '/api/projects/publish \\\n  -H "Authorization: Bearer $WINDFONTS_KEY" \\\n  -H "Content-Type: application/json" \\\n  -d @project.json</pre></div></section>' +
-      '<section class="app-section"><h2>认领</h2><p class="t-14" style="max-width:40em;color:var(--ink-2)">作者、字库、品牌方、开源项目和素材平台到<a href="' + WFChrome.href('claim.html') + '">认领页</a>提交。通过后在侧栏「我的页」改本页资料，不能改许可档位。</p></section>' +
+'<section class="app-section"><h2>认领</h2><p class="t-14" style="max-width:40em;color:var(--ink-2)">作者、字库、品牌方、开源项目和素材平台到<a href="' + WFChrome.href('claim.html') + '">认领页</a>提交。通过后在侧栏「我的页」改本页资料，不能改许可档位。</p></section>' +
       '<section class="app-section"><h2>审计日志<a class="more" href="team.html">' + WFChrome.icon('group') + '团队</a></h2>' +
         (audit.length ? '<ul class="version-list is-audit">' + audit.map(function (a) {
           return '<li><span class="v">' + esc(a.action === '提交厂商认领' ? '提交认领' : a.action) + '</span><span class="note">' + esc(a.detail) + '</span>' +
@@ -65,8 +75,42 @@
       (WFChrome.showPricing() ? '<section class="app-section"><h2>本地数据</h2><p class="t-13 muted">控制台数据保存在本机浏览器。 <button type="button" class="btn-text" id="resetData">' + WFChrome.icon('refresh') + '恢复示例数据</button></p></section>' : '');
 
     document.getElementById('saveAcc').addEventListener('click', function () {
-      WFChrome.login({ name: document.getElementById('accName').value || u.name, email: u.email });
+      WFChrome.login({
+        name: document.getElementById('accName').value || u.name,
+        email: u.email,
+        role: u.role,
+        source: u.source,
+        id: u.id
+      });
       location.reload();
+    });
+    const saveMode = document.getElementById('saveApiMode');
+    if (saveMode) saveMode.addEventListener('click', function () {
+      const m = document.getElementById('apiMode').value;
+      WFApi.setMode(m);
+      const st = document.getElementById('apiConnStatus');
+      if (st) st.textContent = '已设为 ' + m + (WFApi.useLocalProjects() ? '（项目仍本机）' : '');
+      WFChrome.toast('API 模式：' + m);
+    });
+    const verifyBtn = document.getElementById('verifyKey');
+    if (verifyBtn) verifyBtn.addEventListener('click', function () {
+      const key = (document.getElementById('vaultKey').value || '').trim();
+      const st = document.getElementById('apiConnStatus');
+      if (!key) { WFChrome.toast('请先粘贴密钥'); return; }
+      if (st) st.textContent = '校验中…';
+      verifyBtn.disabled = true;
+      WFAuth.verifyApiKey(key).then(function (data) {
+        s.settings.apiKey = key;
+        s.settings.apiKeyCreatedAt = new Date().toISOString();
+        WFApp.log('采用 vault API 密钥', (data && data.prefix) || key.slice(0, 12));
+        WFApp.save();
+        if (st) st.textContent = '密钥有效' + (data && data.plan ? ' · ' + data.plan : '');
+        WFChrome.toast('已采用 vault 密钥');
+        render();
+      }).catch(function (err) {
+        if (st) st.textContent = (err && err.message) || '校验失败';
+        WFChrome.toast((err && err.message) || '校验失败');
+      }).then(function () { verifyBtn.disabled = false; });
     });
     document.getElementById('setDisplay').addEventListener('change', function (e) {
       s.settings.display = e.target.value; WFApp.log('更新设置', '加载策略 = ' + e.target.value); WFApp.save(); WFChrome.toast('已更新默认加载策略');
