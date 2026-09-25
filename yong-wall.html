@@ -2,17 +2,18 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev");if(/[?&]wide=1(?:&|$)/.test(location.search))document.documentElement.setAttribute("data-wide","1")}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>永字墙 · 文风字体</title>
   <meta name="description" content="全库永字样张墙：每张卡片用字体自己的字型排印「永」。实验室页，不进生产导航。" />
   <meta name="robots" content="noindex" />
-  <link rel="stylesheet" href="css/fonts.css?v=20260925x" />
-  <link rel="stylesheet" href="css/tokens.css?v=20260925x" />
-  <link rel="stylesheet" href="css/base.css?v=20260925x" />
-  <link rel="stylesheet" href="css/components.css?v=20260925x" />
-  <link rel="stylesheet" href="css/site.css?v=20260925x" />
-  <link rel="stylesheet" href="css/yong-wall.css?v=20260925x" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260925z" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260925z" />
+  <link rel="stylesheet" href="css/base.css?v=20260925z" />
+  <link rel="stylesheet" href="css/components.css?v=20260925z" />
+  <link rel="stylesheet" href="css/site.css?v=20260925z" />
+  <link rel="stylesheet" href="css/yong-wall.css?v=20260925z" />
+  <link rel="stylesheet" href="css/wide-embed.css?v=20260925z" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-yong-wall">
@@ -42,8 +43,8 @@
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js?v=20260925x"></script>
-  <script src="js/wf-chrome.js?v=20260925x"></script>
-  <script src="js/pages/yong-wall.js?v=20260925x"></script>
+  <script src="js/wf-proto.js?v=20260925z"></script>
+  <script src="js/wf-chrome.js?v=20260925z"></script>
+  <script src="js/pages/yong-wall.js?v=20260925z"></script>
 </body>
 </html>

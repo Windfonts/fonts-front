@@ -2,16 +2,17 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev");if(/[?&]wide=1(?:&|$)/.test(location.search))document.documentElement.setAttribute("data-wide","1")}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>设计指南 · 文风字体</title>
   <meta name="description" content="文风字体 v4 设计指南：柔和 · 圆润。纯白页面、浅灰面板、黑白灰、普惠体界面、寒蝉宽黑字标。" />
-  <link rel="stylesheet" href="css/fonts.css?v=20260925r" />
-  <link rel="stylesheet" href="css/tokens.css?v=20260925r" />
-  <link rel="stylesheet" href="css/base.css?v=20260925r" />
-  <link rel="stylesheet" href="css/components.css?v=20260925r" />
-  <link rel="stylesheet" href="css/specimen.css?v=20260925r" />
-  <link rel="stylesheet" href="css/site.css?v=20260925r" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260925z" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260925z" />
+  <link rel="stylesheet" href="css/base.css?v=20260925z" />
+  <link rel="stylesheet" href="css/components.css?v=20260925z" />
+  <link rel="stylesheet" href="css/specimen.css?v=20260925z" />
+  <link rel="stylesheet" href="css/site.css?v=20260925z" />
+  <link rel="stylesheet" href="css/wide-embed.css?v=20260925z" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-styleguide">
@@ -25,7 +26,7 @@
           <section>
             <p class="kicker">设计指南</p>
             <h1>柔和 · 圆润</h1>
-            <p class="lead">v4 定稿是 B。纯白页面，浅灰面板，面板里的控件是白的。只有黑白灰，没有彩色，没有投影。黑只给主按钮、选中态和字标头像；带图头像底保持白色。标题 700，其余 400，不用 500 / 600。界面字体是阿里巴巴普惠体，缺这款字时用寒蝉全圆体。字标「文风字体」用寒蝉宽黑。本页挂在关于目录里，下面是按现行令牌摆的样张。</p>
+            <p class="lead">v4 定稿是 B。纯白页面，浅灰面板，面板里的控件是白的。只有黑白灰，没有彩色，没有投影。黑只给主按钮、选中态和字标头像；带图头像底保持白色。标题 700，其余 400，不用 500 / 600。界面字体是阿里巴巴普惠体，缺这款字时用寒蝉全圆体。字标「文风字体」用寒蝉宽黑。下面是按现行令牌摆的样张。</p>
           </section>
         </article>
         <aside data-docs-aside="styleguide" aria-label="相关"></aside>
@@ -173,9 +174,9 @@
           <p class="sg-note" style="margin:0 0 var(--s-4)">破坏性操作走 <code class="code-inline">WFChrome.confirm</code>，返回 Promise。Esc / 点遮罩取消；移除、清空类默认焦点在取消。</p>
           <button type="button" class="btn" id="sgDialog">打开确认弹层</button>
           <nav class="docs-foot" aria-label="页脚">
-            <a href="about.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260925r#i-info"/></svg>关于</a>
-            <a href="license.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260925r#i-shield"/></svg>许可说明</a>
-            <a href="docs.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260925r#i-book"/></svg>接入文档</a>
+            <a href="about.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260925z#i-info"/></svg>关于</a>
+            <a href="license.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260925z#i-shield"/></svg>许可说明</a>
+            <a href="docs.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260925z#i-book"/></svg>接入文档</a>
           </nav>
         </section>
     </div>
@@ -183,11 +184,11 @@
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js?v=20260925r"></script>
-  <script src="js/wf-products.js?v=20260925r"></script>
-  <script src="js/wf-chrome.js?v=20260925r"></script>
-  <script src="js/wf-specimen.js?v=20260925r"></script>
-  <script src="js/wf-docs-nav.js?v=20260925r"></script>
+  <script src="js/wf-proto.js?v=20260925z"></script>
+  <script src="js/wf-products.js?v=20260925z"></script>
+  <script src="js/wf-chrome.js?v=20260925z"></script>
+  <script src="js/wf-specimen.js?v=20260925z"></script>
+  <script src="js/wf-docs-nav.js?v=20260925z"></script>
   <script>
     (function () {
       document.getElementById('sgVerified').innerHTML = WFChrome.VERIFIED_SVG;

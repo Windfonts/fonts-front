@@ -1,0 +1,92 @@
+/* wide-embed — full-bleed child pages inside wide-lab iframe (?wide=1)
+   All rules gated on html[data-wide="1"] so standalone pages are untouched. */
+
+html[data-wide="1"] header[data-topbar],
+html[data-wide="1"] #wfExtraFooter,
+html[data-wide="1"] footer.site-footer,
+html[data-wide="1"] .site-footer {
+  display: none !important;
+}
+
+html[data-wide="1"] body {
+  padding-top: 0 !important;
+}
+
+/* Styleguide / docs chrome — strip about-template rails */
+html[data-wide="1"] .docs-toc,
+html[data-wide="1"] [data-docs-aside],
+html[data-wide="1"] .docs-aside,
+html[data-wide="1"] .docs-foot {
+  display: none !important;
+}
+
+html[data-wide="1"] .container {
+  max-width: none;
+  width: 100%;
+  padding-inline: clamp(1rem, 2.5vw, 2rem);
+}
+
+html[data-wide="1"] .docs {
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding-top: var(--s-6, 1.5rem);
+}
+
+html[data-wide="1"] .docs-main {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+html[data-wide="1"] .docs-body {
+  max-width: none;
+}
+
+html[data-wide="1"] .sg-sheet {
+  max-width: none;
+  width: 100%;
+  padding-inline: 0;
+  padding-top: var(--s-4, 1rem);
+  padding-bottom: var(--s-10, 2.5rem);
+}
+
+html[data-wide="1"] .page-styleguide .docs-body .lead {
+  max-width: 52rem;
+}
+
+/* 永字墙 — lift tight lead/search caps so the grid can use the viewport */
+html[data-wide="1"] .page-yong-wall .page-head .lead {
+  max-width: none;
+}
+
+html[data-wide="1"] .yw-search {
+  max-width: none;
+  flex: 1 1 20rem;
+}
+
+html[data-wide="1"] .yw-grid {
+  width: 100%;
+}
+
+/* 谱系 — plex/flow/wall use full iframe width */
+html[data-wide="1"] .page-lineage .page-head .lead {
+  max-width: none;
+}
+
+html[data-wide="1"] .lfl-wall-grid {
+  max-width: none;
+  margin: 0;
+}
+
+html[data-wide="1"] .lfl-note,
+html[data-wide="1"] .lg-foot {
+  max-width: none;
+}
+
+html[data-wide="1"] .lg-view-shell {
+  /* give the canvas a bit more vertical room in the lab shell */
+  height: min(78vh, 56rem);
+}
+
+html[data-wide="1"] .lfl-viewport {
+  border-radius: var(--radius, 12px);
+}
