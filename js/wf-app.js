@@ -28,6 +28,47 @@
     return true;
   }
   function cloneFonts(fonts) { return JSON.parse(JSON.stringify(fonts || [])); }
+
+  /** 与 vault generateApiKey 同形态：wf_{prefix}_{random24}_{checksum4} */
+  function apiKeyLooksVault(k) {
+    const parts = String(k || '').split('_');
+    return parts.length === 4 && parts[0] === 'wf' && parts[3].length === 4;
+  }
+  function mintApiKeySyncPlaceholder() {
+    return 'wf_live_' + Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+  }
+  function mintApiKeyAsync(prefix) {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const bytes = (window.crypto && crypto.getRandomValues)
+      ? crypto.getRandomValues(new Uint8Array(24))
+      : null;
+    let random = '';
+    let i;
+    for (i = 0; i < 24; i++) {
+      random += alphabet[bytes ? bytes[i] % alphabet.length : Math.floor(Math.random() * alphabet.length)];
+    }
+    const pfx = String(prefix || 'live').toLowerCase().slice(0, 12);
+    const payload = 'wf_' + pfx + '_' + random;
+    if (!window.crypto || !crypto.subtle) {
+      return Promise.resolve(payload + '_0000');
+    }
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(payload)).then(function (buf) {
+      const hash = new Uint8Array(buf);
+      const n = ((hash[0] << 24) | (hash[1] << 16) | (hash[2] << 8) | hash[3]) >>> 0;
+      const checksum = (n % Math.pow(36, 4)).toString(36).toUpperCase().padStart(4, '0');
+      return payload + '_' + checksum;
+    });
+  }
+  function ensureVaultApiKey() {
+    if (!state || !state.settings) return Promise.resolve(null);
+    if (apiKeyLooksVault(state.settings.apiKey)) return Promise.resolve(state.settings.apiKey);
+    return mintApiKeyAsync('live').then(function (k) {
+      state.settings.apiKey = k;
+      state.settings.apiKeyCreatedAt = new Date().toISOString();
+      save();
+      return k;
+    });
+  }
   const PLAN_DEFAULT = { id: 'pro', name: '专业', quota: { projects: 10, domains: null, trafficGB: 200, fonts: 50 } };
   function ensureUsage(p) {
     if (!p.usage) p.usage = {};
@@ -66,7 +107,7 @@
     if (['cn', 'hk', 'en'].indexOf(s.settings.cdn) < 0) { s.settings.cdn = 'cn'; dirty = true; }
     if (typeof s.settings.preload !== 'boolean') { s.settings.preload = false; dirty = true; }
     if (s.settings.structure !== 'static' && s.settings.structure !== 'dynamic') { s.settings.structure = 'dynamic'; dirty = true; }
-    if (!s.settings.apiKey) { s.settings.apiKey = 'wf_live_' + Math.random().toString(36).slice(2, 14) + Math.random().toString(36).slice(2, 10); dirty = true; }
+    if (!s.settings.apiKey) { s.settings.apiKey = mintApiKeySyncPlaceholder(); dirty = true; }
     if (!s.settings.apiKeyCreatedAt) { s.settings.apiKeyCreatedAt = new Date().toISOString(); dirty = true; }
     if (!Array.isArray(s.uploads)) { s.uploads = []; dirty = true; }
     if (!s.team) { s.team = defaultTeam(); dirty = true; }
@@ -100,16 +141,20 @@
   }
 
   function load() {
-    if (state) return Promise.resolve(state);
+    if (state) return ensureVaultApiKey().then(function () { return state; });
     try {
       const cached = JSON.parse(localStorage.getItem(KEY) || 'null');
-      if (cached && cached.projects) { state = ensureShape(cached); refreshRails(); return Promise.resolve(state); }
+      if (cached && cached.projects) {
+        state = ensureShape(cached);
+        refreshRails();
+        return ensureVaultApiKey().then(function () { return state; });
+      }
     } catch (e) { /* ignore */ }
     return fetch(mockUrl()).then(function (r) { return r.json(); }).then(function (json) {
       state = ensureShape(json);
       save();
       refreshRails();
-      return state;
+      return ensureVaultApiKey().then(function () { return state; });
     });
   }
   function refreshRails() {
@@ -562,26 +607,28 @@
   }
 
   function publishProject(p) {
-    const manifest = projectManifest(p);
-    if (!manifest.slug) return Promise.reject(new Error('项目 slug 为空'));
-    if (!manifest.fonts.length) return Promise.reject(new Error('项目里还没有字体'));
-    const key = state && state.settings && state.settings.apiKey;
-    const headers = { 'Content-Type': 'application/json' };
-    if (key) headers['Authorization'] = 'Bearer ' + key;
-    return fetch(publishOrigin() + '/api/projects/publish', {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify(manifest)
-    }).then(function (res) {
-      return res.json().then(function (body) {
-        if (!res.ok || (body && body.status === 'fail')) {
-          const err = new Error((body && body.message) || ('HTTP ' + res.status));
-          err.status = res.status;
-          err.body = body;
-          throw err;
-        }
-        log('发布项目', manifest.slug + ' · v' + ((body.data && body.data.version) || manifest.version));
-        return body;
+    return ensureVaultApiKey().then(function () {
+      const manifest = projectManifest(p);
+      if (!manifest.slug) return Promise.reject(new Error('项目 slug 为空'));
+      if (!manifest.fonts.length) return Promise.reject(new Error('项目里还没有字体'));
+      const key = state && state.settings && state.settings.apiKey;
+      const headers = { 'Content-Type': 'application/json' };
+      if (key) headers['Authorization'] = 'Bearer ' + key;
+      return fetch(publishOrigin() + '/api/projects/publish', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(manifest)
+      }).then(function (res) {
+        return res.json().then(function (body) {
+          if (!res.ok || (body && body.status === 'fail')) {
+            const err = new Error((body && body.message) || ('HTTP ' + res.status));
+            err.status = res.status;
+            err.body = body;
+            throw err;
+          }
+          log('发布项目', manifest.slug + ' · v' + ((body.data && body.data.version) || manifest.version));
+          return body;
+        });
       });
     });
   }
@@ -607,6 +654,7 @@
     uniqueChars: uniqueChars, parseRanges: parseRanges, subsetGlyphs: subsetGlyphs, subsetBytes: subsetBytes,
     subsetLabel: subsetLabel, projectBytes: projectBytes,
     projectManifest: projectManifest, publishProject: publishProject, publishOrigin: publishOrigin,
+    mintApiKeyAsync: mintApiKeyAsync, apiKeyLooksVault: apiKeyLooksVault, ensureVaultApiKey: ensureVaultApiKey,
     series: series, sparkline: sparkline, fmtDate: fmtDate, fmtGB: fmtGB,
     NAV: NAV_USE
   };

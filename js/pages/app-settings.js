@@ -54,8 +54,8 @@
       '</div></section>' +
       '<section class="app-section"><h2>API 密钥</h2>' +
         '<div class="code"><button type="button" class="copy" id="copyKey">复制</button><pre id="apiKey">' + esc(s.settings.apiKey.slice(0, 12)) + '••••••••••••</pre></div>' +
-        '<p class="t-13 muted" style="margin-top:var(--s-3)">创建于 ' + WFApp.fmtDate(s.settings.apiKeyCreatedAt) + ' · 用于动态子集化 API 与 CI 发布。 <button type="button" class="btn-text" id="rotateKey">' + WFChrome.icon('refresh') + '重新生成</button></p>' +
-        '<div class="code" style="margin-top:var(--s-4)"><pre>curl -X POST ' + esc(WFProto.cdnOrigin()) + '/v1/subset \\\n  -H "Authorization: Bearer $WINDFONTS_KEY" \\\n  -d family=wenfeng-albbpht \\\n  -d weight=regular \\\n  --data-urlencode text="让中文字体在网页上，一行代码可用。"</pre></div></section>' +
+        '<p class="t-13 muted" style="margin-top:var(--s-3)">创建于 ' + WFApp.fmtDate(s.settings.apiKeyCreatedAt) + ' · 用于项目 CDN 发布与鉴权 API。形态与 vault 一致（含校验和）。 <button type="button" class="btn-text" id="rotateKey">' + WFChrome.icon('refresh') + '重新生成</button></p>' +
+        '<div class="code" style="margin-top:var(--s-4)"><pre>curl -X POST https://app.windfonts.com/api/projects/publish \\\n  -H "Authorization: Bearer $WINDFONTS_KEY" \\\n  -H "Content-Type: application/json" \\\n  -d @project.json</pre></div></section>' +
       '<section class="app-section"><h2>认领</h2><p class="t-14" style="max-width:40em;color:var(--ink-2)">作者、字库、品牌方、开源项目和素材平台到<a href="' + WFChrome.href('claim.html') + '">认领页</a>提交。通过后在侧栏「我的页」改本页资料，不能改许可档位。</p></section>' +
       '<section class="app-section"><h2>审计日志<a class="more" href="team.html">' + WFChrome.icon('group') + '团队</a></h2>' +
         (audit.length ? '<ul class="version-list is-audit">' + audit.map(function (a) {
@@ -82,14 +82,16 @@
     });
     document.getElementById('copyKey').addEventListener('click', function () { WFChrome.copy(s.settings.apiKey, '已复制 API 密钥'); });
     document.getElementById('rotateKey').addEventListener('click', function () {
-      WFChrome.confirm({ title: '重新生成密钥', message: '旧密钥会立刻失效。已部署的 CI 与动态子集化请求需要换成新密钥。', ok: '重新生成' }).then(function (ok) {
+      WFChrome.confirm({ title: '重新生成密钥', message: '旧密钥会立刻失效。已发布项目的覆盖权跟密钥绑定，换钥后需用新钥才能再发同 slug。', ok: '重新生成' }).then(function (ok) {
         if (!ok) return;
-        s.settings.apiKey = 'wf_live_' + Math.random().toString(36).slice(2, 14) + Math.random().toString(36).slice(2, 10);
-        s.settings.apiKeyCreatedAt = new Date().toISOString();
-        WFApp.log('轮换 API 密钥', '');
-        WFApp.save();
-        WFChrome.toast('已生成新密钥，旧密钥立即失效');
-        render();
+        WFApp.mintApiKeyAsync('live').then(function (k) {
+          s.settings.apiKey = k;
+          s.settings.apiKeyCreatedAt = new Date().toISOString();
+          WFApp.log('轮换 API 密钥', '');
+          WFApp.save();
+          WFChrome.toast('已生成新密钥，旧密钥立即失效');
+          render();
+        });
       });
     });
     const reset = document.getElementById('resetData');

@@ -606,5 +606,6 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 - vault：`GET /p/{slug}/index.css`（`data/projects/{slug}.json` → 多字体展开，域名白名单）；`POST /api/projects/publish`；种子 `demo`。**现网 vault 已部署**，`app…/p/demo/index.css` 200。
 - 前台控制台：嵌入页「发布到 CDN」+「导出清单」；对外 URL 仍是 `{cdn}/p/{slug}/index.css`。
 - 边缘：`^~ /p/` → `windfonts_vault`（devops ansible）；**cn 已通**（探针 `cn…/p/demo/index.css` 200，`X-Windfonts-Project: demo`）。
+- **发布鉴权（2026-09-25）：** 控制台自签 `wf_{prefix}_{random}_{checksum}` Key；vault `PROJECT_PUBLISH_ALLOW_CLIENT` 默认开，形态校验通过即可发布（`ownerKeyHash` 防他人覆盖同 slug）。库内 Key / `PROJECT_PUBLISH_KEY` / `PROJECT_PUBLISH_OPEN` 仍可用。
 
-**仍待：** analysis 文件覆盖率、包体清单 API（P3）、扩更多简繁 `localePeerProduct`、项目发布与正式 API Key 打通。商用档 `albbpht` 等仍受许可门禁。
+**仍待：** analysis 文件覆盖率、包体清单 API（P3）、扩更多简繁 `localePeerProduct`。商用档 `albbpht` 等仍受许可门禁。
