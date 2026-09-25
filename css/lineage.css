@@ -254,16 +254,12 @@ body.page-lineage > footer {
   box-shadow: inset 0 0 0 1.5px var(--rule-2);
   min-height: 4.5rem;
   padding-left: 0.9rem;
-  border-left: 3px solid var(--ink);
 }
 .lfl-card.is-cluster:hover { background: var(--surface-2); }
 .lfl-card.is-cluster.is-hot,
 .lfl-card.is-cluster.is-open {
   box-shadow: inset 0 0 0 2px var(--ink);
   background: var(--paper);
-}
-.lfl-card.is-cluster.is-open {
-  border-left-color: var(--ink);
 }
 .lfl-cluster-title {
   display: flex;
@@ -494,14 +490,10 @@ a.lfl-wall-name:hover { text-decoration: underline; }
 .lfl-card.is-series {
   background: var(--fill);
   box-shadow: inset 0 0 0 1.5px var(--rule-2);
-  border-left: 3px solid var(--ink);
   min-height: 4.1rem;
   padding-left: 0.85rem;
 }
 .lfl-card.is-series:hover { background: var(--surface-2); }
-.lfl-card.is-series.is-brand-family {
-  border-left-color: color-mix(in srgb, var(--ink) 55%, var(--accent, #c45) 45%);
-}
 .lfl-card.is-series.is-brand-family .lfl-series-sub { letter-spacing: 0.02em; }
 .lfl-card.is-series.is-activated,
 .lfl-card.is-series.is-hot {
@@ -531,7 +523,6 @@ a.lfl-wall-name:hover { text-decoration: underline; }
 .lfl-card.is-plex-gate {
   background: var(--fill);
   box-shadow: inset 0 0 0 1.5px var(--rule-2);
-  border-left: 3px solid var(--ink);
   min-height: 4.1rem;
   padding-left: 0.85rem;
 }
