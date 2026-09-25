@@ -1036,7 +1036,7 @@
     },
     setSample: function (v) {
       localStorage.setItem(SAMPLE_KEY, v);
-      document.querySelectorAll('[data-specimen]').forEach(function (n) {
+      document.querySelectorAll('[data-specimen],[data-pack-specimen]').forEach(function (n) {
         n.textContent = v || '文';
       });
     },
