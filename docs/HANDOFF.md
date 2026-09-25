@@ -2,9 +2,11 @@
 
 > 面向接手后端 / 全栈的同学与智能体：原型现状、页面清单、需要后端提供的接口契约、已知待办。
 
+**2026-09-25 域名口径：** `app.windfonts.com` = **正式字体站**（目录/详情 `/fonts/{slug}` 已通）。API 暂同域 `/api/*`，拆 `api.windfonts.com` 等亦可（前台只改 `CSS_API`）。嵌入 CDN：`cn`=自建 CyberCDN；`hk`/`en`/`jp`=Cloudflare；对外动态勿写 app。目录热度已 `sync-font-counts.mjs --write` 对齐 app（553 分页）。
+
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 
-**下一棒（按价值）：** ① LAUNCH-GATES（`/fonts/{slug}` rewrite、demo 收口、真统计）；② 控制台 WFApi 接线（`pro/console-api-client`）；③ 选字袋登录同步 / 认领真工单。入库习惯见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
+**下一棒（按价值）：** ① 真登录 / 控制台 `WFApi` live（默认 mock，`localStorage wf-api-mode=live` → app）；② 选字袋登录同步 / 认领真工单；③ CF 节点 DNS/边缘验收（本机 dig 对 hk/en/jp 无 A）。入库见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
 
 **已合（2026-09-25，wapuu）：** vault [#29](https://feicode.com/Windfonts/fonts-vault/pulls/29) pnpm Docker、[#30](https://feicode.com/Windfonts/fonts-vault/pulls/30) 品牌 CSS 门禁、[#31](https://feicode.com/Windfonts/fonts-vault/pulls/31) `/api/css` 错误 `no-store` → `main` @ `22454e0`。
 
@@ -84,15 +86,15 @@
 
 对外 API 的**价值地图与现在/近后续/更后分期**：[`plans/2026-09-24-api-surface-value.md`](plans/2026-09-24-api-surface-value.md)。本仓接现网计数等：[`plans/2026-09-24-app-windfonts-api.md`](plans/2026-09-24-app-windfonts-api.md)。
 
-### 3.0 现网 `app.windfonts.com`（2026-09-24 核对）
+### 3.0 现网 `app.windfonts.com`（字体站 + 暂兼 API）
 
-现网是 Next 应用（仓 `fonts-vault`），不是下面那份 `/v1/` 草案。公开响应信封是 `{ "code": 200, "message": "success", "data": … }`。匿名 GET 大约 100 次/天，不要在每个页面打开时拉全库。
+正式**字体站**是 Next（仓 `fonts-vault`）：`/fonts`、`/fonts/{slug}`。API `/api/*` 暂同域，可日后拆独立主机。不是下面那份 `/v1/` 草案。公开响应信封是 `{ "code": 200, "message": "success", "data": … }`。匿名 GET 大约 100 次/天，不要在每个页面打开时拉全库。
 
 已经有、本仓静态页还没改成走它的：
 
 | 现网 | 本仓现状 |
 |---|---|
-| `GET /api/fonts?page&size&category&brand&search&sort`，`sort` 为 `name` / `createdAt` / `viewCount`。`data` 含 `total,page,pageTotal,dataList`。2026-09-24 抽样 total 410 | 目录仍读 `data/fonts.json` |
+| `GET /api/fonts?page&size&category&brand&search&sort`，`sort` 为 `name` / `createdAt` / `viewCount`。`data` 含 `total,page,pageTotal,dataList`。2026-09-25 total **553** | 目录仍读 `data/fonts.json`；热度字段可由 `sync-font-counts.mjs` 回写 |
 | `GET /api/fonts/:id` 或 `:family`，带 `viewCount` / `downloadCount` / `apiCallCount`、`weights` 对象、`languages`、`useCases` | 详情仍用本地目录。打开详情时按 `fontFamily` 拉这一次计数，6 小时内缓存；**CORS 已通（2026-09-25）** |
 | `GET /api/categories`、`GET /api/brands` | 分类和厂商用本地 JSON |
 | `GET /api/fonts/:id/analysis` 字符表，没有分析文件时 404 | 详情查字用本地数据 |

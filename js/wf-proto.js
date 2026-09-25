@@ -23,8 +23,13 @@
   /* 预览真源：cn.windfonts.com/fonts-packages/{Normalized}/{Weight}/{full|zh-common}/result.css
      （与 app /api/css 同源拆包）。旧路径 /wenfeng/fonts/{slug}/{weight}/web/ 仅兜底。
      嵌入「动态」给 Google 风格查询参数：{cdn}/api/css?family=&weight=&version=。 */
+  /* 域名口径：
+     - app.windfonts.com = 正式字体站（目录/详情 /fonts/{slug}）+ 暂兼 API（/api/*）
+     - API 可日后拆到独立域（如 api.windfonts.com）；CSS_API / SITE_ORIGIN 分开便于换
+     - cn = 自建 CyberCDN；hk / en / jp = Cloudflare */
   const CDN = 'https://cn.windfonts.com';
-  const CSS_API = 'https://app.windfonts.com'; /* vault / 元数据 API 源，非地区 CDN */
+  const SITE_ORIGIN = 'https://app.windfonts.com'; /* 正式字体站 */
+  const CSS_API = 'https://app.windfonts.com'; /* API 暂同域；拆域只改这里 */
   const ANALYSIS_META_VER = '20260925b'; /* 边缘长缓存；升元数据时递增 */
   /** 生产禁止；仅 staging 构建可改 true */
   const ALLOW_DEMO = false;
@@ -32,9 +37,10 @@
   const STATS_KEY = 'wf-font-stats.v1';
   const VIEWED_KEY = 'wf-font-viewed';
   const CDN_HOSTS = [
-    { id: 'cn', label: '中国', host: 'cn.windfonts.com' },
-    { id: 'hk', label: '香港', host: 'hk.windfonts.com' },
-    { id: 'en', label: '国际', host: 'en.windfonts.com' }
+    { id: 'cn', label: '中国', host: 'cn.windfonts.com', edge: 'cybercdn' },
+    { id: 'hk', label: '香港', host: 'hk.windfonts.com', edge: 'cloudflare' },
+    { id: 'en', label: '国际', host: 'en.windfonts.com', edge: 'cloudflare' },
+    { id: 'jp', label: '日本', host: 'jp.windfonts.com', edge: 'cloudflare' }
   ];
   const CDN_LICENSE_NOTE = '<!-- 此中文网页字体由文风字体（Windfonts）免费提供，您可以自由引用，请务必保留此授权许可标注 https://wenfeng.org/license -->';
   const CSS_TO_NAME = { '100': 'thin', '200': 'extralight', '300': 'light', '350': 'demilight', '400': 'regular', '450': 'text', '500': 'medium', '600': 'semibold', '700': 'bold', '800': 'heavy', '900': 'black' };
@@ -261,8 +267,20 @@
     return null;
   }
 
-  /** 字体详情链接：优先 ?slug=，可附带额外查询（如 from=bag）。 */
+  /** 正式站详情：app /fonts/{slug}（vault Next 已实现）。 */
+  function publicDetailPath(font) {
+    const slug = fontSlug(font) || (font && font.normalized);
+    if (!slug) return '/fonts';
+    return '/fonts/' + encodeURIComponent(String(slug).toLowerCase().replace(/^wenfeng-/, ''));
+  }
+  function publicDetailUrl(font) {
+    return SITE_ORIGIN + publicDetailPath(font);
+  }
+  /** 站内详情链：在 app 主机上走 /fonts/{slug}；本地静态原型仍用 font-detail.html。 */
   function detailHref(font, extra) {
+    const host = String((typeof location !== 'undefined' && location.hostname) || '').toLowerCase();
+    const onApp = host === 'app.windfonts.com';
+    if (onApp && !extra) return publicDetailPath(font);
     const parts = [];
     const slug = fontSlug(font);
     if (slug) parts.push('slug=' + encodeURIComponent(slug));
@@ -272,6 +290,10 @@
         if (extra[k] == null || extra[k] === '') return;
         parts.push(encodeURIComponent(k) + '=' + encodeURIComponent(extra[k]));
       });
+    }
+    if (onApp && parts.length) {
+      /* app 上带额外 query 仍落到静态兼容页，避免丢 from= 等 */
+      return '/font-detail.html?' + parts.join('&');
     }
     return 'font-detail.html?' + parts.join('&');
   }
@@ -1043,6 +1065,8 @@
     fontSlug: fontSlug,
     resolveFamilyAlias: resolveFamilyAlias,
     detailHref: detailHref,
+    publicDetailPath: publicDetailPath,
+    publicDetailUrl: publicDetailUrl,
     getFontStats: getFontStats,
     bumpFontStat: bumpFontStat,
     paintFontStats: paintFontStats,
@@ -1240,6 +1264,7 @@
       }
     },
     CDN: CDN,
+    SITE_ORIGIN: SITE_ORIGIN,
     CSS_API: CSS_API,
     API_MODE: 'mock', /* override via localStorage['wf-api-mode'] = 'live'|'mock' */
     ANALYSIS_META_VER: ANALYSIS_META_VER,

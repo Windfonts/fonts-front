@@ -1,7 +1,10 @@
 # 上线前检测门闸 · 基础设施清单
 
 > 静态原型（本仓）上线正式域前的硬门槛。未勾完不应切流量。  
-> 对照现网：`app.windfonts.com`。原型预览：`python3 -m http.server 16016`。
+> **正式字体站**：`app.windfonts.com`（vault Next，含 `/fonts/{slug}`）。
+> **API**：暂同域 `/api/*`；可拆独立域（只改 `WFProto.CSS_API`）。
+> **嵌入 CDN**：`cn`=CyberCDN，`hk`/`en`/`jp`=Cloudflare；动态一律 `{cdn}/api/css?…`，勿写 app。
+> 本仓静态原型预览：`python3 -m http.server 16016`。
 
 
 ## 0. 进度备忘（2026-09-25）
@@ -10,8 +13,8 @@
 |---|---|
 | CDN `/api/css` 回源 + 品牌门禁 + 错误 `no-store` | **已通**（app + cn） |
 | analysis 满覆盖 + `OSS_METADATA_VERSION` | **已通**（`20260925b`） |
-| 详情路径 `/fonts/{slug}` | **snippet 已备** [`deploy/nginx-fonts-front.snippet.conf`](../deploy/nginx-fonts-front.snippet.conf)；正式域尚未挂（现 `windfonts.com` 仍是 WP） |
-| 真统计 | 详情已 `WFLive.counts`；目录热度用 [`scripts/sync-font-counts.mjs`](../scripts/sync-font-counts.mjs)（需 API Key 全量） |
+| 详情路径 `/fonts/{slug}` | **已通（字体站 app）**：`https://app.windfonts.com/fonts/ibmps` → vault Next；静态仓仍备 [`deploy/nginx-fonts-front.snippet.conf`](../deploy/nginx-fonts-front.snippet.conf) |
+| 真统计 | 详情 `WFLive.counts`（app API）；目录热度已用 [`scripts/sync-font-counts.mjs`](../scripts/sync-font-counts.mjs) 写回 `fonts.json`（2026-09-25，553 条分页） |
 | `?demo=1` | **已收口**：仅 localhost / `WFProto.ALLOW_DEMO` |
 | 真登录 | 仍待；控制台已有 `WFApi` mock/live 壳（usage/upload/projects/domains） |
 | 对照页不进导航 | 保持；谱系实验室已进 `lab-archive` |
@@ -20,10 +23,10 @@
 
 | 项 | 现状 | 上线要求 | 验收 |
 |---|---|---|---|
-| **详情路径** | `font-detail.html?slug=albbpht`（兼 `?id=`） | CDN/OSS/Nginx 将 `/fonts/{slug}` rewrite 到详情页；旧 UUID 链 301 到 slug | 打开 `/fonts/ibmps` 与线上一致；错误 slug → `404.html` |
+| **详情路径** | 正式字体站 `app.windfonts.com/fonts/{slug}`（vault）；本仓原型仍 `font-detail.html?slug=` | 静态部署用 nginx snippet；主站以 app 为准 | 打开 `https://app.windfonts.com/fonts/ibmps` 200；错误 slug → 站内 404 |
 | **目录真相源** | 本地 `data/fonts.json` 等 | 公开站从 API 或构建流水线拉目录；禁止手改生产 JSON 不入库 | 构建产物含最新目录；字段与 HANDOFF §3 契约一致 |
 | **统计** | 浏览 / 下载 / API 为 `localStorage` 叠加演示 | 服务端计数；详情「统计信息」读 API；样张导出打 download；CDN CSS 打 api | 多端数字一致；刷新不丢；无登录也可增浏览 |
-| **CDN `@font-face`** | 公开动态链接用 `cn` / `hk` / `en` 的 `/api/css`（以后反代重写）。预览优先 `cn.windfonts.com/fonts-packages/…/result.css`；`ensureFontCss` 去 `local()`、统一 `wenfeng-*` family、补 weight | 流水线 CSS 默认无 local()；包内字重与目录一致（如思源 Regular 勿挂 ExtraLight） | `hckht` 等与现网预览同形；本机装同族时 Bold ≠ Regular |
+| **CDN `@font-face`** | 公开动态：`cn`（CyberCDN）/ `hk`·`en`·`jp`（Cloudflare）的 `/api/css`。预览优先 `cn…/fonts-packages/…/result.css`；`ensureFontCss` 去 `local()`、统一 `wenfeng-*` | 流水线 CSS 默认无 local()；包内字重与目录一致 | `ibmps` 等与现网预览同形；本机装同族时 Bold ≠ Regular |
 | **鉴权** | `login.html` 演示角色；控制台 `?demo=1` | 真实登录；`WFChrome.canAccessApp` 接会话；关掉 demo 旁路 | 未登录无「控制台」；demo 仅 staging |
 | **CORS / REST** | 文档写了 `/api/fonts` 等 | 实际网关、API Key、域名白名单、限流与文档一致 | 文档示例 curl 在生产域名可通 |
 
@@ -48,7 +51,7 @@ error_page 404 /404.html;
 - [ ] 首页：字林可换字；字体库链可用
 - [ ] 字体库：分类 / **风格** / **品牌** / 许可可筛；按热门排序；卡片露浏览量
 - [ ] 详情：`?slug=` 与 `?id=` 均可；字重 Thin→Bold 视觉递增；查字可用
-- [ ] 嵌入：中国/香港/国际节点、完整/中文子集、link/@import/css/npm 可复制
+- [ ] 嵌入：中国（CyberCDN）/香港·国际·日本（CF）节点、完整/中文子集、link/@import/css/npm 可复制
 - [ ] 文档：REST + CSS 多字体 + NPM 示例与现网口径一致
 - [ ] 顶栏：未登录不显示控制台；登录注册/管理员可见
 
@@ -63,7 +66,7 @@ error_page 404 /404.html;
 - [ ] 演示 localStorage 与生产数据隔离（不同 key 前缀或域名）
 
 ### E. 运维
-- [ ] HTTPS、HSTS、合理 CSP（允许 CDN `cn|hk|en.windfonts.com`）
+- [ ] HTTPS、HSTS、合理 CSP（允许 CDN `cn|hk|en|jp.windfonts.com`）
 - [ ] 404 / 缓存头：HTML 短缓存或协商；带 hash/`?v=` 的静态资源长缓存
 - [ ] 监控：CDN 4xx/5xx、详情 JS error、目录加载失败告警
 
@@ -71,7 +74,7 @@ error_page 404 /404.html;
 
 已在原型补齐、不依赖基建的：列表品牌/风格筛、卡片浏览量、列表按热门排序、查字、slug 查询参数、文档、字重 local() 修复。首页不重复放热门区块（字林 + 同分类已够；热门只在 `fonts.html?sort=popular`）。
 
-仍卡在基建、**不要用更多前端 hack 顶替**的：真路径 `/fonts/slug`、真统计、真登录、CDN CSS 源头修正、REST 网关。
+仍卡在基建、**不要用更多前端 hack 顶替**的：真登录、顾客控制台 live 会话、选字袋/认领真工单。`/fonts/{slug}` 与目录热度同步已按 app 字体站落地。
 
 ## 4. 相关文档
 

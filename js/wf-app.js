@@ -84,7 +84,7 @@
     return dirty;
   }
   const SUBSETS = ['full', 'zh', 'zh-common', 'en'];
-  const CDNS = ['cn', 'hk', 'en'];
+  const CDNS = ['cn', 'hk', 'en', 'jp'];
   function ensureDelivery(p, settings) {
     settings = settings || {};
     if (!p.delivery || typeof p.delivery !== 'object') p.delivery = {};

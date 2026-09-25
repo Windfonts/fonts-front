@@ -52,10 +52,18 @@ while (page <= maxPages) {
     const v = Number(row.viewCount) || 0;
     const d = Number(row.downloadCount) || 0;
     const a = Number(row.apiCallCount) || 0;
-    if (hit.viewCount === v && hit.downloadCount === d && hit.apiCallCount === a) continue;
+    if (
+      hit.viewCount === v &&
+      hit.downloadCount === d &&
+      hit.apiCallCount === a &&
+      hit.apiCount === a
+    ) {
+      continue;
+    }
     hit.viewCount = v;
     hit.downloadCount = d;
     hit.apiCallCount = a;
+    hit.apiCount = a; /* wf-proto baseFontStats 读 apiCount */
     updated++;
   }
   console.error(`page ${page} got ${list.length} updated=${updated} total=${total}`);
