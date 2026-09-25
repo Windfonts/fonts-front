@@ -159,15 +159,25 @@
     const perf = u.perf || [];
     const planName = (s.plan && s.plan.name) || '专业';
 
+    const dims = u.dimensions || {};
+    const bytesLive = dims.bytes !== false && !u.stub;
+    const noteBits = [planName + '版'];
+    if (bytesLive) noteBits.push('月流量配额 ' + quotaGB + ' GB · 超出按 ¥0.8 / GB');
+    else noteBits.push('现仅统计请求次数（流量字节尚未采集）');
+    noteBits.push('按 API Key 与项目白名单域名聚合');
+    if (u.stub) noteBits.push('空壳');
+    if (WFApi.isMock()) noteBits.push('mock');
+
     root.innerHTML =
-      '<div class="app-head"><div><h1>用量</h1><p class="sub">' + planName + '版 · 月流量配额 ' + quotaGB + ' GB · 超出按 ¥0.8 / GB · 数据延迟约 5 分钟' +
-        (WFApi.isMock() ? ' · mock' : '') + '</p></div>' +
+      '<div class="app-head"><div><h1>用量</h1><p class="sub">' + noteBits.join(' · ') + '</p></div>' +
         '<div class="app-actions">' + rangeTabs() + '<button type="button" class="btn" id="exportCsv">' + WFChrome.icon('download') + '导出 CSV</button></div></div>' +
       '<div class="stats">' +
-        '<div class="stat"><div class="v">' + WFApp.fmtGB(bytes) + '<small>GB · ' + pct + '%</small></div><div class="l">字体流量 / 配额</div></div>' +
-        '<div class="stat"><div class="v">' + (req / 1000).toFixed(1) + '<small>k</small></div><div class="l">字体请求</div></div>' +
+        (bytesLive
+          ? '<div class="stat"><div class="v">' + WFApp.fmtGB(bytes) + '<small>GB · ' + pct + '%</small></div><div class="l">字体流量 / 配额</div></div>'
+          : '<div class="stat"><div class="v">—</div><div class="l">字体流量（待采集）</div></div>') +
+        '<div class="stat"><div class="v">' + (req >= 1000 ? (req / 1000).toFixed(1) + '<small>k</small>' : fmt(req)) + '</div><div class="l">字体请求</div></div>' +
         '<div class="stat"><div class="v">' + fmt(blocked) + '</div><div class="l">未授权访问</div></div>' +
-        '<div class="stat"><div class="v">' + (req ? WFEmbed.fmtBytes(bytes / req).replace(' ', '<small>') + '</small>' : '—') + '</div><div class="l">平均每次请求</div></div>' +
+        '<div class="stat"><div class="v">' + (bytesLive && req ? WFEmbed.fmtBytes(bytes / req).replace(' ', '<small>') + '</small>' : '—') + '</div><div class="l">平均每次请求</div></div>' +
       '</div>' +
       insightHtml(ps, pct, blockedRows) +
       '<section class="app-section"><h2>每日请求<span class="more mono">' + range + ' 天</span></h2>' + WFApp.sparkline(daily) +

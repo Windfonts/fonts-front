@@ -8,9 +8,9 @@
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 
-**下一棒（按价值）：** ① WP 顾客 SSO；② 选字袋同步 / 认领；③ OSS 公网放行后真绑桶（现已有 CyberCDN 过渡）；④ 可选独立 CF zone（`hk|en|jp` 已在 CyberCDN 通）。入库见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
+**下一棒（按价值）：** ① 选字袋同步 / 认领工单；② 用量补字节与按字体维度；③ OSS 公网放行后真绑桶（现已有 CyberCDN 过渡）；④ windfonts.com 统一账号（薇晓朵 SSO 已通）。入库见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
 
-**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33 @ `0f98293`）。`hk|en|jp` DNS+`/api/css` 与 `cn` 同边验收通过。控制台域名/子集/用量改走 `WFApi`；用量 API 空壳；登录页站点 SSO 已通：`sso.weixiaoduo.com` OAuth（vault PR #34）；providers 含 `weixiaoduo`，按钮「用薇晓朵账户登录」。
+**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33 @ `0f98293`）。`hk|en|jp` DNS+`/api/css` 与 `cn` 同边验收通过。控制台域名/子集/用量改走 `WFApi`。登录页站点 SSO：`sso.weixiaoduo.com` OAuth（vault PR #34）+ 会话 `ensure-key`（PR #35）。用量 `/api/usage*` 已聚合 `api_usage_daily`（本 Key + 项目白名单域名请求；字节/按字体/状态码仍未采集）。
 
 **2026-09-25 登录收口：** 生产强制 vault NextAuth（`wf-auth`/`gate`）；`staging-app` 补 `/api` 反代；WFApi 生产默认 live。见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md) §12。
 
@@ -36,7 +36,7 @@
 
 | 模块 | 现状 | 下一步 |
 |---|---|---|
-| **控制台** | 生产须 vault 会话；`WFApi` 默认 live；projects/域名/子集加字 → vault；用量为空壳（待聚合）。`?demo=1` **仅本机**。 | WP SSO 配密钥后登录按钮亮；用量接 `api_usage_*`；选字袋同步 |
+| **控制台** | 生产须 vault 会话；`WFApi` 默认 live；projects/域名/子集加字 → vault；用量聚合请求次数（Key + 白名单域名）。`?demo=1` **仅本机**。 | 用量补字节/按字体；选字袋同步；认领工单 |
 | **选字袋 / 收藏** | 本地 `wf-proto-picks`，可对比与嵌入 | 登录后与「我的字体」双向同步（等控制台 live）；导出 JSON；清空需确认 |
 | **样张工坊** | 详情设计视图出图 | 模板与默认文案接设置；OG 图需后端固定 URL |
 | **厂商认领** | `claim.html` 演示提交（localStorage claims） | vault 工单 API + 审核回写 `foundries.json` / claimed |

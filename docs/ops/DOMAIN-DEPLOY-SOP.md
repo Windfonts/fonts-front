@@ -239,7 +239,7 @@ curl -sS -o /dev/null -w "stg=%{http_code}\n" https://staging-app.windfonts.com/
 | 前端 | `js/wf-auth.js` → 同域 `/api/auth/*`（app nginx 反代 `:4000`） |
 | 门禁 | `app` / `staging-app` **必须** vault 会话（`source=vault-nextauth`）；清掉纯 localStorage 假壳 |
 | demo | `?demo=1` 仅本机 / `ALLOW_DEMO`；生产禁 |
-| WFApi | 生产默认 **live**；项目/域名/子集加字 → vault `/api/projects`；用量 `/api/usage*` 暂为空壳（`stub: true`） |
+| WFApi | 生产默认 **live**；项目/域名/子集加字 → vault `/api/projects`；用量 `/api/usage*` 聚合 `api_usage_daily`（Key + 项目白名单域名；字节/按字体仍未采） |
 | 预发 | `staging-app` 已反代 `/api` `/admin` `/_next`，可联调登录 |
 
 探针：
