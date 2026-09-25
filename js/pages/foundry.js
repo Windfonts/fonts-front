@@ -797,6 +797,11 @@
       : null;
     const parentInfo = (info && info.parentId && WFProto.getFoundryById)
       ? WFProto.getFoundryById(info.parentId) : null;
+    const showOrg = WFProto.canShowOrgLineage && WFProto.canShowOrgLineage(g.slug);
+    const orgKv = showOrg
+      ? { icon: 'branch', dt: '谱系图', html: true,
+          dd: '<a href="' + WFChrome.href('lineage.html?group=' + encodeURIComponent(g.slug) + '&view=org&mode=flow') + '">查看品牌谱系图</a>' }
+      : null;
     const kv = [
       { icon: 'building', dt: '类型', dd: WFChrome.kindLabel(info) || (info.unlisted ? '未核对' : '') },
       parentInfo ? {
@@ -805,6 +810,7 @@
           esc(parentInfo.name) + '</a>'
       } : null,
       { icon: 'font', dt: '归属', dd: g.fonts.length ? String(g.fonts.length) : '' },
+      orgKv,
       partnerKv,
       { icon: 'palette', dt: '受托', dd: g.made.length ? String(g.made.length) : '' },
       { icon: 'calendar', dt: '首发', dd: years.length ? String(Math.min.apply(null, years)) : '' },
@@ -824,11 +830,6 @@
         '母公司 <a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(parent.id)) + '">' +
         esc(parent.name) + '</a></p>'
       : '';
-    const showOrg = WFProto.canShowOrgLineage && WFProto.canShowOrgLineage(g.slug);
-    const orgEntry = showOrg
-      ? '<p class="foundry-org-link"><a href="' +
-        WFChrome.href('lineage.html?group=' + encodeURIComponent(g.slug) + '&view=org&mode=flow') + '">谱系图</a></p>'
-      : '';
     const claimHtml = '<p class="claim">' + WFChrome.icon('idcard') + '<span>' + (g.claimed
       ? who + '已认领此页。许可仍以每款字体的出处为准。'
       : '这是你的品牌？<a href="claim.html?slug=' + encodeURIComponent(g.slug) + '">认领此页</a>。通过后可改标志与介绍。') + '</span></p>';
@@ -846,7 +847,6 @@
             WFChrome.foundryHtml(g.font, { info: info, sub: heroSubHtml(g), fav: WFChrome.favHtml('author', g.slug, g.name) }) +
           '</div>' +
           parentLink +
-          orgEntry +
           (desc ? '<p class="desc">' + esc(desc) + '</p>' : '') +
           partnersStrip(g) +
           WFSponsor.html(info) +
