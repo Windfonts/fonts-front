@@ -1,6 +1,6 @@
 /* 谱系页（现网 lineage.html）
    - 四模式：激活 (plex) / 图 (flow) / 支线 (branch) / 墙 (wall)；URL ?mode=；tree→branch
-   - 激活/图：画布邻域 + L→R；宽扇叶走主题支节点
+   - 激活/图：画布 + HTML 卡 + Bezier；ELK layered 算坐标（plex=DOWN，flow=RIGHT），手写 layout 兜底
    - 支线/墙：renderBranch / renderWall
    - 大族默认激活，小族默认图；若 localStorage 为 branch/wall 则尊重 */
 (function () {
@@ -79,6 +79,7 @@
   let expandedBrandHubs = {}; /* nested brandHubId → true/false; unset = expanded */
   let layout = null;
   let plexLayoutGen = 0;
+  let flowLayoutGen = 0;
   let elkInstance = null;
   let forestCache = null;
   let detectedClusters = []; /* [{id,kind,key,title,count,memberIds,parentName}] */
@@ -1527,6 +1528,97 @@
     }
   }
 
+  /** Shared: forest/neighborhood items → ELK children. item: {id|node.id, w, h} */
+  function buildElkChildren(nodeItems) {
+    return nodeItems.map(function (item) {
+      return { id: item.id || (item.node && item.node.id), width: item.w, height: item.h };
+    });
+  }
+
+  /** Shared: our {from,to} edges → ELK edges (deduped). */
+  function buildElkEdges(edges) {
+    const elkEdges = [];
+    const edgeSeen = {};
+    (edges || []).forEach(function (e, i) {
+      const key = e.from + '=>' + e.to;
+      if (edgeSeen[key]) return;
+      edgeSeen[key] = true;
+      elkEdges.push({
+        id: 'e' + i + '_' + e.from + '_' + e.to,
+        sources: [e.from],
+        targets: [e.to]
+      });
+    });
+    return elkEdges;
+  }
+
+  /**
+   * Shared layered ELK run. Returns Promise<{id → elkChild}>.
+   * layoutOpts overrides defaults (direction, spacing, …).
+   */
+  function runElkLayered(graphId, nodeItems, edges, layoutOpts) {
+    const elk = getElk();
+    if (!elk) return Promise.reject(new Error('elk unavailable'));
+    const defaults = {
+      'elk.algorithm': 'layered',
+      'elk.direction': 'DOWN',
+      'elk.edgeRouting': 'POLYLINE',
+      'elk.spacing.nodeNode': String(PLEX_NEST_H_GAP),
+      'elk.layered.spacing.nodeNodeBetweenLayers': String(PLEX_NEST_V_GAP),
+      'elk.spacing.edgeNode': '24',
+      'elk.spacing.edgeEdge': '16',
+      'elk.layered.nodePlacement.bk.fixedAlignment': 'BALANCED',
+      'elk.layered.crossingMinimization.semiInteractive': 'true',
+      'elk.padding': '[' + PAD_Y + ',' + PAD_X + ',' + PAD_Y + ',' + PAD_X + ']'
+    };
+    const graph = {
+      id: graphId,
+      layoutOptions: Object.assign({}, defaults, layoutOpts || {}),
+      children: buildElkChildren(nodeItems),
+      edges: buildElkEdges(edges)
+    };
+    return elk.layout(graph).then(function (g) {
+      const byElk = {};
+      (g.children || []).forEach(function (c) { byElk[c.id] = c; });
+      return byElk;
+    });
+  }
+
+  /** Shared bbox normalize + layout shell (plex/flow). */
+  function finalizeElkLayout(positions, edges, forest, synthetic, extra) {
+    Object.keys(synthetic || {}).forEach(function (id) {
+      if (!forest.byId[id]) forest.byId[id] = synthetic[id];
+    });
+    let minX = Infinity, minY = Infinity, maxX = 0, maxY = 0;
+    Object.keys(positions).forEach(function (id) {
+      const p = positions[id];
+      minX = Math.min(minX, p.x);
+      minY = Math.min(minY, p.y);
+      maxX = Math.max(maxX, p.x + p.w);
+      maxY = Math.max(maxY, p.y + p.h);
+    });
+    if (!isFinite(minX)) { minX = 0; minY = 0; maxX = 640; maxY = 360; }
+    const ox = PAD_X - minX;
+    const oy = PAD_Y - minY;
+    Object.keys(positions).forEach(function (id) {
+      positions[id].x += ox;
+      positions[id].y += oy;
+    });
+    const out = {
+      positions: positions,
+      edges: (edges || []).filter(function (e) { return !e.layoutOnly; }),
+      width: Math.max(maxX - minX + PAD_X * 2, 640),
+      height: Math.max(maxY - minY + PAD_Y * 2, 420),
+      byId: forest.byId,
+      parentOf: forest.parentOf,
+      children: forest.children,
+      synthetic: synthetic || {},
+      engine: 'elk'
+    };
+    if (extra) Object.keys(extra).forEach(function (k) { out[k] = extra[k]; });
+    return out;
+  }
+
   function plexCardH(node, role, compact) {
     if (role === 'brand-leaf' || role === 'sibling' || role === 'jump' ||
         (role === 'child' && compact)) return CARD_H_COMPACT;
@@ -1672,42 +1764,14 @@
   }
 
   function finalizePlexLayout(positions, edges, forest, synthetic, focusId) {
-    Object.keys(synthetic).forEach(function (id) {
-      if (!forest.byId[id]) forest.byId[id] = synthetic[id];
-    });
-    let minX = Infinity, minY = Infinity, maxX = 0, maxY = 0;
-    Object.keys(positions).forEach(function (id) {
-      const p = positions[id];
-      minX = Math.min(minX, p.x);
-      minY = Math.min(minY, p.y);
-      maxX = Math.max(maxX, p.x + p.w);
-      maxY = Math.max(maxY, p.y + p.h);
-    });
-    if (!isFinite(minX)) { minX = 0; minY = 0; maxX = 640; maxY = 360; }
-    const ox = PAD_X - minX;
-    const oy = PAD_Y - minY;
-    Object.keys(positions).forEach(function (id) {
-      positions[id].x += ox;
-      positions[id].y += oy;
-    });
-    return {
-      positions: positions,
-      edges: edges.filter(function (e) { return !e.layoutOnly; }),
-      width: Math.max(maxX - minX + PAD_X * 2, 640),
-      height: Math.max(maxY - minY + PAD_Y * 2, 420),
-      byId: forest.byId,
-      parentOf: forest.parentOf,
-      children: forest.children,
-      synthetic: synthetic,
-      focusId: focusId,
-      engine: 'hand'
-    };
+    const out = finalizeElkLayout(positions, edges, forest, synthetic, { focusId: focusId });
+    out.engine = 'hand';
+    return out;
   }
 
   /** ELK layered layout for plex neighborhood; keeps our cards + Bezier edgePath. */
   function layoutPlexElk(forest, focusId) {
-    const elk = getElk();
-    if (!elk) return Promise.reject(new Error('elk unavailable'));
+    if (!getElk()) return Promise.reject(new Error('elk unavailable'));
     const nb = gatherPlexNeighborhood(forest, focusId);
     if (!nb.focus) {
       return Promise.resolve({
@@ -1715,44 +1779,18 @@
         parentOf: forest.parentOf, children: forest.children, synthetic: {}, focusId: '', engine: 'elk'
       });
     }
-    const children = nb.nodes.map(function (item) {
-      return { id: item.node.id, width: item.w, height: item.h };
+    const nodeItems = nb.nodes.map(function (item) {
+      return { id: item.node.id, w: item.w, h: item.h, item: item };
     });
-    const elkEdges = [];
-    const edgeSeen = {};
-    nb.edges.forEach(function (e, i) {
-      const key = e.from + '=>' + e.to;
-      if (edgeSeen[key]) return;
-      edgeSeen[key] = true;
-      elkEdges.push({
-        id: 'e' + i + '_' + e.from + '_' + e.to,
-        sources: [e.from],
-        targets: [e.to]
-      });
-    });
-    const graph = {
-      id: 'plex',
-      layoutOptions: {
-        'elk.algorithm': 'layered',
-        'elk.direction': 'DOWN',
-        'elk.edgeRouting': 'POLYLINE',
-        'elk.spacing.nodeNode': String(PLEX_NEST_H_GAP),
-        'elk.layered.spacing.nodeNodeBetweenLayers': String(PLEX_NEST_V_GAP),
-        'elk.spacing.edgeNode': '24',
-        'elk.spacing.edgeEdge': '16',
-        'elk.layered.nodePlacement.bk.fixedAlignment': 'BALANCED',
-        'elk.layered.crossingMinimization.semiInteractive': 'true',
-        'elk.padding': '[' + PAD_Y + ',' + PAD_X + ',' + PAD_Y + ',' + PAD_X + ']'
-      },
-      children: children,
-      edges: elkEdges
-    };
-    return elk.layout(graph).then(function (g) {
-      const byElk = {};
-      (g.children || []).forEach(function (c) { byElk[c.id] = c; });
+    return runElkLayered('plex', nodeItems, nb.edges, {
+      'elk.direction': 'DOWN',
+      'elk.spacing.nodeNode': String(PLEX_NEST_H_GAP),
+      'elk.layered.spacing.nodeNodeBetweenLayers': String(PLEX_NEST_V_GAP)
+    }).then(function (byElk) {
       const positions = {};
-      nb.nodes.forEach(function (item) {
-        const c = byElk[item.node.id];
+      nodeItems.forEach(function (ni) {
+        const item = ni.item;
+        const c = byElk[ni.id];
         if (!c) return;
         const pos = {
           x: c.x || 0,
@@ -1767,7 +1805,7 @@
         if (item.plexDepth != null) pos.plexDepth = item.plexDepth;
         positions[item.node.id] = pos;
       });
-      const out = finalizePlexLayout(positions, nb.edges, forest, nb.synthetic, nb.focus.id);
+      const out = finalizeElkLayout(positions, nb.edges, forest, nb.synthetic, { focusId: nb.focus.id });
       out.engine = 'elk';
       return out;
     });
@@ -2069,8 +2107,87 @@
       byId: forest.byId,
       parentOf: forest.parentOf,
       children: forest.children,
-      synthetic: synthetic
+      synthetic: synthetic,
+      engine: 'hand'
     };
+  }
+
+  /**
+   * ELK layered layout for full flow/图 forest.
+   * Reuses layoutForest to gather nodes/edges (more/cluster/filter), then ELK
+   * recomputes x/y only — keep HTML cards + Bezier edgePath. Direction RIGHT
+   * matches historical L→R hierarchical flow.
+   */
+  function layoutFlowElk(forest) {
+    if (!getElk()) return Promise.reject(new Error('elk unavailable'));
+    const hand = layoutForest(forest, { mode: 'flow' });
+    const ids = Object.keys(hand.positions);
+    if (!ids.length) {
+      hand.engine = 'elk';
+      return Promise.resolve(hand);
+    }
+    const nodeItems = ids.map(function (id) {
+      const p = hand.positions[id];
+      return { id: id, w: p.w, h: p.h, pos: p };
+    });
+    return runElkLayered('flow', nodeItems, hand.edges, {
+      'elk.direction': 'RIGHT',
+      'elk.spacing.nodeNode': String(ROW_GAP + 10),
+      'elk.layered.spacing.nodeNodeBetweenLayers': String(COL_GAP)
+    }).then(function (byElk) {
+      const positions = {};
+      nodeItems.forEach(function (ni) {
+        const c = byElk[ni.id];
+        if (!c) return;
+        const old = ni.pos;
+        const pos = {
+          x: c.x || 0,
+          y: c.y || 0,
+          w: old.w,
+          h: old.h,
+          node: old.node
+        };
+        if (old.depth != null) pos.depth = old.depth;
+        if (old.compact) pos.compact = true;
+        if (old.role) pos.role = old.role;
+        if (old.activated) pos.activated = true;
+        positions[ni.id] = pos;
+      });
+      return finalizeElkLayout(positions, hand.edges, forest, hand.synthetic || {}, {});
+    });
+  }
+
+  function flowCapText(gd, modeLabel, members, layoutRef, fan) {
+    const edgeN = layoutRef.edges.filter(function (e) {
+      const t = layoutRef.positions[e.to] && layoutRef.positions[e.to].node;
+      return t && !t.isMore;
+    }).length;
+    const ghostN = Object.keys(layoutRef.byId).filter(function (id) {
+      return layoutRef.byId[id].ghost;
+    }).length;
+    return (gd.name || curGroup) + ' · ' + modeLabel + ' · ' + members.length + ' 款在谱 · ' +
+      edgeN + ' 条边' +
+      (ghostN ? ' · ' + ghostN + ' 个未收录上游' : '') +
+      (layoutRef.engine === 'elk' ? ' · ELK' : '');
+  }
+
+  function maybeRefineFlowWithElk(forest, members, gd, modeLabel, renderOpts, gen) {
+    const elk = getElk();
+    if (!elk) return;
+    layoutFlowElk(forest).then(function (elkLayout) {
+      if (gen !== flowLayoutGen) return;
+      if (curMode !== 'flow') return;
+      layout = elkLayout;
+      famCap.textContent = flowCapText(gd, modeLabel, members, layout, null);
+      renderGraph();
+      if (renderOpts && renderOpts.restoreView && restoreCanvasView(renderOpts.restoreView)) {
+        /* restored */
+      } else {
+        fitView({ keepScale: !!(renderOpts && renderOpts.keepScale), soft: !!(renderOpts && renderOpts.soft) });
+      }
+    }).catch(function () {
+      /* keep hand layoutForest from sync pass */
+    });
   }
 
   function edgePath(a, b, soft) {
@@ -2188,13 +2305,26 @@
       return;
     }
 
-    const sx = (r.width - pad * 2) / layout.width;
-    const sy = (r.height - pad * 2) / layout.height;
+    /* flow (and other canvas): center on card bbox so ELK graphs are not
+       clipped or stuck low after layered settle. */
+    const bb = plexContentBounds();
+    const contentW = bb ? Math.max(bb.w, 1) : Math.max(layout.width, 1);
+    const contentH = bb ? Math.max(bb.h, 1) : Math.max(layout.height, 1);
+    const minX = bb ? bb.minX : 0;
+    const minY = bb ? bb.minY : 0;
+    const sx = (r.width - pad * 2) / contentW;
+    const sy = (r.height - pad * 2) / contentH;
     const s = Math.min(1.15, Math.max(0.4, Math.min(sx, sy)));
     if (!keepScale) view.scale = s;
     if (!(soft && keepScale)) {
-      view.x = (r.width - layout.width * view.scale) / 2;
-      view.y = Math.max(24, (r.height - layout.height * view.scale) / 2);
+      const scaledW = contentW * view.scale;
+      const scaledH = contentH * view.scale;
+      view.x = (r.width - scaledW) / 2 - minX * view.scale;
+      if (scaledH <= r.height - pad) {
+        view.y = (r.height - scaledH) / 2 - minY * view.scale;
+      } else {
+        view.y = Math.max(24, pad - minY * view.scale);
+      }
     }
     applyView();
   }
@@ -2936,23 +3066,17 @@
       }
       maybeRefinePlexWithElk(forest, focusId, renderOpts, plexGen);
     } else {
+      flowLayoutGen += 1;
+      const flowGen = flowLayoutGen;
       layout = layoutForest(forest, { mode: 'flow' });
-      const edgeN = layout.edges.filter(function (e) {
-        const t = layout.positions[e.to] && layout.positions[e.to].node;
-        return t && !t.isMore;
-      }).length;
-      const ghostN = Object.keys(layout.byId).filter(function (id) {
-        return layout.byId[id].ghost;
-      }).length;
-      famCap.textContent = (gd.name || curGroup) + ' · ' + modeLabel + ' · ' + members.length + ' 款在谱 · ' +
-        edgeN + ' 条边' +
-        (ghostN ? ' · ' + ghostN + ' 个未收录上游' : '');
+      famCap.textContent = flowCapText(gd, modeLabel, members, layout, fan);
       renderGraph();
       if (renderOpts.restoreView && restoreCanvasView(renderOpts.restoreView)) {
         /* restored */
       } else {
         fitView({ keepScale: !!renderOpts.keepScale, soft: !!renderOpts.soft });
       }
+      maybeRefineFlowWithElk(forest, members, gd, modeLabel, renderOpts, flowGen);
     }
 
     if (mainRoot && isCanvasMode(curMode)) {
