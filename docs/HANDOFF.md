@@ -605,6 +605,6 @@ name 表事实（先读后动）：每个 W0x 是**独立 Family**（Subfamily �
 **项目烘焙 `/p/{slug}`（2026-09-25）：**
 - vault：`GET /p/{slug}/index.css`（`data/projects/{slug}.json` → 多字体展开，域名白名单）；`POST /api/projects/publish`；种子 `demo`。**现网 vault 已部署**，`app…/p/demo/index.css` 200。
 - 前台控制台：嵌入页「发布到 CDN」+「导出清单」；对外 URL 仍是 `{cdn}/p/{slug}/index.css`。
-- 边缘：`^~ /p/` → `windfonts_vault`（devops ansible）；**cn 多节点已通**（探针 `cn…/p/demo/index.css` 200，`X-Windfonts-Project: demo`）。`cravatar-sh` 缺 `origin_windfonts_vault` upstream，待补 nginx.conf。
+- 边缘：`^~ /p/` → `windfonts_vault`（devops ansible）；**cn 已通**（探针 `cn…/p/demo/index.css` 200，`X-Windfonts-Project: demo`）。
 
-**仍待：** `cravatar-sh` upstream 补齐、analysis 文件覆盖率、包体清单 API（P3）、扩更多简繁 `localePeerProduct`、项目发布与正式 API Key 打通。商用档 `albbpht` 等仍受许可门禁。
+**仍待：** analysis 文件覆盖率、包体清单 API（P3）、扩更多简繁 `localePeerProduct`、项目发布与正式 API Key 打通。商用档 `albbpht` 等仍受许可门禁。
