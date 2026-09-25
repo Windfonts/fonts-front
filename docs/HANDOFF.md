@@ -4,7 +4,9 @@
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 
-**下一棒（按价值）：** ① vault 生产镜像已换 pnpm 正式构建（PR #29，热补已撤）；② P2 coverage 余量（上游差 / 真·常用字表逐码点）；③ 新入库后重跑 analysis / package-sizes / locale，并递增 `OSS_METADATA_VERSION`；④ 品牌协议 CSS 门禁：vault PR #30（webUse+embedding 放行；普惠体 overlay 已纠错）。
+**下一棒（按价值）：** ① 合并 vault PR #29/#30（需 FeiCode/Forgejo token；gh 对 feicode.com 405）；② P2 coverage 余量（上游差 / 逐码点常用字表）；③ 新入库后重跑 analysis / package-sizes / locale，并递增 `OSS_METADATA_VERSION`。
+
+**2026-09-25 品牌 CSS 解钉：** 根因是 http 级 `proxy_cache cache_one` + `next.config` 给全部 `/api/css`（含 4xx/5xx）加 `s-maxage`，nginx/CyberCDN 按 URL 钉死旧 500。已：清 `proxy_cache_dir` 错误条目；`app.windfonts.com` `location ^~ /api/ { proxy_cache off; }`；`next.config` 去掉 `/api/css` 统一 Cache-Control；错误响应 `no-store`；镜像重建。现网抽查 albbpht/opsa/ddjbt 在 app+cn 均为 200；almmdlt 门禁 500+no-store。
 
 **P2 已落一截（2026-09-25）：** 详情「对照现网字符表」用 analysis `unicode_ranges` 的 CJK 统一汉字数，估算相对常用字 3500 / 扩充 7000 的覆盖与缺口上限（非逐字表）。
 
