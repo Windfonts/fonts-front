@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>谱系 · 亲属布局对照 · 文风字体</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260922a" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260923qa" />
+  <link rel="stylesheet" href="css/base.css?v=20260924c" />
+  <link rel="stylesheet" href="css/components.css?v=20260925k" />
+  <link rel="stylesheet" href="css/site.css?v=20260925i" />
+  <link rel="stylesheet" href="css/lineage-kinship-compare.css?v=20260925g" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+</head>
+<body class="page-lkc">
+  <header data-topbar data-active="fonts"></header>
+
+  <div class="lkc-switch">
+    <div class="container lkc-switch-inner">
+      <p class="lkc-lead">对比实验室 · 现网 <a href="lineage.html">lineage.html</a> 未改 · 也可看还原后的单页 <a href="lineage-kinship-options.html">lineage-kinship-options.html</a></p>
+      <nav class="seg-glyph" id="modeNav" aria-label="布局版本">
+        <button type="button" data-mode="jia" class="is-on">甲 · 分栏</button>
+        <button type="button" data-mode="yi">乙 · 单脊</button>
+        <button type="button" data-mode="bing">丙 · 时间轴</button>
+        <button type="button" data-mode="ding">丁 · 双栏</button>
+      </nav>
+      <p class="lkc-mode-desc" id="modeDesc"></p>
+      <div class="lkc-fams" id="famNav" aria-label="字族"></div>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="lkc-summary" id="summary" aria-live="polite"></div>
+    <p class="lkc-cap" id="famCap"></p>
+    <div class="lkc-panel" id="stage" data-mode="jia"><p class="loading">加载中…</p></div>
+    <p class="lkc-note" id="footNote"></p>
+  </main>
+
+  <script src="js/wf-proto.js?v=20260927p"></script>
+  <script src="js/wf-chrome.js?v=20260927e"></script>
+  <script src="js/wf-specimen.js?v=20260923j"></script>
+  <script src="js/pages/lineage-kinship-compare.js?v=20260925g"></script>
+</body>
+</html>

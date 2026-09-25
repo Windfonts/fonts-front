@@ -75,9 +75,9 @@
       "items": [
         {
           "href": "lineage-flow-lab.html",
-          "title": "谱系关系图（zeoseven 范式）",
+          "title": "谱系关系图实验室（激活/图/簇/墙）",
           "status": "active",
-          "note": "实验室 · 对齐 zeoseven 关系图范式 · 现网 lineage.html 未改 · 亲属对比页可弃",
+          "note": "实验室 · 四模式：激活(TheBrain邻域)/图/簇/墙 · 大族默认激活 · 现网 lineage.html 未改 · 经 lab.html 索引",
           "assets": [
             "css/lineage-flow-lab.css",
             "js/pages/lineage-flow-lab.js"
@@ -87,7 +87,7 @@
           "href": "lineage-kinship-options.html",
           "title": "谱系亲属角色",
           "status": "active",
-          "note": "还原 v4：直系上+旁系下+摘要链；现网未改 · 可弃，改看关系图实验室",
+          "note": "直系上+旁系下+摘要链；对照实验，现网未改 · lab.html 索引",
           "assets": [
             "css/lineage-kinship-options.css",
             "js/pages/lineage-kinship-options.js"
@@ -96,8 +96,8 @@
         {
           "href": "lineage-kinship-compare.html",
           "title": "谱系亲属四套对照",
-          "status": "active",
-          "note": "甲分栏 / 乙单脊 / 丙时间轴 / 丁双栏；可弃，改看 lineage-flow-lab.html",
+          "status": "archive",
+          "note": "甲分栏/乙单脊/丙时间轴/丁双栏；可弃，改看 lineage-flow-lab.html",
           "assets": [
             "css/lineage-kinship-compare.css",
             "js/pages/lineage-kinship-compare.js"

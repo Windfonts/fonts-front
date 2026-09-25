@@ -1,12 +1,31 @@
-/* 谱系亲属角色对照：点中心字 → 标 祖/父/子/孙/旁系/混合。实验室页，不改现网。 */
+/* 谱系亲属角色实验室 v4（还原）
+   - 本字 star-fill；直系图标 + 旁系静点
+   - 直系 section（脊 + 子/孙）+ 旁系 section（近/远 + 远旁折叠）
+   - 顶栏可点摘要链；悬停显 meta/rel（本始终显）
+   - 永在直系；setFocus → render()；wireFolds 远旁
+   现网 lineage.html 不改。 */
 (function () {
   const esc = WFProto.escapeHtml;
   const YONG = '永';
-  const MIX_REL = { locale: true, collab: true, commissioned: true };
+  const MIX_LABEL = { locale: '地区版', collab: '合作', commissioned: '委托' };
+  /* 角色 → 站内 Remix 线标（assets/icons.svg）；文案留给 title / aria-label */
+  const KIN_ICON = {
+    '本': 'star-fill',
+    '父': 'commit',
+    '祖父': 'history',
+    '上祖': 'stack',
+    '子': 'branch',
+    '孙': 'version',
+    '近旁': 'compare',
+    '远旁': 'group'
+  };
   const DEFAULT_GROUP = 'lxgw-wenkai';
+  const FAR_FOLD = 8;
   const stage = document.getElementById('stage');
   const famNav = document.getElementById('famNav');
   const famCap = document.getElementById('famCap');
+  const summaryEl = document.getElementById('summary');
+  const footNote = document.getElementById('footNote');
 
   let curGroup = '';
   let focusId = '';
@@ -27,8 +46,13 @@
   function metaOf(font) {
     const parts = [];
     if (font.charCount) parts.push(WFProto.formatCount(font.charCount) + ' 字');
-    if (font.releaseYear) parts.push(font.releaseYear);
+    if (font.releaseYear) parts.push(String(font.releaseYear));
     return parts.join(' · ');
+  }
+  function mixLabel(font) {
+    if (!font || font.ghost || font.outgroup) return '';
+    const rel = font.lineage && font.lineage.relation;
+    return MIX_LABEL[rel] || '';
   }
 
   function buildForest(members, all) {
@@ -37,30 +61,62 @@
     const children = {};
     const parentOf = {};
     let roots = [];
+
+    function ensureGhost(name, extras) {
+      const gid = 'ghost:' + name;
+      let g = byId[gid];
+      if (!g) {
+        g = { ghost: true, id: gid, name: name, ghostChildren: [] };
+        if (extras) Object.keys(extras).forEach(function (k) { g[k] = extras[k]; });
+        byId[gid] = g;
+        roots.push(g);
+      }
+      return g;
+    }
+
     members.forEach(function (f) {
       const rec = f.lineage || {};
       const up = rec.relation === 'original' ? '' : (rec.upstreamName || '');
-      const parent = up ? WFChrome.findFontByName(all, up) : null;
+      if (!up) {
+        roots.push(f);
+        return;
+      }
+      const parent = WFChrome.findFontByName(all, up);
       if (parent && byId[parent.id]) {
         (children[parent.id] = children[parent.id] || []).push(f);
         parentOf[f.id] = parent.id;
       } else if (parent && !byId[parent.id]) {
-        roots.push(f);
-      } else if (up) {
-        const gid = 'ghost:' + up;
-        let ghost = roots.filter(function (r) { return r.ghost && r.name === up; })[0];
-        if (!ghost) {
-          ghost = { ghost: true, id: gid, name: up, ghostChildren: [] };
-          roots.push(ghost);
+        /* 出族：组外有收录的父 → 出族节点 */
+        const oid = 'out:' + parent.id;
+        let og = byId[oid];
+        if (!og) {
+          og = {
+            outgroup: true,
+            id: oid,
+            name: parent.name,
+            family: parent.family,
+            charCount: parent.charCount,
+            releaseYear: parent.releaseYear,
+            weights: parent.weights,
+            lineage: parent.lineage,
+            outGroupKey: (parent.lineage && parent.lineage.group) || '',
+            ghostChildren: []
+          };
+          byId[oid] = og;
+          roots.push(og);
         }
-        ghost.ghostChildren.push(f);
-        parentOf[f.id] = gid;
-        byId[gid] = ghost;
+        og.ghostChildren.push(f);
+        parentOf[f.id] = oid;
       } else {
-        roots.push(f);
+        /* 未收录原作 */
+        const g = ensureGhost(up);
+        g.ghostChildren.push(f);
+        parentOf[f.id] = g.id;
       }
     });
-    const mains = roots.filter(function (r) { return !r.ghost; })
+
+    /* 同族变体根收编 */
+    const mains = roots.filter(function (r) { return !r.ghost && !r.outgroup; })
       .sort(function (a, b) { return String(a.name).length - String(b.name).length; });
     const kept = [];
     const variants = [];
@@ -72,29 +128,31 @@
       else kept.push(r);
     });
     variants.forEach(function (pair) {
+      roots = roots.filter(function (r) { return r.id !== pair[1].id; });
       (children[pair[0].id] = children[pair[0].id] || []).push(pair[1]);
       parentOf[pair[1].id] = pair[0].id;
     });
-    roots = roots.filter(function (r) { return r.ghost; }).concat(kept);
+    roots = roots.filter(function (r) { return r.ghost || r.outgroup || kept.indexOf(r) !== -1; });
+
     function byYear(a, b) {
       return (a.releaseYear || 9999) - (b.releaseYear || 9999) || String(a.name).localeCompare(b.name, 'zh');
     }
     Object.keys(children).forEach(function (k) { children[k].sort(byYear); });
     roots.forEach(function (r) {
-      if (r.ghost && r.ghostChildren) r.ghostChildren.sort(byYear);
+      if ((r.ghost || r.outgroup) && r.ghostChildren) r.ghostChildren.sort(byYear);
     });
     roots.sort(byYear);
     return { roots: roots, children: children, parentOf: parentOf, byId: byId };
   }
 
   function kidsOf(node, forest) {
-    return node.ghost ? (node.ghostChildren || []) : (forest.children[node.id] || []);
+    if (node.ghost || node.outgroup) return node.ghostChildren || [];
+    return forest.children[node.id] || [];
   }
 
-  /* 相对中心字打角色 */
   function roleMap(focus, forest) {
-    const roles = {}; /* id → { kin, mix } */
-    if (!focus || focus.ghost) return roles;
+    const roles = {}; /* id → { kin, mixLabel } */
+    if (!focus || focus.ghost || focus.outgroup) return { roles: roles, line: {}, ancestors: [] };
 
     const ancestors = [];
     let cur = focus.id;
@@ -106,53 +164,77 @@
       cur = pid;
     }
 
+    /* 父 / 祖父 / 上祖 */
     ancestors.forEach(function (id, i) {
-      roles[id] = roles[id] || { kin: '', mix: false };
-      roles[id].kin = i === 0 ? '父' : '祖';
+      roles[id] = roles[id] || { kin: '', mixLabel: '' };
+      if (i === 0) roles[id].kin = '父';
+      else if (i === 1) roles[id].kin = '祖父';
+      else roles[id].kin = '上祖';
     });
 
-    roles[focus.id] = { kin: '本字', mix: false };
+    roles[focus.id] = { kin: '本', mixLabel: '' };
 
     function markDesc(node, depth) {
       kidsOf(node, forest).forEach(function (k) {
-        if (k.ghost) return;
-        roles[k.id] = roles[k.id] || { kin: '', mix: false };
-        if (k.id !== focus.id && roles[k.id].kin !== '本字') {
-          roles[k.id].kin = depth === 1 ? '子' : '孙';
-        }
+        if (k.ghost || k.outgroup) return;
+        roles[k.id] = roles[k.id] || { kin: '', mixLabel: '' };
+        if (roles[k.id].kin !== '本') roles[k.id].kin = depth === 1 ? '子' : '孙';
         markDesc(k, depth + 1);
       });
     }
     markDesc(focus, 1);
 
-    /* 旁系：其余在库成员 */
+    /* 近旁：与本字或直系祖先同父的兄弟（不含自己与直系） */
+    const lineSet = {};
+    lineSet[focus.id] = true;
+    ancestors.forEach(function (id) { lineSet[id] = true; });
+
+    const parentIds = {};
+    parentIds[focus.id] = forest.parentOf[focus.id];
+    ancestors.forEach(function (id) { parentIds[id] = forest.parentOf[id]; });
+
     Object.keys(forest.byId).forEach(function (id) {
       const n = forest.byId[id];
-      if (n.ghost) {
-        if (!roles[id]) roles[id] = { kin: '祖', mix: false };
+      if (n.ghost || n.outgroup) {
+        if (!roles[id]) {
+          roles[id] = {
+            kin: ancestors.indexOf(id) === 0 ? '父' : (ancestors.indexOf(id) === 1 ? '祖父' : (ancestors.indexOf(id) > 1 ? '上祖' : '上祖')),
+            mixLabel: ''
+          };
+        }
         return;
       }
-      if (!roles[id]) roles[id] = { kin: '旁系', mix: false };
-    });
-
-    /* 混合叠标 */
-    Object.keys(forest.byId).forEach(function (id) {
-      const n = forest.byId[id];
-      if (n.ghost) return;
-      const rel = n.lineage && n.lineage.relation;
-      if (MIX_REL[rel]) {
-        roles[id] = roles[id] || { kin: '旁系', mix: false };
-        roles[id].mix = true;
+      if (roles[id] && roles[id].kin) {
+        /* already set */
+      } else {
+        const p = forest.parentOf[id];
+        let near = false;
+        if (p) {
+          Object.keys(parentIds).forEach(function (lid) {
+            if (parentIds[lid] === p && lid !== id) near = true;
+          });
+          /* also siblings of focus */
+          if (p === forest.parentOf[focus.id]) near = true;
+        }
+        roles[id] = { kin: near ? '近旁' : '远旁', mixLabel: '' };
+      }
+      const ml = mixLabel(n);
+      if (ml) roles[id].mixLabel = ml;
+      if (!n.lineage || !n.lineage.upstreamName) {
+        const rel = n.lineage && n.lineage.relation;
+        if (rel === 'commissioned' || rel === 'collab') {
+          roles[id].mixLabel = (roles[id].mixLabel || MIX_LABEL[rel] || '') + (roles[id].orphanMix ? '' : '');
+          roles[id].noUpstream = true;
+        }
       }
     });
 
-    /* 直系路径 id 集合（含本字）供加粗轨 */
+    /* 直系下游也进 line */
     const line = {};
-    line[focus.id] = true;
-    ancestors.forEach(function (id) { line[id] = true; });
+    Object.keys(lineSet).forEach(function (id) { line[id] = true; });
     function markLineDown(node) {
       kidsOf(node, forest).forEach(function (k) {
-        if (k.ghost) return;
+        if (k.ghost || k.outgroup) return;
         const r = roles[k.id];
         if (r && (r.kin === '子' || r.kin === '孙')) {
           line[k.id] = true;
@@ -165,95 +247,231 @@
     return { roles: roles, line: line, ancestors: ancestors };
   }
 
-  function rolePills(r) {
-    if (!r) return '';
-    let html = '<span class="lk-roles">';
-    if (r.kin === '本字') html += '<span class="lk-pill is-self">本字</span>';
-    else if (r.kin === '祖') html += '<span class="lk-pill is-zu">祖</span>';
-    else if (r.kin === '父') html += '<span class="lk-pill is-fu">父</span>';
-    else if (r.kin === '子') html += '<span class="lk-pill is-zi">子</span>';
-    else if (r.kin === '孙') html += '<span class="lk-pill is-sun">孙</span>';
-    else if (r.kin === '旁系') html += '<span class="lk-pill is-pang">旁系</span>';
-    if (r.mix) html += '<span class="lk-pill is-mix">混合</span>';
-    html += '</span>';
-    return html;
+  function markClass(kin) {
+    if (kin === '本') return 'is-self';
+    if (kin === '父') return 'is-fu';
+    if (kin === '祖父') return 'is-gfu';
+    if (kin === '上祖') return 'is-zu';
+    if (kin === '子') return 'is-zi';
+    if (kin === '孙') return 'is-sun';
+    if (kin === '近旁') return 'is-near';
+    if (kin === '远旁') return 'is-far';
+    return '';
   }
 
-  function hintText(focus, info, forest) {
-    if (!focus) return '';
-    const roles = info.roles;
-    const fu = info.ancestors[0] ? forest.byId[info.ancestors[0]] : null;
-    const zu = info.ancestors[1] ? forest.byId[info.ancestors[1]] : (info.ancestors[0] && forest.byId[info.ancestors[0]] && forest.byId[info.ancestors[0]].ghost ? forest.byId[info.ancestors[0]] : null);
-    /* clearer: 祖 = ancestors[1+] or ghost parent of 父 */
-    let zuName = '';
-    if (info.ancestors.length >= 2) zuName = forest.byId[info.ancestors[info.ancestors.length - 1]].name;
-    else if (fu && fu.ghost) zuName = fu.name;
-    else if (info.ancestors.length === 1 && forest.byId[info.ancestors[0]] && forest.byId[info.ancestors[0]].ghost) {
-      zuName = forest.byId[info.ancestors[0]].name;
-    }
-
-    const zi = [];
-    const sun = [];
-    const pang = [];
-    Object.keys(roles).forEach(function (id) {
-      const n = forest.byId[id];
-      if (!n || n.ghost) return;
-      if (roles[id].kin === '子') zi.push(n.name);
-      if (roles[id].kin === '孙') sun.push(n.name);
-      if (roles[id].kin === '旁系') pang.push(n.name);
+  function pickDefaultFocus(members, forest) {
+    /* 优先：有父且有子；其次有父或有子；分数＝子数*2 + (有父?3:0) + (有孙?1:0) */
+    let best = null;
+    let score = -1;
+    members.forEach(function (f) {
+      const hasParent = !!forest.parentOf[f.id];
+      const kids = forest.children[f.id] || [];
+      const hasChild = kids.length > 0;
+      let grand = 0;
+      kids.forEach(function (k) { grand += (forest.children[k.id] || []).length; });
+      let s = 0;
+      if (hasParent && hasChild) s += 20;
+      if (hasParent) s += 3;
+      if (hasChild) s += kids.length * 2;
+      if (grand) s += 1;
+      if (s > score) { score = s; best = f; }
     });
+    return best || members[0];
+  }
 
+
+  function renderSummary(focus, info, forest) {
+    if (!focus) { summaryEl.innerHTML = ''; return; }
+    const roles = info.roles;
     const bits = [];
-    bits.push('中心：<b>' + esc(focus.name) + '</b>');
-    if (fu && !fu.ghost) bits.push('父：<b>' + esc(fu.name) + '</b>');
-    else if (fu && fu.ghost) bits.push('父 / 祖（未收录）：<b>' + esc(fu.name) + '</b>');
-    if (zuName && (!fu || fu.name !== zuName)) bits.push('祖：<b>' + esc(zuName) + '</b>');
-    if (zi.length) bits.push('子：' + zi.map(esc).join('、'));
-    if (sun.length) bits.push('孙：' + sun.map(esc).join('、'));
-    if (pang.length) bits.push('旁系 ' + pang.length + ' 款');
-    return bits.join(' · ');
+    const near = Object.keys(roles).filter(function (id) { return roles[id].kin === '近旁'; }).length;
+    const far = Object.keys(roles).filter(function (id) { return roles[id].kin === '远旁'; }).length;
+    if (near) bits.push('近旁 ' + near);
+    if (far) bits.push('远旁 ' + far);
+    bits.push('点链上任一款可换中心');
+
+    const chain = [];
+    info.ancestors.slice().reverse().forEach(function (id) {
+      const n = forest.byId[id];
+      if (n) chain.push(n);
+    });
+    chain.push(focus);
+
+    let html = '<ul class="lk-chain">';
+    chain.forEach(function (n, i) {
+      if (i) html += '<li class="lk-chain-sep" aria-hidden="true">' + WFChrome.icon('chevron-right') + '</li>';
+      const r = roles[n.id] || {};
+      const kin = r.kin || (n.ghost || n.outgroup ? '上祖' : '');
+      const ic = KIN_ICON[kin] || 'stack';
+      const isOn = n.id === focus.id;
+      const ghostish = !!(n.ghost || n.outgroup);
+      if (ghostish) {
+        html += '<li><span class="lk-chain-item is-ghost" title="' + esc(evidenceTitle(n, forest)) + '">' +
+          WFChrome.icon(ic) + '<span>' + esc(n.name) + '</span></span></li>';
+      } else {
+        html += '<li><button type="button" class="lk-chain-item' + (isOn ? ' is-on' : '') +
+          '" data-focus="' + esc(n.id) + '" title="' + esc(evidenceTitle(n, forest)) + '">' +
+          WFChrome.icon(ic) + '<span>' + esc(n.name) + '</span></button></li>';
+      }
+    });
+    html += '</ul>';
+    if (bits.length) html += '<p class="lk-sub">' + esc(bits.join(' · ')) + '</p>';
+    summaryEl.innerHTML = html;
+    summaryEl.querySelectorAll('[data-focus]').forEach(function (btn) {
+      btn.addEventListener('click', function () { setFocus(btn.getAttribute('data-focus')); });
+    });
+  }
+
+  function evidenceTitle(node, forest) {
+    if (node.ghost) return '未收录原作';
+    if (node.outgroup) {
+      const g = node.outGroupKey ? (' · 属其他字族') : '';
+      return '出族上游' + g;
+    }
+    const rec = node.lineage || {};
+    const up = rec.upstreamName || '';
+    const ml = mixLabel(node);
+    const parts = [];
+    if (up) parts.push('改自「' + up + '」');
+    if (ml) parts.push(ml);
+    if (!up && (rec.relation === 'commissioned' || rec.relation === 'collab')) {
+      parts.push((MIX_LABEL[rec.relation] || rec.relation) + ' · 谱中未记上游');
+    }
+    if (rec.relation === 'original') parts.push('原作');
+    return parts.join(' · ') || '';
   }
 
   function renderTree(forest, info) {
     const roles = info.roles;
-    const line = info.line;
+    const focus = forest.byId[focusId];
 
-    function item(node, isLast) {
-      const r = roles[node.id] || { kin: node.ghost ? '祖' : '旁系', mix: false };
-      const onLine = !!line[node.id] || (node.ghost && info.ancestors.indexOf(node.id) !== -1);
+    function nodeBtn(node, kinForce) {
+      const r = roles[node.id] || { kin: kinForce || '远旁', mixLabel: '' };
+      const kin = kinForce || r.kin;
+      const quiet = kin === '近旁' || kin === '远旁';
+      const isSelf = kin === '本';
+      const onLine = !quiet && !node.ghost; /* 直系（含本）可画永；ghost/out 无永 */
       const cls = 'lk-node' +
         (node.ghost ? ' is-ghost' : '') +
-        (r.kin === '本字' ? ' is-self' : '') +
-        (r.kin === '旁系' ? ' is-pang' : '');
-      const style = node.ghost ? '' : ' style="' + faceOf(node) + '"';
-      let row;
-      if (node.ghost) {
-        row = '<div class="' + cls + '">' +
-          '<span class="lk-yong" aria-hidden="true">·</span>' +
-          rolePills(r) +
-          '<span class="lk-name">' + esc(node.name) + '</span>' +
-          '<span class="lk-meta">未收录原作</span></div>';
-      } else {
-        row = '<button type="button" class="' + cls + '" data-focus="' + esc(node.id) + '">' +
-          '<span class="lk-yong"' + style + ' aria-hidden="true">' + YONG + '</span>' +
-          rolePills(r) +
-          '<span class="lk-name">' + esc(node.name) + '</span>' +
-          '<span class="lk-meta">' + esc(metaOf(node)) + '</span></button>';
+        (node.outgroup ? ' is-outgroup' : '') +
+        (isSelf ? ' is-self' : '') +
+        (kin === '远旁' ? ' is-far' : '') +
+        (quiet ? ' is-quiet' : '');
+      const title = evidenceTitle(node, forest);
+      const style = (node.ghost || node.outgroup || quiet) ? '' : ' style="' + faceOf(node) + '"';
+      const yong = (onLine && !node.outgroup)
+        ? '<span class="lk-yong"' + style + ' aria-hidden="true">' + YONG + '</span>'
+        : '';
+      const icName = KIN_ICON[kin] || '';
+      const mark = quiet
+        ? '<span class="lk-mark is-quiet" title="' + esc(kin) + '"></span>'
+        : (isSelf
+          ? '<span class="lk-mark is-self" title="本" aria-label="本">' + WFChrome.icon('star-fill', 'lk-kin-ic') + '</span>'
+          : '<span class="lk-mark" title="' + esc(kin) + '" aria-label="' + esc(kin) + '">' +
+            (icName ? WFChrome.icon(icName, 'lk-kin-ic') : '') + '</span>');
+
+      const meta = metaOf(node);
+      const ml = r.mixLabel || mixLabel(node);
+      const metaHtml = meta ? '<span class="lk-meta">' + esc(meta) + '</span>' : '';
+      const relHtml = ml ? '<span class="lk-rel">' + esc(ml) + '</span>' : '';
+
+      if (node.ghost || node.outgroup) {
+        return '<div class="' + cls + '" title="' + esc(title) + '">' + mark +
+          (node.outgroup ? '<span class="lk-out">出族</span>' : '') +
+          '<span class="lk-name">' + esc(node.name) + '</span>' + metaHtml + '</div>';
       }
-      const kids = kidsOf(node, forest);
-      let sub = '';
-      if (kids.length) {
-        sub = '<ul>' + kids.map(function (k, i) {
-          return item(k, i === kids.length - 1);
-        }).join('') + '</ul>';
-      }
-      return '<li class="' + (isLast ? 'lk-last' : '') + (onLine ? ' is-line' : '') + '">' + row + sub + '</li>';
+      return '<button type="button" class="' + cls + '" data-focus="' + esc(node.id) + '" title="' + esc(title) + '">' +
+        mark + yong +
+        '<span class="lk-name">' + esc(node.name) + '</span>' +
+        relHtml + metaHtml + '</button>';
     }
 
-    const rows = forest.roots.map(function (r, i) {
-      return item(r, i === forest.roots.length - 1);
-    }).join('');
-    return '<div class="lk-tree"><ul>' + rows + '</ul></div>';
+    const spine = [];
+    info.ancestors.slice().reverse().forEach(function (id) {
+      const n = forest.byId[id];
+      if (n) spine.push(n);
+    });
+    if (focus) spine.push(focus);
+
+    const zi = [];
+    const sun = [];
+    Object.keys(roles).forEach(function (id) {
+      const n = forest.byId[id];
+      if (!n || n.ghost || n.outgroup) return;
+      if (roles[id].kin === '子') zi.push(n);
+      if (roles[id].kin === '孙') sun.push(n);
+    });
+    zi.sort(function (a, b) { return String(a.name).localeCompare(b.name, 'zh'); });
+    sun.sort(function (a, b) { return String(a.name).localeCompare(b.name, 'zh'); });
+
+    let html = '<section class="lk-sec"><h2 class="lk-sec-h">直系</h2><ul class="lk-spine">';
+    spine.forEach(function (n) {
+      const kin = (roles[n.id] && roles[n.id].kin) || (n.ghost || n.outgroup ? '上祖' : '');
+      html += '<li>' + nodeBtn(n, kin) + '</li>';
+    });
+    html += '</ul>';
+
+    if (zi.length) {
+      html += '<p class="lk-subh">子 · ' + zi.length + '</p><ul class="lk-spine lk-spine-kids">';
+      zi.forEach(function (n) { html += '<li>' + nodeBtn(n, '子') + '</li>'; });
+      html += '</ul>';
+    }
+    if (sun.length) {
+      html += '<p class="lk-subh">孙 · ' + sun.length + '</p><ul class="lk-spine lk-spine-kids">';
+      sun.forEach(function (n) { html += '<li>' + nodeBtn(n, '孙') + '</li>'; });
+      html += '</ul>';
+    }
+    html += '</section>';
+
+    const near = [];
+    const far = [];
+    Object.keys(roles).forEach(function (id) {
+      const n = forest.byId[id];
+      if (!n || n.ghost || n.outgroup) return;
+      if (roles[id].kin === '近旁') near.push(n);
+      if (roles[id].kin === '远旁') far.push(n);
+    });
+    near.sort(function (a, b) { return String(a.name).localeCompare(b.name, 'zh'); });
+    far.sort(function (a, b) { return String(a.name).localeCompare(b.name, 'zh'); });
+
+    if (near.length || far.length) {
+      html += '<section class="lk-sec"><h2 class="lk-sec-h">旁系</h2>';
+      if (near.length) {
+        html += '<p class="lk-subh">近旁 · 同父兄弟</p><ul class="lk-flat">';
+        near.forEach(function (n) { html += '<li>' + nodeBtn(n, '近旁') + '</li>'; });
+        html += '</ul>';
+      }
+      if (far.length) {
+        html += '<p class="lk-subh">远旁</p>';
+        const shown = far.slice(0, FAR_FOLD);
+        const rest = far.slice(FAR_FOLD);
+        html += '<ul class="lk-flat">';
+        shown.forEach(function (n) { html += '<li>' + nodeBtn(n, '远旁') + '</li>'; });
+        html += '</ul>';
+        if (rest.length) {
+          html += '<button type="button" class="lk-fold" data-fold>展开远旁其余 ' + rest.length + ' 款</button>';
+          html += '<ul class="lk-flat" hidden>';
+          rest.forEach(function (n) { html += '<li>' + nodeBtn(n, '远旁') + '</li>'; });
+          html += '</ul>';
+        }
+      }
+      html += '</section>';
+    }
+
+    return html;
+  }
+
+  function wireFolds() {
+    stage.querySelectorAll('[data-fold]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const ul = btn.nextElementSibling;
+        if (!ul) return;
+        const open = ul.hasAttribute('hidden');
+        if (open) ul.removeAttribute('hidden'); else ul.setAttribute('hidden', '');
+        const m = btn.textContent.match(/\d+/);
+        btn.textContent = open ? '收起' : ('展开远旁其余 ' + (m ? m[0] : '') + ' 款');
+      });
+    });
   }
 
   function setGroup(g) {
@@ -304,35 +522,41 @@
     const all = WFProto.getCatalogList();
     const ld = WFProto.getLineageData();
     const groups = ld.groups || {};
+    const withLineage = all.filter(function (f) { return f.lineage && f.lineage.group; }).length;
+    const noLineage = all.length - withLineage;
+
     if (!curGroup || !groups[curGroup]) {
       stage.innerHTML = '<p class="empty">暂无谱系数据。</p>';
+      summaryEl.innerHTML = '';
       return;
     }
     const members = all.filter(function (f) { return f.lineage && f.lineage.group === curGroup; });
     const forest = buildForest(members, all);
     const qf = qs('focus');
-    if (!focusId && qf && forest.byId[qf] && !forest.byId[qf].ghost) focusId = qf;
-    if (!focusId || !forest.byId[focusId] || forest.byId[focusId].ghost) {
-      /* 默认：组内成员最多子嗣的根，否则第一款 */
-      let best = members[0];
-      let n = -1;
-      forest.roots.forEach(function (r) {
-        if (r.ghost) return;
-        const s = kidsOf(r, forest).length;
-        if (s > n) { n = s; best = r; }
-      });
-      focusId = best ? best.id : (members[0] && members[0].id);
+    if (!focusId && qf && forest.byId[qf] && !forest.byId[qf].ghost && !forest.byId[qf].outgroup) {
+      focusId = qf;
+    }
+    if (!focusId || !forest.byId[focusId] || forest.byId[focusId].ghost || forest.byId[focusId].outgroup) {
+      const pick = pickDefaultFocus(members, forest);
+      focusId = pick ? pick.id : '';
     }
     const focus = forest.byId[focusId];
     const info = roleMap(focus, forest);
     const gd = groups[curGroup] || {};
-    famCap.textContent = (gd.name || curGroup) + ' · ' + members.length + ' 款 · 点任一款切换中心';
-    stage.innerHTML =
-      '<p class="lk-hint">' + hintText(focus, info, forest) + '</p>' +
-      renderTree(forest, info);
+
+    famCap.textContent = (gd.name || curGroup) + ' · ' + members.length + ' 款在谱';
+    renderSummary(focus, info, forest);
+    stage.innerHTML = renderTree(forest, info);
     stage.querySelectorAll('[data-focus]').forEach(function (btn) {
       btn.addEventListener('click', function () { setFocus(btn.getAttribute('data-focus')); });
     });
+    wireFolds();
+
+    footNote.textContent =
+      '直系与旁系分开。悬停：浅灰底，显字数与地区版等短注；本字行始终显示。旁系只用圆点。' +
+      ' 全库 ' + all.length + ' 款里 ' + withLineage + ' 款已入谱，另有 ' + noLineage + ' 款尚未建谱（本页不列）。' +
+      ' 详情页短链对接仍待做。';
+
     document.title = (focus ? focus.name + ' · ' : '') + '亲属角色 · 文风字体';
   }
 
