@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>谱系顶栏两套对照 · 文风字体</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260925r" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260925r" />
+  <link rel="stylesheet" href="css/base.css?v=20260925r" />
+  <link rel="stylesheet" href="css/components.css?v=20260925r" />
+  <link rel="stylesheet" href="css/site.css?v=20260925r" />
+  <link rel="stylesheet" href="css/lineage.css?v=20260926f" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+  <style>
+    .oh-wrap { max-width: 72rem; margin: 0 auto; padding: var(--s-8) var(--gutter) var(--s-12); }
+    .oh-wrap > h1 { font-size: var(--fs-20); font-weight: var(--fw-title); margin: 0 0 var(--s-2); }
+    .oh-wrap > .note { font-size: var(--fs-13); color: var(--gray); margin: 0 0 var(--s-8); }
+    .oh-sec { margin-bottom: var(--s-10); }
+    .oh-sec > .cap { display: flex; align-items: baseline; gap: var(--s-3); margin-bottom: var(--s-3); flex-wrap: wrap; }
+    .oh-sec > .cap .no { font-size: var(--fs-12); font-weight: var(--fw-title); background: var(--ink); color: var(--on-ink); padding: 0.1rem 0.6rem; border-radius: var(--radius-pill); }
+    .oh-sec > .cap h2 { font-size: var(--fs-14); margin: 0; font-weight: var(--fw-title); }
+    .oh-sec > .cap p { font-size: var(--fs-12); color: var(--gray); margin: 0; }
+
+    .demo {
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      background: var(--paper);
+      overflow: hidden;
+    }
+    .demo-pad { padding: var(--s-5); }
+    .demo .page-head { padding: var(--s-4) 0 var(--s-3); }
+    .demo .page-head h1 { font-size: var(--fs-40); margin: 0; }
+    .demo .lg-toolbar { padding: var(--s-3) 0; }
+    .demo .count-line {
+      font-size: var(--fs-13);
+      color: var(--gray);
+      padding: 0 0 var(--s-2);
+      margin: 0;
+      font-weight: var(--fw-body);
+      border: 0;
+    }
+    .demo .lg-tools { margin-left: auto; }
+    .demo .lg-hint { font-size: var(--fs-12); color: var(--gray); }
+    .demo .lg-tool {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 1.75rem; height: 1.75rem; padding: 0 0.45rem;
+      border: 0; border-radius: var(--radius-sm); background: var(--fill);
+      color: var(--ink-2); font-size: var(--fs-13); cursor: pointer;
+    }
+    .demo .lg-tool:hover { background: var(--surface-2); }
+    .demo .lg-flow-tools { display: inline-flex; align-items: center; gap: 0.25rem; }
+    .demo .lg-zoom { font-size: var(--fs-12); color: var(--gray); margin-left: 0.25rem; min-width: 2.5rem; }
+    .demo .lg-tools-sep {
+      width: 1px; height: 1.25rem; background: var(--rule-2);
+      margin: 0 0.25rem; flex: none; display: inline-block;
+    }
+
+    /* A · 收紧 */
+    .hd-a-title {
+      display: flex; align-items: baseline; gap: var(--s-3);
+      flex-wrap: wrap; margin-bottom: var(--s-3);
+    }
+    .hd-a-title .t { font-size: var(--fs-20); font-weight: var(--fw-title); }
+    .hd-a-title .meta { font-size: var(--fs-13); color: var(--gray); }
+    .tb-a {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--s-3); flex-wrap: wrap;
+    }
+    .tb-a .left, .tb-a .right {
+      display: flex; align-items: center; gap: var(--s-2); flex-wrap: wrap;
+    }
+    .tb-a .width-btn {
+      padding: 0.35rem 0.75rem; border: 0; border-radius: var(--radius-pill);
+      background: var(--fill); color: var(--gray); font-size: var(--fs-13);
+      font-weight: var(--fw-label); cursor: pointer;
+    }
+    .tb-a .width-btn.is-on { background: var(--ink); color: var(--on-ink); }
+    .tb-a .width-btn:hover { color: var(--ink); }
+    .tb-a .width-btn.is-on:hover { color: var(--on-ink); }
+
+    /* B · 沉浸细条 */
+    .tb-b {
+      position: sticky; top: 0; z-index: 5;
+      display: flex; align-items: center; gap: var(--s-2);
+      flex-wrap: wrap;
+      padding: var(--s-2) var(--s-4);
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+      font-size: var(--fs-13);
+    }
+    .tb-b .spacer { flex: 1 1 auto; min-width: 0.5rem; }
+    .tb-b .fam-dd { position: relative; }
+    .tb-b .fam-dd > summary {
+      list-style: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      padding: 0.3rem 0.7rem; border-radius: var(--radius-pill);
+      background: var(--fill); font-weight: var(--fw-label); color: var(--ink);
+    }
+    .tb-b .fam-dd > summary::-webkit-details-marker { display: none; }
+    .tb-b .fam-dd > summary .caret { color: var(--gray); font-size: 0.75em; }
+    .tb-b .fam-dd[open] > summary { background: var(--surface-2); }
+    .tb-b .fam-panel {
+      position: absolute; left: 0; top: calc(100% + 0.25rem);
+      min-width: 10rem; z-index: 10;
+      background: var(--paper); border: 1px solid var(--rule);
+      border-radius: var(--radius); padding: var(--s-2);
+      box-shadow: 0 8px 24px color-mix(in srgb, var(--ink) 8%, transparent);
+    }
+    .tb-b .fam-panel button {
+      display: block; width: 100%; text-align: left;
+      border: 0; background: transparent; padding: 0.4rem 0.6rem;
+      border-radius: var(--radius-sm); cursor: pointer;
+      font-size: var(--fs-13); color: var(--ink-2);
+    }
+    .tb-b .fam-panel button:hover { background: var(--fill); color: var(--ink); }
+    .tb-b .fam-panel button.is-on { background: var(--ink); color: var(--on-ink); }
+    .tb-b .width-btn {
+      padding: 0.3rem 0.65rem; border: 0; border-radius: var(--radius-pill);
+      background: transparent; color: var(--gray); font-size: var(--fs-12);
+      font-weight: var(--fw-label); cursor: pointer;
+    }
+    .tb-b .width-btn.is-on { background: var(--fill); color: var(--ink); }
+    .canvas-fake {
+      height: 14rem;
+      background:
+        linear-gradient(var(--rule) 1px, transparent 1px) 0 0 / 24px 24px,
+        linear-gradient(90deg, var(--rule) 1px, transparent 1px) 0 0 / 24px 24px,
+        var(--fill);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gray-2); font-size: var(--fs-14);
+    }
+    .is-hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="oh-wrap">
+    <h1>谱系顶栏两套对照</h1>
+    <p class="note">现状密度对照 + 收紧（推荐）+ 沉浸细条。点开关可感差异；定稿前不并进 lineage.html。</p>
+
+    <!-- 0 · 现状 -->
+    <section class="oh-sec" id="sec0">
+      <div class="cap">
+        <span class="no">0</span>
+        <h2>现状（对照）</h2>
+        <p>大标题 + 长说明 + 两组簇头帮助文案 + 四模式/标准全宽/缩放/提示条 + 计数行。</p>
+      </div>
+      <div class="demo demo-pad">
+        <div class="page-head">
+          <h1>思源黑体</h1>
+          <p class="lead">开源字体大多派生自更早的字库，同一字族的字体有共同的源头。这里按字族展示派生关系与品牌归属，字体名用各自的字型显示。</p>
+        </div>
+        <div class="lg-toolbar row-between">
+          <div class="chips" aria-label="字族">
+            <div class="lfl-fam-cluster">
+              <span class="lfl-fam-head">
+                <span class="lfl-fam-label">派生</span>
+                <span class="lfl-fam-help">派生谱系 · 谁改自谁</span>
+              </span>
+              <button type="button" class="chip is-on">思源黑体<span class="n">89</span></button>
+              <button type="button" class="chip">思源宋体<span class="n">29</span></button>
+              <button type="button" class="chip">霞鹜文楷<span class="n">42</span></button>
+            </div>
+            <div class="lfl-fam-cluster">
+              <span class="lfl-fam-head">
+                <span class="lfl-fam-label">品牌</span>
+                <span class="lfl-fam-help">品牌组织 · 按厂商</span>
+              </span>
+              <button type="button" class="chip">阿里巴巴<span class="n">18</span></button>
+              <button type="button" class="chip">站酷<span class="n">12</span></button>
+              <button type="button" class="chip">千图<span class="n">8</span></button>
+              <button type="button" class="chip">猫啃<span class="n">15</span></button>
+              <button type="button" class="chip">庞门正道<span class="n">6</span></button>
+            </div>
+          </div>
+          <div class="lg-tools" role="toolbar" aria-label="视图与画布">
+            <span class="seg">
+              <button type="button" class="is-on">聚焦</button>
+              <button type="button">关系图</button>
+              <button type="button">分支</button>
+              <button type="button">样张</button>
+            </span>
+            <span class="seg">
+              <button type="button" class="is-on">标准</button>
+              <button type="button">全宽</button>
+            </span>
+            <span class="lg-tools-sep" aria-hidden="true"></span>
+            <span class="lg-flow-tools">
+              <button type="button" class="lg-tool" title="缩小">−</button>
+              <button type="button" class="lg-tool" title="放大">+</button>
+              <button type="button" class="lg-tool" title="重置视图">重置</button>
+              <span class="lg-zoom">100%</span>
+            </span>
+            <span class="lg-hint">聚焦：点开一款字体，查看它的上游与下游</span>
+          </div>
+        </div>
+        <p class="count-line">思源黑体 · 派生谱系 · 89 款</p>
+      </div>
+    </section>
+
+    <!-- A · 收紧 -->
+    <section class="oh-sec" id="secA">
+      <div class="cap">
+        <span class="no">A</span>
+        <h2>收紧（推荐）</h2>
+        <p>标题一行带款数；派生/品牌分段后只露一侧大族；模式缩为三；缩放仅图模式出现。</p>
+      </div>
+      <div class="demo demo-pad" id="demoA" data-side="derive" data-mode="plex" data-wide="0" data-zoom="100">
+        <div class="hd-a-title">
+          <span class="t" data-a-title>思源黑体</span>
+          <span class="meta"><span data-a-count>89</span> 款 · <span data-a-kind>派生</span></span>
+        </div>
+        <div class="tb-a">
+          <div class="left">
+            <span class="seg" data-a-side>
+              <button type="button" class="is-on" data-side="derive">派生</button>
+              <button type="button" data-side="brand">品牌</button>
+            </span>
+            <span class="chips" data-a-chips></span>
+          </div>
+          <div class="right">
+            <span class="seg" data-a-mode>
+              <button type="button" class="is-on" data-mode="plex">聚焦</button>
+              <button type="button" data-mode="flow">图</button>
+              <button type="button" data-mode="wall">墙</button>
+            </span>
+            <button type="button" class="width-btn" data-a-wide>全宽</button>
+            <span class="lg-flow-tools is-hidden" data-a-zoom>
+              <button type="button" class="lg-tool" data-zoom="-">−</button>
+              <button type="button" class="lg-tool" data-zoom="+">+</button>
+              <button type="button" class="lg-tool" data-zoom="0">重置</button>
+              <span class="lg-zoom" data-a-zoom-label>100%</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B · 沉浸细条 -->
+    <section class="oh-sec" id="secB">
+      <div class="cap">
+        <span class="no">B</span>
+        <h2>沉浸细条</h2>
+        <p>无页头；吸顶细条把字族下拉、派生/品牌、模式挤在一行；下接图谱占位。</p>
+      </div>
+      <div class="demo" id="demoB" data-side="derive" data-mode="plex" data-wide="0" data-zoom="100" data-fam="思源黑体">
+        <div class="tb-b">
+          <details class="fam-dd" data-b-dd>
+            <summary><span data-b-fam>思源黑体</span><span class="caret">▾</span></summary>
+            <div class="fam-panel" data-b-fam-list></div>
+          </details>
+          <span class="seg" data-b-side>
+            <button type="button" class="is-on" data-side="derive">派生</button>
+            <button type="button" data-side="brand">品牌</button>
+          </span>
+          <span class="chips" data-b-chips></span>
+          <span class="spacer" aria-hidden="true"></span>
+          <span class="seg" data-b-mode>
+            <button type="button" class="is-on" data-mode="plex">聚焦</button>
+            <button type="button" data-mode="flow">图</button>
+            <button type="button" data-mode="wall">墙</button>
+          </span>
+          <button type="button" class="width-btn" data-b-wide title="全宽">全宽</button>
+          <span class="lg-flow-tools is-hidden" data-b-zoom>
+            <button type="button" class="lg-tool" data-zoom="-">−</button>
+            <button type="button" class="lg-tool" data-zoom="+">+</button>
+            <button type="button" class="lg-tool" data-zoom="0">重置</button>
+            <span class="lg-zoom" data-b-zoom-label>100%</span>
+          </span>
+        </div>
+        <div class="canvas-fake">图谱占位</div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+  (function () {
+    var LINEAGE = [
+      { id: 'source-han-sans', name: '思源黑体', n: 89 },
+      { id: 'source-han-serif', name: '思源宋体', n: 29 },
+      { id: 'lxgw-wenkai', name: '霞鹜文楷', n: 42 }
+    ];
+    var BRAND = [
+      { id: 'alibaba', name: '阿里巴巴', n: 18 },
+      { id: 'zcool', name: '站酷', n: 12 },
+      { id: 'qiantu', name: '千图', n: 8 },
+      { id: 'maoken', name: '猫啃', n: 15 },
+      { id: 'pangmen', name: '庞门正道', n: 6 }
+    ];
+
+    function chipsFor(side, activeId) {
+      var list = side === 'brand' ? BRAND : LINEAGE;
+      return list.map(function (g) {
+        return '<button type="button" class="chip' + (g.id === activeId ? ' is-on' : '') +
+          '" data-id="' + g.id + '" data-name="' + g.name + '" data-n="' + g.n + '">' +
+          g.name + '<span class="n">' + g.n + '</span></button>';
+      }).join('');
+    }
+
+    function setSegOn(seg, attr, value) {
+      if (!seg) return;
+      seg.querySelectorAll('button').forEach(function (b) {
+        b.classList.toggle('is-on', b.getAttribute(attr) === value);
+      });
+    }
+
+    function wireZoom(root, toolsSel, labelSel) {
+      var tools = root.querySelector(toolsSel);
+      var label = root.querySelector(labelSel);
+      if (!tools) return;
+      tools.addEventListener('click', function (ev) {
+        var btn = ev.target.closest('[data-zoom]');
+        if (!btn) return;
+        var z = Number(root.getAttribute('data-zoom') || 100);
+        var op = btn.getAttribute('data-zoom');
+        if (op === '+') z = Math.min(200, z + 10);
+        else if (op === '-') z = Math.max(50, z - 10);
+        else z = 100;
+        root.setAttribute('data-zoom', String(z));
+        if (label) label.textContent = z + '%';
+      });
+    }
+
+    /* —— A —— */
+    (function initA() {
+      var root = document.getElementById('demoA');
+      if (!root) return;
+      var chipHost = root.querySelector('[data-a-chips]');
+      var activeId = 'source-han-sans';
+
+      function sync() {
+        var side = root.getAttribute('data-side') || 'derive';
+        var mode = root.getAttribute('data-mode') || 'plex';
+        var wide = root.getAttribute('data-wide') === '1';
+        chipHost.innerHTML = chipsFor(side, activeId);
+        setSegOn(root.querySelector('[data-a-side]'), 'data-side', side);
+        setSegOn(root.querySelector('[data-a-mode]'), 'data-mode', mode);
+        root.querySelector('[data-a-wide]').classList.toggle('is-on', wide);
+        root.querySelector('[data-a-zoom]').classList.toggle('is-hidden', mode !== 'flow');
+        var on = chipHost.querySelector('.chip.is-on');
+        if (on) {
+          root.querySelector('[data-a-title]').textContent = on.getAttribute('data-name');
+          root.querySelector('[data-a-count]').textContent = on.getAttribute('data-n');
+        }
+        root.querySelector('[data-a-kind]').textContent = side === 'brand' ? '品牌' : '派生';
+      }
+
+      root.querySelector('[data-a-side]').addEventListener('click', function (ev) {
+        var btn = ev.target.closest('button[data-side]');
+        if (!btn) return;
+        var side = btn.getAttribute('data-side');
+        root.setAttribute('data-side', side);
+        activeId = (side === 'brand' ? BRAND : LINEAGE)[0].id;
+        sync();
+      });
+      chipHost.addEventListener('click', function (ev) {
+        var btn = ev.target.closest('.chip');
+        if (!btn) return;
+        activeId = btn.getAttribute('data-id');
+        sync();
+      });
+      root.querySelector('[data-a-mode]').addEventListener('click', function (ev) {
+        var btn = ev.target.closest('button[data-mode]');
+        if (!btn) return;
+        root.setAttribute('data-mode', btn.getAttribute('data-mode'));
+        sync();
+      });
+      root.querySelector('[data-a-wide]').addEventListener('click', function () {
+        root.setAttribute('data-wide', root.getAttribute('data-wide') === '1' ? '0' : '1');
+        sync();
+      });
+      wireZoom(root, '[data-a-zoom]', '[data-a-zoom-label]');
+      sync();
+    })();
+
+    /* —— B —— */
+    (function initB() {
+      var root = document.getElementById('demoB');
+      if (!root) return;
+      var chipHost = root.querySelector('[data-b-chips]');
+      var famList = root.querySelector('[data-b-fam-list]');
+      var dd = root.querySelector('[data-b-dd]');
+      var activeId = 'source-han-sans';
+
+      function allMajors() { return LINEAGE.concat(BRAND); }
+
+      function fillFamList() {
+        famList.innerHTML = LINEAGE.map(function (g) {
+          return '<button type="button" class="' + (g.id === activeId ? 'is-on' : '') +
+            '" data-id="' + g.id + '" data-name="' + g.name + '" data-n="' + g.n +
+            '" data-side="derive">' + g.name + '</button>';
+        }).join('') + BRAND.map(function (g) {
+          return '<button type="button" class="' + (g.id === activeId ? 'is-on' : '') +
+            '" data-id="' + g.id + '" data-name="' + g.name + '" data-n="' + g.n +
+            '" data-side="brand">' + g.name + '</button>';
+        }).join('');
+      }
+
+      function sync() {
+        var side = root.getAttribute('data-side') || 'derive';
+        var mode = root.getAttribute('data-mode') || 'plex';
+        var wide = root.getAttribute('data-wide') === '1';
+        var list = side === 'brand' ? BRAND : LINEAGE;
+        if (!list.some(function (g) { return g.id === activeId; })) {
+          activeId = list[0].id;
+        }
+        chipHost.innerHTML = chipsFor(side, activeId);
+        setSegOn(root.querySelector('[data-b-side]'), 'data-side', side);
+        setSegOn(root.querySelector('[data-b-mode]'), 'data-mode', mode);
+        root.querySelector('[data-b-wide]').classList.toggle('is-on', wide);
+        root.querySelector('[data-b-zoom]').classList.toggle('is-hidden', mode !== 'flow');
+        var hit = allMajors().filter(function (g) { return g.id === activeId; })[0];
+        if (hit) {
+          root.querySelector('[data-b-fam]').textContent = hit.name;
+          root.setAttribute('data-fam', hit.name);
+        }
+        fillFamList();
+      }
+
+      root.querySelector('[data-b-side]').addEventListener('click', function (ev) {
+        var btn = ev.target.closest('button[data-side]');
+        if (!btn) return;
+        var side = btn.getAttribute('data-side');
+        root.setAttribute('data-side', side);
+        activeId = (side === 'brand' ? BRAND : LINEAGE)[0].id;
+        sync();
+      });
+      chipHost.addEventListener('click', function (ev) {
+        var btn = ev.target.closest('.chip');
+        if (!btn) return;
+        activeId = btn.getAttribute('data-id');
+        sync();
+      });
+      famList.addEventListener('click', function (ev) {
+        var btn = ev.target.closest('button[data-id]');
+        if (!btn) return;
+        activeId = btn.getAttribute('data-id');
+        root.setAttribute('data-side', btn.getAttribute('data-side'));
+        if (dd) dd.open = false;
+        sync();
+      });
+      root.querySelector('[data-b-mode]').addEventListener('click', function (ev) {
+        var btn = ev.target.closest('button[data-mode]');
+        if (!btn) return;
+        root.setAttribute('data-mode', btn.getAttribute('data-mode'));
+        sync();
+      });
+      root.querySelector('[data-b-wide]').addEventListener('click', function () {
+        root.setAttribute('data-wide', root.getAttribute('data-wide') === '1' ? '0' : '1');
+        sync();
+      });
+      wireZoom(root, '[data-b-zoom]', '[data-b-zoom-label]');
+      document.addEventListener('click', function (ev) {
+        if (dd && dd.open && !dd.contains(ev.target)) dd.open = false;
+      });
+      sync();
+    })();
+  })();
+  </script>
+</body>
+</html>

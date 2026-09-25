@@ -1,6 +1,6 @@
 {
   "note": "对照 / 原型 / 研究页真源。文件留在仓根（相对路径不碎）。禁止当垃圾删。见 docs/LAB.md，索引 lab.html。",
-  "updated": "2026-09-25",
+  "updated": "2026-09-26",
   "policy": {
     "keep": true,
     "noProductionNav": true,
@@ -169,6 +169,12 @@
             "css/lineage-redesign-options.css",
             "js/pages/lineage-redesign-options.js"
           ]
+        },
+        {
+          "href": "lineage-toolbar-options.html",
+          "title": "谱系顶栏两套",
+          "status": "active",
+          "note": "收紧 vs 沉浸细条；定稿前不并进 lineage.html"
         },
         {
           "href": "detail-lineage-tree-options.html",
