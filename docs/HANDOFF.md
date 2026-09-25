@@ -10,7 +10,7 @@
 
 **下一棒（按价值）：** ① WP 顾客 SSO；② 选字袋同步 / 认领；③ OSS 公网放行后真绑桶（现已有 CyberCDN 过渡）；④ 可选独立 CF zone（`hk|en|jp` 已在 CyberCDN 通）。入库见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
 
-**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33 @ `0f98293`）。`hk|en|jp` DNS+`/api/css` 与 `cn` 同边验收通过。
+**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33 @ `0f98293`）。`hk|en|jp` DNS+`/api/css` 与 `cn` 同边验收通过。控制台域名/子集/用量改走 `WFApi`；用量 API 空壳；登录页站点 SSO 已通：`sso.weixiaoduo.com` OAuth（vault PR #34）；providers 含 `weixiaoduo`，按钮「用薇晓朵账户登录」。
 
 **2026-09-25 登录收口：** 生产强制 vault NextAuth（`wf-auth`/`gate`）；`staging-app` 补 `/api` 反代；WFApi 生产默认 live。见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md) §12。
 
@@ -36,7 +36,7 @@
 
 | 模块 | 现状 | 下一步 |
 |---|---|---|
-| **控制台** | 生产须 vault 会话；`WFApi` 生产默认 live；publish/密钥打 vault；projects 仍 localStorage。`?demo=1` **仅本机**。 | vault `/api/projects` CRUD；用量与公开统计同源；WP SSO |
+| **控制台** | 生产须 vault 会话；`WFApi` 默认 live；projects/域名/子集加字 → vault；用量为空壳（待聚合）。`?demo=1` **仅本机**。 | WP SSO 配密钥后登录按钮亮；用量接 `api_usage_*`；选字袋同步 |
 | **选字袋 / 收藏** | 本地 `wf-proto-picks`，可对比与嵌入 | 登录后与「我的字体」双向同步（等控制台 live）；导出 JSON；清空需确认 |
 | **样张工坊** | 详情设计视图出图 | 模板与默认文案接设置；OG 图需后端固定 URL |
 | **厂商认领** | `claim.html` 演示提交（localStorage claims） | vault 工单 API + 审核回写 `foundries.json` / claimed |
@@ -715,3 +715,12 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 - **谱系图入口**：hero 主列中段的孤行（名字与简介之间，突兀）→ 右侧 KV 表「归属」行下方（branch 图标 + 「查看品牌谱系图」链接），与归属/首发/官网同列。坑两个连环：orgKv/showOrg 声明在使用之后（const TDZ 整页卡「正在加载」），声明须全部上移到消费点之前。
 - **顺带推上并行会话两笔**：c5260cf（厂商页只留谱系图入口）、9b1c558（谱系图深链空组织成员修复）。
 - 验证：maoken/chilltype KV 表 8 行含谱系图、hero 主列零孤行；链接 200 渲染 9 节点。
+
+## 34. 2026-09-26 站酷授权核查 + 小薇体换版本 + 志莽行书入库
+
+- **站酷五款授权定案**（fonts.json+vault+font-licenses 三处同步，bf6c63d/3058ade）：文艺体 联系授权→免费商用；高端黑 开源商用/OFL→免费商用（禁改名禁转售，OFL 无实据）；酷黑/小薇LOGO体 协议名统一「站酷字库免费授权声明」+licenseUrl=站酷官方字库页；快乐体维持 OFL（Google Fonts 实证）。
+- **郑庆科黄油体**=ZCOOL QingKe HuangYou（GF OFL 实证）→ 开源商用（dda6050）。
+- **zkxwt 换版本**（a93b5d9）：GF 站酷小薇体 v1.000（OFL）替代站酷小薇LOGO体 v1.00（两款不同字体，name 表四项实据：中文名/版权/版本/字数全不一致）。OSS 同前缀覆盖 84 文件、vault UPDATE、目录同步。
+- **新入 钟齐志莽行书**（9bacea9）：GF 简中全单对拍的唯一真缺款（柳建毛草=钟齐流江毛草、滑油字=WDXL Lubrifont SC 均已在库且标对）。OSS+vault INSERT published+fonts.json 471→472。
+- **GF 简中 10 款全对拍**：已收录 7 款全部开源商用/OFL 标注正确；账本 scripts/xiaowei-swap-map.json + scripts/zhimangxing-map.json。
+- **坑**：oss-batch1-build.sh park 后 analyze 失败会退出不还原（29 norm 留 park）；成功批后批内 norm 也会被移走——构建后核对 fonts/ 完整性，用 git checkout -- fonts/ 还原已跟踪源件（fonts/ 已 gitignore，新源件不入库）。
