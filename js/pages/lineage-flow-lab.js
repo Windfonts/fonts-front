@@ -1228,37 +1228,57 @@
     if (!plexPick) return;
     plexPick.hidden = true;
     plexPick.innerHTML = '';
+    clearPlexGateOpen();
+  }
+
+  function clearPlexGateOpen() {
+    if (!nodesEl) return;
+    nodesEl.querySelectorAll('.lfl-card.is-plex-gate.is-open').forEach(function (el) {
+      el.classList.remove('is-open');
+    });
   }
 
   function openPlexPick(gate, anchorEl) {
     if (!plexPick || !gate || !gate.members || !gate.members.length) return;
+    clearPlexGateOpen();
+    if (anchorEl) anchorEl.classList.add('is-open');
     const members = gate.members.slice().sort(function (a, b) {
       return String(a.name).localeCompare(b.name, 'zh');
     });
     let html = '<div class="lfl-plex-pick-head"><span>' + esc(gate.gateTitle || gate.name) +
       ' · ' + members.length + '</span>' +
-      '<button type="button" class="lfl-plex-pick-close" id="plexPickClose">关闭</button></div>';
+      '<button type="button" class="lfl-plex-pick-close" id="plexPickClose" aria-label="收起">×</button></div>';
     html += '<ul class="lfl-plex-pick-list">';
     members.forEach(function (m) {
-      const meta = [licShort(m), whoOf(m)].filter(Boolean).join(' · ');
+      const lic = licShort(m);
+      const who = whoOf(m);
+      const face = faceOf(m);
+      const yong = m.family
+        ? '<span class="lfl-yong" style="' + face + '" aria-hidden="true">' + YONG + '</span>'
+        : '';
       html += '<li><button type="button" class="lfl-plex-pick-item' +
         (focusId === m.id ? ' is-on' : '') + '" data-activate="' + esc(m.id) + '">' +
-        '<span class="lfl-plex-pick-name">' + esc(m.name) + '</span>' +
-        (meta ? '<span class="lfl-plex-pick-meta">' + esc(meta) + '</span>' : '') +
-        '</button></li>';
+        '<div class="lfl-card-top"><div class="lfl-card-names"><span class="lfl-name">' +
+        esc(m.name) + '</span></div>' + yong + '</div>' +
+        '<div class="lfl-card-meta">' +
+        '<span class="lfl-lic">' + esc(lic) + '</span>' +
+        '<span class="lfl-who">' + esc(who) + '</span>' +
+        '</div></button></li>';
     });
     html += '</ul>';
     plexPick.innerHTML = html;
     plexPick.hidden = false;
 
     const vr = viewport.getBoundingClientRect();
+    const pickW = Math.min(280, vr.width - 16);
     let left = 16;
     let top = 16;
     if (anchorEl) {
       const ar = anchorEl.getBoundingClientRect();
-      left = Math.min(Math.max(8, ar.left - vr.left), vr.width - 240);
-      top = Math.min(Math.max(8, ar.bottom - vr.top + 8), vr.height - 120);
+      left = Math.min(Math.max(8, ar.left - vr.left), Math.max(8, vr.width - pickW - 8));
+      top = Math.min(Math.max(8, ar.bottom - vr.top + 10), Math.max(8, vr.height - 140));
     }
+    plexPick.style.width = pickW + 'px';
     plexPick.style.left = left + 'px';
     plexPick.style.top = top + 'px';
 

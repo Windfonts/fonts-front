@@ -510,81 +510,146 @@ a.lfl-wall-name:hover { text-decoration: underline; }
   margin-top: 0.3rem;
 }
 
+.lfl-card.is-plex-gate.is-open {
+  background: var(--paper);
+  box-shadow: inset 0 0 0 2px var(--ink);
+  z-index: 6;
+}
+.lfl-card.is-plex-gate.is-open .lfl-plex-gate-act { color: var(--ink); }
+
+/* 门闸展开：同款卡语言，贴着门闸，不另起弹层审美 */
 .lfl-plex-pick {
   position: absolute;
   z-index: 30;
-  min-width: 14rem;
-  max-width: min(22rem, 92%);
-  max-height: min(22rem, 70%);
+  width: min(17.5rem, calc(100% - 1rem));
+  max-height: min(26rem, 72%);
   overflow: auto;
+  box-sizing: border-box;
+  padding: 0.35rem;
   background: var(--paper);
-  border-radius: var(--radius);
-  box-shadow: 0 12px 40px color-mix(in srgb, var(--ink) 18%, transparent),
-    inset 0 0 0 1px var(--rule-2);
-  padding: 0.55rem 0.45rem;
+  border-radius: var(--radius-sm);
+  box-shadow:
+    inset 0 0 0 1.5px var(--rule-2),
+    0 10px 28px color-mix(in srgb, var(--ink) 10%, transparent);
 }
 .lfl-plex-pick[hidden] { display: none; }
+.lfl-plex-pick::before {
+  content: "";
+  position: absolute;
+  left: 1.1rem;
+  top: -6px;
+  width: 10px;
+  height: 10px;
+  background: var(--paper);
+  border-left: 1.5px solid var(--rule-2);
+  border-top: 1.5px solid var(--rule-2);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
 .lfl-plex-pick-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.25rem 0.45rem 0.55rem;
-  font-size: var(--fs-13);
+  gap: 0.4rem;
+  padding: 0.35rem 0.45rem 0.45rem;
+  font-size: var(--fs-12);
   font-weight: var(--fw-title);
-  color: var(--ink);
-  border-bottom: 1px solid var(--rule-2);
-  margin-bottom: 0.35rem;
+  color: var(--gray);
   position: sticky;
   top: 0;
   background: var(--paper);
   z-index: 1;
 }
+.lfl-plex-pick-head > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .lfl-plex-pick-close {
   appearance: none;
   border: none;
+  background: transparent;
+  color: var(--gray);
+  font: inherit;
+  font-size: var(--fs-14);
+  line-height: 1;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.lfl-plex-pick-close:hover {
   background: var(--fill);
   color: var(--ink);
-  font: inherit;
-  font-size: var(--fs-12);
-  padding: 0.25rem 0.55rem;
-  border-radius: var(--radius-pill);
-  cursor: pointer;
 }
-.lfl-plex-pick-close:hover { background: var(--surface-2); }
 .lfl-plex-pick-list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.25rem;
 }
 .lfl-plex-pick-item {
   appearance: none;
   border: none;
-  background: transparent;
   width: 100%;
   text-align: left;
   font: inherit;
   color: var(--ink);
-  padding: 0.45rem 0.55rem;
-  border-radius: var(--radius-sm);
   cursor: pointer;
+  box-sizing: border-box;
+  min-height: 3.2rem;
+  padding: 0.4rem 0.55rem 0.35rem;
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  box-shadow: inset 0 0 0 1px transparent;
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.12rem;
+  transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 .lfl-plex-pick-item:hover { background: var(--fill); }
-.lfl-plex-pick-item.is-on { background: var(--fill); box-shadow: inset 0 0 0 1.5px var(--ink); }
-.lfl-plex-pick-name {
+.lfl-plex-pick-item.is-on {
+  background: var(--paper);
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+.lfl-plex-pick-item .lfl-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+.lfl-plex-pick-item .lfl-card-names { flex: 1; min-width: 0; }
+.lfl-plex-pick-item .lfl-name {
+  display: block;
   font-size: var(--fs-13);
   font-weight: var(--fw-title);
   line-height: var(--lh-snug);
+  color: inherit;
+  text-decoration: none;
+  word-break: break-word;
 }
-.lfl-plex-pick-meta {
+.lfl-plex-pick-item .lfl-yong {
+  font-size: 1rem;
+  line-height: 1;
+  opacity: 0.85;
+  flex-shrink: 0;
+  user-select: none;
+}
+.lfl-plex-pick-item .lfl-card-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
   font-size: var(--fs-11);
   color: var(--gray);
+}
+.lfl-plex-pick-item .lfl-lic,
+.lfl-plex-pick-item .lfl-who {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .page-lfl.is-plex .lfl-edges path {
   stroke-width: 1.45;
