@@ -4,7 +4,9 @@
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** 全量 `docker build` 曾因 `npm ci` 失败；分析 URL 版本串是热补 `.next` chunk 临时生效，下次成功构建会吃进 `sync.service.ts` 源码。详见 §25。
 
-**下一棒（按价值）：** ① P2 coverage 产品化（相对常用字缺口 UI，文件已齐）；② 修 vault 生产镜像构建（`npm ci`）并正式部署，去掉热补；③ 新入库后重跑 analysis / package-sizes / locale，并递增 `OSS_METADATA_VERSION`；④ 商用档 `albbpht` 许可门禁。
+**下一棒（按价值）：** ① 修 vault 生产镜像（Dockerfile 已改 pnpm + 阿里云 apk，PR #29；现网仍热补 `.next`）；② P2 coverage 余量（上游差 / 真·常用字表逐码点）；③ 新入库后重跑 analysis / package-sizes / locale，并递增 `OSS_METADATA_VERSION`；④ 商用档 `albbpht` 许可门禁。
+
+**P2 已落一截（2026-09-25）：** 详情「对照现网字符表」用 analysis `unicode_ranges` 的 CJK 统一汉字数，估算相对常用字 3500 / 扩充 7000 的覆盖与缺口上限（非逐字表）。
 
 **2026-09-23 停点：** 公开主路径已基本对齐线上；工程批次已提交（`c78c4ce` 起）。上线硬门槛见 **[LAUNCH-GATES.md](LAUNCH-GATES.md)**（路径 rewrite、真统计、真登录、CDN 去 `local()`）。产品层（控制台 / 选字袋 / 认领等）见下文「产品层 backlog」，继续优化，不挡公开站上线。**完整会话交接见第 9 节**（谱系标准化、OSS 101、猫啃/寒蝉/站酷/荆南核实）；续页 [FONT-AUDIT-BACKLOG.md](FONT-AUDIT-BACKLOG.md)。
 
@@ -631,6 +633,7 @@ feibisi 在 yjmct 页点名「字体详情的 出处和依据」后拍板「**�
 - **源界明朝 yjmct**：feibisi 给 fonts.adobe.com/fonts/genkaimincho 拍板「就是 adobe」（Ken Lunde 架构、基于源ノ明朝加破坏效果）——DB 描述/版权归属本来就对，没改作者；只把 `font-lineage.json` 从误挂的 original 改 **fork ← 思源宋体**（group source-han-serif、upstreamOwnerId adobe、licenseFollows inherit），详情页自动串出思源宋体上下游、同源字组、缺字补全对照（上游 250 字）。
 - 验证：yjmct（标准）/ ceym1（出处）/ opsa（待核对）三款 DOM 断言各归各位。
 - 版本参数：detail `20260927m`、wf-proto `20260927k`（全站 HTML 已进位）。提交 `4bf9ee6` 已推 v4-specimen。
+
 ## 27. 2026-09-25 openfontree 对拍 + 谱系四修正 + 可视化三方向小样
 
 feibisi 拍板 openfontree（ZeoSeven 的开源字体关系树仓，CC BY-SA）三条：当货源、可视化自研、繁/日文后续补录扩覆盖。

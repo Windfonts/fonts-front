@@ -772,6 +772,8 @@
           const liveGlyphs = Number(d.glyph_count) || 0;
           const localChars = Number(font.charCount) || 0;
           const localGlyphs = Number(font.glyphCount) || 0;
+          const ranges = d.unicode_ranges && typeof d.unicode_ranges === 'object' ? d.unicode_ranges : null;
+          const cjk = ranges ? Number(ranges['CJK Unified Ideographs']) || 0 : 0;
           const src =
             row.source === 'api'
               ? 'vault <code>/api/fonts/…/analysis</code>'
@@ -783,6 +785,25 @@
             if (n == null) return '';
             if (n === 0) return ' · 与目录一致';
             return ' · 相对目录 ' + (n > 0 ? '+' : '') + n;
+          }
+          function covLine(label, need) {
+            if (!cjk) return '';
+            const hit = Math.min(cjk, need);
+            const pct = Math.round((hit / need) * 100);
+            const gap = Math.max(0, need - cjk);
+            return (
+              '<p class="glyph-diff-line">相对' +
+              label +
+              '（' +
+              need +
+              '）· CJK 统一汉字 <b>' +
+              WFProto.formatCount(cjk) +
+              '</b> · 覆盖约 <b>' +
+              pct +
+              '%</b>' +
+              (gap ? ' · 缺口上限 ' + WFProto.formatCount(gap) : ' · 已盖过该档') +
+              '</p>'
+            );
           }
           panel.innerHTML =
             '<p class="glyph-diff-line"><b>现网字符分析</b> · 来源 ' +
@@ -799,7 +820,9 @@
             '</b>' +
             deltaNote(glyphDelta) +
             '</p>' +
-            '<p class="glyph-diff-line is-quiet">对照只核计数与样例字重；逐字查缺仍用上方本地字符表。</p>';
+            covLine('常用字档', 3500) +
+            covLine('扩充常用', 7000) +
+            '<p class="glyph-diff-line is-quiet">覆盖按 analysis 的 CJK 统一汉字计数相对档位估算（非逐字表）；逐字查缺仍用上方本地字符表 / CSS unicode-range。</p>';
         });
       });
     })();
