@@ -10,7 +10,7 @@
   /* 顶栏只放大族；其余组数据保留，URL ?group= 仍可进 */
   const MAJOR_GROUPS = {
     lineage: ['source-han-sans', 'source-han-serif', 'lxgw-wenkai'],
-    brand: ['alibaba-sans', 'zcool', 'qiantu', 'maoken', 'pangmen']
+    brand: ['alibaba', 'zcool', 'qiantu', 'maoken', 'pangmen']
   };
   const MAJOR_GROUP_SET = {};
   MAJOR_GROUPS.lineage.concat(MAJOR_GROUPS.brand).forEach(function (g) { MAJOR_GROUP_SET[g] = true; });
@@ -36,14 +36,49 @@
   function isOrgView() {
     return curView === 'org';
   }
+
+  /* 顶栏/URL 品牌芯片 → 厂商树根 id（legacy lineage group=alibaba-sans → alibaba） */
+  const ORG_GROUP_FOUNDRY = {
+    'alibaba-sans': 'alibaba',
+    alibaba: 'alibaba',
+    zcool: 'zcool',
+    qiantu: 'qiantu',
+    maoken: 'maoken',
+    pangmen: 'pangmen',
+    huxiaobo: 'huxiaobo'
+  };
+  function normalizeOrgGroup(g) {
+    if (g === 'alibaba-sans') return 'alibaba';
+    return g || '';
+  }
+  function rootFoundryIdForGroup(g) {
+    if (!g) return '';
+    if (ORG_GROUP_FOUNDRY[g]) return ORG_GROUP_FOUNDRY[g];
+    if (!WFProto.getFoundryById) return '';
+    const fd = WFProto.getFoundryById(g);
+    if (!fd) return '';
+    let cur = fd;
+    let guard = 0;
+    while (cur && cur.parentId && guard++ < 8) {
+      const p = WFProto.getFoundryParent ? WFProto.getFoundryParent(cur) : null;
+      if (!p) break;
+      cur = p;
+    }
+    return cur && cur.id ? cur.id : fd.id;
+  }
+  function ownerIdOfFont(font) {
+    if (!font) return '';
+    return (font.lineage && font.lineage.ownerId) ||
+      (font.ownerInfo && font.ownerInfo.id) || '';
+  }
   function famKindTag() {
-    return isOrgView() ? '品牌组织' : '派生族谱';
+    return isOrgView() ? '品牌归属' : '派生谱系';
   }
   function footForView() {
     if (isOrgView()) {
-      return '这里看品牌归属，不是字形改自谁。激活看邻域，图看关系，支线看结构，墙看样张。';
+      return '这里看品牌归属：哪款字体属于哪个品牌。可用右上角切换聚焦、关系图、分支、样张四种查看方式。';
     }
-    return '这里看谁改自谁。激活看邻域，图看关系，支线看代际，墙看样张；字体名用它自己的字型排印。';
+    return '这里看派生关系：哪款字体改自哪款。可用右上角切换聚焦、关系图、分支、样张四种查看方式；字体名用各自的字型显示。';
   }
 
   const CARD_W = 184;
@@ -127,7 +162,7 @@
   let dragging = false;
   let dragStart = null;
   const viewShell = document.getElementById('viewShell');
-  const FOOT_PLAIN = '这里看谁改自谁。激活看邻域，图看关系，支线看代际，墙看样张；字体名用它自己的字型排印。';
+  const FOOT_PLAIN = '这里看派生关系：哪款字体改自哪款。可用右上角切换聚焦、关系图、分支、样张四种查看方式；字体名用各自的字型显示。';
 
   /* —— 乙支线 / 丙墙（现网 HTML） —— */
   const REL_ICON = { locale: 'merge', collab: 'compare' };
@@ -186,8 +221,8 @@
     return '<button type="button" class="lg-fold" data-fold>' + WFChrome.icon('chevron-down') + esc(label) + '</button>';
   }
   function genLabel(g) {
-    if (g === 0) return '源 头';
-    return '第 ' + '一二三四五六七八九'[Math.min(g - 1, 8)] + ' 代';
+    if (g === 0) return '源头';
+    return '第' + '一二三四五六七八九'[Math.min(g - 1, 8)] + '代';
   }
 
   function buildHtmlForest(members, all, opts) {
@@ -289,7 +324,7 @@
     if (members.length > 20 && maxD >= 1) {
       const band = members.filter(function (f) { return (d[f.id] || 0) === 1; });
       if (band.length) {
-        html += '<p class="lg-b-gen">' + esc(genLabel(1)) + ' · 平铺扫一眼</p>';
+        html += '<p class="lg-b-gen">' + esc(genLabel(1)) + ' · 共 ' + band.length + ' 款</p>';
         html += '<ul class="lg-b-flat">' + band.slice(0, 16).map(function (f) {
           const chipFace = htmlFaceOf(f);
           const chipW = f.family ? htmlWeightOf(f) : '';
@@ -301,13 +336,13 @@
             '<span class="lg-name">' + esc(f.name) + '</span></a></li>';
         }).join('') +
           (band.length > 16
-            ? '<li><span class="lg-meta">另 ' + (band.length - 16) + ' 款见支线</span></li>'
+            ? '<li><span class="lg-meta">另 ' + (band.length - 16) + ' 款见上方分支</span></li>'
             : '') +
           '</ul>';
       }
     }
 
-    return html || '<p class="empty">暂无成员。</p>';
+    return html || '<p class="empty">该字族暂无字体。</p>';
   }
 
   function renderBranchKids(parent, forest, deep) {
@@ -412,7 +447,7 @@
       r._root = !r.ghost;
       return walk(r, i === forest.roots.length - 1);
     }).join('');
-    return '<p class="lg-cap">旁谱</p><ul>' + rows + '</ul>';
+    return '<p class="lg-cap">本族列表</p><ul>' + rows + '</ul>';
   }
 
   function wireFolds() {
@@ -603,17 +638,16 @@
   function relLabel(node, parent) {
     if (!node || node.ghost || node.outgroup || node.isCluster || node.isMore) return '';
     if (node.edgeLabel) return node.edgeLabel;
-    /* 组织视图：边只谈归属/合作，不谈字形衍生 */
+    /* 组织视图：不画字形衍生；母→子厂商无边标（合作仅 edgeLabel / collab） */
     if (isOrgView()) {
-      if (node.isBrandFamily && parent && parent.isBrandFamily) return '合作';
+      if (node.isBrandFamily && parent && parent.isBrandFamily) return '';
       if (parent && parent.isBrandFamily) {
         const r = (node.lineage || {}).relation || '';
         if (r === 'collab') return '合作';
         if (r === 'commissioned') return '委托';
         return '出品';
       }
-      if (node.isBrandFamily) return '品牌';
-      return '品牌';
+      return '';
     }
     if (node.isSeries) {
       if (node.isBrandFamily && parent && parent.isBrandFamily) return '合作';
@@ -629,9 +663,14 @@
   function edgeLabelFor(n, parent) {
     if (!n) return '';
     if (n.edgeLabel) return n.edgeLabel;
+    if (isOrgView()) {
+      if (n.isBrandFamily) return '';
+      if (n.isSeries || n.isCluster || n.isPlexGate) return '';
+      return relLabel(n, parent);
+    }
     if (n.isBrandFamily) return '品牌';
-    if (n.isSeries) return isOrgView() ? '品牌' : '主题支';
-    if (n.isCluster || n.isPlexGate) return isOrgView() ? '品牌' : '衍生';
+    if (n.isSeries) return '主题支';
+    if (n.isCluster || n.isPlexGate) return '衍生';
     return relLabel(n, parent);
   }
 
@@ -872,6 +911,122 @@
       ownerInfo: fd,
       releaseYear: year === 9999 ? 0 : year
     };
+  }
+
+  /** 组织视图：按 foundries 父子树建林，字体按 ownerId 挂到对应厂商；不画 fork/衍生 */
+  function buildOrgForest(rootFoundryId, members) {
+    const byId = {};
+    const childrenMap = {};
+    const parentOf = {};
+    const roots = [];
+    const list = members || [];
+    list.forEach(function (f) { if (f && f.id) byId[f.id] = f; });
+
+    function byYear(a, b) {
+      return (a.releaseYear || 9999) - (b.releaseYear || 9999) ||
+        String(a.name).localeCompare(b.name, 'zh');
+    }
+    function fontsOwnedBy(fid) {
+      return list.filter(function (f) { return ownerIdOfFont(f) === fid; }).sort(byYear);
+    }
+
+    const rootFd = WFProto.getFoundryById ? WFProto.getFoundryById(rootFoundryId) : null;
+    if (!rootFd) {
+      list.forEach(function (f) { roots.push(f); });
+      roots.sort(byYear);
+      return { roots: roots, children: childrenMap, parentOf: parentOf, byId: byId };
+    }
+
+    const getKids = WFProto.getFoundryChildren || function () { return []; };
+    const subtreeIds = (WFProto.getFoundrySubtreeIds
+      ? WFProto.getFoundrySubtreeIds(rootFoundryId)
+      : [rootFoundryId]);
+    const subtreeSet = {};
+    subtreeIds.forEach(function (id) { subtreeSet[id] = true; });
+
+    const hubFonts = [];
+    const hubKids = [];
+    const attached = {};
+
+    getKids(rootFoundryId).slice().sort(function (a, b) {
+      return String(a.name || a.id).localeCompare(String(b.name || b.id), 'zh');
+    }).forEach(function (cfd) {
+      const fonts = fontsOwnedBy(cfd.id);
+      if (!fonts.length) return;
+      const childNode = makeBrandFamilyNode(cfd, fonts);
+      byId[childNode.id] = childNode;
+      parentOf[childNode.id] = 'brand:' + rootFoundryId;
+      childrenMap[childNode.id] = fonts;
+      fonts.forEach(function (f) {
+        parentOf[f.id] = childNode.id;
+        attached[f.id] = true;
+      });
+      fonts.forEach(function (f) { hubFonts.push(f); });
+      hubKids.push(childNode);
+    });
+
+    fontsOwnedBy(rootFoundryId).forEach(function (f) {
+      hubFonts.push(f);
+      parentOf[f.id] = 'brand:' + rootFoundryId;
+      attached[f.id] = true;
+      hubKids.push(f);
+    });
+
+    /* 合作方：owner 不在子树，但 collaboratorIds / relatedGroup 指向本根厂商 */
+    const collabBuckets = {};
+    list.forEach(function (f) {
+      if (!f || attached[f.id]) return;
+      const oid = ownerIdOfFont(f);
+      if (!oid || subtreeSet[oid]) return;
+      const lin = f.lineage || {};
+      const ids = lin.collaboratorIds || [];
+      const infos = lin.collaboratorInfos || [];
+      let linked = lin.relatedGroup === rootFoundryId || ids.indexOf(rootFoundryId) !== -1;
+      if (!linked) {
+        for (let i = 0; i < infos.length; i++) {
+          if (infos[i] && infos[i].id === rootFoundryId) { linked = true; break; }
+        }
+      }
+      if (!linked && rootFoundryId === 'zcool' && oid === 'huxiaobo' && /站酷/.test(String(f.name || ''))) {
+        linked = true;
+      }
+      if (!linked) return;
+      (collabBuckets[oid] = collabBuckets[oid] || []).push(f);
+    });
+    Object.keys(collabBuckets).sort(function (a, b) {
+      return String(a).localeCompare(String(b), 'zh');
+    }).forEach(function (oid) {
+      const fd = (WFProto.getFoundryById && WFProto.getFoundryById(oid)) || { id: oid, name: oid };
+      const fonts = collabBuckets[oid].slice().sort(byYear);
+      const childNode = makeBrandFamilyNode(fd, fonts);
+      childNode.edgeLabel = '合作';
+      childNode.seriesSub = '合作 · 旗下 ' + fonts.length + ' 款';
+      byId[childNode.id] = childNode;
+      parentOf[childNode.id] = 'brand:' + rootFoundryId;
+      childrenMap[childNode.id] = fonts;
+      fonts.forEach(function (f) {
+        parentOf[f.id] = childNode.id;
+        attached[f.id] = true;
+        hubFonts.push(f);
+      });
+      hubKids.push(childNode);
+    });
+
+    /* 仍未挂上的成员：平铺到根枢纽下（不发明 upstream） */
+    list.forEach(function (f) {
+      if (!f || attached[f.id]) return;
+      parentOf[f.id] = 'brand:' + rootFoundryId;
+      attached[f.id] = true;
+      hubFonts.push(f);
+      hubKids.push(f);
+    });
+
+    const hub = makeBrandFamilyNode(rootFd, hubFonts);
+    byId[hub.id] = hub;
+    childrenMap[hub.id] = hubKids;
+    parentOf[hub.id] = '';
+    roots.push(hub);
+    return { roots: roots, children: childrenMap, parentOf: parentOf, byId: byId };
   }
 
   function injectBrandFamilyNodes(forest) {
@@ -1900,8 +2055,8 @@
       if (layout.focusId) focusId = layout.focusId;
       const gd = (WFProto.getLineageData().groups || {})[curGroup] || {};
       const visibleN = Object.keys(layout.positions).length;
-      famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag() + ' · 激活·邻域 · 激活「' +
-        ((layout.byId[focusId] && layout.byId[focusId].name) || focusId) + '」· 邻域 ' + visibleN +
+      famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag() + ' · 聚焦「' +
+        ((layout.byId[focusId] && layout.byId[focusId].name) || focusId) + '」 · 相关 ' + visibleN +
         ' 卡 · ELK';
       renderGraph();
       if (renderOpts && renderOpts.restoreView && restoreCanvasView(renderOpts.restoreView)) {
@@ -2943,13 +3098,13 @@
     if (modeHint) {
       const brand = isOrgView();
       if (mode === 'plex') {
-        modeHint.textContent = brand ? '激活：点卡片看旗下关系' : '激活：点卡片看上下级';
+        modeHint.textContent = brand ? '聚焦：点开一款字体，查看同品牌的字体' : '聚焦：点开一款字体，查看它的上游与下游';
       } else if (mode === 'flow') {
-        modeHint.textContent = brand ? '图：滚轮缩放 · 品牌归属' : '图：滚轮缩放拖拽';
+        modeHint.textContent = brand ? '关系图：滚轮缩放，查看品牌归属' : '关系图：滚轮缩放，可拖拽';
       } else if (mode === 'branch') {
-        modeHint.textContent = brand ? '支线：浏览组织' : '支线：浏览代际';
+        modeHint.textContent = brand ? '分支：按品牌查看旗下字体' : '分支：按代际查看';
       } else {
-        modeHint.textContent = '墙：浏览样张';
+        modeHint.textContent = '样张：按年代查看字体样张';
       }
     }
   }
@@ -2998,12 +3153,15 @@
     if (curView) setUrlParam('view', curView);
   }
 
-  /** 派生=字形上下游树；组织=品牌枢纽+归属（不画 fork 树） */
+  /** 派生=字形上下游树；组织=厂商树（foundries parent/children + ownerId），不画 fork */
   function assembleForest(members, all) {
     if (isOrgView()) {
-      return injectZcoolHuxiaoboLink(injectSeriesNodes(injectBrandFamilyNodes(
+      const rootId = rootFoundryIdForGroup(curGroup);
+      if (rootId) return buildOrgForest(rootId, members);
+      /* 无厂商字典时回退旧品牌枢纽逻辑 */
+      return injectZcoolHuxiaoboLink(injectBrandFamilyNodes(
         buildForest(members, all, { orgOnly: true })
-      )));
+      ));
     }
     return injectSeriesNodes(buildForest(members, all, { catalogMode: false }));
   }
@@ -3063,7 +3221,7 @@
         '</span>' + chips + '</div>';
     }
     famNav.innerHTML =
-      clusterHtml('师承', '派生族谱 · 谁改自谁', MAJOR_GROUPS.lineage) +
+      clusterHtml('派生', '派生谱系 · 谁改自谁', MAJOR_GROUPS.lineage) +
       clusterHtml('品牌', '组织归属 · 谁旗下有谁', MAJOR_GROUPS.brand);
     famNav.querySelectorAll('.chip').forEach(function (btn) {
       btn.addEventListener('click', function () { setGroup(btn.getAttribute('data-group')); });
@@ -3152,8 +3310,8 @@
     const gd = groups[curGroup] || {};
     const fan = maxSiblingFan(forest);
     const modeLabel = curMode === 'wall' ? '墙'
-      : (curMode === 'plex' ? '激活·邻域'
-        : (curMode === 'branch' ? '支线' : '图'));
+      : (curMode === 'plex' ? '聚焦'
+        : (curMode === 'branch' ? '分支' : '关系图'));
     const renderOpts = opts;
 
     const mainRoot = forest.roots.filter(function (r) { return !r.ghost && !r.outgroup && !r.isSeries; })[0];
@@ -3174,7 +3332,7 @@
       layout = null;
       const htmlForest = buildHtmlForest(members, all);
       famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag() + ' · ' + modeLabel + ' · ' + members.length + ' 款' +
-        (htmlForest.roots.length > 1 ? ' · ' + htmlForest.roots.length + ' 条支线' : '');
+        (htmlForest.roots.length > 1 ? ' · ' + htmlForest.roots.length + ' 个分支' : '');
       if (htmlStage) {
         htmlStage.innerHTML = curMode === 'branch'
           ? renderBranch(members, htmlForest)
@@ -3197,8 +3355,8 @@
       if (layout.focusId) focusId = layout.focusId;
       const visibleN = Object.keys(layout.positions).length;
       famCap.textContent = (gd.name || curGroup) + ' · ' + famKindTag() + ' · ' + modeLabel + ' · 激活「' +
-        ((layout.byId[focusId] && layout.byId[focusId].name) || focusId) + '」· 邻域 ' + visibleN +
-        ' 卡' + (fan >= AUTO_PLEX_FAN ? ' · 主题支扇叶 ' + fan : '');
+        ((layout.byId[focusId] && layout.byId[focusId].name) || focusId) + '」 · 相关 ' + visibleN +
+        ' 款' + (fan >= AUTO_PLEX_FAN ? ' · 展开分支 ' + fan + ' 款' : '');
       renderGraph();
       if (renderOpts.restoreView && restoreCanvasView(renderOpts.restoreView)) {
         /* restored */
@@ -3228,7 +3386,7 @@
       footNote.textContent = footForView();
     }
 
-    document.title = (gd.name ? String(gd.name).split(' / ')[0] + ' · ' : '') + '谱系 · 文风字体';
+    document.title = (gd.name ? String(gd.name).split(' / ')[0] + ' · ' : '') + '字体谱系 · 文风字体';
   }
 
   /* —— pan / zoom —— */

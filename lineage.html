@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev");if(/[?&]wide=1(?:&|$)/.test(location.search))document.documentElement.setAttribute("data-wide","1")}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>谱系 · 文风字体</title>
-  <meta name="description" content="两扇门：派生看谁改自谁，组织看谁旗下有谁。激活邻域、关系图、支线与墙；字体名用它自己的字型排印。" />
+  <title>字体谱系 · 文风字体</title>
+  <meta name="description" content="按字族查看开源字体的派生关系与品牌归属：谁改自谁、谁属于哪个品牌；提供聚焦、关系图、分支、样张四种查看方式，字体名用各自的字型显示。" />
   <link rel="stylesheet" href="css/fonts.css?v=20260925z" />
   <link rel="stylesheet" href="css/tokens.css?v=20260925z" />
   <link rel="stylesheet" href="css/base.css?v=20260925z" />
@@ -20,18 +20,18 @@
 
   <main class="container lg-page">
     <div class="page-head">
-      <h1 id="heroTitle">字有师承。</h1>
-      <p class="lead">两扇门，两种看法。师承进派生族谱——谁改自谁；品牌进组织归属——谁旗下有谁。换门换透镜，不只是换说法。</p>
+      <h1 id="heroTitle">字体谱系</h1>
+      <p class="lead">开源字体大多派生自更早的字库，同一字族的字体有共同的源头。这里按字族展示派生关系与品牌归属，字体名用各自的字型显示。</p>
     </div>
 
     <div class="lg-toolbar row-between">
       <div class="chips" id="famNav" aria-label="字族"></div>
       <div class="lg-tools" role="toolbar" aria-label="视图与画布">
         <div class="seg" id="modeNav" role="tablist" aria-label="视图模式">
-          <button type="button" class="lg-mode" data-mode="plex" role="tab" title="激活：点卡片看上下级">激活</button>
-          <button type="button" class="lg-mode" data-mode="flow" role="tab" title="图：滚轮缩放与拖拽">图</button>
-          <button type="button" class="lg-mode" data-mode="branch" role="tab" title="支线：浏览代际">支线</button>
-          <button type="button" class="lg-mode" data-mode="wall" role="tab" title="墙：浏览样张">墙</button>
+          <button type="button" class="lg-mode" data-mode="plex" role="tab" title="聚焦：点开一款字体，查看它的上游与下游">聚焦</button>
+          <button type="button" class="lg-mode" data-mode="flow" role="tab" title="关系图：滚轮缩放，可拖拽">关系图</button>
+          <button type="button" class="lg-mode" data-mode="branch" role="tab" title="分支：按代际查看">分支</button>
+          <button type="button" class="lg-mode" data-mode="wall" role="tab" title="样张：按年代查看样张">样张</button>
         </div>
         <span class="lg-tools-sep" id="flowToolsSep" aria-hidden="true"></span>
         <span class="lg-flow-tools" id="flowTools">
@@ -40,7 +40,7 @@
           <button type="button" class="lg-tool" id="btnReset" title="重置视图">重置</button>
           <span class="lg-zoom" id="zoomLabel">100%</span>
         </span>
-        <span class="lg-hint" id="modeHint">激活：点卡片看上下级</span>
+        <span class="lg-hint" id="modeHint">聚焦：点开一款字体，查看它的上游与下游</span>
       </div>
     </div>
 
@@ -63,7 +63,7 @@
       </section>
     </div>
 
-    <p class="lg-foot" id="footNote">这里看谁改自谁。激活看邻域，图看关系，支线看代际，墙看样张；字体名用它自己的字型排印。</p>
+    <p class="lg-foot" id="footNote">谱系按各字族公开的授权与出处整理，字体名以权利人定名为准；未收录的原作以灰字标注。</p>
   </main>
 
   <footer id="wfExtraFooter"></footer>
@@ -73,6 +73,6 @@
   <script src="js/wf-products.js?v=20260925z"></script>
   <script src="js/wf-specimen.js?v=20260925z"></script>
   <script src="js/lib/elk.bundled.js"></script>
-  <script src="js/pages/lineage.js?v=20260925ar"></script>
+  <script src="js/pages/lineage.js?v=20260926b"></script>
 </body>
 </html>
