@@ -204,6 +204,16 @@
             "css/lineage-options.css",
             "js/pages/lineage-options.js"
           ]
+        },
+        {
+          "href": "yong-wall.html",
+          "title": "永字墙（全库样张）",
+          "status": "active",
+          "note": "独立永字网格；复用 readyFace / fonts-packages；懒加载；?debugFace=1",
+          "assets": [
+            "css/yong-wall.css",
+            "js/pages/yong-wall.js"
+          ]
         }
       ]
     },

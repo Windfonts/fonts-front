@@ -1,0 +1,180 @@
+/* 永字墙 · 独立样张网格（设计 B：柔和圆润，对齐谱系/商店 chrome） */
+
+.page-yong-wall .yw-page {
+  padding-bottom: var(--s-16);
+}
+
+.page-yong-wall .yw-kicker {
+  margin: 0 0 var(--s-2);
+  font-size: var(--fs-12);
+  color: var(--gray);
+  font-weight: var(--fw-label);
+}
+
+.page-yong-wall .page-head h1 {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: var(--fw-title);
+  letter-spacing: -0.02em;
+}
+
+.page-yong-wall .page-head .lead {
+  margin: var(--s-3) 0 0;
+  max-width: 40rem;
+}
+
+.yw-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  margin: var(--s-6) 0 var(--s-4);
+}
+
+.yw-search {
+  flex: 1 1 16rem;
+  min-width: 12rem;
+  max-width: 28rem;
+}
+
+.yw-search input {
+  width: 100%;
+  height: 2.25rem;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--fill);
+  font: inherit;
+  font-size: var(--fs-14);
+  color: var(--ink);
+}
+
+.yw-search input::placeholder { color: var(--gray-2); }
+.yw-search input:focus {
+  outline: 2px solid var(--ink);
+  outline-offset: 0;
+  background: var(--paper);
+}
+
+.yw-toolbar .count-line {
+  margin: 0;
+  margin-left: auto;
+  font-size: var(--fs-13);
+  color: var(--gray);
+}
+
+.yw-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 var(--s-5);
+  max-height: 7.5rem;
+  overflow: auto;
+  padding-bottom: 0.15rem;
+}
+
+.yw-chips .chip {
+  appearance: none;
+  border: 0;
+  background: var(--fill);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: var(--fs-12);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  line-height: 1.3;
+}
+
+.yw-chips .chip:hover { background: var(--surface-2); color: var(--ink); }
+.yw-chips .chip.is-on {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.yw-chips .chip .yw-chip-n {
+  opacity: 0.72;
+  margin-left: 0.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.yw-chips .chip.is-on .yw-chip-n { opacity: 0.85; }
+
+.yw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: 0.7rem;
+}
+
+.yw-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-height: 7.25rem;
+  padding: 0.85rem 0.75rem 0.7rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--ink);
+  transition: background var(--dur) var(--ease);
+}
+
+.yw-card:hover { background: var(--fill); }
+
+.yw-yong {
+  font-size: clamp(2.4rem, 5vw, 3.1rem);
+  line-height: 1;
+  color: var(--ink);
+  opacity: 0.38;
+  user-select: none;
+  transition: opacity var(--dur) var(--ease);
+  font-weight: var(--fw-body);
+}
+
+.yw-yong.is-face-ready { opacity: 1; }
+
+.yw-name {
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-snug);
+  word-break: break-word;
+  color: inherit;
+}
+
+.yw-meta {
+  margin-top: auto;
+  font-size: var(--fs-11);
+  color: var(--gray);
+  display: flex;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+.yw-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--gray);
+  font-size: var(--fs-14);
+  padding: 3rem 1rem;
+  margin: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 480px) {
+  .yw-grid {
+    grid-template-columns: repeat(auto-fill, minmax(6.75rem, 1fr));
+    gap: 0.55rem;
+  }
+  .yw-yong { font-size: 2.2rem; }
+}
