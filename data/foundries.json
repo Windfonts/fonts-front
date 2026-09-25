@@ -2181,6 +2181,155 @@
       "openSource": true,
       "claimed": false,
       "description": "点点像素（Dotted Chinese Pixel Fonts）作者，文泉驿点阵宋体的矢量化变形重制。"
+    },
+    {
+      "id": "takwolf",
+      "name": "狼人小林 (TakWolf)",
+      "en": "TakWolf",
+      "short": "狼人小林",
+      "website": "https://github.com/TakWolf",
+      "aliases": [
+        "TakWolf",
+        "狼人小林"
+      ],
+      "fontNames": [
+        "方舟像素",
+        "缝合像素",
+        "果冻像素",
+        "怀旧像素 街机",
+        "怀旧像素 可爱",
+        "怀旧像素 小巧",
+        "怀旧像素 粗体",
+        "二维码像素"
+      ],
+      "kind": "individual",
+      "openSource": true,
+      "claimed": false,
+      "description": "像素字体作者：方舟/缝合/果冻/怀旧像素系列，MIT 开源。"
+    },
+    {
+      "id": "44670",
+      "name": "44670",
+      "en": "44670",
+      "short": "44670",
+      "website": "https://github.com/44670",
+      "aliases": [
+        "44670"
+      ],
+      "fontNames": [
+        "思源黑体 像素"
+      ],
+      "kind": "individual",
+      "openSource": true,
+      "claimed": false,
+      "description": "思源黑体像素化改作作者。"
+    },
+    {
+      "id": "scott0107000",
+      "name": "字言字语 (scott0107000)",
+      "en": "scott0107000",
+      "short": "字言字语",
+      "website": "https://github.com/scott0107000",
+      "aliases": [
+        "scott0107000",
+        "字言字型"
+      ],
+      "fontNames": [
+        "精品点阵体9x9",
+        "精品点阵体7x7",
+        "流行点阵体16",
+        "夜照飞点阵",
+        "天王星像素"
+      ],
+      "kind": "individual",
+      "openSource": true,
+      "claimed": false,
+      "description": "精品点阵体系列、夜照飞点阵、天王星像素作者。"
+    },
+    {
+      "id": "miiiller",
+      "name": "香萃 (Miiiller)",
+      "en": "Miiiller",
+      "short": "香萃",
+      "website": "https://github.com/Miiiller",
+      "aliases": [
+        "Miiiller",
+        "香萃"
+      ],
+      "fontNames": [
+        "香萃汲学宋",
+        "香萃打字机体",
+        "香萃端庄宋体",
+        "香萃自在舒畅黑",
+        "空缘黑体",
+        "香萃刻宋",
+        "香萃等粗宋",
+        "香萃潮汐宋",
+        "香萃零度黑",
+        "香萃自在"
+      ],
+      "kind": "individual",
+      "openSource": true,
+      "claimed": false,
+      "description": "香萃字体系列作者。"
+    },
+    {
+      "id": "skr-zero",
+      "name": "Skr-ZERO",
+      "en": "Skr-ZERO",
+      "short": "Skr-ZERO",
+      "website": "https://github.com/Skr-ZERO",
+      "aliases": [
+        "Skr-ZERO"
+      ],
+      "fontNames": [
+        "玄冬楷书",
+        "飞花宋体",
+        "猫啃什锦黑 繁体"
+      ],
+      "kind": "individual",
+      "openSource": true,
+      "claimed": false,
+      "description": "玄冬楷书、飞花宋体作者；猫啃什锦黑繁体版维护者。"
+    },
+    {
+      "id": "kalooos0",
+      "name": "Kalooos0",
+      "en": "Kalooos0",
+      "short": "Kalooos0",
+      "website": "https://github.com/Kalooos0",
+      "aliases": [
+        "Kalooos0"
+      ],
+      "fontNames": [
+        "Kalo 黑体"
+      ],
+      "kind": "individual",
+      "openSource": true,
+      "claimed": false,
+      "description": "Kalo 黑体作者。"
+    },
+    {
+      "id": "astro-2539",
+      "name": "Z Labs (Astro-2539)",
+      "en": "Astro-2539",
+      "short": "Z Labs",
+      "website": "https://github.com/Astro-2539",
+      "aliases": [
+        "Astro-2539",
+        "Z Labs"
+      ],
+      "fontNames": [
+        "Z Labs 像素 12px",
+        "Z Labs 圆像素 16px",
+        "Z Labs 圆像素 12px",
+        "Z Labs 点阵 港标",
+        "Z Labs 点阵 日标"
+      ],
+      "kind": "individual",
+      "openSource": true,
+      "claimed": false,
+      "description": "Z Labs 像素字体系列作者。"
     }
   ]
 }
