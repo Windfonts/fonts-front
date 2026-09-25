@@ -1249,7 +1249,7 @@
           id: sid,
           name: label,
           seriesTitle: title,
-          seriesSub: '同一上游的衍生字体 · 点开看上下游',
+          seriesSub: '派生合集 · 点开查看',
           seriesCount: c.members.length,
           members: c.members.slice(),
           clusterKey: c.key,
@@ -2679,7 +2679,7 @@
         pos.x + 'px;top:' + pos.y + 'px;width:' + pos.w + 'px" tabindex="0" role="button">' +
         '<div class="lfl-plex-gate-title"><span>' + esc(n.gateTitle || n.name) + '</span>' +
         '<span class="lfl-plex-gate-count">' + (n.gateCount || (n.members && n.members.length) || 0) + '</span></div>' +
-        '<span class="lfl-plex-gate-sub">' + esc(n.gateSub || '同一上游的衍生字体 · 点开查看') + '</span>' +
+        '<span class="lfl-plex-gate-sub">' + esc(n.gateSub || '派生合集 · 点开查看') + '</span>' +
         '<span class="lfl-plex-gate-act">▸ 展开本支</span>' +
         '</article>';
     }
