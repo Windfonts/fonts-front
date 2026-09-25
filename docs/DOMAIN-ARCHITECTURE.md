@@ -228,21 +228,23 @@ https://{cn|hk|en|jp}.windfonts.com/api/css?family=&weight=&version=
 | 主机 | 状态 |
 |---|---|
 | `app.windfonts.com` | **已切静态 fonts-front**（`/www/wwwroot/fonts-front`）；`/api` `/admin` `/_next` 仍反代 Next 过渡 |
-| `api.windfonts.com` | 未开（网关预留） |
+| `api.windfonts.com` | **已开网关壳**：DNS A→`45.117.8.70`；nginx 反代上游 vault（`Host: vault.windfonts.com`）；`/gateway/health` 自答；响应头 `X-Windfonts-Gateway: api` |
 | `vault.windfonts.com` | **已通**：DNS+通配证+nginx→`:4000` |
 | `staging-app` / `staging-vault` | **已通**（同机静态 / Next） |
-| `cn.windfonts.com` | `/api/css` 十边 Host 已改 **`vault`**（N1b sed+reload） |
+| `cn.windfonts.com` | `/api/css` 十边 Host 已改 **`vault`**（N1b sed+reload）；ansible defaults 已固化 |
+| `www.windfonts.com` | **已定**：301 → `https://windfonts.com/`（CyberCDN canonical） |
 | OSS `wenfeng-web` | **已建并灌入**约 445 文件；账号禁 public-read/policy，暂不能直接当公网根；内容同步自 feicode 静态树 |
 | `hk` / `en` / `jp` | CF 规划；CDN 边缘已有 jp/sg/hk 节点 |
 
 **迁移进度：**
 
 1. ~~vault 双 Host~~ **完成**
-2. ~~CDN origin_host → vault~~ **完成**（十边）
+2. ~~CDN origin_host → vault~~ **完成**（十边 + ansible defaults）
 3. ~~前台 `CSS_API` → vault~~ **完成**
 4. ~~`app` 公开页静态化~~ **完成**（机上静态目录；OSS 公网绑域待账号放开或走 CDN 回源）
 5. ~~staging-app / staging-vault~~ **完成**
-6. `api.` 网关 / WP 账号打通：未做
+6. ~~`api.` 网关壳~~ **完成**（仅反代 vault；WP 账号打通仍未做）
+7. WP 账号 / hooks：未做
 
 ---
 
@@ -290,11 +292,12 @@ WF_API_ORIGIN=https://app.windfonts.com node scripts/sync-font-counts.mjs --writ
 ## 8. 验收清单（infra + 前端）
 
 - [x] `vault.windfonts.com` 解析到 Next 上游，HTTPS 有效；`GET /api/fonts?page=1&size=1` → 200
-- [ ] `app.windfonts.com` 绑 OSS 后，HTML 为 fonts-front；`/fonts/ibmps` rewrite 正确；**无**把整站交给 Next
-- [ ] `cn…/api/css?...` 回源 Host 为 vault（或经可配置网关）
-- [ ] 前台 `CSS_API` 指向 vault；嵌入示例仍为地区 CDN
-- [ ] 停 vault 容器做演练：WP（`windfonts.com`）与 OSS 静态首页仍可打开；仅字体 API / 动态 CSS 失败
-- [ ] （可选）`api.windfonts.com` 反代到 vault，改上游配置后流量可切走，无需改前端常量以外的硬编码
+- [x] `app.windfonts.com` 公开页为 fonts-front 静态；`/fonts/ibmps` rewrite 正确；**未**把整站交给 Next（`/api` `/admin` 过渡反代仍在；OSS 公网绑域待账号放开）
+- [x] `cn…/api/css?...` 回源 Host 为 vault（十边 + ansible）
+- [x] 前台 `CSS_API` 指向 vault；嵌入示例仍为地区 CDN
+- [ ] 停 vault 容器做演练：WP（`windfonts.com`）与静态首页仍可打开；仅字体 API / 动态 CSS 失败
+- [x] `api.windfonts.com` 网关壳反代 vault（`Host` 改写）；`/gateway/health` 200；响应头 `X-Windfonts-Gateway: api`
+- [x] `www` → apex 301 已定
 
 ---
 
@@ -437,6 +440,7 @@ P3 有余力
 | 日期 | 说明 |
 |---|---|
 | 2026-09-25 | 初稿。纠正「api 直绑 Next」；定稿 vault / app OSS / WP / CDN / api 网关预留。 |
+| 2026-09-25 | P0/P1 落地：vault、CDN N1b、app 静态、staging、`api.` 网关壳、www→apex；OSS 公网仍受账号禁 public-read 限制。 |
 | 2026-09-25 | §9：其余域名与 OSS/邮件/预发/webhook 等资源分配清单与优先级。 |
 | 2026-09-25 | 目录 + §9 总览表；CONSOLE / FRONTEND-STANDARDS / HANDOFF 交叉链对齐。 |
 | 2026-09-25 | 落地 vault DNS/TLS/nginx；建 OSS `wenfeng-web`；CDN Host→vault 待边缘应用。 |
