@@ -13195,7 +13195,7 @@
       "Regular"
     ],
     "description": "Hanzi-Pinyin-Font 是一款专为中文学习者设计的开源字体，其核心特点是在每个汉字上方或旁边直接标注对应的拼音及声调，形成直观的字音结合视觉辅助。字体设计融合了黑体的工整与楷书的清秀，字形易于识别。它主要适用于教育领域，如教材、电子书、学习软件、在线课程等，旨在帮助初学者快速建立汉字与发音的关联，降低学习难度。该字体提供TTF和WOFF2格式，遵循Apache-2.0开源协议，允许免费商用。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "CC-BY-SA-4.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Hzpy/LICENSE",
