@@ -179,19 +179,46 @@
       e.preventDefault();
       const v = document.getElementById('domainInput').value;
       if (!WFApp.validHost(v)) { WFChrome.toast('域名格式不对'); return; }
-      if (WFApp.addDomain(p, v)) { WFChrome.toast('已添加，待验证'); render(); } else WFChrome.toast('域名已存在');
+      WFApi.addDomain(p.id, v).then(function () {
+        return WFApi.getProject(p.id);
+      }).then(function (fresh) {
+        p = fresh;
+        WFChrome.toast('已添加，待验证');
+        render();
+      }).catch(function (err) {
+        WFChrome.toast((err && err.code === 'conflict') ? '域名已存在' : ((err && err.message) || '添加失败'));
+      });
     });
     root.querySelectorAll('[data-verify]').forEach(function (b) {
-      b.addEventListener('click', function () { WFApp.verifyDomain(p, b.getAttribute('data-verify')); WFChrome.toast('验证通过'); render(); });
+      b.addEventListener('click', function () {
+        const host = b.getAttribute('data-verify');
+        b.disabled = true;
+        WFChrome.toast('正在校验…');
+        WFApi.verifyDomain(p.id, host).then(function (data) {
+          return WFApi.getProject(p.id).then(function (fresh) {
+            p = fresh;
+            if (data && data.status === 'failed') WFChrome.toast(data.detail || '验证失败');
+            else WFChrome.toast('验证通过');
+            render();
+          });
+        }).catch(function (err) {
+          WFChrome.toast((err && err.message) || '验证失败');
+          b.disabled = false;
+        });
+      });
     });
     root.querySelectorAll('[data-remove-domain]').forEach(function (b) {
       b.addEventListener('click', function () {
         const host = b.getAttribute('data-remove-domain');
         WFChrome.confirm({ title: '移除域名', message: '移除后，' + host + ' 将无法加载字体。确认已从站点卸下嵌入代码再操作。', ok: '移除' }).then(function (ok) {
           if (!ok) return;
-          WFApp.removeDomain(p, host);
-          WFChrome.toast('已移除');
-          render();
+          WFApi.removeDomain(p.id, host).then(function () {
+            return WFApi.getProject(p.id);
+          }).then(function (fresh) {
+            p = fresh;
+            WFChrome.toast('已移除');
+            render();
+          }).catch(function (err) { WFChrome.toast((err && err.message) || '移除失败'); });
         });
       });
     });
@@ -209,8 +236,15 @@
     root.querySelectorAll('[data-allow-host]').forEach(function (b) {
       b.addEventListener('click', function () {
         const host = b.getAttribute('data-allow-host');
-        if (WFApp.addDomain(p, host, 'dns')) { WFChrome.toast('已加入白名单，待验证'); render(); }
-        else WFChrome.toast('已在白名单');
+        WFApi.addDomain(p.id, host, 'dns').then(function () {
+          return WFApi.getProject(p.id);
+        }).then(function (fresh) {
+          p = fresh;
+          WFChrome.toast('已加入白名单，待验证');
+          render();
+        }).catch(function (err) {
+          WFChrome.toast((err && err.code === 'conflict') ? '已在白名单' : ((err && err.message) || '添加失败'));
+        });
       });
     });
     root.querySelectorAll('[data-rollback]').forEach(function (b) {
@@ -318,7 +352,7 @@
       if (btnPub) {
         btnPub.addEventListener('click', function () {
           btnPub.disabled = true;
-          WFApp.publishProject(p).then(function (body) {
+          WFApi.publishProject(p).then(function (body) {
             const v = (body && body.data && body.data.version) || '';
             WFChrome.toast('已发布 · v' + v + ' · ' + WFProto.projectCssUrl(p.slug, 'index.css', WFProto.cdnOriginById(p.delivery.cdn)).replace(/^https:\/\//, ''));
           }).catch(function (err) {
@@ -341,9 +375,15 @@
   }
 
   Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(function () {
-    p = WFApp.project(WFProto.getQuery('id')) || WFApp.projects()[0];
-    if (!p) { root.innerHTML = '<p class="empty">没有项目。<a href="projects.html?new=1">新建一个</a></p>'; return; }
-    document.title = p.name + ' · 控制台 · 文风字体';
-    render();
+    const id = WFProto.getQuery('id');
+    const loadP = id ? WFApi.getProject(id) : WFApi.listProjects().then(function (ps) { return ps[0] || null; });
+    return loadP.then(function (proj) {
+      p = proj;
+      if (!p) { root.innerHTML = '<p class="empty">没有项目。<a href="projects.html?new=1">新建一个</a></p>'; return; }
+      document.title = p.name + ' · 控制台 · 文风字体';
+      render();
+    }).catch(function (err) {
+      root.innerHTML = '<p class="empty">' + WFProto.escapeHtml((err && err.message) || '加载失败') + ' · <a href="projects.html">返回项目列表</a></p>';
+    });
   });
 })();

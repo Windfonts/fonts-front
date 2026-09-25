@@ -1239,6 +1239,7 @@
     },
     CDN: CDN,
     CSS_API: CSS_API,
+    API_MODE: 'mock', /* override via localStorage['wf-api-mode'] = 'live'|'mock' */
     ANALYSIS_META_VER: ANALYSIS_META_VER,
     analysisMetaUrl: analysisMetaUrl,
     dataUrl: dataUrl,

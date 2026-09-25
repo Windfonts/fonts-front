@@ -67,31 +67,53 @@
     document.getElementById('domainForm').addEventListener('submit', function (e) {
       e.preventDefault();
       const host = document.getElementById('domainInput').value;
-      const p = WFApp.project(document.getElementById('domainProject').value);
+      const projectId = document.getElementById('domainProject').value;
       const method = document.getElementById('domainMethod').value;
       if (!WFApp.validHost(host)) { WFChrome.toast('域名格式不对'); return; }
-      if (!p) return;
-      if (WFApp.addDomain(p, host, method)) { WFChrome.toast('已添加，待验证'); render(); } else WFChrome.toast('该项目下已有此域名');
+      if (!projectId) return;
+      WFApi.addDomain(projectId, host, method).then(function () {
+        WFChrome.toast('已添加，待验证');
+        render();
+      }).catch(function (err) { WFChrome.toast((err && err.message) || '添加失败'); });
     });
     function pair(v) { const i = v.indexOf('|'); return { p: WFApp.project(v.slice(0, i)), host: v.slice(i + 1) }; }
     root.querySelectorAll('[data-verify]').forEach(function (b) {
-      b.addEventListener('click', function () { const x = pair(b.getAttribute('data-verify')); WFApp.verifyDomain(x.p, x.host); WFChrome.toast('验证通过'); render(); });
+      b.addEventListener('click', function () {
+        const x = pair(b.getAttribute('data-verify'));
+        if (!x.p) return;
+        b.disabled = true;
+        WFChrome.toast('正在校验…');
+        WFApi.verifyDomain(x.p.id, x.host).then(function (data) {
+          if (data && data.status === 'failed') WFChrome.toast((data.detail) || '验证失败');
+          else WFChrome.toast('验证通过');
+          render();
+        }).catch(function (err) {
+          WFChrome.toast((err && err.message) || '验证失败');
+          b.disabled = false;
+        });
+      });
     });
     root.querySelectorAll('[data-remove]').forEach(function (b) {
       b.addEventListener('click', function () {
         const x = pair(b.getAttribute('data-remove'));
         WFChrome.confirm({ title: '移除域名', message: '将 ' + x.host + ' 从「' + (x.p ? x.p.name : '') + '」白名单移除。该域名将无法加载字体。', ok: '移除' }).then(function (ok) {
           if (!ok) return;
-          WFApp.removeDomain(x.p, x.host);
-          WFChrome.toast('已移除');
-          render();
+          WFApi.removeDomain(x.p.id, x.host).then(function () {
+            WFChrome.toast('已移除');
+            render();
+          }).catch(function (err) { WFChrome.toast((err && err.message) || '移除失败'); });
         });
       });
     });
     root.querySelectorAll('[data-allow]').forEach(function (b) {
       b.addEventListener('click', function () {
         const x = pair(b.getAttribute('data-allow'));
-        if (WFApp.addDomain(x.p, x.host, 'dns')) { WFChrome.toast('已加入白名单，待验证'); render(); } else WFChrome.toast('已在白名单');
+        WFApi.addDomain(x.p.id, x.host, 'dns').then(function () {
+          WFChrome.toast('已加入白名单，待验证');
+          render();
+        }).catch(function (err) {
+          WFChrome.toast((err && err.code === 'conflict') ? '已在白名单' : ((err && err.message) || '添加失败'));
+        });
       });
     });
     document.getElementById('exportCsv').addEventListener('click', function () {
@@ -102,5 +124,5 @@
     });
   }
 
-  Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(render);
+  Promise.all([WFProto.loadCatalog(), WFApp.load(), WFApi.listDomains()]).then(function () { render(); });
 })();
