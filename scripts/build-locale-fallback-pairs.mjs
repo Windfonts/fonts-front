@@ -120,6 +120,7 @@ for (const [stem, slot] of stemMap) {
 const EXPLICIT = [
   ['wenfeng-syhtsc', 'wenfeng-syhttw'],
   ['wenfeng-systsc', 'wenfeng-systtc'],
+  ['wenfeng-systcnl', 'wenfeng-systtc'],
   ['wenfeng-xwwk', 'wenfeng-xwwktc'],
   ['wenfeng-swjaysans', 'wenfeng-swfansans'],
   ['wenfeng-swjayleg', 'wenfeng-swfanleg'],

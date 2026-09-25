@@ -974,6 +974,12 @@
           "tier": "secondary"
         },
         {
+          "family": "wenfeng-systcnl",
+          "chips": ["CN", "Light"],
+          "axes": { "charset": "cn", "purpose": "std", "width": "proportional" },
+          "tier": "secondary"
+        },
+        {
           "family": "wenfeng-systtc",
           "chips": ["TC"],
           "axes": { "charset": "tc", "purpose": "std", "width": "proportional" },
