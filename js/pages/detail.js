@@ -397,7 +397,7 @@
           '<section class="panel" id="glyphs"><div class="panel-head"><div class="glyph-title"><h2>' + WFChrome.icon('hashtag') + '字符表</h2><div id="glyphQuery"></div></div><div class="glyph-tools" id="glyphTools"></div></div>' +
             '<div class="panel-pad"><div class="glyph-summary" id="glyphSummary" aria-live="polite"></div>' +
             '<div class="glyph-diff for-dev" id="glyphDiff" hidden></div>' +
-            '<div class="glyph-live" id="glyphLive" hidden></div>' +
+            '<div class="glyph-live for-dev" id="glyphLive" hidden></div>' +
             '<div class="glyph-blocks" id="glyphBlocks"></div></div></section>' +
           '<section class="panel" id="license"><div class="panel-head"><h2>' + WFChrome.icon('certificate') + '授权</h2>' +
             '<div class="license-head"><span class="lic-chip tier' + (proofTier(font) === '开源' ? ' is-open' : '') + '" data-tier="' + esc(proofTier(font)) + '">' + esc(tierLabel(proofTier(font))) + '</span>' +
@@ -745,8 +745,8 @@
       if (tools.querySelector('[data-live-analysis]')) return;
       const btn = document.createElement('button');
       btn.type = 'button';
-      /* 己：两视图均可对照；一击后立刻展开横条，无 fold */
-      btn.className = 'gtoggle';
+      /* 己：仅开发视图；一击后立刻展开横条，无 fold */
+      btn.className = 'gtoggle for-dev';
       btn.setAttribute('data-live-analysis', '');
       btn.textContent = '对照表';
       btn.title = '按需请求 vault analysis（无文件则 404；限流时回退 OSS metadata）';
