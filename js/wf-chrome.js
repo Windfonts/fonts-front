@@ -852,7 +852,8 @@
   function lineageTreeHtml(font, list, faceOf) {
     const split = lineageSplit(font, list);
     const invite = lineageInviteHtml(font, split);
-    const hasTree = !!(split.root || split.up || split.all.length > 1);
+    /* 只有自己当根不算树：要有真上游（名字/库外）、真下游，或链上还有父级 */
+    const hasTree = !!(split.up || (split.downs && split.downs.length) || (split.all && split.all.length > 1));
     if (!hasTree && !invite) return '';
     const lead = hasTree
       ? '<p class="lin-lead">' + esc(split.L.groupName || split.up || (split.root && split.root.name) || '同系') +

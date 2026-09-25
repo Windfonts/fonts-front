@@ -291,10 +291,17 @@
         }
       }
     }
-    const graphHref = graphGroup
-      ? 'lineage.html?group=' + encodeURIComponent(graphGroup) + '&view=' + graphView +
-        '&mode=plex&focus=' + encodeURIComponent(font.id)
-      : (font.id ? 'lineage.html?view=' + graphView + '&mode=plex&focus=' + encodeURIComponent(font.id) : '');
+    /* 有组且跳过去有用才给入口；孤儿绝不出仅 focus 的空谱系链接 */
+    const split = WFChrome.lineageSplit(font, list);
+    const hasRealTree = !!(split.up || (split.downs && split.downs.length) || (split.all && split.all.length > 1));
+    let graphHref = '';
+    if (graphGroup) {
+      const useful = graphView === 'org' || kinN >= 2 || hasRealTree;
+      if (useful) {
+        graphHref = 'lineage.html?group=' + encodeURIComponent(graphGroup) + '&view=' + graphView +
+          '&mode=plex&focus=' + encodeURIComponent(font.id);
+      }
+    }
     const graph = graphHref
       ? '<a class="btn-text" href="' + WFChrome.href(graphHref) + '">' + WFChrome.icon('branch') + '在谱系图中查看</a>'
       : '';
