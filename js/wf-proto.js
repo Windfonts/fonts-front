@@ -98,7 +98,8 @@
   }
   function catalogUrl() { return dataUrl('fonts.json'); }
   function analysisMetaUrl() {
-    return CDN + '/fonts-packages/metadata/font-analysis.json?v=' + ANALYSIS_META_VER;
+    /* 不带版本参数：CyberCDN 按查询串分缓存变体，带参会命中陈旧变体；无参 URL 回源即全量 */
+    return CDN + '/fonts-packages/metadata/font-analysis.json';
   }
 
   /* —— 厂商字典：data/foundries.json 是厂商名称的唯一真相来源（中文名 / 英文 / 简称 / 官网） —— */

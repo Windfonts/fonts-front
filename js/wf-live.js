@@ -76,7 +76,7 @@
     if (!bundle || !Array.isArray(bundle.fonts) || !normalized) return null;
     var fontData = null;
     for (var i = 0; i < bundle.fonts.length; i++) {
-      if (bundle.fonts[i] && bundle.fonts[i].name === normalized) {
+      if (bundle.fonts[i] && String(bundle.fonts[i].name || '').toLowerCase() === String(normalized || '').toLowerCase()) {
         fontData = bundle.fonts[i];
         break;
       }
@@ -102,8 +102,9 @@
   }
 
   /**
-   * 按需对照现网字符分析。优先 vault API（normalizedName）；
-   * 404 / 429 / 网络失败时回退同源 OSS metadata（与 vault 同源文件）。
+   * 按需对照现网字符分析。OSS+CDN 架构下静态优先：
+   * 先取同源 OSS metadata（与 vault 同一份文件，走边缘缓存不回源）；
+   * 缺失 / 失败时回退 vault API（normalizedName）。
    */
   function analysis(font) {
     var normalized = normalizedOf(font);
@@ -135,6 +136,9 @@
 
     if (liveOff()) return viaMeta('live-off');
 
+    /* 静态优先：OSS metadata 边缘命中即返回；失败再回退 vault API */
+    return viaMeta('static').catch(function () { return null; }).then(function (metaRow) {
+      if (metaRow && !metaRow.failed && !metaRow.missing) return metaRow;
     return fetch(ORIGIN + '/api/fonts/' + encodeURIComponent(normalized) + '/analysis', { method: 'GET' })
       .then(function (r) {
         return r.json().then(function (body) {
@@ -154,6 +158,7 @@
       .catch(function () {
         return viaMeta('network');
       });
+    });
   }
 
   var sizesCache = null;
