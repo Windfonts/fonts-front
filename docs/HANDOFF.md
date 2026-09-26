@@ -14,7 +14,7 @@
 
 **2026-09-26 同步/巡检：** `scripts/deploy-feicode-front.sh`（lab→feicode）；devops 十边 `windfonts-app-edge-probe` cron */5 → `windfonts_app_edge.prom`。
 
-**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33 @ `0f98293`）。`hk|en|jp` DNS+`/api/css` 与 `cn` 同边验收通过。控制台域名/子集/用量改走 `WFApi`。登录页站点 SSO：`sso.weixiaoduo.com` OAuth（vault PR #34）+ 会话 `ensure-key`（PR #35）。用量：公开 `/api/css` 与项目 `/p/` 写 `api_usage_delivery`（含 **403**）；`/api/usage*` 聚合字节/按字体/字重/200·304·403；`/api/usage/blocked` 列未授权来源；无明细时回退 `api_usage_daily`。选字袋登录后经 `/api/picks` 与 vault 双向同步。认领 `POST/GET /api/claims` 收单；管理员 `GET/PATCH /api/admin/claims` 审核 + vault `/admin/claims` 运营页；通过后写 `foundry-claim-status` 覆盖层（前台合并）并可经 `FOUNDRIES_JSON_PATH` 回写 `foundries.json`。收藏 `/api/favs`；上传 `/api/uploads*`（PR #46）init→PUT→complete→**processing 待审**；运营 `/admin/uploads` 通过推 OSS `console-uploads/{id}/`（PR #47 @ `614bc96`）；前台 `wf-api.js?v=20260926up2`。自有字可进项目清单 `source=upload` 并 bake `/p/{slug}/index.css`（PR #48）；文件经 `/api/uploads/.../files?p=`。下一棒：切包托管 / woff2。
+**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33 @ `0f98293`）。`hk|en|jp` DNS+`/api/css` 与 `cn` 同边验收通过。控制台域名/子集/用量改走 `WFApi`。登录页站点 SSO：`sso.weixiaoduo.com` OAuth（vault PR #34）+ 会话 `ensure-key`（PR #35）。用量：公开 `/api/css` 与项目 `/p/` 写 `api_usage_delivery`（含 **403**）；`/api/usage*` 聚合字节/按字体/字重/200·304·403；`/api/usage/blocked` 列未授权来源；无明细时回退 `api_usage_daily`。选字袋登录后经 `/api/picks` 与 vault 双向同步。认领 `POST/GET /api/claims` 收单；管理员 `GET/PATCH /api/admin/claims` 审核 + vault `/admin/claims` 运营页；通过后写 `foundry-claim-status` 覆盖层（前台合并）并可经 `FOUNDRIES_JSON_PATH` 回写 `foundries.json`。收藏 `/api/favs`；上传 `/api/uploads*`（PR #46）init→PUT→complete→**processing 待审**；运营 `/admin/uploads` 通过推 OSS `console-uploads/{id}/`（PR #47 @ `614bc96`）；前台 `wf-api.js?v=20260926up2`。自有字可进项目清单 `source=upload` 并 bake `/p/{slug}/index.css`（PR #48）；文件经 `/api/uploads/.../files?p=`。审核通过转 WOFF2（PR #49）；项目 CSS format(woff2)。下一棒：cn-font-split 切包托管。
 
 **2026-09-25 登录收口：** 生产强制 vault NextAuth（`wf-auth`/`gate`）；`staging-app` 补 `/api` 反代；WFApi 生产默认 live。见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md) §12。
 
@@ -45,7 +45,7 @@
 | **样张工坊** | 详情设计视图出图 | 模板与默认文案接设置；OG 图需后端固定 URL |
 | **厂商认领** | `claim.html` → `/api/claims`；vault `/admin/claims` 审核页；覆盖层 + 可选回写 `foundries.json` | 申请人进度通知（可选） |
 | **谱系** | 详情标题「谱系」；开源才露出上传；厂商页归属按源字/地区版/派生分段 | 勿补无把握关系；上传入口仅开源 |
-| **上传** | 落盘+审核+OSS；项目清单 `source=upload` bake `/p/` @font-face | 切包 / woff2 托管 |
+| **上传** | 落盘+审核+WOFF2+OSS；`source=upload` bake `/p/` 优先 woff2 | cn-font-split 切包 |
 | **定价** | 三条产品线已落页；默认隐藏 | 商务定数字后再露 |
 
 双轨注意：只维护 `index` / `fonts` / `font-detail` / `foundry` / `docs` / `app/*` 主线；`v5-*`、`*-options.html`、`oss-audit.html` **不进生产入口，但必须保留**（对照 / 研究留档）。索引：`lab.html`，说明：[LAB.md](LAB.md)。
