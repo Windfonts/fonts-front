@@ -937,20 +937,38 @@
       "members": [
         {
           "family": "wenfeng-syhtsc",
-          "chips": ["SC"],
-          "axes": { "charset": "sc", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "SC"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         },
         {
           "family": "wenfeng-syhtcn",
-          "chips": ["CN"],
-          "axes": { "charset": "cn", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "CN"
+          ],
+          "axes": {
+            "charset": "cn",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "secondary"
         },
         {
           "family": "wenfeng-syhttw",
-          "chips": ["TW"],
-          "axes": { "charset": "tc", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "TW"
+          ],
+          "axes": {
+            "charset": "tc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         }
       ]
@@ -963,26 +981,51 @@
       "members": [
         {
           "family": "wenfeng-systsc",
-          "chips": ["SC"],
-          "axes": { "charset": "sc", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "SC"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         },
         {
           "family": "wenfeng-systcn",
-          "chips": ["CN"],
-          "axes": { "charset": "cn", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "CN"
+          ],
+          "axes": {
+            "charset": "cn",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "secondary"
         },
         {
           "family": "wenfeng-systcnl",
-          "chips": ["CN", "Light"],
-          "axes": { "charset": "cn", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "CN",
+            "Light"
+          ],
+          "axes": {
+            "charset": "cn",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "secondary"
         },
         {
           "family": "wenfeng-systtc",
-          "chips": ["TC"],
-          "axes": { "charset": "tc", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "TC"
+          ],
+          "axes": {
+            "charset": "tc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         }
       ]
@@ -995,14 +1038,28 @@
       "members": [
         {
           "family": "wenfeng-mksjh",
-          "chips": ["简", "什锦黑"],
-          "axes": { "charset": "sc", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "简",
+            "什锦黑"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         },
         {
           "family": "wenfeng-matc",
-          "chips": ["繁", "什锦黑"],
-          "axes": { "charset": "tc", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "繁",
+            "什锦黑"
+          ],
+          "axes": {
+            "charset": "tc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         }
       ]
@@ -1150,6 +1207,278 @@
       ],
       "canonical": "elffont",
       "status": "active"
+    },
+    {
+      "id": "tsanger-yumo",
+      "name": "仓耳与墨",
+      "en": "Tsanger YuMo",
+      "default": "wenfeng-ceym3",
+      "members": [
+        {
+          "family": "wenfeng-ceym1",
+          "chips": [
+            "W01"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-ceym2",
+          "chips": [
+            "W02"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-ceym3",
+          "chips": [
+            "W03"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-ceym4",
+          "chips": [
+            "W04"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-ceym5",
+          "chips": [
+            "W05"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "id": "tsanger-yuyang",
+      "name": "仓耳渔阳体",
+      "en": "Tsanger YuYang",
+      "default": "wenfeng-ceyyt3",
+      "members": [
+        {
+          "family": "wenfeng-ceyyt1",
+          "chips": [
+            "W01"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-ceyyt2",
+          "chips": [
+            "W02"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-ceyyt3",
+          "chips": [
+            "W03"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-ceyyt4",
+          "chips": [
+            "W04"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-ceyyt5",
+          "chips": [
+            "W05"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "id": "tsanger-shuyuan",
+      "name": "仓耳舒圆体",
+      "en": "Tsanger ShuYuan",
+      "default": "wenfeng-cesyt3",
+      "members": [
+        {
+          "family": "wenfeng-cesyt",
+          "chips": [
+            "W01"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-cesyt2",
+          "chips": [
+            "W02"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-cesyt3",
+          "chips": [
+            "W03"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-cesyt4",
+          "chips": [
+            "W04"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-cesyt5",
+          "chips": [
+            "W05"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "id": "tsanger-feibai",
+      "name": "仓耳非白",
+      "en": "Tsanger FeiBai",
+      "default": "wenfeng-cefb3",
+      "members": [
+        {
+          "family": "wenfeng-cefb1",
+          "chips": [
+            "W01"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-cefb2",
+          "chips": [
+            "W02"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-cefb3",
+          "chips": [
+            "W03"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-cefb4",
+          "chips": [
+            "W04"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-cefb5",
+          "chips": [
+            "W05"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        }
+      ]
     }
   ],
   "policy": {
