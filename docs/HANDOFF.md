@@ -724,3 +724,42 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 - **新入 钟齐志莽行书**（9bacea9）：GF 简中全单对拍的唯一真缺款（柳建毛草=钟齐流江毛草、滑油字=WDXL Lubrifont SC 均已在库且标对）。OSS+vault INSERT published+fonts.json 471→472。
 - **GF 简中 10 款全对拍**：已收录 7 款全部开源商用/OFL 标注正确；账本 scripts/xiaowei-swap-map.json + scripts/zhimangxing-map.json。
 - **坑**：oss-batch1-build.sh park 后 analyze 失败会退出不还原（29 norm 留 park）；成功批后批内 norm 也会被移走——构建后核对 fonts/ 完整性，用 git checkout -- fonts/ 还原已跟踪源件（fonts/ 已 gitignore，新源件不入库）。
+
+## 35. 2026-09-26 无中文 17 款下架（证据链全记录）+ 孤儿谱系门维持原状
+
+feibisi「没中文的要清理」→ 全库扫描（CSS unicode-range 分析）+ 上游原文件 fontTools 复核，双重证据。
+
+### 下架 17 款明细（vault status='offline'，目录移除，OSS 文件未删可恢复）
+
+| 字体 | norm | CJK/总 cmap | 证据链 |
+|---|---|---|---|
+| 寒蝉像素体 | Hcpixels | 0/521-554 | 上游 Warren2060/ChillPixels zip 原文件逐一数 cmap |
+| 寒蝉线体 | Hcline | 0/414 | 上游 Warren2060/Chill Line zip 原文件 |
+| 寒蝉月等宽 | Hcydk | 0/861 | ChillMoonMono release v1.000 原文件 |
+| 杰森手写 | Jshw | 0/100 | max32002/JasonHandWritingFonts（仓内目录即 latin/） |
+| Elffont Fern | Elffern | 5/84 | 分析 + 目录 charCount 83 |
+| Elffont Rock | Elfrock | 5/84 | 同上 |
+| AAR | Aar | 0/95 | 分析（目录 charCount=1 为占位） |
+| 霞鹜拼音体 | Xwpinyin | 0 | 分析（拼音标注字体，设计即拉丁+声调） |
+| 激笔 SFX | Gekifude | 21 | 分析（日文漫画拟声词字体，假名+符号定位） |
+| 怀旧像素 街机/可爱/小巧/粗体 | Rtpx* ×4 | 0 | 分析（拉丁像素风四变体） |
+| Alibaba Sans Thai | Alibabasansthai | 0 | 分析（泰文版） |
+| Alibaba Sans Viet | Alibabasansviet | 0 | 分析（越南文版） |
+
+**保留 4 款**（在先拍板的定位字体，勿再动）：花园明朝 B / 上元明朝 B（A/B 分卷互补，B 卷即补字卷）、文津宋体 P2（分卷）、煮豆黑体（标点搭配定位，190 字符是设计本身）。
+
+### 方法论
+
+1. 全量扫描：OSS `fonts-packages/metadata/font-analysis.json`（CSS unicode-range 汇总）→ CJK Unified+CJK Compatibility+CJK Symbols 三区合计 <100 为候选。
+2. 假阳性排除：分卷互补卷（B 卷/P2）、标点定位字体（煮豆）按在先拍板保留。
+3. 偏低防护：font-analysis 有「极少数包偏低」前科（AAR），对 4 款拉上游原文件反向验证——4/4 与分析吻合，方法可信。
+4. 可恢复性：vault 状态翻转 + fonts.json 加回即完整恢复（OSS 文件未删）。
+
+### 孤儿谱系门（同日两转向，最终态=维持原门）
+
+detail.js「在谱系图中查看」：有组字体按组跳谱系（烟波宋验证保留）；无组孤儿（如简语生活体）**不出入口**（feibisi 定「孤儿字体不用」；owner 聚合回退方案 15c3681 已 revert 于 83197a0）。孤儿谱系信息仍可在所属厂商页「谱系图」owner 聚合派生视图看到（8ec3ed3）。
+
+### 其它
+
+- 「出族上游」行话改「上游」（ceffabf，#7950 口径）。
+- 目录数变化：472 → 455（−17）。
