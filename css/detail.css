@@ -212,11 +212,10 @@
 .use-note-body { margin: 0; font-size: var(--fs-12); line-height: var(--lh-body); }
 /* 丙：纸色代码块与填充预算条分层，但仍贴合为一个代码栈。 */
 .use-code-stack {
-  margin-top: var(--s-4);
+  margin-top: var(--s-5);
   overflow: hidden;
   border-radius: var(--radius-sm);
 }
-.detail-main #use .use-code-stack { margin-top: 0; }
 .detail-main .panel .use-code-stack > .code {
   margin: 0;
   background: var(--paper);
