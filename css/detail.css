@@ -193,10 +193,21 @@
 .use-note { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-4); line-height: 1.7; }
 .use-note code { background: var(--paper); padding: 0.05em 0.35em; border-radius: 6px; }
 .use-note a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }
+/* 乙：代码与预算/补全合成一个灰底单元，预算条紧贴代码底部。 */
+.use-code-stack {
+  margin-top: var(--s-4);
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+.use-code-stack > .code {
+  margin: 0;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
 .use-budget-host {
   display: flex; align-items: center; justify-content: space-between;
-  gap: var(--s-4); flex-wrap: wrap; margin-top: var(--s-3);
-  padding: var(--s-3) var(--s-4); background: var(--fill); border-radius: var(--radius);
+  gap: var(--s-4); flex-wrap: wrap; margin-top: 0;
+  padding: var(--s-3) var(--s-4); background: var(--fill);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
 .use-budget-host > [data-budget-content] { flex: 1 1 18rem; min-width: 0; }
 .use-budget {

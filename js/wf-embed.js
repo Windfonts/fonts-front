@@ -351,8 +351,10 @@
           '<button type="button" class="btn-text" data-cert-preview>用本账号 Key 预览</button>' +
           ' · 生产请加入项目发布 <code>/p/</code>（下一批）</p>'
         : '') +
-      '<div class="use-budget-host" data-budget><div data-budget-content></div></div>' +
-      '<div class="code" style="margin-top:var(--s-4)"><button type="button" class="copy">' + WFChrome.icon('copy') + '复制</button><pre></pre></div>';
+      '<div class="use-code-stack">' +
+        '<div class="code"><button type="button" class="copy">' + WFChrome.icon('copy') + '复制</button><pre></pre></div>' +
+        '<div class="use-budget-host" data-budget><div data-budget-content></div></div>' +
+      '</div>';
     const pre = el.querySelector('pre');
     const budgetHost = el.querySelector('[data-budget]');
     const budgetContent = el.querySelector('[data-budget-content]');
