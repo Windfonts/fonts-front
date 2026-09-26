@@ -934,17 +934,23 @@ html[data-view="dev"] .foundry-eco .foundry-upstream-item { flex-wrap: nowrap; w
 .bag-embed .opts .field label { color: var(--gray); }
 .bag-embed .opts .select { width: 100%; min-width: 0; }
 .bag-embed .opts .check { margin-bottom: 0.45rem; white-space: nowrap; }
-.bag-embed-main { min-width: 0; display: grid; gap: var(--s-2); }
-/* 与详情 #use 代码栈同款：纸色代码 + 灰底预算，tabs 与代码间距收紧 */
-.bag-embed .use-code-stack { margin-top: 0; }
+.bag-embed-main { min-width: 0; display: grid; gap: var(--s-3); }
+/* 对齐详情 #use：tabs 与代码栈拉开；纸色代码 + 灰底预算贴合；脚注在栈外 */
+.bag-embed .use-bar { margin: 0; }
+.bag-embed .use-code-stack {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
 .bag-embed .use-code-stack > .code {
   margin: 0;
   background: var(--paper);
-  padding: var(--s-3) var(--s-4);
+  padding: var(--s-4);
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   position: relative;
 }
 .bag-embed .use-code-stack > .code pre {
+  margin: 0;
   white-space: pre-wrap;
   word-break: break-all;
   font-size: var(--fs-12);
@@ -967,8 +973,26 @@ html[data-view="dev"] .foundry-eco .foundry-upstream-item { flex-wrap: nowrap; w
   background: var(--surface);
   border-color: var(--gray-2);
 }
+.bag-embed .use-budget-host {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-3); flex-wrap: wrap; margin: 0;
+  padding: var(--s-3) var(--s-4);
+  background: var(--fill);
+  border-top: 1px solid var(--rule);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+.bag-embed .use-budget-host .use-budget {
+  gap: 0.15rem;
+  font-size: var(--fs-12);
+  line-height: var(--lh-snug);
+  color: var(--ink-2);
+}
+.bag-embed .bag-embed-main > .use-note {
+  margin: var(--s-1) 0 0;
+  font-size: var(--fs-12);
+  line-height: var(--lh-snug);
+}
 
-.bag-embed .code pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--fs-11); }
 
 /* —— 登录 —— */
 body.page-login { min-height: 100vh; display: flex; flex-direction: column; }
