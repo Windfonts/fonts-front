@@ -553,8 +553,9 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
 .glyph-tools .gtoggle[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
 .glyph-summary { margin-bottom: var(--s-5); max-width: 44rem; }
 .glyph-summary-actions {
-  display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-3);
-  margin: 0.35rem 0 var(--s-2); position: relative; z-index: 2; pointer-events: auto;
+  display: inline-flex; align-items: center; flex-wrap: nowrap; gap: var(--s-3);
+  margin-left: var(--s-3); vertical-align: middle; white-space: nowrap;
+  position: relative; z-index: 2; pointer-events: auto;
 }
 .glyph-summary-actions .glyph-filter,
 .glyph-summary-actions .glyph-qz-link,

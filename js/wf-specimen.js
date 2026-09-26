@@ -596,13 +596,13 @@
           '<button type="button" data-f="hit"' + (st.filter === 'hit' ? ' class="is-on"' : '') + '>已收录</button>' +
           '<button type="button" data-f="miss"' + (st.filter === 'miss' ? ' class="is-on"' : '') + '>缺字</button></span>';
       const summaryActions = (qzLink || filterCtl)
-        ? '<div class="glyph-summary-actions">' +
+        ? '<span class="glyph-summary-actions">' +
             (qzLink ? qzLink : '') + filterCtl +
-          '</div>'
+          '</span>'
         : '';
       summaryEl.innerHTML =
-        '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' ' + label + '已收录 · ' + suffix + '</p>' +
-        summaryActions +
+        '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' ' + label + '已收录 · ' + suffix +
+          summaryActions + '</p>' +
         '<p class="glyph-legend">虚线框表示字体里没有这个字。' +
           (st.charset === 'c3500' ? '字表为 GB2312 一级按码位截取的 3500 字，逐 unicode-range 核对。' : '') +
         '</p>';
