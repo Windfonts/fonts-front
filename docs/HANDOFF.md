@@ -837,3 +837,16 @@ feibisi 问「授权文件都有了没，后面挂 wenfeng.org 溯源」——�
 - **管线坑**：export-fonts 429=匿名配额 1000/天按来源 IP 计，ssh 隧道出口全记 127.0.0.1 也烧配额；解法=容器内打自己 eth0 IP（172.17.0.4 新身份）。vault 临时脚本放 /app/scripts（放 /app 根会算错 ROOT 路径）。
 
 - **§43 拍板收口（feibisi 09-26 晚）**：mplus_hzk12 按 OFL（猫啃官方页口径，canonical 全文归档，仓 Unlicense 记录在案）、汉字拼音体按 Apache-2.0（随仓 LICENSE 口径），两证矛盾关闭 verified 置真（font-licenses 1aad0d0）；香萃自在 Xczz 已开 :16016 详情页与 Xcws 对照待 feibisi 亲核（疑点：charCount=0 从未上 OSS）；寒蝉矩阵体/矩黑=商用款已安排下架（feibisi，不在导出修正范围，下架执行另有人跟）。导出经 devops VM 公网 API 完成（462 款，新入 2 款并行会话上架）。
+
+## 44. 2026-09-26 香萃去重改名 + 小夏系三款入库（feibisi「留一个 xczzsch」「这两做入库」）
+
+- **香萃去重**：Xczz（香萃自在）与 Xcws（香萃自在舒畅黑）为同字体重复导入（同 0.920 版本，charCount=0 是重导出丢 coverage 的假象）。feibisi 拍板留一个、按系列拼音首字母惯例命名 → 保留款 norm **Xcws→Xczzsch**（OSS 前缀 188 对象 copy 迁移；vault norm/family/oss_path/weights 内嵌 family 同步；font-licenses 目录 git mv；authors-batch-map 同步；Xczz 归档）。**坑：OSS key 无删除权限（防盗刷策略刻意锁死），旧 Xcws 前缀 188 个孤儿对象待有删除权限的 key 清理**。weights JSON 里内嵌 font_family 字段别忘同步（改名漏了会 embed 到旧 family）。
+- **入库三款**（feibisi 指定 Sumr-Sans 仓 + Konatu 包）：
+  - 小夏 Konatu（MIT，枡田道也，位图嵌入 TrueType，12204 CJK，双形态）
+  - 小夏等幅 KonatuTohaba（同作者等宽版，独立 family 按独立款入库）
+  - 立夏黑体 Lxht（Sumr Sans，OFL 1.1，小夏底本 zi2zi-JiT 补字，8682 CJK）
+  - 授权条目：小夏系随包 README 原文、立夏随仓 OFL 全文（font-licenses cb06654）。
+  - 厂商字典 +2：枡田道也（masuda-mitiya）、飞扬君（feiyangjun，provisional）。
+- **管线**：build（SUBSET_ONLY=full）→ OSS 三包全 200 → vault INSERT 3 行 → analysis 462/464（缺口 Jlyhmht/Shmgt=并行会话两款未上包）→ metadata 上传 → package-sizes/locale 重建 → 缓存键 **hccq2**（wf-proto/wf-live）。export 经 wenpai VM（464 款）。
+- **analysis 脚本读主检出**：build-font-analysis-from-css.mjs 固定读 `../fonts-front/data/fonts.json`（非 v4-lab）——重建前须临时拷贝新目录过去再还原。
+- 验收：:16016 三个 detail 页 200、konatu 嵌入 CSS 200、analysis API 200；目录 464 款、开源商用 376、未核实 11（全为白名单项）。
