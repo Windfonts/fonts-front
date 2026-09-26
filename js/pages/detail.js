@@ -147,8 +147,8 @@
     const reason = ss.reason || '';
     const verify = serviceVerifyClause(font);
     const hostOk = '文风云<sup>&reg;</sup> 提供免费在线字体托管和预览 API 调用服务。';
-    /* 受限：说人话引导上传证书（与右侧 CTA 一致），不甩「先确认条款」空话。 */
-    const hostCert = '可预览；要用或引用请上传授权证书。';
+    /* 受限：统一用「仅预览可用 + 核对态」与授权文件引导。 */
+    const hostCert = '文风云<sup>&reg;</sup> 提供字体预览和商业托管，如需使用请先上传授权文件。';
     let why = '';
     let cls = 'is-good';
     if (status === '正常') {
@@ -157,13 +157,13 @@
     } else if (status === '受限') {
       cls = 'is-mid';
       if (reason === 'personal') {
-        why = '仅限个人非商用。' + hostCert;
+        why = '仅预览可用，仅限个人非商用。' + hostCert;
       } else if (reason === 'pending_proof') {
-        why = '可预览。' + verify + '；要用或引用请上传授权证书。';
+        why = '仅预览可用，' + verify + '。' + hostCert;
       } else if (reason === 'no_redistrib') {
-        why = '授权限制再分发，货架托管受限。' + hostCert;
+        why = '仅预览可用，授权限制再分发。' + hostCert;
       } else {
-        why = '授权档位待核实。' + hostCert;
+        why = '仅预览可用，授权档位待核实。' + hostCert;
       }
     } else {
       cls = 'is-bad';
@@ -178,7 +178,7 @@
     return { status: status, reason: reason, cls: cls, why: why };
   }
 
-  /* 右侧动作：正常→服务状态页；受限 / 需授权→上传证书（控制台占位路由）；下架与禁用不推证书。 */
+  /* 右侧动作：正常→服务状态页；受限 / 需授权→上传授权文件；下架与禁用不推文件。 */
   function serviceStatusAct(font, copy) {
     const status = copy.status;
     const reason = copy.reason || '';
@@ -189,7 +189,7 @@
       const slug = String((font && (font.normalized || font.family)) || '')
         .replace(/^wenfeng-/i, '');
       const href = WFChrome.href('app/upload.html?cert=' + encodeURIComponent(slug || (font && font.id) || ''));
-      return '<a class="lp-act" href="' + href + '">上传证书</a>';
+      return '<a class="lp-act" href="' + href + '">上传授权文件</a>';
     }
     return '';
   }
