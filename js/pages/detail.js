@@ -209,7 +209,7 @@
 
   /* 商业主体：紧挨服务状态下，同款 who+档位+正文 + 右侧合作联系。≠ 版权归属。
      关系档：官方（默认/买断，内部 platform）/ 签约（凡有时限，可附授权至）/ 合作（枚举保留）。≠ 服务状态配色。
-     默认文派 + 官方档：档位「官方」+「文派…提供平台及业务运营支持。」；签约/合作保留档位+公司名。 */
+     默认文派 + 官方档：档位「官方」+「文派…提供字体平台及技术支持。」；签约/合作保留档位+公司名。 */
   function proofCommercialLine(font) {
     const product = window.WFProducts ? WFProducts.productOf(font) : null;
     const ent = (WFProto.commercialEntity && WFProto.commercialEntity(font, product))

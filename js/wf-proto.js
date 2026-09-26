@@ -1264,7 +1264,7 @@
    * 商业主体：货架运营/商业化主体，≠ 版权归属（rights_holder / 谁拥有字型）。
    * 关系档按「授权时长形态」（≠ 服务状态 正常/受限）：
    *   platform 官方 — 默认文派，或文派采买/买断（无期限）；UI 标签「官方」；
-   *     默认文派时正文「…提供平台及业务运营支持。」。内部 key 仍为 platform。
+   *     默认文派时正文「…提供字体平台及技术支持。」。内部 key 仍为 platform。
    *   signed 签约 — 凡有时限的授权一律签约；可附 expiresAt →「授权至 YYYY-MM-DD」。
    *   partner 合作 — 字段/枚举保留供后续；本波不对期限授权自动落合作（期限=签约）。
    * 默认官方 + 文派（广州）科技有限公司。字段：
@@ -1272,7 +1272,7 @@
    *   font|product.commercialEntityStatus = platform|signed|partner（亦认 官方/运营/平台/签约/合作）
    *   font|product.commercialEntityExpiresAt = YYYY-MM-DD（可选；官方/platform 档忽略）
    * 不必全库填；空则回落默认。仅有 expiresAt、未显式 status → 签约。
-   * 合作方公司名不得套用默认文派「提供平台及业务运营支持」句。
+   * 合作方公司名不得套用默认文派「提供字体平台及技术支持」句。
    */
   var DEFAULT_COMMERCIAL_ENTITY = '文派（广州）科技有限公司';
   var COMMERCIAL_ENTITY_STATUS_LABEL = {
