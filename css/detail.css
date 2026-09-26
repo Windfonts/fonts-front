@@ -153,7 +153,9 @@
 .detail-main .panel-head { flex-wrap: wrap; padding: var(--s-12) 0 0; }
 .detail-main .panel-head + .panel-pad { padding: var(--s-5) 0 var(--s-12); }
 /* 乙：代码栈收紧纵向留白；预算条仍保持紧凑 fs-12。 */
-.detail-main #use .panel-head + .panel-pad { display: grid; gap: var(--s-3); }
+.detail-main #use .panel-head + .panel-pad { display: grid; gap: var(--s-2); }
+/* site.css 的 .use-cdn margin-bottom 会叠在 grid gap 上，地区行与动态/link 行过松 */
+.detail-main #use .use-cdn { margin-bottom: 0; }
 .detail-main .panel-head .input { height: 2rem; font-size: var(--fs-13); }
 .detail-main .panel .input, .detail-main .panel .chip, .detail-main .panel .seg, .detail-main .panel .tabs, .detail-main .panel .code,
 .detail-main .panel .btn:not(.btn-ink):not(.btn-text):not(.ink-design), .detail-main .use-note code { background: var(--fill); }
