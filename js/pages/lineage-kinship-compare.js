@@ -245,7 +245,7 @@
 
   function evidenceTitle(node) {
     if (node.ghost) return '未收录原作';
-    if (node.outgroup) return '出族上游' + (node.outGroupKey ? ' · 属其他字族' : '');
+    if (node.outgroup) return '上游' + (node.outGroupKey ? ' · 属其他字族' : '');
     const rec = node.lineage || {};
     const up = rec.upstreamName || '';
     const ml = mixLabel(node);

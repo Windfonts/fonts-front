@@ -1228,7 +1228,7 @@
       ? '<a class="lfl-name" href="font-detail.html?id=' + encodeURIComponent(n.id) + '" data-nav>' + esc(n.name) + '</a>'
       : '<span class="lfl-name">' + esc(n.name) + '</span>';
     const badge = ghost ? '<span class="lfl-badge">未收录上游</span>' :
-      (out ? '<span class="lfl-badge">出族上游</span>' : '');
+      (out ? '<span class="lfl-badge">上游</span>' : '');
 
     return '<article class="' + cls + '" data-id="' + esc(id) + '" style="left:' + pos.x + 'px;top:' + pos.y +
       'px;width:' + pos.w + 'px" tabindex="0" role="button" aria-pressed="false">' +
@@ -1683,7 +1683,7 @@
       '）；簇＝宽扇叶（≥' + FAN_CLUSTER_MIN +
       '）收成可折主题支；墙＝标本墙。大族（扇叶≥' + AUTO_PLEX_FAN + ' 或成员≥' + AUTO_PLEX_MEMBERS +
       '）默认激活，小族默认图；?mode= 可锁。' +
-      ' 边标签：衍生 / 地区版 / 合作 / 委托。虚线框为未收录/出族上游。' +
+      ' 边标签：衍生 / 地区版 / 合作 / 委托。虚线框为未收录/上游。' +
       ' 全库 ' + all.length + ' 款里 ' + withLineage + ' 款已入谱，另有 ' + noLineage + ' 款尚未建谱。' +
       ' 现网 lineage.html 未改。';
 

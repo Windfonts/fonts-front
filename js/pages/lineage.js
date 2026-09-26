@@ -3025,7 +3025,7 @@
       ? '<a class="lfl-name" href="font-detail.html?id=' + encodeURIComponent(n.id) + '" data-nav>' + esc(n.name) + '</a>'
       : '<span class="lfl-name">' + esc(n.name) + '</span>';
     const badge = ghost ? '<span class="lfl-badge">未收录上游</span>' :
-      (out ? '<span class="lfl-badge">出族上游</span>' : '');
+      (out ? '<span class="lfl-badge">上游</span>' : '');
 
     return '<article class="' + cls + '" data-id="' + esc(id) + '" style="left:' + pos.x + 'px;top:' + pos.y +
       'px;width:' + pos.w + 'px" tabindex="0" role="button" aria-pressed="false">' +
