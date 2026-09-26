@@ -183,7 +183,7 @@
             '<input type="search" name="keyword" id="navSearch" placeholder="搜索字体、厂商" aria-label="搜索字体" autocomplete="off" />' +
             '<button type="button" class="clear" id="navSearchClear" hidden aria-label="清除搜索">' + icon('close') + '</button>' +
           '</form>' +
-          '<a href="' + href('shopping-bag.html') + '">' + icon('bag') + '<span>选字袋</span><span class="count" data-pick-count data-count="0">0</span></a>' +
+          '<a href="' + href('shopping-bag.html') + '" aria-label="选字袋">' + icon('bag') + '<span class="sr-only">选字袋</span><span class="count" data-pick-count data-count="0">0</span></a>' +
           (inApp
             ? '<a href="' + href('app/index.html') + '">' + icon('dashboard') + '<span>控制台</span></a>'
             : '<a href="' + href('login.html') + '">' + icon('user') + '<span>登录</span></a>') +
