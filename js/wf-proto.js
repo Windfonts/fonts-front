@@ -1248,26 +1248,26 @@
   /**
    * 商业主体：货架运营/商业化主体，≠ 版权归属（rights_holder / 谁拥有字型）。
    * 关系档按「授权时长形态」（≠ 服务状态 正常/受限）：
-   *   platform 运营 — 默认文派，或文派采买/买断（无期限）；默认文派显示平台及业务运营支持句。
-   *     内部 key 仍为 platform。
+   *   platform 官方 — 默认文派，或文派采买/买断（无期限）；UI 标签「官方」；
+   *     默认文派时正文「…提供平台及业务运营支持。」。内部 key 仍为 platform。
    *   signed 签约 — 凡有时限的授权一律签约；可附 expiresAt →「授权至 YYYY-MM-DD」。
    *   partner 合作 — 字段/枚举保留供后续；本波不对期限授权自动落合作（期限=签约）。
-   * 默认运营 + 文派（广州）科技有限公司。字段：
+   * 默认官方 + 文派（广州）科技有限公司。字段：
    *   font|product.commercialEntity = string | { name, status, expiresAt? }
-   *   font|product.commercialEntityStatus = platform|signed|partner（亦认 运营/签约/合作）
-   *   font|product.commercialEntityExpiresAt = YYYY-MM-DD（可选；运营档忽略）
+   *   font|product.commercialEntityStatus = platform|signed|partner（亦认 官方/运营/平台/签约/合作）
+   *   font|product.commercialEntityExpiresAt = YYYY-MM-DD（可选；官方/platform 档忽略）
    * 不必全库填；空则回落默认。仅有 expiresAt、未显式 status → 签约。
-   * 合作方公司名不得挂「文风字体平台运营主体」。
+   * 合作方公司名不得套用默认文派「提供平台及业务运营支持」句。
    */
   var DEFAULT_COMMERCIAL_ENTITY = '文派（广州）科技有限公司';
   var COMMERCIAL_ENTITY_STATUS_LABEL = {
-    platform: '运营',
+    platform: '官方',
     signed: '签约',
     partner: '合作'
   };
   function normalizeCommercialEntityStatus(raw) {
     var s = String(raw == null ? '' : raw).trim().toLowerCase();
-    if (s === 'platform' || s === '平台' || s === '运营' || s === 'operate' || s === 'ops') return 'platform';
+    if (s === 'platform' || s === '平台' || s === '运营' || s === '官方' || s === 'operate' || s === 'ops') return 'platform';
     if (s === 'signed' || s === '签约') return 'signed';
     if (s === 'partner' || s === '合作') return 'partner';
     return '';
@@ -1303,7 +1303,7 @@
     var expiresAt = a.expiresAt || b.expiresAt || '';
     /* 有时限且未显式档位 → 签约（本波不对期限授权自动落合作）。 */
     if (!status) status = expiresAt ? 'signed' : 'platform';
-    /* 运营档（platform）：买断/默认文派，不挂到期日。 */
+    /* 官方档（platform）：买断/默认文派，不挂到期日。 */
     if (status === 'platform') expiresAt = '';
     return {
       name: name,

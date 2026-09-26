@@ -206,19 +206,20 @@
   }
 
 
-  /* 商业主体：紧挨服务状态下，同款 who+what + 右侧合作联系。≠ 版权归属。
-     关系档：运营（默认/买断，内部 platform）/ 签约（凡有时限，可附授权至）/ 合作（枚举保留）。≠ 服务状态配色。
-     默认文派 + 运营档只显示平台及业务运营支持句；签约/合作保留档位信息。 */
+  /* 商业主体：紧挨服务状态下，同款 who+档位+正文 + 右侧合作联系。≠ 版权归属。
+     关系档：官方（默认/买断，内部 platform）/ 签约（凡有时限，可附授权至）/ 合作（枚举保留）。≠ 服务状态配色。
+     默认文派 + 官方档：档位「官方」+「文派…提供平台及业务运营支持。」；签约/合作保留档位+公司名。 */
   function proofCommercialLine(font) {
     const product = window.WFProducts ? WFProducts.productOf(font) : null;
     const ent = (WFProto.commercialEntity && WFProto.commercialEntity(font, product))
-      || { name: '文派（广州）科技有限公司', status: 'platform', label: '运营', expiresAt: '' };
+      || { name: '文派（广州）科技有限公司', status: 'platform', label: '官方', expiresAt: '' };
     const name = ent.name || '文派（广州）科技有限公司';
     const status = ent.status || 'platform';
-    const label = ent.label || '运营';
+    const label = ent.label || '官方';
     let what;
     if (status === 'platform' && name === '文派（广州）科技有限公司') {
-      what = '<span class="entity-name">文派（广州）科技有限公司 提供平台及业务运营支持。</span>';
+      what = '<span class="entity-grade is-' + esc(status) + '">官方</span>' +
+        '<span class="entity-name">文派（广州）科技有限公司 提供平台及业务运营支持。</span>';
     } else {
       what = '<span class="entity-grade is-' + esc(status) + '">' + esc(label) + '</span>' +
         '<span class="entity-name">' + esc(name) + '</span>';
