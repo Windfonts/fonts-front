@@ -1080,6 +1080,7 @@
   /**
    * 服务状态三档（货架能否托管，不是「核对没核对」 alone）：
    * 正常 / 受限 / 不可用。优先用现有 tags、licenseTier、licenseEvidence。
+   * 免费商用 / 开源商用（OFL）→ 正常（待核对只作从句）；cite-closed / 个人免费 / 禁托管 → 受限。
    */
   function serviceStatus(font) {
     const tags = (font && font.tags) || [];
@@ -1110,23 +1111,26 @@
       return { status: '不可用', reason: 'need_auth' };
     }
 
-    /* 受限：仍可预览，但货架有硬限制或证据未齐 */
+    /* 受限：个人免费 / 待核实 / cite-closed·禁托管再分发。协议原文待核对不是降档。 */
     if (tier === '个人免费') {
       return { status: '受限', reason: 'personal' };
     }
     if (tier === '待核实') {
       return { status: '受限', reason: 'unverified_tier' };
     }
-    if ((tier === '免费商用' || tier === '开源商用') && !verified) {
-      return { status: '受限', reason: 'pending_proof' };
+    /* 吉利/摩登等 cite-closed：用户须自证授权才能商用引用 → 受限 + 可上传证书 */
+    if (has('cite-closed')) {
+      return { status: '受限', reason: 'no_redistrib' };
     }
-    /* 明确禁止再分发字体文件本身（不是 OFL「勿单独售卖」那种）→ 托管意图受限 */
+    /* 明确禁止托管/CDN/再分发字体文件本身（不是 OFL「勿单独售卖」、也不是品牌免费商用「不得改字再分发」） */
     if (/不得再分发字体|禁止再分发字体|不得提供(?:字体)?下载|禁止托管|不得.*CDN/i.test(restr)) {
       return { status: '受限', reason: 'no_redistrib' };
     }
 
+    /* 免费商用 / 开源商用（OFL）：货架可托管 → 正常。
+       licenseVerified 假 / 协议原文待核对只作句内从句，不得降为受限、不得推上传证书。 */
     if (tier === '开源商用' || tier === '免费商用') {
-      return { status: '正常', reason: 'ok' };
+      return { status: '正常', reason: verified ? 'ok' : 'pending_proof' };
     }
     return { status: '受限', reason: 'unverified_tier' };
   }

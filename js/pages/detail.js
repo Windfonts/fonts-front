@@ -153,14 +153,12 @@
     let cls = 'is-good';
     if (status === '正常') {
       cls = 'is-good';
+      /* 核对态只作从句；pending_proof 仍属正常货架，不推上传证书。 */
       why = '货架可托管。' + verify + '。' + hostOk;
     } else if (status === '受限') {
       cls = 'is-mid';
       if (reason === 'personal') {
         why = '仅预览可用，仅限个人非商用。' + hostCert;
-      } else if (reason === 'pending_proof') {
-        /* Feng 原文：待核对 pending_proof 必须逐字，勿用 verify 拼接。 */
-        why = '仅预览可用，协议原文待核对。' + hostCert;
       } else if (reason === 'no_redistrib') {
         why = '仅预览可用，授权限制再分发。' + hostCert;
       } else {
