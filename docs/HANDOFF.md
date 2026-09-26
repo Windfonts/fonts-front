@@ -775,3 +775,12 @@ detail.js「在谱系图中查看」：有组字体按组跳谱系（烟波宋�
 - **matc → mksjhtc**（feibisi 批「这些都是新的还没人引用」）：猫啃什锦黑繁体 slug 对齐「基础 slug + tc」惯例（对照 xwwktc）。迁移链=fonts-packages 源件重建（Skr-ZERO/MaokenAssortedSans-TC v0.90，31680 字与库一致）→ OSS 新前缀 fonts-packages/Mksjhtc 覆盖灌入 → vault UPDATE font_family/normalized_name/oss_path → fonts.json family/normalized → 简繁配对/产品/包体清单三数据文件引用切换。旧 OSS 前缀 Matc 无引用残留（对象未删，无害）。
 - **matc designer 脏数据修正**：原占位「猫啃什锦黑 繁体」→ Skr-ZERO（name 表无 designer 行，依 GitHub 维护者事实），fonts.json+vault 双层。
 - 详情页验证：新 slug 渲染、样张 wenfeng-mksjhtc 加载、简繁配对 locale 文案在。提交 8439164。
+
+## 38. 2026-09-26 授权文件配套审计（feibisi「许可和授权文件配套做齐全」）
+
+font-licenses 仓 vs 目录 455 款对拍：
+
+- **已有条目 179 款**：verified=true 仅 **62**（含本轮站酷/小薇/志莽补的）；verified=false **117**（多为 AI 占位）；其中 **135 款只有 license-info.json 没有原文文件**（占位条目的主体）。
+- **缺条目 276 款**：标准开源 255（OFL/GPL/Apache/IPA/CC 等——原文可从上游仓/GF 自动拉）；自定义「XX授权协议」19（方正×4/975圆体/Acy/Code2003/庞门真贵楷体/快去寫作業 等——须逐款找官方声明页或包内原文，拿不到的在详情页如实标待核对）。
+- **配套目标态**：455 款每款 = source.json（来源 URL/日期/版权行）+ LICENSE 原文文件 + license-info.json（verified 只在有原文时标 true）；与源件归档（fonts-packages-sources/<Norm>/，HANDOFF §35 后的 OSS 计划）同包——源件和授权原文一起上 OSS sources 前缀。
+- **执行批次**：①GF 托管 17 款（google/fonts 仓 OFL.txt 直拉）；②作者仓款按 batch-map assetUrl 拉 LICENSE；③MF/M+ 等基金会款官网原文；④自定义协议 19 款人工取证；⑤117 款 verified=false 的占位条目按①-④补齐后翻 true。
