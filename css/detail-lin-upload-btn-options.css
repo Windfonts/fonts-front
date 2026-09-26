@@ -1,0 +1,123 @@
+/* 详情 · 谱系上传 CTA 底对照。只服务 detail-lin-upload-btn-options.html，不进正式站。 */
+
+.page-detail-lin-upload .dlub-main {
+  padding: var(--s-6) 0 var(--s-16);
+  max-width: 52rem;
+}
+
+.page-detail-lin-upload .dlub-verdict {
+  margin: 0 0 var(--s-8);
+  padding: var(--s-5) var(--s-6);
+  background: var(--surface);
+  border-radius: var(--radius);
+  font-size: var(--fs-13);
+  line-height: var(--lh-body);
+  color: var(--ink-2);
+}
+.page-detail-lin-upload .dlub-verdict b {
+  font-weight: var(--fw-title);
+  color: var(--ink);
+  margin-right: 0.35em;
+}
+.page-detail-lin-upload .dlub-verdict code {
+  font-size: var(--fs-12);
+  background: var(--paper);
+  padding: 0.05em 0.35em;
+  border-radius: 6px;
+}
+
+.page-detail-lin-upload .do-block {
+  display: none;
+  padding: 0 0 var(--s-10);
+}
+.page-detail-lin-upload .do-block.is-on { display: block; }
+
+.page-detail-lin-upload .dlub-pair {
+  display: grid;
+  gap: var(--s-5);
+}
+@media (min-width: 900px) {
+  .page-detail-lin-upload .dlub-pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.page-detail-lin-upload .dlub-stage {
+  position: relative;
+  padding: var(--s-5);
+  background: var(--page, #fff);
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius);
+}
+.page-detail-lin-upload .dlub-stage::before {
+  content: attr(data-label);
+  display: block;
+  margin-bottom: var(--s-4);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-label);
+  color: var(--gray);
+  letter-spacing: 0.02em;
+}
+
+/* 复现详情左栏：透明 panel + 细顶线 */
+.page-detail-lin-upload .dlub-stage .detail-main > .panel {
+  min-width: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border-top: 1px solid var(--rule);
+}
+.page-detail-lin-upload .dlub-stage .panel-pad {
+  padding: var(--s-5) 0 var(--s-2);
+}
+.page-detail-lin-upload .dlub-stage .lin-invite {
+  font-size: var(--fs-16);
+  line-height: 1.6;
+  margin: 0 0 var(--s-4);
+}
+.page-detail-lin-upload .dlub-stage .lin-acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-2);
+}
+.page-detail-lin-upload .dlub-stage .lin-acts a {
+  text-decoration: none;
+}
+
+/* —— 模拟 html[data-view=dev] 的 panel ink-design 翻转（与 base.css 同规则） —— */
+.page-detail-lin-upload .dlub-stage.is-dev-view .panel .btn.ink-design {
+  background: var(--paper);
+  color: var(--ink);
+}
+.page-detail-lin-upload .dlub-stage:not(.is-dev-view) .ink-design {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.page-detail-lin-upload .dlub-stage:not(.is-dev-view) .ink-design:hover {
+  background: var(--ink-hover);
+}
+
+/* 详情左栏：普通 .btn 用 --fill（与 detail.css 对齐） */
+.page-detail-lin-upload .dlub-stage .detail-main .panel .btn:not(.btn-ink):not(.btn-text):not(.ink-design) {
+  background: var(--fill);
+  color: var(--ink);
+}
+
+/* 甲：btn-ink 本就不被 view 翻转；显式保证 */
+.page-detail-lin-upload .dlub-a .lin-acts .btn-ink {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.page-detail-lin-upload .dlub-a .lin-acts .btn-ink:hover {
+  background: var(--ink-hover);
+}
+
+/* 丙：保留 ink-design，但在详情透明面板内压过 paper 翻转 */
+.page-detail-lin-upload .dlub-c .detail-main .lin-acts .btn.ink-design {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.page-detail-lin-upload .dlub-c .detail-main .lin-acts .btn.ink-design:hover {
+  background: var(--ink-hover);
+}

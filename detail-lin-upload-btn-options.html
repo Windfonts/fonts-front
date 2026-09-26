@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>详情 · 谱系上传按钮底 · 文风字体</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260926lub" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260926lub" />
+  <link rel="stylesheet" href="css/base.css?v=20260926lub" />
+  <link rel="stylesheet" href="css/components.css?v=20260926lub" />
+  <link rel="stylesheet" href="css/site.css?v=20260926lub" />
+  <link rel="stylesheet" href="css/detail.css?v=20260926lub" />
+  <link rel="stylesheet" href="css/detail-options.css?v=20260926lub" />
+  <link rel="stylesheet" href="css/detail-lin-upload-btn-options.css?v=20260926lub" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+</head>
+<body class="page-detail page-detail-opt page-detail-lin-upload">
+  <header data-topbar data-active="fonts"></header>
+
+  <div class="do-switch">
+    <div class="container do-switch-inner">
+      <p class="do-switch-lead">谱系块「上传你的字体」按钮底对照。现页 <code>detail.css</code> / 真源 markup 未改；定稿前请挑一套。</p>
+      <nav class="seg-glyph" aria-label="设计稿">
+        <a href="#a">甲 始终墨</a>
+        <a href="#b">乙 灰胶囊</a>
+        <a href="#c">丙 修层叠</a>
+        <a href="#d">丁 现页</a>
+      </nav>
+      <p class="do-live">
+        <a class="do-back" href="font-detail.html?slug=hclck2">回寒蝉龙藏楷书</a>
+        ·
+        <a class="do-back" href="lab.html">实验室</a>
+      </p>
+    </div>
+  </div>
+
+  <main class="container dlub-main">
+    <p class="dlub-verdict">
+      <b>根因</b>：上传 CTA 用 <code>btn ink-design</code>；开发视图
+      <code>html[data-view="dev"] .panel .btn.ink-design { background: var(--paper) }</code>
+      把底翻成白纸，而详情左栏 <code>.detail-main &gt; .panel</code> 是透明底——白纸叠白页，看起来像纯文字，挨着「在谱系图中查看」的 <code>btn-text</code>。设计视图仍是实心墨（已测
+      <code>rgb(17,17,17)</code>），开发视图测得 <code>rgb(255,255,255)</code>。
+    </p>
+
+    <article class="do-block dlub-a" id="a">
+      <header class="do-meta">
+        <b>甲 · 始终实心墨</b>
+        <span>改用 <code>btn btn-ink</code>（或等价强制墨底）。不跟视图翻；主按钮永远黑底白字。</span>
+      </header>
+      <div class="dlub-pair">
+        <div class="dlub-stage" data-label="设计视图">
+          <div class="detail-main"><div class="panel"><div class="panel-pad">
+            <p class="lin-invite">开源可改。上传你的改字，挂到这条谱系上。</p>
+            <div class="lin-acts">
+              <a class="btn" href="#">查看全部同源字</a>
+              <a class="btn btn-ink" href="#">上传你的字体</a>
+              <a class="btn-text" href="#">在谱系图中查看</a>
+            </div>
+          </div></div></div>
+        </div>
+        <div class="dlub-stage is-dev-view" data-label="开发视图（模拟 data-view=dev）">
+          <div class="detail-main"><div class="panel"><div class="panel-pad">
+            <p class="lin-invite">开源可改。上传你的改字，挂到这条谱系上。</p>
+            <div class="lin-acts">
+              <a class="btn" href="#">查看全部同源字</a>
+              <a class="btn btn-ink" href="#">上传你的字体</a>
+              <a class="btn-text" href="#">在谱系图中查看</a>
+            </div>
+          </div></div></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="do-block dlub-b" id="b">
+      <header class="do-meta">
+        <b>乙 · 默认灰胶囊</b>
+        <span>普通 <code>btn</code>（无 <code>ink-design</code>）。详情左栏走 <code>--fill</code> 灰底，两视图都看得见，不作主按钮。与「查看全部同源字」同级。</span>
+      </header>
+      <div class="dlub-pair">
+        <div class="dlub-stage" data-label="设计视图">
+          <div class="detail-main"><div class="panel"><div class="panel-pad">
+            <p class="lin-invite">开源可改。上传你的改字，挂到这条谱系上。</p>
+            <div class="lin-acts">
+              <a class="btn" href="#">查看全部同源字</a>
+              <a class="btn" href="#">上传你的字体</a>
+              <a class="btn-text" href="#">在谱系图中查看</a>
+            </div>
+          </div></div></div>
+        </div>
+        <div class="dlub-stage is-dev-view" data-label="开发视图（模拟 data-view=dev）">
+          <div class="detail-main"><div class="panel"><div class="panel-pad">
+            <p class="lin-invite">开源可改。上传你的改字，挂到这条谱系上。</p>
+            <div class="lin-acts">
+              <a class="btn" href="#">查看全部同源字</a>
+              <a class="btn" href="#">上传你的字体</a>
+              <a class="btn-text" href="#">在谱系图中查看</a>
+            </div>
+          </div></div></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="do-block dlub-c" id="c">
+      <header class="do-meta">
+        <b>丙 · 保留 ink-design，修层叠</b>
+        <span>仍用 <code>btn ink-design</code>；在详情透明面板内覆盖开发视图的 paper 翻转，保证谱系主 CTA 两视图都是实心墨。</span>
+      </header>
+      <div class="dlub-pair">
+        <div class="dlub-stage" data-label="设计视图">
+          <div class="detail-main"><div class="panel"><div class="panel-pad">
+            <p class="lin-invite">开源可改。上传你的改字，挂到这条谱系上。</p>
+            <div class="lin-acts">
+              <a class="btn" href="#">查看全部同源字</a>
+              <a class="btn ink-design" href="#">上传你的字体</a>
+              <a class="btn-text" href="#">在谱系图中查看</a>
+            </div>
+          </div></div></div>
+        </div>
+        <div class="dlub-stage is-dev-view" data-label="开发视图（模拟 data-view=dev）">
+          <div class="detail-main"><div class="panel"><div class="panel-pad">
+            <p class="lin-invite">开源可改。上传你的改字，挂到这条谱系上。</p>
+            <div class="lin-acts">
+              <a class="btn" href="#">查看全部同源字</a>
+              <a class="btn ink-design" href="#">上传你的字体</a>
+              <a class="btn-text" href="#">在谱系图中查看</a>
+            </div>
+          </div></div></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="do-block dlub-d" id="d">
+      <header class="do-meta">
+        <b>丁 · 现页（问题对照）</b>
+        <span>照搬现网：<code>btn ink-design</code> + 开发视图 panel paper 翻转。左栏透明时上传钮近似隐形。</span>
+      </header>
+      <div class="dlub-pair">
+        <div class="dlub-stage" data-label="设计视图（正常）">
+          <div class="detail-main"><div class="panel"><div class="panel-pad">
+            <p class="lin-invite">开源可改。上传你的改字，挂到这条谱系上。</p>
+            <div class="lin-acts">
+              <a class="btn" href="#">查看全部同源字</a>
+              <a class="btn ink-design" href="#">上传你的字体</a>
+              <a class="btn-text" href="#">在谱系图中查看</a>
+            </div>
+          </div></div></div>
+        </div>
+        <div class="dlub-stage is-dev-view" data-label="开发视图（破）">
+          <div class="detail-main"><div class="panel"><div class="panel-pad">
+            <p class="lin-invite">开源可改。上传你的改字，挂到这条谱系上。</p>
+            <div class="lin-acts">
+              <a class="btn" href="#">查看全部同源字</a>
+              <a class="btn ink-design" href="#">上传你的字体</a>
+              <a class="btn-text" href="#">在谱系图中查看</a>
+            </div>
+          </div></div></div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <script src="js/wf-proto.js?v=20260926lub"></script>
+  <script src="js/wf-chrome.js?v=20260926lub"></script>
+  <script src="js/pages/detail-lin-upload-btn-options.js?v=20260926lub"></script>
+</body>
+</html>

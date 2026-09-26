@@ -230,6 +230,16 @@
             "css/yong-wall.css",
             "js/pages/yong-wall.js"
           ]
+        },
+        {
+          "href": "detail-lin-upload-btn-options.html",
+          "title": "谱系上传按钮底",
+          "status": "active",
+          "note": "上传 CTA 在开发视图 paper-on-透明面板近似隐形：甲 btn-ink 始终墨 / 乙 灰胶囊 btn / 丙 保留 ink-design 修层叠 / 丁 现页。定稿前不改 detail.css。",
+          "assets": [
+            "css/detail-lin-upload-btn-options.css",
+            "js/pages/detail-lin-upload-btn-options.js"
+          ]
         }
       ]
     },
