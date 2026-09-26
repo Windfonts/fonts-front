@@ -249,8 +249,9 @@
 }
 .use-budget-host {
   display: flex; align-items: center; justify-content: space-between;
-  gap: var(--s-2); flex-wrap: wrap; margin-top: 0;
-  padding: var(--s-2) var(--s-2); background: var(--fill);
+  gap: var(--s-3); flex-wrap: wrap; margin-top: 0;
+  /* 字号仍小；上下留白避免挤贴代码与底边 */
+  padding: var(--s-3) var(--s-4); background: var(--fill);
   border-top: 1px solid var(--rule);
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
