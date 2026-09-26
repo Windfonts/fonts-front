@@ -801,3 +801,10 @@ feibisi「都去做吧」。font-licenses 覆盖 179 → **395 款条目**（ver
 
 说人话：吉利银河美好体（`Jlyhmht`）与上海摩登体（`Shmgt`）上架**对照**，服务状态**受限**，**不开 CDN 引用**（license-evidence 禁托管/禁嵌入 + `citeAllowed` + 无 fonts-packages）。候选灌包顺序与完整表见 `docs/_gate-tc-vendor-candidates-2026-09-26.md`（小米 Misatc → 普惠繁体 → HarmonyOS…）。Adobe r8–r11 未动。
 
+
+## 40. 2026-09-26 授权补齐续轮（批次⑥⑦，font-licenses 再四推）
+
+- **新归档**：余繁系 3（yufanxinyu/zhensu/xiliu 各自仓 LICENSE）、文渊系 3（takushun-wu/WenYuanFonts）、演示系 7（**档位修正**：原误标开源商用/OFL → 免费商用「演示字体授权声明」，100font 官方发布页，fonts.json+vault 同步）、霞鹜全家族（尚智黑/晰黑/致宋/铭心宋/Bright/臻楷 GB 等自 lxgw 各仓）、源音黑体（975Yuan 仓）、思源系 6（adobe LICENSE）。
+- **终局覆盖**：458 款中 419 有条目（92%）、verified=true 282、剩 39 款。
+- **剩 39 构成**：自定义协议 13（方正×4/975圆体/Acy/Code2003/叁慕/庞门真贵/快去寫作業/杨任东/文明宋/烟波宋/精品点阵/吉利银河/上海摩登）+ 标准开源 26（多为日本独立作者款：演示外 MF/秋水/秋空/文渊外/余繁丹青/滑油字/霞鹜臻楷 GB/齐伋/龙珠/苦累蛙/莫大毛笔/萌神/长坂/马路口/美绩×2/晓声通/无界黑/寒蝉无机/点点像素 GPL）。这批上游散、部分已停更，继续下轮或按款人工。
+- 注意：目录 456→458（并行会话新入吉利银河美好体、上海摩登体两款）。
