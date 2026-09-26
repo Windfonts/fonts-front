@@ -592,20 +592,56 @@
         : '<button type="button" class="glyph-qz-link">通篇预览</button>';
       const filterCtl = skipCov ? '' :
         '<span class="glyph-filter" role="group" aria-label="筛选">' +
-          '<button type="button" data-f="all">全部</button>' +
-          '<button type="button" data-f="hit">已收录</button>' +
-          '<button type="button" data-f="miss">缺字</button></span>';
+          '<button type="button" data-f="all"' + (st.filter === 'all' ? ' class="is-on"' : '') + '>全部</button>' +
+          '<button type="button" data-f="hit"' + (st.filter === 'hit' ? ' class="is-on"' : '') + '>已收录</button>' +
+          '<button type="button" data-f="miss"' + (st.filter === 'miss' ? ' class="is-on"' : '') + '>缺字</button></span>';
       const summaryActions = (qzLink || filterCtl)
-        ? '<span class="glyph-summary-actions">' +
+        ? '<div class="glyph-summary-actions">' +
             (qzLink ? qzLink : '') + filterCtl +
-          '</span>'
+          '</div>'
         : '';
       summaryEl.innerHTML =
-        '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' ' + label + '已收录 · ' + suffix +
-          summaryActions + '</p>' +
+        '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' ' + label + '已收录 · ' + suffix + '</p>' +
+        summaryActions +
         '<p class="glyph-legend">虚线框表示字体里没有这个字。' +
           (st.charset === 'c3500' ? '字表为 GB2312 一级按码位截取的 3500 字，逐 unicode-range 核对。' : '') +
         '</p>';
+      bindSummaryActions();
+    }
+
+    function applyFilter(next) {
+      if (!next) return;
+      st.filter = next;
+      renderBlocks();
+      syncTools();
+      if (st.filter === 'hit' || st.filter === 'miss') {
+        blocksEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function bindSummaryActions() {
+      if (!summaryEl) return;
+      summaryEl.querySelectorAll('[data-f]').forEach(function (b) {
+        b.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          applyFilter(b.getAttribute('data-f'));
+        });
+      });
+      summaryEl.querySelectorAll('.chip-miss').forEach(function (b) {
+        b.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          applyFilter('miss');
+        });
+      });
+      summaryEl.querySelectorAll('.glyph-qz-link').forEach(function (b) {
+        b.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          openQianziwenStele(font, { weight: weight, variant: st.variant });
+        });
+      });
     }
 
     function syncTools() {
@@ -712,6 +748,7 @@
         });
         renderBlocks();
         renderSummary();
+        syncTools();
         if (pendingQuery) renderQuery(pendingQuery);
       }).catch(function () {});
     }
@@ -748,22 +785,27 @@
         return;
       }
     });
+    /* Fallback delegation: direct binds in bindSummaryActions are primary */
     summaryEl.addEventListener('click', function (e) {
-      const filter = e.target.closest ? e.target.closest('[data-f]') : null;
-      if (filter) {
-        st.filter = filter.getAttribute('data-f');
-        renderBlocks(); syncTools();
+      const t = e.target && e.target.nodeType === 1 ? e.target : (e.target && e.target.parentElement);
+      if (!t || !t.closest) return;
+      const filter = t.closest('[data-f]');
+      if (filter && summaryEl.contains(filter)) {
+        e.preventDefault();
+        applyFilter(filter.getAttribute('data-f'));
         return;
       }
-      const chip = e.target.closest ? e.target.closest('.chip-miss') : null;
-      if (chip) {
-        st.filter = 'miss';
-        renderBlocks(); syncTools();
-        blocksEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      const chip = t.closest('.chip-miss');
+      if (chip && summaryEl.contains(chip)) {
+        e.preventDefault();
+        applyFilter('miss');
         return;
       }
-      const qz = e.target.closest ? e.target.closest('.glyph-qz-link') : null;
-      if (qz) openQianziwenStele(font, { weight: weight, variant: st.variant });
+      const qz = t.closest('.glyph-qz-link');
+      if (qz && summaryEl.contains(qz)) {
+        e.preventDefault();
+        openQianziwenStele(font, { weight: weight, variant: st.variant });
+      }
     });
 
     function paintFace() {

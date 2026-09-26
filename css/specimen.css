@@ -551,7 +551,16 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
 .glyph-tools .gtoggle { border: 0; background: var(--fill); color: var(--ink-2); padding: 0.32rem 0.9rem; border-radius: var(--radius-pill); font-size: var(--fs-13); cursor: pointer; }
 .glyph-tools .gtoggle:hover { color: var(--ink); }
 .glyph-tools .gtoggle[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
-.glyph-summary { margin-bottom: var(--s-5); max-width: 34rem; }
+.glyph-summary { margin-bottom: var(--s-5); max-width: 44rem; }
+.glyph-summary-actions {
+  display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-3);
+  margin: 0.35rem 0 var(--s-2); position: relative; z-index: 2; pointer-events: auto;
+}
+.glyph-summary-actions .glyph-filter,
+.glyph-summary-actions .glyph-qz-link,
+.glyph-summary-actions .glyph-filter button {
+  pointer-events: auto; position: relative; z-index: 2; cursor: pointer;
+}
 .glyph-diff {
   margin: 0 0 var(--s-5);
   padding: var(--s-3) var(--s-4);
@@ -677,7 +686,6 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
 }
 .glyph-sum-line { font-size: var(--fs-14); color: var(--ink-2); }
 .glyph-sum-line b { font-size: var(--fs-20); color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; margin-right: 0.15em; }
-.glyph-summary-actions { display: inline-flex; align-items: center; flex-wrap: wrap; gap: var(--s-3); margin-left: var(--s-3); vertical-align: middle; }
 .glyph-sum-line.is-quiet { color: var(--gray); }
 .glyph-legend { color: var(--gray-2); font-size: var(--fs-13); }
 .glyph-blocks h3 .h3-r { display: inline-flex; align-items: baseline; gap: var(--s-3); }
