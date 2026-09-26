@@ -712,6 +712,91 @@
     }
     return chain;
   }
+
+  /** 谱系缺字补全源：按字集差集挑，优先直接下游（2026-09-27 Feng 拍板）。 */
+  var LINEAGE_FALLBACK_DELTA_MIN = 50;
+  var LINEAGE_FALLBACK_ROLE_RANK = {
+    'direct-downstream': 0,
+    'upstream': 1,
+    sibling: 2
+  };
+  var LINEAGE_FALLBACK_ROLE_LABEL = {
+    'direct-downstream': '直接下游',
+    'upstream': '直接上游',
+    sibling: '同谱系'
+  };
+  function coverageCount(f) {
+    var c = Number(f && f.charCount) || 0;
+    var g = Number(f && f.glyphCount) || 0;
+    if (c > 1) return c;
+    if (g > 1) return g;
+    return null;
+  }
+  function lineageFallbackCiteOk(f) {
+    if (!f) return false;
+    if (!window.WFProto || typeof WFProto.citeAllowed !== 'function') return true;
+    var r = WFProto.citeAllowed(f);
+    return !!(r && r.ok);
+  }
+  function suggestLineageFallback(font, list) {
+    if (!font || !list || !list.length) return null;
+    if (!font.family) return null;
+    if (!lineageFallbackCiteOk(font)) return null;
+    var selfCount = coverageCount(font);
+    if (selfCount == null) return null;
+
+    var seen = {};
+    seen[font.id] = true;
+    var cands = [];
+
+    function pushCand(f, role) {
+      if (!f || !f.id || seen[f.id]) return;
+      if (!f.family) return;
+      if (f.id === font.id) return;
+      if (!lineageFallbackCiteOk(f)) return;
+      var candCount = coverageCount(f);
+      if (candCount == null) return;
+      var delta = candCount - selfCount;
+      if (!(delta > LINEAGE_FALLBACK_DELTA_MIN)) return;
+      seen[f.id] = true;
+      cands.push({
+        font: f,
+        role: role,
+        delta: delta,
+        label: LINEAGE_FALLBACK_ROLE_LABEL[role] || role
+      });
+    }
+
+    lineageDownstream(list, font).forEach(function (f) {
+      pushCand(f, 'direct-downstream');
+    });
+
+    var upName = ((font.lineage || {}).upstreamName || '').trim();
+    if (upName && upName !== font.name) {
+      var up = findFontByName(list, upName);
+      if (up && up.id !== font.id) pushCand(up, 'upstream');
+    }
+
+    var group = (font.lineage || {}).group;
+    if (group) {
+      lineageKin(list, font).forEach(function (f) {
+        if (seen[f.id]) return;
+        pushCand(f, 'sibling');
+      });
+    }
+
+    if (!cands.length) return null;
+    cands.sort(function (a, b) {
+      var ra = LINEAGE_FALLBACK_ROLE_RANK[a.role];
+      var rb = LINEAGE_FALLBACK_ROLE_RANK[b.role];
+      if (ra == null) ra = 9;
+      if (rb == null) rb = 9;
+      if (ra !== rb) return ra - rb;
+      return b.delta - a.delta;
+    });
+    return cands[0];
+  }
+
   function lineageSplit(font, list) {
     const L = (font && font.lineage) || {};
     let up = L.upstreamName || '';
@@ -1310,6 +1395,7 @@
     lineageTreeHtml: lineageTreeHtml,
     lineageListHtml: lineageListHtml,
     findFontByName: findFontByName,
+    suggestLineageFallback: suggestLineageFallback,
     REL_LABEL: REL_LABEL,
     showPricing: showPricing,
     VERIFIED_SVG: VERIFIED_SVG,

@@ -526,14 +526,22 @@
             '<div class="panel-pad"><div class="use-cdn">' + WFProto.cdnSwitchHtml() + '</div>' +
             '<div id="fallbackOptions" class="use-fallback-source">' +
             (function () {
-              const upName = ((font.lineage || {}).upstreamName || '').trim();
-              if (!upName || upName === font.name) return '';
-              const up = WFChrome.findFontByName(WFProto.getCatalogList(), upName);
-              if (!up || !up.family || up.id === font.id) return '';
+              const list = WFProto.getCatalogList();
+              const sug = WFChrome.suggestLineageFallback
+                ? WFChrome.suggestLineageFallback(font, list)
+                : null;
+              if (!sug || !sug.font || !sug.font.family) return '';
+              const fb = sug.font;
+              const deltaHint = (typeof sug.delta === 'number' && sug.delta > 0)
+                ? ('约多 ' + WFProto.formatCount(sug.delta) + ' 字 · 同字重 · 仅缺口')
+                : '同字重 · 仅缺口';
               return '<label class="use-fallback" id="fallbackLabel">' +
-                '<input type="checkbox" id="optFallback" value="' + esc(up.family) + '" data-up-name="' + esc(up.name) + '" data-up-id="' + esc(up.id) + '"> ' +
-                '上游「' + esc(up.name) + '」补缺字 ' +
-                '<span class="hint" id="fallbackHint">同字重 · 仅缺口</span></label>';
+                '<input type="checkbox" id="optFallback" value="' + esc(fb.family) + '"' +
+                ' data-fb-name="' + esc(fb.name) + '" data-fb-id="' + esc(fb.id) + '"' +
+                ' data-up-name="' + esc(fb.name) + '" data-up-id="' + esc(fb.id) + '"' +
+                ' data-fb-role="' + esc(sug.role || '') + '" data-fb-delta="' + esc(String(sug.delta || '')) + '"> ' +
+                '用「' + esc(fb.name) + '」补缺字 ' +
+                '<span class="hint" id="fallbackHint">' + esc(deltaHint) + '</span></label>';
             })() +
             (function () {
               const pair = (window.WFLocaleFallback && WFLocaleFallback.peerOf)
@@ -640,13 +648,22 @@
     const fallbackEl = document.getElementById('optFallback');
     const fallbackHint = document.getElementById('fallbackHint');
     const localeEl = document.getElementById('optLocaleFallback');
+    const fbDelta = fallbackEl
+      ? Number(fallbackEl.getAttribute('data-fb-delta') || '')
+      : NaN;
     const upFont = (function () {
       if (!fallbackEl) return null;
-      const id = fallbackEl.getAttribute('data-up-id');
-      const name = fallbackEl.getAttribute('data-up-name');
+      const id = fallbackEl.getAttribute('data-fb-id') || fallbackEl.getAttribute('data-up-id');
+      const name = fallbackEl.getAttribute('data-fb-name') || fallbackEl.getAttribute('data-up-name');
       if (id && WFProto.getFont(id)) return WFProto.getFont(id);
       return name ? WFChrome.findFontByName(WFProto.getCatalogList(), name) : null;
     })();
+    function fallbackHintOkText() {
+      if (typeof fbDelta === 'number' && isFinite(fbDelta) && fbDelta > 0) {
+        return '约多 ' + WFProto.formatCount(fbDelta) + ' 字 · 同字重 · 仅缺口';
+      }
+      return '同字重 · 仅缺口';
+    }
 
     function fallbackAlign() {
       if (!upFont) return null;
@@ -667,7 +684,7 @@
       } else {
         fallbackEl.disabled = false;
         if (fallbackHint) {
-          fallbackHint.textContent = '同字重 · 仅缺口';
+          fallbackHint.textContent = fallbackHintOkText();
           fallbackHint.classList.remove('is-warn');
         }
       }
