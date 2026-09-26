@@ -757,7 +757,7 @@
     toolsEl.innerHTML =
       '<div class="seg-glyph" role="group" aria-label="字表">' +
         '<button type="button" data-cs="qz">千字文</button>' +
-        '<button type="button" data-cs="c3500">常用字</button></div>' +
+        '<button type="button" data-cs="c3500">常用</button></div>' +
       '<div class="seg-glyph" role="group" aria-label="写法" data-qz-only>' +
         '<button type="button" data-sc="hans">简</button>' +
         '<button type="button" data-sc="hant">繁</button></div>';
