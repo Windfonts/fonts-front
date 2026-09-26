@@ -491,7 +491,8 @@
       return Promise.all(puts).then(function () {
         return completeUpload(init.id);
       }).then(function () {
-        return waitUploadReady(init.id);
+        /* 现网 complete → processing（待运营审核推 OSS）；mock 仍会短等 ready */
+        return waitUploadReady(init.id, useLocalProjects() ? 8000 : 1200);
       });
     });
   }
