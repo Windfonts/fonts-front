@@ -159,7 +159,8 @@
       if (reason === 'personal') {
         why = '仅预览可用，仅限个人非商用。' + hostCert;
       } else if (reason === 'pending_proof') {
-        why = '仅预览可用，' + verify + '。' + hostCert;
+        /* Feng 原文：待核对 pending_proof 必须逐字，勿用 verify 拼接。 */
+        why = '仅预览可用，协议原文待核对。' + hostCert;
       } else if (reason === 'no_redistrib') {
         why = '仅预览可用，授权限制再分发。' + hostCert;
       } else {
@@ -198,14 +199,11 @@
     const copy = serviceStatusCopy(font);
     const what = '<span class="svc-grade ' + copy.cls + '">' + esc(copy.status) + '</span>' +
       '<span class="svc-why">' + copy.why + '</span>';
-    const d = new Date();
-    const pad = function (n) { return n < 10 ? '0' + n : String(n); };
-    const when = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    /* 右侧与厂商信誉同款：仅 lp-act，不渲染 when / verifiedAt 日期。 */
     const act = serviceStatusAct(font, copy);
     return '<div class="lp5-node lp5-meta svc-row"><span class="icon">' + WFChrome.icon('cloud') + '</span>' +
       '<div class="head"><span class="who">服务状态</span>' +
       '<span class="what">' + what + '</span>' +
-      '<span class="when">' + esc(when) + '</span>' +
       act + '</div></div>';
   }
 
