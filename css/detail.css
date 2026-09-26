@@ -5,6 +5,18 @@
 #use, #glyphs, #weights, #lineage { scroll-margin-top: calc(var(--topbar-h) + var(--s-4)); }
 .crumb-dark { margin-bottom: var(--s-6); }
 .glyph-wall .weights { display: flex; gap: var(--s-1); flex-wrap: wrap; }
+.glyph-wall .weights.product-grades a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--gray);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  font-size: var(--fs-12);
+}
+.glyph-wall .weights.product-grades a:hover { color: var(--ink); background: var(--surface-2); }
+.glyph-wall .weights.product-grades a.is-on { color: var(--on-ink); background: var(--ink); }
+
 .glyph-wall .presets { display: flex; gap: var(--s-1); flex-wrap: wrap; }
 
 /* 标题行 */
