@@ -783,6 +783,27 @@
     });
   }
 
+  function listClaims() {
+    if (isMock()) {
+      return ensureApp().then(function () {
+        return (WFApp.state().claims || []).slice();
+      });
+    }
+    return request('/api/claims').catch(function (err) {
+      if (err && (err.status === 404 || err.code === 'not_found')) return [];
+      throw err;
+    });
+  }
+
+  function submitClaim(payload) {
+    if (isMock()) {
+      return ensureApp().then(function () {
+        return WFApp.submitClaim(payload);
+      });
+    }
+    return request('/api/claims', { method: 'POST', body: payload || {} });
+  }
+
   /**
    * 往项目加/更新字体并记版本；live 走 patch，mock 走 WFApp.addFont。
    * @returns {Promise<object>} 更新后的项目
@@ -899,6 +920,8 @@
     putPicks: putPicks,
     syncPicks: syncPicks,
     mergePickLists: mergePickLists,
+    listClaims: listClaims,
+    submitClaim: submitClaim,
     addFontToProject: addFontToProject,
     publish: publish,
     publishProject: publishProject

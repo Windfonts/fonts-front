@@ -1,4 +1,4 @@
-/* 公开认领页：未登录给入口，已登录提交 WFApp.submitClaim。权限矩阵见 docs/CLAIM-SCOPES.md，不在公开文案展开。 */
+/* 公开认领页：未登录给入口，已登录提交 WFApi.submitClaim（live→vault；mock→本地）。权限矩阵见 docs/CLAIM-SCOPES.md。 */
 (function () {
   const esc = WFProto.escapeHtml;
   const card = document.getElementById('claimCard');
@@ -23,6 +23,27 @@
 
   function profileFor(fd) {
     return WFChrome.claimProfile(fd || {});
+  }
+
+  function claimList() {
+    const s = WFApp.state();
+    return (s && s.claims) || [];
+  }
+
+  function mergeRemoteClaims(remote) {
+    const s = WFApp.state();
+    if (!s) return;
+    const byId = {};
+    (s.claims || []).forEach(function (c) { if (c && c.id) byId[c.id] = c; });
+    (remote || []).forEach(function (c) {
+      if (!c || !c.id) return;
+      byId[c.id] = Object.assign({}, byId[c.id] || {}, c);
+    });
+    s.claims = Object.keys(byId).map(function (k) { return byId[k]; })
+      .sort(function (a, b) {
+        return String(b.submittedAt || '').localeCompare(String(a.submittedAt || ''));
+      });
+    WFApp.save();
   }
 
   function formFields(fd, p) {
@@ -52,6 +73,12 @@
     );
   }
 
+  function statusLabel(st) {
+    if (st === 'approved') return '已通过';
+    if (st === 'rejected') return '未通过';
+    return '审核中';
+  }
+
   function renderGate(fd) {
     const p = profileFor(fd);
     card.innerHTML =
@@ -67,7 +94,7 @@
 
   function renderForm(fd) {
     const p = profileFor(fd);
-    const claims = (WFApp.state().claims || []);
+    const claims = claimList();
 
     if (fd && !p.canClaim) {
       card.innerHTML =
@@ -92,7 +119,7 @@
         ? '<table class="table" style="margin-top:var(--s-5)"><thead><tr><th>厂商</th><th>状态</th></tr></thead><tbody>' +
           claims.map(function (c) {
             return '<tr><td>' + esc(c.name) + '<br><span class="mono t-12 muted">' + esc(c.slug) + '</span></td>' +
-              '<td class="muted">' + (c.status === 'approved' ? '已通过' : '审核中') + '</td></tr>';
+              '<td class="muted">' + statusLabel(c.status) + '</td></tr>';
           }).join('') + '</tbody></table>'
         : '');
 
@@ -110,7 +137,7 @@
         const proof = (document.getElementById('claimProof') || {}).value || '';
         if (!String(proof).trim()) { WFChrome.toast('请填写仓库或组织证明链接'); return; }
       }
-      WFApp.submitClaim({
+      const payload = {
         slug: slug,
         name: (hit && hit.name) || slug,
         kind: (hit && hit.kind) || '',
@@ -120,15 +147,46 @@
         licenseUrl: (document.getElementById('claimLic') || {}).value || '',
         proofUrl: (document.getElementById('claimProof') || {}).value || '',
         platformNoteUrl: (document.getElementById('claimNote') || {}).value || ''
+      };
+      const btn = e.target.querySelector('[type="submit"]');
+      if (btn) btn.disabled = true;
+      const ensure = (WFApp.ensureVaultApiKey ? WFApp.ensureVaultApiKey() : Promise.resolve());
+      ensure.then(function () {
+        return WFApi.submitClaim(payload);
+      }).then(function (c) {
+        if (c && c.id) {
+          const s = WFApp.state();
+          s.claims = [c].concat((s.claims || []).filter(function (x) { return x.id !== c.id; }));
+          WFApp.save();
+        } else {
+          WFApp.submitClaim(payload);
+        }
+        WFChrome.toast('已提交，审核通常 3 个工作日');
+        return WFApi.listClaims().then(function (remote) {
+          mergeRemoteClaims(remote);
+          renderForm(hit || fd);
+        }).catch(function () {
+          renderForm(hit || fd);
+        });
+      }).catch(function (err) {
+        if (err && err.code === 'conflict') WFChrome.toast('该厂商已有审核中的认领');
+        else WFChrome.toast((err && err.message) || '提交失败');
+      }).then(function () {
+        if (btn) btn.disabled = false;
       });
-      WFChrome.toast('已提交，审核通常 3 个工作日');
-      renderForm(hit || fd);
     });
   }
 
   Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(function () {
     const fd = findFoundry(slugQ);
-    if (WFChrome.user()) renderForm(fd);
-    else renderGate(fd);
+    if (!WFChrome.user()) {
+      renderGate(fd);
+      return;
+    }
+    const boot = (WFApp.ensureVaultApiKey ? WFApp.ensureVaultApiKey() : Promise.resolve())
+      .then(function () { return WFApi.listClaims(); })
+      .then(function (remote) { mergeRemoteClaims(remote); })
+      .catch(function () { /* 未登录 Key / 离线：用本地 */ });
+    boot.then(function () { renderForm(fd); });
   });
 })();
