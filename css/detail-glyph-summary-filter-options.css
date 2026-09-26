@@ -1,0 +1,102 @@
+/* 详情 · 字符表摘要 / 筛选冗余对照。只服务 detail-glyph-summary-filter-options.html，不进正式站。 */
+
+.page-detail-gsf .dgsf-main {
+  padding: var(--s-6) 0 var(--s-16);
+  max-width: 56rem;
+}
+
+.page-detail-gsf .dgsf-verdict {
+  margin: 0 0 var(--s-8);
+  padding: var(--s-5) var(--s-6);
+  background: var(--surface);
+  border-radius: var(--radius);
+  font-size: var(--fs-13);
+  line-height: var(--lh-body);
+  color: var(--ink-2);
+}
+.page-detail-gsf .dgsf-verdict b {
+  font-weight: var(--fw-title);
+  color: var(--ink);
+  margin-right: 0.35em;
+}
+.page-detail-gsf .dgsf-verdict code {
+  font-size: var(--fs-12);
+  background: var(--paper);
+  padding: 0.05em 0.35em;
+  border-radius: 6px;
+}
+
+.page-detail-gsf .do-block {
+  display: none;
+  padding: 0 0 var(--s-10);
+}
+.page-detail-gsf .do-block.is-on { display: block; }
+
+.page-detail-gsf .dgsf-pair {
+  display: grid;
+  gap: var(--s-5);
+}
+/* 单列：摘要+通篇预览+筛选须同行对照，双列会把 actions 挤换行 */
+
+.page-detail-gsf .dgsf-stage {
+  position: relative;
+  padding: var(--s-5) var(--s-5) var(--s-4);
+  background: var(--page, #fff);
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius);
+  min-width: 0;
+}
+.page-detail-gsf .dgsf-stage::before {
+  content: attr(data-label);
+  display: block;
+  margin-bottom: var(--s-4);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-label);
+  color: var(--gray);
+  letter-spacing: 0.02em;
+}
+
+/* 舞台内摘要不限宽，避免对照被裁 */
+.page-detail-gsf .dgsf-stage .glyph-summary {
+  margin-bottom: 0;
+  max-width: none;
+}
+
+/* 乙：轻提示「全部收录」 */
+.page-detail-gsf .dgsf-quiet {
+  color: var(--gray);
+  font-weight: var(--fw-body);
+}
+
+/* 乙：软 tabs 嵌在 summary-actions 同行 */
+.page-detail-gsf .glyph-summary-actions .lab-text-tabs {
+  display: inline-flex;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  gap: 0.15rem 0.55rem;
+}
+.page-detail-gsf .glyph-summary-actions .lab-text-tabs button {
+  font-size: var(--fs-13);
+}
+
+.page-detail-gsf .dgsf-alt {
+  margin: var(--s-4) 0 0;
+  font-size: var(--fs-12);
+  color: var(--gray);
+  line-height: var(--lh-body);
+}
+
+
+/* 对照台：尽量保持与现页同行布局 */
+.page-detail-gsf .dgsf-stage .glyph-sum-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0;
+}
+.page-detail-gsf .dgsf-stage .glyph-summary-actions {
+  margin-left: var(--s-3);
+  flex: none;
+}

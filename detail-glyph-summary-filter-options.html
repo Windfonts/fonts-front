@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>详情 · 字符表摘要 / 筛选冗余 · 文风字体</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260926gsf" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260926gsf" />
+  <link rel="stylesheet" href="css/base.css?v=20260926gsf" />
+  <link rel="stylesheet" href="css/components.css?v=20260926gsf" />
+  <link rel="stylesheet" href="css/site.css?v=20260926gsf" />
+  <link rel="stylesheet" href="css/detail.css?v=20260926gsf" />
+  <link rel="stylesheet" href="css/specimen.css?v=20260926gsf" />
+  <link rel="stylesheet" href="css/detail-options.css?v=20260926gsf" />
+  <link rel="stylesheet" href="css/lab-text-tabs.css?v=20260926gsf" />
+  <link rel="stylesheet" href="css/detail-glyph-summary-filter-options.css?v=20260926gsf" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+</head>
+<body class="page-detail page-detail-opt page-detail-gsf">
+  <header data-topbar data-active="fonts"></header>
+
+  <div class="do-switch">
+    <div class="container do-switch-inner">
+      <p class="do-switch-lead">字符表摘要行与筛选胶囊重复（「已收录 / 全部收录」又叠「全部 / 已收录 / 缺字」）。只改摘要 + 通篇预览 + 筛选；工具条与字墙不动。现页未改。</p>
+      <nav class="seg-glyph" aria-label="设计稿">
+        <a href="#a">甲 数字+胶囊</a>
+        <a href="#b">乙 自适应</a>
+        <a href="#c">丙 改句</a>
+        <a href="#d">丁 现页</a>
+      </nav>
+      <p class="do-live">
+        <a class="do-back" href="font-detail.html?slug=hclck2">回寒蝉龙藏楷书</a>
+        ·
+        <a class="do-back" href="lab.html">实验室</a>
+      </p>
+    </div>
+  </div>
+
+  <main class="container dgsf-main">
+    <p class="dgsf-verdict">
+      <b>问题</b>：满覆盖时摘要写「994 / 994 常用字<strong>已收录</strong> · <strong>全部收录</strong>」，旁侧再挂胶囊「全部 / 已收录 / 缺字」——同一语义说了三遍。筛选须仍与「通篇预览」同行（见 <code>76ca9cb</code>）。定稿前挑一套；勿直接改 <code>wf-specimen.js</code>。
+    </p>
+
+    <!-- 甲 -->
+    <article class="do-block" id="a">
+      <header class="do-meta">
+        <b>甲 · 摘要只留数字</b>
+        <span>摘要压成「994 / 994 常用字」；语义交给胶囊（全部 / 已收录 / 缺字）；通篇预览仍同行。</span>
+      </header>
+      <div class="dgsf-pair">
+        <div class="dgsf-stage" data-label="满覆盖（冗余最重场景）">
+          <div class="glyph-summary">
+            <p class="glyph-sum-line"><b>994</b> / 994 常用字<span class="glyph-summary-actions"><button type="button" class="glyph-qz-link">通篇预览</button><span class="glyph-filter" role="group" aria-label="筛选"><button type="button" data-f="all" class="is-on">全部</button><button type="button" data-f="hit">已收录</button><button type="button" data-f="miss">缺字</button></span></span></p>
+            <p class="glyph-legend">虚线框表示字体里没有这个字。</p>
+          </div>
+        </div>
+        <div class="dgsf-stage" data-label="有缺字">
+          <div class="glyph-summary">
+            <p class="glyph-sum-line"><b>987</b> / 994 常用字<span class="glyph-summary-actions"><button type="button" class="glyph-qz-link">通篇预览</button><span class="glyph-filter" role="group" aria-label="筛选"><button type="button" data-f="all" class="is-on">全部</button><button type="button" data-f="hit">已收录</button><button type="button" data-f="miss">缺字</button></span></span></p>
+            <p class="glyph-legend">虚线框表示字体里没有这个字。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 乙 -->
+    <article class="do-block" id="b">
+      <header class="do-meta">
+        <b>乙 · 满覆盖藏筛选 · 有缺才露</b>
+        <span>齐时只留数字 +「全部收录」轻提示 + 通篇预览，不挂胶囊。有缺时用更软的文案 tabs（非墨底胶囊）。</span>
+      </header>
+      <div class="dgsf-pair">
+        <div class="dgsf-stage" data-label="满覆盖 → 无胶囊">
+          <div class="glyph-summary">
+            <p class="glyph-sum-line"><b>994</b> / 994 常用字 · <span class="dgsf-quiet">全部收录</span><span class="glyph-summary-actions"><button type="button" class="glyph-qz-link">通篇预览</button></span></p>
+            <p class="glyph-legend">虚线框表示字体里没有这个字。</p>
+          </div>
+        </div>
+        <div class="dgsf-stage" data-label="有缺字 → 软文案 tabs">
+          <div class="glyph-summary">
+            <p class="glyph-sum-line"><b>987</b> / 994 常用字 · 缺 <button type="button" class="chip-miss">7</button> 字<span class="glyph-summary-actions"><button type="button" class="glyph-qz-link">通篇预览</button><span class="lab-text-tabs lab-text-tabs--bare lab-ttab glyph-filter-soft" role="group" aria-label="筛选"><button type="button" data-f="all" class="is-on">全部</button><button type="button" data-f="hit">已收录</button><button type="button" data-f="miss">缺字</button></span></span></p>
+            <p class="glyph-legend">虚线框表示字体里没有这个字。</p>
+          </div>
+        </div>
+      </div>
+      <p class="dgsf-alt">乙备选：有缺时不露三态，只挂一枚「只看缺字」开关（按下后筛 miss）。若偏此向，可再开一轮。</p>
+    </article>
+
+    <!-- 丙 -->
+    <article class="do-block" id="c">
+      <header class="do-meta">
+        <b>丙 · 改句去重 · 保留胶囊</b>
+        <span>摘要不再叠「已收录 · 全部收录」。齐用「齐」，缺用「缺 N 字」；胶囊结构与现页相同。</span>
+      </header>
+      <div class="dgsf-pair">
+        <div class="dgsf-stage" data-label="满覆盖">
+          <div class="glyph-summary">
+            <p class="glyph-sum-line"><b>994</b> / 994 常用字 · 齐<span class="glyph-summary-actions"><button type="button" class="glyph-qz-link">通篇预览</button><span class="glyph-filter" role="group" aria-label="筛选"><button type="button" data-f="all" class="is-on">全部</button><button type="button" data-f="hit">已收录</button><button type="button" data-f="miss">缺字</button></span></span></p>
+            <p class="glyph-legend">虚线框表示字体里没有这个字。</p>
+          </div>
+        </div>
+        <div class="dgsf-stage" data-label="有缺字">
+          <div class="glyph-summary">
+            <p class="glyph-sum-line"><b>987</b> / 994 常用字 · 缺 <button type="button" class="chip-miss">7</button> 字<span class="glyph-summary-actions"><button type="button" class="glyph-qz-link">通篇预览</button><span class="glyph-filter" role="group" aria-label="筛选"><button type="button" data-f="all" class="is-on">全部</button><button type="button" data-f="hit">已收录</button><button type="button" data-f="miss">缺字</button></span></span></p>
+            <p class="glyph-legend">虚线框表示字体里没有这个字。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 丁 -->
+    <article class="do-block" id="d">
+      <header class="do-meta">
+        <b>丁 · 现页（问题对照）</b>
+        <span>照搬现网 <code>renderSummary</code>：数字 +「已收录」+ 后缀「全部收录 / 缺 N」+ 通篇预览 + 三态胶囊。</span>
+      </header>
+      <div class="dgsf-pair">
+        <div class="dgsf-stage" data-label="满覆盖（冗余）">
+          <div class="glyph-summary">
+            <p class="glyph-sum-line"><b>994</b> / 994 常用字已收录 · 全部收录<span class="glyph-summary-actions"><button type="button" class="glyph-qz-link">通篇预览</button><span class="glyph-filter" role="group" aria-label="筛选"><button type="button" data-f="all" class="is-on">全部</button><button type="button" data-f="hit">已收录</button><button type="button" data-f="miss">缺字</button></span></span></p>
+            <p class="glyph-legend">虚线框表示字体里没有这个字。</p>
+          </div>
+        </div>
+        <div class="dgsf-stage" data-label="有缺字">
+          <div class="glyph-summary">
+            <p class="glyph-sum-line"><b>987</b> / 994 常用字已收录 · 缺 <button type="button" class="chip-miss">7</button> 字<span class="glyph-summary-actions"><button type="button" class="glyph-qz-link">通篇预览</button><span class="glyph-filter" role="group" aria-label="筛选"><button type="button" data-f="all" class="is-on">全部</button><button type="button" data-f="hit">已收录</button><button type="button" data-f="miss">缺字</button></span></span></p>
+            <p class="glyph-legend">虚线框表示字体里没有这个字。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <script src="js/wf-proto.js?v=20260926gsf"></script>
+  <script src="js/wf-chrome.js?v=20260926gsf"></script>
+  <script src="js/pages/detail-glyph-summary-filter-options.js?v=20260926gsf"></script>
+</body>
+</html>

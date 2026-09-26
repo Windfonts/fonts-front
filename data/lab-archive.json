@@ -273,6 +273,17 @@
           ]
         },
         {
+          "href": "detail-glyph-summary-filter-options.html",
+          "title": "字符表摘要 / 筛选冗余",
+          "status": "active",
+          "note": "满覆盖「已收录·全部收录」叠胶囊三态。甲数字+胶囊 / 乙齐藏筛选·缺露软tabs / 丙改句去重 / 丁现页。筛选仍与通篇预览同行。",
+          "assets": [
+            "css/detail-glyph-summary-filter-options.css",
+            "js/pages/detail-glyph-summary-filter-options.js",
+            "css/lab-text-tabs.css"
+          ]
+        },
+        {
           "href": "detail-text-tabs-audit.html",
           "title": "戊文案 tabs 适用点审计",
           "status": "active",
