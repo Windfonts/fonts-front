@@ -345,14 +345,28 @@
     mark.style.zIndex = '9999';
     mark.style.display = 'flex';
     mark.style.alignItems = 'center';
-    mark.style.gap = '5px';
-    mark.style.padding = '4px 7px';
-    mark.style.borderRadius = '999px';
-    mark.style.backgroundColor = rootCssVar('--paper', '#ffffff');
-    mark.style.color = rootCssVar('--gray', '#666666');
-    mark.style.boxShadow = '0 1px 5px rgba(0, 0, 0, 0.12)';
-    mark.style.fontFamily = 'sans-serif';
-    mark.style.fontSize = '11px';
+    mark.style.gap = '6px';
+    mark.style.padding = '0';
+    mark.style.margin = '0';
+    mark.style.border = 'none';
+    mark.style.borderRadius = '0';
+    mark.style.background = 'transparent';
+    mark.style.backgroundColor = 'transparent';
+    mark.style.boxShadow = 'none';
+    mark.style.color = rootCssVar('--ink-2', rootCssVar('--ink', '#222222'));
+    /* 寒蝉宽黑体 · Chill K Sans */
+    var face = '"wenfeng-hckht", "Chill K Sans", sans-serif';
+    try {
+      if (global.WFProto && typeof WFProto.cssFamilyStack === 'function') {
+        face = WFProto.cssFamilyStack('wenfeng-hckht');
+      }
+      if (global.WFProto && typeof WFProto.ensureFontCss === 'function') {
+        WFProto.ensureFontCss('wenfeng-hckht', 'Medium');
+      }
+    } catch (e) {}
+    mark.style.fontFamily = face;
+    mark.style.fontWeight = '500';
+    mark.style.fontSize = '13px';
     mark.style.lineHeight = '1';
     mark.style.whiteSpace = 'nowrap';
     mark.style.pointerEvents = 'none';
@@ -366,8 +380,14 @@
     logo.style.width = '18px';
     logo.style.height = '18px';
     logo.style.flex = '0 0 18px';
+    logo.style.background = 'transparent';
+    logo.style.backgroundColor = 'transparent';
+    logo.style.border = 'none';
+    logo.style.boxShadow = 'none';
 
     label.textContent = '文风字体';
+    label.style.fontFamily = face;
+    label.style.fontWeight = '500';
     mark.appendChild(logo);
     mark.appendChild(label);
     stage.appendChild(mark);
@@ -394,10 +414,15 @@
     try {
       restoreWatermark = appendExportWatermark(stage);
       var opts = captureOptions(stage, format);
-      var run = format === 'svg'
-        ? api.toSvg(stage, opts)
-        : api.toPng(stage, opts);
-      return Promise.resolve(run).then(function (dataUrl) {
+      var ready = Promise.resolve();
+      try {
+        if (document.fonts && document.fonts.load) {
+          ready = document.fonts.load('500 13px wenfeng-hckht').catch(function () {});
+        }
+      } catch (e) {}
+      return ready.then(function () {
+        return format === 'svg' ? api.toSvg(stage, opts) : api.toPng(stage, opts);
+      }).then(function (dataUrl) {
         restoreWatermark();
         restoreSvg();
         var ext = format === 'svg' ? 'svg' : 'png';
