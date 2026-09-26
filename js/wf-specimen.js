@@ -523,6 +523,8 @@
       const key = activeKey();
       const marks = st.marks[key];
       const full = qzw();
+      /* 满覆盖时没有可筛内容：收起筛选后，避免保留旧的「只看缺字」状态。 */
+      if (marks && st.filter !== 'all' && st.hit[key] === st.total[key]) st.filter = 'all';
       /* 缺字视图必须扫全文——缺字常在节选之外，否则筛出来是空的 */
       const excerpt = st.charset === 'c3500' ? COMMON_3500_EXCERPT : QIANZIWEN_EXCERPT;
       const shown = st.filter === 'miss' ? full : full.slice(0, excerpt);
@@ -580,18 +582,17 @@
       const total = st.total[key] || uniqueHits(qzw(), {}).total;
       const hit = st.hit[key];
       const miss = total - hit;
-      const pct = total ? Math.round(hit / total * 100) : 0;
-      /* 高覆盖时进度条与满条无法区分，改把缺口直接说出口；「缺 N 字」可点，直接筛出缺的字 */
+      /* 乙：满覆盖只保留轻提示；有缺字时才露出软文案 tabs。 */
+      const fullyCovered = miss === 0;
       let suffix;
-      if (miss === 0) suffix = '全部收录';
-      else if (pct >= 95) suffix = '缺 <button type="button" class="chip-miss" data-filter="miss">' + miss + '</button> 字';
-      else suffix = '覆盖 ' + pct + '%';
+      if (fullyCovered) suffix = '<span class="glyph-summary-status">全部收录</span>';
+      else suffix = '缺 <button type="button" class="chip-miss" data-filter="miss">' + miss + '</button> 字';
       const label = '常用字';
       const qzLink = st.charset === 'c3500'
         ? ''
         : '<button type="button" class="glyph-qz-link">通篇预览</button>';
-      const filterCtl = skipCov ? '' :
-        '<span class="glyph-filter" role="group" aria-label="筛选">' +
+      const filterCtl = (skipCov || fullyCovered) ? '' :
+        '<span class="lab-text-tabs lab-text-tabs--bare lab-ttab glyph-filter-soft" role="group" aria-label="筛选">' +
           '<button type="button" data-f="all"' + (st.filter === 'all' ? ' class="is-on"' : '') + '>全部</button>' +
           '<button type="button" data-f="hit"' + (st.filter === 'hit' ? ' class="is-on"' : '') + '>已收录</button>' +
           '<button type="button" data-f="miss"' + (st.filter === 'miss' ? ' class="is-on"' : '') + '>缺字</button></span>';
@@ -601,7 +602,7 @@
           '</span>'
         : '';
       summaryEl.innerHTML =
-        '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' ' + label + '已收录 · ' + suffix +
+        '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' ' + label + ' · ' + suffix +
           summaryActions + '</p>' +
         '<p class="glyph-legend">虚线框表示字体里没有这个字。' +
           (st.charset === 'c3500' ? '字表为 GB2312 一级按码位截取的 3500 字，逐 unicode-range 核对。' : '') +

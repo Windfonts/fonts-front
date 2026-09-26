@@ -548,6 +548,23 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
 .glyph-summary-actions .glyph-filter button:hover { color: var(--ink); }
 .glyph-tools .seg-glyph button.is-on,
 .glyph-summary-actions .glyph-filter button.is-on { background: var(--ink); color: var(--on-ink); }
+/* 乙：缺字时的软文案 tabs；满覆盖时由 wf-specimen 隐藏整组。 */
+.glyph-summary-actions .glyph-filter-soft {
+  display: inline-flex; align-items: center; gap: 0.15rem 0.55rem;
+  margin: 0; padding: 0; border: 0; background: transparent;
+}
+.glyph-summary-actions .glyph-filter-soft button {
+  border: 0; background: transparent; padding: 0; margin: 0;
+  font: inherit; font-size: var(--fs-13); font-weight: var(--fw-body);
+  color: var(--gray); cursor: pointer; border-radius: 0;
+}
+.glyph-summary-actions .glyph-filter-soft button:hover { color: var(--ink); }
+.glyph-summary-actions .glyph-filter-soft button.is-on {
+  background: transparent; color: var(--ink); font-weight: var(--fw-title);
+  text-decoration: underline; text-underline-offset: 0.22em;
+  text-decoration-thickness: 1.5px;
+}
+.glyph-summary-status { color: var(--gray); font-weight: var(--fw-body); }
 .glyph-tools .gtoggle { border: 0; background: var(--fill); color: var(--ink-2); padding: 0.32rem 0.9rem; border-radius: var(--radius-pill); font-size: var(--fs-13); cursor: pointer; }
 .glyph-tools .gtoggle:hover { color: var(--ink); }
 .glyph-tools .gtoggle[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
