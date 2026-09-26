@@ -850,3 +850,9 @@ feibisi 问「授权文件都有了没，后面挂 wenfeng.org 溯源」——�
 - **管线**：build（SUBSET_ONLY=full）→ OSS 三包全 200 → vault INSERT 3 行 → analysis 462/464（缺口 Jlyhmht/Shmgt=并行会话两款未上包）→ metadata 上传 → package-sizes/locale 重建 → 缓存键 **hccq2**（wf-proto/wf-live）。export 经 wenpai VM（464 款）。
 - **analysis 脚本读主检出**：build-font-analysis-from-css.mjs 固定读 `../fonts-front/data/fonts.json`（非 v4-lab）——重建前须临时拷贝新目录过去再还原。
 - 验收：:16016 三个 detail 页 200、konatu 嵌入 CSS 200、analysis API 200；目录 464 款、开源商用 376、未核实 11（全为白名单项）。
+
+### §44 交接指针（09-26 深夜收口时点）
+
+- **推送态**：font-licenses main=cb06654 已推；fonts-packages main=7ba2aa4 已推（feicode-wapuu 别名，main 受保护 linuxjoy 直推被拒）；fonts-front v4-specimen=a343f1a 已推；fonts-vault 本地 feature 分支 74c2934 未推（仓有并行未提交文件，走仓自己的 AGit 流程）。
+- **待办**：①OSS 旧 Xcws 前缀 188 孤儿对象删除（现 key 无单删/批删权限，须 modiqi 侧或临时提权）；②Jlyhmht/Shmgt 两款目录已上但包未上 CDN（并行会话未完，analysis 462/464 的缺口即此二款）；③app.windfonts.com 边缘 CDN 429 节流今日触发（vault 应用无限流代码，节流在边缘层；批量导出后探测会被挡，隔日观察若持续找 devops 查边缘限流配置）；④目录 464 款开源商用 376 未核实 11（全为白名单：汲古×3/一点明体/刻石录×2 台湾跳过、教育部×2、Xsslv）。
+- **注意**：fonts-packages 工作树有他人未提交改动（package-lock.json、create-font-subsets.py、_upstream-src/）勿动；v4-lab 的 data/lab-archive.json 同理。Konatu/Lxht 源文件在 _fonts_park/oss-batch1-staging。
