@@ -171,6 +171,7 @@
 
 /* 使用：地区单独一行；动态/静态与引用方式同一行，高度与地区开关一致 */
 .use-bar {
+  margin-bottom: 0;
   display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3);
 }
 .detail-main .use-bar .seg,
@@ -213,9 +214,7 @@
 .use-code-stack {
   margin-top: var(--s-4);
   overflow: hidden;
-  border: 1px solid var(--rule);
   border-radius: var(--radius-sm);
-  background: transparent;
 }
 .detail-main #use .use-code-stack { margin-top: 0; }
 .detail-main .panel .use-code-stack > .code {
