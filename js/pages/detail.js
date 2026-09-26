@@ -206,21 +206,31 @@
   }
 
 
-  /* 商业主体：紧挨服务状态下，同款 who+what，无强制右侧链。≠ 版权归属。
-     关系档：平台（默认/买断）/ 签约（凡有时限，可附授权至）/ 合作（枚举保留，本波不自动用）。≠ 服务状态配色。 */
+  /* 商业主体：紧挨服务状态下，同款 who+what + 右侧合作联系。≠ 版权归属。
+     关系档：运营（默认/买断，内部 platform）/ 签约（凡有时限，可附授权至）/ 合作（枚举保留）。≠ 服务状态配色。
+     仅默认文派 + 运营档附「（文风字体平台运营主体）」；合作方不得挂此注。 */
   function proofCommercialLine(font) {
     const product = window.WFProducts ? WFProducts.productOf(font) : null;
     const ent = (WFProto.commercialEntity && WFProto.commercialEntity(font, product))
-      || { name: '文派（广州）科技有限公司', status: 'platform', label: '平台', expiresAt: '' };
-    let what = '<span class="entity-grade is-' + esc(ent.status || 'platform') + '">' + esc(ent.label || '平台') + '</span>' +
-      '<span class="entity-name">' + esc(ent.name || '文派（广州）科技有限公司') + '</span>';
+      || { name: '文派（广州）科技有限公司', status: 'platform', label: '运营', expiresAt: '' };
+    const name = ent.name || '文派（广州）科技有限公司';
+    const status = ent.status || 'platform';
+    const label = ent.label || '运营';
+    let what = '<span class="entity-grade is-' + esc(status) + '">' + esc(label) + '</span>' +
+      '<span class="entity-name">' + esc(name) + '</span>';
+    /* 运营档 + 默认文派：注明文风字体平台运营主体。签约/合作方公司不挂此注。 */
+    if (status === 'platform' && name === '文派（广州）科技有限公司') {
+      what += '<span class="entity-note">（文风字体平台运营主体）</span>';
+    }
     /* 签约档：有 expiresAt 时附「授权至 YYYY-MM-DD」。合作档本波不挂期限文案。 */
-    if (ent.expiresAt && ent.status === 'signed') {
+    if (ent.expiresAt && status === 'signed') {
       what += '<span class="entity-exp">授权至 ' + esc(ent.expiresAt) + '</span>';
     }
+    /* 右侧 CTA：合作联系 → about.html（公司 + 写信入口，实页）。 */
+    const act = '<a class="lp-act" href="' + WFChrome.href('about.html') + '">合作联系 →</a>';
     return '<div class="lp5-node lp5-meta entity-row"><span class="icon">' + WFChrome.icon('idcard') + '</span>' +
       '<div class="head"><span class="who">商业主体</span>' +
-      '<span class="what">' + what + '</span></div></div>';
+      '<span class="what">' + what + '</span>' + act + '</div></div>';
   }
 
   /* 版权归属：与服务状态同款行；排在商业主体之后、出处链之前。≠ 商业主体。 */

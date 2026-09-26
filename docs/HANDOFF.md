@@ -821,7 +821,7 @@ feibisi 问「授权文件都有了没，后面挂 wenfeng.org 溯源」——�
 
 ## §42 商业主体行（Feng lock，2026-09-26）
 
-详情页出处与依据：服务状态下新增 **商业主体** 行（who+what，无强制右链）。默认「文派（广州）科技有限公司」；可选 `font.commercialEntity` / `commercialEntity.name` 或同名字段挂在 product 上覆盖（厂商合伙商业化）。**≠ 版权归属 / rights_holder**。助手 `WFProto.commercialEntityName`；渲染 `detail.js` `proofCommercialLine`。不必全库填 override。
+详情页出处与依据：服务状态下新增 **商业主体** 行（who+what + 右侧「合作联系 →」→ `about.html`）。默认「文派（广州）科技有限公司」；可选 `font.commercialEntity` / `commercialEntity.name` 或同名字段挂在 product 上覆盖（厂商合伙商业化）。**≠ 版权归属 / rights_holder**。助手 `WFProto.commercialEntityName`；渲染 `detail.js` `proofCommercialLine`。不必全库填 override。
 
-关系档按授权时长（≠ 服务状态 正常/受限）：`platform` 平台（默认文派/采买买断，不挂到期）｜`signed` 签约（凡有时限的授权，可附 `expiresAt`→授权至）｜`partner` 合作（字段/枚举保留供后续；本波不对期限授权自动落合作，期限=签约）。仅有 `expiresAt`、未显式 status → 签约。字段 `commercialEntity.{name,status,expiresAt?}` 或 `commercialEntityStatus` / `commercialEntityExpiresAt`；默认平台+文派；UI `entity-grade` + 公司名；助手 `WFProto.commercialEntity`。
+关系档按授权时长（≠ 服务状态 正常/受限）：`platform` **运营**（默认文派/采买买断，不挂到期；内部 key 仍 `platform`，UI 标签「运营」；默认文派时附「（文风字体平台运营主体）」）｜`signed` 签约（凡有时限的授权，可附 `expiresAt`→授权至）｜`partner` 合作（字段/枚举保留供后续；本波不对期限授权自动落合作，期限=签约）。仅有 `expiresAt`、未显式 status → 签约。合作方公司名不得挂运营主体注。字段 `commercialEntity.{name,status,expiresAt?}` 或 `commercialEntityStatus` / `commercialEntityExpiresAt`；默认运营+文派；UI `entity-grade` + 公司名 [+ 注]；助手 `WFProto.commercialEntity`。
 

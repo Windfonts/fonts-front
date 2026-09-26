@@ -514,7 +514,7 @@
   color: var(--gray-2);
 }
 
-/* 商业主体关系档：平台 / 签约 / 合作（≠ 服务状态 正常/受限 配色） */
+/* 商业主体关系档：运营 / 签约 / 合作（≠ 服务状态 正常/受限 配色） */
 .lp5-node.lp5-meta.entity-row .what {
   display: inline-flex;
   align-items: baseline;
@@ -533,7 +533,8 @@
   font-size: var(--fs-12);
   color: var(--gray-2);
 }
-.lp5-node.lp5-meta.entity-row .entity-exp {
+.lp5-node.lp5-meta.entity-row .entity-exp,
+.lp5-node.lp5-meta.entity-row .entity-note {
   font-size: var(--fs-12);
   color: var(--gray-2);
 }
