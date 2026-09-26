@@ -2391,6 +2391,18 @@
         "zcool"
       ],
       "relatedGroup": "zcool"
+    },
+    "思源黑体 TC": {
+      "ownerId": "adobe",
+      "makerId": "adobe",
+      "group": "source-han-sans",
+      "relation": "locale",
+      "upstreamName": "思源黑体",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "collaboratorIds": [
+        "google-fonts"
+      ]
     }
   }
 }

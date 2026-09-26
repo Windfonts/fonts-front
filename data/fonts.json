@@ -12420,6 +12420,78 @@
     }
   },
   {
+    "id": "e94d94a6-fec0-4f6a-8fcc-147c4df61a7a",
+    "name": "思源黑体 TC",
+    "en": "Source Han Sans TC",
+    "family": "wenfeng-syhttc",
+    "normalized": "Syhttc",
+    "designer": "Ryoko Nishizuka（西塚涼子）等；Adobe 与 Google 联合发布（Source Han / Noto CJK）",
+    "designerShort": "Ryoko Nishizuka（西塚涼子）等；Adobe 与 Google 联合发布（Source Han / Noto CJK）",
+    "category": "",
+    "tags": [
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "ExtraLight",
+      "Light",
+      "Normal",
+      "Regular",
+      "Medium",
+      "Bold",
+      "Heavy"
+    ],
+    "description": "思源黑体（Source Han Sans）繁体中文语言版（TC，台湾字形默认），Adobe 与 Google 联合开发的开源无衬线字体。含 ExtraLight / Light / Normal / Regular / Medium / Bold / Heavy 七字重。与简体 SC 同为语言特定完整字形集，非 TW 地区子集。SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2014-2025 Adobe (http://www.adobe.com/), with Reserved Font Name Source.",
+    "foundry": "Adobe",
+    "brand": {
+      "name": "Adobe",
+      "slug": "adobe",
+      "logoUrl": "",
+      "avatarUrl": "assets/avatars/adobe.webp",
+      "website": "https://www.adobe.com",
+      "description": "全球领先的创意软件公司，与Google合作开发思源黑体/宋体（Source Han Sans/Serif），采用SIL OFL开源协议，是CJK字体领域最重要的贡献者之一。"
+    },
+    "releaseYear": 2025,
+    "version": "2.005",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 44853,
+    "glyphCount": 65535,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/ee9021c84f33366bde80b75efa132836e47afa18b9ce58e8077f4c25d039666c?s=144&d=identicon",
+    "downloadCount": 0,
+    "apiCallCount": 0,
+    "apiCount": 0,
+    "coverage": {
+      "hans": {
+        "hit": 76,
+        "total": 994
+      },
+      "hant": {
+        "hit": 50,
+        "total": 1000
+      },
+      "c3500": {
+        "hit": 154,
+        "total": 3500
+      }
+    }
+  },
+  {
     "id": "d095caa9-08ea-44eb-a00c-e56b04819c3b",
     "name": "思源黑体 CN",
     "en": "思源黑体 CN",
@@ -12692,11 +12764,14 @@
     "designer": "Ryoko Nishizuka（西塚涼子）等；Adobe 与 Google 联合发布（Source Han / Noto CJK）",
     "designerShort": "Ryoko Nishizuka（西塚涼子）等；Adobe 与 Google 联合发布（Source Han / Noto CJK）",
     "category": "",
-    "tags": [],
+    "tags": [
+      "shell",
+      "retired-from-product"
+    ],
     "weights": [
       "Regular"
     ],
-    "description": "",
+    "description": "【已从产品卡下架】TW 地区子集 Regular 空壳（且 name-table 曾错挂 Bold）。繁体主推请用 wenfeng-syhttc / Syhttc 七字重语言版。",
     "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",

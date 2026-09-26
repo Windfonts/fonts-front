@@ -1,7 +1,7 @@
 {
   "$schema": "./locale-fallback-pairs.schema.json",
   "note": "简繁兄弟配对。localeFallback=auto|sc|tc 由 vault 展开为第二 family；不做码点转换。",
-  "generatedAt": "2026-09-25",
+  "generatedAt": "2026-09-26",
   "pairs": [
     {
       "scFamily": "wenfeng-mksjh",
@@ -33,7 +33,21 @@
     },
     {
       "scFamily": "wenfeng-syhtcn",
+      "tcFamily": "wenfeng-syhttc",
+      "productId": "adobe-source-han-sans",
+      "source": "font-products",
+      "localeFallbackAllowed": true
+    },
+    {
+      "scFamily": "wenfeng-syhtcn",
       "tcFamily": "wenfeng-syhttw",
+      "productId": null,
+      "source": "family-suffix:wenfeng-syht",
+      "localeFallbackAllowed": true
+    },
+    {
+      "scFamily": "wenfeng-syhtsc",
+      "tcFamily": "wenfeng-syhttc",
       "productId": "adobe-source-han-sans",
       "source": "font-products",
       "localeFallbackAllowed": true
@@ -41,8 +55,8 @@
     {
       "scFamily": "wenfeng-syhtsc",
       "tcFamily": "wenfeng-syhttw",
-      "productId": "adobe-source-han-sans",
-      "source": "font-products",
+      "productId": null,
+      "source": "family-suffix:wenfeng-syht",
       "localeFallbackAllowed": true
     },
     {
@@ -87,126 +101,152 @@
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
-      "productId": "maoken-shijinhei"
+      "productId": "maoken-shijinhei",
+      "source": "font-products"
     },
     "wenfeng-mksjhtc": {
       "peer": "wenfeng-mksjh",
       "role": "tc",
       "peerRole": "sc",
       "localeFallbackAllowed": true,
-      "productId": "maoken-shijinhei"
+      "productId": "maoken-shijinhei",
+      "source": "font-products"
     },
     "wenfeng-swjayleg": {
       "peer": "wenfeng-swfanleg",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
-      "productId": "swei-swfan+swei-swjay"
+      "productId": "swei-swfan+swei-swjay",
+      "source": "localePeerProduct"
     },
     "wenfeng-swfanleg": {
       "peer": "wenfeng-swjayleg",
       "role": "tc",
       "peerRole": "sc",
       "localeFallbackAllowed": true,
-      "productId": "swei-swfan+swei-swjay"
+      "productId": "swei-swfan+swei-swjay",
+      "source": "localePeerProduct"
     },
     "wenfeng-swjaysans": {
       "peer": "wenfeng-swfansans",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
-      "productId": "swei-swfan+swei-swjay"
+      "productId": "swei-swfan+swei-swjay",
+      "source": "localePeerProduct"
     },
     "wenfeng-swfansans": {
       "peer": "wenfeng-swjaysans",
       "role": "tc",
       "peerRole": "sc",
       "localeFallbackAllowed": true,
-      "productId": "swei-swfan+swei-swjay"
+      "productId": "swei-swfan+swei-swjay",
+      "source": "localePeerProduct"
     },
     "wenfeng-swjayserif": {
       "peer": "wenfeng-swfanserif",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
-      "productId": "swei-swfan+swei-swjay"
+      "productId": "swei-swfan+swei-swjay",
+      "source": "localePeerProduct"
     },
     "wenfeng-swfanserif": {
       "peer": "wenfeng-swjayserif",
       "role": "tc",
       "peerRole": "sc",
       "localeFallbackAllowed": true,
-      "productId": "swei-swfan+swei-swjay"
+      "productId": "swei-swfan+swei-swjay",
+      "source": "localePeerProduct"
     },
     "wenfeng-syhtcn": {
-      "peer": "wenfeng-syhttw",
+      "peer": "wenfeng-syhttc",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
-      "productId": "adobe-source-han-sans"
+      "productId": "adobe-source-han-sans",
+      "source": "font-products"
+    },
+    "wenfeng-syhttc": {
+      "peer": "wenfeng-syhtsc",
+      "role": "tc",
+      "peerRole": "sc",
+      "localeFallbackAllowed": true,
+      "productId": "adobe-source-han-sans",
+      "source": "font-products"
     },
     "wenfeng-syhttw": {
       "peer": "wenfeng-syhtsc",
       "role": "tc",
       "peerRole": "sc",
       "localeFallbackAllowed": true,
-      "productId": "adobe-source-han-sans"
+      "productId": null,
+      "source": "family-suffix:wenfeng-syht"
     },
     "wenfeng-syhtsc": {
-      "peer": "wenfeng-syhttw",
+      "peer": "wenfeng-syhttc",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
-      "productId": "adobe-source-han-sans"
+      "productId": "adobe-source-han-sans",
+      "source": "font-products"
     },
     "wenfeng-systcn": {
       "peer": "wenfeng-systtc",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
-      "productId": "adobe-source-han-serif"
+      "productId": "adobe-source-han-serif",
+      "source": "font-products"
     },
     "wenfeng-systtc": {
       "peer": "wenfeng-systsc",
       "role": "tc",
       "peerRole": "sc",
       "localeFallbackAllowed": true,
-      "productId": "adobe-source-han-serif"
+      "productId": "adobe-source-han-serif",
+      "source": "font-products"
     },
     "wenfeng-systcnl": {
       "peer": "wenfeng-systtc",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
-      "productId": "adobe-source-han-serif"
+      "productId": "adobe-source-han-serif",
+      "source": "font-products"
     },
     "wenfeng-systsc": {
       "peer": "wenfeng-systtc",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
-      "productId": "adobe-source-han-serif"
+      "productId": "adobe-source-han-serif",
+      "source": "font-products"
     },
     "wenfeng-xwwk": {
       "peer": "wenfeng-xwwktc",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
-      "productId": null
+      "productId": null,
+      "source": "explicit"
     },
     "wenfeng-xwwktc": {
       "peer": "wenfeng-xwwkgb",
       "role": "tc",
       "peerRole": "sc",
       "localeFallbackAllowed": true,
-      "productId": "lxgw-wenkai"
+      "productId": "lxgw-wenkai",
+      "source": "font-products"
     },
     "wenfeng-xwwkgb": {
       "peer": "wenfeng-xwwktc",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
-      "productId": "lxgw-wenkai"
+      "productId": "lxgw-wenkai",
+      "source": "font-products"
     }
   }
 }

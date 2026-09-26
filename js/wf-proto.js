@@ -98,11 +98,11 @@
     if (base.indexOf('/admin') !== -1) return '../data/' + file;
     return 'data/' + file;
   }
-  function catalogUrl() { return dataUrl('fonts.json?v=20260926perf1'); }
+  function catalogUrl() { return dataUrl('fonts.json?v=20260926syhttc'); }
   function analysisMetaUrl() {
     /* CyberCDN 按查询串分变体缓存：换数据必须换新版本值（旧变体会粘住陈旧内容），
        全新值首次回源即全量。20260925b 曾在重建中途被缓存成 1-2 字体的残缺变体。 */
-    return CDN + '/fonts-packages/metadata/font-analysis.json?v=20260926a';
+    return CDN + '/fonts-packages/metadata/font-analysis.json?v=20260926syhttc2';
   }
 
   /* —— 厂商字典：data/foundries.json 是厂商名称的唯一真相来源（中文名 / 英文 / 简称 / 官网） —— */
@@ -206,7 +206,7 @@
     });
     const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20260926s'), { foundries: [] });
     const evidenceReq = fetchJsonCached(dataUrl('license-evidence.json?v=20260925b'), { standards: {}, names: {} });
-    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20260927d'), { groups: {}, byName: {} });
+    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20260926syhttc'), { groups: {}, byName: {} });
     const avatarsReq = fetchJsonCached(dataUrl('avatars.json?v=20260921d'), {});
     catalogPromise = Promise.all([fontsReq, foundriesReq, evidenceReq, lineageReq, avatarsReq])
       .then(function (res) {

@@ -118,7 +118,7 @@ for (const [stem, slot] of stemMap) {
 
 /* 3) 显式补强：主推 SC 正名 ↔ 繁体（避免只落到 CN 变体） */
 const EXPLICIT = [
-  ['wenfeng-syhtsc', 'wenfeng-syhttw'],
+  ['wenfeng-syhtsc', 'wenfeng-syhttc'],
   ['wenfeng-systsc', 'wenfeng-systtc'],
   ['wenfeng-systcnl', 'wenfeng-systtc'],
   ['wenfeng-xwwk', 'wenfeng-xwwktc'],
@@ -137,21 +137,33 @@ const list = [...pairs.values()].sort((a, b) =>
 
 /* 按 family 反查：任一端 → 兄弟 */
 const byMember = {};
+const rank = (p) => {
+  const s = String(p.source || '');
+  if (s === 'explicit' || s === 'font-products' || s === 'localePeerProduct') return 2;
+  if (s.startsWith('family-suffix:')) return 0;
+  return 1;
+};
+function setMember(fam, info, pair) {
+  const prev = byMember[fam];
+  if (prev && rank(prev) > rank(pair)) return;
+  if (prev && rank(prev) === rank(pair) && prev.productId && !pair.productId) return;
+  byMember[fam] = { ...info, source: pair.source };
+}
 for (const p of list) {
-  byMember[p.scFamily] = {
+  setMember(p.scFamily, {
     peer: p.tcFamily,
     role: 'sc',
     peerRole: 'tc',
     localeFallbackAllowed: p.localeFallbackAllowed,
     productId: p.productId,
-  };
-  byMember[p.tcFamily] = {
+  }, p);
+  setMember(p.tcFamily, {
     peer: p.scFamily,
     role: 'tc',
     peerRole: 'sc',
     localeFallbackAllowed: p.localeFallbackAllowed,
     productId: p.productId,
-  };
+  }, p);
 }
 
 const out = {

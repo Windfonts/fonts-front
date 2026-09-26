@@ -948,6 +948,18 @@
           "tier": "primary"
         },
         {
+          "family": "wenfeng-syhttc",
+          "chips": [
+            "TC"
+          ],
+          "axes": {
+            "charset": "tc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
           "family": "wenfeng-syhtcn",
           "chips": [
             "CN"
@@ -958,18 +970,6 @@
             "width": "proportional"
           },
           "tier": "secondary"
-        },
-        {
-          "family": "wenfeng-syhttw",
-          "chips": [
-            "TW"
-          ],
-          "axes": {
-            "charset": "tc",
-            "purpose": "std",
-            "width": "proportional"
-          },
-          "tier": "primary"
         }
       ]
     },
