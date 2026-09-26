@@ -8,6 +8,30 @@
     ['CJK 统一汉字', 'U+4E00-9FFF'], ['常用标点', 'U+3000-303F, U+FF00-FFEF'], ['基本拉丁', 'U+0020-007E'], ['数字与货币', 'U+0030-0039, U+00A5, U+20AC, U+FFE5']
   ];
 
+  /** 本机去重拆分：CJK / ASCII·标点 / 其他（不含空白） */
+  function charBreakdown(text) {
+    const seen = {};
+    let cjk = 0, ascii = 0, other = 0;
+    Array.from(String(text || '')).forEach(function (c) {
+      if (/\s/.test(c) || seen[c]) return;
+      seen[c] = true;
+      const cp = c.codePointAt(0);
+      if ((cp >= 0x4E00 && cp <= 0x9FFF) || (cp >= 0x3400 && cp <= 0x4DBF) || (cp >= 0xF900 && cp <= 0xFAFF)) cjk += 1;
+      else if (cp < 128) ascii += 1;
+      else other += 1;
+    });
+    return { total: cjk + ascii + other, cjk: cjk, ascii: ascii, other: other };
+  }
+  function breakLabel(bd) {
+    if (!bd.total) return '';
+    const bits = [];
+    if (bd.cjk) bits.push('汉字 ' + bd.cjk);
+    if (bd.ascii) bits.push('西文/数字 ' + bd.ascii);
+    if (bd.other) bits.push('标点等 ' + bd.other);
+    return bits.join(' · ');
+  }
+
+
   let font = null;
   let project = null;
   /** @type {any[]} */
@@ -53,7 +77,7 @@
     const sample = st.mode === 'text' && st.text.trim() ? st.text : WFProto.getSample();
 
     root.innerHTML =
-      '<div class="app-head"><div><h1>子集化</h1><p class="sub">只打包页面会出现的字，再把结果加入项目。体积为 woff2 单字重估算。</p></div></div>' +
+      '<div class="app-head"><div><h1>子集化</h1><p class="sub">只打包页面会出现的字，再把结果加入项目。右侧体积为<strong>本机估算</strong>（浏览器算，不经 vault/CDN）。</p></div></div>' +
       '<div class="subset"><div>' +
         '<div class="grid" style="grid-template-columns:1fr 1fr;margin-bottom:var(--s-6)">' +
           '<div class="field"><label for="fontPick">字体</label><input class="input" id="fontPick" list="fontList" value="' + esc(font.name) + '" /><datalist id="fontList">' + fontOptions(list) + '</datalist>' +
@@ -86,7 +110,8 @@
     if (st.mode === 'text') {
       return '<div class="field" style="margin-bottom:var(--s-4)"><label for="pageUrl">从页面抽取</label><div class="inline-form"><input class="input" id="pageUrl" type="url" placeholder="https://example.com/page" aria-label="页面地址" /><button type="button" class="btn" id="pullPage">抽取文字</button></div><span class="hint">读得到页面就抽出正文；读不到就改贴文字。</span></div>' +
         '<div><textarea class="textarea" id="subText" placeholder="粘贴页面上会出现的文字：标题、品牌名、导航、固定文案……">' + esc(st.text) + '</textarea>' +
-        '<p class="t-13 muted" style="margin-top:var(--s-2)">去重后 <strong class="num" id="charCount">' + WFApp.uniqueChars(st.text) + '</strong> 个字符 · 自动加上数字和常用标点</p>' +
+        '<p class="t-13 muted" style="margin-top:var(--s-2)">去重后 <strong class="num" id="charCount">' + WFApp.uniqueChars(st.text) + '</strong> 个字符 · 自动加上数字和常用标点' +
+          (st.text.trim() ? '<span class="char-break" id="charBreak"> · ' + breakLabel(charBreakdown(st.text)) + '</span>' : '<span class="char-break" id="charBreak"></span>') + '</p>' +
         '<div class="presets-row">' + WFSpecimen.PRESETS.map(function (p) { return '<button type="button" class="chip" data-fill="' + esc(p.text) + '">+ ' + p.label + '</button>'; }).join('') + '</div></div>';
     }
     if (st.mode === 'common') {
@@ -109,10 +134,18 @@
     const factor = st.formats.reduce(function (a, f) { return a + (FORMAT_FACTOR[f] || 1); }, 0);
     const total = Math.round(one * nW * factor);
     const saved = full > 0 ? Math.max(0, Math.round((1 - one / full) * 100)) : 0;
-    return '<div class="result"><div class="v">' + WFEmbed.fmtBytes(one).replace(' ', '<small> ') + '</small></div>' +
-        '<div class="was">完整 ' + WFEmbed.fmtBytes(full) + ' → 省 ' + saved + '%</div></div>' +
+    const bd = st.mode === 'text' ? charBreakdown(st.text) : null;
+    const breakRow = (bd && bd.total)
+      ? '<div><dt>' + WFChrome.icon('text') + '字符构成</dt><dd class="num t-12">' + esc(breakLabel(bd)) + '</dd></div>'
+      : '';
+    return '<div class="result">' +
+        '<div class="est-badge" title="在浏览器里用字形数估算，不开 vault、不打 CDN">本机估算</div>' +
+        '<div class="v">' + WFEmbed.fmtBytes(one).replace(' ', '<small> ') + '</small></div>' +
+        '<div class="was">完整包约 ' + WFEmbed.fmtBytes(full) + ' → 约省 ' + saved + '%</div>' +
+        '<p class="est-note">按去重字数估算 woff2 单字重；自动含数字与常用标点。非服务器实测。</p></div>' +
       '<dl class="kv">' +
         '<div><dt>' + WFChrome.icon('text') + '字形</dt><dd class="num">' + WFProto.formatCount(glyphs) + ' / ' + (known > 1 ? WFProto.formatCount(known) : '—') + '</dd></div>' +
+        breakRow +
         '<div><dt>' + WFChrome.icon('font') + '字重</dt><dd class="num">' + (st.weights.join(' · ') || '—') + '</dd></div>' +
         '<div><dt>' + WFChrome.icon('scissors') + '子集</dt><dd>' + esc(WFApp.subsetLabel(subset())) + '</dd></div>' +
         '<div><dt>' + WFChrome.icon('box') + '全部产物</dt><dd class="num">' + WFEmbed.fmtBytes(total) + '</dd></div>' +
@@ -139,7 +172,7 @@
     const onText = st.mode === 'text';
     const on3500 = st.mode === 'common' && st.preset === '3500';
     const on7000 = st.mode === 'common' && st.preset === '7000';
-    return '<div class="field"><label>子集对比</label><div class="suggest">' +
+    return '<div class="field"><label>子集对比（本机）</label><div class="suggest">' +
       row('按文字' + (chars ? ' ' + chars : ''), textBytes, 'text', onText) +
       row('常用 3500', c3500, '3500', on3500) +
       row('常用 7000', c7000, '7000', on7000) +
@@ -223,7 +256,14 @@
     const ta = document.getElementById('subText');
     if (ta) ta.addEventListener('input', function () {
       st.text = ta.value;
-      document.getElementById('charCount').textContent = WFApp.uniqueChars(st.text);
+      const n = WFApp.uniqueChars(st.text);
+      const el = document.getElementById('charCount');
+      if (el) el.textContent = n;
+      const br = document.getElementById('charBreak');
+      if (br) {
+        const lab = breakLabel(charBreakdown(st.text));
+        br.textContent = lab ? ' · ' + lab : '';
+      }
       document.getElementById('previewLine').textContent = st.text.trim() || WFProto.getSample();
       refreshSide();
     });

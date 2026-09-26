@@ -223,21 +223,80 @@
       WFChrome.toast('已清空选字袋');
     });
   });
+
+  function localToCsv(header, rows) {
+    const q = function (v) {
+      const s = String(v == null ? '' : v);
+      return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    };
+    return '\ufeff' + [header].concat(rows).map(function (r) { return r.map(q).join(','); }).join('\n');
+  }
+  function localDownload(name, text, type) {
+    const blob = new Blob([text], { type: type || 'text/csv;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+  }
+  function exportBagCsv() {
+    const picks = WFProto.getPicks();
+    if (!picks.length) { WFChrome.toast('选字袋是空的'); return; }
+    const header = ['名称', 'family', 'id', '厂商', '分类', '字重', '许可'];
+    const rows = picks.map(function (p) {
+      const f = WFProto.getFont(p.id) || p;
+      const brand = (window.WFChrome && WFChrome.brandName)
+        ? (WFChrome.brandName(f) || '')
+        : ((f.foundryInfo && f.foundryInfo.name) || f.foundry || '');
+      const lic = (window.WFChrome && WFChrome.licenseTier)
+        ? WFChrome.licenseTier(f)
+        : (f.license || '');
+      const weights = Array.isArray(f.weights) ? f.weights.join(' / ') : '';
+      return [
+        f.name || p.name || '',
+        f.family || p.family || '',
+        f.id || p.id || '',
+        brand,
+        f.category || p.category || '',
+        weights,
+        lic
+      ];
+    });
+    const csv = (window.WFApp && WFApp.toCsv) ? WFApp.toCsv(header, rows) : localToCsv(header, rows);
+    const name = '文风字体-选字袋.csv';
+    if (window.WFApp && WFApp.download) WFApp.download(name, csv);
+    else localDownload(name, csv);
+    WFChrome.toast('已导出 CSV · ' + picks.length + ' 款');
+  }
+
   const btnExport = document.getElementById('btnExport');
   if (btnExport) {
     btnExport.addEventListener('click', function () {
       const picks = WFProto.getPicks().map(function (p) {
-        return { id: p.id, name: p.name, family: p.family || '' };
+        const f = WFProto.getFont(p.id) || p;
+        return {
+          id: p.id,
+          name: p.name || f.name || '',
+          family: p.family || f.family || '',
+          foundry: (window.WFChrome && WFChrome.brandName) ? (WFChrome.brandName(f) || '') : '',
+          category: f.category || '',
+          weights: f.weights || [],
+          license: (window.WFChrome && WFChrome.licenseTier) ? WFChrome.licenseTier(f) : ''
+        };
       });
+      if (!picks.length) { WFChrome.toast('选字袋是空的'); return; }
       const blob = new Blob([JSON.stringify({ exportedAt: new Date().toISOString(), picks: picks }, null, 2)], { type: 'application/json' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = 'windfonts-picks.json';
+      a.download = '文风字体-选字袋.json';
       a.click();
       setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
-      WFChrome.toast('已导出 ' + picks.length + ' 款');
+      WFChrome.toast('已导出 JSON · ' + picks.length + ' 款');
     });
   }
+  const btnExportCsv = document.getElementById('btnExportCsv');
+  if (btnExportCsv) btnExportCsv.addEventListener('click', exportBagCsv);
   [optVersion, optWeights, optDisplay].forEach(function (s) { s.addEventListener('change', paintEmbed); });
   optPreload.addEventListener('change', paintEmbed);
   document.addEventListener('wf:picks', render);

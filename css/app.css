@@ -130,6 +130,25 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
 .subset-side .result .v { font-size: var(--fs-40); font-weight: var(--fw-title); letter-spacing: -0.02em; line-height: 1; }
 .subset-side .result .v small { font-size: 0.45em; color: var(--gray); font-weight: var(--fw-body); }
 .subset-side .result .was { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-2); }
+
+.subset-side .result .est-badge {
+  display: inline-block;
+  margin-bottom: var(--s-2);
+  padding: 0.1em 0.55em;
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  color: var(--gray);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-label);
+  letter-spacing: 0.02em;
+}
+.subset-side .result .est-note {
+  margin-top: var(--s-3);
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+  line-height: 1.45;
+}
+.char-break { color: var(--gray-2); }
 .subset-side .kv { font-size: var(--fs-13); }
 .weight-checks { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-4); }
 .presets-row { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-3); }
