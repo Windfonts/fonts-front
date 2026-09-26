@@ -240,6 +240,16 @@
             "css/detail-lin-upload-btn-options.css",
             "js/pages/detail-lin-upload-btn-options.js"
           ]
+        },
+        {
+          "href": "detail-glyph-wall-tools-options.html",
+          "title": "字符表工具条密度",
+          "status": "active",
+          "note": "字符表 panel-head 过密：甲两行（搜索独行）/ 乙简繁·收录折菜单 / 丙设计隐对照表+松间距 / 丁现页。设计视图不露对照表。定稿前不改 detail.css / specimen.css。",
+          "assets": [
+            "css/detail-glyph-wall-tools-options.css",
+            "js/pages/detail-glyph-wall-tools-options.js"
+          ]
         }
       ]
     },

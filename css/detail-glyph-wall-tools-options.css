@@ -1,0 +1,197 @@
+/* 详情 · 字符表工具条密度对照。只服务 detail-glyph-wall-tools-options.html，不进正式站。 */
+
+.page-detail-glyph-wall-tools .dgwt-main {
+  padding: var(--s-6) 0 var(--s-16);
+  max-width: 64rem;
+}
+
+.page-detail-glyph-wall-tools .dgwt-verdict {
+  margin: 0 0 var(--s-8);
+  padding: var(--s-5) var(--s-6);
+  background: var(--surface);
+  border-radius: var(--radius);
+  font-size: var(--fs-13);
+  line-height: var(--lh-body);
+  color: var(--ink-2);
+}
+.page-detail-glyph-wall-tools .dgwt-verdict b {
+  font-weight: var(--fw-title);
+  color: var(--ink);
+  margin-right: 0.35em;
+}
+.page-detail-glyph-wall-tools .dgwt-verdict code {
+  font-size: var(--fs-12);
+  background: var(--paper);
+  padding: 0.05em 0.35em;
+  border-radius: 6px;
+}
+
+.page-detail-glyph-wall-tools .do-block {
+  display: none;
+  padding: 0 0 var(--s-10);
+}
+.page-detail-glyph-wall-tools .do-block.is-on { display: block; }
+
+.page-detail-glyph-wall-tools .dgwt-pair {
+  /* 始终竖排全宽：并排半栏会把丁也挤折行，看不出「一排过密」基线 */
+  display: grid;
+  gap: var(--s-5);
+  grid-template-columns: 1fr;
+}
+
+.page-detail-glyph-wall-tools .dgwt-stage {
+  position: relative;
+  padding: var(--s-4) var(--s-5) var(--s-5);
+  background: var(--page, #fff);
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius);
+  min-width: 0;
+}
+.page-detail-glyph-wall-tools .dgwt-stage::before {
+  content: attr(data-label);
+  display: block;
+  margin-bottom: var(--s-3);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-label);
+  color: var(--gray);
+  letter-spacing: 0.02em;
+}
+
+/* 复现详情左栏：透明 panel + 细顶线；窄栏逼出密度 */
+.page-detail-glyph-wall-tools .dgwt-stage .detail-main > .panel {
+  min-width: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border-top: 1px solid var(--rule);
+}
+.page-detail-glyph-wall-tools .dgwt-stage .panel-head {
+  flex-wrap: wrap;
+  padding: var(--s-5) 0 0;
+  gap: var(--s-3) var(--s-4);
+  align-items: center;
+}
+.page-detail-glyph-wall-tools .dgwt-stage .panel-pad {
+  padding: var(--s-4) 0 var(--s-2);
+}
+
+/* 查字宿主：对齐 #glyphQuery 宽 */
+.page-detail-glyph-wall-tools .glyph-query-host {
+  display: flex;
+  flex: none;
+  width: 22rem;
+  max-width: 100%;
+  min-width: 0;
+}
+.page-detail-glyph-wall-tools .glyph-query-host .glyph-query {
+  width: 100%;
+}
+
+/* 设计视图：对照表保持隐藏（与现网 for-dev 一致） */
+.page-detail-glyph-wall-tools .dgwt-stage .for-dev { display: none !important; }
+/* 开发视图 stage：强制露出 for-dev，不依赖 html[data-view] */
+.page-detail-glyph-wall-tools .dgwt-stage.is-dev-view .for-dev {
+  display: inline-flex !important;
+  align-items: center;
+}
+
+.page-detail-glyph-wall-tools .dgwt-grid-mock {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--s-2);
+  font-size: var(--fs-20);
+  line-height: 1;
+  opacity: 0.55;
+}
+.page-detail-glyph-wall-tools .dgwt-grid-mock span {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 0 0 1px var(--rule);
+  border-radius: 4px;
+}
+
+/* —— 甲：两行 —— */
+.page-detail-glyph-wall-tools .dgwt-a .panel-head {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--s-3);
+}
+.page-detail-glyph-wall-tools .dgwt-a .glyph-title {
+  width: 100%;
+  flex: none;
+}
+.page-detail-glyph-wall-tools .dgwt-a .glyph-query-host {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 12rem;
+}
+.page-detail-glyph-wall-tools .dgwt-a .glyph-tools {
+  width: 100%;
+  flex: none;
+  justify-content: flex-start;
+}
+
+/* —— 乙：折叠菜单 —— */
+.page-detail-glyph-wall-tools .gtoggle-menu {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.page-detail-glyph-wall-tools .gtoggle-menu > summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+.page-detail-glyph-wall-tools .gtoggle-menu > summary::-webkit-details-marker { display: none; }
+.page-detail-glyph-wall-tools .gtoggle-menu > summary::after {
+  content: " ▾";
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+.page-detail-glyph-wall-tools .gtoggle-menu[open] > summary::after { content: " ▴"; }
+.page-detail-glyph-wall-tools .gtoggle-menu-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-2);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--ink) 12%, transparent);
+  min-width: 11rem;
+}
+/* stage 内打开菜单时给一点底空，避免裁切观感 */
+.page-detail-glyph-wall-tools .dgwt-b .dgwt-stage.is-dev-view {
+  padding-bottom: var(--s-16);
+}
+
+/* —— 丙：松间距 + 次级更小 —— */
+.page-detail-glyph-wall-tools .dgwt-c .glyph-tools {
+  gap: var(--s-4);
+}
+.page-detail-glyph-wall-tools .dgwt-c .glyph-tools-sec {
+  padding: 1px;
+}
+.page-detail-glyph-wall-tools .dgwt-c .glyph-tools-sec button {
+  padding: 0.15rem 0.65rem;
+  font-size: var(--fs-12);
+  color: var(--gray);
+}
+.page-detail-glyph-wall-tools .dgwt-c .glyph-tools-sec button.is-on {
+  color: var(--on-ink);
+}
+.page-detail-glyph-wall-tools .dgwt-c .glyph-title {
+  gap: var(--s-4);
+}
+.page-detail-glyph-wall-tools .dgwt-c .panel-head {
+  gap: var(--s-4) var(--s-5);
+}
+
+/* —— 丁：现页，无额外覆盖 —— */
