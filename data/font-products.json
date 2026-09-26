@@ -958,18 +958,6 @@
             "width": "proportional"
           },
           "tier": "primary"
-        },
-        {
-          "family": "wenfeng-syhtcn",
-          "chips": [
-            "CN"
-          ],
-          "axes": {
-            "charset": "cn",
-            "purpose": "std",
-            "width": "proportional"
-          },
-          "tier": "secondary"
         }
       ]
     },

@@ -12500,11 +12500,14 @@
     "designer": "Ryoko Nishizuka（西塚涼子）等；Adobe 与 Google 联合发布（Source Han / Noto CJK）",
     "designerShort": "Ryoko Nishizuka（西塚涼子）等；Adobe 与 Google 联合发布（Source Han / Noto CJK）",
     "category": "",
-    "tags": [],
+    "tags": [
+      "shell",
+      "retired-from-product"
+    ],
     "weights": [
       "Regular"
     ],
-    "description": "",
+    "description": "【已从产品卡下架】CN 地区子集 Regular 空壳；CDN/vault 包 SourceHanSansCNRegular 实际挂的是「思源黑体 CN Light Italic」（PS: CN-LightItalic，italicAngle −12°，usWeightClass 300；FontCreator /「刘鹏优化分享」衍生斜体，非 Adobe 正立 CN）。样张呈斜体是字形本身倾斜，不是 CSS font-style。简体主推请用 wenfeng-syhtsc / Syhtsc 七字重；斜体衍生见 wenfeng-syhtxt。",
     "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",

@@ -34,8 +34,8 @@
     {
       "scFamily": "wenfeng-syhtcn",
       "tcFamily": "wenfeng-syhttc",
-      "productId": "adobe-source-han-sans",
-      "source": "font-products",
+      "productId": null,
+      "source": "family-suffix:wenfeng-syht",
       "localeFallbackAllowed": true
     },
     {
@@ -161,12 +161,12 @@
       "source": "localePeerProduct"
     },
     "wenfeng-syhtcn": {
-      "peer": "wenfeng-syhttc",
+      "peer": "wenfeng-syhttw",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
-      "productId": "adobe-source-han-sans",
-      "source": "font-products"
+      "productId": null,
+      "source": "family-suffix:wenfeng-syht"
     },
     "wenfeng-syhttc": {
       "peer": "wenfeng-syhtsc",
