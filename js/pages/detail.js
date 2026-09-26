@@ -147,7 +147,8 @@
     const reason = ss.reason || '';
     const verify = serviceVerifyClause(font);
     const hostOk = '文风云<sup>&reg;</sup> 提供免费在线字体托管和预览 API 调用服务。';
-    const hostSoft = '文风云<sup>&reg;</sup> 可提供预览；商用前请先确认条款。';
+    /* 受限：说人话引导上传证书（与右侧 CTA 一致），不甩「先确认条款」空话。 */
+    const hostCert = '可预览；要用或引用请上传授权证书。';
     let why = '';
     let cls = 'is-good';
     if (status === '正常') {
@@ -156,25 +157,41 @@
     } else if (status === '受限') {
       cls = 'is-mid';
       if (reason === 'personal') {
-        why = '仅限个人非商用，商用需另授权。仍可预览。' + hostSoft;
+        why = '仅限个人非商用。' + hostCert;
       } else if (reason === 'pending_proof') {
-        why = '许可看起来可用，但' + verify + '。' + hostSoft;
+        why = '可预览。' + verify + '；要用或引用请上传授权证书。';
       } else if (reason === 'no_redistrib') {
-        why = '授权限制再分发，货架托管受限。仍可预览。' + hostSoft;
+        why = '授权限制再分发，货架托管受限。' + hostCert;
       } else {
-        why = '授权档位待核实，暂不按货架商用字处理。' + hostSoft;
+        why = '授权档位待核实。' + hostCert;
       }
     } else {
       cls = 'is-bad';
       if (reason === 'retired') {
         why = '已从产品货架下架，目录仅作存档。不再提供托管与预览 API。';
       } else if (reason === 'need_auth') {
-        why = '需取得权利人授权后才能用，不适合免费货架托管。';
+        why = '需取得权利人授权后才能用。有授权证书可上传后使用。';
       } else {
         why = '授权不适用或已撤销，本站不提供托管。';
       }
     }
-    return { status: status, cls: cls, why: why };
+    return { status: status, reason: reason, cls: cls, why: why };
+  }
+
+  /* 右侧动作：正常→服务状态页；受限 / 需授权→上传证书（控制台占位路由）；下架与禁用不推证书。 */
+  function serviceStatusAct(font, copy) {
+    const status = copy.status;
+    const reason = copy.reason || '';
+    if (status === '正常') {
+      return '<a class="lp-act" href="https://status.windfonts.com/" rel="noopener noreferrer">windfonts.com ↗</a>';
+    }
+    if (status === '受限' || (status === '不可用' && reason === 'need_auth')) {
+      const slug = String((font && (font.normalized || font.family)) || '')
+        .replace(/^wenfeng-/i, '');
+      const href = WFChrome.href('app/upload.html?cert=' + encodeURIComponent(slug || (font && font.id) || ''));
+      return '<a class="lp-act" href="' + href + '">上传证书</a>';
+    }
+    return '';
   }
 
   function proofMetaLine(font) {
@@ -184,11 +201,12 @@
     const d = new Date();
     const pad = function (n) { return n < 10 ? '0' + n : String(n); };
     const when = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    const act = serviceStatusAct(font, copy);
     return '<div class="lp5-node lp5-meta svc-row"><span class="icon">' + WFChrome.icon('cloud') + '</span>' +
       '<div class="head"><span class="who">服务状态</span>' +
       '<span class="what">' + what + '</span>' +
       '<span class="when">' + esc(when) + '</span>' +
-      '<a class="lp-act" href="https://status.windfonts.com/" rel="noopener noreferrer">windfonts.com ↗</a></div></div>';
+      act + '</div></div>';
   }
 
   /* 版权归属：与服务状态同款行，夹在服务状态与出处链之间。 */
