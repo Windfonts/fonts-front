@@ -255,10 +255,22 @@
           "href": "detail-glyph-wall-tools-v2-options.html",
           "title": "字符表工具条结构 v2",
           "status": "active",
-          "note": "戊顶条+文案tabs / 己左语料右查字+筛选图标弹出 / 庚极简筛选chip / 辛摘要行点选。甲乙丙丁已否。不改 detail.css。",
+          "note": "戊顶条+文案tabs / 己左语料右查字+筛选图标弹出 / 庚极简筛选chip / 辛摘要行点选。甲乙丙丁已否。戊曾上现网字符表（8239cdd）后还原（0fcb11d）；可复用样式见 css/lab-text-tabs.css。适用点审计 detail-text-tabs-audit.html。",
           "assets": [
             "css/detail-glyph-wall-tools-v2-options.css",
-            "js/pages/detail-glyph-wall-tools-v2-options.js"
+            "js/pages/detail-glyph-wall-tools-v2-options.js",
+            "css/lab-text-tabs.css"
+          ]
+        },
+        {
+          "href": "detail-text-tabs-audit.html",
+          "title": "戊文案 tabs 适用点审计",
+          "status": "active",
+          "note": "详情及相关前端 pill/seg 候选：左现页胶囊、右戊下划线。字符表已还原；勿整站套用。样式 css/lab-text-tabs.css。",
+          "assets": [
+            "css/lab-text-tabs.css",
+            "css/detail-text-tabs-audit.css",
+            "js/pages/detail-text-tabs-audit.js"
           ]
         }
       ]

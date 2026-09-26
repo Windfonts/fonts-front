@@ -1,4 +1,7 @@
-/* 详情 · 字符表工具条结构 v2。只服务 detail-glyph-wall-tools-v2-options.html，不进正式站。 */
+/* 字符表工具条结构 v2（戊己庚辛）对照页专用。
+ * 戊文案下划线 tabs 可复用真源：css/lab-text-tabs.css
+ * （曾进 detail.css 现网字符表后已还原，勿再挂 live #glyphs）。
+ */
 
 .page-detail-glyph-wall-tools-v2 .dgwt2-main {
   padding: var(--s-6) 0 var(--s-16);

@@ -1,0 +1,186 @@
+/* 戊样式适用点审计：pill vs 文案下划线 tabs。不改现页。 */
+.page-detail-text-tabs-audit .dta-main {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--s-6) var(--gutter) var(--s-16);
+}
+.page-detail-text-tabs-audit .dta-verdict {
+  font-size: var(--fs-14);
+  line-height: 1.55;
+  color: var(--ink-2);
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: var(--s-4) var(--s-5);
+  margin: 0 0 var(--s-8);
+}
+.page-detail-text-tabs-audit .dta-verdict b { color: var(--ink); }
+.page-detail-text-tabs-audit .dta-verdict code {
+  font-size: 0.92em;
+  background: var(--well);
+  padding: 0.05em 0.35em;
+  border-radius: 4px;
+}
+.page-detail-text-tabs-audit .dta-card {
+  border-top: 1px solid var(--rule);
+  padding: var(--s-7) 0;
+  scroll-margin-top: calc(var(--topbar-h) + 5.5rem);
+}
+.page-detail-text-tabs-audit .dta-card:first-of-type { border-top: 0; padding-top: var(--s-2); }
+.page-detail-text-tabs-audit .dta-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-2) var(--s-4);
+  margin-bottom: var(--s-2);
+}
+.page-detail-text-tabs-audit .dta-head h2 {
+  margin: 0;
+  font-size: var(--fs-16);
+  font-weight: var(--fw-title);
+}
+.page-detail-text-tabs-audit .dta-tag {
+  font-size: var(--fs-12);
+  color: var(--gray);
+  padding: 0.1rem 0.55rem;
+  border-radius: var(--radius-pill);
+  background: var(--fill);
+}
+.page-detail-text-tabs-audit .dta-tag.is-fit { color: var(--ink); background: var(--surface); }
+.page-detail-text-tabs-audit .dta-tag.is-maybe { color: var(--ink-2); }
+.page-detail-text-tabs-audit .dta-tag.is-skip { color: var(--gray-2); }
+.page-detail-text-tabs-audit .dta-note {
+  font-size: var(--fs-13);
+  color: var(--gray);
+  margin: 0 0 var(--s-4);
+  max-width: 42rem;
+  line-height: 1.5;
+}
+.page-detail-text-tabs-audit .dta-note code {
+  font-size: 0.92em;
+  background: var(--well);
+  padding: 0.05em 0.35em;
+  border-radius: 4px;
+}
+.page-detail-text-tabs-audit .dta-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+}
+@media (max-width: 720px) {
+  .page-detail-text-tabs-audit .dta-pair { grid-template-columns: 1fr; }
+}
+.page-detail-text-tabs-audit .dta-pane {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: var(--s-4) var(--s-5);
+  min-width: 0;
+}
+.page-detail-text-tabs-audit .dta-pane-label {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+  font-weight: var(--fw-label);
+  margin: 0 0 var(--s-3);
+  letter-spacing: 0.02em;
+}
+.page-detail-text-tabs-audit .dta-demo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 2.5rem;
+}
+
+/* —— 现页 pill 还原（审计页局部，不污染全局） —— */
+.page-detail-text-tabs-audit .dta-pill.seg,
+.page-detail-text-tabs-audit .dta-pill.seg-glyph {
+  display: inline-flex;
+  gap: 2px;
+  background: var(--fill);
+  border-radius: var(--radius-pill);
+  padding: 2px;
+  font-size: var(--fs-13);
+}
+.page-detail-text-tabs-audit .dta-pill.seg button,
+.page-detail-text-tabs-audit .dta-pill.seg-glyph button {
+  border: 0;
+  background: transparent;
+  color: var(--ink-2);
+  padding: 0.22rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-13);
+  cursor: pointer;
+}
+.page-detail-text-tabs-audit .dta-pill.seg button.is-on,
+.page-detail-text-tabs-audit .dta-pill.seg-glyph button.is-on {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.page-detail-text-tabs-audit .dta-pill.weights,
+.page-detail-text-tabs-audit .dta-pill.presets,
+.page-detail-text-tabs-audit .dta-pill.use-versions,
+.page-detail-text-tabs-audit .dta-pill.tester-pills {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+}
+.page-detail-text-tabs-audit .dta-pill.weights button,
+.page-detail-text-tabs-audit .dta-pill.presets button,
+.page-detail-text-tabs-audit .dta-pill.use-versions button,
+.page-detail-text-tabs-audit .dta-pill.tester-pills button,
+.page-detail-text-tabs-audit .dta-pill.product-grades a {
+  border: 0;
+  background: transparent;
+  color: var(--gray);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+  font-weight: var(--fw-label);
+  font-size: var(--fs-12);
+  cursor: pointer;
+  text-decoration: none;
+}
+.page-detail-text-tabs-audit .dta-pill.weights button.is-on,
+.page-detail-text-tabs-audit .dta-pill.presets button.is-on,
+.page-detail-text-tabs-audit .dta-pill.use-versions button.is-on,
+.page-detail-text-tabs-audit .dta-pill.tester-pills button.is-on,
+.page-detail-text-tabs-audit .dta-pill.product-grades a.is-on {
+  color: var(--on-ink);
+  background: var(--ink);
+}
+.page-detail-text-tabs-audit .dta-pill.use-versions .n {
+  margin-left: 0.15em;
+  color: var(--gray-2);
+  font-weight: var(--fw-body);
+}
+.page-detail-text-tabs-audit .dta-pill.use-versions button.is-on .n { color: inherit; opacity: 0.75; }
+.page-detail-text-tabs-audit .dta-pill.view-switch {
+  display: inline-flex;
+  gap: 0.15rem;
+  padding: 0.2rem;
+  background: var(--fill);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-12);
+}
+.page-detail-text-tabs-audit .dta-pill.view-switch button {
+  border: 0;
+  background: transparent;
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-pill);
+  color: var(--gray);
+  font-weight: var(--fw-label);
+  cursor: pointer;
+}
+.page-detail-text-tabs-audit .dta-pill.view-switch button.is-on {
+  color: var(--ink);
+  background: var(--paper);
+}
+.page-detail-text-tabs-audit .dta-glyph-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+}
+.page-detail-text-tabs-audit .dta-ctx {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+  margin-right: var(--s-1);
+}

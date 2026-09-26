@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>详情 · 戊文案 tabs 适用点审计 · 文风字体</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260926tta" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260926tta" />
+  <link rel="stylesheet" href="css/base.css?v=20260926tta" />
+  <link rel="stylesheet" href="css/components.css?v=20260926tta" />
+  <link rel="stylesheet" href="css/site.css?v=20260926tta" />
+  <link rel="stylesheet" href="css/detail.css?v=20260926tta" />
+  <link rel="stylesheet" href="css/detail-options.css?v=20260926tta" />
+  <link rel="stylesheet" href="css/lab-text-tabs.css?v=20260926tta" />
+  <link rel="stylesheet" href="css/detail-text-tabs-audit.css?v=20260926tta" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+</head>
+<body class="page-detail page-detail-opt page-detail-text-tabs-audit">
+  <header data-topbar data-active="fonts"></header>
+
+  <div class="do-switch">
+    <div class="container do-switch-inner">
+      <p class="do-switch-lead">戊 · 文案下划线 tabs：现页 pill / seg 候选对照。字符表工具条已还原一行 chip；本页<strong>不改现网</strong>。</p>
+      <nav class="seg-glyph" aria-label="候选">
+        <a href="#glyph-tools">字符表</a>
+        <a href="#weights">字重</a>
+        <a href="#grades">规格</a>
+        <a href="#cdn">CDN</a>
+        <a href="#versions">子集</a>
+        <a href="#view">视图</a>
+        <a href="#presets">预设</a>
+        <a href="#tester">试字</a>
+        <a href="#qz">千字文</a>
+      </nav>
+      <p class="do-live">
+        <a class="do-back" href="detail-glyph-wall-tools-v2-options.html">戊源对照</a>
+        ·
+        <a class="do-back" href="font-detail.html?slug=jlyhmht">回吉利详情</a>
+        ·
+        <a class="do-back" href="lab.html">实验室</a>
+      </p>
+    </div>
+  </div>
+
+  <main class="dta-main">
+    <p class="dta-verdict">
+      <b>背景</b>：字符表曾上现网戊样式（<code>8239cdd</code>），观感不佳已还原（<code>0fcb11d</code>）。
+      可复用样式在 <code>css/lab-text-tabs.css</code>。下面列出详情及相关前端里「互斥短文案」的 pill / seg，
+      左栏现页胶囊、右栏戊下划线——请挑适合改的点；<strong>勿整站套用</strong>。
+    </p>
+
+    <!-- 1 字符表 -->
+    <article class="dta-card" id="glyph-tools">
+      <div class="dta-head">
+        <h2>1 · 字符表工具条</h2>
+        <span class="dta-tag is-skip">已试 · 已还原</span>
+      </div>
+      <p class="dta-note">位置 <code>#glyphs .glyph-tools</code>（语料 / 写法 / 收录）。戊曾把工具条挪到字墙上方；现已回 panel-head 一行 chip。保留作基线，勿再上现网此点。</p>
+      <div class="dta-pair">
+        <div class="dta-pane">
+          <p class="dta-pane-label">现页 · pill chip（一行）</p>
+          <div class="dta-demo dta-glyph-row">
+            <div class="dta-pill seg-glyph" role="group" aria-label="字表">
+              <button type="button" class="is-on">千字文</button>
+              <button type="button">常用字</button>
+            </div>
+            <div class="dta-pill seg-glyph" role="group" aria-label="写法">
+              <button type="button" class="is-on">简</button>
+              <button type="button">繁</button>
+            </div>
+            <div class="dta-pill seg-glyph" role="group" aria-label="筛选">
+              <button type="button" class="is-on">全部</button>
+              <button type="button">已收录</button>
+              <button type="button">缺字</button>
+            </div>
+          </div>
+        </div>
+        <div class="dta-pane">
+          <p class="dta-pane-label">戊 · 文案 tabs</p>
+          <div class="dta-demo">
+            <div class="lab-text-tabs" role="toolbar" aria-label="字表筛选">
+              <div class="lab-ttab" role="group" aria-label="字表">
+                <button type="button" class="is-on">千字文</button>
+                <button type="button">常用字</button>
+              </div>
+              <div class="lab-ttab" role="group" aria-label="写法">
+                <button type="button" class="is-on">简</button>
+                <button type="button">繁</button>
+              </div>
+              <div class="lab-ttab" role="group" aria-label="筛选">
+                <button type="button" class="is-on">全部</button>
+                <button type="button">已收录</button>
+                <button type="button">缺字</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2 字重 -->
+    <article class="dta-card" id="weights">
+      <div class="dta-head">
+        <h2>2 · 字重切换</h2>
+        <span class="dta-tag is-fit">较适合</span>
+      </div>
+      <p class="dta-note">位置 <code>.glyph-wall .wall-tools .weights</code>。短标签（Regular / Medium / Bold 或中文名），互斥，无图标。下划线可比实心胶囊更轻。</p>
+      <div class="dta-pair">
+        <div class="dta-pane">
+          <p class="dta-pane-label">现页 · pill</p>
+          <div class="dta-demo">
+            <span class="dta-ctx">字号滑条旁</span>
+            <div class="dta-pill weights" role="group" aria-label="字重">
+              <button type="button">Light</button>
+              <button type="button" class="is-on">Regular</button>
+              <button type="button">Medium</button>
+              <button type="button">Bold</button>
+            </div>
+          </div>
+        </div>
+        <div class="dta-pane">
+          <p class="dta-pane-label">戊 · 文案 tabs</p>
+          <div class="dta-demo">
+            <div class="lab-text-tabs lab-text-tabs--bare lab-ttab weights" role="group" aria-label="字重">
+              <button type="button">Light</button>
+              <button type="button" class="is-on">Regular</button>
+              <button type="button">Medium</button>
+              <button type="button">Bold</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3 规格 -->
+    <article class="dta-card" id="grades">
+      <div class="dta-head">
+        <h2>3 · 产品规格（product-grades）</h2>
+        <span class="dta-tag is-fit">较适合</span>
+      </div>
+      <p class="dta-note">位置 <code>.weights.product-grades</code>（仓耳 / 仓耳准圆 等规格链）。与字重同结构，链接跳转 sibling。适合轻量文案 tabs。</p>
+      <div class="dta-pair">
+        <div class="dta-pane">
+          <p class="dta-pane-label">现页 · pill</p>
+          <div class="dta-demo">
+            <div class="dta-pill weights product-grades" role="group" aria-label="规格">
+              <a href="#grades" class="is-on" aria-current="page">准圆</a>
+              <a href="#grades">圆体</a>
+              <a href="#grades">像素</a>
+            </div>
+          </div>
+        </div>
+        <div class="dta-pane">
+          <p class="dta-pane-label">戊 · 文案 tabs</p>
+          <div class="dta-demo">
+            <div class="lab-text-tabs lab-text-tabs--bare lab-ttab product-grades" role="group" aria-label="规格">
+              <a href="#grades" class="is-on" aria-current="page">准圆</a>
+              <a href="#grades">圆体</a>
+              <a href="#grades">像素</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4 CDN -->
+    <article class="dta-card" id="cdn">
+      <div class="dta-head">
+        <h2>4 · CDN 节点</h2>
+        <span class="dta-tag is-fit">较适合</span>
+      </div>
+      <p class="dta-note">位置 <code>.cdn-switch.seg</code>（大陆 / 香港 / 海外）。仅开发视图「使用」面板；两～三项短文案，戊很贴。</p>
+      <div class="dta-pair">
+        <div class="dta-pane">
+          <p class="dta-pane-label">现页 · seg pill</p>
+          <div class="dta-demo">
+            <div class="dta-pill seg cdn-switch" role="group" aria-label="CDN 节点">
+              <button type="button" class="is-on">大陆</button>
+              <button type="button">香港</button>
+              <button type="button">海外</button>
+            </div>
+          </div>
+        </div>
+        <div class="dta-pane">
+          <p class="dta-pane-label">戊 · 文案 tabs</p>
+          <div class="dta-demo">
+            <div class="lab-text-tabs lab-text-tabs--bare lab-ttab cdn-switch" role="group" aria-label="CDN 节点">
+              <button type="button" class="is-on">大陆</button>
+              <button type="button">香港</button>
+              <button type="button">海外</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5 子集版本 -->
+    <article class="dta-card" id="versions">
+      <div class="dta-head">
+        <h2>5 · 子集版本（常用 / 中文 / …）</h2>
+        <span class="dta-tag is-maybe">可试</span>
+      </div>
+      <p class="dta-note">位置 <code>#versions.use-versions</code> chip。标签旁带体积 <code>.n</code>；戊下划线后体积数字会更「正文感」，需看是否仍清晰。</p>
+      <div class="dta-pair">
+        <div class="dta-pane">
+          <p class="dta-pane-label">现页 · chip pill</p>
+          <div class="dta-demo">
+            <div class="dta-pill use-versions" role="group" aria-label="子集">
+              <button type="button" class="is-on">常用 <span class="n">≈ 1.2 MB</span></button>
+              <button type="button">中文 <span class="n">≈ 4.8 MB</span></button>
+              <button type="button">西文 <span class="n">≈ 48 KB</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="dta-pane">
+          <p class="dta-pane-label">戊 · 文案 tabs</p>
+          <div class="dta-demo">
+            <div class="lab-text-tabs lab-text-tabs--bare lab-ttab use-versions" role="group" aria-label="子集">
+              <button type="button" class="is-on">常用 <span class="n">≈ 1.2 MB</span></button>
+              <button type="button">中文 <span class="n">≈ 4.8 MB</span></button>
+              <button type="button">西文 <span class="n">≈ 48 KB</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6 视图 -->
+    <article class="dta-card" id="view">
+      <div class="dta-head">
+        <h2>6 · 设计 / 开发视图</h2>
+        <span class="dta-tag is-maybe">可试</span>
+      </div>
+      <p class="dta-note">位置顶栏 <code>.view-switch</code>。仅两项；现页灰底白选中。改戊会弱化「模式开关」手感，全局曝光高，慎改。</p>
+      <div class="dta-pair">
+        <div class="dta-pane">
+          <p class="dta-pane-label">现页 · seg</p>
+          <div class="dta-demo">
+            <div class="dta-pill view-switch seg" role="group" aria-label="视图">
+              <button type="button" class="is-on">设计</button>
+              <button type="button">开发</button>
+            </div>
+          </div>
+        </div>
+        <div class="dta-pane">
+          <p class="dta-pane-label">戊 · 文案 tabs</p>
+          <div class="dta-demo">
+            <div class="lab-text-tabs lab-text-tabs--bare lab-ttab view-switch" role="group" aria-label="视图">
+              <button type="button" class="is-on">设计</button>
+              <button type="button">开发</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 7 预设 -->
+    <article class="dta-card" id="presets">
+      <div class="dta-head">
+        <h2>7 · 样张文案预设</h2>
+        <span class="dta-tag is-maybe">可试</span>
+      </div>
+      <p class="dta-note">位置 <code>.wall-tools .presets</code> / 目录 <code>.controlbar .presets</code>。项多、可横滑；下划线一行易挤，适合「少预设」款。</p>
+      <div class="dta-pair">
+        <div class="dta-pane">
+          <p class="dta-pane-label">现页 · pill</p>
+          <div class="dta-demo">
+            <div class="dta-pill presets" role="group" aria-label="预设">
+              <button type="button" class="is-on">诗词</button>
+              <button type="button">标题</button>
+              <button type="button">正文</button>
+              <button type="button">数字</button>
+            </div>
+          </div>
+        </div>
+        <div class="dta-pane">
+          <p class="dta-pane-label">戊 · 文案 tabs</p>
+          <div class="dta-demo">
+            <div class="lab-text-tabs lab-text-tabs--bare lab-ttab presets" role="group" aria-label="预设">
+              <button type="button" class="is-on">诗词</button>
+              <button type="button">标题</button>
+              <button type="button">正文</button>
+              <button type="button">数字</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 8 试字 -->
+    <article class="dta-card" id="tester">
+      <div class="dta-head">
+        <h2>8 · 试字层 / 卡片框</h2>
+        <span class="dta-tag is-maybe">可试</span>
+      </div>
+      <p class="dta-note">位置编辑样张内 <code>.tester-tabs</code> / <code>.tester-pills</code> / <code>.card-frames</code>。工具密集区；戊可减噪，但选中态不如实心明确。</p>
+      <div class="dta-pair">
+        <div class="dta-pane">
+          <p class="dta-pane-label">现页 · pill</p>
+          <div class="dta-demo">
+            <div class="dta-pill tester-pills" role="group" aria-label="试字层">
+              <button type="button" class="is-on">单行</button>
+              <button type="button">多行</button>
+              <button type="button">卡片</button>
+            </div>
+          </div>
+        </div>
+        <div class="dta-pane">
+          <p class="dta-pane-label">戊 · 文案 tabs</p>
+          <div class="dta-demo">
+            <div class="lab-text-tabs lab-text-tabs--bare lab-ttab tester-pills" role="group" aria-label="试字层">
+              <button type="button" class="is-on">单行</button>
+              <button type="button">多行</button>
+              <button type="button">卡片</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 9 千字文 -->
+    <article class="dta-card" id="qz">
+      <div class="dta-head">
+        <h2>9 · 千字文条 seg</h2>
+        <span class="dta-tag is-fit">较适合</span>
+      </div>
+      <p class="dta-note">位置 <code>.qz-bar .seg</code>（若启用千字文专用条）。与字符表筛选同类短文案；若与 #glyph-tools 合并则勿双改。</p>
+      <div class="dta-pair">
+        <div class="dta-pane">
+          <p class="dta-pane-label">现页 · seg pill</p>
+          <div class="dta-demo">
+            <div class="dta-pill seg" role="group" aria-label="千字文筛选">
+              <button type="button" class="is-on">全部</button>
+              <button type="button">已收录</button>
+              <button type="button">缺字</button>
+            </div>
+          </div>
+        </div>
+        <div class="dta-pane">
+          <p class="dta-pane-label">戊 · 文案 tabs</p>
+          <div class="dta-demo">
+            <div class="lab-text-tabs lab-text-tabs--bare lab-ttab" role="group" aria-label="千字文筛选">
+              <button type="button" class="is-on">全部</button>
+              <button type="button">已收录</button>
+              <button type="button">缺字</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <p class="dta-verdict" style="margin-top:var(--s-8)">
+      <b>建议挑点</b>：优先看 <b>2 字重</b>、<b>3 规格</b>、<b>4 CDN</b>、<b>9 千字文条</b>。
+      <b>5 子集</b> / <b>7 预设</b> / <b>8 试字</b> 可二轮；
+      <b>6 视图</b> 全局慎动；
+      <b>1 字符表</b> 已否（本点）。选定后另开小改，勿一次铺开。
+    </p>
+  </main>
+
+  <script src="js/wf-chrome.js?v=20260926tta"></script>
+  <script src="js/pages/detail-text-tabs-audit.js?v=20260926tta"></script>
+</body>
+</html>

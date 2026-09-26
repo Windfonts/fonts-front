@@ -1,0 +1,108 @@
+/* 戊 · 文案下划线 tabs（实验室可复用样式）
+ *
+ * 用途：把 pill / seg 分段改成「灰字 + 选中下划线」文案 tabs。
+ * 真源曾短暂进过 detail.css 字符表（8239cdd），已还原（0fcb11d）；
+ * 勿再挂到 live #glyphs。对照页 / audit 页按需引入本文件。
+ *
+ * 用法：
+ *   <div class="lab-text-tabs" role="toolbar">
+ *     <div class="lab-ttab" role="group" aria-label="…">
+ *       <button type="button" class="is-on">甲</button>
+ *       <button type="button">乙</button>
+ *     </div>
+ *     <!-- 多组用 · 分隔：相邻 .lab-ttab 自动插 · -->
+ *   </div>
+ * 也可给现有 .seg / .seg-glyph / .weights / .chip 行加 class="lab-text-tabs"
+ * 再包一层或叠 .lab-ttab 覆盖 pill 外观。
+ */
+
+.lab-text-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.65rem;
+  margin: 0;
+  padding: 0.15rem 0 0.55rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--fs-13);
+  background: transparent;
+}
+
+.lab-text-tabs.lab-text-tabs--bare {
+  border-bottom: 0;
+  padding-bottom: 0.15rem;
+}
+
+.lab-text-tabs .lab-ttab,
+.lab-text-tabs.lab-ttab {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem 0.55rem;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+.lab-text-tabs .lab-ttab + .lab-ttab::before {
+  content: "·";
+  margin-right: 0.1rem;
+  color: var(--gray-2);
+  user-select: none;
+}
+
+.lab-text-tabs button,
+.lab-text-tabs a,
+.lab-text-tabs .lab-ttab button,
+.lab-text-tabs .lab-ttab a {
+  border: 0;
+  background: transparent !important;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-size: inherit;
+  font-weight: var(--fw-body);
+  color: var(--gray);
+  cursor: pointer;
+  border-radius: 0;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.lab-text-tabs button:hover,
+.lab-text-tabs a:hover,
+.lab-text-tabs .lab-ttab button:hover,
+.lab-text-tabs .lab-ttab a:hover {
+  color: var(--ink);
+  background: transparent !important;
+  text-decoration: none;
+}
+
+.lab-text-tabs button.is-on,
+.lab-text-tabs a.is-on,
+.lab-text-tabs .lab-ttab button.is-on,
+.lab-text-tabs .lab-ttab a.is-on,
+.lab-text-tabs .is-on {
+  background: transparent !important;
+  color: var(--ink) !important;
+  font-weight: var(--fw-title);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1.5px;
+}
+
+/* 叠在现有 pill 容器上：剥掉灰底胶囊 */
+.lab-text-tabs.seg,
+.lab-text-tabs.seg-glyph,
+.lab-text-tabs.weights,
+.lab-text-tabs.cdn-switch,
+.lab-text-tabs.view-switch,
+.lab-text-tabs.use-versions,
+.lab-text-tabs.presets,
+.lab-text-tabs.tester-tabs,
+.lab-text-tabs.tester-pills {
+  gap: 0.15rem 0.55rem;
+  padding: 0.15rem 0 0.55rem;
+  background: transparent;
+  border-radius: 0;
+}
