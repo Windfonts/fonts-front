@@ -1060,3 +1060,30 @@ html.lg-embed .lg-toolbar {
 html.lg-embed .lg-view-shell {
   margin-bottom: 0;
 }
+
+
+/* —— 下载 PNG / SVG（与全宽同高） —— */
+.lg-export {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: none;
+}
+.tb-a .lg-export-btn {
+  min-width: 2.5rem;
+  padding: 0 0.65rem;
+  letter-spacing: 0.02em;
+}
+.tb-a .lg-export-btn:disabled,
+.lg-export-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  color: var(--gray-2);
+}
+.tb-a .lg-export-btn:disabled:hover {
+  color: var(--gray-2);
+}
+.lg-export.is-busy .lg-export-btn {
+  opacity: 0.55;
+  pointer-events: none;
+}

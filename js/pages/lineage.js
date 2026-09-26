@@ -173,6 +173,9 @@
   const modeHint = document.getElementById('modeHint');
   const plexPick = document.getElementById('plexPick');
   const widthToggle = document.getElementById('widthToggle');
+  const exportTools = document.getElementById('exportTools');
+  const btnExportPng = document.getElementById('btnExportPng');
+  const btnExportSvg = document.getElementById('btnExportSvg');
   const clusterNav = { hidden: true, innerHTML: '', querySelectorAll: function () { return []; } };
   const wallEl = { hidden: true, innerHTML: '', querySelectorAll: function () { return []; } };
 
@@ -3474,6 +3477,31 @@
       modeHint.textContent = '';
       modeHint.hidden = true;
     }
+    syncExportChrome(mode);
+  }
+
+  function syncExportChrome(mode) {
+    const ok = !!(globalThis.WFLineageExport && WFLineageExport.canExport(mode));
+    const tipOk = '下载图谱';
+    const tipWall = '字墙模式不支持下载图谱，请先切到聚焦或图谱';
+    const tipBranch = '分支模式不支持下载图谱，请先切到聚焦或图谱';
+    let tip = tipOk;
+    if (mode === 'wall') tip = tipWall;
+    else if (mode === 'branch') tip = tipBranch;
+    else if (!ok) tip = tipWall;
+    [btnExportPng, btnExportSvg].forEach(function (btn) {
+      if (!btn) return;
+      btn.disabled = !ok;
+      if (btn.id === 'btnExportPng') {
+        btn.title = ok ? '下载 PNG 图片' : tip;
+      } else {
+        btn.title = ok ? '下载 SVG 矢量图' : tip;
+      }
+    });
+    if (exportTools) {
+      exportTools.setAttribute('aria-disabled', ok ? 'false' : 'true');
+      exportTools.title = tip;
+    }
   }
 
   function persistMode(mode) {
@@ -3994,6 +4022,39 @@
       setMode(btn.getAttribute('data-mode'), true);
     });
   });
+
+  function exportGroupName() {
+    try {
+      const ld = WFProto.getLineageData && WFProto.getLineageData();
+      return groupShortName(curGroup, ld) || curGroup || '谱系';
+    } catch (e) {
+      return curGroup || '谱系';
+    }
+  }
+
+  function runExport(format) {
+    if (!globalThis.WFLineageExport) {
+      console.warn('[lineage] WFLineageExport missing');
+      return;
+    }
+    if (!WFLineageExport.canExport(curMode)) return;
+    if (exportTools) exportTools.classList.add('is-busy');
+    [btnExportPng, btnExportSvg].forEach(function (b) { if (b) b.disabled = true; });
+    WFLineageExport.download(format, {
+      groupName: exportGroupName(),
+      mode: curMode,
+      stage: stage
+    }).catch(function (err) {
+      console.warn('[lineage] export failed', err);
+      try { window.alert('下载失败：' + (err && err.message ? err.message : '未知错误')); } catch (e) {}
+    }).then(function () {
+      if (exportTools) exportTools.classList.remove('is-busy');
+      syncExportChrome(curMode);
+    });
+  }
+
+  if (btnExportPng) btnExportPng.addEventListener('click', function () { runExport('png'); });
+  if (btnExportSvg) btnExportSvg.addEventListener('click', function () { runExport('svg'); });
 
   /* 嵌入模态：显式 ?embed=1；全宽跳出到顶层整页，不在 iframe 内切 lg-wide */
   var isEmbed = qs('embed') === '1';
