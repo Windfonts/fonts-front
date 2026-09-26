@@ -1551,6 +1551,30 @@
           "tier": "primary"
         }
       ]
+    },
+    {
+      "id": "chill-chunqiu",
+      "name": "寒蝉书体·春秋",
+      "en": "Chill Calligraphy ChunQiu",
+      "default": "wenfeng-hccqcf",
+      "members": [
+        {
+          "family": "wenfeng-hccqcf",
+          "chips": [
+            "春风"
+          ],
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-hccqqh",
+          "chips": [
+            "秋鸿"
+          ],
+          "tier": "primary"
+        }
+      ],
+      "canonical": "hccqcf",
+      "status": "active"
     }
   ],
   "policy": {

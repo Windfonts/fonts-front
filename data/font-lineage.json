@@ -76,6 +76,10 @@
     "huxiaobo": {
       "name": "胡晓波",
       "upstreamName": ""
+    },
+    "chill-chunqiu": {
+      "name": "寒蝉书体·春秋",
+      "upstreamName": "Slide Font / 幻灯片字体"
     }
   },
   "byName": {
@@ -2403,6 +2407,24 @@
       "collaboratorIds": [
         "google-fonts"
       ]
+    },
+    "寒蝉春秋·春风": {
+      "ownerId": "chilltype",
+      "makerId": "chilltype",
+      "group": "chill-chunqiu",
+      "relation": "fork",
+      "upstreamName": "Slide Font / 幻灯片字体",
+      "upstreamOwnerId": "keynoteart",
+      "licenseFollows": "inherit"
+    },
+    "寒蝉春秋·秋鸿": {
+      "ownerId": "chilltype",
+      "makerId": "chilltype",
+      "group": "chill-chunqiu",
+      "relation": "fork",
+      "upstreamName": "Slide Font / 幻灯片字体",
+      "upstreamOwnerId": "keynoteart",
+      "licenseFollows": "inherit"
     }
   }
 }

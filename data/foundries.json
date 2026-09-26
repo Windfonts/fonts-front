@@ -263,7 +263,9 @@
         "寒蝉宽黑体",
         "寒蝉手拙体",
         "寒蝉端黑体",
-        "寒蝉龙藏楷书"
+        "寒蝉龙藏楷书",
+        "寒蝉春秋·春风",
+        "寒蝉春秋·秋鸿"
       ]
     },
     {
@@ -2404,6 +2406,27 @@
         "site": "github.com/maoken-fonts/frex-sans",
         "fetched": "2026-09-25"
       }
+    },
+    {
+      "id": "keynoteart",
+      "name": "Keynoteart",
+      "en": "Keynoteart",
+      "short": "Keynoteart",
+      "website": "https://github.com/maoken-fonts/slidefont",
+      "aliases": [
+        "keynoteart",
+        "Slide Font",
+        "幻灯片字体",
+        "SlideFont Project"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "Slide Font（幻灯片字体）作者；寒蝉书体·春秋之上游。SIL OFL 1.1。",
+      "fontNames": [
+        "Slide Font",
+        "幻灯片字体"
+      ]
     }
   ]
 }
