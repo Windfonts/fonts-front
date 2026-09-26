@@ -40,8 +40,8 @@
 
 | 模块 | 现状 | 下一步 |
 |---|---|---|
-| **控制台** | 生产须 vault 会话；`WFApi` 默认 live；projects/域名/子集加字 → vault；用量聚合请求+字节+按字体/字重/200·304·**403**；`/api/usage/blocked`；选字袋 `/api/picks`；认领收单 `/api/claims`。`?demo=1` **仅本机**。 | 收藏云端同步；上传 OSS 队列 |
-| **选字袋 / 收藏** | 本地 `wf-proto-picks` + 登录后 vault 同步；可导出 JSON；清空需确认 | 收藏（fav）云端同步可选 |
+| **控制台** | 生产须 vault 会话；`WFApi` 默认 live；projects/域名/子集加字 → vault；用量聚合请求+字节+按字体/字重/200·304·**403**；`/api/usage/blocked`；选字袋 `/api/picks`；认领收单 `/api/claims`。`?demo=1` **仅本机**。 | 上传 OSS 队列 |
+| **选字袋 / 收藏** | 本地 `wf-proto-picks` / `wf-favs` + 登录后 vault `/api/picks`·`/api/favs` 双向同步 | 上传 OSS 队列 |
 | **样张工坊** | 详情设计视图出图 | 模板与默认文案接设置；OG 图需后端固定 URL |
 | **厂商认领** | `claim.html` → `/api/claims`；vault `/admin/claims` 审核页；覆盖层 + 可选回写 `foundries.json` | 申请人进度通知（可选） |
 | **谱系** | 详情标题「谱系」；开源才露出上传；厂商页归属按源字/地区版/派生分段 | 勿补无把握关系；上传入口仅开源 |
@@ -796,3 +796,8 @@ feibisi「都去做吧」。font-licenses 覆盖 179 → **395 款条目**（ver
 - 批次① GF 托管 22 款（028de97）；批次② 作者仓 139 款批量（13f212c，norm→repo 同 dict 配对法）；批次③ 基金会/官方（RocknRoll/小赖×2/LINE Seed TW OFL 官方文本/IPAex/思源系 adobe LICENSE，2de86f8）；批次④ 狮尾家族 57 款（SweiSpring 原文覆盖全家族，020af39）；批次⑤ 霞鹜系 21 + 思源系 6（家族同 OFL，95ae9f7）；仓耳 22 款按官方声明 verified（629556e，声明 PDF 已存 Cexwz）。
 - **仍缺 61 款**：自定义协议 21（方正×4/975圆体/Acy/Code2003/香萃×5/花园明朝×2/叁慕/庞门真贵/快去寫作業/杨任东/文明宋/烟波宋/精品点阵——须逐款官方页人工取证）+ 标准开源 40（多日本独立作者款：演示系×6/秋水×2/秋空×2/文渊×3/余繁×4/美绩×2/香萃开源款×3 等——上游仓散、下轮继续）。
 - 授权条目数 456 目录 = 395 有条目 + 61 缺；license-info verified 口径=有原文或官方声明才标 true。
+
+## §40 Bot/Feng 闸：吉利/摩登对照 + 中文厂商 TC 候选（2026-09-26）
+
+说人话：吉利银河美好体（`Jlyhmht`）与上海摩登体（`Shmgt`）上架**对照**，服务状态**受限**，**不开 CDN 引用**（license-evidence 禁托管/禁嵌入 + `citeAllowed` + 无 fonts-packages）。候选灌包顺序与完整表见 `docs/_gate-tc-vendor-candidates-2026-09-26.md`（小米 Misatc → 普惠繁体 → HarmonyOS…）。Adobe r8–r11 未动。
+

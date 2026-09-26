@@ -639,3 +639,24 @@
 @media (max-width: 560px) {
   .glyph-live-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+
+/* 引用关闭（对照货架：吉利/摩登等禁止嵌入） */
+.use-cite-closed {
+  margin-top: 12px;
+  padding: 14px 16px;
+  border: 1px dashed var(--line, #d8d2c8);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--paper, #f7f3ea) 88%, #c45c26 12%);
+}
+.use-cite-closed .use-cite-title {
+  margin: 0 0 6px;
+  font-weight: 650;
+  font-size: 15px;
+}
+.use-cite-closed .use-cite-body {
+  margin: 0 0 8px;
+  line-height: 1.55;
+  font-size: 13.5px;
+}
+.use-cite-closed .use-cite-meta { margin: 0; }

@@ -1131,6 +1131,28 @@
     return { status: '受限', reason: 'unverified_tier' };
   }
 
+
+  /**
+   * CDN / embed 引用是否开放。与服务状态「仍可预览」可并存：
+   * 禁止托管、不得 CDN、不得/禁止嵌入 → 引用关闭（对照货架：吉利/摩登）。
+   */
+  function citeAllowed(font) {
+    const ss = serviceStatus(font);
+    if (ss.status === '不可用') return { ok: false, reason: ss.reason || 'unavailable' };
+    const ev = (font && font.licenseEvidence) || {};
+    const restr = ((ev.restrictions) || []).concat([(ev.quote) || ''], [(font && font.licenseNotes) || '']).join(' ');
+    if (/禁止托管|不得\s*CDN|禁止\s*CDN|不得.*热链|不可引用|禁止引用|不得嵌入|禁止嵌入|不得.*嵌入网站/i.test(restr)) {
+      return { ok: false, reason: 'no_embed' };
+    }
+    if ((font.tags || []).indexOf('cite-closed') !== -1) {
+      return { ok: false, reason: 'cite-closed' };
+    }
+    if (ss.status === '受限' && ss.reason === 'no_redistrib') {
+      return { ok: false, reason: 'no_redistrib' };
+    }
+    return { ok: true, reason: 'ok' };
+  }
+
   function matchFilter(font, tag, keyword, license) {
     const tagQ = (tag || '').trim();
     const kw = (keyword || '').trim().toLowerCase();
@@ -1311,6 +1333,7 @@
     isOpenFont: isOpenFont,
     forbidsOpenDerive: forbidsOpenDerive,
     serviceStatus: serviceStatus,
+    citeAllowed: citeAllowed,
     slugify: slugify,
     getFont: function (id) { return getById(id); },
     getFontBySlug: getBySlug,

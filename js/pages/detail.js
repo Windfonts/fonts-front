@@ -652,15 +652,35 @@
       }
       return [primary];
     }
-    const embed = WFEmbed.mount(document.getElementById('embed'), embedItems(), {
-      resolveFont: function (fam) {
-        const slug = String(fam || '').replace(/^wenfeng-/, '');
-        return WFProto.getFontBySlug(slug) || null;
+    const cite = (WFProto.citeAllowed && WFProto.citeAllowed(font)) || { ok: true, reason: 'ok' };
+    const embedRoot = document.getElementById('embed');
+    let embed = null;
+    function mountOrRefuseEmbed() {
+      if (!embedRoot) return;
+      if (!cite.ok) {
+        embedRoot.innerHTML =
+          '<div class="use-cite-closed" role="status">' +
+            '<p class="use-cite-title">引用未开放</p>' +
+            '<p class="use-cite-body">本款仅供货架对照与样张预览意图标注。授权排除网站/App 嵌入或 CDN 热链；' +
+            '文风云<sup>&reg;</sup> 不提供 <code>/api/css</code> / 静态引用包。请从权利人渠道取得适用授权后再用。</p>' +
+            '<p class="use-cite-meta muted t-13">citeAllowed=false · reason=' + esc(cite.reason || 'no_embed') +
+            ' · 服务状态见上方「服务状态」行</p>' +
+          '</div>';
+        embed = null;
+        return;
       }
-    });
+      embed = WFEmbed.mount(embedRoot, embedItems(), {
+        resolveFont: function (fam) {
+          const slug = String(fam || '').replace(/^wenfeng-/, '');
+          return WFProto.getFontBySlug(slug) || null;
+        }
+      });
+    }
+    mountOrRefuseEmbed();
     function refreshEmbed() {
       syncFallbackUi();
-      embed.setItems(embedItems());
+      if (!cite.ok) { mountOrRefuseEmbed(); return; }
+      if (embed) embed.setItems(embedItems());
     }
     document.querySelectorAll('[data-version]').forEach(function (b) {
       b.addEventListener('click', function () {

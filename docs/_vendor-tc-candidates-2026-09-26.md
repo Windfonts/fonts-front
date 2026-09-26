@@ -69,14 +69,20 @@ Inventory-only for Bot/Feng. Pattern reference: Adobe Source Han Sans **SC + TC 
 
 ---
 
-## 另闸状态：吉利美好体 / 上海摩登体
+## 另闸状态：吉利美好体 / 上海摩登体（**已落地 lab · cite 关**）
 
-| 项 | 状态 |
-|---|---|
-| 目录 `fonts.json` | **未收录** |
-| 本波动作 | **无**（不 ingest、不建产品卡、不 CDN） |
-| cite | **NO** |
-| 备注 | 与「抖音美好体」「摄图摩登小方体」无关。他代理可能处理 shelf；此处仅登记。 |
+| 项 | 吉利银河美好体 | 上海摩登体 |
+|---|---|---|
+| slug / family | **`Jlyhmht`** / `wenfeng-jlyhmht` | **`Shmgt`** / `wenfeng-shmgt` |
+| 货架形态 | standalone（非产品芯片） | standalone |
+| 目录 | lab `fonts.json` 已收；**未** vault register、**未** CDN 灌包 | 同左 |
+| 服务状态 | **受限** `no_redistrib` | 同左 |
+| cite | **NO**（`citeAllowed=false`；详情「使用」显示「引用未开放」；`fonts-packages/…/result.css` 期望 404） | 同左 |
+| 编码 | `license-evidence.names` 禁托管/禁 CDN/禁嵌入 + tags `cite-closed`；`WFProto.citeAllowed` | 同左 |
+| 许可债务（诚实） | 方正×吉利免费字=仅商业发布；嵌入/商标/出版物另授；商标「吉利」「银河」 | 汉唐作者声明；禁嵌入/改字/商标；**勿信误标 OFL** |
+| 勿混淆 | ≠ 抖音美好体 `Dymht` | ≠ 摄图摩登小方体 `Symdxft` |
+
+实现：`js/wf-proto.js` `citeAllowed`；`js/pages/detail.js` 拒挂 embed；`css/detail.css` `.use-cite-closed`。生产部署须 Feng 批 `deploy-feicode-front`；**禁止**给这两款做 Syhttc 式 vault+tar 灌包。
 
 ---
 
