@@ -938,7 +938,7 @@ html[data-view="dev"] .foundry-eco .foundry-upstream-item { flex-wrap: nowrap; w
 /* 对齐详情 #use：tabs 与代码栈拉开；纸色代码 + 灰底预算贴合；脚注在栈外 */
 .bag-embed .use-bar { margin: 0; }
 .bag-embed .use-code-stack {
-  margin-top: var(--s-4);
+  margin-top: var(--s-2);
   overflow: hidden;
   border-radius: var(--radius-sm);
 }
