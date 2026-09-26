@@ -309,7 +309,8 @@
         top: '0'
       }
     };
-    /* SVG 内嵌字体常达数十 MB；跳过字体，文件可分享。PNG 仍尝试嵌入同域字面。 */
+    /* SVG 内嵌字体常达数十 MB；跳过字体，文件可分享。PNG 仍尝试嵌入同域字面。
+       卡片标题等 live 字体会因 skipFonts 回落系统字——PNG 才是字形忠实分享格式。 */
     if (format === 'svg') opts.skipFonts = true;
     return opts;
   }
@@ -322,40 +323,38 @@
     return api;
   }
 
-  /**
-   * 临时加到画布里的角标：html-to-image 会把它一起捕获，完成后由返回的
-   * restore 移除。图片用绝对 URL，避免 SVG/PNG 序列化时相对路径失效。
-   */
-  function appendExportWatermark(stage) {
-    if (!stage || !stage.appendChild) return function () {};
-
-    var mark = document.createElement('div');
-    var logo = document.createElement('img');
-    var label = document.createElement('span');
-    var logoUrl = 'assets/icon.webp';
+  function absoluteAssetUrl(rel) {
     try {
-      logoUrl = new URL('assets/icon.webp', document.baseURI || global.location.href).href;
-    } catch (e) {}
+      return new URL(rel, document.baseURI || global.location.href).href;
+    } catch (e) {
+      return rel;
+    }
+  }
 
-    mark.className = 'lfl-export-watermark';
-    mark.setAttribute('aria-hidden', 'true');
-    mark.style.position = 'absolute';
-    mark.style.right = '14px';
-    mark.style.bottom = '14px';
-    mark.style.zIndex = '9999';
-    mark.style.display = 'flex';
-    mark.style.alignItems = 'center';
-    mark.style.gap = '6px';
-    mark.style.padding = '0';
-    mark.style.margin = '0';
-    mark.style.border = 'none';
-    mark.style.borderRadius = '0';
-    mark.style.background = 'transparent';
-    mark.style.backgroundColor = 'transparent';
-    mark.style.boxShadow = 'none';
-    mark.style.color = rootCssVar('--ink-2', rootCssVar('--ink', '#222222'));
-    /* 寒蝉宽黑体 · Chill K Sans */
-    var face = '"wenfeng-hckht", "Chill K Sans", sans-serif';
+  function loadImageElement(url) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      img.decoding = 'async';
+      img.onload = function () { resolve(img); };
+      img.onerror = function () { reject(new Error('watermark image load failed')); };
+      img.src = url;
+    });
+  }
+
+  function waitImageReady(img) {
+    if (!img) return Promise.resolve();
+    if (typeof img.decode === 'function') {
+      return img.decode().then(function () { return img; }, function () { return img; });
+    }
+    if (img.complete && img.naturalWidth) return Promise.resolve(img);
+    return new Promise(function (resolve) {
+      img.onload = function () { resolve(img); };
+      img.onerror = function () { resolve(img); };
+    });
+  }
+
+  function watermarkFontStack() {
+    var face = '"wenfeng-hckht", "Chill K Sans", "PingFang SC", "Hiragino Sans GB", sans-serif';
     try {
       if (global.WFProto && typeof WFProto.cssFamilyStack === 'function') {
         face = WFProto.cssFamilyStack('wenfeng-hckht');
@@ -364,32 +363,118 @@
         WFProto.ensureFontCss('wenfeng-hckht', 'Medium');
       }
     } catch (e) {}
-    mark.style.fontFamily = face;
-    mark.style.fontWeight = '500';
-    mark.style.fontSize = '13px';
-    mark.style.lineHeight = '1';
-    mark.style.whiteSpace = 'nowrap';
+    return face;
+  }
+
+  function ensureWatermarkFontReady(face) {
+    var ready = Promise.resolve();
+    try {
+      if (document.fonts && document.fonts.load) {
+        ready = document.fonts
+          .load('500 13px wenfeng-hckht')
+          .catch(function () {
+            return document.fonts.load('500 13px "PingFang SC"').catch(function () {});
+          })
+          .then(function () {
+            if (document.fonts.ready) return document.fonts.ready.catch(function () {});
+          });
+      }
+    } catch (e) {}
+    return ready.then(function () { return face || watermarkFontStack(); });
+  }
+
+  /**
+   * 在页面里用已加载的面烘焙角标（图标 + 「文风字体」）成 PNG data URL。
+   * 捕获阶段只挂 <img>，SVG skipFonts 不再影响品牌字。
+   * logo-bar.webp 是英文 Windfonts + 黑底，不适合透明角标，故不采用。
+   */
+  function bakeWatermarkDataUrl() {
+    var logoUrl = absoluteAssetUrl('assets/icon.webp');
+    var iconSize = 18;
+    var gap = 6;
+    var fontSize = 13;
+    var label = '文风字体';
+    var dpr = Math.max(2, Math.min(3, Number(global.devicePixelRatio) || 2));
+    var ink = rootCssVar('--ink-2', rootCssVar('--ink', '#222222'));
+    var face = watermarkFontStack();
+
+    return Promise.all([loadImageElement(logoUrl), ensureWatermarkFontReady(face)])
+      .then(function (pair) {
+        var logoImg = pair[0];
+        face = pair[1] || face;
+        var measure = document.createElement('canvas').getContext('2d');
+        measure.font = '500 ' + fontSize + 'px ' + face;
+        var textW = Math.ceil(measure.measureText(label).width) || 52;
+        var w = iconSize + gap + textW;
+        var h = Math.max(iconSize, Math.ceil(fontSize * 1.25));
+        var canvas = document.createElement('canvas');
+        canvas.width = Math.ceil(w * dpr);
+        canvas.height = Math.ceil(h * dpr);
+        var ctx = canvas.getContext('2d');
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+        ctx.drawImage(logoImg, 0, (h - iconSize) / 2, iconSize, iconSize);
+        ctx.font = '500 ' + fontSize + 'px ' + face;
+        ctx.fillStyle = ink;
+        ctx.textBaseline = 'middle';
+        ctx.textAlign = 'left';
+        ctx.fillText(label, iconSize + gap, h / 2);
+        return canvas.toDataURL('image/png');
+      })
+      .catch(function () {
+        /* 烘焙失败：仅图标（仍转 data URL，避免 foreignObject 丢相对路径） */
+        return loadImageElement(logoUrl).then(function (logoImg) {
+          var canvas = document.createElement('canvas');
+          var s = iconSize * dpr;
+          canvas.width = s;
+          canvas.height = s;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(logoImg, 0, 0, s, s);
+          return canvas.toDataURL('image/png');
+        });
+      });
+  }
+
+  /**
+   * 临时角标：仅挂一张已烘焙的 bitmap（无 live 文本节点）。
+   * html-to-image 捕获后由 restore 移除。
+   */
+  function appendExportWatermark(stage, dataUrl) {
+    if (!stage || !stage.appendChild || !dataUrl) return function () {};
+
+    var mark = document.createElement('div');
+    var logo = document.createElement('img');
+
+    mark.className = 'lfl-export-watermark';
+    mark.setAttribute('aria-hidden', 'true');
+    mark.style.position = 'absolute';
+    mark.style.right = '14px';
+    mark.style.bottom = '14px';
+    mark.style.zIndex = '9999';
+    mark.style.display = 'block';
+    mark.style.padding = '0';
+    mark.style.margin = '0';
+    mark.style.border = 'none';
+    mark.style.borderRadius = '0';
+    mark.style.background = 'transparent';
+    mark.style.backgroundColor = 'transparent';
+    mark.style.boxShadow = 'none';
+    mark.style.lineHeight = '0';
     mark.style.pointerEvents = 'none';
     mark.style.boxSizing = 'border-box';
 
-    logo.src = logoUrl;
+    logo.src = dataUrl;
     logo.alt = '';
-    logo.width = 18;
-    logo.height = 18;
     logo.style.display = 'block';
-    logo.style.width = '18px';
     logo.style.height = '18px';
-    logo.style.flex = '0 0 18px';
+    logo.style.width = 'auto';
+    logo.style.maxHeight = '18px';
     logo.style.background = 'transparent';
     logo.style.backgroundColor = 'transparent';
     logo.style.border = 'none';
     logo.style.boxShadow = 'none';
 
-    label.textContent = '文风字体';
-    label.style.fontFamily = face;
-    label.style.fontWeight = '500';
     mark.appendChild(logo);
-    mark.appendChild(label);
     stage.appendChild(mark);
 
     return function restore() {
@@ -412,27 +497,27 @@
     var restoreSvg = inlineSvgPresentation(stage);
     var restoreWatermark = function () {};
     try {
-      restoreWatermark = appendExportWatermark(stage);
       var opts = captureOptions(stage, format);
-      var ready = Promise.resolve();
-      try {
-        if (document.fonts && document.fonts.load) {
-          ready = document.fonts.load('500 13px wenfeng-hckht').catch(function () {});
-        }
-      } catch (e) {}
-      return ready.then(function () {
-        return format === 'svg' ? api.toSvg(stage, opts) : api.toPng(stage, opts);
-      }).then(function (dataUrl) {
-        restoreWatermark();
-        restoreSvg();
-        var ext = format === 'svg' ? 'svg' : 'png';
-        downloadDataUrl(dataUrl, buildFilename(ctx.groupName, ctx.mode, ext));
-        return dataUrl;
-      }, function (err) {
-        restoreWatermark();
-        restoreSvg();
-        throw err;
-      });
+      return bakeWatermarkDataUrl()
+        .then(function (wmDataUrl) {
+          restoreWatermark = appendExportWatermark(stage, wmDataUrl);
+          var img = stage.querySelector('.lfl-export-watermark img');
+          return waitImageReady(img);
+        })
+        .then(function () {
+          return format === 'svg' ? api.toSvg(stage, opts) : api.toPng(stage, opts);
+        })
+        .then(function (dataUrl) {
+          restoreWatermark();
+          restoreSvg();
+          var ext = format === 'svg' ? 'svg' : 'png';
+          downloadDataUrl(dataUrl, buildFilename(ctx.groupName, ctx.mode, ext));
+          return dataUrl;
+        }, function (err) {
+          restoreWatermark();
+          restoreSvg();
+          throw err;
+        });
     } catch (err) {
       restoreWatermark();
       restoreSvg();
