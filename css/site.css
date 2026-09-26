@@ -918,22 +918,9 @@ html[data-view="dev"] .foundry-eco .foundry-upstream-item { flex-wrap: nowrap; w
 .pair-acts { margin-top: var(--s-6); display: flex; flex-wrap: wrap; gap: var(--s-4); font-size: var(--fs-13); }
 .pair-acts a { display: inline-flex; align-items: center; gap: 0.35em; }
 .pair-acts a .icon { color: var(--gray); }
-.bag-embed { display: grid; gap: var(--s-5); padding: var(--s-6); margin-top: var(--s-6); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); min-width: 0; }
+.bag-embed { display: grid; gap: var(--s-4); padding: var(--s-6); margin-top: var(--s-6); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); min-width: 0; }
 .bag-embed h2 { font-size: var(--fs-20); font-weight: var(--fw-title); margin: 0; display: flex; align-items: center; gap: 0.4em; }
 .bag-embed h2 .icon { color: var(--gray); }
-.bag-embed-toggle {
-  display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
-  width: 100%; margin: 0; padding: 0; border: 0; background: transparent;
-  color: inherit; cursor: pointer; text-align: left;
-}
-.bag-embed-toggle h2 { margin: 0; }
-.bag-embed-chev {
-  flex: none; width: 0.55em; height: 0.55em;
-  border-right: 1.5px solid var(--gray); border-bottom: 1.5px solid var(--gray);
-  transform: rotate(45deg); transition: transform 0.15s ease;
-}
-.bag-embed.is-collapsed .bag-embed-chev { transform: rotate(-135deg); }
-.bag-embed.is-collapsed .bag-embed-body { display: none; }
 
 .bag-embed .opts {
   display: grid;
@@ -947,7 +934,40 @@ html[data-view="dev"] .foundry-eco .foundry-upstream-item { flex-wrap: nowrap; w
 .bag-embed .opts .field label { color: var(--gray); }
 .bag-embed .opts .select { width: 100%; min-width: 0; }
 .bag-embed .opts .check { margin-bottom: 0.45rem; white-space: nowrap; }
-.bag-embed-main { min-width: 0; display: grid; gap: var(--s-3); }
+.bag-embed-main { min-width: 0; display: grid; gap: var(--s-2); }
+/* 与详情 #use 代码栈同款：纸色代码 + 灰底预算，tabs 与代码间距收紧 */
+.bag-embed .use-code-stack { margin-top: 0; }
+.bag-embed .use-code-stack > .code {
+  margin: 0;
+  background: var(--paper);
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  position: relative;
+}
+.bag-embed .use-code-stack > .code pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: var(--fs-12);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.bag-embed .use-code-stack > .code .copy {
+  position: absolute;
+  top: var(--s-2);
+  right: var(--s-2);
+  font-size: var(--fs-11);
+  color: var(--gray-2);
+  padding: 0.1rem 0.45rem;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+}
+.bag-embed .use-code-stack > .code .copy:hover {
+  color: var(--ink);
+  background: var(--surface);
+  border-color: var(--gray-2);
+}
+
 .bag-embed .code pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--fs-11); }
 
 /* —— 登录 —— */

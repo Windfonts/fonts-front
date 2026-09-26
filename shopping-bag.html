@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/base.css?v=20260925s" />
   <link rel="stylesheet" href="css/components.css?v=20260925s" />
   <link rel="stylesheet" href="css/specimen.css?v=20260925w" />
-  <link rel="stylesheet" href="css/site.css?v=20260927fold1" />
+  <link rel="stylesheet" href="css/site.css?v=20260927style1" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-bag">
@@ -39,11 +39,9 @@
     <div id="bagCompare" hidden></div>
 
     <section class="bag-embed" id="bagEmbed" hidden>
-      <button type="button" class="bag-embed-toggle" id="bagEmbedToggle" aria-expanded="true" aria-controls="bagEmbedBody">
+      <div class="bag-embed-head">
         <h2><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260925s#i-code"/></svg>合并嵌入代码</h2>
-        <span class="bag-embed-chev" aria-hidden="true"></span>
-      </button>
-      <div class="bag-embed-body" id="bagEmbedBody">
+      </div>
       <div class="opts">
         <div class="field"><label>子集</label><select class="select" id="optVersion">
           <option value="zh-common" selected>常用</option>
@@ -61,7 +59,6 @@
         <div id="embed"></div>
         <p class="use-note t-13 muted">一次引入选字袋里的全部字体。估算总体积 <strong class="num" id="bagBytes">—</strong>（按所选子集）。</p>
       </div>
-      </div>
     </section>
   </main>
 
@@ -75,6 +72,6 @@
   <script src="js/wf-embed.js?v=20260927v1"></script>
   <script src="js/wf-app.js?v=20260927v1"></script>
   <script src="js/wf-api.js?v=20260927v1"></script>
-  <script src="js/pages/bag.js?v=20260927fold1"></script>
+  <script src="js/pages/bag.js?v=20260927style1"></script>
 </body>
 </html>

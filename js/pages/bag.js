@@ -5,23 +5,6 @@
   const pairEl = document.getElementById('bagPair');
   const countEl = document.getElementById('bagCount');
   const embedWrap = document.getElementById('bagEmbed');
-  const embedToggle = document.getElementById('bagEmbedToggle');
-  const embedBody = document.getElementById('bagEmbedBody');
-  const EMBED_FOLD_KEY = 'wf-bag-embed-open.v1';
-  function setEmbedOpen(open) {
-    if (!embedWrap) return;
-    embedWrap.classList.toggle('is-collapsed', !open);
-    if (embedToggle) embedToggle.setAttribute('aria-expanded', String(!!open));
-    try { localStorage.setItem(EMBED_FOLD_KEY, open ? '1' : '0'); } catch (e) {}
-  }
-  if (embedToggle) {
-    let preferOpen = true;
-    try { preferOpen = localStorage.getItem(EMBED_FOLD_KEY) !== '0'; } catch (e) {}
-    setEmbedOpen(preferOpen);
-    embedToggle.addEventListener('click', function () {
-      setEmbedOpen(embedWrap.classList.contains('is-collapsed'));
-    });
-  }
   const bytesEl = document.getElementById('bagBytes');
   const optVersion = document.getElementById('optVersion');
   const optWeights = document.getElementById('optWeights');
