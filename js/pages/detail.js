@@ -177,7 +177,7 @@
     return { status: status, reason: reason, cls: cls, why: why };
   }
 
-  /* 右侧动作：正常→API 文档；受限 / 需授权→上传证书；下架与禁用不推文件。 */
+  /* 右侧动作：正常→API 文档；受限 / 需授权→证书开引用页；下架与禁用不推文件。 */
   function serviceStatusAct(font, copy) {
     const status = copy.status;
     const reason = copy.reason || '';
@@ -185,10 +185,11 @@
       return '<a class="lp-act" href="' + WFChrome.href('docs.html') + '">立即接入 →</a>';
     }
     if (status === '受限' || (status === '不可用' && reason === 'need_auth')) {
-      const slug = String((font && (font.normalized || font.family)) || '')
-        .replace(/^wenfeng-/i, '');
-      const href = WFChrome.href('app/upload.html?cert=' + encodeURIComponent(slug || (font && font.id) || ''));
-      return '<a class="lp-act" href="' + href + '">上传证书 →</a>';
+      const slug = (WFProto.fontSlug && WFProto.fontSlug(font)) ||
+        String((font && (font.normalized || font.family)) || '').replace(/^wenfeng-/i, '');
+      const href = WFChrome.href('app/cert-upload.html?cert=' + encodeURIComponent(slug || (font && font.id) || ''));
+      const opened = WFProto.hasCertGrant && WFProto.hasCertGrant(font);
+      return '<a class="lp-act" href="' + href + '">' + (opened ? '证书已开 →' : '上传证书 →') + '</a>';
     }
     return '';
   }
@@ -700,26 +701,41 @@
     const cite = (WFProto.citeAllowed && WFProto.citeAllowed(font)) || { ok: true, reason: 'ok' };
     const embedRoot = document.getElementById('embed');
     let embed = null;
+    function certUploadHref() {
+      const slug = (WFProto.fontSlug && WFProto.fontSlug(font)) ||
+        String((font && (font.normalized || font.family)) || '').replace(/^wenfeng-/i, '');
+      return WFChrome.href('app/cert-upload.html?cert=' + encodeURIComponent(slug || (font && font.id) || ''));
+    }
     function mountOrRefuseEmbed() {
       if (!embedRoot) return;
       if (!cite.ok) {
         embedRoot.innerHTML =
           '<div class="use-cite-closed" role="status">' +
             '<p class="use-cite-title">引用未开放</p>' +
-            '<p class="use-cite-body">本款仅供货架对照与样张预览意图标注。授权排除网站/App 嵌入或 CDN 热链；' +
-            '文风云<sup>&reg;</sup> 不提供 <code>/api/css</code> / 静态引用包。请从权利人渠道取得适用授权后再用。</p>' +
+            '<p class="use-cite-body">本款仅供货架对照与站内样张预览。默认不开对外 CSS / CDN 热链。' +
+            '若你已持有覆盖网页嵌入的授权证书，可<a href="' + certUploadHref() + '">上传证书</a>，审核通过后仅对本账号开引用（不等于全站 CDN）。</p>' +
             '<p class="use-cite-meta muted t-13">citeAllowed=false · reason=' + esc(cite.reason || 'no_embed') +
             ' · 服务状态见上方「服务状态」行</p>' +
           '</div>';
         embed = null;
         return;
       }
+      const labGrant = cite.reason === 'cert-grant-lab';
       embed = WFEmbed.mount(embedRoot, embedItems(), {
         resolveFont: function (fam) {
           const slug = String(fam || '').replace(/^wenfeng-/, '');
           return WFProto.getFontBySlug(slug) || null;
         }
       });
+      if (labGrant) {
+        embedRoot.insertAdjacentHTML('afterbegin',
+          '<div class="use-cite-opened" role="status">' +
+            '<p class="use-cite-title">本账号已开引用（lab 演示）</p>' +
+            '<p class="use-cite-body">证书权记在本浏览器 localStorage，按账号或匿名身份 × 本款字体。' +
+            '站内可展示引用片段；<strong>不会</strong>打开全局 fonts-packages CDN。正式环境须 vault 存证 + SSO。</p>' +
+            '<p class="use-cite-meta muted t-13">citeAllowed=true · reason=cert-grant-lab · <a href="' +
+            certUploadHref() + '">查看证书页</a></p></div>');
+      }
     }
     mountOrRefuseEmbed();
     function refreshEmbed() {

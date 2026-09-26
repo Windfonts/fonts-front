@@ -1,7 +1,7 @@
 # 引用门禁 · 证书开引用 · 站内预览（2026-09-26）
 
 > **说人话总表。** 货架可上 cite-closed 字（吉利银河美好体 / 上海摩登体）；默认**不开**对外 CSS/API 热链；用户交匹配的**字体授权证书**后，只给**该账号**开引用；站内编辑器/样张/详情预览可用本地 archive woff2。  
-> **本稿性质：** READ + DOCUMENT。不部署、不灌 CDN。实现缺口只列建议，不擅自开工。
+> **本稿性质：** 产品口径 + 链路审计。lab 已接「详情 CTA → 证书页 → 本机 grant」演示；不部署、不灌 CDN。正式 vault API / SSO 仍缺。
 
 **范例族：** `Jlyhmht` / `wenfeng-jlyhmht`（吉利银河美好体）；`Shmgt` / `wenfeng-shmgt`（上海摩登体）。
 
@@ -48,18 +48,18 @@ Feng 2026-09-26 定稿（覆盖此前闸文争议点）：
 
 ## 3. 证书链路核查表
 
-端到端：详情「服务状态 · 受限」→ CTA「上传证书 →」→ `app/upload.html?cert={slug}` →（期望）登录 + 存证 + 审过 → **仅该账号** `citeAllowed` / CSS 解锁。
+端到端：详情「服务状态 · 受限」→ CTA「上传证书 →」→ `app/cert-upload.html?cert={slug}` →（lab）本机记权 → 详情 `citeAllowed` 对本浏览器开引用；（正式期望）登录 + vault 存证 + 审过 → **仅该账号** CSS 解锁（仍不灌公共 CDN）。
 
 | 步骤 | 期望行为 | 现状 | 判定 |
 |------|----------|------|------|
 | 1. 详情展示「受限」 | `serviceStatus` = 受限（cite-closed / 禁托管） | **已实现**：`cite-closed` → `no_redistrib`；文案引导上传授权文件 | **works** |
-| 2. CTA「上传证书 →」 | 链到证书上传流，带上字体 slug | **半通**：`detail.js` 生成 `app/upload.html?cert={slug}` | **works**（链接有） |
-| 3. `upload.html?cert=` 落地页 | 识别 `cert` 查询参数；UI 为「为某族上传授权证书 → 开引用」 | **缺口**：`app/upload.html` 是**自有字体上传**页（ttf/otf + 证明附在字体旁）；**不读** `?cert=`；标题/文案均未提「为货架字开引用」 | **stub / wrong page** |
-| 4. 登录门禁 | 须登录账号 | `WFApp.gate()` 有门；真登录依赖 vault NextAuth / WP SSO（见 LAUNCH-GATES） | **partial**（控制台门在；顾客 SSO 仍待） |
-| 5. 证书存储 | 服务端按 **userId × fontId** 存证（非 localStorage 演示） | 现有 `WFApi.runUpload` = **上传自有字体文件** + optional proof；mock 写 localStorage；**无**「货架族证书解锁」API / 表 | **missing** |
-| 6. 审核通过后翻 cite | 仅该账号看到 embed / 可调 CSS；**不**改全局 `cite-closed`、**不**灌 CDN | `citeAllowed(font)` **只读** tags + license-evidence；**无** per-user override；上传成功也不调 `citeAllowed` | **missing** |
-| 7. 对外 CDN 仍关 | 未灌包前全站 `/api/css` / packages 继续 404 | **已落实**（oss_path 空 + 探活 404） | **works**（门禁侧） |
-| 8. 站内预览 | 详情 / 样张 / 字符表 / 编辑器预览用同源 woff2 | **已落实**：`preview-faces.json` + `ensureFontCss` 走 preview；specimen 对 cite-closed 跳过 CDN coverage | **works** |
+| 2. CTA「上传证书 →」 | 链到证书上传流，带上字体 slug | **已改**：`detail.js` → `app/cert-upload.html?cert={slug}`；有 grant 时文案「证书已开 →」 | **works** |
+| 3. 证书落地页 | 识别 `cert`；UI「为某族上传授权证书 → 开引用」 | **已实现**：`app/cert-upload.html` + `js/pages/app-cert-upload.js`；收 PDF/图；说明仅账号开引用≠CDN；成功态回详情 | **works**（lab） |
+| 4. 登录门禁 | 须登录账号 | 证书页**不**强 gate（lab 允许匿名记权）；真登录仍依赖 vault NextAuth / WP SSO | **partial**（lab 匿名可测；顾客 SSO 仍待） |
+| 5. 证书存储 | 服务端按 **userId × fontId** 存证 | **lab mock**：`localStorage['wf-cert-grants-v1']` 按 `user:…` / `anon:…` × fontKey；**无** vault API / 表；文件不上传 | **mock** |
+| 6. 审核通过后翻 cite | 仅该账号看到 embed；**不**改全局 tag、**不**灌 CDN | **lab**：`citeAllowed` 若 `hasCertGrant` → `{ok:true, reason:'cert-grant-lab'}`；详情挂 embed +「本账号已开引用」条；tag `cite-closed` 保留 | **works**（前台 mock）；账号级 CSS 签发仍 **missing** |
+| 7. 对外 CDN 仍关 | 未灌包前全站 `/api/css` / packages 继续 404 | **已落实**（oss_path 空；grant **不**写 packages） | **works**（门禁侧） |
+| 8. 站内预览 | 详情 / 样张 / 字符表 / 编辑器预览用同源 woff2 | **已落实**：`preview-faces.json` + `ensureFontCss` 走 preview | **works** |
 
 ### 交互关系（编码事实）
 
@@ -72,8 +72,11 @@ tags: cite-closed
     └─ license-evidence restrictions（禁托管/CDN/嵌入）
          └─ citeAllowed regex 亦可独立判 no_embed
 
-上传证书（产品目标）──X──▶ 尚无 per-user grant 读写
-自有字体 upload.html ──▶ 项目私有托管（与货架 cite 解锁无关）
+上传证书 CTA ──▶ app/cert-upload.html?cert=
+                 ├─ lab：localStorage grant（user|anon × font）
+                 │         └─ citeAllowed → cert-grant-lab（详情可挂 embed UI）
+                 └─ 正式（仍缺）：vault POST font-certs → 审过 → 账号作用域 CSS
+自有字体 upload.html ──▶ 项目私有托管（与货架 cite 解锁无关；勿混用）
 ```
 
 ---
@@ -130,26 +133,28 @@ tags: cite-closed
 | `js/wf-proto.js` | `citeAllowed` / `serviceStatus` / `citeClosedFamily` / `ensureFontCss` → preview |
 | `js/pages/detail.js` | 服务状态文案 +「上传证书 →」+ 拒挂 embed |
 | `js/wf-specimen.js` | cite-closed 跳过 CDN unicode-range 探针 |
-| `app/upload.html` | **自有字体**上传（非证书开引用） |
+| `app/cert-upload.html` · `js/pages/app-cert-upload.js` | **证书开引用**页（`?cert=`）；lab localStorage grant |
+| `app/upload.html` | **自有字体**上传（非证书开引用；勿混用） |
 | `data/preview-faces.json` | 站内预览面映射 |
 | `data/license-evidence.json` | 禁托管/嵌入原文摘要 |
 | `css/detail.css` · `detail-cite-status-options.*` | 「引用未开放」样式 / 对照稿 |
 
 ---
 
-## 5. 建议下一步（只列，不擅自实现）
+## 5. 建议下一步（lab 前台已通；后端仍缺）
 
-**P0 — 产品诚实（文档/文案，可小改）**
+**已完成（lab · 2026-09-26）**
 
-1. 明确 CTA 文案与落地页不一致：要么改链到「即将上线 / 联系授权」占位，要么开真实证书流前去掉「上传证书 →」以免用户以为已通。  
-2. 在详情「引用未开放」旁加一句产品口径：站内可预览；对外热链须自有网页嵌入授权；证书通道上线后按账号解锁（**非**全站 CDN 开）。
+1. CTA → `app/cert-upload.html?cert=`；专用证书页（PDF/图）；本机 grant；`citeAllowed` 覆盖；详情开引用条。  
+2. 详情「引用未开放」文案含证书入口与「仅账号 / 非 CDN」口径。
 
-**P1 — 证书 → 账号级开引用（真正功能）**
+**P1 — 正式证书 → 账号级开引用（后端）**
 
-3. 新页或 `upload.html` 模式：`?cert=slug` → 只收证书文件（PDF/图），绑定 `fontId`；不收字体二进制。  
-4. vault API：`POST /api/user/font-certs`（存证）+ 审核态 + `GET` 当前用户已解锁族列表。  
-5. `citeAllowed(font, userCtx)`：全局 tag 仍 closed；若 `userCtx.grants[fontId]=approved` 则该会话可展示 embed / 签发**用户作用域** CSS（仍**不**写公共 `fonts-packages`）。  
-6. 审核后台（人工或规则）：校验证书是否覆盖「网页字体嵌入 / webfont」。
+3. vault API：`POST /api/user/font-certs`（存证）+ 审核态 + `GET` 当前用户已解锁族列表；替换 localStorage mock。  
+4. 前台 `citeAllowed` 改读会话 grants（SSO userId）；保留 tag `cite-closed`。  
+5. 签发**用户作用域** CSS（仍**不**写公共 `fonts-packages`）。  
+6. 审核后台（人工或规则）：校验证书是否覆盖「网页字体嵌入 / webfont」。  
+7. 证书页生产环境改强登录（`WFApp.gate` / NextAuth）；去掉匿名记权。
 
 **P2 — 预览与目录**
 
@@ -161,7 +166,7 @@ tags: cite-closed
 
 - 上传/导出 `fonts-packages/{Jlyhmht,Shmgt}`  
 - 去掉 `cite-closed` 或站级 `citeAllowed=true`  
-- 把自有字体 `upload.html` 冒充证书解锁
+- 把自有字体 `upload.html` 冒充证书解锁（已用独立 `cert-upload.html`）
 
 ---
 
@@ -171,6 +176,7 @@ tags: cite-closed
 |----|-----|
 | 审计日 | 2026-09-26（Asia/Shanghai） |
 | 执行 | Foundry executor · Mac lab `fc585146-…` |
-| 范围 | READ + DOCUMENT；本地 docs commit OK；无 CDN / 无 prod deploy |
+| 范围 | lab 前台证书页 + grant mock；本地 commit；无 CDN / 无 prod deploy |
 | 预览 commit（已有） | `eb2503e` Use full local cite-closed preview fonts |
-| 公开 cite | 仍关闭（404 复核于审计当日） |
+| 证书页实现 | 见本波 commit（`app/cert-upload.html` + grant helpers） |
+| 公开 cite / CDN | 仍关闭；grant **不**灌 packages |

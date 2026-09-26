@@ -227,3 +227,49 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
   #uploadForm,
   #uploadForm .grid { grid-template-columns: minmax(0, 1fr) !important; }
 }
+
+
+/* 证书开引用（cite-closed → 账号级） */
+.page-cert-upload .cert-panel { max-width: 40rem; }
+.page-cert-upload .cert-layout { align-items: start; }
+.page-cert-upload .cert-badge {
+  display: inline-block;
+  margin: 0 0 var(--s-3);
+  padding: 0.15em 0.65em;
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  color: var(--ink-2);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-label);
+  letter-spacing: 0.02em;
+}
+.page-cert-upload .cert-badge.is-mid {
+  background: color-mix(in srgb, var(--warn, #c47a2c) 14%, var(--paper));
+  color: var(--ink);
+}
+.page-cert-upload .cert-success .cert-badge {
+  background: color-mix(in srgb, var(--ok, #2a7a4b) 16%, var(--paper));
+  color: var(--ink);
+}
+.page-cert-upload .cert-font-name {
+  margin: 0 0 var(--s-3);
+  font-size: var(--fs-22);
+  font-weight: var(--fw-title);
+  letter-spacing: -0.02em;
+}
+.page-cert-upload .cert-bullets {
+  margin: var(--s-4) 0 0;
+  padding-left: 1.2em;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.page-cert-upload .cert-bullets li { margin: 0.25em 0; }
+.page-cert-upload .cert-kv { margin-top: var(--s-5); }
+.page-cert-upload .cert-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  align-items: center;
+  margin-top: var(--s-6);
+}
+.page-cert-upload #certErr { color: var(--danger, #b33); }

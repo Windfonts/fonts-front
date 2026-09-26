@@ -1332,13 +1332,128 @@
   }
 
 
+
+  /* —— 证书开引用（lab）：本机 localStorage，按 user-or-anon × font 记权；不灌 CDN —— */
+  const CERT_GRANTS_KEY = 'wf-cert-grants-v1';
+  const CERT_ANON_KEY = 'wf-cert-anon-id';
+
+  function certAnonId() {
+    try {
+      let id = localStorage.getItem(CERT_ANON_KEY);
+      if (!id) {
+        id = 'a' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+        localStorage.setItem(CERT_ANON_KEY, id);
+      }
+      return id;
+    } catch (e) {
+      return 'anon-session';
+    }
+  }
+
+  /** 当前浏览身份：已登录优先 email/id，否则 anon:{browserId} */
+  function certSubjectKey() {
+    try {
+      const u = (window.WFChrome && WFChrome.user && WFChrome.user()) || null;
+      if (u) {
+        if (u.id) return 'user:' + String(u.id);
+        if (u.email) return 'user:' + String(u.email).trim().toLowerCase();
+      }
+    } catch (e) { /* ignore */ }
+    return 'anon:' + certAnonId();
+  }
+
+  function certFontKey(fontOrToken) {
+    if (!fontOrToken) return '';
+    if (typeof fontOrToken === 'string') {
+      return resolveFamilyAlias(fontOrToken) || String(fontOrToken).trim().toLowerCase();
+    }
+    const slug = fontSlug(fontOrToken) || String(fontOrToken.normalized || '').toLowerCase();
+    return resolveFamilyAlias(slug) || slug;
+  }
+
+  function readCertGrantsAll() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(CERT_GRANTS_KEY) || '{}');
+      return raw && typeof raw === 'object' ? raw : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function writeCertGrantsAll(map) {
+    try {
+      localStorage.setItem(CERT_GRANTS_KEY, JSON.stringify(map || {}));
+    } catch (e) { /* ignore */ }
+  }
+
+  function getCertGrant(fontOrToken, subjectOpt) {
+    const fk = certFontKey(fontOrToken);
+    if (!fk) return null;
+    const subject = subjectOpt || certSubjectKey();
+    const all = readCertGrantsAll();
+    const bag = all[subject];
+    if (!bag || typeof bag !== 'object') return null;
+    const g = bag[fk];
+    return g && typeof g === 'object' ? g : null;
+  }
+
+  function hasCertGrant(fontOrToken, subjectOpt) {
+    const g = getCertGrant(fontOrToken, subjectOpt);
+    if (!g) return false;
+    const st = String(g.status || '');
+    return st === 'approved-lab' || st === 'approved';
+  }
+
+  /**
+   * 写入本机演示授权。正式环境应由 vault API 按 userId×fontId 存证审核。
+   * @returns {object} grant
+   */
+  function setCertGrant(font, meta) {
+    const fk = certFontKey(font);
+    if (!fk) throw new Error('缺少字体标识');
+    const subject = certSubjectKey();
+    const all = readCertGrantsAll();
+    if (!all[subject] || typeof all[subject] !== 'object') all[subject] = {};
+    const grant = {
+      status: (meta && meta.status) || 'approved-lab',
+      fontKey: fk,
+      family: font && font.family ? String(font.family) : '',
+      normalized: font && font.normalized ? String(font.normalized) : fk,
+      name: font && font.name ? String(font.name) : fk,
+      fileName: meta && meta.fileName ? String(meta.fileName) : '',
+      fileSize: meta && meta.fileSize != null ? Number(meta.fileSize) || 0 : 0,
+      mime: meta && meta.mime ? String(meta.mime) : '',
+      subject: subject,
+      at: (meta && meta.at) || new Date().toISOString(),
+      labMock: true
+    };
+    all[subject][fk] = grant;
+    writeCertGrantsAll(all);
+    return grant;
+  }
+
+  function clearCertGrant(fontOrToken) {
+    const fk = certFontKey(fontOrToken);
+    if (!fk) return false;
+    const subject = certSubjectKey();
+    const all = readCertGrantsAll();
+    if (!all[subject] || !all[subject][fk]) return false;
+    delete all[subject][fk];
+    writeCertGrantsAll(all);
+    return true;
+  }
+
   /**
    * CDN / embed 引用是否开放。与服务状态「仍可预览」可并存：
    * 禁止托管、不得 CDN、不得/禁止嵌入 → 引用关闭（对照货架：吉利/摩登）。
+   * 本机证书 grant（lab）可按账号/匿名覆盖 cite-closed，不改全局 tag、不灌 fonts-packages。
    */
   function citeAllowed(font) {
     const ss = serviceStatus(font);
     if (ss.status === '不可用') return { ok: false, reason: ss.reason || 'unavailable' };
+    if (hasCertGrant(font)) {
+      return { ok: true, reason: 'cert-grant-lab', grant: getCertGrant(font) };
+    }
     const ev = (font && font.licenseEvidence) || {};
     const restr = ((ev.restrictions) || []).concat([(ev.quote) || ''], [(font && font.licenseNotes) || '']).join(' ');
     if (/禁止托管|不得\s*CDN|禁止\s*CDN|不得.*热链|不可引用|禁止引用|不得嵌入|禁止嵌入|不得.*嵌入网站/i.test(restr)) {
@@ -1538,6 +1653,12 @@
     commercialEntityName: commercialEntityName,
     citeAllowed: citeAllowed,
     citeClosedFamily: citeClosedFamily,
+    certSubjectKey: certSubjectKey,
+    certFontKey: certFontKey,
+    getCertGrant: getCertGrant,
+    hasCertGrant: hasCertGrant,
+    setCertGrant: setCertGrant,
+    clearCertGrant: clearCertGrant,
     slugify: slugify,
     getFont: function (id) { return getById(id); },
     getFontBySlug: getBySlug,
