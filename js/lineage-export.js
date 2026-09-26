@@ -476,12 +476,88 @@
   }
 
   /**
-   * file:// 打开导出 SVG 时，相对 href 会落到 Downloads 下。
-   * 捕获前把 stage 内 a[href] / a[data-nav] 解析为绝对 URL，捕获后还原。
+   * 导出链用正式域伪静态 /fonts/{slug}，避免本机 origin 和 font-detail.html 进分享文件。
+   * Capture前把 stage 内 a[href]/a[data-nav] 写成公开绝对 URL，捕获后还原。
    */
+  function siteOrigin() {
+    if (global.WFProto && WFProto.SITE_ORIGIN) return String(WFProto.SITE_ORIGIN).replace(/\/$/, '');
+    return 'https://app.windfonts.com';
+  }
+
+  function isDetailHref(href) {
+    var s = String(href || '');
+    return /font-detail\.html/i.test(s) || /(?:^|\/)fonts\//i.test(s);
+  }
+
+  function parseDetailQuery(href, base) {
+    var id = null;
+    var slug = null;
+    try {
+      var u = new URL(href, base);
+      if (u.searchParams) {
+        id = u.searchParams.get('id');
+        slug = u.searchParams.get('slug');
+      }
+      var m = String(u.pathname || '').match(/\/fonts\/([^/?#]+)/i);
+      if (!slug && m) {
+        try { slug = decodeURIComponent(m[1]); } catch (e) { slug = m[1]; }
+      }
+    } catch (e) {
+      var qm = String(href).match(/[?&]id=([^&]+)/i);
+      if (qm) {
+        try { id = decodeURIComponent(qm[1]); } catch (e2) { id = qm[1]; }
+      }
+      var sm = String(href).match(/[?&]slug=([^&]+)/i);
+      if (sm) {
+        try { slug = decodeURIComponent(sm[1]); } catch (e3) { slug = sm[1]; }
+      }
+    }
+    return { id: id, slug: slug };
+  }
+
+  function resolveFontForAnchor(href, el, base) {
+    var q = parseDetailQuery(href, base);
+    var id = q.id;
+    var slug = q.slug;
+    if (!id && el && el.closest) {
+      var card = el.closest('.lfl-card[data-id], .lfl-wall-card[data-id], [data-id]');
+      if (card) id = card.getAttribute('data-id');
+    }
+    if (!global.WFProto) return null;
+    var font = null;
+    if (id && typeof WFProto.getFont === 'function') font = WFProto.getFont(id);
+    if (!font && slug && typeof WFProto.getFontBySlug === 'function') font = WFProto.getFontBySlug(slug);
+    if (!font && (id || slug) && typeof WFProto.getCatalogList === 'function') {
+      var list = WFProto.getCatalogList() || [];
+      var slugLc = slug ? String(slug).toLowerCase().replace(/^wenfeng-/, '') : '';
+      for (var i = 0; i < list.length; i++) {
+        var f = list[i];
+        if (id && f && f.id === id) { font = f; break; }
+        if (slugLc) {
+          var fs = '';
+          if (typeof WFProto.fontSlug === 'function') fs = String(WFProto.fontSlug(f) || '').toLowerCase();
+          var fn = String((f && f.normalized) || '').toLowerCase();
+          if (fs === slugLc || fn === slugLc || fn === String(slug).toLowerCase()) { font = f; break; }
+        }
+      }
+    }
+    if (!font && id && typeof WFProto.getCatalog === 'function') {
+      try { font = WFProto.getCatalog(id); } catch (e) {}
+    }
+    return font || null;
+  }
+
+  function publicUrlForFont(font) {
+    if (!font || !global.WFProto) return null;
+    if (typeof WFProto.publicDetailUrl === 'function') return WFProto.publicDetailUrl(font);
+    if (typeof WFProto.publicDetailPath === 'function') return siteOrigin() + WFProto.publicDetailPath(font);
+    return null;
+  }
+
   function absolutizeStageHrefs(stage) {
     if (!stage || !stage.querySelectorAll) return function () {};
-    var base = document.baseURI || global.location.href;
+    var docBase = document.baseURI || global.location.href;
+    var origin = siteOrigin();
     var backups = [];
     var anchors = stage.querySelectorAll('a[href], a[data-nav]');
     for (var i = 0; i < anchors.length; i++) {
@@ -490,15 +566,36 @@
       if (!href) continue;
       var trimmed = String(href).trim();
       if (!trimmed) continue;
-      /* 已是绝对 / 片段 / 特殊协议则跳过 */
-      if (/^(https?:|mailto:|data:|#)/i.test(trimmed)) continue;
-      var abs;
-      try {
-        abs = new URL(trimmed, base).href;
-      } catch (e) {
-        continue;
+      /* mailto / data / 纯片段跳过 */
+      if (/^(mailto:|data:|#)/i.test(trimmed)) continue;
+      var detail = isDetailHref(trimmed);
+      /* 已是 https 的非详情链保持原样 */
+      if (/^https?:/i.test(trimmed) && !detail) continue;
+
+      var abs = null;
+      if (detail || !/^https?:/i.test(trimmed)) {
+        var font = resolveFontForAnchor(trimmed, a, docBase);
+        abs = publicUrlForFont(font);
+        if (!abs && detail) {
+          /* 解析失败：相对/本机 font-detail 仍落到正式域，不进 localhost */
+          try {
+            var parsed = new URL(trimmed, origin + '/');
+            var slugQ = parsed.searchParams && parsed.searchParams.get('slug');
+            if (slugQ && global.WFProto && typeof WFProto.publicDetailPath === 'function') {
+              abs = origin + WFProto.publicDetailPath({ normalized: slugQ, family: slugQ });
+            } else if (/\/fonts\//i.test(parsed.pathname || '')) {
+              abs = origin + parsed.pathname + (parsed.search || '');
+            } else {
+              abs = parsed.href;
+            }
+          } catch (e) {}
+        }
       }
-      if (abs === trimmed) continue;
+      if (!abs && !/^https?:/i.test(trimmed)) {
+        /* 最后手段：旧行为（相对 → document.baseURI） */
+        try { abs = new URL(trimmed, docBase).href; } catch (e) { continue; }
+      }
+      if (!abs || abs === trimmed) continue;
       backups.push({ el: a, href: href });
       a.setAttribute('href', abs);
     }

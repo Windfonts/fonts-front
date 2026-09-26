@@ -3039,7 +3039,7 @@
       ? '<span class="lfl-yong" data-face="' + esc(n.family) + '|' + weightOf(n) + '" style="' + face + '" aria-hidden="true">' + YONG + '</span>'
       : '';
     const nameInner = listed
-      ? '<a class="lfl-name" href="font-detail.html?id=' + encodeURIComponent(n.id) + '" data-nav>' + esc(n.name) + '</a>'
+      ? '<a class="lfl-name" href="' + WFChrome.href(WFProto.detailHref(n)) + '" data-nav>' + esc(n.name) + '</a>'
       : '<span class="lfl-name">' + esc(n.name) + '</span>';
     const badge = ghost ? '<span class="lfl-badge">未收录上游</span>' :
       (out ? '<span class="lfl-badge">上游</span>' : '');
@@ -3338,7 +3338,7 @@
         : '<span class="lfl-wall-yong" aria-hidden="true"></span>';
       html += '<button type="button" class="lfl-wall-card" data-id="' + esc(n.id) + '">' +
         yong +
-        '<a class="lfl-wall-name" href="font-detail.html?id=' + encodeURIComponent(n.id) + '" data-nav>' +
+        '<a class="lfl-wall-name" href="' + WFChrome.href(WFProto.detailHref(n)) + '" data-nav>' +
         esc(n.name) + '</a>' +
         '<div class="lfl-wall-meta"><span>' + esc(lic) + '</span><span>' + esc(who) + '</span></div>' +
         '</button>';
