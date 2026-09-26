@@ -152,8 +152,8 @@
 .detail-main > .panel { min-width: 0; background: transparent; border-radius: 0; box-shadow: none; border-top: 1px solid var(--rule); }
 .detail-main .panel-head { flex-wrap: wrap; padding: var(--s-12) 0 0; }
 .detail-main .panel-head + .panel-pad { padding: var(--s-5) 0 var(--s-12); }
-/* 乙：代码块与面板间距松一档；预算条仍保持 dac6798 的紧凑 fs-12。 */
-.detail-main #use .panel-head + .panel-pad { display: grid; gap: var(--s-5); }
+/* 乙：代码栈收紧纵向留白；预算条仍保持紧凑 fs-12。 */
+.detail-main #use .panel-head + .panel-pad { display: grid; gap: var(--s-3); }
 .detail-main .panel-head .input { height: 2rem; font-size: var(--fs-13); }
 .detail-main .panel .input, .detail-main .panel .chip, .detail-main .panel .seg, .detail-main .panel .tabs, .detail-main .panel .code,
 .detail-main .panel .btn:not(.btn-ink):not(.btn-text):not(.ink-design), .detail-main .use-note code { background: var(--fill); }
@@ -192,7 +192,7 @@
 .use-fallback .hint { color: var(--gray); font-weight: var(--fw-regular); }
 .use-fallback .hint.is-warn { color: var(--warn, #a65c00); }
 .use-fallback-source { display: contents; }
-.use-note { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-4); line-height: 1.7; }
+.use-note { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-2); line-height: var(--lh-snug); }
 .use-note code { background: var(--paper); padding: 0.05em 0.35em; border-radius: 6px; }
 .use-note a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }
 .use-note-fold { margin: 0; }
@@ -205,7 +205,7 @@
 .use-note-fold > summary .icon {
   flex: none; width: 1em; height: 1em; transition: transform 0.15s ease;
 }
-.use-note-fold[open] > summary { margin-bottom: var(--s-2); }
+.use-note-fold[open] > summary { margin-bottom: var(--s-1); }
 .use-note-fold[open] > summary .icon { transform: rotate(180deg); }
 .use-note-lead { margin: 0; line-height: var(--lh-snug); }
 .use-note-body { margin: 0; font-size: var(--fs-12); line-height: var(--lh-body); }
@@ -221,7 +221,7 @@
 .detail-main .panel .use-code-stack > .code {
   margin: 0;
   background: var(--paper);
-  padding: var(--s-5) var(--s-6);
+  padding: var(--s-3) var(--s-4);
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
 }
 .detail-main .panel .use-code-stack > .code pre {
@@ -233,8 +233,8 @@
 }
 .detail-main .panel .use-code-stack > .code .copy {
   position: absolute;
-  top: var(--s-4);
-  right: var(--s-4);
+  top: var(--s-2);
+  right: var(--s-2);
   font-size: var(--fs-11);
   color: var(--gray-2);
   padding: 0.1rem 0.45rem;
@@ -249,8 +249,8 @@
 }
 .use-budget-host {
   display: flex; align-items: center; justify-content: space-between;
-  gap: var(--s-4); flex-wrap: wrap; margin-top: 0;
-  padding: var(--s-2) var(--s-3); background: var(--fill);
+  gap: var(--s-2); flex-wrap: wrap; margin-top: 0;
+  padding: var(--s-2) var(--s-2); background: var(--fill);
   border-top: 1px solid var(--rule);
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
