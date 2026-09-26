@@ -827,6 +827,8 @@
   function lineageInviteHtml(font, split) {
     if (!font || !WFProto.isOpenFont(font)) return '';
     const L = (font && font.lineage) || {};
+    /* 委托/合作是品牌归属关系，不是开源师承源头——导语两套图勿混 */
+    if (L.relation === 'commissioned' || L.relation === 'collab') return '';
     const chain = [];
     if (split && split.root) chain.push(split.root);
     if (split && split.via) split.via.forEach(function (f) { chain.push(f); });
@@ -844,6 +846,7 @@
       bits.push('遵循原许可协议开源发布。');
       return '<p class="lin-invite">' + bits.join('') + '</p>';
     }
+    /* 开源师承源头（思源等）；品牌组织顶卡文案在谱系页 seriesSub，不走这里 */
     if (L.relation === 'original' || !L.upstreamName) {
       return '<p class="lin-invite">此为开源字体谱系源头。许可允许修改后以其他名称再分发，须保留许可声明。</p>';
     }

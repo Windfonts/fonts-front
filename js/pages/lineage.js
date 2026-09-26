@@ -1086,6 +1086,8 @@
     });
 
     const hub = makeBrandFamilyNode(rootFd, hubFonts);
+    /* 品牌根 ≠ 开源师承源头：说人话标明这是组织归属顶 */
+    hub.seriesSub = '品牌归属顶 · 旗下 ' + hub.seriesCount + ' 款';
     byId[hub.id] = hub;
     childrenMap[hub.id] = hubKids;
     parentOf[hub.id] = '';
@@ -1194,6 +1196,7 @@
       });
 
       const hub = makeBrandFamilyNode(b.topFd, hubFonts);
+      hub.seriesSub = '品牌归属顶 · 旗下 ' + hub.seriesCount + ' 款';
       /* hub.members 含全部叶子；children 为子品牌节点 + 直属字 */
       forest.byId[hub.id] = hub;
       forest.children[hub.id] = hubKids;
