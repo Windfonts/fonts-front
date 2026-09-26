@@ -510,8 +510,8 @@ a.foundry:hover .name { text-decoration: underline; text-underline-offset: 0.2em
   padding: var(--s-3) var(--s-4);
   border-bottom: 1px solid var(--rule);
   flex: 0 0 auto;
-  /* 标题栏与图面区分：浅底 */
-  background: var(--fill);
+  /* 与图面同色，只留底部分隔线 */
+  background: transparent;
 }
 .dialog-lineage-head h3 {
   margin: 0;
