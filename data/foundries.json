@@ -2398,12 +2398,13 @@
       "fontNames": [
         "械黑"
       ],
-      "kind": "studio",
+      "kind": "project",
       "description": "修复 IBM Plex Sans SC 简中字形并补齐字重的开源字体计划，发布械黑（Frex Sans）。",
       "descSource": {
         "site": "github.com/maoken-fonts/frex-sans",
         "fetched": "2026-09-25"
-      }
+      },
+      "parentId": "maoken"
     }
   ]
 }
