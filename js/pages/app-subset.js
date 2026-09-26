@@ -12,6 +12,8 @@
   let project = null;
   let queue = [];
   let st = { mode: 'text', text: '', preset: '3500', ranges: 'U+4E00-9FFF', weights: [], formats: ['woff2'] };
+  /** @type {Record<string, {cssBytes?: number, subset?: string}|null>} */
+  let liveEst = {};
 
   function pickable() {
     const cat = WFProto.getCatalogList();
@@ -78,6 +80,7 @@
       '<aside class="subset-side">' + sideHtml() + '</aside></div>';
 
     wire();
+    pullLiveEstimates();
   }
 
   function modeHtml() {
@@ -120,13 +123,46 @@
       }).join('') + '</div></div>' +
       suggestHtml() +
       '<button type="button" class="btn btn-ink btn-lg" id="btnAdd"' + (st.weights.length ? '' : ' disabled') + '>' + WFChrome.icon('plus') + '加入「' + esc(project ? project.name : '项目') + '」</button>' +
-      '<p class="t-12 muted">加入后生成新版本，嵌入代码不变。</p>';
+      '<p class="t-12 muted" id="liveEstNote">加入后生成新版本；常用档体积取现网预计算包（若有）。</p>';
   }
+
+  function packageKeyForMode() {
+    if (st.mode === 'common') {
+      if (st.preset === '3500' || /3500|常用/.test(String(st.preset))) return 'zh-common';
+      if (st.preset === '7000') return 'zh';
+      return 'zh-common';
+    }
+    if (st.mode === 'text') return null;
+    return 'full';
+  }
+
+  function pullLiveEstimates() {
+    if (!font || !WFApi.estimateFont) return Promise.resolve();
+    const id = font.normalizedName || font.en || font.family || font.id;
+    if (!id || String(font.id || '').indexOf('up-') === 0) {
+      liveEst = {};
+      return Promise.resolve();
+    }
+    const keys = ['full', 'zh-common', 'zh', 'en'];
+    return Promise.all(keys.map(function (k) {
+      return WFApi.estimateFont(id, k).then(function (d) { liveEst[k] = d; });
+    })).then(function () {
+      const note = document.getElementById('liveEstNote');
+      const pk = packageKeyForMode();
+      const hit = pk && liveEst[pk];
+      if (note && hit && hit.cssBytes) {
+        note.textContent = '现网 ' + pk + ' 档 CSS ≈ ' + WFEmbed.fmtBytes(hit.cssBytes) + '（分片另计）· 加入项目用此预计算档';
+      } else if (note) {
+        note.textContent = '加入后生成新版本；自制字以审核切包为准，库内字优先预计算档。';
+      }
+    });
+  }
+
 
   function suggestHtml() {
     const textBytes = WFApp.subsetBytes(font, { mode: 'text', text: st.text }, 1);
-    const c3500 = WFApp.subsetBytes(font, { mode: 'common', preset: '3500' }, 1);
-    const c7000 = WFApp.subsetBytes(font, { mode: 'common', preset: '7000' }, 1);
+    const c3500 = (liveEst['zh-common'] && liveEst['zh-common'].cssBytes) || WFApp.subsetBytes(font, { mode: 'common', preset: '3500' }, 1);
+    const c7000 = (liveEst['zh'] && liveEst['zh'].cssBytes) || WFApp.subsetBytes(font, { mode: 'common', preset: '7000' }, 1);
     const chars = WFApp.uniqueChars(st.text);
     const advice = !st.text.trim() ? '先贴文字或抽一个页面，再和常用字集体积比。'
       : (chars < 800 ? '这段文字不到 800 字，按文字比常用字集小。' : '文字很多，常用 3500 或 7000 更合适。');

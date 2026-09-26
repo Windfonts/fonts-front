@@ -754,7 +754,16 @@
     });
   }
 
-  function listTeam() {
+  /** 现网预计算包 CSS 体积（Content-Length 清单） */
+  function estimateFont(fontId, subset) {
+    const id = encodeURIComponent(String(fontId || '').trim());
+    const qs = subset ? ('?subset=' + encodeURIComponent(subset)) : '';
+    return request('/api/fonts/' + id + '/estimate' + qs).then(function (data) {
+      return data || null;
+    }).catch(function () { return null; });
+  }
+
+    function listTeam() {
     if (isMock()) {
       return ensureApp().then(function () {
         const s = WFApp.state();
@@ -976,6 +985,7 @@
     getUsage: getUsage,
     getUsageSeries: getUsageSeries,
     listBlocked: listBlocked,
+    estimateFont: estimateFont,
     listTeam: listTeam,
     inviteMember: inviteMember,
     setMemberRole: setMemberRole,
