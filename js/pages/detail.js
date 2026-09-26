@@ -220,7 +220,7 @@
     let what;
     if (status === 'platform' && name === '文派（广州）科技有限公司') {
       what = '<span class="entity-grade is-' + esc(status) + '">官方</span>' +
-        '<span class="entity-name">文派（广州）科技有限公司 提供平台及业务运营支持。</span>';
+        '<span class="entity-name">文派（广州）科技有限公司 提供字体平台及技术支持。</span>';
     } else {
       what = '<span class="entity-grade is-' + esc(status) + '">' + esc(label) + '</span>' +
         '<span class="entity-name">' + esc(name) + '</span>';
