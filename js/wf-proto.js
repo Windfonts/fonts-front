@@ -31,7 +31,7 @@
   const CDN = 'https://cn.windfonts.com';
   const SITE_ORIGIN = 'https://app.windfonts.com'; /* OSS 前端正式域 */
   const CSS_API = 'https://vault.windfonts.com'; /* Next 字体后端；过渡可临时改回 app */
-  const ANALYSIS_META_VER = '20260925b'; /* 边缘长缓存；升元数据时递增 */
+  const ANALYSIS_META_VER = '20260926hccq1'; /* 边缘长缓存；升元数据时递增；与 analysisMetaUrl 对齐 */
   /** 生产禁止；仅 staging 构建可改 true */
   const ALLOW_DEMO = false;
   const CDN_KEY = 'wf-cdn';
