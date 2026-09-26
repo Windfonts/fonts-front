@@ -208,7 +208,7 @@
 
   /* 商业主体：紧挨服务状态下，同款 who+what + 右侧合作联系。≠ 版权归属。
      关系档：运营（默认/买断，内部 platform）/ 签约（凡有时限，可附授权至）/ 合作（枚举保留）。≠ 服务状态配色。
-     仅默认文派 + 运营档附「（文风字体平台运营主体）」；合作方不得挂此注。 */
+     仅默认文派 + 运营档附「（文风平台官方）」；合作方不得挂此注。 */
   function proofCommercialLine(font) {
     const product = window.WFProducts ? WFProducts.productOf(font) : null;
     const ent = (WFProto.commercialEntity && WFProto.commercialEntity(font, product))
@@ -218,9 +218,9 @@
     const label = ent.label || '运营';
     let what = '<span class="entity-grade is-' + esc(status) + '">' + esc(label) + '</span>' +
       '<span class="entity-name">' + esc(name) + '</span>';
-    /* 运营档 + 默认文派：注明文风字体平台运营主体。签约/合作方公司不挂此注。 */
+    /* 运营档 + 默认文派：注明文风平台官方。签约/合作方公司不挂此注。 */
     if (status === 'platform' && name === '文派（广州）科技有限公司') {
-      what += '<span class="entity-note">（文风字体平台运营主体）</span>';
+      what += '<span class="entity-note">（文风平台官方）</span>';
     }
     /* 签约档：有 expiresAt 时附「授权至 YYYY-MM-DD」。合作档本波不挂期限文案。 */
     if (ent.expiresAt && status === 'signed') {
