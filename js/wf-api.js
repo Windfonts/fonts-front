@@ -637,7 +637,9 @@
       perf: projects.map(function (p) {
         const pf = p.usage.perf || {};
         return { projectId: p.id, name: p.name, fcpMs: pf.fcpMs || 0, fontLoadMs: pf.fontLoadMs || 0, hitRate: pf.hitRate || 0 };
-      })
+      }),
+      dimensions: { requests: true, bytes: true, byFont: true, status: true },
+      stub: false
     };
   }
 
@@ -670,7 +672,9 @@
       byDomain: [],
       status: { '200': 0, '304': 0, '403': 0 },
       groups: [],
-      perf: []
+      perf: [],
+      dimensions: { requests: true, bytes: false, byFont: false, status: false },
+      stub: true
     };
   }
 

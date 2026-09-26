@@ -160,10 +160,12 @@
     const planName = (s.plan && s.plan.name) || '专业';
 
     const dims = u.dimensions || {};
-    const bytesLive = dims.bytes !== false && !u.stub;
+    const bytesLive = dims.bytes === true && !u.stub;
+    const byFontLive = dims.byFont === true && !u.stub;
     const noteBits = [planName + '版'];
     if (bytesLive) noteBits.push('月流量配额 ' + quotaGB + ' GB · 超出按 ¥0.8 / GB');
     else noteBits.push('现仅统计请求次数（流量字节尚未采集）');
+    if (byFontLive) noteBits.push('按字体拆分已启用');
     noteBits.push('按 API Key 与项目白名单域名聚合');
     if (u.stub) noteBits.push('空壳');
     if (WFApi.isMock()) noteBits.push('mock');

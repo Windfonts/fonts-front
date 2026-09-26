@@ -328,9 +328,20 @@
   }
 
   function fontMeta(id) {
+    if (!id) return null;
     const cat = WFProto.getFont(id);
     if (cat) return cat;
-    const up = ((state && state.uploads) || []).filter(function (u) { return u.id === id; })[0];
+    /* 用量按 CSS family 聚合：短码 / normalized / wenfeng-* */
+    const raw = String(id);
+    const bySlug =
+      WFProto.getFontBySlug(raw) ||
+      WFProto.getFontBySlug(raw.replace(/^wenfeng-/, '')) ||
+      WFProto.getFontBySlug(raw.replace(/^windfonts-/, ''));
+    if (bySlug) return bySlug;
+    const key = raw.toLowerCase();
+    const up = ((state && state.uploads) || []).filter(function (u) {
+      return u.id === id || String(u.family || '').toLowerCase() === key;
+    })[0];
     if (!up) return null;
     return {
       id: up.id, name: up.name, family: up.family,
