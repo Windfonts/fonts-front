@@ -269,8 +269,17 @@ body.page-lineage > footer {
   font-size: var(--fs-14);
   font-weight: var(--fw-title);
   line-height: var(--lh-snug);
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+.lfl-cluster-title > span:first-child {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .lfl-cluster-count {
+  flex-shrink: 0;
   font-variant-numeric: tabular-nums;
   color: var(--gray);
   font-weight: var(--fw-body);
@@ -511,8 +520,17 @@ a.lfl-wall-name:hover { text-decoration: underline; }
   font-size: var(--fs-14);
   font-weight: var(--fw-title);
   line-height: var(--lh-snug);
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+.lfl-series-title > span:first-child {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .lfl-series-count {
+  flex-shrink: 0;
   font-variant-numeric: tabular-nums;
   color: var(--gray);
   font-weight: var(--fw-body);
@@ -542,8 +560,17 @@ a.lfl-wall-name:hover { text-decoration: underline; }
   font-size: var(--fs-14);
   font-weight: var(--fw-title);
   line-height: var(--lh-snug);
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+.lfl-plex-gate-title > span:first-child {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .lfl-plex-gate-count {
+  flex-shrink: 0;
   font-variant-numeric: tabular-nums;
   color: var(--gray);
   font-weight: var(--fw-body);
@@ -991,7 +1018,6 @@ html.lg-wide .lg-toolbar {
   z-index: 25;
   background: var(--paper);
   padding-block: var(--s-2);
-  border-bottom: 1px solid var(--rule);
 }
 html.lg-wide .lg-stage { padding-block: var(--s-2); }
 

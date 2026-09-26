@@ -283,6 +283,150 @@
     return inlineSvgPresentation(root);
   }
 
+  /**
+   * 从边 path 的 d（二次/三次 Bezier）取终点与切向，供导出箭头三角定位。
+   * 现网 edgePath 产出：M x,y C c1x,c1y c2x,c2y x2,y2
+   */
+  function parsePathTip(d) {
+    if (!d) return null;
+    var nums = String(d).match(/-?[\d.]+/g);
+    if (!nums || nums.length < 8) return null;
+    var x1 = +nums[0];
+    var y1 = +nums[1];
+    var c2x = +nums[4];
+    var c2y = +nums[5];
+    var x2 = +nums[6];
+    var y2 = +nums[7];
+    var dx = x2 - c2x;
+    var dy = y2 - c2y;
+    if (Math.abs(dx) < 1e-6 && Math.abs(dy) < 1e-6) {
+      dx = x2 - (+nums[2]);
+      dy = y2 - (+nums[3]);
+    }
+    if (Math.abs(dx) < 1e-6 && Math.abs(dy) < 1e-6) {
+      dx = x2 - x1;
+      dy = y2 - y1;
+    }
+    if (Math.abs(dx) < 1e-6 && Math.abs(dy) < 1e-6) {
+      dx = 1;
+      dy = 0;
+    }
+    return { x: x2, y: y2, dx: dx, dy: dy };
+  }
+
+  /**
+   * html-to-image 把画布放进外层 SVG 的 foreignObject；嵌套 <svg> 里
+   * marker-end="url(#lfl-arrow)" 在导出文件中常解析不到 defs。
+   * 捕获前把箭头换成自包含三角 path，捕获后还原 marker-end。
+   * soft 边本无 marker，跳过。
+   */
+  function replaceMarkersWithTriangles(root) {
+    var backups = [];
+    var added = [];
+    if (!root || !root.querySelector) return function () {};
+
+    var svg = null;
+    try { svg = root.querySelector('#edges, svg.lfl-edges'); } catch (e) {}
+    if (!svg) return function () {};
+
+    var fill = rootCssVar('--gray-2', '#8c8c8c');
+    var paths = svg.querySelectorAll('path[marker-end]');
+    var NS = 'http://www.w3.org/2000/svg';
+    /* markerWidth 7 / viewBox 10 → 0.7；与线上 marker 几何一致 */
+    var scale = 0.7;
+
+    for (var i = 0; i < paths.length; i++) {
+      var path = paths[i];
+      if (path.classList && path.classList.contains('is-soft')) continue;
+      var me = path.getAttribute('marker-end');
+      if (!me) continue;
+      var tip = parsePathTip(path.getAttribute('d'));
+      if (!tip) continue;
+
+      backups.push({ el: path, attr: 'marker-end', value: me, had: true });
+      path.removeAttribute('marker-end');
+
+      var deg = Math.atan2(tip.dy, tip.dx) * (180 / Math.PI);
+      var tri = document.createElementNS(NS, 'path');
+      tri.setAttribute('class', 'lfl-export-arrowhead lfl-arrow-head');
+      tri.setAttribute('d', 'M0,1.2 L9,5 L0,8.8 z');
+      tri.setAttribute(
+        'transform',
+        'translate(' + tip.x + ',' + tip.y + ') rotate(' + deg + ') scale(' + scale + ') translate(-9,-5)'
+      );
+      tri.setAttribute('fill', fill);
+      tri.setAttribute('stroke', 'none');
+      tri.setAttribute('style', 'fill: ' + fill + ';');
+
+      if (path.nextSibling) svg.insertBefore(tri, path.nextSibling);
+      else svg.appendChild(tri);
+      added.push(tri);
+    }
+
+    return function restore() {
+      for (var a = 0; a < added.length; a++) {
+        if (added[a].parentNode) added[a].parentNode.removeChild(added[a]);
+      }
+      for (var j = backups.length - 1; j >= 0; j--) {
+        var b = backups[j];
+        if (b.had) b.el.setAttribute(b.attr, b.value);
+        else b.el.removeAttribute(b.attr);
+      }
+    };
+  }
+
+  /**
+   * 捕获期临时样式：标题强制单行 + 稳定 CJK 系统栈，避免 SVG skipFonts
+   * 回落宽字重排导致「体」掉行叠字。不改动烘焙角标逻辑。
+   */
+  function injectCaptureStyles() {
+    var style = document.createElement('style');
+    style.setAttribute('data-lfl-export-capture', '1');
+    style.textContent = [
+      '.lfl-plex-gate-title,',
+      '.lfl-cluster-title,',
+      '.lfl-series-title {',
+      '  flex-wrap: nowrap !important;',
+      '  min-width: 0 !important;',
+      '}',
+      '.lfl-plex-gate-title > span:first-child,',
+      '.lfl-cluster-title > span:first-child,',
+      '.lfl-series-title > span:first-child {',
+      '  min-width: 0 !important;',
+      '  white-space: nowrap !important;',
+      '  overflow: hidden !important;',
+      '  text-overflow: ellipsis !important;',
+      '}',
+      '.lfl-plex-gate-count,',
+      '.lfl-cluster-count,',
+      '.lfl-series-count {',
+      '  flex-shrink: 0 !important;',
+      '}',
+      '.lfl-card,',
+      '.lfl-card .lfl-name,',
+      '.lfl-card .lfl-meta,',
+      '.lfl-plex-gate-title,',
+      '.lfl-cluster-title,',
+      '.lfl-series-title,',
+      '.lfl-plex-gate-sub,',
+      '.lfl-cluster-sub,',
+      '.lfl-series-sub,',
+      '.lfl-plex-gate-count,',
+      '.lfl-cluster-count,',
+      '.lfl-series-count,',
+      '.lfl-plex-gate-act,',
+      '.lfl-cluster-act,',
+      '.lfl-more-label {',
+      '  font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif !important;',
+      '  line-height: 1.25 !important;',
+      '}'
+    ].join('\n');
+    (document.head || document.documentElement).appendChild(style);
+    return function restore() {
+      if (style.parentNode) style.parentNode.removeChild(style);
+    };
+  }
+
   function downloadDataUrl(dataUrl, filename) {
     var a = document.createElement('a');
     a.href = dataUrl;
@@ -495,7 +639,15 @@
     }
     var api = getApi();
     var restoreSvg = inlineSvgPresentation(stage);
+    var restoreMarkers = replaceMarkersWithTriangles(stage);
+    var restoreCaptureCss = injectCaptureStyles();
     var restoreWatermark = function () {};
+    function restoreAll() {
+      try { restoreWatermark(); } catch (e) {}
+      try { restoreMarkers(); } catch (e) {}
+      try { restoreCaptureCss(); } catch (e) {}
+      try { restoreSvg(); } catch (e) {}
+    }
     try {
       var opts = captureOptions(stage, format);
       return bakeWatermarkDataUrl()
@@ -508,19 +660,16 @@
           return format === 'svg' ? api.toSvg(stage, opts) : api.toPng(stage, opts);
         })
         .then(function (dataUrl) {
-          restoreWatermark();
-          restoreSvg();
+          restoreAll();
           var ext = format === 'svg' ? 'svg' : 'png';
           downloadDataUrl(dataUrl, buildFilename(ctx.groupName, ctx.mode, ext));
           return dataUrl;
         }, function (err) {
-          restoreWatermark();
-          restoreSvg();
+          restoreAll();
           throw err;
         });
     } catch (err) {
-      restoreWatermark();
-      restoreSvg();
+      restoreAll();
       return Promise.reject(err);
     }
   }
@@ -532,6 +681,9 @@
     modeSlug: modeSlug,
     /* 测试/调试用 */
     inlineSvgPresentation: inlineSvgPresentation,
-    resolveSvgCssVars: resolveSvgCssVars
+    resolveSvgCssVars: resolveSvgCssVars,
+    replaceMarkersWithTriangles: replaceMarkersWithTriangles,
+    parsePathTip: parsePathTip,
+    injectCaptureStyles: injectCaptureStyles
   };
 })(typeof window !== 'undefined' ? window : this);
