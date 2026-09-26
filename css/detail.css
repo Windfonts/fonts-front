@@ -193,20 +193,59 @@
 .use-note { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-4); line-height: 1.7; }
 .use-note code { background: var(--paper); padding: 0.05em 0.35em; border-radius: 6px; }
 .use-note a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }
-/* 乙：代码与预算/补全合成一个灰底单元，预算条紧贴代码底部。 */
+.use-note-fold { margin: 0; }
+.use-note-fold > summary {
+  list-style: none; cursor: pointer; user-select: none;
+  display: inline-flex; align-items: center; gap: 0.3em;
+  color: var(--gray); font-size: var(--fs-12); font-weight: var(--fw-label);
+}
+.use-note-fold > summary::-webkit-details-marker { display: none; }
+.use-note-fold > summary .icon {
+  flex: none; width: 1em; height: 1em; transition: transform 0.15s ease;
+}
+.use-note-fold[open] > summary { margin-bottom: var(--s-2); }
+.use-note-fold[open] > summary .icon { transform: rotate(180deg); }
+.use-note-lead { margin: 0; line-height: var(--lh-snug); }
+.use-note-body { margin: 0; font-size: var(--fs-12); line-height: var(--lh-body); }
+/* 丙：纸色代码块与填充预算条分层，但仍贴合为一个代码栈。 */
 .use-code-stack {
   margin-top: var(--s-4);
   overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  background: transparent;
+}
+.detail-main .panel .use-code-stack > .code {
+  margin: 0;
+  background: var(--paper);
+  padding: var(--s-4) var(--s-5);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+.detail-main .panel .use-code-stack > .code pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: var(--fs-12);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.detail-main .panel .use-code-stack > .code .copy {
+  font-size: var(--fs-11);
+  color: var(--gray-2);
+  padding: 0.1rem 0.45rem;
+  background: transparent;
+  border: 1px solid var(--rule);
   border-radius: var(--radius-sm);
 }
-.use-code-stack > .code {
-  margin: 0;
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+.detail-main .panel .use-code-stack > .code .copy:hover {
+  color: var(--ink);
+  background: var(--surface);
+  border-color: var(--gray-2);
 }
 .use-budget-host {
   display: flex; align-items: center; justify-content: space-between;
   gap: var(--s-4); flex-wrap: wrap; margin-top: 0;
   padding: var(--s-3) var(--s-4); background: var(--fill);
+  border-top: 1px solid var(--rule);
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
 .use-budget-host > [data-budget-content] { flex: 1 1 18rem; min-width: 0; }
@@ -214,6 +253,13 @@
   display: flex; flex-direction: column; gap: 0.25rem;
   font-size: var(--fs-13); color: var(--ink); line-height: 1.55;
 }
+.use-code-stack .use-budget {
+  font-size: var(--fs-12); color: var(--ink-2); line-height: var(--lh-snug);
+}
+.use-code-stack .use-fallback {
+  font-size: var(--fs-12); color: var(--ink-2); line-height: var(--lh-snug);
+}
+.use-code-stack .use-fallback .hint { color: var(--gray); }
 .use-budget-host .use-fallback { margin: 0; }
 .use-fallback-options {
   display: flex; flex: 0 1 auto; flex-direction: column; align-items: flex-end;

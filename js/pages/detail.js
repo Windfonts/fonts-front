@@ -552,10 +552,10 @@
             })() +
             '</div>' +
             '<div id="embed"></div>' +
-            '<p class="use-note">体积按单字重估算；默认「常用」适合品牌短文案，正文站可选「中文」。只要页面里出现的字，用 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a>。' +
-              '谱系补全写 <code>fallback=</code>；简繁补全写 <code>localeFallback=auto</code>（二者同时开时优先谱系 <code>fallback</code>）。' +
-              '上方预算条为启发式；开补全后主款字节不变，补全只加缺口片。' +
-              '<code>font-family</code> 须写主款与补全款栈。</p></div>' +
+            '<p class="use-note use-note-lead">默认「常用」适合品牌短文案；正文站可选「中文」。按需子集见 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a>。</p>' +
+            '<details class="use-note-fold"><summary>' + WFChrome.icon('chevron-down') + '参数与补全说明</summary>' +
+              '<p class="use-note use-note-body">体积按单字重估算。谱系补全写 <code>fallback=</code>；简繁补全写 <code>localeFallback=auto</code>（二者同时开时优先谱系 <code>fallback</code>）。上方预算条为启发式；开补全后主款字节不变，补全只加缺口片。<code>font-family</code> 须写主款与补全款栈。</p>' +
+            '</details></div>' +
           '</section>' +
           (weights.length > 1
             ? '<section class="panel" id="weights"><div class="panel-head"><h2>' + WFChrome.icon('font') + '字重</h2></div>' +
