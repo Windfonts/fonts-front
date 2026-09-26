@@ -1,0 +1,143 @@
+/* 谱系模态外壳甲乙丙丁对照。只服务 lineage-modal-options.html；不动现网 .dialog-lineage。 */
+
+.page-lmo .lmo-wrap {
+  max-width: 56rem;
+  padding-top: var(--s-8);
+  padding-bottom: var(--s-12);
+}
+.page-lmo .lmo-wrap > h1 {
+  font-size: var(--fs-20);
+  font-weight: var(--fw-title);
+  margin: 0 0 var(--s-2);
+}
+.lmo-lead {
+  font-size: var(--fs-14);
+  color: var(--ink-2);
+  margin: 0 0 var(--s-3);
+  line-height: 1.55;
+}
+.lmo-nav {
+  font-size: var(--fs-13);
+  color: var(--gray);
+  margin: 0 0 var(--s-8);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.55rem;
+  align-items: center;
+}
+.lmo-nav a { color: var(--gray); }
+.lmo-nav a:hover { color: var(--ink); }
+
+.lmo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+}
+@media (max-width: 640px) {
+  .lmo-grid { grid-template-columns: 1fr; }
+}
+
+.lmo-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: var(--s-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.lmo-card-top {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+}
+.lmo-tag {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-title);
+  background: var(--ink);
+  color: var(--on-ink);
+  padding: 0.1rem 0.55rem;
+  border-radius: var(--radius-pill);
+  flex: none;
+}
+.lmo-card h2 {
+  margin: 0;
+  font-size: var(--fs-16);
+  font-weight: var(--fw-title);
+}
+.lmo-diff {
+  margin: 0;
+  font-size: var(--fs-13);
+  color: var(--gray);
+  line-height: 1.5;
+  flex: 1 1 auto;
+}
+.lmo-card .btn { align-self: flex-start; }
+
+/* —— 变体外壳：挂在 lab 打开的节点上，不覆盖现网默认 —— */
+
+/* 甲 · 现状：与现网一致，仅打标记，无额外覆盖 */
+.dialog-back-lineage.is-opt-a,
+.dialog.dialog-lineage.is-opt-a { /* baseline */ }
+
+/* 乙 · 铺满 */
+.dialog-back-lineage.is-opt-b {
+  padding: 0.75rem;
+}
+.dialog.dialog-lineage.is-opt-b {
+  width: min(96rem, calc(100% - 1.5rem));
+  height: calc(100dvh - 1.5rem);
+  max-height: none;
+}
+
+/* 丙 · 无标题：浮动关闭 */
+.dialog-back-lineage.is-opt-c {
+  padding: var(--s-3);
+}
+.dialog.dialog-lineage.is-opt-c {
+  width: min(80rem, 100%);
+  height: min(92vh, 56rem);
+  max-height: calc(100dvh - 1.5rem);
+  position: relative;
+}
+.dialog.dialog-lineage.is-opt-c .dialog-lineage-head {
+  display: none;
+}
+.dialog.dialog-lineage.is-opt-c .dialog-lineage-close-float {
+  position: absolute;
+  top: var(--s-3);
+  right: var(--s-3);
+  z-index: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--ink) 12%, transparent);
+  color: var(--ink-2);
+}
+.dialog.dialog-lineage.is-opt-c .dialog-lineage-close-float:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* 丁 · 轻遮罩圆角 */
+.dialog-back-lineage.is-opt-d {
+  padding: var(--s-5);
+  background: color-mix(in srgb, var(--ink) 18%, transparent);
+}
+html[data-theme="dark"] .dialog-back-lineage.is-opt-d {
+  background: color-mix(in srgb, #000 35%, transparent);
+}
+.dialog.dialog-lineage.is-opt-d {
+  width: min(72rem, 100%);
+  height: min(90vh, 52rem);
+  max-height: calc(100dvh - 2.5rem);
+  border-radius: 28px;
+  box-shadow:
+    0 24px 64px color-mix(in srgb, var(--ink) 18%, transparent),
+    0 2px 8px color-mix(in srgb, var(--ink) 6%, transparent);
+  overflow: hidden;
+}
+.dialog.dialog-lineage.is-opt-d .dialog-lineage-head {
+  padding: var(--s-4) var(--s-5);
+}

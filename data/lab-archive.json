@@ -177,6 +177,16 @@
           "note": "甲收紧已并进 lineage；乙沉浸细条仍对照"
         },
         {
+          "href": "lineage-modal-options.html",
+          "title": "谱系模态外壳甲乙丙丁",
+          "status": "active",
+          "note": "外壳尺寸/标题栏/遮罩圆角对照；点开加载真 embed；现网详情/厂商模态未改",
+          "assets": [
+            "css/lineage-modal-options.css",
+            "js/pages/lineage-modal-options.js"
+          ]
+        },
+        {
           "href": "detail-lineage-tree-options.html",
           "title": "谱系方案树",
           "status": "archive",
