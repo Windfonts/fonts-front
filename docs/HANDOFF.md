@@ -14,7 +14,7 @@
 
 **2026-09-26 同步/巡检：** `scripts/deploy-feicode-front.sh`（lab→feicode）；devops 十边 `windfonts-app-edge-probe` cron */5 → `windfonts_app_edge.prom`。
 
-**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33 @ `0f98293`）。`hk|en|jp` DNS+`/api/css` 与 `cn` 同边验收通过。控制台域名/子集/用量改走 `WFApi`。登录页站点 SSO：`sso.weixiaoduo.com` OAuth（vault PR #34）+ 会话 `ensure-key`（PR #35）。用量：公开 `/api/css` 与项目 `/p/` 写 `api_usage_delivery`（含 **403**）；`/api/usage*` 聚合字节/按字体/字重/200·304·403；`/api/usage/blocked` 列未授权来源；无明细时回退 `api_usage_daily`。选字袋登录后经 `/api/picks` 与 vault 双向同步。认领 `POST/GET /api/claims` 收单；管理员 `GET/PATCH /api/admin/claims` 审核 + vault `/admin/claims` 运营页；通过后写 `foundry-claim-status` 覆盖层（前台合并）并可经 `FOUNDRIES_JSON_PATH` 回写 `foundries.json`。
+**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33 @ `0f98293`）。`hk|en|jp` DNS+`/api/css` 与 `cn` 同边验收通过。控制台域名/子集/用量改走 `WFApi`。登录页站点 SSO：`sso.weixiaoduo.com` OAuth（vault PR #34）+ 会话 `ensure-key`（PR #35）。用量：公开 `/api/css` 与项目 `/p/` 写 `api_usage_delivery`（含 **403**）；`/api/usage*` 聚合字节/按字体/字重/200·304·403；`/api/usage/blocked` 列未授权来源；无明细时回退 `api_usage_daily`。选字袋登录后经 `/api/picks` 与 vault 双向同步。认领 `POST/GET /api/claims` 收单；管理员 `GET/PATCH /api/admin/claims` 审核 + vault `/admin/claims` 运营页；通过后写 `foundry-claim-status` 覆盖层（前台合并）并可经 `FOUNDRIES_JSON_PATH` 回写 `foundries.json`。收藏 `/api/favs`；上传队列 `/api/uploads*`（PR #46 @ `8c90a83`，现网 `25ade27`）init→PUT（`X-Upload-Token`）→complete→processing/ready，落盘 `data/console-uploads`；前台 `runUpload` 已带 `slot.headers`（`wf-api.js?v=20260926up1`）。下一棒：OSS 字形入库 / 审核 UI。
 
 **2026-09-25 登录收口：** 生产强制 vault NextAuth（`wf-auth`/`gate`）；`staging-app` 补 `/api` 反代；WFApi 生产默认 live。见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md) §12。
 
@@ -40,12 +40,12 @@
 
 | 模块 | 现状 | 下一步 |
 |---|---|---|
-| **控制台** | 生产须 vault 会话；`WFApi` 默认 live；projects/域名/子集加字 → vault；用量聚合请求+字节+按字体/字重/200·304·**403**；`/api/usage/blocked`；选字袋 `/api/picks`；认领收单 `/api/claims`。`?demo=1` **仅本机**。 | 上传 OSS 队列 |
-| **选字袋 / 收藏** | 本地 `wf-proto-picks` / `wf-favs` + 登录后 vault `/api/picks`·`/api/favs` 双向同步 | 上传 OSS 队列 |
+| **控制台** | 生产须 vault 会话；`WFApi` 默认 live；projects/域名/子集加字 → vault；用量聚合请求+字节+按字体/字重/200·304·**403**；`/api/usage/blocked`；选字袋 `/api/picks`；认领收单 `/api/claims`。`?demo=1` **仅本机**。 | 上传后 OSS 字形入库 |
+| **选字袋 / 收藏** | 本地 `wf-proto-picks` / `wf-favs` + 登录后 vault `/api/picks`·`/api/favs` 双向同步 | — |
 | **样张工坊** | 详情设计视图出图 | 模板与默认文案接设置；OG 图需后端固定 URL |
 | **厂商认领** | `claim.html` → `/api/claims`；vault `/admin/claims` 审核页；覆盖层 + 可选回写 `foundries.json` | 申请人进度通知（可选） |
 | **谱系** | 详情标题「谱系」；开源才露出上传；厂商页归属按源字/地区版/派生分段 | 勿补无把握关系；上传入口仅开源 |
-| **上传** | 前端解析演示 | 对象存储 + 审核队列 |
+| **上传** | vault `/api/uploads*` 收件落盘队列（init→PUT→complete→ready）；前台 `runUpload` 带上传令牌 | OSS 字形包入库管线 / 审核 UI |
 | **定价** | 三条产品线已落页；默认隐藏 | 商务定数字后再露 |
 
 双轨注意：只维护 `index` / `fonts` / `font-detail` / `foundry` / `docs` / `app/*` 主线；`v5-*`、`*-options.html`、`oss-audit.html` **不进生产入口，但必须保留**（对照 / 研究留档）。索引：`lab.html`，说明：[LAB.md](LAB.md)。

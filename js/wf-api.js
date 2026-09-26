@@ -483,9 +483,11 @@
     };
     return initUpload(body).then(function (init) {
       const puts = (init.uploadUrls || []).map(function (slot, i) {
-        return putUploadBinary(slot.url, files[i] && files[i]._blob);
+        return putUploadBinary(slot.url, files[i] && files[i]._blob, slot.headers || {});
       });
-      if (init.proofUrl && proof) puts.push(putUploadBinary(init.proofUrl, proof));
+      if (init.proofUrl && proof) {
+        puts.push(putUploadBinary(init.proofUrl, proof, init.proofHeaders || (init.uploadUrls[0] && init.uploadUrls[0].headers) || {}));
+      }
       return Promise.all(puts).then(function () {
         return completeUpload(init.id);
       }).then(function () {
