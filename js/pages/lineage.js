@@ -1,10 +1,10 @@
 /* 谱系页（现网 lineage.html）
    - 双视图：派生 (derive) vs 组织 (org / 品牌)；顶栏 seg 派生|品牌，只露一侧大族芯片
-   - 三模式（主栏）：聚焦 (plex) / 图 (flow) / 墙 (wall)；URL ?mode=；tree→branch
+   - 三模式（主栏）：聚焦 (plex) / 图谱 (flow) / 字墙 (wall)；URL ?mode=；tree→branch
    - 分支 (branch) 仅深链 ?mode=branch 可达；记忆里的 branch 回落为 flow
    - 激活/图：画布 + HTML 卡 + Bezier；ELK layered 算坐标（plex=DOWN，flow=RIGHT），手写 layout 兜底
-   - 墙：renderWall；支线 HTML 仍保留供深链
-   - 大族默认聚焦，小族默认图；localStorage wall 尊重；branch→flow */
+   - 字墙：renderWall；支线 HTML 仍保留供深链
+   - 大族默认聚焦，小族默认图谱；localStorage wall 尊重；branch→flow */
 (function () {
   const esc = WFProto.escapeHtml;
   const DEFAULT_GROUP = 'lxgw-wenkai';
@@ -3439,7 +3439,7 @@
     document.body.classList.toggle('is-canvas', isCanvasMode(mode));
     if (modeNav) {
       modeNav.querySelectorAll('.lg-mode').forEach(function (btn) {
-        /* 深链 branch：主栏无按钮，不强行点亮「图」 */
+        /* 深链 branch：主栏无按钮，不强行点亮「图谱」 */
         const on = btn.getAttribute('data-mode') === mode;
         btn.classList.toggle('is-on', on);
         btn.setAttribute('aria-selected', on ? 'true' : 'false');
@@ -3454,7 +3454,7 @@
       htmlStage.classList.toggle('is-off', isCanvasMode(mode));
       htmlStage.removeAttribute('hidden');
     }
-    /* 缩放工具仅「图」(flow) 可见；聚焦/墙隐藏，不占位 */
+    /* 缩放工具仅「图谱」(flow) 可见；聚焦/字墙隐藏，不占位 */
     const showZoom = mode === 'flow';
     if (flowTools) {
       flowTools.classList.toggle('is-hidden', !showZoom);
@@ -3853,9 +3853,9 @@
       ? { name: orgFd.name || orgFd.short || curGroup, upstreamName: gdBase.upstreamName || '' }
       : gdBase;
     const fan = maxSiblingFan(forest);
-    const modeLabel = curMode === 'wall' ? '墙'
+    const modeLabel = curMode === 'wall' ? '字墙'
       : (curMode === 'plex' ? '聚焦'
-        : (curMode === 'branch' ? '分支' : '图'));
+        : (curMode === 'branch' ? '分支' : '图谱'));
     const renderOpts = opts;
 
     const mainRoot = forest.roots.filter(function (r) { return !r.ghost && !r.outgroup && !r.isSeries; })[0];
