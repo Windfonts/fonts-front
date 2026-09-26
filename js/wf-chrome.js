@@ -886,7 +886,7 @@
       ? '<a href="' + esc(orgHref) + '" data-lineage-modal>查看品牌归属</a>'
       : '';
     return '<p class="lin-invite">此为「' + esc(who) +
-      '」品牌商用授权字体。可按权利人条款免费商用；不是开源改字源头，改字与再分发须遵守品牌授权。' +
+      '」品牌商用授权字体。可按权利人条款免费商用。' +
       link + '</p>';
   }
   function lineageInviteHtml(font, split) {
