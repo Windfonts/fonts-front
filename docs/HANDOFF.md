@@ -10,7 +10,11 @@
 
 **下一棒（按价值）：** ① OSS 公网放行后真绑桶（现已有 CyberCDN 过渡）；② windfonts.com 统一账号（薇晓朵 SSO 已通）。入库见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
 
-**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33 @ `0f98293`）。`hk|en|jp` DNS+`/api/css` 与 `cn` 同边验收通过。控制台域名/子集/用量改走 `WFApi`。登录页站点 SSO：`sso.weixiaoduo.com` OAuth（vault PR #34）+ 会话 `ensure-key`（PR #35）。用量：公开 `/api/css` 写 `api_usage_delivery`（天×域名×family×weight×status×请求/字节）；`/api/usage*` 聚合字节/按字体/字重/200·304（`dimensions.*`），无明细时回退 `api_usage_daily`。选字袋登录后经 `/api/picks` 与 vault 双向同步。认领 `POST/GET /api/claims` 收单；管理员 `GET/PATCH /api/admin/claims` 审核 + vault `/admin/claims` 运营页；通过后写 `foundry-claim-status` 覆盖层（前台合并）并可经 `FOUNDRIES_JSON_PATH` 回写 `foundries.json`。
+**2026-09-26 运维文档：** app CyberCDN 边缘漂移 SOP 见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md) §5.2；工作项目内容 [ops/WORK-2026-09-26-app-cdn-console.md](ops/WORK-2026-09-26-app-cdn-console.md)（含当日 `app` TLS unrecognized_name 恢复）。
+
+**2026-09-26 同步/巡检：** `scripts/deploy-feicode-front.sh`（lab→feicode）；devops 十边 `windfonts-app-edge-probe` cron */5 → `windfonts_app_edge.prom`。
+
+**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33 @ `0f98293`）。`hk|en|jp` DNS+`/api/css` 与 `cn` 同边验收通过。控制台域名/子集/用量改走 `WFApi`。登录页站点 SSO：`sso.weixiaoduo.com` OAuth（vault PR #34）+ 会话 `ensure-key`（PR #35）。用量：公开 `/api/css` 与项目 `/p/` 写 `api_usage_delivery`（含 **403**）；`/api/usage*` 聚合字节/按字体/字重/200·304·403；`/api/usage/blocked` 列未授权来源；无明细时回退 `api_usage_daily`。选字袋登录后经 `/api/picks` 与 vault 双向同步。认领 `POST/GET /api/claims` 收单；管理员 `GET/PATCH /api/admin/claims` 审核 + vault `/admin/claims` 运营页；通过后写 `foundry-claim-status` 覆盖层（前台合并）并可经 `FOUNDRIES_JSON_PATH` 回写 `foundries.json`。
 
 **2026-09-25 登录收口：** 生产强制 vault NextAuth（`wf-auth`/`gate`）；`staging-app` 补 `/api` 反代；WFApi 生产默认 live。见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md) §12。
 
@@ -36,7 +40,7 @@
 
 | 模块 | 现状 | 下一步 |
 |---|---|---|
-| **控制台** | 生产须 vault 会话；`WFApi` 默认 live；projects/域名/子集加字 → vault；用量聚合请求+字节+按字体/字重+200·304；选字袋 `/api/picks`；认领收单 `/api/claims`。`?demo=1` **仅本机**。 | 用量记 403（鉴权层） |
+| **控制台** | 生产须 vault 会话；`WFApi` 默认 live；projects/域名/子集加字 → vault；用量聚合请求+字节+按字体/字重/200·304·**403**；`/api/usage/blocked`；选字袋 `/api/picks`；认领收单 `/api/claims`。`?demo=1` **仅本机**。 | 收藏云端同步；上传 OSS 队列 |
 | **选字袋 / 收藏** | 本地 `wf-proto-picks` + 登录后 vault 同步；可导出 JSON；清空需确认 | 收藏（fav）云端同步可选 |
 | **样张工坊** | 详情设计视图出图 | 模板与默认文案接设置；OG 图需后端固定 URL |
 | **厂商认领** | `claim.html` → `/api/claims`；vault `/admin/claims` 审核页；覆盖层 + 可选回写 `foundries.json` | 申请人进度通知（可选） |
@@ -784,3 +788,11 @@ font-licenses 仓 vs 目录 455 款对拍：
 - **缺条目 276 款**：标准开源 255（OFL/GPL/Apache/IPA/CC 等——原文可从上游仓/GF 自动拉）；自定义「XX授权协议」19（方正×4/975圆体/Acy/Code2003/庞门真贵楷体/快去寫作業 等——须逐款找官方声明页或包内原文，拿不到的在详情页如实标待核对）。
 - **配套目标态**：455 款每款 = source.json（来源 URL/日期/版权行）+ LICENSE 原文文件 + license-info.json（verified 只在有原文时标 true）；与源件归档（fonts-packages-sources/<Norm>/，HANDOFF §35 后的 OSS 计划）同包——源件和授权原文一起上 OSS sources 前缀。
 - **执行批次**：①GF 托管 17 款（google/fonts 仓 OFL.txt 直拉）；②作者仓款按 batch-map assetUrl 拉 LICENSE；③MF/M+ 等基金会款官网原文；④自定义协议 19 款人工取证；⑤117 款 verified=false 的占位条目按①-④补齐后翻 true。
+
+## 39. 2026-09-26 授权原文补齐冲刺（批次①-⑤全执行，font-licenses 5 连推）
+
+feibisi「都去做吧」。font-licenses 覆盖 179 → **395 款条目**（verified=true 62 → **275**），原文文件 135 → 210+。
+
+- 批次① GF 托管 22 款（028de97）；批次② 作者仓 139 款批量（13f212c，norm→repo 同 dict 配对法）；批次③ 基金会/官方（RocknRoll/小赖×2/LINE Seed TW OFL 官方文本/IPAex/思源系 adobe LICENSE，2de86f8）；批次④ 狮尾家族 57 款（SweiSpring 原文覆盖全家族，020af39）；批次⑤ 霞鹜系 21 + 思源系 6（家族同 OFL，95ae9f7）；仓耳 22 款按官方声明 verified（629556e，声明 PDF 已存 Cexwz）。
+- **仍缺 61 款**：自定义协议 21（方正×4/975圆体/Acy/Code2003/香萃×5/花园明朝×2/叁慕/庞门真贵/快去寫作業/杨任东/文明宋/烟波宋/精品点阵——须逐款官方页人工取证）+ 标准开源 40（多日本独立作者款：演示系×6/秋水×2/秋空×2/文渊×3/余繁×4/美绩×2/香萃开源款×3 等——上游仓散、下轮继续）。
+- 授权条目数 456 目录 = 395 有条目 + 61 缺；license-info verified 口径=有原文或官方声明才标 true。
