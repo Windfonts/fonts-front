@@ -3199,8 +3199,9 @@
 
   /* brand|platform 芯片：按 ownerId 聚合（猫啃 forks 仍属思源组） */
   function isOwnerAggregatedGroup(g) {
+    /* 任意可解析厂商 id 均可按 owner 聚合成员；组织/派生只是同一份成员的两种视图 */
     const fd = foundryForGroupId(g);
-    return !!(fd && (fd.kind === 'brand' || fd.kind === 'platform'));
+    return !!fd;
   }
 
   function isCatalogGroup(g) {
