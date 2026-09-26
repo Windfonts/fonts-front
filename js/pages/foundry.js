@@ -807,7 +807,10 @@
       Object.keys(_ld.groups || {}).forEach(function (gr) {
         var members = g.fonts.filter(function (f) { return (f.lineage || {}).group === gr; });
         if (!members.length) return;
-        var rootOwner = members.map(function (f) { return (f.lineage || {}).upstreamOwnerId; }).find(Boolean);
+        var rootOwner = members.map(function (f) {
+          var lo = f.lineage || {};
+          return (lo.upstreamOwnerInfo && lo.upstreamOwnerInfo.id) || lo.upstreamOwnerId || null;
+        }).find(Boolean);
         if (rootOwner === _gid && members.length > ownedN) { ownedGroup = gr; ownedN = members.length; }
       });
     }
