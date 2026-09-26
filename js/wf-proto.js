@@ -1157,22 +1157,69 @@
 
   /**
    * 商业主体：货架运营/商业化主体，≠ 版权归属（rights_holder / 谁拥有字型）。
-   * 默认文派（广州）科技有限公司；font 或 product 上 commercialEntity / commercialEntity.name
-   * 有值时覆盖（厂商合伙商业化）；空则回落常量。不必全库填，默认即够。
+   * 关系档按「授权时长形态」分三档（≠ 服务状态 正常/受限）：
+   *   platform 平台 — 默认文派，或文派采买/买断（无授权时长问题）；只显示主体，不强调到期。
+   *   signed 签约 — 有固定授权期限的合同；可附 expiresAt →「授权至 YYYY-MM-DD」。
+   *   partner 合作 — 约期内的长期/滚动续约框架；若仍有截止日可附「至 YYYY-MM-DD」。
+   * 默认平台 + 文派（广州）科技有限公司。字段：
+   *   font|product.commercialEntity = string | { name, status, expiresAt? }
+   *   font|product.commercialEntityStatus = platform|signed|partner
+   *   font|product.commercialEntityExpiresAt = YYYY-MM-DD（可选；平台档忽略）
+   * 不必全库填；空则回落默认。
    */
   var DEFAULT_COMMERCIAL_ENTITY = '文派（广州）科技有限公司';
-  function commercialEntityName(font, product) {
-    function from(v) {
-      if (v == null || v === '') return '';
-      if (typeof v === 'string') return String(v).trim();
-      if (typeof v === 'object' && v.name != null && v.name !== '') return String(v.name).trim();
-      return '';
+  var COMMERCIAL_ENTITY_STATUS_LABEL = {
+    platform: '平台',
+    signed: '签约',
+    partner: '合作'
+  };
+  function normalizeCommercialEntityStatus(raw) {
+    var s = String(raw == null ? '' : raw).trim().toLowerCase();
+    if (s === 'platform' || s === '平台') return 'platform';
+    if (s === 'signed' || s === '签约') return 'signed';
+    if (s === 'partner' || s === '合作') return 'partner';
+    return '';
+  }
+  function normalizeCommercialEntityExpiresAt(raw) {
+    var s = String(raw == null ? '' : raw).trim();
+    if (!s) return '';
+    var m = s.match(/^(\d{4}-\d{2}-\d{2})/);
+    return m ? m[1] : '';
+  }
+  function commercialEntity(font, product) {
+    function pick(src) {
+      var name = '';
+      var status = '';
+      var expiresAt = '';
+      if (!src) return { name: name, status: status, expiresAt: expiresAt };
+      var ce = src.commercialEntity;
+      if (typeof ce === 'string' && ce.trim()) {
+        name = ce.trim();
+      } else if (ce && typeof ce === 'object') {
+        if (ce.name != null && ce.name !== '') name = String(ce.name).trim();
+        status = normalizeCommercialEntityStatus(ce.status);
+        expiresAt = normalizeCommercialEntityExpiresAt(ce.expiresAt);
+      }
+      if (!status) status = normalizeCommercialEntityStatus(src.commercialEntityStatus);
+      if (!expiresAt) expiresAt = normalizeCommercialEntityExpiresAt(src.commercialEntityExpiresAt);
+      return { name: name, status: status, expiresAt: expiresAt };
     }
-    var hit = from(font && font.commercialEntity);
-    if (hit) return hit;
-    hit = from(product && product.commercialEntity);
-    if (hit) return hit;
-    return DEFAULT_COMMERCIAL_ENTITY;
+    var a = pick(font);
+    var b = pick(product);
+    var name = a.name || b.name || DEFAULT_COMMERCIAL_ENTITY;
+    var status = a.status || b.status || 'platform';
+    var expiresAt = a.expiresAt || b.expiresAt || '';
+    /* 平台档：买断/默认文派，不挂到期日。 */
+    if (status === 'platform') expiresAt = '';
+    return {
+      name: name,
+      status: status,
+      label: COMMERCIAL_ENTITY_STATUS_LABEL[status] || COMMERCIAL_ENTITY_STATUS_LABEL.platform,
+      expiresAt: expiresAt
+    };
+  }
+  function commercialEntityName(font, product) {
+    return commercialEntity(font, product).name;
   }
 
 
@@ -1378,6 +1425,7 @@
     forbidsOpenDerive: forbidsOpenDerive,
     forbidsFontRedistrib: forbidsFontRedistrib,
     serviceStatus: serviceStatus,
+    commercialEntity: commercialEntity,
     commercialEntityName: commercialEntityName,
     citeAllowed: citeAllowed,
     slugify: slugify,

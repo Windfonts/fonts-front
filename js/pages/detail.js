@@ -206,14 +206,22 @@
   }
 
 
-  /* 商业主体：紧挨服务状态下，同款 who+what，无强制右侧链。≠ 版权归属。 */
+  /* 商业主体：紧挨服务状态下，同款 who+what，无强制右侧链。≠ 版权归属。
+     关系档按授权时长：平台（不挂到期）/ 签约（授权至）/ 合作（可至）。≠ 服务状态配色。 */
   function proofCommercialLine(font) {
     const product = window.WFProducts ? WFProducts.productOf(font) : null;
-    const name = (WFProto.commercialEntityName && WFProto.commercialEntityName(font, product))
-      || '文派（广州）科技有限公司';
+    const ent = (WFProto.commercialEntity && WFProto.commercialEntity(font, product))
+      || { name: '文派（广州）科技有限公司', status: 'platform', label: '平台', expiresAt: '' };
+    let what = '<span class="entity-grade is-' + esc(ent.status || 'platform') + '">' + esc(ent.label || '平台') + '</span>' +
+      '<span class="entity-name">' + esc(ent.name || '文派（广州）科技有限公司') + '</span>';
+    if (ent.expiresAt && ent.status === 'signed') {
+      what += '<span class="entity-exp">授权至 ' + esc(ent.expiresAt) + '</span>';
+    } else if (ent.expiresAt && ent.status === 'partner') {
+      what += '<span class="entity-exp">至 ' + esc(ent.expiresAt) + '</span>';
+    }
     return '<div class="lp5-node lp5-meta entity-row"><span class="icon">' + WFChrome.icon('idcard') + '</span>' +
       '<div class="head"><span class="who">商业主体</span>' +
-      '<span class="what">' + esc(name) + '</span></div></div>';
+      '<span class="what">' + what + '</span></div></div>';
   }
 
   /* 版权归属：与服务状态同款行；排在商业主体之后、出处链之前。≠ 商业主体。 */

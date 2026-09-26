@@ -514,6 +514,30 @@
   color: var(--gray-2);
 }
 
+/* 商业主体关系档：平台 / 签约 / 合作（≠ 服务状态 正常/受限 配色） */
+.lp5-node.lp5-meta.entity-row .what {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+}
+.lp5-node.lp5-meta.entity-row .entity-grade {
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+  color: var(--ink);
+}
+.lp5-node.lp5-meta.entity-row .entity-name {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+}
+.lp5-node.lp5-meta.entity-row .entity-exp {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+}
+
 /* ===== 出处与依据 · 厂商信誉行（首行结论，结构对齐下方 meta）===== */
 .license-fold .trust-block { padding: var(--s-6) 0 var(--s-5); border-bottom: 1px solid var(--rule); margin-bottom: var(--s-5); }
 .trust-row .what {

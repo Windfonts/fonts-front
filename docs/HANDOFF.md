@@ -823,3 +823,5 @@ feibisi 问「授权文件都有了没，后面挂 wenfeng.org 溯源」——�
 
 详情页出处与依据：服务状态下新增 **商业主体** 行（who+what，无强制右链）。默认「文派（广州）科技有限公司」；可选 `font.commercialEntity` / `commercialEntity.name` 或同名字段挂在 product 上覆盖（厂商合伙商业化）。**≠ 版权归属 / rights_holder**。助手 `WFProto.commercialEntityName`；渲染 `detail.js` `proofCommercialLine`。不必全库填 override。
 
+关系档按授权时长（≠ 服务状态 正常/受限）：`platform` 平台（默认文派/采买买断，不挂到期）｜`signed` 签约（固定期限，可附 `expiresAt`→授权至）｜`partner` 合作（长期/滚动续约，可附至截止日）。字段 `commercialEntity.{name,status,expiresAt?}` 或 `commercialEntityStatus` / `commercialEntityExpiresAt`；默认平台+文派；UI `entity-grade` + 公司名；助手 `WFProto.commercialEntity`。
+
