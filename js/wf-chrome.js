@@ -899,10 +899,6 @@
   function brandLineageInviteHtml(font) {
     if (!isBrandCommercialRoot(font)) return '';
     const who = brandInviteWho(font) || '品牌方';
-    if (isCiteClosedFont(font)) {
-      return '<p class="lin-invite">此为「' + esc(who) +
-        '」品牌商用授权字体。可按权利人条款免费商用；禁止托管与 CDN 再分发。</p>';
-    }
     return '<p class="lin-invite">此为「' + esc(who) +
       '」品牌商用授权字体。可按权利人条款免费商用。</p>';
   }
