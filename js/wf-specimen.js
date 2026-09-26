@@ -587,12 +587,22 @@
       else if (pct >= 95) suffix = '缺 <button type="button" class="chip-miss" data-filter="miss">' + miss + '</button> 字';
       else suffix = '覆盖 ' + pct + '%';
       const label = '常用字';
-      const extraBtn = st.charset === 'c3500'
+      const qzLink = st.charset === 'c3500'
         ? ''
-        : ' · <button type="button" class="glyph-qz-link">通篇预览</button>';
+        : '<button type="button" class="glyph-qz-link">通篇预览</button>';
+      const filterCtl = skipCov ? '' :
+        '<span class="glyph-filter" role="group" aria-label="筛选">' +
+          '<button type="button" data-f="all">全部</button>' +
+          '<button type="button" data-f="hit">已收录</button>' +
+          '<button type="button" data-f="miss">缺字</button></span>';
+      const summaryActions = (qzLink || filterCtl)
+        ? '<span class="glyph-summary-actions">' +
+            (qzLink ? qzLink : '') + filterCtl +
+          '</span>'
+        : '';
       summaryEl.innerHTML =
         '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' ' + label + '已收录 · ' + suffix +
-          extraBtn + '</p>' +
+          summaryActions + '</p>' +
         '<p class="glyph-legend">虚线框表示字体里没有这个字。' +
           (st.charset === 'c3500' ? '字表为 GB2312 一级按码位截取的 3500 字，逐 unicode-range 核对。' : '') +
         '</p>';
@@ -605,7 +615,7 @@
       toolsEl.querySelectorAll('[data-sc]').forEach(function (b) {
         b.classList.toggle('is-on', b.getAttribute('data-sc') === st.variant);
       });
-      toolsEl.querySelectorAll('[data-f]').forEach(function (b) {
+      summaryEl.querySelectorAll('[data-f]').forEach(function (b) {
         b.classList.toggle('is-on', b.getAttribute('data-f') === st.filter);
       });
       const qzOnly = toolsEl.querySelector('[data-qz-only]');
@@ -712,12 +722,7 @@
         '<button type="button" data-cs="c3500">常用字</button></div>' +
       '<div class="seg-glyph" role="group" aria-label="写法" data-qz-only>' +
         '<button type="button" data-sc="hans">简</button>' +
-        '<button type="button" data-sc="hant">繁</button></div>' +
-      (skipCov ? '' :
-        '<div class="seg-glyph" role="group" aria-label="筛选">' +
-          '<button type="button" data-f="all">全部</button>' +
-          '<button type="button" data-f="hit">已收录</button>' +
-          '<button type="button" data-f="miss">缺字</button></div>');
+        '<button type="button" data-sc="hant">繁</button></div>';
     toolsEl.addEventListener('click', function (e) {
       const btn = e.target.closest ? e.target.closest('button') : null;
       if (!btn) return;
@@ -742,10 +747,14 @@
         renderBlocks(); renderSummary(); syncTools();
         return;
       }
-      const f = btn.getAttribute('data-f');
-      if (f) { st.filter = f; renderBlocks(); syncTools(); }
     });
     summaryEl.addEventListener('click', function (e) {
+      const filter = e.target.closest ? e.target.closest('[data-f]') : null;
+      if (filter) {
+        st.filter = filter.getAttribute('data-f');
+        renderBlocks(); syncTools();
+        return;
+      }
       const chip = e.target.closest ? e.target.closest('.chip-miss') : null;
       if (chip) {
         st.filter = 'miss';
