@@ -835,3 +835,5 @@ feibisi 问「授权文件都有了没，后面挂 wenfeng.org 溯源」——�
 - **上批遗留 16 款 info 重写**：原文头逐款比对（寒蝉/Potta/得意黑/龙藏/IBM Plex/思源系/IPA 系），verified 置真。
 - **终态**：460 款、开源商用 372、未核实仅 **14**：声明待取 2（寒蝉矩阵体/矩黑）+ 两证矛盾待拍板 2（mplus_hzk12 仓 Unlicense vs 猫啃页 OFL；汉字拼音体仓 Apache vs README CC-BY-SA）+ 台湾跳过 6（汲古×3/一点明体=ButTaiwan 拍板、刻石录×2 同簇）+ 教育部×2（CC BY-ND 3.0 TW/宋体UN）+ Xczz 疑似与 Xcws 重复待拍板 + Xsslv（CC BY 4.0 无上游文本）。其余 74 款无原文=自定义协议款（随包声明/平台出品声明，授权原文须向厂商索取）。
 - **管线坑**：export-fonts 429=匿名配额 1000/天按来源 IP 计，ssh 隧道出口全记 127.0.0.1 也烧配额；解法=容器内打自己 eth0 IP（172.17.0.4 新身份）。vault 临时脚本放 /app/scripts（放 /app 根会算错 ROOT 路径）。
+
+- **§43 拍板收口（feibisi 09-26 晚）**：mplus_hzk12 按 OFL（猫啃官方页口径，canonical 全文归档，仓 Unlicense 记录在案）、汉字拼音体按 Apache-2.0（随仓 LICENSE 口径），两证矛盾关闭 verified 置真（font-licenses 1aad0d0）；香萃自在 Xczz 已开 :16016 详情页与 Xcws 对照待 feibisi 亲核（疑点：charCount=0 从未上 OSS）；寒蝉矩阵体/矩黑=商用款已安排下架（feibisi，不在导出修正范围，下架执行另有人跟）。导出经 devops VM 公网 API 完成（462 款，新入 2 款并行会话上架）。
