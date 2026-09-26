@@ -1,31 +1,5 @@
 {
-  "source": "https://app.windfonts.com/api/fonts",
-  "generatedAt": "2026-09-23T12:12:45.308Z",
-  "count": 341,
-  "chillMergeAt": "2026-09-23T10:29:13.041390Z",
-  "chillUpdated": [
-    "wenfeng-hcdhs",
-    "wenfeng-hcdht",
-    "wenfeng-hcdin",
-    "wenfeng-hcdzt",
-    "wenfeng-hchfs",
-    "wenfeng-hcjss",
-    "wenfeng-hcjz",
-    "wenfeng-hckht",
-    "wenfeng-hckt",
-    "wenfeng-hclck2",
-    "wenfeng-hclcks",
-    "wenfeng-hcrym",
-    "wenfeng-hcszt",
-    "wenfeng-hcth",
-    "wenfeng-hctyt",
-    "wenfeng-hcydk",
-    "wenfeng-hcyht",
-    "wenfeng-hcymh",
-    "wenfeng-hczk"
-  ],
-  "chillInserted": [
-    "wenfeng-hcwjt"
-  ],
-  "lineageStubsAt": "2026-09-23T12:12:45.308Z"
+ "source": "http://172.17.0.4:4000/api/fonts",
+ "generatedAt": "2026-09-26T09:48:26.503Z",
+ "count": 460
 }
