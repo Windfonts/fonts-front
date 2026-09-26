@@ -362,6 +362,12 @@
     const pathName = WFProto.weightName(family, weight || '400');
     const key = family + '|' + pathName;
     if (cssRangeCache[key]) return cssRangeCache[key];
+    /* Cite-closed archive previews have no CDN/package coverage endpoint;
+       keep the character table local and let canvas/font loading decide glyph ink. */
+    if (WFProto.citeClosedFamily && WFProto.citeClosedFamily(family)) {
+      cssRangeCache[key] = Promise.resolve(null);
+      return cssRangeCache[key];
+    }
     cssRangeCache[key] = fetch(WFProto.packageResultUrl(family, pathName, 'full'))
       .then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.text(); })
       .then(parseUnicodeRanges)

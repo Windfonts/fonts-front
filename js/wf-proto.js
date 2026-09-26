@@ -731,7 +731,7 @@
   function loadPreviewFaces() {
     if (previewFacesMap) return Promise.resolve(previewFacesMap);
     if (previewFacesPromise) return previewFacesPromise;
-    previewFacesPromise = fetch(dataUrl('preview-faces.json?v=20260926a'))
+    previewFacesPromise = fetch(dataUrl('preview-faces.json?v=20260926b'))
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (j) {
         previewFacesMap = (j && j.faces && typeof j.faces === 'object') ? j.faces : {};
@@ -742,6 +742,10 @@
         return previewFacesMap;
       });
     return previewFacesPromise;
+  }
+  function citeClosedFamily(family) {
+    const font = catalog.filter(function (f) { return f.family === family; })[0];
+    return !!(font && Array.isArray(font.tags) && font.tags.indexOf('cite-closed') !== -1);
   }
   function previewAssetHref(rel) {
     const path = String(rel || '').replace(/^\/+/, '');
@@ -782,7 +786,11 @@
     }
     if (!entry || typeof entry !== 'object') return null;
     const wkey = String(pathName || 'regular').toLowerCase().replace(/[\s-]+/g, '');
-    const hit = entry[wkey] || entry.regular || entry['400'] || null;
+    /* Preview face keys follow weightName (light/regular/bold); retain CSS aliases
+       too so named and numeric callers both select the matching local face. */
+    const cssAlias = { '100': 'thin', '200': 'extralight', '300': 'light', '350': 'demilight',
+      '400': 'regular', '500': 'medium', '600': 'semibold', '700': 'bold', '800': 'extrabold', '900': 'black' };
+    const hit = entry[wkey] || entry[cssAlias[wkey]] || entry.regular || entry['400'] || null;
     if (!hit || !hit.url) return null;
     return hit;
   }
@@ -860,27 +868,34 @@
         });
       });
     }
-    injectedCss[key] = fetchCss(pkgUrl).catch(function () {
-      return fetchCss(apiUrl);
-    }).catch(function () {
-      return fetchCss(staticUrl);
-    }).then(function (res) {
-      inject(res.css, res.base);
-    }).catch(function () {
-      return injectPreviewFace(family, pathName, w).then(function (ok) {
-        if (ok) return;
-        return new Promise(function (resolve) {
-          const link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.href = apiUrl;
-          link.setAttribute('data-wf-family', family);
-          link.setAttribute('data-wf-weight-name', pathName);
-          link.onload = function () { noteApi(); resolve(); };
-          link.onerror = function () { resolve(); };
-          document.head.appendChild(link);
+    const remoteCss = function () {
+      return fetchCss(pkgUrl).catch(function () {
+        return fetchCss(apiUrl);
+      }).catch(function () {
+        return fetchCss(staticUrl);
+      }).then(function (res) {
+        inject(res.css, res.base);
+      }).catch(function () {
+        return injectPreviewFace(family, pathName, w).then(function (ok) {
+          if (ok) return;
+          return new Promise(function (resolve) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = apiUrl;
+            link.setAttribute('data-wf-family', family);
+            link.setAttribute('data-wf-weight-name', pathName);
+            link.onload = function () { noteApi(); resolve(); };
+            link.onerror = function () { resolve(); };
+            document.head.appendChild(link);
+          });
         });
       });
-    });
+    };
+    /* Cite-closed faces are local shelf previews only: do not probe CDN,
+       fonts-packages, or /api/css before loading the same-origin archive face. */
+    injectedCss[key] = citeClosedFamily(family)
+      ? injectPreviewFace(family, pathName, w)
+      : remoteCss();
     return injectedCss[key];
   }
 
@@ -1522,6 +1537,7 @@
     commercialEntity: commercialEntity,
     commercialEntityName: commercialEntityName,
     citeAllowed: citeAllowed,
+    citeClosedFamily: citeClosedFamily,
     slugify: slugify,
     getFont: function (id) { return getById(id); },
     getFontBySlug: getBySlug,

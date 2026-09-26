@@ -9,10 +9,20 @@
       }
     },
     "wenfeng-jlyhmht": {
+      "light": {
+        "url": "assets/fonts/preview/Jlyhmht-Light.woff2",
+        "format": "woff2",
+        "cssWeight": "300"
+      },
       "regular": {
-        "url": "assets/fonts/preview/Jlyhmht-Regular.woff",
-        "format": "woff",
+        "url": "assets/fonts/preview/Jlyhmht-Regular.woff2",
+        "format": "woff2",
         "cssWeight": "400"
+      },
+      "bold": {
+        "url": "assets/fonts/preview/Jlyhmht-Bold.woff2",
+        "format": "woff2",
+        "cssWeight": "700"
       }
     }
   },
