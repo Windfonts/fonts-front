@@ -1157,15 +1157,15 @@
 
   /**
    * 商业主体：货架运营/商业化主体，≠ 版权归属（rights_holder / 谁拥有字型）。
-   * 关系档按「授权时长形态」分三档（≠ 服务状态 正常/受限）：
-   *   platform 平台 — 默认文派，或文派采买/买断（无授权时长问题）；只显示主体，不强调到期。
-   *   signed 签约 — 有固定授权期限的合同；可附 expiresAt →「授权至 YYYY-MM-DD」。
-   *   partner 合作 — 约期内的长期/滚动续约框架；若仍有截止日可附「至 YYYY-MM-DD」。
+   * 关系档按「授权时长形态」（≠ 服务状态 正常/受限）：
+   *   platform 平台 — 默认文派，或文派采买/买断（无期限）；只显示主体，不挂到期。
+   *   signed 签约 — 凡有时限的授权一律签约；可附 expiresAt →「授权至 YYYY-MM-DD」。
+   *   partner 合作 — 字段/枚举保留供后续；本波不对期限授权自动落合作（期限=签约）。
    * 默认平台 + 文派（广州）科技有限公司。字段：
    *   font|product.commercialEntity = string | { name, status, expiresAt? }
    *   font|product.commercialEntityStatus = platform|signed|partner
    *   font|product.commercialEntityExpiresAt = YYYY-MM-DD（可选；平台档忽略）
-   * 不必全库填；空则回落默认。
+   * 不必全库填；空则回落默认。仅有 expiresAt、未显式 status → 签约。
    */
   var DEFAULT_COMMERCIAL_ENTITY = '文派（广州）科技有限公司';
   var COMMERCIAL_ENTITY_STATUS_LABEL = {
@@ -1207,8 +1207,10 @@
     var a = pick(font);
     var b = pick(product);
     var name = a.name || b.name || DEFAULT_COMMERCIAL_ENTITY;
-    var status = a.status || b.status || 'platform';
+    var status = a.status || b.status || '';
     var expiresAt = a.expiresAt || b.expiresAt || '';
+    /* 有时限且未显式档位 → 签约（本波不对期限授权自动落合作）。 */
+    if (!status) status = expiresAt ? 'signed' : 'platform';
     /* 平台档：买断/默认文派，不挂到期日。 */
     if (status === 'platform') expiresAt = '';
     return {
