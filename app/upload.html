@@ -53,8 +53,8 @@
   <script src="../js/wf-chrome.js?v=20260926nolink"></script>
   <script src="../js/wf-auth.js?v=20260926sso2"></script>
   <script src="../js/wf-embed.js?v=20260924q"></script>
-  <script src="../js/wf-app.js?v=20260926sso2"></script>
-  <script src="../js/wf-api.js?v=20260926up2"></script>
+  <script src="../js/wf-app.js?v=20260926up3"></script>
+  <script src="../js/wf-api.js?v=20260926up3"></script>
   <script>
     (function () {
       if (!WFApp.gate()) return;
@@ -263,6 +263,7 @@
           projectId: projectId,
           glyphCount: glyphs || Math.round(picks[0].file.size / 320)
         }).then(function (row) {
+          if (row && row.id && WFApp.rememberUpload) WFApp.rememberUpload(row);
           const project = projectId ? WFApp.project(projectId) : null;
           if (project && row && row.id) {
             const cssWeights = weights.map(function (w) {

@@ -682,13 +682,34 @@
     const fonts = (p.fonts || []).map(function (f) {
       const meta = fontMeta(f.fontId) || {};
       const family = String(meta.family || '').toLowerCase() || ('wenfeng-' + String(f.fontId || '').toLowerCase());
+      const isUpload =
+        !!meta.custom ||
+        String(f.fontId || '').indexOf('up-') === 0 ||
+        String(f.source || '') === 'upload';
+      if (isUpload) {
+        const fam = String(meta.family || f.family || '').trim();
+        const weights = (f.weights && f.weights.length
+          ? f.weights
+          : meta.weights && meta.weights.length
+            ? meta.weights
+            : ['Regular']
+        ).map(function (w) { return String(w); });
+        return {
+          family: fam || String(f.fontId || ''),
+          weights: weights,
+          subset: 'full',
+          source: 'upload',
+          uploadId: String(meta.id || f.fontId || f.uploadId || '')
+        };
+      }
       const weights = (f.weights && f.weights.length ? f.weights : ['regular']).map(function (w) {
         return WFProto.weightName(family, w);
       });
       return {
         family: family,
         weights: weights,
-        subset: packageSubset(f.subset, d.subset)
+        subset: packageSubset(f.subset, d.subset),
+        source: 'catalog'
       };
     });
     return {
@@ -699,6 +720,27 @@
       domains: (p.domains || []).filter(function (x) { return x.verified; }).map(function (x) { return x.host; }),
       fonts: fonts
     };
+  }
+
+  /** 把 vault 上传行记进本地 state.uploads，供 fontMeta / 发布清单用 */
+  function rememberUpload(row) {
+    if (!row || !row.id) return;
+    load();
+    state.uploads = (state.uploads || []).filter(function (u) { return u.id !== row.id; });
+    state.uploads.unshift({
+      id: row.id,
+      name: row.name || row.id,
+      family: row.family || '',
+      weights: row.weights || [],
+      glyphCount: row.glyphCount || 0,
+      format: row.format || '',
+      size: row.size || 0,
+      license: row.license || '',
+      status: row.status || 'processing',
+      projectId: row.projectId || '',
+      uploadedAt: row.uploadedAt || new Date().toISOString()
+    });
+    save();
   }
 
   /**
@@ -753,6 +795,7 @@
     allDomains: allDomains, blockedHosts: blockedHosts, usageByFont: usageByFont, fontUsage: fontUsage, statusTotals: statusTotals,
     toCsv: toCsv, download: download,
     addFont: addFont, removeFont: removeFont, removeWeight: removeWeight, removeUpload: removeUpload,
+    rememberUpload: rememberUpload,
     fontMeta: fontMeta,
     uniqueChars: uniqueChars, parseRanges: parseRanges, subsetGlyphs: subsetGlyphs, subsetBytes: subsetBytes,
     subsetLabel: subsetLabel, projectBytes: projectBytes,
