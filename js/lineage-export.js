@@ -45,7 +45,7 @@
   }
 
   function buildFilename(groupName, mode, ext) {
-    return '谱系-' + sanitizeFilename(groupName) + '-' + sanitizeFilename(modeSlug(mode)) + '.' + ext;
+    return '文风字体谱系-' + sanitizeFilename(groupName) + '-' + sanitizeFilename(modeSlug(mode)) + '.' + ext;
   }
 
   function surfaceBg() {
@@ -323,6 +323,61 @@
   }
 
   /**
+   * 临时加到画布里的角标：html-to-image 会把它一起捕获，完成后由返回的
+   * restore 移除。图片用绝对 URL，避免 SVG/PNG 序列化时相对路径失效。
+   */
+  function appendExportWatermark(stage) {
+    if (!stage || !stage.appendChild) return function () {};
+
+    var mark = document.createElement('div');
+    var logo = document.createElement('img');
+    var label = document.createElement('span');
+    var logoUrl = 'assets/icon.webp';
+    try {
+      logoUrl = new URL('assets/icon.webp', document.baseURI || global.location.href).href;
+    } catch (e) {}
+
+    mark.className = 'lfl-export-watermark';
+    mark.setAttribute('aria-hidden', 'true');
+    mark.style.position = 'absolute';
+    mark.style.right = '14px';
+    mark.style.bottom = '14px';
+    mark.style.zIndex = '9999';
+    mark.style.display = 'flex';
+    mark.style.alignItems = 'center';
+    mark.style.gap = '5px';
+    mark.style.padding = '4px 7px';
+    mark.style.borderRadius = '999px';
+    mark.style.backgroundColor = rootCssVar('--paper', '#ffffff');
+    mark.style.color = rootCssVar('--gray', '#666666');
+    mark.style.boxShadow = '0 1px 5px rgba(0, 0, 0, 0.12)';
+    mark.style.fontFamily = 'sans-serif';
+    mark.style.fontSize = '11px';
+    mark.style.lineHeight = '1';
+    mark.style.whiteSpace = 'nowrap';
+    mark.style.pointerEvents = 'none';
+    mark.style.boxSizing = 'border-box';
+
+    logo.src = logoUrl;
+    logo.alt = '';
+    logo.width = 18;
+    logo.height = 18;
+    logo.style.display = 'block';
+    logo.style.width = '18px';
+    logo.style.height = '18px';
+    logo.style.flex = '0 0 18px';
+
+    label.textContent = '文风字体';
+    mark.appendChild(logo);
+    mark.appendChild(label);
+    stage.appendChild(mark);
+
+    return function restore() {
+      if (mark.parentNode === stage) mark.remove();
+    };
+  }
+
+  /**
    * @param {'png'|'svg'} format
    * @param {{ groupName?: string, mode?: string, stage?: HTMLElement }} ctx
    */
@@ -334,20 +389,30 @@
       return Promise.reject(new Error('字墙模式不支持下载图谱'));
     }
     var api = getApi();
-    var restore = inlineSvgPresentation(stage);
-    var opts = captureOptions(stage, format);
-    var run = format === 'svg'
-      ? api.toSvg(stage, opts)
-      : api.toPng(stage, opts);
-    return Promise.resolve(run).then(function (dataUrl) {
-      restore();
-      var ext = format === 'svg' ? 'svg' : 'png';
-      downloadDataUrl(dataUrl, buildFilename(ctx.groupName, ctx.mode, ext));
-      return dataUrl;
-    }, function (err) {
-      restore();
-      throw err;
-    });
+    var restoreSvg = inlineSvgPresentation(stage);
+    var restoreWatermark = function () {};
+    try {
+      restoreWatermark = appendExportWatermark(stage);
+      var opts = captureOptions(stage, format);
+      var run = format === 'svg'
+        ? api.toSvg(stage, opts)
+        : api.toPng(stage, opts);
+      return Promise.resolve(run).then(function (dataUrl) {
+        restoreWatermark();
+        restoreSvg();
+        var ext = format === 'svg' ? 'svg' : 'png';
+        downloadDataUrl(dataUrl, buildFilename(ctx.groupName, ctx.mode, ext));
+        return dataUrl;
+      }, function (err) {
+        restoreWatermark();
+        restoreSvg();
+        throw err;
+      });
+    } catch (err) {
+      restoreWatermark();
+      restoreSvg();
+      return Promise.reject(err);
+    }
   }
 
   global.WFLineageExport = {
