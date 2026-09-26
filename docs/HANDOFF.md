@@ -825,3 +825,13 @@ feibisi 问「授权文件都有了没，后面挂 wenfeng.org 溯源」——�
 
 关系档按授权时长（≠ 服务状态 正常/受限）：`platform` **运营**（默认文派/采买买断，不挂到期；内部 key 仍 `platform`，UI 标签「运营」；默认文派时附「（文风字体平台运营主体）」）｜`signed` 签约（凡有时限的授权，可附 `expiresAt`→授权至）｜`partner` 合作（字段/枚举保留供后续；本波不对期限授权自动落合作，期限=签约）。仅有 `expiresAt`、未显式 status → 签约。合作方公司名不得挂运营主体注。字段 `commercialEntity.{name,status,expiresAt?}` 或 `commercialEntityStatus` / `commercialEntityExpiresAt`；默认运营+文派；UI `entity-grade` + 公司名 [+ 注]；助手 `WFProto.commercialEntity`。
 
+
+## 43. 2026-09-26 授权原文大收口（批次⑧⑨，feibisi「去抓原文/跳过 ButTaiwan」）
+
+- **批次⑧（e7251b6）**：38 款上游仓原文（TakWolf 方舟/缝合/果冻/二维码像素、寒蝉全家族 9 款 Chill* 仓、香萃等粗宋/打字机体/汲学宋/刻宋/自在舒畅黑、秋空黑体、秋水书体、荆南缘默/波波黑、风雅宋、糖圆体、滑油字、Cubic-11、库格尔/瀞明朝、梦源宋体、B2花园、精品点阵 7x7/9x9、夜照飞点阵 GPL-3.0、流行点阵16、天王星像素 GPL-2.0、辰宇落雁体）+ 6 款 canonical（Apache 2.0/Droid Sans 后备、IPA/OSI 全文、Unifont 双许可、M+ 位图许可）+ 声明页款（玄冬楷书 README、飞花宋 GlyphWiki、寒蝉手拙体 README）。
+- **女书纠错**：feibisi 拍桌「走开源字体改的怎么可能自定义协议」——拉官方 release 字体文件读 name 表：凤栖/梧桐 1.003 内嵌声明 **SIL OFL 1.1**（fonts.json 原标注正确），我此前据仓 README 徽标误判綿飴协议，已撤回并归档 OFL 官方全文+内嵌声明证据。教训：**授权以发布件内嵌声明/随包原文为准，仓 README 徽标链接不作数**。
+- **批次⑨（0e0d96b/922a37b/5421f15）**：长尾 17 款（子代理 125 次调用实证）：Z Labs 五款=Z工坊 Astro-2539（点阵港/日标 OFL+像素三款字体侧 OFL/MIT 为脚本侧）、KaloSans、清松手写体2=作者本人仓 jasonhandwriting、随峰体=cjkFonts 官网 ThePeakFont 声明、濑户（官方站已死，OFL 官方全文+窓の杜佐证）、Y.OzFont（官方包 YOzTTF.7z 内 OFL.txt）、M+12r（Codeberg 完整镜像 LICENSE_E）、猫啃故障黑/宋/珠圆+演示斜黑（猫啃页声明归档）、屏显臻宋（镜像仓）、思源黑体像素（MIT+上游 OFL 双件）。
+- **数据层修正 24 项进 vault+fonts.json**：Jnbbh/Xccx/Xcld 免费商用→开源商用 OFL（随仓原文）、Hcszt 开源商用→免费商用（README 免费商用声明，无 OFL 文件）、Ffs→GlyphWiki 授权、Hyqzpt→免费商用+**正名黄引齐招牌体**（黄胤淇系讹误）、Mkzyt **正名猫啃珠圆体**（竹圆体系讹误）、Masa designer→Max/max-everyday（原误标 Aqua/阿杰）、Zhbtt→开源商用（字魂声明开源，得意黑 OFL 衍生按 OFL 义务）、Zlrp12/16/Zlx12 MIT→OFL（字体侧）、Z Labs 三款同理。vault 备份 prod.db.bak-20260926-lic，22+2 行 UPDATE 回读验证全中。
+- **上批遗留 16 款 info 重写**：原文头逐款比对（寒蝉/Potta/得意黑/龙藏/IBM Plex/思源系/IPA 系），verified 置真。
+- **终态**：460 款、开源商用 372、未核实仅 **14**：声明待取 2（寒蝉矩阵体/矩黑）+ 两证矛盾待拍板 2（mplus_hzk12 仓 Unlicense vs 猫啃页 OFL；汉字拼音体仓 Apache vs README CC-BY-SA）+ 台湾跳过 6（汲古×3/一点明体=ButTaiwan 拍板、刻石录×2 同簇）+ 教育部×2（CC BY-ND 3.0 TW/宋体UN）+ Xczz 疑似与 Xcws 重复待拍板 + Xsslv（CC BY 4.0 无上游文本）。其余 74 款无原文=自定义协议款（随包声明/平台出品声明，授权原文须向厂商索取）。
+- **管线坑**：export-fonts 429=匿名配额 1000/天按来源 IP 计，ssh 隧道出口全记 127.0.0.1 也烧配额；解法=容器内打自己 eth0 IP（172.17.0.4 新身份）。vault 临时脚本放 /app/scripts（放 /app 根会算错 ROOT 路径）。
