@@ -5,7 +5,7 @@
   "pairs": [
     {
       "scFamily": "wenfeng-mksjh",
-      "tcFamily": "wenfeng-matc",
+      "tcFamily": "wenfeng-mksjhtc",
       "productId": "maoken-shijinhei",
       "source": "font-products",
       "localeFallbackAllowed": true
@@ -83,13 +83,13 @@
   ],
   "byFamily": {
     "wenfeng-mksjh": {
-      "peer": "wenfeng-matc",
+      "peer": "wenfeng-mksjhtc",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
       "productId": "maoken-shijinhei"
     },
-    "wenfeng-matc": {
+    "wenfeng-mksjhtc": {
       "peer": "wenfeng-mksjh",
       "role": "tc",
       "peerRole": "sc",
