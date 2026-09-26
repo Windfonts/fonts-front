@@ -177,18 +177,18 @@
     return { status: status, reason: reason, cls: cls, why: why };
   }
 
-  /* 右侧动作：正常→服务状态页；受限 / 需授权→上传授权文件；下架与禁用不推文件。 */
+  /* 右侧动作：正常→API 文档；受限 / 需授权→上传证书；下架与禁用不推文件。 */
   function serviceStatusAct(font, copy) {
     const status = copy.status;
     const reason = copy.reason || '';
     if (status === '正常') {
-      return '<a class="lp-act" href="https://status.windfonts.com/" rel="noopener noreferrer">windfonts.com ↗</a>';
+      return '<a class="lp-act" href="' + WFChrome.href('docs.html') + '">立即接入 →</a>';
     }
     if (status === '受限' || (status === '不可用' && reason === 'need_auth')) {
       const slug = String((font && (font.normalized || font.family)) || '')
         .replace(/^wenfeng-/i, '');
       const href = WFChrome.href('app/upload.html?cert=' + encodeURIComponent(slug || (font && font.id) || ''));
-      return '<a class="lp-act" href="' + href + '">上传授权文件</a>';
+      return '<a class="lp-act" href="' + href + '">上传证书 →</a>';
     }
     return '';
   }
