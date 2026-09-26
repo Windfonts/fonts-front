@@ -1251,6 +1251,7 @@
     resolveLineage: resolveLineage,
     getLineageData: function () { return lineageData; },
     isOpenFont: isOpenFont,
+    forbidsOpenDerive: forbidsOpenDerive,
     slugify: slugify,
     getFont: function (id) { return getById(id); },
     getFontBySlug: getBySlug,

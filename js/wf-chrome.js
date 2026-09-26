@@ -824,11 +824,79 @@
       lineageBlock('同系', split.buckets.other.map(rowOf)) +
       '</div>';
   }
+  /** 品牌/商用根（无开源上游）：详情谱系导语，不与开源师承源头混用 */
+  function brandInviteWho(font) {
+    const info = brandInfo(font);
+    if (!info) return '';
+    let cur = info;
+    let guard = 0;
+    while (cur && cur.parentId && guard++ < 8) {
+      const p = WFProto.getFoundryParent ? WFProto.getFoundryParent(cur) : null;
+      if (!p || (p.kind !== 'brand' && p.kind !== 'platform' && p.kind !== 'author')) break;
+      cur = p;
+    }
+    return (cur && cur.name) || info.name || '';
+  }
+  function brandLineageOrgHref(font) {
+    if (!font) return '';
+    const L = font.lineage || {};
+    const brandRoots = { alibaba: 1, zcool: 1, qiantu: 1, maoken: 1, pangmen: 1 };
+    const legacy = { 'alibaba-sans': 'alibaba' };
+    let group = L.group || '';
+    if (legacy[group]) group = legacy[group];
+    if (!brandRoots[group]) {
+      const oid = L.ownerId || (font.ownerInfo && font.ownerInfo.id) || '';
+      let cur = oid && WFProto.getFoundryById ? WFProto.getFoundryById(oid) : null;
+      let guard = 0;
+      while (cur && cur.parentId && guard++ < 8) {
+        const p = WFProto.getFoundryParent ? WFProto.getFoundryParent(cur) : null;
+        if (!p) break;
+        cur = p;
+      }
+      const top = (cur && cur.id) || oid;
+      if (brandRoots[top]) group = top;
+      else if (cur && (cur.kind === 'brand' || cur.kind === 'platform' || cur.kind === 'author')) group = top;
+      else group = '';
+    }
+    if (!group) return '';
+    if (WFProto.canShowOrgLineage && !WFProto.canShowOrgLineage(group)) return '';
+    return href('lineage.html?group=' + encodeURIComponent(group) + '&view=org&mode=plex&focus=' +
+      encodeURIComponent(font.id || ''));
+  }
+  function isBrandCommercialRoot(font) {
+    if (!font) return false;
+    const L = font.lineage || {};
+    if (L.relation === 'fork' || L.relation === 'locale') return false;
+    const commissioned = L.relation === 'commissioned' || L.relation === 'collab';
+    if (L.upstreamName && !commissioned && L.licenseFollows !== 'own') return false;
+    const info = brandInfo(font);
+    const kind = (info && info.kind) || '';
+    const tier = licenseTier(font);
+    const ev = font.licenseEvidence || {};
+    const forbids = WFProto.forbidsOpenDerive ? WFProto.forbidsOpenDerive(ev) : false;
+    const freeOk = tier === '免费商用' && !!(ev.verified || font.licenseVerified);
+    const brandish = kind === 'brand' || kind === 'platform' || kind === 'author' || commissioned;
+    return brandish && (commissioned || forbids || freeOk || L.licenseFollows === 'own');
+  }
+  function brandLineageInviteHtml(font) {
+    if (!isBrandCommercialRoot(font)) return '';
+    const who = brandInviteWho(font) || '品牌方';
+    const orgHref = brandLineageOrgHref(font);
+    const link = orgHref
+      ? '<a href="' + esc(orgHref) + '" data-lineage-modal>查看品牌归属</a>'
+      : '';
+    return '<p class="lin-invite">此为「' + esc(who) +
+      '」品牌商用授权字体。可按权利人条款免费商用；不是开源改字源头，改字与再分发须遵守品牌授权。' +
+      link + '</p>';
+  }
   function lineageInviteHtml(font, split) {
-    if (!font || !WFProto.isOpenFont(font)) return '';
+    if (!font) return '';
     const L = (font && font.lineage) || {};
-    /* 委托/合作是品牌归属关系，不是开源师承源头——导语两套图勿混 */
-    if (L.relation === 'commissioned' || L.relation === 'collab') return '';
+    const open = WFProto.isOpenFont(font);
+    /* 委托/合作或非开源：走品牌商用导语（可空）；开源师承导语只给可衍生开源字 */
+    if (L.relation === 'commissioned' || L.relation === 'collab' || !open) {
+      return brandLineageInviteHtml(font);
+    }
     const chain = [];
     if (split && split.root) chain.push(split.root);
     if (split && split.via) split.via.forEach(function (f) { chain.push(f); });
