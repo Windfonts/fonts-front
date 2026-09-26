@@ -91,22 +91,21 @@
 
   function budgetHtml(est) {
     if (!est) return '';
-    const tag = est.fromManifest ? 'CSS 档' : '估';
     if (est.mode === 'clipped') {
       return (
         '<div class="use-budget" id="useBudget">' +
-          '<span class="use-budget-main">预估 ≈ <b>' + esc(est.primaryLabel) + '</b>（主款 · 当前档 · ' + tag + '）</span>' +
-          '<span class="use-budget-extra">开补全后主款不变；补全只挂缺口片，上限另 + 同档「' +
+          '<span class="use-budget-main">预估 ≈ <b>' + esc(est.primaryLabel) + '</b>（主款）</span>' +
+          '<span class="use-budget-extra">补全上限 + 同档「' +
           esc(est.peerName) +
           '」≈ ' +
           esc(est.ceilingLabel) +
-          '（含主款，实际远小于双倍）</span>' +
+          '（含主款）</span>' +
         '</div>'
       );
     }
     return (
       '<div class="use-budget" id="useBudget">' +
-        '<span class="use-budget-main">预估传输 ≈ <b>' + esc(est.primaryLabel) + '</b>（当前档 · ' + tag + '）</span>' +
+        '<span class="use-budget-main">预估 ≈ <b>' + esc(est.primaryLabel) + '</b>（当前档）</span>' +
       '</div>'
     );
   }

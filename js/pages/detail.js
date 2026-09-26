@@ -532,8 +532,8 @@
               if (!up || !up.family || up.id === font.id) return '';
               return '<label class="use-fallback" id="fallbackLabel">' +
                 '<input type="checkbox" id="optFallback" value="' + esc(up.family) + '" data-up-name="' + esc(up.name) + '" data-up-id="' + esc(up.id) + '"> ' +
-                '缺字用上游「' + esc(up.name) + '」补全 ' +
-                '<span class="hint" id="fallbackHint">须同字重 · 服务端只挂缺口 unicode-range</span></label>';
+                '上游「' + esc(up.name) + '」补缺字 ' +
+                '<span class="hint" id="fallbackHint">同字重 · 仅缺口</span></label>';
             })() +
             (function () {
               const pair = (window.WFLocaleFallback && WFLocaleFallback.peerOf)
@@ -544,17 +544,16 @@
                 ? WFProto.getFontBySlug(String(pair.peer).replace(/^wenfeng-/, ''))
                 : null;
               const peerName = (peerFont && peerFont.name) || pair.peer;
-              const roleLabel = pair.role === 'tc' ? '简体兄弟' : '繁体兄弟';
               return '<label class="use-fallback" id="localeFallbackLabel">' +
                 '<input type="checkbox" id="optLocaleFallback" data-peer="' + esc(pair.peer) + '" data-role="' + esc(pair.role || '') + '"> ' +
-                '简繁补全：附带' + esc(roleLabel) + '「' + esc(peerName) + '」 ' +
-                '<span class="hint">文本须已是对应码点 · localeFallback=auto</span></label>';
+                '简繁「' + esc(peerName) + '」补缺 ' +
+                '<span class="hint">仅缺口 · localeFallback=auto</span></label>';
             })() +
             '</div>' +
             '<div id="embed"></div>' +
-            '<p class="use-note use-note-lead">默认「常用」适合品牌短文案；正文站可选「中文」。按需子集见 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a>。</p>' +
-            '<details class="use-note-fold"><summary>' + WFChrome.icon('chevron-down') + '参数与补全说明</summary>' +
-              '<p class="use-note use-note-body">体积按单字重估算。谱系补全写 <code>fallback=</code>；简繁补全写 <code>localeFallback=auto</code>（二者同时开时优先谱系 <code>fallback</code>）。上方预算条为启发式；开补全后主款字节不变，补全只加缺口片。<code>font-family</code> 须写主款与补全款栈。</p>' +
+            '<p class="use-note use-note-lead">「常用」适短文案，「中文」适正文。按需子集见 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a>。</p>' +
+            '<details class="use-note-fold"><summary>' + WFChrome.icon('chevron-down') + '参数与补全</summary>' +
+              '<p class="use-note use-note-body">单字重估算。谱系 <code>fallback=</code>；简繁 <code>localeFallback=auto</code>（同时开优先谱系）。预算启发式；补全只加缺口片。栈须含主款与补全款。</p>' +
             '</details></div>' +
           '</section>' +
           (weights.length > 1
@@ -668,7 +667,7 @@
       } else {
         fallbackEl.disabled = false;
         if (fallbackHint) {
-          fallbackHint.textContent = '同字重 ' + align.css + ' · 缺口裁切 · 同档 subset';
+          fallbackHint.textContent = '同字重 · 仅缺口';
           fallbackHint.classList.remove('is-warn');
         }
       }
