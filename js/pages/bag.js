@@ -59,7 +59,12 @@
     const its = items();
     if (!its.length) { embedWrap.hidden = true; return; }
     embedWrap.hidden = false;
-    const opts = { cdn: true, display: optDisplay.value, preload: optPreload.checked };
+    const cdnHost = document.getElementById('bagCdn');
+    if (cdnHost && !cdnHost.dataset.ready) {
+      cdnHost.innerHTML = WFProto.cdnSwitchHtml();
+      cdnHost.dataset.ready = '1';
+    }
+    const opts = { cdn: false, display: optDisplay.value, preload: optPreload.checked };
     if (!embed) embed = WFEmbed.mount(document.getElementById('embed'), its, opts);
     else { embed.setItems(its); embed.setOpts(opts); }
     let total = 0;
