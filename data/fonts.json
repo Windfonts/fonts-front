@@ -22485,8 +22485,8 @@
     "en": "Maoken Assorted Sans TC",
     "family": "wenfeng-matc",
     "normalized": "Matc",
-    "designer": "猫啃什锦黑 繁体",
-    "designerShort": "猫啃什锦黑 繁体",
+    "designer": "Skr-ZERO",
+    "designerShort": "Skr-ZERO",
     "category": "无衬线字体",
     "tags": [
       "开源",
@@ -22506,7 +22506,7 @@
     "licenseVerified": null,
     "purchaseUrl": null,
     "copyright": "Copyright (c) Maoken / Skr-ZERO",
-    "foundry": "",
+    "foundry": "Skr-ZERO",
     "brand": {
       "name": "Skr-ZERO",
       "slug": "skr-zero",
