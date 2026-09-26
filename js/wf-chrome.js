@@ -1127,8 +1127,11 @@
     wrap.id = 'wfLineageModal';
     wrap.className = 'dialog-back dialog-back-lineage';
     wrap.innerHTML =
-      '<button type="button" class="icon-btn dialog-lineage-close-float" data-close aria-label="关闭">' + icon('close') + '</button>' +
-      '<div class="dialog dialog-lineage" role="dialog" aria-modal="true" aria-label="谱系图">' +
+      '<div class="dialog dialog-lineage" role="dialog" aria-modal="true" aria-labelledby="wfLineageModalTitle">' +
+        '<div class="dialog-lineage-head">' +
+          '<h3 id="wfLineageModalTitle">谱系图</h3>' +
+          '<button type="button" class="icon-btn dialog-lineage-close" data-close aria-label="关闭">' + icon('close') + '</button>' +
+        '</div>' +
         '<iframe class="dialog-lineage-frame" title="谱系图" src="' + esc(src) + '"></iframe>' +
       '</div>';
     document.body.appendChild(wrap);
