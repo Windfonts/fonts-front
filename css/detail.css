@@ -348,6 +348,16 @@
 .lin-fold[open] > summary { margin-bottom: var(--s-2); color: var(--ink); }
 .lin-fold[open] > summary .icon { transform: rotate(180deg); }
 .lin-acts { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
+/* 丙：谱系上传保留 ink-design，但两种视图都保持实心墨色。 */
+html[data-view="dev"] .detail-main .lin-acts .btn.ink-design,
+html:not([data-view="dev"]) .detail-main .lin-acts .btn.ink-design {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+html[data-view="dev"] .detail-main .lin-acts .btn.ink-design:hover,
+html:not([data-view="dev"]) .detail-main .lin-acts .btn.ink-design:hover {
+  background: var(--ink-hover);
+}
 
 @media (max-width: 1024px) {
   .detail-body { grid-template-columns: minmax(0, 1fr); gap: var(--s-8); }
