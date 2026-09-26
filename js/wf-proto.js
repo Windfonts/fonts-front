@@ -98,8 +98,9 @@
   }
   function catalogUrl() { return dataUrl('fonts.json'); }
   function analysisMetaUrl() {
-    /* 不带版本参数：CyberCDN 按查询串分缓存变体，带参会命中陈旧变体；无参 URL 回源即全量 */
-    return CDN + '/fonts-packages/metadata/font-analysis.json';
+    /* CyberCDN 按查询串分变体缓存：换数据必须换新版本值（旧变体会粘住陈旧内容），
+       全新值首次回源即全量。20260925b 曾在重建中途被缓存成 1-2 字体的残缺变体。 */
+    return CDN + '/fonts-packages/metadata/font-analysis.json?v=20260926a';
   }
 
   /* —— 厂商字典：data/foundries.json 是厂商名称的唯一真相来源（中文名 / 英文 / 简称 / 官网） —— */
