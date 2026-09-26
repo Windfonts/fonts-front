@@ -1398,51 +1398,6 @@
     "viewCount": 4
   },
   {
-    "id": "86931c41-b272-4787-a483-498c7056d394",
-    "name": "寒蝉矩黑",
-    "en": "Chill Matrix Black",
-    "family": "wenfeng-clmb",
-    "normalized": "Clmb",
-    "designer": "寒蝉矩黑",
-    "designerShort": "寒蝉矩黑",
-    "category": "无衬线字体",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "创意像素风格字库，完成 GB2312-80 共 6363 字。当前为 Demo 版（上游无 release，取仓内 Demo 文件）。",
-    "license": "开源商用",
-    "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "https://github.com/Warren2060/ChillMatrixBlack/blob/main/LICENSE",
-    "licenseFileUrl": "",
-    "licenseNotes": "上游仓（README）无授权文件与授权声明；声明页待取（寒蝉字型官方发布页）",
-    "licenseVerified": false,
-    "purchaseUrl": null,
-    "copyright": "Copyright (c) Warren2060 (ChillType)",
-    "foundry": "ChillType",
-    "brand": {
-      "name": "ChillType",
-      "slug": "chilltype",
-      "logoUrl": "",
-      "avatarUrl": "",
-      "website": "",
-      "description": "ChillType出品的字体"
-    },
-    "releaseYear": 2024,
-    "version": "Demo",
-    "languages": [
-      "简体中文",
-      "英语"
-    ],
-    "useCases": [
-      "正文",
-      "标题"
-    ],
-    "charCount": 6363,
-    "glyphCount": 6363,
-    "viewCount": 5
-  },
-  {
     "id": "cf666fa4-aab8-4baa-854b-5163bef7e5ce",
     "name": "寒蝉潭黑",
     "en": "Chill Tan Hei",
@@ -3286,55 +3241,6 @@
     "charCount": 0,
     "glyphCount": 0,
     "viewCount": 2
-  },
-  {
-    "id": "91f74f28-62fd-4e94-909a-bcde465f10a7",
-    "name": "寒蝉矩阵体",
-    "en": "Chill Matrix",
-    "family": "wenfeng-hcjz",
-    "normalized": "Hcjz",
-    "designer": "ChillType",
-    "designerShort": "ChillType",
-    "category": "无衬线字体",
-    "tags": [],
-    "weights": [
-      "Normal",
-      "Ultra",
-      "Demi"
-    ],
-    "description": "寒蝉矩阵体。SIL OFL 1.1。",
-    "license": "开源商用",
-    "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "上游仓（README）无授权文件与授权声明；声明页待取（寒蝉字型官方发布页）",
-    "licenseVerified": false,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "寒蝉字型",
-    "brand": {
-      "name": "ChillType",
-      "slug": "chilltype",
-      "logoUrl": "",
-      "avatarUrl": "",
-      "website": "",
-      "description": "ChillType出品的字体"
-    },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch1 2026-09-23",
-    "languages": [
-      "简体中文",
-      "繁体中文",
-      "英语"
-    ],
-    "useCases": [
-      "正文",
-      "标题",
-      "屏幕阅读"
-    ],
-    "charCount": 0,
-    "glyphCount": 0,
-    "viewCount": 5
   },
   {
     "id": "8defdd77-c579-48fe-8892-5b997ee43f12",
