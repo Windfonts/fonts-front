@@ -881,13 +881,8 @@
   function brandLineageInviteHtml(font) {
     if (!isBrandCommercialRoot(font)) return '';
     const who = brandInviteWho(font) || '品牌方';
-    const orgHref = brandLineageOrgHref(font);
-    const link = orgHref
-      ? '<a href="' + esc(orgHref) + '" data-lineage-modal>查看品牌归属</a>'
-      : '';
     return '<p class="lin-invite">此为「' + esc(who) +
-      '」品牌商用授权字体。可按权利人条款免费商用。' +
-      link + '</p>';
+      '」品牌商用授权字体。可按权利人条款免费商用。</p>';
   }
   function lineageInviteHtml(font, split) {
     if (!font) return '';

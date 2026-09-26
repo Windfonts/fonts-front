@@ -44,7 +44,7 @@
     { id: 'jp', label: '日本', host: 'jp.windfonts.com', edge: 'cloudflare' }
   ];
   const CDN_LICENSE_NOTE = '<!-- 此中文网页字体由文风字体（Windfonts）免费提供，您可以自由引用，请务必保留此授权许可标注 https://wenfeng.org/license -->';
-  const CSS_TO_NAME = { '100': 'thin', '200': 'extralight', '300': 'light', '350': 'demilight', '400': 'regular', '450': 'text', '500': 'medium', '600': 'semibold', '700': 'bold', '800': 'heavy', '900': 'black' };
+  const CSS_TO_NAME = { '100': 'thin', '200': 'extralight', '300': 'light', '350': 'demilight', '400': 'regular', '450': 'text', '500': 'medium', '600': 'semibold', '700': 'bold', '800': 'extrabold', '900': 'heavy', '950': 'black' };
 
   const EXTRA_LINKS = [
     { label: '关于', path: 'about.html' },
@@ -73,9 +73,12 @@
     medium: '500',
     demi: '600', demibold: '600', 'demi-bold': '600', semibold: '600', 'semi-bold': '600',
     bold: '700',
-    /* Ultra 档（寒蝉矩阵 Ultra 等）→ 800；勿与 ultralight 混淆 */
-    ultra: '800', extrabold: '800', 'extra-bold': '800', ultrabold: '800', 'ultra-bold': '800', heavy: '800',
-    black: '900', ultrablack: '950', 'ultra-black': '950',
+    /* Ultra / ExtraBold → 800。Heavy → 900（对齐 Adobe usWeightClass / 普惠体 CDN）。
+       Black → 950：与 Heavy 分档（普惠体等 ExtraBold+Heavy+Black 三包并存时避免 @font-face 互盖；
+       同 Normal→350 分档思路）。勿与 ultralight 混淆。 */
+    ultra: '800', extrabold: '800', 'extra-bold': '800', ultrabold: '800', 'ultra-bold': '800',
+    heavy: '900',
+    black: '950', ultrablack: '950', 'ultra-black': '950',
     italic: '400', oblique: '400',
     lightitalic: '300', mediumitalic: '500', extralightitalic: '200'
   };
@@ -98,7 +101,7 @@
     if (base.indexOf('/admin') !== -1) return '../data/' + file;
     return 'data/' + file;
   }
-  function catalogUrl() { return dataUrl('fonts.json?v=20260926syhttc'); }
+  function catalogUrl() { return dataUrl('fonts.json?v=20260926ebhv'); }
   function analysisMetaUrl() {
     /* CyberCDN 按查询串分变体缓存：换数据必须换新版本值（旧变体会粘住陈旧内容），
        全新值首次回源即全量。20260925b 曾在重建中途被缓存成 1-2 字体的残缺变体。 */
