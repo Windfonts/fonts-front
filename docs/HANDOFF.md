@@ -40,12 +40,12 @@
 
 | 模块 | 现状 | 下一步 |
 |---|---|---|
-| **控制台** | 生产须 vault 会话；`WFApi` 默认 live；projects/域名/子集加字 → vault；用量聚合请求+字节+按字体/字重/200·304·**403**；`/api/usage/blocked`；选字袋 `/api/picks`；认领收单 `/api/claims`。`?demo=1` **仅本机**。 | 上传后 OSS 字形入库 |
+| **控制台** | 生产须 vault 会话；`WFApi` 默认 live；projects/域名/子集加字 → vault；用量聚合请求+字节+按字体/字重/200·304·**403**；`/api/usage/blocked`；选字袋 `/api/picks`；认领收单 `/api/claims`。`?demo=1` **仅本机**。 | 自有字进项目 CSS |
 | **选字袋 / 收藏** | 本地 `wf-proto-picks` / `wf-favs` + 登录后 vault `/api/picks`·`/api/favs` 双向同步 | — |
 | **样张工坊** | 详情设计视图出图 | 模板与默认文案接设置；OG 图需后端固定 URL |
 | **厂商认领** | `claim.html` → `/api/claims`；vault `/admin/claims` 审核页；覆盖层 + 可选回写 `foundries.json` | 申请人进度通知（可选） |
 | **谱系** | 详情标题「谱系」；开源才露出上传；厂商页归属按源字/地区版/派生分段 | 勿补无把握关系；上传入口仅开源 |
-| **上传** | vault `/api/uploads*` 收件落盘队列（init→PUT→complete→ready）；前台 `runUpload` 带上传令牌 | OSS 字形包入库管线 / 审核 UI |
+| **上传** | vault `/api/uploads*` 落盘；complete→待审；`/admin/uploads` 通过推 OSS `console-uploads/` | 项目嵌入 / 切包托管 |
 | **定价** | 三条产品线已落页；默认隐藏 | 商务定数字后再露 |
 
 双轨注意：只维护 `index` / `fonts` / `font-detail` / `foundry` / `docs` / `app/*` 主线；`v5-*`、`*-options.html`、`oss-audit.html` **不进生产入口，但必须保留**（对照 / 研究留档）。索引：`lab.html`，说明：[LAB.md](LAB.md)。
@@ -808,3 +808,13 @@ feibisi「都去做吧」。font-licenses 覆盖 179 → **395 款条目**（ver
 - **终局覆盖**：458 款中 419 有条目（92%）、verified=true 282、剩 39 款。
 - **剩 39 构成**：自定义协议 13（方正×4/975圆体/Acy/Code2003/叁慕/庞门真贵/快去寫作業/杨任东/文明宋/烟波宋/精品点阵/吉利银河/上海摩登）+ 标准开源 26（多为日本独立作者款：演示外 MF/秋水/秋空/文渊外/余繁丹青/滑油字/霞鹜臻楷 GB/齐伋/龙珠/苦累蛙/莫大毛笔/萌神/长坂/马路口/美绩×2/晓声通/无界黑/寒蝉无机/点点像素 GPL）。这批上游散、部分已停更，继续下轮或按款人工。
 - 注意：目录 456→458（并行会话新入吉利银河美好体、上海摩登体两款）。
+
+## 41. 2026-09-26 授权文件终账 + wenfeng.org 溯源挂载准备
+
+feibisi 问「授权文件都有了没，后面挂 wenfeng.org 溯源」——终账：
+
+- **460 款中 419 有条目（91%）**，其中 verified=true **291**、有条目未 verified 128（多为占位/待抓原文）。
+- **无条目 41 款**：自定义协议 25（方正×4/975圆体/Acy/Code2003/叁慕/庞门真贵/快去寫作業/杨任东/文明宋/烟波宋/精品点阵/吉利银河/上海摩登/普惠体TC/MiSans TC/梅字体×2/花园明朝×2/香萃×5）+ 标准开源 16（多日本/台湾散款）。
+- **平台出品款 9 款**（千图/创客贴/素材集市/包图系）已按平台官方免费商用声明立 verified 条目（#8626 口径：真出品非冒名）。
+- **name 表不可靠**：抽验 30 款本地源件 name 表，LicenseDescription 多缺失/乱码/占位——授权原文不能从 TTF name 表取，必须原文文件或官方声明页。
+- **wenfeng.org 溯源挂载建议形态**：每款详情页出处链「授权协议」节点链接从 font-licenses 仓直出（`wenfeng.org/license/<Norm>/` → LICENSE 原文渲染页 + license-info 元数据），GitHub raw 或桶镜像均可；export 管线在 export-fonts 时同步导 licenseUrl 到 wenfeng.org 路径。
