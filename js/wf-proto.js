@@ -96,7 +96,7 @@
     if (base.indexOf('/admin') !== -1) return '../data/' + file;
     return 'data/' + file;
   }
-  function catalogUrl() { return dataUrl('fonts.json'); }
+  function catalogUrl() { return dataUrl('fonts.json?v=20260926perf1'); }
   function analysisMetaUrl() {
     /* CyberCDN 按查询串分变体缓存：换数据必须换新版本值（旧变体会粘住陈旧内容），
        全新值首次回源即全量。20260925b 曾在重建中途被缓存成 1-2 字体的残缺变体。 */
@@ -148,21 +148,64 @@
     });
   }
 
+  /**
+   * 目录数据：网络优先 + Cache API 弱网兜底（caches.open('wf-catalog-v1')）。
+   * 缓存键 = 完整请求 URL（含 ?v=），升版本即换键、旧条目自然失效。
+   * 在线成功时更新缓存；失败/超时再读缓存，不替用户吞掉版本变更。
+   * 对外仍返回 Promise<catalog[]>，与改前一致。
+   */
+  const CATALOG_CACHE = 'wf-catalog-v1';
+  const CATALOG_NET_MS = 4500;
+  function openCatalogCache() {
+    if (typeof caches === 'undefined' || !caches.open) return Promise.resolve(null);
+    return caches.open(CATALOG_CACHE).catch(function () { return null; });
+  }
+  function fetchJsonCached(url, fallback) {
+    const abs = (function () {
+      try { return new URL(url, location.href).href; } catch (e) { return url; }
+    })();
+    let networkSettled = false;
+    const network = fetch(abs).then(function (r) {
+      networkSettled = true;
+      if (!r.ok) throw new Error(abs + ' ' + r.status);
+      const clone = r.clone();
+      openCatalogCache().then(function (cache) {
+        if (cache) cache.put(abs, clone).catch(function () { /* ignore */ });
+      });
+      return r.json();
+    });
+    const timed = new Promise(function (resolve, reject) {
+      const t = setTimeout(function () {
+        if (!networkSettled) reject(new Error('slow'));
+      }, CATALOG_NET_MS);
+      network.then(function (j) { clearTimeout(t); resolve(j); }, function (err) { clearTimeout(t); reject(err); });
+    });
+    return timed.catch(function () {
+      return openCatalogCache().then(function (cache) {
+        if (!cache) return network.catch(function () { return fallback; });
+        return cache.match(abs).then(function (hit) {
+          if (hit) {
+            /* 慢网：先吐缓存，后台仍等网络写新缓存 */
+            network.catch(function () { /* already falling back */ });
+            return hit.json();
+          }
+          return network.catch(function () { return fallback; });
+        });
+      });
+    });
+  }
   function loadCatalog() {
     if (catalog.length) return Promise.resolve(catalog);
     if (catalogPromise) return catalogPromise;
-    const fontsReq = fetch(catalogUrl()).then(function (r) {
-      if (!r.ok) throw new Error('fonts.json ' + r.status);
-      return r.json();
+    /* fonts.json 也带 ?v=，与兄弟 JSON 一样靠查询串作 Cache 键 */
+    const fontsReq = fetchJsonCached(catalogUrl(), null).then(function (j) {
+      if (Array.isArray(j)) return j;
+      throw new Error('fonts.json invalid');
     });
-    const foundriesReq = fetch(dataUrl('foundries.json?v=20260926s')).then(function (r) { return r.ok ? r.json() : { foundries: [] }; })
-      .catch(function () { return { foundries: [] }; });
-    const evidenceReq = fetch(dataUrl('license-evidence.json?v=20260925b')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
-      .catch(function () { return { standards: {}, names: {} }; });
-    const lineageReq = fetch(dataUrl('font-lineage.json?v=20260927d')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
-      .catch(function () { return { groups: {}, byName: {} }; });
-    const avatarsReq = fetch(dataUrl('avatars.json?v=20260921d')).then(function (r) { return r.ok ? r.json() : {}; })
-      .catch(function () { return {}; });
+    const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20260926s'), { foundries: [] });
+    const evidenceReq = fetchJsonCached(dataUrl('license-evidence.json?v=20260925b'), { standards: {}, names: {} });
+    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20260927d'), { groups: {}, byName: {} });
+    const avatarsReq = fetchJsonCached(dataUrl('avatars.json?v=20260921d'), {});
     catalogPromise = Promise.all([fontsReq, foundriesReq, evidenceReq, lineageReq, avatarsReq])
       .then(function (res) {
         avatars = (res[4] && typeof res[4] === 'object') ? res[4] : {};

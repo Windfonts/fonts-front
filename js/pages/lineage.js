@@ -4023,6 +4023,34 @@
     });
   });
 
+
+  /** 首点 PNG/SVG 时再拉 html-to-image（~20KB），首屏不背这个包 */
+  var htmlToImagePromise = null;
+  function ensureHtmlToImage() {
+    if (globalThis.htmlToImage && typeof htmlToImage.toPng === 'function') {
+      return Promise.resolve(htmlToImage);
+    }
+    if (htmlToImagePromise) return htmlToImagePromise;
+    htmlToImagePromise = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = 'js/lib/html-to-image.js?v=1.11.13';
+      s.async = true;
+      s.onload = function () {
+        if (globalThis.htmlToImage && typeof htmlToImage.toPng === 'function') resolve(htmlToImage);
+        else {
+          htmlToImagePromise = null;
+          reject(new Error('html-to-image 加载后仍不可用'));
+        }
+      };
+      s.onerror = function () {
+        htmlToImagePromise = null;
+        reject(new Error('html-to-image 脚本加载失败'));
+      };
+      document.head.appendChild(s);
+    });
+    return htmlToImagePromise;
+  }
+
   function exportGroupName() {
     try {
       const ld = WFProto.getLineageData && WFProto.getLineageData();
@@ -4039,16 +4067,29 @@
     }
     if (!WFLineageExport.canExport(curMode)) return;
     if (exportTools) exportTools.classList.add('is-busy');
-    [btnExportPng, btnExportSvg].forEach(function (b) { if (b) b.disabled = true; });
-    WFLineageExport.download(format, {
-      groupName: exportGroupName(),
-      mode: curMode,
-      stage: stage
+    [btnExportPng, btnExportSvg].forEach(function (b) {
+      if (!b) return;
+      b.disabled = true;
+      b.setAttribute('aria-busy', 'true');
+      if (!b.dataset.label) b.dataset.label = b.textContent;
+      b.textContent = '…';
+    });
+    ensureHtmlToImage().then(function () {
+      return WFLineageExport.download(format, {
+        groupName: exportGroupName(),
+        mode: curMode,
+        stage: stage
+      });
     }).catch(function (err) {
       console.warn('[lineage] export failed', err);
       try { window.alert('下载失败：' + (err && err.message ? err.message : '未知错误')); } catch (e) {}
     }).then(function () {
       if (exportTools) exportTools.classList.remove('is-busy');
+      [btnExportPng, btnExportSvg].forEach(function (b) {
+        if (!b) return;
+        b.removeAttribute('aria-busy');
+        if (b.dataset.label) b.textContent = b.dataset.label;
+      });
       syncExportChrome(curMode);
     });
   }
