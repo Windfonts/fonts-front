@@ -798,9 +798,25 @@
     const parentInfo = (info && info.parentId && WFProto.getFoundryById)
       ? WFProto.getFoundryById(info.parentId) : null;
     const showOrg = WFProto.canShowOrgLineage && WFProto.canShowOrgLineage(g.slug);
+    /* 谱系图链接：厂商自有谱系组（组根 ownerId=本厂商）→ 派生视图（看得出谁改自谁）；
+       纯品牌聚合（平台/代工）→ 组织视图。开源厂商多数落在前者。 */
+    var ownedGroup = ''; var ownedN = 0;
+    if (WFProto.getLineageData) {
+      var _ld = WFProto.getLineageData();
+      var _gid = (info && info.id) || g.slug;
+      Object.keys(_ld.groups || {}).forEach(function (gr) {
+        var members = g.fonts.filter(function (f) { return (f.lineage || {}).group === gr; });
+        if (!members.length) return;
+        var rootOwner = members.map(function (f) { return (f.lineage || {}).upstreamOwnerId; }).find(Boolean);
+        if (rootOwner === _gid && members.length > ownedN) { ownedGroup = gr; ownedN = members.length; }
+      });
+    }
+    var lineageTarget = ownedGroup
+      ? 'lineage.html?group=' + encodeURIComponent(ownedGroup) + '&view=derive&mode=flow'
+      : 'lineage.html?group=' + encodeURIComponent(g.slug) + '&view=org&mode=flow';
     const orgKv = showOrg
       ? { icon: 'branch', dt: '谱系图', html: true,
-          dd: '<a href="' + WFChrome.href('lineage.html?group=' + encodeURIComponent(g.slug) + '&view=org&mode=flow') + '" data-lineage-modal>查看</a>' }
+          dd: '<a href="' + WFChrome.href(lineageTarget) + '" data-lineage-modal>查看</a>' }
       : null;
     const kv = [
       { icon: 'building', dt: '类型', dd: WFChrome.kindLabel(info) || (info.unlisted ? '未核对' : '') },
