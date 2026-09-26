@@ -64,10 +64,12 @@
   const WEIGHT_MAP = {
     thin: '100', extralight: '200', 'extra-light': '200', ultralight: '200', 'ultra-light': '200', light: '300',
     demilight: '350', 'demi-light': '350', book: '350',
-    /* Text / Round 等非标准名：独立数值，避免与 Regular/Normal 同为 400 时多 @font-face 互相覆盖 */
+    /* Adobe Source Han usWeightClass: Normal=350 (与 DemiLight 同档数值)、Regular=400。
+       Text / Round 等非标准名用独立数值，避免多 @font-face 互相覆盖 */
     text: '450',
     round: '450',
-    regular: '400', normal: '400', roman: '400',
+    normal: '350',
+    regular: '400', roman: '400',
     medium: '500',
     demi: '600', demibold: '600', 'demi-bold': '600', semibold: '600', 'semi-bold': '600',
     bold: '700',
