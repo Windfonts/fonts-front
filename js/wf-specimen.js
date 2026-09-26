@@ -392,6 +392,7 @@
       marks: { hans: null, hant: null, c3500: null },
       hit: { hans: 0, hant: 0, c3500: 0 },
       total: { hans: 0, hant: 0, c3500: 0 },
+      coverage: font.coverage || null, /* 目录静态下发：字体确定性产品，覆盖统计入库即算好 */
       hollow: {}
     };
 
@@ -555,6 +556,15 @@
       const key = activeKey();
       const marks = st.marks[key];
       if (!marks) {
+        const bcov = st.coverage && st.coverage[st.charset === 'c3500' ? 'c3500' : st.variant];
+        if (bcov && bcov.total) {
+          const pct = Math.round(bcov.hit / bcov.total * 100);
+          const label = st.charset === 'c3500' ? '常用字' : '常用字';
+          summaryEl.innerHTML = '<p class="glyph-sum-line"><b>' + bcov.hit + '</b> / ' + bcov.total + ' ' + label +
+            '已收录 · ' + (pct >= 95 && bcov.hit < bcov.total ? '缺 ' + (bcov.total - bcov.hit) + ' 字' : '覆盖 ' + pct + '%') +
+            '</p><p class="glyph-legend is-quiet">逐字核对加载中…</p>';
+          return;
+        }
         summaryEl.innerHTML = '<p class="glyph-sum-line is-quiet">' +
           (st.charset === 'c3500' && COMMON_3500_FAILED
             ? '常用字表加载失败，请刷新重试。'

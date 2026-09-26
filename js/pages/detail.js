@@ -140,7 +140,7 @@
       : kind === '标准' ? '已核对开源标准许可文本'
       : kind === '出处' ? '已核对许可出处'
       : '协议原文待核对') +
-      ' · 文风云<sup>&reg;</sup> 免费提供在线字体托管和预览调用服务。';
+      ' · 文风云<sup>&reg;</sup> 提供免费在线字体托管和预览 API 调用服务。';
     const d = new Date();
     const pad = function (n) { return n < 10 ? '0' + n : String(n); };
     const when = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
