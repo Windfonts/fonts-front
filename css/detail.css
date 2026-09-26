@@ -716,3 +716,53 @@
   font-size: var(--fs-12);
   color: var(--gray-2);
 }
+
+.use-cite-pending {
+  margin-top: 0;
+  padding: var(--s-5) var(--s-6);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--warn, #c47a2c) 10%, var(--fill));
+  border: 1px solid color-mix(in srgb, var(--warn, #c47a2c) 28%, var(--rule));
+}
+.use-cite-pending .use-cite-title {
+  margin: 0 0 var(--s-2);
+  font-weight: var(--fw-title);
+  font-size: var(--fs-15);
+  color: var(--ink);
+}
+.use-cite-pending .use-cite-body {
+  margin: 0 0 var(--s-3);
+  line-height: var(--lh-body);
+  font-size: var(--fs-13);
+  color: var(--ink-2);
+}
+.use-cite-pending .use-cite-meta {
+  margin: 0;
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+}
+
+.use-cite-rejected {
+  margin-top: 0;
+  padding: var(--s-5) var(--s-6);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--danger, #b33) 8%, var(--fill));
+  border: 1px solid color-mix(in srgb, var(--danger, #b33) 24%, var(--rule));
+}
+.use-cite-rejected .use-cite-title {
+  margin: 0 0 var(--s-2);
+  font-weight: var(--fw-title);
+  font-size: var(--fs-15);
+  color: var(--ink);
+}
+.use-cite-rejected .use-cite-body {
+  margin: 0 0 var(--s-3);
+  line-height: var(--lh-body);
+  font-size: var(--fs-13);
+  color: var(--ink-2);
+}
+.use-cite-rejected .use-cite-meta {
+  margin: 0;
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+}

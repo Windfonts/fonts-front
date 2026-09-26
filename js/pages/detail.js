@@ -188,8 +188,8 @@
       const slug = (WFProto.fontSlug && WFProto.fontSlug(font)) ||
         String((font && (font.normalized || font.family)) || '').replace(/^wenfeng-/i, '');
       const href = WFChrome.href('app/cert-upload.html?cert=' + encodeURIComponent(slug || (font && font.id) || ''));
-      const opened = WFProto.hasCertGrant && WFProto.hasCertGrant(font);
-      return '<a class="lp-act" href="' + href + '">' + (opened ? '证书已开 →' : '上传证书 →') + '</a>';
+      const label = (WFProto.certCtaLabel && WFProto.certCtaLabel(font)) || '上传证书';
+      return '<a class="lp-act" href="' + href + '">' + esc(label) + ' →</a>';
     }
     return '';
   }
@@ -708,14 +708,36 @@
     }
     function mountOrRefuseEmbed() {
       if (!embedRoot) return;
+      const grant = (WFProto.getCertGrant && WFProto.getCertGrant(font)) || null;
+      const gStatus = grant && WFProto.certStatusNorm ? WFProto.certStatusNorm(grant.status) : '';
+      const cta = (WFProto.certCtaLabel && WFProto.certCtaLabel(font)) || '上传证书';
+
       if (!cite.ok) {
+        let title = '引用未开放';
+        let body = '本款仅供货架对照与站内样张预览。默认不开对外 CSS / CDN 热链。' +
+          '若你已持有覆盖网页嵌入的授权证书，可<a href="' + certUploadHref() + '">上传证书</a>，' +
+          '审核通过后仅对本账号开引用（不等于全站 CDN）。';
+        let boxCls = 'use-cite-closed';
+        if (gStatus === 'pending') {
+          title = '证书审核中';
+          body = '你已提交授权证书，正在等待审核。通过前引用仍关闭；站内样张预览可用。' +
+            '可到<a href="' + certUploadHref() + '">证书页</a>查看进度，或用 lab「模拟审核」演示通过/驳回。';
+          boxCls = 'use-cite-pending';
+        } else if (gStatus === 'rejected') {
+          title = '证书未通过';
+          body = '上次审核未通过' +
+            (grant && grant.reason ? '：' + esc(grant.reason) : '。') +
+            ' 请<a href="' + certUploadHref() + '">重新上传</a>覆盖网页嵌入用途的授权证明。' +
+            '通过后仅对本账号开引用（不等于全站 CDN）。';
+          boxCls = 'use-cite-rejected';
+        }
         embedRoot.innerHTML =
-          '<div class="use-cite-closed" role="status">' +
-            '<p class="use-cite-title">引用未开放</p>' +
-            '<p class="use-cite-body">本款仅供货架对照与站内样张预览。默认不开对外 CSS / CDN 热链。' +
-            '若你已持有覆盖网页嵌入的授权证书，可<a href="' + certUploadHref() + '">上传证书</a>，审核通过后仅对本账号开引用（不等于全站 CDN）。</p>' +
+          '<div class="' + boxCls + '" role="status">' +
+            '<p class="use-cite-title">' + title + '</p>' +
+            '<p class="use-cite-body">' + body + '</p>' +
             '<p class="use-cite-meta muted t-13">citeAllowed=false · reason=' + esc(cite.reason || 'no_embed') +
-            ' · 服务状态见上方「服务状态」行</p>' +
+            (gStatus ? ' · grant=' + esc(gStatus) : '') +
+            ' · <a href="' + certUploadHref() + '">' + esc(cta) + '</a></p>' +
           '</div>';
         embed = null;
         return;
@@ -730,11 +752,11 @@
       if (labGrant) {
         embedRoot.insertAdjacentHTML('afterbegin',
           '<div class="use-cite-opened" role="status">' +
-            '<p class="use-cite-title">本账号已开引用（lab 演示）</p>' +
-            '<p class="use-cite-body">证书权记在本浏览器 localStorage，按账号或匿名身份 × 本款字体。' +
+            '<p class="use-cite-title">本账号已开引用</p>' +
+            '<p class="use-cite-body">证书审核已通过（lab）。权记在本浏览器 localStorage，按登录账号 × 本款字体。' +
             '站内可展示引用片段；<strong>不会</strong>打开全局 fonts-packages CDN。正式环境须 vault 存证 + SSO。</p>' +
             '<p class="use-cite-meta muted t-13">citeAllowed=true · reason=cert-grant-lab · <a href="' +
-            certUploadHref() + '">查看证书页</a></p></div>');
+            certUploadHref() + '">查看证书</a></p></div>');
       }
     }
     mountOrRefuseEmbed();

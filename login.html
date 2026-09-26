@@ -58,7 +58,19 @@
       function dest() {
         const next = WFProto.getQuery('next');
         if (next === 'bag') return 'app/subset.html?from=bag';
-        if (next === 'app' && /^[\w-]+\.html$/.test(WFProto.getQuery('back'))) return 'app/' + WFProto.getQuery('back');
+        if (next === 'app' && /^[\w-]+\.html$/.test(WFProto.getQuery('back'))) {
+          const back = WFProto.getQuery('back');
+          const cert = WFProto.getQuery('cert');
+          if (back === 'cert-upload.html' && cert) {
+            return 'app/cert-upload.html?cert=' + encodeURIComponent(cert);
+          }
+          return 'app/' + back;
+        }
+        if (next === 'cert') {
+          const cert = WFProto.getQuery('cert');
+          return 'app/cert-upload.html' + (cert ? '?cert=' + encodeURIComponent(cert) : '');
+        }
+        if (next === 'certs') return 'app/certs.html';
         if (next === 'claim') {
           const slug = WFProto.getQuery('slug');
           return 'claim.html' + (slug ? '?slug=' + encodeURIComponent(slug) : '');

@@ -273,3 +273,85 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
   margin-top: var(--s-6);
 }
 .page-cert-upload #certErr { color: var(--danger, #b33); }
+
+.page-cert-upload .cert-badge.is-ok,
+.page-certs .cert-badge.is-ok {
+  background: color-mix(in srgb, var(--ok, #2a7a4b) 16%, var(--paper));
+  color: var(--ink);
+}
+.page-cert-upload .cert-badge.is-bad,
+.page-certs .cert-badge.is-bad {
+  background: color-mix(in srgb, var(--danger, #b33) 14%, var(--paper));
+  color: var(--ink);
+}
+.page-cert-upload .cert-pending .cert-badge.is-mid { /* pending uses is-mid */ }
+.page-cert-upload .cert-reject-reason {
+  margin: var(--s-3) 0;
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--danger, #b33) 8%, var(--fill));
+  border: 1px solid color-mix(in srgb, var(--danger, #b33) 22%, var(--rule));
+}
+.page-cert-upload .cert-lab-admin {
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px dashed var(--rule);
+}
+.page-cert-upload .cert-login-gate { max-width: 40rem; }
+
+.page-certs .certs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-13);
+}
+.page-certs .certs-table th,
+.page-certs .certs-table td {
+  text-align: left;
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+.page-certs .certs-table th {
+  font-weight: var(--fw-label);
+  color: var(--ink-2);
+  font-size: var(--fs-12);
+}
+.page-certs .cert-pill {
+  display: inline-block;
+  padding: 0.1em 0.55em;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-12);
+  background: var(--fill);
+}
+.page-certs .cert-pill.is-mid {
+  background: color-mix(in srgb, var(--warn, #c47a2c) 14%, var(--paper));
+}
+.page-certs .cert-pill.is-ok {
+  background: color-mix(in srgb, var(--ok, #2a7a4b) 16%, var(--paper));
+}
+.page-certs .cert-pill.is-bad {
+  background: color-mix(in srgb, var(--danger, #b33) 14%, var(--paper));
+}
+.page-certs .cert-panel { max-width: 40rem; }
+.page-certs .cert-badge {
+  display: inline-block;
+  margin: 0 0 var(--s-3);
+  padding: 0.15em 0.65em;
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  color: var(--ink-2);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-label);
+}
+.page-certs .cert-badge.is-mid {
+  background: color-mix(in srgb, var(--warn, #c47a2c) 14%, var(--paper));
+  color: var(--ink);
+}
+.page-certs .cert-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  align-items: center;
+  margin-top: var(--s-4);
+}
+

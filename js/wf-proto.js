@@ -1397,15 +1397,71 @@
     return g && typeof g === 'object' ? g : null;
   }
 
+  function certStatusNorm(st) {
+    st = String(st || '').toLowerCase();
+    if (st === 'approved-lab') return 'approved';
+    if (st === 'pending' || st === 'approved' || st === 'rejected') return st;
+    return st || '';
+  }
+
+  /** 是否已审核通过（仅 approved / approved-lab 开引用）。 */
   function hasCertGrant(fontOrToken, subjectOpt) {
     const g = getCertGrant(fontOrToken, subjectOpt);
     if (!g) return false;
-    const st = String(g.status || '');
-    return st === 'approved-lab' || st === 'approved';
+    return certStatusNorm(g.status) === 'approved';
+  }
+
+  function certGrantIsPending(fontOrToken, subjectOpt) {
+    const g = getCertGrant(fontOrToken, subjectOpt);
+    return !!(g && certStatusNorm(g.status) === 'pending');
+  }
+
+  function certGrantIsRejected(fontOrToken, subjectOpt) {
+    const g = getCertGrant(fontOrToken, subjectOpt);
+    return !!(g && certStatusNorm(g.status) === 'rejected');
+  }
+
+  /** 说人话状态标签。 */
+  function certStatusLabel(st) {
+    const n = certStatusNorm(st);
+    if (n === 'pending') return '待审核';
+    if (n === 'approved') return '已通过';
+    if (n === 'rejected') return '已驳回';
+    return st ? String(st) : '无记录';
+  }
+
+  /**
+   * 详情 CTA：上传证书 / 审核中 / 查看证书 / 重新上传
+   */
+  function certCtaLabel(fontOrToken, subjectOpt) {
+    const g = getCertGrant(fontOrToken, subjectOpt);
+    if (!g) return '上传证书';
+    const n = certStatusNorm(g.status);
+    if (n === 'pending') return '审核中';
+    if (n === 'approved') return '查看证书';
+    if (n === 'rejected') return '重新上传';
+    return '上传证书';
+  }
+
+  /** 当前身份下全部 grant（跨字体）。 */
+  function listCertGrants(subjectOpt) {
+    const subject = subjectOpt || certSubjectKey();
+    const all = readCertGrantsAll();
+    const bag = all[subject];
+    if (!bag || typeof bag !== 'object') return [];
+    return Object.keys(bag).map(function (k) {
+      const g = bag[k];
+      if (!g || typeof g !== 'object') return null;
+      if (!g.fontKey) g.fontKey = k;
+      return g;
+    }).filter(Boolean).sort(function (a, b) {
+      return String(b.at || '').localeCompare(String(a.at || ''));
+    });
   }
 
   /**
    * 写入本机演示授权。正式环境应由 vault API 按 userId×fontId 存证审核。
+   * status: pending | approved | approved-lab | rejected
    * @returns {object} grant
    */
   function setCertGrant(font, meta) {
@@ -1414,22 +1470,49 @@
     const subject = certSubjectKey();
     const all = readCertGrantsAll();
     if (!all[subject] || typeof all[subject] !== 'object') all[subject] = {};
+    const prev = all[subject][fk] && typeof all[subject][fk] === 'object' ? all[subject][fk] : {};
+    meta = meta || {};
+    const status = meta.status != null ? String(meta.status) : (prev.status || 'pending');
     const grant = {
-      status: (meta && meta.status) || 'approved-lab',
+      status: status,
       fontKey: fk,
-      family: font && font.family ? String(font.family) : '',
-      normalized: font && font.normalized ? String(font.normalized) : fk,
-      name: font && font.name ? String(font.name) : fk,
-      fileName: meta && meta.fileName ? String(meta.fileName) : '',
-      fileSize: meta && meta.fileSize != null ? Number(meta.fileSize) || 0 : 0,
-      mime: meta && meta.mime ? String(meta.mime) : '',
+      family: (font && font.family ? String(font.family) : '') || prev.family || '',
+      normalized: (font && font.normalized ? String(font.normalized) : '') || prev.normalized || fk,
+      name: (font && font.name ? String(font.name) : '') || prev.name || fk,
+      fileName: meta.fileName != null ? String(meta.fileName) : (prev.fileName || ''),
+      fileSize: meta.fileSize != null ? Number(meta.fileSize) || 0 : (prev.fileSize || 0),
+      mime: meta.mime != null ? String(meta.mime) : (prev.mime || ''),
+      reason: meta.reason != null ? String(meta.reason) : (prev.reason || ''),
+      reviewedAt: meta.reviewedAt != null ? String(meta.reviewedAt) : (prev.reviewedAt || ''),
       subject: subject,
-      at: (meta && meta.at) || new Date().toISOString(),
+      at: meta.at || prev.at || new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
       labMock: true
     };
     all[subject][fk] = grant;
     writeCertGrantsAll(all);
     return grant;
+  }
+
+  /** lab 模拟审核：通过 / 驳回（写 status + reason）。 */
+  function reviewCertGrant(fontOrToken, decision, reason) {
+    const g = getCertGrant(fontOrToken);
+    if (!g) throw new Error('没有待审记录');
+    const font = (typeof fontOrToken === 'object' && fontOrToken) ||
+      getBySlug(g.normalized || g.fontKey) ||
+      { normalized: g.normalized || g.fontKey, name: g.name, family: g.family };
+    const ok = String(decision || '').toLowerCase() === 'approved' ||
+      String(decision || '').toLowerCase() === 'approve' ||
+      decision === true;
+    return setCertGrant(font, {
+      status: ok ? 'approved' : 'rejected',
+      reason: ok ? '' : String(reason || '证书未覆盖网页字体嵌入 / webfont 用途（lab 模拟驳回）'),
+      reviewedAt: new Date().toISOString(),
+      fileName: g.fileName,
+      fileSize: g.fileSize,
+      mime: g.mime,
+      at: g.at
+    });
   }
 
   function clearCertGrant(fontOrToken) {
@@ -1657,7 +1740,14 @@
     certFontKey: certFontKey,
     getCertGrant: getCertGrant,
     hasCertGrant: hasCertGrant,
+    certGrantIsPending: certGrantIsPending,
+    certGrantIsRejected: certGrantIsRejected,
+    certStatusNorm: certStatusNorm,
+    certStatusLabel: certStatusLabel,
+    certCtaLabel: certCtaLabel,
+    listCertGrants: listCertGrants,
     setCertGrant: setCertGrant,
+    reviewCertGrant: reviewCertGrant,
     clearCertGrant: clearCertGrant,
     slugify: slugify,
     getFont: function (id) { return getById(id); },
