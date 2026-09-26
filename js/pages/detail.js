@@ -124,9 +124,7 @@
       '</div>';
   }
 
-  /* 核对态四档：逐款原文核对 > 标准开源许可（licenseName 命中 OFL/GPL/MIT 等标准文本，
-     标准文本全网同文，命中即视同核对——跳过逐款核查的就是开源字体）
-     > 出处核对（仓库 LICENSE / 权利人条目）> 待核对 */
+  /* 核对态（服务状态句内从句）：逐款原文 > 标准开源文本 > 出处 > 待核对 */
   function proofVerifyKind(font) {
     if (font.licenseVerified) return '原文';
     const ev = font.licenseEvidence || {};
@@ -134,17 +132,59 @@
     return '';
   }
 
-  function proofMetaLine(font) {
+  /* 服务状态三档：正常 / 受限 / 不可用（货架能否托管）。核对态只作句内从句。 */
+  function serviceVerifyClause(font) {
     const kind = proofVerifyKind(font);
-    const what = (kind === '原文' ? '已核对协议原文'
-      : kind === '标准' ? '已核对开源标准许可文本'
-      : kind === '出处' ? '已核对许可出处'
-      : '协议原文待核对') +
-      ' · 文风云<sup>&reg;</sup> 提供免费在线字体托管和预览 API 调用服务。';
+    if (kind === '原文') return '已核对协议原文';
+    if (kind === '标准') return '已核对开源标准许可文本';
+    if (kind === '出处') return '已核对许可出处';
+    return '协议原文待核对';
+  }
+
+  function serviceStatusCopy(font) {
+    const ss = (WFProto.serviceStatus && WFProto.serviceStatus(font)) || { status: '受限', reason: 'unverified_tier' };
+    const status = ss.status || '受限';
+    const reason = ss.reason || '';
+    const verify = serviceVerifyClause(font);
+    const hostOk = '文风云<sup>&reg;</sup> 提供免费在线字体托管和预览 API 调用服务。';
+    const hostSoft = '文风云<sup>&reg;</sup> 可提供预览；商用前请先确认条款。';
+    let why = '';
+    let cls = 'is-good';
+    if (status === '正常') {
+      cls = 'is-good';
+      why = '货架可托管。' + verify + '。' + hostOk;
+    } else if (status === '受限') {
+      cls = 'is-mid';
+      if (reason === 'personal') {
+        why = '仅限个人非商用，商用需另授权。仍可预览。' + hostSoft;
+      } else if (reason === 'pending_proof') {
+        why = '许可看起来可用，但' + verify + '。' + hostSoft;
+      } else if (reason === 'no_redistrib') {
+        why = '授权限制再分发，货架托管受限。仍可预览。' + hostSoft;
+      } else {
+        why = '授权档位待核实，暂不按货架商用字处理。' + hostSoft;
+      }
+    } else {
+      cls = 'is-bad';
+      if (reason === 'retired') {
+        why = '已从产品货架下架，目录仅作存档。不再提供托管与预览 API。';
+      } else if (reason === 'need_auth') {
+        why = '需取得权利人授权后才能用，不适合免费货架托管。';
+      } else {
+        why = '授权不适用或已撤销，本站不提供托管。';
+      }
+    }
+    return { status: status, cls: cls, why: why };
+  }
+
+  function proofMetaLine(font) {
+    const copy = serviceStatusCopy(font);
+    const what = '<span class="svc-grade ' + copy.cls + '">' + esc(copy.status) + '</span>' +
+      '<span class="svc-why">' + copy.why + '</span>';
     const d = new Date();
     const pad = function (n) { return n < 10 ? '0' + n : String(n); };
     const when = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
-    return '<div class="lp5-node lp5-meta"><span class="icon">' + WFChrome.icon('cloud') + '</span>' +
+    return '<div class="lp5-node lp5-meta svc-row"><span class="icon">' + WFChrome.icon('cloud') + '</span>' +
       '<div class="head"><span class="who">服务状态</span>' +
       '<span class="what">' + what + '</span>' +
       '<span class="when">' + esc(when) + '</span>' +

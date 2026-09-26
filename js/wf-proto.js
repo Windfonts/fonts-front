@@ -1076,6 +1076,61 @@
       ev.sourceKind === 'rights_holder';
   }
 
+
+  /**
+   * 服务状态三档（货架能否托管，不是「核对没核对」 alone）：
+   * 正常 / 受限 / 不可用。优先用现有 tags、licenseTier、licenseEvidence。
+   */
+  function serviceStatus(font) {
+    const tags = (font && font.tags) || [];
+    const has = function (t) {
+      for (let i = 0; i < tags.length; i++) {
+        if (String(tags[i]) === t) return true;
+      }
+      return false;
+    };
+    const tier = licenseTier(font);
+    const ev = (font && font.licenseEvidence) || {};
+    const verified = !!(font && font.licenseVerified) || !!ev.verified;
+    const blob = [
+      (font && font.license) || '',
+      (font && font.licenseName) || '',
+      (font && font.licenseNotes) || ''
+    ].join(' ');
+    const restr = ((ev.restrictions) || []).concat([(ev.quote) || '']).join(' ');
+
+    /* 不可用：产品下架 / 明确不得用 / 需授权（不适合免费货架） */
+    if (has('retired-from-product') || has('hung')) {
+      return { status: '不可用', reason: 'retired' };
+    }
+    if (/不适用|已撤销|\brevoked\b|不得使用/i.test(blob)) {
+      return { status: '不可用', reason: 'forbidden' };
+    }
+    if (tier === '需授权') {
+      return { status: '不可用', reason: 'need_auth' };
+    }
+
+    /* 受限：仍可预览，但货架有硬限制或证据未齐 */
+    if (tier === '个人免费') {
+      return { status: '受限', reason: 'personal' };
+    }
+    if (tier === '待核实') {
+      return { status: '受限', reason: 'unverified_tier' };
+    }
+    if ((tier === '免费商用' || tier === '开源商用') && !verified) {
+      return { status: '受限', reason: 'pending_proof' };
+    }
+    /* 明确禁止再分发字体文件本身（不是 OFL「勿单独售卖」那种）→ 托管意图受限 */
+    if (/不得再分发字体|禁止再分发字体|不得提供(?:字体)?下载|禁止托管|不得.*CDN/i.test(restr)) {
+      return { status: '受限', reason: 'no_redistrib' };
+    }
+
+    if (tier === '开源商用' || tier === '免费商用') {
+      return { status: '正常', reason: 'ok' };
+    }
+    return { status: '受限', reason: 'unverified_tier' };
+  }
+
   function matchFilter(font, tag, keyword, license) {
     const tagQ = (tag || '').trim();
     const kw = (keyword || '').trim().toLowerCase();
@@ -1255,6 +1310,7 @@
     getLineageData: function () { return lineageData; },
     isOpenFont: isOpenFont,
     forbidsOpenDerive: forbidsOpenDerive,
+    serviceStatus: serviceStatus,
     slugify: slugify,
     getFont: function (id) { return getById(id); },
     getFontBySlug: getBySlug,

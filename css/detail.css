@@ -491,6 +491,29 @@
 .license-head .tier.is-open { background: var(--ok); color: var(--on-ok); border-color: var(--ok); }
 .lp5-points .lp-badge-warn { border-color: var(--warn-edge); color: var(--warn); text-decoration: none; }
 
+
+/* 服务状态三档：正常 / 受限 / 不可用 */
+.lp5-node.lp5-meta.svc-row .what {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+}
+.lp5-node.lp5-meta.svc-row .svc-grade {
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+  color: var(--ink);
+}
+.lp5-node.lp5-meta.svc-row .svc-grade.is-mid { color: var(--warn); }
+.lp5-node.lp5-meta.svc-row .svc-grade.is-bad { color: var(--caution); }
+.lp5-node.lp5-meta.svc-row .svc-why {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+}
+
 /* ===== 出处与依据 · 厂商信誉行（首行结论，结构对齐下方 meta）===== */
 .license-fold .trust-block { padding: var(--s-6) 0 var(--s-5); border-bottom: 1px solid var(--rule); margin-bottom: var(--s-5); }
 .trust-row .what {
