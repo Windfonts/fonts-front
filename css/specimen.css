@@ -890,3 +890,6 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
     pointer-events: none;
   }
 }
+
+/* 常用字视图下写法开关禁用态：可见但置灰，不凭空消失 */
+.seg-glyph.is-off button { opacity: 0.4; cursor: not-allowed; }

@@ -326,6 +326,9 @@
     const stack = WFProto.cssFamilyStack(font.family);
     const w0 = WFSpecimen.firstWeight(font);
     weights.forEach(function (w) { WFProto.ensureFontCss(font.family, w); });
+    const productSibs = window.WFProducts ? WFProducts.siblings(font) : [];
+    /* 单字重文件拆成多档产品（如仓耳 W01–W05）：规格条放样张旁字重位，标题下不再重复 */
+    const gradesAsWeights = productSibs.length >= 2 && weights.length <= 1;
     const brand = WFChrome.brandName(font);
     const brandCount = list.filter(function (f) { return WFChrome.brandSlug(f) === WFChrome.brandSlug(font); }).length;
     const maker = WFChrome.makerInfo(font);
@@ -377,7 +380,14 @@
         '<div class="wall-tools" id="wallTools">' +
           '<input class="range" type="range" id="heroSize" min="24" max="240" value="64" aria-label="字号" />' +
           '<span class="val" id="heroSizeVal">64px</span>' +
-          (weights.length > 1
+          (gradesAsWeights
+            ? '<div class="weights product-grades" role="group" aria-label="规格">' + productSibs.map(function (s) {
+                const on = s.font.family === font.family;
+                const href = WFChrome.href(WFProto.detailHref(s.font));
+                const label = WFProducts.chipLabel(s.meta);
+                return '<a href="' + href + '"' + (on ? ' class="is-on" aria-current="page"' : '') + '>' + esc(label) + '</a>';
+              }).join('') + '</div>'
+            : weights.length > 1
             ? '<div class="weights" role="group" aria-label="字重">' + weights.map(function (w) {
                 const c = WFProto.weightToCss(w);
                 return '<button type="button" data-w="' + c + '" data-wn="' + esc(w) + '"' + (c === w0 ? ' class="is-on"' : '') + '>' +
@@ -394,7 +404,7 @@
         '<div class="detail-title-main">' +
           '<h1><span>' + esc(titleName) + '</span>' + WFChrome.favHtml('font', font.id, titleName) +
             (titleEn && titleEn !== titleName ? '<small>' + esc(titleEn) + '</small>' : '') + '</h1>' +
-          (window.WFProducts ? WFProducts.variantBarHtml(font) : '') +
+          (gradesAsWeights ? '' : (window.WFProducts ? WFProducts.variantBarHtml(font) : '')) +
           '<p class="dotlist">' +
             '<a class="foundry-inline" href="foundry.html?slug=' + encodeURIComponent(WFChrome.brandSlug(font)) + '">' +
               (avatar ? '<img src="' + esc(avatar) + '" alt="" />' : '') + esc(brand || '未署名') +
@@ -407,7 +417,7 @@
               '</span>';
             })() +
             (variantLabel ? '<span>' + esc(variantLabel) + '</span>' : '') +
-            '<span>' + weights.length + ' 字重</span>' +
+            '<span>' + (gradesAsWeights ? (productSibs.length + ' 规格') : (weights.length + ' 字重')) + '</span>' +
             '<span class="lic-chip" data-tier="' + esc(proofTier(font)) + '">' + esc(tierLabel(proofTier(font))) + '</span>' +
             (font.charCount ? '<span>' + WFProto.formatCount(font.charCount) + ' 字</span>' : '') +
           '</p>' +
@@ -903,14 +913,14 @@
             if (c3500 && c3500.total) {
               exactCell = cell('3500', c3500.hit + '/' + c3500.total);
               noteExtra =
-                '常用3500 按 CSS unicode-range 逐码点 ' +
+                '常用字 按 CSS unicode-range 逐码点 ' +
                 c3500.pct +
                 '%（缺 ' +
                 (c3500.total - c3500.hit) +
                 '）；CJK 估算仅供对照；';
               if (c3500.missSamples && c3500.missSamples.length) {
                 missHtml =
-                  '<p class="glyph-diff-samples" title="常用3500 缺字样例">' +
+                  '<p class="glyph-diff-samples" title="常用字缺字样例">' +
                   c3500.missSamples
                     .map(function (ch) {
                       return '<span class="glyph-diff-ch">' + esc(ch) + '</span>';
@@ -936,7 +946,7 @@
               upNote +
               '。' +
               noteExtra +
-              '字符表可切「常用3500」通览；千字文上游差见上方。</p>';
+              '字符表可切「常用字」通览；千字文上游差见上方。</p>';
           }
           const covP =
             window.WFSpecimen && WFSpecimen.coverCommon3500

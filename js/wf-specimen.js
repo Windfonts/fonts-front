@@ -60,6 +60,7 @@
   const QIANZIWEN_EXCERPT = 80;
   const COMMON_3500_EXCERPT = 120;
   let COMMON_3500 = null;
+  let COMMON_3500_FAILED = false;
   let COMMON_3500_PROMISE = null;
   function loadCommon3500() {
     if (COMMON_3500) return Promise.resolve(COMMON_3500);
@@ -69,6 +70,7 @@
       : ((window.WFChrome && WFChrome.href) ? WFChrome.href('data/common-chars-3500.json') : 'data/common-chars-3500.json');
     COMMON_3500_PROMISE = fetch(url, { method: 'GET' })
       .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { COMMON_3500_FAILED = true; return ''; })
       .then(function (j) {
         COMMON_3500 = (j && typeof j.chars === 'string' && j.chars.length) ? j.chars : '';
         return COMMON_3500;
@@ -518,7 +520,7 @@
       const excerpt = st.charset === 'c3500' ? COMMON_3500_EXCERPT : QIANZIWEN_EXCERPT;
       const shown = st.filter === 'miss' ? full : full.slice(0, excerpt);
       const title = st.charset === 'c3500'
-        ? '常用汉字 · 3500（GB2312 一级截取）'
+        ? '常用字 · 3500（GB2312 一级表）'
         : (st.variant === 'hant' ? '常用漢字 · 千字文（繁體）' : '常用汉字 · 千字文（简体）');
       let html =
         '<h3>' + title +
@@ -553,7 +555,10 @@
       const key = activeKey();
       const marks = st.marks[key];
       if (!marks) {
-        summaryEl.innerHTML = '<p class="glyph-sum-line is-quiet">正在核对这款字收录了哪些字…</p>';
+        summaryEl.innerHTML = '<p class="glyph-sum-line is-quiet">' +
+          (st.charset === 'c3500' && COMMON_3500_FAILED
+            ? '常用字表加载失败，请刷新重试。'
+            : '正在核对这款字收录了哪些字…') + '</p>';
         return;
       }
       const total = st.total[key] || uniqueHits(qzw(), {}).total;
@@ -565,7 +570,7 @@
       if (miss === 0) suffix = '全部收录';
       else if (pct >= 95) suffix = '缺 <button type="button" class="chip-miss" data-filter="miss">' + miss + '</button> 字';
       else suffix = '覆盖 ' + pct + '%';
-      const label = st.charset === 'c3500' ? '常用 3500' : '常用字';
+      const label = '常用字';
       const extraBtn = st.charset === 'c3500'
         ? ''
         : ' · <button type="button" class="glyph-qz-link">通篇预览</button>';
@@ -588,7 +593,15 @@
         b.classList.toggle('is-on', b.getAttribute('data-f') === st.filter);
       });
       const qzOnly = toolsEl.querySelector('[data-qz-only]');
-      if (qzOnly) qzOnly.hidden = st.charset === 'c3500';
+      if (qzOnly) {
+        const off = st.charset === 'c3500';
+        qzOnly.hidden = false;
+        qzOnly.querySelectorAll('button').forEach(function (b) {
+          b.disabled = off;
+          b.title = off ? '常用字表只有简体字形，无繁体对照' : '';
+        });
+        qzOnly.classList.toggle('is-off', off);
+      }
     }
 
     function applyRanges(ranges) {
@@ -680,7 +693,7 @@
     toolsEl.innerHTML =
       '<div class="seg-glyph" role="group" aria-label="字表">' +
         '<button type="button" data-cs="qz">千字文</button>' +
-        '<button type="button" data-cs="c3500">常用3500</button></div>' +
+        '<button type="button" data-cs="c3500">常用字</button></div>' +
       '<div class="seg-glyph" role="group" aria-label="写法" data-qz-only>' +
         '<button type="button" data-sc="hans">简</button>' +
         '<button type="button" data-sc="hant">繁</button></div>' +
