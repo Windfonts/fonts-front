@@ -1009,11 +1009,23 @@
       /* 己：仅开发视图；一击后立刻展开横条，无 fold */
       btn.className = 'gtoggle for-dev';
       btn.setAttribute('data-live-analysis', '');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-pressed', 'false');
       btn.textContent = '对照表';
-      btn.title = '按需请求 vault analysis（无文件则 404；限流时回退 OSS metadata）';
+      btn.title = '展开 / 收起现网字符对照（vault analysis；无文件则 404；限流回退 OSS）';
       tools.appendChild(btn);
+      let liveLoaded = false;
       btn.addEventListener('click', function () {
+        if (!panel.hidden) {
+          panel.hidden = true;
+          btn.setAttribute('aria-expanded', 'false');
+          btn.setAttribute('aria-pressed', 'false');
+          return;
+        }
         panel.hidden = false;
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-pressed', 'true');
+        if (liveLoaded) return;
         panel.innerHTML = '<p class="glyph-live-note is-quiet">正在对照现网字符分析…</p>';
         btn.disabled = true;
         const upPromise =
@@ -1026,6 +1038,7 @@
           btn.disabled = false;
           if (!row || row.failed) {
             panel.innerHTML = '<p class="glyph-live-note is-quiet">暂时无法对照现网（网络或限流）。查字仍以本页本地数据为准。</p>';
+            liveLoaded = true;
             return;
           }
           if (row.missing) {
@@ -1033,6 +1046,7 @@
               '<p class="glyph-live-note is-quiet">现网尚无此款 analysis 文件（normalized=<code>' +
               esc(font.normalized || '') +
               '</code>）。公开站查字继续用本地字符表。</p>';
+            liveLoaded = true;
             return;
           }
           const d = row.data || {};
@@ -1087,7 +1101,9 @@
           } else if (upFont && upRow && (upRow.missing || upRow.failed)) {
             upNote = ' · 上游 analysis 暂无';
           }
+          liveLoaded = true;
           btn.setAttribute('aria-pressed', 'true');
+          btn.setAttribute('aria-expanded', 'true');
           function paintPanel(c3500) {
             let exactCell = cell('常用估', covCommon);
             let missHtml = '';
