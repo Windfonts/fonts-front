@@ -254,12 +254,22 @@
         {
           "href": "detail-glyph-wall-tools-v2-options.html",
           "title": "字符表工具条结构 v2",
-          "status": "active",
-          "note": "戊顶条+文案tabs / 己左语料右查字+筛选图标弹出 / 庚极简筛选chip / 辛摘要行点选。甲乙丙丁已否。戊曾上现网字符表（8239cdd）后还原（0fcb11d）；可复用样式见 css/lab-text-tabs.css。适用点审计 detail-text-tabs-audit.html。",
+          "status": "rejected",
+          "note": "戊已否（tabs 挂字墙上方）；己庚辛未拍。见 v3 新方向（搜索底注/抽屉/图标轨/一体框）。",
           "assets": [
             "css/detail-glyph-wall-tools-v2-options.css",
             "js/pages/detail-glyph-wall-tools-v2-options.js",
             "css/lab-text-tabs.css"
+          ]
+        },
+        {
+          "href": "detail-glyph-wall-tools-v3-options.html",
+          "title": "字符表工具条 v3",
+          "status": "active",
+          "note": "甲乙丙密度+戊tabs已否。壬搜索底注 / 癸工具行抽屉 / 子图标轨 / 丑一体scoped框。对照表设计隐藏。",
+          "assets": [
+            "css/detail-glyph-wall-tools-v3-options.css",
+            "js/pages/detail-glyph-wall-tools-v3-options.js"
           ]
         },
         {

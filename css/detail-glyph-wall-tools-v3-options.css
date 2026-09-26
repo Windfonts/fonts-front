@@ -1,0 +1,500 @@
+/* 字符表工具条 v3（壬癸子丑）对照页专用。不进 detail.css / specimen.css。 */
+
+.page-detail-glyph-wall-tools-v3 .dgwt3-main {
+  padding: var(--s-6) 0 var(--s-16);
+  max-width: 64rem;
+}
+
+.page-detail-glyph-wall-tools-v3 .dgwt3-verdict {
+  margin: 0 0 var(--s-8);
+  padding: var(--s-5) var(--s-6);
+  background: var(--surface);
+  border-radius: var(--radius);
+  font-size: var(--fs-13);
+  line-height: var(--lh-body);
+  color: var(--ink-2);
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-verdict b {
+  font-weight: var(--fw-title);
+  color: var(--ink);
+  margin-right: 0.35em;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-verdict code {
+  font-size: var(--fs-12);
+  background: var(--paper);
+  padding: 0.05em 0.35em;
+  border-radius: 6px;
+}
+
+.page-detail-glyph-wall-tools-v3 .do-block {
+  display: none;
+  padding: 0 0 var(--s-10);
+}
+.page-detail-glyph-wall-tools-v3 .do-block.is-on { display: block; }
+
+.page-detail-glyph-wall-tools-v3 .dgwt3-pair {
+  display: grid;
+  gap: var(--s-5);
+  grid-template-columns: 1fr;
+}
+
+.page-detail-glyph-wall-tools-v3 .dgwt3-stage {
+  position: relative;
+  padding: var(--s-4) var(--s-5) var(--s-5);
+  background: var(--page, #fff);
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius);
+  min-width: 0;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-stage::before {
+  content: attr(data-label);
+  display: block;
+  margin-bottom: var(--s-3);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-label);
+  color: var(--gray);
+  letter-spacing: 0.02em;
+}
+
+.page-detail-glyph-wall-tools-v3 .dgwt3-stage .detail-main > .panel {
+  min-width: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border-top: 1px solid var(--rule);
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-stage .panel-head {
+  flex-wrap: wrap;
+  padding: var(--s-5) 0 0;
+  gap: var(--s-3) var(--s-4);
+  align-items: center;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-stage .panel-pad {
+  padding: var(--s-4) 0 var(--s-2);
+}
+
+.page-detail-glyph-wall-tools-v3 .glyph-query-host {
+  display: flex;
+  flex: 1 1 auto;
+  width: auto;
+  max-width: 28rem;
+  min-width: 0;
+}
+.page-detail-glyph-wall-tools-v3 .glyph-query-host .glyph-query { width: 100%; }
+.page-detail-glyph-wall-tools-v3 .dgwt3-stage .glyph-query-go,
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-go {
+  height: 1.9rem;
+  padding: 0 0.95rem;
+  flex: none;
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: var(--fs-13);
+}
+
+/* 设计视图藏对照表 */
+.page-detail-glyph-wall-tools-v3 .dgwt3-stage .for-dev { display: none !important; }
+.page-detail-glyph-wall-tools-v3 .dgwt3-stage.is-dev-view .for-dev {
+  display: inline-flex !important;
+  align-items: center;
+  border: 0;
+  background: var(--fill);
+  color: var(--ink-2);
+  padding: 0.32rem 0.9rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-13);
+}
+
+.page-detail-glyph-wall-tools-v3 .dgwt3-grid-mock {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-grid-mock span {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  font-size: 1.35rem;
+  color: var(--ink);
+}
+
+/* ─── 壬：搜索底注 ─── */
+.page-detail-glyph-wall-tools-v3 .dgwt3-head-search {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--s-3) var(--s-4);
+  width: 100%;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-head-search > h2 {
+  margin: 0;
+  padding-top: 0.35rem;
+  white-space: nowrap;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-search-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-search-stack .glyph-query {
+  width: 100%;
+  max-width: none;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-undertext {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem 0.35rem;
+  padding-left: 0.15rem;
+  font-size: var(--fs-12);
+  color: var(--gray);
+  line-height: 1.4;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-ut-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-ut-group button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--gray);
+  font-size: inherit;
+  cursor: pointer;
+  line-height: inherit;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-ut-group button:hover { color: var(--ink); }
+.page-detail-glyph-wall-tools-v3 .dgwt3-ut-group button.is-on {
+  color: var(--ink);
+  font-weight: var(--fw-title);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-ut-dot {
+  color: var(--gray-2);
+  user-select: none;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-head-search > .for-dev {
+  margin-top: 0.2rem;
+}
+
+/* ─── 癸：抽屉 ─── */
+.page-detail-glyph-wall-tools-v3 .dgwt3-head-drawer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  padding-bottom: 0;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3) var(--s-4);
+  width: 100%;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-bar > h2 {
+  margin: 0;
+  flex: none;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-bar .glyph-query-host {
+  flex: 1 1 14rem;
+  max-width: none;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: var(--fs-13);
+  padding: 0.28rem 0.5rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  flex: none;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-toggle:hover,
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-toggle.is-on {
+  color: var(--ink);
+  background: var(--fill);
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-sum {
+  font-variant-numeric: tabular-nums;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-chev {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.15s ease;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-toggle.is-on .dgwt3-chev,
+.page-detail-glyph-wall-tools-v3 .dgwt3-head-drawer.is-open .dgwt3-chev {
+  transform: rotate(180deg);
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-panel {
+  display: none;
+  margin-top: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  background: var(--surface);
+  border-radius: var(--radius);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-4) var(--s-5);
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-head-drawer.is-open .dgwt3-drawer-panel {
+  display: grid;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-label {
+  margin: 0 0 0.4rem;
+  font-size: var(--fs-12);
+  color: var(--gray);
+  font-weight: var(--fw-label);
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-row button {
+  border: 0;
+  background: var(--paper);
+  color: var(--ink-2);
+  padding: 0.28rem 0.75rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-13);
+  cursor: pointer;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-row button:hover { color: var(--ink); }
+.page-detail-glyph-wall-tools-v3 .dgwt3-drawer-row button.is-on {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+/* ─── 子：图标轨 ─── */
+.page-detail-glyph-wall-tools-v3 .dgwt3-head-icons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3) var(--s-4);
+  width: 100%;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-head-icons .glyph-title {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-head-icons .glyph-query-host {
+  max-width: none;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-icon-rail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex: none;
+  padding: 2px;
+  background: var(--fill);
+  border-radius: var(--radius-pill);
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-icon-pair {
+  display: inline-flex;
+  gap: 2px;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  padding: 0;
+  font-size: var(--fs-13);
+  font-weight: var(--fw-label);
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-icon-btn:hover { color: var(--ink); background: var(--paper); }
+.page-detail-glyph-wall-tools-v3 .dgwt3-icon-btn.is-on {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-icon-btn .icon {
+  width: 1rem;
+  height: 1rem;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-glyph {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-script {
+  width: auto;
+  min-width: 2rem;
+  padding: 0 0.55rem;
+  font-weight: var(--fw-title);
+}
+
+/* ─── 丑：一体 scoped 框 ─── */
+.page-detail-glyph-wall-tools-v3 .dgwt3-head-shell {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3) var(--s-4);
+  width: 100%;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-head-shell > h2 {
+  margin: 0;
+  flex: none;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell {
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 18rem;
+  min-width: 0;
+  background: var(--fill);
+  border-radius: var(--radius-pill);
+  overflow: visible;
+  position: relative;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-scope,
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-filter {
+  position: relative;
+  flex: none;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-scope > summary,
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-filter > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  height: 100%;
+  min-height: 2.1rem;
+  padding: 0 0.75rem;
+  font-size: var(--fs-13);
+  color: var(--ink-2);
+  white-space: nowrap;
+  user-select: none;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-scope > summary::-webkit-details-marker,
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-filter > summary::-webkit-details-marker { display: none; }
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-scope > summary::after,
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-filter > summary::after {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-1px);
+  opacity: 0.7;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-scope > summary:hover,
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-filter > summary:hover { color: var(--ink); }
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-scope {
+  border-right: 1px solid color-mix(in srgb, var(--rule) 80%, transparent);
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 0 0.75rem;
+  font-size: var(--fs-13);
+  color: var(--ink);
+  outline: none;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-input::-webkit-search-cancel-button { -webkit-appearance: none; }
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell:focus-within {
+  outline: 2px solid var(--ink);
+  outline-offset: 0;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-tail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  flex: none;
+  padding-right: 0.25rem;
+  border-left: 1px solid color-mix(in srgb, var(--rule) 80%, transparent);
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-seg {
+  display: inline-flex;
+  gap: 1px;
+  padding: 0 0.2rem;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-seg button {
+  border: 0;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: var(--fs-12);
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-seg button:hover { color: var(--ink); }
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-seg button.is-on {
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: var(--fw-title);
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-go {
+  margin-left: 0.15rem;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 8;
+  min-width: 7.5rem;
+  padding: 0.35rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--ink) 14%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-filter .dgwt3-shell-menu {
+  left: auto;
+  right: 0;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-menu button {
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 0.4rem 0.65rem;
+  border-radius: 6px;
+  font-size: var(--fs-13);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-menu button:hover { background: var(--fill); color: var(--ink); }
+.page-detail-glyph-wall-tools-v3 .dgwt3-shell-menu button.is-on {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+@media (max-width: 720px) {
+  .page-detail-glyph-wall-tools-v3 .dgwt3-head-search {
+    grid-template-columns: 1fr auto;
+  }
+  .page-detail-glyph-wall-tools-v3 .dgwt3-head-search > h2 {
+    grid-column: 1;
+  }
+  .page-detail-glyph-wall-tools-v3 .dgwt3-search-stack {
+    grid-column: 1 / -1;
+  }
+  .page-detail-glyph-wall-tools-v3 .dgwt3-drawer-panel {
+    grid-template-columns: 1fr;
+  }
+  .page-detail-glyph-wall-tools-v3 .dgwt3-grid-mock {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
