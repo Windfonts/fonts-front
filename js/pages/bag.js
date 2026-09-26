@@ -5,11 +5,29 @@
   const pairEl = document.getElementById('bagPair');
   const countEl = document.getElementById('bagCount');
   const embedWrap = document.getElementById('bagEmbed');
+  const embedToggle = document.getElementById('bagEmbedToggle');
+  const embedBody = document.getElementById('bagEmbedBody');
+  const EMBED_FOLD_KEY = 'wf-bag-embed-open.v1';
+  function setEmbedOpen(open) {
+    if (!embedWrap) return;
+    embedWrap.classList.toggle('is-collapsed', !open);
+    if (embedToggle) embedToggle.setAttribute('aria-expanded', String(!!open));
+    try { localStorage.setItem(EMBED_FOLD_KEY, open ? '1' : '0'); } catch (e) {}
+  }
+  if (embedToggle) {
+    let preferOpen = true;
+    try { preferOpen = localStorage.getItem(EMBED_FOLD_KEY) !== '0'; } catch (e) {}
+    setEmbedOpen(preferOpen);
+    embedToggle.addEventListener('click', function () {
+      setEmbedOpen(embedWrap.classList.contains('is-collapsed'));
+    });
+  }
   const bytesEl = document.getElementById('bagBytes');
   const optVersion = document.getElementById('optVersion');
   const optWeights = document.getElementById('optWeights');
   const optDisplay = document.getElementById('optDisplay');
   const optPreload = document.getElementById('optPreload');
+  const optMergeFamily = document.getElementById('optMergeFamily');
   const views = document.getElementById('bagViews');
   const PAIR_KEY = 'wf-bag-pair.v1';
   let embed = null;
@@ -33,13 +51,25 @@
   }
 
   function items() {
-    return WFProto.getPicks().map(function (p) {
+    const raw = WFProto.getPicks().map(function (p) {
       const f = WFProto.getFont(p.id) || p;
       const ws = optWeights.value === 'all'
         ? WFSpecimen.sortedWeights(f).map(function (w) { return WFProto.weightToCss(w); })
         : [WFSpecimen.firstWeight(f)];
       return { family: f.family, weights: ws, version: optVersion.value, font: f };
     }).filter(function (it) { return it.family; });
+    if (optMergeFamily && optMergeFamily.checked && raw.length > 1) {
+      /* 一份 /api/css?family=a|b&weight=…；字重取第一款（或常规档） */
+      const fams = raw.map(function (it) { return it.family; }).filter(Boolean);
+      const ws = raw[0].weights && raw[0].weights.length ? raw[0].weights : ['400'];
+      return [{
+        family: fams.join('|'),
+        weights: ws,
+        version: optVersion.value,
+        font: raw[0].font
+      }];
+    }
+    return raw;
   }
 
   function paintEmbed() {
@@ -51,7 +81,10 @@
     else { embed.setItems(its); embed.setOpts(opts); }
     let total = 0;
     its.forEach(function (it) { total += WFEmbed.versionSize(it.font, it.version) * it.weights.length; });
-    bytesEl.textContent = '≈ ' + WFEmbed.fmtBytes(total);
+    bytesEl.textContent = '≈ ' + WFEmbed.fmtBytes(total) +
+      (optMergeFamily && optMergeFamily.checked && WFProto.getPicks().length > 1
+        ? ' · 已合并 family=…|…'
+        : '');
   }
 
   function paintCompare(fonts) {
@@ -298,6 +331,7 @@
   const btnExportCsv = document.getElementById('btnExportCsv');
   if (btnExportCsv) btnExportCsv.addEventListener('click', exportBagCsv);
   [optVersion, optWeights, optDisplay].forEach(function (s) { s.addEventListener('change', paintEmbed); });
+  if (optMergeFamily) optMergeFamily.addEventListener('change', paintEmbed);
   optPreload.addEventListener('change', paintEmbed);
   document.addEventListener('wf:picks', render);
 

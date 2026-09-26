@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/base.css?v=20260925s" />
   <link rel="stylesheet" href="css/components.css?v=20260925s" />
   <link rel="stylesheet" href="css/specimen.css?v=20260925w" />
-  <link rel="stylesheet" href="css/site.css?v=20260925s" />
+  <link rel="stylesheet" href="css/site.css?v=20260927fold1" />
   <link rel="icon" type="image/webp" href="assets/icon.webp" />
 </head>
 <body class="page-bag">
@@ -39,9 +39,11 @@
     <div id="bagCompare" hidden></div>
 
     <section class="bag-embed" id="bagEmbed" hidden>
-      <div class="bag-embed-head">
+      <button type="button" class="bag-embed-toggle" id="bagEmbedToggle" aria-expanded="true" aria-controls="bagEmbedBody">
         <h2><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260925s#i-code"/></svg>合并嵌入代码</h2>
-      </div>
+        <span class="bag-embed-chev" aria-hidden="true"></span>
+      </button>
+      <div class="bag-embed-body" id="bagEmbedBody">
       <div class="opts">
         <div class="field"><label>子集</label><select class="select" id="optVersion">
           <option value="zh-common" selected>常用</option>
@@ -52,25 +54,27 @@
           <option value="first">只用常规字重</option><option value="all">全部字重</option></select></div>
         <div class="field"><label>加载策略</label><select class="select" id="optDisplay">
           <option value="">默认（swap）</option><option value="swap">swap</option><option value="block">block</option><option value="fallback">fallback</option><option value="optional">optional</option></select></div>
+        <label class="check"><input type="checkbox" id="optMergeFamily" checked /> 合并为 family=a|b 一份 CSS</label>
         <label class="check"><input type="checkbox" id="optPreload" /> 提前加载字体</label>
       </div>
       <div class="bag-embed-main">
         <div id="embed"></div>
         <p class="use-note t-13 muted">一次引入选字袋里的全部字体。估算总体积 <strong class="num" id="bagBytes">—</strong>（按所选子集）。</p>
       </div>
+      </div>
     </section>
   </main>
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js?v=20260926oflopen"></script>
+  <script src="js/wf-proto.js?v=20260927v1"></script>
   <script src="js/wf-chrome.js?v=20260926brandinvite"></script>
   <script src="js/wf-auth.js?v=20260926sso2"></script>
   <script src="js/wf-products.js?v=20260925s"></script>
   <script src="js/wf-specimen.js?v=20260925s"></script>
-  <script src="js/wf-embed.js?v=20260925s"></script>
-  <script src="js/wf-app.js?v=20260926picks1"></script>
-  <script src="js/wf-api.js?v=20260926picks1"></script>
-  <script src="js/pages/bag.js?v=20260926perf1"></script>
+  <script src="js/wf-embed.js?v=20260927v1"></script>
+  <script src="js/wf-app.js?v=20260927v1"></script>
+  <script src="js/wf-api.js?v=20260927v1"></script>
+  <script src="js/pages/bag.js?v=20260927fold1"></script>
 </body>
 </html>

@@ -921,6 +921,20 @@ html[data-view="dev"] .foundry-eco .foundry-upstream-item { flex-wrap: nowrap; w
 .bag-embed { display: grid; gap: var(--s-5); padding: var(--s-6); margin-top: var(--s-6); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); min-width: 0; }
 .bag-embed h2 { font-size: var(--fs-20); font-weight: var(--fw-title); margin: 0; display: flex; align-items: center; gap: 0.4em; }
 .bag-embed h2 .icon { color: var(--gray); }
+.bag-embed-toggle {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+  width: 100%; margin: 0; padding: 0; border: 0; background: transparent;
+  color: inherit; cursor: pointer; text-align: left;
+}
+.bag-embed-toggle h2 { margin: 0; }
+.bag-embed-chev {
+  flex: none; width: 0.55em; height: 0.55em;
+  border-right: 1.5px solid var(--gray); border-bottom: 1.5px solid var(--gray);
+  transform: rotate(45deg); transition: transform 0.15s ease;
+}
+.bag-embed.is-collapsed .bag-embed-chev { transform: rotate(-135deg); }
+.bag-embed.is-collapsed .bag-embed-body { display: none; }
+
 .bag-embed .opts {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
