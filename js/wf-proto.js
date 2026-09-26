@@ -1154,6 +1154,28 @@
   }
 
 
+
+  /**
+   * 商业主体：货架运营/商业化主体，≠ 版权归属（rights_holder / 谁拥有字型）。
+   * 默认文派（广州）科技有限公司；font 或 product 上 commercialEntity / commercialEntity.name
+   * 有值时覆盖（厂商合伙商业化）；空则回落常量。不必全库填，默认即够。
+   */
+  var DEFAULT_COMMERCIAL_ENTITY = '文派（广州）科技有限公司';
+  function commercialEntityName(font, product) {
+    function from(v) {
+      if (v == null || v === '') return '';
+      if (typeof v === 'string') return String(v).trim();
+      if (typeof v === 'object' && v.name != null && v.name !== '') return String(v.name).trim();
+      return '';
+    }
+    var hit = from(font && font.commercialEntity);
+    if (hit) return hit;
+    hit = from(product && product.commercialEntity);
+    if (hit) return hit;
+    return DEFAULT_COMMERCIAL_ENTITY;
+  }
+
+
   /**
    * CDN / embed 引用是否开放。与服务状态「仍可预览」可并存：
    * 禁止托管、不得 CDN、不得/禁止嵌入 → 引用关闭（对照货架：吉利/摩登）。
@@ -1356,6 +1378,7 @@
     forbidsOpenDerive: forbidsOpenDerive,
     forbidsFontRedistrib: forbidsFontRedistrib,
     serviceStatus: serviceStatus,
+    commercialEntityName: commercialEntityName,
     citeAllowed: citeAllowed,
     slugify: slugify,
     getFont: function (id) { return getById(id); },

@@ -205,7 +205,18 @@
       act + '</div></div>';
   }
 
-  /* 版权归属：与服务状态同款行，夹在服务状态与出处链之间。 */
+
+  /* 商业主体：紧挨服务状态下，同款 who+what，无强制右侧链。≠ 版权归属。 */
+  function proofCommercialLine(font) {
+    const product = window.WFProducts ? WFProducts.productOf(font) : null;
+    const name = (WFProto.commercialEntityName && WFProto.commercialEntityName(font, product))
+      || '文派（广州）科技有限公司';
+    return '<div class="lp5-node lp5-meta entity-row"><span class="icon">' + WFChrome.icon('idcard') + '</span>' +
+      '<div class="head"><span class="who">商业主体</span>' +
+      '<span class="what">' + esc(name) + '</span></div></div>';
+  }
+
+  /* 版权归属：与服务状态同款行；排在商业主体之后、出处链之前。≠ 商业主体。 */
   function proofOwnerLine(font) {
     const owner = font.ownerInfo || font.foundryInfo;
     if (!owner || !owner.id) return '';
@@ -227,7 +238,7 @@
     const date = kind === '原文' ? (font.licenseVerifiedAt || '') : '';
     const slug = String(font.family || '').replace(/^wenfeng-/, '');
     const purchase = (proofTier(font) === '需授权' && font.purchaseUrl) ? proofLink(font.purchaseUrl) : '';
-    let html = '<div class="lp5-meta-block">' + proofMetaLine(font) + proofOwnerLine(font) + '</div>';
+    let html = '<div class="lp5-meta-block">' + proofMetaLine(font) + proofCommercialLine(font) + proofOwnerLine(font) + '</div>';
     html += '<div class="lp5-chain">';
     html += proofRow('授权协议', esc(tierSentence(proofTier(font))), date,
       (proofLink(font.licenseUrl) + purchase) || '', font.licenseQuote);

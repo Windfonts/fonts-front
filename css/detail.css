@@ -433,7 +433,7 @@
 .detail-main .lp-act { font-size: var(--fs-12); color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.3em; }
 @media (max-width: 720px) { .lp5-node .what { white-space: normal; } }
 
-/* 服务状态 + 版权归属：同款 meta 组，组底分割线与厂商信誉对称，再接下方出处链 */
+/* 服务状态 + 商业主体 + 版权归属：同款 meta 组，组底分割线与厂商信誉对称，再接下方出处链 */
 .lp5-meta-block {
   padding-bottom: var(--s-4);
   margin-bottom: var(--s-4);

@@ -818,3 +818,8 @@ feibisi 问「授权文件都有了没，后面挂 wenfeng.org 溯源」——�
 - **平台出品款 9 款**（千图/创客贴/素材集市/包图系）已按平台官方免费商用声明立 verified 条目（#8626 口径：真出品非冒名）。
 - **name 表不可靠**：抽验 30 款本地源件 name 表，LicenseDescription 多缺失/乱码/占位——授权原文不能从 TTF name 表取，必须原文文件或官方声明页。
 - **wenfeng.org 溯源挂载建议形态**：每款详情页出处链「授权协议」节点链接从 font-licenses 仓直出（`wenfeng.org/license/<Norm>/` → LICENSE 原文渲染页 + license-info 元数据），GitHub raw 或桶镜像均可；export 管线在 export-fonts 时同步导 licenseUrl 到 wenfeng.org 路径。
+
+## §42 商业主体行（Feng lock，2026-09-26）
+
+详情页出处与依据：服务状态下新增 **商业主体** 行（who+what，无强制右链）。默认「文派（广州）科技有限公司」；可选 `font.commercialEntity` / `commercialEntity.name` 或同名字段挂在 product 上覆盖（厂商合伙商业化）。**≠ 版权归属 / rights_holder**。助手 `WFProto.commercialEntityName`；渲染 `detail.js` `proofCommercialLine`。不必全库填 override。
+
