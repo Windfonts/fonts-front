@@ -1,4 +1,4 @@
-/* 控制台 · 团队：成员、角色、邀请（经 WFApi mock） */
+/* 控制台 · 团队：成员、角色、邀请（经 WFApi mock/live） */
 (function () {
   if (!WFApp.gate()) return;
   const esc = WFProto.escapeHtml;

@@ -743,8 +743,15 @@
   }
 
   /* —— Team —— */
-  function liveTeamNotReady() {
-    return Promise.reject(apiError('not_implemented', 'vault 尚未提供团队 REST', 501));
+  function applyTeamLocal(members) {
+    return ensureApp().then(function () {
+      const s = WFApp.state();
+      if (s) {
+        s.team = Array.isArray(members) ? members.slice() : [];
+        if (typeof WFApp.save === 'function') WFApp.save();
+      }
+      return (s && s.team) || [];
+    });
   }
 
   function listTeam() {
@@ -754,7 +761,10 @@
         return ((s && s.team) || []).slice();
       });
     }
-    return liveTeamNotReady();
+    return request('/api/team').then(function (data) {
+      const members = (data && data.members) || [];
+      return applyTeamLocal(members).then(function () { return members.slice(); });
+    });
   }
 
   function inviteMember(email, role) {
@@ -770,7 +780,9 @@
         return (s.team || []).filter(function (m) { return m.email === email; })[0];
       });
     }
-    return liveTeamNotReady();
+    return request('/api/team', { method: 'POST', body: { email: email, role: role } }).then(function (member) {
+      return listTeam().then(function () { return member; });
+    });
   }
 
   function setMemberRole(id, role) {
@@ -788,7 +800,9 @@
         return ((WFApp.state().team) || []).filter(function (x) { return x.id === id; })[0];
       });
     }
-    return liveTeamNotReady();
+    return request('/api/team/' + encodeURIComponent(id), { method: 'PATCH', body: { role: role } }).then(function (member) {
+      return listTeam().then(function () { return member; });
+    });
   }
 
   function removeMember(id) {
@@ -803,7 +817,9 @@
         return { ok: true };
       });
     }
-    return liveTeamNotReady();
+    return request('/api/team/' + encodeURIComponent(id), { method: 'DELETE' }).then(function () {
+      return listTeam().then(function () { return { ok: true }; });
+    });
   }
 
   /* —— Settings / Account —— */
