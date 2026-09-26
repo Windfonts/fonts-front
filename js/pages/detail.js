@@ -154,7 +154,7 @@
     if (status === '正常') {
       cls = 'is-good';
       /* 核对态只作从句；pending_proof 仍属正常货架，不推上传证书。 */
-      why = '货架可托管。' + verify + '。' + hostOk;
+      why = '可稳定服务，' + verify + '。' + hostOk;
     } else if (status === '受限') {
       cls = 'is-mid';
       if (reason === 'personal') {
