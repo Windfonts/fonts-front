@@ -769,3 +769,9 @@ detail.js「在谱系图中查看」：有组字体按组跳谱系（烟波宋�
 - **覆盖统计静态化**：fonts.json 每款内置 coverage（千字文简/繁 + 常用字 hit·total，离线与前端同口径算，Zmxs 源件单算 987/994·3500/3500）；字符表汇总即时直出，不再「正在核对」转圈；简繁开关在常用字视图=可见禁用（title 说明只有简体形）。
 - **analysis 取数静态优先**：wf-live 先 OSS metadata（CDN 边缘缓存，免回源 vault）→ 失败回退 vault API；pickFromBundle 大小写不敏感（目录 AbbrFes vs 分析 Abbrfes 漂移曾致 META 永远 missing→API）。
 - **CyberCDN 缓存键含 Origin 头分变体（桶侧问题，报 devops/modiqi）**：同一 metadata 文件，curl（无 Origin）=471 款全量，浏览器跨域 fetch（带 Origin）命中残缺变体（1-2 款）——metadata 重建中途的测试响应被各 Origin 变体分别缓存。已用全新版本参数值（?v=20260926a）绕开；根治需桶侧清变体+统一 Vary 行为。analysisMetaUrl 去版本参数的中间方案已再改为新值。
+
+## 37. 2026-09-26 matc 改名迁移 mksjhtc + 什锦黑繁体 designer 修正
+
+- **matc → mksjhtc**（feibisi 批「这些都是新的还没人引用」）：猫啃什锦黑繁体 slug 对齐「基础 slug + tc」惯例（对照 xwwktc）。迁移链=fonts-packages 源件重建（Skr-ZERO/MaokenAssortedSans-TC v0.90，31680 字与库一致）→ OSS 新前缀 fonts-packages/Mksjhtc 覆盖灌入 → vault UPDATE font_family/normalized_name/oss_path → fonts.json family/normalized → 简繁配对/产品/包体清单三数据文件引用切换。旧 OSS 前缀 Matc 无引用残留（对象未删，无害）。
+- **matc designer 脏数据修正**：原占位「猫啃什锦黑 繁体」→ Skr-ZERO（name 表无 designer 行，依 GitHub 维护者事实），fonts.json+vault 双层。
+- 详情页验证：新 slug 渲染、样张 wenfeng-mksjhtc 加载、简繁配对 locale 文案在。提交 8439164。
