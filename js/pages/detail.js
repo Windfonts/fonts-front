@@ -524,6 +524,7 @@
                 v.label + ' <span class="n">≈ ' + WFEmbed.fmtBytes(WFEmbed.versionSize(font, v.id)) + '</span></button>';
             }).join('') + '</div></div>' +
             '<div class="panel-pad"><div class="use-cdn">' + WFProto.cdnSwitchHtml() + '</div>' +
+            '<div id="fallbackOptions" class="use-fallback-source">' +
             (function () {
               const upName = ((font.lineage || {}).upstreamName || '').trim();
               if (!upName || upName === font.name) return '';
@@ -549,6 +550,7 @@
                 '简繁补全：附带' + esc(roleLabel) + '「' + esc(peerName) + '」 ' +
                 '<span class="hint">文本须已是对应码点 · localeFallback=auto</span></label>';
             })() +
+            '</div>' +
             '<div id="embed"></div>' +
             '<p class="use-note">体积按单字重估算；默认「常用」适合品牌短文案，正文站可选「中文」。只要页面里出现的字，用 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a>。' +
               '谱系补全写 <code>fallback=</code>；简繁补全写 <code>localeFallback=auto</code>（二者同时开时优先谱系 <code>fallback</code>）。' +
@@ -673,7 +675,9 @@
     }
 
     function embedItems() {
-      const primary = { family: font.family, weights: [weight], version: version };
+      const certGrant = !!(cite && cite.ok && (cite.reason === 'cert-grant' || cite.reason === 'cert-grant-lab'));
+      const primary = { family: font.family, weights: [weight], version: version, certGrant: certGrant };
+      if (certGrant) return [primary];
       if (fallbackEl && fallbackEl.checked && upFont && !fallbackEl.disabled) {
         const align = fallbackAlign();
         if (align && align.ok) {
@@ -698,7 +702,14 @@
       }
       return [primary];
     }
-    const cite = (WFProto.citeAllowed && WFProto.citeAllowed(font)) || { ok: true, reason: 'ok' };
+    let cite = (WFProto.citeAllowed && WFProto.citeAllowed(font)) || { ok: true, reason: 'ok' };
+    function refreshCiteState() {
+      cite = (WFProto.citeAllowed && WFProto.citeAllowed(font)) || { ok: true, reason: 'ok' };
+    }
+    /* cert-grant vault sync */
+    const citeReady = (WFProto.syncVaultFontCerts
+      ? WFProto.syncVaultFontCerts().catch(function () { return 0; })
+      : Promise.resolve(0)).then(function () { refreshCiteState(); });
     const embedRoot = document.getElementById('embed');
     let embed = null;
     function certUploadHref() {
@@ -706,7 +717,32 @@
         String((font && (font.normalized || font.family)) || '').replace(/^wenfeng-/i, '');
       return WFChrome.href('app/cert-upload.html?cert=' + encodeURIComponent(slug || (font && font.id) || ''));
     }
+    const fallbackSource = document.getElementById('fallbackOptions');
+    function restoreFallbackOptions() {
+      if (!fallbackSource) return;
+      [document.getElementById('fallbackLabel'), document.getElementById('localeFallbackLabel')]
+        .filter(Boolean)
+        .forEach(function (label) {
+          if (label.parentNode !== fallbackSource) fallbackSource.appendChild(label);
+        });
+    }
+    function placeFallbackOptions() {
+      if (!embedRoot) return;
+      const host = embedRoot.querySelector('[data-budget]');
+      if (!host) return;
+      let slot = host.querySelector('[data-budget-options]');
+      if (!slot) {
+        slot = document.createElement('div');
+        slot.className = 'use-fallback-options';
+        slot.setAttribute('data-budget-options', '');
+        host.appendChild(slot);
+      }
+      [document.getElementById('fallbackLabel'), document.getElementById('localeFallbackLabel')]
+        .filter(Boolean)
+        .forEach(function (label) { slot.appendChild(label); });
+    }
     function mountOrRefuseEmbed() {
+      restoreFallbackOptions();
       if (!embedRoot) return;
       const grant = (WFProto.getCertGrant && WFProto.getCertGrant(font)) || null;
       const gStatus = grant && WFProto.certStatusNorm ? WFProto.certStatusNorm(grant.status) : '';
@@ -742,24 +778,28 @@
         embed = null;
         return;
       }
-      const labGrant = cite.reason === 'cert-grant-lab';
+      const labGrant = cite.reason === 'cert-grant-lab' || cite.reason === 'cert-grant';
       embed = WFEmbed.mount(embedRoot, embedItems(), {
         resolveFont: function (fam) {
           const slug = String(fam || '').replace(/^wenfeng-/, '');
           return WFProto.getFontBySlug(slug) || null;
         }
       });
+      placeFallbackOptions();
       if (labGrant) {
+        const vaultish = cite.reason === 'cert-grant';
         embedRoot.insertAdjacentHTML('afterbegin',
           '<div class="use-cite-opened" role="status">' +
             '<p class="use-cite-title">本账号已开引用</p>' +
-            '<p class="use-cite-body">证书审核已通过（lab）。权记在本浏览器 localStorage，按登录账号 × 本款字体。' +
-            '站内可展示引用片段；<strong>不会</strong>打开全局 fonts-packages CDN。正式环境须 vault 存证 + SSO。</p>' +
-            '<p class="use-cite-meta muted t-13">citeAllowed=true · reason=cert-grant-lab · <a href="' +
-            certUploadHref() + '">查看证书</a></p></div>');
+            '<p class="use-cite-body">证书审核已通过' + (vaultish ? '' : '（lab）') +
+            '。权记在' + (vaultish ? ' vault（按 API Key × 字体）' : '本浏览器 localStorage（按登录账号 × 本款字体）') +
+            '。嵌入地址为账号级 <code>/api/font-certs/css</code>（须 API Key）；' +
+            '<strong>不会</strong>打开全局 fonts-packages CDN。站点生产嵌字请加入项目后发布 <code>/p/</code>。</p>' +
+            '<p class="use-cite-meta muted t-13">citeAllowed=true · reason=' + esc(cite.reason) +
+            ' · <a href="' + certUploadHref() + '">查看证书</a></p></div>');
       }
     }
-    mountOrRefuseEmbed();
+    citeReady.then(function () { mountOrRefuseEmbed(); });
     function refreshEmbed() {
       syncFallbackUi();
       if (!cite.ok) { mountOrRefuseEmbed(); return; }

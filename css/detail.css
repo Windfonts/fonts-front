@@ -189,16 +189,26 @@
 .use-fallback input { margin-top: 0.2em; }
 .use-fallback .hint { color: var(--gray); font-weight: var(--fw-regular); }
 .use-fallback .hint.is-warn { color: var(--warn, #a65c00); }
+.use-fallback-source { display: contents; }
 .use-note { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-4); line-height: 1.7; }
 .use-note code { background: var(--paper); padding: 0.05em 0.35em; border-radius: 6px; }
 .use-note a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }
-.use-budget-host { margin-top: var(--s-3); }
+.use-budget-host {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-4); flex-wrap: wrap; margin-top: var(--s-3);
+  padding: var(--s-3) var(--s-4); background: var(--fill); border-radius: var(--radius);
+}
+.use-budget-host > [data-budget-content] { flex: 1 1 18rem; min-width: 0; }
 .use-budget {
   display: flex; flex-direction: column; gap: 0.25rem;
-  padding: var(--s-3) var(--s-4);
-  background: var(--fill); border-radius: var(--radius);
   font-size: var(--fs-13); color: var(--ink); line-height: 1.55;
 }
+.use-budget-host .use-fallback { margin: 0; }
+.use-fallback-options {
+  display: flex; flex: 0 1 auto; flex-direction: column; align-items: flex-end;
+  gap: 0.2rem; min-width: 0; max-width: 100%;
+}
+.use-fallback-options .use-fallback { justify-content: flex-end; max-width: 100%; }
 .use-budget-main b { font-variant-numeric: tabular-nums; }
 .use-budget-extra { color: var(--gray); }
 
