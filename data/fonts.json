@@ -29,7 +29,7 @@
   "useCases": [],
   "charCount": 1,
   "glyphCount": 1,
-  "viewCount": 37
+  "viewCount": 39
  },
  {
   "id": "373665bb-250a-4a6f-82d8-f6779fe771b4",
@@ -106,7 +106,7 @@
   "useCases": [],
   "charCount": 1,
   "glyphCount": 1,
-  "viewCount": 30
+  "viewCount": 32
  },
  {
   "id": "7fdcfd07-864d-49a1-8727-b51d78316e0b",
@@ -218,7 +218,7 @@
   ],
   "charCount": 19265,
   "glyphCount": 19265,
-  "viewCount": 10
+  "viewCount": 12
  },
  {
   "id": "30c6ed1b-15aa-4ab1-8bb8-d11da053e5fc",
@@ -293,7 +293,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright justfont",
   "foundry": "justfont",
   "brand": {
    "name": "justfont",
@@ -313,8 +313,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 31142,
+  "glyphCount": 32320,
   "viewCount": 4
  },
  {
@@ -514,7 +514,7 @@
   ],
   "charCount": 12000,
   "glyphCount": 12000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "8a8e2c91-f8b5-4025-ab4f-ecae780c78ca",
@@ -603,7 +603,7 @@
   "useCases": [],
   "charCount": 1,
   "glyphCount": 1,
-  "viewCount": 30
+  "viewCount": 32
  },
  {
   "id": "12d03f1b-0f9e-4606-9afd-1f55ccc31c69",
@@ -648,7 +648,7 @@
   ],
   "charCount": 8000,
   "glyphCount": 8000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "c16c1587-be57-479f-9290-3ff4be67e830",
@@ -693,7 +693,7 @@
   ],
   "charCount": 8000,
   "glyphCount": 8000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "284dd858-8a27-4dad-9151-20e422842ba1",
@@ -716,7 +716,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -738,8 +738,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 24495,
+  "glyphCount": 24947,
   "viewCount": 7
  },
  {
@@ -918,7 +918,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright yzdnn",
   "foundry": "yzdnn",
   "brand": {
    "name": "yzdnn",
@@ -936,8 +936,8 @@
   "useCases": [
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 15497,
+  "glyphCount": 15530,
   "viewCount": 3
  },
  {
@@ -970,7 +970,7 @@
   "useCases": [],
   "charCount": 1,
   "glyphCount": 1,
-  "viewCount": 28
+  "viewCount": 30
  },
  {
   "id": "0425e067-3300-4713-9df1-e018de750a95",
@@ -1144,7 +1144,7 @@
   "licenseNotes": "OFL 1.1 原文随上游仓携带并核对。衍生链：得意黑（atelierAnchor，OFL）× 斜月体（onichan0923）改作，三方版权行在字体 name 表与 LICENSE 中齐全。2026-09-25 与库内 wenfeng-ckbf 同 build 确认（字数 61516/版本 1.000 一致）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 2023 FWHP (github.com/FWHP-Enfun/Crooked-Black-Fun). Copyright (c) 2022 onichan0923 (smiley-moon). Copyright (c) 2022-2023 atelierAnchor (Smiley Sans)",
   "foundry": "花乐",
   "brand": {
    "name": "花乐",
@@ -1163,9 +1163,9 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 3
+  "charCount": 61516,
+  "glyphCount": 61253,
+  "viewCount": 4
  },
  {
   "id": "15123173-1396-4aae-87f6-4782bbd268f8",
@@ -1238,7 +1238,7 @@
   "licenseNotes": "SIL OFL 1.1，原文随上游仓携带并核对（寒蝉字型系列惯例）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "Copyright (c) Warren2060 (ChillType)",
+  "copyright": "",
   "foundry": "ChillType",
   "brand": {
    "name": "ChillType",
@@ -1258,9 +1258,9 @@
    "正文",
    "标题"
   ],
-  "charCount": 20000,
-  "glyphCount": 20000,
-  "viewCount": 8
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 10
  },
  {
   "id": "84edb5e0-c977-4570-92a8-61f09cfeca2c",
@@ -1283,7 +1283,7 @@
   "licenseNotes": "SIL OFL 1.1，原文随上游仓携带并核对（寒蝉字型系列惯例）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "Copyright (c) Warren2060 (ChillType)",
+  "copyright": "",
   "foundry": "ChillType",
   "brand": {
    "name": "ChillType",
@@ -1303,9 +1303,9 @@
    "正文",
    "标题"
   ],
-  "charCount": 20000,
-  "glyphCount": 20000,
-  "viewCount": 8
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 10
  },
  {
   "id": "23c746ef-3b93-44de-930c-128462b62323",
@@ -1350,7 +1350,7 @@
   ],
   "charCount": 20000,
   "glyphCount": 20000,
-  "viewCount": 7
+  "viewCount": 8
  },
  {
   "id": "1da4f318-3d8c-4f92-8dfb-84c743caaa15",
@@ -1395,7 +1395,7 @@
   ],
   "charCount": 9000,
   "glyphCount": 9000,
-  "viewCount": 7
+  "viewCount": 8
  },
  {
   "id": "86931c41-b272-4787-a483-498c7056d394",
@@ -1440,7 +1440,7 @@
   ],
   "charCount": 6363,
   "glyphCount": 6363,
-  "viewCount": 8
+  "viewCount": 9
  },
  {
   "id": "cf666fa4-aab8-4baa-854b-5163bef7e5ce",
@@ -1463,7 +1463,7 @@
   "licenseNotes": "SIL OFL 1.1，原文随上游仓携带并核对（寒蝉字型系列惯例）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "Copyright (c) Warren2060 (ChillType)",
+  "copyright": "",
   "foundry": "ChillType",
   "brand": {
    "name": "ChillType",
@@ -1483,9 +1483,9 @@
    "正文",
    "标题"
   ],
-  "charCount": 20000,
-  "glyphCount": 20000,
-  "viewCount": 7
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 9
  },
  {
   "id": "184b6e0a-2f85-4f23-a877-2597441a0c52",
@@ -1517,7 +1517,7 @@
   "useCases": [],
   "charCount": 1,
   "glyphCount": 1,
-  "viewCount": 29
+  "viewCount": 31
  },
  {
   "id": "001dd279-8021-4284-b75c-4751b59026a2",
@@ -1883,7 +1883,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 4
+  "viewCount": 5
  },
  {
   "id": "f3ba444d-79a2-4a3c-9a10-646ef7da0dde",
@@ -2062,7 +2062,7 @@
   "useCases": [],
   "charCount": 1,
   "glyphCount": 1,
-  "viewCount": 29
+  "viewCount": 31
  },
  {
   "id": "ba104495-2b24-4daa-abdc-e4c2a4345d19",
@@ -2259,7 +2259,7 @@
   ],
   "charCount": 8000,
   "glyphCount": 8000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "9ea5f6af-4020-4abb-8fa7-e5a4f7bbdb2a",
@@ -2304,7 +2304,7 @@
   ],
   "charCount": 9000,
   "glyphCount": 9000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "2f94ed24-9395-48cc-80dc-ea50981d519c",
@@ -2475,7 +2475,7 @@
   "licenseNotes": "SIL OFL 1.1。衍生自 IBM Plex Sans（Copyright IBM Corp.，保留字体名 Plex），上游已更名 Frex Sans 发布。可商用、可修改、可再分发，不可单独售卖字体文件本体。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright © 2025 The Flex Sans GB Project Authors (https://gitee.com/NightFurySL2001/flex-sc). Copyright © 2017 IBM Corp. with Reserved Font Name \"Plex\"",
   "foundry": "械黑计划 (Frex Sans Project)",
   "brand": {
    "name": "械黑计划 (Frex Sans Project)",
@@ -2496,8 +2496,8 @@
    "标题",
    "界面"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 13056,
+  "glyphCount": 13114,
   "viewCount": 7
  },
  {
@@ -2546,7 +2546,7 @@
   ],
   "charCount": 12000,
   "glyphCount": 12000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "0e4a6f1a-d579-44f5-bd20-64d035050b1e",
@@ -2569,7 +2569,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 方正",
   "foundry": "方正字库",
   "brand": {
    "name": "FounderType",
@@ -2587,8 +2587,8 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 8104,
+  "glyphCount": 8112,
   "viewCount": 3
  },
  {
@@ -2612,7 +2612,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 方正",
   "foundry": "方正字库",
   "brand": {
    "name": "FounderType",
@@ -2630,8 +2630,8 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 8089,
+  "glyphCount": 8097,
   "viewCount": 7
  },
  {
@@ -2675,7 +2675,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 2
+  "viewCount": 3
  },
  {
   "id": "6edd444a-6ad8-4900-aa2a-fe39767a6ede",
@@ -2718,7 +2718,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 3
+  "viewCount": 4
  },
  {
   "id": "27a6426a-b562-4146-aa7c-cf55967be873",
@@ -2849,7 +2849,7 @@
   "useCases": [],
   "charCount": 1,
   "glyphCount": 1,
-  "viewCount": 27
+  "viewCount": 29
  },
  {
   "id": "c156e391-be34-4d75-a308-86da12a96e2e",
@@ -2924,7 +2924,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Belleve Invis",
   "foundry": "更纱",
   "brand": {
    "name": "更纱",
@@ -2944,8 +2944,8 @@
    "代码",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 51074,
+  "glyphCount": 56896,
   "viewCount": 2
  },
  {
@@ -2969,7 +2969,7 @@
   "licenseNotes": "授权原文随上游仓拉取归档（2026-09-26 批次①GF 与作者仓）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Google",
   "foundry": "Google",
   "brand": {
    "name": "Google",
@@ -2989,8 +2989,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7463,
+  "glyphCount": 7568,
   "viewCount": 3
  },
  {
@@ -3038,7 +3038,7 @@
   ],
   "charCount": 7016,
   "glyphCount": 7062,
-  "viewCount": 2
+  "viewCount": 4
  },
  {
   "id": "d2b1e4f3-9c8a-4d6b-a0f2-4c7e9b1d3f56",
@@ -3085,7 +3085,7 @@
   ],
   "charCount": 7025,
   "glyphCount": 7046,
-  "viewCount": 2
+  "viewCount": 4
  },
  {
   "id": "a114aafd-9fc9-4635-b075-67f6a7eed09f",
@@ -3823,7 +3823,7 @@
   ],
   "charCount": 30892,
   "glyphCount": 31037,
-  "viewCount": 20
+  "viewCount": 22
  },
  {
   "id": "ceb82616-ed61-4261-8a20-52823cc93822",
@@ -4071,7 +4071,7 @@
   ],
   "charCount": 44875,
   "glyphCount": 43175,
-  "viewCount": 7
+  "viewCount": 8
  },
  {
   "id": "4d65c20f-e489-4f23-9836-adef077324bd",
@@ -4239,7 +4239,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Huiwen",
   "foundry": "汇文",
   "brand": {
    "name": "汇文",
@@ -4259,8 +4259,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 14070,
+  "glyphCount": 13314,
   "viewCount": 8
  },
  {
@@ -4502,7 +4502,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 2
+  "viewCount": 3
  },
  {
   "id": "3277ffd3-ed09-45c1-8df2-e9c189f3f1ef",
@@ -4525,7 +4525,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright GlyphWiki",
   "foundry": "GlyphWiki",
   "brand": {
    "name": "GlyphWiki",
@@ -4545,8 +4545,8 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 60418,
+  "glyphCount": 60421,
   "viewCount": 3
  },
  {
@@ -4570,7 +4570,7 @@
   "licenseNotes": "IPA Font License Agreement v1.0 全文随上游仓携带。允许使用、嵌入、再分发与衍生（衍生须更名），分发须附本条款。基于 IPAmj 明朝，简体部分参考霞鹜新致宋。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "Copyright(c) HuayingMincho, 2022-2026. IPA Font License Agreement v1.0.",
+  "copyright": "",
   "foundry": "GuiWonder",
   "brand": {
    "name": "GuiWonder",
@@ -4592,9 +4592,9 @@
    "正文",
    "标题"
   ],
-  "charCount": 59773,
-  "glyphCount": 65437,
-  "viewCount": 7
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 9
  },
  {
   "id": "62e41b2a-f8c4-456f-91f7-104c618cc401",
@@ -4657,7 +4657,7 @@
   "licenseNotes": "",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright NightFurySL2001",
   "foundry": "WD-XL",
   "brand": {
    "name": "WD-XL",
@@ -4675,8 +4675,8 @@
   "useCases": [
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 13360,
+  "glyphCount": 15985,
   "viewCount": 2
  },
  {
@@ -4815,7 +4815,7 @@
   "useCases": [],
   "charCount": 1,
   "glyphCount": 1,
-  "viewCount": 31
+  "viewCount": 33
  },
  {
   "id": "f0da370a-a587-4d7d-bcd3-f81bf9a1fd13",
@@ -4924,7 +4924,7 @@
   "licenseNotes": "OFL 1.1（依上游链：源流明体 ButTaiwan OFL × 齐伋体 灵动 OFL），上游仓未携授权原文，待补后升级 verified。衍生链：源流明体（←思源宋体）→ 汲古明体（FWHP）。",
   "licenseVerified": false,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 2023 FWHP (JiGu-Ming). Copyright 2020 ButTaiwan (genryu-font). Copyright (c) 2020 Lingdong Huang",
   "foundry": "花乐",
   "brand": {
    "name": "花乐",
@@ -4943,9 +4943,9 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 1
+  "charCount": 22939,
+  "glyphCount": 22898,
+  "viewCount": 2
  },
  {
   "id": "075ba134-255f-485a-a53d-5e9438ad9610",
@@ -5036,7 +5036,7 @@
   ],
   "charCount": 12000,
   "glyphCount": 12000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "a8f3c2e1-9b4d-4e6a-8f1c-2d5e7a9b0c31",
@@ -5086,7 +5086,7 @@
   ],
   "charCount": 6763,
   "glyphCount": 7719,
-  "viewCount": 11
+  "viewCount": 13
  },
  {
   "id": "69800d23-d875-431e-9755-3d40a8a688a1",
@@ -5181,7 +5181,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 5
+  "viewCount": 6
  },
  {
   "id": "8342ed75-ecc0-4727-9f20-dd0edca681a7",
@@ -5321,7 +5321,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 3
+  "viewCount": 4
  },
  {
   "id": "bcb87c97-2cf4-45d8-a450-692fac349918",
@@ -5572,7 +5572,7 @@
   ],
   "charCount": 9000,
   "glyphCount": 9000,
-  "viewCount": 8
+  "viewCount": 9
  },
  {
   "id": "c33bff3a-dd1c-4699-859a-b881e50fa98f",
@@ -5770,6 +5770,88 @@
   "viewCount": 20
  },
  {
+  "id": "ccc29a56-a1d0-4509-98bc-8cc1d6f6ea11",
+  "name": "小夏",
+  "en": "Konatu",
+  "family": "wenfeng-konatu",
+  "normalized": "Konatu",
+  "designer": "枡田道也（MASUDA mitiya）",
+  "designerShort": "枡田道也（MASUDA mitiya）",
+  "category": "其他",
+  "tags": [
+   "位图",
+   "像素"
+  ],
+  "weights": [
+   "Regular"
+  ],
+  "description": "小夏（Konatu）是枡田道也（MASUDA mitiya）制作的位图嵌入 TrueType 日文字体，内置点阵与轮廓两种形态，另有等宽版「小夏等幅」。MIT 许可开源。",
+  "license": "开源商用",
+  "licenseName": "MIT License",
+  "licenseUrl": "https://www.masuseki.com/wp/?p=233",
+  "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Konatu/LICENSE",
+  "licenseNotes": "小夏（Konatu）；随包声明即授权原文，位图嵌入 TrueType",
+  "licenseVerified": true,
+  "purchaseUrl": null,
+  "copyright": "Copyright (c) MASUDA mitiya",
+  "foundry": "MASUDA mitiya",
+  "brand": null,
+  "releaseYear": 2012,
+  "version": "20121218",
+  "languages": [
+   "日语"
+  ],
+  "useCases": [
+   "屏幕",
+   "像素风",
+   "终端"
+  ],
+  "charCount": 14963,
+  "glyphCount": 15572,
+  "viewCount": 0
+ },
+ {
+  "id": "8828f9da-4a4a-4268-be4f-1e3f56d709ec",
+  "name": "小夏等幅",
+  "en": "Konatu Tohaba",
+  "family": "wenfeng-konatutohaba",
+  "normalized": "KonatuTohaba",
+  "designer": "枡田道也（MASUDA mitiya）",
+  "designerShort": "枡田道也（MASUDA mitiya）",
+  "category": "等宽字体",
+  "tags": [
+   "等宽",
+   "位图"
+  ],
+  "weights": [
+   "Regular"
+  ],
+  "description": "小夏等幅（Konatu Tohaba）是枡田道也（MASUDA mitiya）制作的位图嵌入 TrueType 等宽日文字体，与小夏同期发布，适合终端与代码场景。MIT 许可开源。",
+  "license": "开源商用",
+  "licenseName": "MIT License",
+  "licenseUrl": "https://www.masuseki.com/wp/?p=233",
+  "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/KonatuTohaba/LICENSE",
+  "licenseNotes": "小夏等幅（Konatu Tohaba）；随包声明即授权原文，位图嵌入 TrueType",
+  "licenseVerified": true,
+  "purchaseUrl": null,
+  "copyright": "Copyright (c) MASUDA mitiya",
+  "foundry": "MASUDA mitiya",
+  "brand": null,
+  "releaseYear": 2012,
+  "version": "20121218",
+  "languages": [
+   "日语"
+  ],
+  "useCases": [
+   "终端",
+   "代码",
+   "像素风"
+  ],
+  "charCount": 14963,
+  "glyphCount": 15563,
+  "viewCount": 0
+ },
+ {
   "id": "078a562c-97e5-4ab9-8b31-89f8669bd54a",
   "name": "Kosugi",
   "en": "Kosugi",
@@ -5790,7 +5872,7 @@
   "licenseNotes": "授权原文随上游仓拉取归档（2026-09-26 批次①GF 与作者仓）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Google",
   "foundry": "Google",
   "brand": {
    "name": "Google",
@@ -5810,8 +5892,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7526,
+  "glyphCount": 7576,
   "viewCount": 4
  },
  {
@@ -6049,7 +6131,7 @@
   ],
   "charCount": 9000,
   "glyphCount": 9000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "2c4df848-4bf3-40c6-82d5-88626f707c6d",
@@ -6074,7 +6156,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Max Yao",
   "foundry": "Aqua",
   "brand": {
    "name": "Aqua",
@@ -6092,8 +6174,8 @@
   "useCases": [
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 9578,
+  "glyphCount": 9632,
   "viewCount": 4
  },
  {
@@ -6403,7 +6485,48 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 3
+  "viewCount": 4
+ },
+ {
+  "id": "2a575439-49c8-4303-bc0b-20fa054d8c73",
+  "name": "立夏黑体",
+  "en": "Sumr Sans",
+  "family": "wenfeng-lxht",
+  "normalized": "Lxht",
+  "designer": "feiyangjun",
+  "designerShort": "feiyangjun",
+  "category": "无衬线字体",
+  "tags": [
+   "黑体",
+   "补字"
+  ],
+  "weights": [
+   "Regular"
+  ],
+  "description": "立夏黑体（Sumr Sans）以小夏字体为底本，用 zi2zi-JiT 学习其风格并参考文渊黑体、文渊宋体结构增补汉字，覆盖 GB2312 绝大部分与现代汉语常用字表。SIL OFL 1.1 开源。",
+  "license": "开源商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseUrl": "https://github.com/feiyangjun-1/Sumr-Sans",
+  "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Lxht/LICENSE",
+  "licenseNotes": "立夏黑体 Sumr Sans；底本小夏（MIT）经 zi2zi-JiT 风格学习增补汉字，结构参考文渊黑/宋体；README 声明 OFL 可免费商用随意修改",
+  "licenseVerified": true,
+  "purchaseUrl": null,
+  "copyright": "Copyright (c) MASUDA mitiya",
+  "foundry": "feiyangjun-1",
+  "brand": null,
+  "releaseYear": 2026,
+  "version": "0.100",
+  "languages": [
+   "简体中文",
+   "日语"
+  ],
+  "useCases": [
+   "正文",
+   "标题"
+  ],
+  "charCount": 12024,
+  "glyphCount": 19330,
+  "viewCount": 0
  },
  {
   "id": "41cfbf38-a292-4db2-85cb-87f4a4dc35fc",
@@ -6469,7 +6592,7 @@
   "licenseNotes": "作者实为台湾 Max（max-everyday），平台 designer「Aqua/阿杰」有误待改；母本=青柳衡山毛筆行書",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "max-everyday",
   "brand": {
    "name": "Aqua",
@@ -6491,8 +6614,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 23700,
+  "glyphCount": 24163,
   "viewCount": 4
  },
  {
@@ -6519,7 +6642,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Max Yao",
   "foundry": "Aqua",
   "brand": {
    "name": "Aqua",
@@ -6538,8 +6661,8 @@
   "useCases": [
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 24495,
+  "glyphCount": 24947,
   "viewCount": 3
  },
  {
@@ -6657,7 +6780,7 @@
   ],
   "charCount": 15068,
   "glyphCount": 15254,
-  "viewCount": 10
+  "viewCount": 12
  },
  {
   "id": "cc5f26f5-de10-4095-83c8-a65428bef281",
@@ -6700,7 +6823,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 2
+  "viewCount": 3
  },
  {
   "id": "835a234e-4f4d-40bf-bb79-fc6923145f50",
@@ -6723,7 +6846,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright ItMarki",
   "foundry": "ItMarki",
   "brand": {
    "name": "ItMarki",
@@ -6741,8 +6864,8 @@
   "useCases": [
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 15622,
+  "glyphCount": 15623,
   "viewCount": 3
  },
  {
@@ -6766,7 +6889,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -6788,8 +6911,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 33944,
+  "glyphCount": 33889,
   "viewCount": 3
  },
  {
@@ -6835,7 +6958,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 5
+  "viewCount": 6
  },
  {
   "id": "de86fcfa-e2d8-48f2-89a3-fa3cad52e6ef",
@@ -6858,7 +6981,7 @@
   "licenseNotes": "SIL OFL 1.1，猫啃网对思源宋体 CN Heavy 加重再制后重新发布（Adobe 保留字体名 Source）。可商用、可修改、可再分发，不可单独售卖字体文件本体。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "版权 2021 猫啃网，夜煞之乐 2001。基于 Source Han Serif CN Heavy（Copyright 2014-2021 Adobe）再制。",
   "foundry": "猫啃网 (Maoken)",
   "brand": {
    "name": "猫啃网 (Maoken)",
@@ -6878,8 +7001,8 @@
    "标题",
    "海报"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 11331,
+  "glyphCount": 11461,
   "viewCount": 3
  },
  {
@@ -6954,7 +7077,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③④补齐）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "Copyright (c) Maoken / Skr-ZERO",
+  "copyright": "",
   "foundry": "Skr-ZERO",
   "brand": {
    "name": "Skr-ZERO",
@@ -6974,9 +7097,9 @@
    "正文",
    "标题"
   ],
-  "charCount": 9000,
-  "glyphCount": 9000,
-  "viewCount": 9
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 11
  },
  {
   "id": "0dd77871-c61a-4e8b-b6b4-78ff6bd02072",
@@ -7200,7 +7323,7 @@
   "licenseNotes": "SIL OFL 1.1（Copyright 2025 Luke036 及贡献者 ZERO子），基于随峰体 Plus 改作。可商用、可修改、可再分发，不可单独售卖字体文件本体。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 2025 Luke036（https://github.com/scott0107000） and Contributors：ZERO子（https://github.com/Skr-ZERO）",
   "foundry": "猫啃网 (Maoken)",
   "brand": {
    "name": "猫啃网 (Maoken)",
@@ -7221,8 +7344,8 @@
    "标题",
    "书刊"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7638,
+  "glyphCount": 7672,
   "viewCount": 3
  },
  {
@@ -7315,7 +7438,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 3
+  "viewCount": 4
  },
  {
   "id": "88c48eb4-ed74-48a9-b28b-1fbcd613464b",
@@ -7338,7 +7461,7 @@
   "licenseNotes": "M+ gothic 12r 即 mplus_j12r/f12r 位图字体；M+ 位图许可=自由使用复制分发修改（含商用），无署名强制",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright COZ",
   "foundry": "M+ 字体计划",
   "brand": {
    "name": "M+ FONTS PROJECT",
@@ -7357,9 +7480,9 @@
    "像素",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 5
+  "charCount": 6879,
+  "glyphCount": 6880,
+  "viewCount": 6
  },
  {
   "id": "582ac067-1275-4635-8eb5-0abd4be4fd7a",
@@ -7477,7 +7600,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright M+ FONTS PROJECT",
   "foundry": "M+ FONTS PROJECT",
   "brand": {
    "name": "M+ FONTS PROJECT",
@@ -7497,8 +7620,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 6463,
+  "glyphCount": 6747,
   "viewCount": 2
  },
  {
@@ -7522,7 +7645,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright M+ FONTS PROJECT",
   "foundry": "M+ FONTS PROJECT",
   "brand": {
    "name": "M+ FONTS PROJECT",
@@ -7542,8 +7665,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7418,
+  "glyphCount": 7749,
   "viewCount": 2
  },
  {
@@ -7612,7 +7735,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright M+ FONTS PROJECT",
   "foundry": "M+ FONTS PROJECT",
   "brand": {
    "name": "M+ FONTS PROJECT",
@@ -7632,8 +7755,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 8331,
+  "glyphCount": 8676,
   "viewCount": 2
  },
  {
@@ -7702,7 +7825,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright M+ FONTS PROJECT",
   "foundry": "M+ FONTS PROJECT",
   "brand": {
    "name": "M+ FONTS PROJECT",
@@ -7722,8 +7845,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 8249,
+  "glyphCount": 8596,
   "viewCount": 2
  },
  {
@@ -7792,7 +7915,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright M+ FONTS PROJECT",
   "foundry": "M+ FONTS PROJECT",
   "brand": {
    "name": "M+ FONTS PROJECT",
@@ -7812,8 +7935,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 8249,
+  "glyphCount": 8596,
   "viewCount": 2
  },
  {
@@ -7882,7 +8005,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 萌神",
   "foundry": "萌神",
   "brand": {
    "name": "萌神",
@@ -7900,8 +8023,8 @@
   "useCases": [
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 32974,
+  "glyphCount": 62206,
   "viewCount": 3
  },
  {
@@ -8018,7 +8141,7 @@
   "licenseNotes": "双授权：台湾政府资料开放授权条款 1.0 或 SIL OFL 1.1 任选其一（声明内嵌字体 name 表，已核对）。衍生自数位发展部全字库字型，FWHP 修改。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 2023 FWHP (MoTc-TwFl). (c) 2022 台湾数位发展部（双授权：政府资料开放授权 1.0 或 OFL 1.1）",
   "foundry": "花乐",
   "brand": {
    "name": "花乐",
@@ -8037,9 +8160,9 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 3
+  "charCount": 39948,
+  "glyphCount": 36470,
+  "viewCount": 4
  },
  {
   "id": "d754f4f4-f04d-4640-abf1-f7c9814e3aab",
@@ -8106,7 +8229,7 @@
   "licenseNotes": "双授权：台湾政府资料开放授权条款 1.0 或 SIL OFL 1.1 任选其一（声明内嵌字体 name 表，已核对）。衍生自数位发展部全字库字型，FWHP 修改。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 2023 FWHP (MoTc-TwFl). (c) 2022 台湾数位发展部（双授权：政府资料开放授权 1.0 或 OFL 1.1）",
   "foundry": "花乐",
   "brand": {
    "name": "花乐",
@@ -8125,9 +8248,9 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 1
+  "charCount": 39947,
+  "glyphCount": 36469,
+  "viewCount": 2
  },
  {
   "id": "dc5162ea-69d1-42ff-a11b-631aa470c35d",
@@ -8292,7 +8415,7 @@
   "licenseNotes": "原作 Nanigashitei（2016-2020），Aqua 渠道再分发。2026-09-24 去重：nani(1.046 新版) 保留并归属改回 Nanigashitei，hmsx(1.036 旧版) 转 archived 并加家族别名。SPDX 沿用批次映射口径，原文待核。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright (c) 2016-2020, Nanigashitei.",
   "foundry": "Nanigashitei",
   "brand": {
    "name": "Nanigashitei",
@@ -8314,8 +8437,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 24038,
+  "glyphCount": 24070,
   "viewCount": 3
  },
  {
@@ -8361,7 +8484,7 @@
   ],
   "charCount": 8000,
   "glyphCount": 8000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "b52f6da4-db67-4839-a70a-ec45bbcfe15c",
@@ -8384,7 +8507,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -8406,8 +8529,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 46819,
+  "glyphCount": 47418,
   "viewCount": 4
  },
  {
@@ -8604,7 +8727,7 @@
   "useCases": [],
   "charCount": 7826,
   "glyphCount": 1,
-  "viewCount": 28
+  "viewCount": 30
  },
  {
   "id": "6f721bf6-45f7-4318-8514-05b272aad6ca",
@@ -9054,7 +9177,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Lingdong Huang",
   "foundry": "Lingdong Huang",
   "brand": {
    "name": "Lingdong Huang",
@@ -9072,8 +9195,8 @@
   "useCases": [
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 5953,
+  "glyphCount": 4550,
   "viewCount": 3
  },
  {
@@ -9097,7 +9220,7 @@
   "licenseNotes": "授权依据=官方发布页/上游仓（2026-09-26 记录；原文文件待抓取后补）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright ChiuMing-Neko",
   "foundry": "ChiuMing-Neko",
   "brand": {
    "name": "ChiuMing-Neko",
@@ -9116,8 +9239,8 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 44886,
+  "glyphCount": 50713,
   "viewCount": 2
  },
  {
@@ -9162,7 +9285,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 2
+  "viewCount": 3
  },
  {
   "id": "d7beec02-fbb2-47fb-8a06-e1ad5d01ecf2",
@@ -9207,7 +9330,7 @@
   ],
   "charCount": 100,
   "glyphCount": 100,
-  "viewCount": 8
+  "viewCount": 10
  },
  {
   "id": "6614152e-14c8-4bf2-ae77-f5822820b683",
@@ -9230,7 +9353,7 @@
   "licenseNotes": "授权依据=官方发布页/上游仓（2026-09-26 记录；原文文件待抓取后补）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright NoHeartPen",
   "foundry": "NoHeartPen",
   "brand": {
    "name": "NoHeartPen",
@@ -9249,8 +9372,8 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 29011,
+  "glyphCount": 29737,
   "viewCount": 3
  },
  {
@@ -9295,7 +9418,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 2
+  "viewCount": 3
  },
  {
   "id": "bd19635e-d2d4-47c5-b0d9-d31b81c09c4a",
@@ -9704,7 +9827,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 国家发展委员会",
   "foundry": "全字库",
   "brand": {
    "name": "全字库",
@@ -9722,8 +9845,8 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 39185,
+  "glyphCount": 39191,
   "viewCount": 7
  },
  {
@@ -9767,7 +9890,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 2
+  "viewCount": 3
  },
  {
   "id": "f95eaf68-a8fb-4c36-bebb-2982fd721277",
@@ -10079,7 +10202,7 @@
   "licenseNotes": "SIL OFL 1.1（Shanggu 尙古系列，Copyright 2022-2026 Shanggu Fonts）。可商用、可修改、可再分发，不可单独售卖字体文件本体。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "Copyright 2022-2026 Shanggu Fonts.",
+  "copyright": "",
   "foundry": "GuiWonder",
   "brand": {
    "name": "GuiWonder",
@@ -10100,9 +10223,9 @@
    "代码",
    "正文"
   ],
-  "charCount": 44811,
-  "glyphCount": 47686,
-  "viewCount": 7
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 9
  },
  {
   "id": "355b953a-fd23-4745-9be7-a6899fd19096",
@@ -10131,7 +10254,7 @@
   "licenseNotes": "SIL OFL 1.1（Shanggu 尙古系列，Copyright 2022-2026 Shanggu Fonts）。可商用、可修改、可再分发，不可单独售卖字体文件本体。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "Copyright 2022-2026 Shanggu Fonts.",
+  "copyright": "",
   "foundry": "GuiWonder",
   "brand": {
    "name": "GuiWonder",
@@ -10153,9 +10276,9 @@
    "标题",
    "界面"
   ],
-  "charCount": 44865,
-  "glyphCount": 47993,
-  "viewCount": 8
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 10
  },
  {
   "id": "96e1015a-b11c-4718-a527-6cb1eeb375ea",
@@ -10181,7 +10304,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright GuiWonder",
   "foundry": "中文网字计划",
   "brand": {
    "name": "GuiWonder",
@@ -10201,8 +10324,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 44791,
+  "glyphCount": 47891,
   "viewCount": 5
  },
  {
@@ -10255,7 +10378,7 @@
   ],
   "charCount": 44865,
   "glyphCount": 47993,
-  "viewCount": 7
+  "viewCount": 8
  },
  {
   "id": "654ecc84-0cb7-40b7-b932-e60540591995",
@@ -10323,7 +10446,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Google",
   "foundry": "Google",
   "brand": {
    "name": "Google",
@@ -10343,8 +10466,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 15367,
+  "glyphCount": 16210,
   "viewCount": 5
  },
  {
@@ -10413,7 +10536,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Google",
   "foundry": "Google",
   "brand": {
    "name": "Google",
@@ -10433,8 +10556,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 15363,
+  "glyphCount": 16359,
   "viewCount": 2
  },
  {
@@ -10484,7 +10607,7 @@
   ],
   "charCount": 6904,
   "glyphCount": 7317,
-  "viewCount": 12
+  "viewCount": 14
  },
  {
   "id": "dd17fb9e-fcac-48d8-9744-a3ccdee9d592",
@@ -10529,7 +10652,7 @@
   ],
   "charCount": 20000,
   "glyphCount": 20000,
-  "viewCount": 8
+  "viewCount": 10
  },
  {
   "id": "d8c62110-7ae3-4310-8da0-61f9b3fe3c1c",
@@ -10596,7 +10719,7 @@
   "licenseNotes": "Keynote 研究所出品（人生哥发布），作者声明永久免费商用（100font 官方发布页）。字稿作者各自署名；修改与转售条款以官方页声明为准。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 2019-2020 The SlideFont Project Authors",
   "foundry": "Keynote研究所",
   "brand": {
    "name": "人生哥",
@@ -10615,9 +10738,9 @@
   "useCases": [
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 2
+  "charCount": 6986,
+  "glyphCount": 6987,
+  "viewCount": 3
  },
  {
   "id": "7673e90d-c2e9-41de-8458-586cb6c2e546",
@@ -10684,7 +10807,7 @@
   "licenseNotes": "Keynote 研究所出品（人生哥发布），作者声明永久免费商用（100font 官方发布页）。字稿作者各自署名；修改与转售条款以官方页声明为准。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 2019-2020 The SlideFont Project Authors",
   "foundry": "Keynote研究所",
   "brand": {
    "name": "人生哥",
@@ -10703,9 +10826,9 @@
   "useCases": [
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 1
+  "charCount": 6977,
+  "glyphCount": 6978,
+  "viewCount": 2
  },
  {
   "id": "70484b9e-8832-4a00-95af-b024ba983978",
@@ -10728,7 +10851,7 @@
   "licenseNotes": "Keynote 研究所出品（人生哥发布），作者声明永久免费商用（100font 官方发布页）。字稿作者各自署名；修改与转售条款以官方页声明为准。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 2019-2020 The SlideFont Project Authors",
   "foundry": "Keynote研究所",
   "brand": {
    "name": "人生哥",
@@ -10747,9 +10870,9 @@
   "useCases": [
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 1
+  "charCount": 7065,
+  "glyphCount": 7065,
+  "viewCount": 2
  },
  {
   "id": "04427b58-4554-462f-8cdc-0a4b1837018c",
@@ -10832,7 +10955,7 @@
   "useCases": [],
   "charCount": 30786,
   "glyphCount": 30786,
-  "viewCount": 30
+  "viewCount": 32
  },
  {
   "id": "7ddc361c-92ba-421b-ac88-6daabed71d77",
@@ -10871,7 +10994,7 @@
   "useCases": [],
   "charCount": 20669,
   "glyphCount": 20669,
-  "viewCount": 30
+  "viewCount": 32
  },
  {
   "id": "96ddc949-dd35-42ea-895b-b67eeee2f8fc",
@@ -10910,7 +11033,7 @@
   "useCases": [],
   "charCount": 30786,
   "glyphCount": 30786,
-  "viewCount": 27
+  "viewCount": 29
  },
  {
   "id": "e7a8f58e-c48e-4c60-9b02-818e63a6a520",
@@ -10949,7 +11072,7 @@
   "useCases": [],
   "charCount": 30848,
   "glyphCount": 30848,
-  "viewCount": 27
+  "viewCount": 29
  },
  {
   "id": "f501bdcd-b43b-4a2d-9c2f-470599af6ebb",
@@ -10981,7 +11104,7 @@
   "useCases": [],
   "charCount": 1,
   "glyphCount": 1,
-  "viewCount": 27
+  "viewCount": 29
  },
  {
   "id": "b8d40e14-81de-41b3-9dae-c49f839406d1",
@@ -11429,7 +11552,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -11451,8 +11574,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 44508,
+  "glyphCount": 44299,
   "viewCount": 3
  },
  {
@@ -11476,7 +11599,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -11498,8 +11621,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 44618,
+  "glyphCount": 44422,
   "viewCount": 3
  },
  {
@@ -11664,7 +11787,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -11686,8 +11809,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 44898,
+  "glyphCount": 44695,
   "viewCount": 3
  },
  {
@@ -12406,7 +12529,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -12428,8 +12551,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 45158,
+  "glyphCount": 63758,
   "viewCount": 3
  },
  {
@@ -12453,7 +12576,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -12475,8 +12598,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 44873,
+  "glyphCount": 63758,
   "viewCount": 3
  },
  {
@@ -12782,7 +12905,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -12804,8 +12927,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 44898,
+  "glyphCount": 44695,
   "viewCount": 3
  },
  {
@@ -12829,7 +12952,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -12851,8 +12974,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 44618,
+  "glyphCount": 44422,
   "viewCount": 4
  },
  {
@@ -13064,7 +13187,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -13086,8 +13209,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 44898,
+  "glyphCount": 44695,
   "viewCount": 3
  },
  {
@@ -13205,7 +13328,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -13227,8 +13350,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 42858,
+  "glyphCount": 42663,
   "viewCount": 3
  },
  {
@@ -13299,7 +13422,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -13321,8 +13444,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 44618,
+  "glyphCount": 44422,
   "viewCount": 3
  },
  {
@@ -13581,7 +13704,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -13603,8 +13726,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 44498,
+  "glyphCount": 44299,
   "viewCount": 3
  },
  {
@@ -13945,7 +14068,7 @@
   "useCases": [],
   "charCount": 44853,
   "glyphCount": 65535,
-  "viewCount": 59
+  "viewCount": 61
  },
  {
   "id": "e94d94a6-fec0-4f6a-8fcc-147c4df61a7a",
@@ -13996,7 +14119,7 @@
   ],
   "charCount": 44853,
   "glyphCount": 65535,
-  "viewCount": 22
+  "viewCount": 24
  },
  {
   "id": "8868591a-6679-469b-8574-568df61c5e8d",
@@ -14095,7 +14218,7 @@
   ],
   "charCount": 65177,
   "glyphCount": 65180,
-  "viewCount": 7
+  "viewCount": 8
  },
  {
   "id": "c88acc0d-0b7f-404f-bc40-6299372aa11d",
@@ -14118,7 +14241,7 @@
   "licenseNotes": "GlyphWiki 著作权与许可协议（与花园明朝同源同条款）。基于醍醐书体与花园明朝制作；协议原文以 GlyphWiki 站点为准，上游 README「授权」节声明遵循该协议。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "Copyright(c) LanternMing, 2023-2025.",
+  "copyright": "",
   "foundry": "GuiWonder",
   "brand": {
    "name": "GuiWonder",
@@ -14139,9 +14262,9 @@
    "书刊",
    "古籍排版"
   ],
-  "charCount": 48326,
-  "glyphCount": 48329,
-  "viewCount": 5
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 7
  },
  {
   "id": "f641bdcc-8011-445e-902b-d322ce5edabb",
@@ -14347,7 +14470,7 @@
   "useCases": [],
   "charCount": 44779,
   "glyphCount": 65535,
-  "viewCount": 37
+  "viewCount": 39
  },
  {
   "id": "a2d143ab-e312-4b4f-bcde-0413266ba5ae",
@@ -14376,7 +14499,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Adobe",
   "foundry": "Adobe",
   "brand": {
    "name": "Adobe",
@@ -14396,8 +14519,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 44779,
+  "glyphCount": 65535,
   "viewCount": 2
  },
  {
@@ -14421,7 +14544,7 @@
   "licenseNotes": "淘宝买菜体授权协议：官方（淘宝买菜 × 通义锦书，fonts.alibabadesign.com / www.alibabafonts.com）声明「现这款字体向所有个人和组织开放，永久免费商用。」发行包内无许可文件，原文为官方页面声明，摘录见 LICENSE。声明未写明修改、再分发、嵌入与商标用途，相应字段不作推断留空。字体 name 表内中文名为「淘宝买菜营销体」，官方产品名「淘宝买菜体」。",
   "licenseVerified": false,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright © 淘宝（中国）软件有限公司.",
   "foundry": "Alibaba Design",
   "brand": {
    "name": "Alibaba Design",
@@ -14443,8 +14566,8 @@
    "品牌宣传",
    "广告海报"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7271,
+  "glyphCount": 7284,
   "viewCount": 7
  },
  {
@@ -14491,7 +14614,7 @@
   ],
   "charCount": 13121,
   "glyphCount": 13121,
-  "viewCount": 7
+  "viewCount": 8
  },
  {
   "id": "6b79cf4f-1446-4fbf-8388-3aa736866423",
@@ -14579,7 +14702,7 @@
   "useCases": [],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 3
+  "viewCount": 4
  },
  {
   "id": "3f907936-3c3c-4832-9572-6e283f5e0be7",
@@ -14602,7 +14725,7 @@
   "licenseNotes": "《仓耳字库免费开源字体授权声明》（北京仓耳文字技术，2020-11-11）：永久免费商用、允许修改与再分发、禁止单独销售。声明 PDF 已存 licenses/Cexwz/。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
   "foundry": "造字工房",
   "brand": {
    "name": "仓耳字库 (Tsanger)",
@@ -14618,8 +14741,8 @@
    "简体中文"
   ],
   "useCases": [],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7010,
+  "glyphCount": 7011,
   "viewCount": 1
  },
  {
@@ -14661,7 +14784,7 @@
   "useCases": [],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 0
+  "viewCount": 1
  },
  {
   "id": "9742eef9-8511-4ea5-a76c-21d29ee92aba",
@@ -14684,7 +14807,7 @@
   "licenseNotes": "《仓耳字库免费开源字体授权声明》（北京仓耳文字技术，2020-11-11）：永久免费商用、允许修改与再分发、禁止单独销售。声明 PDF 已存 licenses/Cexwz/。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
   "foundry": "造字工房",
   "brand": {
    "name": "仓耳字库 (Tsanger)",
@@ -14700,8 +14823,8 @@
    "简体中文"
   ],
   "useCases": [],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7010,
+  "glyphCount": 7011,
   "viewCount": 0
  },
  {
@@ -14743,7 +14866,7 @@
   "useCases": [],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 1
+  "viewCount": 2
  },
  {
   "id": "2974ca58-371a-4529-92a5-6c5910b338f5",
@@ -14782,7 +14905,7 @@
   "useCases": [],
   "charCount": 1,
   "glyphCount": 1,
-  "viewCount": 27
+  "viewCount": 29
  },
  {
   "id": "475babd4-ff01-4451-b3dc-d0906953807a",
@@ -14805,7 +14928,7 @@
   "licenseNotes": "《仓耳字库免费开源字体授权声明》（北京仓耳文字技术，2020-11-11）：永久免费商用、允许修改与再分发、禁止单独销售。声明 PDF 已存 licenses/Cexwz/。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
   "foundry": "造字工房",
   "brand": {
    "name": "仓耳字库 (Tsanger)",
@@ -14821,8 +14944,8 @@
    "简体中文"
   ],
   "useCases": [],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7042,
+  "glyphCount": 7011,
   "viewCount": 0
  },
  {
@@ -14864,7 +14987,7 @@
   "useCases": [],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 0
+  "viewCount": 1
  },
  {
   "id": "ceb78de7-a297-4258-b38b-35214173cebf",
@@ -14887,7 +15010,7 @@
   "licenseNotes": "《仓耳字库免费开源字体授权声明》（北京仓耳文字技术，2020-11-11）：永久免费商用、允许修改与再分发、禁止单独销售。声明 PDF 已存 licenses/Cexwz/。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
   "foundry": "造字工房",
   "brand": {
    "name": "仓耳字库 (Tsanger)",
@@ -14903,8 +15026,8 @@
    "简体中文"
   ],
   "useCases": [],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7042,
+  "glyphCount": 7011,
   "viewCount": 0
  },
  {
@@ -14946,7 +15069,7 @@
   "useCases": [],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 0
+  "viewCount": 1
  },
  {
   "id": "2f857187-d1c7-450a-a309-648326071a5b",
@@ -14969,7 +15092,7 @@
   "licenseNotes": "《仓耳字库免费开源字体授权声明》（北京仓耳文字技术，2020-11-11）：永久免费商用、允许修改与再分发、禁止单独销售。声明 PDF 已存 licenses/Cexwz/。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
   "foundry": "造字工房",
   "brand": {
    "name": "仓耳字库 (Tsanger)",
@@ -14985,8 +15108,8 @@
    "简体中文"
   ],
   "useCases": [],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7042,
+  "glyphCount": 7011,
   "viewCount": 2
  },
  {
@@ -15028,7 +15151,7 @@
   "useCases": [],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 1
+  "viewCount": 2
  },
  {
   "id": "46ae858c-dd84-41ed-b9f5-de6a17506dac",
@@ -15051,7 +15174,7 @@
   "licenseNotes": "《仓耳字库免费开源字体授权声明》（北京仓耳文字技术，2020-11-11）：永久免费商用、允许修改与再分发、禁止单独销售。声明 PDF 已存 licenses/Cexwz/。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
   "foundry": "造字工房",
   "brand": {
    "name": "仓耳字库 (Tsanger)",
@@ -15067,8 +15190,8 @@
    "简体中文"
   ],
   "useCases": [],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7042,
+  "glyphCount": 7011,
   "viewCount": 6
  },
  {
@@ -15110,7 +15233,7 @@
   "useCases": [],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 2
+  "viewCount": 3
  },
  {
   "id": "2a6e445c-4572-4d84-b8e3-ad2626f1cdc5",
@@ -15133,7 +15256,7 @@
   "licenseNotes": "《仓耳字库免费开源字体授权声明》（北京仓耳文字技术，2020-11-11）：永久免费商用、允许修改与再分发、禁止单独销售。声明 PDF 已存 licenses/Cexwz/。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
   "foundry": "造字工房",
   "brand": {
    "name": "仓耳字库 (Tsanger)",
@@ -15149,8 +15272,8 @@
    "简体中文"
   ],
   "useCases": [],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7042,
+  "glyphCount": 7011,
   "viewCount": 1
  },
  {
@@ -15192,7 +15315,7 @@
   "useCases": [],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 1
+  "viewCount": 2
  },
  {
   "id": "58bd58cb-3e1a-4f3c-8503-b8ff8d44fefa",
@@ -15215,7 +15338,7 @@
   "licenseNotes": "《仓耳字库免费开源字体授权声明》（北京仓耳文字技术，2020-11-11）：永久免费商用、允许修改与再分发、禁止单独销售。声明 PDF 已存 licenses/Cexwz/。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
   "foundry": "造字工房",
   "brand": {
    "name": "仓耳字库 (Tsanger)",
@@ -15231,8 +15354,8 @@
    "简体中文"
   ],
   "useCases": [],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7049,
+  "glyphCount": 7018,
   "viewCount": 2
  },
  {
@@ -15274,7 +15397,7 @@
   "useCases": [],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 1
+  "viewCount": 2
  },
  {
   "id": "11ac699e-3f0e-4d04-8f33-ed59bd58cbfa",
@@ -15297,7 +15420,7 @@
   "licenseNotes": "《仓耳字库免费开源字体授权声明》（北京仓耳文字技术，2020-11-11）：永久免费商用、允许修改与再分发、禁止单独销售。声明 PDF 已存 licenses/Cexwz/。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright © Beijing Tsanger Character Technology Co., Ltd.. All rights reserved.",
   "foundry": "造字工房",
   "brand": {
    "name": "仓耳字库 (Tsanger)",
@@ -15313,8 +15436,8 @@
    "简体中文"
   ],
   "useCases": [],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7049,
+  "glyphCount": 7018,
   "viewCount": 2
  },
  {
@@ -15356,7 +15479,7 @@
   "useCases": [],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 1
+  "viewCount": 2
  },
  {
   "id": "db87f2ab-4475-48c1-a6ae-5088ed3c60df",
@@ -15518,7 +15641,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Aqua",
   "foundry": "Aqua（阿杰）",
   "brand": {
    "name": "Aqua",
@@ -15540,8 +15663,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 44899,
+  "glyphCount": 44744,
   "viewCount": 6
  },
  {
@@ -15631,7 +15754,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 4
+  "viewCount": 5
  },
  {
   "id": "493bb04f-2944-47ec-a556-6584e926e02b",
@@ -15654,7 +15777,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 蓬莱和多流",
   "foundry": "梅字体",
   "brand": {
    "name": "梅字体",
@@ -15673,9 +15796,9 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 3
+  "charCount": 14963,
+  "glyphCount": 15563,
+  "viewCount": 4
  },
  {
   "id": "54303525-660d-4296-8efc-a3b85c5f4df0",
@@ -15773,7 +15896,7 @@
   ],
   "charCount": 8000,
   "glyphCount": 8000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "1eb9799e-16af-4bf5-b43b-9731eac9d6a9",
@@ -15883,7 +16006,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③④补齐）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright (c) 2024-2026, Takushun Wu, with Reserved Font Name 'WenJin Mincho' / '文津宋体'.",
   "foundry": "Takushun Wu",
   "brand": {
    "name": "Takushun Wu",
@@ -15902,9 +16025,9 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 7
+  "charCount": 31527,
+  "glyphCount": 51357,
+  "viewCount": 8
  },
  {
   "id": "d3c0dc51-2e04-42f5-af55-d349dec4bd64",
@@ -16325,7 +16448,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright (c) 2024-2026, Takushun Wu, with Reserved Font Name 'WenYuan Serif' / '文渊宋体'.",
   "foundry": "Takushun Wu",
   "brand": {
    "name": "Takushun Wu",
@@ -16343,9 +16466,9 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 2
+  "charCount": 33029,
+  "glyphCount": 35099,
+  "viewCount": 3
  },
  {
   "id": "4e4b90e5-d962-4f30-80b6-a39a158d59f4",
@@ -16371,7 +16494,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright (c) 2024-2026, Takushun Wu, with Reserved Font Name 'WenYuan Rounded' / '文源圆体'.",
   "foundry": "Takushun Wu",
   "brand": {
    "name": "Takushun Wu",
@@ -16389,9 +16512,9 @@
   "useCases": [
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 2
+  "charCount": 33029,
+  "glyphCount": 35051,
+  "viewCount": 3
  },
  {
   "id": "73d8769d-fd8a-420a-a1d3-e4572021fe58",
@@ -16414,7 +16537,7 @@
   "licenseNotes": "授权依据=官方发布页/上游仓（2026-09-26 记录；原文文件待抓取后补）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 香萃",
   "foundry": "香萃",
   "brand": {
    "name": "香萃",
@@ -16432,8 +16555,8 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7297,
+  "glyphCount": 7300,
   "viewCount": 2
  },
  {
@@ -16457,7 +16580,7 @@
   "licenseNotes": "授权依据=官方发布页/上游仓（2026-09-26 记录；原文文件待抓取后补）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 香萃",
   "foundry": "香萃",
   "brand": {
    "name": "香萃",
@@ -16476,8 +16599,8 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 24587,
+  "glyphCount": 25307,
   "viewCount": 2
  },
  {
@@ -16523,7 +16646,7 @@
   ],
   "charCount": 7297,
   "glyphCount": 7297,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "39a52c13-4618-4864-89df-d3c6336bc038",
@@ -16566,7 +16689,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 3
+  "viewCount": 4
  },
  {
   "id": "400eb0cc-91f5-4dbb-97d2-98f2c6c76866",
@@ -16611,7 +16734,7 @@
   ],
   "charCount": 9000,
   "glyphCount": 9000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "1a4964e1-0c64-4664-829b-31588296e6c3",
@@ -16655,7 +16778,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 2
+  "viewCount": 3
  },
  {
   "id": "26abf312-2441-447a-a66d-e3d3c01188f4",
@@ -16698,14 +16821,14 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 2
+  "viewCount": 3
  },
  {
   "id": "160ff000-cbd9-4805-801a-a5c80b70178a",
   "name": "香萃自在舒畅黑",
   "en": "Xiangcui Wave Sans",
-  "family": "wenfeng-xcws",
-  "normalized": "Xcws",
+  "family": "wenfeng-xczzsch",
+  "normalized": "Xczzsch",
   "designer": "香萃自在舒畅黑",
   "designerShort": "香萃自在舒畅黑",
   "category": "无衬线字体",
@@ -16717,11 +16840,11 @@
   "license": "开源商用",
   "licenseName": "SIL Open Font License 1.1",
   "licenseUrl": "https://github.com/Miiiller/Xiangcui-Wave-Sans/blob/main",
-  "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Xcws/LICENSE",
-  "licenseNotes": "SIL OFL 1.1（香萃系列，License 文件随仓；原文待逐字补核，先按系列惯例登记）。",
+  "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Xczzsch/LICENSE",
+  "licenseNotes": "SIL OFL 1.1（香萃系列，License 文件随仓；原文待逐字补核，先按系列惯例登记）。；2026-09-26 去重：与「香萃自在」(Xczz) 为同字体重复导入（同 0.920 版本），Xczz 已归档，本款 norm 由 Xcws 改为系列惯例 Xczzsch（feibisi 拍板）",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "Copyright (c) Miiiller",
+  "copyright": "",
   "foundry": "香萃 (Miiiller)",
   "brand": {
    "name": "香萃 (Miiiller)",
@@ -16741,53 +16864,9 @@
    "正文",
    "标题"
   ],
-  "charCount": 9000,
-  "glyphCount": 9000,
-  "viewCount": 8
- },
- {
-  "id": "6a131422-68f1-4937-a2e3-d44c912599ab",
-  "name": "香萃自在",
-  "en": "Xiangcui Wave Sans",
-  "family": "wenfeng-xczz",
-  "normalized": "Xczz",
-  "designer": "香萃",
-  "designerShort": "香萃",
-  "category": "无衬线字体",
-  "tags": [],
-  "weights": [
-   "Regular"
-  ],
-  "description": "香萃自在，字内家族名 Xiangcui Wave Sans。OFL 1.1。",
-  "license": "开源商用",
-  "licenseName": "SIL Open Font License 1.1",
-  "licenseUrl": "https://github.com/Miiiller",
-  "licenseFileUrl": "",
-  "licenseNotes": "授权依据=官方发布页/上游仓（2026-09-26 记录；原文文件待抓取后补）。",
-  "licenseVerified": false,
-  "purchaseUrl": null,
-  "copyright": "",
-  "foundry": "香萃",
-  "brand": {
-   "name": "香萃",
-   "slug": "xiangcui",
-   "logoUrl": "",
-   "avatarUrl": "",
-   "website": "",
-   "description": "香萃刻宋、等粗宋、自在。OFL 1.1。"
-  },
-  "releaseYear": 2024,
-  "version": "OSS ingest batch2 2026-09-23",
-  "languages": [
-   "简体中文",
-   "繁体中文"
-  ],
-  "useCases": [
-   "正文"
-  ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 4
+  "viewCount": 14
  },
  {
   "id": "33583b7a-1f13-4027-bddc-5046b0098585",
@@ -16810,7 +16889,7 @@
   "licenseNotes": "基于 OFL 字体《马善政毛笔楷书》拓展；README 附带不得售卖/衍生禁用「玄冬」名称等诉求，OFL 衍生件不得额外加限，仍按 OFL 1.1 归档",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "Copyright (c) Skr-ZERO. Based on Ma Shan Zheng (OFL).",
+  "copyright": "",
   "foundry": "Skr-ZERO",
   "brand": {
    "name": "Skr-ZERO",
@@ -16830,9 +16909,9 @@
    "正文",
    "标题"
   ],
-  "charCount": 9000,
-  "glyphCount": 9000,
-  "viewCount": 8
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 10
  },
  {
   "id": "5baf55e4-bba0-4f21-aab8-38d004bf706d",
@@ -16923,7 +17002,7 @@
   "useCases": [],
   "charCount": 44245,
   "glyphCount": 44245,
-  "viewCount": 28
+  "viewCount": 30
  },
  {
   "id": "760d154d-2bd3-4bcf-bae1-778458a80e66",
@@ -16962,7 +17041,7 @@
   "useCases": [],
   "charCount": 44246,
   "glyphCount": 44246,
-  "viewCount": 28
+  "viewCount": 30
  },
  {
   "id": "a4fa1da6-2bdb-49ac-bcf6-38367cbccce4",
@@ -16994,7 +17073,7 @@
   "useCases": [],
   "charCount": 1,
   "glyphCount": 1,
-  "viewCount": 28
+  "viewCount": 30
  },
  {
   "id": "4ba7b662-c9a0-4653-b470-1e0bdc5d6140",
@@ -17061,7 +17140,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright ButTaiwan",
   "foundry": "但",
   "brand": {
    "name": "但",
@@ -17081,8 +17160,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 11197,
+  "glyphCount": 14705,
   "viewCount": 2
  },
  {
@@ -17156,7 +17235,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright ToneOZ",
   "foundry": "澳声通",
   "brand": {
    "name": "澳声通",
@@ -17174,8 +17253,8 @@
   "useCases": [
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 16262,
+  "glyphCount": 16356,
   "viewCount": 3
  },
  {
@@ -18521,7 +18600,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 3
+  "viewCount": 4
  },
  {
   "id": "cd90343c-ecca-4ed8-b8c2-98ca72126033",
@@ -18546,7 +18625,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright onichan0923",
   "foundry": "斜月",
   "brand": {
    "name": "斜月",
@@ -18568,8 +18647,8 @@
    "标题",
    "屏幕阅读"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 61516,
+  "glyphCount": 61253,
   "viewCount": 4
  },
  {
@@ -18714,7 +18793,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 5
+  "viewCount": 6
  },
  {
   "id": "2081dd92-3875-498a-9f70-d1c6cea8f8ae",
@@ -18779,7 +18858,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Kataoka Yuji",
   "foundry": "佑字",
   "brand": {
    "name": "佑字",
@@ -18799,8 +18878,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 8013,
+  "glyphCount": 9504,
   "viewCount": 8
  },
  {
@@ -18888,7 +18967,7 @@
   "useCases": [],
   "charCount": 20905,
   "glyphCount": 20905,
-  "viewCount": 30
+  "viewCount": 32
  },
  {
   "id": "ca8187f5-c38d-4f38-b6d9-f626c6a0c44c",
@@ -18959,7 +19038,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright ButTaiwan",
   "foundry": "但",
   "brand": {
    "name": "但",
@@ -18979,8 +19058,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 35382,
+  "glyphCount": 37634,
   "viewCount": 2
  },
  {
@@ -19075,7 +19154,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 2
+  "viewCount": 3
  },
  {
   "id": "98b0bf3f-1259-4b68-a97a-05a3e2cd63c1",
@@ -19101,7 +19180,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright ButTaiwan",
   "foundry": "但",
   "brand": {
    "name": "但",
@@ -19121,8 +19200,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 35382,
+  "glyphCount": 37634,
   "viewCount": 2
  },
  {
@@ -19155,7 +19234,7 @@
   "useCases": [],
   "charCount": 1,
   "glyphCount": 1,
-  "viewCount": 27
+  "viewCount": 29
  },
  {
   "id": "310e8e51-7ed4-47fa-824c-ce7890c61544",
@@ -19408,7 +19487,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright ButTaiwan",
   "foundry": "但",
   "brand": {
    "name": "但",
@@ -19428,8 +19507,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 35349,
+  "glyphCount": 37684,
   "viewCount": 3
  },
  {
@@ -19547,7 +19626,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright GuiWonder",
   "foundry": "中文网字计划",
   "brand": {
    "name": "GuiWonder",
@@ -19567,8 +19646,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 25538,
+  "glyphCount": 33496,
   "viewCount": 3
  },
  {
@@ -19592,7 +19671,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 余繁",
   "foundry": "余繁",
   "brand": {
    "name": "余繁",
@@ -19610,9 +19689,9 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 3
+  "charCount": 7491,
+  "glyphCount": 7492,
+  "viewCount": 4
  },
  {
   "id": "23e9194b-2bf1-4cc7-bf0a-7dc077f8b5d3",
@@ -19638,7 +19717,7 @@
   "licenseNotes": "授权原文自上游/官方源归档（2026-09-26 批次②③）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright ButTaiwan",
   "foundry": "但",
   "brand": {
    "name": "但",
@@ -19658,8 +19737,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 35382,
+  "glyphCount": 37634,
   "viewCount": 2
  },
  {
@@ -19731,7 +19810,7 @@
   "licenseNotes": "",
   "licenseVerified": null,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 余繁",
   "foundry": "余繁",
   "brand": {
    "name": "余繁",
@@ -19749,9 +19828,9 @@
   "useCases": [
    "正文"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 3
+  "charCount": 7480,
+  "glyphCount": 7481,
+  "viewCount": 4
  },
  {
   "id": "4ba03b48-f4c8-4891-8996-926695950f8b",
@@ -19794,7 +19873,7 @@
   ],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 3
+  "viewCount": 4
  },
  {
   "id": "163b895c-2ae3-4253-85cd-cde98cf8b645",
@@ -19917,7 +19996,7 @@
   "licenseNotes": "SIL OFL 1.1。衍生自 Noto Sans（Google），保留字体名 Zhudou。可商用、可修改、可再分发，不可单独售卖字体文件本体。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "Copyright 2022 Buernia (https://github.com/Buernia), with Reserved Font Name 'Zhudou'.",
+  "copyright": "",
   "foundry": "Buernia",
   "brand": {
    "name": "Buernia",
@@ -19938,9 +20017,9 @@
    "搭配",
    "符号排版"
   ],
-  "charCount": 190,
-  "glyphCount": 190,
-  "viewCount": 7
+  "charCount": 0,
+  "glyphCount": 0,
+  "viewCount": 9
  },
  {
   "id": "63cce015-7746-44bf-a9e3-deffc26c1b37",
@@ -19963,7 +20042,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 汉典",
   "foundry": "汉典",
   "brand": {
    "name": "汉典",
@@ -19982,8 +20061,8 @@
   "useCases": [
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 2916,
+  "glyphCount": 2827,
   "viewCount": 2
  },
  {
@@ -20052,7 +20131,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Google",
   "foundry": "Google",
   "brand": {
    "name": "Google",
@@ -20072,8 +20151,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7815,
+  "glyphCount": 7867,
   "viewCount": 2
  },
  {
@@ -20142,7 +20221,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Google",
   "foundry": "Google",
   "brand": {
    "name": "Google",
@@ -20162,8 +20241,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7737,
+  "glyphCount": 7792,
   "viewCount": 3
  },
  {
@@ -20280,7 +20359,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Google",
   "foundry": "Google",
   "brand": {
    "name": "Google",
@@ -20300,8 +20379,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 7815,
+  "glyphCount": 7866,
   "viewCount": 2
  },
  {
@@ -20699,7 +20778,7 @@
   ],
   "charCount": 6000,
   "glyphCount": 6000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "687beac0-04d8-4a52-b5fc-b07e7a198645",
@@ -20744,7 +20823,7 @@
   ],
   "charCount": 6000,
   "glyphCount": 6000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "53c4afc6-b085-4d5f-a8d6-0db15961ba95",
@@ -20789,7 +20868,7 @@
   ],
   "charCount": 6000,
   "glyphCount": 6000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "d3619f90-b4f3-4885-9c93-6a698700cb09",
@@ -20834,7 +20913,7 @@
   ],
   "charCount": 6000,
   "glyphCount": 6000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "44b47aa3-26d5-48a9-b58b-c90c1a448d9e",
@@ -20879,7 +20958,7 @@
   ],
   "charCount": 6000,
   "glyphCount": 6000,
-  "viewCount": 7
+  "viewCount": 9
  },
  {
   "id": "7f48fdc1-8032-4d2d-8f94-5f64cce36943",
@@ -20911,7 +20990,7 @@
   "useCases": [],
   "charCount": 0,
   "glyphCount": 0,
-  "viewCount": 8
+  "viewCount": 10
  },
  {
   "id": "a7607214-441d-4575-9a89-41a30dac70d6",
@@ -20934,7 +21013,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 璇玑造字",
   "foundry": "璇玑造字",
   "brand": {
    "name": "璇玑造字",
@@ -20955,8 +21034,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 12882,
+  "glyphCount": 13805,
   "viewCount": 2
  },
  {
@@ -21127,7 +21206,7 @@
   "licenseNotes": "授权原文自上游仓归档（2026-09-26 批次②）。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright Tamcy",
   "foundry": "昭源",
   "brand": {
    "name": "昭源",
@@ -21147,8 +21226,8 @@
    "正文",
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
+  "charCount": 47724,
+  "glyphCount": 52182,
   "viewCount": 2
  },
  {
@@ -21319,7 +21398,7 @@
   "licenseNotes": "FWHP 以 SIL OFL 1.1 再发布（Star-Love-Font 仓 LICENSE.txt 原文已核对）。原作「天天宅在家」系列（starlove0425，作者声明完全免费使用），版权行保留。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 2019-2022 天天宅在家 starlove0425 (FULLY FREE to USE). Copyright 2023 FWHP (Star-Love-Font, OFL 1.1)",
   "foundry": "花乐",
   "brand": {
    "name": "花乐",
@@ -21338,9 +21417,9 @@
   "useCases": [
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 1
+  "charCount": 21649,
+  "glyphCount": 21650,
+  "viewCount": 2
  },
  {
   "id": "82545127-96c6-4063-8419-ec0c7e9f2f46",
@@ -21363,7 +21442,7 @@
   "licenseNotes": "FWHP 以 SIL OFL 1.1 再发布（Star-Love-Font 仓 LICENSE.txt 原文已核对）。原作「天天宅在家」系列（starlove0425，作者声明完全免费使用），版权行保留。",
   "licenseVerified": true,
   "purchaseUrl": null,
-  "copyright": "",
+  "copyright": "Copyright 2019-2022 天天宅在家 starlove0425 (FULLY FREE to USE). Copyright 2023 FWHP (Star-Love-Font, OFL 1.1)",
   "foundry": "花乐",
   "brand": {
    "name": "花乐",
@@ -21382,9 +21461,9 @@
   "useCases": [
    "标题"
   ],
-  "charCount": 0,
-  "glyphCount": 0,
-  "viewCount": 1
+  "charCount": 21636,
+  "glyphCount": 21637,
+  "viewCount": 2
  },
  {
   "id": "7d5e9267-3888-4904-8f58-c54d19860c42",
