@@ -302,7 +302,9 @@
     const variants = [];
     mains.forEach(function (r) {
       const host = kept.filter(function (m) {
-        return String(r.name).length > String(m.name).length && String(r.name).indexOf(m.name) === 0;
+        return String(r.name).length > String(m.name).length &&
+          String(r.name).indexOf(m.name) === 0 &&
+          shareLineageGroup(m, r);
       })[0];
       if (host) variants.push([host, r]);
       else kept.push(r);
@@ -724,6 +726,16 @@
     return relLabel(n, parent);
   }
 
+  /**
+   * 名称前缀并入（思源黑体→思源黑体 CN）仅当双方已有同一 lineage.group。
+   * 无 group 的 owner 聚合字库（寒蝉等）禁止靠前缀假挂父子，避免端黑→端黑体/端黑宋。
+   */
+  function shareLineageGroup(a, b) {
+    const ga = (a && a.lineage && a.lineage.group) || '';
+    const gb = (b && b.lineage && b.lineage.group) || '';
+    return !!(ga && gb && ga === gb);
+  }
+
   /* —— forest —— */
   /* 同字面合并：字重 / Screen·Plus·Full / 地区切分 → 一张卡 */
   const FACE_TRIM_RE = /(?:\s+|[-·‧])(?:W0[1-9]|Screen\s+Full|Screen|Plus|Full|Light|Bold|Regular|Medium|TC|SC|GB|CL|MN|CN|TW|HK|JP|KR|Code|Slab)$/i;
@@ -892,7 +904,9 @@
     const variants = [];
     mains.forEach(function (r) {
       const host = kept.filter(function (m) {
-        return String(r.name).length > String(m.name).length && String(r.name).indexOf(m.name) === 0;
+        return String(r.name).length > String(m.name).length &&
+          String(r.name).indexOf(m.name) === 0 &&
+          shareLineageGroup(m, r);
       })[0];
       if (host) variants.push([host, r]);
       else kept.push(r);

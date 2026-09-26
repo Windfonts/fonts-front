@@ -798,8 +798,8 @@
     const parentInfo = (info && info.parentId && WFProto.getFoundryById)
       ? WFProto.getFoundryById(info.parentId) : null;
     const showOrg = WFProto.canShowOrgLineage && WFProto.canShowOrgLineage(g.slug);
-    /* 谱系图：按本厂商 owner 聚合的派生视图——自家全部字体 + 出族上游（ghost） */
-    var lineageTarget = 'lineage.html?group=' + encodeURIComponent(g.slug) + '&view=derive&mode=flow';
+    /* 谱系图：canShowOrgLineage 门槛即组织图；纯品牌字库用 org，避免 derive 出族蜘蛛网 / 前缀假边 */
+    var lineageTarget = 'lineage.html?group=' + encodeURIComponent(g.slug) + '&view=org&mode=flow';
     const orgKv = showOrg
       ? { icon: 'branch', dt: '谱系图', html: true,
           dd: '<a href="' + WFChrome.href(lineageTarget) + '" data-lineage-modal>查看</a>' }

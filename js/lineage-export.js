@@ -475,6 +475,42 @@
     }
   }
 
+  /**
+   * file:// 打开导出 SVG 时，相对 href 会落到 Downloads 下。
+   * 捕获前把 stage 内 a[href] / a[data-nav] 解析为绝对 URL，捕获后还原。
+   */
+  function absolutizeStageHrefs(stage) {
+    if (!stage || !stage.querySelectorAll) return function () {};
+    var base = document.baseURI || global.location.href;
+    var backups = [];
+    var anchors = stage.querySelectorAll('a[href], a[data-nav]');
+    for (var i = 0; i < anchors.length; i++) {
+      var a = anchors[i];
+      var href = a.getAttribute('href');
+      if (!href) continue;
+      var trimmed = String(href).trim();
+      if (!trimmed) continue;
+      /* 已是绝对 / 片段 / 特殊协议则跳过 */
+      if (/^(https?:|mailto:|data:|#)/i.test(trimmed)) continue;
+      var abs;
+      try {
+        abs = new URL(trimmed, base).href;
+      } catch (e) {
+        continue;
+      }
+      if (abs === trimmed) continue;
+      backups.push({ el: a, href: href });
+      a.setAttribute('href', abs);
+    }
+    return function restore() {
+      for (var j = 0; j < backups.length; j++) {
+        var b = backups[j];
+        if (b.href == null) b.el.removeAttribute('href');
+        else b.el.setAttribute('href', b.href);
+      }
+    };
+  }
+
   function loadImageElement(url) {
     return new Promise(function (resolve, reject) {
       var img = new Image();
@@ -641,9 +677,11 @@
     var restoreSvg = inlineSvgPresentation(stage);
     var restoreMarkers = replaceMarkersWithTriangles(stage);
     var restoreCaptureCss = injectCaptureStyles();
+    var restoreHrefs = absolutizeStageHrefs(stage);
     var restoreWatermark = function () {};
     function restoreAll() {
       try { restoreWatermark(); } catch (e) {}
+      try { restoreHrefs(); } catch (e) {}
       try { restoreMarkers(); } catch (e) {}
       try { restoreCaptureCss(); } catch (e) {}
       try { restoreSvg(); } catch (e) {}
@@ -684,6 +722,7 @@
     resolveSvgCssVars: resolveSvgCssVars,
     replaceMarkersWithTriangles: replaceMarkersWithTriangles,
     parsePathTip: parsePathTip,
-    injectCaptureStyles: injectCaptureStyles
+    injectCaptureStyles: injectCaptureStyles,
+    absolutizeStageHrefs: absolutizeStageHrefs
   };
 })(typeof window !== 'undefined' ? window : this);
