@@ -73,6 +73,29 @@
 }
 .lmo-card .btn { align-self: flex-start; }
 
+.lmo-close-block {
+  margin-top: var(--s-12);
+  scroll-margin-top: var(--s-6);
+}
+.lmo-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-2) var(--s-4);
+  margin-bottom: var(--s-5);
+}
+.lmo-section-head h2 {
+  margin: 0;
+  font-size: var(--fs-18);
+  font-weight: var(--fw-title);
+}
+.lmo-section-head p {
+  margin: 0;
+  color: var(--gray);
+  font-size: var(--fs-14);
+  line-height: 1.5;
+}
+
 /* —— 变体外壳：挂在 lab 打开的节点上，不覆盖现网默认 —— */
 
 /* 甲 · 现状：与现网一致，仅打标记，无额外覆盖 */
@@ -118,6 +141,42 @@
 .dialog.dialog-lineage.is-opt-c .dialog-lineage-close-float:hover {
   background: var(--paper);
   color: var(--ink);
+}
+
+/* 丙关闭钮对照：三版都沿用无标题丙外壳 */
+.dialog.dialog-lineage.is-opt-c.is-close-1 .dialog-lineage-close-float {
+  /* 丙1 · 现状：保留上面的当前浮动关闭钮 */
+}
+.dialog.dialog-lineage.is-opt-c.is-close-2 .dialog-lineage-close-float {
+  width: 2.75rem;
+  height: 2.75rem;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow:
+    0 3px 14px color-mix(in srgb, var(--ink) 18%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.dialog.dialog-lineage.is-opt-c.is-close-2 .dialog-lineage-close-float .icon {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+.dialog.dialog-lineage.is-opt-c.is-close-2 .dialog-lineage-close-float:hover {
+  background: var(--surface);
+}
+.dialog.dialog-lineage.is-opt-c.is-close-3 {
+  overflow: visible;
+}
+.dialog.dialog-lineage.is-opt-c.is-close-3 .dialog-lineage-close-float {
+  top: -0.85rem;
+  right: -0.85rem;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow:
+    0 3px 14px color-mix(in srgb, var(--ink) 18%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.dialog.dialog-lineage.is-opt-c.is-close-3 .dialog-lineage-close-float:hover {
+  background: var(--surface);
 }
 
 /* 丁 · 轻遮罩圆角 */

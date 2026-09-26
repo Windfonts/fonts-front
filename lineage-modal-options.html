@@ -26,6 +26,8 @@
       <a href="lab.html">实验室</a>
       <span aria-hidden="true">·</span>
       <a href="lineage-toolbar-options.html">顶栏对照</a>
+      <span aria-hidden="true">·</span>
+      <a href="#close">关闭钮对照</a>
     </p>
 
     <div class="lmo-grid" role="list">
@@ -65,6 +67,42 @@
         <button type="button" class="btn" data-open="d">打开此版</button>
       </article>
     </div>
+
+    <section class="lmo-close-block" id="close" aria-labelledby="lmo-close-title">
+      <div class="lmo-section-head">
+        <h2 id="lmo-close-title">关闭钮（基于丙外壳）</h2>
+        <p>外壳已定丙（无标题）。下面只比关闭钮。</p>
+      </div>
+
+      <div class="lmo-grid lmo-close-grid" role="list">
+        <article class="lmo-card" role="listitem" data-variant="close-1">
+          <div class="lmo-card-top">
+            <span class="lmo-tag">丙1</span>
+            <h2>现状</h2>
+          </div>
+          <p class="lmo-diff">沿用当前右上角浮动关闭钮：小圆、半透明，贴在图面内。</p>
+          <button type="button" class="btn" data-open="close-1">打开此版</button>
+        </article>
+
+        <article class="lmo-card" role="listitem" data-variant="close-2">
+          <div class="lmo-card-top">
+            <span class="lmo-tag">丙2</span>
+            <h2>加大</h2>
+          </div>
+          <p class="lmo-diff">命中区加大至 2.75rem；× 更清楚，纸面填充与软遮罩对比更强。</p>
+          <button type="button" class="btn" data-open="close-2">打开此版</button>
+        </article>
+
+        <article class="lmo-card" role="listitem" data-variant="close-3">
+          <div class="lmo-card-top">
+            <span class="lmo-tag">丙3</span>
+            <h2>外置</h2>
+          </div>
+          <p class="lmo-diff">关闭钮移到对话框右上外侧的遮罩上，不压住谱系图。</p>
+          <button type="button" class="btn" data-open="close-3">打开此版</button>
+        </article>
+      </div>
+    </section>
   </main>
 
   <script src="js/wf-proto.js?v=20260926c"></script>

@@ -30,10 +30,13 @@
     if (prev) prev.remove();
 
     const src = resolveSrc();
-    const isC = key === 'c';
+    const isCloseVariant = /^close-[123]$/.test(key);
+    const isC = key === 'c' || isCloseVariant;
+    const optKey = isCloseVariant ? 'c' : key;
+    const closeClass = isCloseVariant ? ' is-' + key : '';
     const wrap = document.createElement('div');
     wrap.id = LAB_ID;
-    wrap.className = 'dialog-back dialog-back-lineage is-opt-' + key;
+    wrap.className = 'dialog-back dialog-back-lineage is-opt-' + optKey + closeClass;
     wrap.setAttribute('data-lab-variant', key);
 
     const head = isC
@@ -52,7 +55,7 @@
       : '';
 
     wrap.innerHTML =
-      '<div class="dialog dialog-lineage is-opt-' + key + '" role="dialog" aria-modal="true"' +
+      '<div class="dialog dialog-lineage is-opt-' + optKey + closeClass + '" role="dialog" aria-modal="true"' +
         (isC ? '' : ' aria-labelledby="wfLineageModalLabTitle"') +
         ' aria-label="谱系图">' +
         head +
