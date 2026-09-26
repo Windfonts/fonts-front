@@ -433,18 +433,15 @@
 .detail-main .lp-act { font-size: var(--fs-12); color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.3em; }
 @media (max-width: 720px) { .lp5-node .what { white-space: normal; } }
 
-/* 服务状态 + 商业主体在上；版权归属与下方许可行由同一条柔和规则分开 */
+/* 服务状态 + 商业主体：组底原分割线下移到版权归属之上（不另加顶线） */
 .lp5-meta-block {
   padding-bottom: var(--s-4);
+  margin-bottom: var(--s-4);
+  border-bottom: 1px solid var(--rule);
 }
 .lp5-node.lp5-meta {
   margin: 0 0 0 0.35rem;
   padding-left: 1.3rem;
-}
-.lp5-node.lp5-meta.owner-row {
-  margin-top: var(--s-4);
-  padding-top: var(--s-4);
-  border-top: 1px solid var(--rule);
 }
 .lp5-node.lp5-meta::before { content: none; }
 .lp5-node.lp5-meta::after {

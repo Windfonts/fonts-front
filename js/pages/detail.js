@@ -244,7 +244,7 @@
     if (maker && maker.id && maker.id !== owner.id) {
       what += ' 制作：' + esc(maker.name) + '。';
     }
-    return '<div class="lp5-node lp5-meta owner-row"><span class="icon">' + WFChrome.icon('building') + '</span>' +
+    return '<div class="lp5-node lp5-meta"><span class="icon">' + WFChrome.icon('building') + '</span>' +
       '<div class="head"><span class="who">版权归属</span>' +
       '<span class="what">' + what + '</span>' +
       (proofLink(owner.website || '') || '') + '</div></div>';
