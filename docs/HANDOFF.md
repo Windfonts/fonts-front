@@ -8,9 +8,9 @@
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 
-**下一棒（按价值）：** ① OSS 公网放行后真绑桶（现已有 CyberCDN 过渡）；② windfonts.com 统一账号（薇晓朵 SSO 已通）；③ 用量字重/状态码维度。入库见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
+**下一棒（按价值）：** ① OSS 公网放行后真绑桶（现已有 CyberCDN 过渡）；② windfonts.com 统一账号（薇晓朵 SSO 已通）。入库见 [INGEST-PIPELINE.md](INGEST-PIPELINE.md)。
 
-**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33 @ `0f98293`）。`hk|en|jp` DNS+`/api/css` 与 `cn` 同边验收通过。控制台域名/子集/用量改走 `WFApi`。登录页站点 SSO：`sso.weixiaoduo.com` OAuth（vault PR #34）+ 会话 `ensure-key`（PR #35）。用量：公开 `/api/css` 写 `api_usage_delivery`（天×域名×family×请求/字节）；`/api/usage*` 优先聚合该表（`dimensions.bytes/byFont`），无明细时回退 `api_usage_daily`（仅请求次数）。选字袋登录后经 `/api/picks` 与 vault 双向同步。认领 `POST/GET /api/claims` 收单；管理员 `GET/PATCH /api/admin/claims` 审核 + vault `/admin/claims` 运营页；通过后写 `foundry-claim-status` 覆盖层（前台合并）并可经 `FOUNDRIES_JSON_PATH` 回写 `foundries.json`。
+**2026-09-26：** `/fonts/{slug}` 卡「正在加载」根因是相对资源→`/fonts/js/…` 404；已 `base`+根路径资源+HTML no-cache。vault `/api/projects` CRUD 已上（PR #33 @ `0f98293`）。`hk|en|jp` DNS+`/api/css` 与 `cn` 同边验收通过。控制台域名/子集/用量改走 `WFApi`。登录页站点 SSO：`sso.weixiaoduo.com` OAuth（vault PR #34）+ 会话 `ensure-key`（PR #35）。用量：公开 `/api/css` 写 `api_usage_delivery`（天×域名×family×weight×status×请求/字节）；`/api/usage*` 聚合字节/按字体/字重/200·304（`dimensions.*`），无明细时回退 `api_usage_daily`。选字袋登录后经 `/api/picks` 与 vault 双向同步。认领 `POST/GET /api/claims` 收单；管理员 `GET/PATCH /api/admin/claims` 审核 + vault `/admin/claims` 运营页；通过后写 `foundry-claim-status` 覆盖层（前台合并）并可经 `FOUNDRIES_JSON_PATH` 回写 `foundries.json`。
 
 **2026-09-25 登录收口：** 生产强制 vault NextAuth（`wf-auth`/`gate`）；`staging-app` 补 `/api` 反代；WFApi 生产默认 live。见 [ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md) §12。
 
@@ -36,7 +36,7 @@
 
 | 模块 | 现状 | 下一步 |
 |---|---|---|
-| **控制台** | 生产须 vault 会话；`WFApi` 默认 live；projects/域名/子集加字 → vault；用量聚合请求+字节+按字体（`api_usage_delivery`）；选字袋 `/api/picks`；认领收单 `/api/claims`。`?demo=1` **仅本机**。 | 用量字重/状态码 |
+| **控制台** | 生产须 vault 会话；`WFApi` 默认 live；projects/域名/子集加字 → vault；用量聚合请求+字节+按字体/字重+200·304；选字袋 `/api/picks`；认领收单 `/api/claims`。`?demo=1` **仅本机**。 | 用量记 403（鉴权层） |
 | **选字袋 / 收藏** | 本地 `wf-proto-picks` + 登录后 vault 同步；可导出 JSON；清空需确认 | 收藏（fav）云端同步可选 |
 | **样张工坊** | 详情设计视图出图 | 模板与默认文案接设置；OG 图需后端固定 URL |
 | **厂商认领** | `claim.html` → `/api/claims`；vault `/admin/claims` 审核页；覆盖层 + 可选回写 `foundries.json` | 申请人进度通知（可选） |

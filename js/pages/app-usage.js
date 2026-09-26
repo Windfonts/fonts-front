@@ -162,10 +162,12 @@
     const dims = u.dimensions || {};
     const bytesLive = dims.bytes === true && !u.stub;
     const byFontLive = dims.byFont === true && !u.stub;
+    const statusLive = dims.status === true && !u.stub;
     const noteBits = [planName + '版'];
     if (bytesLive) noteBits.push('月流量配额 ' + quotaGB + ' GB · 超出按 ¥0.8 / GB');
     else noteBits.push('现仅统计请求次数（流量字节尚未采集）');
     if (byFontLive) noteBits.push('按字体拆分已启用');
+    if (statusLive) noteBits.push('含 200/304 状态');
     noteBits.push('按 API Key 与项目白名单域名聚合');
     if (u.stub) noteBits.push('空壳');
     if (WFApi.isMock()) noteBits.push('mock');
@@ -184,7 +186,10 @@
       insightHtml(ps, pct, blockedRows) +
       '<section class="app-section"><h2>每日请求<span class="more mono">' + range + ' 天</span></h2>' + WFApp.sparkline(daily) +
         '<div class="spark-meta"><span>' + esc((u.series && u.series.from) || (range + ' 天前')) + '</span><span>' + esc((u.series && u.series.to) || '今天') + '</span></div>' +
-        '<div class="status-row"><span><b>' + Math.round((st['200'] || 0) / stSum * 100) + '%</b>成功下发</span><span><b>' + Math.round((st['304'] || 0) / stSum * 100) + '%</b>缓存命中</span><span><b>' + Math.round((st['403'] || 0) / stSum * 100) + '%</b>被拒</span></div></section>' +
+        (statusLive
+          ? '<div class="status-row"><span><b>' + Math.round((st['200'] || 0) / stSum * 100) + '%</b>成功下发</span><span><b>' + Math.round((st['304'] || 0) / stSum * 100) + '%</b>缓存命中</span><span><b>' + Math.round((st['403'] || 0) / stSum * 100) + '%</b>被拒</span></div>'
+          : '<p class="t-13 muted" style="margin-top:var(--s-3)">状态码分布尚未采集（仅请求次数）。</p>') +
+        '</section>' +
       '<section class="app-section"><h2>按字体<span class="more mono">' + byFont.length + ' 款</span></h2>' +
         '<table class="table"><thead><tr><th>字体</th><th>厂商</th><th>项目</th><th>字重</th><th class="num">请求</th><th class="num">流量</th><th class="num">占比</th></tr></thead><tbody>' +
         byFont.map(function (r) {
