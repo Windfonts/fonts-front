@@ -827,7 +827,8 @@
   /** 品牌/商用根（无开源上游）：详情谱系导语，不与开源师承源头混用 */
   function brandInviteWho(font) {
     const info = brandInfo(font);
-    if (!info) return '';
+    const brandName = (font && font.brand && font.brand.name) || '';
+    if (!info) return brandName;
     let cur = info;
     let guard = 0;
     while (cur && cur.parentId && guard++ < 8) {
@@ -835,7 +836,12 @@
       if (!p || (p.kind !== 'brand' && p.kind !== 'platform' && p.kind !== 'author')) break;
       cur = p;
     }
-    return (cur && cur.name) || info.name || '';
+    const kind = (cur && cur.kind) || (info && info.kind) || '';
+    /* 方正代发/未入典品牌字：owner 可能是 foundry 或 unlisted，优先用 font.brand */
+    if (brandName && kind !== 'brand' && kind !== 'platform' && kind !== 'author') {
+      return brandName;
+    }
+    return (cur && cur.name) || info.name || brandName || '';
   }
   function brandLineageOrgHref(font) {
     if (!font) return '';
@@ -863,6 +869,15 @@
     return href('lineage.html?group=' + encodeURIComponent(group) + '&view=org&mode=plex&focus=' +
       encodeURIComponent(font.id || ''));
   }
+  function isCiteClosedFont(font) {
+    const tags = (font && font.tags) || [];
+    for (let i = 0; i < tags.length; i++) {
+      if (String(tags[i]) === 'cite-closed') return true;
+    }
+    const ev = (font && font.licenseEvidence) || {};
+    if (WFProto.forbidsFontRedistrib && WFProto.forbidsFontRedistrib(ev)) return true;
+    return false;
+  }
   function isBrandCommercialRoot(font) {
     if (!font) return false;
     const L = font.lineage || {};
@@ -874,13 +889,20 @@
     const tier = licenseTier(font);
     const ev = font.licenseEvidence || {};
     const forbids = WFProto.forbidsOpenDerive ? WFProto.forbidsOpenDerive(ev) : false;
+    const citeClosed = isCiteClosedFont(font);
     const freeOk = tier === '免费商用' && !!(ev.verified || font.licenseVerified);
-    const brandish = kind === 'brand' || kind === 'platform' || kind === 'author' || commissioned;
-    return brandish && (commissioned || forbids || freeOk || L.licenseFollows === 'own');
+    /* font.brand / cite-closed：吉利×方正、摩登等未入典品牌根也走品牌导语 */
+    const brandish = kind === 'brand' || kind === 'platform' || kind === 'author' ||
+      commissioned || !!(font.brand && font.brand.name) || citeClosed;
+    return brandish && (commissioned || forbids || freeOk || citeClosed || L.licenseFollows === 'own');
   }
   function brandLineageInviteHtml(font) {
     if (!isBrandCommercialRoot(font)) return '';
     const who = brandInviteWho(font) || '品牌方';
+    if (isCiteClosedFont(font)) {
+      return '<p class="lin-invite">此为「' + esc(who) +
+        '」品牌商用授权字体。可按权利人条款免费商用；禁止托管与 CDN 再分发。</p>';
+    }
     return '<p class="lin-invite">此为「' + esc(who) +
       '」品牌商用授权字体。可按权利人条款免费商用。</p>';
   }

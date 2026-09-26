@@ -1061,17 +1061,30 @@
   /** 权利人声明若写明禁止改字再分发（如阿里普惠体免费商用），不算开源可衍生 */
   function forbidsOpenDerive(ev) {
     const blob = ((ev && ev.restrictions) || []).concat([(ev && ev.quote) || '']).join(' ');
-    return /不得将修改|禁止修改后|不得.*修改.*再分发|不可修改.*分发|不允许.*衍生|改字.*不得|不得改字|禁止.*再分发/.test(blob);
+    /* 覆盖：阿里「不得将修改后…再分发」、摩登「禁止修改字体或制作衍生版本」等 */
+    return /不得将修改|禁止修改后|禁止修改|不得.*修改.*再分发|不可修改.*分发|不允许.*衍生|禁止.*衍生|制作衍生|改字.*不得|不得改字|禁止改字|禁止.*再分发|不得再分发字体|禁止再分发字体/.test(blob);
+  }
+
+  /** 明确禁止托管/CDN/再分发字体文件本身 → 非开源可衍生（吉利/摩登 cite-closed） */
+  function forbidsFontRedistrib(ev) {
+    const blob = ((ev && ev.restrictions) || []).concat([(ev && ev.quote) || '']).join(' ');
+    return /禁止托管|不得\s*CDN|禁止\s*CDN|不得再分发字体|禁止再分发字体|不得提供(?:字体)?下载/.test(blob);
   }
 
   function isOpenFont(font) {
     const ev = (font && font.licenseEvidence) || {};
+    const tags = (font && font.tags) || [];
+    let citeClosed = false;
+    for (let i = 0; i < tags.length; i++) {
+      if (String(tags[i]) === 'cite-closed') { citeClosed = true; break; }
+    }
+    /* cite-closed / 禁托管再分发：绝不是开源谱系源头（即便 rights_holder 已核对） */
+    if (citeClosed || forbidsFontRedistrib(ev) || forbidsOpenDerive(ev)) return false;
     if (/OFL|Apache|MIT|IPA|CC0|CC-BY|0BSD/i.test(String(ev.spdx || ''))) return true;
     if (/OFL|Open Font|Apache|\bMIT\b|IPA|CC-?BY|CC0|0BSD|GPL/i.test(String((font && font.licenseName) || ''))) return true;
     /* 证据链核对过的开源授权（标准文本/仓库 LICENSE/权利人开源声明，如仓耳）同属可衍生；
        免费商用但禁止改字再分发的品牌字（阿里等）不算开源，避免谱系导语误称「开源源头」 */
     if (!(ev.verified && ev.sourceUrl)) return false;
-    if (forbidsOpenDerive(ev)) return false;
     return ev.sourceKind === 'standard' || ev.sourceKind === 'github_license' ||
       ev.sourceKind === 'rights_holder';
   }
@@ -1336,6 +1349,7 @@
     getLineageData: function () { return lineageData; },
     isOpenFont: isOpenFont,
     forbidsOpenDerive: forbidsOpenDerive,
+    forbidsFontRedistrib: forbidsFontRedistrib,
     serviceStatus: serviceStatus,
     citeAllowed: citeAllowed,
     slugify: slugify,
