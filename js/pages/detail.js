@@ -291,7 +291,8 @@
         }
       }
     }
-    /* 有组且跳过去有用才给入口；孤儿绝不出仅 focus 的空谱系链接 */
+    /* 有组且跳过去有用才给入口；孤儿字体回退到「所属厂商 owner 聚合派生视图」——
+       森林里有它和它的出族上游，不再是仅 focus 的空谱系 */
     const split = WFChrome.lineageSplit(font, list);
     const hasRealTree = !!(split.up || (split.downs && split.downs.length) || (split.all && split.all.length > 1));
     let graphHref = '';
@@ -300,6 +301,14 @@
       if (useful) {
         graphHref = 'lineage.html?group=' + encodeURIComponent(graphGroup) + '&view=' + graphView +
           '&mode=plex&focus=' + encodeURIComponent(font.id);
+      }
+    }
+    if (!graphHref) {
+      const oid = (font.ownerInfo && font.ownerInfo.id) ||
+        (font.brand && font.brand.slug === 'google-fonts' ? '' : '') || '';
+      if (oid && WFProto.getFoundryById && WFProto.getFoundryById(oid)) {
+        graphHref = 'lineage.html?group=' + encodeURIComponent(oid) + '&view=derive&mode=flow&focus=' +
+          encodeURIComponent(font.id);
       }
     }
     const graph = graphHref
