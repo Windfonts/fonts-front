@@ -176,7 +176,7 @@
           font.licenseEvidence = resolveLicenseEvidence(font);
           return font;
         });
-        return catalog;
+        return applyClaimStatusOverlay().then(function () { return catalog; });
       })
       .catch(function (err) {
         console.warn('[WFProto] catalog load failed', err);
@@ -184,6 +184,31 @@
         return catalog;
       });
     return catalogPromise;
+  }
+
+  /** vault 审核通过的 claimed 覆盖层（不改 foundries.json 也可立刻显示）。 */
+  function applyClaimStatusOverlay() {
+    const base = CSS_API || 'https://vault.windfonts.com';
+    return fetch(base + '/api/foundries/claim-status')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (body) {
+        const bySlug = (body && body.data && body.data.bySlug) || (body && body.bySlug) || {};
+        const slugs = Object.keys(bySlug);
+        if (!slugs.length) return;
+        foundries.forEach(function (fd) {
+          const st = bySlug[fd.id];
+          if (st && st.claimed) fd.claimed = true;
+        });
+        catalog.forEach(function (font) {
+          if (font.ownerInfo && bySlug[font.ownerInfo.id] && bySlug[font.ownerInfo.id].claimed) {
+            font.ownerInfo.claimed = true;
+          }
+          if (font.foundryInfo && bySlug[font.foundryInfo.id] && bySlug[font.foundryInfo.id].claimed) {
+            font.foundryInfo.claimed = true;
+          }
+        });
+      })
+      .catch(function () { /* vault 不可达时忽略 */ });
   }
 
   function loadPicks() {
