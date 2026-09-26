@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");localStorage.setItem("wf-view","design");document.documentElement.removeAttribute("data-view")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>详情 · 字符表工具条结构 v2 · 文风字体</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="css/fonts.css?v=20260926gwtv2" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260926gwtv2" />
+  <link rel="stylesheet" href="css/base.css?v=20260926gwtv2" />
+  <link rel="stylesheet" href="css/components.css?v=20260926gwtv2" />
+  <link rel="stylesheet" href="css/specimen.css?v=20260926gwtv2" />
+  <link rel="stylesheet" href="css/site.css?v=20260926gwtv2" />
+  <link rel="stylesheet" href="css/detail.css?v=20260926gwtv2" />
+  <link rel="stylesheet" href="css/detail-options.css?v=20260926gwtv2" />
+  <link rel="stylesheet" href="css/detail-glyph-wall-tools-v2-options.css?v=20260926gwtv2" />
+  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+</head>
+<body class="page-detail page-detail-opt page-detail-glyph-wall-tools-v2">
+  <header data-topbar data-active="fonts"></header>
+
+  <div class="do-switch">
+    <div class="container do-switch-inner">
+      <p class="do-switch-lead">字符表工具条 <b>结构重设计</b>（v2）。甲乙丙丁已否。主任务=查字；语料/简繁/筛选次之；对照表仅 for-dev。未改 <code>detail.css</code>。</p>
+      <nav class="seg-glyph" aria-label="设计稿">
+        <a href="#wu">戊 顶条</a>
+        <a href="#ji">己 分栏</a>
+        <a href="#geng">庚 极简</a>
+        <a href="#xin">辛 摘要行</a>
+      </nav>
+      <p class="do-live">
+        <a class="do-back" href="detail-glyph-wall-tools-options.html">v1 已否</a>
+        ·
+        <a class="do-back" href="font-detail.html?slug=hclck2#glyphs">回寒蝉龙藏楷书</a>
+        ·
+        <a class="do-back" href="lab.html">实验室</a>
+      </p>
+    </div>
+  </div>
+
+  <main class="container dgwt2-main">
+    <p class="dgwt2-verdict">
+      <b>否决</b>：甲乙丙丁都是「同一排分段控件」的疏密变体——都不喜欢。
+      <b>本轮</b>：按产品层级拆结构。查字独占工具行；语料 / 简繁 / 筛选离开 pill 堆；对照表设计视图隐藏。
+    </p>
+
+    <!-- ═══════ 戊 · 顶条 + 文案 tabs ═══════ -->
+    <article class="do-block dgwt2-wu" id="wu">
+      <header class="do-meta">
+        <b>戊 · 顶条只留查字 · 筛选作文案 tabs</b>
+        <span>工具行：标题 + 搜索（+ 开发对照表）。千字文/简繁/收录移到字墙上方的细文案 tabs，不与搜索抢视线。</span>
+      </header>
+      <div class="dgwt2-pair">
+        <div class="dgwt2-stage" data-label="设计视图（无对照表）" data-variant="wu">
+          <div class="detail-main"><section class="panel">
+            <div class="panel-head dgwt2-head-strip">
+              <div class="glyph-title">
+                <h2><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg?v=20260922sc#i-hashtag"/></svg>字符表</h2>
+                <div class="glyph-query-host">
+                  <form class="glyph-query" role="search" onsubmit="return false">
+                    <label class="glyph-query-label" for="dgwt2-wu-q">查字</label>
+                    <span class="glyph-query-field">
+                      <input type="search" id="dgwt2-wu-q" class="glyph-query-input" placeholder="输入要核对的字符，例如：文风字体" disabled />
+                      <button type="submit" class="btn glyph-query-go" disabled>查询</button>
+                    </span>
+                  </form>
+                </div>
+              </div>
+              <button type="button" class="gtoggle for-dev" disabled>对照表</button>
+            </div>
+            <div class="panel-pad">
+              <div class="glyph-summary"><p class="glyph-sum-line"><b>986</b> / 994 千字文（简体）已收录 · 覆盖 99%</p></div>
+              <div class="dgwt2-text-tabs" role="toolbar" aria-label="字表筛选">
+                <div class="dgwt2-ttab" role="group" aria-label="字表">
+                  <button type="button" class="is-on">千字文</button>
+                  <button type="button">常用字</button>
+                </div>
+                <span class="dgwt2-ttab-sep" aria-hidden="true">·</span>
+                <div class="dgwt2-ttab" role="group" aria-label="写法">
+                  <button type="button" class="is-on">简</button>
+                  <button type="button">繁</button>
+                </div>
+                <span class="dgwt2-ttab-sep" aria-hidden="true">·</span>
+                <div class="dgwt2-ttab" role="group" aria-label="筛选">
+                  <button type="button" class="is-on">全部</button>
+                  <button type="button">已收录</button>
+                  <button type="button">缺字</button>
+                </div>
+              </div>
+              <div class="dgwt2-grid-mock" aria-hidden="true"><span>天</span><span>地</span><span>玄</span><span>黄</span><span>宇</span><span>宙</span><span>洪</span><span>荒</span><span>日</span><span>月</span><span>盈</span><span>昃</span></div>
+            </div>
+          </section></div>
+        </div>
+        <div class="dgwt2-stage is-dev-view" data-label="开发视图（对照表可见）" data-variant="wu">
+          <div class="detail-main"><section class="panel">
+            <div class="panel-head dgwt2-head-strip">
+              <div class="glyph-title">
+                <h2><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg?v=20260922sc#i-hashtag"/></svg>字符表</h2>
+                <div class="glyph-query-host">
+                  <form class="glyph-query" role="search" onsubmit="return false">
+                    <label class="glyph-query-label">查字</label>
+                    <span class="glyph-query-field">
+                      <input type="search" class="glyph-query-input" placeholder="输入要核对的字符，例如：文风字体" disabled />
+                      <button type="submit" class="btn glyph-query-go" disabled>查询</button>
+                    </span>
+                  </form>
+                </div>
+              </div>
+              <button type="button" class="gtoggle for-dev" disabled>对照表</button>
+            </div>
+            <div class="panel-pad">
+              <div class="glyph-summary"><p class="glyph-sum-line"><b>986</b> / 994 千字文（简体）已收录 · 覆盖 99%</p></div>
+              <div class="dgwt2-text-tabs" role="toolbar" aria-label="字表筛选">
+                <div class="dgwt2-ttab" role="group" aria-label="字表">
+                  <button type="button" class="is-on">千字文</button>
+                  <button type="button">常用字</button>
+                </div>
+                <span class="dgwt2-ttab-sep" aria-hidden="true">·</span>
+                <div class="dgwt2-ttab" role="group" aria-label="写法">
+                  <button type="button" class="is-on">简</button>
+                  <button type="button">繁</button>
+                </div>
+                <span class="dgwt2-ttab-sep" aria-hidden="true">·</span>
+                <div class="dgwt2-ttab" role="group" aria-label="筛选">
+                  <button type="button" class="is-on">全部</button>
+                  <button type="button">已收录</button>
+                  <button type="button">缺字</button>
+                </div>
+              </div>
+              <div class="dgwt2-grid-mock" aria-hidden="true"><span>天</span><span>地</span><span>玄</span><span>黄</span><span>宇</span><span>宙</span><span>洪</span><span>荒</span><span>日</span><span>月</span><span>盈</span><span>昃</span></div>
+            </div>
+          </section></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ═══════ 己 · 分栏 ═══════ -->
+    <article class="do-block dgwt2-ji" id="ji">
+      <header class="do-meta">
+        <b>己 · 左栏语料 · 右栏查字 · 筛选图标弹出</b>
+        <span>左：标题 + 千字文/常用字竖排文案钮。右：搜索。简繁与收录收进「筛选」图标弹出层；区段底可再露一条当前态。</span>
+      </header>
+      <div class="dgwt2-pair">
+        <div class="dgwt2-stage" data-label="设计视图 · 弹出关闭" data-variant="ji">
+          <div class="detail-main"><section class="panel">
+            <div class="panel-head dgwt2-head-split">
+              <div class="dgwt2-split-left">
+                <h2><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg?v=20260922sc#i-hashtag"/></svg>字符表</h2>
+                <div class="dgwt2-corpus" role="group" aria-label="字表">
+                  <button type="button" class="is-on">千字文</button>
+                  <button type="button">常用字</button>
+                </div>
+              </div>
+              <div class="dgwt2-split-right">
+                <div class="glyph-query-host">
+                  <form class="glyph-query" role="search" onsubmit="return false">
+                    <label class="glyph-query-label">查字</label>
+                    <span class="glyph-query-field">
+                      <input type="search" class="glyph-query-input" placeholder="输入要核对的字符，例如：文风字体" disabled />
+                      <button type="submit" class="btn glyph-query-go" disabled>查询</button>
+                    </span>
+                  </form>
+                </div>
+                <div class="dgwt2-filter-pop">
+                  <button type="button" class="dgwt2-icon-btn" aria-expanded="false" aria-label="筛选：简 · 全部" title="筛选">
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg?v=20260922sc#i-filter"/></svg>
+                  </button>
+                  <div class="dgwt2-pop" hidden>
+                    <p class="dgwt2-pop-label">写法</p>
+                    <div class="dgwt2-pop-row" role="group" aria-label="写法">
+                      <button type="button" class="is-on">简</button>
+                      <button type="button">繁</button>
+                    </div>
+                    <p class="dgwt2-pop-label">筛选</p>
+                    <div class="dgwt2-pop-row" role="group" aria-label="筛选">
+                      <button type="button" class="is-on">全部</button>
+                      <button type="button">已收录</button>
+                      <button type="button">缺字</button>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="gtoggle for-dev" disabled>对照表</button>
+              </div>
+            </div>
+            <div class="dgwt2-sec-bar" aria-label="当前筛选">
+              <span>写法 <b>简</b></span>
+              <span class="dgwt2-ttab-sep" aria-hidden="true">·</span>
+              <span>显示 <b>全部</b></span>
+            </div>
+            <div class="panel-pad">
+              <div class="glyph-summary"><p class="glyph-sum-line"><b>986</b> / 994 千字文（简体）已收录 · 覆盖 99%</p></div>
+              <div class="dgwt2-grid-mock" aria-hidden="true"><span>天</span><span>地</span><span>玄</span><span>黄</span><span>宇</span><span>宙</span><span>洪</span><span>荒</span><span>日</span><span>月</span><span>盈</span><span>昃</span></div>
+            </div>
+          </section></div>
+        </div>
+        <div class="dgwt2-stage is-dev-view is-pop-open" data-label="开发视图 · 筛选弹出打开" data-variant="ji">
+          <div class="detail-main"><section class="panel">
+            <div class="panel-head dgwt2-head-split">
+              <div class="dgwt2-split-left">
+                <h2><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg?v=20260922sc#i-hashtag"/></svg>字符表</h2>
+                <div class="dgwt2-corpus" role="group" aria-label="字表">
+                  <button type="button" class="is-on">千字文</button>
+                  <button type="button">常用字</button>
+                </div>
+              </div>
+              <div class="dgwt2-split-right">
+                <div class="glyph-query-host">
+                  <form class="glyph-query" role="search" onsubmit="return false">
+                    <label class="glyph-query-label">查字</label>
+                    <span class="glyph-query-field">
+                      <input type="search" class="glyph-query-input" placeholder="输入要核对的字符，例如：文风字体" disabled />
+                      <button type="submit" class="btn glyph-query-go" disabled>查询</button>
+                    </span>
+                  </form>
+                </div>
+                <div class="dgwt2-filter-pop is-open">
+                  <button type="button" class="dgwt2-icon-btn is-on" aria-expanded="true" aria-label="筛选：简 · 全部" title="筛选">
+                    <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg?v=20260922sc#i-filter"/></svg>
+                  </button>
+                  <div class="dgwt2-pop">
+                    <p class="dgwt2-pop-label">写法</p>
+                    <div class="dgwt2-pop-row" role="group" aria-label="写法">
+                      <button type="button" class="is-on">简</button>
+                      <button type="button">繁</button>
+                    </div>
+                    <p class="dgwt2-pop-label">筛选</p>
+                    <div class="dgwt2-pop-row" role="group" aria-label="筛选">
+                      <button type="button" class="is-on">全部</button>
+                      <button type="button">已收录</button>
+                      <button type="button">缺字</button>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="gtoggle for-dev" disabled>对照表</button>
+              </div>
+            </div>
+            <div class="dgwt2-sec-bar" aria-label="当前筛选">
+              <span>写法 <b>简</b></span>
+              <span class="dgwt2-ttab-sep" aria-hidden="true">·</span>
+              <span>显示 <b>全部</b></span>
+            </div>
+            <div class="panel-pad">
+              <div class="glyph-summary"><p class="glyph-sum-line"><b>986</b> / 994 千字文（简体）已收录 · 覆盖 99%</p></div>
+              <div class="dgwt2-grid-mock" aria-hidden="true"><span>天</span><span>地</span><span>玄</span><span>黄</span><span>宇</span><span>宙</span><span>洪</span><span>荒</span><span>日</span><span>月</span><span>盈</span><span>昃</span></div>
+            </div>
+          </section></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ═══════ 庚 · 极简 chip ═══════ -->
+    <article class="do-block dgwt2-geng" id="geng">
+      <header class="do-meta">
+        <b>庚 · 极简：只露查字 · 一颗「筛选」chip</b>
+        <span>工具行只有标题、搜索、一颗摘要 chip。点开是带小标题的分层面板（不是再塞一排 pill）。</span>
+      </header>
+      <div class="dgwt2-pair">
+        <div class="dgwt2-stage" data-label="设计视图 · chip 收起" data-variant="geng">
+          <div class="detail-main"><section class="panel">
+            <div class="panel-head dgwt2-head-min">
+              <div class="glyph-title">
+                <h2><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg?v=20260922sc#i-hashtag"/></svg>字符表</h2>
+                <div class="glyph-query-host">
+                  <form class="glyph-query" role="search" onsubmit="return false">
+                    <label class="glyph-query-label">查字</label>
+                    <span class="glyph-query-field">
+                      <input type="search" class="glyph-query-input" placeholder="输入要核对的字符，例如：文风字体" disabled />
+                      <button type="submit" class="btn glyph-query-go" disabled>查询</button>
+                    </span>
+                  </form>
+                </div>
+              </div>
+              <details class="dgwt2-chip">
+                <summary>
+                  <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg?v=20260922sc#i-filter"/></svg>
+                  <span class="dgwt2-chip-label">筛选</span>
+                  <span class="dgwt2-chip-sum">千字文 · 简 · 全部</span>
+                </summary>
+                <div class="dgwt2-chip-panel">
+                  <div class="dgwt2-chip-group">
+                    <p class="dgwt2-pop-label">字表</p>
+                    <div class="dgwt2-pop-row" role="group" aria-label="字表">
+                      <button type="button" class="is-on">千字文</button>
+                      <button type="button">常用字</button>
+                    </div>
+                  </div>
+                  <div class="dgwt2-chip-group">
+                    <p class="dgwt2-pop-label">写法</p>
+                    <div class="dgwt2-pop-row" role="group" aria-label="写法">
+                      <button type="button" class="is-on">简</button>
+                      <button type="button">繁</button>
+                    </div>
+                  </div>
+                  <div class="dgwt2-chip-group">
+                    <p class="dgwt2-pop-label">筛选</p>
+                    <div class="dgwt2-pop-row" role="group" aria-label="筛选">
+                      <button type="button" class="is-on">全部</button>
+                      <button type="button">已收录</button>
+                      <button type="button">缺字</button>
+                    </div>
+                  </div>
+                </div>
+              </details>
+              <button type="button" class="gtoggle for-dev" disabled>对照表</button>
+            </div>
+            <div class="panel-pad">
+              <div class="glyph-summary"><p class="glyph-sum-line"><b>986</b> / 994 千字文（简体）已收录 · 覆盖 99%</p></div>
+              <div class="dgwt2-grid-mock" aria-hidden="true"><span>天</span><span>地</span><span>玄</span><span>黄</span><span>宇</span><span>宙</span><span>洪</span><span>荒</span><span>日</span><span>月</span><span>盈</span><span>昃</span></div>
+            </div>
+          </section></div>
+        </div>
+        <div class="dgwt2-stage is-dev-view" data-label="开发视图 · chip 展开" data-variant="geng">
+          <div class="detail-main"><section class="panel">
+            <div class="panel-head dgwt2-head-min">
+              <div class="glyph-title">
+                <h2><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg?v=20260922sc#i-hashtag"/></svg>字符表</h2>
+                <div class="glyph-query-host">
+                  <form class="glyph-query" role="search" onsubmit="return false">
+                    <label class="glyph-query-label">查字</label>
+                    <span class="glyph-query-field">
+                      <input type="search" class="glyph-query-input" placeholder="输入要核对的字符，例如：文风字体" disabled />
+                      <button type="submit" class="btn glyph-query-go" disabled>查询</button>
+                    </span>
+                  </form>
+                </div>
+              </div>
+              <details class="dgwt2-chip" open>
+                <summary>
+                  <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg?v=20260922sc#i-filter"/></svg>
+                  <span class="dgwt2-chip-label">筛选</span>
+                  <span class="dgwt2-chip-sum">千字文 · 简 · 全部</span>
+                </summary>
+                <div class="dgwt2-chip-panel">
+                  <div class="dgwt2-chip-group">
+                    <p class="dgwt2-pop-label">字表</p>
+                    <div class="dgwt2-pop-row" role="group" aria-label="字表">
+                      <button type="button" class="is-on">千字文</button>
+                      <button type="button">常用字</button>
+                    </div>
+                  </div>
+                  <div class="dgwt2-chip-group">
+                    <p class="dgwt2-pop-label">写法</p>
+                    <div class="dgwt2-pop-row" role="group" aria-label="写法">
+                      <button type="button" class="is-on">简</button>
+                      <button type="button">繁</button>
+                    </div>
+                  </div>
+                  <div class="dgwt2-chip-group">
+                    <p class="dgwt2-pop-label">筛选</p>
+                    <div class="dgwt2-pop-row" role="group" aria-label="筛选">
+                      <button type="button" class="is-on">全部</button>
+                      <button type="button">已收录</button>
+                      <button type="button">缺字</button>
+                    </div>
+                  </div>
+                </div>
+              </details>
+              <button type="button" class="gtoggle for-dev" disabled>对照表</button>
+            </div>
+            <div class="panel-pad">
+              <div class="glyph-summary"><p class="glyph-sum-line"><b>986</b> / 994 千字文（简体）已收录 · 覆盖 99%</p></div>
+              <div class="dgwt2-grid-mock" aria-hidden="true"><span>天</span><span>地</span><span>玄</span><span>黄</span><span>宇</span><span>宙</span><span>洪</span><span>荒</span><span>日</span><span>月</span><span>盈</span><span>昃</span></div>
+            </div>
+          </section></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ═══════ 辛 · 摘要行即控件 ═══════ -->
+    <article class="do-block dgwt2-xin" id="xin">
+      <header class="do-meta">
+        <b>辛 · 无工具条：摘要句里点选</b>
+        <span>头部只留标题 + 查字。语料 / 简繁 / 筛选变成摘要句中的可点词——零 pill、零菜单，阅读即操作。</span>
+      </header>
+      <div class="dgwt2-pair">
+        <div class="dgwt2-stage" data-label="设计视图（无对照表）" data-variant="xin">
+          <div class="detail-main"><section class="panel">
+            <div class="panel-head dgwt2-head-strip">
+              <div class="glyph-title">
+                <h2><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg?v=20260922sc#i-hashtag"/></svg>字符表</h2>
+                <div class="glyph-query-host">
+                  <form class="glyph-query" role="search" onsubmit="return false">
+                    <label class="glyph-query-label">查字</label>
+                    <span class="glyph-query-field">
+                      <input type="search" class="glyph-query-input" placeholder="输入要核对的字符，例如：文风字体" disabled />
+                      <button type="submit" class="btn glyph-query-go" disabled>查询</button>
+                    </span>
+                  </form>
+                </div>
+              </div>
+              <button type="button" class="gtoggle for-dev" disabled>对照表</button>
+            </div>
+            <div class="panel-pad">
+              <div class="glyph-summary dgwt2-sum-ctrl">
+                <p class="glyph-sum-line">
+                  查看
+                  <span class="dgwt2-inline-seg" role="group" aria-label="字表">
+                    <button type="button" class="is-on">千字文</button>
+                    <button type="button">常用字</button>
+                  </span>
+                  <span class="dgwt2-inline-seg" role="group" aria-label="写法">
+                    <button type="button" class="is-on">简体</button>
+                    <button type="button">繁體</button>
+                  </span>
+                  · 显示
+                  <span class="dgwt2-inline-seg" role="group" aria-label="筛选">
+                    <button type="button" class="is-on">全部</button>
+                    <button type="button">已收录</button>
+                    <button type="button">缺字</button>
+                  </span>
+                </p>
+                <p class="glyph-sum-line dgwt2-sum-stat"><b>986</b> / 994 已收录 · 覆盖 99%</p>
+              </div>
+              <div class="dgwt2-grid-mock" aria-hidden="true"><span>天</span><span>地</span><span>玄</span><span>黄</span><span>宇</span><span>宙</span><span>洪</span><span>荒</span><span>日</span><span>月</span><span>盈</span><span>昃</span></div>
+            </div>
+          </section></div>
+        </div>
+        <div class="dgwt2-stage is-dev-view" data-label="开发视图（对照表可见）" data-variant="xin">
+          <div class="detail-main"><section class="panel">
+            <div class="panel-head dgwt2-head-strip">
+              <div class="glyph-title">
+                <h2><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg?v=20260922sc#i-hashtag"/></svg>字符表</h2>
+                <div class="glyph-query-host">
+                  <form class="glyph-query" role="search" onsubmit="return false">
+                    <label class="glyph-query-label">查字</label>
+                    <span class="glyph-query-field">
+                      <input type="search" class="glyph-query-input" placeholder="输入要核对的字符，例如：文风字体" disabled />
+                      <button type="submit" class="btn glyph-query-go" disabled>查询</button>
+                    </span>
+                  </form>
+                </div>
+              </div>
+              <button type="button" class="gtoggle for-dev" disabled>对照表</button>
+            </div>
+            <div class="panel-pad">
+              <div class="glyph-summary dgwt2-sum-ctrl">
+                <p class="glyph-sum-line">
+                  查看
+                  <span class="dgwt2-inline-seg" role="group" aria-label="字表">
+                    <button type="button" class="is-on">千字文</button>
+                    <button type="button">常用字</button>
+                  </span>
+                  <span class="dgwt2-inline-seg" role="group" aria-label="写法">
+                    <button type="button" class="is-on">简体</button>
+                    <button type="button">繁體</button>
+                  </span>
+                  · 显示
+                  <span class="dgwt2-inline-seg" role="group" aria-label="筛选">
+                    <button type="button" class="is-on">全部</button>
+                    <button type="button">已收录</button>
+                    <button type="button">缺字</button>
+                  </span>
+                </p>
+                <p class="glyph-sum-line dgwt2-sum-stat"><b>986</b> / 994 已收录 · 覆盖 99%</p>
+              </div>
+              <div class="dgwt2-grid-mock" aria-hidden="true"><span>天</span><span>地</span><span>玄</span><span>黄</span><span>宇</span><span>宙</span><span>洪</span><span>荒</span><span>日</span><span>月</span><span>盈</span><span>昃</span></div>
+            </div>
+          </section></div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <script src="js/wf-proto.js?v=20260926gwtv2"></script>
+  <script src="js/wf-chrome.js?v=20260926gwtv2"></script>
+  <script src="js/pages/detail-glyph-wall-tools-v2-options.js?v=20260926gwtv2"></script>
+</body>
+</html>

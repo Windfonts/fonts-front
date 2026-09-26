@@ -244,11 +244,21 @@
         {
           "href": "detail-glyph-wall-tools-options.html",
           "title": "字符表工具条密度",
-          "status": "active",
-          "note": "字符表 panel-head 过密：甲两行（搜索独行）/ 乙简繁·收录折菜单 / 丙设计隐对照表+松间距 / 丁现页。设计视图不露对照表。定稿前不改 detail.css / specimen.css。",
+          "status": "rejected",
+          "note": "已否：甲两行/乙折叠/丙松间距/丁现页——「都不喜欢」。见 v2 结构重设计。",
           "assets": [
             "css/detail-glyph-wall-tools-options.css",
             "js/pages/detail-glyph-wall-tools-options.js"
+          ]
+        },
+        {
+          "href": "detail-glyph-wall-tools-v2-options.html",
+          "title": "字符表工具条结构 v2",
+          "status": "active",
+          "note": "戊顶条+文案tabs / 己左语料右查字+筛选图标弹出 / 庚极简筛选chip / 辛摘要行点选。甲乙丙丁已否。不改 detail.css。",
+          "assets": [
+            "css/detail-glyph-wall-tools-v2-options.css",
+            "js/pages/detail-glyph-wall-tools-v2-options.js"
           ]
         }
       ]

@@ -1,0 +1,428 @@
+/* 详情 · 字符表工具条结构 v2。只服务 detail-glyph-wall-tools-v2-options.html，不进正式站。 */
+
+.page-detail-glyph-wall-tools-v2 .dgwt2-main {
+  padding: var(--s-6) 0 var(--s-16);
+  max-width: 64rem;
+}
+
+.page-detail-glyph-wall-tools-v2 .dgwt2-verdict {
+  margin: 0 0 var(--s-8);
+  padding: var(--s-5) var(--s-6);
+  background: var(--surface);
+  border-radius: var(--radius);
+  font-size: var(--fs-13);
+  line-height: var(--lh-body);
+  color: var(--ink-2);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-verdict b {
+  font-weight: var(--fw-title);
+  color: var(--ink);
+  margin-right: 0.35em;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-verdict code {
+  font-size: var(--fs-12);
+  background: var(--paper);
+  padding: 0.05em 0.35em;
+  border-radius: 6px;
+}
+
+.page-detail-glyph-wall-tools-v2 .do-block {
+  display: none;
+  padding: 0 0 var(--s-10);
+}
+.page-detail-glyph-wall-tools-v2 .do-block.is-on { display: block; }
+
+.page-detail-glyph-wall-tools-v2 .dgwt2-pair {
+  display: grid;
+  gap: var(--s-5);
+  grid-template-columns: 1fr;
+}
+
+.page-detail-glyph-wall-tools-v2 .dgwt2-stage {
+  position: relative;
+  padding: var(--s-4) var(--s-5) var(--s-5);
+  background: var(--page, #fff);
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius);
+  min-width: 0;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-stage::before {
+  content: attr(data-label);
+  display: block;
+  margin-bottom: var(--s-3);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-label);
+  color: var(--gray);
+  letter-spacing: 0.02em;
+}
+
+.page-detail-glyph-wall-tools-v2 .dgwt2-stage .detail-main > .panel {
+  min-width: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border-top: 1px solid var(--rule);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-stage .panel-head {
+  flex-wrap: wrap;
+  padding: var(--s-5) 0 0;
+  gap: var(--s-3) var(--s-4);
+  align-items: center;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-stage .panel-pad {
+  padding: var(--s-4) 0 var(--s-2);
+}
+
+.page-detail-glyph-wall-tools-v2 .glyph-query-host {
+  display: flex;
+  flex: 1 1 auto;
+  width: auto;
+  max-width: 28rem;
+  min-width: 0;
+}
+.page-detail-glyph-wall-tools-v2 .glyph-query-host .glyph-query { width: 100%; }
+.page-detail-glyph-wall-tools-v2 .dgwt2-stage .glyph-query-go {
+  height: 1.9rem;
+  padding: 0 0.95rem;
+  flex: none;
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: var(--fs-13);
+}
+
+/* 设计视图藏对照表；开发 stage 强制露出 */
+.page-detail-glyph-wall-tools-v2 .dgwt2-stage .for-dev { display: none !important; }
+.page-detail-glyph-wall-tools-v2 .dgwt2-stage.is-dev-view .for-dev {
+  display: inline-flex !important;
+  align-items: center;
+}
+
+.page-detail-glyph-wall-tools-v2 .dgwt2-grid-mock {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--s-2);
+  font-size: var(--fs-20);
+  line-height: 1;
+  opacity: 0.55;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-grid-mock span {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 0 0 1px var(--rule);
+  border-radius: 4px;
+}
+
+/* ─── shared: text-style controls (not pill segs) ─── */
+.page-detail-glyph-wall-tools-v2 .dgwt2-ttab,
+.page-detail-glyph-wall-tools-v2 .dgwt2-corpus,
+.page-detail-glyph-wall-tools-v2 .dgwt2-pop-row,
+.page-detail-glyph-wall-tools-v2 .dgwt2-inline-seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem 0.55rem;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-ttab button,
+.page-detail-glyph-wall-tools-v2 .dgwt2-corpus button,
+.page-detail-glyph-wall-tools-v2 .dgwt2-pop-row button,
+.page-detail-glyph-wall-tools-v2 .dgwt2-inline-seg button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-size: var(--fs-13);
+  color: var(--gray);
+  cursor: pointer;
+  border-radius: 0;
+  box-shadow: none;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-ttab button:hover,
+.page-detail-glyph-wall-tools-v2 .dgwt2-corpus button:hover,
+.page-detail-glyph-wall-tools-v2 .dgwt2-pop-row button:hover,
+.page-detail-glyph-wall-tools-v2 .dgwt2-inline-seg button:hover {
+  color: var(--ink);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-ttab button.is-on,
+.page-detail-glyph-wall-tools-v2 .dgwt2-corpus button.is-on,
+.page-detail-glyph-wall-tools-v2 .dgwt2-pop-row button.is-on,
+.page-detail-glyph-wall-tools-v2 .dgwt2-inline-seg button.is-on {
+  color: var(--ink);
+  font-weight: var(--fw-title);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1.5px;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-ttab-sep {
+  color: var(--gray-2);
+  font-size: var(--fs-12);
+  user-select: none;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-pop-label {
+  margin: 0 0 0.25rem;
+  font-size: var(--fs-11);
+  font-weight: var(--fw-label);
+  color: var(--gray);
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip-group + .dgwt2-chip-group,
+.page-detail-glyph-wall-tools-v2 .dgwt2-pop-row + .dgwt2-pop-label {
+  margin-top: var(--s-3);
+}
+
+/* ─── 戊：顶条 + 文案 tabs ─── */
+.page-detail-glyph-wall-tools-v2 .dgwt2-head-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3) var(--s-4);
+  width: 100%;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-head-strip .glyph-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-text-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.65rem;
+  margin: 0 0 var(--s-4);
+  padding: 0.15rem 0 0.55rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--fs-13);
+}
+
+/* ─── 己：分栏 + 图标弹出 ─── */
+.page-detail-glyph-wall-tools-v2 .dgwt2-head-split {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, 8.5rem) minmax(0, 1fr);
+  gap: var(--s-4) var(--s-5);
+  align-items: start;
+  width: 100%;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-split-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-2);
+  position: sticky;
+  top: calc(var(--topbar-h, 3.5rem) + 4.5rem);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-split-left h2 {
+  margin: 0;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-corpus {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-corpus button {
+  font-size: var(--fs-13);
+  line-height: 1.4;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-split-right {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-width: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-split-right .glyph-query-host {
+  flex: 1 1 14rem;
+  max-width: none;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-filter-pop {
+  position: relative;
+  flex: none;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--fill);
+  color: var(--ink-2);
+  cursor: pointer;
+  padding: 0;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-icon-btn:hover,
+.page-detail-glyph-wall-tools-v2 .dgwt2-icon-btn.is-on {
+  color: var(--ink);
+  background: var(--surface);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-icon-btn .icon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-pop {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 6;
+  min-width: 10.5rem;
+  padding: var(--s-3);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--ink) 14%, transparent);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-filter-pop.is-open .dgwt2-pop,
+.page-detail-glyph-wall-tools-v2 .dgwt2-stage.is-pop-open .dgwt2-pop {
+  display: block;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-pop[hidden] { display: none; }
+.page-detail-glyph-wall-tools-v2 .dgwt2-sec-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.55rem;
+  margin-top: var(--s-3);
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--rule);
+  font-size: var(--fs-12);
+  color: var(--gray);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-sec-bar b {
+  color: var(--ink);
+  font-weight: var(--fw-title);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-ji .dgwt2-stage.is-pop-open {
+  padding-bottom: var(--s-20);
+}
+
+/* ─── 庚：极简 chip ─── */
+.page-detail-glyph-wall-tools-v2 .dgwt2-head-min {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2) var(--s-3);
+  width: 100%;
+  flex-wrap: wrap;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-head-min .glyph-title {
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip {
+  position: relative;
+  flex: none;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip > summary {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem 0.35rem 0.7rem;
+  background: var(--fill);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-13);
+  color: var(--ink-2);
+  cursor: pointer;
+  user-select: none;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip > summary::-webkit-details-marker { display: none; }
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip > summary:hover { color: var(--ink); }
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip[open] > summary {
+  color: var(--ink);
+  background: var(--surface);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip > summary .icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: none;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip-label {
+  font-weight: var(--fw-label);
+  color: var(--ink);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip-sum {
+  color: var(--gray);
+  font-size: var(--fs-12);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip > summary::after {
+  content: "▾";
+  font-size: 0.8em;
+  opacity: 0.65;
+  margin-left: 0.15rem;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip[open] > summary::after { content: "▴"; }
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 6;
+  width: min(18rem, 78vw);
+  display: grid;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--ink) 14%, transparent);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding-bottom: var(--s-2);
+  border-bottom: 1px solid var(--rule);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-chip-group:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-geng .dgwt2-stage.is-dev-view {
+  padding-bottom: var(--s-24);
+}
+
+/* ─── 辛：摘要行即控件 ─── */
+.page-detail-glyph-wall-tools-v2 .dgwt2-sum-ctrl {
+  max-width: none;
+  margin-bottom: var(--s-5);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-sum-ctrl .glyph-sum-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.45rem;
+  margin: 0 0 0.35rem;
+  font-size: var(--fs-14);
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-sum-stat {
+  font-size: var(--fs-13) !important;
+  color: var(--gray) !important;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-inline-seg {
+  display: inline-flex;
+  gap: 0.35rem;
+  padding: 0 0.15rem;
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-inline-seg button {
+  font-size: var(--fs-14);
+}
+.page-detail-glyph-wall-tools-v2 .dgwt2-inline-seg button.is-on {
+  text-decoration-thickness: 2px;
+}
+
+@media (max-width: 720px) {
+  .page-detail-glyph-wall-tools-v2 .dgwt2-head-split {
+    grid-template-columns: 1fr;
+  }
+  .page-detail-glyph-wall-tools-v2 .dgwt2-corpus {
+    flex-direction: row;
+    gap: 0.65rem;
+  }
+  .page-detail-glyph-wall-tools-v2 .dgwt2-split-left {
+    position: static;
+  }
+}
