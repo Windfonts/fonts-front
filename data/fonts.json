@@ -2260,12 +2260,13 @@
       "多语言"
     ],
     "weights": [
-      "Medium",
       "Light",
-      "Bold",
-      "Regular"
+      "Regular",
+      "Medium",
+      "SemiBold",
+      "Bold"
     ],
-    "description": "OPPO Sans 是 OPPO 与汉仪字库联合开发的全球化品牌字体，于2019年首次发布，并持续更新。中文部分由汉仪字库设计总监朱志伟指导、设计师黄珍元完成，西文部分由美国 Pentagram 公司设计。字体采用全新骨架，中宫自然舒适，字形舒展，笔画简洁，并去除了出脚等细节，使整体造型干净、现代。曲线处理圆滑流畅，融入了 OPPO 产品的美学理念，具有科技感和未来感。该字体家族包含多种字重，针对屏幕显示进行了优化，支持多国语言，并允许个人和企业免费商用。",
+    "description": "OPPO Sans 4.0（官方 ColorOS 可变字体实例化静态五字重 Light/Regular/Medium/SemiBold/Bold；Version 1.700）。免费商用，须标明；禁改/禁单独售卖字体。本站主推 SC 路径升级自 3.0.4；独立 TC 语系包待官方开放平台可核 zip。",
     "license": "免费商用",
     "licenseName": "OPPO Sans Free Use License",
     "licenseUrl": "",
@@ -2273,7 +2274,7 @@
     "licenseNotes": "原文是 OSS wenfeng/fonts/opsa/license.0 License Notice（OPPO Sans Fonts License Agreement，Copyright 2024 Guangdong OPPO）。免版税、可撤销、全球范围。允许不修改地复制、嵌入、打包，并随非字体软件再分发或销售。必须显著标明使用了 OPPO Sans，并保留版权声明和本协议。禁止修改字体，禁止把字体文件单独再分发或出售。",
     "licenseVerified": false,
     "purchaseUrl": null,
-    "copyright": "copyright  2019-2023 by OPPO. All rights reserved.",
+    "copyright": "copyright © 2019-2024 by OPPO. All rights reserved.",
     "foundry": "Hanyi Fonts",
     "brand": {
       "name": "OPPO",
@@ -2283,8 +2284,8 @@
       "website": "https://www.oppo.com",
       "description": ""
     },
-    "releaseYear": 2019,
-    "version": "3.0.4",
+    "releaseYear": 2024,
+    "version": "4.0",
     "languages": [
       "简体中文",
       "繁体中文",
@@ -10791,7 +10792,7 @@
     "designerShort": "Beijing Xiaomi Mobile Software Co.",
     "category": "无衬线字体",
     "tags": [
-      "开源",
+      "免费商用",
       "屏幕字体",
       "现代",
       "小米",
@@ -30996,5 +30997,163 @@
     "downloadCount": 0,
     "apiCount": 0,
     "apiCallCount": 0
+  },
+  {
+    "id": "d7fac16f-8c69-4d7d-8a02-50fb509dc4d9",
+    "name": "阿里巴巴普惠體 TC",
+    "en": "Alibaba Sans TC",
+    "family": "wenfeng-albbphttc",
+    "normalized": "Albbphttc",
+    "designer": "",
+    "designerShort": "—",
+    "category": "无衬线字体",
+    "tags": [
+      "免费商用",
+      "阿里巴巴",
+      "黑体",
+      "繁体",
+      "TC"
+    ],
+    "weights": [
+      "Light",
+      "Regular",
+      "SemiBold",
+      "ExtraBold"
+    ],
+    "description": "阿里巴巴普惠體繁體中文語系（Alibaba Sans TC）。以 Big5+HKSCS 為基礎，四字重：45 Light / 55 Regular / 75 SemiBold / 95 ExtraBold。與簡體普惠體組成產品卡；永久免費商用，條款以 alibabafonts.com 為準。",
+    "license": "免费商用",
+    "licenseName": "阿里巴巴普惠体授权协议",
+    "licenseUrl": "https://www.alibabafonts.com/",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Albbpht/LICENSE",
+    "licenseNotes": "",
+    "licenseVerified": false,
+    "purchaseUrl": null,
+    "copyright": "Copyright © Alibaba (China) Co., Ltd. All rights reserved.",
+    "foundry": "Alibaba Design",
+    "brand": {
+      "name": "Alibaba Design",
+      "slug": "alibaba-design",
+      "logoUrl": "",
+      "avatarUrl": "assets/avatars/alibaba-design.webp",
+      "website": "",
+      "description": "Alibaba Design出品的字体"
+    },
+    "releaseYear": 2019,
+    "version": "1.00",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "电商设计",
+      "品牌宣传",
+      "UI/UX界面",
+      "广告海报",
+      "办公文档"
+    ],
+    "charCount": 19265,
+    "glyphCount": 19265,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/f9f700f291cf90da22c37b2d30827567fcce3be00e51aec1373fe57d63765d24?s=144&d=identicon",
+    "downloadCount": 0,
+    "apiCallCount": 0,
+    "apiCount": 0,
+    "coverage": {
+      "hans": {
+        "hit": 76,
+        "total": 994
+      },
+      "hant": {
+        "hit": 50,
+        "total": 1000
+      },
+      "c3500": {
+        "hit": 154,
+        "total": 3500
+      }
+    }
+  },
+  {
+    "id": "ed6e7794-1009-4aa6-84e8-fac44ffa133f",
+    "name": "MiSans TC",
+    "en": "MiSans TC",
+    "family": "wenfeng-misatc",
+    "normalized": "Misatc",
+    "designer": "Beijing Xiaomi Mobile Software Co.,Ltd & Hanyi Fonts",
+    "designerShort": "Beijing Xiaomi Mobile Software Co.",
+    "category": "无衬线字体",
+    "tags": [
+      "免费商用",
+      "屏幕字体",
+      "现代",
+      "小米",
+      "汉仪",
+      "繁体",
+      "TC"
+    ],
+    "weights": [
+      "Thin",
+      "Extralight",
+      "Light",
+      "Normal",
+      "Regular",
+      "Medium",
+      "Demibold",
+      "Semibold",
+      "Bold",
+      "Heavy"
+    ],
+    "description": "小米 HyperOS 官方 MiSans TC 繁体语系。约 15116 字符，10 静态字重（本站收静态，不含 VF）。许可为《MiSans 字体知识产权许可协议》：嵌入须注明；禁改编；禁单独再分发字体文件。与简体 MiSans 组成产品卡。",
+    "license": "免费商用",
+    "licenseName": "MiSans 字体知识产权许可协议",
+    "licenseUrl": "",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Misa/LICENSE",
+    "licenseNotes": "可免费商用，不可修改字体文件后再分发，不可单独售卖字体文件",
+    "licenseVerified": false,
+    "purchaseUrl": null,
+    "copyright": "Copyright  2020-2023 Beijing Xiaomi Mobile Software Co.,Ltd. All Rights Reserved.",
+    "foundry": "Hanyi Fonts",
+    "brand": {
+      "name": "小米 Xiaomi",
+      "slug": "xiaomi",
+      "logoUrl": "",
+      "avatarUrl": "assets/avatars/xiaomi.webp",
+      "website": "https://www.xiaomi.com",
+      "description": ""
+    },
+    "releaseYear": 2020,
+    "version": "4.009",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "用户界面设计",
+      "移动应用",
+      "网页设计",
+      "品牌宣传",
+      "印刷品排版"
+    ],
+    "charCount": 15068,
+    "glyphCount": 15254,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/0d402f184f140917e7284ac29affa80768188b21b89dccb64a0f66bcb1d3de4d?s=144&d=identicon",
+    "downloadCount": 0,
+    "apiCallCount": 0,
+    "apiCount": 0,
+    "coverage": {
+      "hans": {
+        "hit": 76,
+        "total": 994
+      },
+      "hant": {
+        "hit": 50,
+        "total": 1000
+      },
+      "c3500": {
+        "hit": 154,
+        "total": 3500
+      }
+    }
   }
 ]

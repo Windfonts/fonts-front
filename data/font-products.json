@@ -1467,6 +1467,90 @@
           "tier": "primary"
         }
       ]
+    },
+    {
+      "id": "alibaba-puhuiti",
+      "name": "阿里巴巴普惠体",
+      "en": "Alibaba PuHuiTi / Alibaba Sans",
+      "default": "wenfeng-albbpht",
+      "members": [
+        {
+          "family": "wenfeng-albbpht",
+          "chips": [
+            "SC"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-albbphttc",
+          "chips": [
+            "TC"
+          ],
+          "axes": {
+            "charset": "tc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "id": "xiaomi-misans",
+      "name": "MiSans",
+      "en": "MiSans",
+      "default": "wenfeng-misa",
+      "members": [
+        {
+          "family": "wenfeng-misa",
+          "chips": [
+            "SC"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-misatc",
+          "chips": [
+            "TC"
+          ],
+          "axes": {
+            "charset": "tc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        }
+      ]
+    },
+    {
+      "id": "oppo-sans",
+      "name": "OPPO Sans",
+      "en": "OPPO Sans",
+      "default": "wenfeng-opsa",
+      "members": [
+        {
+          "family": "wenfeng-opsa",
+          "chips": [
+            "SC"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
+          "tier": "primary"
+        }
+      ]
     }
   ],
   "policy": {

@@ -4,6 +4,20 @@
   "generatedAt": "2026-09-26",
   "pairs": [
     {
+      "scFamily": "wenfeng-albbpht",
+      "tcFamily": "wenfeng-albbphttc",
+      "productId": "alibaba-puhuiti",
+      "source": "font-products",
+      "localeFallbackAllowed": true
+    },
+    {
+      "scFamily": "wenfeng-misa",
+      "tcFamily": "wenfeng-misatc",
+      "productId": "xiaomi-misans",
+      "source": "font-products",
+      "localeFallbackAllowed": true
+    },
+    {
       "scFamily": "wenfeng-mksjh",
       "tcFamily": "wenfeng-mksjhtc",
       "productId": "maoken-shijinhei",
@@ -96,6 +110,38 @@
     }
   ],
   "byFamily": {
+    "wenfeng-albbpht": {
+      "peer": "wenfeng-albbphttc",
+      "role": "sc",
+      "peerRole": "tc",
+      "localeFallbackAllowed": true,
+      "productId": "alibaba-puhuiti",
+      "source": "font-products"
+    },
+    "wenfeng-albbphttc": {
+      "peer": "wenfeng-albbpht",
+      "role": "tc",
+      "peerRole": "sc",
+      "localeFallbackAllowed": true,
+      "productId": "alibaba-puhuiti",
+      "source": "font-products"
+    },
+    "wenfeng-misa": {
+      "peer": "wenfeng-misatc",
+      "role": "sc",
+      "peerRole": "tc",
+      "localeFallbackAllowed": true,
+      "productId": "xiaomi-misans",
+      "source": "font-products"
+    },
+    "wenfeng-misatc": {
+      "peer": "wenfeng-misa",
+      "role": "tc",
+      "peerRole": "sc",
+      "localeFallbackAllowed": true,
+      "productId": "xiaomi-misans",
+      "source": "font-products"
+    },
     "wenfeng-mksjh": {
       "peer": "wenfeng-mksjhtc",
       "role": "sc",

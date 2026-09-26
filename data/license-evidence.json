@@ -270,6 +270,51 @@
         "禁止用于商标注册",
         "「上海摩登」城市主题与商标债务：商用前核对官网最新证书"
       ]
+    },
+    "阿里巴巴普惠體 TC": {
+      "sourceKind": "rights_holder",
+      "sourceUrl": "https://www.alibabafonts.com/",
+      "verifiedAt": "2026-09-26",
+      "restrictions": [
+        "不得将修改后的字体再分发或售卖",
+        "具体条款以阿里巴巴字体官网为准"
+      ],
+      "quote": "阿里巴巴普惠體是一套全球永久免費正版商用的字體家族。"
+    },
+    "MiSans TC": {
+      "sourceKind": "rights_holder",
+      "sourceUrl": "https://hyperos.mi.com/font/download",
+      "verifiedAt": "2026-09-26",
+      "restrictions": [
+        "嵌入须注明使用了 MiSans",
+        "不得改编或二次开发",
+        "不得单独再分发或售卖字体文件"
+      ],
+      "quote": "您不得单独将 MiSans 字体或其组件对外租赁、再许可、给予、出借或进一步分发字体软件或其任何副本以及重新分发或售卖。"
+    },
+    "MiSans": {
+      "sourceKind": "rights_holder",
+      "sourceUrl": "https://hyperos.mi.com/font/download",
+      "verifiedAt": "2026-09-26",
+      "restrictions": [
+        "嵌入须注明使用了 MiSans",
+        "不得改编或二次开发",
+        "不得单独再分发或售卖字体文件"
+      ],
+      "quote": "您应在软件中特别注明使用了 MiSans 字体。"
+    },
+    "OPPO Sans": {
+      "sourceKind": "rights_holder",
+      "sourceUrl": "https://www.coloros.com/article/A00000074/",
+      "verifiedAt": "2026-09-26",
+      "restrictions": [
+        "须显著标明使用了 OPPO Sans",
+        "禁止修改字体",
+        "禁止把字体文件单独再分发或出售",
+        "不向他方提供其他下载渠道",
+        "不用于违法用途"
+      ],
+      "quote": "OPPO Sans 允许个人或企业免费使用，含商业用途，版权归 OPPO 广东移动通信有限公司所有。"
     }
   }
 }
