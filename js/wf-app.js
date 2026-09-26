@@ -569,7 +569,7 @@
     return c;
   }
 
-  /** 子集设置 → 公开预计算档（text/unicode 暂落到项目 delivery.subset） */
+  /** 子集设置 → 公开预计算档（catalog）；text/unicode 尽量落到最接近档 */
   function packageSubset(subset, deliverySubset) {
     const fallback = ['en', 'zh', 'zh-common', 'full'].indexOf(deliverySubset) >= 0 ? deliverySubset : 'full';
     if (!subset || subset.mode === 'full') return 'full';
@@ -579,7 +579,37 @@
       if (/3500|常用/.test(p)) return 'zh-common';
       return 'zh-common';
     }
+    if (subset.mode === 'text') {
+      return packageSubsetFromText(subset.text, fallback);
+    }
+    if (subset.mode === 'unicode') {
+      const n = parseRanges(subset.ranges);
+      if (n > 0 && n <= 200) return 'en';
+      if (n <= 4000) return 'zh-common';
+      if (n <= 8000) return 'zh';
+      return 'full';
+    }
     return fallback;
+  }
+
+  /** catalog 无即时切包：按文字构成挑最近预计算档 */
+  function packageSubsetFromText(text, fallback) {
+    let cjk = 0, ascii = 0, other = 0;
+    const seen = {};
+    Array.from(String(text || '')).forEach(function (c) {
+      if (/\s/.test(c) || seen[c]) return;
+      seen[c] = true;
+      const cp = c.codePointAt(0);
+      if ((cp >= 0x4E00 && cp <= 0x9FFF) || (cp >= 0x3400 && cp <= 0x4DBF) || (cp >= 0xF900 && cp <= 0xFAFF)) cjk += 1;
+      else if (cp < 128) ascii += 1;
+      else other += 1;
+    });
+    const total = cjk + ascii + other;
+    if (!total) return fallback;
+    if (!cjk && !other) return 'en';
+    if (cjk <= 3500 && other < 300) return 'zh-common';
+    if (cjk <= 7000) return 'zh';
+    return 'full';
   }
 
   /** 控制台项目 → vault 发布清单（不改公开 /api/css 形态） */
