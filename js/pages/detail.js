@@ -559,8 +559,9 @@
             ? '<section class="panel" id="weights"><div class="panel-head"><h2>' + WFChrome.icon('font') + '字重</h2></div>' +
               '<div class="panel-pad weights-sheet" id="sheet">' + WFSpecimen.weightsSheetHtml(font, sample, w0) + '</div></section>'
             : '') +
-          '<section class="panel" id="glyphs"><div class="panel-head"><div class="glyph-title"><h2>' + WFChrome.icon('hashtag') + '字符表</h2><div id="glyphQuery"></div></div><div class="glyph-tools" id="glyphTools"></div></div>' +
+          '<section class="panel" id="glyphs"><div class="panel-head"><div class="glyph-title"><h2>' + WFChrome.icon('hashtag') + '字符表</h2><div id="glyphQuery"></div></div></div>' +
             '<div class="panel-pad"><div class="glyph-summary" id="glyphSummary" aria-live="polite"></div>' +
+            '<div class="glyph-tools glyph-text-tabs" id="glyphTools"></div>' +
             '<div class="glyph-diff for-dev" id="glyphDiff" hidden></div>' +
             '<div class="glyph-live for-dev" id="glyphLive" hidden></div>' +
             '<div class="glyph-blocks" id="glyphBlocks"></div></div></section>' +
