@@ -189,10 +189,45 @@
   function loadPicks() {
     try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; }
   }
+  let picksPushTimer = null;
+  let picksSuppressPush = false;
+  function schedulePicksPush(arr) {
+    if (picksSuppressPush) return;
+    if (!window.WFApi || typeof WFApi.putPicks !== 'function' || WFApi.isMock()) return;
+    try {
+      const s = window.WFApp && WFApp.state && WFApp.state();
+      if (!s || !s.settings || !s.settings.apiKey) return;
+    } catch (e) { return; }
+    clearTimeout(picksPushTimer);
+    picksPushTimer = setTimeout(function () {
+      WFApi.putPicks(arr).catch(function () { /* 离线或未登录时忽略 */ });
+    }, 450);
+  }
   function savePicks(arr) {
     localStorage.setItem(KEY, JSON.stringify(arr));
     updateBadges(arr.length);
     document.dispatchEvent(new CustomEvent('wf:picks', { detail: arr }));
+    schedulePicksPush(arr);
+  }
+  /** 写本地但不推 vault（合并拉取后用）。 */
+  function replacePicksLocal(arr) {
+    picksSuppressPush = true;
+    try {
+      savePicks(arr || []);
+    } finally {
+      picksSuppressPush = false;
+    }
+  }
+  /** 登录后：本地 ∪ vault，再写回两边。 */
+  function syncPicksWithVault() {
+    if (!window.WFApi || typeof WFApi.syncPicks !== 'function' || WFApi.isMock()) {
+      return Promise.resolve(loadPicks());
+    }
+    return WFApi.syncPicks(loadPicks()).then(function (merged) {
+      replacePicksLocal(merged || []);
+      WFProto.syncJoinButtons();
+      return merged || [];
+    });
   }
   function loadFavs() {
     try {
@@ -1223,6 +1258,8 @@
       WFProto.syncJoinButtons();
       return 0;
     },
+    replacePicksLocal: replacePicksLocal,
+    syncPicksWithVault: syncPicksWithVault,
     togglePick: function (id, name) {
       if (WFProto.hasPick(id)) return WFProto.removePick(id);
       return WFProto.addPick(id, name);

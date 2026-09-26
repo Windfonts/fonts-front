@@ -73,6 +73,9 @@
           }
           state.settings.apiKeySource = 'vault-sso';
           save();
+          if (window.WFProto && WFProto.syncPicksWithVault) {
+            WFProto.syncPicksWithVault().catch(function () { /* ignore */ });
+          }
           return data.apiKey;
         }
         if (looksOk) return existing;

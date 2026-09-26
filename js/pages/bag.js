@@ -223,6 +223,21 @@
       WFChrome.toast('已清空选字袋');
     });
   });
+  const btnExport = document.getElementById('btnExport');
+  if (btnExport) {
+    btnExport.addEventListener('click', function () {
+      const picks = WFProto.getPicks().map(function (p) {
+        return { id: p.id, name: p.name, family: p.family || '' };
+      });
+      const blob = new Blob([JSON.stringify({ exportedAt: new Date().toISOString(), picks: picks }, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'windfonts-picks.json';
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+      WFChrome.toast('已导出 ' + picks.length + ' 款');
+    });
+  }
   [optVersion, optWeights, optDisplay].forEach(function (s) { s.addEventListener('change', paintEmbed); });
   optPreload.addEventListener('change', paintEmbed);
   document.addEventListener('wf:picks', render);
@@ -242,5 +257,14 @@
     });
   }
 
-  WFProto.loadCatalog().then(render);
+  WFProto.loadCatalog().then(function () {
+    render();
+    if (window.WFApp && WFApp.load) {
+      WFApp.load().then(function () {
+        if (WFProto.syncPicksWithVault) {
+          return WFProto.syncPicksWithVault().then(function () { render(); });
+        }
+      }).catch(function () { /* ignore */ });
+    }
+  });
 })();

@@ -715,6 +715,74 @@
     });
   }
 
+  function slimPicks(items) {
+    return (items || []).map(function (x) {
+      if (!x || !x.id) return null;
+      return {
+        id: String(x.id),
+        name: x.name || x.id,
+        family: x.family || undefined,
+        addedAt: x.addedAt || undefined
+      };
+    }).filter(Boolean);
+  }
+
+  function mergePickLists(local, remote) {
+    const map = {};
+    (remote || []).forEach(function (x) {
+      if (x && x.id) map[x.id] = Object.assign({}, x);
+    });
+    (local || []).forEach(function (x) {
+      if (!x || !x.id) return;
+      if (!map[x.id]) {
+        map[x.id] = Object.assign({}, x);
+        return;
+      }
+      const r = map[x.id];
+      map[x.id] = Object.assign({}, r, x, {
+        name: x.name || r.name,
+        family: x.family || r.family,
+        addedAt: r.addedAt || x.addedAt
+      });
+    });
+    return Object.keys(map).map(function (k) { return map[k]; });
+  }
+
+  function getPicksRemote() {
+    if (isMock()) {
+      return Promise.resolve({
+        items: slimPicks(window.WFProto && WFProto.getPicks ? WFProto.getPicks() : []),
+        updatedAt: null
+      });
+    }
+    return request('/api/picks');
+  }
+
+  function putPicks(items) {
+    const body = { items: slimPicks(items) };
+    if (isMock()) {
+      return Promise.resolve({ items: body.items, updatedAt: new Date().toISOString() });
+    }
+    return request('/api/picks', { method: 'PUT', body: body });
+  }
+
+  /** 本地与 vault 并集后写回；401/404 时保留本地。 */
+  function syncPicks(localItems) {
+    const local = slimPicks(localItems);
+    if (isMock()) return Promise.resolve(local);
+    return getPicksRemote().then(function (data) {
+      const merged = mergePickLists(local, (data && data.items) || []);
+      return putPicks(merged).then(function (saved) {
+        return (saved && saved.items) || merged;
+      });
+    }).catch(function (err) {
+      if (err && (err.status === 401 || err.status === 404 || err.code === 'unauthorized' || err.code === 'not_found')) {
+        return local;
+      }
+      throw err;
+    });
+  }
+
   /**
    * 往项目加/更新字体并记版本；live 走 patch，mock 走 WFApp.addFont。
    * @returns {Promise<object>} 更新后的项目
@@ -827,6 +895,10 @@
     getUsageSeries: getUsageSeries,
     listBlocked: listBlocked,
     emptyUsage: emptyUsage,
+    getPicksRemote: getPicksRemote,
+    putPicks: putPicks,
+    syncPicks: syncPicks,
+    mergePickLists: mergePickLists,
     addFontToProject: addFontToProject,
     publish: publish,
     publishProject: publishProject
