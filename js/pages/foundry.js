@@ -459,8 +459,8 @@
             '<div class="foundry-close-foot">' +
               '<p class="foundry-close-stat"><b>' + listed + '</b>家在目录</p>' +
               '<div class="foundry-close-acts">' +
-                '<a class="btn btn-ink btn-lg" href="claim.html">' + WFChrome.icon('idcard') + '去认领</a>' +
-                '<a class="btn btn-lg" href="license.html">' + WFChrome.icon('info') + '权益说明</a>' +
+                '<a class="btn btn-ink btn-lg" href="/claim">' + WFChrome.icon('idcard') + '去认领</a>' +
+                '<a class="btn btn-lg" href="/license">' + WFChrome.icon('info') + '权益说明</a>' +
                 '<a class="btn btn-lg" href="https://wenfeng.org" target="_blank" rel="noopener noreferrer">' +
                   WFChrome.icon('external') + '开源创作</a>' +
               '</div>' +
@@ -630,7 +630,7 @@
     const split = splitOwned(g.fonts, collab);
     const sections = split.sections;
     const packsOf = split.packsOf;
-    const filter = '<a class="more" href="fonts.html?foundry=' + encodeURIComponent(g.slug) + '">' + WFChrome.icon('filter') + '在字体库筛选</a>';
+    const filter = '<a class="more" href="/fonts?foundry=' + encodeURIComponent(g.slug) + '">' + WFChrome.icon('filter') + '在字体库筛选</a>';
     if (sections.length === 1) {
       const s = sections[0];
       return '<div class="count-line">' + s.title + ' <strong>' + s.fonts.length + '</strong> 款' +
@@ -727,7 +727,7 @@
     const origins = [originsStrip(list, g), ecosystemStrip(list, g.slug)].filter(Boolean).join('');
     const claimHtml = '<p class="claim">' + WFChrome.icon('idcard') + '<span>' + (g.claimed
       ? who + '已认领此页。许可仍以每款字体的出处为准。'
-      : '这是你的品牌？<a href="claim.html?slug=' + encodeURIComponent(g.slug) + '">认领此页</a>。通过后可改标志与介绍。') + '</span></p>';
+      : '这是你的品牌？<a href="/claim?slug=' + encodeURIComponent(g.slug) + '">认领此页</a>。通过后可改标志与介绍。') + '</span></p>';
 
     root.innerHTML =
       '<div class="container">' +

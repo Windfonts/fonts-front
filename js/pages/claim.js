@@ -57,11 +57,11 @@
     card.innerHTML =
       (fd ? '<div class="claim-who">' + WFChrome.foundryHtml({ ownerInfo: fd, foundryInfo: fd }, { small: true, sub: '认领此页' }) + '</div>' : '') +
       (fd && !p.canClaim
-        ? '<p>此条目尚未入厂商字典，请先到<a href="foundry.html">厂商索引</a>确认或联系本站归并后再提交。</p>'
+        ? '<p>此条目尚未入厂商字典，请先到<a href="/foundry">厂商索引</a>确认或联系本站归并后再提交。</p>'
         : '<p>提交前先登录控制台。</p>' +
           '<p class="home-cta" style="margin-top:var(--s-5)">' +
-            '<a class="btn btn-ink" href="login.html?' + loginQuery() + '">' + WFChrome.icon('user') + '登录后继续</a>' +
-            '<a class="btn" href="login.html?mode=signup&amp;' + loginQuery() + '">' + WFChrome.icon('user-add') + '免费注册</a>' +
+            '<a class="btn btn-ink" href="/login?' + loginQuery() + '">' + WFChrome.icon('user') + '登录后继续</a>' +
+            '<a class="btn" href="/login?mode=signup&amp;' + loginQuery() + '">' + WFChrome.icon('user-add') + '免费注册</a>' +
           '</p>');
   }
 
@@ -73,7 +73,7 @@
       card.innerHTML =
         '<div class="claim-who">' + WFChrome.foundryHtml({ ownerInfo: fd, foundryInfo: fd }, { small: true, sub: '待归并' }) + '</div>' +
         '<p>此条目尚未入厂商字典，请先归并后再认领。</p>' +
-        '<p class="home-cta" style="margin-top:var(--s-5)"><a class="btn" href="foundry.html">回厂商索引</a></p>';
+        '<p class="home-cta" style="margin-top:var(--s-5)"><a class="btn" href="/foundry">回厂商索引</a></p>';
       return;
     }
 

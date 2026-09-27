@@ -13,12 +13,12 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/Hckht/Medium/full/18.woff2" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/Hckht/Medium/full/15.woff2" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/Hckht/Medium/full/19.woff2" />
-  <link rel="stylesheet" href="/css/fonts.css?v=20260927perf3" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="/css/fonts.css?v=20260927perf3" /></noscript>
-  <link rel="stylesheet" href="/css/tokens.css?v=20260927perf3" />
-  <link rel="stylesheet" href="/css/base.css?v=20260927perf3" />
-  <link rel="stylesheet" href="/css/components.css?v=20260927perf3" />
-  <link rel="stylesheet" href="/css/site.css?v=20260927perf3" />
+  <link rel="stylesheet" href="/css/fonts.css?v=20260927perf4" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/css/fonts.css?v=20260927perf4" /></noscript>
+  <link rel="stylesheet" href="/css/tokens.css?v=20260927perf4" />
+  <link rel="stylesheet" href="/css/base.css?v=20260927perf4" />
+  <link rel="stylesheet" href="/css/components.css?v=20260927perf4" />
+  <link rel="stylesheet" href="/css/site.css?v=20260927perf4" />
   <link rel="icon" type="image/webp" href="/assets/icon.webp" />
 </head>
 <body class="page-docs">
@@ -26,7 +26,7 @@
 
   <main class="container docs">
     <aside class="docs-toc" aria-label="文档目录">
-      <label class="docs-search"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-search"/></svg><input type="search" id="docsFilter" placeholder="筛选章节" aria-label="筛选章节" autocomplete="off" /></label>
+      <label class="docs-search"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-search"/></svg><input type="search" id="docsFilter" placeholder="筛选章节" aria-label="筛选章节" autocomplete="off" /></label>
       <div class="docs-nav" id="docsChapterNav">
         <button type="button" class="docs-nav-switch" aria-expanded="false" aria-controls="docsNavPanel">
           <span class="docs-nav-switch-now">概述</span>
@@ -61,8 +61,8 @@
           <a class="for-dev" href="#params">地址参数</a>
           <a class="for-dev" href="#weights">字重名对照</a>
           <a href="#bag">选字袋</a>
-          <a href="license.html">许可说明</a>
-          <a href="faq.html">常见问题</a>
+          <a href="/license">许可说明</a>
+          <a href="/faq">常见问题</a>
         </nav>
       </div>
     </aside>
@@ -71,9 +71,9 @@
       <section id="intro">
         <p class="kicker">文档 · 更新于 2026-09-23</p>
         <h1>接入文风字体</h1>
-        <p class="lead">一行 CSS 就能在网页中使用中文字体。公开字体走 <code>cn.windfonts.com</code> 的动态接口或拆包路径；正式站点建议创建项目、绑定域名，并核对每款字体的授权范围。卡住时先看<a href="faq.html">常见问题</a>。</p>
+        <p class="lead">一行 CSS 就能在网页中使用中文字体。公开字体走 <code>cn.windfonts.com</code> 的动态接口或拆包路径；正式站点建议创建项目、绑定域名，并核对每款字体的授权范围。卡住时先看<a href="/faq">常见问题</a>。</p>
         <div class="docs-steps">
-          <a href="fonts.html"><b>1</b><span>在字体库挑字体，看字重与授权</span></a>
+          <a href="/fonts"><b>1</b><span>在字体库挑字体，看字重与授权</span></a>
           <a href="#link"><b>2</b><span>复制字体页「使用」区的代码放进 <code>&lt;head&gt;</code></span></a>
           <a href="#css"><b>3</b><span>在 CSS 里写 <code>font-family: "wenfeng-{slug}"</code></span></a>
           <a href="#domains"><b>4</b><span>上线前创建项目、绑定域名、子集化减体积</span></a>
@@ -124,7 +124,7 @@
         <div class="code"><pre>&lt;link rel="stylesheet" href="https://cn.windfonts.com/fonts-packages/Albbpht/Regular/full/result.css"&gt;</pre></div>
         <p>静态旧路径（仅兼容）：</p>
         <div class="code"><pre>&lt;link rel="stylesheet" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/index.css"&gt;</pre></div>
-        <p>需要多个字重就多写几行 <code>&lt;link&gt;</code>，每个字重一份 CSS；字体页「使用」区与<a href="shopping-bag.html">选字袋</a>可一次生成多款、多字重的合并代码。</p>
+        <p>需要多个字重就多写几行 <code>&lt;link&gt;</code>，每个字重一份 CSS；字体页「使用」区与<a href="/shopping-bag">选字袋</a>可一次生成多款、多字重的合并代码。</p>
       </section>
 
       <section id="import" class="for-dev">
@@ -348,7 +348,7 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
         <div class="code"><pre>https://cn.windfonts.com/p/<b>{project-slug}</b>/index.css</pre></div>
         <ul>
           <li>一份 CSS 包含项目内全部字体与字重，已按项目设置处理 <code>font-display</code> 与 <code>font-weight</code>。</li>
-          <li data-pricing hidden>免费版 1 个项目 / 3 个域名；专业版 10 个项目、域名不限、月流量 200 GB，见<a href="pricing.html">定价</a>。</li>
+          <li data-pricing hidden>免费版 1 个项目 / 3 个域名；专业版 10 个项目、域名不限、月流量 200 GB，见<a href="/pricing">定价</a>。</li>
         </ul>
       </section>
 
@@ -374,7 +374,7 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
 
       <section id="upload" class="for-dev">
         <h2>上传自有字体</h2>
-        <p>支持 <code>.ttf</code> <code>.otf</code> <code>.woff</code> <code>.woff2</code>。上传时自动解析名称、字重、字符数，生成分片与全部格式，之后与库内字体一样加入项目、子集化。你必须拥有该字体的合法授权，上传即视为承诺；自有字体只通过项目 CDN 分发，不进入公开字体库。约定见<a href="upload-terms.html">上传条款</a>。</p>
+        <p>支持 <code>.ttf</code> <code>.otf</code> <code>.woff</code> <code>.woff2</code>。上传时自动解析名称、字重、字符数，生成分片与全部格式，之后与库内字体一样加入项目、子集化。你必须拥有该字体的合法授权，上传即视为承诺；自有字体只通过项目 CDN 分发，不进入公开字体库。约定见<a href="/upload-terms">上传条款</a>。</p>
       </section>
 
       <section id="params" class="for-dev">
@@ -417,23 +417,23 @@ https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/{index|zh_index}.css<
 
       <section id="bag">
         <h2>选字袋</h2>
-        <p>在字体库或字体页「加入选字袋」，到<a href="shopping-bag.html">选字袋</a>统一预览、比较，并一次生成多款字体的合并嵌入代码。登录后可把选字袋整体添加到某个项目。选字袋存在浏览器本地。</p>
+        <p>在字体库或字体页「加入选字袋」，到<a href="/shopping-bag">选字袋</a>统一预览、比较，并一次生成多款字体的合并嵌入代码。登录后可把选字袋整体添加到某个项目。选字袋存在浏览器本地。</p>
       </section>
 
       <section id="license" style="border-bottom:0">
         <h2>许可与常见问题</h2>
         <p>许可注意、类型对照，以及嵌入 / 白名单 / 授权边界，已各自成页。</p>
         <p style="display:flex;flex-wrap:wrap;gap:var(--s-3)">
-          <a class="btn" href="license.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-info"/></svg>许可说明</a>
-          <a class="btn" href="faq.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-question"/></svg>常见问题</a>
+          <a class="btn" href="/license"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-info"/></svg>许可说明</a>
+          <a class="btn" href="/faq"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-question"/></svg>常见问题</a>
         </p>
       </section>
 
       <nav class="docs-foot" aria-label="文档页脚">
-        <a href="license.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-info"/></svg>许可说明</a>
-        <a href="faq.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-question"/></svg>常见问题</a>
-        <a href="fonts.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-font-size"/></svg>去字体库挑一款</a>
-        <a href="login.html" data-app-entry><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-dashboard"/></svg>登录控制台</a>
+        <a href="/license"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-info"/></svg>许可说明</a>
+        <a href="/faq"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-question"/></svg>常见问题</a>
+        <a href="/fonts"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-font-size"/></svg>去字体库挑一款</a>
+        <a href="/login" data-app-entry><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-dashboard"/></svg>登录控制台</a>
         <span class="muted">有错漏？在 GitHub 提 issue 或写信 docs@windfonts.com</span>
       </nav>
     </article>
@@ -441,8 +441,8 @@ https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/{index|zh_index}.css<
 
   <footer id="wfExtraFooter"></footer>
 
-  <script defer src="/js/wf-proto.js?v=20260927perf3"></script>
-  <script defer src="/js/wf-chrome.js?v=20260927perf3"></script>
+  <script defer src="/js/wf-proto.js?v=20260927perf4"></script>
+  <script defer src="/js/wf-chrome.js?v=20260927perf4"></script>
   <script>
     (function () {
       const map = {
@@ -455,7 +455,7 @@ https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/{index|zh_index}.css<
       const entry = document.querySelector('[data-app-entry]');
       if (entry && WFChrome.canAccessApp && WFChrome.canAccessApp()) {
         entry.href = 'app/index.html';
-        entry.innerHTML = '<svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-dashboard"/></svg>打开控制台';
+        entry.innerHTML = '<svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-dashboard"/></svg>打开控制台';
       }
       const nav = document.getElementById('docsChapterNav');
       const toc = document.querySelector('.docs-chapters');

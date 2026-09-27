@@ -176,7 +176,7 @@
     countEl.textContent = String(picks.length);
     const u = WFChrome.user();
     const to = document.getElementById('btnToProject');
-    to.href = u ? 'app/subset.html?from=bag' : 'login.html?next=bag';
+    to.href = u ? '/app/subset.html?from=bag' : 'login.html?next=bag';
     to.hidden = !picks.length;
     document.getElementById('btnClear').hidden = !picks.length;
     if (picks.length < 2) view = 'rows';
@@ -186,7 +186,7 @@
       view = 'rows';
       views.querySelectorAll('[data-view]').forEach(function (x) { x.classList.toggle('is-on', x.getAttribute('data-view') === 'rows'); });
       showPane('rows');
-      list.innerHTML = '<li class="empty">选字袋是空的。<a href="fonts.html">去字体库挑几款</a></li>';
+      list.innerHTML = '<li class="empty">选字袋是空的。<a href="/fonts">去字体库挑几款</a></li>';
       lastFonts = [];
       paintEmbed();
       return;

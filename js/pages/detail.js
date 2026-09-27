@@ -108,7 +108,7 @@
     const whyLine = n > 0
       ? (vendorWide ? '所属厂商' : '此字体') + '有 ' + n + ' 项授权调整记录'
       : fname + (/[A-Za-z0-9]$/.test(fname) ? ' ' : '') + '自发布以来未发现争议及授权变更记录';
-    const claimAct = '<a class="lp-act" href="claim.html?slug=' + encodeURIComponent(info.id) + '">认领主页 →</a>';
+    const claimAct = '<a class="lp-act" href="/claim?slug=' + encodeURIComponent(info.id) + '">认领主页 →</a>';
     let what = '<span class="trust-grade ' + cls + '">' + esc(grade) + '</span>' +
       '<span class="trust-why">' + esc(whyLine) + '</span>';
     if (info.claimed) what += '<span class="trust-claim">' + WFChrome.icon('check') + '已认领</span>';
@@ -289,8 +289,8 @@
           '<div class="panel-pad">' + lineageBody + '</div></section>'
       : '';
     const wallText = sample || titleName;
-    const crumb = '<p class="crumb"><a href="fonts.html">字体库</a><span>/</span>' +
-      (font.category ? '<a href="fonts.html?cat=' + encodeURIComponent(font.category) + '">' + esc(WFChrome.catLabel(font.category) || font.category) + '</a><span>/</span>' : '') +
+    const crumb = '<p class="crumb"><a href="/fonts">字体库</a><span>/</span>' +
+      (font.category ? '<a href="/fonts?cat=' + encodeURIComponent(font.category) + '">' + esc(WFChrome.catLabel(font.category) || font.category) + '</a><span>/</span>' : '') +
       '<span>' + esc(titleName) + (variantLabel ? ' · ' + esc(variantLabel) : '') + '</span></p>';
     root.innerHTML =
       '<div class="container detail-crumb">' + crumb + '</div>' +
@@ -385,7 +385,7 @@
                 '<span class="hint">文本须已是对应码点 · localeFallback=auto</span></label>';
             })() +
             '<div id="embed"></div>' +
-            '<p class="use-note">体积按单字重估算；默认「常用」适合品牌短文案，正文站可选「中文」。只要页面里出现的字，用 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a>。' +
+            '<p class="use-note">体积按单字重估算；默认「常用」适合品牌短文案，正文站可选「中文」。只要页面里出现的字，用 <a href="' + (user ? '/app/subset.html?font=' + encodeURIComponent(font.id) : '/login') + '">子集化工作台</a>。' +
               '谱系补全写 <code>fallback=</code>；简繁补全写 <code>localeFallback=auto</code>（二者同时开时优先谱系 <code>fallback</code>）。' +
               '上方预算条为启发式；开补全后主款字节不变，补全只加缺口片。' +
               '<code>font-family</code> 须写主款与补全款栈。</p></div>' +
@@ -415,7 +415,7 @@
                 }).join('') +
                 trackBadgeHtml(font) +
               '</div>' +
-              '<p class="license-foot">声明为厂商原文摘录，条款以权利人为准。 <a href="license.html">许可类型说明</a></p></details></div>' +
+              '<p class="license-foot">声明为厂商原文摘录，条款以权利人为准。 <a href="/license">许可类型说明</a></p></details></div>' +
           '</section>' +
           lineageSection +
         '</div>' +
@@ -455,9 +455,9 @@
             '<p class="side-stats-note for-dev">下载含样张导出；API 为 CDN CSS 拉取次数（开发 / 厂商可见）。</p>' +
           '</div>' +
           '<div class="panel panel-pad"><h3>' + WFChrome.icon('star') + '标签</h3><div class="chips">' + (font.tags || []).map(function (t) {
-            return '<a class="chip" href="fonts.html?tag=' + encodeURIComponent(t) + '">' + esc(t) + '</a>';
+            return '<a class="chip" href="/fonts?tag=' + encodeURIComponent(t) + '">' + esc(t) + '</a>';
           }).concat((font.useCases || []).map(function (t) {
-            return '<a class="chip" href="fonts.html?keyword=' + encodeURIComponent(t) + '">' + esc(t) + '</a>';
+            return '<a class="chip" href="/fonts?keyword=' + encodeURIComponent(t) + '">' + esc(t) + '</a>';
           })).join('') + '</div></div>' +
         '</aside>' +
       '</div>' +

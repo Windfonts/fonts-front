@@ -28,7 +28,7 @@
         '<p class="hint">旧草案 commercial_use / cdn_embed / modification / redistribution 已废止。</p></section>' +
       '<section id="seeds"><h2>Mock 种子样例</h2><ul class="lq-seed-list">' +
         seeds.map(function (s) {
-          return '<li><a href="license-query.html?font=' + encodeURIComponent(s.normalizedName) + '"><strong>' + esc(s.name) + '</strong></a>' +
+          return '<li><a href="/license-query?font=' + encodeURIComponent(s.normalizedName) + '"><strong>' + esc(s.name) + '</strong></a>' +
             ' <span class="mono muted">' + esc(s.normalizedName) + '</span>' +
             ' · ' + esc(s.license_label) +
             (s.cdnHardBlock ? ' · <span class="lq-tag is-flop">FLOP</span>' : '') +
@@ -40,7 +40,7 @@
         '<li>每款字以字体页出处为准；没有原文链接的不要当成已经核实。</li>' +
         '<li>引用未开放（如吉利 / 摩登）：证书只开账号引用，不开公共 CDN。</li>' +
         '<li>FLOP（如 SmartFontUI）：协议禁网页字体，cta=blocked，证书不能开公共 CDN。</li>' +
-        '<li>更完整说明见 <a href="license.html">许可说明</a>。</li></ul></section>';
+        '<li>更完整说明见 <a href="/license">许可说明</a>。</li></ul></section>';
   }).catch(function (err) {
     root.innerHTML = '<p class="empty">加载失败：' + esc((err && err.message) || String(err)) + '</p>';
   });

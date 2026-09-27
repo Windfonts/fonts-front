@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>设计指南 · 文风字体</title>
   <meta name="description" content="文风字体 v4 设计指南：柔和 · 圆润。纯白页面、浅灰面板、黑白灰、普惠体界面、寒蝉宽黑字标。" />
-  <link rel="stylesheet" href="/css/fonts.css?v=20260925r" />
-  <link rel="stylesheet" href="/css/tokens.css?v=20260925r" />
-  <link rel="stylesheet" href="/css/base.css?v=20260925r" />
-  <link rel="stylesheet" href="/css/components.css?v=20260925r" />
-  <link rel="stylesheet" href="/css/specimen.css?v=20260925r" />
-  <link rel="stylesheet" href="/css/site.css?v=20260925r" />
+  <link rel="stylesheet" href="/css/fonts.css?v=20260927perf4" />
+  <link rel="stylesheet" href="/css/tokens.css?v=20260927perf4" />
+  <link rel="stylesheet" href="/css/base.css?v=20260927perf4" />
+  <link rel="stylesheet" href="/css/components.css?v=20260927perf4" />
+  <link rel="stylesheet" href="/css/specimen.css?v=20260927perf4" />
+  <link rel="stylesheet" href="/css/site.css?v=20260927perf4" />
   <link rel="icon" type="image/webp" href="/assets/icon.webp" />
 </head>
 <body class="page-styleguide">
@@ -74,7 +74,7 @@
             <button type="button" class="btn" disabled>不可用</button>
             <button type="button" class="btn-text">加入选字袋</button>
             <button type="button" class="btn-text is-on">已在选字袋</button>
-            <a class="btn btn-lg" href="fonts.html">查看字体库</a>
+            <a class="btn btn-lg" href="/fonts">查看字体库</a>
           </div>
           <p class="sg-note">设计视图主按钮偏「加入选字袋」，开发视图偏「获取代码」。同一标题区不要两颗实心。顶栏用 <code>wf-view</code> 切换，存在本机。</p>
         </section>
@@ -99,8 +99,8 @@
         <section class="sg-section" id="chips">
           <h2>05 · 标签 · 点号 · 徽记</h2>
           <div class="stack">
-            <div class="chips"><a class="chip is-on" href="fonts.html">全部 <span class="n" id="sgCountAll">—</span></a><a class="chip" href="fonts.html?license=免费商用">免费商用</a><a class="chip" href="fonts.html?open=1">开源</a></div>
-            <p class="dotlist"><a href="fonts.html?cat=黑体">黑体</a><a href="fonts.html?tag=电商">电商设计</a><a href="fonts.html?tag=品牌">品牌宣传</a><a href="fonts.html?tag=界面">UI / UX</a></p>
+            <div class="chips"><a class="chip is-on" href="/fonts">全部 <span class="n" id="sgCountAll">—</span></a><a class="chip" href="/fonts?license=免费商用">免费商用</a><a class="chip" href="/fonts?open=1">开源</a></div>
+            <p class="dotlist"><a href="/fonts?cat=黑体">黑体</a><a href="/fonts?tag=电商">电商设计</a><a href="/fonts?tag=品牌">品牌宣传</a><a href="/fonts?tag=界面">UI / UX</a></p>
             <p class="t-14">选字袋 <span class="pill-count" data-count="3">3</span> &nbsp;&nbsp; 厂商已认领 <span id="sgVerified"></span></p>
           </div>
           <p class="sg-note">筛选未选时是灰字，hover 起填充，选中翻黑。同屏不要一排一模一样的灰胶囊。「全部」后面的数字与字体库相同：同产品多规格收成一张卡。</p>
@@ -173,9 +173,9 @@
           <p class="sg-note" style="margin:0 0 var(--s-4)">破坏性操作走 <code class="code-inline">WFChrome.confirm</code>，返回 Promise。Esc / 点遮罩取消；移除、清空类默认焦点在取消。</p>
           <button type="button" class="btn" id="sgDialog">打开确认弹层</button>
           <nav class="docs-foot" aria-label="页脚">
-            <a href="about.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-info"/></svg>关于</a>
-            <a href="license.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-shield"/></svg>许可说明</a>
-            <a href="docs.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-book"/></svg>接入文档</a>
+            <a href="/about"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-info"/></svg>关于</a>
+            <a href="/license"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-shield"/></svg>许可说明</a>
+            <a href="/docs"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-book"/></svg>接入文档</a>
           </nav>
         </section>
     </div>
@@ -183,11 +183,11 @@
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="/js/wf-proto.js?v=20260925r"></script>
-  <script src="/js/wf-products.js?v=20260925r"></script>
-  <script src="/js/wf-chrome.js?v=20260925r"></script>
-  <script src="/js/wf-specimen.js?v=20260925r"></script>
-  <script src="/js/wf-docs-nav.js?v=20260925r"></script>
+  <script src="/js/wf-proto.js?v=20260927perf4"></script>
+  <script src="/js/wf-products.js?v=20260927perf4"></script>
+  <script src="/js/wf-chrome.js?v=20260927perf4"></script>
+  <script src="/js/wf-specimen.js?v=20260927perf4"></script>
+  <script src="/js/wf-docs-nav.js?v=20260927perf4"></script>
   <script>
     (function () {
       document.getElementById('sgVerified').innerHTML = WFChrome.VERIFIED_SVG;
@@ -221,7 +221,7 @@
           hero.textContent = f.name;
         }
       });
-      fetch('/assets/icons.svg?v=20260922ri').then(function (r) { return r.text(); }).then(function (svg) {
+      fetch('/assets/icons.svg?v=20260927perf4').then(function (r) { return r.text(); }).then(function (svg) {
         const ids = (svg.match(/id="i-[a-z-]+"/g) || []).map(function (m) { return m.slice(6, -1); });
         document.getElementById('sgIcons').innerHTML = ids.map(function (id) {
           return '<div>' + WFChrome.icon(id) + '<span>' + id + '</span></div>';
