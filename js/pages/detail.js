@@ -899,17 +899,35 @@
   WFProto.loadCatalog().then(function (list) {
     const go = function () {
       const id = WFProto.getQuery('id');
-      const slug = WFProto.getQuery('slug');
+      let slug = WFProto.getQuery('slug');
+      if (!slug) {
+        const pm = String(location.pathname || '').match(/\/fonts\/([^/]+)\/?$/);
+        if (pm) {
+          try { slug = decodeURIComponent(pm[1]); } catch (e) { slug = pm[1]; }
+        }
+      }
       const font = (id && WFProto.getFont(id)) || (slug && WFProto.getFontBySlug(slug)) || (!id && !slug ? list[0] : null);
-      if (!font) { root.innerHTML = '<p class="empty">未找到该字体。<a href="fonts.html">回到字体库</a></p>'; return; }
+      if (!font) {
+        const back = (window.WFChrome && WFChrome.href) ? WFChrome.href('fonts.html') : 'fonts.html';
+        root.innerHTML = '<p class="empty">未找到该字体。<a href="' + back + '">回到字体库</a></p>';
+        return;
+      }
       const q = new URLSearchParams(location.search);
       const extras = {};
       ['from', 'view', 'tpl', 'frame', 't', 's'].forEach(function (k) {
         if (q.get(k)) extras[k] = q.get(k);
       });
       const want = WFProto.detailHref(font, extras) + (location.hash || '');
-      const cur = (location.pathname.split('/').pop() || '') + location.search + location.hash;
-      if (cur !== want) history.replaceState(null, '', want);
+      /* 生产 clean path fonts/{slug} → History 用站根绝对路径，避免相对解析到 /fonts/fonts/… */
+      var target = want;
+      if (/^fonts\//.test(want.split(/[?#]/)[0])) target = '/' + want;
+      const curFull = location.pathname + location.search + location.hash;
+      const curRel = (location.pathname.split('/').pop() || '') + location.search + location.hash;
+      if (target.charAt(0) === '/' || /^https?:/i.test(target)) {
+        if (curFull !== target) history.replaceState(null, '', target);
+      } else if (curRel !== want) {
+        history.replaceState(null, '', want);
+      }
       render(font);
     };
     const boot = function () {

@@ -259,7 +259,56 @@
     return null;
   }
 
-  /** 字体详情链接：优先 ?slug=，可附带额外查询（如 from=bag）。 */
+  /** 本机 / LAN / staging：保留 .html（python -m http.server）；生产域省略。 */
+  function isDevPreviewHost(host) {
+    host = String(host || '').toLowerCase();
+    if (host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0') return true;
+    if (host.indexOf('staging') >= 0 || host.slice(-6) === '.local') return true;
+    if (/^192\.168\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
+    if (/^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
+    if (/^172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
+    return false;
+  }
+
+  /**
+   * 生产站页面路径：去掉 .html；font-detail.html?slug=X → fonts/X。
+   * 不动 https?:// 与 assets/ data/ css/ js/ fonts-packages/。
+   */
+  function livePagePath(path) {
+    path = String(path == null ? '' : path);
+    if (!path) return path;
+    if (/^https?:\/\//i.test(path)) return path;
+    var hash = '';
+    var hi = path.indexOf('#');
+    if (hi >= 0) { hash = path.slice(hi); path = path.slice(0, hi); }
+    var q = '';
+    var qi = path.indexOf('?');
+    if (qi >= 0) { q = path.slice(qi); path = path.slice(0, qi); }
+    path = path.replace(/^\.\//, '');
+    if (/^(assets|data|css|js|fonts-packages)\//i.test(path)) return path + q + hash;
+
+    if (/(^|\/)font-detail\.html$/i.test(path)) {
+      var params;
+      try { params = new URLSearchParams(q.charAt(0) === '?' ? q.slice(1) : q); }
+      catch (e) { params = null; }
+      var slug = params ? (params.get('slug') || '') : '';
+      if (slug) {
+        if (params) params.delete('slug');
+        var left = params && params.toString ? params.toString() : '';
+        return 'fonts/' + encodeURIComponent(slug).replace(/%2F/gi, '/') + (left ? '?' + left : '') + hash;
+      }
+    }
+
+    if (/(^|\/)index\.html$/i.test(path)) {
+      var base = path.replace(/index\.html$/i, '').replace(/\/$/, '');
+      return base + q + hash;
+    }
+
+    if (/\.html$/i.test(path)) path = path.replace(/\.html$/i, '');
+    return path + q + hash;
+  }
+
+  /** 字体详情链接：优先 ?slug=，可附带额外查询（如 from=bag）。生产域发 /fonts/{slug}。 */
   function detailHref(font, extra) {
     const parts = [];
     const slug = fontSlug(font);
@@ -271,7 +320,13 @@
         parts.push(encodeURIComponent(k) + '=' + encodeURIComponent(extra[k]));
       });
     }
-    return 'font-detail.html?' + parts.join('&');
+    var raw = 'font-detail.html?' + parts.join('&');
+    try {
+      if (typeof location !== 'undefined' && location.hostname && !isDevPreviewHost(location.hostname)) {
+        return livePagePath(raw);
+      }
+    } catch (e) { /* ignore */ }
+    return raw;
   }
 
   /* —— 公开统计：目录基数 + 本机增量（样张导出→下载；CSS 拉取→API）—— */
@@ -1040,6 +1095,8 @@
     getFontBySlug: getBySlug,
     fontSlug: fontSlug,
     resolveFamilyAlias: resolveFamilyAlias,
+    isDevPreviewHost: isDevPreviewHost,
+    livePagePath: livePagePath,
     detailHref: detailHref,
     getFontStats: getFontStats,
     bumpFontStat: bumpFontStat,

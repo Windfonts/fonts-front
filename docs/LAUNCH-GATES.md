@@ -24,6 +24,26 @@ location ~ ^/fonts/([A-Za-z0-9_-]+)/?$ {
 error_page 404 /404.html;
 ```
 
+### 生产链接省略 `.html`（前端 `WFChrome.href` / `livePagePath`）
+
+线上 / 正式域生成的页面链接**不要带** `.html`。本机 / LAN / localhost / staging / `*.local` 仍保留 `.html`，方便 `python -m http.server`。
+
+示例（query 形式暂可；字库详情已是路径形式）：
+
+| 生产 URL | 对应文件 |
+|---|---|
+| `/foundry?slug=lxgw` | `foundry.html?slug=lxgw` |
+| `/fonts/ibmps` | `font-detail.html?slug=ibmps` |
+| `/fonts` | `fonts.html`（列表） |
+| `/license-query` | `license-query.html` |
+
+Ops / Nginx 建议：
+
+- `try_files $uri $uri.html $uri/ =404;`（或等价：无扩展名回退到 `.html`）
+- **停止** 把 `/fonts` 301 到 `fonts.html`（与详情前缀 `/fonts/{slug}` 冲突；列表用 `try_files` 落到 `fonts.html`）
+- 可选：对仍带 `.html` 的旧链做 301 → 无扩展名（保留 query）
+- 详情：`/fonts/{slug}` rewrite → `font-detail.html?slug=$1`（见上）；前端也会从 pathname 读 slug
+
 ## 2. 上线前检测门闸（按顺序勾）
 
 ### A. 构建与缓存

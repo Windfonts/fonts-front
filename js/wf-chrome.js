@@ -11,7 +11,29 @@
     return './';
   }
   const ROOT = rootUrl();
-  function href(path) { return ROOT + path; }
+  function isDevPreviewHost(host) {
+    if (window.WFProto && WFProto.isDevPreviewHost) return WFProto.isDevPreviewHost(host);
+    host = String(host || '').toLowerCase();
+    if (host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0') return true;
+    if (host.indexOf('staging') >= 0 || host.slice(-6) === '.local') return true;
+    if (/^192\.168\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
+    if (/^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
+    if (/^172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
+    return false;
+  }
+  function livePagePath(path) {
+    if (window.WFProto && WFProto.livePagePath) return WFProto.livePagePath(path);
+    return path;
+  }
+  function href(path) {
+    path = String(path == null ? '' : path);
+    try {
+      if (typeof location !== 'undefined' && location.hostname && !isDevPreviewHost(location.hostname)) {
+        path = livePagePath(path);
+      }
+    } catch (e) { /* ignore */ }
+    return ROOT + path;
+  }
   function esc(s) { return WFProto.escapeHtml(s); }
 
   function user() {
@@ -1086,6 +1108,8 @@
 
   window.WFChrome = {
     ROOT: ROOT,
+    isDevPreviewHost: isDevPreviewHost,
+    livePagePath: livePagePath,
     href: href,
     user: user,
     canAccessApp: canAccessApp,
