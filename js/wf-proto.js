@@ -1,4 +1,6 @@
-/* Shared specimen + pick bag + catalog (fonts.json) — v3.3 */
+/* Shared specimen + pick bag + catalog — v3.4
+   list SoT: fonts-list.json (thin); detail fat: fonts-by-slug/{slug}.json
+   (+ fonts-detail.json index). List never pulls fonts.json; enrich clears 二次全量. */
 (function () {
   const KEY = 'wf-proto-picks';
   const FAV_KEY = 'wf-favs';
@@ -89,9 +91,13 @@
     if (path.indexOf('/admin') !== -1) return '../data/' + file;
     return '/data/' + file;
   }
-  const CATALOG_VER = '20260927path1';
+  const CATALOG_VER = '20260927perf3';
   function catalogUrl() { return dataUrl('fonts.json?v=' + CATALOG_VER); }
   function catalogListUrl() { return dataUrl('fonts-list.json?v=' + CATALOG_VER); }
+  function catalogDetailUrl() { return dataUrl('fonts-detail.json?v=' + CATALOG_VER); }
+  function catalogSlugUrl(stem) {
+    return dataUrl('fonts-by-slug/' + encodeURIComponent(stem) + '.json?v=' + CATALOG_VER);
+  }
   function analysisMetaUrl() {
     return CDN + '/fonts-packages/metadata/font-analysis.json?v=' + ANALYSIS_META_VER;
   }
@@ -142,18 +148,12 @@
   }
 
   let catalogIsLite = false;
-  let fullCatalogPromise = null;
 
   function fetchFontsJson() {
-    /* Prefer slim list catalog; fall back to full fonts.json. */
+    /* List / search / foundry: thin SoT only. Never fetch full fonts.json here. */
     return fetch(catalogListUrl()).then(function (r) {
       if (!r.ok) throw new Error('fonts-list ' + r.status);
       return r.json().then(function (data) { return { data: data, lite: true }; });
-    }).catch(function () {
-      return fetch(catalogUrl()).then(function (r) {
-        if (!r.ok) throw new Error('fonts.json ' + r.status);
-        return r.json().then(function (data) { return { data: data, lite: false }; });
-      });
     });
   }
 
@@ -197,30 +197,98 @@
     return catalogPromise;
   }
 
-  /** Detail pages: merge description/copyright/licenseNotes etc from full fonts.json once. */
-  function enrichFontFromFull(font) {
-    if (!font || !font._lite) return Promise.resolve(font);
-    if (!fullCatalogPromise) {
-      fullCatalogPromise = fetch(catalogUrl()).then(function (r) {
-        if (!r.ok) throw new Error('fonts.json ' + r.status);
-        return r.json();
-      }).catch(function (err) {
-        console.warn('[WFProto] full catalog enrich failed', err);
-        return [];
-      });
-    }
-    return fullCatalogPromise.then(function (list) {
-      const raw = (Array.isArray(list) ? list : []).filter(function (x) { return x && x.id === font.id; })[0];
-      if (!raw) {
-        font._lite = false;
-        return font;
-      }
-      ['description', 'copyright', 'licenseNotes', 'licenseFileUrl', 'licenseUrl', 'purchaseUrl', 'version'].forEach(function (k) {
-        if (raw[k] != null) font[k] = raw[k];
-      });
-      if (raw.brand) font.brand = raw.brand;
+  const FAT_FIELDS = ['description', 'copyright', 'licenseNotes', 'licenseFileUrl', 'licenseUrl', 'purchaseUrl', 'version'];
+  let detailIndexPromise = null;
+  let detailIndex = null; /* { byId, bySlug } after first detail open */
+
+  function applyFat(font, raw) {
+    if (!raw) {
       font._lite = false;
       return font;
+    }
+    FAT_FIELDS.forEach(function (k) {
+      if (raw[k] != null) font[k] = raw[k];
+    });
+    if (raw.brand != null) font.brand = raw.brand;
+    font._lite = false;
+    return font;
+  }
+
+  function loadDetailIndex() {
+    if (detailIndex) return Promise.resolve(detailIndex);
+    if (detailIndexPromise) return detailIndexPromise;
+    detailIndexPromise = fetch(catalogDetailUrl()).then(function (r) {
+      if (!r.ok) throw new Error('fonts-detail ' + r.status);
+      return r.json();
+    }).then(function (pack) {
+      detailIndex = pack || { byId: {}, bySlug: {} };
+      return detailIndex;
+    }).catch(function (err) {
+      console.warn('[WFProto] fonts-detail enrich failed', err);
+      detailIndex = { byId: {}, bySlug: {} };
+      return detailIndex;
+    });
+    return detailIndexPromise;
+  }
+
+  function slugStemCandidates(font) {
+    const out = [];
+    const n = String((font && font.normalized) || '').trim();
+    if (n) out.push(n);
+    const fam = String((font && font.family) || '').trim();
+    if (fam.indexOf('wenfeng-') === 0) out.push(fam.slice(8));
+    else if (fam) out.push(fam);
+    const seen = {};
+    return out.filter(function (s) {
+      const low = s.toLowerCase();
+      if (seen[low]) return false;
+      seen[low] = 1;
+      return true;
+    });
+  }
+
+  /**
+   * Detail enrich: per-slug fat first (lab static ≈ live /api/fonts/{slug}),
+   * then fonts-detail.json index (still not full fonts.json). Clears 二次全量.
+   */
+  function enrichFontFromFull(font) {
+    if (!font || !font._lite) return Promise.resolve(font);
+    const cands = slugStemCandidates(font);
+    function trySlug(i) {
+      if (i >= cands.length) return null;
+      const stem = cands[i];
+      return fetch(catalogSlugUrl(stem)).then(function (r) {
+        if (!r.ok) throw new Error('slug ' + r.status);
+        return r.json();
+      }).then(function (raw) {
+        return applyFat(font, raw);
+      }).catch(function () {
+        return trySlug(i + 1);
+      });
+    }
+    const slugAttempt = trySlug(0);
+    const run = slugAttempt ? slugAttempt : Promise.resolve(null);
+    return run.then(function (done) {
+      if (done) return done;
+      return loadDetailIndex().then(function (idx) {
+        const raw = (idx.byId && font.id && idx.byId[font.id]) || null;
+        if (raw) return applyFat(font, raw);
+        /* Resolve filename stem via bySlug, then fetch that per-slug fat (still not fonts.json). */
+        let stem = null;
+        for (let i = 0; i < cands.length && idx.bySlug; i++) {
+          stem = idx.bySlug[cands[i].toLowerCase()];
+          if (stem) break;
+        }
+        if (!stem) return applyFat(font, null);
+        return fetch(catalogSlugUrl(stem)).then(function (r) {
+          if (!r.ok) throw new Error('stem ' + r.status);
+          return r.json();
+        }).then(function (row) {
+          return applyFat(font, row);
+        }).catch(function () {
+          return applyFat(font, null);
+        });
+      });
     });
   }
 
@@ -1470,7 +1538,7 @@
       }
       return fallbackCopy(text);
     },
-    /** ClientScrollViewList — infinite / load-more from fonts.json */
+    /** ClientScrollViewList — infinite / load-more from thin fonts-list catalog */
     mountFontsList: function (opts) {
       const listEl = document.getElementById((opts && opts.listId) || 'fontList');
       const countTotalEl = document.getElementById((opts && opts.countTotalId) || 'fontCountTotal');

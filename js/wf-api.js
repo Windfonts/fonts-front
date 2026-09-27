@@ -1,4 +1,7 @@
-/* 文风字体 · 控制台 API 客户端（mock | live）。依赖 wf-proto；mock 委托 WFApp 状态。 */
+/* 文风字体 · 控制台 API 客户端（mock | live）。依赖 wf-proto；mock 委托 WFApp 状态。
+ * Catalog contract (lab + future vault): list=thin (fonts-list fields), detail=fat (per-slug).
+ * mode() default is mock — do NOT default live; no vault cutover in perf lab tips.
+ * See docs/CATALOG-THIN-FAT.md. */
 (function () {
   const MODE_KEY = 'wf-api-mode';
 
@@ -7,6 +10,7 @@
   /** @typedef {{ ok: boolean, data?: any, error?: { code: string, message: string } }} Envelope */
 
   function mode() {
+    /* Default mock. Live only via explicit localStorage / WFProto.API_MODE — never auto. */
     try {
       const m = localStorage.getItem(MODE_KEY);
       if (m === 'live' || m === 'mock') return m;
