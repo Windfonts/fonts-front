@@ -1154,7 +1154,7 @@
       ingestStatus: 'cataloged',
       cdnStatus: 'n/a',
       analysisStatus: 'pending',
-      hotReload: 'v=20260927gap1',
+      hotReload: 'v=20260927gap3',
       opsProbe: null,
       ownerSeat: 'Pro',
       refs: { font: 'Ckbf', tip: 'pro/gap-fill-t1-license', pr: '' },
@@ -1286,8 +1286,11 @@
       return { allowed: false, reason: '待核实 · 不得绿灯', uncertain: true };
     }
     if (use === 'app_embed') {
-      if (b.appEmbedOk === true) return { allowed: true, reason: (seed.evidence && seed.evidence.appEmbedOk) || '允许 App 内置' };
-      if (b.appEmbedOk === false) return { allowed: false, reason: (seed.evidence && seed.evidence.appEmbedOk) || '禁止 App/游戏内置' };
+      var appEv = (seed.evidence && seed.evidence.appEmbedOk) || '';
+      var appCertGated = /视证书|见证书|另授|账号可|凭证书|上传证书|有证|证书后|见原文|视原文/.test(appEv);
+      if (b.appEmbedOk === false) return { allowed: false, reason: appEv || '禁止 App/游戏内置' };
+      if (b.appEmbedOk === true && appCertGated) return { allowed: false, reason: appEv || '视证书 · 不得无证绿灯', uncertain: true };
+      if (b.appEmbedOk === true) return { allowed: true, reason: appEv || '允许 App 内置' };
       return { allowed: false, reason: '待核实 · 不得绿灯', uncertain: true };
     }
     if (use === 'modify') {

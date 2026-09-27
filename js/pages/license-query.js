@@ -28,14 +28,66 @@
   let result = null;
   let flop = null;
 
-  /** Feng badge states: allow / maybe / deny — never paint allow when unverified. */
+  /** Evidence that means cert-gated / read original — NEVER paint allow (black). */
+  const CERT_OR_ORIGINAL_RE = /见原文|视原文|视证书|见证书|另授|账号可|凭证书|上传证书|有证|证书后/;
+
+  const META_LABEL = {
+    ofl_ok: '已核 OFL',
+    apache_ok: '已核 Apache/MIT',
+    free_commercial: '厂商免费商用',
+    cite_closed: '引用未开放',
+    restricted: '受限',
+    normal: '正常',
+    open: '开放',
+    flop: '禁 CDN',
+    cdnHardBlock: '禁 CDN',
+    brand_terms: '品牌协议',
+    ipa: 'IPA',
+    flop_no_webfont: '禁 webfont'
+  };
+
+  const USE_TO_BOOL = {
+    preview: 'previewOk',
+    design: 'designOk',
+    cdn_web: 'webfontCdnOk',
+    app_embed: 'appEmbedOk'
+  };
+
+  function metaLabel(key) {
+    if (key == null || key === '' || key === '—') return '—';
+    return META_LABEL[key] || String(key);
+  }
+
+  /** Feng badge states: allow / maybe / deny — never paint allow when unverified or cert-gated. */
   function resolveBoolState(key, val, verified) {
     const ev = (result && result.evidence && result.evidence[key]) || '';
-    const seeOriginal = /见原文|视原文/.test(ev);
+    const certOrOriginal = CERT_OR_ORIGINAL_RE.test(ev);
     if (val === false) return { state: 'deny', label: '不可以', cls: 'is-deny' };
-    if (val == null || !verified || seeOriginal) return { state: 'maybe', label: '视原文', cls: 'is-maybe' };
+    // Cert-gated evidence → maybe even when val===true && verified (Shmgt appEmbedOk bug).
+    if (val == null || !verified || certOrOriginal) return { state: 'maybe', label: '视原文', cls: 'is-maybe' };
     if (val === true) return { state: 'allow', label: '可以', cls: 'is-allow' };
     return { state: 'maybe', label: '视原文', cls: 'is-maybe' };
+  }
+
+  /** Shared allow semantics for badge + 「按用途」 table. */
+  function resolveUseState(useId, row, verified) {
+    // Approved account-scoped cite is a real allow for this account (public CDN bool stays false).
+    if (row && row.account_scoped && row.allowed) {
+      return { state: 'allow', label: '账号可', cls: 'is-allow', rowCls: 'is-ok' };
+    }
+    const boolKey = USE_TO_BOOL[useId];
+    if (boolKey && result && result.bools) {
+      const st = resolveBoolState(boolKey, result.bools[boolKey], verified);
+      const rowCls = st.state === 'allow' ? 'is-ok' : (st.state === 'deny' ? 'is-no' : 'is-uncertain');
+      return { state: st.state, label: st.label, cls: st.cls, rowCls: rowCls };
+    }
+    if (row && row.uncertain) {
+      return { state: 'maybe', label: '视原文', cls: 'is-maybe', rowCls: 'is-uncertain' };
+    }
+    if (row && row.allowed) {
+      return { state: 'allow', label: '可以', cls: 'is-allow', rowCls: 'is-ok' };
+    }
+    return { state: 'deny', label: '不可以', cls: 'is-deny', rowCls: 'is-no' };
   }
 
   function boolCell(key, val, verified) {
@@ -91,8 +143,11 @@
       return '';
     }
     if (!c) {
+      // Keep ONE primary「上传证书」— hide duplicate when #lqCta already is upload_cert.
+      const skipDup = r.cta === 'upload_cert';
       return '<div class="lq-cert"><p class="hint">当前账号尚无证书。无证时外链为 cite-closed。</p>' +
-        '<button type="button" class="btn" id="lqUploadCert">' + WFChrome.icon('upload') + '上传证书（mock）</button></div>';
+        (skipDup ? '' : '<button type="button" class="btn" id="lqUploadCert">' + WFChrome.icon('upload') + '上传证书（mock）</button>') +
+        '</div>';
     }
     const st = c.status;
     let stCls = 'lq-cert-st is-' + st;
@@ -133,21 +188,33 @@
         '<section class="app-section lq-result">' +
           '<div class="lq-meta">' +
             '<div><strong>' + esc(result.name) + '</strong> <span class="mono muted">' + esc(result.normalizedName) + '</span></div>' +
-            '<div class="lq-tags">' +
-              '<span class="lq-tag">' + esc(result.license_label || '—') + '</span>' +
-              '<span class="lq-tag' + (verified ? ' is-verified' : ' is-unverified') + '">' + (verified ? '已核实' : '待核实') + '</span>' +
-              '<span class="lq-tag">' + esc(result.service_status) + '</span>' +
-              '<span class="lq-tag">' + esc(result.cite_policy) + '</span>' +
-              (result.cdnHardBlock ? '<span class="lq-tag is-flop">cdnHardBlock</span>' : '') +
-            '</div>' +
+            '<div class="lq-tags">' + (function () {
+              const seen = {};
+              const pills = [];
+              function addPill(raw, extraCls) {
+                const lab = metaLabel(raw);
+                if (!lab || lab === '—') return;
+                const dedupeKey = lab;
+                if (seen[dedupeKey]) return;
+                seen[dedupeKey] = true;
+                pills.push('<span class="lq-tag' + (extraCls || '') + '">' + esc(lab) + '</span>');
+              }
+              addPill(result.license_label);
+              pills.push('<span class="lq-tag' + (verified ? ' is-verified' : ' is-unverified') + '">' + (verified ? '已核实' : '待核实') + '</span>');
+              addPill(result.service_status);
+              addPill(result.cite_policy);
+              if (result.cdnHardBlock) addPill('cdnHardBlock', ' is-flop');
+              return pills.join('');
+            })() + '</div>' +
           '</div>' +
           '<p class="lq-headline">' + esc(result.headline) + '</p>' +
           '<div class="lq-bools">' + BOOL_META.map(function (b) { return boolCell(b.key, result.bools[b.key], verified); }).join('') + '</div>' +
           '<div class="lq-uses"><h3 class="lq-h3">按用途</h3><ul class="lq-use-list">' +
             Object.keys(result.for_uses || {}).map(function (u) {
               const row = result.for_uses[u];
+              const st = resolveUseState(u, row, verified);
               return '<li><span class="mono">' + esc(u) + '</span>' +
-                '<span class="' + (row.allowed ? (row.uncertain ? 'is-uncertain' : 'is-ok') : 'is-no') + '">' + (row.allowed ? (row.account_scoped ? '账号可' : '允许') : '不允许') + '</span>' +
+                '<span class="' + st.rowCls + '">' + esc(st.label) + '</span>' +
                 '<span class="muted">' + esc(row.reason || '') + '</span></li>';
             }).join('') + '</ul></div>' +
           ((result.warnings || []).length ? '<ul class="lq-warn">' + result.warnings.map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('') + '</ul>' : '') +
@@ -178,13 +245,6 @@
       });
     });
     document.getElementById('lqRun').addEventListener('click', run);
-    const up = document.getElementById('lqUploadCert');
-    if (up) up.addEventListener('click', function () {
-      WFApi.createCert({ fontId: fontKey, note: 'mock upload' }).then(function () {
-        WFChrome.toast('已提交证书 · pending');
-        run();
-      }).catch(function (err) { WFChrome.toast((err && err.message) || '上传失败'); });
-    });
     const ap = document.getElementById('lqApprove');
     if (ap) ap.addEventListener('click', function () {
       if (!result || !result.cert) return;
@@ -201,12 +261,22 @@
         run();
       }).catch(function (err) { WFChrome.toast((err && err.message) || '失败'); });
     });
+    function doUploadCert() {
+      WFApi.createCert({ fontId: fontKey, note: 'mock upload' }).then(function () {
+        WFChrome.toast('已提交证书 · pending');
+        run();
+      }).catch(function (err) { WFChrome.toast((err && err.message) || '上传失败'); });
+    }
+    const up = document.getElementById('lqUploadCert');
+    if (up) up.addEventListener('click', doUploadCert);
     const ctaBtn = document.getElementById('lqCta');
     if (ctaBtn) ctaBtn.addEventListener('click', function () {
       const c = ctaBtn.getAttribute('data-cta');
       if (c === 'blocked') return;
       if (c === 'upload_cert') {
-        document.getElementById('lqUploadCert') && document.getElementById('lqUploadCert').click();
+        const dup = document.getElementById('lqUploadCert');
+        if (dup) dup.click();
+        else doUploadCert();
         return;
       }
       if (c === 'read_license' && result && result.license_url) {

@@ -71,6 +71,11 @@ span.lq-bool.is-maybe {
 .lq-tag.is-verified { background: var(--ink); color: var(--on-ink); }
 .lq-tag.is-unverified { color: var(--warn, #a65c00); box-shadow: inset 0 0 0 1px var(--warn-edge, rgba(166,92,0,.35)); background: transparent; }
 .lq-tag.is-flop { background: #8b1a1a; color: #fff; }
+/* cite-closed block: amber/muted — NOT blood red (blood reserved for FLOP) */
+.lq-tag.is-cite-block {
+  background: transparent; color: var(--warn, #a65c00);
+  box-shadow: inset 0 0 0 1px var(--warn-edge, rgba(166,92,0,.45));
+}
 
 .lq-h3 { font-size: var(--fs-14); margin: var(--s-4) 0 var(--s-2); }
 .lq-use-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s-2); }

@@ -20,7 +20,17 @@
           '<td>' + esc(t.track || '—') + '</td>' +
           '<td><span class="lq-tag">' + esc(t.gateStatus || '—') + '</span></td>' +
           '<td><span class="lq-tag">' + esc(t.ingestStatus || '—') + '</span></td>' +
-          '<td><span class="lq-tag' + (String(t.cdnStatus || '').indexOf('blocked') === 0 ? ' is-flop' : '') + '">' + esc(t.cdnStatus || '—') + '</span></td>' +
+          '<td><span class="lq-tag' + (function () {
+            const s = String(t.cdnStatus || '');
+            if (s === 'blocked_flop' || s.indexOf('blocked_flop') === 0) return ' is-flop';
+            if (s === 'blocked_cite' || s.indexOf('blocked_cite') === 0) return ' is-cite-block';
+            return '';
+          })() + '">' + esc((function () {
+            const s = String(t.cdnStatus || '');
+            if (s === 'blocked_flop') return '禁 CDN · FLOP';
+            if (s === 'blocked_cite') return '引用未开';
+            return s || '—';
+          })()) + '</span></td>' +
           '<td>' + esc(t.analysisStatus || '—') + '</td>' +
           '<td>' + esc(t.opsProbe || '—') + '</td>' +
           '<td>' + esc(t.ownerSeat || '—') + '</td>' +
