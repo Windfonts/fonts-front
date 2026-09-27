@@ -101,7 +101,7 @@
 .glyph-wall:not(.is-editing) .glyph-pair:has(.wall-stage[data-card]) {
   display: grid;
   grid-template-columns: auto minmax(16rem, 1fr);
-  gap: var(--s-5) var(--s-12);
+  gap: var(--s-5) var(--s-8);
   align-items: center;
   max-width: calc(var(--container) - 2 * var(--gutter));
   background: var(--surface);
