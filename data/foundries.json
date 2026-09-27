@@ -2687,6 +2687,64 @@
         "逐浪萌芽字"
       ],
       "description": "逐浪开源字体 GitHub 组织。ZoomlaMengyas（逐浪萌芽字）SIL OFL 1.1。"
+    },
+    {
+      "id": "8678c3f0-5136-493c-abd8-54984d39cd26",
+      "name": "嗷呜字造",
+      "en": "howlingFounts",
+      "short": "嗷呜",
+      "slug": "howlingfounts",
+      "aliases": [
+        "howlingFounts",
+        "嗷呜字造"
+      ],
+      "kind": "author",
+      "website": "https://github.com/howlingFounts/EqHiSans",
+      "openSource": true
+    },
+    {
+      "id": "aa854d83-ca33-4db2-afc0-07441e415b31",
+      "name": "Steve-Yuu",
+      "en": "Steve-Yuu",
+      "short": "Steve-Yuu",
+      "slug": "steve-yuu",
+      "aliases": [
+        "SteveYuu",
+        "Steve-Yuu"
+      ],
+      "kind": "author",
+      "website": "https://github.com/Steve-Yuu/Chuanqu",
+      "openSource": true
+    },
+    {
+      "id": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "name": "鸿雷字记",
+      "en": "Honglei Ziji",
+      "short": "鸿雷",
+      "slug": "honglei",
+      "aliases": [
+        "鸿雷字记",
+        "林鸿雷",
+        "Honglei"
+      ],
+      "kind": "author",
+      "website": "https://www.100font.com/thread-1450.htm",
+      "openSource": false
+    },
+    {
+      "id": "b0282765-1289-4d9c-b97d-a5093620186b",
+      "name": "岛田水木",
+      "en": "Shimada Mizuki",
+      "short": "水木",
+      "slug": "mizuki",
+      "aliases": [
+        "岛田水木",
+        "MEE-Developers",
+        "Mizuki"
+      ],
+      "kind": "author",
+      "website": "https://github.com/MEE-Developers/Mizuki-Gothic",
+      "openSource": true
     }
   ]
 }

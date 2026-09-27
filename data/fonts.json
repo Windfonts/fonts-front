@@ -23585,5 +23585,403 @@
     "charCount": 7634,
     "glyphCount": 7681,
     "viewCount": 1
+  },
+  {
+    "name": "嗷呜等高体",
+    "en": "Howling EqHi Sans",
+    "family": "wenfeng-howlingeqhisans",
+    "normalized": "HowlingEqHiSans",
+    "designer": "howlingFounts",
+    "designerShort": "howlingFounts",
+    "category": "无衬线字体",
+    "tags": [
+      "开源",
+      "OFL",
+      "黑体",
+      "可变",
+      "CJK",
+      "EqHi"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "嗷呜等高体（Howling EqHi Sans）。GitHub howlingFounts/EqHiSans v1.2.0 可变字体。SIL OFL 1.1；上游文渊 VF + Roboto Flex（RFN 文渊/WenYuan）。CDN OPEN。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://openfontlicense.org",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/HowlingEqHiSans/LICENSE",
+    "licenseNotes": "OFL 1.1 pin v1.2.0 HowlingEqHiSans-Variable.zip sha256=961ca4de…；VF extract Regular.ttf sha256=a07d5611…。RFN 文渊/WenYuan。禁 ziti 镜像作 sole source。CDN OPEN。",
+    "licenseVerified": true,
+    "copyright": "Copyright 2026 howlingFounts; Roboto Flex; Takushun Wu / WenYuan.",
+    "foundry": "嗷呜字造",
+    "brand": {
+      "name": "嗷呜字造 howlingFounts",
+      "slug": "howlingfounts",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/howlingFounts/EqHiSans",
+      "description": "howlingFounts。嗷呜等高体；OFL 1.1。"
+    },
+    "releaseYear": 2026,
+    "version": "Version 1.200",
+    "languages": [
+      "简体中文",
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "正文",
+      "屏幕阅读",
+      "标题"
+    ],
+    "charCount": 33150,
+    "glyphCount": 33004,
+    "viewCount": 0,
+    "id": "c278cb6a-4816-471c-9246-7296de4313ba",
+    "purchaseUrl": null
+  },
+  {
+    "name": "传趣",
+    "en": "Chuanqu",
+    "family": "wenfeng-chuanqu",
+    "normalized": "Chuanqu",
+    "designer": "Steve-Yuu",
+    "designerShort": "Steve-Yuu",
+    "category": "手写体",
+    "tags": [
+      "开源",
+      "OFL",
+      "手写",
+      "显示",
+      "CJK",
+      "传趣"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "传趣（Chuanqu）。Steve-Yuu/Chuanqu v0.500。SIL OFL 1.1（RFN 传趣/傳趣/Chuanqu）；上游 Stick + 游趣体。OFL.txt 头误写 Iansui — 以 README+上游旁证。CDN OPEN。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://openfontlicense.org",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Chuanqu/LICENSE",
+    "licenseNotes": "OFL 1.1 pin v0.500 ChuanQu-Regular.ttf sha256=2ed7e4a5…。OFL.txt copyright header wrongly says Iansui — pin README + Stick/ChildFunSans。CDN OPEN。",
+    "licenseVerified": true,
+    "copyright": "Copyright 2025-2026 SteveYuu; Stick Project Authors.",
+    "foundry": "Steve-Yuu",
+    "brand": {
+      "name": "Steve-Yuu",
+      "slug": "steve-yuu",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Steve-Yuu/Chuanqu",
+      "description": "Steve-Yuu。传趣；OFL 1.1。"
+    },
+    "releaseYear": 2026,
+    "version": "Version 0.500",
+    "languages": [
+      "简体中文",
+      "繁体中文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 17744,
+    "glyphCount": 17967,
+    "viewCount": 0,
+    "id": "14f283ee-ecb7-4fa2-aa4c-8d0761b39ac8",
+    "purchaseUrl": null
+  },
+  {
+    "name": "水木黑体",
+    "en": "Mizuki Gothic",
+    "family": "wenfeng-mizukigothic",
+    "normalized": "MizukiGothic",
+    "designer": "岛田水木",
+    "designerShort": "Mizuki",
+    "category": "黑体",
+    "tags": [
+      "开源",
+      "IPA",
+      "黑体",
+      "CJK",
+      "水木"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "水木黑体（Mizuki Gothic）。MEE-Developers/Mizuki-Gothic 1.002。IPA Font License 1.0（≠ ofl_ok；标签隔离）。CDN OPEN（Bot R15 产品覆盖 Art.3 默认停）。",
+    "license": "开源商用",
+    "licenseName": "IPA Font License",
+    "licenseUrl": "https://opensource.org/licenses/IPA",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/MizukiGothic/LICENSE",
+    "licenseNotes": "IPA Font License 1.0 pin 1.002 MizukiGothic-Regular.ttf sha256=444a807a…。label=ipa isolate。CDN OPEN per Bot gate。",
+    "licenseVerified": true,
+    "copyright": "Copyright(c) 2023 Shimada Mizuki; LXGW; IPA 2003-2019.",
+    "foundry": "岛田水木",
+    "brand": {
+      "name": "岛田水木",
+      "slug": "mizuki",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/MEE-Developers/Mizuki-Gothic",
+      "description": "岛田水木 / MEE-Developers。水木黑体；IPA。"
+    },
+    "releaseYear": 2024,
+    "version": "Version 1.002",
+    "languages": [
+      "简体中文",
+      "繁体中文",
+      "日文"
+    ],
+    "useCases": [
+      "正文",
+      "屏幕阅读"
+    ],
+    "charCount": 16348,
+    "glyphCount": 16370,
+    "viewCount": 0,
+    "id": "58c3fe9d-41fb-4507-95b5-b203233c3018",
+    "purchaseUrl": null
+  },
+  {
+    "name": "鸿雷小纸条青春体",
+    "en": "Honglei Xiaozhitiao Qingchun",
+    "family": "wenfeng-hongleixiaozhitiao",
+    "normalized": "HongleiXiaozhitiao",
+    "designer": "林鸿雷",
+    "designerShort": "鸿雷",
+    "category": "手写体",
+    "tags": [
+      "免费商用",
+      "手写",
+      "鸿雷",
+      "CJK"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "鸿雷小纸条青春体（Honglei Xiaozhitiao Qingchun）。鸿雷字记作者声明免费商用。pack-meta：§三禁未授权公网再分发字体文件。Bot R15 OPEN CDN（≠ hold_redistrib）。二进制现取 ziti 镜像；许可真源 100font/作者 PDF。",
+    "license": "免费商用",
+    "licenseName": "作者声明免费商用（鸿雷字记）",
+    "licenseUrl": "https://www.100font.com/thread-1450.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/HongleiXiaozhitiao/LICENSE",
+    "licenseNotes": "【§三】禁未授权公网再分发字体文件、禁改后当新字体发布。Bot/Feng 本波仍 OPEN CDN；货架 disclaimer。勿标 ofl_ok。许可参考小纸条青春体版权声明 PDF。",
+    "licenseVerified": true,
+    "copyright": "鸿雷字记 / 林鸿雷",
+    "foundry": "鸿雷字记",
+    "brand": {
+      "name": "鸿雷字记",
+      "slug": "honglei",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.100font.com/thread-1450.htm",
+      "description": "鸿雷字记 / 林鸿雷。免费商用；§三再分发约束。"
+    },
+    "releaseYear": 2025,
+    "version": "Version 1.003",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 6961,
+    "glyphCount": 6961,
+    "viewCount": 0,
+    "id": "e91de44b-cfcd-424b-b382-dcd5bea4a85d",
+    "purchaseUrl": null
+  },
+  {
+    "name": "鸿雷板书体",
+    "en": "Honglei Banshu",
+    "family": "wenfeng-hongleibanshu",
+    "normalized": "HongleiBanshu",
+    "designer": "林鸿雷",
+    "designerShort": "鸿雷",
+    "category": "手写体",
+    "tags": [
+      "免费商用",
+      "手写",
+      "鸿雷",
+      "CJK"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "鸿雷板书体（Honglei Banshu）。鸿雷字记作者声明免费商用。pack-meta：§三禁未授权公网再分发字体文件。Bot R15 OPEN CDN（≠ hold_redistrib）。二进制现取 ziti 镜像；许可真源 100font/作者 PDF。",
+    "license": "免费商用",
+    "licenseName": "作者声明免费商用（鸿雷字记）",
+    "licenseUrl": "https://www.100font.com/thread-1450.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/HongleiBanshu/LICENSE",
+    "licenseNotes": "【§三】禁未授权公网再分发字体文件、禁改后当新字体发布。Bot/Feng 本波仍 OPEN CDN；货架 disclaimer。勿标 ofl_ok。许可参考小纸条青春体版权声明 PDF。",
+    "licenseVerified": true,
+    "copyright": "鸿雷字记 / 林鸿雷",
+    "foundry": "鸿雷字记",
+    "brand": {
+      "name": "鸿雷字记",
+      "slug": "honglei",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.100font.com/thread-1450.htm",
+      "description": "鸿雷字记 / 林鸿雷。免费商用；§三再分发约束。"
+    },
+    "releaseYear": 2026,
+    "version": "Version 3.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 9030,
+    "glyphCount": 9030,
+    "viewCount": 0,
+    "id": "23746673-019f-4fa4-bacf-5e6de626c7e8",
+    "purchaseUrl": null
+  },
+  {
+    "name": "鸿雷板书简体-正式版",
+    "en": "Honglei Banshu Formal",
+    "family": "wenfeng-hongleibanshuformal",
+    "normalized": "HongleiBanshuFormal",
+    "designer": "林鸿雷",
+    "designerShort": "鸿雷",
+    "category": "手写体",
+    "tags": [
+      "免费商用",
+      "手写",
+      "鸿雷",
+      "CJK"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "鸿雷板书简体-正式版（Honglei Banshu Formal）。鸿雷字记作者声明免费商用。pack-meta：§三禁未授权公网再分发字体文件。Bot R15 OPEN CDN（≠ hold_redistrib）。二进制现取 ziti 镜像；许可真源 100font/作者 PDF。",
+    "license": "免费商用",
+    "licenseName": "作者声明免费商用（鸿雷字记）",
+    "licenseUrl": "https://www.100font.com/thread-1450.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/HongleiBanshuFormal/LICENSE",
+    "licenseNotes": "【§三】禁未授权公网再分发字体文件、禁改后当新字体发布。Bot/Feng 本波仍 OPEN CDN；货架 disclaimer。勿标 ofl_ok。许可参考小纸条青春体版权声明 PDF。",
+    "licenseVerified": true,
+    "copyright": "鸿雷字记 / 林鸿雷",
+    "foundry": "鸿雷字记",
+    "brand": {
+      "name": "鸿雷字记",
+      "slug": "honglei",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.100font.com/thread-1450.htm",
+      "description": "鸿雷字记 / 林鸿雷。免费商用；§三再分发约束。"
+    },
+    "releaseYear": 2020,
+    "version": "Version 2.000",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 7014,
+    "glyphCount": 7014,
+    "viewCount": 0,
+    "id": "22772b07-8eb9-4eaf-9c29-065cc66d4ab8",
+    "purchaseUrl": null
+  },
+  {
+    "name": "鸿雷行书简体",
+    "en": "Honglei Xingshu",
+    "family": "wenfeng-hongleixingshu",
+    "normalized": "HongleiXingshu",
+    "designer": "林鸿雷",
+    "designerShort": "鸿雷",
+    "category": "手写体",
+    "tags": [
+      "免费商用",
+      "手写",
+      "鸿雷",
+      "CJK"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "鸿雷行书简体（Honglei Xingshu）。鸿雷字记作者声明免费商用。pack-meta：§三禁未授权公网再分发字体文件。Bot R15 OPEN CDN（≠ hold_redistrib）。二进制现取 ziti 镜像；许可真源 100font/作者 PDF。",
+    "license": "免费商用",
+    "licenseName": "作者声明免费商用（鸿雷字记）",
+    "licenseUrl": "https://www.100font.com/thread-1450.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/HongleiXingshu/LICENSE",
+    "licenseNotes": "【§三】禁未授权公网再分发字体文件、禁改后当新字体发布。Bot/Feng 本波仍 OPEN CDN；货架 disclaimer。勿标 ofl_ok。许可参考小纸条青春体版权声明 PDF。",
+    "licenseVerified": true,
+    "copyright": "鸿雷字记 / 林鸿雷",
+    "foundry": "鸿雷字记",
+    "brand": {
+      "name": "鸿雷字记",
+      "slug": "honglei",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.100font.com/thread-1450.htm",
+      "description": "鸿雷字记 / 林鸿雷。免费商用；§三再分发约束。"
+    },
+    "releaseYear": 2022,
+    "version": "Version 2.00",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 7012,
+    "glyphCount": 7012,
+    "viewCount": 0,
+    "id": "2ce47ece-b6c0-4a70-9503-ce1c0ddb8530",
+    "purchaseUrl": null
+  },
+  {
+    "name": "鸿雷拙书简体",
+    "en": "Honglei Zhuoshu",
+    "family": "wenfeng-hongleizhuoshu",
+    "normalized": "HongleiZhuoshu",
+    "designer": "林鸿雷",
+    "designerShort": "鸿雷",
+    "category": "手写体",
+    "tags": [
+      "免费商用",
+      "手写",
+      "鸿雷",
+      "CJK"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "鸿雷拙书简体（Honglei Zhuoshu）。鸿雷字记作者声明免费商用。pack-meta：§三禁未授权公网再分发字体文件。Bot R15 OPEN CDN（≠ hold_redistrib）。二进制现取 ziti 镜像；许可真源 100font/作者 PDF。",
+    "license": "免费商用",
+    "licenseName": "作者声明免费商用（鸿雷字记）",
+    "licenseUrl": "https://www.100font.com/thread-1450.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/HongleiZhuoshu/LICENSE",
+    "licenseNotes": "【§三】禁未授权公网再分发字体文件、禁改后当新字体发布。Bot/Feng 本波仍 OPEN CDN；货架 disclaimer。勿标 ofl_ok。许可参考小纸条青春体版权声明 PDF。",
+    "licenseVerified": true,
+    "copyright": "鸿雷字记 / 林鸿雷",
+    "foundry": "鸿雷字记",
+    "brand": {
+      "name": "鸿雷字记",
+      "slug": "honglei",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.100font.com/thread-1450.htm",
+      "description": "鸿雷字记 / 林鸿雷。免费商用；§三再分发约束。"
+    },
+    "releaseYear": 2023,
+    "version": "Version 1.00",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 7735,
+    "glyphCount": 7735,
+    "viewCount": 0,
+    "id": "12dfb1cb-c2af-4b23-ac29-7f1dd45a8b5d",
+    "purchaseUrl": null
   }
 ]
