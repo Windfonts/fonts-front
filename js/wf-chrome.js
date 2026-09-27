@@ -6,9 +6,10 @@
     const scripts = document.getElementsByTagName('script');
     for (let i = scripts.length - 1; i >= 0; i--) {
       const src = scripts[i].src || '';
+      /* /js/wf-chrome.js → site root; safe under /fonts/{slug} and /foundry/{slug}. */
       if (src.indexOf('wf-chrome.js') !== -1) return new URL('../', src).href;
     }
-    return './';
+    return '/';
   }
   const ROOT = rootUrl();
   function isDevPreviewHost(host) {

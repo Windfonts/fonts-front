@@ -79,15 +79,17 @@
       for (let i = scripts.length - 1; i >= 0; i--) {
         const src = scripts[i].src || '';
         if (src.indexOf('wf-proto.js') !== -1) {
+          /* script is /js/wf-proto.js → ../data = /data (works under /fonts/{slug}). */
           return new URL('../data/' + file, src).href;
         }
       }
     } catch (e) { /* ignore */ }
-    const base = location.pathname.replace(/\/[^/]*$/, '/');
-    if (base.indexOf('/admin') !== -1) return '../data/' + file;
-    return 'data/' + file;
+    /* Fallback: never resolve relative to /fonts/x or /foundry/x. */
+    const path = String(location.pathname || '');
+    if (path.indexOf('/admin') !== -1) return '../data/' + file;
+    return '/data/' + file;
   }
-  const CATALOG_VER = '20260927perf1';
+  const CATALOG_VER = '20260927path1';
   function catalogUrl() { return dataUrl('fonts.json?v=' + CATALOG_VER); }
   function catalogListUrl() { return dataUrl('fonts-list.json?v=' + CATALOG_VER); }
   function analysisMetaUrl() {
