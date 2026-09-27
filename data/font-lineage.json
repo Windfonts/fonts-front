@@ -83,15 +83,24 @@
     },
     "kh-dot-font-series": {
       "name": "KH Dot Font Series / KHドットフォントシリーズ",
-      "upstreamName": "KHドットフォントシリーズ"
+      "upstreamName": "KHドットフォントシリーズ",
+      "upstreamOwnerId": "font-silo",
+      "ttfReconstructorId": "jikasei",
+      "official": "http://jikasei.me/font/kh-dotfont/",
+      "pin": "khdotfont-20150527 (OFL-1.1)"
     },
     "dotgothic16": {
       "name": "DotGothic16 / ドットゴシック16",
-      "upstreamName": "DotGothic16"
+      "upstreamName": "DotGothic16",
+      "upstreamOwnerId": "fontworks"
     },
     "k6x8": {
       "name": "k6x8",
-      "upstreamName": "k6x8"
+      "upstreamName": "k6x8",
+      "upstreamOwnerId": "littlelimit",
+      "official": "https://littlelimit.net/k6x8.htm",
+      "pin": "k6x8_ttf_2023-10-19",
+      "licenseNote": "NOT OFL — littlelimit free software license (historically noted M+ FONTS license alignment)"
     }
   },
   "byName": {
@@ -2444,7 +2453,10 @@
       "group": "dotgothic16",
       "relation": "original",
       "licenseFollows": "inherit",
-      "upstreamOwnerId": "fontworks"
+      "upstreamOwnerId": "fontworks",
+      "family": "wenfeng-dotgothic",
+      "normalized": "Dotgothic",
+      "doNotReingest": true
     },
     "长坂点宋 12": {
       "ownerId": "yzdnn",
@@ -2452,7 +2464,8 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット道玄坂12"
+      "upstreamName": "KHドット道玄坂12",
+      "upstreamOwnerId": "font-silo"
     },
     "ChangBanDianSong 12": {
       "ownerId": "yzdnn",
@@ -2460,7 +2473,8 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット道玄坂12"
+      "upstreamName": "KHドット道玄坂12",
+      "upstreamOwnerId": "font-silo"
     },
     "长坂点宋": {
       "ownerId": "yzdnn",
@@ -2468,7 +2482,8 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット道玄坂16"
+      "upstreamName": "KHドット道玄坂16",
+      "upstreamOwnerId": "font-silo"
     },
     "ChangBanDianSong 16": {
       "ownerId": "yzdnn",
@@ -2476,7 +2491,8 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット道玄坂16"
+      "upstreamName": "KHドット道玄坂16",
+      "upstreamOwnerId": "font-silo"
     },
     "八丁饰尾体": {
       "ownerId": "yzdnn",
@@ -2484,7 +2500,8 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット八丁堀16"
+      "upstreamName": "KHドット八丁堀16",
+      "upstreamOwnerId": "font-silo"
     },
     "BaDingShiWeiTi 16": {
       "ownerId": "yzdnn",
@@ -2492,7 +2509,8 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット八丁堀16"
+      "upstreamName": "KHドット八丁堀16",
+      "upstreamOwnerId": "font-silo"
     },
     "秋叶圆体": {
       "ownerId": "yzdnn",
@@ -2500,7 +2518,8 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット秋葉原16"
+      "upstreamName": "KHドット秋葉原16",
+      "upstreamOwnerId": "font-silo"
     },
     "QiuYeYuanTi 16": {
       "ownerId": "yzdnn",
@@ -2508,7 +2527,8 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット秋葉原16"
+      "upstreamName": "KHドット秋葉原16",
+      "upstreamOwnerId": "font-silo"
     },
     "人偶仿宋": {
       "ownerId": "yzdnn",
@@ -2516,7 +2536,8 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット人形町16"
+      "upstreamName": "KHドット人形町16",
+      "upstreamOwnerId": "font-silo"
     },
     "RenOuFangSong 16": {
       "ownerId": "yzdnn",
@@ -2524,7 +2545,8 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット人形町16"
+      "upstreamName": "KHドット人形町16",
+      "upstreamOwnerId": "font-silo"
     },
     "扇尾胄黑": {
       "ownerId": "yzdnn",
@@ -2532,7 +2554,8 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット兜町16"
+      "upstreamName": "KHドット兜町16",
+      "upstreamOwnerId": "font-silo"
     },
     "ShanWeiZhouHei 16": {
       "ownerId": "yzdnn",
@@ -2540,7 +2563,8 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット兜町16"
+      "upstreamName": "KHドット兜町16",
+      "upstreamOwnerId": "font-silo"
     },
     "正格点黑": {
       "ownerId": "yzdnn",
@@ -2566,8 +2590,8 @@
       "group": "k6x8",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "k6x8",
-      "upstreamOwnerId": "mplus"
+      "upstreamName": "k6x8ゴシック",
+      "upstreamOwnerId": "littlelimit"
     },
     "XiuZhenXiangSuTi": {
       "ownerId": "yzdnn",
@@ -2575,8 +2599,578 @@
       "group": "k6x8",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "k6x8",
-      "upstreamOwnerId": "mplus"
+      "upstreamName": "k6x8ゴシック",
+      "upstreamOwnerId": "littlelimit"
+    },
+    "KH Dot 道玄坂 12": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdd12",
+      "family": "wenfeng-khdd12"
+    },
+    "KH Dot Dougenzaka 12": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdd12",
+      "family": "wenfeng-khdd12"
+    },
+    "KHドット道玄坂12": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdd12",
+      "family": "wenfeng-khdd12"
+    },
+    "KH Dot 道玄坂 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdd16",
+      "family": "wenfeng-khdd16"
+    },
+    "KH Dot Dougenzaka 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdd16",
+      "family": "wenfeng-khdd16"
+    },
+    "KHドット道玄坂16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdd16",
+      "family": "wenfeng-khdd16"
+    },
+    "KH Dot 八丁堀 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdhb16",
+      "family": "wenfeng-khdhb16"
+    },
+    "KH Dot Hatchobori 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdhb16",
+      "family": "wenfeng-khdhb16"
+    },
+    "KHドット八丁堀16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdhb16",
+      "family": "wenfeng-khdhb16"
+    },
+    "KH Dot Hatcyoubori 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdhb16",
+      "family": "wenfeng-khdhb16"
+    },
+    "KH Dot 秋葉原 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdak16",
+      "family": "wenfeng-khdak16"
+    },
+    "KH Dot Akihabara 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdak16",
+      "family": "wenfeng-khdak16"
+    },
+    "KHドット秋葉原16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdak16",
+      "family": "wenfeng-khdak16"
+    },
+    "KH Dot 人形町 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdny16",
+      "family": "wenfeng-khdny16"
+    },
+    "KH Dot Ningyouchou 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdny16",
+      "family": "wenfeng-khdny16"
+    },
+    "KHドット人形町16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdny16",
+      "family": "wenfeng-khdny16"
+    },
+    "KH Dot 兜町 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkb16",
+      "family": "wenfeng-khdkb16"
+    },
+    "KH Dot Kabutochou 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkb16",
+      "family": "wenfeng-khdkb16"
+    },
+    "KHドット兜町16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkb16",
+      "family": "wenfeng-khdkb16"
+    },
+    "KH Dot 小伝馬町 12": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm12",
+      "family": "wenfeng-khdkm12"
+    },
+    "KH Dot Kodenmachou 12": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm12",
+      "family": "wenfeng-khdkm12"
+    },
+    "KHドット小伝馬町12": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm12",
+      "family": "wenfeng-khdkm12"
+    },
+    "KH Dot 小伝馬町 12 Ki": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm12ki",
+      "family": "wenfeng-khdkm12ki"
+    },
+    "KH Dot Kodenmachou 12 Ki": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm12ki",
+      "family": "wenfeng-khdkm12ki"
+    },
+    "KHドット小伝馬町12幾何学的カナ": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm12ki",
+      "family": "wenfeng-khdkm12ki"
+    },
+    "KH Dot 小伝馬町 12 Ko": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm12ko",
+      "family": "wenfeng-khdkm12ko"
+    },
+    "KH Dot Kodenmachou 12 Ko": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm12ko",
+      "family": "wenfeng-khdkm12ko"
+    },
+    "KHドット小伝馬町12小かな": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm12ko",
+      "family": "wenfeng-khdkm12ko"
+    },
+    "KH Dot 小伝馬町 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm16",
+      "family": "wenfeng-khdkm16"
+    },
+    "KH Dot Kodenmachou 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm16",
+      "family": "wenfeng-khdkm16"
+    },
+    "KHドット小伝馬町16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm16",
+      "family": "wenfeng-khdkm16"
+    },
+    "KH Dot 小伝馬町 16 Ki": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm16ki",
+      "family": "wenfeng-khdkm16ki"
+    },
+    "KH Dot Kodenmachou 16 Ki": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm16ki",
+      "family": "wenfeng-khdkm16ki"
+    },
+    "KHドット小伝馬町16幾何学的カナ": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkm16ki",
+      "family": "wenfeng-khdkm16ki"
+    },
+    "KH Dot 神楽坂 12": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkg12",
+      "family": "wenfeng-khdkg12"
+    },
+    "KH Dot Kagurazaka 12": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkg12",
+      "family": "wenfeng-khdkg12"
+    },
+    "KHドット神楽坂12": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkg12",
+      "family": "wenfeng-khdkg12"
+    },
+    "KH Dot kagurazaka 12": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkg12",
+      "family": "wenfeng-khdkg12"
+    },
+    "KH Dot 神楽坂 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkg16",
+      "family": "wenfeng-khdkg16"
+    },
+    "KH Dot Kagurazaka 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkg16",
+      "family": "wenfeng-khdkg16"
+    },
+    "KHドット神楽坂16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkg16",
+      "family": "wenfeng-khdkg16"
+    },
+    "KH Dot kagurazaka 16": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdkg16",
+      "family": "wenfeng-khdkg16"
+    },
+    "KH Dot 日比谷 24": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdhy24",
+      "family": "wenfeng-khdhy24"
+    },
+    "KH Dot Hibiya 24": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdhy24",
+      "family": "wenfeng-khdhy24"
+    },
+    "KHドット日比谷24": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdhy24",
+      "family": "wenfeng-khdhy24"
+    },
+    "KH Dot 日比谷 32": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdhy32",
+      "family": "wenfeng-khdhy32"
+    },
+    "KH Dot Hibiya 32": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdhy32",
+      "family": "wenfeng-khdhy32"
+    },
+    "KHドット日比谷32": {
+      "ownerId": "font-silo",
+      "makerId": "jikasei",
+      "group": "kh-dot-font-series",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "norm": "Khdhy32",
+      "family": "wenfeng-khdhy32"
+    },
+    "k6x8 ゴシック": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "k6x8",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K6x8g",
+      "family": "wenfeng-k6x8g"
+    },
+    "k6x8 Gothic": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "k6x8",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K6x8g",
+      "family": "wenfeng-k6x8g"
+    },
+    "k6x8ゴシック": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "k6x8",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K6x8g",
+      "family": "wenfeng-k6x8g"
+    },
+    "k6x8Gothic": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "k6x8",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K6x8g",
+      "family": "wenfeng-k6x8g"
+    },
+    "k6x8": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "k6x8",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K6x8m",
+      "family": "wenfeng-k6x8m"
+    },
+    "k6x8 明朝": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "k6x8",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K6x8m",
+      "family": "wenfeng-k6x8m"
+    },
+    "k6x8 Mincho": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "k6x8",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K6x8m",
+      "family": "wenfeng-k6x8m"
+    },
+    "k6x8明朝": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "k6x8",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K6x8m",
+      "family": "wenfeng-k6x8m"
+    },
+    "k6x8Mincho": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "k6x8",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K6x8m",
+      "family": "wenfeng-k6x8m"
     }
   }
 }

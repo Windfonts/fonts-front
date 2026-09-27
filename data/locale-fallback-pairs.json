@@ -1,7 +1,7 @@
 {
   "$schema": "./locale-fallback-pairs.schema.json",
   "note": "简繁兄弟配对。localeFallback=auto|sc|tc 由 vault 展开为第二 family；不做码点转换。",
-  "generatedAt": "2026-09-26",
+  "generatedAt": "2026-09-27",
   "pairs": [
     {
       "scFamily": "wenfeng-albbpht",

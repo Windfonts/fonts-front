@@ -21858,5 +21858,913 @@
     "charCount": 0,
     "glyphCount": 13037,
     "viewCount": 0
+  },
+  {
+    "id": "f0152df7-d221-48fe-b119-f86679bbaaf5",
+    "name": "KH Dot 道玄坂 12",
+    "en": "KH Dot Dougenzaka 12",
+    "family": "wenfeng-khdd12",
+    "normalized": "Khdd12",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "宋体",
+    "tags": [
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 道玄坂 12（KH Dot Dougenzaka 12）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。 下游：长坂点宋 12, ChangBanDianSong 12。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdd12/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7224,
+    "glyphCount": 7285,
+    "viewCount": 0
+  },
+  {
+    "id": "c5a52447-986a-4630-a5d2-f7ac84fda3af",
+    "name": "KH Dot 道玄坂 16",
+    "en": "KH Dot Dougenzaka 16",
+    "family": "wenfeng-khdd16",
+    "normalized": "Khdd16",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "宋体",
+    "tags": [
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 道玄坂 16（KH Dot Dougenzaka 16）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。 下游：长坂点宋, ChangBanDianSong 16。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdd16/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7288,
+    "glyphCount": 7266,
+    "viewCount": 0
+  },
+  {
+    "id": "82f98145-4e4c-4bef-a37e-92129b205143",
+    "name": "KH Dot 八丁堀 16",
+    "en": "KH Dot Hatchobori 16",
+    "family": "wenfeng-khdhb16",
+    "normalized": "Khdhb16",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "其他",
+    "tags": [
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 八丁堀 16（KH Dot Hatchobori 16）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。 下游：八丁饰尾体, BaDingShiWeiTi 16。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdhb16/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。 注：PS/内部族名 Hatcyoubori（官方拼写）; 文件名 Hatchoubori。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7289,
+    "glyphCount": 7657,
+    "viewCount": 0
+  },
+  {
+    "id": "544f6c97-9d09-4f12-8995-1909befb9364",
+    "name": "KH Dot 秋葉原 16",
+    "en": "KH Dot Akihabara 16",
+    "family": "wenfeng-khdak16",
+    "normalized": "Khdak16",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "圆体",
+    "tags": [
+      "圆体",
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 秋葉原 16（KH Dot Akihabara 16）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。 下游：秋叶圆体, QiuYeYuanTi 16。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdak16/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7288,
+    "glyphCount": 7656,
+    "viewCount": 0
+  },
+  {
+    "id": "d196839c-d160-4b27-ae82-4597c67c0b97",
+    "name": "KH Dot 人形町 16",
+    "en": "KH Dot Ningyouchou 16",
+    "family": "wenfeng-khdny16",
+    "normalized": "Khdny16",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "宋体",
+    "tags": [
+      "宋体",
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 人形町 16（KH Dot Ningyouchou 16）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。 下游：人偶仿宋, RenOuFangSong 16。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdny16/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7291,
+    "glyphCount": 7659,
+    "viewCount": 0
+  },
+  {
+    "id": "0ad35081-149e-42d3-bf43-2a4e08b21e19",
+    "name": "KH Dot 兜町 16",
+    "en": "KH Dot Kabutochou 16",
+    "family": "wenfeng-khdkb16",
+    "normalized": "Khdkb16",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "其他",
+    "tags": [
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 兜町 16（KH Dot Kabutochou 16）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。 下游：扇尾胄黑, ShanWeiZhouHei 16。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdkb16/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7289,
+    "glyphCount": 7657,
+    "viewCount": 0
+  },
+  {
+    "id": "4d5904d6-323b-4b95-804a-c1e7fffdab9e",
+    "name": "KH Dot 小伝馬町 12",
+    "en": "KH Dot Kodenmachou 12",
+    "family": "wenfeng-khdkm12",
+    "normalized": "Khdkm12",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "无衬线字体",
+    "tags": [
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 小伝馬町 12（KH Dot Kodenmachou 12）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdkm12/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7224,
+    "glyphCount": 7202,
+    "viewCount": 0
+  },
+  {
+    "id": "62902aeb-7849-4d3d-9e34-317d3bfde693",
+    "name": "KH Dot 小伝馬町 12 Ki",
+    "en": "KH Dot Kodenmachou 12 Ki",
+    "family": "wenfeng-khdkm12ki",
+    "normalized": "Khdkm12ki",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "无衬线字体",
+    "tags": [
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 小伝馬町 12 Ki（KH Dot Kodenmachou 12 Ki）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdkm12ki/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7582,
+    "glyphCount": 7560,
+    "viewCount": 0
+  },
+  {
+    "id": "ebc9f56f-d2db-4ac3-b073-18bf42a67bd9",
+    "name": "KH Dot 小伝馬町 12 Ko",
+    "en": "KH Dot Kodenmachou 12 Ko",
+    "family": "wenfeng-khdkm12ko",
+    "normalized": "Khdkm12ko",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "无衬线字体",
+    "tags": [
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 小伝馬町 12 Ko（KH Dot Kodenmachou 12 Ko）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdkm12ko/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7224,
+    "glyphCount": 7202,
+    "viewCount": 0
+  },
+  {
+    "id": "2cdd16c5-54a6-4fa2-a242-70da6b8522d4",
+    "name": "KH Dot 小伝馬町 16",
+    "en": "KH Dot Kodenmachou 16",
+    "family": "wenfeng-khdkm16",
+    "normalized": "Khdkm16",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "无衬线字体",
+    "tags": [
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 小伝馬町 16（KH Dot Kodenmachou 16）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdkm16/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7288,
+    "glyphCount": 7656,
+    "viewCount": 0
+  },
+  {
+    "id": "ffe4615a-4374-4ed6-bc14-71dd8f8f86e0",
+    "name": "KH Dot 小伝馬町 16 Ki",
+    "en": "KH Dot Kodenmachou 16 Ki",
+    "family": "wenfeng-khdkm16ki",
+    "normalized": "Khdkm16ki",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "无衬线字体",
+    "tags": [
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 小伝馬町 16 Ki（KH Dot Kodenmachou 16 Ki）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdkm16ki/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7288,
+    "glyphCount": 7656,
+    "viewCount": 0
+  },
+  {
+    "id": "1227c5e3-932a-4fda-84af-b9be7bb1ac65",
+    "name": "KH Dot 神楽坂 12",
+    "en": "KH Dot Kagurazaka 12",
+    "family": "wenfeng-khdkg12",
+    "normalized": "Khdkg12",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "宋体",
+    "tags": [
+      "宋体",
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 神楽坂 12（KH Dot Kagurazaka 12）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdkg12/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7224,
+    "glyphCount": 7592,
+    "viewCount": 0
+  },
+  {
+    "id": "455f0ca8-519d-46e9-9d69-b57e7b33d585",
+    "name": "KH Dot 神楽坂 16",
+    "en": "KH Dot Kagurazaka 16",
+    "family": "wenfeng-khdkg16",
+    "normalized": "Khdkg16",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "宋体",
+    "tags": [
+      "宋体",
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 神楽坂 16（KH Dot Kagurazaka 16）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdkg16/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7646,
+    "glyphCount": 7624,
+    "viewCount": 0
+  },
+  {
+    "id": "ee3b170f-ae61-47e2-a757-edb28fef1fcf",
+    "name": "KH Dot 日比谷 24",
+    "en": "KH Dot Hibiya 24",
+    "family": "wenfeng-khdhy24",
+    "normalized": "Khdhy24",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "宋体",
+    "tags": [
+      "宋体",
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 日比谷 24（KH Dot Hibiya 24）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdhy24/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7648,
+    "glyphCount": 8048,
+    "viewCount": 0
+  },
+  {
+    "id": "3f4a7f69-16d1-4646-a239-55b3aa32e8a7",
+    "name": "KH Dot 日比谷 32",
+    "en": "KH Dot Hibiya 32",
+    "family": "wenfeng-khdhy32",
+    "normalized": "Khdhy32",
+    "designer": "Keitarou Hiraki",
+    "designerShort": "Font Silo",
+    "category": "宋体",
+    "tags": [
+      "宋体",
+      "像素",
+      "位图",
+      "KH Dot",
+      "日文",
+      "开源",
+      "OFL"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KH Dot 日比谷 32（KH Dot Hibiya 32）。KH Dot Font Series，平木敬太郎设计、自家製フォント工房 TrueType 化。SIL OFL 1.1。钉 khdotfont-20150527。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "http://jikasei.me/info/license.html",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Khdhy32/LICENSE",
+    "licenseNotes": "官方无 GitHub；钉 archive khdotfont-20150527.7z sha256=37e07933056c… @ jikasei.me / OSDN mirror。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+    "foundry": "Font Silo",
+    "brand": {
+      "name": "Font Silo",
+      "slug": "font-silo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "description": "平木敬太郎 / Font Silo。KH Dot 原作；TrueType 由自家製フォント工房以 OFL 发布。"
+    },
+    "releaseYear": 2015,
+    "version": "Version 1.00.20150527",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7648,
+    "glyphCount": 7626,
+    "viewCount": 0
+  },
+  {
+    "id": "4c598d9c-1e7b-4b42-83a9-6e6f45394097",
+    "name": "k6x8 ゴシック",
+    "en": "k6x8 Gothic",
+    "family": "wenfeng-k6x8g",
+    "normalized": "K6x8g",
+    "designer": "Num Kadoma",
+    "designerShort": "littlelimit",
+    "category": "无衬线字体",
+    "tags": [
+      "像素",
+      "位图",
+      "k6x8",
+      "日文",
+      "开源",
+      "自由软件"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "k6x8 ゴシック（k6x8 Gothic）。門真なむ / littlelimit 6×8 点阵。站点自由软件许可（非 OFL；历史上对齐 M+ FONTS LICENSE 说明）。钉 k6x8_ttf_2023-10-19。 下游：袖珍像素体, XiuZhenXiangSuTi。",
+    "license": "开源商用",
+    "licenseName": "littlelimit free software (M+ lineage note)",
+    "licenseUrl": "https://littlelimit.net/font.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/K6x8g/LICENSE",
+    "licenseNotes": "非 OFL。钉 https://littlelimit.net/arc/k6x8/k6x8_ttf_2023-10-19.zip sha256=70149d511b0e…。衍生袖珍像素体另以 OFL 发布，须双许可说明。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (C) 2000-2023 Num Kadoma",
+    "foundry": "littlelimit",
+    "brand": {
+      "name": "littlelimit",
+      "slug": "littlelimit",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://littlelimit.net/",
+      "description": "門真なむ（Num Kadoma）。k6x8 等极小点阵；站点自由软件许可（非 OFL）。"
+    },
+    "releaseYear": 2023,
+    "version": "2023.1019",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7121,
+    "glyphCount": 7099,
+    "viewCount": 0
+  },
+  {
+    "id": "4dba41f4-253b-4831-a3d7-d493f67b3623",
+    "name": "k6x8 明朝",
+    "en": "k6x8 Mincho",
+    "family": "wenfeng-k6x8m",
+    "normalized": "K6x8m",
+    "designer": "Num Kadoma",
+    "designerShort": "littlelimit",
+    "category": "宋体",
+    "tags": [
+      "宋体",
+      "像素",
+      "位图",
+      "k6x8",
+      "日文",
+      "开源",
+      "自由软件"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "k6x8 明朝（k6x8 Mincho）。門真なむ / littlelimit 6×8 点阵。站点自由软件许可（非 OFL；历史上对齐 M+ FONTS LICENSE 说明）。钉 k6x8_ttf_2023-10-19。",
+    "license": "开源商用",
+    "licenseName": "littlelimit free software (M+ lineage note)",
+    "licenseUrl": "https://littlelimit.net/font.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/K6x8m/LICENSE",
+    "licenseNotes": "非 OFL。钉 https://littlelimit.net/arc/k6x8/k6x8_ttf_2023-10-19.zip sha256=70149d511b0e…。衍生袖珍像素体另以 OFL 发布，须双许可说明。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (C) 2000-2023 Num Kadoma",
+    "foundry": "littlelimit",
+    "brand": {
+      "name": "littlelimit",
+      "slug": "littlelimit",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://littlelimit.net/",
+      "description": "門真なむ（Num Kadoma）。k6x8 等极小点阵；站点自由软件许可（非 OFL）。"
+    },
+    "releaseYear": 2023,
+    "version": "2023.1019",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7121,
+    "glyphCount": 7099,
+    "viewCount": 0
   }
 ]

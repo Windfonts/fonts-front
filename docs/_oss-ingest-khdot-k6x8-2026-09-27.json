@@ -1,0 +1,1230 @@
+{
+  "wave": "khdot-k6x8-upstream",
+  "date": "2026-09-27",
+  "tz": "Asia/Shanghai",
+  "note": "Foundry 轨：yzdnn 像素八款上游父母入库预备。CDN/prod STOPPED。DotGothic16 已在目录（wenfeng-dotgothic）— 本波不重摄，仅核血缘。KH 无官方 GitHub，钉 archive SHA；k6x8 钉 littlelimit zip SHA。k6x8 非 OFL（site free license）。",
+  "parkPath": "/Users/feibisi-studio/Projects/_fonts_park/khdot-k6x8-2026-09-27",
+  "labStaging": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/khdot-k6x8-2026-09-27",
+  "cdn": "STOPPED",
+  "dotGothic16": {
+    "status": "already-in-catalog",
+    "family": "wenfeng-dotgothic",
+    "normalized": "Dotgothic",
+    "doNotReingest": true,
+    "lineageVerify": "ZhengGeDianHei / Zgdh → DotGothic16 (fontworks) already in font-lineage.json"
+  },
+  "archives": {
+    "khdot": {
+      "file": "/Users/feibisi-studio/Projects/_fonts_park/khdot-k6x8-2026-09-27/dl/khdotfont-20150527.7z",
+      "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+      "bytes": 6822364,
+      "version": "1.00.20150527",
+      "license": "OFL-1.1",
+      "official": "http://jikasei.me/font/kh-dotfont/",
+      "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z"
+    },
+    "k6x8": {
+      "file": "/Users/feibisi-studio/Projects/_fonts_park/khdot-k6x8-2026-09-27/dl/k6x8_ttf_2023-10-19.zip",
+      "sha256": "70149d511b0eb4afde1c191ea7779d42a247269ed989976d1f58a9b0f868a27c",
+      "bytes": 418907,
+      "version": "2023-10-19",
+      "license": "LicenseRef-littlelimit-free",
+      "official": "https://littlelimit.net/k6x8.htm",
+      "url": "https://littlelimit.net/arc/k6x8/k6x8_ttf_2023-10-19.zip"
+    }
+  },
+  "families": [
+    {
+      "id": "f0152df7-d221-48fe-b119-f86679bbaaf5",
+      "folder": "KH-Dot-Dougenzaka-12",
+      "norm": "Khdd12",
+      "family": "wenfeng-khdd12",
+      "name": "KH Dot 道玄坂 12",
+      "en": "KH Dot Dougenzaka 12",
+      "ja": "KHドット道玄坂12",
+      "category": "宋体",
+      "role": "required",
+      "tags": [
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Dougenzaka-12.ttf"
+      ],
+      "fontFamilyName": "KH Dot Dougenzaka 12",
+      "fullName": "KH Dot Dougenzaka 12",
+      "postScriptName": "KH-Dot-Dougenzaka-12",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7285,
+      "charCount": 7224,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": [
+        "长坂点宋 12",
+        "ChangBanDianSong 12"
+      ],
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Dougenzaka-12/KH-Dot-Dougenzaka-12.ttf",
+          "bytes": 1723128,
+          "sha256": "206b290e0fe60e45ffa4f34ba84dd80ca7c5f2d0783cf350a0e749da8699fc38"
+        },
+        {
+          "path": "KH-Dot-Dougenzaka-12/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Dougenzaka-12/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "c5a52447-986a-4630-a5d2-f7ac84fda3af",
+      "folder": "KH-Dot-Dougenzaka-16",
+      "norm": "Khdd16",
+      "family": "wenfeng-khdd16",
+      "name": "KH Dot 道玄坂 16",
+      "en": "KH Dot Dougenzaka 16",
+      "ja": "KHドット道玄坂16",
+      "category": "宋体",
+      "role": "required",
+      "tags": [
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Dougenzaka-16.ttf"
+      ],
+      "fontFamilyName": "KH Dot Dougenzaka 16",
+      "fullName": "KH Dot Dougenzaka 16",
+      "postScriptName": "KH-Dot-Dougenzaka-16",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7266,
+      "charCount": 7288,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": [
+        "长坂点宋",
+        "ChangBanDianSong 16"
+      ],
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Dougenzaka-16/KH-Dot-Dougenzaka-16.ttf",
+          "bytes": 2049908,
+          "sha256": "a0d22877b6f10e4dc38aa8b927f26a2498247e7dd0e6a68f1523f86eb6790896"
+        },
+        {
+          "path": "KH-Dot-Dougenzaka-16/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Dougenzaka-16/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "82f98145-4e4c-4bef-a37e-92129b205143",
+      "folder": "KH-Dot-Hatchoubori-16",
+      "norm": "Khdhb16",
+      "family": "wenfeng-khdhb16",
+      "name": "KH Dot 八丁堀 16",
+      "en": "KH Dot Hatchobori 16",
+      "ja": "KHドット八丁堀16",
+      "category": "其他",
+      "role": "required",
+      "tags": [
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Hatchoubori-16.ttf"
+      ],
+      "fontFamilyName": "KH Dot Hatcyoubori 16",
+      "fullName": "KH Dot Hatcyoubori 16",
+      "postScriptName": "KH-Dot-Hatcyoubori-16",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7657,
+      "charCount": 7289,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": [
+        "八丁饰尾体",
+        "BaDingShiWeiTi 16"
+      ],
+      "extraNote": "PS/内部族名 Hatcyoubori（官方拼写）; 文件名 Hatchoubori",
+      "files": [
+        {
+          "path": "KH-Dot-Hatchoubori-16/KH-Dot-Hatchoubori-16.ttf",
+          "bytes": 2333244,
+          "sha256": "8f0755a60f07dbe7a0c80abb260c2961aab968c5beffa85e0cfb991bc1ae3560"
+        },
+        {
+          "path": "KH-Dot-Hatchoubori-16/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Hatchoubori-16/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "544f6c97-9d09-4f12-8995-1909befb9364",
+      "folder": "KH-Dot-Akihabara-16",
+      "norm": "Khdak16",
+      "family": "wenfeng-khdak16",
+      "name": "KH Dot 秋葉原 16",
+      "en": "KH Dot Akihabara 16",
+      "ja": "KHドット秋葉原16",
+      "category": "圆体",
+      "role": "required",
+      "tags": [
+        "圆体",
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Akihabara-16.ttf"
+      ],
+      "fontFamilyName": "KH Dot Akihabara 16",
+      "fullName": "KH Dot Akihabara 16",
+      "postScriptName": "KH-Dot-Akihabara-16",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7656,
+      "charCount": 7288,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": [
+        "秋叶圆体",
+        "QiuYeYuanTi 16"
+      ],
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Akihabara-16/KH-Dot-Akihabara-16.ttf",
+          "bytes": 2211856,
+          "sha256": "0ae6650000ca5c8307a2c06f6b31cd3c441b6cf400b4d9de47cb07baf033c754"
+        },
+        {
+          "path": "KH-Dot-Akihabara-16/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Akihabara-16/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "d196839c-d160-4b27-ae82-4597c67c0b97",
+      "folder": "KH-Dot-Ningyouchou-16",
+      "norm": "Khdny16",
+      "family": "wenfeng-khdny16",
+      "name": "KH Dot 人形町 16",
+      "en": "KH Dot Ningyouchou 16",
+      "ja": "KHドット人形町16",
+      "category": "宋体",
+      "role": "required",
+      "tags": [
+        "宋体",
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Ningyouchou-16.ttf"
+      ],
+      "fontFamilyName": "KH Dot Ningyouchou 16",
+      "fullName": "KH Dot Ningyouchou 16",
+      "postScriptName": "KH-Dot-Ningyouchou-16",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7659,
+      "charCount": 7291,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": [
+        "人偶仿宋",
+        "RenOuFangSong 16"
+      ],
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Ningyouchou-16/KH-Dot-Ningyouchou-16.ttf",
+          "bytes": 2498952,
+          "sha256": "986ec26dc07ac774bcbe00f5037255d8d4db3ace1710bb03772a92b3f0128994"
+        },
+        {
+          "path": "KH-Dot-Ningyouchou-16/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Ningyouchou-16/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "0ad35081-149e-42d3-bf43-2a4e08b21e19",
+      "folder": "KH-Dot-Kabutochou-16",
+      "norm": "Khdkb16",
+      "family": "wenfeng-khdkb16",
+      "name": "KH Dot 兜町 16",
+      "en": "KH Dot Kabutochou 16",
+      "ja": "KHドット兜町16",
+      "category": "其他",
+      "role": "required",
+      "tags": [
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Kabutochou-16.ttf"
+      ],
+      "fontFamilyName": "KH Dot Kabutochou 16",
+      "fullName": "KH Dot Kabutochou 16",
+      "postScriptName": "KH-Dot-Kabutochou-16",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7657,
+      "charCount": 7289,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": [
+        "扇尾胄黑",
+        "ShanWeiZhouHei 16"
+      ],
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Kabutochou-16/KH-Dot-Kabutochou-16.ttf",
+          "bytes": 1791992,
+          "sha256": "2d093cdd1ea9fd97173f64801b87bb0630a55ce8b200964056fc72b2060d7fdc"
+        },
+        {
+          "path": "KH-Dot-Kabutochou-16/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Kabutochou-16/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "4d5904d6-323b-4b95-804a-c1e7fffdab9e",
+      "folder": "KH-Dot-Kodenmachou-12",
+      "norm": "Khdkm12",
+      "family": "wenfeng-khdkm12",
+      "name": "KH Dot 小伝馬町 12",
+      "en": "KH Dot Kodenmachou 12",
+      "ja": "KHドット小伝馬町12",
+      "category": "无衬线字体",
+      "role": "expand",
+      "tags": [
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Kodenmachou-12.ttf"
+      ],
+      "fontFamilyName": "KH Dot Kodenmachou 12",
+      "fullName": "KH Dot Kodenmachou 12",
+      "postScriptName": "KH-Dot-Kodenmachou-12",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7202,
+      "charCount": 7224,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": null,
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Kodenmachou-12/KH-Dot-Kodenmachou-12.ttf",
+          "bytes": 1690672,
+          "sha256": "63256a5919c155cca40450f8fbd6ae5a70abbf7f3b4a5f3b005a90b7f55e7cc9"
+        },
+        {
+          "path": "KH-Dot-Kodenmachou-12/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Kodenmachou-12/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "62902aeb-7849-4d3d-9e34-317d3bfde693",
+      "folder": "KH-Dot-Kodenmachou-12-Ki",
+      "norm": "Khdkm12ki",
+      "family": "wenfeng-khdkm12ki",
+      "name": "KH Dot 小伝馬町 12 Ki",
+      "en": "KH Dot Kodenmachou 12 Ki",
+      "ja": "KHドット小伝馬町12幾何学的カナ",
+      "category": "无衬线字体",
+      "role": "expand",
+      "tags": [
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Kodenmachou-12-Ki.ttf"
+      ],
+      "fontFamilyName": "KH Dot Kodenmachou 12 Ki",
+      "fullName": "KH Dot Kodenmachou 12 Ki",
+      "postScriptName": "KH-Dot-Kodenmachou-12-Ki",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7560,
+      "charCount": 7582,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": null,
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Kodenmachou-12-Ki/KH-Dot-Kodenmachou-12-Ki.ttf",
+          "bytes": 1719220,
+          "sha256": "202589ed50dc960df9f088f19823d33dbad652d79cc0b27316abaeddd44d6c08"
+        },
+        {
+          "path": "KH-Dot-Kodenmachou-12-Ki/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Kodenmachou-12-Ki/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "ebc9f56f-d2db-4ac3-b073-18bf42a67bd9",
+      "folder": "KH-Dot-Kodenmachou-12-Ko",
+      "norm": "Khdkm12ko",
+      "family": "wenfeng-khdkm12ko",
+      "name": "KH Dot 小伝馬町 12 Ko",
+      "en": "KH Dot Kodenmachou 12 Ko",
+      "ja": "KHドット小伝馬町12小かな",
+      "category": "无衬线字体",
+      "role": "expand",
+      "tags": [
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Kodenmachou-12-Ko.ttf"
+      ],
+      "fontFamilyName": "KH Dot Kodenmachou 12 Ko",
+      "fullName": "KH Dot Kodenmachou 12 Ko",
+      "postScriptName": "KH-Dot-Kodenmachou-12-Ko",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7202,
+      "charCount": 7224,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": null,
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Kodenmachou-12-Ko/KH-Dot-Kodenmachou-12-Ko.ttf",
+          "bytes": 1690980,
+          "sha256": "a3e9d3a75df4723349b0806abff42b78b2a008762f5c4d6c3d76b621ba7afe86"
+        },
+        {
+          "path": "KH-Dot-Kodenmachou-12-Ko/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Kodenmachou-12-Ko/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "2cdd16c5-54a6-4fa2-a242-70da6b8522d4",
+      "folder": "KH-Dot-Kodenmachou-16",
+      "norm": "Khdkm16",
+      "family": "wenfeng-khdkm16",
+      "name": "KH Dot 小伝馬町 16",
+      "en": "KH Dot Kodenmachou 16",
+      "ja": "KHドット小伝馬町16",
+      "category": "无衬线字体",
+      "role": "expand",
+      "tags": [
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Kodenmachou-16.ttf"
+      ],
+      "fontFamilyName": "KH Dot Kodenmachou 16",
+      "fullName": "KH Dot Kodenmachou 16",
+      "postScriptName": "KH-Dot-Kodenmachou-16",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7656,
+      "charCount": 7288,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": null,
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Kodenmachou-16/KH-Dot-Kodenmachou-16.ttf",
+          "bytes": 2090152,
+          "sha256": "b9291aa42d9df8a591e5074502a6ef1deb31d29ddb800c206bc96b6697cef952"
+        },
+        {
+          "path": "KH-Dot-Kodenmachou-16/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Kodenmachou-16/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "ffe4615a-4374-4ed6-bc14-71dd8f8f86e0",
+      "folder": "KH-Dot-Kodenmachou-16-Ki",
+      "norm": "Khdkm16ki",
+      "family": "wenfeng-khdkm16ki",
+      "name": "KH Dot 小伝馬町 16 Ki",
+      "en": "KH Dot Kodenmachou 16 Ki",
+      "ja": "KHドット小伝馬町16幾何学的カナ",
+      "category": "无衬线字体",
+      "role": "expand",
+      "tags": [
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Kodenmachou-16-Ki.ttf"
+      ],
+      "fontFamilyName": "KH Dot Kodenmachou 16 Ki",
+      "fullName": "KH Dot Kodenmachou 16 Ki",
+      "postScriptName": "KH-Dot-Kodenmachou-16-Ki",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7656,
+      "charCount": 7288,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": null,
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Kodenmachou-16-Ki/KH-Dot-Kodenmachou-16-Ki.ttf",
+          "bytes": 2088056,
+          "sha256": "80808efdabb8d95775960de66ca4c9ca2a66f37628d12ccf40b2bca613694e0d"
+        },
+        {
+          "path": "KH-Dot-Kodenmachou-16-Ki/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Kodenmachou-16-Ki/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "1227c5e3-932a-4fda-84af-b9be7bb1ac65",
+      "folder": "KH-Dot-Kagurazaka-12",
+      "norm": "Khdkg12",
+      "family": "wenfeng-khdkg12",
+      "name": "KH Dot 神楽坂 12",
+      "en": "KH Dot Kagurazaka 12",
+      "ja": "KHドット神楽坂12",
+      "category": "宋体",
+      "role": "expand",
+      "tags": [
+        "宋体",
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Kagurazaka-12.ttf"
+      ],
+      "fontFamilyName": "KH Dot kagurazaka 12",
+      "fullName": "KH Dot kagurazaka 12",
+      "postScriptName": "KH-Dot-kagurazaka-12",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7592,
+      "charCount": 7224,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": null,
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Kagurazaka-12/KH-Dot-Kagurazaka-12.ttf",
+          "bytes": 1876564,
+          "sha256": "681d22150e06e3c221b79a17f7a5e82b7876eba8adfe525c9d4944a689b3d481"
+        },
+        {
+          "path": "KH-Dot-Kagurazaka-12/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Kagurazaka-12/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "455f0ca8-519d-46e9-9d69-b57e7b33d585",
+      "folder": "KH-Dot-Kagurazaka-16",
+      "norm": "Khdkg16",
+      "family": "wenfeng-khdkg16",
+      "name": "KH Dot 神楽坂 16",
+      "en": "KH Dot Kagurazaka 16",
+      "ja": "KHドット神楽坂16",
+      "category": "宋体",
+      "role": "expand",
+      "tags": [
+        "宋体",
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Kagurazaka-16.ttf"
+      ],
+      "fontFamilyName": "KH Dot kagurazaka 16",
+      "fullName": "KH Dot kagurazaka 16",
+      "postScriptName": "KH-Dot-kagurazaka-16",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7624,
+      "charCount": 7646,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": null,
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Kagurazaka-16/KH-Dot-Kagurazaka-16.ttf",
+          "bytes": 2261392,
+          "sha256": "11015803d6dc9203796f3849a4a469f2b9edf01416d6357b686f881711975f99"
+        },
+        {
+          "path": "KH-Dot-Kagurazaka-16/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Kagurazaka-16/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "ee3b170f-ae61-47e2-a757-edb28fef1fcf",
+      "folder": "KH-Dot-Hibiya-24",
+      "norm": "Khdhy24",
+      "family": "wenfeng-khdhy24",
+      "name": "KH Dot 日比谷 24",
+      "en": "KH Dot Hibiya 24",
+      "ja": "KHドット日比谷24",
+      "category": "宋体",
+      "role": "expand",
+      "tags": [
+        "宋体",
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Hibiya-24.ttf"
+      ],
+      "fontFamilyName": "KH Dot Hibiya 24",
+      "fullName": "KH Dot Hibiya 24",
+      "postScriptName": "KH-Dot-Hibiya-24",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 8048,
+      "charCount": 7648,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": null,
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Hibiya-24/KH-Dot-Hibiya-24.ttf",
+          "bytes": 3140272,
+          "sha256": "7d2333082062a5088d5b5a530b4e4805969f09f1d2536aa00cdf020d3f349967"
+        },
+        {
+          "path": "KH-Dot-Hibiya-24/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Hibiya-24/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "3f4a7f69-16d1-4646-a239-55b3aa32e8a7",
+      "folder": "KH-Dot-Hibiya-32",
+      "norm": "Khdhy32",
+      "family": "wenfeng-khdhy32",
+      "name": "KH Dot 日比谷 32",
+      "en": "KH Dot Hibiya 32",
+      "ja": "KHドット日比谷32",
+      "category": "宋体",
+      "role": "expand",
+      "tags": [
+        "宋体",
+        "像素",
+        "位图",
+        "KH Dot",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "KH-Dot-Hibiya-32.ttf"
+      ],
+      "fontFamilyName": "KH Dot Hibiya 32",
+      "fullName": "KH Dot Hibiya 32",
+      "postScriptName": "KH-Dot-Hibiya-32",
+      "fontVersion": "Version 1.00.20150527",
+      "copyright": "Copyright (c) Keitarou Hiraki, Font Silo. 1990-2015",
+      "glyphCount": 7626,
+      "charCount": 7648,
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "downstream": null,
+      "extraNote": null,
+      "files": [
+        {
+          "path": "KH-Dot-Hibiya-32/KH-Dot-Hibiya-32.ttf",
+          "bytes": 4120480,
+          "sha256": "43b7fff9abce6d57481b5922d9d20ef7e7e2f69b0a85127675f35a7a8183b0ad"
+        },
+        {
+          "path": "KH-Dot-Hibiya-32/README_KHDotFont.txt",
+          "bytes": 3298,
+          "sha256": "c2615c22cde17b0860d9e06253d4675b83b4f59be27cb6977b71c8e3867529fa"
+        },
+        {
+          "path": "KH-Dot-Hibiya-32/SIL_Open_Font_License_1.1.txt",
+          "bytes": 4301,
+          "sha256": "697383c6addd5dd14d7e1ff053aaa44520ce86a58589eef1f9985ab66e08db08"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "http://jikasei.me/font/kh-dotfont/",
+        "archive": "khdotfont-20150527.7z",
+        "version": "1.00.20150527",
+        "mirror": "http://mirrors.dotsrc.org/osdn/users/8/8545/khdotfont-20150527.7z",
+        "mirrorAlt": "https://ftp.iij.ad.jp/pub/osdn.jp/users/8/8545/khdotfont-20150527.7z",
+        "sha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "bytes": 6822364,
+        "aurSha256": "37e07933056c0d5882924cb4cfea0989532dfa0436d7b840025443e7f7e16032",
+        "designer": "Keitarou Hiraki / Font Silo",
+        "ttfReconstructor": "自家製フォント工房 (jikasei.me)",
+        "noOfficialGitHub": true
+      }
+    },
+    {
+      "id": "4c598d9c-1e7b-4b42-83a9-6e6f45394097",
+      "folder": "k6x8-Gothic",
+      "norm": "K6x8g",
+      "family": "wenfeng-k6x8g",
+      "name": "k6x8 ゴシック",
+      "en": "k6x8 Gothic",
+      "ja": "k6x8ゴシック",
+      "category": "无衬线字体",
+      "role": "k6x8",
+      "tags": [
+        "像素",
+        "位图",
+        "k6x8",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "k6x8_gothic.ttf"
+      ],
+      "fontFamilyName": "k6x8Gothic",
+      "fullName": "k6x8Gothic",
+      "postScriptName": "k6x8Gothic",
+      "fontVersion": "2023.1019",
+      "copyright": "Copyright (C) 2000-2023 Num Kadoma",
+      "glyphCount": 7099,
+      "charCount": 7121,
+      "license": "littlelimit free software (M+ lineage note)",
+      "spdx": "LicenseRef-littlelimit-free",
+      "oflPresent": false,
+      "downstream": [
+        "袖珍像素体",
+        "XiuZhenXiangSuTi"
+      ],
+      "extraNote": null,
+      "files": [
+        {
+          "path": "k6x8-Gothic/k6x8.txt",
+          "bytes": 4908,
+          "sha256": "162c3e8e5623e5b4d5d585b5ca2adb6bbd5e24d6c0fa553f8522c192083ca11c"
+        },
+        {
+          "path": "k6x8-Gothic/k6x8_gothic.ttf",
+          "bytes": 948476,
+          "sha256": "abb318f016fb59e6fe1208385191d859d7eb3a6c5597ef0973a8833eea302694"
+        },
+        {
+          "path": "k6x8-Gothic/readme.txt",
+          "bytes": 1194,
+          "sha256": "2cfae8a4c9977698181a7049974b1caef445e07f21cdf3830163645804aebc71"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "https://littlelimit.net/k6x8.htm",
+        "archive": "k6x8_ttf_2023-10-19.zip",
+        "version": "2023-10-19",
+        "url": "https://littlelimit.net/arc/k6x8/k6x8_ttf_2023-10-19.zip",
+        "sha256": "70149d511b0eb4afde1c191ea7779d42a247269ed989976d1f58a9b0f868a27c",
+        "bytes": 418907,
+        "author": "Num Kadoma (門真なむ) / littlelimit.net",
+        "noOfficialGitHub": true,
+        "licensePage": "https://littlelimit.net/font.htm"
+      }
+    },
+    {
+      "id": "4dba41f4-253b-4831-a3d7-d493f67b3623",
+      "folder": "k6x8-Mincho",
+      "norm": "K6x8m",
+      "family": "wenfeng-k6x8m",
+      "name": "k6x8 明朝",
+      "en": "k6x8 Mincho",
+      "ja": "k6x8明朝",
+      "category": "宋体",
+      "role": "k6x8-sibling",
+      "tags": [
+        "宋体",
+        "像素",
+        "位图",
+        "k6x8",
+        "日文"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "k6x8_mincho.ttf"
+      ],
+      "fontFamilyName": "k6x8Mincho",
+      "fullName": "k6x8Mincho",
+      "postScriptName": "k6x8Mincho",
+      "fontVersion": "2023.1019",
+      "copyright": "Copyright (C) 2000-2023 Num Kadoma",
+      "glyphCount": 7099,
+      "charCount": 7121,
+      "license": "littlelimit free software (M+ lineage note)",
+      "spdx": "LicenseRef-littlelimit-free",
+      "oflPresent": false,
+      "downstream": null,
+      "extraNote": null,
+      "files": [
+        {
+          "path": "k6x8-Mincho/k6x8.txt",
+          "bytes": 4908,
+          "sha256": "162c3e8e5623e5b4d5d585b5ca2adb6bbd5e24d6c0fa553f8522c192083ca11c"
+        },
+        {
+          "path": "k6x8-Mincho/k6x8_mincho.ttf",
+          "bytes": 951172,
+          "sha256": "22babf15680431a1c8bfe5b5f2c53631762a5a46a5231c381cda15ddf96b4ced"
+        },
+        {
+          "path": "k6x8-Mincho/readme.txt",
+          "bytes": 1194,
+          "sha256": "2cfae8a4c9977698181a7049974b1caef445e07f21cdf3830163645804aebc71"
+        }
+      ],
+      "sourcePin": {
+        "kind": "archive",
+        "official": "https://littlelimit.net/k6x8.htm",
+        "archive": "k6x8_ttf_2023-10-19.zip",
+        "version": "2023-10-19",
+        "url": "https://littlelimit.net/arc/k6x8/k6x8_ttf_2023-10-19.zip",
+        "sha256": "70149d511b0eb4afde1c191ea7779d42a247269ed989976d1f58a9b0f868a27c",
+        "bytes": 418907,
+        "author": "Num Kadoma (門真なむ) / littlelimit.net",
+        "noOfficialGitHub": true,
+        "licensePage": "https://littlelimit.net/font.htm"
+      }
+    }
+  ],
+  "missingSources": [
+    {
+      "item": "KH Dot official GitHub / Font Silo git",
+      "status": "missing",
+      "mitigation": "pin archive sha256 khdotfont-20150527.7z"
+    },
+    {
+      "item": "k6x8 official GitHub",
+      "status": "missing",
+      "mitigation": "pin littlelimit zip sha256 k6x8_ttf_2023-10-19.zip"
+    }
+  ],
+  "blockers": [
+    "docker not available on this machine → vault register script drafted but NOT executed against prod.db",
+    "CDN/prod STOPPED per Bot/Feng gate — local fonts-packages/fonts/{Norm}/Regular.ttf placed; do NOT run upload.js"
+  ],
+  "localPackages": {
+    "root": "/Users/feibisi-studio/Projects/fonts-packages/fonts",
+    "placed": true,
+    "subsetBuilt": false,
+    "cdnUploaded": false,
+    "norms": [
+      "Khdd12",
+      "Khdd16",
+      "Khdhb16",
+      "Khdak16",
+      "Khdny16",
+      "Khdkb16",
+      "Khdkm12",
+      "Khdkm12ki",
+      "Khdkm12ko",
+      "Khdkm16",
+      "Khdkm16ki",
+      "Khdkg12",
+      "Khdkg16",
+      "Khdhy24",
+      "Khdhy32",
+      "K6x8g",
+      "K6x8m"
+    ]
+  },
+  "vaultRegister": {
+    "script": "/Users/feibisi-studio/Projects/fonts-vault/scripts/register-khdot-k6x8-upstream.js",
+    "executed": false,
+    "reason": "docker not available on Foundry host; Bot to run"
+  }
+}
