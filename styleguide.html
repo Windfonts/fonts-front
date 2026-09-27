@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>设计指南 · 文风字体</title>
   <meta name="description" content="文风字体 v4 设计指南：柔和 · 圆润。纯白页面、浅灰面板、黑白灰、普惠体界面、寒蝉宽黑字标。" />
-  <link rel="stylesheet" href="css/fonts.css?v=20260925r" />
-  <link rel="stylesheet" href="css/tokens.css?v=20260925r" />
-  <link rel="stylesheet" href="css/base.css?v=20260925r" />
-  <link rel="stylesheet" href="css/components.css?v=20260925r" />
-  <link rel="stylesheet" href="css/specimen.css?v=20260925r" />
-  <link rel="stylesheet" href="css/site.css?v=20260925r" />
-  <link rel="icon" type="image/webp" href="assets/icon.webp" />
+  <link rel="stylesheet" href="/css/fonts.css?v=20260925r" />
+  <link rel="stylesheet" href="/css/tokens.css?v=20260925r" />
+  <link rel="stylesheet" href="/css/base.css?v=20260925r" />
+  <link rel="stylesheet" href="/css/components.css?v=20260925r" />
+  <link rel="stylesheet" href="/css/specimen.css?v=20260925r" />
+  <link rel="stylesheet" href="/css/site.css?v=20260925r" />
+  <link rel="icon" type="image/webp" href="/assets/icon.webp" />
 </head>
 <body class="page-styleguide">
   <header data-topbar></header>
@@ -173,9 +173,9 @@
           <p class="sg-note" style="margin:0 0 var(--s-4)">破坏性操作走 <code class="code-inline">WFChrome.confirm</code>，返回 Promise。Esc / 点遮罩取消；移除、清空类默认焦点在取消。</p>
           <button type="button" class="btn" id="sgDialog">打开确认弹层</button>
           <nav class="docs-foot" aria-label="页脚">
-            <a href="about.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260925r#i-info"/></svg>关于</a>
-            <a href="license.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260925r#i-shield"/></svg>许可说明</a>
-            <a href="docs.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg?v=20260925r#i-book"/></svg>接入文档</a>
+            <a href="about.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-info"/></svg>关于</a>
+            <a href="license.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-shield"/></svg>许可说明</a>
+            <a href="docs.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260925r#i-book"/></svg>接入文档</a>
           </nav>
         </section>
     </div>
@@ -183,11 +183,11 @@
 
   <footer id="wfExtraFooter"></footer>
 
-  <script src="js/wf-proto.js?v=20260925r"></script>
-  <script src="js/wf-products.js?v=20260925r"></script>
-  <script src="js/wf-chrome.js?v=20260925r"></script>
-  <script src="js/wf-specimen.js?v=20260925r"></script>
-  <script src="js/wf-docs-nav.js?v=20260925r"></script>
+  <script src="/js/wf-proto.js?v=20260925r"></script>
+  <script src="/js/wf-products.js?v=20260925r"></script>
+  <script src="/js/wf-chrome.js?v=20260925r"></script>
+  <script src="/js/wf-specimen.js?v=20260925r"></script>
+  <script src="/js/wf-docs-nav.js?v=20260925r"></script>
   <script>
     (function () {
       document.getElementById('sgVerified').innerHTML = WFChrome.VERIFIED_SVG;
@@ -221,7 +221,7 @@
           hero.textContent = f.name;
         }
       });
-      fetch('assets/icons.svg?v=20260922ri').then(function (r) { return r.text(); }).then(function (svg) {
+      fetch('/assets/icons.svg?v=20260922ri').then(function (r) { return r.text(); }).then(function (svg) {
         const ids = (svg.match(/id="i-[a-z-]+"/g) || []).map(function (m) { return m.slice(6, -1); });
         document.getElementById('sgIcons').innerHTML = ids.map(function (id) {
           return '<div>' + WFChrome.icon(id) + '<span>' + id + '</span></div>';
