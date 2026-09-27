@@ -340,8 +340,8 @@
       }
       const top = (cur && cur.id) || oid;
       if (brandRoots[top]) return top;
-      if (fd.kind === 'brand' || fd.kind === 'platform' || fd.kind === 'author') return top;
-      return '';
+      /* 与 lineage 页一致：有厂商节点即可走组织图；空组织由 canShowOrgLineage 再挡 */
+      return top;
     }
     let graphGroup = L.group || '';
     let graphView = 'derive';
