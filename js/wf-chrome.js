@@ -656,7 +656,16 @@
     'Y.OzFont': 'YozFont',
     'YOzFont': 'YozFont',
     'IBM Plex Sans SC': 'IBM Plex 无衬线简体中文',
-    '光莹黑体': '未来荧黑'
+    '光莹黑体': '未来荧黑',
+    'KHドット道玄坂12': 'KH Dot 道玄坂 12',
+    'KHドット道玄坂16': 'KH Dot 道玄坂 16',
+    'KHドット八丁堀16': 'KH Dot 八丁堀 16',
+    'KH Dot Hatchobori 16': 'KH Dot 八丁堀 16',
+    'KH Dot Hatcyoubori 16': 'KH Dot 八丁堀 16',
+    'KHドット秋葉原16': 'KH Dot 秋葉原 16',
+    'KHドット人形町16': 'KH Dot 人形町 16',
+    'KHドット兜町16': 'KH Dot 兜町 16',
+    'k6x8ゴシック': 'k6x8 ゴシック'
   };
   /** 仍未入库的外源名：不造假字体行；可挂厂商页 / 原文。已入库源头走 UPSTREAM_FONT / fonts.json。 */
   const UPSTREAM_GHOST = {};

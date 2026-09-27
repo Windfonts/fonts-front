@@ -2464,7 +2464,7 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット道玄坂12",
+      "upstreamName": "KH Dot 道玄坂 12",
       "upstreamOwnerId": "font-silo"
     },
     "ChangBanDianSong 12": {
@@ -2473,7 +2473,7 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット道玄坂12",
+      "upstreamName": "KH Dot 道玄坂 12",
       "upstreamOwnerId": "font-silo"
     },
     "长坂点宋": {
@@ -2482,7 +2482,7 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット道玄坂16",
+      "upstreamName": "KH Dot 道玄坂 16",
       "upstreamOwnerId": "font-silo"
     },
     "ChangBanDianSong 16": {
@@ -2491,7 +2491,7 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット道玄坂16",
+      "upstreamName": "KH Dot 道玄坂 16",
       "upstreamOwnerId": "font-silo"
     },
     "八丁饰尾体": {
@@ -2500,7 +2500,7 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット八丁堀16",
+      "upstreamName": "KH Dot 八丁堀 16",
       "upstreamOwnerId": "font-silo"
     },
     "BaDingShiWeiTi 16": {
@@ -2509,7 +2509,7 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット八丁堀16",
+      "upstreamName": "KH Dot 八丁堀 16",
       "upstreamOwnerId": "font-silo"
     },
     "秋叶圆体": {
@@ -2518,7 +2518,7 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット秋葉原16",
+      "upstreamName": "KH Dot 秋葉原 16",
       "upstreamOwnerId": "font-silo"
     },
     "QiuYeYuanTi 16": {
@@ -2527,7 +2527,7 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット秋葉原16",
+      "upstreamName": "KH Dot 秋葉原 16",
       "upstreamOwnerId": "font-silo"
     },
     "人偶仿宋": {
@@ -2536,7 +2536,7 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット人形町16",
+      "upstreamName": "KH Dot 人形町 16",
       "upstreamOwnerId": "font-silo"
     },
     "RenOuFangSong 16": {
@@ -2545,7 +2545,7 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット人形町16",
+      "upstreamName": "KH Dot 人形町 16",
       "upstreamOwnerId": "font-silo"
     },
     "扇尾胄黑": {
@@ -2554,7 +2554,7 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット兜町16",
+      "upstreamName": "KH Dot 兜町 16",
       "upstreamOwnerId": "font-silo"
     },
     "ShanWeiZhouHei 16": {
@@ -2563,7 +2563,7 @@
       "group": "kh-dot-font-series",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "KHドット兜町16",
+      "upstreamName": "KH Dot 兜町 16",
       "upstreamOwnerId": "font-silo"
     },
     "正格点黑": {
@@ -2590,7 +2590,7 @@
       "group": "k6x8",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "k6x8ゴシック",
+      "upstreamName": "k6x8 ゴシック",
       "upstreamOwnerId": "littlelimit"
     },
     "XiuZhenXiangSuTi": {
@@ -2599,7 +2599,7 @@
       "group": "k6x8",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamName": "k6x8ゴシック",
+      "upstreamName": "k6x8 ゴシック",
       "upstreamOwnerId": "littlelimit"
     },
     "KH Dot 道玄坂 12": {
