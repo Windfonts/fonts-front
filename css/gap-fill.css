@@ -127,3 +127,7 @@ button.btn.is-blocked:disabled {
   .lq-bools { grid-template-columns: minmax(0, 1fr); }
   .lq-use-list li { grid-template-columns: minmax(0, 1fr); }
 }
+
+.lq-ticket-bools { display: flex; flex-wrap: wrap; gap: 0.25rem; max-width: 14rem; }
+.lq-ticket-bools .lq-tag { font-size: 0.7rem; padding: 0.1em 0.45em; }
+.lq-tag.is-ops-green { background: var(--ink); color: var(--on-ink); }

@@ -1,0 +1,56 @@
+{
+  "id": "WF-20260927-003",
+  "title": "Ckbf · OFL 试点棒 · Ops GREEN（示例·看板挂板）",
+  "track": "T3|T2",
+  "state": "live",
+  "huntId": "",
+  "gateId": "sample-ofl-ckbf",
+  "gateStatus": "pass_hang",
+  "ingestStatus": "vaulted",
+  "cdnStatus": "uploaded",
+  "analysisStatus": "merged",
+  "hotReload": "?v=20260927ckbf-demo",
+  "opsProbe": "GREEN",
+  "ownerSeat": "Bot",
+  "font": {
+    "display": "Ckbf（OFL 三态种子）",
+    "normalized": "Ckbf",
+    "slug": "ckbf"
+  },
+  "license": {
+    "cdnHardBlock": false,
+    "cdn_forbidden": false,
+    "reason_code": null,
+    "reason_label": null,
+    "cite_policy": "open",
+    "service_status": "normal",
+    "license_verified": true,
+    "previewOk": true,
+    "designOk": true,
+    "webfontCdnOk": true,
+    "appEmbedOk": true,
+    "cta": "embed",
+    "license_spdx": "OFL-1.1"
+  },
+  "split": {
+    "matrix": ["full", "zh-common", "zh", "en"],
+    "oss_prefix": "fonts-packages/Ckbf/",
+    "css_family": "wenfeng-ckbf",
+    "split_status": "done",
+    "notes": ["样例数据：示意 Ops GREEN 回写；非现网承诺"]
+  },
+  "refs": {
+    "font": "Ckbf",
+    "tip": "sample-ofl-green",
+    "oss_metadata_version": "SAMPLE",
+    "pr": "",
+    "docs": [
+      "/workspace/windfonts-research/CONTRACTS-FOR-PRO-2026-09-27.md",
+      "/workspace/windfonts-research/GAP-FILL-3TRACK-2026-09-27.md",
+      "/workspace/windfonts-research/FOUNDRY-ACCEPT-3TRACK-2026-09-27.md"
+    ]
+  },
+  "blockers": [],
+  "notes": "样例：完整通路终点。真实 Ckbf 上 CDN 仍要 Bot 分闸；本文件只给 Pro 挂板过滤/着色。",
+  "updated": "2026-09-27T18:48:00+08:00"
+}

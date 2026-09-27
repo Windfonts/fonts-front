@@ -950,7 +950,7 @@
 
   /* —— GAP-FILL T1/T3 mock（Foundry 四布尔终稿；live → 501） —— */
   const CERT_KEY = 'wf-mock-certs';
-  const GAP_VER = '20260927gap1';
+  const GAP_VER = '20260927gap4';
 
   function loadCerts() {
     try { return JSON.parse(localStorage.getItem(CERT_KEY) || '[]'); } catch (e) { return []; }
@@ -1002,8 +1002,8 @@
       bools: { previewOk: true, designOk: true, webfontCdnOk: false, appEmbedOk: false },
       evidence: {
         previewOk: '站内预览开放',
-        designOk: '厂商允许设计/画面商用（非 webfont）',
-        webfontCdnOk: '禁网页嵌入 · cite-closed',
+        designOk: '厂商允许设计/画面商用（非网页字体）',
+        webfontCdnOk: '禁网页嵌入 · 对外引用未开放',
         appEmbedOk: '原文未授 App 内置'
       },
       modify: false,
@@ -1026,7 +1026,7 @@
       evidence: {
         previewOk: '站内预览开放',
         designOk: '摩登类常授设计画面',
-        webfontCdnOk: '禁网页嵌入 · cite-closed',
+        webfontCdnOk: '禁网页嵌入 · 对外引用未开放',
         appEmbedOk: '另授 App 内置（视证书）'
       },
       modify: false,
@@ -1049,13 +1049,13 @@
       evidence: {
         previewOk: '目录对照可预览',
         designOk: '画面商用见 FLOP 原文，不画绿灯',
-        webfontCdnOk: 'FLOP 附加：禁 webfont / 上传服务器',
+        webfontCdnOk: 'FLOP 附加：禁网页字体 / 上传服务器',
         appEmbedOk: 'FLOP 附加：禁 App·游戏内置'
       },
       modify: false,
       redistribute: false,
       modify_reason: 'FLOP / IPA 附加限制',
-      redistribute_reason: '禁止再分发 webfont',
+      redistribute_reason: '禁止再分发网页字体',
       flop: {
         cdn_forbidden: true,
         cdnHardBlock: true,
@@ -1136,64 +1136,225 @@
   const LICENSE_TYPES = [
     { id: 'ofl_ok', label: '宽松 · OFL', summary: '多数商业项目可用；改字再分发须换名并保留声明。', previewOk: true, designOk: true, webfontCdnOk: true, appEmbedOk: true },
     { id: 'apache_ok', label: '宽松 · Apache/MIT', summary: '可 CDN；标签与 OFL 隔离展示。', previewOk: true, designOk: true, webfontCdnOk: true, appEmbedOk: true },
-    { id: 'free_commercial', label: '厂商免费商用', summary: '已核厂商声明；禁网页嵌入则走 cite-closed。', previewOk: true, designOk: true, webfontCdnOk: true, appEmbedOk: null },
-    { id: 'cite_closed', label: '受限 · cite-closed', summary: '站内可预览；对外网页引用须证书（账号×字体），不开公共 CDN。', previewOk: true, designOk: null, webfontCdnOk: false, appEmbedOk: null },
-    { id: 'flop', label: 'FLOP · 禁 webfont', summary: '协议禁止网页字体与 App 内置；无证书开公共 CDN。', previewOk: true, designOk: null, webfontCdnOk: false, appEmbedOk: false },
+    { id: 'free_commercial', label: '厂商免费商用', summary: '已核厂商声明；禁网页嵌入则走引用未开放。', previewOk: true, designOk: true, webfontCdnOk: true, appEmbedOk: null },
+    { id: 'cite_closed', label: '受限 · 引用未开放', summary: '站内可预览；对外网页引用须证书（账号×字体），不开公共 CDN。', previewOk: true, designOk: null, webfontCdnOk: false, appEmbedOk: null },
+    { id: 'flop', label: 'FLOP · 禁网页字体', summary: '协议禁止网页字体与 App 内置；无证书开公共 CDN。', previewOk: true, designOk: null, webfontCdnOk: false, appEmbedOk: false },
     { id: 'ipa', label: 'IPA Font License', summary: '默认停公共 CDN（Art.3）；有 FLOP 附加则硬拒。', previewOk: true, designOk: true, webfontCdnOk: false, appEmbedOk: false },
     { id: 'brand_terms', label: '品牌协议 / 待核实', summary: '须读原文；未核不得绿灯。', previewOk: true, designOk: null, webfontCdnOk: null, appEmbedOk: null }
   ];
 
+  /** Seeker T2 SoT · js/mock/tickets.json（001 FLOP ≠ 002 cite；003 ops GREEN） */
   const MOCK_TICKETS = [
     {
-      id: 'WF-20260927-001',
-      title: 'GAP-FILL 启动 · T1 授权查询 mock',
-      track: 'T1',
-      huntId: 'GAPFILL',
-      gateId: 'T1-a',
-      gateStatus: 'pass_hang',
-      ingestStatus: 'cataloged',
-      cdnStatus: 'n/a',
-      analysisStatus: 'pending',
-      hotReload: 'v=20260927gap3',
-      opsProbe: null,
-      ownerSeat: 'Pro',
-      refs: { font: 'Ckbf', tip: 'pro/gap-fill-t1-license', pr: '' },
+      id: "WF-GAPFILL-BOOT",
+      title: "文风三轨缺口补齐启动（授权查询 / 工单态 / 制作硬闸）",
+      track: "T1|T2|T3",
+      state: "ingesting",
+      owners: {
+        bot: "seat-open-2026-09-27",
+        foundry: "T1-a+T3-a-done",
+        seeker: "T2-sample-tickets-done",
+        pro: "gap4-T1d-T2-P1-done",
+        depot: "standby-T3-c",
+        ops: "standby-probe"
+      },
+      refs: {
+        font: "",
+        tip: "gap4",
+        oss_metadata_version: "",
+        pr: "",
+        docs: [
+          "/workspace/windfonts-research/GAP-FILL-3TRACK-2026-09-27.md",
+          "/workspace/windfonts-research/CONTRACTS-FOR-PRO-2026-09-27.md",
+          "/workspace/windfonts-research/FOUNDRY-ACCEPT-3TRACK-2026-09-27.md",
+          "/workspace/windfonts-research/T1-a-PURPOSE-FOUR-BOOLS-2026-09-27.md",
+          "/workspace/windfonts-research/T3-a-FLOP-NO-WEBFONT-LIST-v1-2026-09-27.md"
+        ],
+        lab_tip: "46d52e9",
+        hotReload: "?v=20260927gap4",
+        sample_tickets: ["WF-20260927-001", "WF-20260927-002", "WF-20260927-003"]
+      },
+      blockers: [
+        "vault font-certs live API still Feng/Bot — mock only",
+        "P0-3 FLOP hard gate vault+Depot — Bot CDN gate (held)",
+        "P0-4 cn-font-split shelf trial — Bot CDN gate (held)"
+      ],
+      updated: "2026-09-27T18:49:00+08:00",
+      gateStatus: "pass_hang",
+      ingestStatus: "ingesting",
+      cdnStatus: "n/a",
+      analysisStatus: "n/a",
+      hotReload: "?v=20260927gap4",
+      opsProbe: "n/a",
+      ownerSeat: "Pro"
+    },
+    {
+      id: "WF-20260927-001",
+      title: "SmartFontUI · FLOP 禁 webfont（示例·看板挂板）",
+      track: "T3|T1",
+      state: "blocked",
+      huntId: "",
+      gateId: "T3-a-FLOP-NO-WEBFONT-LIST-v1",
+      gateStatus: "pass_hang",
+      ingestStatus: "cataloged",
+      cdnStatus: "blocked_flop",
+      analysisStatus: "n/a",
+      hotReload: "",
+      opsProbe: "n/a",
+      ownerSeat: "Foundry",
+      font: {
+        display: "03スマートフォントUI / SmartFontUI",
+        normalized: "SmartFontUI",
+        slug: "smartfontui"
+      },
+      license: {
+        cdnHardBlock: true,
+        cdn_forbidden: true,
+        reason_code: "flop_no_webfont",
+        reason_label: "协议禁止网页字体分发",
+        cite_policy: "open",
+        service_status: "normal",
+        license_verified: true,
+        previewOk: true,
+        designOk: null,
+        webfontCdnOk: false,
+        appEmbedOk: false,
+        cta: "blocked",
+        vendor: "flopdesign"
+      },
+      refs: {
+        font: "SmartFontUI",
+        tip: "",
+        oss_metadata_version: "",
+        pr: "",
+        docs: [
+          "/workspace/windfonts-research/T3-a-FLOP-NO-WEBFONT-LIST-v1-2026-09-27.md",
+          "/workspace/windfonts-research/T1-a-PURPOSE-FOUR-BOOLS-2026-09-27.md",
+          "/workspace/windfonts-research/CONTRACTS-FOR-PRO-2026-09-27.md"
+        ],
+        inherits_to: ["Xwszh"]
+      },
+      blockers: [
+        "cdnHardBlock — Depot 拒传 fonts-packages/SmartFontUI",
+        "/api/css → 403 reason_code=flop_no_webfont",
+        "详情 CTA=blocked；证书也不能开公共 CDN"
+      ],
+      notes: "样例：FLOP 桶。吉利/摩登勿并入。Xwszh 继承本硬闸。",
+      updated: "2026-09-27T18:48:00+08:00"
+    },
+    {
+      id: "WF-20260927-002",
+      title: "吉利银河美好体 · cite-closed（示例·看板挂板）",
+      track: "T1|T2",
+      state: "restricted",
+      huntId: "",
+      gateId: "GATE-CJK-github-r6-reopen-geely-modern",
+      gateStatus: "pass_hang",
+      ingestStatus: "cataloged",
+      cdnStatus: "blocked_cite",
+      analysisStatus: "n/a",
+      hotReload: "",
+      opsProbe: "n/a",
+      ownerSeat: "Pro",
+      font: {
+        display: "吉利银河美好体",
+        normalized: "Jlyhmht",
+        slug: "jlyhmht"
+      },
+      license: {
+        cdnHardBlock: false,
+        cdn_forbidden: false,
+        reason_code: "cite_closed",
+        reason_label: "对外引用未开放，请上传授权证书",
+        cite_policy: "cite_closed",
+        service_status: "restricted",
+        license_verified: true,
+        previewOk: true,
+        designOk: null,
+        webfontCdnOk: false,
+        appEmbedOk: null,
+        cta: "upload_cert",
+        sibling_example: "Shmgt / 上海摩登体（同轨）"
+      },
+      cert: {
+        path: "account×font only",
+        status: "none",
+        unlocks: "approved → 该账号×该款 cite；永不解锁公共 fonts-packages CDN"
+      },
+      refs: {
+        font: "Jlyhmht",
+        tip: "",
+        oss_metadata_version: "",
+        pr: "",
+        docs: [
+          "/workspace/windfonts-research/T1-a-PURPOSE-FOUR-BOOLS-2026-09-27.md",
+          "/workspace/windfonts-research/CONTRACTS-FOR-PRO-2026-09-27.md",
+          "/workspace/windfonts-research/FOUNDRY-ACCEPT-3TRACK-2026-09-27.md"
+        ]
+      },
+      blockers: [
+        "站级 CDN 永不因证书打开（Bot 红线）",
+        "Pro T1-d：证书 mock 状态机 pending→approved",
+        "看板须与 FLOP 分行：cta=upload_cert 非 blocked"
+      ],
+      notes: "样例：cite-closed 桶。不进 FLOP。摩登同 schema 换 normalized=Shmgt。",
+      updated: "2026-09-27T18:48:00+08:00"
+    },
+    {
+      id: "WF-20260927-003",
+      title: "Ckbf · OFL 试点棒 · Ops GREEN（示例·看板挂板）",
+      track: "T3|T2",
+      state: "live",
+      huntId: "",
+      gateId: "sample-ofl-ckbf",
+      gateStatus: "pass_hang",
+      ingestStatus: "vaulted",
+      cdnStatus: "uploaded",
+      analysisStatus: "merged",
+      hotReload: "?v=20260927ckbf-demo",
+      opsProbe: "GREEN",
+      ownerSeat: "Bot",
+      font: {
+        display: "Ckbf（OFL 三态种子）",
+        normalized: "Ckbf",
+        slug: "ckbf"
+      },
+      license: {
+        cdnHardBlock: false,
+        cdn_forbidden: false,
+        reason_code: null,
+        reason_label: null,
+        cite_policy: "open",
+        service_status: "normal",
+        license_verified: true,
+        previewOk: true,
+        designOk: true,
+        webfontCdnOk: true,
+        appEmbedOk: true,
+        cta: "embed",
+        license_spdx: "OFL-1.1"
+      },
+      split: {
+        matrix: ["full", "zh-common", "zh", "en"],
+        oss_prefix: "fonts-packages/Ckbf/",
+        css_family: "wenfeng-ckbf",
+        split_status: "done",
+        notes: ["样例数据：示意 Ops GREEN 回写；非现网承诺"]
+      },
+      refs: {
+        font: "Ckbf",
+        tip: "sample-ofl-green",
+        oss_metadata_version: "SAMPLE",
+        pr: "",
+        docs: [
+          "/workspace/windfonts-research/CONTRACTS-FOR-PRO-2026-09-27.md",
+          "/workspace/windfonts-research/GAP-FILL-3TRACK-2026-09-27.md",
+          "/workspace/windfonts-research/FOUNDRY-ACCEPT-3TRACK-2026-09-27.md"
+        ]
+      },
       blockers: [],
-      updated: '2026-09-27T17:55:00+08:00'
-    },
-    {
-      id: 'WF-20260927-002',
-      title: 'SmartFontUI FLOP 硬闸 UI',
-      track: 'T3',
-      huntId: 'R14',
-      gateId: 'T3-a',
-      gateStatus: 'pass_hang',
-      ingestStatus: 'cataloged',
-      cdnStatus: 'blocked_flop',
-      analysisStatus: 'pending',
-      hotReload: '',
-      opsProbe: null,
-      ownerSeat: 'Pro',
-      refs: { font: 'SmartFontUI', tip: '', pr: '' },
-      blockers: ['flop_no_webfont'],
-      updated: '2026-09-27T17:55:00+08:00'
-    },
-    {
-      id: 'WF-20260927-003',
-      title: '吉利银河美好体 cite-closed',
-      track: 'T1',
-      huntId: 'CITE',
-      gateId: 'T1-a',
-      gateStatus: 'note_only',
-      ingestStatus: 'cataloged',
-      cdnStatus: 'blocked_cite',
-      analysisStatus: 'pending',
-      hotReload: '',
-      opsProbe: null,
-      ownerSeat: 'Foundry',
-      refs: { font: 'Jlyhmht', tip: '', pr: '' },
-      blockers: ['cite_closed'],
-      updated: '2026-09-27T17:55:00+08:00'
+      notes: "样例：完整通路终点。真实 Ckbf 上 CDN 仍要 Bot 分闸；本文件只给 Pro 挂板过滤/着色。",
+      updated: "2026-09-27T18:48:00+08:00"
     }
   ];
 
@@ -1211,18 +1372,18 @@
     },
     Ckbf: {
       font: 'Ckbf',
-      ticket_id: 'WF-20260927-001',
+      ticket_id: 'WF-20260927-003',
       matrix: ['full', 'zh-common', 'zh', 'en'],
       oss_prefix: 'fonts-packages/Ckbf/',
       css_family: 'wenfeng-ckbf',
-      tip: 'v=pending',
-      oss_metadata_version: '',
-      split_status: 'pending',
-      notes: ['待 Bot 试点闸']
+      tip: 'v=20260927ckbf-demo',
+      oss_metadata_version: 'SAMPLE',
+      split_status: 'done',
+      notes: ['样例 Ops GREEN 挂板；非现网承诺']
     },
     SmartFontUI: {
       font: 'SmartFontUI',
-      ticket_id: 'WF-20260927-002',
+      ticket_id: 'WF-20260927-001',
       matrix: ['full', 'zh-common', 'zh', 'en'],
       oss_prefix: 'fonts-packages/SmartFontUI/',
       css_family: 'wenfeng-smartfontui',
@@ -1281,8 +1442,8 @@
       if (seed.cite_policy === 'cite_closed' && cert && cert.status === 'approved') {
         return { allowed: true, reason: '本账号已开引用（非公共 CDN / 不灌 fonts-packages）', account_scoped: true };
       }
-      if (seed.cite_policy === 'cite_closed') return { allowed: false, reason: 'cite-closed · 对外引用未开放，请上传证书' };
-      if (b.webfontCdnOk === false) return { allowed: false, reason: (seed.evidence && seed.evidence.webfontCdnOk) || '禁止公共 webfont' };
+      if (seed.cite_policy === 'cite_closed') return { allowed: false, reason: '对外引用未开放，请上传证书' };
+      if (b.webfontCdnOk === false) return { allowed: false, reason: (seed.evidence && seed.evidence.webfontCdnOk) || '禁止公共网页字体' };
       return { allowed: false, reason: '待核实 · 不得绿灯', uncertain: true };
     }
     if (use === 'app_embed') {
@@ -1330,11 +1491,11 @@
       } else if (cert && cert.status === 'pending') {
         cta = 'upload_cert';
         headline = '站内可预览；证书审核中，对外网页引用暂未开通。';
-        warnings.push('无证/审核中时外链 CSS/API 为 cite-closed。');
+        warnings.push('无证/审核中时外链 CSS/API 提示「引用未开放」。');
       } else {
         cta = 'upload_cert';
         headline = '站内可预览；对外网页引用需上传授权证书（按账号开通，不是全站 CDN）。';
-        warnings.push('无证时外链提示 cite-closed。');
+        warnings.push('无证时外链提示「引用未开放」。');
       }
     } else if (!seed.license_verified) {
       cta = 'read_license';

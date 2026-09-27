@@ -1,0 +1,54 @@
+{
+  "id": "WF-20260927-001",
+  "title": "SmartFontUI · FLOP 禁 webfont（示例·看板挂板）",
+  "track": "T3|T1",
+  "state": "blocked",
+  "huntId": "",
+  "gateId": "T3-a-FLOP-NO-WEBFONT-LIST-v1",
+  "gateStatus": "pass_hang",
+  "ingestStatus": "cataloged",
+  "cdnStatus": "blocked_flop",
+  "analysisStatus": "n/a",
+  "hotReload": "",
+  "opsProbe": "n/a",
+  "ownerSeat": "Foundry",
+  "font": {
+    "display": "03スマートフォントUI / SmartFontUI",
+    "normalized": "SmartFontUI",
+    "slug": "smartfontui"
+  },
+  "license": {
+    "cdnHardBlock": true,
+    "cdn_forbidden": true,
+    "reason_code": "flop_no_webfont",
+    "reason_label": "协议禁止网页字体分发",
+    "cite_policy": "open",
+    "service_status": "normal",
+    "license_verified": true,
+    "previewOk": true,
+    "designOk": null,
+    "webfontCdnOk": false,
+    "appEmbedOk": false,
+    "cta": "blocked",
+    "vendor": "flopdesign"
+  },
+  "refs": {
+    "font": "SmartFontUI",
+    "tip": "",
+    "oss_metadata_version": "",
+    "pr": "",
+    "docs": [
+      "/workspace/windfonts-research/T3-a-FLOP-NO-WEBFONT-LIST-v1-2026-09-27.md",
+      "/workspace/windfonts-research/T1-a-PURPOSE-FOUR-BOOLS-2026-09-27.md",
+      "/workspace/windfonts-research/CONTRACTS-FOR-PRO-2026-09-27.md"
+    ],
+    "inherits_to": ["Xwszh"]
+  },
+  "blockers": [
+    "cdnHardBlock — Depot 拒传 fonts-packages/SmartFontUI",
+    "/api/css → 403 reason_code=flop_no_webfont",
+    "详情 CTA=blocked；证书也不能开公共 CDN"
+  ],
+  "notes": "样例：FLOP 桶。吉利/摩登勿并入。Xwszh 继承本硬闸。",
+  "updated": "2026-09-27T18:48:00+08:00"
+}

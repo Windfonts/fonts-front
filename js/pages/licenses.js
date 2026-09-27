@@ -32,14 +32,14 @@
             ' <span class="mono muted">' + esc(s.normalizedName) + '</span>' +
             ' · ' + esc(s.license_label) +
             (s.cdnHardBlock ? ' · <span class="lq-tag is-flop">FLOP</span>' : '') +
-            (s.cite_policy === 'cite_closed' ? ' · cite-closed' : '') +
+            (s.cite_policy === 'cite_closed' ? ' · 引用未开' : '') +
             (!s.license_verified ? ' · 待核实' : '') +
             '</li>';
         }).join('') + '</ul></section>' +
       '<section><h2>使用注意</h2><ul>' +
         '<li>每款字以字体页出处为准；没有原文链接的不要当成已经核实。</li>' +
-        '<li>cite-closed（如吉利 / 摩登）：证书只开账号引用，不开公共 CDN。</li>' +
-        '<li>FLOP（如 SmartFontUI）：协议禁 webfont，cta=blocked，证书不能开公共 CDN。</li>' +
+        '<li>引用未开放（如吉利 / 摩登）：证书只开账号引用，不开公共 CDN。</li>' +
+        '<li>FLOP（如 SmartFontUI）：协议禁网页字体，cta=blocked，证书不能开公共 CDN。</li>' +
         '<li>更完整说明见 <a href="license.html">许可说明</a>。</li></ul></section>';
   }).catch(function (err) {
     root.innerHTML = '<p class="empty">加载失败：' + esc((err && err.message) || String(err)) + '</p>';

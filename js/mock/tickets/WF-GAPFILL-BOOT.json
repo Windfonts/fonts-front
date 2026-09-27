@@ -1,0 +1,42 @@
+{
+  "id": "WF-GAPFILL-BOOT",
+  "title": "文风三轨缺口补齐启动（授权查询 / 工单态 / 制作硬闸）",
+  "track": "T1|T2|T3",
+  "state": "ingesting",
+  "owners": {
+    "bot": "seat-open-2026-09-27",
+    "foundry": "T1-a+T3-a-done",
+    "seeker": "T2-sample-tickets-done",
+    "pro": "gap4-T1d-T2-P1-done",
+    "depot": "standby-T3-c",
+    "ops": "standby-probe"
+  },
+  "refs": {
+    "font": "",
+    "tip": "gap4",
+    "oss_metadata_version": "",
+    "pr": "",
+    "docs": [
+      "/workspace/windfonts-research/GAP-FILL-3TRACK-2026-09-27.md",
+      "/workspace/windfonts-research/CONTRACTS-FOR-PRO-2026-09-27.md",
+      "/workspace/windfonts-research/FOUNDRY-ACCEPT-3TRACK-2026-09-27.md",
+      "/workspace/windfonts-research/T1-a-PURPOSE-FOUR-BOOLS-2026-09-27.md",
+      "/workspace/windfonts-research/T3-a-FLOP-NO-WEBFONT-LIST-v1-2026-09-27.md"
+    ],
+    "lab_tip": "46d52e9",
+    "hotReload": "?v=20260927gap4",
+    "sample_tickets": [
+      "WF-20260927-001",
+      "WF-20260927-002",
+      "WF-20260927-003"
+    ]
+  },
+  "blockers": [
+    "Pro gap4: T1-d cert mock + T2 board mock + P1 (samples ready)",
+    "vault font-certs live API still Feng/Bot — mock only",
+    "P0-3 FLOP hard gate vault+Depot — Bot CDN gate (held)",
+    "P0-4 cn-font-split shelf trial — Bot CDN gate (held)"
+  ],
+  "updated": "2026-09-27T18:49:00+08:00",
+  "hotReload": "?v=20260927gap4"
+}

@@ -1,0 +1,58 @@
+{
+  "id": "WF-20260927-002",
+  "title": "吉利银河美好体 · cite-closed（示例·看板挂板）",
+  "track": "T1|T2",
+  "state": "restricted",
+  "huntId": "",
+  "gateId": "GATE-CJK-github-r6-reopen-geely-modern",
+  "gateStatus": "pass_hang",
+  "ingestStatus": "cataloged",
+  "cdnStatus": "blocked_cite",
+  "analysisStatus": "n/a",
+  "hotReload": "",
+  "opsProbe": "n/a",
+  "ownerSeat": "Pro",
+  "font": {
+    "display": "吉利银河美好体",
+    "normalized": "Jlyhmht",
+    "slug": "jlyhmht"
+  },
+  "license": {
+    "cdnHardBlock": false,
+    "cdn_forbidden": false,
+    "reason_code": "cite_closed",
+    "reason_label": "对外引用未开放，请上传授权证书",
+    "cite_policy": "cite_closed",
+    "service_status": "restricted",
+    "license_verified": true,
+    "previewOk": true,
+    "designOk": null,
+    "webfontCdnOk": false,
+    "appEmbedOk": null,
+    "cta": "upload_cert",
+    "sibling_example": "Shmgt / 上海摩登体（同轨）"
+  },
+  "cert": {
+    "path": "account×font only",
+    "status": "none",
+    "unlocks": "approved → 该账号×该款 cite；永不解锁公共 fonts-packages CDN"
+  },
+  "refs": {
+    "font": "Jlyhmht",
+    "tip": "",
+    "oss_metadata_version": "",
+    "pr": "",
+    "docs": [
+      "/workspace/windfonts-research/T1-a-PURPOSE-FOUR-BOOLS-2026-09-27.md",
+      "/workspace/windfonts-research/CONTRACTS-FOR-PRO-2026-09-27.md",
+      "/workspace/windfonts-research/FOUNDRY-ACCEPT-3TRACK-2026-09-27.md"
+    ]
+  },
+  "blockers": [
+    "站级 CDN 永不因证书打开（Bot 红线）",
+    "Pro T1-d：证书 mock 状态机 pending→approved",
+    "看板须与 FLOP 分行：cta=upload_cert 非 blocked"
+  ],
+  "notes": "样例：cite-closed 桶。不进 FLOP。摩登同 schema 换 normalized=Shmgt。",
+  "updated": "2026-09-27T18:48:00+08:00"
+}

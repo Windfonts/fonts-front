@@ -40,10 +40,21 @@
     normal: '正常',
     open: '开放',
     flop: '禁 CDN',
+    flop_inherited: '禁 CDN · 继承',
     cdnHardBlock: '禁 CDN',
     brand_terms: '品牌协议',
     ipa: 'IPA',
-    flop_no_webfont: '禁 webfont'
+    flop_no_webfont: '协议禁网页字体',
+    catalog_ok: '目录可挂',
+    hard_deny: '硬拒'
+  };
+
+  const CERT_STATUS_LABEL = {
+    pending: '审核中',
+    approved: '已批准',
+    rejected: '已驳回',
+    expired: '已过期',
+    none: '无'
   };
 
   const USE_TO_BOOL = {
@@ -119,7 +130,8 @@
       cls = 'btn is-blocked';
       disabled = true;
       if (flop && flop.cdn_forbidden) {
-        extra = '<span class="lq-flop-badge" title="' + esc(flop.reason_label || '') + '">FLOP · ' + esc(flop.reason_code || 'flop_no_webfont') + '</span>';
+        const flopLab = flop.reason_label || META_LABEL.flop_no_webfont || '协议禁网页字体';
+        extra = '<span class="lq-flop-badge" title="' + esc(flopLab) + '">FLOP · ' + esc(flopLab) + '</span>';
       }
     } else if (cta === 'upload_cert') {
       cls = 'btn';
@@ -145,18 +157,21 @@
     if (!c) {
       // Keep ONE primary「上传证书」— hide duplicate when #lqCta already is upload_cert.
       const skipDup = r.cta === 'upload_cert';
-      return '<div class="lq-cert"><p class="hint">当前账号尚无证书。无证时外链为 cite-closed。</p>' +
+      return '<div class="lq-cert"><p class="hint">当前账号尚无证书。无证时外链提示「引用未开放」。</p>' +
         (skipDup ? '' : '<button type="button" class="btn" id="lqUploadCert">' + WFChrome.icon('upload') + '上传证书（mock）</button>') +
         '</div>';
     }
     const st = c.status;
+    const stLab = CERT_STATUS_LABEL[st] || st;
     let stCls = 'lq-cert-st is-' + st;
-    return '<div class="lq-cert"><div class="' + stCls + '">证书状态 · <b>' + esc(st) + '</b> · ' + esc(c.cert_id) + '</div>' +
-      '<p class="hint">unlocks: ' + esc((c.unlocks || []).join(', ') || '—') + ' · approved 仅开账号 cite，永不灌公共 fonts-packages。</p>' +
+    return '<div class="lq-cert"><div class="' + stCls + '">证书状态 · <b>' + esc(stLab) + '</b> <span class="mono muted">(' + esc(st) + ')</span> · ' + esc(c.cert_id) + '</div>' +
+      '<p class="hint">解锁范围：账号×本款网页引用 · 已批准仅开本账号 cite，永不灌公共 fonts-packages / 不改 webfontCdnOk。</p>' +
       '<div class="lq-cert-actions">' +
         (st === 'pending' ? '<button type="button" class="btn" id="lqApprove">' + WFChrome.icon('check') + 'mock 批准</button>' +
-          '<button type="button" class="btn-text" id="lqReject">驳回</button>' : '') +
-        (st === 'approved' ? '<span class="hint">本账号引用已开</span>' : '') +
+          '<button type="button" class="btn-text" id="lqReject">驳回</button>' +
+          '<button type="button" class="btn-text" id="lqExpire">标过期</button>' : '') +
+        (st === 'approved' ? '<span class="hint">本账号引用已开（session for_uses.cdn_web）</span>' +
+          '<button type="button" class="btn-text" id="lqExpire">标过期</button>' : '') +
         (st === 'rejected' || st === 'expired' ? '<button type="button" class="btn" id="lqUploadCert">' + WFChrome.icon('upload') + '重新上传</button>' : '') +
       '</div></div>';
   }
@@ -172,7 +187,7 @@
       return '<option value="' + esc(s.normalizedName) + '"' + (s.normalizedName === fontKey ? ' selected' : '') + '>' +
         esc(s.name) + ' · ' + esc(s.normalizedName) +
         (s.cdnHardBlock ? ' · FLOP' : '') +
-        (s.cite_policy === 'cite_closed' ? ' · cite-closed' : '') +
+        (s.cite_policy === 'cite_closed' ? ' · 引用未开' : '') +
         (!s.license_verified ? ' · 待核实' : '') +
         '</option>';
     }).join('');
@@ -201,9 +216,15 @@
               }
               addPill(result.license_label);
               pills.push('<span class="lq-tag' + (verified ? ' is-verified' : ' is-unverified') + '">' + (verified ? '已核实' : '待核实') + '</span>');
-              addPill(result.service_status);
-              addPill(result.cite_policy);
-              if (result.cdnHardBlock) addPill('cdnHardBlock', ' is-flop');
+              if (result.cdnHardBlock) {
+                // FLOP hard-block: never paint misleading「正常」「开放」
+                addPill('catalog_ok');
+                addPill('cdnHardBlock', ' is-flop');
+                addPill('hard_deny', ' is-flop');
+              } else {
+                addPill(result.service_status);
+                addPill(result.cite_policy);
+              }
               return pills.join('');
             })() + '</div>' +
           '</div>' +
@@ -228,7 +249,7 @@
         '<div class="grid cols-2">' +
           '<div class="field"><label for="lqFont">字体（mock 种子）</label>' +
             '<select class="select" id="lqFont">' + seedOpts + '</select>' +
-            '<span class="hint">必测：Ckbf（OFL）· Jlyhmht（cite-closed）· SmartFontUI（FLOP）</span></div>' +
+            '<span class="hint">必测：Ckbf（OFL）· Jlyhmht（引用未开）· SmartFontUI（FLOP）</span></div>' +
           '<div class="field"><label>用途</label><div class="lq-use-checks">' + useChecks + '</div></div>' +
         '</div>' +
         '<p style="margin-top:var(--s-4)"><button type="button" class="btn btn-ink" id="lqRun">' + WFChrome.icon('search') + '查询</button>' +
@@ -258,6 +279,14 @@
       if (!result || !result.cert) return;
       WFApi.reviewCert(result.cert.cert_id, { status: 'rejected' }).then(function () {
         WFChrome.toast('已驳回');
+        run();
+      }).catch(function (err) { WFChrome.toast((err && err.message) || '失败'); });
+    });
+    const ex = document.getElementById('lqExpire');
+    if (ex) ex.addEventListener('click', function () {
+      if (!result || !result.cert) return;
+      WFApi.reviewCert(result.cert.cert_id, { status: 'expired' }).then(function () {
+        WFChrome.toast('已标过期');
         run();
       }).catch(function (err) { WFChrome.toast((err && err.message) || '失败'); });
     });
