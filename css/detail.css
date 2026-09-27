@@ -217,6 +217,7 @@
   margin-top: var(--s-2);
   overflow: hidden;
   border-radius: var(--radius-sm);
+  border: 1px solid var(--rule);
 }
 .detail-main .panel .use-code-stack > .code {
   margin: 0;
