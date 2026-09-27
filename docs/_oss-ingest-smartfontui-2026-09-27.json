@@ -1,0 +1,39 @@
+{
+  "wave": "smartfontui-upstream-c4",
+  "date": "2026-09-27",
+  "tz": "Asia/Shanghai",
+  "cdn": "STOPPED",
+  "status": "BLOCKED_BINARY_PIN",
+  "note": "Foundry 轨 C4：霞鹜尚智黑（Xwszh）缺失上游 03スマートフォントUI。官方 FLOP DESIGN；IPA Font License 1.0 + FLOP webfont/嵌入附加条款。官网 403 / BOOTH 需登录 → 本波 lineage-stub only，不钉 packages。不上传 CDN / 不跑 vault docker。",
+  "official": {
+    "freefont": "https://www.flopdesign.com/freefont/smartfont.html",
+    "freefontStatus": "403 Forbidden (2026-09-27)",
+    "booth": "https://flopdesign.booth.pm/items/2296502",
+    "boothDownload": "SmartFontUI.zip (login required for free download)",
+    "lxgwForkNotes": "https://github.com/lxgw/LxgwFasmartGothic"
+  },
+  "families": [
+    {
+      "catalogName": "03スマートフォントUI",
+      "en": "Smart Font UI",
+      "norm": "SmartFontUI",
+      "family": "wenfeng-smartfontui",
+      "version": "lineage-stub",
+      "glyphCount": 0,
+      "charCount": 0,
+      "role": "original-upstream-stub",
+      "pin": null,
+      "pkgPath": null,
+      "licensePath": "font-licenses/licenses/SmartFontUI/LICENSE"
+    }
+  ],
+  "downstream": [
+    {
+      "name": "霞鹜尚智黑",
+      "norm": "Xwszh",
+      "upstreamName": "03スマートフォントUI"
+    }
+  ],
+  "parkPath": "/Users/feibisi-studio/Projects/_fonts_park/smartfontui-2026-09-27",
+  "labStaging": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/smartfontui-2026-09-27"
+}

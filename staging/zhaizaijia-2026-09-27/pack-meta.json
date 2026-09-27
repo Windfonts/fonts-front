@@ -1,0 +1,18 @@
+{
+  "wave": "zhaizaijia-upstream-c5",
+  "date": "2026-09-27",
+  "cdn": "STOPPED",
+  "status": "STUB_AUTHOR_BRAND",
+  "catalogName": "天天宅在家",
+  "norm": "Zhaizaijia",
+  "family": "wenfeng-zhaizaijia",
+  "license": "作者声明完全免费（NOT OFL）",
+  "packages": null,
+  "reason": "Author brand root; no single TTF named 天天宅在家. Prefer stub linking FWHP OFL trio.",
+  "downstream": [
+    "宅在家粉条甜",
+    "宅在家麦克笔",
+    "宅在家自动笔"
+  ],
+  "fwhpRepo": "https://github.com/FWHP-Enfun/Star-Love-Font"
+}

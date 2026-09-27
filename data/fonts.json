@@ -23377,5 +23377,109 @@
     "charCount": 54581,
     "glyphCount": 61360,
     "viewCount": 1
+  },
+  {
+    "id": "fa9c3b5e-1c86-4f86-b5a1-d1a7095a5480",
+    "name": "03スマートフォントUI",
+    "en": "Smart Font UI",
+    "family": "wenfeng-smartfontui",
+    "normalized": "SmartFontUI",
+    "designer": "FLOP DESIGN",
+    "designerShort": "FLOP",
+    "category": "无衬线字体",
+    "tags": [
+      "开源",
+      "IPA",
+      "日文",
+      "上游",
+      "UI",
+      "lineage-stub"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "03スマートフォントUI（Smart Font UI）。FLOP DESIGN 基于 IPAexゴシック 衍生的 condensed UI ゴシック。IPA Font License 1.0（非 OFL）。官网 freefont 页现 403；BOOTH 免费下载需登录。本波为血缘占位（lineage-stub）：字形包未钉入。FLOP 另禁 webfont/APP 嵌入（需日文 Webfont 套件）。CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "IPA Font License",
+    "licenseUrl": "https://opensource.org/licenses/IPA",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/SmartFontUI/LICENSE",
+    "licenseNotes": "FLOP DESIGN / IPA Font License 1.0 — NOT OFL。钉源未完成：官网 https://www.flopdesign.com/freefont/smartfont.html 2026-09-27 返回 403；BOOTH https://flopdesign.booth.pm/items/2296502 免费下载需登录，本机 curl 未取得 SmartFontUI.zip。kobake/metro-css-card 仅有未支持的 03SmartFont-P 变体，不可作主面 pin。FLOP ReadMe：印刷/数字内容自由使用须遵 IPA；改变再分发/程序嵌入/webfont 有限制；假名设计版权归 FLOP，禁止有偿公开·销售·再分发·可提取程序嵌入。APP/游戏内置与 webfont 上传需购日文 Webfont 套件。本条 version=lineage-stub / charCount=0。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": "https://flopdesign.booth.pm/items/2296502",
+    "copyright": "Copyright(c) Information-technology Promotion Agency, Japan (IPA), 2003-2014. / Copyright (C) 1998-2014 FLOP DESIGN",
+    "foundry": "FLOP DESIGN",
+    "brand": {
+      "name": "FLOP DESIGN",
+      "slug": "flopdesign",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.flopdesign.com/",
+      "description": "FLOP DESIGN。03スマートフォントUI；IPA Font License + 假名/webfont 附加限制。"
+    },
+    "releaseYear": 2014,
+    "version": "lineage-stub",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "UI"
+    ],
+    "charCount": 0,
+    "glyphCount": 0,
+    "viewCount": 0
+  },
+  {
+    "id": "9d49e62d-b377-4364-89ad-d7bccfc3226b",
+    "name": "天天宅在家",
+    "en": "Star Love (author brand)",
+    "family": "wenfeng-zhaizaijia",
+    "normalized": "Zhaizaijia",
+    "designer": "天天宅在家 / starlove0425",
+    "designerShort": "starlove",
+    "category": "手写体",
+    "tags": [
+      "手写",
+      "上游",
+      "作者声明",
+      "lineage-stub",
+      "繁体中文"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "天天宅在家（starlove0425）作者品牌占位。其下三款原创手写：宅在家自动笔 / 麦克笔 / 粉条甜（巴哈姆特发布，作者声明完全免费）。目录内可解析的再发版为花乐 FWHP（SIL OFL 1.1）三款。本波无单一「天天宅在家.ttf」可钉；version=lineage-stub。勿将本条标成 OFL。CDN STOPPED。",
+    "license": "免费商用",
+    "licenseName": "作者声明完全免费（starlove0425）",
+    "licenseUrl": "https://home.gamer.com.tw/home.php?owner=starlove0425",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Zhaizaijia/LICENSE",
+    "licenseNotes": "原作 starlove0425（天天宅在家）巴哈姆特声明：「镶嵌改作商标都随便使用，不用特别再告知」「想用就抓，用好用满」「随便抓随便用，就跟思源黑体一样」。非 SPDX OFL。正式 OFL 1.1 再发见 FWHP-Enfun/Star-Love-Font（目录：宅在家粉条甜/麦克笔/自动笔）。本波未钉原作 Google Drive TTF（链接经 reurl 跳转，无稳定 sha pin）。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2019-2026 天天宅在家 starlove0425 (FULLY FREE to USE)",
+    "foundry": "天天宅在家",
+    "brand": {
+      "name": "天天宅在家",
+      "slug": "starlove",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://home.gamer.com.tw/home.php?owner=starlove0425",
+      "description": "starlove0425。宅在家系列手写原创；作者声明完全免费。FWHP 另以 OFL 再发。"
+    },
+    "releaseYear": 2019,
+    "version": "lineage-stub",
+    "languages": [
+      "繁体中文",
+      "简体中文",
+      "日文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 0,
+    "glyphCount": 0,
+    "viewCount": 0
   }
 ]

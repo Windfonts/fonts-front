@@ -59,7 +59,7 @@
     },
     "smart-font-ui": {
       "name": "03スマートフォントUI",
-      "upstreamName": "03スマートフォントUI"
+      "upstreamName": ""
     },
     "qiantu": {
       "name": "千图字库",
@@ -149,6 +149,10 @@
     },
     "ipamj-mincho": {
       "name": "IPAmj明朝",
+      "upstreamName": ""
+    },
+    "zhaizaijia": {
+      "name": "天天宅在家",
       "upstreamName": ""
     }
   },
@@ -774,7 +778,7 @@
       "relation": "fork",
       "licenseFollows": "inherit",
       "upstreamName": "03スマートフォントUI",
-      "upstreamOwnerId": "fontworks",
+      "upstreamOwnerId": "flopdesign",
       "group": "smart-font-ui"
     },
     "霞鹜尚智黑 CL": {
@@ -1905,21 +1909,27 @@
       "makerId": "fwhp",
       "relation": "fork",
       "upstreamName": "天天宅在家",
-      "licenseFollows": "inherit"
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "starlove",
+      "group": "zhaizaijia"
     },
     "宅在家自动笔": {
       "ownerId": "fwhp",
       "makerId": "fwhp",
       "relation": "fork",
       "upstreamName": "天天宅在家",
-      "licenseFollows": "inherit"
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "starlove",
+      "group": "zhaizaijia"
     },
     "宅在家粉条甜": {
       "ownerId": "fwhp",
       "makerId": "fwhp",
       "relation": "fork",
       "upstreamName": "天天宅在家",
-      "licenseFollows": "inherit"
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "starlove",
+      "group": "zhaizaijia"
     },
     "汲古明体A": {
       "ownerId": "fwhp",
@@ -3456,6 +3466,26 @@
       "upstreamOwnerId": "ipa",
       "family": "wenfeng-ipamjmincho",
       "normalized": "IPAmjMincho"
+    },
+    "03スマートフォントUI": {
+      "ownerId": "flopdesign",
+      "makerId": "flopdesign",
+      "group": "smart-font-ui",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "flopdesign",
+      "family": "wenfeng-smartfontui",
+      "normalized": "SmartFontUI"
+    },
+    "天天宅在家": {
+      "ownerId": "starlove",
+      "makerId": "starlove",
+      "group": "zhaizaijia",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "starlove",
+      "family": "wenfeng-zhaizaijia",
+      "normalized": "Zhaizaijia"
     }
   }
 }

@@ -2625,6 +2625,46 @@
       "openSource": true,
       "claimed": false,
       "description": "Typingart（Nakai）。こころ明朝体作者。官网 typingart.net；こころ明朝页 ?p=46 2026-09 已 404，本波以 luxcem/typingart-fonts@d7d6a46 备份钉 zip，随包 IPA Font License 1.0（非 OFL）。"
+    },
+    {
+      "id": "flopdesign",
+      "name": "FLOP DESIGN",
+      "en": "FLOP DESIGN",
+      "short": "フロップ",
+      "website": "https://www.flopdesign.com/",
+      "aliases": [
+        "FLOP DESIGN",
+        "フロップデザイン",
+        "flopdesign",
+        "Flop Design"
+      ],
+      "fontNames": [
+        "03スマートフォントUI"
+      ],
+      "kind": "foundry",
+      "openSource": true,
+      "claimed": false,
+      "description": "FLOP DESIGN（フロップデザイン）。03スマートフォントUI 作者；基于 IPAexゴシック 的 IPA Font License 衍生。官网 freefont 页 2026-09 现 403；现行分发 BOOTH https://flopdesign.booth.pm/items/2296502。另声明假名版权与 webfont/嵌入限制（需日文 Webfont 套件）。"
+    },
+    {
+      "id": "starlove",
+      "name": "天天宅在家",
+      "en": "starlove0425",
+      "short": "宅在家",
+      "website": "https://home.gamer.com.tw/home.php?owner=starlove0425",
+      "aliases": [
+        "天天宅在家",
+        "starlove0425",
+        "Star Love",
+        "StarLove"
+      ],
+      "fontNames": [
+        "天天宅在家"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "巴哈姆特创作者 starlove0425（天天宅在家）。原创手写三款：宅在家自动笔 / 麦克笔 / 粉条甜。作者声明「完全免费」「镶嵌改作商标都随便使用」。FWHP 以 SIL OFL 1.1 再发于 FWHP-Enfun/Star-Love-Font。"
     }
   ]
 }

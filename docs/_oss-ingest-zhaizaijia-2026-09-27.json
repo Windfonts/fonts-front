@@ -1,0 +1,61 @@
+{
+  "wave": "zhaizaijia-upstream-c5",
+  "date": "2026-09-27",
+  "tz": "Asia/Shanghai",
+  "cdn": "STOPPED",
+  "status": "STUB_AUTHOR_BRAND",
+  "note": "Foundry 轨 C5：宅在家粉条甜/麦克笔/自动笔（Zzft/Zzmk/Zzzd）缺失上游「天天宅在家」。原作 starlove0425 作者声明完全免费；FWHP 三款已以 OFL 入库。本波 catalog stub 占位作者品牌根，不钉原作 Drive TTF，不把 stub 标 OFL。",
+  "original": {
+    "author": "天天宅在家 / starlove0425",
+    "bahamut": "https://home.gamer.com.tw/home.php?owner=starlove0425",
+    "faces": [
+      "宅在家自动笔",
+      "宅在家麦克笔",
+      "宅在家粉条甜"
+    ],
+    "license": "作者声明完全免费（NOT OFL）"
+  },
+  "fwhp": {
+    "repo": "https://github.com/FWHP-Enfun/Star-Love-Font",
+    "license": "SIL OFL 1.1",
+    "catalog": [
+      "宅在家粉条甜",
+      "宅在家麦克笔",
+      "宅在家自动笔"
+    ]
+  },
+  "families": [
+    {
+      "catalogName": "天天宅在家",
+      "en": "Star Love (author brand)",
+      "norm": "Zhaizaijia",
+      "family": "wenfeng-zhaizaijia",
+      "version": "lineage-stub",
+      "glyphCount": 0,
+      "charCount": 0,
+      "role": "original-upstream-stub",
+      "pin": null,
+      "pkgPath": null,
+      "licensePath": "font-licenses/licenses/Zhaizaijia/LICENSE"
+    }
+  ],
+  "downstream": [
+    {
+      "name": "宅在家粉条甜",
+      "norm": "Zzft",
+      "upstreamName": "天天宅在家"
+    },
+    {
+      "name": "宅在家麦克笔",
+      "norm": "Zzmk",
+      "upstreamName": "天天宅在家"
+    },
+    {
+      "name": "宅在家自动笔",
+      "norm": "Zzzd",
+      "upstreamName": "天天宅在家"
+    }
+  ],
+  "parkPath": "/Users/feibisi-studio/Projects/_fonts_park/zhaizaijia-2026-09-27",
+  "labStaging": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/zhaizaijia-2026-09-27"
+}

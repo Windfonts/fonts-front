@@ -1,0 +1,15 @@
+{
+  "wave": "smartfontui-upstream-c4",
+  "date": "2026-09-27",
+  "cdn": "STOPPED",
+  "status": "BLOCKED_BINARY_PIN",
+  "catalogName": "03スマートフォントUI",
+  "norm": "SmartFontUI",
+  "family": "wenfeng-smartfontui",
+  "license": "IPA Font License 1.0 (NOT OFL) + FLOP webfont/embed extra terms",
+  "packages": null,
+  "reason": "Official freefont 403; BOOTH login wall; no clean OTF pin. lineage-stub only.",
+  "downstream": [
+    "霞鹜尚智黑"
+  ]
+}

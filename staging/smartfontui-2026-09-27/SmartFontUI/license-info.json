@@ -1,0 +1,16 @@
+{
+  "norm": "SmartFontUI",
+  "spdx": "IPA-1.0",
+  "licenseName": "IPA Font License",
+  "notOFL": true,
+  "extraTerms": "FLOP DESIGN kana copyright + webfont/APP embed ban (Japanese Webfont Kit required)",
+  "binaryPin": null,
+  "blocker": "Official freefont page 403; BOOTH free download requires login; no clean redistributable OTF pin this wave",
+  "sources": [
+    "https://www.flopdesign.com/freefont/smartfont.html",
+    "https://flopdesign.booth.pm/items/2296502",
+    "https://github.com/lxgw/LxgwFasmartGothic"
+  ],
+  "wave": "2026-09-27-smartfontui-c4",
+  "cdn": "STOPPED"
+}

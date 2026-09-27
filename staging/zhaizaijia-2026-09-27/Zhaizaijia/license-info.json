@@ -1,0 +1,16 @@
+{
+  "norm": "Zhaizaijia",
+  "spdx": null,
+  "licenseName": "作者声明完全免费（starlove0425）",
+  "notOFL": true,
+  "binaryPin": null,
+  "blocker": "No single 天天宅在家.ttf; original TTFs on Google Drive via Bahamut reurl — unstable pin. Catalog stub links to FWHP OFL trio.",
+  "fwhpOflReleases": [
+    "宅在家粉条甜",
+    "宅在家麦克笔",
+    "宅在家自动笔"
+  ],
+  "fwhpRepo": "https://github.com/FWHP-Enfun/Star-Love-Font",
+  "wave": "2026-09-27-zhaizaijia-c5",
+  "cdn": "STOPPED"
+}
