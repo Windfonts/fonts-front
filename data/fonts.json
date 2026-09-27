@@ -20471,7 +20471,7 @@
   },
   {
     "id": "e21ae10e-8c68-4cec-af2c-0071940458b9",
-    "name": "拙见橄榄简体",
+    "name": "卓健橄榄简体",
     "en": "ZhuoJianGanLanJianTi",
     "family": "wenfeng-zjgljt",
     "normalized": "Zjgljt",
@@ -20484,7 +20484,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "ZhuoJianGanLanJianTi 是一款由 zhuojianchina 于2019年发布的简体中文字体。其名称卓见橄榄简体暗示了字体可能具备清晰、易读且带有一定人文气息的设计特点。字体元信息显示为常规字重，适用于需要简洁、现代感的中文排版场景，如UI界面、品牌宣传材料等。具体的设计风格、笔画特征及更详细的设计背景需进一步查阅官方资料确认。",
+    "description": "卓健橄榄简体（ZhuoJianGanLanJianTi），zhuojianchina 于2019年发布的免费商用简体中文字体，简约流畅、偏科技感。",
     "license": "免费商用",
     "licenseName": "卓健橄榄简体授权协议",
     "licenseUrl": "",
@@ -20495,7 +20495,7 @@
     "copyright": "",
     "foundry": "Zhuojian",
     "brand": {
-      "name": "Zhuojian",
+      "name": "卓健",
       "slug": "zhuojian",
       "logoUrl": "",
       "avatarUrl": "",
