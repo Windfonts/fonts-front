@@ -13,6 +13,8 @@
     {
       title: '许可',
       items: [
+        { id: 'license-query', label: '授权查询', path: 'license-query.html' },
+        { id: 'licenses', label: '许可类型', path: 'licenses.html' },
         { id: 'license', label: '许可说明', path: 'license.html' },
         { id: 'upload-terms', label: '上传条款', path: 'upload-terms.html' }
       ]

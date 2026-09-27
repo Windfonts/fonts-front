@@ -419,6 +419,9 @@
     { id: 'domains', label: '域名', path: 'app/domains.html', icon: 'globe' },
     { id: 'fonts', label: '我的字体', path: 'app/fonts.html', icon: 'font' },
     { id: 'subset', label: '子集化', path: 'app/subset.html', icon: 'scissors' },
+    { id: 'license', label: '授权查询', path: 'app/license-query.html', icon: 'shield' },
+    { id: 'standard-bar', label: '标准棒', path: 'app/standard-bar.html', icon: 'stack' },
+    { id: 'tickets', label: '工单', path: 'app/tickets.html', icon: 'list' },
     { id: 'usage', label: '用量', path: 'app/usage.html', icon: 'chart' },
     { id: 'team', label: '团队', path: 'app/team.html', icon: 'group' },
     { id: 'settings', label: '设置', path: 'app/settings.html', icon: 'settings' }
