@@ -1839,7 +1839,7 @@
       "kind": "author",
       "openSource": true,
       "claimed": false,
-      "description": "Keynote 研究所人生哥。演示系列的作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。"
+      "description": "Keynote 研究所人生哥。演示系列 / SlideFont 作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。钉 e6a0d2bcef05。"
     },
     {
       "id": "takushun",
@@ -2432,15 +2432,20 @@
         "keynoteart",
         "Slide Font",
         "幻灯片字体",
-        "SlideFont Project"
+        "SlideFont Project",
+        "演示字体",
+        "keynote"
       ],
       "kind": "author",
       "openSource": true,
       "claimed": false,
-      "description": "Slide Font（幻灯片字体）作者；寒蝉书体·春秋之上游。SIL OFL 1.1。",
+      "description": "Slide Font（幻灯片字体 / 演示字体）作者身份别名；与 keynote（人生哥）同指 maoken-fonts/slidefont。寒蝉春秋之上游为演示春风楷 / 演示秋鸿楷。SIL OFL 1.1。",
       "fontNames": [
-        "Slide Font",
-        "幻灯片字体"
+        "演示春风楷",
+        "演示秋鸿楷",
+        "演示佛系体",
+        "演示夏行楷",
+        "演示悠然小楷"
       ]
     },
     {

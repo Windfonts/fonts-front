@@ -79,7 +79,7 @@
     },
     "chill-chunqiu": {
       "name": "寒蝉书体·春秋",
-      "upstreamName": "Slide Font / 幻灯片字体"
+      "upstreamName": ""
     },
     "kh-dot-font-series": {
       "name": "KH Dot Font Series / KHドットフォントシリーズ",
@@ -101,6 +101,10 @@
       "official": "https://littlelimit.net/k6x8.htm",
       "pin": "k6x8_ttf_2023-10-19",
       "licenseNote": "NOT OFL — littlelimit free software license (historically noted M+ FONTS license alignment)"
+    },
+    "slide-font": {
+      "name": "Slide Font / 演示字体",
+      "upstreamName": ""
     }
   },
   "byName": {
@@ -1814,13 +1818,15 @@
       "ownerId": "keynote",
       "makerId": "keynote",
       "relation": "original",
-      "licenseFollows": "own"
+      "licenseFollows": "own",
+      "group": "slide-font"
     },
     "演示悠然小楷": {
       "ownerId": "keynote",
       "makerId": "keynote",
       "relation": "original",
-      "licenseFollows": "own"
+      "licenseFollows": "own",
+      "group": "slide-font"
     },
     "演示悠然小楷二": {
       "ownerId": "keynote",
@@ -1832,19 +1838,22 @@
       "ownerId": "keynote",
       "makerId": "keynote",
       "relation": "original",
-      "licenseFollows": "own"
+      "licenseFollows": "own",
+      "group": "slide-font"
     },
     "演示夏行楷": {
       "ownerId": "keynote",
       "makerId": "keynote",
       "relation": "original",
-      "licenseFollows": "own"
+      "licenseFollows": "own",
+      "group": "slide-font"
     },
     "演示秋鸿楷": {
       "ownerId": "keynote",
       "makerId": "keynote",
       "relation": "original",
-      "licenseFollows": "own"
+      "licenseFollows": "own",
+      "group": "slide-font"
     },
     "宅在家麦克笔": {
       "ownerId": "fwhp",
@@ -2434,8 +2443,8 @@
       "makerId": "chilltype",
       "group": "chill-chunqiu",
       "relation": "fork",
-      "upstreamName": "Slide Font / 幻灯片字体",
-      "upstreamOwnerId": "keynoteart",
+      "upstreamName": "演示春风楷",
+      "upstreamOwnerId": "keynote",
       "licenseFollows": "inherit"
     },
     "寒蝉春秋·秋鸿": {
@@ -2443,8 +2452,8 @@
       "makerId": "chilltype",
       "group": "chill-chunqiu",
       "relation": "fork",
-      "upstreamName": "Slide Font / 幻灯片字体",
-      "upstreamOwnerId": "keynoteart",
+      "upstreamName": "演示秋鸿楷",
+      "upstreamOwnerId": "keynote",
       "licenseFollows": "inherit"
     },
     "DotGothic16": {

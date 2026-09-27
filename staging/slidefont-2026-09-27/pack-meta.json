@@ -1,0 +1,216 @@
+{
+  "wave": "slidefont-upstream",
+  "date": "2026-09-27",
+  "tz": "Asia/Shanghai",
+  "cdn": "STOPPED",
+  "note": "Foundry 轨 C1：为寒蝉春秋·春风/秋鸿钉官方上游 SlideFont（maoken-fonts/slidefont）。目录已有演示*五款；本波以官方 OFL 仓 pin 刷新 packages/licenses，并把 fork upstreamName 改成精确目录名。不上传 CDN / 不跑 vault docker。Sly1 演示悠然小楷二不在官方仓，本波不动。",
+  "officialRepo": "https://github.com/maoken-fonts/slidefont",
+  "pinCommit": "e6a0d2bcef0501849178b8c55047d80e26c6fedb",
+  "pinCommitDateCST": "2023-08-02 23:29:00 CST",
+  "pinCommitSubject": "Fix name typo",
+  "license": "OFL-1.1",
+  "licenseFile": "OFL.txt",
+  "parkPath": "/Users/feibisi-studio/Projects/_fonts_park/slidefont-2026-09-27",
+  "labStaging": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/slidefont-2026-09-27",
+  "tarball": {
+    "file": "/Users/feibisi-studio/Projects/_fonts_park/slidefont-2026-09-27/dl/slidefont-e6a0d2bcef0501849178b8c55047d80e26c6fedb.tar.gz",
+    "sha256": "3c5b0aaf2193ac704ad73e0e11030e2967948aaca76deb8212483ba70dfd0dfd",
+    "bytes": 9314304
+  },
+  "ofl": {
+    "path": "OFL.txt",
+    "bytes": 4426,
+    "sha256": "1dc16618a7fdf18b1e4776e07d044e81899a4f4d104361bdbc3ae48b05ee3a50"
+  },
+  "downstream": [
+    {
+      "name": "寒蝉春秋·春风",
+      "norm": "Hccqcf",
+      "upstreamName": "演示春风楷"
+    },
+    {
+      "name": "寒蝉春秋·秋鸿",
+      "norm": "Hccqqh",
+      "upstreamName": "演示秋鸿楷"
+    }
+  ],
+  "skipped": [
+    {
+      "name": "演示悠然小楷二",
+      "norm": "Sly1",
+      "reason": "不在 maoken-fonts/slidefont 官方五面；FWHP 镜像另有 slideyouran1"
+    },
+    {
+      "name": "演示斜黑体",
+      "norm": "Ysxh",
+      "reason": "非 SlideFont 系列（思源斜体 fork），本波不动"
+    }
+  ],
+  "families": [
+    {
+      "id": "d8c62110-7ae3-4310-8da0-61f9b3fe3c1c",
+      "folder": "Slidechunfeng",
+      "norm": "Slcf",
+      "family": "wenfeng-slcf",
+      "name": "演示春风楷",
+      "en": "Slide Chunfeng",
+      "role": "required-hccq",
+      "primaryTtf": "Slidechunfeng-Regular.ttf",
+      "psName": "Slidechunfeng-Regular",
+      "familyName": "Slidechunfeng",
+      "fullName": "Slidechunfeng Regular",
+      "fontVersion": "Version 1.000",
+      "glyphCount": 6980,
+      "charCount": 6971,
+      "copyright": "Copyright © 2020 by keynoteart. All rights reserved.",
+      "bytes": 9673860,
+      "sha256": "0c2c7998ca39dd2be38e302a457198ea6e573af2834ccd84015fe714f9569cca",
+      "pkgPath": "fonts-packages/fonts/Slcf/Regular.ttf",
+      "files": [
+        {
+          "path": "Slidechunfeng/Slidechunfeng-Regular.ttf",
+          "bytes": 9673860,
+          "sha256": "0c2c7998ca39dd2be38e302a457198ea6e573af2834ccd84015fe714f9569cca"
+        },
+        {
+          "path": "Slidechunfeng/OFL.txt",
+          "bytes": 4426,
+          "sha256": "1dc16618a7fdf18b1e4776e07d044e81899a4f4d104361bdbc3ae48b05ee3a50"
+        }
+      ]
+    },
+    {
+      "id": "7673e90d-c2e9-41de-8458-586cb6c2e546",
+      "folder": "Slideqiuhong",
+      "norm": "Slqh",
+      "family": "wenfeng-slqh",
+      "name": "演示秋鸿楷",
+      "en": "Slide Qiuhong",
+      "role": "required-hccq",
+      "primaryTtf": "Slideqiuhong-Regular.ttf",
+      "psName": "Slideqiuhong-Regular",
+      "familyName": "Slideqiuhong",
+      "fullName": "Slideqiuhong Regular",
+      "fontVersion": "Version 1.000",
+      "glyphCount": 6971,
+      "charCount": 6970,
+      "copyright": "Copyright © 2020 by Keynoteart. All rights reserved.",
+      "bytes": 14924580,
+      "sha256": "d74ea3a8872e10226833793d0075716a4bcc2a3f72edb45cfeac6330f912d899",
+      "pkgPath": "fonts-packages/fonts/Slqh/Regular.ttf",
+      "files": [
+        {
+          "path": "Slideqiuhong/Slideqiuhong-Regular.ttf",
+          "bytes": 14924580,
+          "sha256": "d74ea3a8872e10226833793d0075716a4bcc2a3f72edb45cfeac6330f912d899"
+        },
+        {
+          "path": "Slideqiuhong/OFL.txt",
+          "bytes": 4426,
+          "sha256": "1dc16618a7fdf18b1e4776e07d044e81899a4f4d104361bdbc3ae48b05ee3a50"
+        }
+      ]
+    },
+    {
+      "id": "18983a5b-b25f-4677-ad87-a17e73887934",
+      "folder": "Slidefu",
+      "norm": "Slfu",
+      "family": "wenfeng-slfu",
+      "name": "演示佛系体",
+      "en": "Slide Fu",
+      "role": "series",
+      "primaryTtf": "Slidefu-Regular.ttf",
+      "psName": "Slidefu-Regular",
+      "familyName": "Slidefu",
+      "fullName": "Slidefu Regular",
+      "fontVersion": "Version 1.000",
+      "glyphCount": 6954,
+      "charCount": 6953,
+      "copyright": "Copyright © 2019 by keynoteart x QiuYePPT. All rights reserved.",
+      "bytes": 15172184,
+      "sha256": "b8c59c7cddb8723a8f9c53ce0bd2a949d10241ddc88569c1cbb0eb4d889861d2",
+      "pkgPath": "fonts-packages/fonts/Slfu/Regular.ttf",
+      "files": [
+        {
+          "path": "Slidefu/Slidefu-Regular.ttf",
+          "bytes": 15172184,
+          "sha256": "b8c59c7cddb8723a8f9c53ce0bd2a949d10241ddc88569c1cbb0eb4d889861d2"
+        },
+        {
+          "path": "Slidefu/OFL.txt",
+          "bytes": 4426,
+          "sha256": "1dc16618a7fdf18b1e4776e07d044e81899a4f4d104361bdbc3ae48b05ee3a50"
+        }
+      ]
+    },
+    {
+      "id": "06cbcdbb-00b3-46c0-acee-5c390b4ff0ab",
+      "folder": "Slidexiaxing",
+      "norm": "Slxx",
+      "family": "wenfeng-slxx",
+      "name": "演示夏行楷",
+      "en": "Slide Xiaxing",
+      "role": "series",
+      "primaryTtf": "Slidexiaxing-Regular.ttf",
+      "psName": "Slidexiaxing-Regular",
+      "familyName": "Slidexiaxing",
+      "fullName": "Slidexiaxing Regular",
+      "fontVersion": "Version 1.000",
+      "glyphCount": 6972,
+      "charCount": 6971,
+      "copyright": "Copyright © 2020 by keynoteart. All rights reserved.",
+      "bytes": 10073644,
+      "sha256": "fac1f0ec044b63aa45c0775c17a2f03cbf6427b4bd7b93da87dde9e7e2020cfc",
+      "pkgPath": "fonts-packages/fonts/Slxx/Regular.ttf",
+      "files": [
+        {
+          "path": "Slidexiaxing/Slidexiaxing-Regular.ttf",
+          "bytes": 10073644,
+          "sha256": "fac1f0ec044b63aa45c0775c17a2f03cbf6427b4bd7b93da87dde9e7e2020cfc"
+        },
+        {
+          "path": "Slidexiaxing/OFL.txt",
+          "bytes": 4426,
+          "sha256": "1dc16618a7fdf18b1e4776e07d044e81899a4f4d104361bdbc3ae48b05ee3a50"
+        }
+      ]
+    },
+    {
+      "id": "04427b58-4554-462f-8cdc-0a4b1837018c",
+      "folder": "Slideyouran",
+      "norm": "Slyr",
+      "family": "wenfeng-slyr",
+      "name": "演示悠然小楷",
+      "en": "Slide Youran",
+      "role": "series",
+      "primaryTtf": "Slideyouran-Regular.ttf",
+      "psName": "slideyouran-Regular",
+      "familyName": "slideyouran",
+      "fullName": "slideyouran Regular",
+      "fontVersion": "Version 1.000",
+      "glyphCount": 6956,
+      "charCount": 6955,
+      "copyright": "Copyright © 2020 by keynoteart x mengxiangyuan x QiuyePPT. All rights reserved.",
+      "bytes": 12639808,
+      "sha256": "10a92c32d388f119db8a975fe6f0507ec48d15e3050e7ff2971c3784ad878580",
+      "pkgPath": "fonts-packages/fonts/Slyr/Regular.ttf",
+      "files": [
+        {
+          "path": "Slideyouran/Slideyouran-Regular.ttf",
+          "bytes": 12639808,
+          "sha256": "10a92c32d388f119db8a975fe6f0507ec48d15e3050e7ff2971c3784ad878580"
+        },
+        {
+          "path": "Slideyouran/OFL.txt",
+          "bytes": 4426,
+          "sha256": "1dc16618a7fdf18b1e4776e07d044e81899a4f4d104361bdbc3ae48b05ee3a50"
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    "CDN upload STOPPED",
+    "vault prod.db register drafted but NOT executed",
+    "ANALYSIS_META_VER / package-sizes bump wait Bot after packages cut"
+  ]
+}

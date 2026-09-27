@@ -10670,19 +10670,25 @@
     "designer": "人生哥",
     "designerShort": "人生哥",
     "category": "手写体",
-    "tags": [],
+    "tags": [
+      "开源",
+      "OFL",
+      "手写",
+      "楷体",
+      "演示"
+    ],
     "weights": [
       "Regular"
     ],
-    "description": "演示系列。SIL OFL 1.1。",
+    "description": "演示春风楷（Slide Chunfeng）。SlideFont / 演示字体系列，Keynote 研究所；官方开源仓 maoken-fonts/slidefont。SIL OFL 1.1。钉 commit e6a0d2bcef05。",
     "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "https://www.100font.com/thread-152.htm",
-    "licenseFileUrl": "",
-    "licenseNotes": "Keynote 研究所出品（人生哥发布），作者声明永久免费商用（100font 官方发布页）。字稿作者各自署名；修改与转售条款以官方页声明为准。",
+    "licenseUrl": "https://github.com/maoken-fonts/slidefont/blob/e6a0d2bcef0501849178b8c55047d80e26c6fedb/OFL.txt",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Slcf/LICENSE",
+    "licenseNotes": "SlideFont Project 官方仓 maoken-fonts/slidefont 钉 e6a0d2bcef05（2023-08-02 CST Fix name typo）。SIL OFL 1.1。CDN STOPPED — 本波 Foundry 只钉源/目录，不上传。",
     "licenseVerified": true,
     "purchaseUrl": null,
-    "copyright": "",
+    "copyright": "Copyright © 2020 by keynoteart. All rights reserved.",
     "foundry": "Keynote研究所",
     "brand": {
       "name": "人生哥",
@@ -10690,10 +10696,10 @@
       "logoUrl": "",
       "avatarUrl": "",
       "website": "https://github.com/maoken-fonts/slidefont",
-      "description": "Keynote 研究所。演示系列的作者。"
+      "description": "Keynote 研究所人生哥。演示系列 / SlideFont 作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。"
     },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch2 2026-09-23",
+    "releaseYear": 2020,
+    "version": "Version 1.000",
     "languages": [
       "繁体中文",
       "简体中文"
@@ -10701,8 +10707,8 @@
     "useCases": [
       "标题"
     ],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 6971,
+    "glyphCount": 6980,
     "viewCount": 1
   },
   {
@@ -10714,19 +10720,25 @@
     "designer": "人生哥",
     "designerShort": "人生哥",
     "category": "手写体",
-    "tags": [],
+    "tags": [
+      "开源",
+      "OFL",
+      "手写",
+      "楷体",
+      "演示"
+    ],
     "weights": [
       "Regular"
     ],
-    "description": "演示系列。作者写明已改成 SIL OFL 1.1。",
+    "description": "演示佛系体（Slide Fu）。SlideFont / 演示字体系列，Keynote 研究所；官方开源仓 maoken-fonts/slidefont。SIL OFL 1.1。钉 commit e6a0d2bcef05。",
     "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "https://www.100font.com/thread-152.htm",
-    "licenseFileUrl": "",
-    "licenseNotes": "Keynote 研究所出品（人生哥发布），作者声明永久免费商用（100font 官方发布页）。字稿作者各自署名；修改与转售条款以官方页声明为准。",
+    "licenseUrl": "https://github.com/maoken-fonts/slidefont/blob/e6a0d2bcef0501849178b8c55047d80e26c6fedb/OFL.txt",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Slfu/LICENSE",
+    "licenseNotes": "SlideFont Project 官方仓 maoken-fonts/slidefont 钉 e6a0d2bcef05（2023-08-02 CST Fix name typo）。SIL OFL 1.1。CDN STOPPED — 本波 Foundry 只钉源/目录，不上传。",
     "licenseVerified": true,
     "purchaseUrl": null,
-    "copyright": "Copyright 2019-2020 The SlideFont Project Authors",
+    "copyright": "Copyright © 2019 by keynoteart x QiuYePPT. All rights reserved.",
     "foundry": "Keynote研究所",
     "brand": {
       "name": "人生哥",
@@ -10734,10 +10746,10 @@
       "logoUrl": "",
       "avatarUrl": "",
       "website": "https://github.com/maoken-fonts/slidefont",
-      "description": "Keynote 研究所。演示系列的作者。"
+      "description": "Keynote 研究所人生哥。演示系列 / SlideFont 作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。"
     },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch2 2026-09-23",
+    "releaseYear": 2020,
+    "version": "Version 1.000",
     "languages": [
       "繁体中文",
       "简体中文"
@@ -10745,8 +10757,8 @@
     "useCases": [
       "标题"
     ],
-    "charCount": 6986,
-    "glyphCount": 6987,
+    "charCount": 6953,
+    "glyphCount": 6954,
     "viewCount": 3
   },
   {
@@ -10758,19 +10770,25 @@
     "designer": "人生哥",
     "designerShort": "人生哥",
     "category": "手写体",
-    "tags": [],
+    "tags": [
+      "开源",
+      "OFL",
+      "手写",
+      "楷体",
+      "演示"
+    ],
     "weights": [
       "Regular"
     ],
-    "description": "演示系列。SIL OFL 1.1。",
+    "description": "演示秋鸿楷（Slide Qiuhong）。SlideFont / 演示字体系列，Keynote 研究所；官方开源仓 maoken-fonts/slidefont。SIL OFL 1.1。钉 commit e6a0d2bcef05。",
     "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "https://www.100font.com/thread-152.htm",
-    "licenseFileUrl": "",
-    "licenseNotes": "Keynote 研究所出品（人生哥发布），作者声明永久免费商用（100font 官方发布页）。字稿作者各自署名；修改与转售条款以官方页声明为准。",
+    "licenseUrl": "https://github.com/maoken-fonts/slidefont/blob/e6a0d2bcef0501849178b8c55047d80e26c6fedb/OFL.txt",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Slqh/LICENSE",
+    "licenseNotes": "SlideFont Project 官方仓 maoken-fonts/slidefont 钉 e6a0d2bcef05（2023-08-02 CST Fix name typo）。SIL OFL 1.1。CDN STOPPED — 本波 Foundry 只钉源/目录，不上传。",
     "licenseVerified": true,
     "purchaseUrl": null,
-    "copyright": "",
+    "copyright": "Copyright © 2020 by Keynoteart. All rights reserved.",
     "foundry": "Keynote研究所",
     "brand": {
       "name": "人生哥",
@@ -10778,10 +10796,10 @@
       "logoUrl": "",
       "avatarUrl": "",
       "website": "https://github.com/maoken-fonts/slidefont",
-      "description": "Keynote 研究所。演示系列的作者。"
+      "description": "Keynote 研究所人生哥。演示系列 / SlideFont 作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。"
     },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch2 2026-09-23",
+    "releaseYear": 2020,
+    "version": "Version 1.000",
     "languages": [
       "繁体中文",
       "简体中文"
@@ -10789,8 +10807,8 @@
     "useCases": [
       "标题"
     ],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 6970,
+    "glyphCount": 6971,
     "viewCount": 1
   },
   {
@@ -10802,19 +10820,25 @@
     "designer": "人生哥",
     "designerShort": "人生哥",
     "category": "手写体",
-    "tags": [],
+    "tags": [
+      "开源",
+      "OFL",
+      "手写",
+      "楷体",
+      "演示"
+    ],
     "weights": [
       "Regular"
     ],
-    "description": "演示系列。SIL OFL 1.1。",
+    "description": "演示夏行楷（Slide Xiaxing）。SlideFont / 演示字体系列，Keynote 研究所；官方开源仓 maoken-fonts/slidefont。SIL OFL 1.1。钉 commit e6a0d2bcef05。",
     "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "https://www.100font.com/thread-152.htm",
-    "licenseFileUrl": "",
-    "licenseNotes": "Keynote 研究所出品（人生哥发布），作者声明永久免费商用（100font 官方发布页）。字稿作者各自署名；修改与转售条款以官方页声明为准。",
+    "licenseUrl": "https://github.com/maoken-fonts/slidefont/blob/e6a0d2bcef0501849178b8c55047d80e26c6fedb/OFL.txt",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Slxx/LICENSE",
+    "licenseNotes": "SlideFont Project 官方仓 maoken-fonts/slidefont 钉 e6a0d2bcef05（2023-08-02 CST Fix name typo）。SIL OFL 1.1。CDN STOPPED — 本波 Foundry 只钉源/目录，不上传。",
     "licenseVerified": true,
     "purchaseUrl": null,
-    "copyright": "Copyright 2019-2020 The SlideFont Project Authors",
+    "copyright": "Copyright © 2020 by keynoteart. All rights reserved.",
     "foundry": "Keynote研究所",
     "brand": {
       "name": "人生哥",
@@ -10822,10 +10846,10 @@
       "logoUrl": "",
       "avatarUrl": "",
       "website": "https://github.com/maoken-fonts/slidefont",
-      "description": "Keynote 研究所。演示系列的作者。"
+      "description": "Keynote 研究所人生哥。演示系列 / SlideFont 作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。"
     },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch2 2026-09-23",
+    "releaseYear": 2020,
+    "version": "Version 1.000",
     "languages": [
       "繁体中文",
       "简体中文"
@@ -10833,8 +10857,8 @@
     "useCases": [
       "标题"
     ],
-    "charCount": 6977,
-    "glyphCount": 6978,
+    "charCount": 6971,
+    "glyphCount": 6972,
     "viewCount": 2
   },
   {
@@ -10890,19 +10914,25 @@
     "designer": "人生哥",
     "designerShort": "人生哥",
     "category": "手写体",
-    "tags": [],
+    "tags": [
+      "开源",
+      "OFL",
+      "手写",
+      "楷体",
+      "演示"
+    ],
     "weights": [
       "Regular"
     ],
-    "description": "演示系列。SIL OFL 1.1。",
+    "description": "演示悠然小楷（Slide Youran）。SlideFont / 演示字体系列，Keynote 研究所；官方开源仓 maoken-fonts/slidefont。SIL OFL 1.1。钉 commit e6a0d2bcef05。",
     "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "https://github.com/maoken-fonts/slidefont",
+    "licenseUrl": "https://github.com/maoken-fonts/slidefont/blob/e6a0d2bcef0501849178b8c55047d80e26c6fedb/OFL.txt",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Slyr/LICENSE",
-    "licenseNotes": "SlideFont Project（Keynote 研究所）官方仓 maoken-fonts/slidefont 随仓 OFL.txt，SIL OFL 1.1 正式开源：可免费商用、可修改与再分发（修改版须遵守 RFN）。",
+    "licenseNotes": "SlideFont Project 官方仓 maoken-fonts/slidefont 钉 e6a0d2bcef05（2023-08-02 CST Fix name typo）。SIL OFL 1.1。CDN STOPPED — 本波 Foundry 只钉源/目录，不上传。",
     "licenseVerified": true,
     "purchaseUrl": null,
-    "copyright": "",
+    "copyright": "Copyright © 2020 by keynoteart x mengxiangyuan x QiuyePPT. All rights reserved.",
     "foundry": "Keynote研究所",
     "brand": {
       "name": "人生哥",
@@ -10910,10 +10940,10 @@
       "logoUrl": "",
       "avatarUrl": "",
       "website": "https://github.com/maoken-fonts/slidefont",
-      "description": "Keynote 研究所。演示系列的作者。"
+      "description": "Keynote 研究所人生哥。演示系列 / SlideFont 作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。"
     },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch2 2026-09-23",
+    "releaseYear": 2020,
+    "version": "Version 1.000",
     "languages": [
       "繁体中文",
       "简体中文"
@@ -10921,8 +10951,8 @@
     "useCases": [
       "标题"
     ],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 6955,
+    "glyphCount": 6956,
     "viewCount": 1
   },
   {
