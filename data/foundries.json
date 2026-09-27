@@ -2582,11 +2582,19 @@
       "openSource": true,
       "claimed": false,
       "provisional": false,
-      "description": "門真なむ（Num Kadoma）。k6x8 / 美咲フォント等极小点阵字体作者。站点自由软件许可（非 OFL）。",
+      "description": "門真なむ（Num Kadoma）。k6x8 / 美咲フォント / k8x12 / k12x8 等极小点阵字体作者。站点自由软件许可（非 OFL）。",
       "fontNames": [
         "k6x8 ゴシック",
         "k6x8 明朝",
-        "k6x8"
+        "k6x8",
+        "美咲ゴシック",
+        "美咲明朝",
+        "美咲ゴシック第2",
+        "k8x12",
+        "k8x12L",
+        "k8x12S",
+        "k12x8",
+        "美咲フォント"
       ]
     },
     {

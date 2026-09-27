@@ -22950,5 +22950,378 @@
     "charCount": 14541,
     "glyphCount": 9354,
     "viewCount": 1
+  },
+  {
+    "id": "7b1fe6cf-14ce-4982-83f7-49733f24967e",
+    "name": "美咲ゴシック",
+    "en": "Misaki Gothic",
+    "family": "wenfeng-misakig",
+    "normalized": "Misakig",
+    "designer": "Num Kadoma",
+    "designerShort": "littlelimit",
+    "category": "无衬线字体",
+    "tags": [
+      "像素",
+      "位图",
+      "美咲",
+      "日文",
+      "开源",
+      "自由软件"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "美咲ゴシック（Misaki Gothic）。門真なむ / littlelimit 点阵。站点自由软件许可（非 OFL；与 k6x8 同文）。钉 misaki_ttf_2021-05-05。 CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "littlelimit free software (M+ lineage note)",
+    "licenseUrl": "https://littlelimit.net/font.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Misakig/LICENSE",
+    "licenseNotes": "非 OFL。钉 https://littlelimit.net/arc/misaki/misaki_ttf_2021-05-05.zip sha256=c1851af85a0a…。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (C) 2002-2021 Num Kadoma",
+    "foundry": "littlelimit",
+    "brand": {
+      "name": "littlelimit",
+      "slug": "littlelimit",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://littlelimit.net/",
+      "description": "門真なむ（Num Kadoma）。k6x8 / 美咲フォント / k8x12 / k12x8 等极小点阵；站点自由软件许可（非 OFL）。"
+    },
+    "releaseYear": 2021,
+    "version": "2021.0505",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7192,
+    "glyphCount": 7174,
+    "viewCount": 0
+  },
+  {
+    "id": "a60b6dbd-83ac-47cd-bad6-649fbb532c2e",
+    "name": "美咲明朝",
+    "en": "Misaki Mincho",
+    "family": "wenfeng-misakim",
+    "normalized": "Misakim",
+    "designer": "Num Kadoma",
+    "designerShort": "littlelimit",
+    "category": "宋体",
+    "tags": [
+      "宋体",
+      "像素",
+      "位图",
+      "美咲",
+      "日文",
+      "开源",
+      "自由软件"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "美咲明朝（Misaki Mincho）。門真なむ / littlelimit 点阵。站点自由软件许可（非 OFL；与 k6x8 同文）。钉 misaki_ttf_2021-05-05。 CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "littlelimit free software (M+ lineage note)",
+    "licenseUrl": "https://littlelimit.net/font.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Misakim/LICENSE",
+    "licenseNotes": "非 OFL。钉 https://littlelimit.net/arc/misaki/misaki_ttf_2021-05-05.zip sha256=c1851af85a0a…。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (C) 2002-2021 Num Kadoma",
+    "foundry": "littlelimit",
+    "brand": {
+      "name": "littlelimit",
+      "slug": "littlelimit",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://littlelimit.net/",
+      "description": "門真なむ（Num Kadoma）。k6x8 / 美咲フォント / k8x12 / k12x8 等极小点阵；站点自由软件许可（非 OFL）。"
+    },
+    "releaseYear": 2021,
+    "version": "2021.0505",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7192,
+    "glyphCount": 7174,
+    "viewCount": 0
+  },
+  {
+    "id": "78812b21-81bd-4889-ad98-d8f5190fa52c",
+    "name": "美咲ゴシック第2",
+    "en": "Misaki Gothic 2nd",
+    "family": "wenfeng-misakig2nd",
+    "normalized": "Misakig2nd",
+    "designer": "Num Kadoma",
+    "designerShort": "littlelimit",
+    "category": "无衬线字体",
+    "tags": [
+      "像素",
+      "位图",
+      "美咲",
+      "日文",
+      "开源",
+      "自由软件"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "美咲ゴシック第2（Misaki Gothic 2nd）。門真なむ / littlelimit 点阵。站点自由软件许可（非 OFL；与 k6x8 同文）。钉 misaki_ttf_2021-05-05。 CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "littlelimit free software (M+ lineage note)",
+    "licenseUrl": "https://littlelimit.net/font.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Misakig2nd/LICENSE",
+    "licenseNotes": "非 OFL。钉 https://littlelimit.net/arc/misaki/misaki_ttf_2021-05-05.zip sha256=c1851af85a0a…。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (C) 2002-2021 Num Kadoma",
+    "foundry": "littlelimit",
+    "brand": {
+      "name": "littlelimit",
+      "slug": "littlelimit",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://littlelimit.net/",
+      "description": "門真なむ（Num Kadoma）。k6x8 / 美咲フォント / k8x12 / k12x8 等极小点阵；站点自由软件许可（非 OFL）。"
+    },
+    "releaseYear": 2021,
+    "version": "2021.0505",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7191,
+    "glyphCount": 7173,
+    "viewCount": 0
+  },
+  {
+    "id": "7ef8b8f5-827e-4c76-ade0-ee4f936062db",
+    "name": "k8x12",
+    "en": "k8x12",
+    "family": "wenfeng-k8x12",
+    "normalized": "K8x12",
+    "designer": "Num Kadoma",
+    "designerShort": "littlelimit",
+    "category": "无衬线字体",
+    "tags": [
+      "像素",
+      "位图",
+      "k8x12",
+      "日文",
+      "开源",
+      "自由软件"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "k8x12（k8x12）。門真なむ / littlelimit 点阵。站点自由软件许可（非 OFL；与 k6x8 同文）。钉 k8x12_ttf_2021-05-05。 CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "littlelimit free software (M+ lineage note)",
+    "licenseUrl": "https://littlelimit.net/font.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/K8x12/LICENSE",
+    "licenseNotes": "非 OFL。钉 https://littlelimit.net/arc/k8x12/k8x12_ttf_2021-05-05.zip sha256=8d006e3171f4…。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (C) 2015-2021 Num Kadoma",
+    "foundry": "littlelimit",
+    "brand": {
+      "name": "littlelimit",
+      "slug": "littlelimit",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://littlelimit.net/",
+      "description": "門真なむ（Num Kadoma）。k6x8 / 美咲フォント / k8x12 / k12x8 等极小点阵；站点自由软件许可（非 OFL）。"
+    },
+    "releaseYear": 2021,
+    "version": "2021.0505",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7192,
+    "glyphCount": 7173,
+    "viewCount": 0
+  },
+  {
+    "id": "a8ec0bbf-be9c-4eaf-94e2-acaa5cfcaeaf",
+    "name": "k8x12L",
+    "en": "k8x12L",
+    "family": "wenfeng-k8x12l",
+    "normalized": "K8x12l",
+    "designer": "Num Kadoma",
+    "designerShort": "littlelimit",
+    "category": "无衬线字体",
+    "tags": [
+      "像素",
+      "位图",
+      "k8x12",
+      "日文",
+      "开源",
+      "自由软件"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "k8x12L（k8x12L）。門真なむ / littlelimit 点阵。站点自由软件许可（非 OFL；与 k6x8 同文）。钉 k8x12_ttf_2021-05-05。 CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "littlelimit free software (M+ lineage note)",
+    "licenseUrl": "https://littlelimit.net/font.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/K8x12l/LICENSE",
+    "licenseNotes": "非 OFL。钉 https://littlelimit.net/arc/k8x12/k8x12_ttf_2021-05-05.zip sha256=8d006e3171f4…。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (C) 2015-2021 Num Kadoma",
+    "foundry": "littlelimit",
+    "brand": {
+      "name": "littlelimit",
+      "slug": "littlelimit",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://littlelimit.net/",
+      "description": "門真なむ（Num Kadoma）。k6x8 / 美咲フォント / k8x12 / k12x8 等极小点阵；站点自由软件许可（非 OFL）。"
+    },
+    "releaseYear": 2021,
+    "version": "2021.0505",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7192,
+    "glyphCount": 7173,
+    "viewCount": 0
+  },
+  {
+    "id": "44ce8d06-e36b-4778-bfa1-1409ee253342",
+    "name": "k8x12S",
+    "en": "k8x12S",
+    "family": "wenfeng-k8x12s",
+    "normalized": "K8x12s",
+    "designer": "Num Kadoma",
+    "designerShort": "littlelimit",
+    "category": "无衬线字体",
+    "tags": [
+      "像素",
+      "位图",
+      "k8x12",
+      "日文",
+      "开源",
+      "自由软件"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "k8x12S（k8x12S）。門真なむ / littlelimit 点阵。站点自由软件许可（非 OFL；与 k6x8 同文）。钉 k8x12_ttf_2021-05-05。 CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "littlelimit free software (M+ lineage note)",
+    "licenseUrl": "https://littlelimit.net/font.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/K8x12s/LICENSE",
+    "licenseNotes": "非 OFL。钉 https://littlelimit.net/arc/k8x12/k8x12_ttf_2021-05-05.zip sha256=8d006e3171f4…。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (C) 2015-2021 Num Kadoma",
+    "foundry": "littlelimit",
+    "brand": {
+      "name": "littlelimit",
+      "slug": "littlelimit",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://littlelimit.net/",
+      "description": "門真なむ（Num Kadoma）。k6x8 / 美咲フォント / k8x12 / k12x8 等极小点阵；站点自由软件许可（非 OFL）。"
+    },
+    "releaseYear": 2021,
+    "version": "2021.0505",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 7192,
+    "glyphCount": 7173,
+    "viewCount": 0
+  },
+  {
+    "id": "cf7cf503-cb0a-4a30-a1c7-ded3474402f9",
+    "name": "k12x8",
+    "en": "k12x8",
+    "family": "wenfeng-k12x8",
+    "normalized": "K12x8",
+    "designer": "Num Kadoma",
+    "designerShort": "littlelimit",
+    "category": "无衬线字体",
+    "tags": [
+      "像素",
+      "位图",
+      "k12x8",
+      "日文",
+      "开源",
+      "自由软件",
+      "alpha"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "k12x8（k12x8）。門真なむ / littlelimit 点阵。站点自由软件许可（非 OFL；与 k6x8 同文）。钉 k12x8_ttf_2021-05-05。 α版：JIS 第一水準のみ；第二水準未実装。 CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "littlelimit free software (M+ lineage note)",
+    "licenseUrl": "https://littlelimit.net/font.htm",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/K12x8/LICENSE",
+    "licenseNotes": "非 OFL。钉 https://littlelimit.net/arc/k12x8/k12x8_ttf_2021-05-05.zip sha256=7c3c707c70c9…。 α版：JIS 第一水準のみ；第二水準未実装。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (C) 2021 Num Kadoma",
+    "foundry": "littlelimit",
+    "brand": {
+      "name": "littlelimit",
+      "slug": "littlelimit",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://littlelimit.net/",
+      "description": "門真なむ（Num Kadoma）。k6x8 / 美咲フォント / k8x12 / k12x8 等极小点阵；站点自由软件许可（非 OFL）。"
+    },
+    "releaseYear": 2021,
+    "version": "2021.0505",
+    "languages": [
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "屏幕阅读",
+      "标题",
+      "复古像素"
+    ],
+    "charCount": 3802,
+    "glyphCount": 3784,
+    "viewCount": 0
   }
 ]

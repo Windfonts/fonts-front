@@ -1,0 +1,460 @@
+{
+  "wave": "littlelimit-bitmap-missing",
+  "date": "2026-09-27",
+  "tz": "Asia/Shanghai",
+  "cdn": "STOPPED",
+  "note": "补全 littlelimit 缺失点阵：美咲フォント三面、k8x12 三面、k12x8 一面。许可与 k6x8 同：站点自由软件（非 OFL）。MSXView ROM 探测后跳过 CDN 货架。不上传 CDN / 不跑 vault docker / 不 bump ANALYSIS_META_VER。",
+  "archives": {
+    "misaki_ttf_2021-05-05.zip": {
+      "sha256": "c1851af85a0a010dd84f40803159c2d8a23feecb6c7e800cfeb5c6edc50da46e",
+      "bytes": 794317,
+      "url": "https://littlelimit.net/arc/misaki/misaki_ttf_2021-05-05.zip",
+      "path": "/Users/feibisi-studio/Projects/_fonts_park/littlelimit-2026-09-27/dl/misaki_ttf_2021-05-05.zip"
+    },
+    "misaki_bdf_2021-05-05.zip": {
+      "sha256": "a275f173cf5935890f84d3e65d05b1bf73028e4d4bf41cb3de0ef3b5ebe8e217",
+      "bytes": 318046,
+      "url": "https://littlelimit.net/arc/misaki/misaki_bdf_2021-05-05.zip",
+      "path": "/Users/feibisi-studio/Projects/_fonts_park/littlelimit-2026-09-27/dl/misaki_bdf_2021-05-05.zip"
+    },
+    "k8x12_ttf_2021-05-05.zip": {
+      "sha256": "8d006e3171f4823ff1e81eaa285447129239071fc31ebafb8128696d0c1f1d17",
+      "bytes": 1170095,
+      "url": "https://littlelimit.net/arc/k8x12/k8x12_ttf_2021-05-05.zip",
+      "path": "/Users/feibisi-studio/Projects/_fonts_park/littlelimit-2026-09-27/dl/k8x12_ttf_2021-05-05.zip"
+    },
+    "k8x12_bdf_2021-05-05.zip": {
+      "sha256": "305ab94915ec3c8e1ada08f493ee5bfdd21e2710a97d7c4d4272444d8e18ff40",
+      "bytes": 376885,
+      "url": "https://littlelimit.net/arc/k8x12/k8x12_bdf_2021-05-05.zip",
+      "path": "/Users/feibisi-studio/Projects/_fonts_park/littlelimit-2026-09-27/dl/k8x12_bdf_2021-05-05.zip"
+    },
+    "k12x8_ttf_2021-05-05.zip": {
+      "sha256": "7c3c707c70c97473c9b95196bfbf395346cca58752518ed3422cefc89785f6ef",
+      "bytes": 174047,
+      "url": "https://littlelimit.net/arc/k12x8/k12x8_ttf_2021-05-05.zip",
+      "path": "/Users/feibisi-studio/Projects/_fonts_park/littlelimit-2026-09-27/dl/k12x8_ttf_2021-05-05.zip"
+    },
+    "k12x8_bdf_2021-05-05.zip": {
+      "sha256": "8f3f8ae3de15452805fa826ef37da2b15d38ff7bec142fdd889c24b62229899a",
+      "bytes": 71539,
+      "url": "https://littlelimit.net/arc/k12x8/k12x8_bdf_2021-05-05.zip",
+      "path": "/Users/feibisi-studio/Projects/_fonts_park/littlelimit-2026-09-27/dl/k12x8_bdf_2021-05-05.zip"
+    },
+    "viewfont_2021-05-05.zip": {
+      "sha256": "8903a3a110745f09dc2fa6d54c39567527c832d091a11869843a54e2a112d4b1",
+      "bytes": 160597,
+      "url": "https://littlelimit.net/arc/viewfont/viewfont_2021-05-05.zip",
+      "path": "/Users/feibisi-studio/Projects/_fonts_park/littlelimit-2026-09-27/dl/viewfont_2021-05-05.zip"
+    }
+  },
+  "parkPath": "/Users/feibisi-studio/Projects/_fonts_park/littlelimit-2026-09-27",
+  "labStaging": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/littlelimit-2026-09-27",
+  "families": [
+    {
+      "id": "7b1fe6cf-14ce-4982-83f7-49733f24967e",
+      "folder": "MisakiGothic",
+      "norm": "Misakig",
+      "family": "wenfeng-misakig",
+      "name": "美咲ゴシック",
+      "en": "Misaki Gothic",
+      "ja": "美咲ゴシック",
+      "category": "无衬线字体",
+      "series": "misaki",
+      "role": "original",
+      "tags": [
+        "像素",
+        "位图",
+        "美咲",
+        "日文",
+        "开源",
+        "自由软件"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "misaki_gothic.ttf"
+      ],
+      "fontFamilyName": "美咲ゴシック",
+      "fullName": "美咲ゴシック",
+      "postScriptName": "MisakiGothic",
+      "fontVersion": "2021.0505",
+      "copyright": "Copyright (C) 2002-2021 Num Kadoma",
+      "glyphCount": 7174,
+      "charCount": 7192,
+      "license": "littlelimit free software (M+ lineage note)",
+      "spdx": "LicenseRef-littlelimit-free",
+      "oflPresent": false,
+      "extraNote": null,
+      "bytes": 1171204,
+      "sha256": "0963e11e89d5fa409a7a048a52e8ea2d623d764a7998488f8a4291111611c4e1",
+      "pkgPath": "fonts-packages/fonts/Misakig/Regular.ttf",
+      "licensePath": "font-licenses/licenses/Misakig/LICENSE",
+      "stagingPath": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/littlelimit-2026-09-27/MisakiGothic/Regular.ttf",
+      "sourcePin": {
+        "kind": "archive",
+        "official": "https://littlelimit.net/misaki.htm",
+        "archive": "misaki_ttf_2021-05-05.zip",
+        "version": "2021-05-05",
+        "url": "https://littlelimit.net/arc/misaki/misaki_ttf_2021-05-05.zip",
+        "sha256": "c1851af85a0a010dd84f40803159c2d8a23feecb6c7e800cfeb5c6edc50da46e",
+        "bytes": 794317
+      }
+    },
+    {
+      "id": "a60b6dbd-83ac-47cd-bad6-649fbb532c2e",
+      "folder": "MisakiMincho",
+      "norm": "Misakim",
+      "family": "wenfeng-misakim",
+      "name": "美咲明朝",
+      "en": "Misaki Mincho",
+      "ja": "美咲明朝",
+      "category": "宋体",
+      "series": "misaki",
+      "role": "original",
+      "tags": [
+        "宋体",
+        "像素",
+        "位图",
+        "美咲",
+        "日文",
+        "开源",
+        "自由软件"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "misaki_mincho.ttf"
+      ],
+      "fontFamilyName": "美咲明朝",
+      "fullName": "美咲明朝",
+      "postScriptName": "MisakiMincho",
+      "fontVersion": "2021.0505",
+      "copyright": "Copyright (C) 2002-2021 Num Kadoma",
+      "glyphCount": 7174,
+      "charCount": 7192,
+      "license": "littlelimit free software (M+ lineage note)",
+      "spdx": "LicenseRef-littlelimit-free",
+      "oflPresent": false,
+      "extraNote": null,
+      "bytes": 1175140,
+      "sha256": "e383f92cb7d8cd806bc1940b051ab0609d74acdc4913466a9a3f809a555036d5",
+      "pkgPath": "fonts-packages/fonts/Misakim/Regular.ttf",
+      "licensePath": "font-licenses/licenses/Misakim/LICENSE",
+      "stagingPath": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/littlelimit-2026-09-27/MisakiMincho/Regular.ttf",
+      "sourcePin": {
+        "kind": "archive",
+        "official": "https://littlelimit.net/misaki.htm",
+        "archive": "misaki_ttf_2021-05-05.zip",
+        "version": "2021-05-05",
+        "url": "https://littlelimit.net/arc/misaki/misaki_ttf_2021-05-05.zip",
+        "sha256": "c1851af85a0a010dd84f40803159c2d8a23feecb6c7e800cfeb5c6edc50da46e",
+        "bytes": 794317
+      }
+    },
+    {
+      "id": "78812b21-81bd-4889-ad98-d8f5190fa52c",
+      "folder": "MisakiGothic2nd",
+      "norm": "Misakig2nd",
+      "family": "wenfeng-misakig2nd",
+      "name": "美咲ゴシック第2",
+      "en": "Misaki Gothic 2nd",
+      "ja": "美咲ゴシック第2",
+      "category": "无衬线字体",
+      "series": "misaki",
+      "role": "original",
+      "tags": [
+        "像素",
+        "位图",
+        "美咲",
+        "日文",
+        "开源",
+        "自由软件"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "misaki_gothic_2nd.ttf"
+      ],
+      "fontFamilyName": "美咲ゴシック第2",
+      "fullName": "美咲ゴシック第2",
+      "postScriptName": "MisakiGothic2nd",
+      "fontVersion": "2021.0505",
+      "copyright": "Copyright (C) 2002-2021 Num Kadoma",
+      "glyphCount": 7173,
+      "charCount": 7191,
+      "license": "littlelimit free software (M+ lineage note)",
+      "spdx": "LicenseRef-littlelimit-free",
+      "oflPresent": false,
+      "extraNote": null,
+      "bytes": 1175260,
+      "sha256": "5f0cbb8850e910ffa749d467bc41c89271388a0cbe0fe48741cf2bf0dfe3ac43",
+      "pkgPath": "fonts-packages/fonts/Misakig2nd/Regular.ttf",
+      "licensePath": "font-licenses/licenses/Misakig2nd/LICENSE",
+      "stagingPath": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/littlelimit-2026-09-27/MisakiGothic2nd/Regular.ttf",
+      "sourcePin": {
+        "kind": "archive",
+        "official": "https://littlelimit.net/misaki.htm",
+        "archive": "misaki_ttf_2021-05-05.zip",
+        "version": "2021-05-05",
+        "url": "https://littlelimit.net/arc/misaki/misaki_ttf_2021-05-05.zip",
+        "sha256": "c1851af85a0a010dd84f40803159c2d8a23feecb6c7e800cfeb5c6edc50da46e",
+        "bytes": 794317
+      }
+    },
+    {
+      "id": "7ef8b8f5-827e-4c76-ade0-ee4f936062db",
+      "folder": "k8x12",
+      "norm": "K8x12",
+      "family": "wenfeng-k8x12",
+      "name": "k8x12",
+      "en": "k8x12",
+      "ja": "k8x12",
+      "category": "无衬线字体",
+      "series": "k8x12",
+      "role": "original",
+      "tags": [
+        "像素",
+        "位图",
+        "k8x12",
+        "日文",
+        "开源",
+        "自由软件"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "k8x12.ttf"
+      ],
+      "fontFamilyName": "k8x12",
+      "fullName": "k8x12",
+      "postScriptName": "k8x12",
+      "fontVersion": "2021.0505",
+      "copyright": "Copyright (C) 2015-2021 Num Kadoma",
+      "glyphCount": 7173,
+      "charCount": 7192,
+      "license": "littlelimit free software (M+ lineage note)",
+      "spdx": "LicenseRef-littlelimit-free",
+      "oflPresent": false,
+      "extraNote": null,
+      "bytes": 1217984,
+      "sha256": "f810d41373e7f1dcb7c7adaafba2dd8b018ecba49182463b5a9601ffafafe6d5",
+      "pkgPath": "fonts-packages/fonts/K8x12/Regular.ttf",
+      "licensePath": "font-licenses/licenses/K8x12/LICENSE",
+      "stagingPath": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/littlelimit-2026-09-27/k8x12/Regular.ttf",
+      "sourcePin": {
+        "kind": "archive",
+        "official": "https://littlelimit.net/k8x12.htm",
+        "archive": "k8x12_ttf_2021-05-05.zip",
+        "version": "2021-05-05",
+        "url": "https://littlelimit.net/arc/k8x12/k8x12_ttf_2021-05-05.zip",
+        "sha256": "8d006e3171f4823ff1e81eaa285447129239071fc31ebafb8128696d0c1f1d17",
+        "bytes": 1170095
+      }
+    },
+    {
+      "id": "a8ec0bbf-be9c-4eaf-94e2-acaa5cfcaeaf",
+      "folder": "k8x12L",
+      "norm": "K8x12l",
+      "family": "wenfeng-k8x12l",
+      "name": "k8x12L",
+      "en": "k8x12L",
+      "ja": "k8x12L",
+      "category": "无衬线字体",
+      "series": "k8x12",
+      "role": "original",
+      "tags": [
+        "像素",
+        "位图",
+        "k8x12",
+        "日文",
+        "开源",
+        "自由软件"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "k8x12L.ttf"
+      ],
+      "fontFamilyName": "k8x12L",
+      "fullName": "k8x12L",
+      "postScriptName": "k8x12L",
+      "fontVersion": "2021.0505",
+      "copyright": "Copyright (C) 2015-2021 Num Kadoma",
+      "glyphCount": 7173,
+      "charCount": 7192,
+      "license": "littlelimit free software (M+ lineage note)",
+      "spdx": "LicenseRef-littlelimit-free",
+      "oflPresent": false,
+      "extraNote": null,
+      "bytes": 1218696,
+      "sha256": "bc9be5db7c4a830fbd6c1abd6e377f050bb29458ae7480f696fbf3be91186320",
+      "pkgPath": "fonts-packages/fonts/K8x12l/Regular.ttf",
+      "licensePath": "font-licenses/licenses/K8x12l/LICENSE",
+      "stagingPath": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/littlelimit-2026-09-27/k8x12L/Regular.ttf",
+      "sourcePin": {
+        "kind": "archive",
+        "official": "https://littlelimit.net/k8x12.htm",
+        "archive": "k8x12_ttf_2021-05-05.zip",
+        "version": "2021-05-05",
+        "url": "https://littlelimit.net/arc/k8x12/k8x12_ttf_2021-05-05.zip",
+        "sha256": "8d006e3171f4823ff1e81eaa285447129239071fc31ebafb8128696d0c1f1d17",
+        "bytes": 1170095
+      }
+    },
+    {
+      "id": "44ce8d06-e36b-4778-bfa1-1409ee253342",
+      "folder": "k8x12S",
+      "norm": "K8x12s",
+      "family": "wenfeng-k8x12s",
+      "name": "k8x12S",
+      "en": "k8x12S",
+      "ja": "k8x12S",
+      "category": "无衬线字体",
+      "series": "k8x12",
+      "role": "original",
+      "tags": [
+        "像素",
+        "位图",
+        "k8x12",
+        "日文",
+        "开源",
+        "自由软件"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "k8x12S.ttf"
+      ],
+      "fontFamilyName": "k8x12S",
+      "fullName": "k8x12S",
+      "postScriptName": "k8x12S",
+      "fontVersion": "2021.0505",
+      "copyright": "Copyright (C) 2015-2021 Num Kadoma",
+      "glyphCount": 7173,
+      "charCount": 7192,
+      "license": "littlelimit free software (M+ lineage note)",
+      "spdx": "LicenseRef-littlelimit-free",
+      "oflPresent": false,
+      "extraNote": null,
+      "bytes": 1213328,
+      "sha256": "1dc1b8fcb6ddd14907449c6e16182268d3c85ebd7c0b9cee32b7fdddad81c9eb",
+      "pkgPath": "fonts-packages/fonts/K8x12s/Regular.ttf",
+      "licensePath": "font-licenses/licenses/K8x12s/LICENSE",
+      "stagingPath": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/littlelimit-2026-09-27/k8x12S/Regular.ttf",
+      "sourcePin": {
+        "kind": "archive",
+        "official": "https://littlelimit.net/k8x12.htm",
+        "archive": "k8x12_ttf_2021-05-05.zip",
+        "version": "2021-05-05",
+        "url": "https://littlelimit.net/arc/k8x12/k8x12_ttf_2021-05-05.zip",
+        "sha256": "8d006e3171f4823ff1e81eaa285447129239071fc31ebafb8128696d0c1f1d17",
+        "bytes": 1170095
+      }
+    },
+    {
+      "id": "cf7cf503-cb0a-4a30-a1c7-ded3474402f9",
+      "folder": "k12x8",
+      "norm": "K12x8",
+      "family": "wenfeng-k12x8",
+      "name": "k12x8",
+      "en": "k12x8",
+      "ja": "k12x8",
+      "category": "无衬线字体",
+      "series": "k12x8",
+      "role": "original",
+      "tags": [
+        "像素",
+        "位图",
+        "k12x8",
+        "日文",
+        "开源",
+        "自由软件",
+        "alpha"
+      ],
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "k12x8.ttf"
+      ],
+      "fontFamilyName": "k12x8",
+      "fullName": "k12x8",
+      "postScriptName": "k12x8",
+      "fontVersion": "2021.0505",
+      "copyright": "Copyright (C) 2021 Num Kadoma",
+      "glyphCount": 3784,
+      "charCount": 3802,
+      "license": "littlelimit free software (M+ lineage note)",
+      "spdx": "LicenseRef-littlelimit-free",
+      "oflPresent": false,
+      "extraNote": "α版：JIS 第一水準のみ；第二水準未実装。",
+      "bytes": 714708,
+      "sha256": "0ce6fa565925493b21067d7a36f4f6618990675f76c6070e4d1fa33a271cd638",
+      "pkgPath": "fonts-packages/fonts/K12x8/Regular.ttf",
+      "licensePath": "font-licenses/licenses/K12x8/LICENSE",
+      "stagingPath": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/littlelimit-2026-09-27/k12x8/Regular.ttf",
+      "sourcePin": {
+        "kind": "archive",
+        "official": "https://littlelimit.net/k12x8.htm",
+        "archive": "k12x8_ttf_2021-05-05.zip",
+        "version": "2021-05-05",
+        "url": "https://littlelimit.net/arc/k12x8/k12x8_ttf_2021-05-05.zip",
+        "sha256": "7c3c707c70c97473c9b95196bfbf395346cca58752518ed3422cefc89785f6ef",
+        "bytes": 174047
+      }
+    }
+  ],
+  "msxViewRom": {
+    "item": "MSXView漢字カートリッジ互換ROM",
+    "page": "https://littlelimit.net/viewfont.htm",
+    "archive": "viewfont_2021-05-05.zip",
+    "archiveSha256": "8903a3a110745f09dc2fa6d54c39567527c832d091a11869843a54e2a112d4b1",
+    "archiveBytes": 160597,
+    "contents": [
+      {
+        "path": "k12x8shn.rom",
+        "bytes": 245760,
+        "sha256": "6c38db2db99d1fcbf7249dbf0f4330e8093d28a4ec562353f7790c378b318899",
+        "kind": "ROM binary"
+      },
+      {
+        "path": "readme.txt",
+        "kind": "docs"
+      }
+    ],
+    "fontsUsed": {
+      "12x12": "東雲 12 ゴシック（JIS1+JIS2）",
+      "12x8": "k12x8（JIS1）+ 東雲12 縮小（JIS2）"
+    },
+    "redistributableFontFace": false,
+    "cdnShelfDecision": "SKIP / out-of-scope",
+    "reason": "归档仅含 MSXView 汉字卡带格式 ROM 镜像（k12x8shn.rom）与说明；不是可挂 CDN 字体货架的 TTF/OTF/WOFF2 字面。字形来源已分别以 k12x8 TTF 入库；东云 12 为独立 Public Domain 字体，不在本包内以可渲染字体面提供。"
+  },
+  "localPackages": {
+    "root": "/Users/feibisi-studio/Projects/fonts-packages/fonts",
+    "placed": true,
+    "subsetBuilt": false,
+    "cdnUploaded": false,
+    "norms": [
+      "Misakig",
+      "Misakim",
+      "Misakig2nd",
+      "K8x12",
+      "K8x12l",
+      "K8x12s",
+      "K12x8"
+    ]
+  },
+  "vaultRegister": {
+    "script": "/Users/feibisi-studio/Projects/fonts-vault/scripts/register-littlelimit-bitmap.js",
+    "executed": false,
+    "reason": "CDN STOPPED; draft only — Bot to run after prod.db backup with CONFIRM_LITTLELIMIT_REGISTER=1"
+  }
+}

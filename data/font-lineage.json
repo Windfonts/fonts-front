@@ -105,6 +105,47 @@
     "slide-font": {
       "name": "Slide Font / 演示字体",
       "upstreamName": ""
+    },
+    "littlelimit-bitmap": {
+      "name": "littlelimit bitmap",
+      "upstreamName": "littlelimit bitmap fonts",
+      "upstreamOwnerId": "littlelimit",
+      "official": "https://littlelimit.net/font.htm",
+      "pin": "2021-05-05 (misaki/k8x12/k12x8)",
+      "licenseNote": "NOT OFL — littlelimit free software license (same as k6x8; historically noted M+ FONTS license alignment)",
+      "members": [
+        "美咲ゴシック",
+        "美咲明朝",
+        "美咲ゴシック第2",
+        "k8x12",
+        "k8x12L",
+        "k8x12S",
+        "k12x8"
+      ]
+    },
+    "misaki": {
+      "name": "美咲フォント",
+      "upstreamName": "Misaki Font",
+      "upstreamOwnerId": "littlelimit",
+      "official": "https://littlelimit.net/misaki.htm",
+      "pin": "misaki_ttf_2021-05-05",
+      "licenseNote": "NOT OFL — littlelimit free software"
+    },
+    "k8x12": {
+      "name": "k8x12",
+      "upstreamName": "k8x12",
+      "upstreamOwnerId": "littlelimit",
+      "official": "https://littlelimit.net/k8x12.htm",
+      "pin": "k8x12_ttf_2021-05-05",
+      "licenseNote": "NOT OFL — littlelimit free software"
+    },
+    "k12x8": {
+      "name": "k12x8",
+      "upstreamName": "k12x8",
+      "upstreamOwnerId": "littlelimit",
+      "official": "https://littlelimit.net/k12x8.htm",
+      "pin": "k12x8_ttf_2021-05-05",
+      "licenseNote": "NOT OFL — littlelimit free software; α版（JIS1 only）"
     }
   },
   "byName": {
@@ -3210,6 +3251,196 @@
       "upstreamOwnerId": "typingart",
       "family": "wenfeng-kokoro",
       "normalized": "Kokoro"
+    },
+    "美咲ゴシック": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "Misakig",
+      "family": "wenfeng-misakig"
+    },
+    "Misaki Gothic": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "Misakig",
+      "family": "wenfeng-misakig"
+    },
+    "MisakiGothic": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "Misakig",
+      "family": "wenfeng-misakig"
+    },
+    "美咲明朝": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "Misakim",
+      "family": "wenfeng-misakim"
+    },
+    "Misaki Mincho": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "Misakim",
+      "family": "wenfeng-misakim"
+    },
+    "MisakiMincho": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "Misakim",
+      "family": "wenfeng-misakim"
+    },
+    "美咲ゴシック第2": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "Misakig2nd",
+      "family": "wenfeng-misakig2nd"
+    },
+    "Misaki Gothic 2nd": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "Misakig2nd",
+      "family": "wenfeng-misakig2nd"
+    },
+    "MisakiGothic2nd": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "Misakig2nd",
+      "family": "wenfeng-misakig2nd"
+    },
+    "k8x12": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K8x12",
+      "family": "wenfeng-k8x12"
+    },
+    "K8x12": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K8x12",
+      "family": "wenfeng-k8x12"
+    },
+    "k8x12L": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K8x12l",
+      "family": "wenfeng-k8x12l"
+    },
+    "K8x12L": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K8x12l",
+      "family": "wenfeng-k8x12l"
+    },
+    "k8x12l": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K8x12l",
+      "family": "wenfeng-k8x12l"
+    },
+    "k8x12S": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K8x12s",
+      "family": "wenfeng-k8x12s"
+    },
+    "K8x12S": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K8x12s",
+      "family": "wenfeng-k8x12s"
+    },
+    "k8x12s": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K8x12s",
+      "family": "wenfeng-k8x12s"
+    },
+    "k12x8": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K12x8",
+      "family": "wenfeng-k12x8"
+    },
+    "K12x8": {
+      "ownerId": "littlelimit",
+      "makerId": "littlelimit",
+      "group": "littlelimit-bitmap",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "norm": "K12x8",
+      "family": "wenfeng-k12x8"
     }
   }
 }
