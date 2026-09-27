@@ -31,7 +31,7 @@
   const CDN = 'https://cn.windfonts.com';
   const SITE_ORIGIN = 'https://app.windfonts.com'; /* OSS 前端正式域 */
   const CSS_API = 'https://vault.windfonts.com'; /* Next 字体后端；过渡可临时改回 app */
-  const ANALYSIS_META_VER = '20260926hccq2'; /* 边缘长缓存；升元数据时递增；与 analysisMetaUrl 对齐 */
+  const ANALYSIS_META_VER = '20260927yzdnn1'; /* 边缘长缓存；升元数据时递增；与 analysisMetaUrl 对齐 */
   /** 生产禁止；仅 staging 构建可改 true */
   const ALLOW_DEMO = false;
   const CDN_KEY = 'wf-cdn';
@@ -101,11 +101,11 @@
     if (base.indexOf('/admin') !== -1) return '../data/' + file;
     return 'data/' + file;
   }
-  function catalogUrl() { return dataUrl('fonts.json?v=20260926delist1'); }
+  function catalogUrl() { return dataUrl('fonts.json?v=20260927yzdnn1'); }
   function analysisMetaUrl() {
     /* CyberCDN 按查询串分变体缓存：换数据必须换新版本值（旧变体会粘住陈旧内容），
        全新值首次回源即全量。20260925b 曾在重建中途被缓存成 1-2 字体的残缺变体。 */
-    return CDN + '/fonts-packages/metadata/font-analysis.json?v=20260926hccq2'; /* hccq merge; restores 473 after batch metadata clobber */
+    return CDN + '/fonts-packages/metadata/font-analysis.json?v=20260927yzdnn1'; /* hccq merge; restores 473 after batch metadata clobber */
   }
 
   /* —— 厂商字典：data/foundries.json 是厂商名称的唯一真相来源（中文名 / 英文 / 简称 / 官网） —— */
@@ -207,9 +207,9 @@
       if (Array.isArray(j)) return j;
       throw new Error('fonts.json invalid');
     });
-    const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20260926hccq2'), { foundries: [] });
+    const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20260927yzdnn1'), { foundries: [] });
     const evidenceReq = fetchJsonCached(dataUrl('license-evidence.json?v=20260925b'), { standards: {}, names: {} });
-    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20260926hccq2'), { groups: {}, byName: {} });
+    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20260927yzdnn1'), { groups: {}, byName: {} });
     const avatarsReq = fetchJsonCached(dataUrl('avatars.json?v=20260921d'), {});
     catalogPromise = Promise.all([fontsReq, foundriesReq, evidenceReq, lineageReq, avatarsReq])
       .then(function (res) {
