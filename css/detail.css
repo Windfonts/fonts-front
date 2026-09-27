@@ -138,6 +138,10 @@
 .page-detail:has(.wall-stage[data-card]) .detail-crumb .crumb { margin-bottom: var(--s-2); }
 .page-detail:has(.wall-stage[data-card]) .glyph-wall { padding-top: 0; padding-bottom: var(--s-4); }
 .page-detail:has(.wall-stage[data-card]) .detail-body { gap: var(--s-8); }
+/* 卡模式：侧栏资料贴容器右缘 / 外侧灰底太紧，多留一档外边距 */
+.page-detail:has(.wall-stage[data-card]) .container:has(> .detail-body) {
+  padding-right: var(--s-10);
+}
 .page-detail:has(.wall-stage[data-card]) #glyphs .panel-head { padding-top: var(--s-8); }
 .page-detail:has(.wall-stage[data-card]) .detail-main > .for-dev + .panel { border-top: 0; }
 @media (max-width: 800px) {
