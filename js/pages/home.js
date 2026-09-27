@@ -229,19 +229,35 @@
       return ordered.map(function (f) {
         const w = WFSpecimen.firstWeight(f);
         const stack = WFProto.cssFamilyStack(f.family);
-        WFProto.ensureFontCss(f.family, w);
         if (f.id === font.id) {
           const hw = heavyWeight(f);
+          /* Active cell + hero need faces now; siblings wait for IntersectionObserver. */
           WFProto.ensureFontCss(f.family, hw);
-          return '<div class="home-forest-cell is-on">' +
+          return '<div class="home-forest-cell is-on" data-family="' + esc(f.family || '') + '" data-weight="' + hw + '">' +
             '<p class="home-forest-glyph" data-forest-glyph contenteditable="true" spellcheck="false">' + esc(g) + '</p>' +
             '<i>' + esc((window.WFProducts && WFProducts.listName(f)) || f.name) + devTag(f, hw) + '</i></div>';
         }
         const label = (window.WFProducts && WFProducts.listName(f)) || f.name;
-        return '<button type="button" class="home-forest-cell" data-forest="' + esc(f.id) + '" title="' + esc(label) +
+        return '<button type="button" class="home-forest-cell" data-forest="' + esc(f.id) + '" data-family="' + esc(f.family || '') +
+          '" data-weight="' + w + '" title="' + esc(label) +
           '" style="font-family:' + esc(stack) + ';font-weight:' + w + '">' +
           '<span class="home-forest-mark">' + esc(g) + '</span><i>' + esc(label) + devTag(f, w) + '</i></button>';
       }).join('');
+    }
+
+    function observeForestCss() {
+      if (!forest) return;
+      const schedule = (window.WFSpecimen && WFSpecimen.scheduleSpecimenCss)
+        ? WFSpecimen.scheduleSpecimenCss
+        : function (el) {
+            if (el && el.getAttribute('data-family')) {
+              WFProto.ensureFontCss(el.getAttribute('data-family'), el.getAttribute('data-weight') || '400');
+            }
+          };
+      forest.querySelectorAll('.home-forest-cell[data-family]').forEach(function (el) {
+        if (el.classList.contains('is-on')) return; /* already eager-loaded */
+        schedule(el);
+      });
     }
 
     function wirePick(f) {
@@ -288,6 +304,7 @@
       if (liveFamily) liveFamily.textContent = famOf(f) + ' · ' + w;
       if (forest) {
         forest.innerHTML = forestHtml(f, glyph);
+        observeForestCss();
         const liveG = forest.querySelector('[data-forest-glyph]');
         if (liveG) {
           liveG.style.fontFamily = stack;

@@ -171,8 +171,32 @@
     '</li>';
   }
 
+  /* Viewport-gated package CSS: first screen (~8–12) intersects immediately; rest wait. */
+  let specimenCssIo = null;
+  function scheduleSpecimenCss(el) {
+    if (!el) return;
+    const fam = el.getAttribute('data-family');
+    if (!fam) return;
+    const weight = el.getAttribute('data-weight') || '400';
+    if (!('IntersectionObserver' in window)) {
+      WFProto.ensureFontCss(fam, weight);
+      return;
+    }
+    if (!specimenCssIo) {
+      specimenCssIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          const node = en.target;
+          specimenCssIo.unobserve(node);
+          WFProto.ensureFontCss(node.getAttribute('data-family'), node.getAttribute('data-weight') || '400');
+        });
+      }, { rootMargin: '180px 0px', threshold: 0 });
+    }
+    specimenCssIo.observe(el);
+  }
+
   function wireRow(li) {
-    WFProto.ensureFontCss(li.getAttribute('data-family'), li.getAttribute('data-weight') || '400');
+    scheduleSpecimenCss(li);
     const btn = li.querySelector('[data-join]');
     if (btn && !btn._wfBound) {
       btn._wfBound = true;
@@ -910,6 +934,7 @@
   document.addEventListener('wf:picks', syncActs);
 
   window.WFSpecimen = {
+    scheduleSpecimenCss: scheduleSpecimenCss,
     PRESETS: PRESETS,
     GLYPH_BLOCKS: GLYPH_BLOCKS,
     rowHtml: rowHtml,

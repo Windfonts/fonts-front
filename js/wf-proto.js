@@ -87,7 +87,9 @@
     if (base.indexOf('/admin') !== -1) return '../data/' + file;
     return 'data/' + file;
   }
-  function catalogUrl() { return dataUrl('fonts.json'); }
+  const CATALOG_VER = '20260927perf1';
+  function catalogUrl() { return dataUrl('fonts.json?v=' + CATALOG_VER); }
+  function catalogListUrl() { return dataUrl('fonts-list.json?v=' + CATALOG_VER); }
   function analysisMetaUrl() {
     return CDN + '/fonts-packages/metadata/font-analysis.json?v=' + ANALYSIS_META_VER;
   }
@@ -137,13 +139,26 @@
     });
   }
 
+  let catalogIsLite = false;
+  let fullCatalogPromise = null;
+
+  function fetchFontsJson() {
+    /* Prefer slim list catalog; fall back to full fonts.json. */
+    return fetch(catalogListUrl()).then(function (r) {
+      if (!r.ok) throw new Error('fonts-list ' + r.status);
+      return r.json().then(function (data) { return { data: data, lite: true }; });
+    }).catch(function () {
+      return fetch(catalogUrl()).then(function (r) {
+        if (!r.ok) throw new Error('fonts.json ' + r.status);
+        return r.json().then(function (data) { return { data: data, lite: false }; });
+      });
+    });
+  }
+
   function loadCatalog() {
     if (catalog.length) return Promise.resolve(catalog);
     if (catalogPromise) return catalogPromise;
-    const fontsReq = fetch(catalogUrl()).then(function (r) {
-      if (!r.ok) throw new Error('fonts.json ' + r.status);
-      return r.json();
-    });
+    const fontsReq = fetchFontsJson();
     const foundriesReq = fetch(dataUrl('foundries.json?v=20260927a')).then(function (r) { return r.ok ? r.json() : { foundries: [] }; })
       .catch(function () { return { foundries: [] }; });
     const evidenceReq = fetch(dataUrl('license-evidence.json?v=20260925b')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
@@ -158,8 +173,11 @@
         indexFoundries((res[1] && res[1].foundries) || []);
         licenseEvidenceData = res[2] || { standards: {}, names: {} };
         lineageData = res[3] || { groups: {}, byName: {} };
-        catalog = (Array.isArray(res[0]) ? res[0] : []).map(function (raw) {
+        const pack = res[0] || { data: [], lite: false };
+        catalogIsLite = !!pack.lite;
+        catalog = (Array.isArray(pack.data) ? pack.data : []).map(function (raw) {
           const font = normalizeFont(raw);
+          if (catalogIsLite) font._lite = true;
           font.lineage = resolveLineage(font);
           font.ownerInfo = font.lineage.ownerInfo || font.foundryInfo;
           font.makerInfo = font.lineage.makerInfo || font.foundryInfo;
@@ -175,6 +193,33 @@
         return catalog;
       });
     return catalogPromise;
+  }
+
+  /** Detail pages: merge description/copyright/licenseNotes etc from full fonts.json once. */
+  function enrichFontFromFull(font) {
+    if (!font || !font._lite) return Promise.resolve(font);
+    if (!fullCatalogPromise) {
+      fullCatalogPromise = fetch(catalogUrl()).then(function (r) {
+        if (!r.ok) throw new Error('fonts.json ' + r.status);
+        return r.json();
+      }).catch(function (err) {
+        console.warn('[WFProto] full catalog enrich failed', err);
+        return [];
+      });
+    }
+    return fullCatalogPromise.then(function (list) {
+      const raw = (Array.isArray(list) ? list : []).filter(function (x) { return x && x.id === font.id; })[0];
+      if (!raw) {
+        font._lite = false;
+        return font;
+      }
+      ['description', 'copyright', 'licenseNotes', 'licenseFileUrl', 'licenseUrl', 'purchaseUrl', 'version'].forEach(function (k) {
+        if (raw[k] != null) font[k] = raw[k];
+      });
+      if (raw.brand) font.brand = raw.brand;
+      font._lite = false;
+      return font;
+    });
   }
 
   function loadPicks() {
@@ -1112,6 +1157,8 @@
     SAFE_CODE: copyrightLine(),
     escapeHtml: escapeHtml,
     loadCatalog: loadCatalog,
+    enrichFontFromFull: enrichFontFromFull,
+    catalogIsLite: function () { return catalogIsLite; },
     getCatalogList: function () { return catalog.slice(); },
     getFoundries: function () { return foundries.slice(); },
     getFoundryById: getFoundryById,

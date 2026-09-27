@@ -928,7 +928,9 @@
       } else if (curRel !== want) {
         history.replaceState(null, '', want);
       }
-      render(font);
+      const paint = function (full) { render(full || font); };
+      if (WFProto.enrichFontFromFull) WFProto.enrichFontFromFull(font).then(paint);
+      else paint(font);
     };
     const boot = function () {
       if (window.WFProducts) WFProducts.load().then(go);

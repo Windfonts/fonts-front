@@ -3,7 +3,7 @@
    - 层次：纯白页面 + 浅灰填充面板，面板里的控件是白的。不画边框，不用投影。
    - 语义色（--ok / --warn / --caution）只给许可档位与出处信誉等结论信号，不进导航、按钮、选中态。
    - 字重反差：标题 / 字体名 / 选中项 700，其余 400。不用 500 / 600。
-   - UI 字体：阿里巴巴普惠体 → 寒蝉全圆体（见 fonts.css）。
+   - UI 字体：系统 CJK 优先（PingFang / 雅黑等）；字标仍用 wenfeng-hckht 分片（fonts.css）。
    - 深色模式：所有颜色走令牌，[data-theme="dark"] 一处覆写。 */
 :root {
   color-scheme: light;
@@ -37,8 +37,8 @@
   --warn-edge: #b08a2e;   /* 警告描边 */
   --caution: #a05a2c;     /* 官网失效等暖警示 */
 
-  /* 字 */
-  --font-ui: "Alibaba PuHuiTi", "Chill Round Gothic", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  /* 字：界面优先系统 CJK，避免多 MB UI woff2 堵临界路径；Chill/PuHuiTi 见 fonts-ui-optional.css */
+  --font-ui: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
   --font-wordmark: "wenfeng-hckht", "Chill K Sans Medium", var(--font-ui);
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 

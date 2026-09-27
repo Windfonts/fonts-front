@@ -1,0 +1,14 @@
+/* Optional UI faces (Chill Round Gothic + Alibaba PuHuiTi).
+   NOT on the critical path — load async after first paint if desired.
+   Product --font-ui prefers system CJK; specimen demos use ensureFontCss / package CSS. */
+@font-face { font-family: "Chill Round Gothic"; font-weight: 300; font-display: swap; src: url("../assets/fonts/ChillRoundGothic-300.woff2") format("woff2"); }
+@font-face { font-family: "Chill Round Gothic"; font-weight: 400; font-display: swap; src: url("../assets/fonts/ChillRoundGothic-400.woff2") format("woff2"); }
+@font-face { font-family: "Chill Round Gothic"; font-weight: 700; font-display: swap; src: url("../assets/fonts/ChillRoundGothic-700.woff2") format("woff2"); }
+@font-face { font-family: "Chill Round Gothic"; font-weight: 900; font-display: swap; src: url("../assets/fonts/ChillRoundGothic-900.woff2") format("woff2"); }
+@font-face { font-family: "Alibaba PuHuiTi"; font-weight: 300; font-display: swap; src: url("../assets/fonts/PuHuiTi-300.woff2") format("woff2"); }
+@font-face { font-family: "Alibaba PuHuiTi"; font-weight: 400; font-display: swap; src: url("../assets/fonts/PuHuiTi-400.woff2") format("woff2"); }
+@font-face { font-family: "Alibaba PuHuiTi"; font-weight: 700; font-display: swap; src: url("../assets/fonts/PuHuiTi-700.woff2") format("woff2"); }
+@font-face { font-family: "wenfeng-albbpht"; font-weight: 300; font-display: swap; src: url("../assets/fonts/PuHuiTi-300.woff2") format("woff2"); }
+@font-face { font-family: "wenfeng-albbpht"; font-weight: 400; font-display: swap; src: url("../assets/fonts/PuHuiTi-400.woff2") format("woff2"); }
+@font-face { font-family: "wenfeng-albbpht"; font-weight: 500; font-display: swap; src: url("../assets/fonts/PuHuiTi-500.woff2") format("woff2"); }
+@font-face { font-family: "wenfeng-albbpht"; font-weight: 700; font-display: swap; src: url("../assets/fonts/PuHuiTi-700.woff2") format("woff2"); }
