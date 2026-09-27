@@ -1339,9 +1339,12 @@
         "IPAGothic",
         "IPAex Gothic",
         "IPAexGothic",
-        "IPAexMincho"
+        "IPAexMincho",
+        "IPAmj Mincho",
+        "IPAmjMincho",
+        "IPAmj明朝"
       ],
-      "description": "日本独立行政法人 情报处理推进机构（IPA）字体；现由文字情報技術促進協議会分发。IPAex / IPA 明朝·ゴシック，IPA Font License 1.0（OSI）。本波钉 IPAex Gothic Ver.004.01 与 IPA Gothic Ver.003.03。"
+      "description": "日本独立行政法人 情报处理推进机构（IPA）字体；现由文字情報技術促進協議会分发。IPAex / IPA / IPAmj 明朝·ゴシック，IPA Font License 1.0（OSI）。本波钉 IPAmj明朝 Ver.006.01（C3）与 IPAex Gothic / IPA Gothic / こころ明朝（C2）。"
     },
     {
       "id": "potta",
@@ -1608,10 +1611,13 @@
         "中文网字计划"
       ],
       "fontNames": [
-        "月星楷",
-        "尚古明体",
+        "Huaying Mincho",
+        "Hymc",
         "初夏明朝体",
-        "合简宋体"
+        "华英明朝",
+        "合简宋体",
+        "尚古明体",
+        "月星楷"
       ],
       "kind": "project",
       "openSource": true,

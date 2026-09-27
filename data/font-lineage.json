@@ -146,6 +146,10 @@
       "official": "https://littlelimit.net/k12x8.htm",
       "pin": "k12x8_ttf_2021-05-05",
       "licenseNote": "NOT OFL — littlelimit free software; α版（JIS1 only）"
+    },
+    "ipamj-mincho": {
+      "name": "IPAmj明朝",
+      "upstreamName": ""
     }
   },
   "byName": {
@@ -2138,7 +2142,8 @@
       "relation": "fork",
       "upstreamName": "IPAmj明朝",
       "upstreamOwnerId": "ipa",
-      "licenseFollows": "inherit"
+      "licenseFollows": "inherit",
+      "group": "ipamj-mincho"
     },
     "上元明朝 A": {
       "ownerId": "guiwonder",
@@ -3441,6 +3446,16 @@
       "upstreamOwnerId": "littlelimit",
       "norm": "K12x8",
       "family": "wenfeng-k12x8"
+    },
+    "IPAmj明朝": {
+      "ownerId": "ipa",
+      "makerId": "ipa",
+      "group": "ipamj-mincho",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "ipa",
+      "family": "wenfeng-ipamjmincho",
+      "normalized": "IPAmjMincho"
     }
   }
 }

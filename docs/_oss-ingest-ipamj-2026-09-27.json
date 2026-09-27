@@ -1,0 +1,47 @@
+{
+  "wave": "ipamj-upstream-c3",
+  "date": "2026-09-27",
+  "tz": "Asia/Shanghai",
+  "cdn": "STOPPED",
+  "note": "Foundry 轨 C3：华英明朝（Hymc）缺失上游 IPAmj明朝。官方 Mojikiban / 文字情報技術促進協議会 · IPA Font License 1.0。不上传 CDN / 不跑 vault docker。",
+  "archives": {
+    "ipamjm00601.zip": {
+      "sha256": "35494e0f2896f38b3f7369a8421a895cea6440a42c0a66ac95eab47d6ed25b68",
+      "path": "/Users/feibisi-studio/Projects/_fonts_park/ipamj-2026-09-27/dl/ipamjm00601.zip",
+      "bytes": 31225985
+    }
+  },
+  "parkPath": "/Users/feibisi-studio/Projects/_fonts_park/ipamj-2026-09-27",
+  "labStaging": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/ipamj-2026-09-27",
+  "licenseSha256": "4c84dd528ec3044638ec346fc1ee27cd1eb95dfc04cbc6a881b3ca7a7f517e54",
+  "families": [
+    {
+      "catalogName": "IPAmj明朝",
+      "en": "IPAmj Mincho",
+      "norm": "IPAmjMincho",
+      "family": "wenfeng-ipamjmincho",
+      "version": "Version 006.01",
+      "glyphCount": 61360,
+      "charCount": 54581,
+      "copyright": "Copyright(c) Information-technology Promotion Agency, Japan (IPA), 2011-2019.",
+      "psName": "IPAmjMincho",
+      "role": "original-upstream",
+      "pin": "ipamjm00601",
+      "sourceUrl": "https://dforest.watch.impress.co.jp/library/i/ipamjfont/10750/ipamjm00601.zip",
+      "bytes": 46676744,
+      "sha256": "a3e84f495f3c388db7a1473bf1985c1c076d0c814100f10a027ca6853eb1e8cb",
+      "md5": "beee256d4ffec4c40493805a4d7e5cdd",
+      "pkgPath": "fonts-packages/fonts/IPAmjMincho/Regular.ttf",
+      "stagingPath": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/ipamj-2026-09-27/IPAmjMincho/Regular.ttf",
+      "licensePath": "font-licenses/licenses/IPAmjMincho/LICENSE"
+    }
+  ],
+  "downstream": [
+    {
+      "name": "华英明朝",
+      "norm": "Hymc",
+      "upstreamName": "IPAmj明朝",
+      "note": "GuiWonder Huaying Mincho；lineage 已写 IPAmj明朝，本波使目录可 resolve。"
+    }
+  ]
+}
