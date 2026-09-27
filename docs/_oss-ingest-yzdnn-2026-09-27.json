@@ -1,0 +1,372 @@
+{
+  "wave": "yzdnn-pixel",
+  "date": "2026-09-27",
+  "tz": "Asia/Shanghai",
+  "note": "Foundry 轨：正式钉 commit 入库包。不擅自推 CDN/生产；清单交 Bot。Skip：omake、yzdnn README 仓、script_zh-hans。",
+  "parkPath": "/Users/feibisi-studio/Projects/_fonts_park/yzdnn-2026-09-27",
+  "labStaging": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/yzdnn-pixel-2026-09-27",
+  "brandId": "b2d6f4a8-1e39-4c57-8a0b-6f3e9d1c75aa",
+  "foundryId": "yzdnn",
+  "families": [
+    {
+      "repo": "yzdnn/ChangBanDianSong-12",
+      "commit": "d71d3b1273b093f0b26f5f9a58b0e1fc095e1eb2",
+      "commitDateUTC": "2026-09-06T02:17:01Z",
+      "pinnedUrlBase": "https://raw.githubusercontent.com/yzdnn/ChangBanDianSong-12/d71d3b1273b093f0b26f5f9a58b0e1fc095e1eb2/",
+      "norm": "Cbds12",
+      "family": "wenfeng-cbds12",
+      "name": "长坂点宋 12",
+      "en": "ChangBanDianSong 12",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "fontVersion": "Version 1.4.3",
+      "glyphCount": 15138,
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "ChangBanDianSong-12.ttf"
+      ],
+      "updatesOngoing": false,
+      "shelfMark": null,
+      "tags": [
+        "宋体",
+        "像素",
+        "位图"
+      ],
+      "upstreamName": "KHドット道玄坂12",
+      "upstreamGroup": "kh-dot-font-series",
+      "extraNote": "仓内另有 ChangBanDianSong-SP-12.ttf（SP 变体），本批只钉主字面。",
+      "files": [
+        {
+          "path": "ChangBanDianSong-12/ChangBanDianSong-12.ttf",
+          "bytes": 3564216,
+          "sha256": "f143b10777812f2b1339734423c4b735ef90e14f1dae42a1c44ce3e242c0c186"
+        },
+        {
+          "path": "ChangBanDianSong-12/OFL.txt",
+          "bytes": 4642,
+          "sha256": "869dc821fd944d16fbbef6e93eb2b8f98e354eb3bf150efcd213ed236193c316"
+        }
+      ]
+    },
+    {
+      "repo": "yzdnn/ChangBanDianSong-16",
+      "commit": "d5c59dbdbe43003a2639516f17c7c016c04c3660",
+      "commitDateUTC": "2026-09-06T02:16:56Z",
+      "pinnedUrlBase": "https://raw.githubusercontent.com/yzdnn/ChangBanDianSong-16/d5c59dbdbe43003a2639516f17c7c016c04c3660/",
+      "norm": "Cbds",
+      "family": "wenfeng-cbds",
+      "name": "长坂点宋",
+      "en": "ChangBanDianSong 16",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "fontVersion": "Version 1.3.1",
+      "glyphCount": 15530,
+      "weights": [
+        "SC",
+        "TC"
+      ],
+      "primaryTtf": [
+        "ChangBanDianSong-16-SC.ttf",
+        "ChangBanDianSong-16-TC.ttf"
+      ],
+      "updatesOngoing": false,
+      "shelfMark": null,
+      "tags": [
+        "宋体",
+        "像素",
+        "位图"
+      ],
+      "upstreamName": "KHドット道玄坂16",
+      "upstreamGroup": "kh-dot-font-series",
+      "extraNote": "分 SC / TC 两个字面；目录一款、字重 SC+TC。",
+      "files": [
+        {
+          "path": "ChangBanDianSong-16/ChangBanDianSong-16-SC.ttf",
+          "bytes": 4390276,
+          "sha256": "b36947389aff05fbfed574fe7a7e58dc354c00f107fa616a2fd2b20ca12df4a6"
+        },
+        {
+          "path": "ChangBanDianSong-16/ChangBanDianSong-16-TC.ttf",
+          "bytes": 4387468,
+          "sha256": "18f9ab3f6160a239fbcef40d420b0bdccc935231ceed17e9a4452f94da962e16"
+        },
+        {
+          "path": "ChangBanDianSong-16/OFL.txt",
+          "bytes": 4637,
+          "sha256": "40b328d200a05f92e68cdda6a6d3803ee58667521052428ad14cb3bde3e05230"
+        }
+      ]
+    },
+    {
+      "repo": "yzdnn/BaDingShiWeiTi-16",
+      "commit": "6167c8662fb80238a7b977b0fc448dbd46d5ea40",
+      "commitDateUTC": "2026-09-06T02:13:59Z",
+      "pinnedUrlBase": "https://raw.githubusercontent.com/yzdnn/BaDingShiWeiTi-16/6167c8662fb80238a7b977b0fc448dbd46d5ea40/",
+      "norm": "Bdswt",
+      "family": "wenfeng-bdswt",
+      "name": "八丁饰尾体",
+      "en": "BaDingShiWeiTi 16",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "fontVersion": "Version 1.1.0",
+      "glyphCount": 13680,
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "BaDingShiWeiTi-16.ttf"
+      ],
+      "updatesOngoing": true,
+      "shelfMark": "作者仍在更新",
+      "tags": [
+        "像素",
+        "位图",
+        "updates-ongoing"
+      ],
+      "upstreamName": "KHドット八丁堀16",
+      "upstreamGroup": "kh-dot-font-series",
+      "extraNote": "作者 README：目前本企划仍在锐意制作中。",
+      "files": [
+        {
+          "path": "BaDingShiWeiTi-16/BaDingShiWeiTi-16.ttf",
+          "bytes": 4326816,
+          "sha256": "e2c39cd33d32a2253cc88de0e1fd9b36ec62fb9550a94a4590612f47576df8fe"
+        },
+        {
+          "path": "BaDingShiWeiTi-16/OFL.txt",
+          "bytes": 4642,
+          "sha256": "869dc821fd944d16fbbef6e93eb2b8f98e354eb3bf150efcd213ed236193c316"
+        }
+      ]
+    },
+    {
+      "repo": "yzdnn/QiuYeYuanTi-16",
+      "commit": "45d831c5cf2e27c19907a7edf02fc2aa1183ce7d",
+      "commitDateUTC": "2026-09-06T02:10:07Z",
+      "pinnedUrlBase": "https://raw.githubusercontent.com/yzdnn/QiuYeYuanTi-16/45d831c5cf2e27c19907a7edf02fc2aa1183ce7d/",
+      "norm": "Qyyt",
+      "family": "wenfeng-qyyt",
+      "name": "秋叶圆体",
+      "en": "QiuYeYuanTi 16",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "fontVersion": "Version 1.0.1",
+      "glyphCount": 14119,
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "QiuYeYuanTi-16.ttf"
+      ],
+      "updatesOngoing": true,
+      "shelfMark": "作者仍在更新",
+      "tags": [
+        "圆体",
+        "像素",
+        "位图",
+        "updates-ongoing"
+      ],
+      "upstreamName": "KHドット秋葉原16",
+      "upstreamGroup": "kh-dot-font-series",
+      "extraNote": "作者 README：尚未完工，仍在持续更新。",
+      "files": [
+        {
+          "path": "QiuYeYuanTi-16/QiuYeYuanTi-16.ttf",
+          "bytes": 4329132,
+          "sha256": "179b02c56ffc8683dab39a5e54fc5cc1613fb86e8e7b5f255cd674cda2ac03cc"
+        },
+        {
+          "path": "QiuYeYuanTi-16/OFL.txt",
+          "bytes": 4637,
+          "sha256": "74b62bc643604b4ae2681d1a97b83c890ac3fddc6f91be3d47c4ce01bc786809"
+        }
+      ]
+    },
+    {
+      "repo": "yzdnn/RenOuFangSong-16",
+      "commit": "af9f209398789d4e9d00bf449e3f27c3655a740b",
+      "commitDateUTC": "2026-09-06T02:12:37Z",
+      "pinnedUrlBase": "https://raw.githubusercontent.com/yzdnn/RenOuFangSong-16/af9f209398789d4e9d00bf449e3f27c3655a740b/",
+      "norm": "Rofs",
+      "family": "wenfeng-rofs",
+      "name": "人偶仿宋",
+      "en": "RenOuFangSong 16",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "fontVersion": "Version 1.1.1",
+      "glyphCount": 13769,
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "RenOuFangSong-16.ttf"
+      ],
+      "updatesOngoing": true,
+      "shelfMark": "作者仍在更新",
+      "tags": [
+        "宋体",
+        "像素",
+        "位图",
+        "updates-ongoing"
+      ],
+      "upstreamName": "KHドット人形町16",
+      "upstreamGroup": "kh-dot-font-series",
+      "extraNote": "作者 README：尚未完工，仍在持续更新。Feng：正式钉入并打 updates-ongoing 标记，不 defer。",
+      "files": [
+        {
+          "path": "RenOuFangSong-16/RenOuFangSong-16.ttf",
+          "bytes": 4707760,
+          "sha256": "20752474027efabc16d940b4b213d3462212b85df59b632d58c79d8c6d1ce27d"
+        },
+        {
+          "path": "RenOuFangSong-16/OFL.txt",
+          "bytes": 4637,
+          "sha256": "40b328d200a05f92e68cdda6a6d3803ee58667521052428ad14cb3bde3e05230"
+        }
+      ]
+    },
+    {
+      "repo": "yzdnn/ShanWeiZhouHei-16",
+      "commit": "5a475886d4f5abf338db27177a9296db7b9d4ffb",
+      "commitDateUTC": "2026-09-26T13:35:45Z",
+      "pinnedUrlBase": "https://raw.githubusercontent.com/yzdnn/ShanWeiZhouHei-16/5a475886d4f5abf338db27177a9296db7b9d4ffb/",
+      "norm": "Swzh",
+      "family": "wenfeng-swzh",
+      "name": "扇尾胄黑",
+      "en": "ShanWeiZhouHei 16",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "fontVersion": "Version 0.1.2",
+      "glyphCount": 12877,
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "ShanWeiZhouHei-16.ttf"
+      ],
+      "updatesOngoing": true,
+      "shelfMark": "作者仍在更新",
+      "tags": [
+        "像素",
+        "位图",
+        "updates-ongoing"
+      ],
+      "upstreamName": "KHドット兜町16",
+      "upstreamGroup": "kh-dot-font-series",
+      "extraNote": "作者 README：尚未完工，仍在持续更新；定位简体（G 源），繁体排版可参考流行點陣體16。",
+      "files": [
+        {
+          "path": "ShanWeiZhouHei-16/ShanWeiZhouHei-16.ttf",
+          "bytes": 3030044,
+          "sha256": "057408368e5cb7deb3c9ba9f6abae1be443ffbb6ec026df0b334c4b52e0e84e9"
+        },
+        {
+          "path": "ShanWeiZhouHei-16/OFL.txt",
+          "bytes": 4637,
+          "sha256": "74b62bc643604b4ae2681d1a97b83c890ac3fddc6f91be3d47c4ce01bc786809"
+        }
+      ]
+    },
+    {
+      "repo": "yzdnn/ZhengGeDianHei-16",
+      "commit": "ac81e4b58c34fd38ad1ab7ffe3cae9e0cd3ccd5f",
+      "commitDateUTC": "2026-09-06T02:11:08Z",
+      "pinnedUrlBase": "https://raw.githubusercontent.com/yzdnn/ZhengGeDianHei-16/ac81e4b58c34fd38ad1ab7ffe3cae9e0cd3ccd5f/",
+      "norm": "Zgdh",
+      "family": "wenfeng-zgdh",
+      "name": "正格点黑",
+      "en": "ZhengGeDianHei 16",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "fontVersion": "Version 1.1.0",
+      "glyphCount": 14682,
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "ZhengGeDianHei-16.ttf"
+      ],
+      "updatesOngoing": true,
+      "shelfMark": "作者仍在更新",
+      "tags": [
+        "像素",
+        "位图",
+        "updates-ongoing"
+      ],
+      "upstreamName": "DotGothic16",
+      "upstreamGroup": "dotgothic16",
+      "extraNote": "作者 README：仍在持续更新。上游 DotGothic16 已在目录（wenfeng-dotgothic / Dotgothic）。",
+      "files": [
+        {
+          "path": "ZhengGeDianHei-16/ZhengGeDianHei-16.ttf",
+          "bytes": 4002444,
+          "sha256": "6ad8293221be772e8eb778a9ba1eb7f45327c8956de892ce35fedf40cdae7269"
+        },
+        {
+          "path": "ZhengGeDianHei-16/OFL.txt",
+          "bytes": 4543,
+          "sha256": "2632fb84aac2c3597192977672cdb4a9a79f8a9fa27d4fc8a8a71f0882d10366"
+        }
+      ],
+      "upstreamOwnerId": "fontworks"
+    },
+    {
+      "repo": "yzdnn/XiuZhenXiangSuTi",
+      "commit": "41fc94c12ff63913bc1913ef9de1b290957594bb",
+      "commitDateUTC": "2026-09-06T02:11:52Z",
+      "pinnedUrlBase": "https://raw.githubusercontent.com/yzdnn/XiuZhenXiangSuTi/41fc94c12ff63913bc1913ef9de1b290957594bb/",
+      "norm": "Xzxst",
+      "family": "wenfeng-xzxst",
+      "name": "袖珍像素体",
+      "en": "XiuZhenXiangSuTi",
+      "license": "SIL Open Font License 1.1",
+      "spdx": "OFL-1.1",
+      "oflPresent": true,
+      "fontVersion": "Version 1.0.0",
+      "glyphCount": 13037,
+      "weights": [
+        "Regular"
+      ],
+      "primaryTtf": [
+        "XiuZhenXiangSuTi.ttf"
+      ],
+      "updatesOngoing": true,
+      "shelfMark": "作者仍在更新",
+      "tags": [
+        "像素",
+        "位图",
+        "updates-ongoing"
+      ],
+      "upstreamName": "k6x8",
+      "upstreamGroup": "k6x8",
+      "extraNote": "双许可：衍生字体 OFL 1.1（yzdnn + Num Kadoma 版权行）；上游 k6x8 为 M+ FONTS LICENSE。pack-meta 已记。",
+      "files": [
+        {
+          "path": "XiuZhenXiangSuTi/XiuZhenXiangSuTi.ttf",
+          "bytes": 1885064,
+          "sha256": "b3b411e5ee458ce31c9da634d9cc2dd98525da04b0adefaf2782ee4a9700c244"
+        },
+        {
+          "path": "XiuZhenXiangSuTi/OFL.txt",
+          "bytes": 4484,
+          "sha256": "4ee9faf9a19f38b20ad1a36a4a9026260b0a1601e94a57c325e056ab265e747d"
+        }
+      ],
+      "dualLicense": {
+        "derivative": "OFL-1.1",
+        "upstream": "M+ FONTS LICENSE (k6x8 / Num Kadoma)",
+        "note": "袖珍像素体以 OFL 1.1 发布；上游 k6x8 原作为 M+ FONTS LICENSE。目录 licenseName 记衍生侧 OFL；licenseNotes 必须保留双许可说明。"
+      },
+      "upstreamOwnerId": "mplus"
+    }
+  ]
+}

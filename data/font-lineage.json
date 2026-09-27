@@ -80,6 +80,18 @@
     "chill-chunqiu": {
       "name": "寒蝉书体·春秋",
       "upstreamName": "Slide Font / 幻灯片字体"
+    },
+    "kh-dot-font-series": {
+      "name": "KH Dot Font Series / KHドットフォントシリーズ",
+      "upstreamName": "KHドットフォントシリーズ"
+    },
+    "dotgothic16": {
+      "name": "DotGothic16 / ドットゴシック16",
+      "upstreamName": "DotGothic16"
+    },
+    "k6x8": {
+      "name": "k6x8",
+      "upstreamName": "k6x8"
     }
   },
   "byName": {
@@ -2425,6 +2437,146 @@
       "upstreamName": "Slide Font / 幻灯片字体",
       "upstreamOwnerId": "keynoteart",
       "licenseFollows": "inherit"
+    },
+    "DotGothic16": {
+      "ownerId": "fontworks",
+      "makerId": "fontworks",
+      "group": "dotgothic16",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "fontworks"
+    },
+    "长坂点宋 12": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "kh-dot-font-series",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "KHドット道玄坂12"
+    },
+    "ChangBanDianSong 12": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "kh-dot-font-series",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "KHドット道玄坂12"
+    },
+    "长坂点宋": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "kh-dot-font-series",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "KHドット道玄坂16"
+    },
+    "ChangBanDianSong 16": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "kh-dot-font-series",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "KHドット道玄坂16"
+    },
+    "八丁饰尾体": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "kh-dot-font-series",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "KHドット八丁堀16"
+    },
+    "BaDingShiWeiTi 16": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "kh-dot-font-series",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "KHドット八丁堀16"
+    },
+    "秋叶圆体": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "kh-dot-font-series",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "KHドット秋葉原16"
+    },
+    "QiuYeYuanTi 16": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "kh-dot-font-series",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "KHドット秋葉原16"
+    },
+    "人偶仿宋": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "kh-dot-font-series",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "KHドット人形町16"
+    },
+    "RenOuFangSong 16": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "kh-dot-font-series",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "KHドット人形町16"
+    },
+    "扇尾胄黑": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "kh-dot-font-series",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "KHドット兜町16"
+    },
+    "ShanWeiZhouHei 16": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "kh-dot-font-series",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "KHドット兜町16"
+    },
+    "正格点黑": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "dotgothic16",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "DotGothic16",
+      "upstreamOwnerId": "fontworks"
+    },
+    "ZhengGeDianHei 16": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "dotgothic16",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "DotGothic16",
+      "upstreamOwnerId": "fontworks"
+    },
+    "袖珍像素体": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "k6x8",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "k6x8",
+      "upstreamOwnerId": "mplus"
+    },
+    "XiuZhenXiangSuTi": {
+      "ownerId": "yzdnn",
+      "makerId": "yzdnn",
+      "group": "k6x8",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "k6x8",
+      "upstreamOwnerId": "mplus"
     }
   }
 }

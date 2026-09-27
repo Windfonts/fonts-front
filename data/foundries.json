@@ -1908,17 +1908,32 @@
    "name": "yzdnn",
    "en": "yzdnn",
    "short": "yzdnn",
-   "website": "https://github.com/yzdnn/ChangBanDianSong-16",
+   "website": "https://github.com/yzdnn",
    "aliases": [
-    "长坂点宋"
+    "yzdnn",
+    "长坂点宋",
+    "长坂点宋 12",
+    "八丁饰尾体",
+    "秋叶圆体",
+    "人偶仿宋",
+    "扇尾胄黑",
+    "正格点黑",
+    "袖珍像素体"
    ],
    "fontNames": [
-    "长坂点宋"
+    "长坂点宋 12",
+    "长坂点宋",
+    "八丁饰尾体",
+    "秋叶圆体",
+    "人偶仿宋",
+    "扇尾胄黑",
+    "正格点黑",
+    "袖珍像素体"
    ],
    "kind": "author",
    "openSource": true,
    "claimed": false,
-   "description": "长坂点宋。OFL 1.1。"
+   "description": "yzdnn：基于 KH Dot Font Series、DotGothic16、k6x8 等做的中文像素补字。OFL 1.1。部分款作者仍在更新（目录打 updates-ongoing）。"
   },
   {
    "id": "xiangcui",
