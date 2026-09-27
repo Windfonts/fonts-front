@@ -114,14 +114,17 @@
   function boolCell(key, val, verified) {
     const meta = BOOL_META.filter(function (b) { return b.key === key; })[0];
     const st = resolveBoolState(key, val, verified);
+    // gap5c: only 预览 is circle; design/CDN/App are horizontal pills (capsule)
     const isCircle = key === 'previewOk';
     const shape = isCircle ? ' is-circle' : ' is-pill';
     const ev = (result && result.evidence && result.evidence[key]) || '';
     return '<div class="lq-bool is-' + st.state + '">' +
       '<div class="lq-bool-k">' + esc(meta.label) + '</div>' +
-      '<span class="lq-badge ' + st.cls + shape + '" role="img" aria-label="' + esc(st.label) + '">' +
-        boolBadgeInner(st) +
-      '</span>' +
+      '<div class="lq-bool-slot">' +
+        '<span class="lq-badge ' + st.cls + shape + '" role="img" aria-label="' + esc(st.label) + '">' +
+          boolBadgeInner(st) +
+        '</span>' +
+      '</div>' +
       (ev ? '<div class="lq-bool-e">' + esc(ev) + '</div>' : '') +
       '</div>';
   }

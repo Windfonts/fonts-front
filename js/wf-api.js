@@ -950,7 +950,7 @@
 
   /* —— GAP-FILL T1/T3 mock（Foundry 四布尔终稿；live → 501） —— */
   const CERT_KEY = 'wf-mock-certs';
-  const GAP_VER = '20260927gap5b';
+  const GAP_VER = '20260927gap5c';
 
   function loadCerts() {
     try { return JSON.parse(localStorage.getItem(CERT_KEY) || '[]'); } catch (e) { return []; }
@@ -1171,7 +1171,7 @@
           "/workspace/windfonts-research/T3-a-FLOP-NO-WEBFONT-LIST-v1-2026-09-27.md"
         ],
         lab_tip: "46d52e9",
-        hotReload: "?v=20260927gap5b",
+        hotReload: "?v=20260927gap5c",
         sample_tickets: ["WF-20260927-001", "WF-20260927-002", "WF-20260927-003"]
       },
       blockers: [
@@ -1184,7 +1184,7 @@
       ingestStatus: "ingesting",
       cdnStatus: "n/a",
       analysisStatus: "n/a",
-      hotReload: "?v=20260927gap5b",
+      hotReload: "?v=20260927gap5c",
       opsProbe: "n/a",
       ownerSeat: "Pro"
     },
