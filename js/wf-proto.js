@@ -31,7 +31,7 @@
   const CDN = 'https://cn.windfonts.com';
   const SITE_ORIGIN = 'https://app.windfonts.com'; /* OSS 前端正式域 */
   const CSS_API = 'https://vault.windfonts.com'; /* Next 字体后端；过渡可临时改回 app */
-  const ANALYSIS_META_VER = '20260927slide1'; /* 边缘长缓存；升元数据时递增；与 analysisMetaUrl 对齐 */
+  const ANALYSIS_META_VER = '20260927zoomla1'; /* 边缘长缓存；升元数据时递增；与 analysisMetaUrl 对齐 */
   /** 生产禁止；仅 staging 构建可改 true */
   const ALLOW_DEMO = false;
   const CDN_KEY = 'wf-cdn';
@@ -101,11 +101,11 @@
     if (base.indexOf('/admin') !== -1) return '../data/' + file;
     return 'data/' + file;
   }
-  function catalogUrl() { return dataUrl('fonts.json?v=20260927slide1'); }
+  function catalogUrl() { return dataUrl('fonts.json?v=20260927zoomla1'); }
   function analysisMetaUrl() {
     /* CyberCDN 按查询串分变体缓存：换数据必须换新版本值（旧变体会粘住陈旧内容），
        全新值首次回源即全量。20260925b 曾在重建中途被缓存成 1-2 字体的残缺变体。 */
-    return CDN + '/fonts-packages/metadata/font-analysis.json?v=20260927slide1'; /* 20260927slide1: KH Dot+k6x8 merge onto 480 yzdnn baseline */
+    return CDN + '/fonts-packages/metadata/font-analysis.json?v=20260927zoomla1'; /* 20260927zoomla1: KH Dot+k6x8 merge onto 480 yzdnn baseline */
   }
 
   /* —— 厂商字典：data/foundries.json 是厂商名称的唯一真相来源（中文名 / 英文 / 简称 / 官网） —— */
@@ -207,9 +207,9 @@
       if (Array.isArray(j)) return j;
       throw new Error('fonts.json invalid');
     });
-    const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20260927slide1'), { foundries: [] });
+    const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20260927zoomla1'), { foundries: [] });
     const evidenceReq = fetchJsonCached(dataUrl('license-evidence.json?v=20260925b'), { standards: {}, names: {} });
-    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20260927slide1'), { groups: {}, byName: {} });
+    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20260927zoomla1'), { groups: {}, byName: {} });
     const avatarsReq = fetchJsonCached(dataUrl('avatars.json?v=20260921d'), {});
     catalogPromise = Promise.all([fontsReq, foundriesReq, evidenceReq, lineageReq, avatarsReq])
       .then(function (res) {
@@ -246,8 +246,16 @@
         const slugs = Object.keys(bySlug);
         if (!slugs.length) return;
         foundries.forEach(function (fd) {
-          const st = bySlug[fd.id];
-          if (st && st.claimed) fd.claimed = true;
+          const st = bySlug[fd.id] || bySlug[String(fd.id || '').toLowerCase()];
+          if (!st) return;
+          if (st.claimed) fd.claimed = true;
+          if (st.page && typeof st.page === 'object') {
+            if (st.page.intro) fd.description = String(st.page.intro);
+            if (st.page.site) fd.website = String(st.page.site);
+            if (st.page.links) fd.links = String(st.page.links);
+            if (st.page.repo) fd.repo = String(st.page.repo);
+            fd.pagePublishedAt = st.page.publishedAt || '';
+          }
         });
         catalog.forEach(function (font) {
           if (font.ownerInfo && bySlug[font.ownerInfo.id] && bySlug[font.ownerInfo.id].claimed) {
@@ -313,9 +321,41 @@
       };
     } catch (e) { return { fonts: [], authors: [] }; }
   }
+  let favsPushTimer = null;
+  let favsSuppressPush = false;
+  function scheduleFavsPush(data) {
+    if (favsSuppressPush) return;
+    if (!window.WFApi || typeof WFApi.putFavs !== 'function' || WFApi.isMock()) return;
+    try {
+      const s = window.WFApp && WFApp.state && WFApp.state();
+      if (!s || !s.settings || !s.settings.apiKey) return;
+    } catch (e) { return; }
+    clearTimeout(favsPushTimer);
+    favsPushTimer = setTimeout(function () {
+      WFApi.putFavs(data).catch(function () { /* ignore */ });
+    }, 450);
+  }
   function saveFavs(data) {
     localStorage.setItem(FAV_KEY, JSON.stringify({ fonts: data.fonts, authors: data.authors }));
     document.dispatchEvent(new CustomEvent('wf:favs'));
+    scheduleFavsPush(data);
+  }
+  function replaceFavsLocal(data) {
+    favsSuppressPush = true;
+    try {
+      saveFavs(data || { fonts: [], authors: [] });
+    } finally {
+      favsSuppressPush = false;
+    }
+  }
+  function syncFavsWithVault() {
+    if (!window.WFApi || typeof WFApi.syncFavs !== 'function' || WFApi.isMock()) {
+      return Promise.resolve(loadFavs());
+    }
+    return WFApi.syncFavs(loadFavs()).then(function (merged) {
+      replaceFavsLocal(merged || { fonts: [], authors: [] });
+      return merged || { fonts: [], authors: [] };
+    });
   }
   function hasFav(list, id) {
     return !!list.find(function (x) { return x.id === id; });
@@ -659,6 +699,18 @@
       }
     }
     return (origin || cdnOrigin()) + '/api/css?' + params.join('&');
+  }
+
+  /**
+   * 账号级 cite-closed CSS（须 Bearer API Key）。
+   * 主机用 CSS_API（vault），不走公开 CDN；不灌 fonts-packages。
+   */
+  function certCssApiUrl(family, weight, origin) {
+    const name = resolveCssFamilyName(family);
+    const w = String(weight || 'regular').toLowerCase().replace(/[\s_-]+/g, '');
+    const base = String(origin || CSS_API || 'https://vault.windfonts.com').replace(/\/$/, '');
+    return base + '/api/font-certs/css?family=' + encodeURIComponent(name) +
+      '&weight=' + encodeURIComponent(w || 'regular');
   }
 
   function cdnHost() {
@@ -1489,7 +1541,8 @@
       subject: subject,
       at: meta.at || prev.at || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      labMock: true
+      labMock: meta.labMock != null ? !!meta.labMock : (meta.vaultId ? false : (prev.labMock !== false)),
+      vaultId: meta.vaultId != null ? String(meta.vaultId) : (prev.vaultId || '')
     };
     all[subject][fk] = grant;
     writeCertGrantsAll(all);
@@ -1537,7 +1590,9 @@
     const ss = serviceStatus(font);
     if (ss.status === '不可用') return { ok: false, reason: ss.reason || 'unavailable' };
     if (hasCertGrant(font)) {
-      return { ok: true, reason: 'cert-grant-lab', grant: getCertGrant(font) };
+      const g = getCertGrant(font);
+      const reason = g && g.labMock === false ? 'cert-grant' : 'cert-grant-lab';
+      return { ok: true, reason: reason, grant: g };
     }
     const ev = (font && font.licenseEvidence) || {};
     const restr = ((ev.restrictions) || []).concat([(ev.quote) || ''], [(font && font.licenseNotes) || '']).join(' ');
@@ -1551,6 +1606,50 @@
       return { ok: false, reason: 'no_redistrib' };
     }
     return { ok: true, reason: 'ok' };
+  }
+
+  /**
+   * 把 vault /api/font-certs 列表合并进本机 grant（按 fontKey）。
+   * live 成功后覆盖同 key 的 vault 记录；保留无 vaultId 的 lab mock。
+   */
+  function applyVaultFontCerts(certs) {
+    const list = Array.isArray(certs) ? certs : [];
+    const subject = certSubjectKey();
+    const all = readCertGrantsAll();
+    if (!all[subject] || typeof all[subject] !== 'object') all[subject] = {};
+    const bag = all[subject];
+    list.forEach(function (c) {
+      if (!c || !c.fontKey) return;
+      const fk = certFontKey(c.fontKey || c.normalized);
+      if (!fk) return;
+      const prev = bag[fk] && typeof bag[fk] === 'object' ? bag[fk] : {};
+      bag[fk] = {
+        status: c.status || 'pending',
+        fontKey: fk,
+        family: c.family || prev.family || '',
+        normalized: c.normalized || prev.normalized || fk,
+        name: c.name || prev.name || fk,
+        fileName: c.fileName || prev.fileName || '',
+        fileSize: c.fileSize || prev.fileSize || 0,
+        mime: c.mime || prev.mime || '',
+        reason: c.reason || prev.reason || '',
+        reviewedAt: c.reviewedAt || prev.reviewedAt || '',
+        subject: subject,
+        at: c.submittedAt || prev.at || new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        labMock: false,
+        vaultId: c.id || prev.vaultId || ''
+      };
+    });
+    writeCertGrantsAll(all);
+    return list.length;
+  }
+
+  function syncVaultFontCerts() {
+    if (!window.WFApi || !WFApi.listFontCerts) return Promise.resolve(0);
+    return WFApi.listFontCerts().then(function (rows) {
+      return applyVaultFontCerts(rows || []);
+    }).catch(function () { return 0; });
   }
 
   function matchFilter(font, tag, keyword, license) {
@@ -1751,6 +1850,8 @@
     setCertGrant: setCertGrant,
     reviewCertGrant: reviewCertGrant,
     clearCertGrant: clearCertGrant,
+    applyVaultFontCerts: applyVaultFontCerts,
+    syncVaultFontCerts: syncVaultFontCerts,
     slugify: slugify,
     getFont: function (id) { return getById(id); },
     getFontBySlug: getBySlug,
@@ -1842,6 +1943,9 @@
     },
     replacePicksLocal: replacePicksLocal,
     syncPicksWithVault: syncPicksWithVault,
+    loadFavs: loadFavs,
+    replaceFavsLocal: replaceFavsLocal,
+    syncFavsWithVault: syncFavsWithVault,
     togglePick: function (id, name) {
       if (WFProto.hasPick(id)) return WFProto.removePick(id);
       return WFProto.addPick(id, name);
@@ -1978,6 +2082,7 @@
     packageName: packageName,
     packageCssUrl: cssApiUrl,
     cssApiUrl: cssApiUrl,
+    certCssApiUrl: certCssApiUrl,
     cssUrl: cssUrl,
     packageResultUrl: packageResultUrl,
     embedCssUrl: embedCssUrl,
