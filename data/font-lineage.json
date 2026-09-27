@@ -154,6 +154,14 @@
     "zhaizaijia": {
       "name": "天天宅在家",
       "upstreamName": ""
+    },
+    "zoomla-mengyas": {
+      "name": "逐浪萌芽字 / ZoomlaMengyas",
+      "upstreamName": "逐浪萌芽字"
+    },
+    "zoomla-cusong": {
+      "name": "逐浪粗宋简体 / ZoomlaCusong",
+      "upstreamName": "逐浪粗宋简体"
     }
   },
   "byName": {
@@ -3486,6 +3494,26 @@
       "upstreamOwnerId": "starlove",
       "family": "wenfeng-zhaizaijia",
       "normalized": "Zhaizaijia"
+    },
+    "逐浪萌芽字": {
+      "ownerId": "z01font",
+      "makerId": "zoomla",
+      "group": "zoomla-mengyas",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "z01font",
+      "family": "wenfeng-zoomlamengyas",
+      "normalized": "ZoomlaMengyas"
+    },
+    "逐浪粗宋简体": {
+      "ownerId": "zoomla",
+      "makerId": "zoomla",
+      "group": "zoomla-cusong",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "zoomla",
+      "family": "wenfeng-zoomlacusong",
+      "normalized": "ZoomlaCusong"
     }
   }
 }

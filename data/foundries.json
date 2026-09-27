@@ -2665,6 +2665,49 @@
       "openSource": false,
       "claimed": false,
       "description": "巴哈姆特创作者 starlove0425（天天宅在家）。原创手写三款：宅在家自动笔 / 麦克笔 / 粉条甜。作者声明「完全免费」「镶嵌改作商标都随便使用」。FWHP 以 SIL OFL 1.1 再发于 FWHP-Enfun/Star-Love-Font。"
+    },
+    {
+      "id": "zoomla",
+      "name": "逐浪字库",
+      "en": "Zoomla / z01",
+      "short": "逐浪",
+      "website": "http://f.ziti163.com",
+      "aliases": [
+        "Zoomla",
+        "ZoomlaCMS",
+        "z01",
+        "逐浪",
+        "江西逐浪软件科技有限公司",
+        "上海逐一软件科技有限公司"
+      ],
+      "kind": "foundry",
+      "openSource": true,
+      "claimed": false,
+      "fontNames": [
+        "逐浪萌芽字",
+        "逐浪粗宋简体"
+      ],
+      "description": "逐浪字库（ZoomlaCMS / z01）。官网 f.ziti163.com。开源仓 zoomla/ZoomlaFont（根 Apache-2.0；01 夹个人非商用勿 CDN）。萌芽另见 z01font。"
+    },
+    {
+      "id": "z01font",
+      "name": "z01font",
+      "en": "z01font",
+      "short": "z01font",
+      "website": "https://github.com/z01font",
+      "aliases": [
+        "z01 fonts",
+        "z01font",
+        "ZoomlaMengyas"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "parentId": "zoomla",
+      "fontNames": [
+        "逐浪萌芽字"
+      ],
+      "description": "逐浪开源字体 GitHub 组织。ZoomlaMengyas（逐浪萌芽字）SIL OFL 1.1。"
     }
   ]
 }

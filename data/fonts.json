@@ -23481,5 +23481,109 @@
     "charCount": 0,
     "glyphCount": 0,
     "viewCount": 0
+  },
+  {
+    "id": "e6432772-271d-45ce-9663-2e2eb21d4d40",
+    "name": "逐浪萌芽字",
+    "en": "ZoomlaMengyas",
+    "family": "wenfeng-zoomlamengyas",
+    "normalized": "ZoomlaMengyas",
+    "designer": "Zoomla!CMS / z01 fonts",
+    "designerShort": "z01",
+    "category": "无衬线字体",
+    "tags": [
+      "开源",
+      "OFL",
+      "简体中文",
+      "上游",
+      "逐浪",
+      "萌芽"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "逐浪萌芽字（ZoomlaMengyas / ZoomlaMengyas-A080）。z01font/ZoomlaMengyas · SIL OFL 1.1（无 RFN）。钉 TTF sha256=695a57e7bcaff9a261fd5452e6681a9e6d80023a907e3dc253cc83be5cb5fb97（与 zoomla/ZoomlaFont 09 夹同哈希）。CDN STOPPED — 本波 Foundry 只挂起，等 Bot 总灌闸。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://raw.githubusercontent.com/z01font/ZoomlaMengyas/main/OFL.txt",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/ZoomlaMengyas/LICENSE",
+    "licenseNotes": "ofl_ok。OFL 全文钉 research licenses/zoomla-mengyas/ 与 font-licenses/ZoomlaMengyas/。版权头 Copyright 2020 z01 fonts (Jiangxi ZoomlaCMS Soft Co. LTD)。无 Reserved Font Name。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 z01 fonts (Author:Jiangxi ZoomlaCMS Soft Co. LTD,E-mail:web@ziti163.com)",
+    "foundry": "逐浪字库",
+    "brand": {
+      "name": "逐浪字库 / z01font",
+      "slug": "z01font",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/z01font/ZoomlaMengyas",
+      "description": "逐浪 / z01 开源字体。萌芽字 OFL 1.1 独立仓。"
+    },
+    "releaseYear": 2021,
+    "version": "Version1.00 20211011",
+    "languages": [
+      "简体中文",
+      "英语"
+    ],
+    "useCases": [
+      "标题",
+      "正文"
+    ],
+    "charCount": 8822,
+    "glyphCount": 8844,
+    "viewCount": 1
+  },
+  {
+    "id": "3b07c16f-c0f7-4be2-be65-61545c96a086",
+    "name": "逐浪粗宋简体",
+    "en": "Zoomla Cusong",
+    "family": "wenfeng-zoomlacusong",
+    "normalized": "ZoomlaCusong",
+    "designer": "刘璐莹 / 江西逐浪软件科技有限公司",
+    "designerShort": "zoomla",
+    "category": "宋体",
+    "tags": [
+      "开源",
+      "Apache",
+      "简体中文",
+      "上游",
+      "逐浪",
+      "粗宋",
+      "apache_ok"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "逐浪粗宋简体（ZoomlaCusong）。zoomla/ZoomlaFont 06 开源夹成品。根仓 Apache-2.0；无旁挂 OFL。Feng 令挂 apache_ok（≠ ofl_ok）。name 表版权句含「未经书面许可不得用于商业使用」与 README/根 Apache 冲突 — CDN 待 Bot。钉 OTF sha256=a56b46dcde472cb42c07ee5c6e86c6a166746132133c28fe1b43a3ad46c594ca。勿与香萃等粗宋混淆。CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "Apache License 2.0",
+    "licenseUrl": "https://raw.githubusercontent.com/zoomla/ZoomlaFont/master/LICENSE",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/ZoomlaCusong/LICENSE",
+    "licenseNotes": "apache_ok（隔离 ofl_ok）。依据=根仓 Apache-2.0 + README「完全开源字库」夹 + Feng 2026-09-27 令「自家的都要」。无旁挂 OFL。name 表冲突句见 licenses/zoomla-cusong/SOURCE.txt。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "设计单位：江西逐浪软件科技有限公司；设计人：刘璐莹；法人作品与职务创作",
+    "foundry": "逐浪字库",
+    "brand": {
+      "name": "逐浪字库",
+      "slug": "zoomla",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://f.ziti163.com",
+      "description": "逐浪字库 / ZoomlaCMS。06 粗宋按 apache_ok 挂起（非 OFL）。"
+    },
+    "releaseYear": 2016,
+    "version": "Version 1.00 January 14, 2016",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题",
+      "正文"
+    ],
+    "charCount": 7634,
+    "glyphCount": 7681,
+    "viewCount": 1
   }
 ]
