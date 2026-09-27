@@ -155,3 +155,16 @@ button.btn.is-pending-cta:disabled {
   opacity: 0.92;
   cursor: not-allowed;
 }
+
+/* gap5b · Motuicons check/close inside Feng badges */
+.lq-badge .icon {
+  width: 1.05em; height: 1.05em; display: block; flex-shrink: 0;
+}
+.lq-badge.is-circle .icon { width: 1.35rem; height: 1.35rem; }
+.lq-badge.is-circle {
+  flex-direction: row; /* icon-centered circle; no stacked 可以 chars */
+  font-size: var(--fs-13);
+}
+span.lq-bool .icon {
+  width: 0.95em; height: 0.95em; display: block; flex-shrink: 0;
+}

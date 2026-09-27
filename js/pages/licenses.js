@@ -5,9 +5,9 @@
   if (!root) return;
 
   function cell(v) {
-    if (v === true) return '<span class="lq-bool is-allow">可以</span>';
-    if (v === false) return '<span class="lq-bool is-deny">不可以</span>';
-    return '<span class="lq-bool is-maybe">视原文</span>';
+    if (v === true) return '<span class="lq-bool is-allow" role="img" aria-label="可以">' + WFChrome.icon('check') + '</span>';
+    if (v === false) return '<span class="lq-bool is-deny" role="img" aria-label="不可以">' + WFChrome.icon('close') + '</span>';
+    return '<span class="lq-bool is-maybe" role="img" aria-label="视原文">视原文</span>';
   }
 
   WFApi.listLicenses().then(function (data) {

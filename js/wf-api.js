@@ -950,7 +950,7 @@
 
   /* —— GAP-FILL T1/T3 mock（Foundry 四布尔终稿；live → 501） —— */
   const CERT_KEY = 'wf-mock-certs';
-  const GAP_VER = '20260927gap5';
+  const GAP_VER = '20260927gap5b';
 
   function loadCerts() {
     try { return JSON.parse(localStorage.getItem(CERT_KEY) || '[]'); } catch (e) { return []; }
@@ -1171,7 +1171,7 @@
           "/workspace/windfonts-research/T3-a-FLOP-NO-WEBFONT-LIST-v1-2026-09-27.md"
         ],
         lab_tip: "46d52e9",
-        hotReload: "?v=20260927gap5",
+        hotReload: "?v=20260927gap5b",
         sample_tickets: ["WF-20260927-001", "WF-20260927-002", "WF-20260927-003"]
       },
       blockers: [
@@ -1184,7 +1184,7 @@
       ingestStatus: "ingesting",
       cdnStatus: "n/a",
       analysisStatus: "n/a",
-      hotReload: "?v=20260927gap5",
+      hotReload: "?v=20260927gap5b",
       opsProbe: "n/a",
       ownerSeat: "Pro"
     },
@@ -1442,6 +1442,9 @@
       if (b.webfontCdnOk === true) return { allowed: true, reason: (seed.evidence && seed.evidence.webfontCdnOk) || '允许公共 CDN' };
       if (seed.cite_policy === 'cite_closed' && cert && cert.status === 'approved') {
         return { allowed: true, reason: '本账号已开引用（非公共 CDN / 不灌 fonts-packages）', account_scoped: true };
+      }
+      if (seed.cite_policy === 'cite_closed' && cert && cert.status === 'pending') {
+        return { allowed: false, reason: '证书审核中 · 待审核通过后开通账号引用', uncertain: true };
       }
       if (seed.cite_policy === 'cite_closed') return { allowed: false, reason: '对外引用未开放，请上传证书' };
       if (b.webfontCdnOk === false) return { allowed: false, reason: (seed.evidence && seed.evidence.webfontCdnOk) || '禁止公共网页字体' };

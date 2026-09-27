@@ -104,19 +104,23 @@
     return { state: 'deny', label: '不可以', cls: 'is-deny', rowCls: 'is-no' };
   }
 
+  function boolBadgeInner(st) {
+    // Feng: 可以/不可以 → Motuicons (check/close); 视原文 stays short text
+    if (st.state === 'allow') return WFChrome.icon('check');
+    if (st.state === 'deny') return WFChrome.icon('close');
+    return esc(st.label);
+  }
+
   function boolCell(key, val, verified) {
     const meta = BOOL_META.filter(function (b) { return b.key === key; })[0];
     const st = resolveBoolState(key, val, verified);
     const isCircle = key === 'previewOk';
     const shape = isCircle ? ' is-circle' : ' is-pill';
     const ev = (result && result.evidence && result.evidence[key]) || '';
-    const inner = isCircle
-      ? Array.from(st.label).map(function (ch) { return '<span class="lq-badge-ch">' + esc(ch) + '</span>'; }).join('')
-      : esc(st.label);
     return '<div class="lq-bool is-' + st.state + '">' +
       '<div class="lq-bool-k">' + esc(meta.label) + '</div>' +
       '<span class="lq-badge ' + st.cls + shape + '" role="img" aria-label="' + esc(st.label) + '">' +
-        inner +
+        boolBadgeInner(st) +
       '</span>' +
       (ev ? '<div class="lq-bool-e">' + esc(ev) + '</div>' : '') +
       '</div>';
@@ -226,15 +230,21 @@
                 seen[dedupeKey] = true;
                 pills.push('<span class="lq-tag' + (extraCls || '') + '">' + esc(lab) + '</span>');
               }
-              addPill(result.license_label);
+              const citeExpressing = result.cite_policy === 'cite_closed' || result.service_status === 'restricted';
+              const licRaw = result.license_label;
+              const licLab = metaLabel(licRaw);
+              // Skip bare license_label「引用未开放」when cite_policy already paints 公共引用未开 / 引用未开放
+              if (!(citeExpressing && (licRaw === 'cite_closed' || licLab === '引用未开放'))) {
+                addPill(licRaw);
+              }
               pills.push('<span class="lq-tag' + (verified ? ' is-verified' : ' is-unverified') + '">' + (verified ? '已核实' : '待核实') + '</span>');
               if (result.cdnHardBlock) {
                 // FLOP hard-block: never paint misleading「正常」「开放」
                 addPill('catalog_ok');
                 addPill('cdnHardBlock', ' is-flop');
                 addPill('hard_deny', ' is-flop');
-              } else if (result.cite_policy === 'cite_closed' || result.service_status === 'restricted') {
-                // 公共层 vs 账号层分开展示，避免「引用未开放」与 CTA「账号引用已开」打架
+              } else if (citeExpressing) {
+                // 公共层 vs 账号层分开展示；approved → 公共引用未开 + 账号引用已开 only
                 const certSt = result.cert && result.cert.status;
                 addPill('restricted');
                 if (certSt === 'approved') {
