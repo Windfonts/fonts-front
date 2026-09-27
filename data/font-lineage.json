@@ -230,7 +230,7 @@
       "makerId": "wenquanyi",
       "group": "droid-sans",
       "relation": "fork",
-      "upstreamName": "Droid Sans 后备体",
+      "upstreamName": "Droid Sans Fallback",
       "licenseFollows": "inherit",
       "upstreamOwnerId": "google-fonts"
     },
@@ -484,7 +484,7 @@
       "makerId": "maoken",
       "group": "swei-b2-sugar",
       "relation": "fork",
-      "upstreamName": "狮尾B2加糖",
+      "upstreamName": "狮尾B2加糖宋体",
       "upstreamOwnerId": "swei-b2-sugar",
       "licenseFollows": "inherit"
     },
@@ -1752,7 +1752,7 @@
       "ownerId": "justfont",
       "makerId": "justfont",
       "relation": "fork",
-      "upstreamName": "辰宇落雁体",
+      "upstreamName": "辰宇落雁体 Thin",
       "licenseFollows": "inherit"
     },
     "谐灵附体": {
@@ -2160,7 +2160,7 @@
       "ownerId": "wenquanyi",
       "makerId": "wenquanyi",
       "relation": "locale",
-      "upstreamName": "文泉驿正黑体",
+      "upstreamName": "文泉驿正黑",
       "upstreamOwnerId": "wenquanyi",
       "licenseFollows": "inherit"
     },
@@ -2249,7 +2249,7 @@
       "ownerId": "frex-sans",
       "makerId": "frex-sans",
       "relation": "fork",
-      "upstreamName": "IBM Plex Sans SC",
+      "upstreamName": "IBM Plex Sans SC 简体中文",
       "upstreamOwnerId": "ibm",
       "licenseFollows": "inherit"
     },
