@@ -1957,7 +1957,8 @@
       "short": "香萃",
       "website": "https://github.com/Miiiller",
       "aliases": [
-        "Xiangcui"
+        "Xiangcui",
+        "Miiiller"
       ],
       "fontNames": [
         "香萃刻宋",
@@ -1965,12 +1966,17 @@
         "香萃自在",
         "香萃打字机",
         "香萃潮汐宋",
-        "香萃零度黑"
+        "香萃零度黑",
+        "香萃汲学宋",
+        "香萃打字机体",
+        "香萃端庄宋体",
+        "香萃自在舒畅黑",
+        "空缘黑体"
       ],
       "kind": "author",
       "openSource": true,
       "claimed": false,
-      "description": "香萃刻宋、等粗宋、自在。字内许可 OFL 1.1。"
+      "description": "香萃（Xiangcui / Miiiller）开源字体系列作者。代表作含刻宋、等粗宋、自在、打字机/打字机体、潮汐宋、零度黑、汲学宋、端庄宋体、自在舒畅黑、空缘黑体等。字内许可多为 OFL 1.1。GitHub：Miiiller。"
     },
     {
       "id": "logosc",
@@ -2330,33 +2336,6 @@
       "openSource": true,
       "claimed": false,
       "description": "精品点阵体系列、夜照飞点阵、天王星像素作者。"
-    },
-    {
-      "id": "miiiller",
-      "name": "香萃 (Miiiller)",
-      "en": "Miiiller",
-      "short": "香萃",
-      "website": "https://github.com/Miiiller",
-      "aliases": [
-        "Miiiller",
-        "香萃"
-      ],
-      "fontNames": [
-        "香萃汲学宋",
-        "香萃打字机体",
-        "香萃端庄宋体",
-        "香萃自在舒畅黑",
-        "空缘黑体",
-        "香萃刻宋",
-        "香萃等粗宋",
-        "香萃潮汐宋",
-        "香萃零度黑",
-        "香萃自在"
-      ],
-      "kind": "individual",
-      "openSource": true,
-      "claimed": false,
-      "description": "香萃字体系列作者。"
     },
     {
       "id": "skr-zero",
