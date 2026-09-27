@@ -131,3 +131,27 @@ button.btn.is-blocked:disabled {
 .lq-ticket-bools { display: flex; flex-wrap: wrap; gap: 0.25rem; max-width: 14rem; }
 .lq-ticket-bools .lq-tag { font-size: 0.7rem; padding: 0.1em 0.45em; }
 .lq-tag.is-ops-green { background: var(--ink); color: var(--on-ink); }
+
+
+/* gap5 · LAN/demo mock banner + pending CTA */
+.wf-mock-banner {
+  margin: 0 0 var(--s-4);
+  padding: 0.55rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: #fff6e5;
+  color: #7a4b00;
+  border: 1px solid rgba(166, 92, 0, 0.28);
+  font-size: var(--fs-13);
+  font-weight: var(--fw-label);
+}
+[data-theme="dark"] .wf-mock-banner {
+  background: rgba(166, 92, 0, 0.18);
+  color: #ffd89a;
+  border-color: rgba(255, 216, 154, 0.25);
+}
+button.btn.is-pending-cta:disabled {
+  background: #a65c00;
+  color: #fff;
+  opacity: 0.92;
+  cursor: not-allowed;
+}

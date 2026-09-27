@@ -1,6 +1,6 @@
 {
   "id": "WF-20260927-002",
-  "title": "吉利银河美好体 · cite-closed（示例·看板挂板）",
+  "title": "吉利银河美好体 · 引用未开放（示例·看板挂板）",
   "track": "T1|T2",
   "state": "restricted",
   "huntId": "",
@@ -53,6 +53,6 @@
     "Pro T1-d：证书 mock 状态机 pending→approved",
     "看板须与 FLOP 分行：cta=upload_cert 非 blocked"
   ],
-  "notes": "样例：cite-closed 桶。不进 FLOP。摩登同 schema 换 normalized=Shmgt。",
+  "notes": "样例：引用未开放桶。不进 FLOP。摩登同 schema 换 normalized=Shmgt。",
   "updated": "2026-09-27T18:48:00+08:00"
 }

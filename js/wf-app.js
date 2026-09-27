@@ -490,21 +490,33 @@
     const on = el.querySelector('.rail-nav a.is-active');
     if (on && on.scrollIntoView) on.scrollIntoView({ inline: 'center', block: 'nearest' });
   }
+  function isDevPreviewHost(host) {
+    host = String(host || '').toLowerCase();
+    if (host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0') return true;
+    if (host.indexOf('staging') >= 0 || host.slice(-6) === '.local') return true;
+    /* private LAN — Designer 预览常走 192.168.*，须免登 */
+    if (/^192\.168\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
+    if (/^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
+    if (/^172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
+    return false;
+  }
   function gate() {
-    /* ?demo=1 仅本机 / staging；生产域名禁止免登 */
-    if (!WFChrome.user() && WFProto.getQuery('demo')) {
-      var host = String(location.hostname || '').toLowerCase();
-      var allow =
-        host === 'localhost' ||
-        host === '127.0.0.1' ||
-        host === '0.0.0.0' ||
-        host.indexOf('staging') >= 0 ||
-        host.slice(-6) === '.local';
-      if (allow) WFChrome.login({ role: 'admin' });
+    /* 本机 / LAN / staging：默认演示免登（无需 ?demo=1）；生产域名禁止 */
+    var host = String(location.hostname || '').toLowerCase();
+    var wantDemo = !!WFProto.getQuery('demo') || isDevPreviewHost(host);
+    if (!WFChrome.user() && wantDemo && isDevPreviewHost(host)) {
+      WFChrome.login({ role: 'admin', name: '演示预览', email: 'demo@local' });
+      try { document.documentElement.setAttribute('data-wf-demo', '1'); } catch (e) { /* ignore */ }
     }
     if (!(WFChrome.canAccessApp && WFChrome.canAccessApp())) {
       const back = location.pathname.split('/').slice(-1)[0];
-      location.replace(WFChrome.href('login.html?next=app&back=' + encodeURIComponent(back)));
+      var login = WFChrome.href('login.html?next=app&back=' + encodeURIComponent(back));
+      if (isDevPreviewHost(host)) {
+        /* 仍未进：给明显 mock 指引，避免被登录墙误读成坏页 */
+        location.replace(login + (login.indexOf('?') >= 0 ? '&' : '?') + 'hint=demo');
+      } else {
+        location.replace(login);
+      }
       return false;
     }
     return true;

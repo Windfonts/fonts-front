@@ -7,13 +7,13 @@
     "bot": "seat-open-2026-09-27",
     "foundry": "T1-a+T3-a-done",
     "seeker": "T2-sample-tickets-done",
-    "pro": "gap4-T1d-T2-P1-done",
+    "pro": "gap5-P1-polish-done",
     "depot": "standby-T3-c",
     "ops": "standby-probe"
   },
   "refs": {
     "font": "",
-    "tip": "gap4",
+    "tip": "gap5",
     "oss_metadata_version": "",
     "pr": "",
     "docs": [
@@ -24,7 +24,7 @@
       "/workspace/windfonts-research/T3-a-FLOP-NO-WEBFONT-LIST-v1-2026-09-27.md"
     ],
     "lab_tip": "46d52e9",
-    "hotReload": "?v=20260927gap4",
+    "hotReload": "?v=20260927gap5",
     "sample_tickets": [
       "WF-20260927-001",
       "WF-20260927-002",
@@ -38,5 +38,5 @@
     "P0-4 cn-font-split shelf trial — Bot CDN gate (held)"
   ],
   "updated": "2026-09-27T18:49:00+08:00",
-  "hotReload": "?v=20260927gap4"
+  "hotReload": "?v=20260927gap5"
 }

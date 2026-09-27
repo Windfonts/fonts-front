@@ -36,6 +36,9 @@
     apache_ok: '已核 Apache/MIT',
     free_commercial: '厂商免费商用',
     cite_closed: '引用未开放',
+    public_cite_closed: '公共引用未开',
+    account_cite_open: '账号引用已开',
+    cert_pending: '审核中',
     restricted: '受限',
     normal: '正常',
     open: '开放',
@@ -133,6 +136,10 @@
         const flopLab = flop.reason_label || META_LABEL.flop_no_webfont || '协议禁网页字体';
         extra = '<span class="lq-flop-badge" title="' + esc(flopLab) + '">FLOP · ' + esc(flopLab) + '</span>';
       }
+    } else if (cta === 'cert_pending') {
+      cls = 'btn is-pending-cta';
+      disabled = true;
+      label = '审核中';
     } else if (cta === 'upload_cert') {
       cls = 'btn';
     } else if (cta === 'read_license') {
@@ -140,7 +147,7 @@
     }
     return '<div class="lq-cta-row">' +
       '<button type="button" class="' + cls + '" id="lqCta"' + (disabled ? ' disabled' : '') + ' data-cta="' + esc(cta) + '">' +
-        (cta === 'blocked' ? WFChrome.icon('close') : cta === 'upload_cert' ? WFChrome.icon('upload') : cta === 'connect' ? WFChrome.icon('rocket') : WFChrome.icon('book')) +
+        (cta === 'blocked' ? WFChrome.icon('close') : cta === 'cert_pending' ? WFChrome.icon('time') : cta === 'upload_cert' ? WFChrome.icon('upload') : cta === 'connect' ? WFChrome.icon('rocket') : WFChrome.icon('book')) +
         esc(label) + '</button>' + extra +
       (r.license_url ? '<a class="btn-text" href="' + esc(r.license_url) + '" target="_blank" rel="noopener noreferrer">' + WFChrome.icon('external') + '许可原文</a>' : '') +
       '</div>';
@@ -164,24 +171,29 @@
     const st = c.status;
     const stLab = CERT_STATUS_LABEL[st] || st;
     let stCls = 'lq-cert-st is-' + st;
-    return '<div class="lq-cert"><div class="' + stCls + '">证书状态 · <b>' + esc(stLab) + '</b> <span class="mono muted">(' + esc(st) + ')</span> · ' + esc(c.cert_id) + '</div>' +
-      '<p class="hint">解锁范围：账号×本款网页引用 · 已批准仅开本账号 cite，永不灌公共 fonts-packages / 不改 webfontCdnOk。</p>' +
+    return '<div class="lq-cert"><div class="' + stCls + '">证书状态 · <b>' + esc(stLab) + '</b> · <span class="mono muted">' + esc(c.cert_id) + '</span></div>' +
+      '<p class="hint">解锁范围：账号×本款网页引用 · 已批准仅开本账号 cite，永不灌公共 fonts-packages / 不改公共 CDN。</p>' +
       '<div class="lq-cert-actions">' +
-        (st === 'pending' ? '<button type="button" class="btn" id="lqApprove">' + WFChrome.icon('check') + 'mock 批准</button>' +
+        (st === 'pending' ? '<button type="button" class="btn-text" id="lqViewCert">' + WFChrome.icon('book') + '查看证书</button>' +
+          '<button type="button" class="btn" id="lqApprove">' + WFChrome.icon('check') + 'mock 批准</button>' +
           '<button type="button" class="btn-text" id="lqReject">驳回</button>' +
           '<button type="button" class="btn-text" id="lqExpire">标过期</button>' : '') +
-        (st === 'approved' ? '<span class="hint">本账号引用已开（session for_uses.cdn_web）</span>' +
+        (st === 'approved' ? '<span class="hint">本账号引用已开 · 公共货架仍未开放</span>' +
+          '<button type="button" class="btn-text" id="lqViewCert">' + WFChrome.icon('book') + '查看证书</button>' +
           '<button type="button" class="btn-text" id="lqExpire">标过期</button>' : '') +
         (st === 'rejected' || st === 'expired' ? '<button type="button" class="btn" id="lqUploadCert">' + WFChrome.icon('upload') + '重新上传</button>' : '') +
       '</div></div>';
   }
 
   function paint() {
+    const demoBan = (document.documentElement.getAttribute('data-wf-demo') === '1' || /^(192\.168\.|10\.|127\.|localhost)/i.test(String(location.hostname || '')))
+      ? '<div class="wf-mock-banner" role="status">演示预览 · mock 样例数据 · 免登（LAN/本机）· 非生产</div>'
+      : '';
     const head = inApp
-      ? '<div class="app-head"><div><h1>授权查询</h1><p class="sub">Foundry 四布尔 · mock · 默认不连 live</p></div>' +
+      ? demoBan + '<div class="app-head"><div><h1>授权查询</h1><p class="sub">Foundry 四布尔 · mock · 默认不连 live</p></div>' +
         '<div class="app-actions"><a class="btn" href="../licenses.html">' + WFChrome.icon('list') + '类型对照</a>' +
         '<a class="btn" href="standard-bar.html">' + WFChrome.icon('stack') + '标准棒</a></div></div>'
-      : '';
+      : demoBan;
 
     const seedOpts = seeds.map(function (s) {
       return '<option value="' + esc(s.normalizedName) + '"' + (s.normalizedName === fontKey ? ' selected' : '') + '>' +
@@ -221,6 +233,19 @@
                 addPill('catalog_ok');
                 addPill('cdnHardBlock', ' is-flop');
                 addPill('hard_deny', ' is-flop');
+              } else if (result.cite_policy === 'cite_closed' || result.service_status === 'restricted') {
+                // 公共层 vs 账号层分开展示，避免「引用未开放」与 CTA「账号引用已开」打架
+                const certSt = result.cert && result.cert.status;
+                addPill('restricted');
+                if (certSt === 'approved') {
+                  addPill('public_cite_closed', ' is-cite-block');
+                  addPill('account_cite_open', ' is-verified');
+                } else if (certSt === 'pending') {
+                  addPill('public_cite_closed', ' is-cite-block');
+                  addPill('cert_pending', ' is-cite-block');
+                } else {
+                  addPill('cite_closed', ' is-cite-block');
+                }
               } else {
                 addPill(result.service_status);
                 addPill(result.cite_policy);
@@ -292,16 +317,21 @@
     });
     function doUploadCert() {
       WFApi.createCert({ fontId: fontKey, note: 'mock upload' }).then(function () {
-        WFChrome.toast('已提交证书 · pending');
+        WFChrome.toast('已提交证书 · 审核中');
         run();
       }).catch(function (err) { WFChrome.toast((err && err.message) || '上传失败'); });
     }
     const up = document.getElementById('lqUploadCert');
     if (up) up.addEventListener('click', doUploadCert);
+    const vc = document.getElementById('lqViewCert');
+    if (vc) vc.addEventListener('click', function () {
+      if (!result || !result.cert) return;
+      WFChrome.toast('证书 ' + (CERT_STATUS_LABEL[result.cert.status] || '') + ' · ' + (result.cert.cert_id || ''));
+    });
     const ctaBtn = document.getElementById('lqCta');
     if (ctaBtn) ctaBtn.addEventListener('click', function () {
       const c = ctaBtn.getAttribute('data-cta');
-      if (c === 'blocked') return;
+      if (c === 'blocked' || c === 'cert_pending') return;
       if (c === 'upload_cert') {
         const dup = document.getElementById('lqUploadCert');
         if (dup) dup.click();

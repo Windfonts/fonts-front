@@ -66,13 +66,17 @@
   }
 
   function paint(rows) {
+    const demoBan = (document.documentElement.getAttribute('data-wf-demo') === '1' || /^(192\.168\.|10\.|127\.|localhost)/i.test(String(location.hostname || '')))
+      ? '<div class="wf-mock-banner" role="status">演示预览 · Seeker SoT 样例工单 · 免登（LAN/本机）· 非生产</div>'
+      : '';
     root.innerHTML =
+      demoBan +
       '<div class="app-head"><div><h1>工单</h1><p class="sub">跨席状态 · Seeker SoT mock · 对齐 Foundry 列</p></div>' +
         '<div class="app-actions"><a class="btn" href="license-query.html">' + WFChrome.icon('shield') + '授权查询</a></div></div>' +
       '<section class="app-section"><div class="table-wrap"><table class="table"><thead><tr>' +
-        '<th>ID</th><th>标题</th><th>轨</th>' +
-        '<th>gateStatus</th><th>ingestStatus</th><th>cdnStatus</th>' +
-        '<th>analysisStatus</th><th>hotReload</th><th>opsProbe</th><th>ownerSeat</th>' +
+        '<th>编号</th><th>标题</th><th>轨</th>' +
+        '<th>闸门</th><th>入仓</th><th>CDN</th>' +
+        '<th>分析</th><th>热更</th><th>探活</th><th>主席</th>' +
         '<th>四布尔</th><th>更新</th>' +
       '</tr></thead><tbody>' +
       (rows || []).map(function (t) {

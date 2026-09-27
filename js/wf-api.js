@@ -950,7 +950,7 @@
 
   /* —— GAP-FILL T1/T3 mock（Foundry 四布尔终稿；live → 501） —— */
   const CERT_KEY = 'wf-mock-certs';
-  const GAP_VER = '20260927gap4';
+  const GAP_VER = '20260927gap5';
 
   function loadCerts() {
     try { return JSON.parse(localStorage.getItem(CERT_KEY) || '[]'); } catch (e) { return []; }
@@ -1154,7 +1154,7 @@
         bot: "seat-open-2026-09-27",
         foundry: "T1-a+T3-a-done",
         seeker: "T2-sample-tickets-done",
-        pro: "gap4-T1d-T2-P1-done",
+        pro: "gap5-P1-polish-done",
         depot: "standby-T3-c",
         ops: "standby-probe"
       },
@@ -1171,7 +1171,7 @@
           "/workspace/windfonts-research/T3-a-FLOP-NO-WEBFONT-LIST-v1-2026-09-27.md"
         ],
         lab_tip: "46d52e9",
-        hotReload: "?v=20260927gap4",
+        hotReload: "?v=20260927gap5",
         sample_tickets: ["WF-20260927-001", "WF-20260927-002", "WF-20260927-003"]
       },
       blockers: [
@@ -1184,13 +1184,13 @@
       ingestStatus: "ingesting",
       cdnStatus: "n/a",
       analysisStatus: "n/a",
-      hotReload: "?v=20260927gap4",
+      hotReload: "?v=20260927gap5",
       opsProbe: "n/a",
       ownerSeat: "Pro"
     },
     {
       id: "WF-20260927-001",
-      title: "SmartFontUI · FLOP 禁 webfont（示例·看板挂板）",
+      title: "SmartFontUI · FLOP 禁网页字体（示例·看板挂板）",
       track: "T3|T1",
       state: "blocked",
       huntId: "",
@@ -1244,7 +1244,7 @@
     },
     {
       id: "WF-20260927-002",
-      title: "吉利银河美好体 · cite-closed（示例·看板挂板）",
+      title: "吉利银河美好体 · 引用未开放（示例·看板挂板）",
       track: "T1|T2",
       state: "restricted",
       huntId: "",
@@ -1297,12 +1297,12 @@
         "Pro T1-d：证书 mock 状态机 pending→approved",
         "看板须与 FLOP 分行：cta=upload_cert 非 blocked"
       ],
-      notes: "样例：cite-closed 桶。不进 FLOP。摩登同 schema 换 normalized=Shmgt。",
+      notes: "样例：引用未开放桶。不进 FLOP。摩登同 schema 换 normalized=Shmgt。",
       updated: "2026-09-27T18:48:00+08:00"
     },
     {
       id: "WF-20260927-003",
-      title: "Ckbf · OFL 试点棒 · Ops GREEN（示例·看板挂板）",
+      title: "Ckbf · OFL 试点棒 · 探活绿（示例·看板挂板）",
       track: "T3|T2",
       state: "live",
       huntId: "",
@@ -1418,6 +1418,7 @@
   }
 
   function ctaLabel(cta, cert) {
+    if (cta === 'cert_pending') return '审核中';
     if (cta === 'connect' && cert && cert.status === 'approved') return '账号引用已开';
     if (cta === 'connect') return '立即接入';
     if (cta === 'upload_cert') return '上传证书';
@@ -1486,12 +1487,12 @@
       bools.webfontCdnOk = false;
       if (cert && cert.status === 'approved') {
         cta = 'connect';
-        headline = '本账号已开引用；公共货架 CDN 仍关闭。';
-        warnings.push('证书仅解锁账号×本款 cite，永不灌公共 fonts-packages。');
+        headline = '本账号引用已开；公共货架仍「引用未开放」（账号 cite ≠ 公共 CDN）。';
+        warnings.push('证书仅解锁账号×本款 cite，永不灌公共 fonts-packages / 不改 webfontCdnOk。');
       } else if (cert && cert.status === 'pending') {
-        cta = 'upload_cert';
+        cta = 'cert_pending';
         headline = '站内可预览；证书审核中，对外网页引用暂未开通。';
-        warnings.push('无证/审核中时外链 CSS/API 提示「引用未开放」。');
+        warnings.push('审核中时外链 CSS/API 仍提示「公共引用未开」；批准后仅开本账号 cite。');
       } else {
         cta = 'upload_cert';
         headline = '站内可预览；对外网页引用需上传授权证书（按账号开通，不是全站 CDN）。';

@@ -8,13 +8,13 @@
       "bot": "seat-open-2026-09-27",
       "foundry": "T1-a+T3-a-done",
       "seeker": "T2-sample-tickets-done",
-      "pro": "gap4-T1d-T2-P1-done",
+      "pro": "gap5-P1-polish-done",
       "depot": "standby-T3-c",
       "ops": "standby-probe"
     },
     "refs": {
       "font": "",
-      "tip": "gap4",
+      "tip": "gap5",
       "oss_metadata_version": "",
       "pr": "",
       "docs": [
@@ -25,7 +25,7 @@
         "/workspace/windfonts-research/T3-a-FLOP-NO-WEBFONT-LIST-v1-2026-09-27.md"
       ],
       "lab_tip": "46d52e9",
-      "hotReload": "?v=20260927gap4",
+      "hotReload": "?v=20260927gap5",
       "sample_tickets": [
         "WF-20260927-001",
         "WF-20260927-002",
@@ -42,13 +42,13 @@
     "ingestStatus": "ingesting",
     "cdnStatus": "n/a",
     "analysisStatus": "n/a",
-    "hotReload": "?v=20260927gap4",
+    "hotReload": "?v=20260927gap5",
     "opsProbe": "n/a",
     "ownerSeat": "Pro"
   },
   {
     "id": "WF-20260927-001",
-    "title": "SmartFontUI · FLOP 禁 webfont（示例·看板挂板）",
+    "title": "SmartFontUI · FLOP 禁网页字体（示例·看板挂板）",
     "track": "T3|T1",
     "state": "blocked",
     "huntId": "",
@@ -104,7 +104,7 @@
   },
   {
     "id": "WF-20260927-002",
-    "title": "吉利银河美好体 · cite-closed（示例·看板挂板）",
+    "title": "吉利银河美好体 · 引用未开放（示例·看板挂板）",
     "track": "T1|T2",
     "state": "restricted",
     "huntId": "",
@@ -157,12 +157,12 @@
       "Pro T1-d：证书 mock 状态机 pending→approved",
       "看板须与 FLOP 分行：cta=upload_cert 非 blocked"
     ],
-    "notes": "样例：cite-closed 桶。不进 FLOP。摩登同 schema 换 normalized=Shmgt。",
+    "notes": "样例：引用未开放桶。不进 FLOP。摩登同 schema 换 normalized=Shmgt。",
     "updated": "2026-09-27T18:48:00+08:00"
   },
   {
     "id": "WF-20260927-003",
-    "title": "Ckbf · OFL 试点棒 · Ops GREEN（示例·看板挂板）",
+    "title": "Ckbf · OFL 试点棒 · 探活绿（示例·看板挂板）",
     "track": "T3|T2",
     "state": "live",
     "huntId": "",
