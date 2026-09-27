@@ -1332,7 +1332,16 @@
       ],
       "kind": "project",
       "openSource": true,
-      "claimed": false
+      "claimed": false,
+      "fontNames": [
+        "IPA Gothic",
+        "IPA 黑体",
+        "IPAGothic",
+        "IPAex Gothic",
+        "IPAexGothic",
+        "IPAexMincho"
+      ],
+      "description": "日本独立行政法人 情报处理推进机构（IPA）字体；现由文字情報技術促進協議会分发。IPAex / IPA 明朝·ゴシック，IPA Font License 1.0（OSI）。本波钉 IPAex Gothic Ver.004.01 与 IPA Gothic Ver.003.03。"
     },
     {
       "id": "potta",
@@ -2579,6 +2588,29 @@
         "k6x8 明朝",
         "k6x8"
       ]
+    },
+    {
+      "id": "typingart",
+      "name": "Typingart",
+      "en": "Typingart",
+      "short": "Typingart",
+      "website": "https://typingart.net/",
+      "aliases": [
+        "Typing Art",
+        "typingart",
+        "Nakai",
+        "こころ明朝",
+        "Kokoro Mincho",
+        "KokoroMinchoutai"
+      ],
+      "fontNames": [
+        "こころ明朝",
+        "はんなり明朝"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "Typingart（Nakai）。こころ明朝体作者。官网 typingart.net；こころ明朝页 ?p=46 2026-09 已 404，本波以 luxcem/typingart-fonts@d7d6a46 备份钉 zip，随包 IPA Font License 1.0（非 OFL）。"
     }
   ]
 }

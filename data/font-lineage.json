@@ -55,7 +55,7 @@
     },
     "kokoro-mincho": {
       "name": "こころ明朝",
-      "upstreamName": "こころ明朝"
+      "upstreamName": ""
     },
     "smart-font-ui": {
       "name": "03スマートフォントUI",
@@ -585,7 +585,7 @@
       "relation": "fork",
       "licenseFollows": "inherit",
       "group": "ipa-gothic",
-      "upstreamName": "IPA 黑体",
+      "upstreamName": "IPAex Gothic",
       "upstreamOwnerId": "ipa"
     },
     "霞鹜新晰黑 Plus": {
@@ -702,7 +702,7 @@
       "relation": "fork",
       "licenseFollows": "inherit",
       "upstreamName": "こころ明朝",
-      "upstreamOwnerId": "fontworks",
+      "upstreamOwnerId": "typingart",
       "group": "kokoro-mincho"
     },
     "霞鹜铭心宋 CL": {
@@ -3180,6 +3180,36 @@
       "upstreamOwnerId": "littlelimit",
       "norm": "K6x8m",
       "family": "wenfeng-k6x8m"
+    },
+    "IPAex Gothic": {
+      "ownerId": "ipa",
+      "makerId": "ipa",
+      "group": "ipa-gothic",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "ipa",
+      "family": "wenfeng-ipaexgothic",
+      "normalized": "IPAexGothic"
+    },
+    "IPA 黑体": {
+      "ownerId": "ipa",
+      "makerId": "ipa",
+      "group": "ipa-gothic",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "ipa",
+      "family": "wenfeng-ipagothic",
+      "normalized": "IPAGothic"
+    },
+    "こころ明朝": {
+      "ownerId": "typingart",
+      "makerId": "typingart",
+      "group": "kokoro-mincho",
+      "relation": "original",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "typingart",
+      "family": "wenfeng-kokoro",
+      "normalized": "Kokoro"
     }
   }
 }

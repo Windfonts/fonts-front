@@ -22796,5 +22796,159 @@
     "charCount": 7121,
     "glyphCount": 7099,
     "viewCount": 0
+  },
+  {
+    "id": "fd1590b1-2900-456e-ab3a-99ed7d0f4aa6",
+    "name": "IPAex Gothic",
+    "en": "IPAex Gothic",
+    "family": "wenfeng-ipaexgothic",
+    "normalized": "IPAexGothic",
+    "designer": "",
+    "designerShort": "—",
+    "category": "黑体",
+    "tags": [
+      "开源",
+      "IPA",
+      "日文",
+      "黑体",
+      "上游"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "IPAex Gothic（IPAex Gothic）。moji.or.jp IPAex Gothic Ver.004.01 · ipaexg00401.zip IPA Font License 1.0（OSI）。CDN STOPPED — 本波 Foundry 只钉源/目录，不上传。",
+    "license": "开源商用",
+    "licenseName": "IPA Font License",
+    "licenseUrl": "https://opensource.org/licenses/IPA",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/IPAexGothic/LICENSE",
+    "licenseNotes": "moji.or.jp IPAex Gothic Ver.004.01 · ipaexg00401.zip IPA Font License 1.0。随包 IPA_Font_License_Agreement_v1.0.txt。再分发原文须原名+附许可；衍生字体不得含 IPA 字样且须提供 replace-back。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright(c) Information-technology Promotion Agency, Japan (IPA), 2003-2019.",
+    "foundry": "情報処理推進機構 (IPA)",
+    "brand": {
+      "name": "情報処理推進機構 (IPA)",
+      "slug": "ipa",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://moji.or.jp/ipafont/",
+      "description": "日本 IPA / 文字情報技術促進協議会。IPAex / IPA 字体官方分发。"
+    },
+    "releaseYear": 2019,
+    "version": "Version 004.01",
+    "languages": [
+      "日文",
+      "简体中文",
+      "繁体中文"
+    ],
+    "useCases": [
+      "正文",
+      "界面"
+    ],
+    "charCount": 11999,
+    "glyphCount": 12239,
+    "viewCount": 1
+  },
+  {
+    "id": "95d5b058-6948-4ee4-873f-3bf1036ee2b5",
+    "name": "IPA 黑体",
+    "en": "IPA Gothic",
+    "family": "wenfeng-ipagothic",
+    "normalized": "IPAGothic",
+    "designer": "",
+    "designerShort": "—",
+    "category": "黑体",
+    "tags": [
+      "开源",
+      "IPA",
+      "日文",
+      "黑体",
+      "上游"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "IPA 黑体（IPA Gothic）。moji.or.jp IPA Gothic Ver.003.03 · ipag00303.zip IPA Font License 1.0（OSI）。CDN STOPPED — 本波 Foundry 只钉源/目录，不上传。",
+    "license": "开源商用",
+    "licenseName": "IPA Font License",
+    "licenseUrl": "https://opensource.org/licenses/IPA",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/IPAGothic/LICENSE",
+    "licenseNotes": "moji.or.jp IPA Gothic Ver.003.03 · ipag00303.zip IPA Font License 1.0。随包 IPA_Font_License_Agreement_v1.0.txt。再分发原文须原名+附许可；衍生字体不得含 IPA 字样且须提供 replace-back。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright(c) Information-technology Promotion Agency, Japan (IPA), 2003-2011.",
+    "foundry": "情報処理推進機構 (IPA)",
+    "brand": {
+      "name": "情報処理推進機構 (IPA)",
+      "slug": "ipa",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://moji.or.jp/ipafont/",
+      "description": "日本 IPA / 文字情報技術促進協議会。IPAex / IPA 字体官方分发。"
+    },
+    "releaseYear": 2011,
+    "version": "Version 003.03",
+    "languages": [
+      "日文",
+      "简体中文",
+      "繁体中文"
+    ],
+    "useCases": [
+      "正文",
+      "界面"
+    ],
+    "charCount": 11462,
+    "glyphCount": 12728,
+    "viewCount": 1
+  },
+  {
+    "id": "8fa21d6c-e2bd-484b-8e24-3a4e852f55a7",
+    "name": "こころ明朝",
+    "en": "Kokoro Mincho",
+    "family": "wenfeng-kokoro",
+    "normalized": "Kokoro",
+    "designer": "Nakai / Typingart",
+    "designerShort": "Typingart",
+    "category": "宋体",
+    "tags": [
+      "开源",
+      "IPA",
+      "日文",
+      "明朝",
+      "上游"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "こころ明朝（Kokoro Mincho）。typingart.net こころ明朝体 Ver.1.00 (2014/09/06). Official page ?p=46 currently 404; pin via luxcem/typingart-fonts@d7d6a46 backup (kokoro.zip sha matches published sha256sum). IPA Font License 1.0 — NOT OFL. IPA Font License 1.0（OSI）。CDN STOPPED — 本波 Foundry 只钉源/目录，不上传。",
+    "license": "开源商用",
+    "licenseName": "IPA Font License",
+    "licenseUrl": "https://opensource.org/licenses/IPA",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Kokoro/LICENSE",
+    "licenseNotes": "typingart.net こころ明朝体 Ver.1.00 (2014/09/06). Official page ?p=46 currently 404; pin via luxcem/typingart-fonts@d7d6a46 backup (kokoro.zip sha matches published sha256sum). IPA Font License 1.0 — NOT OFL. IPA Font License 1.0。随包 IPA_Font_License_Agreement_v1.0.txt。再分发原文须原名+附许可；衍生字体不得含 IPA 字样且须提供 replace-back。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Typing Art",
+    "foundry": "Typingart",
+    "brand": {
+      "name": "Typingart",
+      "slug": "typingart",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://typingart.net/",
+      "description": "Typingart（Nakai）。こころ明朝体作者；IPA Font License 1.0 衍生自 IPA 明朝系。"
+    },
+    "releaseYear": 2014,
+    "version": "Version 1.00",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 14541,
+    "glyphCount": 9354,
+    "viewCount": 1
   }
 ]

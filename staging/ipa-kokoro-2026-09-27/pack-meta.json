@@ -1,0 +1,101 @@
+{
+  "wave": "ipa-kokoro-upstream-c2",
+  "date": "2026-09-27",
+  "tz": "Asia/Shanghai",
+  "cdn": "STOPPED",
+  "note": "Foundry 轨 C2：落霞链缺失上游 こころ明朝 / IPAex Gothic / IPA 黑体。三者均为 IPA Font License 1.0（Kokoro 亦同，非 OFL）。不上传 CDN / 不跑 vault docker。",
+  "archives": {
+    "ipaexg00401.zip": {
+      "sha256": "4ab6fee94bf6f94b3eeb31be2b73c559f738dc6b336d722d5301b1f3f592f850",
+      "path": "/Users/feibisi-studio/Projects/_fonts_park/ipa-kokoro-2026-09-27/dl/ipaexg00401.zip"
+    },
+    "ipag00303.zip": {
+      "sha256": "b5e6f61de7465476f2f946dd83ee0961dc4d0ceea0833d253bb697297f232d97",
+      "path": "/Users/feibisi-studio/Projects/_fonts_park/ipa-kokoro-2026-09-27/dl/ipag00303.zip"
+    },
+    "kokoro.zip": {
+      "sha256": "e4566175799d52f9e3b6dd8774596428ea27dd40596e1283aa627689e5ac98d8",
+      "path": "/Users/feibisi-studio/Projects/_fonts_park/ipa-kokoro-2026-09-27/dl/kokoro.zip"
+    }
+  },
+  "parkPath": "/Users/feibisi-studio/Projects/_fonts_park/ipa-kokoro-2026-09-27",
+  "labStaging": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/ipa-kokoro-2026-09-27",
+  "licenseSha256": "4c84dd528ec3044638ec346fc1ee27cd1eb95dfc04cbc6a881b3ca7a7f517e54",
+  "families": [
+    {
+      "catalogName": "IPAex Gothic",
+      "en": "IPAex Gothic",
+      "norm": "IPAexGothic",
+      "family": "wenfeng-ipaexgothic",
+      "version": "Version 004.01",
+      "glyphCount": 12239,
+      "charCount": 11999,
+      "copyright": "Copyright(c) Information-technology Promotion Agency, Japan (IPA), 2003-2019.",
+      "psName": "IPAexGothic",
+      "role": "original-upstream",
+      "pin": "ipaexg00401",
+      "sourceUrl": "https://moji.or.jp/wp-content/ipafont/IPAexfont/ipaexg00401.zip",
+      "bytes": 6099900,
+      "sha256": "3b9955a5e437ffb24c41548e79296fa724822da21ee75dc1b94f6ccdb8f400dd",
+      "pkgPath": "fonts-packages/fonts/IPAexGothic/Regular.ttf",
+      "stagingPath": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/ipa-kokoro-2026-09-27/IPAexGothic/Regular.ttf",
+      "licensePath": "font-licenses/licenses/IPAexGothic/LICENSE"
+    },
+    {
+      "catalogName": "IPA 黑体",
+      "en": "IPA Gothic",
+      "norm": "IPAGothic",
+      "family": "wenfeng-ipagothic",
+      "version": "Version 003.03",
+      "glyphCount": 12728,
+      "charCount": 11462,
+      "copyright": "Copyright(c) Information-technology Promotion Agency, Japan (IPA), 2003-2011.",
+      "psName": "IPAGothic",
+      "role": "original-upstream",
+      "pin": "ipag00303",
+      "sourceUrl": "https://moji.or.jp/wp-content/ipafont/IPAfont/ipag00303.zip",
+      "bytes": 6235344,
+      "sha256": "503af4a8b84d1079b8e2e358dc7f7a7fb8cb7a1f212f35eaef6782dbfc75a55e",
+      "pkgPath": "fonts-packages/fonts/IPAGothic/Regular.ttf",
+      "stagingPath": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/ipa-kokoro-2026-09-27/IPAGothic/Regular.ttf",
+      "licensePath": "font-licenses/licenses/IPAGothic/LICENSE"
+    },
+    {
+      "catalogName": "こころ明朝",
+      "en": "Kokoro Mincho",
+      "norm": "Kokoro",
+      "family": "wenfeng-kokoro",
+      "version": "Version 1.00",
+      "glyphCount": 9354,
+      "charCount": 14541,
+      "copyright": "Typing Art",
+      "psName": "KokoroMinchoutai",
+      "role": "original-upstream",
+      "pin": "d7d6a46e41913bb0ce0cf5def1b34208b3c98529",
+      "sourceUrl": "https://github.com/luxcem/typingart-fonts/blob/d7d6a46e41913bb0ce0cf5def1b34208b3c98529/kokoro-mincho/kokoro.zip",
+      "bytes": 4082644,
+      "sha256": "d0e06423e469754aa0483398a4fa02ea9e26b3104c0c6dbe7331d40b7804c8f3",
+      "pkgPath": "fonts-packages/fonts/Kokoro/Regular.otf",
+      "stagingPath": "/Users/feibisi-studio/Projects/fonts-front-v4-lab/staging/ipa-kokoro-2026-09-27/Kokoro/Regular.otf",
+      "licensePath": "font-licenses/licenses/Kokoro/LICENSE"
+    }
+  ],
+  "downstream": [
+    {
+      "name": "霞鹜铭心宋",
+      "norm": "Xwmxs",
+      "upstreamName": "こころ明朝"
+    },
+    {
+      "name": "霞鹜晰黑 CL",
+      "norm": "Xwxhcl",
+      "upstreamName": "IPAex Gothic"
+    },
+    {
+      "name": "霞鹜新晰黑",
+      "norm": "Xwxxh",
+      "upstreamName": "IPAex Gothic",
+      "note": "LXGW README 明确基于 IPAex Gothic；旧 lineage 写 IPA 黑体已纠正。IPA 黑体仍入库供别名/经典 IPA Gothic。"
+    }
+  ]
+}
