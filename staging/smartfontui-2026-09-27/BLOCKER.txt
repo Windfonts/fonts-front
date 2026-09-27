@@ -1,2 +1,20 @@
-Official freefont 403; BOOTH login wall; no clean OTF pin. lineage-stub only.
-CDN STOPPED. No Regular.ttf this wave.
+CLEARED — binary pinned from ziti.net.cn mirror (2026-09-27 CST)
+
+Identity MATCH: 03スマートフォントUI / 03SmartFontUI (PS=03SmartFontUI), FLOP DESIGN / IPA.
+sha256: 3ad688bf2033ffb7900e36c6fb60c3c54ea607d437837efc2d2e78ddea1fd05a
+bytes: 2405840
+format: CFF OpenType (.otf) Version 1.00
+charCount (Unicode cmap): 9804
+glyphCount: 15444
+
+Source: https://www.ziti.net.cn/static/upload/other/20210904/1630748076308611.otf
+Official BOOTH (not used for this pin): https://flopdesign.booth.pm/items/2296502 SmartFontUI.zip
+Official freefont still 403.
+
+Laid:
+  fonts-packages/fonts/SmartFontUI/Regular.otf  (kept .otf; no FLOP ttf prior; CDN STOPPED)
+  staging/smartfontui-2026-09-27/SmartFontUI/Regular.otf
+  _fonts_park/smartfontui-2026-09-27/1630748076308611.otf
+
+CDN STOPPED — FLOP forbids webfont. No ANALYSIS_META_VER bump. Vault register draft unrun.
+License: IPA Font License 1.0 + FLOP webfont/APP embed ban (NOT OFL).

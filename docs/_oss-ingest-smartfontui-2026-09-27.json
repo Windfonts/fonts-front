@@ -3,14 +3,16 @@
   "date": "2026-09-27",
   "tz": "Asia/Shanghai",
   "cdn": "STOPPED",
-  "status": "BLOCKED_BINARY_PIN",
-  "note": "Foundry 轨 C4：霞鹜尚智黑（Xwszh）缺失上游 03スマートフォントUI。官方 FLOP DESIGN；IPA Font License 1.0 + FLOP webfont/嵌入附加条款。官网 403 / BOOTH 需登录 → 本波 lineage-stub only，不钉 packages。不上传 CDN / 不跑 vault docker。",
+  "status": "PINNED_LOCAL",
+  "note": "Foundry 轨 C4：霞鹜尚智黑（Xwszh）上游 03スマートフォントUI。IPA Font License 1.0 + FLOP webfont/嵌入附加条款。本波钉 ziti.net.cn 镜像 OTF（身份匹配 03SmartFontUI）；BOOTH zip 未取。packages Regular.otf；catalog 离 lineage-stub。不上传 CDN / 不跑 vault docker / 不 bump ANALYSIS_META_VER。",
   "official": {
     "freefont": "https://www.flopdesign.com/freefont/smartfont.html",
     "freefontStatus": "403 Forbidden (2026-09-27)",
     "booth": "https://flopdesign.booth.pm/items/2296502",
     "boothDownload": "SmartFontUI.zip (login required for free download)",
-    "lxgwForkNotes": "https://github.com/lxgw/LxgwFasmartGothic"
+    "lxgwForkNotes": "https://github.com/lxgw/LxgwFasmartGothic",
+    "mirrorOtF": "https://www.ziti.net.cn/static/upload/other/20210904/1630748076308611.otf",
+    "mirrorNote": "Feng pasted direct OTF after skipping BOOTH login widget"
   },
   "families": [
     {
@@ -18,12 +20,18 @@
       "en": "Smart Font UI",
       "norm": "SmartFontUI",
       "family": "wenfeng-smartfontui",
-      "version": "lineage-stub",
-      "glyphCount": 0,
-      "charCount": 0,
-      "role": "original-upstream-stub",
-      "pin": null,
-      "pkgPath": null,
+      "version": "Version 1.00",
+      "glyphCount": 15444,
+      "charCount": 9804,
+      "role": "original-upstream-pin",
+      "pin": {
+        "sha256": "3ad688bf2033ffb7900e36c6fb60c3c54ea607d437837efc2d2e78ddea1fd05a",
+        "bytes": 2405840,
+        "format": "otf",
+        "postScriptName": "03SmartFontUI",
+        "source": "https://www.ziti.net.cn/static/upload/other/20210904/1630748076308611.otf"
+      },
+      "pkgPath": "fonts-packages/fonts/SmartFontUI/Regular.otf",
       "licensePath": "font-licenses/licenses/SmartFontUI/LICENSE"
     }
   ],

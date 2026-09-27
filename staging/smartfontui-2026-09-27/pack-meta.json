@@ -2,14 +2,34 @@
   "wave": "smartfontui-upstream-c4",
   "date": "2026-09-27",
   "cdn": "STOPPED",
-  "status": "BLOCKED_BINARY_PIN",
+  "status": "PINNED_LOCAL",
   "catalogName": "03スマートフォントUI",
   "norm": "SmartFontUI",
   "family": "wenfeng-smartfontui",
   "license": "IPA Font License 1.0 (NOT OFL) + FLOP webfont/embed extra terms",
-  "packages": null,
-  "reason": "Official freefont 403; BOOTH login wall; no clean OTF pin. lineage-stub only.",
+  "packages": "fonts-packages/fonts/SmartFontUI/Regular.otf",
+  "format": "otf (CFF OTTO; kept original — no prior FLOP ttf pack; CDN STOPPED so no convert)",
+  "version": "Version 1.00",
+  "charCount": 9804,
+  "glyphCount": 15444,
+  "sha256": "3ad688bf2033ffb7900e36c6fb60c3c54ea607d437837efc2d2e78ddea1fd05a",
+  "bytes": 2405840,
+  "identity": {
+    "family": "03スマートフォントUI / 03SmartFontUI",
+    "postScriptName": "03SmartFontUI",
+    "fullName": "03スマートフォントUI",
+    "designerCopyright": "IPA + www.flopdesign.com",
+    "match": true
+  },
+  "source": {
+    "mirror": "https://www.ziti.net.cn/static/upload/other/20210904/1630748076308611.otf",
+    "boothOfficial": "https://flopdesign.booth.pm/items/2296502",
+    "boothZip": "SmartFontUI.zip (login; not used this pin — direct OTF from ziti mirror)",
+    "freefont": "https://www.flopdesign.com/freefont/smartfont.html (403)"
+  },
   "downstream": [
     "霞鹜尚智黑"
-  ]
+  ],
+  "vaultRegister": "unrun (draft only)",
+  "pinnedAt": "2026-09-27T17:26+08:00"
 }

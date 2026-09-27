@@ -23393,17 +23393,17 @@
       "日文",
       "上游",
       "UI",
-      "lineage-stub"
+      "FLOP"
     ],
     "weights": [
       "Regular"
     ],
-    "description": "03スマートフォントUI（Smart Font UI）。FLOP DESIGN 基于 IPAexゴシック 衍生的 condensed UI ゴシック。IPA Font License 1.0（非 OFL）。官网 freefont 页现 403；BOOTH 免费下载需登录。本波为血缘占位（lineage-stub）：字形包未钉入。FLOP 另禁 webfont/APP 嵌入（需日文 Webfont 套件）。CDN STOPPED。",
+    "description": "03スマートフォントUI（Smart Font UI）。FLOP DESIGN 基于 IPAexゴシック 衍生的 condensed UI ゴシック。IPA Font License 1.0（非 OFL）。官网 freefont 页现 403；本波钉 ziti.net.cn 镜像 OTF（PS=03SmartFontUI），BOOTH 官方分发仍为 SmartFontUI.zip。FLOP 另禁 webfont/APP 嵌入（需日文 Webfont 套件）。CDN STOPPED。",
     "license": "开源商用",
     "licenseName": "IPA Font License",
     "licenseUrl": "https://opensource.org/licenses/IPA",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/SmartFontUI/LICENSE",
-    "licenseNotes": "FLOP DESIGN / IPA Font License 1.0 — NOT OFL。钉源未完成：官网 https://www.flopdesign.com/freefont/smartfont.html 2026-09-27 返回 403；BOOTH https://flopdesign.booth.pm/items/2296502 免费下载需登录，本机 curl 未取得 SmartFontUI.zip。kobake/metro-css-card 仅有未支持的 03SmartFont-P 变体，不可作主面 pin。FLOP ReadMe：印刷/数字内容自由使用须遵 IPA；改变再分发/程序嵌入/webfont 有限制；假名设计版权归 FLOP，禁止有偿公开·销售·再分发·可提取程序嵌入。APP/游戏内置与 webfont 上传需购日文 Webfont 套件。本条 version=lineage-stub / charCount=0。CDN STOPPED。",
+    "licenseNotes": "FLOP DESIGN / IPA Font License 1.0 — NOT OFL。钉源：ziti.net.cn 镜像 OTF https://www.ziti.net.cn/static/upload/other/20210904/1630748076308611.otf (sha256 3ad688bf2033ffb7900e36c6fb60c3c54ea607d437837efc2d2e78ddea1fd05a, 2405840 bytes, CFF OTTO)；官方 BOOTH https://flopdesign.booth.pm/items/2296502（SmartFontUI.zip）；官网 https://www.flopdesign.com/freefont/smartfont.html 2026-09-27 仍 403。身份：name/PS=03SmartFontUI / 03スマートフォントUI；glyphCount=15444；Unicode cmap charCount=9804；Version 1.00。FLOP ReadMe：印刷/数字内容自由使用须遵 IPA；改变再分发/程序嵌入/webfont 有限制；假名设计版权归 FLOP，禁止有偿公开·销售·再分发·可提取程序嵌入。APP/游戏内置与 webfont 上传需购日文 Webfont 套件。packages 保留 Regular.otf（原格式；无既有 FLOP ttf 包先例；CDN STOPPED 故不转 ttf）。CDN STOPPED。",
     "licenseVerified": true,
     "purchaseUrl": "https://flopdesign.booth.pm/items/2296502",
     "copyright": "Copyright(c) Information-technology Promotion Agency, Japan (IPA), 2003-2014. / Copyright (C) 1998-2014 FLOP DESIGN",
@@ -23417,7 +23417,7 @@
       "description": "FLOP DESIGN。03スマートフォントUI；IPA Font License + 假名/webfont 附加限制。"
     },
     "releaseYear": 2014,
-    "version": "lineage-stub",
+    "version": "Version 1.00",
     "languages": [
       "日文",
       "英语"
@@ -23427,8 +23427,8 @@
       "标题",
       "UI"
     ],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 9804,
+    "glyphCount": 15444,
     "viewCount": 0
   },
   {
