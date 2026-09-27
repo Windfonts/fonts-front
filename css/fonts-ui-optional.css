@@ -1,6 +1,6 @@
-/* Optional UI faces (Chill Round Gothic + Alibaba PuHuiTi).
-   NOT on the critical path — load async after first paint if desired.
-   Product --font-ui prefers system CJK; specimen demos use ensureFontCss / package CSS. */
+/* Optional local full UI faces (Chill Round Gothic + Alibaba PuHuiTi).
+   NOT on the critical path — product --font-ui uses CDN Albbpht zh-common (fonts.css).
+   Specimen demos use ensureFontCss / package CSS. */
 @font-face { font-family: "Chill Round Gothic"; font-weight: 300; font-display: swap; src: url("../assets/fonts/ChillRoundGothic-300.woff2") format("woff2"); }
 @font-face { font-family: "Chill Round Gothic"; font-weight: 400; font-display: swap; src: url("../assets/fonts/ChillRoundGothic-400.woff2") format("woff2"); }
 @font-face { font-family: "Chill Round Gothic"; font-weight: 700; font-display: swap; src: url("../assets/fonts/ChillRoundGothic-700.woff2") format("woff2"); }
