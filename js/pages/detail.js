@@ -23,6 +23,9 @@
     } else if (/0BSD/i.test(name)) {
       ok.push('可免费用于商业项目与网页嵌入', '可修改与再分发');
       no.push('无保证');
+    } else if (tier === '开源' || tier === '开源商用') {
+      ok.push('可免费用于商业项目与网页嵌入', '可嵌入网页并再分发（保留许可声明）', '可修改后再分发');
+      no.push('不得单独售卖字体文件');
     } else if (tier === '免费商用') {
       ok.push('可免费用于商业项目与网页嵌入', '可用于品牌、电商、海报、界面');
       no.push('不得修改字体文件后再分发', '不得单独售卖字体文件');
@@ -49,7 +52,7 @@
   }
 
   function licenseLead(tier) {
-    if (tier === '开源') return '开源许可，可免费使用、修改与再分发。';
+    if (tier === '开源' || tier === '开源商用') return '开源许可，可免费使用、修改与再分发。';
     if (tier === '免费商用') return '可免费用于网页、App、印刷与商业项目。';
     if (tier === '个人免费') return '个人非商业用途免费，商用需另行授权。';
     if (tier === '需授权') return '取得厂商授权后才可公开使用。';
@@ -64,10 +67,11 @@
   function proofTier(font) {
     var n = String(font.licenseName || '');
     if (OPEN_LICENSE.test(n) || OPEN_AGREEMENTS[n]) return '开源';
-    return WFChrome.licenseTier(font);
+    var tier = WFChrome.licenseTier(font);
+    return tier === '开源商用' ? '开源' : tier;
   }
   function tierSentence(tier) {
-    if (tier === '开源') return '字体以开源许可发布，可免费使用、修改与再分发。';
+    if (tier === '开源' || tier === '开源商用') return '字体以开源许可发布，可免费使用、修改与再分发。';
     if (tier === '免费商用') return '字体向所有个人和组织开放，免费商用。';
     if (tier === '个人免费') return '字体仅个人免费商用。';
     if (tier === '需授权') return '字体需取得权利人授权后方可商用。';
@@ -286,7 +290,7 @@
    * 开源档追加 RFN 徽章：版权行声明 with Reserved Font Name → 修改版须换名；
    * 已核对且无声明 → 可沿用原名；未核对原文（rfn 缺省）→ 不显示。 */
   function tierPoints(tier, rfn) {
-    if (tier === '开源') {
+    if (tier === '开源' || tier === '开源商用') {
       const pts = [['ok', '个人与企业免费使用'], ['ok', '可修改与再分发'], ['no', '不得单独售卖字体文件']];
       if (rfn === true) pts.push(['no', '修改版须避开保留字体名']);
       if (rfn === false) pts.push(['ok', '修改版可沿用原名']);
