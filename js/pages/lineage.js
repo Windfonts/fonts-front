@@ -2013,12 +2013,12 @@
       left.forEach(function (s, i) {
         const x = focusX - (i + 1) * (CARD_W + PLEX_H_GAP);
         place(s, x, focusY, CARD_H_COMPACT, { role: 'sibling', compact: true });
-        edges.push({ from: focus.id, to: s.id, label: '旁', soft: true });
+        edges.push({ from: focus.id, to: s.id, label: '旁系', soft: true });
       });
       right.forEach(function (s, i) {
         const x = focusX + CARD_W + (i + 1) * PLEX_H_GAP + i * CARD_W;
         place(s, x, focusY, CARD_H_COMPACT, { role: 'sibling', compact: true });
-        edges.push({ from: focus.id, to: s.id, label: '旁', soft: true });
+        edges.push({ from: focus.id, to: s.id, label: '旁系', soft: true });
       });
       sideSeries.forEach(function (s, gi) {
         if (positions[s.id]) return;
@@ -2302,7 +2302,7 @@
 
       left.concat(right).forEach(function (s) {
         addNode(s, 'sibling', { compact: true });
-        edges.push({ from: focus.id, to: s.id, label: '旁', soft: true });
+        edges.push({ from: focus.id, to: s.id, label: '旁系', soft: true });
         /* hard parent→sib so ELK keeps them on the focus layer */
         edges.push({ from: parent.id, to: s.id, label: '', soft: false, layoutOnly: true });
       });
