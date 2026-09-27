@@ -21,6 +21,10 @@ Rewrite 示例（Nginx）：
 location ~ ^/fonts/([A-Za-z0-9_-]+)/?$ {
   rewrite ^ /font-detail.html?slug=$1 last;
 }
+# /foundry/lxgw → foundry.html?slug=lxgw  （勿抢走裸 /foundry）
+location ~ ^/foundry/([A-Za-z0-9_-]+)/?$ {
+  rewrite ^ /foundry.html?slug=$1 last;
+}
 error_page 404 /404.html;
 ```
 
@@ -28,11 +32,12 @@ error_page 404 /404.html;
 
 线上 / 正式域生成的页面链接**不要带** `.html`。本机 / LAN / localhost / staging / `*.local` 仍保留 `.html`，方便 `python -m http.server`。
 
-示例（query 形式暂可；字库详情已是路径形式）：
+示例（厂商与字库详情均为路径形式；旧 `?slug=` 由前端 replaceState / Ops 301 收敛）：
 
 | 生产 URL | 对应文件 |
 |---|---|
-| `/foundry?slug=lxgw` | `foundry.html?slug=lxgw` |
+| `/foundry/lxgw` | `foundry.html?slug=lxgw` |
+| `/foundry` | `foundry.html`（索引） |
 | `/fonts/ibmps` | `font-detail.html?slug=ibmps` |
 | `/fonts` | `fonts.html`（列表） |
 | `/license-query` | `license-query.html` |
@@ -41,8 +46,10 @@ Ops / Nginx 建议：
 
 - `try_files $uri $uri.html $uri/ =404;`（或等价：无扩展名回退到 `.html`）
 - **停止** 把 `/fonts` 301 到 `fonts.html`（与详情前缀 `/fonts/{slug}` 冲突；列表用 `try_files` 落到 `fonts.html`）
+- 同理勿把裸 `/foundry` 硬 301 到 `foundry.html` 若会与 `/foundry/{slug}` 冲突；索引靠 `try_files`
 - 可选：对仍带 `.html` 的旧链做 301 → 无扩展名（保留 query）
 - 详情：`/fonts/{slug}` rewrite → `font-detail.html?slug=$1`（见上）；前端也会从 pathname 读 slug
+- 厂商：`/foundry/{slug}` rewrite → `foundry.html?slug=$1`；旧 `/foundry?slug=` / `/foundry.html?slug=` 优先 301 → `/foundry/{slug}`（前端 prod 亦 `history.replaceState`）
 
 ## 2. 上线前检测门闸（按顺序勾）
 

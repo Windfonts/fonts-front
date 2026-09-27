@@ -170,7 +170,7 @@
       const free = tiers['免费商用'] || 0;
       homeStats.innerHTML =
         '<a href="fonts.html"><b>' + WFProto.formatCount(list.length) + '</b> 款</a>' +
-        '<a href="foundry.html"><b>' + WFProto.formatCount(brands) + '</b> 家</a>' +
+        '<a href="' + WFChrome.href('foundry.html') + '"><b>' + WFProto.formatCount(brands) + '</b> 家</a>' +
         '<a href="fonts.html?license=' + encodeURIComponent('免费商用') + '"><b>' +
           WFProto.formatCount(free) + '</b> 免费商用</a>';
     }
@@ -179,10 +179,10 @@
 
     band.innerHTML =
       '<div class="section-head"><h2>' + WFChrome.icon('box') + '字体库存</h2>' +
-        '<a class="more" href="foundry.html">' + WFChrome.icon('building') + '厂商索引</a></div>' +
+        '<a class="more" href="' + WFChrome.href('foundry.html') + '">' + WFChrome.icon('building') + '厂商索引</a></div>' +
       '<div class="stats-grid">' +
         panel('certificate', '按授权', rows(tierItems, function (r) { return 'fonts.html?license=' + encodeURIComponent(r.label); }), '分类说明见文档。') +
-        panel('chart', '字体最多的厂商', rows(topBrands, function (r) { return 'foundry.html?slug=' + encodeURIComponent(r.key); })) +
+        panel('chart', '字体最多的厂商', rows(topBrands, function (r) { return WFChrome.foundryHref(r.key); })) +
         panel('text', '字符规模', rows(scaleItems),
           '按已有字数的 ' + charKnown + ' 款统计' + (unknown ? '；' + unknown + ' 款还没录入字数。' : '。')) +
       '</div>';

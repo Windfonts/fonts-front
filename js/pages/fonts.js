@@ -166,7 +166,7 @@
         ? '<div class="chips facet-brand-more"' + (open ? '' : ' hidden') + '>' + moreHtml + '</div>'
         : '') +
       '<div class="facet-brand-foot">' + toggle +
-        '<a class="more" href="foundry.html">' + WFChrome.icon('building') + '厂商索引</a>' +
+        '<a class="more" href="' + WFChrome.href('foundry.html') + '">' + WFChrome.icon('building') + '厂商索引</a>' +
       '</div></div>';
   }
 

@@ -271,8 +271,8 @@
   }
 
   /**
-   * 生产站页面路径：去掉 .html；font-detail.html?slug=X → fonts/X。
-   * 不动 https?:// 与 assets/ data/ css/ js/ fonts-packages/。
+   * 生产站页面路径：去掉 .html；font-detail.html?slug=X → fonts/X；
+   * foundry.html?slug=X → foundry/X。不动 https?:// 与 assets/ data/ css/ js/ fonts-packages/。
    */
   function livePagePath(path) {
     path = String(path == null ? '' : path);
@@ -299,6 +299,18 @@
       }
     }
 
+    if (/(^|\/)foundry\.html$/i.test(path)) {
+      var fparams;
+      try { fparams = new URLSearchParams(q.charAt(0) === '?' ? q.slice(1) : q); }
+      catch (e) { fparams = null; }
+      var fslug = fparams ? (fparams.get('slug') || '') : '';
+      if (fslug) {
+        if (fparams) fparams.delete('slug');
+        var fleft = fparams && fparams.toString ? fparams.toString() : '';
+        return 'foundry/' + encodeURIComponent(fslug).replace(/%2F/gi, '/') + (fleft ? '?' + fleft : '') + hash;
+      }
+    }
+
     if (/(^|\/)index\.html$/i.test(path)) {
       var base = path.replace(/index\.html$/i, '').replace(/\/$/, '');
       return base + q + hash;
@@ -321,6 +333,25 @@
       });
     }
     var raw = 'font-detail.html?' + parts.join('&');
+    try {
+      if (typeof location !== 'undefined' && location.hostname && !isDevPreviewHost(location.hostname)) {
+        return livePagePath(raw);
+      }
+    } catch (e) { /* ignore */ }
+    return raw;
+  }
+
+  /** 厂商页链接：dev 用 foundry.html?slug=；生产域发 foundry/{slug}。可附带额外 query / hash 经 path 传入。 */
+  function foundryHref(slug, extra) {
+    const parts = [];
+    if (slug) parts.push('slug=' + encodeURIComponent(slug));
+    if (extra) {
+      Object.keys(extra).forEach(function (k) {
+        if (extra[k] == null || extra[k] === '') return;
+        parts.push(encodeURIComponent(k) + '=' + encodeURIComponent(extra[k]));
+      });
+    }
+    var raw = parts.length ? 'foundry.html?' + parts.join('&') : 'foundry.html';
     try {
       if (typeof location !== 'undefined' && location.hostname && !isDevPreviewHost(location.hostname)) {
         return livePagePath(raw);
@@ -1098,6 +1129,7 @@
     isDevPreviewHost: isDevPreviewHost,
     livePagePath: livePagePath,
     detailHref: detailHref,
+    foundryHref: foundryHref,
     getFontStats: getFontStats,
     bumpFontStat: bumpFontStat,
     paintFontStats: paintFontStats,

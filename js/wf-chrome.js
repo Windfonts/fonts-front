@@ -34,6 +34,13 @@
     } catch (e) { /* ignore */ }
     return ROOT + path;
   }
+  /** 厂商详情：ROOT + foundry/{slug}（prod）或 foundry.html?slug=（dev）。 */
+  function foundryHref(slug, extra) {
+    if (window.WFProto && WFProto.foundryHref) {
+      return ROOT + WFProto.foundryHref(slug, extra);
+    }
+    return href(slug ? 'foundry.html?slug=' + encodeURIComponent(slug) : 'foundry.html');
+  }
   function esc(s) { return WFProto.escapeHtml(s); }
 
   function user() {
@@ -630,7 +637,7 @@
     if (cols.length) bits.push('联合作者 ' + cols.map(function (c) { return c.name; }).join('、'));
     const follow = (L && FOLLOW_COPY[L.licenseFollows]) || '';
     const colLinks = cols.map(function (c) {
-      return '<a href="' + href('foundry.html?slug=' + encodeURIComponent(c.id)) + '">' +
+      return '<a href="' + foundryHref(c.id) + '">' +
         faceHtml(font, 16, c) + esc(c.name) + '</a>';
     }).join('');
     return '<div class="license-cite lineage">' +
@@ -776,7 +783,7 @@
     }
     const bits = [];
     if (who) {
-      bits.push('<a href="' + href('foundry.html?slug=' + encodeURIComponent(who.id)) + '">' +
+      bits.push('<a href="' + foundryHref(who.id) + '">' +
         esc(who.short || who.name) + '</a>');
     }
     if (ghost && ghost.site) {
@@ -922,7 +929,7 @@
       ? '<img src="' + esc(avatar) + '" alt="" width="' + size + '" height="' + size + '" loading="lazy" onerror="' + esc("this.replaceWith(Object.assign(document.createElement('span'),{className:'mark',textContent:" + JSON.stringify(name.charAt(0)) + "}))") + '" />'
       : '<span class="mark">' + esc(name.charAt(0)) + '</span>';
     const slug = (info && info.id) || brandSlug(font);
-    const link = href('foundry.html?slug=' + encodeURIComponent(slug));
+    const link = foundryHref(slug);
     const en = (info && info.en) || brandEn(font);
     const kind = kindLabel(info || font);
     const sub = [kind, opts.sub].filter(Boolean).join(' · ');
@@ -962,7 +969,7 @@
     const mark = avatar
       ? '<img src="' + esc(avatar) + '" alt="" width="18" height="18" loading="lazy" />'
       : '<span class="mark">' + esc(String(name).charAt(0)) + '</span>';
-    return '<a class="partner-face" href="' + href('foundry.html?slug=' + encodeURIComponent(info.id)) + '">' +
+    return '<a class="partner-face" href="' + foundryHref(info.id) + '">' +
       mark + '<span>' + esc(info.name || name) + '</span></a>';
   }
 
@@ -1111,6 +1118,7 @@
     isDevPreviewHost: isDevPreviewHost,
     livePagePath: livePagePath,
     href: href,
+    foundryHref: foundryHref,
     user: user,
     canAccessApp: canAccessApp,
     login: login,

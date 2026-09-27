@@ -193,7 +193,7 @@
     const info = font.ownerInfo || font.foundryInfo;
     const tr = info && info.trackRecord;
     if (!tr || !Array.isArray(tr.incidents) || !tr.incidents.length) return '';
-    return '<a class="lp-badge lp-badge-warn" href="foundry.html?slug=' + encodeURIComponent(info.id) + '#record">厂商有授权变更记录 →</a>';
+    return '<a class="lp-badge lp-badge-warn" href="' + WFChrome.foundryHref(info.id) + '#record">厂商有授权变更记录 →</a>';
   }
 
   /* 条款徽章也按档位出固定三条，与句子同一张配置表。
@@ -271,7 +271,7 @@
 
     // 字体本身的属性两边都给；版本与发布年份仅开发模式。浏览量改放「统计信息」。
     const kv = [
-      maker ? { icon: 'palette', dt: '制作方', dd: '<a href="foundry.html?slug=' + encodeURIComponent(maker.id) + '">' + esc(maker.name) + '</a>', html: true } : null,
+      maker ? { icon: 'palette', dt: '制作方', dd: '<a href="' + WFChrome.foundryHref(maker.id) + '">' + esc(maker.name) + '</a>', html: true } : null,
       { icon: 'classify', dt: '分类', dd: WFChrome.catLabel(font.category) || font.category },
       { icon: 'translate', dt: '语言', dd: (font.languages || []).map(function (l) { return l === '英语' ? '英文' : l; }).join(' · ') },
       { icon: 'calendar', dt: '发布', dd: font.releaseYear ? String(font.releaseYear) : '', dev: true },
@@ -327,7 +327,7 @@
             (titleEn && titleEn !== titleName ? '<small>' + esc(titleEn) + '</small>' : '') + '</h1>' +
           (window.WFProducts ? WFProducts.variantBarHtml(font) : '') +
           '<p class="dotlist">' +
-            '<a class="foundry-inline" href="foundry.html?slug=' + encodeURIComponent(WFChrome.brandSlug(font)) + '">' +
+            '<a class="foundry-inline" href="' + WFChrome.foundryHref(WFChrome.brandSlug(font)) + '">' +
               (avatar ? '<img src="' + esc(avatar) + '" alt="" />' : '') + esc(brand || '未署名') +
               (WFChrome.brandVerified(font) ? WFChrome.VERIFIED_SVG : '') + '</a>' +
             (function () {

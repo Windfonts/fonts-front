@@ -1,4 +1,4 @@
-/* 厂商：索引（无 slug）/ 单厂商页（?slug=） */
+/* 厂商：索引（无 slug）/ 单厂商页（/foundry/{slug}，兼 ?slug=） */
 (function () {
   const esc = WFProto.escapeHtml;
   const root = document.getElementById('foundryRoot');
@@ -253,7 +253,7 @@
         : '<span class="mark">' + esc((up.short || up.name || '?').charAt(0)) + '</span>')
       : '';
     const who = up
-      ? '<a class="foundry-upstream-who" href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(up.id)) + '">' +
+      ? '<a class="foundry-upstream-who" href="' + WFChrome.foundryHref(up.id) + '">' +
           mark + '<span>' + esc(up.short || up.name) + '</span></a>'
       : '';
     const kin = row.group
@@ -731,7 +731,7 @@
 
     root.innerHTML =
       '<div class="container">' +
-      '<div class="detail-top"><p class="crumb"><a href="foundry.html">厂商</a><span>/</span><span>' + esc(g.name) + '</span></p></div>' +
+      '<div class="detail-top"><p class="crumb"><a href="' + WFChrome.href('foundry.html') + '">厂商</a><span>/</span><span>' + esc(g.name) + '</span></p></div>' +
       '<header class="foundry-hero">' +
         '<div class="foundry-hero-main">' +
           '<div class="foundry-hero-id">' +
@@ -769,14 +769,14 @@
           if (s.id === 'collab') {
             const owner = font.ownerInfo || font.foundryInfo;
             if (owner) {
-              bits.push('主归属 <a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(owner.id)) + '">' +
+              bits.push('主归属 <a href="' + WFChrome.foundryHref(owner.id) + '">' +
                 esc(owner.name) + '</a>');
             }
           } else {
             const cols = font.collaboratorInfos || [];
             if (cols.length) {
               bits.push('联合作者 ' + cols.map(function (c) {
-                return '<a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(c.id)) + '">' + esc(c.name) + '</a>';
+                return '<a href="' + WFChrome.foundryHref(c.id) + '">' + esc(c.name) + '</a>';
               }).join(' · '));
             }
           }
@@ -797,10 +797,33 @@
 
   WFProto.loadCatalog().then(function (list) {
     const go = function () {
-      const slug = WFProto.getQuery('slug');
+      let slug = '';
+      const pm = String(location.pathname || '').match(/\/foundry\/([^/]+)\/?$/);
+      if (pm) {
+        try { slug = decodeURIComponent(pm[1]); } catch (e) { slug = pm[1]; }
+      }
+      if (!slug) slug = WFProto.getQuery('slug');
       if (!slug) { renderIndex(list); return; }
       const g = groups(list).filter(function (x) { return x.slug === slug || x.name === slug; })[0];
-      if (!g) { root.innerHTML = '<p class="empty container">未找到该厂商。<a href="foundry.html">' + WFChrome.icon('building') + '查看全部厂商</a></p>'; return; }
+      if (!g) { root.innerHTML = '<p class="empty container">未找到该厂商。<a href="' + WFChrome.href('foundry.html') + '">' + WFChrome.icon('building') + '查看全部厂商</a></p>'; return; }
+      /* 生产：?slug= → /foundry/{slug}；pathname 已是 path 时清掉残留 slug query */
+      try {
+        if (location.hostname && !(WFProto.isDevPreviewHost && WFProto.isDevPreviewHost(location.hostname))) {
+          const q = new URLSearchParams(location.search);
+          const extras = {};
+          q.forEach(function (v, k) { if (k !== 'slug' && v) extras[k] = v; });
+          var want = WFProto.foundryHref(g.slug, extras) + (location.hash || '');
+          var target = want;
+          if (/^foundry\//.test(want.split(/[?#]/)[0])) target = '/' + want;
+          const curFull = location.pathname + location.search + location.hash;
+          const curRel = (location.pathname.split('/').pop() || '') + location.search + location.hash;
+          if (target.charAt(0) === '/' || /^https?:/i.test(target)) {
+            if (curFull !== target) history.replaceState(null, '', target);
+          } else if (curRel !== want) {
+            history.replaceState(null, '', want);
+          }
+        }
+      } catch (e) { /* ignore */ }
       renderOne(list, g);
     };
     if (window.WFProducts) WFProducts.load().then(go);
