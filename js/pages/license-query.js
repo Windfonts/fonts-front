@@ -28,21 +28,32 @@
   let result = null;
   let flop = null;
 
-  function boolCell(key, val, verified) {
-    let cls = 'lq-bool';
-    let text = '—';
-    if (val === true) {
-      if (verified) { cls += ' is-ok'; text = '可以'; }
-      else { cls += ' is-uncertain'; text = '推断·待核实'; }
-    } else if (val === false) {
-      cls += ' is-no'; text = '不可以';
-    } else {
-      cls += ' is-uncertain'; text = '见原文';
-    }
+  /** Feng badge states: allow / maybe / deny — never paint allow when unverified. */
+  function resolveBoolState(key, val, verified) {
     const ev = (result && result.evidence && result.evidence[key]) || '';
-    return '<div class="' + cls + '"><div class="lq-bool-k">' + esc(BOOL_META.filter(function (b) { return b.key === key; })[0].label) + '</div>' +
-      '<div class="lq-bool-v">' + text + '</div>' +
-      (ev ? '<div class="lq-bool-e">' + esc(ev) + '</div>' : '') + '</div>';
+    const seeOriginal = /见原文|视原文/.test(ev);
+    if (val === false) return { state: 'deny', label: '不可以', cls: 'is-deny' };
+    if (val == null || !verified || seeOriginal) return { state: 'maybe', label: '视原文', cls: 'is-maybe' };
+    if (val === true) return { state: 'allow', label: '可以', cls: 'is-allow' };
+    return { state: 'maybe', label: '视原文', cls: 'is-maybe' };
+  }
+
+  function boolCell(key, val, verified) {
+    const meta = BOOL_META.filter(function (b) { return b.key === key; })[0];
+    const st = resolveBoolState(key, val, verified);
+    const isCircle = key === 'previewOk';
+    const shape = isCircle ? ' is-circle' : ' is-pill';
+    const ev = (result && result.evidence && result.evidence[key]) || '';
+    const inner = isCircle
+      ? Array.from(st.label).map(function (ch) { return '<span class="lq-badge-ch">' + esc(ch) + '</span>'; }).join('')
+      : esc(st.label);
+    return '<div class="lq-bool is-' + st.state + '">' +
+      '<div class="lq-bool-k">' + esc(meta.label) + '</div>' +
+      '<span class="lq-badge ' + st.cls + shape + '" role="img" aria-label="' + esc(st.label) + '">' +
+        inner +
+      '</span>' +
+      (ev ? '<div class="lq-bool-e">' + esc(ev) + '</div>' : '') +
+      '</div>';
   }
 
   function ctaHtml(r) {

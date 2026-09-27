@@ -3,23 +3,63 @@
 .lq-bools {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-3);
   margin: var(--s-5) 0;
+  align-items: start;
 }
 .lq-bool {
-  background: var(--paper); border-radius: var(--radius-sm); padding: var(--s-4);
-  display: flex; flex-direction: column; gap: 0.25rem;
+  background: transparent; border-radius: 0; padding: var(--s-3) 0;
+  display: flex; flex-direction: column; align-items: center; gap: 0.45rem;
+  text-align: center;
+  border-bottom: 1px solid var(--surface-2, #ececec);
 }
-.lq-bool-k { font-size: var(--fs-12); color: var(--gray); font-weight: var(--fw-label); }
-.lq-bool-v { font-size: var(--fs-16); font-weight: var(--fw-title); color: var(--ink-2); }
-.lq-bool-e { font-size: var(--fs-12); color: var(--gray); line-height: 1.35; }
-.lq-bool.is-ok .lq-bool-v { color: var(--ink); }
-.lq-bool.is-ok { box-shadow: inset 0 0 0 1px var(--ink); }
-.lq-bool.is-no .lq-bool-v { color: var(--gray); }
-.lq-bool.is-uncertain .lq-bool-v { color: var(--warn, #a65c00); }
-.lq-bool.is-uncertain { box-shadow: inset 0 0 0 1px var(--warn-edge, rgba(166,92,0,.35)); }
-span.lq-bool { display: inline-block; padding: 0.1em 0.55em; border-radius: var(--radius-pill); font-size: var(--fs-12); background: var(--fill); }
-span.lq-bool.is-ok { background: var(--ink); color: var(--on-ink); }
-span.lq-bool.is-no { color: var(--gray); }
-span.lq-bool.is-uncertain { color: var(--warn, #a65c00); }
+.lq-bool-k { font-size: var(--fs-12); color: var(--gray-2, var(--gray)); font-weight: var(--fw-label); letter-spacing: 0.02em; }
+.lq-bool-e { font-size: var(--fs-12); color: var(--gray); line-height: 1.35; max-width: 12em; }
+
+/* Feng icon/color-scale badges · 可以 / 视原文 / 不可以 */
+.lq-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: var(--fs-13); font-weight: var(--fw-label); line-height: 1.15;
+  box-sizing: border-box; white-space: nowrap; user-select: none;
+}
+.lq-badge.is-pill {
+  min-height: 1.7rem; padding: 0.2em 0.85em;
+  border-radius: var(--radius-pill);
+}
+.lq-badge.is-circle {
+  width: 2.85rem; height: 2.85rem; padding: 0.15em 0.1em;
+  border-radius: 50%;
+  flex-direction: column; gap: 0; white-space: normal;
+  font-size: 0.68rem; letter-spacing: 0;
+}
+.lq-badge.is-circle .lq-badge-ch { display: block; line-height: 1.05; }
+.lq-badge.is-allow {
+  background: var(--ink); color: var(--on-ink);
+  box-shadow: none;
+}
+.lq-badge.is-maybe {
+  background: var(--fill); color: var(--warn, #8a6d1a);
+  box-shadow: inset 0 0 0 1.5px var(--warn-edge, #b08a2e);
+}
+.lq-badge.is-deny {
+  background: var(--fill); color: var(--ink-2, #333);
+  box-shadow: none;
+}
+
+/* licenses.html table cells · same three-state scale, always pill */
+span.lq-bool {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 1.55rem; padding: 0.12em 0.7em;
+  border-radius: var(--radius-pill); font-size: var(--fs-12);
+  font-weight: var(--fw-label); line-height: 1.15; box-sizing: border-box;
+}
+span.lq-bool.is-ok,
+span.lq-bool.is-allow { background: var(--ink); color: var(--on-ink); }
+span.lq-bool.is-no,
+span.lq-bool.is-deny { background: var(--fill); color: var(--ink-2); }
+span.lq-bool.is-uncertain,
+span.lq-bool.is-maybe {
+  background: var(--fill); color: var(--warn, #8a6d1a);
+  box-shadow: inset 0 0 0 1.5px var(--warn-edge, #b08a2e);
+}
 
 .lq-headline { font-size: var(--fs-18); font-weight: var(--fw-title); margin: var(--s-3) 0; max-width: 40em; }
 .lq-meta { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: baseline; justify-content: space-between; }
