@@ -859,3 +859,12 @@ feibisi 问「授权文件都有了没，后面挂 wenfeng.org 溯源」——�
 - **推送态**：font-licenses main=cb06654 已推；fonts-packages main=7ba2aa4 已推（feicode-wapuu 别名，main 受保护 linuxjoy 直推被拒）；fonts-front v4-specimen=a343f1a 已推；fonts-vault 本地 feature 分支 74c2934 未推（仓有并行未提交文件，走仓自己的 AGit 流程）。
 - **待办**：①OSS 旧 Xcws 前缀 188 孤儿对象删除（现 key 无单删/批删权限，须 modiqi 侧或临时提权）；②Jlyhmht/Shmgt 两款目录已上但包未上 CDN（并行会话未完，analysis 462/464 的缺口即此二款）；③app.windfonts.com 边缘 CDN 429 节流今日触发（vault 应用无限流代码，节流在边缘层；批量导出后探测会被挡，隔日观察若持续找 devops 查边缘限流配置）；④目录 464 款开源商用 376 未核实 11（全为白名单：汲古×3/一点明体/刻石录×2 台湾跳过、教育部×2、Xsslv）。
 - **注意**：fonts-packages 工作树有他人未提交改动（package-lock.json、create-font-subsets.py、_upstream-src/）勿动；v4-lab 的 data/lab-archive.json 同理。Konatu/Lxht 源文件在 _fonts_park/oss-batch1-staging。
+
+## 45. 2026-09-28 源档案三线闭环（镜像+收录+授权）与交接
+
+- **镜像线**：feicode 29 个 GitHub 同名组织、71 仓 pull mirror（8h 自动同步）。代理实测：ghfast.top 过 57 仓（小中体），200MB+ 大 pack 随机断连由 **gh-proxy.com**（快 3-4 倍，2G 梦源宋体可过）补齐 14 个；ghproxy.net 备用。验证：归档下载 + clone 对拍 HEAD sha（ark cfe96240、梦源宋体 d17bc77 一致）。扛重族（3.3G 裸二进制历史）feibisi 拍板跳过。**勿信 Forgejo API size 字段**（mirror 仓恒 0）。
+- **收录线**：`Windfonts/font-sources`（public 252 款开源）+ `font-sources-collected`（private 72 款免费商用/受限，manifest pending_review=true）。每款目录 + manifest.json（sha256/许可指向/upstream_hint）。匿名验证 200/404。转公开流程见 font-licenses MIRROR-SOP §6。缺源 39 款（开源 37/免商 2）待向厂商官网收集。
+- **增量机制**：`font-licenses/data/source-mirrors.json` 映射总表（99 款索引）+ `MIRROR-SOP.md`（新款入库联动五步、代理回退、空壳仓处置）+ `scripts/check-mirror-health.py`（mirror_updated>25h 告警，当前 71/71 OK）。
+- **LFS**：feicode 已切 minio 后端（devops #8730，881 对象/2.69G），wenpai VM 实测 lfs pull 169 对象/1.3G 全真字体。**Mac git-lfs 3.6.1 客户端状态机坏**（对象在 store 报缺失/checkout 静默），LFS 验证必须干净环境。LFS HTTPS 上传无大小限制（609MB@7.1MB/s 实测），限速的只有 git push 的 pack（nginx 1M，走 SSH 2222 或内部端口 10083 绕）。
+- **Mac 磁盘**：收录推送途中 ENOSPC，清 Chrome/playwright/构建缓存回收 ~24G（1.5G→45G）。**Parallels VM 群 754G 是宿主盘大头**（WenPai 269/DevOps 174/Studio 173），compact 可回收 20-40% 需停机窗口，待拍板。
+- **待办排序**：①39 款缺源收集（厂商/官网渠道）②免费商用 72 款逐款核对转公开 ③wenfeng.org/source/<Norm>/ 页面（拍板暂不建，数据已就绪：source-mirrors.json + 两仓）④巡检 cron 挂载 ⑤Parallels compact 窗口 ⑥造字平台立项（底稿 §1 已有方向：独立域名+账号接 windfonts+成果回流飞轮）。
