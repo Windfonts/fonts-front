@@ -134,21 +134,63 @@
     return '';
   }
 
-  function proofMetaLine(font) {
+  function serviceVerifyClause(font) {
     const kind = proofVerifyKind(font);
-    const what = (kind === '原文' ? '已核对协议原文'
-      : kind === '标准' ? '已核对开源标准许可文本'
-      : kind === '出处' ? '已核对许可出处'
-      : '协议原文待核对') +
-      ' · 文风云<sup>&reg;</sup> 免费提供在线字体托管和预览调用服务。';
-    const d = new Date();
-    const pad = function (n) { return n < 10 ? '0' + n : String(n); };
-    const when = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
-    return '<div class="lp5-node lp5-meta"><span class="icon">' + WFChrome.icon('cloud') + '</span>' +
+    if (kind === '原文') return '已核对协议原文';
+    if (kind === '标准') return '已核对开源标准许可文本';
+    if (kind === '出处') return '已核对许可出处';
+    return '协议原文待核对';
+  }
+
+  function serviceStatusCopy(font) {
+    const ss = (WFProto.serviceStatus && WFProto.serviceStatus(font)) || { status: '受限', reason: 'unverified_tier' };
+    const status = ss.status || '受限';
+    const reason = ss.reason || '';
+    const verify = serviceVerifyClause(font);
+    const hostOk = '文风云<sup>&reg;</sup> 提供免费在线字体托管和预览 API 调用服务。';
+    const hostCert = '文风云<sup>&reg;</sup> 提供字体预览和商业托管，如需使用请先上传授权文件。';
+    let why = '';
+    let cls = 'is-good';
+    if (status === '正常') {
+      cls = 'is-good';
+      why = '可稳定服务，' + verify + '。' + hostOk;
+    } else if (status === '受限') {
+      cls = 'is-mid';
+      if (reason === 'personal') why = '仅预览可用，仅限个人非商用。' + hostCert;
+      else if (reason === 'no_redistrib') why = '仅预览可用，对外引用未开放。' + hostCert;
+      else why = '仅预览可用，授权档位待核实。' + hostCert;
+    } else {
+      cls = 'is-bad';
+      if (reason === 'retired') why = '已从产品货架下架，目录仅作存档。不再提供托管与预览 API。';
+      else if (reason === 'need_auth') why = '需取得权利人授权后才能用。有授权证书可上传后使用。';
+      else why = '授权不适用或已撤销，本站不提供托管。';
+    }
+    return { status: status, reason: reason, cls: cls, why: why };
+  }
+
+  function serviceStatusAct(font, copy) {
+    if (copy.status === '正常') {
+      return '<a class="lp-act" href="' + WFChrome.href('docs.html') + '">立即接入 →</a>';
+    }
+    if (copy.status === '受限' || (copy.status === '不可用' && copy.reason === 'need_auth')) {
+      const slug = (WFProto.fontSlug && WFProto.fontSlug(font)) ||
+        String((font && (font.normalized || font.family)) || '').replace(/^wenfeng-/i, '');
+      /* 证书上传页本闸不做；授权查询可查 cite-closed 态 */
+      const href = WFChrome.href('app/license-query.html?q=' + encodeURIComponent(slug || font.name || ''));
+      return '<a class="lp-act" href="' + href + '">上传证书 →</a>';
+    }
+    return '';
+  }
+
+  function proofMetaLine(font) {
+    const copy = serviceStatusCopy(font);
+    const what = '<span class="svc-grade ' + copy.cls + '">' + esc(copy.status) + '</span>' +
+      '<span class="svc-why">' + copy.why + '</span>';
+    const act = serviceStatusAct(font, copy);
+    return '<div class="lp5-node lp5-meta svc-row"><span class="icon">' + WFChrome.icon('cloud') + '</span>' +
       '<div class="head"><span class="who">服务状态</span>' +
       '<span class="what">' + what + '</span>' +
-      '<span class="when">' + esc(when) + '</span>' +
-      '<a class="lp-act" href="https://status.windfonts.com/" rel="noopener noreferrer">windfonts.com ↗</a></div></div>';
+      act + '</div></div>';
   }
 
   /* 版权归属：与服务状态同款行，夹在服务状态与出处链之间。 */
@@ -533,15 +575,41 @@
       }
       return [primary];
     }
-    const embed = WFEmbed.mount(document.getElementById('embed'), embedItems(), {
-      resolveFont: function (fam) {
-        const slug = String(fam || '').replace(/^wenfeng-/, '');
-        return WFProto.getFontBySlug(slug) || null;
+    const cite = (WFProto.citeAllowed && WFProto.citeAllowed(font)) || { ok: true, reason: 'ok' };
+    const embedRoot = document.getElementById('embed');
+    let embed = null;
+    function certQueryHref() {
+      const slug = (WFProto.fontSlug && WFProto.fontSlug(font)) ||
+        String((font && (font.normalized || font.family)) || '').replace(/^wenfeng-/i, '');
+      return WFChrome.href('app/license-query.html?q=' + encodeURIComponent(slug || font.name || ''));
+    }
+    function mountOrRefuseEmbed() {
+      if (!embedRoot) return;
+      if (!cite.ok) {
+        embedRoot.innerHTML =
+          '<div class="use-cite-closed" role="status">' +
+            '<p class="use-cite-title">引用未开放</p>' +
+            '<p class="use-cite-body">本款仅供货架对照与站内样张预览。默认不开对外 CSS / CDN 热链。' +
+            '若你已持有覆盖网页嵌入的授权证书，可经<a href="' + certQueryHref() + '">授权查询</a>了解上传路径；' +
+            '审核通过后仅对本账号开引用（不等于全站 CDN）。</p>' +
+            '<p class="use-cite-meta muted t-13">citeAllowed=false · reason=' + esc(cite.reason || 'cite-closed') +
+            ' · <a href="' + certQueryHref() + '">上传证书</a></p>' +
+          '</div>';
+        embed = null;
+        return;
       }
-    });
+      embed = WFEmbed.mount(embedRoot, embedItems(), {
+        resolveFont: function (fam) {
+          const slug = String(fam || '').replace(/^wenfeng-/, '');
+          return WFProto.getFontBySlug(slug) || null;
+        }
+      });
+    }
+    mountOrRefuseEmbed();
     function refreshEmbed() {
       syncFallbackUi();
-      embed.setItems(embedItems());
+      if (!cite.ok) { mountOrRefuseEmbed(); return; }
+      if (embed) embed.setItems(embedItems());
     }
     document.querySelectorAll('[data-version]').forEach(function (b) {
       b.addEventListener('click', function () {

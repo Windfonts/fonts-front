@@ -91,7 +91,7 @@
     if (path.indexOf('/admin') !== -1) return '../data/' + file;
     return '/data/' + file;
   }
-  const CATALOG_VER = '20260927perf3';
+  const CATALOG_VER = '20260928xw';
   function catalogUrl() { return dataUrl('fonts.json?v=' + CATALOG_VER); }
   function catalogListUrl() { return dataUrl('fonts-list.json?v=' + CATALOG_VER); }
   function catalogDetailUrl() { return dataUrl('fonts-detail.json?v=' + CATALOG_VER); }
@@ -790,6 +790,97 @@
     return cssApiUrl(family, weight, version || 'full');
   }
 
+
+  /* Cite-closed 货架：CDN/api 无包时，用同源 assets/fonts/preview 试看面撑灰墙/字符表。
+     不改 citeAllowed，不进 embed / fonts-packages。 */
+  let previewFacesMap = null;
+  let previewFacesPromise = null;
+  function loadPreviewFaces() {
+    if (previewFacesMap) return Promise.resolve(previewFacesMap);
+    if (previewFacesPromise) return previewFacesPromise;
+    previewFacesPromise = fetch(dataUrl('preview-faces.json?v=20260926b'))
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        previewFacesMap = (j && j.faces && typeof j.faces === 'object') ? j.faces : {};
+        return previewFacesMap;
+      })
+      .catch(function () {
+        previewFacesMap = {};
+        return previewFacesMap;
+      });
+    return previewFacesPromise;
+  }
+  function citeClosedFamily(family) {
+    const font = catalog.filter(function (f) { return f.family === family; })[0];
+    return !!(font && Array.isArray(font.tags) && font.tags.indexOf('cite-closed') !== -1);
+  }
+  function previewAssetHref(rel) {
+    const path = String(rel || '').replace(/^\/+/, '');
+    if (!path) return '';
+    try {
+      const scripts = document.getElementsByTagName('script');
+      for (let i = scripts.length - 1; i >= 0; i--) {
+        const src = scripts[i].src || '';
+        if (src.indexOf('wf-proto.js') !== -1) {
+          return new URL('../' + path, src).href;
+        }
+      }
+    } catch (e) { /* ignore */ }
+    const base = location.pathname.replace(/\/[^/]*$/, '/');
+    if (base.indexOf('/admin') !== -1) return '../' + path;
+    return path;
+  }
+  function lookupPreviewFace(family, pathName) {
+    const faces = previewFacesMap || {};
+    const fam = String(family || '').toLowerCase();
+    let entry = faces[fam] || faces[family] || null;
+    if (!entry) {
+      const font = catalog.filter(function (f) { return f.family === family; })[0];
+      const norm = font && font.normalized;
+      if (norm) {
+        const mappedFam = 'wenfeng-' + String(norm).toLowerCase();
+        entry = faces[mappedFam] || null;
+        if (!entry) {
+          const want = String(norm).toLowerCase();
+          Object.keys(faces).forEach(function (k) {
+            if (entry) return;
+            if (k.replace(/^wenfeng-/, '').toLowerCase() === want) entry = faces[k];
+          });
+        }
+      }
+    }
+    if (!entry || typeof entry !== 'object') return null;
+    const wkey = String(pathName || 'regular').toLowerCase().replace(/[\s-]+/g, '');
+    const cssAlias = { '100': 'thin', '200': 'extralight', '300': 'light', '350': 'demilight',
+      '400': 'regular', '500': 'medium', '600': 'semibold', '700': 'bold', '800': 'extrabold', '900': 'black' };
+    const hit = entry[wkey] || entry[cssAlias[wkey]] || entry.regular || entry['400'] || null;
+    if (!hit || !hit.url) return null;
+    return hit;
+  }
+  function injectPreviewFace(family, pathName, w) {
+    return loadPreviewFaces().then(function () {
+      const hit = lookupPreviewFace(family, pathName);
+      if (!hit) return false;
+      const href = previewAssetHref(hit.url);
+      if (!href) return false;
+      const famCss = String(family).replace(/["']/g, '');
+      const fmt = String(hit.format || '').toLowerCase();
+      const formatBit = fmt ? ' format("' + fmt + '")' : '';
+      const cssW = String(hit.cssWeight || w || '400');
+      const faceW = String(w || cssW || '400');
+      const style = document.createElement('style');
+      style.setAttribute('data-wf-family', family);
+      style.setAttribute('data-wf-weight', faceW);
+      style.setAttribute('data-wf-weight-name', pathName);
+      style.setAttribute('data-wf-preview-face', '1');
+      style.textContent =
+        '@font-face{font-family:"' + famCss + '";font-weight:' + faceW +
+        ';font-style:normal;font-display:swap;src:url("' + href + '")' + formatBit + ';}';
+      document.head.appendChild(style);
+      return true;
+    });
+  }
+
   /**
    * 注入字体 CSS。优先 fonts-packages/result.css（与现网 app 同源、可 CORS fetch）；
    * 其次 app /api/css；再退旧 wenfeng/fonts。
@@ -839,24 +930,33 @@
         });
       });
     }
-    injectedCss[key] = fetchCss(pkgUrl).catch(function () {
-      return fetchCss(apiUrl);
-    }).catch(function () {
-      return fetchCss(staticUrl);
-    }).then(function (res) {
-      inject(res.css, res.base);
-    }).catch(function () {
-      return new Promise(function (resolve) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = apiUrl;
-        link.setAttribute('data-wf-family', family);
-        link.setAttribute('data-wf-weight-name', pathName);
-        link.onload = function () { noteApi(); resolve(); };
-        link.onerror = function () { resolve(); };
-        document.head.appendChild(link);
+    const remoteCss = function () {
+      return fetchCss(pkgUrl).catch(function () {
+        return fetchCss(apiUrl);
+      }).catch(function () {
+        return fetchCss(staticUrl);
+      }).then(function (res) {
+        inject(res.css, res.base);
+      }).catch(function () {
+        return injectPreviewFace(family, pathName, w).then(function (ok) {
+          if (ok) return;
+          return new Promise(function (resolve) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = apiUrl;
+            link.setAttribute('data-wf-family', family);
+            link.setAttribute('data-wf-weight-name', pathName);
+            link.onload = function () { noteApi(); resolve(); };
+            link.onerror = function () { resolve(); };
+            document.head.appendChild(link);
+          });
+        });
       });
-    });
+    };
+    /* Cite-closed：只走同源 preview face，不探 fonts-packages /api/css。 */
+    injectedCss[key] = citeClosedFamily(family)
+      ? injectPreviewFace(family, pathName, w)
+      : remoteCss();
     return injectedCss[key];
   }
 
@@ -1058,6 +1158,53 @@
     return ev;
   }
 
+
+  /**
+   * cite-closed / 禁嵌入 → 对外引用关闭；站内预览仍走 preview-faces。
+   * 证书链路本闸不做；仅返回 {ok:false, reason}。
+   */
+  function citeAllowed(font) {
+    const tags = (font && font.tags) || [];
+    for (let i = 0; i < tags.length; i++) {
+      if (String(tags[i]) === 'cite-closed') return { ok: false, reason: 'cite-closed' };
+    }
+    const blob = [
+      (font && font.licenseNotes) || '',
+      (font && font.licenseName) || '',
+      (font && font.description) || ''
+    ].join(' ');
+    if (/禁[止止]?嵌入|不得嵌入|不开\s*CDN|不提供.*引用/i.test(blob)) {
+      return { ok: false, reason: 'no_embed' };
+    }
+    return { ok: true, reason: 'ok' };
+  }
+
+  /**
+   * 服务状态：免费商用/开源 → 正常；cite-closed / 个人免费 / 待核实 → 受限。
+   * 沿用既有 tags / licenseTier，不发明新字段。
+   */
+  function serviceStatus(font) {
+    const tags = (font && font.tags) || [];
+    const has = function (t) {
+      for (let i = 0; i < tags.length; i++) {
+        if (String(tags[i]) === t) return true;
+      }
+      return false;
+    };
+    const tier = licenseTier(font);
+    if (has('retired-from-product') || has('hung')) {
+      return { status: '不可用', reason: 'retired' };
+    }
+    if (tier === '需授权') return { status: '不可用', reason: 'need_auth' };
+    if (tier === '个人免费') return { status: '受限', reason: 'personal' };
+    if (tier === '待核实') return { status: '受限', reason: 'unverified_tier' };
+    if (has('cite-closed')) return { status: '受限', reason: 'no_redistrib' };
+    if (tier === '开源商用' || tier === '免费商用') {
+      return { status: '正常', reason: (font && font.licenseVerified) ? 'ok' : 'pending_proof' };
+    }
+    return { status: '受限', reason: 'unverified_tier' };
+  }
+
   function isOpenFont(font) {
     const ev = (font && font.licenseEvidence) || {};
     return /OFL|Apache|MIT|IPA|CC-BY/i.test(String(ev.spdx || '')) ||
@@ -1238,6 +1385,9 @@
     resolveLineage: resolveLineage,
     getLineageData: function () { return lineageData; },
     isOpenFont: isOpenFont,
+    citeAllowed: citeAllowed,
+    serviceStatus: serviceStatus,
+    citeClosedFamily: citeClosedFamily,
     slugify: slugify,
     getFont: function (id) { return getById(id); },
     getFontBySlug: getBySlug,

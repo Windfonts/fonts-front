@@ -7996,110 +7996,6 @@
     "foundryAvatar": "https://cravatar.com/avatar/01e131de64ecc63bb395a2dc5c9bb81f0c4708b7cc4f609fad1a1e8397f4db56?s=144&d=identicon"
   },
   {
-    "id": "91f74f28-62fd-4e94-909a-bcde465f10a7",
-    "name": "寒蝉矩阵体",
-    "en": "Chill Matrix",
-    "family": "wenfeng-hcjz",
-    "normalized": "Hcjz",
-    "designer": "ChillType",
-    "designerShort": "ChillType",
-    "category": "无衬线字体",
-    "tags": [
-      "开源",
-      "OFL",
-      "chilltype"
-    ],
-    "weights": [
-      "Normal",
-      "Ultra",
-      "Demi"
-    ],
-    "description": "寒蝉矩阵体。SIL OFL 1.1。",
-    "license": "免费商用",
-    "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "Copyright ChillType",
-    "foundry": "寒蝉字型",
-    "brand": {
-      "name": "ChillType",
-      "slug": "chilltype",
-      "logoUrl": "",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/87366329?v=4",
-      "website": "",
-      "description": "ChillType出品的字体"
-    },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch1 2026-09-23",
-    "languages": [
-      "简体中文",
-      "繁体中文",
-      "英语"
-    ],
-    "useCases": [
-      "正文",
-      "标题",
-      "屏幕阅读"
-    ],
-    "charCount": 11713,
-    "glyphCount": 11731,
-    "viewCount": 3,
-    "foundryAvatar": "https://cravatar.com/avatar/01e131de64ecc63bb395a2dc5c9bb81f0c4708b7cc4f609fad1a1e8397f4db56?s=144&d=identicon"
-  },
-  {
-    "id": "86931c41-b272-4787-a483-498c7056d394",
-    "name": "寒蝉矩黑",
-    "en": "Chill Matrix Black",
-    "family": "wenfeng-clmb",
-    "normalized": "Clmb",
-    "designer": "寒蝉矩黑",
-    "designerShort": "寒蝉矩黑",
-    "category": "Mono",
-    "tags": [
-      "像素",
-      "寒蝉",
-      "试玩"
-    ],
-    "weights": [
-      "Regular"
-    ],
-    "description": "创意像素风格字库，完成 GB2312-80 共 6363 字。当前为 Demo 版（上游无 release，取仓内 Demo 文件）。",
-    "license": "免费商用",
-    "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "Copyright (c) Warren2060 (ChillType)",
-    "foundry": "",
-    "brand": {
-      "name": "ChillType",
-      "slug": "chilltype",
-      "logoUrl": "",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/87366329?v=4",
-      "website": "",
-      "description": "ChillType出品的字体"
-    },
-    "releaseYear": 2024,
-    "version": "Demo",
-    "languages": [
-      "简体中文",
-      "英语"
-    ],
-    "useCases": [
-      "正文",
-      "标题"
-    ],
-    "charCount": 6363,
-    "glyphCount": 6363,
-    "viewCount": 0,
-    "foundryAvatar": "https://cravatar.com/avatar/01e131de64ecc63bb395a2dc5c9bb81f0c4708b7cc4f609fad1a1e8397f4db56?s=144&d=identicon"
-  },
-  {
     "id": "84edb5e0-c977-4570-92a8-61f09cfeca2c",
     "name": "寒蝉端黑",
     "en": "Chill Duan Sans",
@@ -18397,55 +18293,54 @@
   },
   {
     "id": "d234612e-ab92-40b5-b739-86c070f078b0",
-    "name": "站酷小薇LOGO体",
-    "en": "ZCOOL XiaoWei LOGO",
+    "name": "站酷小薇体",
+    "en": "ZCOOL XiaoWei",
     "family": "wenfeng-zkxwt",
     "normalized": "Zkxwt",
-    "designer": "李大卫",
-    "designerShort": "李大卫",
-    "category": "无衬线字体",
+    "designer": "站酷",
+    "designerShort": "站酷",
+    "category": "宋体",
     "tags": [
-      "logo",
+      "宋体",
       "标题字体",
-      "免费字体",
-      "创意字体"
+      "开源"
     ],
     "weights": [
       "Regular"
     ],
-    "description": "站酷小薇LOGO体是设计师李大卫（David 小马哥）为女儿三周岁创作的礼物，由上海佐兹品牌设计工作室团队完成。字体设计大胆创新，笔画修长灵秀，在精简部分笔画的同时保持了高识别度，字形空隙均匀，印刷效果清晰明快。该字体旨在填补免费字体中LOGO体的空缺，收录了6763个汉字，适用于标志、标题、广告宣传及平面设计。",
-    "license": "免费商用",
-    "licenseName": "站酷小薇LOGO体授权协议",
-    "licenseUrl": "",
+    "description": "站酷小薇体：宋风展示字体，Google Fonts 收录，SIL OFL 1.1 开源授权。原站酷小薇LOGO体（李大卫）为另一款字体，已由本条替代下线。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/googlefonts/zcool-xiaowei/blob/main/OFL.txt",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Zkxwt/LICENSE",
-    "licenseNotes": "需联系字体厂商获取授权，具体条款以厂商说明为准",
-    "licenseVerified": false,
+    "licenseNotes": "许可原文为 SIL OFL 1.1（googlefonts/zcool-xiaowei）。可免费商用、可修改与再分发，修改版须改名。",
+    "licenseVerified": true,
     "purchaseUrl": null,
-    "copyright": "本字库所有权归上海佐兹品牌设计公司",
-    "foundry": "上海佐兹 / ZCOOL",
+    "copyright": "Copyright 2018 The ZCOOL XiaoWei Project Authors (https://github.com/googlefonts/zcool-xiaowei/)",
+    "foundry": "ZCOOL",
     "brand": {
-      "name": "上海佐兹品牌设计",
-      "slug": "zuozi",
+      "name": "站酷字库",
+      "slug": "zcool",
       "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/05642c657f7e7589a50ea7431a6dfda95dca05ea10b3d1b59d928fda78eb318a?s=144&d=identicon",
+      "avatarUrl": "assets/avatars/zcool.webp",
       "website": "",
-      "description": "做字（Zuozi）为字体设计者或工作室，相关信息极少，未找到以做字为名的字体厂商官方页面。"
+      "description": "站酷字库出品的字体"
     },
     "releaseYear": 2018,
-    "version": "1.0.0",
+    "version": "1.000",
     "languages": [
       "简体中文"
     ],
     "useCases": [
-      "品牌标志设计",
-      "广告标题",
-      "平面设计",
+      "标题",
+      "海报",
+      "品牌短句",
       "印刷品标题"
     ],
     "charCount": 7713,
     "glyphCount": 7728,
     "viewCount": 30,
-    "foundryAvatar": "https://cravatar.com/avatar/05642c657f7e7589a50ea7431a6dfda95dca05ea10b3d1b59d928fda78eb318a?s=144&d=identicon"
+    "foundryAvatar": "assets/avatars/zcool.webp"
   },
   {
     "id": "92bf46bf-ca37-4d48-ba4d-8b7dd2f75ed4",
@@ -23803,5 +23698,126 @@
     "glyphCount": 4007,
     "viewCount": 41,
     "foundryAvatar": "https://cravatar.com/avatar/3914b1a1f70be7f65dcbcc8dc2e734b1d4af245eb170a70b954a18cf8e85965e?s=144&d=identicon"
+  },
+  {
+    "id": "a8f3c2e1-9b4d-4e6a-8f1c-2d5e7a9b0c31",
+    "name": "吉利银河美好体",
+    "en": "Geely Galaxy Beautiful",
+    "family": "wenfeng-jlyhmht",
+    "normalized": "Jlyhmht",
+    "license": "免费商用",
+    "licenseName": "方正×吉利 吉利银河美好体免费字授权（商业发布）",
+    "licenseNotes": "仅商业发布范围免费，可下载直接使用无需书面授权。嵌入网站/App/软件/设备、注册商标、出版物发行不在免费授权内——本站不开 CDN 引用。商标「吉利」「银河」归吉利汽车；字库制作方为正字库。对照货架：可预览状态与授权债务，不可热链引用。",
+    "licenseVerified": false,
+    "licenseUrl": "https://www.foundertype.com/index.php/FontInfo/index/id/12510",
+    "licenseFileUrl": "",
+    "tags": [
+      "免费商用",
+      "品牌字体",
+      "黑体",
+      "吉利",
+      "方正",
+      "cite-closed",
+      "shelf-compare"
+    ],
+    "languages": [
+      "简体中文",
+      "英语"
+    ],
+    "foundry": "FounderType",
+    "foundryAvatar": "assets/avatars/founder.webp",
+    "brand": {
+      "name": "吉利",
+      "slug": "geely",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.geely.com",
+      "description": "吉利汽车品牌设计；与方正字库联合发布吉利银河美好体（商业发布免费字）。"
+    },
+    "weights": [
+      "Light",
+      "Regular",
+      "Bold"
+    ],
+    "version": "1.02",
+    "charCount": 6763,
+    "glyphCount": 7719,
+    "description": "吉利银河美好体（GeelyDesign Type）由吉利设计与方正字库联合打造，黑楷结合，GB2312-80 简体。方正「免费字」：仅商业发布免费；嵌入、商标、出版物须另授。vault 登记且 oss_path 空，不上 fonts-packages；cite-closed。",
+    "copyright": "Copyright Beijing Founder Electronics Co.,Ltd. / Geely Design. All rights reserved.",
+    "designer": "汪文, 张译丹, 李月美（方正 × 吉利设计）",
+    "designerShort": "方正 × 吉利",
+    "category": "无衬线字体",
+    "coverage": "GB2312",
+    "releaseYear": 2026,
+    "useCases": [
+      "标题",
+      "品牌传播",
+      "海报"
+    ],
+    "purchaseUrl": "https://www.foundertype.com/index.php/FontInfo/index/id/12510",
+    "viewCount": 0,
+    "downloadCount": 0,
+    "apiCount": 0,
+    "apiCallCount": 0
+  },
+  {
+    "id": "b7e4d5c2-1a0f-4c8b-9e3d-6f8a2b4c5d70",
+    "name": "上海摩登体",
+    "en": "Shanghai Modeng",
+    "family": "wenfeng-shmgt",
+    "normalized": "Shmgt",
+    "license": "免费商用",
+    "licenseName": "上海摩登体作者声明授权（汉唐文化）",
+    "licenseNotes": "官网作者声明：个人及企业可免费用于商业发布。禁止修改、禁止转售字库、禁止嵌入系统/软件/App、禁止商标注册。部分站点误标 OFL——不以误称为准。本站不开 CDN 引用；上架仅供对照授权与服务状态。",
+    "licenseVerified": false,
+    "licenseUrl": "https://www.shanghaimodeng.com/",
+    "licenseFileUrl": "",
+    "tags": [
+      "免费商用",
+      "品牌字体",
+      "装饰",
+      "城市主题",
+      "汉唐文化",
+      "cite-closed",
+      "shelf-compare"
+    ],
+    "languages": [
+      "简体中文",
+      "英语"
+    ],
+    "foundry": "汉唐文化",
+    "foundryAvatar": "",
+    "brand": {
+      "name": "汉唐文化",
+      "slug": "hantang",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.shanghaimodeng.com/",
+      "description": "汉唐文化发起研发「上海摩登体」；城市文化主题中西文字体，以官网授权证书为准。"
+    },
+    "weights": [
+      "Regular"
+    ],
+    "version": "1.000",
+    "charCount": 6904,
+    "glyphCount": 7317,
+    "description": "上海摩登体（Shanghai Modeng）由汉唐文化出品，Art Déco 城市气质，GB2312 量级中西文。免费商业发布，禁止嵌入/修改/商标。vault 登记且 oss_path 空，不上 fonts-packages；cite-closed。",
+    "copyright": "Copyright 汉唐文化 / 上海摩登体. All rights reserved.",
+    "designer": "汉唐文化 × 茉莉字型",
+    "designerShort": "汉唐文化",
+    "category": "装饰字体",
+    "coverage": "GB2312",
+    "releaseYear": 2025,
+    "useCases": [
+      "标题",
+      "品牌传播",
+      "海报",
+      "包装"
+    ],
+    "purchaseUrl": "https://www.shanghaimodeng.com/",
+    "viewCount": 0,
+    "downloadCount": 0,
+    "apiCount": 0,
+    "apiCallCount": 0
   }
 ]

@@ -4,7 +4,9 @@
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 
-**下一棒（按价值）：** 谱系/亲属实验室未提交改动另线（`v4-specimen` 本地 WIP）。analysis/package-sizes/locale 已于 2026-09-25 重跑；`OSS_METADATA_VERSION=20260925b`。
+**2026-09-28 停点：** 站酷小薇正名为「站酷小薇体」（宋体 / 站酷 / OFL），不再叫 LOGO 体、不再挂佐兹、不再写「需联系厂商」。吉利银河、上海摩登回货架，公共 CDN 仍关，站内预览走 `assets/fonts/preview`。寒蝉矩阵 / 矩黑继续不在清单。证书上传链未做。DNS 把 app 切到 OSS 仍 HOLD。Bot 会话与落盘分类见 `~/Projects/bot/archive/HANDOFF-2026-09-28.md`。本停点只入库，未 rsync 现网。
+
+**下一棒：** 先推这版目录到 feicode（现网仍是旧 LOGO 卡片）；vault `chineseName` 仍是「站酷小薇LOGO体」，重导会写回旧名。`v4-specimen` 是控制台身份分流 WIP，不合产。R17 点阵公共包 Depot 灌装未回 HEAD 计数。
 
 **已合（2026-09-25，wapuu）：** vault [#29](https://feicode.com/Windfonts/fonts-vault/pulls/29) pnpm Docker、[#30](https://feicode.com/Windfonts/fonts-vault/pulls/30) 品牌 CSS 门禁、[#31](https://feicode.com/Windfonts/fonts-vault/pulls/31) `/api/css` 错误 `no-store` → `main` @ `22454e0`。
 
