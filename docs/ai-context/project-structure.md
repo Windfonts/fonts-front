@@ -67,6 +67,7 @@ data/mock-app.json        控制台演示数据（结构见 docs/FRONTEND-STANDA
 
 assets/icons.svg          图标 sprite · assets/fonts/*.woff2 UI 字体 · assets/icon.webp 标志
 scripts/export-fonts.mjs  vault API → fonts.json · scripts/merge-licenses.mjs
+scripts/lib/github-fetch.mjs · github_fetch.py  GitHub 镜像拉取（见 INGEST-PIPELINE「GitHub 原文 / 许可」）
 docs/                     DESIGN-SYSTEM · FRONTEND-STANDARDS · AI-NATIVE · HANDOFF · PLATFORMS · LICENSE · ai-context/
 refs/                     参考截图
 ```

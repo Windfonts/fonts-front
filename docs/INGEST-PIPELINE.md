@@ -55,8 +55,32 @@
 | locale | 有简繁兄弟的产品出现在 `locale-fallback-pairs.json` |
 | 嵌入 | `https://cn.windfonts.com/api/css?family=wenfeng-{短码}&weight=regular&subset=zh-common` → 200（许可门禁除外） |
 
+## 外源拉取（origin-fetch SOP）
+
+直连 GitHub / npm / PyPI 在集群里经常挂。**禁止手写单点上游 URL / 临时搜镜像**；统一走共享客户端。
+
+| 入口 | 说明 |
+|------|------|
+| `origin-fetch get https://…` | 任意 URL（直连 → ghfast / gh-proxy 前缀） |
+| `origin-fetch github get / license …` / `gh-fetch …` | GitHub raw / OFL（jsdmirror → jsDelivr → ghfast） |
+| `origin-fetch npm PKG[/path] [ver]` | npmmirror / jsDelivr |
+| `origin-fetch pypi PKG` | 清华 / 阿里 / 腾讯 / pypi.org |
+| `origin-fetch cravatar HASH_OR_EMAIL` | 默认主站 `cravatar.com`（兼顾国内外）；`ORIGIN_REGION=cn\|en` 才走分区（勿写 `cravatar.cn`） |
+| `probe-origin-mirrors` | 写 `~/.cache/github-mirrors/health.json` |
+| Node | `scripts/lib/github-fetch.mjs`（GitHub 子集；完整能力用 Python CLI） |
+
+许可归档：`staging/<batch>/{Norm}/` + `source.json`（`url` / `sha256` / `via`）。  
+镜像全挂：先 `probe-origin-mirrors`，改 `linuxjoy/scripts/lib/origin_fetch.py` 优先链，再：
+
+```bash
+bash ~/Projects/linuxjoy/scripts/cluster/deploy-origin-fetch.sh
+```
+
+全集群：`~/bin/origin-fetch`、`~/bin/gh-fetch`、`~/scripts/lib/origin_fetch.py`。
+
 ## 不要
 
 - 不要只改 OSS 文件却不递增 `?v=`（边缘会钉死旧 JSON）。  
 - 不要把动态嵌入改成 `fonts-packages/.../result.css`。  
-- 不要在未核实许可时放开 `brand_terms` / `high_risk` 的公共 CSS。
+- 不要在未核实许可时放开 `brand_terms` / `high_risk` 的公共 CSS。  
+- 不要为拉外源原文另写一套镜像探针；改共享库 + 重新 deploy。

@@ -397,13 +397,88 @@
   function brandShort(font) { const b = brandInfo(font); return (b && (b.short || b.name)) || ''; }
   function brandSite(font) { const b = brandInfo(font); return (b && b.website) || (font && font.brand && font.brand.website) || ''; }
   function junkAvatar(url) {
-    return /identicon|cravatar\.(com|cn)\/avatar/i.test(url || '');
+    return /identicon|avatars\.githubusercontent\.com/i.test(url || '');
+  }
+  /** 个人作者 / 个人：缺本地图时用 Cravatar；组织（品牌/字库/平台/项目）用字标 */
+  function isPersonalFoundry(info) {
+    const k = (info && info.kind) || '';
+    return k === 'author' || k === 'individual';
+  }
+  /* 轻量 MD5（与 wf-avatar 一致）；多数页未载 wf-avatar.js，个人 Cravatar 回退仍可用 */
+  function avatarMd5(str) {
+    if (window.WFAvatar && typeof WFAvatar.md5 === 'function') return WFAvatar.md5(str);
+    const S = [7, 12, 17, 22, 5, 9, 14, 20, 4, 11, 16, 23, 6, 10, 15, 21];
+    const K = [];
+    for (let i = 0; i < 64; i++) K[i] = Math.floor(Math.abs(Math.sin(i + 1)) * 4294967296) | 0;
+    function hex(x) {
+      let s = '';
+      for (let i = 0; i < 4; i++) s += ('0' + ((x >>> (i * 8)) & 255).toString(16)).slice(-2);
+      return s;
+    }
+    const bytes = new TextEncoder().encode(String(str));
+    const n = bytes.length;
+    const words = new Array((((n + 8) >> 6) + 1) * 16).fill(0);
+    for (let i = 0; i < n; i++) words[i >> 2] |= bytes[i] << ((i % 4) * 8);
+    words[n >> 2] |= 0x80 << ((n % 4) * 8);
+    words[words.length - 2] = (n * 8) >>> 0;
+    words[words.length - 1] = Math.floor(n / 536870912);
+    let a0 = 0x67452301, b0 = 0xefcdab89 | 0, c0 = 0x98badcfe | 0, d0 = 0x10325476;
+    for (let off = 0; off < words.length; off += 16) {
+      let a = a0, b = b0, c = c0, d = d0;
+      for (let i = 0; i < 64; i++) {
+        let f, g;
+        if (i < 16) { f = (b & c) | (~b & d); g = i; }
+        else if (i < 32) { f = (d & b) | (~d & c); g = (5 * i + 1) % 16; }
+        else if (i < 48) { f = b ^ c ^ d; g = (3 * i + 5) % 16; }
+        else { f = c ^ (b | ~d); g = (7 * i) % 16; }
+        const s = S[(i >> 4) * 4 + (i % 4)];
+        const t = (a + f + K[i] + words[off + g]) | 0;
+        a = d; d = c; c = b;
+        b = (b + ((t << s) | (t >>> (32 - s)))) | 0;
+      }
+      a0 = (a0 + a) | 0; b0 = (b0 + b) | 0; c0 = (c0 + c) | 0; d0 = (d0 + d) | 0;
+    }
+    return hex(a0) + hex(b0) + hex(c0) + hex(d0);
+  }
+  function cravatarHash(info, fallbackSlug) {
+    const raw = (info && info.tips && info.tips.hash) || (info && info.cravatar) || '';
+    if (/^[a-f0-9]{32}$/i.test(raw)) return String(raw).toLowerCase();
+    const seed = String(fallbackSlug || (info && info.id) || '').trim().toLowerCase();
+    if (!seed) return '';
+    return avatarMd5(seed + '@authors.windfonts.local');
+  }
+  /**
+   * @param {*} info
+   * @param {number} [size]
+   * @param {{ default?: string, fallbackSlug?: string }} [opts]
+   *  default: Gravatar/Cravatar d=；个人缺档用 mp（默认头像），赞助核验仍用 404
+   */
+  function cravatarFromInfo(info, size, opts) {
+    opts = opts || {};
+    const hash = cravatarHash(info, opts.fallbackSlug);
+    if (!hash) return '';
+    const s = size || 240;
+    const d = opts.default || '404';
+    return 'https://cravatar.com/avatar/' + hash + '?s=' + s + '&d=' + encodeURIComponent(d);
+  }
+  /** 字标：中文取 short/name 最多两字，拉丁取首字母 */
+  function avatarMark(infoOrName) {
+    const raw = typeof infoOrName === 'string'
+      ? infoOrName
+      : ((infoOrName && (infoOrName.short || infoOrName.name)) || '?');
+    const s = String(raw || '?').trim() || '?';
+    const cjk = s.match(/[\u3400-\u9fff]{1,2}/);
+    if (cjk) return cjk[0];
+    const ch = s.charAt(0);
+    return ch ? ch.toUpperCase() : '?';
   }
   /* 本地清单优先：按正在展示的厂商 id 取图，不看哪条目录碰巧写了 brand.avatarUrl */
   function resolveAvatar(url) {
     const u = String(url || '').trim();
     if (!u || junkAvatar(u)) return '';
-    if (/^(https?:|data:|blob:)/i.test(u)) return u;
+    /* 禁止第三方未缓存 logo 热链作主路径；Cravatar 走 brandAvatar 显式回退 */
+    if (/^https?:\/\//i.test(u)) return '';
+    if (/^(data:|blob:)/i.test(u)) return u;
     return href(u.replace(/^\.\//, ''));
   }
   function brandAvatar(font, info) {
@@ -411,6 +486,10 @@
     const id = (who && who.id) || (font && font.brand && font.brand.slug) || '';
     const fromMap = (WFProto.getAvatarUrl && WFProto.getAvatarUrl(id)) || '';
     if (fromMap) return resolveAvatar(fromMap);
+    /* 个人：Cravatar（有 tips.hash 用真档，否则 slug 派生 + 默认头像 d=mp）；组织：空 → 字标 */
+    if (isPersonalFoundry(who)) {
+      return cravatarFromInfo(who, 240, { fallbackSlug: id, default: 'mp' });
+    }
     if (id) return '';
     const brand = font && font.brand;
     const raw = (brand && (brand.logoUrl || brand.avatarUrl)) || (font && font.foundryAvatar) || '';
@@ -1099,11 +1178,12 @@
     opts = opts || {};
     const info = opts.info || brandInfo(font);
     const name = (info && info.name) || brandName(font) || '未署名';
+    const letter = avatarMark(info || name);
     const avatar = brandAvatar(font, info);
     const size = opts.small ? 24 : 40;
     const mark = avatar
-      ? '<img src="' + esc(avatar) + '" alt="" width="' + size + '" height="' + size + '" loading="lazy" onerror="' + esc("this.replaceWith(Object.assign(document.createElement('span'),{className:'mark',textContent:" + JSON.stringify(name.charAt(0)) + "}))") + '" />'
-      : '<span class="mark">' + esc(name.charAt(0)) + '</span>';
+      ? '<img src="' + esc(avatar) + '" alt="" width="' + size + '" height="' + size + '" loading="lazy" onerror="' + esc("this.replaceWith(Object.assign(document.createElement('span'),{className:'mark',textContent:" + JSON.stringify(letter) + "}))") + '" />'
+      : '<span class="mark">' + esc(letter) + '</span>';
     const slug = (info && info.id) || brandSlug(font);
     const link = href('foundry.html?slug=' + encodeURIComponent(slug));
     const en = (info && info.en) || brandEn(font);
@@ -1132,7 +1212,7 @@
     if (!url) return '';
     const s = size || 16;
     const who = info || brandInfo(font);
-    const letter = ((who && (who.short || who.name)) || '?').charAt(0);
+    const letter = avatarMark(who);
     return '<img class="meta-face" src="' + esc(url) + '" alt="" width="' + s + '" height="' + s + '" loading="lazy" onerror="' + esc("this.replaceWith(Object.assign(document.createElement('span'),{className:'meta-face mark',textContent:" + JSON.stringify(letter) + "}))") + '" />';
   }
 
@@ -1142,9 +1222,10 @@
     const stub = { ownerInfo: info, foundryInfo: info, makerInfo: info };
     const avatar = brandAvatar(stub, info);
     const name = info.short || info.name || info.id;
+    const letter = avatarMark(info);
     const mark = avatar
-      ? '<img src="' + esc(avatar) + '" alt="" width="18" height="18" loading="lazy" />'
-      : '<span class="mark">' + esc(String(name).charAt(0)) + '</span>';
+      ? '<img src="' + esc(avatar) + '" alt="" width="18" height="18" loading="lazy" onerror="' + esc("this.replaceWith(Object.assign(document.createElement('span'),{className:'mark',textContent:" + JSON.stringify(letter) + "}))") + '" />'
+      : '<span class="mark">' + esc(letter) + '</span>';
     return '<a class="partner-face" href="' + href('foundry.html?slug=' + encodeURIComponent(info.id)) + '">' +
       mark + '<span>' + esc(info.name || name) + '</span></a>';
   }
@@ -1401,6 +1482,8 @@
     brandShort: brandShort,
     brandSite: brandSite,
     brandAvatar: brandAvatar,
+    isPersonalFoundry: isPersonalFoundry,
+    avatarMark: avatarMark,
     faceHtml: faceHtml,
     partnerFaceHtml: partnerFaceHtml,
     catLabel: catLabel,

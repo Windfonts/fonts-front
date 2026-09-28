@@ -41,7 +41,7 @@
   function cravatar(email, size) {
     const e = String(email || '').trim().toLowerCase();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) return '';
-    return 'https://cravatar.cn/avatar/' + md5(e) + '?s=' + (size || 240) + '&d=404';
+    return 'https://cravatar.com/avatar/' + md5(e) + '?s=' + (size || 240) + '&d=404';
   }
 
   function isLocal(src) {

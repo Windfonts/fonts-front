@@ -57,7 +57,7 @@
     const v = info && info.tips ? info.tips[id] : '';
     if (typeof v === 'string' && /^https?:\/\//i.test(v)) return v;
     const hash = hashOf(info);
-    if (v && hash) return 'https://cravatar.cn/qrcode/' + hash + '/' + id + '.png?d=404';
+    if (v && hash) return 'https://cravatar.com/qrcode/' + hash + '/' + id + '.png?d=404';
     return '';
   }
 
