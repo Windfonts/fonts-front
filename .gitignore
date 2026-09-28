@@ -3,3 +3,7 @@
 node_modules/
 .cache/
 dist/
+
+# lab 工作区与临时素材不入库
+.lab/
+assets/avatars/_tmp-*
