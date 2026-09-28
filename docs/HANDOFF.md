@@ -2,6 +2,9 @@
 
 > 面向接手后端 / 全栈的同学与智能体：原型现状、页面清单、需要后端提供的接口契约、已知待办。
 
+
+**2026-09-28 origin-fetch / Cravatar [Cursor]：** 已推 `50c2271`（lab）+ main `f99b190`。外源拉取走 `origin-fetch`/`gh-fetch`（SoT linuxjoy `c6b4161`）；头像默认 `https://cravatar.com`。Cravatar **现网不上 OSS**；换机可备 DB+uploads。余量（HTML/CSS、staging licenses、谱系）交 tux。详见 linuxjoy HANDOFF + `docs/ops/origin-fetch-and-cravatar.md`。
+
 **2026-09-25 域名口径：** 详见 **[DOMAIN-ARCHITECTURE.md](DOMAIN-ARCHITECTURE.md)**。运维操作见 **[ops/DOMAIN-DEPLOY-SOP.md](ops/DOMAIN-DEPLOY-SOP.md)**。摘要：`app`=静态前端（现网 feicode 目录；OSS `wenfeng-web` 私有备份）；**`vault`**=Next；**`api.`**=网关壳（反代 vault，可换上游）；`cn|hk|en|jp`=CDN；`windfonts.com`=WP。`CSS_API`→`vault`；嵌入仍写地区 CDN。
 
 **2026-09-25 infra 落地：** vault 双 Host、CDN N1b Host→vault、app 静态化、staging、`api.` 网关、www→apex、停 vault 演练通过。OSS 公网绑 `app` 仍受账号禁 public-read；过渡走 CyberCDN `windfonts_app`（源仍 feicode）。
