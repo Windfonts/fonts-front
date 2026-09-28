@@ -1,6 +1,22 @@
 {
-  "$schema": "厂商字典 · 全站厂商名称的唯一真相来源。name 一律中文；en 英文/原文名；short 简称；aliases 为目录原始写法；fontNames 为未署名可归属的字体；kind=author|project|foundry|platform；openSource 标机构；claimed 为已认领；provisional=true 表示中文名拟定。",
+  "$schema": "厂商字典 · 全站厂商名称的唯一真相来源。name 一律中文；en 英文/原文名；short 简称；aliases 为目录原始写法；fontNames 为未署名可归属的字体；kind=author|project|foundry|platform|brand；openSource 标机构；claimed 为已认领；provisional=true 表示中文名拟定；parentId 可选，指向母公司/集团（品牌方树根须为父公司）。",
   "foundries": [
+    {
+      "id": "alibaba",
+      "name": "阿里巴巴",
+      "en": "Alibaba",
+      "short": "阿里",
+      "website": "https://www.alibaba.com",
+      "aliases": [
+        "阿里巴巴集团",
+        "Alibaba Group",
+        "Alibaba"
+      ],
+      "kind": "brand",
+      "openSource": false,
+      "claimed": false,
+      "description": "阿里巴巴集团；其下设计、钉钉、淘宝、阿里妈妈等产品线的免费商用字体归入本树。"
+    },
     {
       "id": "alibaba-design",
       "name": "阿里巴巴设计",
@@ -13,7 +29,42 @@
       ],
       "kind": "brand",
       "openSource": false,
-      "claimed": false
+      "claimed": false,
+      "parentId": "alibaba"
+    },
+    {
+      "id": "alimama",
+      "name": "阿里妈妈",
+      "en": "Alimama",
+      "short": "阿里妈妈",
+      "website": "https://www.alimama.com",
+      "aliases": [
+        "Alimama",
+        "阿里妈妈",
+        "阿里妈妈字体"
+      ],
+      "kind": "brand",
+      "openSource": false,
+      "claimed": false,
+      "parentId": "alibaba",
+      "description": "阿里巴巴集团营销科技平台；东方大楷、刀隶体、数黑体等免费商用字归入本支。"
+    },
+    {
+      "id": "taobao",
+      "name": "淘宝",
+      "en": "Taobao",
+      "short": "淘宝",
+      "website": "https://www.taobao.com",
+      "aliases": [
+        "Taobao",
+        "淘宝网",
+        "淘宝买菜"
+      ],
+      "kind": "brand",
+      "openSource": false,
+      "claimed": false,
+      "parentId": "alibaba",
+      "description": "阿里巴巴集团电商业务线；淘宝买菜体等免费商用字归入本支。"
     },
     {
       "id": "hanyi",
@@ -167,7 +218,7 @@
       "name": "云峰字库",
       "en": "Yunfeng Fonts",
       "short": "云峰",
-      "website": "",
+      "website": "https://www.zcool.com.cn/u/22214279",
       "aliases": [
         "云峰字库"
       ],
@@ -195,7 +246,7 @@
       "name": "寒蝉字型",
       "en": "ChillType",
       "short": "寒蝉",
-      "website": "https://github.com/Warren2060",
+      "website": "https://www.zcool.com.cn/u/12923697",
       "aliases": [
         "ChillType",
         "ChillType&Adobe"
@@ -212,7 +263,9 @@
         "寒蝉宽黑体",
         "寒蝉手拙体",
         "寒蝉端黑体",
-        "寒蝉龙藏楷书"
+        "寒蝉龙藏楷书",
+        "寒蝉春秋·春风",
+        "寒蝉春秋·秋鸿"
       ]
     },
     {
@@ -265,7 +318,8 @@
         "猫啃网糖圆体",
         "猫啃网烟波宋",
         "猫啃网风雅宋"
-      ]
+      ],
+      "description": "字体资源平台，站内字体以开源字体的派生改良为主：筛选并整理社区改进款，供免费下载使用。"
     },
     {
       "id": "myil",
@@ -443,7 +497,8 @@
       ],
       "kind": "brand",
       "openSource": false,
-      "claimed": false
+      "claimed": false,
+      "parentId": "alibaba"
     },
     {
       "id": "atelier-anchor",
@@ -561,7 +616,7 @@
       "name": "胡晓波字体工作室",
       "en": "Hu Xiaobo Type",
       "short": "胡晓波",
-      "website": "",
+      "website": "https://www.zcool.com.cn/u/553484",
       "aliases": [
         "胡晓波字体工作室",
         "胡晓波字库",
@@ -597,7 +652,7 @@
       "name": "荆南字坊",
       "en": "Jingnan Type",
       "short": "荆南",
-      "website": "",
+      "website": "https://www.zcool.com.cn/u/18646020",
       "aliases": [
         "荆南字坊",
         "荆南字坊 (Kingnam Typography)",
@@ -721,7 +776,7 @@
       "name": "庞门正道",
       "en": "Pangmen Zhengdao",
       "short": "庞门正道",
-      "website": "",
+      "website": "https://www.zcool.com.cn/u/ZNjE5OTcxNzY=",
       "aliases": [
         "庞门正道公众号",
         "庞门正道设计公众号与自由空间创意工作室",
@@ -737,7 +792,7 @@
       "name": "品如设计",
       "en": "Pinru Design",
       "short": "品如",
-      "website": "",
+      "website": "https://www.zcool.com.cn/u/721160",
       "aliases": [
         "品如设计",
         "Pinru"
@@ -1257,11 +1312,20 @@
         "Chun Yu Yao",
         "max32002",
         "狮尾",
-        "Swei"
+        "Swei",
+        "nanigashi",
+        "Nanigashitei",
+        "何某",
+        "何某手写体",
+        "NaniFont",
+        "何某手写"
       ],
       "kind": "project",
       "openSource": true,
-      "claimed": false
+      "claimed": false,
+      "fontNames": [
+        "何某手写体"
+      ]
     },
     {
       "id": "ipa",
@@ -1277,7 +1341,19 @@
       ],
       "kind": "project",
       "openSource": true,
-      "claimed": false
+      "claimed": false,
+      "fontNames": [
+        "IPA Gothic",
+        "IPA 黑体",
+        "IPAGothic",
+        "IPAex Gothic",
+        "IPAexGothic",
+        "IPAexMincho",
+        "IPAmj Mincho",
+        "IPAmjMincho",
+        "IPAmj明朝"
+      ],
+      "description": "日本独立行政法人 情报处理推进机构（IPA）字体；现由文字情報技術促進協議会分发。IPAex / IPA / IPAmj 明朝·ゴシック，IPA Font License 1.0（OSI）。本波钉 IPAmj明朝 Ver.006.01（C3）与 IPAex Gothic / IPA Gothic / こころ明朝（C2）。"
     },
     {
       "id": "potta",
@@ -1544,10 +1620,13 @@
         "中文网字计划"
       ],
       "fontNames": [
-        "月星楷",
-        "尚古明体",
+        "Huaying Mincho",
+        "Hymc",
         "初夏明朝体",
-        "合简宋体"
+        "华英明朝",
+        "合简宋体",
+        "尚古明体",
+        "月星楷"
       ],
       "kind": "project",
       "openSource": true,
@@ -1784,7 +1863,7 @@
       "kind": "author",
       "openSource": true,
       "claimed": false,
-      "description": "Keynote 研究所人生哥。演示系列的作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。"
+      "description": "Keynote 研究所人生哥。演示系列 / SlideFont 作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。钉 e6a0d2bcef05。"
     },
     {
       "id": "takushun",
@@ -1811,24 +1890,6 @@
       "description": "文津宋体、文渊宋黑圆。OFL 1.1。SuperHan 已停更，由文津接替。"
     },
     {
-      "id": "nanigashi",
-      "name": "Nanigashitei",
-      "en": "Nanigashitei",
-      "short": "何某",
-      "website": "https://github.com/max32002/nanifont",
-      "aliases": [
-        "何某手写体",
-        "NaniFont"
-      ],
-      "fontNames": [
-        "何某手写体"
-      ],
-      "kind": "author",
-      "openSource": true,
-      "claimed": false,
-      "description": "何某手写体。OFL 1.1。"
-    },
-    {
       "id": "itmarki",
       "name": "ItMarki",
       "en": "ItMarki",
@@ -1853,17 +1914,32 @@
       "name": "yzdnn",
       "en": "yzdnn",
       "short": "yzdnn",
-      "website": "https://github.com/yzdnn/ChangBanDianSong-16",
+      "website": "https://github.com/yzdnn",
       "aliases": [
-        "长坂点宋"
+        "yzdnn",
+        "长坂点宋",
+        "长坂点宋 12",
+        "八丁饰尾体",
+        "秋叶圆体",
+        "人偶仿宋",
+        "扇尾胄黑",
+        "正格点黑",
+        "袖珍像素体"
       ],
       "fontNames": [
-        "长坂点宋"
+        "长坂点宋 12",
+        "长坂点宋",
+        "八丁饰尾体",
+        "秋叶圆体",
+        "人偶仿宋",
+        "扇尾胄黑",
+        "正格点黑",
+        "袖珍像素体"
       ],
       "kind": "author",
       "openSource": true,
       "claimed": false,
-      "description": "长坂点宋。OFL 1.1。"
+      "description": "yzdnn：基于 KH Dot Font Series、DotGothic16、k6x8 等做的中文像素补字。OFL 1.1。部分款作者仍在更新（目录打 updates-ongoing）。"
     },
     {
       "id": "xiangcui",
@@ -2324,12 +2400,365 @@
       "fontNames": [
         "械黑"
       ],
-      "kind": "studio",
-      "description": "修复 IBM Plex Sans SC 简中字形并补齐字重的开源字体计划，出品械黑（Frex Sans）。",
+      "kind": "project",
+      "description": "修复 IBM Plex Sans SC 简中字形并补齐字重的开源字体计划，发布械黑（Frex Sans）。",
       "descSource": {
         "site": "github.com/maoken-fonts/frex-sans",
         "fetched": "2026-09-25"
       }
+    },
+    {
+      "id": "keynoteart",
+      "name": "Keynoteart",
+      "en": "Keynoteart",
+      "short": "Keynoteart",
+      "website": "https://github.com/maoken-fonts/slidefont",
+      "aliases": [
+        "keynoteart",
+        "Slide Font",
+        "幻灯片字体",
+        "SlideFont Project",
+        "演示字体",
+        "keynote"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "Slide Font（幻灯片字体 / 演示字体）作者身份别名；与 keynote（人生哥）同指 maoken-fonts/slidefont。寒蝉春秋之上游为演示春风楷 / 演示秋鸿楷。SIL OFL 1.1。",
+      "fontNames": [
+        "演示春风楷",
+        "演示秋鸿楷",
+        "演示佛系体",
+        "演示夏行楷",
+        "演示悠然小楷"
+      ]
+    },
+    {
+      "id": "masuda-mitiya",
+      "name": "枡田道也",
+      "en": "MASUDA mitiya",
+      "short": "MASUDA",
+      "website": "https://www.masuseki.com",
+      "aliases": [
+        "masuseki",
+        "MASUDA mitiya"
+      ],
+      "fontNames": [
+        "Konatu",
+        "Konatu Tohaba"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "provisional": false,
+      "description": "小夏（Konatu）与小夏等幅的作者。MIT 许可开源。"
+    },
+    {
+      "id": "feiyangjun",
+      "name": "飞扬君",
+      "en": "feiyangjun-1",
+      "short": "飞扬君",
+      "website": "https://github.com/feiyangjun-1",
+      "aliases": [
+        "feiyangjun-1",
+        "Sumr-Sans"
+      ],
+      "fontNames": [
+        "Sumr Sans"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "provisional": true,
+      "description": "立夏黑体（Sumr Sans）作者。SIL OFL 1.1。"
+    },
+    {
+      "id": "font-silo",
+      "name": "Font Silo",
+      "en": "Font Silo / フォント・サイロ",
+      "short": "Font Silo",
+      "website": "http://hp.vector.co.jp/authors/VA000874/",
+      "aliases": [
+        "平木敬太郎",
+        "Keitarou Hiraki",
+        "Keitaro Hiraki",
+        "フォントサイロ",
+        "FontSilo"
+      ],
+      "kind": "foundry",
+      "openSource": true,
+      "claimed": false,
+      "provisional": false,
+      "description": "平木敬太郎（Keitarou Hiraki）フォント・サイロ。KH Dot 原作设计。TrueType 化由自家製フォント工房完成并以 OFL 发布。",
+      "fontNames": [
+        "KH Dot 道玄坂 12",
+        "KH Dot 道玄坂 16",
+        "KH Dot 八丁堀 16",
+        "KH Dot 秋葉原 16",
+        "KH Dot 人形町 16",
+        "KH Dot 兜町 16",
+        "KH Dot 小伝馬町 12",
+        "KH Dot 小伝馬町 12 Ki",
+        "KH Dot 小伝馬町 12 Ko",
+        "KH Dot 小伝馬町 16",
+        "KH Dot 小伝馬町 16 Ki",
+        "KH Dot 神楽坂 12",
+        "KH Dot 神楽坂 16",
+        "KH Dot 日比谷 24",
+        "KH Dot 日比谷 32"
+      ]
+    },
+    {
+      "id": "jikasei",
+      "name": "自家製フォント工房",
+      "en": "Jikasei Font Koubou",
+      "short": "自家製",
+      "website": "http://jikasei.me/",
+      "aliases": [
+        "jikasei.me",
+        "自家製フォント工房",
+        "Jikasei"
+      ],
+      "kind": "project",
+      "openSource": true,
+      "claimed": false,
+      "provisional": false,
+      "description": "自家製フォント工房。将平木敬太郎 KH Dot 等点阵字体重构为 TrueType，并以 SIL OFL 1.1 发布。",
+      "fontNames": [
+        "KH Dot 道玄坂 12",
+        "KH Dot 道玄坂 16",
+        "KH Dot 八丁堀 16",
+        "KH Dot 秋葉原 16",
+        "KH Dot 人形町 16",
+        "KH Dot 兜町 16",
+        "KH Dot 小伝馬町 12",
+        "KH Dot 小伝馬町 12 Ki",
+        "KH Dot 小伝馬町 12 Ko",
+        "KH Dot 小伝馬町 16",
+        "KH Dot 小伝馬町 16 Ki",
+        "KH Dot 神楽坂 12",
+        "KH Dot 神楽坂 16",
+        "KH Dot 日比谷 24",
+        "KH Dot 日比谷 32"
+      ]
+    },
+    {
+      "id": "littlelimit",
+      "name": "littlelimit",
+      "en": "littlelimit / 門真なむ",
+      "short": "littlelimit",
+      "website": "https://littlelimit.net/",
+      "aliases": [
+        "Num Kadoma",
+        "門真なむ",
+        "num_kadoma",
+        "littlelimit.net"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "provisional": false,
+      "description": "門真なむ（Num Kadoma）。k6x8 / 美咲フォント / k8x12 / k12x8 等极小点阵字体作者。站点自由软件许可（非 OFL）。",
+      "fontNames": [
+        "k6x8 ゴシック",
+        "k6x8 明朝",
+        "k6x8",
+        "美咲ゴシック",
+        "美咲明朝",
+        "美咲ゴシック第2",
+        "k8x12",
+        "k8x12L",
+        "k8x12S",
+        "k12x8",
+        "美咲フォント"
+      ]
+    },
+    {
+      "id": "typingart",
+      "name": "Typingart",
+      "en": "Typingart",
+      "short": "Typingart",
+      "website": "https://typingart.net/",
+      "aliases": [
+        "Typing Art",
+        "typingart",
+        "Nakai",
+        "こころ明朝",
+        "Kokoro Mincho",
+        "KokoroMinchoutai"
+      ],
+      "fontNames": [
+        "こころ明朝",
+        "はんなり明朝"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "Typingart（Nakai）。こころ明朝体作者。官网 typingart.net；こころ明朝页 ?p=46 2026-09 已 404，本波以 luxcem/typingart-fonts@d7d6a46 备份钉 zip，随包 IPA Font License 1.0（非 OFL）。"
+    },
+    {
+      "id": "flopdesign",
+      "name": "FLOP DESIGN",
+      "en": "FLOP DESIGN",
+      "short": "フロップ",
+      "website": "https://www.flopdesign.com/",
+      "aliases": [
+        "FLOP DESIGN",
+        "フロップデザイン",
+        "flopdesign",
+        "Flop Design"
+      ],
+      "fontNames": [
+        "03スマートフォントUI"
+      ],
+      "kind": "foundry",
+      "openSource": true,
+      "claimed": false,
+      "description": "FLOP DESIGN（フロップデザイン）。03スマートフォントUI 作者；基于 IPAexゴシック 的 IPA Font License 衍生。官网 freefont 页 2026-09 现 403；现行分发 BOOTH https://flopdesign.booth.pm/items/2296502。另声明假名版权与 webfont/嵌入限制（需日文 Webfont 套件）。"
+    },
+    {
+      "id": "starlove",
+      "name": "天天宅在家",
+      "en": "starlove0425",
+      "short": "宅在家",
+      "website": "https://home.gamer.com.tw/home.php?owner=starlove0425",
+      "aliases": [
+        "天天宅在家",
+        "starlove0425",
+        "Star Love",
+        "StarLove"
+      ],
+      "fontNames": [
+        "天天宅在家"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "巴哈姆特创作者 starlove0425（天天宅在家）。原创手写三款：宅在家自动笔 / 麦克笔 / 粉条甜。作者声明「完全免费」「镶嵌改作商标都随便使用」。FWHP 以 SIL OFL 1.1 再发于 FWHP-Enfun/Star-Love-Font。"
+    },
+    {
+      "id": "zoomla",
+      "name": "逐浪字库",
+      "en": "Zoomla / z01",
+      "short": "逐浪",
+      "website": "http://f.ziti163.com",
+      "aliases": [
+        "Zoomla",
+        "ZoomlaCMS",
+        "z01",
+        "逐浪",
+        "江西逐浪软件科技有限公司",
+        "上海逐一软件科技有限公司",
+        "z01font",
+        "z01 fonts",
+        "ZoomlaMengyas",
+        "Zoomla!CMS"
+      ],
+      "kind": "foundry",
+      "openSource": true,
+      "claimed": false,
+      "fontNames": [
+        "逐浪萌芽字",
+        "逐浪粗宋简体"
+      ],
+      "description": "逐浪字库（ZoomlaCMS / z01font）。官网 f.ziti163.com；开源仓 zoomla/ZoomlaFont（根 Apache-2.0）与 z01font/ZoomlaMengyas（OFL 1.1）同属一家。"
+    },
+    {
+      "id": "8678c3f0-5136-493c-abd8-54984d39cd26",
+      "name": "嗷呜字造",
+      "en": "howlingFounts",
+      "short": "嗷呜",
+      "slug": "howlingfounts",
+      "aliases": [
+        "howlingFounts",
+        "嗷呜字造"
+      ],
+      "kind": "author",
+      "website": "https://github.com/howlingFounts/EqHiSans",
+      "openSource": true
+    },
+    {
+      "id": "steve-yuu",
+      "name": "Steve-Yuu",
+      "en": "Steve-Yuu",
+      "short": "Steve-Yuu",
+      "slug": "steve-yuu",
+      "aliases": [
+        "SteveYuu",
+        "Steve-Yuu",
+        "steve-yuu",
+        "aa854d83-ca33-4db2-afc0-07441e415b31",
+        "Y式",
+        "YShi",
+        "Yuu"
+      ],
+      "kind": "author",
+      "website": "https://github.com/Steve-Yuu",
+      "openSource": true,
+      "claimed": false,
+      "fontNames": [
+        "传趣",
+        "納黑",
+        "写意体",
+        "Y式笔书",
+        "Y式新黑体",
+        "Y式明朝体",
+        "Y式源明朝",
+        "Yuu Gothic"
+      ],
+      "description": "Steve-Yuu 开源字体作者（github.com/Steve-Yuu）。在库：传趣、納黑、写意体、Y式笔书、Y式新黑体、Y式明朝体、Y式源明朝、Yuu Gothic。Ganju-Sans 空壳未挂。OFL 与 IPA 款并存（IPA 勿标 ofl_ok）。"
+    },
+    {
+      "id": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "name": "鸿雷字记",
+      "en": "Honglei Ziji",
+      "short": "鸿雷",
+      "slug": "honglei",
+      "aliases": [
+        "鸿雷字记",
+        "林鸿雷",
+        "Honglei"
+      ],
+      "kind": "author",
+      "website": "https://www.zcool.com.cn/u/12963257",
+      "openSource": false
+    },
+    {
+      "id": "b0282765-1289-4d9c-b97d-a5093620186b",
+      "name": "岛田水木",
+      "en": "Shimada Mizuki",
+      "short": "水木",
+      "slug": "mizuki",
+      "aliases": [
+        "岛田水木",
+        "MEE-Developers",
+        "Mizuki"
+      ],
+      "kind": "author",
+      "website": "https://github.com/MEE-Developers/Mizuki-Gothic",
+      "openSource": true
+    },
+    {
+      "id": "naver",
+      "name": "Naver",
+      "en": "Naver",
+      "short": "Naver",
+      "website": "https://github.com/naver/nanumfont",
+      "aliases": [
+        "Naver",
+        "나눔",
+        "Nanum",
+        "Nanum Gothic",
+        "네이버"
+      ],
+      "kind": "brand",
+      "openSource": true,
+      "claimed": false,
+      "fontNames": [
+        "Nanum Gothic"
+      ],
+      "description": "Naver 나눔글꼴 / Nanum fonts。納黑上游 Nanum Gothic。",
+      "provisional": true
     }
   ]
 }

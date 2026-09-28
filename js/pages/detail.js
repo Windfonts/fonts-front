@@ -3,6 +3,73 @@
   const esc = WFProto.escapeHtml;
   const root = document.getElementById('detailRoot');
 
+  const FONT_DESC_BRIEF_MAX = 120;
+  const BRAND_DESC_BRIEF_MAX = 72;
+
+  function firstSentence(text) {
+    const t = String(text || '').trim();
+    if (!t) return '';
+    const m = t.match(/^[^。！？!?\n]+[。！？!?]?/);
+    return (m ? m[0] : t.split(/\n+/)[0] || t).trim();
+  }
+
+  function briefText(text, max) {
+    max = max || FONT_DESC_BRIEF_MAX;
+    const t = String(text || '').trim();
+    if (!t || t.length <= max) return t;
+    const cut = t.slice(0, max);
+    const last = Math.max(cut.lastIndexOf('。'), cut.lastIndexOf('，'), cut.lastIndexOf(' '));
+    const head = (last > max * 0.45 ? cut.slice(0, last + (cut[last] === '。' ? 1 : 0)) : cut.replace(/\s+\S*$/, '')).trim();
+    return head + '…';
+  }
+
+
+  function isInternalCatalogDesc(text) {
+    const t = String(text || '').trim();
+    if (!t) return true;
+    if (/CDN\s*OPEN|OFL\.txt|旁证|\bRFN\b|v0\.\d|shelf\s20|ingest|lineage-stub|头误写|fonts-packages/i.test(t)) return true;
+    if (/上游.{0,48}[\+＋]/.test(t)) return true;
+    if (/头旁证|以 README|上游旁证/.test(t)) return true;
+    if (/^[^。]{0,96}(SIL Open Font License|OFL 1\.1)[^。]{0,64}上游/i.test(t)) return true;
+    return false;
+  }
+
+  function defaultFontBlurb(font) {
+    font = font || {};
+    const name = String(font.name || '').trim() || '本款字体';
+    const who = String(WFChrome.brandName(font) || font.designer || font.foundry || '').trim();
+    const cat = WFChrome.catLabel(font.category) || font.category || '';
+    let s = name;
+    if (who) s += '，由 ' + who + ' 发布';
+    if (cat) s += '（' + cat + '）';
+    s += '。';
+    if (/OFL|开源/i.test(String(font.licenseName || font.license || ''))) s += '开源许可。';
+    return briefText(s, FONT_DESC_BRIEF_MAX);
+  }
+
+  function defaultBrandBlurb(entry, font) {
+    const name = (entry && entry.name) || WFChrome.brandName(font) || '厂商';
+    const kind = (entry && entry.kind) === 'author' ? '开源作者' : '品牌方';
+    return briefText(name + '，' + kind + '。详情见厂商页。', BRAND_DESC_BRIEF_MAX);
+  }
+
+  function fontDescBrief(font) {
+    if (!font) return '';
+    const b = font.descriptionBrief || font.descBrief;
+    if (b && String(b).trim() && !isInternalCatalogDesc(b)) return String(b).trim();
+    const raw = font.description;
+    if (!isInternalCatalogDesc(raw)) return briefText(raw, FONT_DESC_BRIEF_MAX);
+    return defaultFontBlurb(font);
+  }
+
+  function brandDescBrief(entry, raw, font) {
+    const b = entry && (entry.descriptionBrief || entry.descBrief);
+    if (b && String(b).trim() && !isInternalCatalogDesc(b)) return String(b).trim();
+    if (!isInternalCatalogDesc(raw)) return briefText(firstSentence(raw), BRAND_DESC_BRIEF_MAX);
+    return defaultBrandBlurb(entry, font);
+  }
+
+
   function licenseLists(font) {
     const tier = proofTier(font);
     const ev = WFChrome.licenseEvidence(font);
@@ -303,11 +370,12 @@
     const brandCount = list.filter(function (f) { return WFChrome.brandSlug(f) === WFChrome.brandSlug(font); }).length;
     const maker = WFChrome.makerInfo(font);
     const avatar = WFChrome.brandAvatar(font);
-    /* 厂商简介：字典 description 优先（多段取首段做侧栏摘要，全文在厂商页） */
     const brandInfoEntry = WFChrome.brandInfo(font) || {};
-    const brandDesc = (brandInfoEntry.description ||
+    const brandDescRaw = (brandInfoEntry.description ||
       ((font.brand && font.brand.description && !/出品的字体$/.test(font.brand.description)) ? font.brand.description : '')
-    ).split(/\n+/).map(function (s) { return s.trim(); }).filter(Boolean)[0] || '';
+    ).trim();
+    const brandBriefLine = brandDescBrief(brandInfoEntry, brandDescRaw, font);
+    const foundryMoreHref = WFChrome.foundryHref(WFChrome.brandSlug(font));
     const user = WFChrome.user();
     const sample = WFSpecimen.PRESETS.filter(function (p) { return p.id === 'poem'; })[0].text;
 
@@ -408,8 +476,8 @@
               if (!up || !up.family || up.id === font.id) return '';
               return '<label class="use-fallback" id="fallbackLabel">' +
                 '<input type="checkbox" id="optFallback" value="' + esc(up.family) + '" data-up-name="' + esc(up.name) + '" data-up-id="' + esc(up.id) + '"> ' +
-                '缺字用上游「' + esc(up.name) + '」补全 ' +
-                '<span class="hint" id="fallbackHint">须同字重 · 服务端只挂缺口 unicode-range</span></label>';
+                '缺字时改用上游「' + esc(up.name) + '」 ' +
+                '<span class="hint" id="fallbackHint">须同一字重，只补缺的字</span></label>';
             })() +
             (function () {
               const pair = (window.WFLocaleFallback && WFLocaleFallback.peerOf)
@@ -423,14 +491,15 @@
               const roleLabel = pair.role === 'tc' ? '简体兄弟' : '繁体兄弟';
               return '<label class="use-fallback" id="localeFallbackLabel">' +
                 '<input type="checkbox" id="optLocaleFallback" data-peer="' + esc(pair.peer) + '" data-role="' + esc(pair.role || '') + '"> ' +
-                '简繁补全：附带' + esc(roleLabel) + '「' + esc(peerName) + '」 ' +
-                '<span class="hint">文本须已是对应码点 · localeFallback=auto</span></label>';
+                '简繁混排时，带上「' + esc(peerName) + '」补缺字 ' +
+                '<span class="hint">只补缺字，不替页面做简繁转换</span></label>';
             })() +
             '<div id="embed"></div>' +
-            '<p class="use-note">体积按单字重估算；默认「常用」适合品牌短文案，正文站可选「中文」。只要页面里出现的字，用 <a href="' + (user ? '/app/subset.html?font=' + encodeURIComponent(font.id) : '/login') + '">子集化工作台</a>。' +
-              '谱系补全写 <code>fallback=</code>；简繁补全写 <code>localeFallback=auto</code>（二者同时开时优先谱系 <code>fallback</code>）。' +
-              '上方预算条为启发式；开补全后主款字节不变，补全只加缺口片。' +
-              '<code>font-family</code> 须写主款与补全款栈。</p></div>' +
+            '<p class="use-note">上方体积按当前字重和所选档位估算。「常用」偏标题与短句，「中文」偏正文。页面用字少时，可到 <a href="' +
+              (user ? '/app/subset.html?font=' + encodeURIComponent(font.id) : '/login') + '">子集化工作台</a> 按实际用字缩小包体。</p>' +
+            '<details class="side-fold use-note-adv"><summary>' + WFChrome.icon('chevron-down') + '参数与补全</summary>' +
+              '<p class="use-note">勾选补缺或简繁后，上方链接与示例会自动更新；两种都开时，先走谱系补缺。' +
+              'CSS 的 <code>font-family</code> 要写主款与补全款的完整栈。细则见 <a href="' + WFChrome.href('docs.html') + '">文档</a>。</p></details></div>' +
           '</section>' +
           (weights.length > 1
             ? '<section class="panel" id="weights"><div class="panel-head"><h2>' + WFChrome.icon('font') + '字重</h2></div>' +
@@ -476,10 +545,14 @@
                   cols.map(function (c) { return WFChrome.partnerFaceHtml(c); }).join('') +
                 '</div></div>';
             })() +
-            (brandDesc ? '<p class="brand-desc">' + esc(brandDesc) + '</p>' : '') +
-            (font.description
-              ? '<details class="side-fold"><summary>' + WFChrome.icon('chevron-down') + '简介</summary>' +
-                '<p class="desc" id="desc">' + esc(font.description) + '</p></details>'
+            (fontDescBrief(font)
+              ? '<div class="font-desc-block"><h3 class="font-desc-head">' + WFChrome.icon('info') + '简介</h3>' +
+                '<p class="desc font-desc" id="desc">' + esc(fontDescBrief(font)) + '</p></div>'
+              : '') +
+            (brandBriefLine
+              ? '<details class="side-fold brand-desc-fold"><summary>' + WFChrome.icon('chevron-down') + '厂商 / 品牌</summary>' +
+                '<p class="desc brand-desc">' + esc(brandBriefLine) + '</p>' +
+                '<p class="brand-desc-more"><a href="' + foundryMoreHref + '">查看更多</a></p></details>'
               : '') +
             WFSponsor.html(WFChrome.brandInfo(font)) +
             '<div class="side-meta"><h3>' + WFChrome.icon('info') + '资料</h3><dl class="kv">' + kv.map(function (r) {
@@ -543,7 +616,7 @@
       } else {
         fallbackEl.disabled = false;
         if (fallbackHint) {
-          fallbackHint.textContent = '同字重 ' + align.css + ' · 缺口裁切 · 同档 subset';
+          fallbackHint.textContent = '字重已对齐 · 只补缺的字';
           fallbackHint.classList.remove('is-warn');
         }
       }
@@ -575,9 +648,11 @@
       }
       return [primary];
     }
-    const cite = (WFProto.citeAllowed && WFProto.citeAllowed(font)) || { ok: true, reason: 'ok' };
     const embedRoot = document.getElementById('embed');
     let embed = null;
+    function currentCite() {
+      return (WFProto.citeAllowed && WFProto.citeAllowed(font)) || { ok: true, reason: 'ok' };
+    }
     function certQueryHref() {
       const slug = (WFProto.fontSlug && WFProto.fontSlug(font)) ||
         String((font && (font.normalized || font.family)) || '').replace(/^wenfeng-/i, '');
@@ -585,17 +660,73 @@
     }
     function mountOrRefuseEmbed() {
       if (!embedRoot) return;
+      const cite = currentCite();
       if (!cite.ok) {
+        const grant = WFProto.getCertGrant ? WFProto.getCertGrant(font) : null;
+        const gSt = grant && WFProto.certStatusNorm ? WFProto.certStatusNorm(grant.status) : '';
+        let grantLine = '';
+        if (gSt === 'pending') {
+          grantLine = '<p class="use-cite-meta">证书审核中' +
+            (grant.fileName ? ' · ' + esc(grant.fileName) : '') +
+            '。通过后仅本账号可复制嵌入代码。</p>';
+        } else if (gSt === 'rejected') {
+          grantLine = '<p class="use-cite-meta">证书未通过' +
+            (grant.reason ? '：' + esc(grant.reason) : '') +
+            '。可重新上传，或到 <a href="' + certQueryHref() + '">授权查询</a> 查看。</p>';
+        } else {
+          grantLine = '<p class="use-cite-meta">也可在 <a href="' + certQueryHref() + '">授权查询</a> 按用途核对条款。</p>';
+        }
         embedRoot.innerHTML =
           '<div class="use-cite-closed" role="status">' +
             '<p class="use-cite-title">引用未开放</p>' +
-            '<p class="use-cite-body">本款仅供货架对照与站内样张预览。默认不开对外 CSS / CDN 热链。' +
-            '若你已持有覆盖网页嵌入的授权证书，可经<a href="' + certQueryHref() + '">授权查询</a>了解上传路径；' +
-            '审核通过后仅对本账号开引用（不等于全站 CDN）。</p>' +
-            '<p class="use-cite-meta muted t-13">citeAllowed=false · reason=' + esc(cite.reason || 'cite-closed') +
-            ' · <a href="' + certQueryHref() + '">上传证书</a></p>' +
+            '<p class="use-cite-body">本款仅供货架对照与站内样张预览，默认不开对外 CSS / CDN 热链。' +
+            '若你已持有覆盖<strong>网页嵌入</strong>的授权证书，可在下方上传；审核通过后仅对本账号开放嵌入代码（不等于全站 CDN）。</p>' +
+            '<div class="use-cite-upload">' +
+              '<input type="file" id="citeCertFile" accept=".pdf,.png,.jpg,.jpeg,.webp,application/pdf,image/*" hidden />' +
+              '<button type="button" class="btn" id="btnCiteCert">' + WFChrome.icon('upload') +
+                (gSt === 'rejected' ? '重新上传证书' : gSt === 'pending' ? '已提交 · 可更换文件' : '上传证书') +
+              '</button>' +
+              (gSt === 'pending' && WFProto.reviewCertGrant
+                ? '<button type="button" class="btn-text" id="btnCiteCertLabOk">演示：标为通过</button>'
+                : '') +
+            '</div>' +
+            grantLine +
           '</div>';
         embed = null;
+        const fileEl = document.getElementById('citeCertFile');
+        const btn = document.getElementById('btnCiteCert');
+        if (btn && fileEl && WFProto.setCertGrant) {
+          btn.addEventListener('click', function () { fileEl.click(); });
+          fileEl.addEventListener('change', function () {
+            const f = fileEl.files && fileEl.files[0];
+            if (!f) return;
+            try {
+              WFProto.setCertGrant(font, {
+                status: 'pending',
+                fileName: f.name,
+                fileSize: f.size,
+                mime: f.type || '',
+                labMock: true
+              });
+              WFChrome.toast('已提交证书 · 审核中（本机演示）');
+              mountOrRefuseEmbed();
+            } catch (err) {
+              WFChrome.toast((err && err.message) || '提交失败');
+            }
+          });
+        }
+        const labOk = document.getElementById('btnCiteCertLabOk');
+        if (labOk && WFProto.reviewCertGrant) {
+          labOk.addEventListener('click', function () {
+            try {
+              WFProto.reviewCertGrant(font, 'approved');
+              WFChrome.toast('演示：证书已通过 · 可复制嵌入代码');
+              mountOrRefuseEmbed();
+            } catch (err) {
+              WFChrome.toast((err && err.message) || '操作失败');
+            }
+          });
+        }
         return;
       }
       embed = WFEmbed.mount(embedRoot, embedItems(), {
@@ -608,7 +739,7 @@
     mountOrRefuseEmbed();
     function refreshEmbed() {
       syncFallbackUi();
-      if (!cite.ok) { mountOrRefuseEmbed(); return; }
+      if (!currentCite().ok) { mountOrRefuseEmbed(); return; }
       if (embed) embed.setItems(embedItems());
     }
     document.querySelectorAll('[data-version]').forEach(function (b) {
@@ -740,7 +871,9 @@
       tester.open({ size: Number(size.value), weight: weight, scrollY: editScrollY });
     });
     function goUse() {
+      const wasDesign = document.documentElement.getAttribute('data-view') !== 'dev';
       WFChrome.setView('dev');
+      if (wasDesign) WFChrome.toast('已切换到开发视图，嵌入代码在下方');
       syncLicenseFold();
       const use = document.getElementById('use');
       if (use) use.scrollIntoView({ behavior: 'smooth', block: 'start' });

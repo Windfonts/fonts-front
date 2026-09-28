@@ -1,0 +1,21 @@
+{
+  "$schema": "export-fonts.mjs 导出后强制覆盖；防 vault API 短暂回退或 brand 未展开时盖坏本地正名。",
+  "byNormalized": {
+    "Zkxwt": {
+      "name": "站酷小薇体",
+      "en": "ZCOOL XiaoWei",
+      "category": "宋体",
+      "foundry": "ZCOOL",
+      "designer": "站酷",
+      "designerShort": "站酷",
+      "license": "开源商用",
+      "licenseName": "SIL Open Font License 1.1",
+      "brand": {
+        "name": "站酷字库",
+        "slug": "zcool",
+        "avatarUrl": "assets/avatars/zcool.webp",
+        "website": ""
+      }
+    }
+  }
+}

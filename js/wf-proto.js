@@ -1,6 +1,4 @@
-/* Shared specimen + pick bag + catalog — v3.4
-   list SoT: fonts-list.json (thin); detail fat: fonts-by-slug/{slug}.json
-   (+ fonts-detail.json index). List never pulls fonts.json; enrich clears 二次全量. */
+/* Shared specimen + pick bag + catalog (fonts.json) — v3.3 */
 (function () {
   const KEY = 'wf-proto-picks';
   const FAV_KEY = 'wf-favs';
@@ -25,25 +23,32 @@
   /* 预览真源：cn.windfonts.com/fonts-packages/{Normalized}/{Weight}/{full|zh-common}/result.css
      （与 app /api/css 同源拆包）。旧路径 /wenfeng/fonts/{slug}/{weight}/web/ 仅兜底。
      嵌入「动态」给 Google 风格查询参数：{cdn}/api/css?family=&weight=&version=。 */
+  /* 域名口径：详见 docs/DOMAIN-ARCHITECTURE.md
+     - app = fonts-front → OSS（纯前端）
+     - vault = fonts-vault Next（字体后端）；api. = 平台网关预留，勿直绑 Next
+     - cn/hk/en/jp = CDN only；嵌入写 CDN，回源 vault
+     - 本地预览：127.0.0.1:16016 */
   const CDN = 'https://cn.windfonts.com';
-  const CSS_API = 'https://app.windfonts.com'; /* vault / 元数据 API 源，非地区 CDN */
-  const ANALYSIS_META_VER = '20260925b'; /* 边缘长缓存；升元数据时递增 */
+  const SITE_ORIGIN = 'https://app.windfonts.com'; /* OSS 前端正式域 */
+  const CSS_API = 'https://vault.windfonts.com'; /* Next 字体后端；过渡可临时改回 app */
+  const ANALYSIS_META_VER = '20260927r15z1'; /* 边缘长缓存；升元数据时递增；与 analysisMetaUrl 对齐 */
+  /** 生产禁止；仅 staging 构建可改 true */
+  const ALLOW_DEMO = false;
   const CDN_KEY = 'wf-cdn';
   const STATS_KEY = 'wf-font-stats.v1';
   const VIEWED_KEY = 'wf-font-viewed';
   const CDN_HOSTS = [
-    { id: 'cn', label: '中国', host: 'cn.windfonts.com' },
-    { id: 'hk', label: '香港', host: 'hk.windfonts.com' },
-    { id: 'en', label: '国际', host: 'en.windfonts.com' }
+    { id: 'cn', label: '中国', host: 'cn.windfonts.com', edge: 'cybercdn' },
+    { id: 'hk', label: '香港', host: 'hk.windfonts.com', edge: 'cloudflare' },
+    { id: 'en', label: '国际', host: 'en.windfonts.com', edge: 'cloudflare' },
+    { id: 'jp', label: '日本', host: 'jp.windfonts.com', edge: 'cloudflare' }
   ];
   const CDN_LICENSE_NOTE = '<!-- 此中文网页字体由文风字体（Windfonts）免费提供，您可以自由引用，请务必保留此授权许可标注 https://wenfeng.org/license -->';
-  const CSS_TO_NAME = { '100': 'thin', '200': 'extralight', '300': 'light', '350': 'demilight', '400': 'regular', '450': 'text', '500': 'medium', '600': 'semibold', '700': 'bold', '800': 'heavy', '900': 'black' };
+  const CSS_TO_NAME = { '100': 'thin', '200': 'extralight', '300': 'light', '350': 'demilight', '400': 'regular', '450': 'text', '500': 'medium', '600': 'semibold', '700': 'bold', '800': 'extrabold', '900': 'heavy', '950': 'black' };
 
   const EXTRA_LINKS = [
     { label: '关于', path: 'about.html' },
-    { label: '文档', path: 'docs.html' },
-    { label: '常见问题', path: 'faq.html' },
-    { label: '认领厂商', path: 'claim.html' }
+    { label: '文档', path: 'docs.html' }
   ];
   const ICP_HREF = 'https://beian.miit.gov.cn/';
   const ICP_NO = '粤ICP备2023091240号-3';
@@ -57,16 +62,21 @@
   const WEIGHT_MAP = {
     thin: '100', extralight: '200', 'extra-light': '200', ultralight: '200', 'ultra-light': '200', light: '300',
     demilight: '350', 'demi-light': '350', book: '350',
-    /* Text / Round 等非标准名：独立数值，避免与 Regular/Normal 同为 400 时多 @font-face 互相覆盖 */
+    /* Adobe Source Han usWeightClass: Normal=350 (与 DemiLight 同档数值)、Regular=400。
+       Text / Round 等非标准名用独立数值，避免多 @font-face 互相覆盖 */
     text: '450',
     round: '450',
-    regular: '400', normal: '400', roman: '400',
+    normal: '350',
+    regular: '400', roman: '400',
     medium: '500',
     demi: '600', demibold: '600', 'demi-bold': '600', semibold: '600', 'semi-bold': '600',
     bold: '700',
-    /* Ultra 档（寒蝉矩阵 Ultra 等）→ 800；勿与 ultralight 混淆 */
-    ultra: '800', extrabold: '800', 'extra-bold': '800', ultrabold: '800', 'ultra-bold': '800', heavy: '800',
-    black: '900', ultrablack: '950', 'ultra-black': '950',
+    /* Ultra / ExtraBold → 800。Heavy → 900（对齐 Adobe usWeightClass / 普惠体 CDN）。
+       Black → 950：与 Heavy 分档（普惠体等 ExtraBold+Heavy+Black 三包并存时避免 @font-face 互盖；
+       同 Normal→350 分档思路）。勿与 ultralight 混淆。 */
+    ultra: '800', extrabold: '800', 'extra-bold': '800', ultrabold: '800', 'ultra-bold': '800',
+    heavy: '900',
+    black: '950', ultrablack: '950', 'ultra-black': '950',
     italic: '400', oblique: '400',
     lightitalic: '300', mediumitalic: '500', extralightitalic: '200'
   };
@@ -81,25 +91,19 @@
       for (let i = scripts.length - 1; i >= 0; i--) {
         const src = scripts[i].src || '';
         if (src.indexOf('wf-proto.js') !== -1) {
-          /* script is /js/wf-proto.js → ../data = /data (works under /fonts/{slug}). */
           return new URL('../data/' + file, src).href;
         }
       }
     } catch (e) { /* ignore */ }
-    /* Fallback: never resolve relative to /fonts/x or /foundry/x. */
-    const path = String(location.pathname || '');
-    if (path.indexOf('/admin') !== -1) return '../data/' + file;
-    return '/data/' + file;
+    const base = location.pathname.replace(/\/[^/]*$/, '/');
+    if (base.indexOf('/admin') !== -1) return '../data/' + file;
+    return 'data/' + file;
   }
-  const CATALOG_VER = '20260928later';
-  function catalogUrl() { return dataUrl('fonts.json?v=' + CATALOG_VER); }
-  function catalogListUrl() { return dataUrl('fonts-list.json?v=' + CATALOG_VER); }
-  function catalogDetailUrl() { return dataUrl('fonts-detail.json?v=' + CATALOG_VER); }
-  function catalogSlugUrl(stem) {
-    return dataUrl('fonts-by-slug/' + encodeURIComponent(stem) + '.json?v=' + CATALOG_VER);
-  }
+  function catalogUrl() { return dataUrl('fonts.json?v=20260928steve1'); }
   function analysisMetaUrl() {
-    return CDN + '/fonts-packages/metadata/font-analysis.json?v=' + ANALYSIS_META_VER;
+    /* CyberCDN 按查询串分变体缓存：换数据必须换新版本值（旧变体会粘住陈旧内容），
+       全新值首次回源即全量。20260925b 曾在重建中途被缓存成 1-2 字体的残缺变体。 */
+    return CDN + '/fonts-packages/metadata/font-analysis.json?v=20260927r15z1'; /* 20260927r15z1: R15 EqHi/Chuanqu/Mizuki+Honglei×5 onto zoomla1 499 */
   }
 
   /* —— 厂商字典：data/foundries.json 是厂商名称的唯一真相来源（中文名 / 英文 / 简称 / 官网） —— */
@@ -111,11 +115,16 @@
   const foundryByFont = {};
   function normKey(s) { return String(s || '').trim().toLowerCase().replace(/\s+/g, ' '); }
   function slugify(s) { return String(s || '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-+|-+$/g, ''); }
-  function getAvatarUrl(id) { return (id && avatars[id]) || ''; }
+  function getAvatarUrl(id) {
+    const u = (id && avatars[id]) || '';
+    if (!u || /^https?:\/\//i.test(u)) return '';
+    return u;
+  }
   function indexFoundries(list) {
     foundries = list;
     list.forEach(function (fd) {
       if (!fd.avatarUrl && avatars[fd.id]) fd.avatarUrl = avatars[fd.id];
+      foundryByAlias[normKey(fd.id)] = fd;
       (fd.aliases || []).forEach(function (a) { foundryByAlias[normKey(a)] = fd; });
       foundryByAlias[normKey(fd.name)] = fd;
       if (fd.en) foundryByAlias[normKey(fd.en)] = fd;
@@ -147,39 +156,72 @@
     });
   }
 
-  let catalogIsLite = false;
-
-  function fetchFontsJson() {
-    /* List / search / foundry: thin SoT only. Never fetch full fonts.json here. */
-    return fetch(catalogListUrl()).then(function (r) {
-      if (!r.ok) throw new Error('fonts-list ' + r.status);
-      return r.json().then(function (data) { return { data: data, lite: true }; });
+  /**
+   * 目录数据：网络优先 + Cache API 弱网兜底（caches.open('wf-catalog-v1')）。
+   * 缓存键 = 完整请求 URL（含 ?v=），升版本即换键、旧条目自然失效。
+   * 在线成功时更新缓存；失败/超时再读缓存，不替用户吞掉版本变更。
+   * 对外仍返回 Promise<catalog[]>，与改前一致。
+   */
+  const CATALOG_CACHE = 'wf-catalog-v1';
+  const CATALOG_NET_MS = 4500;
+  function openCatalogCache() {
+    if (typeof caches === 'undefined' || !caches.open) return Promise.resolve(null);
+    return caches.open(CATALOG_CACHE).catch(function () { return null; });
+  }
+  function fetchJsonCached(url, fallback) {
+    const abs = (function () {
+      try { return new URL(url, location.href).href; } catch (e) { return url; }
+    })();
+    let networkSettled = false;
+    const network = fetch(abs).then(function (r) {
+      networkSettled = true;
+      if (!r.ok) throw new Error(abs + ' ' + r.status);
+      const clone = r.clone();
+      openCatalogCache().then(function (cache) {
+        if (cache) cache.put(abs, clone).catch(function () { /* ignore */ });
+      });
+      return r.json();
+    });
+    const timed = new Promise(function (resolve, reject) {
+      const t = setTimeout(function () {
+        if (!networkSettled) reject(new Error('slow'));
+      }, CATALOG_NET_MS);
+      network.then(function (j) { clearTimeout(t); resolve(j); }, function (err) { clearTimeout(t); reject(err); });
+    });
+    return timed.catch(function () {
+      return openCatalogCache().then(function (cache) {
+        if (!cache) return network.catch(function () { return fallback; });
+        return cache.match(abs).then(function (hit) {
+          if (hit) {
+            /* 慢网：先吐缓存，后台仍等网络写新缓存 */
+            network.catch(function () { /* already falling back */ });
+            return hit.json();
+          }
+          return network.catch(function () { return fallback; });
+        });
+      });
     });
   }
-
   function loadCatalog() {
     if (catalog.length) return Promise.resolve(catalog);
     if (catalogPromise) return catalogPromise;
-    const fontsReq = fetchFontsJson();
-    const foundriesReq = fetch(dataUrl('foundries.json?v=20260927a')).then(function (r) { return r.ok ? r.json() : { foundries: [] }; })
-      .catch(function () { return { foundries: [] }; });
-    const evidenceReq = fetch(dataUrl('license-evidence.json?v=20260925b')).then(function (r) { return r.ok ? r.json() : { standards: {}, names: {} }; })
-      .catch(function () { return { standards: {}, names: {} }; });
-    const lineageReq = fetch(dataUrl('font-lineage.json?v=20260927c')).then(function (r) { return r.ok ? r.json() : { groups: {}, byName: {} }; })
-      .catch(function () { return { groups: {}, byName: {} }; });
-    const avatarsReq = fetch(dataUrl('avatars.json?v=20260921d')).then(function (r) { return r.ok ? r.json() : {}; })
-      .catch(function () { return {}; });
+    /* fonts.json 也带 ?v=，与兄弟 JSON 一样靠查询串作 Cache 键 */
+    const fontsReq = fetchJsonCached(catalogUrl(), null).then(function (j) {
+      if (Array.isArray(j)) return j;
+      throw new Error('fonts.json invalid');
+    });
+    const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20260928steve2'), { foundries: [] });
+    const evidenceReq = fetchJsonCached(dataUrl('license-evidence.json?v=20260925b'), { standards: {}, names: {} });
+    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20260928steve2'), { groups: {}, byName: {} });
+    const avatarsReq = fetchJsonCached(dataUrl('avatars.json?v=20260928av9'), {});
     catalogPromise = Promise.all([fontsReq, foundriesReq, evidenceReq, lineageReq, avatarsReq])
       .then(function (res) {
         avatars = (res[4] && typeof res[4] === 'object') ? res[4] : {};
         indexFoundries((res[1] && res[1].foundries) || []);
         licenseEvidenceData = res[2] || { standards: {}, names: {} };
         lineageData = res[3] || { groups: {}, byName: {} };
-        const pack = res[0] || { data: [], lite: false };
-        catalogIsLite = !!pack.lite;
-        catalog = (Array.isArray(pack.data) ? pack.data : []).map(function (raw) {
+        catalog = (Array.isArray(res[0]) ? res[0] : []).map(function (raw) {
           const font = normalizeFont(raw);
-          if (catalogIsLite) font._lite = true;
           font.lineage = resolveLineage(font);
           font.ownerInfo = font.lineage.ownerInfo || font.foundryInfo;
           font.makerInfo = font.lineage.makerInfo || font.foundryInfo;
@@ -187,7 +229,7 @@
           font.licenseEvidence = resolveLicenseEvidence(font);
           return font;
         });
-        return catalog;
+        return applyClaimStatusOverlay().then(function () { return catalog; });
       })
       .catch(function (err) {
         console.warn('[WFProto] catalog load failed', err);
@@ -197,108 +239,81 @@
     return catalogPromise;
   }
 
-  const FAT_FIELDS = ['description', 'copyright', 'licenseNotes', 'licenseFileUrl', 'licenseUrl', 'purchaseUrl', 'version'];
-  let detailIndexPromise = null;
-  let detailIndex = null; /* { byId, bySlug } after first detail open */
-
-  function applyFat(font, raw) {
-    if (!raw) {
-      font._lite = false;
-      return font;
-    }
-    FAT_FIELDS.forEach(function (k) {
-      if (raw[k] != null) font[k] = raw[k];
-    });
-    if (raw.brand != null) font.brand = raw.brand;
-    font._lite = false;
-    return font;
-  }
-
-  function loadDetailIndex() {
-    if (detailIndex) return Promise.resolve(detailIndex);
-    if (detailIndexPromise) return detailIndexPromise;
-    detailIndexPromise = fetch(catalogDetailUrl()).then(function (r) {
-      if (!r.ok) throw new Error('fonts-detail ' + r.status);
-      return r.json();
-    }).then(function (pack) {
-      detailIndex = pack || { byId: {}, bySlug: {} };
-      return detailIndex;
-    }).catch(function (err) {
-      console.warn('[WFProto] fonts-detail enrich failed', err);
-      detailIndex = { byId: {}, bySlug: {} };
-      return detailIndex;
-    });
-    return detailIndexPromise;
-  }
-
-  function slugStemCandidates(font) {
-    const out = [];
-    const n = String((font && font.normalized) || '').trim();
-    if (n) out.push(n);
-    const fam = String((font && font.family) || '').trim();
-    if (fam.indexOf('wenfeng-') === 0) out.push(fam.slice(8));
-    else if (fam) out.push(fam);
-    const seen = {};
-    return out.filter(function (s) {
-      const low = s.toLowerCase();
-      if (seen[low]) return false;
-      seen[low] = 1;
-      return true;
-    });
-  }
-
-  /**
-   * Detail enrich: per-slug fat first (lab static ≈ live /api/fonts/{slug}),
-   * then fonts-detail.json index (still not full fonts.json). Clears 二次全量.
-   */
-  function enrichFontFromFull(font) {
-    if (!font || !font._lite) return Promise.resolve(font);
-    const cands = slugStemCandidates(font);
-    function trySlug(i) {
-      if (i >= cands.length) return null;
-      const stem = cands[i];
-      return fetch(catalogSlugUrl(stem)).then(function (r) {
-        if (!r.ok) throw new Error('slug ' + r.status);
-        return r.json();
-      }).then(function (raw) {
-        return applyFat(font, raw);
-      }).catch(function () {
-        return trySlug(i + 1);
-      });
-    }
-    const slugAttempt = trySlug(0);
-    const run = slugAttempt ? slugAttempt : Promise.resolve(null);
-    return run.then(function (done) {
-      if (done) return done;
-      return loadDetailIndex().then(function (idx) {
-        const raw = (idx.byId && font.id && idx.byId[font.id]) || null;
-        if (raw) return applyFat(font, raw);
-        /* Resolve filename stem via bySlug, then fetch that per-slug fat (still not fonts.json). */
-        let stem = null;
-        for (let i = 0; i < cands.length && idx.bySlug; i++) {
-          stem = idx.bySlug[cands[i].toLowerCase()];
-          if (stem) break;
-        }
-        if (!stem) return applyFat(font, null);
-        return fetch(catalogSlugUrl(stem)).then(function (r) {
-          if (!r.ok) throw new Error('stem ' + r.status);
-          return r.json();
-        }).then(function (row) {
-          return applyFat(font, row);
-        }).catch(function () {
-          return applyFat(font, null);
+  /** vault 审核通过的 claimed 覆盖层（不改 foundries.json 也可立刻显示）。 */
+  function applyClaimStatusOverlay() {
+    const base = CSS_API || 'https://vault.windfonts.com';
+    return fetch(base + '/api/foundries/claim-status')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (body) {
+        const bySlug = (body && body.data && body.data.bySlug) || (body && body.bySlug) || {};
+        const slugs = Object.keys(bySlug);
+        if (!slugs.length) return;
+        foundries.forEach(function (fd) {
+          const st = bySlug[fd.id] || bySlug[String(fd.id || '').toLowerCase()];
+          if (!st) return;
+          if (st.claimed) fd.claimed = true;
+          if (st.page && typeof st.page === 'object') {
+            if (st.page.intro) fd.description = String(st.page.intro);
+            if (st.page.site) fd.website = String(st.page.site);
+            if (st.page.links) fd.links = String(st.page.links);
+            if (st.page.repo) fd.repo = String(st.page.repo);
+            fd.pagePublishedAt = st.page.publishedAt || '';
+          }
         });
-      });
-    });
+        catalog.forEach(function (font) {
+          if (font.ownerInfo && bySlug[font.ownerInfo.id] && bySlug[font.ownerInfo.id].claimed) {
+            font.ownerInfo.claimed = true;
+          }
+          if (font.foundryInfo && bySlug[font.foundryInfo.id] && bySlug[font.foundryInfo.id].claimed) {
+            font.foundryInfo.claimed = true;
+          }
+        });
+      })
+      .catch(function () { /* vault 不可达时忽略 */ });
   }
 
   function loadPicks() {
     try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; }
   }
+  let picksPushTimer = null;
+  let picksSuppressPush = false;
+  function schedulePicksPush(arr) {
+    if (picksSuppressPush) return;
+    if (!window.WFApi || typeof WFApi.putPicks !== 'function' || WFApi.isMock()) return;
+    try {
+      const s = window.WFApp && WFApp.state && WFApp.state();
+      if (!s || !s.settings || !s.settings.apiKey) return;
+    } catch (e) { return; }
+    clearTimeout(picksPushTimer);
+    picksPushTimer = setTimeout(function () {
+      WFApi.putPicks(arr).catch(function () { /* 离线或未登录时忽略 */ });
+    }, 450);
+  }
   function savePicks(arr) {
     localStorage.setItem(KEY, JSON.stringify(arr));
     updateBadges(arr.length);
     document.dispatchEvent(new CustomEvent('wf:picks', { detail: arr }));
+    schedulePicksPush(arr);
+  }
+  /** 写本地但不推 vault（合并拉取后用）。 */
+  function replacePicksLocal(arr) {
+    picksSuppressPush = true;
+    try {
+      savePicks(arr || []);
+    } finally {
+      picksSuppressPush = false;
+    }
+  }
+  /** 登录后：本地 ∪ vault，再写回两边。 */
+  function syncPicksWithVault() {
+    if (!window.WFApi || typeof WFApi.syncPicks !== 'function' || WFApi.isMock()) {
+      return Promise.resolve(loadPicks());
+    }
+    return WFApi.syncPicks(loadPicks()).then(function (merged) {
+      replacePicksLocal(merged || []);
+      WFProto.syncJoinButtons();
+      return merged || [];
+    });
   }
   function loadFavs() {
     try {
@@ -309,9 +324,41 @@
       };
     } catch (e) { return { fonts: [], authors: [] }; }
   }
+  let favsPushTimer = null;
+  let favsSuppressPush = false;
+  function scheduleFavsPush(data) {
+    if (favsSuppressPush) return;
+    if (!window.WFApi || typeof WFApi.putFavs !== 'function' || WFApi.isMock()) return;
+    try {
+      const s = window.WFApp && WFApp.state && WFApp.state();
+      if (!s || !s.settings || !s.settings.apiKey) return;
+    } catch (e) { return; }
+    clearTimeout(favsPushTimer);
+    favsPushTimer = setTimeout(function () {
+      WFApi.putFavs(data).catch(function () { /* ignore */ });
+    }, 450);
+  }
   function saveFavs(data) {
     localStorage.setItem(FAV_KEY, JSON.stringify({ fonts: data.fonts, authors: data.authors }));
     document.dispatchEvent(new CustomEvent('wf:favs'));
+    scheduleFavsPush(data);
+  }
+  function replaceFavsLocal(data) {
+    favsSuppressPush = true;
+    try {
+      saveFavs(data || { fonts: [], authors: [] });
+    } finally {
+      favsSuppressPush = false;
+    }
+  }
+  function syncFavsWithVault() {
+    if (!window.WFApi || typeof WFApi.syncFavs !== 'function' || WFApi.isMock()) {
+      return Promise.resolve(loadFavs());
+    }
+    return WFApi.syncFavs(loadFavs()).then(function (merged) {
+      replaceFavsLocal(merged || { fonts: [], authors: [] });
+      return merged || { fonts: [], authors: [] };
+    });
   }
   function hasFav(list, id) {
     return !!list.find(function (x) { return x.id === id; });
@@ -353,7 +400,7 @@
   /* 去重弃用短码 → 保留短码（与 vault data/family-aliases.json 对齐） */
   /* 仅同产品别名；思源空壳/屏显错绑已撤；空壳目录已下架 */
   const FAMILY_ALIASES = {
-    'hxbsbt': 'hxbsb', 'hzpyt': 'hzpy', 'kslmt': 'kslyt', 'myrbsxt': 'mysxt', 'qtqmt': 'qtxmt',
+    'hxbsbt': 'hxbsb', 'hzpyt': 'hzpy', 'kslmt': 'kslyt', 'myrbsxt': 'mysxt', 'qtqmt': 'qtxmt', 'cq': 'chuanqu',
     'huxiaobokuhei': 'zkkht', 'happyzcool2016': 'zkklt',
     'opposansb': 'opsa', 'light': 'systcnl', 'lmqylsrht': 'lmqylszrht'
   };
@@ -374,69 +421,99 @@
     return null;
   }
 
-  /** 本机 / LAN / staging：保留 .html（python -m http.server）；生产域省略。 */
-  function isDevPreviewHost(host) {
-    host = String(host || '').toLowerCase();
-    if (host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0') return true;
-    if (host.indexOf('staging') >= 0 || host.slice(-6) === '.local') return true;
-    if (/^192\.168\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
-    if (/^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
-    if (/^172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
-    return false;
-  }
-
   /**
-   * 生产站页面路径：去掉 .html；font-detail.html?slug=X → fonts/X；
-   * foundry.html?slug=X → foundry/X。不动 https?:// 与 assets/ data/ css/ js/ fonts-packages/。
+   * 生产域省略 .html；font-detail/foundry 查询串收敛为 /fonts/{slug}、/foundry/{slug}。
+   * 本机 / staging-preview 仍由 WFChrome.href 跳过本函数（isDevPreviewHost）。
    */
   function livePagePath(path) {
-    path = String(path == null ? '' : path);
-    if (!path) return path;
-    if (/^https?:\/\//i.test(path)) return path;
-    var hash = '';
-    var hi = path.indexOf('#');
-    if (hi >= 0) { hash = path.slice(hi); path = path.slice(0, hi); }
-    var q = '';
-    var qi = path.indexOf('?');
-    if (qi >= 0) { q = path.slice(qi); path = path.slice(0, qi); }
-    path = path.replace(/^\.\//, '');
-    if (/^(assets|data|css|js|fonts-packages)\//i.test(path)) return path + q + hash;
-
-    if (/(^|\/)font-detail\.html$/i.test(path)) {
-      var params;
-      try { params = new URLSearchParams(q.charAt(0) === '?' ? q.slice(1) : q); }
-      catch (e) { params = null; }
-      var slug = params ? (params.get('slug') || '') : '';
-      if (slug) {
-        if (params) params.delete('slug');
-        var left = params && params.toString ? params.toString() : '';
-        return 'fonts/' + encodeURIComponent(slug).replace(/%2F/gi, '/') + (left ? '?' + left : '') + hash;
-      }
+    path = String(path == null ? '' : path).trim();
+    if (!path || /^https?:/i.test(path) || path.charAt(0) === '#' || path.indexOf('//') === 0) return path;
+    const qIdx = path.indexOf('?');
+    const hashIdx = path.indexOf('#');
+    let hash = '';
+    if (hashIdx >= 0) { hash = path.slice(hashIdx); path = path.slice(0, hashIdx); }
+    let qs = '';
+    let base = path;
+    if (qIdx >= 0 && (hashIdx < 0 || qIdx < hashIdx)) {
+      /* re-parse without hash already stripped */
     }
-
-    if (/(^|\/)foundry\.html$/i.test(path)) {
-      var fparams;
-      try { fparams = new URLSearchParams(q.charAt(0) === '?' ? q.slice(1) : q); }
-      catch (e) { fparams = null; }
-      var fslug = fparams ? (fparams.get('slug') || '') : '';
-      if (fslug) {
-        if (fparams) fparams.delete('slug');
-        var fleft = fparams && fparams.toString ? fparams.toString() : '';
-        return 'foundry/' + encodeURIComponent(fslug).replace(/%2F/gi, '/') + (fleft ? '?' + fleft : '') + hash;
-      }
+    const qi = path.indexOf('?');
+    if (qi >= 0) { qs = path.slice(qi + 1); base = path.slice(0, qi); }
+    base = base.replace(/^\.\//, '').replace(/^\//, '');
+    const params = {};
+    if (qs) {
+      qs.split('&').forEach(function (pair) {
+        if (!pair) return;
+        const eq = pair.indexOf('=');
+        const k = decodeURIComponent(eq >= 0 ? pair.slice(0, eq) : pair);
+        const v = decodeURIComponent(eq >= 0 ? pair.slice(eq + 1) : '');
+        params[k] = v;
+      });
     }
-
-    if (/(^|\/)index\.html$/i.test(path)) {
-      var base = path.replace(/index\.html$/i, '').replace(/\/$/, '');
-      return base + q + hash;
+    const file = base.split('/').pop() || base;
+    if (file === 'font-detail.html' || file === 'font-detail') {
+      const slug = params.slug || '';
+      delete params.slug; delete params.id;
+      const extra = Object.keys(params).map(function (k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+      }).join('&');
+      if (slug) return 'fonts/' + encodeURIComponent(slug) + (extra ? '?' + extra : '') + hash;
+      return 'fonts' + hash;
     }
-
-    if (/\.html$/i.test(path)) path = path.replace(/\.html$/i, '');
-    return path + q + hash;
+    if (file === 'foundry.html' || file === 'foundry') {
+      const slug = params.slug || '';
+      delete params.slug;
+      const extra = Object.keys(params).map(function (k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+      }).join('&');
+      if (slug) return 'foundry/' + encodeURIComponent(slug) + (extra ? '?' + extra : '') + hash;
+      return 'foundry' + hash;
+    }
+    if (/\.html$/i.test(file)) {
+      const dir = base.indexOf('/') >= 0 ? base.slice(0, base.lastIndexOf('/') + 1) : '';
+      const stem = file.replace(/\.html$/i, '');
+      const extra = Object.keys(params).map(function (k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+      }).join('&');
+      return dir + stem + (extra ? '?' + extra : '') + hash;
+    }
+    return path.replace(/^\//, '') + hash;
   }
 
-  /** 字体详情链接：优先 ?slug=，可附带额外查询（如 from=bag）。生产域发 /fonts/{slug}。 */
+  /** 厂商页：生产 foundry/{slug}；本机 foundry.html?slug= */
+  function foundryHref(slug, extra) {
+    const host = String((typeof location !== 'undefined' && location.hostname) || '').toLowerCase();
+    const onApp = host === 'app.windfonts.com' || host === 'staging-app.windfonts.com';
+    const s = slug ? String(slug) : '';
+    if (onApp && !extra) {
+      return s ? 'foundry/' + encodeURIComponent(s) : 'foundry';
+    }
+    const parts = [];
+    if (s) parts.push('slug=' + encodeURIComponent(s));
+    if (extra) {
+      Object.keys(extra).forEach(function (k) {
+        if (extra[k] == null || extra[k] === '') return;
+        parts.push(encodeURIComponent(k) + '=' + encodeURIComponent(extra[k]));
+      });
+    }
+    if (onApp && parts.length) return '/foundry.html?' + parts.join('&');
+    return 'foundry.html' + (parts.length ? '?' + parts.join('&') : '');
+  }
+
+    /** 正式站详情：app /fonts/{slug}（OSS 静态 + 边缘 rewrite → font-detail.html）。 */
+  function publicDetailPath(font) {
+    const slug = fontSlug(font) || (font && font.normalized);
+    if (!slug) return '/fonts';
+    return '/fonts/' + encodeURIComponent(String(slug).toLowerCase().replace(/^wenfeng-/, ''));
+  }
+  function publicDetailUrl(font) {
+    return SITE_ORIGIN + publicDetailPath(font);
+  }
+  /** 站内详情链：在 app 主机上走 /fonts/{slug}；本地静态原型仍用 font-detail.html。 */
   function detailHref(font, extra) {
+    const host = String((typeof location !== 'undefined' && location.hostname) || '').toLowerCase();
+    const onApp = host === 'app.windfonts.com' || host === 'staging-app.windfonts.com';
+    if (onApp && !extra) return publicDetailPath(font);
     const parts = [];
     const slug = fontSlug(font);
     if (slug) parts.push('slug=' + encodeURIComponent(slug));
@@ -447,32 +524,11 @@
         parts.push(encodeURIComponent(k) + '=' + encodeURIComponent(extra[k]));
       });
     }
-    var raw = 'font-detail.html?' + parts.join('&');
-    try {
-      if (typeof location !== 'undefined' && location.hostname && !isDevPreviewHost(location.hostname)) {
-        return livePagePath(raw);
-      }
-    } catch (e) { /* ignore */ }
-    return raw;
-  }
-
-  /** 厂商页链接：dev 用 foundry.html?slug=；生产域发 foundry/{slug}。可附带额外 query / hash 经 path 传入。 */
-  function foundryHref(slug, extra) {
-    const parts = [];
-    if (slug) parts.push('slug=' + encodeURIComponent(slug));
-    if (extra) {
-      Object.keys(extra).forEach(function (k) {
-        if (extra[k] == null || extra[k] === '') return;
-        parts.push(encodeURIComponent(k) + '=' + encodeURIComponent(extra[k]));
-      });
+    if (onApp && parts.length) {
+      /* app 上带额外 query 仍落到静态兼容页，避免丢 from= 等 */
+      return '/font-detail.html?' + parts.join('&');
     }
-    var raw = parts.length ? 'foundry.html?' + parts.join('&') : 'foundry.html';
-    try {
-      if (typeof location !== 'undefined' && location.hostname && !isDevPreviewHost(location.hostname)) {
-        return livePagePath(raw);
-      }
-    } catch (e) { /* ignore */ }
-    return raw;
+    return 'font-detail.html?' + parts.join('&');
   }
 
   /* —— 公开统计：目录基数 + 本机增量（样张导出→下载；CSS 拉取→API）—— */
@@ -727,6 +783,18 @@
     return (origin || cdnOrigin()) + '/api/css?' + params.join('&');
   }
 
+  /**
+   * 账号级 cite-closed CSS（须 Bearer API Key）。
+   * 主机用 CSS_API（vault），不走公开 CDN；不灌 fonts-packages。
+   */
+  function certCssApiUrl(family, weight, origin) {
+    const name = resolveCssFamilyName(family);
+    const w = String(weight || 'regular').toLowerCase().replace(/[\s_-]+/g, '');
+    const base = String(origin || CSS_API || 'https://vault.windfonts.com').replace(/\/$/, '');
+    return base + '/api/font-certs/css?family=' + encodeURIComponent(name) +
+      '&weight=' + encodeURIComponent(w || 'regular');
+  }
+
   function cdnHost() {
     let id = 'cn';
     try { id = localStorage.getItem(CDN_KEY) || 'cn'; } catch (e) {}
@@ -790,7 +858,6 @@
     return cssApiUrl(family, weight, version || 'full');
   }
 
-
   /* Cite-closed 货架：CDN/api 无包时，用同源 assets/fonts/preview 试看面撑灰墙/字符表。
      不改 citeAllowed，不进 embed / fonts-packages。 */
   let previewFacesMap = null;
@@ -841,6 +908,8 @@
         const mappedFam = 'wenfeng-' + String(norm).toLowerCase();
         entry = faces[mappedFam] || null;
         if (!entry) {
+          /* byNormalized 可把 Shmgt → wenfeng-shmgt */
+          /* 直接扫 faces 键匹配 normalized 小写 */
           const want = String(norm).toLowerCase();
           Object.keys(faces).forEach(function (k) {
             if (entry) return;
@@ -851,6 +920,8 @@
     }
     if (!entry || typeof entry !== 'object') return null;
     const wkey = String(pathName || 'regular').toLowerCase().replace(/[\s-]+/g, '');
+    /* Preview face keys follow weightName (light/regular/bold); retain CSS aliases
+       too so named and numeric callers both select the matching local face. */
     const cssAlias = { '100': 'thin', '200': 'extralight', '300': 'light', '350': 'demilight',
       '400': 'regular', '500': 'medium', '600': 'semibold', '700': 'bold', '800': 'extrabold', '900': 'black' };
     const hit = entry[wkey] || entry[cssAlias[wkey]] || entry.regular || entry['400'] || null;
@@ -867,6 +938,7 @@
       const fmt = String(hit.format || '').toLowerCase();
       const formatBit = fmt ? ' format("' + fmt + '")' : '';
       const cssW = String(hit.cssWeight || w || '400');
+      /* 请求字重用调用方 w，使 Light/Bold 行也能挂上 Regular 试看面 */
       const faceW = String(w || cssW || '400');
       const style = document.createElement('style');
       style.setAttribute('data-wf-family', family);
@@ -953,7 +1025,8 @@
         });
       });
     };
-    /* Cite-closed：只走同源 preview face，不探 fonts-packages /api/css。 */
+    /* Cite-closed faces are local shelf previews only: do not probe CDN,
+       fonts-packages, or /api/css before loading the same-origin archive face. */
     injectedCss[key] = citeClosedFamily(family)
       ? injectPreviewFace(family, pathName, w)
       : remoteCss();
@@ -997,12 +1070,14 @@
   /* 开源商用 SPDX 白名单：命中即归「开源商用」（可修改、可再分发的开源许可证）。
      仓耳「免费开源字体授权声明」按 2026-09-25 口径也归开源商用。
      白名单宁缺勿滥：未命中的免费商用字体留在「免费商用」桶。 */
-  const OSS_LICENSE_RE = /OFL|SIL Open Font License|\bMIT\b|MIT License|Apache|GPL|GNU General Public License|CC0|CC BY|0BSD|IPA Font License|GlyphWiki|开放政府数据|Ubuntu Font License|M\+ 位图许可|仓耳字库免费开源字体授权声明/i;
+  const OSS_LICENSE_RE = /OFL|SIL Open Font License|\bMIT\b|MIT License|Apache|GPL|GNU General Public License|CC0|CC BY|CC-BY|0BSD|IPA Font License|GlyphWiki|开放政府数据|Ubuntu Font License|M\+ 位图许可|仓耳字库免费开源字体授权声明/i;
 
   function licenseTier(font) {
     const ln = String((font && font.licenseName) || '');
     if (OSS_LICENSE_RE.test(ln)) return '开源商用';
     const t = String((font && font.license) || '').trim();
+    /* catalog license 字段「开源商用」：OFL 衍生等官方页未写 SPDX 名的开源商用字体 */
+    if (t === '开源商用') return '开源商用';
     if (t === '免费商用' || t === '开源免费商用') return '免费商用';
     if (t === '联系授权' || t === '付费授权') return '需授权';
     if (t === '个人免费') return '个人免费';
@@ -1014,7 +1089,70 @@
     for (let i = 0; i < foundries.length; i++) {
       if (foundries[i].id === id) return foundries[i];
     }
-    return null;
+    /* 别名 / 已合并短码（如 nanigashi → aqua） */
+    return foundryByAlias[normKey(id)] || null;
+  }
+
+  /** 母公司条目；无 parentId 则 null */
+  function getFoundryParent(fdOrId) {
+    const fd = typeof fdOrId === 'string' ? getFoundryById(fdOrId) : fdOrId;
+    if (!fd || !fd.parentId) return null;
+    return getFoundryById(fd.parentId);
+  }
+
+  /** 直接子公司（一阶） */
+  function getFoundryChildren(id) {
+    if (!id) return [];
+    return foundries.filter(function (fd) { return fd && fd.parentId === id; });
+  }
+
+  /** 自身 + 全部后代 id（深度优先） */
+  function getFoundrySubtreeIds(id) {
+    if (!id) return [];
+    const out = [id];
+    getFoundryChildren(id).forEach(function (ch) {
+      getFoundrySubtreeIds(ch.id).forEach(function (x) {
+        if (out.indexOf(x) === -1) out.push(x);
+      });
+    });
+    return out;
+  }
+
+
+  /**
+   * 统计厂商在库字体数（按主归属 ownerId）。
+   * opts.includeDescendants !== false 时含子公司子树（getFoundryChildren 递归）。
+   */
+  function countFontsUnderFoundry(foundryId, opts) {
+    opts = opts || {};
+    if (!foundryId) return 0;
+    const includeDescendants = opts.includeDescendants !== false;
+    const ids = includeDescendants ? getFoundrySubtreeIds(foundryId) : [foundryId];
+    const set = {};
+    ids.forEach(function (id) { set[id] = true; });
+    let n = 0;
+    for (let i = 0; i < catalog.length; i++) {
+      const f = catalog[i];
+      const oid = (f.lineage && f.lineage.ownerId) ||
+        (f.ownerInfo && f.ownerInfo.id) || '';
+      if (oid && set[oid]) n++;
+    }
+    return n;
+  }
+
+  /** 组织图入口：子树内归属字体 ≥ 2 才展示 */
+  function canShowOrgLineage(foundryId) {
+    return countFontsUnderFoundry(foundryId, { includeDescendants: true }) >= 2;
+  }
+
+  /** 字体主归属或联合作者是否落在 foundryId 子树内 */
+  function fontBelongsToFoundry(font, foundryId) {
+    if (!font || !foundryId) return false;
+    const ids = getFoundrySubtreeIds(foundryId);
+    const owner = font.ownerInfo || font.foundryInfo;
+    if (owner && owner.id && ids.indexOf(owner.id) !== -1) return true;
+    const cols = font.collaboratorInfos || [];
+    return cols.some(function (c) { return c && c.id && ids.indexOf(c.id) !== -1; });
   }
 
   function matchNamedRecord(map, name) {
@@ -1046,8 +1184,9 @@
     if (!rec) {
       return {
         group: '', groupName: '', relation: '', upstreamName: '', upstreamOwnerInfo: null,
-        licenseFollows: 'unknown', ownerInfo: fallback, makerInfo: fallback,
-        collaboratorInfos: []
+        licenseFollows: 'unknown', ownerId: (fallback && fallback.id) || '',
+        ownerInfo: fallback, makerInfo: fallback,
+        collaboratorIds: [], relatedGroup: '', collaboratorInfos: []
       };
     }
     const group = rec.group ? groups[rec.group] : null;
@@ -1069,8 +1208,11 @@
         (rec.relation === 'original' ? '' : ((group && group.upstreamName) || '')) || '',
       upstreamOwnerInfo: upstreamOwner,
       licenseFollows: rec.licenseFollows || 'unknown',
+      ownerId: (owner && owner.id) || rec.ownerId || '',
       ownerInfo: owner,
       makerInfo: maker,
+      collaboratorIds: Array.isArray(rec.collaboratorIds) ? rec.collaboratorIds.slice() : [],
+      relatedGroup: rec.relatedGroup || '',
       collaboratorInfos: collaboratorInfos
     };
   }
@@ -1158,30 +1300,47 @@
     return ev;
   }
 
-
-  /**
-   * cite-closed / 禁嵌入 → 对外引用关闭；站内预览仍走 preview-faces。
-   * 证书链路本闸不做；仅返回 {ok:false, reason}。
-   */
-  function citeAllowed(font) {
-    const tags = (font && font.tags) || [];
-    for (let i = 0; i < tags.length; i++) {
-      if (String(tags[i]) === 'cite-closed') return { ok: false, reason: 'cite-closed' };
-    }
-    const blob = [
-      (font && font.licenseNotes) || '',
-      (font && font.licenseName) || '',
-      (font && font.description) || ''
-    ].join(' ');
-    if (/禁[止止]?嵌入|不得嵌入|不开\s*CDN|不提供.*引用/i.test(blob)) {
-      return { ok: false, reason: 'no_embed' };
-    }
-    return { ok: true, reason: 'ok' };
+  /** 权利人声明若写明禁止改字再分发（如阿里普惠体免费商用），不算开源可衍生。
+   *  用具体短语，避免 OFL「不得单独售卖…」+「修改后再分发须遵守 OFL」跨句被
+   *  宽松的「不得.*修改.*再分发」误伤。 */
+  function forbidsOpenDerive(ev) {
+    const blob = ((ev && ev.restrictions) || []).concat([(ev && ev.quote) || '']).join(' ');
+    /* 覆盖：阿里「不得将修改后…再分发」、摩登「禁止修改字体或制作衍生版本」、OPPO「禁止修改字体」等 */
+    return /不得将修改|禁止修改后|禁止修改字体|不可修改.*分发|不允许.*衍生|禁止.*衍生|制作衍生版本|改字.*不得|不得改字|禁止改字|不得再分发字体|禁止再分发字体|禁止把字体.*再分发|禁止将字库/.test(blob);
   }
 
+  /** 明确禁止托管/CDN/再分发字体文件本身 → 非开源可衍生（吉利/摩登 cite-closed） */
+  function forbidsFontRedistrib(ev) {
+    const blob = ((ev && ev.restrictions) || []).concat([(ev && ev.quote) || '']).join(' ');
+    return /禁止托管|不得\s*CDN|禁止\s*CDN|不得再分发字体|禁止再分发字体|不得提供(?:字体)?下载/.test(blob);
+  }
+
+  function isOpenFont(font) {
+    const ev = (font && font.licenseEvidence) || {};
+    const tags = (font && font.tags) || [];
+    let citeClosed = false;
+    for (let i = 0; i < tags.length; i++) {
+      if (String(tags[i]) === 'cite-closed') { citeClosed = true; break; }
+    }
+    /* cite-closed 绝不是开源谱系源头 */
+    if (citeClosed) return false;
+    /* 明确开源 SPDX / licenseName 优先：不被 OFL 条款启发式误伤 */
+    if (/OFL|Apache|MIT|IPA|CC0|CC-BY|0BSD/i.test(String(ev.spdx || ''))) return true;
+    if (/OFL|Open Font|Apache|\bMIT\b|IPA|CC-?BY|CC0|0BSD|GPL/i.test(String((font && font.licenseName) || ''))) return true;
+    /* 禁托管再分发 / 明确禁改字再分发：品牌免费商用等不算开源可衍生 */
+    if (forbidsFontRedistrib(ev) || forbidsOpenDerive(ev)) return false;
+    /* 证据链核对过的开源授权（标准文本/仓库 LICENSE/权利人开源声明，如仓耳）同属可衍生；
+       免费商用但禁止改字再分发的品牌字（阿里等）不算开源，避免谱系导语误称「开源源头」 */
+    if (!(ev.verified && ev.sourceUrl)) return false;
+    return ev.sourceKind === 'standard' || ev.sourceKind === 'github_license' ||
+      ev.sourceKind === 'rights_holder';
+  }
+
+
   /**
-   * 服务状态：免费商用/开源 → 正常；cite-closed / 个人免费 / 待核实 → 受限。
-   * 沿用既有 tags / licenseTier，不发明新字段。
+   * 服务状态三档（货架能否托管，不是「核对没核对」 alone）：
+   * 正常 / 受限 / 不可用。优先用现有 tags、licenseTier、licenseEvidence。
+   * 免费商用 / 开源商用（OFL）→ 正常（待核对只作从句）；cite-closed / 个人免费 / 禁托管 → 受限。
    */
   function serviceStatus(font) {
     const tags = (font && font.tags) || [];
@@ -1192,23 +1351,388 @@
       return false;
     };
     const tier = licenseTier(font);
+    const ev = (font && font.licenseEvidence) || {};
+    const verified = !!(font && font.licenseVerified) || !!ev.verified;
+    const blob = [
+      (font && font.license) || '',
+      (font && font.licenseName) || '',
+      (font && font.licenseNotes) || ''
+    ].join(' ');
+    const restr = ((ev.restrictions) || []).concat([(ev.quote) || '']).join(' ');
+
+    /* 不可用：产品下架 / 明确不得用 / 需授权（不适合免费货架） */
     if (has('retired-from-product') || has('hung')) {
       return { status: '不可用', reason: 'retired' };
     }
-    if (tier === '需授权') return { status: '不可用', reason: 'need_auth' };
-    if (tier === '个人免费') return { status: '受限', reason: 'personal' };
-    if (tier === '待核实') return { status: '受限', reason: 'unverified_tier' };
-    if (has('cite-closed')) return { status: '受限', reason: 'no_redistrib' };
+    if (/不适用|已撤销|\brevoked\b|不得使用/i.test(blob)) {
+      return { status: '不可用', reason: 'forbidden' };
+    }
+    if (tier === '需授权') {
+      return { status: '不可用', reason: 'need_auth' };
+    }
+
+    /* 受限：个人免费 / 待核实 / cite-closed·禁托管再分发。协议原文待核对不是降档。 */
+    if (tier === '个人免费') {
+      return { status: '受限', reason: 'personal' };
+    }
+    if (tier === '待核实') {
+      return { status: '受限', reason: 'unverified_tier' };
+    }
+    /* 吉利/摩登等 cite-closed：用户须自证授权才能商用引用 → 受限 + 可上传证书 */
+    if (has('cite-closed')) {
+      return { status: '受限', reason: 'no_redistrib' };
+    }
+    /* 明确禁止托管/CDN/再分发字体文件本身（不是 OFL「勿单独售卖」、也不是品牌免费商用「不得改字再分发」） */
+    if (/不得再分发字体|禁止再分发字体|不得提供(?:字体)?下载|禁止托管|不得.*CDN/i.test(restr)) {
+      return { status: '受限', reason: 'no_redistrib' };
+    }
+
+    /* 免费商用 / 开源商用（OFL）：货架可托管 → 正常。
+       licenseVerified 假 / 协议原文待核对只作句内从句，不得降为受限、不得推上传证书。 */
     if (tier === '开源商用' || tier === '免费商用') {
-      return { status: '正常', reason: (font && font.licenseVerified) ? 'ok' : 'pending_proof' };
+      return { status: '正常', reason: verified ? 'ok' : 'pending_proof' };
     }
     return { status: '受限', reason: 'unverified_tier' };
   }
 
-  function isOpenFont(font) {
+
+
+  /**
+   * 商业主体：货架运营/商业化主体，≠ 版权归属（rights_holder / 谁拥有字型）。
+   * 关系档按「授权时长形态」（≠ 服务状态 正常/受限）：
+   *   platform 官方 — 默认文派，或文派采买/买断（无期限）；UI 标签「官方」；
+   *     默认文派时正文「…提供字体平台及技术支持。」。内部 key 仍为 platform。
+   *   signed 签约 — 凡有时限的授权一律签约；可附 expiresAt →「授权至 YYYY-MM-DD」。
+   *   partner 合作 — 字段/枚举保留供后续；本波不对期限授权自动落合作（期限=签约）。
+   * 默认官方 + 文派（广州）科技有限公司。字段：
+   *   font|product.commercialEntity = string | { name, status, expiresAt? }
+   *   font|product.commercialEntityStatus = platform|signed|partner（亦认 官方/运营/平台/签约/合作）
+   *   font|product.commercialEntityExpiresAt = YYYY-MM-DD（可选；官方/platform 档忽略）
+   * 不必全库填；空则回落默认。仅有 expiresAt、未显式 status → 签约。
+   * 合作方公司名不得套用默认文派「提供字体平台及技术支持」句。
+   */
+  var DEFAULT_COMMERCIAL_ENTITY = '文派（广州）科技有限公司';
+  var COMMERCIAL_ENTITY_STATUS_LABEL = {
+    platform: '官方',
+    signed: '签约',
+    partner: '合作'
+  };
+  function normalizeCommercialEntityStatus(raw) {
+    var s = String(raw == null ? '' : raw).trim().toLowerCase();
+    if (s === 'platform' || s === '平台' || s === '运营' || s === '官方' || s === 'operate' || s === 'ops') return 'platform';
+    if (s === 'signed' || s === '签约') return 'signed';
+    if (s === 'partner' || s === '合作') return 'partner';
+    return '';
+  }
+  function normalizeCommercialEntityExpiresAt(raw) {
+    var s = String(raw == null ? '' : raw).trim();
+    if (!s) return '';
+    var m = s.match(/^(\d{4}-\d{2}-\d{2})/);
+    return m ? m[1] : '';
+  }
+  function commercialEntity(font, product) {
+    function pick(src) {
+      var name = '';
+      var status = '';
+      var expiresAt = '';
+      if (!src) return { name: name, status: status, expiresAt: expiresAt };
+      var ce = src.commercialEntity;
+      if (typeof ce === 'string' && ce.trim()) {
+        name = ce.trim();
+      } else if (ce && typeof ce === 'object') {
+        if (ce.name != null && ce.name !== '') name = String(ce.name).trim();
+        status = normalizeCommercialEntityStatus(ce.status);
+        expiresAt = normalizeCommercialEntityExpiresAt(ce.expiresAt);
+      }
+      if (!status) status = normalizeCommercialEntityStatus(src.commercialEntityStatus);
+      if (!expiresAt) expiresAt = normalizeCommercialEntityExpiresAt(src.commercialEntityExpiresAt);
+      return { name: name, status: status, expiresAt: expiresAt };
+    }
+    var a = pick(font);
+    var b = pick(product);
+    var name = a.name || b.name || DEFAULT_COMMERCIAL_ENTITY;
+    var status = a.status || b.status || '';
+    var expiresAt = a.expiresAt || b.expiresAt || '';
+    /* 有时限且未显式档位 → 签约（本波不对期限授权自动落合作）。 */
+    if (!status) status = expiresAt ? 'signed' : 'platform';
+    /* 官方档（platform）：买断/默认文派，不挂到期日。 */
+    if (status === 'platform') expiresAt = '';
+    return {
+      name: name,
+      status: status,
+      label: COMMERCIAL_ENTITY_STATUS_LABEL[status] || COMMERCIAL_ENTITY_STATUS_LABEL.platform,
+      expiresAt: expiresAt
+    };
+  }
+  function commercialEntityName(font, product) {
+    return commercialEntity(font, product).name;
+  }
+
+
+
+  /* —— 证书开引用（lab）：本机 localStorage，按 user-or-anon × font 记权；不灌 CDN —— */
+  const CERT_GRANTS_KEY = 'wf-cert-grants-v1';
+  const CERT_ANON_KEY = 'wf-cert-anon-id';
+
+  function certAnonId() {
+    try {
+      let id = localStorage.getItem(CERT_ANON_KEY);
+      if (!id) {
+        id = 'a' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+        localStorage.setItem(CERT_ANON_KEY, id);
+      }
+      return id;
+    } catch (e) {
+      return 'anon-session';
+    }
+  }
+
+  /** 当前浏览身份：已登录优先 email/id，否则 anon:{browserId} */
+  function certSubjectKey() {
+    try {
+      const u = (window.WFChrome && WFChrome.user && WFChrome.user()) || null;
+      if (u) {
+        if (u.id) return 'user:' + String(u.id);
+        if (u.email) return 'user:' + String(u.email).trim().toLowerCase();
+      }
+    } catch (e) { /* ignore */ }
+    return 'anon:' + certAnonId();
+  }
+
+  function certFontKey(fontOrToken) {
+    if (!fontOrToken) return '';
+    if (typeof fontOrToken === 'string') {
+      return resolveFamilyAlias(fontOrToken) || String(fontOrToken).trim().toLowerCase();
+    }
+    const slug = fontSlug(fontOrToken) || String(fontOrToken.normalized || '').toLowerCase();
+    return resolveFamilyAlias(slug) || slug;
+  }
+
+  function readCertGrantsAll() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(CERT_GRANTS_KEY) || '{}');
+      return raw && typeof raw === 'object' ? raw : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function writeCertGrantsAll(map) {
+    try {
+      localStorage.setItem(CERT_GRANTS_KEY, JSON.stringify(map || {}));
+    } catch (e) { /* ignore */ }
+  }
+
+  function getCertGrant(fontOrToken, subjectOpt) {
+    const fk = certFontKey(fontOrToken);
+    if (!fk) return null;
+    const subject = subjectOpt || certSubjectKey();
+    const all = readCertGrantsAll();
+    const bag = all[subject];
+    if (!bag || typeof bag !== 'object') return null;
+    const g = bag[fk];
+    return g && typeof g === 'object' ? g : null;
+  }
+
+  function certStatusNorm(st) {
+    st = String(st || '').toLowerCase();
+    if (st === 'approved-lab') return 'approved';
+    if (st === 'pending' || st === 'approved' || st === 'rejected') return st;
+    return st || '';
+  }
+
+  /** 是否已审核通过（仅 approved / approved-lab 开引用）。 */
+  function hasCertGrant(fontOrToken, subjectOpt) {
+    const g = getCertGrant(fontOrToken, subjectOpt);
+    if (!g) return false;
+    return certStatusNorm(g.status) === 'approved';
+  }
+
+  function certGrantIsPending(fontOrToken, subjectOpt) {
+    const g = getCertGrant(fontOrToken, subjectOpt);
+    return !!(g && certStatusNorm(g.status) === 'pending');
+  }
+
+  function certGrantIsRejected(fontOrToken, subjectOpt) {
+    const g = getCertGrant(fontOrToken, subjectOpt);
+    return !!(g && certStatusNorm(g.status) === 'rejected');
+  }
+
+  /** 说人话状态标签。 */
+  function certStatusLabel(st) {
+    const n = certStatusNorm(st);
+    if (n === 'pending') return '待审核';
+    if (n === 'approved') return '已通过';
+    if (n === 'rejected') return '已驳回';
+    return st ? String(st) : '无记录';
+  }
+
+  /**
+   * 详情 CTA：上传证书 / 审核中 / 查看证书 / 重新上传
+   */
+  function certCtaLabel(fontOrToken, subjectOpt) {
+    const g = getCertGrant(fontOrToken, subjectOpt);
+    if (!g) return '上传证书';
+    const n = certStatusNorm(g.status);
+    if (n === 'pending') return '审核中';
+    if (n === 'approved') return '查看证书';
+    if (n === 'rejected') return '重新上传';
+    return '上传证书';
+  }
+
+  /** 当前身份下全部 grant（跨字体）。 */
+  function listCertGrants(subjectOpt) {
+    const subject = subjectOpt || certSubjectKey();
+    const all = readCertGrantsAll();
+    const bag = all[subject];
+    if (!bag || typeof bag !== 'object') return [];
+    return Object.keys(bag).map(function (k) {
+      const g = bag[k];
+      if (!g || typeof g !== 'object') return null;
+      if (!g.fontKey) g.fontKey = k;
+      return g;
+    }).filter(Boolean).sort(function (a, b) {
+      return String(b.at || '').localeCompare(String(a.at || ''));
+    });
+  }
+
+  /**
+   * 写入本机演示授权。正式环境应由 vault API 按 userId×fontId 存证审核。
+   * status: pending | approved | approved-lab | rejected
+   * @returns {object} grant
+   */
+  function setCertGrant(font, meta) {
+    const fk = certFontKey(font);
+    if (!fk) throw new Error('缺少字体标识');
+    const subject = certSubjectKey();
+    const all = readCertGrantsAll();
+    if (!all[subject] || typeof all[subject] !== 'object') all[subject] = {};
+    const prev = all[subject][fk] && typeof all[subject][fk] === 'object' ? all[subject][fk] : {};
+    meta = meta || {};
+    const status = meta.status != null ? String(meta.status) : (prev.status || 'pending');
+    const grant = {
+      status: status,
+      fontKey: fk,
+      family: (font && font.family ? String(font.family) : '') || prev.family || '',
+      normalized: (font && font.normalized ? String(font.normalized) : '') || prev.normalized || fk,
+      name: (font && font.name ? String(font.name) : '') || prev.name || fk,
+      fileName: meta.fileName != null ? String(meta.fileName) : (prev.fileName || ''),
+      fileSize: meta.fileSize != null ? Number(meta.fileSize) || 0 : (prev.fileSize || 0),
+      mime: meta.mime != null ? String(meta.mime) : (prev.mime || ''),
+      reason: meta.reason != null ? String(meta.reason) : (prev.reason || ''),
+      reviewedAt: meta.reviewedAt != null ? String(meta.reviewedAt) : (prev.reviewedAt || ''),
+      subject: subject,
+      at: meta.at || prev.at || new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      labMock: meta.labMock != null ? !!meta.labMock : (meta.vaultId ? false : (prev.labMock !== false)),
+      vaultId: meta.vaultId != null ? String(meta.vaultId) : (prev.vaultId || '')
+    };
+    all[subject][fk] = grant;
+    writeCertGrantsAll(all);
+    return grant;
+  }
+
+  /** lab 模拟审核：通过 / 驳回（写 status + reason）。 */
+  function reviewCertGrant(fontOrToken, decision, reason) {
+    const g = getCertGrant(fontOrToken);
+    if (!g) throw new Error('没有待审记录');
+    const font = (typeof fontOrToken === 'object' && fontOrToken) ||
+      getBySlug(g.normalized || g.fontKey) ||
+      { normalized: g.normalized || g.fontKey, name: g.name, family: g.family };
+    const ok = String(decision || '').toLowerCase() === 'approved' ||
+      String(decision || '').toLowerCase() === 'approve' ||
+      decision === true;
+    return setCertGrant(font, {
+      status: ok ? 'approved' : 'rejected',
+      reason: ok ? '' : String(reason || '证书未覆盖网页字体嵌入 / webfont 用途（lab 模拟驳回）'),
+      reviewedAt: new Date().toISOString(),
+      fileName: g.fileName,
+      fileSize: g.fileSize,
+      mime: g.mime,
+      at: g.at
+    });
+  }
+
+  function clearCertGrant(fontOrToken) {
+    const fk = certFontKey(fontOrToken);
+    if (!fk) return false;
+    const subject = certSubjectKey();
+    const all = readCertGrantsAll();
+    if (!all[subject] || !all[subject][fk]) return false;
+    delete all[subject][fk];
+    writeCertGrantsAll(all);
+    return true;
+  }
+
+  /**
+   * CDN / embed 引用是否开放。与服务状态「仍可预览」可并存：
+   * 禁止托管、不得 CDN、不得/禁止嵌入 → 引用关闭（对照货架：吉利/摩登）。
+   * 本机证书 grant（lab）可按账号/匿名覆盖 cite-closed，不改全局 tag、不灌 fonts-packages。
+   */
+  function citeAllowed(font) {
+    const ss = serviceStatus(font);
+    if (ss.status === '不可用') return { ok: false, reason: ss.reason || 'unavailable' };
+    if (hasCertGrant(font)) {
+      const g = getCertGrant(font);
+      const reason = g && g.labMock === false ? 'cert-grant' : 'cert-grant-lab';
+      return { ok: true, reason: reason, grant: g };
+    }
     const ev = (font && font.licenseEvidence) || {};
-    return /OFL|Apache|MIT|IPA|CC-BY/i.test(String(ev.spdx || '')) ||
-      /OFL|Open Font|Apache|\bMIT\b|IPA|CC-?BY|0BSD|GPL/i.test(String((font && font.licenseName) || ''));
+    const restr = ((ev.restrictions) || []).concat([(ev.quote) || ''], [(font && font.licenseNotes) || '']).join(' ');
+    if (/禁止托管|不得\s*CDN|禁止\s*CDN|不得.*热链|不可引用|禁止引用|不得嵌入|禁止嵌入|不得.*嵌入网站/i.test(restr)) {
+      return { ok: false, reason: 'no_embed' };
+    }
+    if ((font.tags || []).indexOf('cite-closed') !== -1) {
+      return { ok: false, reason: 'cite-closed' };
+    }
+    if (ss.status === '受限' && ss.reason === 'no_redistrib') {
+      return { ok: false, reason: 'no_redistrib' };
+    }
+    return { ok: true, reason: 'ok' };
+  }
+
+  /**
+   * 把 vault /api/font-certs 列表合并进本机 grant（按 fontKey）。
+   * live 成功后覆盖同 key 的 vault 记录；保留无 vaultId 的 lab mock。
+   */
+  function applyVaultFontCerts(certs) {
+    const list = Array.isArray(certs) ? certs : [];
+    const subject = certSubjectKey();
+    const all = readCertGrantsAll();
+    if (!all[subject] || typeof all[subject] !== 'object') all[subject] = {};
+    const bag = all[subject];
+    list.forEach(function (c) {
+      if (!c || !c.fontKey) return;
+      const fk = certFontKey(c.fontKey || c.normalized);
+      if (!fk) return;
+      const prev = bag[fk] && typeof bag[fk] === 'object' ? bag[fk] : {};
+      bag[fk] = {
+        status: c.status || 'pending',
+        fontKey: fk,
+        family: c.family || prev.family || '',
+        normalized: c.normalized || prev.normalized || fk,
+        name: c.name || prev.name || fk,
+        fileName: c.fileName || prev.fileName || '',
+        fileSize: c.fileSize || prev.fileSize || 0,
+        mime: c.mime || prev.mime || '',
+        reason: c.reason || prev.reason || '',
+        reviewedAt: c.reviewedAt || prev.reviewedAt || '',
+        subject: subject,
+        at: c.submittedAt || prev.at || new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        labMock: false,
+        vaultId: c.id || prev.vaultId || ''
+      };
+    });
+    writeCertGrantsAll(all);
+    return list.length;
+  }
+
+  function syncVaultFontCerts() {
+    if (!window.WFApi || !WFApi.listFontCerts) return Promise.resolve(0);
+    return WFApi.listFontCerts().then(function (rows) {
+      return applyVaultFontCerts(rows || []);
+    }).catch(function () { return 0; });
   }
 
   function matchFilter(font, tag, keyword, license) {
@@ -1271,7 +1795,7 @@
     el.classList.remove('is-dark');
     const icp = '<a href="' + ICP_HREF + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(ICP_NO) + '</a>';
     el.innerHTML =
-      '<div class="extra-inner">' +
+      '<div class="container extra-inner">' +
         '<p class="extra-copy">' + copyrightLine() + ' · ' + icp + '</p>' +
         '<nav class="extra-links" aria-label="条款">' +
         EXTRA_LINKS.map(function (l) {
@@ -1374,29 +1898,53 @@
     SAFE_CODE: copyrightLine(),
     escapeHtml: escapeHtml,
     loadCatalog: loadCatalog,
-    enrichFontFromFull: enrichFontFromFull,
-    catalogIsLite: function () { return catalogIsLite; },
     getCatalogList: function () { return catalog.slice(); },
     getFoundries: function () { return foundries.slice(); },
     getFoundryById: getFoundryById,
+    getFoundryParent: getFoundryParent,
+    getFoundryChildren: getFoundryChildren,
+    getFoundrySubtreeIds: getFoundrySubtreeIds,
+    fontBelongsToFoundry: fontBelongsToFoundry,
+    countFontsUnderFoundry: countFontsUnderFoundry,
+    canShowOrgLineage: canShowOrgLineage,
     getAvatarUrl: getAvatarUrl,
     licenseTier: licenseTier,
     resolveLicenseEvidence: resolveLicenseEvidence,
     resolveLineage: resolveLineage,
     getLineageData: function () { return lineageData; },
     isOpenFont: isOpenFont,
-    citeAllowed: citeAllowed,
+    forbidsOpenDerive: forbidsOpenDerive,
+    forbidsFontRedistrib: forbidsFontRedistrib,
     serviceStatus: serviceStatus,
+    commercialEntity: commercialEntity,
+    commercialEntityName: commercialEntityName,
+    citeAllowed: citeAllowed,
     citeClosedFamily: citeClosedFamily,
+    certSubjectKey: certSubjectKey,
+    certFontKey: certFontKey,
+    getCertGrant: getCertGrant,
+    hasCertGrant: hasCertGrant,
+    certGrantIsPending: certGrantIsPending,
+    certGrantIsRejected: certGrantIsRejected,
+    certStatusNorm: certStatusNorm,
+    certStatusLabel: certStatusLabel,
+    certCtaLabel: certCtaLabel,
+    listCertGrants: listCertGrants,
+    setCertGrant: setCertGrant,
+    reviewCertGrant: reviewCertGrant,
+    clearCertGrant: clearCertGrant,
+    applyVaultFontCerts: applyVaultFontCerts,
+    syncVaultFontCerts: syncVaultFontCerts,
     slugify: slugify,
     getFont: function (id) { return getById(id); },
     getFontBySlug: getBySlug,
     fontSlug: fontSlug,
     resolveFamilyAlias: resolveFamilyAlias,
-    isDevPreviewHost: isDevPreviewHost,
-    livePagePath: livePagePath,
     detailHref: detailHref,
+    livePagePath: livePagePath,
     foundryHref: foundryHref,
+    publicDetailPath: publicDetailPath,
+    publicDetailUrl: publicDetailUrl,
     getFontStats: getFontStats,
     bumpFontStat: bumpFontStat,
     paintFontStats: paintFontStats,
@@ -1478,6 +2026,11 @@
       WFProto.syncJoinButtons();
       return 0;
     },
+    replacePicksLocal: replacePicksLocal,
+    syncPicksWithVault: syncPicksWithVault,
+    loadFavs: loadFavs,
+    replaceFavsLocal: replaceFavsLocal,
+    syncFavsWithVault: syncFavsWithVault,
     togglePick: function (id, name) {
       if (WFProto.hasPick(id)) return WFProto.removePick(id);
       return WFProto.addPick(id, name);
@@ -1594,9 +2147,11 @@
       }
     },
     CDN: CDN,
+    SITE_ORIGIN: SITE_ORIGIN,
     CSS_API: CSS_API,
-    API_MODE: 'mock', /* override via localStorage['wf-api-mode'] = 'live'|'mock' */
+    API_MODE: 'mock', /* 本机默认；app/staging 由 wf-api 默认 live。override: localStorage['wf-api-mode'] */
     ANALYSIS_META_VER: ANALYSIS_META_VER,
+    ALLOW_DEMO: ALLOW_DEMO,
     analysisMetaUrl: analysisMetaUrl,
     dataUrl: dataUrl,
     CDN_HOSTS: CDN_HOSTS,
@@ -1612,6 +2167,7 @@
     packageName: packageName,
     packageCssUrl: cssApiUrl,
     cssApiUrl: cssApiUrl,
+    certCssApiUrl: certCssApiUrl,
     cssUrl: cssUrl,
     packageResultUrl: packageResultUrl,
     embedCssUrl: embedCssUrl,
@@ -1688,7 +2244,7 @@
       }
       return fallbackCopy(text);
     },
-    /** ClientScrollViewList — infinite / load-more from thin fonts-list catalog */
+    /** ClientScrollViewList — infinite / load-more from fonts.json */
     mountFontsList: function (opts) {
       const listEl = document.getElementById((opts && opts.listId) || 'fontList');
       const countTotalEl = document.getElementById((opts && opts.countTotalId) || 'fontCountTotal');

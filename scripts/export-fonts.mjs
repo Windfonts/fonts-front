@@ -26,6 +26,26 @@ const AVATARS = existsSync(join(ROOT, 'data', 'avatars.json'))
   ? JSON.parse(readFileSync(join(ROOT, 'data', 'avatars.json'), 'utf8'))
   : {};
 
+/** 导出强制覆盖（正名 / brand）；见 data/export-overrides.json */
+const EXPORT_OVERRIDES = existsSync(join(ROOT, 'data', 'export-overrides.json'))
+  ? (JSON.parse(readFileSync(join(ROOT, 'data', 'export-overrides.json'), 'utf8')).byNormalized || {})
+  : {};
+
+function applyExportOverrides(font) {
+  const key = font && font.normalized;
+  const o = key && EXPORT_OVERRIDES[key];
+  if (!o) return font;
+  const next = { ...font, ...o };
+  if (o.brand) {
+    next.brand = { ...(font.brand || {}), ...o.brand };
+    if (!next.brand.avatarUrl && AVATARS[next.brand.slug]) {
+      next.brand.avatarUrl = AVATARS[next.brand.slug];
+    }
+  }
+  return next;
+}
+
+
 function designerShort(designer) {
   return String(designer || '').split(/[;；,，]/)[0].trim() || '—';
 }
@@ -176,10 +196,18 @@ for (const f of published) {
     fetchDetail(f.normalizedName).catch(() => null),
     fetchLicenseInfo(f.normalizedName).catch(() => null),
   ]);
-  mapped.push(mapFont(f, detail, licInfo));
+  mapped.push(applyExportOverrides(mapFont(f, detail, licInfo)));
 }
 mapped.sort((a, b) => a.normalized.localeCompare(b.normalized));
 
+for (const [norm, o] of Object.entries(EXPORT_OVERRIDES)) {
+  const hit = mapped.find((f) => f.normalized === norm);
+  if (!hit) console.warn('export-override unused:', norm);
+  else if (o.name && hit.name !== o.name) {
+    console.error('export-override failed for', norm, 'got', hit.name);
+    process.exit(1);
+  }
+}
 const problems = validate(mapped);
 if (!mapped.length) throw new Error('0 fonts exported — refusing to overwrite');
 if (problems.length) {

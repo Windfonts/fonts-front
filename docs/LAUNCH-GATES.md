@@ -3,6 +3,8 @@
 > 静态原型（本仓）上线正式域前的硬门槛。未勾完不应切流量。  
 > 对照现网：`app.windfonts.com`。原型预览：`python3 -m http.server 16016`。
 
+**2026-09-28 状态：** `app.windfonts.com` 与 `staging-app.windfonts.com` 已具备 `/fonts/{slug}`、`/foundry/{slug}` rewrite + `try_files $uri $uri.html`；前端 `WFProto.livePagePath` / `foundryHref` 已接线。正式切流前仍须勾完 §2 其余项。
+
 ## 1. 必须先落地的基础设施（不能只靠前端假装）
 
 | 项 | 现状 | 上线要求 | 验收 |
@@ -54,7 +56,7 @@ Ops / Nginx 建议：
 ## 2. 上线前检测门闸（按顺序勾）
 
 ### A. 构建与缓存
-- [ ] 产品页 `wf-proto` / `wf-chrome` / `wf-specimen` / 页面脚本 `?v=` 与改动同步（禁止半仓旧版本）
+- [ ] 产品页 `wf-proto` / `wf-chrome` / `wf-specimen` / 页面脚本 `?v=` 与改动同步（禁止半仓旧版本）· 本仓已 bump `20260928gates1`，**现网未全量 rsync**
 - [ ] 不提交 `*.bak`、本地密钥、`.env`
 - [ ] `v5-*.html`、`*-options.html`、`oss-audit.html`、`lab.html` 不进生产入口（对照 / 研究页；导航不链）。**保留勿删**，见 [LAB.md](LAB.md)。
 

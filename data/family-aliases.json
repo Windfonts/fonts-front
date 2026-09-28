@@ -1,5 +1,5 @@
 {
-  "note": "2026-09-23: same-product aliases + opsa/systcnl legacy; Source Han regionals restored as own fonts",
+  "note": "2026-09-23: same-product aliases + opsa/systcnl legacy; Source Han regionals restored as own fonts; 2026-09-28: cq→chuanqu（退役 stub）",
   "aliases": {
     "wenfeng-hxbsbt": "wenfeng-hxbsb",
     "hxbsbt": "wenfeng-hxbsb",
@@ -28,6 +28,8 @@
     "wenfeng-hclcks": "wenfeng-hclck2",
     "hclcks": "wenfeng-hclck2",
     "wenfeng-douyufont": "wenfeng-dyzgt",
-    "douyufont": "wenfeng-dyzgt"
+    "douyufont": "wenfeng-dyzgt",
+    "wenfeng-cq": "wenfeng-chuanqu",
+    "cq": "wenfeng-chuanqu"
   }
 }

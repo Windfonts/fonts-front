@@ -83,22 +83,22 @@
 
   function budgetHtml(est) {
     if (!est) return '';
-    const tag = est.fromManifest ? 'CSS 档' : '估';
+    const tag = est.fromManifest ? '包体清单' : '估算';
     if (est.mode === 'clipped') {
       return (
         '<div class="use-budget" id="useBudget">' +
-          '<span class="use-budget-main">预估 ≈ <b>' + esc(est.primaryLabel) + '</b>（主款 · 当前档 · ' + tag + '）</span>' +
-          '<span class="use-budget-extra">开补全后主款不变；补全只挂缺口片，上限另 + 同档「' +
+          '<span class="use-budget-main">大约 <b>' + esc(est.primaryLabel) + '</b>（主款 · 当前档位 · ' + tag + '）</span>' +
+          '<span class="use-budget-extra">开启补缺后仍只多拉缺失字形；若带上兄弟款「' +
           esc(est.peerName) +
-          '」≈ ' +
+          '」，总体积上限约 ' +
           esc(est.ceilingLabel) +
-          '（含主款，实际远小于双倍）</span>' +
+          '（通常远小于两倍）</span>' +
         '</div>'
       );
     }
     return (
       '<div class="use-budget" id="useBudget">' +
-        '<span class="use-budget-main">预估传输 ≈ <b>' + esc(est.primaryLabel) + '</b>（当前档 · ' + tag + '）</span>' +
+        '<span class="use-budget-main">大约 <b>' + esc(est.primaryLabel) + '</b>（当前字重与档位 · ' + tag + '）</span>' +
       '</div>'
     );
   }

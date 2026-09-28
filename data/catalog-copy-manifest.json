@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "purpose": "字体简介与厂商简介重写进度；规范见 docs/CATALOG-COPY.md",
+  "updatedAt": "2026-09-28",
+  "summary": {
+    "fontsTotal": 471,
+    "fontsPending": 465,
+    "fontsDraft": 7,
+    "fontsApproved": 0,
+    "foundriesPending": "all except batch-a",
+    "note": "首批建议从站酷/阿里/寒蝉/霞鹜/思源与 platform 厂商开始",
+    "foundriesDraft": 5
+  },
+  "batches": [
+    {
+      "id": "batch-a-traffic",
+      "title": "高流量与易混名",
+      "status": "draft",
+      "fontSlugs": [
+        "Zkxwt",
+        "Albbpht",
+        "Syhtsc",
+        "Systsc",
+        "Hckht",
+        "Xwwk"
+      ],
+      "foundrySlugs": [
+        "zcool",
+        "alibaba-design",
+        "chilltype",
+        "lxgw",
+        "adobe"
+      ]
+    },
+    {
+      "id": "batch-b-platform",
+      "title": "素材平台转载",
+      "status": "pending",
+      "fontSlugs": [],
+      "foundrySlugs": [
+        "qiantu",
+        "ibaotu",
+        "zcool",
+        "maoken",
+        "izihun"
+      ]
+    },
+    {
+      "id": "batch-c-oss-ingest",
+      "title": "OSS 入库批次口吻清理",
+      "status": "pending",
+      "fontSlugs": [],
+      "foundrySlugs": [],
+      "note": "description 含 OSS ingest / 不是 OFL / 不是 TTC 等审计句"
+    }
+  ],
+  "fonts": {
+    "Zkxwt": {
+      "status": "draft",
+      "updatedAt": "2026-09-28",
+      "description": "站酷小薇体，站酷与 Google Fonts 联合发布的开源宋体展示字，2018 年上线。笔画带宋风装饰感，适合标题、海报与品牌短句。单 Regular 字重，覆盖简体常用字。SIL OFL 1.1；与「站酷小薇 LOGO 体」（李大卫）是不同字体。"
+    },
+    "Albbpht": {
+      "status": "draft",
+      "updatedAt": "2026-09-28",
+      "description": "阿里巴巴普惠体，阿里巴巴集团 2019 年发布的免费商用黑体，由阿里设计与汉仪联合制作。字形现代、略瘦偏高，细字重适合长文与界面，粗字重适合标题。多字重；大陆站以 SC 规格为主，繁体请切换 TC。授权条款见本页「授权」。"
+    },
+    "Syhtsc": {
+      "status": "draft",
+      "updatedAt": "2026-09-28",
+      "description": "思源黑体（Source Han Sans）简体中文语言版，Adobe 与 Google 联合开发并开源。现代无衬线，七字重，覆盖简体与扩展汉字。与 Noto Sans CJK 简体中文同形。SIL OFL 1.1。"
+    },
+    "Systsc": {
+      "status": "draft",
+      "updatedAt": "2026-09-28",
+      "description": "思源宋体（Source Han Serif）简体中文语言版，Adobe 与 Google 联合开发并开源。气质接近经典宋体，七字重，适合长文与出版。与 Noto Serif CJK 简体中文同形。SIL OFL 1.1。"
+    },
+    "Hckht": {
+      "status": "draft",
+      "updatedAt": "2026-09-28",
+      "description": "寒蝉宽黑体，寒蝉字型发布的开源无衬线字。在未来荧黑（思源系改作）基础上加入隶书笔意，并手工修大量汉字轮廓；英文搭配 Montserrat。适合标题与短文案。SIL OFL 1.1。"
+    },
+    "Xwwk": {
+      "status": "draft",
+      "updatedAt": "2026-09-28",
+      "description": "霞鹜文楷，落霞孤鹜（LXGW）基于 FONTWORKS「Klee One」扩展并开源的中文楷体。Light、Regular、Medium 三字重，简繁覆盖广，适合正文、电子书与屏幕阅读。SIL OFL 1.1。"
+    },
+    "Chuanqu": {
+      "status": "draft",
+      "updatedAt": "2026-09-28",
+      "description": "传趣（Chuanqu），Steve-Yuu 开源中文字体（v0.500）。在 FONTWORKS Stick 与简体「游趣体」（ChildFunSans）基础上向旧字形调整，并补充繁体与传承字形；风格俏皮、可爱。字符集含 GB2312、《通用规范汉字表》简繁、Big5 一级及 IICore 等。SIL OFL 1.1；衍生须遵守保留名称「传趣」「傳趣」「Chuanqu」。仓库：https://github.com/Steve-Yuu/Chuanqu",
+      "descriptionBrief": "传趣（Chuanqu）是 Steve-Yuu 在 Stick 与「游趣体」基础上衍生的开源字体，字形偏旧形，风格俏皮可爱，覆盖简繁常用字，适合标题与趣味短文案。SIL OFL 1.1。",
+      "source": "https://github.com/Steve-Yuu/Chuanqu README.md",
+      "note": "替换 OSS 审计句；RFN/旁证留在 licenseNotes"
+    }
+  },
+  "foundries": {
+    "zcool": {
+      "status": "draft",
+      "updatedAt": "2026-09-28",
+      "description": "站酷（ZCOOL）是面向设计师的社区与内容平台，亦发布与聚合字体资源。站内所列站酷相关字体，商用与授权以权利人公示及本页「授权」为准；素材站说明不能替代厂商官网条款。"
+    },
+    "alibaba-design": {
+      "status": "draft",
+      "updatedAt": "2026-09-28",
+      "description": "阿里巴巴集团旗下设计品牌，发布面向商业场景的字体产品（如普惠体系列）。版权与免费商用范围以阿里设计与权利人公示为准。"
+    },
+    "chilltype": {
+      "status": "draft",
+      "updatedAt": "2026-09-28",
+      "description": "寒蝉字型（ChillType），GitHub 上的开源字体作者项目。主打实验黑体、楷隶合流等改作字体，多基于思源或其他 OFL 上游。在库多款，许可以各字详情页为准。"
+    },
+    "lxgw": {
+      "status": "draft",
+      "updatedAt": "2026-09-28",
+      "description": "落霞孤鹜（LXGW），GitHub 上的开源字体作者。代表系列包括霞鹜文楷、小赖体、悠哉体等，常基于 FONTWORKS 或其它 OFL 上游扩展汉字。在库多款，多 SIL OFL 1.1。"
+    },
+    "adobe": {
+      "status": "draft",
+      "updatedAt": "2026-09-28",
+      "description": "Adobe 及其参与的字体项目（含 Adobe Fonts 与思源系列联合开发）。思源黑体、思源宋体等 CJK 家族以 SIL OFL 1.1 开源发布；具体条款见各字详情页。"
+    },
+    "steve-yuu": {
+      "status": "draft",
+      "updatedAt": "2026-09-28",
+      "description": "Steve-Yuu 在 GitHub 发布多款 SIL OFL 1.1 中文字体；传趣基于 Stick 与游趣体衍生，Y 式笔书为手写类项目。",
+      "descriptionBrief": "GitHub 开源作者 Steve-Yuu，代表作传趣、Y 式笔书等 OFL 字体。"
+    }
+  }
+}

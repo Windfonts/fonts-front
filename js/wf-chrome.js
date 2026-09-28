@@ -848,8 +848,23 @@
       '</div>';
   }
   function lineageInviteHtml(font, split) {
-    if (!font || !WFProto.isOpenFont(font)) return '';
+    if (!font) return '';
     const L = (font && font.lineage) || {};
+    if (!WFProto.isOpenFont(font)) {
+      if (L.relation === 'commissioned') {
+        return '<p class="lin-invite">此为品牌或权利人授权字体，可按授权条款商用。下列为发布与协作关系，<strong>非</strong>开源 OFL 派生链；以本页「授权」为准。</p>';
+      }
+      if (L.relation === 'collab') {
+        return '<p class="lin-invite">此款为联合发布。版权与授权以权利人与合作方公示为准，谱系<strong>非</strong>开源派生链。</p>';
+      }
+      if (L.relation === 'locale') {
+        return '<p class="lin-invite">同一字体产品的地区或规格版本，授权随主系列；与开源改作无关。</p>';
+      }
+      if (L.relation === 'fork') {
+        return '<p class="lin-invite">此款有明确上游改作关系。能否再分发以授权区为准，<strong>非</strong>默认可二次发布。</p>';
+      }
+      return '';
+    }
     const chain = [];
     if (split && split.root) chain.push(split.root);
     if (split && split.via) split.via.forEach(function (f) { chain.push(f); });

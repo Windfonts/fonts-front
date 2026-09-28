@@ -78,13 +78,14 @@
 /* —— 页脚：一行收口，左版权右条款 —— */
 .site-extra-footer {
   margin-top: var(--s-12);
-  padding: var(--s-6) var(--gutter) var(--s-8);
+  padding: var(--s-6) 0 var(--s-8);
   color: var(--gray);
   font-size: var(--fs-13);
 }
 .site-extra-footer .extra-inner {
   max-width: var(--container);
   margin: 0 auto;
+  padding: 0 var(--gutter);
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -479,7 +480,7 @@ a.foundry:hover .name { text-decoration: underline; text-underline-offset: 0.2em
   .topmenu .view-switch button { flex: 1; text-align: center; }
 }
 @media (max-width: 768px) {
-  .site-extra-footer { margin-top: var(--s-12); padding: var(--s-6) var(--gutter); }
+  .site-extra-footer { margin-top: var(--s-12); padding: var(--s-6) 0; }
   .site-extra-footer .extra-copy { overflow-wrap: anywhere; }
   .site-extra-footer .extra-inner { flex-direction: column; align-items: flex-start; }
   .dialog { width: 100%; }

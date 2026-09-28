@@ -1591,22 +1591,51 @@
     return Promise.resolve(rows);
   }
 
+  function bridgeCertToProto(fontLike, status, meta) {
+    if (!window.WFProto || !WFProto.setCertGrant || !fontLike) return;
+    try {
+      WFProto.setCertGrant(fontLike, {
+        status: status || 'pending',
+        fileName: (meta && meta.fileName) || '',
+        fileSize: (meta && meta.fileSize) || 0,
+        mime: (meta && meta.mime) || '',
+        reason: (meta && meta.reason) || '',
+        vaultId: (meta && meta.cert_id) || '',
+        labMock: true
+      });
+    } catch (e) { /* ignore */ }
+  }
+
+  function catalogFontForCert(id) {
+    if (!window.WFProto) return null;
+    const key = String(id || '');
+    return (WFProto.getFontBySlug && WFProto.getFontBySlug(key)) ||
+      (WFProto.getFont && WFProto.getFont(key)) ||
+      null;
+  }
+
   function createCert(body) {
     body = body || {};
     if (!isMock()) return Promise.reject(apiError('not_implemented', 'vault 尚未提供 POST /api/certs', 501));
-    const seed = resolveSeed(body.fontId || body.normalizedName);
-    if (!seed) return Promise.reject(apiError('not_found', '未知字体', 404));
-    if (seed.cdnHardBlock) {
+    const key = body.fontId || body.normalizedName;
+    const seed = resolveSeed(key);
+    const cat = catalogFontForCert(key);
+    if (!seed && !cat) return Promise.reject(apiError('not_found', '未知字体', 404));
+    if (seed && seed.cdnHardBlock) {
       return Promise.reject(apiError('forbidden', 'FLOP 硬拒款：证书不能打开公共 CDN，也不提供 cite 出口', 403));
     }
-    if (seed.cite_policy !== 'cite_closed' && seed.service_status !== 'restricted') {
+    const citeClosed = seed
+      ? (seed.cite_policy === 'cite_closed' || seed.service_status === 'restricted')
+      : !!(cat && (cat.tags || []).indexOf('cite-closed') !== -1);
+    if (!citeClosed) {
       return Promise.reject(apiError('validation_error', '该字体无需证书解锁', 422));
     }
+    const norm = (seed && seed.normalizedName) || (cat && cat.normalized) || String(key);
     const cert = {
       cert_id: 'cert_' + Date.now().toString(36),
       user_id: currentUserId(),
-      font_id: seed.normalizedName,
-      normalizedName: seed.normalizedName,
+      font_id: norm,
+      normalizedName: norm,
       status: 'pending',
       unlocks: ['cdn_web'],
       unlocks_note: 'approved 仅开账号 cite，永不灌公共 fonts-packages',
@@ -1617,6 +1646,7 @@
     const list = loadCerts();
     list.unshift(cert);
     saveCerts(list);
+    bridgeCertToProto(cat || { normalized: norm, name: (seed && seed.name) || norm, family: (cat && cat.family) || '' }, 'pending', cert);
     return Promise.resolve(cert);
   }
 
@@ -1632,6 +1662,13 @@
       return Promise.reject(apiError('validation_error', '非法 status', 422));
     }
     list[i].status = st;
+    const fontLike = catalogFontForCert(list[i].normalizedName || list[i].font_id);
+    if (st === 'approved' || st === 'rejected' || st === 'pending' || st === 'expired') {
+      bridgeCertToProto(fontLike || { normalized: list[i].normalizedName, name: list[i].normalizedName }, st === 'expired' ? 'rejected' : st, {
+        cert_id: list[i].cert_id,
+        reason: st === 'rejected' ? (body.reason || '未覆盖网页嵌入') : ''
+      });
+    }
     list[i].reviewed_at = new Date().toISOString();
     saveCerts(list);
     return Promise.resolve(list[i]);

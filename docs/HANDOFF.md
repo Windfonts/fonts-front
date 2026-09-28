@@ -4,9 +4,19 @@
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 
-**2026-09-28 停点：** 站酷小薇正名为「站酷小薇体」（宋体 / 站酷 / OFL），不再叫 LOGO 体、不再挂佐兹、不再写「需联系厂商」。吉利银河、上海摩登回货架，公共 CDN 仍关，站内预览走 `assets/fonts/preview`。寒蝉矩阵 / 矩黑继续不在清单。证书上传链未做。DNS 把 app 切到 OSS 仍 HOLD。Bot 会话与落盘分类见 `~/Projects/bot/archive/HANDOFF-2026-09-28.md`。本停点只入库，未 rsync 现网。
+**2026-09-28 午后（1–6 任务）：**
+1. **vault 小薇**：`Zkxwt` 已是「站酷小薇体」/ 宋体 / brand=站酷字库；`data/export-overrides.json` + `export-fonts.mjs` 防重导回滚。
+2. **双卡**：`scripts/audit-catalog-dupes.mjs` → `docs/_catalog-dupe-audit.json`（无 dup id/family；`cq`→`chuanqu` 别名）。
+3. **cite-closed 证书链**：详情「使用」区可上传证书 → `WFProto.setCertGrant`；授权查询 mock 与 proto 互通；演示「标为通过」后可复制嵌入。
+4. **clean URL**：prod/staging nginx rewrite 对齐；前端 `livePagePath`/`foundryHref`。已全量 rsync 到 `feicode-prod:/www/wwwroot/fonts-front/`（2026-09-28）。
+5. **目录卫生**：同 en 5 组已改名（`Cldin`/`Clhfs`/`Clduan`/`Bb9`/`Xcws`）；审计 `sameEnVariants=0`；26 条 `shelf-stub` 零字形保留（包体未下）。
+6. **CDN mapping**：`font-mapping.json` 已用 `fonts-packages/.env` 密钥上传（广州桶）；`Zkxwt.chinese_name=站酷小薇体`；备份 `…/font-mapping.json.bak-20260928-preZkxwtName`。根目录/`feicode` root 的 ossutil AK **无写权限**，勿再用。
 
-**下一棒（2026-09-28 午，对照会话 `e8e864d5`）：** `0ac15d8` 已在 `origin/main`，目录 471。现网页面仍未 rsync，公开站还可能是旧 LOGO 卡片。vault `fonts.chinese_name`（`wenfeng-zkxwt`）仍是「站酷小薇LOGO体」，`export-fonts.mjs` 用 `chineseName || name`，重导会把本地正名盖回去——先改库，再导出。不要 rsync，除非另外开口。`v4-specimen` 不合产。R17 点阵包等 Depot 回条数。会话收口见 §32。
+**2026-09-28 详情文案：** 使用区人机分层 + 谱系非开源导语 + 获取代码 toast（`detail.js` / `wf-chrome.js` `20260928copy1`）。字体/厂商简介重写规范与进度：`docs/CATALOG-COPY.md`、`data/catalog-copy-manifest.json`（471 款待分批，未改目录正文）。
+
+**2026-09-28 停点：** 站酷小薇正名为「站酷小薇体」（宋体 / 站酷 / OFL），不再叫 LOGO 体、不再挂佐兹、不再写「需联系厂商」。吉利银河、上海摩登回货架，公共 CDN 仍关，站内预览走 `assets/fonts/preview`。寒蝉矩阵 / 矩黑继续不在清单。证书上传链未做。DNS 把 app 切到 OSS 仍 HOLD。Bot 会话与落盘分类见 `~/Projects/bot/archive/HANDOFF-2026-09-28.md`。本停点已入库；静态站已 rsync 现网（2026-09-28）。
+
+**下一棒（2026-09-28 午，对照会话 `e8e864d5`）：** `0ac15d8` 已在 `origin/main`，目录 471。静态站已 rsync；公开站应显示「站酷小薇体」。vault API/`chineseName` 已是「站酷小薇体」；CDN `font-mapping.json` 已同步（595 键，含 Zkxwt）。本地 `export-overrides.json` 仍防重导回滚。不要 rsync，除非另外开口。`v4-specimen` 不合产。R17 点阵包等 Depot 回条数。会话收口见 §32。
 
 **已合（2026-09-25，wapuu）：** vault [#29](https://feicode.com/Windfonts/fonts-vault/pulls/29) pnpm Docker、[#30](https://feicode.com/Windfonts/fonts-vault/pulls/30) 品牌 CSS 门禁、[#31](https://feicode.com/Windfonts/fonts-vault/pulls/31) `/api/css` 错误 `no-store` → `main` @ `22454e0`。
 

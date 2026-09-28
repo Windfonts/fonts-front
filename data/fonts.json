@@ -7427,7 +7427,7 @@
   {
     "id": "a9588c46-5493-4825-bae1-3380db4b25fb",
     "name": "寒蝉德黑",
-    "en": "Chill DIN Gothic",
+    "en": "Chill Dehei",
     "family": "wenfeng-cldin",
     "normalized": "Cldin",
     "designer": "寒蝉德黑",
@@ -7844,7 +7844,7 @@
   {
     "id": "1da4f318-3d8c-4f92-8dfb-84c743caaa15",
     "name": "寒蝉活字仿宋",
-    "en": "Chill Huo Fang Song",
+    "en": "Chill Huozhi Fang Song",
     "family": "wenfeng-clhfs",
     "normalized": "Clhfs",
     "designer": "寒蝉活字仿宋",
@@ -7998,7 +7998,7 @@
   {
     "id": "84edb5e0-c977-4570-92a8-61f09cfeca2c",
     "name": "寒蝉端黑",
-    "en": "Chill Duan Sans",
+    "en": "Chill Duan Hei",
     "family": "wenfeng-clduan",
     "normalized": "Clduan",
     "designer": "寒蝉端黑",
@@ -18710,7 +18710,7 @@
   {
     "id": "c16c1587-be57-479f-9290-3ff4be67e830",
     "name": "精品点阵体9x9",
-    "en": "Boutique Bitmap 9x9",
+    "en": "Boutique Bitmap 9x9 Dot",
     "family": "wenfeng-bb9",
     "normalized": "Bb9",
     "designer": "精品点阵体9x9",
@@ -23002,7 +23002,7 @@
   {
     "id": "160ff000-cbd9-4805-801a-a5c80b70178a",
     "name": "香萃自在舒畅黑",
-    "en": "Xiangcui Wave Sans",
+    "en": "Xiangcui Wave Sans Comfort",
     "family": "wenfeng-xcws",
     "normalized": "Xcws",
     "designer": "香萃自在舒畅黑",
@@ -25383,8 +25383,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 6959,
+    "glyphCount": 6959,
     "viewCount": 0
   },
   {
@@ -25417,8 +25417,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 9027,
+    "glyphCount": 9027,
     "viewCount": 0
   },
   {
@@ -25451,8 +25451,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 7012,
+    "glyphCount": 7012,
     "viewCount": 0
   },
   {
@@ -25485,8 +25485,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 7010,
+    "glyphCount": 7010,
     "viewCount": 0
   },
   {
@@ -25519,8 +25519,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 7734,
+    "glyphCount": 7734,
     "viewCount": 0
   },
   {
@@ -25533,7 +25533,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "免费商用"
+      "免费商用",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -25568,7 +25569,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "免费商用"
+      "免费商用",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -25603,7 +25605,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "免费商用"
+      "免费商用",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -25746,8 +25749,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 29480,
+    "glyphCount": 29480,
     "viewCount": 0
   },
   {
@@ -25815,8 +25818,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 16313,
+    "glyphCount": 16313,
     "viewCount": 0
   },
   {
@@ -25849,8 +25852,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 29325,
+    "glyphCount": 29325,
     "viewCount": 0
   },
   {
@@ -25951,8 +25954,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 7634,
+    "glyphCount": 7634,
     "viewCount": 0
   },
   {
@@ -26022,8 +26025,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 8822,
+    "glyphCount": 8822,
     "viewCount": 0
   },
   {
@@ -26056,8 +26059,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 5697,
+    "glyphCount": 5697,
     "viewCount": 0
   },
   {
@@ -26161,8 +26164,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 33151,
+    "glyphCount": 33151,
     "viewCount": 0
   },
   {
@@ -26295,7 +26298,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26330,7 +26334,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26365,7 +26370,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26400,7 +26406,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26435,7 +26442,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26470,7 +26478,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26540,7 +26549,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26575,7 +26585,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26610,7 +26621,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26645,7 +26657,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26680,7 +26693,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26715,7 +26729,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26750,7 +26765,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26785,7 +26801,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26820,7 +26837,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26855,7 +26873,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26890,7 +26909,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26925,7 +26945,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26960,7 +26981,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -26995,7 +27017,8 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "待核实",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -27143,7 +27166,8 @@
     "designerShort": "FLOP",
     "category": "",
     "tags": [
-      "开源"
+      "开源",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -27178,7 +27202,8 @@
     "designerShort": "FLOP",
     "category": "",
     "tags": [
-      "开源"
+      "开源",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
@@ -27213,7 +27238,8 @@
     "designerShort": "FLOP",
     "category": "",
     "tags": [
-      "开源"
+      "开源",
+      "shelf-stub"
     ],
     "weights": [
       "Regular"
