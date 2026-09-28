@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>系统状态 · 文风字体</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    :root { color-scheme: light dark; --bg:#0f1419; --fg:#f4f1ea; --muted:#9aa3ad; --ok:#3d9a6a; --bad:#c45c5c; }
+    body { margin:0; font:16px/1.5 system-ui,sans-serif; background:var(--bg); color:var(--fg); }
+    main { max-width:40rem; margin:0 auto; padding:3rem 1.25rem; }
+    h1 { font-size:1.5rem; margin:0 0 .5rem; }
+    p.sub { color:var(--muted); margin:0 0 2rem; }
+    li { display:flex; justify-content:space-between; gap:1rem; padding:.75rem 0; border-bottom:1px solid #243044; }
+    .ok { color:var(--ok); } .bad { color:var(--bad); } .wait { color:var(--muted); }
+    a { color:inherit; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>文风系统状态</h1>
+    <p class="sub">静态页，不依赖 vault 同进程。正式 <code>status.windfonts.com</code> 仍待独立主机。</p>
+    <ul id="checks">
+      <li data-id="app"><span>前台 app.windfonts.com</span><span class="wait">检测中…</span></li>
+      <li data-id="vault"><span>vault /api/health</span><span class="wait">检测中…</span></li>
+      <li data-id="cdn"><span>CDN cn /api/css（探活）</span><span class="wait">检测中…</span></li>
+    </ul>
+  </main>
+  <script>
+  (function () {
+    function set(id, ok, text) {
+      var el = document.querySelector('[data-id="'+id+'"] span:last-child');
+      if (!el) return;
+      el.className = ok ? 'ok' : 'bad';
+      el.textContent = text;
+    }
+    function head(url) {
+      return fetch(url, { method: 'GET', mode: 'cors', cache: 'no-store' })
+        .then(function (r) { return { ok: r.ok || r.status === 404, status: r.status }; })
+        .catch(function () { return { ok: false, status: 0 }; });
+    }
+    set('app', true, '本页已打开');
+    head('https://vault.windfonts.com/api/health').then(function (r) {
+      set('vault', r.ok, r.ok ? ('HTTP ' + r.status) : '不可达');
+    });
+    head('https://cn.windfonts.com/api/css?family=wenfeng-albbpht&weight=regular&subset=zh-common').then(function (r) {
+      set('cdn', r.status > 0, r.status ? ('HTTP ' + r.status) : '不可达');
+    });
+  })();
+  </script>
+</body>
+</html>
