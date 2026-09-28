@@ -1960,7 +1960,7 @@
     "license": "免费商用",
     "licenseName": "OPPO Sans Free Use License",
     "licenseUrl": "",
-    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Opsa/LICENSE",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/licenses/Opsa/LICENSE",
     "licenseNotes": "原文是 OSS wenfeng/fonts/opsa/license.0 License Notice（OPPO Sans Fonts License Agreement，Copyright 2024 Guangdong OPPO）。免版税、可撤销、全球范围。允许不修改地复制、嵌入、打包，并随非字体软件再分发或销售。必须显著标明使用了 OPPO Sans，并保留版权声明和本协议。禁止修改字体，禁止把字体文件单独再分发或出售。",
     "licenseVerified": false,
     "purchaseUrl": null,
@@ -23470,7 +23470,7 @@
     "license": "免费商用",
     "licenseName": "鼎猎珠海体授权协议",
     "licenseUrl": "",
-    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Dlzht/LICENSE",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/licenses/Dlzht/license.pdf",
     "licenseNotes": "原文是 OSS wenfeng/fonts/dlzht/license.pdf（2024-09-03 授权说明，登记号陕作登字-2024-F-00013790），文字摘录在 LICENSE，签名原件在 license.pdf。永久商用，对象为所有个人和企业，但排除台独、港独、反华。允许把字体当视觉要素用于设计、广告、包装和自有网站上的内容。电子文件嵌入网站、计算机程序或带显示的电子产品不在授权范围内。原文没有写是否允许修改或再分发字体文件。",
     "licenseVerified": false,
     "purchaseUrl": null,
@@ -25131,15 +25131,14 @@
       "OFL"
     ],
     "weights": [
-      "Regular"
+      "Light"
     ],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 10176,
+    "glyphCount": 10386,
     "viewCount": 0,
     "version": "shelf 2026-09-28",
-    "description": "ほのか新明朝（Honoka Mincho）。上游 https://font.quoteright.jp/honoka/ 现网不可达（SSL/502），未找到可用镜像。SIL OFL 1.1。包体待下",
-    "source": "https://font.quoteright.jp/honoka/",
-    "filePending": true
+    "description": "ほのか新明朝 Light。镜像包 font.gloomy.jp 的 honoka-min2，包内 SIL Open Font License 1.1。原站 font.quoteright.jp 仍不可达。",
+    "source": "https://font.gloomy.jp/"
   },
   {
     "id": "76a15a3b-8887-41e9-ae23-558e5beb6d30",
@@ -25539,7 +25538,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "乐米野墨体，乐米字库站点免费商用声明（非 OFL；站点条款与 OFL 徽章冲突，按厂商免费商用处理）。包体待下",
+    "description": "乐米野墨体，乐米字库站点免费商用声明（非 OFL；站点条款与 OFL 徽章冲突，按厂商免费商用处理）。包体以后再下",
     "license": "免费商用",
     "licenseName": "免费商用",
     "licenseUrl": "",
@@ -25556,7 +25555,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "d35080c4-dff7-44ff-9950-7b97912575e8",
@@ -25573,7 +25573,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "乐米拾光手札体，乐米字库站点免费商用声明（非 OFL）。包体待下",
+    "description": "乐米拾光手札体，乐米字库站点免费商用声明（非 OFL）。包体以后再下",
     "license": "免费商用",
     "licenseName": "免费商用",
     "licenseUrl": "",
@@ -25590,7 +25590,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "eb26e9c2-b3f0-40fc-95f6-3a00b45a07ad",
@@ -25607,7 +25608,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "乐米律动黑，乐米字库站点免费商用声明（非 OFL）。包体待下",
+    "description": "乐米律动黑，乐米字库站点免费商用声明（非 OFL）。包体以后再下",
     "license": "免费商用",
     "licenseName": "免费商用",
     "licenseUrl": "",
@@ -25624,7 +25625,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "11c57445-29f9-423f-9da1-fb4f005a1f70",
@@ -25761,9 +25763,10 @@
       "免费商用"
     ],
     "weights": [
-      "Regular"
+      "Regular",
+      "Bold"
     ],
-    "description": "阿里健康体 2.0，阿里健康×方正免费商用（非 OFL）。嵌入式应用需另核方正授权。包体待下",
+    "description": "阿里健康体 2.0，阿里健康×方正免费商用（非 OFL）。嵌入式应用需另核方正授权。字重为方正 45R（目录 Regular）与 85B（目录 Bold）。",
     "license": "免费商用",
     "licenseName": "免费商用",
     "licenseUrl": "",
@@ -25778,8 +25781,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 7713,
+    "glyphCount": 7716,
     "viewCount": 0
   },
   {
@@ -25865,7 +25868,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "Bokutachi no Gothic，IPA Font License Agreement v1.0（非 OFL）。上游 fontopo.com。包体待下",
+    "description": "Bokutachi no Gothic，IPA Font License Agreement v1.0（非 OFL）。包来自 fontopo.com/fontdata/boku.zip。",
     "license": "免费商用",
     "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "",
@@ -25880,8 +25883,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 8207,
+    "glyphCount": 9354,
     "viewCount": 0
   },
   {
@@ -25899,7 +25902,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "Fontopo Nihongo，IPA Font License Agreement v1.0（非 OFL）。上游 fontopo.com。包体待下",
+    "description": "Fontopo Nihongo，IPA Font License Agreement v1.0（非 OFL）。包来自 fontopo.com/fontdata/nihongo.zip。",
     "license": "免费商用",
     "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "",
@@ -25914,8 +25917,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 8207,
+    "glyphCount": 9354,
     "viewCount": 0
   },
   {
@@ -26163,39 +26166,56 @@
     "viewCount": 0
   },
   {
-    "id": "c9b982c1-af3e-4310-baab-c51eb26419fe",
-    "name": "传趣体",
+    "id": "14f283ee-ecb7-4fa2-aa4c-8d0761b39ac8",
+    "name": "传趣",
     "en": "Chuanqu",
-    "family": "wenfeng-cq",
-    "normalized": "Cq",
+    "family": "wenfeng-chuanqu",
+    "normalized": "Chuanqu",
     "designer": "",
     "designerShort": "—",
-    "category": "",
+    "category": "手写体",
     "tags": [
       "开源",
-      "OFL"
+      "OFL",
+      "手写",
+      "显示",
+      "CJK",
+      "传趣"
     ],
     "weights": [
       "Regular"
     ],
-    "description": "传趣体 Chuanqu，SIL Open Font License 1.1。上游 Steve-Yuu/Chuanqu（头旁证 OFL）。",
-    "license": "免费商用",
+    "description": "传趣（Chuanqu），Steve-Yuu 开源中文字体（v0.500）。在 FONTWORKS Stick 与简体「游趣体」（ChildFunSans）基础上向旧字形调整，并补充繁体与传承字形；风格俏皮、可爱。字符集含 GB2312、《通用规范汉字表》简繁、Big5 一级及 IICore 等。SIL OFL 1.1；衍生须遵守保留名称「传趣」「傳趣」「Chuanqu」。仓库：https://github.com/Steve-Yuu/Chuanqu",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
+    "licenseUrl": "https://openfontlicense.org",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Chuanqu/LICENSE",
+    "licenseNotes": "OFL 1.1 pin v0.500 ChuanQu-Regular.ttf sha256=2ed7e4a5…。OFL.txt copyright header wrongly says Iansui — pin README + Stick/ChildFunSans。CDN OPEN。",
     "licenseVerified": true,
     "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "",
-    "brand": null,
-    "releaseYear": null,
-    "version": "shelf 2026-09-28",
-    "languages": [],
-    "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
-    "viewCount": 0
+    "copyright": "Copyright 2025-2026 SteveYuu; Stick Project Authors.",
+    "foundry": "Steve-Yuu",
+    "brand": {
+      "name": "Steve-Yuu",
+      "slug": "steve-yuu",
+      "website": "https://github.com/Steve-Yuu/Chuanqu",
+      "description": "Steve-Yuu 在 GitHub 发布多款 SIL OFL 1.1 中文字体；传趣基于 Stick 与游趣体衍生，Y 式笔书为手写类项目。",
+      "descriptionBrief": "GitHub 开源作者 Steve-Yuu，代表作传趣、Y 式笔书等 OFL 字体。"
+    },
+    "releaseYear": 2026,
+    "version": "Version 0.500",
+    "languages": [
+      "简体中文",
+      "繁体中文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 17744,
+    "glyphCount": 17967,
+    "viewCount": 0,
+    "descriptionBrief": "传趣（Chuanqu）是 Steve-Yuu 在 Stick 与「游趣体」基础上衍生的开源字体，字形偏旧形，风格俏皮可爱，覆盖简繁常用字，适合标题与趣味短文案。SIL OFL 1.1。"
   },
   {
     "id": "45bde5cf-1c91-4058-b29a-123e23402315",
@@ -26210,9 +26230,9 @@
       "待核实"
     ],
     "weights": [
-      "Regular"
+      "Bold"
     ],
-    "description": "许可原文待补。上游为抖音美好体改作，协议原文尚未入库。",
+    "description": "纳挼崩音黑 Bold。文件来自 GitHub Hansha2011/NanoTikBazHei，文件名 Bold，OS/2 标成 400。协议原文仍缺，许可仍待核实。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26227,8 +26247,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 8122,
+    "glyphCount": 8129,
     "viewCount": 0
   },
   {
@@ -26246,7 +26266,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。上游 GitHub：InkPantherType/LiyuShoushu，协议原文尚未核对。",
+    "description": "漓雨手书 v0.107。GitHub InkPantherType/LiyuShoushu 发布包只有 TTF，仓库未附 OFL 原文，许可仍待核实。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26261,8 +26281,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 18221,
+    "glyphCount": 18828,
     "viewCount": 0
   },
   {
@@ -26280,7 +26300,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。上游 Booth ZIP，协议原文尚未核对。",
+    "description": "许可原文待补。上游 Booth ZIP，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26297,7 +26317,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "48d3031d-c3c0-446b-8bb2-dbf8052dfb2f",
@@ -26314,7 +26335,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。上游 Booth ZIP，协议原文尚未核对。",
+    "description": "许可原文待补。上游 Booth ZIP，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26331,7 +26352,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "f2336ed7-5ae0-4e6c-8f17-fab4cdce479f",
@@ -26348,7 +26370,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。上游 Booth ZIP，协议原文尚未核对。",
+    "description": "许可原文待补。上游 Booth ZIP，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26365,7 +26387,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "d2f8390b-c577-428d-85a3-0b187434190f",
@@ -26382,7 +26405,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。上游 Booth ZIP，协议原文尚未核对。",
+    "description": "许可原文待补。上游 Booth ZIP，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26399,7 +26422,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "e78fbcad-6f6b-40fa-91c1-e74d18a3a4f5",
@@ -26416,7 +26440,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。上游 Booth ZIP，协议原文尚未核对。",
+    "description": "许可原文待补。上游 Booth ZIP，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26433,7 +26457,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "ec1cdf87-398e-47cf-9734-0d8cdc55c2e1",
@@ -26450,7 +26475,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。目录已有 Shippori 明体；本款为黑体 Bold，缺 ZIP 与协议原文。",
+    "description": "许可原文待补。目录已有 Shippori 明体；本款为黑体 Bold，缺 ZIP 与协议原文。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26467,7 +26492,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "0a5dbc67-0b8a-4c2f-9347-72ff81357c26",
@@ -26479,18 +26505,19 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "开源",
+      "OFL"
     ],
     "weights": [
-      "Regular"
+      "Black"
     ],
-    "description": "许可原文待补。上游称基于 LINE Seed，缺 ZIP 与协议原文。",
-    "license": "待核实",
-    "licenseName": "待核实",
-    "licenseUrl": "",
+    "description": "ポプらむ☆キウイ（テロップ）。作者站 kiwi-kawagoto.com 包内说明为 LINE Seed 派生，SIL Open Font License 1.1。单字重，OS/2 900，目录记为 Black。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://kiwi-kawagoto.com/poprumkiwi/index.html",
     "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": false,
+    "licenseNotes": "LINE Seed 派生，作者说明为 SIL OFL 1.1。单字重 Telop，OS/2 为 900，目录记为 Black。",
+    "licenseVerified": true,
     "purchaseUrl": null,
     "copyright": "",
     "foundry": "",
@@ -26499,8 +26526,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 4063,
+    "glyphCount": 4245,
     "viewCount": 0
   },
   {
@@ -26518,7 +26545,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。上游 Booth ZIP，协议原文尚未核对。",
+    "description": "许可原文待补。上游 Booth ZIP，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26535,7 +26562,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "e83dbf29-1766-421a-b3af-9cb2d6101664",
@@ -26552,7 +26580,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。",
+    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26569,7 +26597,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "fc8946f0-2aef-497e-8cd8-558d3b650343",
@@ -26586,7 +26615,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。",
+    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26603,7 +26632,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "258b06d5-0c2d-4103-b558-ed841402807d",
@@ -26620,7 +26650,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。",
+    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26637,7 +26667,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "4f359376-0be7-4aa1-b134-b593a10a1fbf",
@@ -26654,7 +26685,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。",
+    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26671,7 +26702,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "8e85d955-0138-430a-aaaf-fe5beb0de021",
@@ -26688,7 +26720,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。",
+    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26705,7 +26737,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "ba1ef429-2101-40a7-9649-3a3a72fe67c1",
@@ -26722,7 +26755,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。",
+    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26739,7 +26772,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "cd58bd8f-da48-4889-9cc5-a1723a41ef42",
@@ -26756,7 +26790,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。",
+    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26773,7 +26807,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "e3a3e7cb-a78c-4dae-b472-8c2e640e979a",
@@ -26790,7 +26825,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。",
+    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26807,7 +26842,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "8d7a3d26-a3b0-4483-aa18-9f97e3c5303e",
@@ -26824,7 +26860,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。",
+    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26841,7 +26877,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "19e677f4-4804-4a02-888d-a4f399c8aeed",
@@ -26858,7 +26895,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。",
+    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26875,7 +26912,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "d4ceff97-a06d-4557-8852-679fc47750f6",
@@ -26892,7 +26930,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。",
+    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26909,7 +26947,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "3c16a36d-0295-44e6-8060-5f5e50653670",
@@ -26926,7 +26965,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。",
+    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26943,7 +26982,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "658b1f02-dd4e-4c24-a894-9e49b76edfb1",
@@ -26960,7 +27000,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。",
+    "description": "许可原文待补。FJF 门户称可商用，协议原文尚未核对。包体以后再下。",
     "license": "待核实",
     "licenseName": "待核实",
     "licenseUrl": "",
@@ -26977,7 +27017,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "2ae54d72-578e-48fd-8493-05151c3a4be1",
@@ -26989,18 +27030,20 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "开源",
+      "OFL"
     ],
     "weights": [
-      "Regular"
+      "Medium",
+      "Bold"
     ],
-    "description": "许可原文待补。门户 logotype.jp 称可商用，ZIP 未钉、协议原文尚未核对。",
-    "license": "待核实",
-    "licenseName": "待核实",
-    "licenseUrl": "",
+    "description": "Corporate Logo Ver3。logotype.jp 官方 ZIP 内附 SIL Open Font License 1.1。字重 Medium、Bold。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://logotype.jp/corporate-logo-font-dl.html",
     "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": false,
+    "licenseNotes": "官方 ZIP 内附 SIL Open Font License 1.1。字重为 Medium 与 Bold。",
+    "licenseVerified": true,
     "purchaseUrl": null,
     "copyright": "",
     "foundry": "",
@@ -27009,8 +27052,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 10062,
+    "glyphCount": 10367,
     "viewCount": 0
   },
   {
@@ -27023,18 +27066,26 @@
     "designerShort": "—",
     "category": "",
     "tags": [
-      "待核实"
+      "免费商用"
     ],
     "weights": [
-      "Regular"
+      "Thin",
+      "ExtraLight",
+      "Light",
+      "Regular",
+      "Medium",
+      "DemiBold",
+      "Bold",
+      "ExtraBold",
+      "Black"
     ],
-    "description": "许可原文待补。缺包内协议全文。",
-    "license": "待核实",
-    "licenseName": "待核实",
-    "licenseUrl": "",
+    "description": "荣耀 Sans 简体（HONOR Sans CN）。官方包 HONOR Sans 1.0 内简体九档。厂商 Heavy（usWeight 900）在目录记为 Black，避免与 ExtraBold 同占 CSS 800。许可为 HONOR Sans Copyright License Agreement：免费、可嵌入、不可修改、不可单独再分发。",
+    "license": "免费商用",
+    "licenseName": "免费商用",
+    "licenseUrl": "https://contentplatform-drcn.hihonorcdn.com/developerPlatform/HONOR_Sans_1.0/HONOR_Sans_1.0.zip",
     "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": false,
+    "licenseNotes": "不可修改；禁止单独再分发或出售字体文件；允许嵌入作品与应用，软件内需显著声明使用了 HONOR Sans，并保留版权声明。",
+    "licenseVerified": true,
     "purchaseUrl": null,
     "copyright": "",
     "foundry": "",
@@ -27043,8 +27094,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 28738,
+    "glyphCount": 28678,
     "viewCount": 0
   },
   {
@@ -27063,7 +27114,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "装甲明朝，FLOP Design 基于思源宋体（Source Han Serif）改作。包体在 Booth 登录墙后，待下。",
+    "description": "装甲明朝，FLOP Design 基于思源宋体（Source Han Serif）改作。包来自 Font Squirrel 镜像，包内 SIL Open Font License 1.1。Booth 原页仍在登录墙后。",
     "license": "免费商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://flopdesign.booth.pm/items/1028555",
@@ -27078,8 +27129,8 @@
     "version": "shelf 2026-09-28",
     "languages": [],
     "useCases": [],
-    "charCount": 0,
-    "glyphCount": 0,
+    "charCount": 9804,
+    "glyphCount": 15444,
     "viewCount": 0
   },
   {
@@ -27097,7 +27148,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "やさしさゴシック Bold V2，FLOP Design 基于 M+ FONTS 改作。包体在 Booth 登录墙后，待下。",
+    "description": "やさしさゴシック Bold V2，FLOP Design 基于 M+ FONTS 改作。包体在 Booth 登录墙后，以后再下。",
     "license": "免费商用",
     "licenseName": "M+ FONTS PROJECT",
     "licenseUrl": "https://flopdesign.booth.pm/items/1833993",
@@ -27114,7 +27165,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "c5f85ea7-87e5-4a01-81a8-db97759964d9",
@@ -27131,7 +27183,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "鉄瓶ゴシック，FLOP Design 基于思源黑体（Source Han Sans）改作。包体在 Booth 登录墙后，待下。",
+    "description": "鉄瓶ゴシック，FLOP Design 基于思源黑体（Source Han Sans）改作。包体在 Booth 登录墙后，以后再下。",
     "license": "免费商用",
     "licenseName": "Apache License 2.0",
     "licenseUrl": "https://flopdesign.booth.pm/items/3970314",
@@ -27148,7 +27200,8 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   },
   {
     "id": "d011479d-271c-41f7-9cb9-0d7999695c71",
@@ -27165,7 +27218,7 @@
     "weights": [
       "Regular"
     ],
-    "description": "ふぉんとうは怖い明朝体，FLOP Design 基于 IPAex 明朝改作。包体在 Booth 登录墙后，待下。",
+    "description": "ふぉんとうは怖い明朝体，FLOP Design 基于 IPAex 明朝改作。包体在 Booth 登录墙后，以后再下。",
     "license": "免费商用",
     "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "https://flopdesign.booth.pm/items/6203503",
@@ -27182,6 +27235,7 @@
     "useCases": [],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 0
+    "viewCount": 0,
+    "filePending": true
   }
 ]

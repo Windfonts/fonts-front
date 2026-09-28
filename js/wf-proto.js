@@ -91,7 +91,7 @@
     if (path.indexOf('/admin') !== -1) return '../data/' + file;
     return '/data/' + file;
   }
-  const CATALOG_VER = '20260928shelf';
+  const CATALOG_VER = '20260928later';
   function catalogUrl() { return dataUrl('fonts.json?v=' + CATALOG_VER); }
   function catalogListUrl() { return dataUrl('fonts-list.json?v=' + CATALOG_VER); }
   function catalogDetailUrl() { return dataUrl('fonts-detail.json?v=' + CATALOG_VER); }
