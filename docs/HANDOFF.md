@@ -6,7 +6,7 @@
 
 **2026-09-28 停点：** 站酷小薇正名为「站酷小薇体」（宋体 / 站酷 / OFL），不再叫 LOGO 体、不再挂佐兹、不再写「需联系厂商」。吉利银河、上海摩登回货架，公共 CDN 仍关，站内预览走 `assets/fonts/preview`。寒蝉矩阵 / 矩黑继续不在清单。证书上传链未做。DNS 把 app 切到 OSS 仍 HOLD。Bot 会话与落盘分类见 `~/Projects/bot/archive/HANDOFF-2026-09-28.md`。本停点只入库，未 rsync 现网。
 
-**下一棒：** 先推这版目录到 feicode（现网仍是旧 LOGO 卡片）；vault `chineseName` 仍是「站酷小薇LOGO体」，重导会写回旧名。`v4-specimen` 是控制台身份分流 WIP，不合产。R17 点阵公共包 Depot 灌装未回 HEAD 计数。
+**下一棒（2026-09-28 午，对照会话 `e8e864d5`）：** `0ac15d8` 已在 `origin/main`，目录 471。现网页面仍未 rsync，公开站还可能是旧 LOGO 卡片。vault `fonts.chinese_name`（`wenfeng-zkxwt`）仍是「站酷小薇LOGO体」，`export-fonts.mjs` 用 `chineseName || name`，重导会把本地正名盖回去——先改库，再导出。不要 rsync，除非另外开口。`v4-specimen` 不合产。R17 点阵包等 Depot 回条数。会话收口见 §32。
 
 **已合（2026-09-25，wapuu）：** vault [#29](https://feicode.com/Windfonts/fonts-vault/pulls/29) pnpm Docker、[#30](https://feicode.com/Windfonts/fonts-vault/pulls/30) 品牌 CSS 门禁、[#31](https://feicode.com/Windfonts/fonts-vault/pulls/31) `/api/css` 错误 `no-store` → `main` @ `22454e0`。
 
@@ -694,3 +694,33 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 - 修法：lg-last 只给真正末子项（renderKids 按 lastIsLast 判定；折叠 li=可见末项）；折叠钮补横向接线（`.lg-fold::before` 与节点同款）。
 - 接缝收紧（外审两条）：层级步距 1.9→1.6rem；「永」字列改左对齐贴住接线（原居中导致竖线与文字之间视觉脱节）。修后外审「结构可读性明显改善，竖线与子项对齐良好，分层清晰」。
 - 回归：serif 13 行 12 轨 / 霞鹜 7/7 无折叠 / sans 15 行、墙 88 格单黑格 / 无溢出。
+
+## 32. 2026-09-28 会话 `e8e864d5` 收口
+
+会话 [Zcode session continuation](e8e864d5-c0ce-49cc-be4a-7fcf7bff988d)：2026-09-21 11:05 至 09-23 19:10，约 310 轮。它从更早的 zcode 会话接着做首页和全站，收尾停在「能进静态面的开源字都收」。09-23 晚到 09-28 的别的会话已经改过同一批页面和目录。下面只记还算数的决定，以及不要重做的部分。
+
+### 仍然有效
+
+- 首页保留当时的 hero。字林、统计格、库内结构、无外链的合作伙伴、底部「查看 API 文档」、半截「文派」水印跟 hero 字体走。
+- 页脚：版权所有 · 文风 ™ · © 2026 文派（广州）科技有限公司。ICP 留着。
+- 动态嵌入仍是 `{cn|hk|en}.windfonts.com/api/css?family=&weight=&version=`，family 用短码。禁止用 `fonts-packages` 路径顶替。地区开关要换全站引用。见 `.cursor/rules/cdn-embed-contract.mdc`。
+- 定价是三条产品线：云托管、开源自托管、私有化。私有字是用户已经买过的授权、自己托管。数字仍是占位，默认不露出。
+- 赞助走 Cravatar 收款码。没有码就用占位，提示前往上传或认领主页后修改。图标不用星星。
+- `*-options.html`、`v5-*`、`oss-audit.html`、`lab.html` 留档，不进生产入口，不删。
+- 屏显臻宋（`wenfeng-pxzs`）和思源屏显臻宋 CN（`wenfeng-sypscn`）是两套字，不能互顶。
+
+### 当时没做完、后来已经落地
+
+- 四路搜源子代理没有写出 `docs/_oss-ingest-batch2-*.json`。续跑把寒蝉像素体、寒蝉线体、思源等宽，以及芫荽、源泉圆、源样明/黑、昭源宋/黑/圆、朱雀仿宋写进目录（§10）。第三批约 45 款也已登记（§11）。目录现为 471。
+- 详情字重：包 CSS 里各档都写 `font-weight:400`，注入层先清掉再按真实档位写。寒蝉宽黑目录档是 Medium。谭黑拆成有机体 / 无机体。
+- 站酷小薇：本会话中途曾记成 LOGO 体、挂佐兹（§9.3）。`0ac15d8` 已改成「站酷小薇体」、宋体、站酷、SIL OFL 1.1。这条提交已在 `origin/main`。
+
+### 不要重开
+
+- 不要重做首页、页脚、定价三条线，也不要再扫一批「能进就进」的开源字。
+- 详情谱系后来做成 `lineage.html` 的谱/墙（§28–§31）。不要回到本会话里那版左列表、右树的双栏。
+- 仍不进：遍黑体（完整字是 TTC）、络黑（只有 VF）、寒蝉矩黑（只有 Demo）。
+
+### 这一棒
+
+先改 vault 里 `wenfeng-zkxwt` 的 `chinese_name`（以及会一起导出的分类、许可、厂商），再考虑重导。现网静态页还没 rsync。证书上传链和 `v4-specimen` 都不合产。
