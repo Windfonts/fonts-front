@@ -420,7 +420,7 @@
   function brandShort(font) { const b = brandInfo(font); return (b && (b.short || b.name)) || ''; }
   function brandSite(font) { const b = brandInfo(font); return (b && b.website) || (font && font.brand && font.brand.website) || ''; }
   function junkAvatar(url) {
-    return /identicon|cravatar\.(com|cn)\/avatar/i.test(url || '');
+    return /identicon|cravatar\.com\/avatar|cn\.cravatar\.com\/avatar/i.test(url || '');
   }
   /* 本地清单优先：按正在展示的厂商 id 取图，不看哪条目录碰巧写了 brand.avatarUrl */
   function resolveAvatar(url) {
