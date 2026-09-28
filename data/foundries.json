@@ -218,7 +218,7 @@
       "name": "云峰字库",
       "en": "Yunfeng Fonts",
       "short": "云峰",
-      "website": "",
+      "website": "https://www.zcool.com.cn/u/22214279",
       "aliases": [
         "云峰字库"
       ],
@@ -246,7 +246,7 @@
       "name": "寒蝉字型",
       "en": "ChillType",
       "short": "寒蝉",
-      "website": "https://github.com/Warren2060",
+      "website": "https://www.zcool.com.cn/u/12923697",
       "aliases": [
         "ChillType",
         "ChillType&Adobe"
@@ -616,7 +616,7 @@
       "name": "胡晓波字体工作室",
       "en": "Hu Xiaobo Type",
       "short": "胡晓波",
-      "website": "",
+      "website": "https://www.zcool.com.cn/u/553484",
       "aliases": [
         "胡晓波字体工作室",
         "胡晓波字库",
@@ -652,7 +652,7 @@
       "name": "荆南字坊",
       "en": "Jingnan Type",
       "short": "荆南",
-      "website": "",
+      "website": "https://www.zcool.com.cn/u/18646020",
       "aliases": [
         "荆南字坊",
         "荆南字坊 (Kingnam Typography)",
@@ -776,7 +776,7 @@
       "name": "庞门正道",
       "en": "Pangmen Zhengdao",
       "short": "庞门正道",
-      "website": "",
+      "website": "https://www.zcool.com.cn/u/ZNjE5OTcxNzY=",
       "aliases": [
         "庞门正道公众号",
         "庞门正道设计公众号与自由空间创意工作室",
@@ -792,7 +792,7 @@
       "name": "品如设计",
       "en": "Pinru Design",
       "short": "品如",
-      "website": "",
+      "website": "https://www.zcool.com.cn/u/721160",
       "aliases": [
         "品如设计",
         "Pinru"
@@ -1312,11 +1312,20 @@
         "Chun Yu Yao",
         "max32002",
         "狮尾",
-        "Swei"
+        "Swei",
+        "nanigashi",
+        "Nanigashitei",
+        "何某",
+        "何某手写体",
+        "NaniFont",
+        "何某手写"
       ],
       "kind": "project",
       "openSource": true,
-      "claimed": false
+      "claimed": false,
+      "fontNames": [
+        "何某手写体"
+      ]
     },
     {
       "id": "ipa",
@@ -1879,24 +1888,6 @@
       "openSource": true,
       "claimed": false,
       "description": "文津宋体、文渊宋黑圆。OFL 1.1。SuperHan 已停更，由文津接替。"
-    },
-    {
-      "id": "nanigashi",
-      "name": "Nanigashitei",
-      "en": "Nanigashitei",
-      "short": "何某",
-      "website": "https://github.com/max32002/nanifont",
-      "aliases": [
-        "何某手写体",
-        "NaniFont"
-      ],
-      "fontNames": [
-        "何某手写体"
-      ],
-      "kind": "author",
-      "openSource": true,
-      "claimed": false,
-      "description": "何某手写体。OFL 1.1。"
     },
     {
       "id": "itmarki",
@@ -2657,7 +2648,11 @@
         "z01",
         "逐浪",
         "江西逐浪软件科技有限公司",
-        "上海逐一软件科技有限公司"
+        "上海逐一软件科技有限公司",
+        "z01font",
+        "z01 fonts",
+        "ZoomlaMengyas",
+        "Zoomla!CMS"
       ],
       "kind": "foundry",
       "openSource": true,
@@ -2666,27 +2661,7 @@
         "逐浪萌芽字",
         "逐浪粗宋简体"
       ],
-      "description": "逐浪字库（ZoomlaCMS / z01）。官网 f.ziti163.com。开源仓 zoomla/ZoomlaFont（根 Apache-2.0；01 夹个人非商用勿 CDN）。萌芽另见 z01font。"
-    },
-    {
-      "id": "z01font",
-      "name": "z01font",
-      "en": "z01font",
-      "short": "z01font",
-      "website": "https://github.com/z01font",
-      "aliases": [
-        "z01 fonts",
-        "z01font",
-        "ZoomlaMengyas"
-      ],
-      "kind": "author",
-      "openSource": true,
-      "claimed": false,
-      "parentId": "zoomla",
-      "fontNames": [
-        "逐浪萌芽字"
-      ],
-      "description": "逐浪开源字体 GitHub 组织。ZoomlaMengyas（逐浪萌芽字）SIL OFL 1.1。"
+      "description": "逐浪字库（ZoomlaCMS / z01font）。官网 f.ziti163.com；开源仓 zoomla/ZoomlaFont（根 Apache-2.0）与 z01font/ZoomlaMengyas（OFL 1.1）同属一家。"
     },
     {
       "id": "8678c3f0-5136-493c-abd8-54984d39cd26",
@@ -2703,18 +2678,35 @@
       "openSource": true
     },
     {
-      "id": "aa854d83-ca33-4db2-afc0-07441e415b31",
+      "id": "steve-yuu",
       "name": "Steve-Yuu",
       "en": "Steve-Yuu",
       "short": "Steve-Yuu",
       "slug": "steve-yuu",
       "aliases": [
         "SteveYuu",
-        "Steve-Yuu"
+        "Steve-Yuu",
+        "steve-yuu",
+        "aa854d83-ca33-4db2-afc0-07441e415b31",
+        "Y式",
+        "YShi",
+        "Yuu"
       ],
       "kind": "author",
-      "website": "https://github.com/Steve-Yuu/Chuanqu",
-      "openSource": true
+      "website": "https://github.com/Steve-Yuu",
+      "openSource": true,
+      "claimed": false,
+      "fontNames": [
+        "传趣",
+        "納黑",
+        "写意体",
+        "Y式笔书",
+        "Y式新黑体",
+        "Y式明朝体",
+        "Y式源明朝",
+        "Yuu Gothic"
+      ],
+      "description": "Steve-Yuu 开源字体作者（github.com/Steve-Yuu）。在库：传趣、納黑、写意体、Y式笔书、Y式新黑体、Y式明朝体、Y式源明朝、Yuu Gothic。Ganju-Sans 空壳未挂。OFL 与 IPA 款并存（IPA 勿标 ofl_ok）。"
     },
     {
       "id": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
@@ -2728,7 +2720,7 @@
         "Honglei"
       ],
       "kind": "author",
-      "website": "https://www.100font.com/thread-1450.htm",
+      "website": "https://www.zcool.com.cn/u/12963257",
       "openSource": false
     },
     {
@@ -2745,6 +2737,44 @@
       "kind": "author",
       "website": "https://github.com/MEE-Developers/Mizuki-Gothic",
       "openSource": true
+    },
+    {
+      "id": "naver",
+      "name": "Naver",
+      "en": "Naver",
+      "short": "Naver",
+      "website": "https://github.com/naver/nanumfont",
+      "aliases": [
+        "Naver",
+        "나눔",
+        "Nanum",
+        "Nanum Gothic",
+        "네이버"
+      ],
+      "kind": "brand",
+      "openSource": true,
+      "claimed": false,
+      "fontNames": [
+        "Nanum Gothic"
+      ],
+      "description": "Naver 나눔글꼴 / Nanum fonts。納黑上游 Nanum Gothic。",
+      "provisional": true
+    },
+    {
+      "id": "tanugo",
+      "name": "Tanugo",
+      "en": "Tanugo",
+      "short": "Tanugo",
+      "website": "https://github.com/nagamaki008/tanugo",
+      "aliases": [
+        "Tanugo",
+        "たぬご"
+      ],
+      "kind": "project",
+      "openSource": true,
+      "claimed": false,
+      "provisional": true,
+      "description": "Tanugo 马克笔风格开源字体；霞鹜漫黑上游。"
     }
   ]
 }

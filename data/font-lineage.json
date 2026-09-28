@@ -162,6 +162,94 @@
     "zoomla-cusong": {
       "name": "逐浪粗宋简体 / ZoomlaCusong",
       "upstreamName": "逐浪粗宋简体"
+    },
+    "stick": {
+      "name": "Stick",
+      "upstreamName": ""
+    },
+    "zen-kurenaido": {
+      "name": "Zen Kurenaido",
+      "upstreamName": ""
+    },
+    "nanum-gothic": {
+      "name": "Nanum Gothic / 나눔고딕",
+      "upstreamName": ""
+    },
+    "ark-pixel": {
+      "name": "ark-pixel",
+      "upstreamName": ""
+    },
+    "dela-gothic": {
+      "name": "dela-gothic",
+      "upstreamName": ""
+    },
+    "jelly-pixel": {
+      "name": "jelly-pixel",
+      "upstreamName": ""
+    },
+    "qrcode-pixel": {
+      "name": "qrcode-pixel",
+      "upstreamName": ""
+    },
+    "rampart": {
+      "name": "rampart",
+      "upstreamName": ""
+    },
+    "reggae": {
+      "name": "reggae",
+      "upstreamName": ""
+    },
+    "train": {
+      "name": "train",
+      "upstreamName": ""
+    },
+    "zhuque-fangsong": {
+      "name": "zhuque-fangsong",
+      "upstreamName": ""
+    },
+    "qiji": {
+      "name": "qiji",
+      "upstreamName": ""
+    },
+    "lxgw-seal": {
+      "name": "lxgw-seal",
+      "upstreamName": ""
+    },
+    "zdic-qx": {
+      "name": "zdic-qx",
+      "upstreamName": ""
+    },
+    "huiwen-mincho": {
+      "name": "huiwen-mincho",
+      "upstreamName": ""
+    },
+    "zlabs-pixel-12": {
+      "name": "zlabs-pixel-12",
+      "upstreamName": ""
+    },
+    "zlabs-roundpix-16": {
+      "name": "zlabs-roundpix-16",
+      "upstreamName": ""
+    },
+    "yufan-danqing": {
+      "name": "yufan-danqing",
+      "upstreamName": ""
+    },
+    "boutique-bitmap-9": {
+      "name": "boutique-bitmap-9",
+      "upstreamName": "M+ BITMAP FONTS"
+    },
+    "hanazono": {
+      "name": "hanazono",
+      "upstreamName": "花园明朝"
+    },
+    "hemu": {
+      "name": "何某手写体",
+      "upstreamName": ""
+    },
+    "tanugo": {
+      "name": "Tanugo",
+      "upstreamName": ""
     }
   },
   "byName": {
@@ -570,8 +658,13 @@
     "霞鹜漫黑": {
       "ownerId": "lxgw",
       "makerId": "lxgw",
-      "relation": "original",
-      "licenseFollows": "own"
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamName": "Tanugo",
+      "upstreamOwnerId": "tanugo",
+      "group": "tanugo",
+      "family": "wenfeng-xwmh",
+      "normalized": "Xwmh"
     },
     "霞鹜文楷": {
       "ownerId": "lxgw",
@@ -2189,10 +2282,14 @@
       "upstreamName": "思源宋体"
     },
     "何某手写体": {
-      "ownerId": "nanigashi",
-      "makerId": "nanigashi",
+      "ownerId": "aqua",
+      "makerId": "aqua",
       "relation": "original",
-      "licenseFollows": "inherit"
+      "licenseFollows": "own",
+      "upstreamOwnerId": "aqua",
+      "group": "hemu",
+      "family": "wenfeng-nani",
+      "normalized": "Nani"
     },
     "黄凯桦律师手写体": {
       "ownerId": "huangkaihua",
@@ -3496,12 +3593,12 @@
       "normalized": "Zhaizaijia"
     },
     "逐浪萌芽字": {
-      "ownerId": "z01font",
+      "ownerId": "zoomla",
       "makerId": "zoomla",
       "group": "zoomla-mengyas",
       "relation": "original",
       "licenseFollows": "own",
-      "upstreamOwnerId": "z01font",
+      "upstreamOwnerId": "zoomla",
       "family": "wenfeng-zoomlamengyas",
       "normalized": "ZoomlaMengyas"
     },
@@ -3514,6 +3611,589 @@
       "upstreamOwnerId": "zoomla",
       "family": "wenfeng-zoomlacusong",
       "normalized": "ZoomlaCusong"
+    },
+    "传趣": {
+      "ownerId": "steve-yuu",
+      "makerId": "steve-yuu",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "group": "stick",
+      "upstreamName": "Stick",
+      "upstreamOwnerId": "fontworks",
+      "family": "wenfeng-chuanqu",
+      "normalized": "Chuanqu"
+    },
+    "納黑": {
+      "ownerId": "steve-yuu",
+      "makerId": "steve-yuu",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "group": "nanum-gothic",
+      "upstreamName": "Nanum Gothic",
+      "upstreamOwnerId": "naver",
+      "family": "wenfeng-nahei",
+      "normalized": "NaHei"
+    },
+    "写意体": {
+      "ownerId": "steve-yuu",
+      "makerId": "steve-yuu",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "group": "zen-kurenaido",
+      "upstreamName": "Zen Kurenaido",
+      "upstreamOwnerId": "google-fonts",
+      "family": "wenfeng-yshiwritten",
+      "normalized": "YShiWritten"
+    },
+    "Y式笔书": {
+      "ownerId": "steve-yuu",
+      "makerId": "steve-yuu",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "group": "lxgw-wenkai",
+      "upstreamName": "霞鹜文楷 TC",
+      "upstreamOwnerId": "lxgw",
+      "family": "wenfeng-yshipenshuti",
+      "normalized": "YShiPenShuti"
+    },
+    "Y式新黑体": {
+      "ownerId": "steve-yuu",
+      "makerId": "steve-yuu",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "group": "ipa-gothic",
+      "upstreamName": "霞鹜新晰黑",
+      "upstreamOwnerId": "lxgw",
+      "family": "wenfeng-yshinewhei",
+      "normalized": "YShiNewHei"
+    },
+    "Y式明朝体": {
+      "ownerId": "steve-yuu",
+      "makerId": "steve-yuu",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "group": "ipamj-mincho",
+      "upstreamName": "华英明朝",
+      "upstreamOwnerId": "guiwonder",
+      "family": "wenfeng-yshimincho",
+      "normalized": "YShiMincho"
+    },
+    "Y式源明朝": {
+      "ownerId": "steve-yuu",
+      "makerId": "steve-yuu",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "group": "source-han-serif",
+      "upstreamName": "思源宋体",
+      "upstreamOwnerId": "adobe",
+      "family": "wenfeng-yshiyuanminh",
+      "normalized": "YshiYuanMinh"
+    },
+    "Yuu Gothic": {
+      "ownerId": "steve-yuu",
+      "makerId": "steve-yuu",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "group": "source-han-sans",
+      "upstreamName": "思源黑体",
+      "upstreamOwnerId": "adobe",
+      "family": "wenfeng-yuugothic",
+      "normalized": "YuuGothic"
+    },
+    "Stick": {
+      "ownerId": "fontworks",
+      "makerId": "fontworks",
+      "group": "stick",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "fontworks"
+    },
+    "Zen Kurenaido": {
+      "ownerId": "google-fonts",
+      "makerId": "google-fonts",
+      "group": "zen-kurenaido",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "google-fonts"
+    },
+    "Nanum Gothic": {
+      "ownerId": "naver",
+      "makerId": "naver",
+      "group": "nanum-gothic",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "naver"
+    },
+    "方舟像素": {
+      "ownerId": "takwolf",
+      "makerId": "takwolf",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "takwolf",
+      "upstreamName": "方舟像素",
+      "group": "ark-pixel",
+      "family": "wenfeng-arkp",
+      "normalized": "Arkp"
+    },
+    "馒头黑体": {
+      "ownerId": "dela",
+      "makerId": "dela",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "dela",
+      "upstreamName": "Dela Gothic One",
+      "group": "dela-gothic",
+      "family": "wenfeng-dela",
+      "normalized": "Dela"
+    },
+    "果冻像素": {
+      "ownerId": "takwolf",
+      "makerId": "takwolf",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "takwolf",
+      "upstreamName": "果冻像素",
+      "group": "jelly-pixel",
+      "family": "wenfeng-jlpx",
+      "normalized": "Jlpx"
+    },
+    "二维码像素": {
+      "ownerId": "takwolf",
+      "makerId": "takwolf",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "takwolf",
+      "upstreamName": "二维码像素",
+      "group": "qrcode-pixel",
+      "family": "wenfeng-qrpx",
+      "normalized": "QRpx"
+    },
+    "Rampart One": {
+      "ownerId": "fontworks",
+      "makerId": "fontworks",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "fontworks",
+      "upstreamName": "Rampart One",
+      "group": "rampart",
+      "family": "wenfeng-rampart",
+      "normalized": "Rampart"
+    },
+    "Reggae One": {
+      "ownerId": "fontworks",
+      "makerId": "fontworks",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "fontworks",
+      "upstreamName": "Reggae One",
+      "group": "reggae",
+      "family": "wenfeng-reggae",
+      "normalized": "Reggae"
+    },
+    "Train One": {
+      "ownerId": "fontworks",
+      "makerId": "fontworks",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "fontworks",
+      "upstreamName": "Train One",
+      "group": "train",
+      "family": "wenfeng-train",
+      "normalized": "Train"
+    },
+    "朱雀仿宋": {
+      "ownerId": "triones",
+      "makerId": "triones",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "triones",
+      "upstreamName": "朱雀仿宋",
+      "group": "zhuque-fangsong",
+      "family": "wenfeng-zqfs",
+      "normalized": "Zqfs"
+    },
+    "齐伋体": {
+      "ownerId": "lingdong",
+      "makerId": "lingdong",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "lingdong",
+      "upstreamName": "齐伋体",
+      "group": "qiji",
+      "family": "wenfeng-qiji",
+      "normalized": "Qiji"
+    },
+    "霞鹜篆体": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "lxgw",
+      "upstreamName": "霞鹜篆体",
+      "group": "lxgw-seal",
+      "family": "wenfeng-xwzt",
+      "normalized": "Xwzt"
+    },
+    "汉典秦系文字体": {
+      "ownerId": "zdic",
+      "makerId": "zdic",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "zdic",
+      "upstreamName": "汉典秦系文字体",
+      "group": "zdic-qx",
+      "family": "wenfeng-zdicqx",
+      "normalized": "Zdicqx"
+    },
+    "汇文明朝": {
+      "ownerId": "huiwen",
+      "makerId": "huiwen",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "huiwen",
+      "upstreamName": "汇文明朝",
+      "group": "huiwen-mincho",
+      "family": "wenfeng-hwmc",
+      "normalized": "Hwmc"
+    },
+    "Z Labs 像素 12px": {
+      "ownerId": "astro-2539",
+      "makerId": "astro-2539",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "astro-2539",
+      "upstreamName": "Z Labs 像素 12px",
+      "group": "zlabs-pixel-12",
+      "family": "wenfeng-zlx12",
+      "normalized": "Zlx12"
+    },
+    "Z Labs 圆像素 16px": {
+      "ownerId": "astro-2539",
+      "makerId": "astro-2539",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "astro-2539",
+      "upstreamName": "Z Labs 圆像素 16px",
+      "group": "zlabs-roundpix-16",
+      "family": "wenfeng-zlrp16",
+      "normalized": "Zlrp16"
+    },
+    "余繁丹青宋": {
+      "ownerId": "yufan",
+      "makerId": "yufan",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "yufan",
+      "upstreamName": "余繁丹青宋",
+      "group": "yufan-danqing",
+      "family": "wenfeng-yydq",
+      "normalized": "Yydq"
+    },
+    "余繁细柳": {
+      "ownerId": "yufan",
+      "makerId": "yufan",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "yufan",
+      "upstreamName": "余繁细柳",
+      "group": "yufan-danqing",
+      "family": "wenfeng-yyxl",
+      "normalized": "Yyxl"
+    },
+    "余繁新语": {
+      "ownerId": "yufan",
+      "makerId": "yufan",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "yufan",
+      "upstreamName": "余繁新语",
+      "group": "yufan-danqing",
+      "family": "wenfeng-yyxy",
+      "normalized": "Yyxy"
+    },
+    "余繁真素": {
+      "ownerId": "yufan",
+      "makerId": "yufan",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "yufan",
+      "upstreamName": "余繁真素",
+      "group": "yufan-danqing",
+      "family": "wenfeng-yyzs",
+      "normalized": "Yyzs"
+    },
+    "精品点阵体7x7": {
+      "ownerId": "scott0107000",
+      "makerId": "scott0107000",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "littlelimit",
+      "upstreamName": "美咲ゴシック",
+      "group": "littlelimit-bitmap",
+      "family": "wenfeng-bb7",
+      "normalized": "Bb7"
+    },
+    "精品点阵体9x9": {
+      "ownerId": "scott0107000",
+      "makerId": "scott0107000",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "mplus",
+      "upstreamName": "M+ BITMAP FONTS",
+      "group": "boutique-bitmap-9",
+      "family": "wenfeng-bb9",
+      "normalized": "Bb9"
+    },
+    "精品点阵体": {
+      "ownerId": "boutique",
+      "makerId": "boutique",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "mplus",
+      "upstreamName": "M+ BITMAP FONTS",
+      "group": "boutique-bitmap-9",
+      "family": "wenfeng-jpdz",
+      "normalized": "Jpdz"
+    },
+    "流行点阵体16": {
+      "ownerId": "scott0107000",
+      "makerId": "scott0107000",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "font-silo",
+      "upstreamName": "KHドットフォントシリーズ",
+      "group": "kh-dot-font-series",
+      "family": "wenfeng-fb16",
+      "normalized": "Fb16"
+    },
+    "黑糖梅子糖": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans",
+      "family": "wenfeng-bspsc",
+      "normalized": "Bspsc"
+    },
+    "飞花宋体": {
+      "ownerId": "skr-zero",
+      "makerId": "skr-zero",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "hanamin",
+      "upstreamName": "花园明朝",
+      "group": "hanazono",
+      "family": "wenfeng-ffs",
+      "normalized": "Ffs"
+    },
+    "缝合像素": {
+      "ownerId": "takwolf",
+      "makerId": "takwolf",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "takwolf",
+      "upstreamName": "方舟像素",
+      "group": "ark-pixel",
+      "family": "wenfeng-fupx",
+      "normalized": "Fupx"
+    },
+    "滑油字": {
+      "ownerId": "wdxl",
+      "makerId": "wdxl",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "zcool",
+      "upstreamName": "站酷庆科黄油体",
+      "group": "zcool",
+      "family": "wenfeng-hyzi",
+      "normalized": "Hyzi"
+    },
+    "Kalo 黑体": {
+      "ownerId": "kalooos0",
+      "makerId": "kalooos0",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans",
+      "family": "wenfeng-kalo",
+      "normalized": "Kalo"
+    },
+    "空缘黑体": {
+      "ownerId": "xiangcui",
+      "makerId": "xiangcui",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源黑体",
+      "group": "source-han-sans",
+      "family": "wenfeng-kys",
+      "normalized": "Kys"
+    },
+    "苦累蛙圆体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "google-fonts",
+      "upstreamName": "Zen Kurenaido",
+      "group": "zen-kurenaido",
+      "family": "wenfeng-kywa",
+      "normalized": "Kywa"
+    },
+    "正风毛笔": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "aoyagi-kouzan",
+      "upstreamName": "衡山毛笔",
+      "family": "wenfeng-masa",
+      "normalized": "Masa"
+    },
+    "马路口圆体": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "google-fonts",
+      "upstreamName": "Zen Maru Gothic",
+      "family": "wenfeng-mlyu",
+      "normalized": "Mlyu"
+    },
+    "B2花园": {
+      "ownerId": "aqua",
+      "makerId": "aqua",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "hanamin",
+      "upstreamName": "花园明朝",
+      "group": "hanazono",
+      "family": "wenfeng-mxhn",
+      "normalized": "Mxhn"
+    },
+    "秋水书体": {
+      "ownerId": "qiushui",
+      "makerId": "qiushui",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "lxgw",
+      "upstreamName": "霞鹜文楷",
+      "group": "lxgw-wenkai",
+      "family": "wenfeng-qsst",
+      "normalized": "Qsst"
+    },
+    "无界黑": {
+      "ownerId": "unbounded",
+      "makerId": "unbounded",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "dela",
+      "upstreamName": "馒头黑体",
+      "group": "dela-gothic",
+      "family": "wenfeng-ubss",
+      "normalized": "Ubss"
+    },
+    "香萃潮汐宋": {
+      "ownerId": "xiangcui",
+      "makerId": "xiangcui",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体",
+      "group": "source-han-serif",
+      "family": "wenfeng-xccx",
+      "normalized": "Xccx"
+    },
+    "香萃汲学宋": {
+      "ownerId": "xiangcui",
+      "makerId": "xiangcui",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体",
+      "group": "source-han-serif",
+      "family": "wenfeng-xcjx",
+      "normalized": "Xcjx"
+    },
+    "香萃刻宋": {
+      "ownerId": "xiangcui",
+      "makerId": "xiangcui",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体",
+      "group": "source-han-serif",
+      "family": "wenfeng-xcks",
+      "normalized": "Xcks"
+    },
+    "香萃打字机体": {
+      "ownerId": "xiangcui",
+      "makerId": "xiangcui",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体",
+      "group": "source-han-serif",
+      "family": "wenfeng-xcdj",
+      "normalized": "Xcdj"
+    },
+    "香萃打字机": {
+      "ownerId": "xiangcui",
+      "makerId": "xiangcui",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体",
+      "group": "source-han-serif",
+      "family": "wenfeng-xcdz",
+      "normalized": "Xcdz"
+    },
+    "香萃自在舒畅黑": {
+      "ownerId": "xiangcui",
+      "makerId": "xiangcui",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "welai",
+      "upstreamName": "未来荧黑",
+      "group": "source-han-sans",
+      "family": "wenfeng-xczzsch",
+      "normalized": "Xczzsch"
+    },
+    "晓声通秋茄": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "lxgw",
+      "upstreamName": "霞鹜文楷",
+      "group": "lxgw-wenkai",
+      "family": "wenfeng-xstq",
+      "normalized": "Xstq"
+    },
+    "Z Labs 点阵 港标": {
+      "ownerId": "astro-2539",
+      "makerId": "astro-2539",
+      "relation": "locale",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "astro-2539",
+      "upstreamName": "Z Labs 像素 12px",
+      "group": "zlabs-pixel-12",
+      "family": "wenfeng-zlhc",
+      "normalized": "Zlhc"
+    },
+    "Z Labs 点阵 日标": {
+      "ownerId": "astro-2539",
+      "makerId": "astro-2539",
+      "relation": "locale",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "astro-2539",
+      "upstreamName": "Z Labs 像素 12px",
+      "group": "zlabs-pixel-12",
+      "family": "wenfeng-zljp",
+      "normalized": "Zljp"
     }
   }
 }

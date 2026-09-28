@@ -145,7 +145,7 @@
       "name": "Alibaba Design",
       "slug": "alibaba-design",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/alibaba-design.webp",
       "website": "",
       "description": "Alibaba Design出品的字体"
     },
@@ -199,7 +199,7 @@
       "name": "Alibaba Design",
       "slug": "alibaba-design",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/alibaba-design.webp",
       "website": "",
       "description": "Alibaba Design出品的字体"
     },
@@ -249,7 +249,7 @@
       "name": "Alibaba Design",
       "slug": "alibaba-design",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/alibaba-design.webp",
       "website": "",
       "description": "Alibaba Design出品的字体"
     },
@@ -347,7 +347,7 @@
       "name": "Alibaba Design",
       "slug": "alibaba-design",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/alibaba-design.webp",
       "website": "",
       "description": "Alibaba Design出品的字体"
     },
@@ -397,7 +397,7 @@
       "name": "Alibaba Design",
       "slug": "alibaba-design",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/alibaba-design.webp",
       "website": "",
       "description": "Alibaba Design出品的字体"
     },
@@ -448,7 +448,7 @@
       "name": "Alibaba Design",
       "slug": "alibaba-design",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/alibaba-design.webp",
       "website": "",
       "description": "Alibaba Design出品的字体"
     },
@@ -496,7 +496,7 @@
       "name": "狼人小林 (TakWolf)",
       "slug": "takwolf",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/takwolf.webp",
       "website": "https://github.com/TakWolf",
       "description": "像素字体作者：方舟像素、缝合像素、果冻像素、怀旧像素等。"
     },
@@ -545,7 +545,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -593,7 +593,7 @@
       "name": "猫啃网 (Maoken)",
       "slug": "maoken",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/maoken.webp",
       "website": "",
       "description": "Maoken出品的字体"
     },
@@ -632,7 +632,7 @@
       "name": "字言字语 (scott0107000)",
       "slug": "scott0107000",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/scott0107000.webp",
       "website": "https://github.com/scott0107000",
       "description": "精品点阵体系列、夜照飞点阵、天王星像素作者。"
     },
@@ -677,7 +677,7 @@
       "name": "字言字语 (scott0107000)",
       "slug": "scott0107000",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/scott0107000.webp",
       "website": "https://github.com/scott0107000",
       "description": "精品点阵体系列、夜照飞点阵、天王星像素作者。"
     },
@@ -722,7 +722,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -769,7 +769,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -929,7 +929,7 @@
       "name": "yzdnn",
       "slug": "yzdnn",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/yzdnn.webp",
       "website": "https://github.com/yzdnn",
       "description": "yzdnn 像素补字：长坂点宋系列、KH Dot 衍生与 DotGothic/k6x8 衍生。OFL 1.1。"
     },
@@ -1009,7 +1009,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -1058,7 +1058,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -1157,7 +1157,7 @@
       "name": "花乐",
       "slug": "fwhp",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fwhp.webp",
       "website": "https://github.com/FWHP-Enfun",
       "description": "FWHP。把别人的开源字改成自己的一份，许可随各款字体。"
     },
@@ -1605,7 +1605,7 @@
       "name": "GuiWonder",
       "slug": "guiwonder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/guiwonder.webp",
       "website": "https://github.com/GuiWonder",
       "description": "GuiWonder 的开源字体。"
     },
@@ -1697,7 +1697,7 @@
       "name": "钉钉",
       "slug": "dingtalk",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/dingtalk.webp",
       "website": "https://www.dingtalk.com",
       "description": ""
     },
@@ -1875,7 +1875,7 @@
       "name": "Dela Gothic",
       "slug": "dela",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/dela.webp",
       "website": "https://github.com/syakuzen/DelaGothic",
       "description": "Dela Gothic One，粗黑体。SIL OFL 1.1。"
     },
@@ -2019,7 +2019,7 @@
       "name": "Fontworks",
       "slug": "fontworks",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fontworks.webp",
       "website": "",
       "description": "Fontworks Inc."
     },
@@ -2101,7 +2101,7 @@
       "name": "atelierAnchor",
       "slug": "atelier-anchor",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/atelier-anchor.webp",
       "website": "",
       "description": "atelierAnchor出品的字体"
     },
@@ -2152,7 +2152,7 @@
       "name": "字节跳动",
       "slug": "bytedance",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/bytedance.webp",
       "website": "https://www.bytedance.com",
       "description": ""
     },
@@ -2203,7 +2203,7 @@
       "name": "DouYu",
       "slug": "douyu",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/douyu.webp",
       "website": "https://www.douyu.com",
       "description": "斗鱼是中国知名游戏直播平台，推出斗鱼追光体作为品牌字体，充满竞技与速度感，免费授权全社会使用包括商用。"
     },
@@ -2250,7 +2250,7 @@
       "name": "字言字语 (scott0107000)",
       "slug": "scott0107000",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/scott0107000.webp",
       "website": "https://github.com/scott0107000",
       "description": "精品点阵体系列、夜照飞点阵、天王星像素作者。"
     },
@@ -2295,7 +2295,7 @@
       "name": "Skr-ZERO",
       "slug": "skr-zero",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/skr-zero.webp",
       "website": "https://github.com/Skr-ZERO",
       "description": "玄冬楷书、飞花宋体作者；猫啃什锦黑繁体版维护者。"
     },
@@ -2340,7 +2340,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -2387,7 +2387,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -2434,7 +2434,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -2488,7 +2488,7 @@
       "name": "械黑计划 (Frex Sans Project)",
       "slug": "frex-sans",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/frex-sans.webp",
       "website": "https://github.com/maoken-fonts/frex-sans",
       "description": "修复 IBM Plex Sans SC 简中字形并补齐字重的开源字体计划，出品械黑（Frex Sans）。"
     },
@@ -2534,7 +2534,7 @@
       "name": "狼人小林 (TakWolf)",
       "slug": "takwolf",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/takwolf.webp",
       "website": "https://github.com/TakWolf",
       "description": "像素字体作者：方舟像素、缝合像素、果冻像素、怀旧像素等。"
     },
@@ -2582,7 +2582,7 @@
       "name": "FounderType",
       "slug": "founder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/founder.webp",
       "website": "https://www.foundertype.com",
       "description": "国内成立最早的专业字库公司之一，隶属北京北大方正电子有限公司，已推出数千款中西文字体，提供商业授权、定制字体等全场景字体服务。"
     },
@@ -2625,7 +2625,7 @@
       "name": "FounderType",
       "slug": "founder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/founder.webp",
       "website": "https://www.foundertype.com",
       "description": "国内成立最早的专业字库公司之一，隶属北京北大方正电子有限公司，已推出数千款中西文字体，提供商业授权、定制字体等全场景字体服务。"
     },
@@ -2668,7 +2668,7 @@
       "name": "FounderType",
       "slug": "founder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/founder.webp",
       "website": "https://www.foundertype.com",
       "description": "国内成立最早的专业字库公司之一，隶属北京北大方正电子有限公司，已推出数千款中西文字体，提供商业授权、定制字体等全场景字体服务。"
     },
@@ -2711,7 +2711,7 @@
       "name": "FounderType",
       "slug": "founder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/founder.webp",
       "website": "https://www.foundertype.com",
       "description": "国内成立最早的专业字库公司之一，隶属北京北大方正电子有限公司，已推出数千款中西文字体，提供商业授权、定制字体等全场景字体服务。"
     },
@@ -2888,7 +2888,7 @@
       "name": "更纱",
       "slug": "sarasa",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/sarasa.webp",
       "website": "https://github.com/be5invis/Sarasa-Gothic",
       "description": "更纱黑体，Belleve Invis。SIL OFL 1.1。"
     },
@@ -2937,7 +2937,7 @@
       "name": "更纱",
       "slug": "sarasa",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/sarasa.webp",
       "website": "https://github.com/be5invis/Sarasa-Gothic",
       "description": "更纱黑体，Belleve Invis。SIL OFL 1.1。"
     },
@@ -2982,7 +2982,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -4008,7 +4008,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -4061,7 +4061,7 @@
       "name": "GuiWonder",
       "slug": "guiwonder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/guiwonder.webp",
       "website": "https://github.com/GuiWonder",
       "description": "GuiWonder 的开源字体。"
     },
@@ -4110,7 +4110,7 @@
       "name": "GuiWonder",
       "slug": "guiwonder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/guiwonder.webp",
       "website": "https://github.com/GuiWonder",
       "description": "GuiWonder 的开源字体。"
     },
@@ -4252,7 +4252,7 @@
       "name": "汇文",
       "slug": "huiwen",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/huiwen.webp",
       "website": "https://github.com/bosswnx/huiwenmincho-improved",
       "description": "汇文明朝修正版，CC0 1.0。"
     },
@@ -4300,7 +4300,7 @@
       "name": "胡晓波工作室",
       "slug": "huxiaobo",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/huxiaobo.webp",
       "website": "",
       "description": "HUXIAOBO出品的字体"
     },
@@ -4349,7 +4349,7 @@
       "name": "胡晓波工作室",
       "slug": "huxiaobo",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/huxiaobo.webp",
       "website": "",
       "description": "HUXIAOBO出品的字体"
     },
@@ -4399,7 +4399,7 @@
       "name": "胡晓波工作室",
       "slug": "huxiaobo",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/huxiaobo.webp",
       "website": "",
       "description": "HUXIAOBO出品的字体"
     },
@@ -4449,7 +4449,7 @@
       "name": "花乐",
       "slug": "fwhp",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fwhp.webp",
       "website": "https://github.com/FWHP-Enfun",
       "description": "FWHP。把别人的开源字改成自己的一份，许可随各款字体。"
     },
@@ -4583,7 +4583,7 @@
       "name": "GuiWonder",
       "slug": "guiwonder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/guiwonder.webp",
       "website": "https://github.com/GuiWonder",
       "description": "GuiWonder 的开源字体。"
     },
@@ -4670,7 +4670,7 @@
       "name": "WD-XL",
       "slug": "wdxl",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/wdxl.webp",
       "website": "https://github.com/NightFurySL2001/WD-XL-font",
       "description": "滑油字。OFL 1.1。"
     },
@@ -4764,7 +4764,7 @@
       "name": "IBM",
       "slug": "ibm",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/ibm.webp",
       "website": "https://www.ibm.com/plex/",
       "description": ""
     },
@@ -4812,7 +4812,7 @@
       "name": "情報処理推進機構 (IPA)",
       "slug": "ipa",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/ipa.webp",
       "website": "https://moji.or.jp/ipafont/",
       "description": ""
     },
@@ -4893,7 +4893,7 @@
       "name": "花乐",
       "slug": "fwhp",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fwhp.webp",
       "website": "https://github.com/FWHP-Enfun",
       "description": "FWHP。把别人的开源字改成自己的一份，许可随各款字体。"
     },
@@ -4937,7 +4937,7 @@
       "name": "花乐",
       "slug": "fwhp",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fwhp.webp",
       "website": "https://github.com/FWHP-Enfun",
       "description": "FWHP。把别人的开源字改成自己的一份，许可随各款字体。"
     },
@@ -4981,7 +4981,7 @@
       "name": "花乐",
       "slug": "fwhp",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fwhp.webp",
       "website": "https://github.com/FWHP-Enfun",
       "description": "FWHP。把别人的开源字改成自己的一份，许可随各款字体。"
     },
@@ -5025,7 +5025,7 @@
       "name": "狼人小林 (TakWolf)",
       "slug": "takwolf",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/takwolf.webp",
       "website": "https://github.com/TakWolf",
       "description": "像素字体作者：方舟像素、缝合像素、果冻像素、怀旧像素等。"
     },
@@ -5076,7 +5076,7 @@
       "name": "FounderType",
       "slug": "founder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/founder.webp",
       "website": "https://www.foundertype.com",
       "description": "国内成立最早的专业字库公司之一，隶属北京北大方正电子有限公司，已推出数千款中西文字体，提供商业授权、定制字体等全场景字体服务。"
     },
@@ -5313,7 +5313,7 @@
       "name": "字言字语",
       "slug": "boutique",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/boutique.webp",
       "website": "https://github.com/scott0107000/BoutiqueBitmap9x9",
       "description": "精品点阵体。可免费使用、复制、修改和分发。不是 SIL OFL。"
     },
@@ -5359,7 +5359,7 @@
       "name": "金山云 (Kingsoft Cloud)",
       "slug": "kingsoft-cloud",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/kingsoft-cloud.webp",
       "website": "https://www.ksyun.com",
       "description": "Kingsoft Cloud出品的字体"
     },
@@ -5411,7 +5411,7 @@
       "name": "黄煜臣",
       "slug": "huangyuchen",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/huangyuchen.webp",
       "website": "https://www.zcool.com.cn/u/653645",
       "description": "独立字体作者，「江西拙楷体」作者。"
     },
@@ -5563,7 +5563,7 @@
       "name": "Kalooos0",
       "slug": "kalooos0",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/kalooos0.webp",
       "website": "https://github.com/Kalooos0",
       "description": "Kalo 黑体作者。"
     },
@@ -5608,7 +5608,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -5656,7 +5656,7 @@
       "name": "Kuaikan KKDC",
       "slug": "kuaikan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/kuaikan.webp",
       "website": "https://www.kuaikanmanhua.com",
       "description": "快看（快看漫画）是中国领先的漫画平台，其设计中心KKDC推出快看世界体，融入ACGN文化元素，年轻潮流风格，免费授权全社会商用。"
     },
@@ -5706,7 +5706,7 @@
       "name": "Fontworks",
       "slug": "fontworks",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fontworks.webp",
       "website": "",
       "description": "Fontworks Inc."
     },
@@ -5755,7 +5755,7 @@
       "name": "I.字坊 (一点字坊)",
       "slug": "ichiten",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/ichiten.webp",
       "website": "",
       "description": "I.字坊 (一点字坊)出品的字体"
     },
@@ -5885,7 +5885,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -5930,7 +5930,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -5977,7 +5977,7 @@
       "name": "I.字坊 (一点字坊)",
       "slug": "ichiten",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/ichiten.webp",
       "website": "",
       "description": "I.字坊 (一点字坊)出品的字体"
     },
@@ -6027,7 +6027,7 @@
       "name": "I.字坊 (一点字坊)",
       "slug": "ichiten",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/ichiten.webp",
       "website": "",
       "description": "I.字坊 (一点字坊)出品的字体"
     },
@@ -6075,7 +6075,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -6122,7 +6122,7 @@
       "name": "香萃",
       "slug": "xiangcui",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/xiangcui.webp",
       "website": "https://github.com/Miiiller",
       "description": "香萃（Xiangcui / Miiiller）开源字体系列：刻宋、等粗宋、自在、打字机/打字机体、潮汐宋、零度黑、汲学宋、端庄宋体、自在舒畅黑、空缘黑体等。OFL 1.1。"
     },
@@ -6169,7 +6169,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -6478,7 +6478,7 @@
       "name": "LY Corporation",
       "slug": "lineseed",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lineseed.webp",
       "website": "https://github.com/line/seed",
       "description": "LINE Seed TW。字内写 OFL 1.1。"
     },
@@ -6562,7 +6562,7 @@
       "name": "LogoSC",
       "slug": "logosc",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/logosc.webp",
       "website": "",
       "description": "龙珠体。OFL 1.1。标小智是注册商标。"
     },
@@ -6605,7 +6605,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -6655,7 +6655,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -6710,7 +6710,7 @@
       "name": "小米 Xiaomi",
       "slug": "xiaomi",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/xiaomi.webp",
       "website": "https://www.xiaomi.com",
       "description": ""
     },
@@ -6768,7 +6768,7 @@
       "name": "小米 Xiaomi",
       "slug": "xiaomi",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/xiaomi.webp",
       "website": "https://www.xiaomi.com",
       "description": ""
     },
@@ -6816,7 +6816,7 @@
       "name": "ItMarki",
       "slug": "itmarki",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/itmarki.webp",
       "website": "https://github.com/ItMarki/jyunsaikaai",
       "description": "芫茜雅楷。基于 Klee。OFL 1.1。"
     },
@@ -6859,7 +6859,7 @@
       "name": "ItMarki",
       "slug": "itmarki",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/itmarki.webp",
       "website": "https://github.com/ItMarki/jyunsaikaai",
       "description": "芫茜雅楷。基于 Klee。OFL 1.1。"
     },
@@ -6902,7 +6902,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -6949,7 +6949,7 @@
       "name": "猫啃网 (Maoken)",
       "slug": "maoken",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/maoken.webp",
       "website": "",
       "description": "Maoken出品的字体"
     },
@@ -6994,7 +6994,7 @@
       "name": "猫啃网 (Maoken)",
       "slug": "maoken",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/maoken.webp",
       "website": "",
       "description": "Maoken出品的字体"
     },
@@ -7041,7 +7041,7 @@
       "name": "猫啃网 (Maoken)",
       "slug": "maoken",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/maoken.webp",
       "website": "",
       "description": "Maoken出品的字体"
     },
@@ -7090,7 +7090,7 @@
       "name": "Skr-ZERO",
       "slug": "skr-zero",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/skr-zero.webp",
       "website": "https://github.com/Skr-ZERO",
       "description": "玄冬楷书、飞花宋体作者；猫啃什锦黑繁体版维护者。"
     },
@@ -7137,7 +7137,7 @@
       "name": "猫啃网 (Maoken)",
       "slug": "maoken",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/maoken.webp",
       "website": "",
       "description": "Maoken出品的字体"
     },
@@ -7188,7 +7188,7 @@
       "name": "猫啃网 (Maoken)",
       "slug": "maoken",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/maoken.webp",
       "website": "",
       "description": "Maoken出品的字体"
     },
@@ -7238,7 +7238,7 @@
       "name": "猫啃网 (Maoken)",
       "slug": "maoken",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/maoken.webp",
       "website": "",
       "description": "Maoken出品的字体"
     },
@@ -7291,7 +7291,7 @@
       "name": "猫啃网 (Maoken)",
       "slug": "maoken",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/maoken.webp",
       "website": "",
       "description": "Maoken出品的字体"
     },
@@ -7336,7 +7336,7 @@
       "name": "猫啃网 (Maoken)",
       "slug": "maoken",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/maoken.webp",
       "website": "",
       "description": "Maoken出品的字体"
     },
@@ -7384,7 +7384,7 @@
       "name": "猫啃网 (Maoken)",
       "slug": "maoken",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/maoken.webp",
       "website": "",
       "description": "Maoken出品的字体"
     },
@@ -7431,7 +7431,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -7474,7 +7474,7 @@
       "name": "M+ FONTS PROJECT",
       "slug": "mplus",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/mplus.webp",
       "website": "",
       "description": "M+ FONTS PROJECT"
     },
@@ -7521,7 +7521,7 @@
       "name": "M+ FONTS PROJECT",
       "slug": "mplus",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/mplus.webp",
       "website": "",
       "description": "M+ FONTS PROJECT"
     },
@@ -7568,7 +7568,7 @@
       "name": "M+ FONTS PROJECT",
       "slug": "mplus",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/mplus.webp",
       "website": "",
       "description": "M+ FONTS PROJECT"
     },
@@ -7613,7 +7613,7 @@
       "name": "M+ FONTS PROJECT",
       "slug": "mplus",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/mplus.webp",
       "website": "",
       "description": "M+ FONTS PROJECT"
     },
@@ -7658,7 +7658,7 @@
       "name": "M+ FONTS PROJECT",
       "slug": "mplus",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/mplus.webp",
       "website": "",
       "description": "M+ FONTS PROJECT"
     },
@@ -7703,7 +7703,7 @@
       "name": "M+ FONTS PROJECT",
       "slug": "mplus",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/mplus.webp",
       "website": "",
       "description": "M+ FONTS PROJECT"
     },
@@ -7748,7 +7748,7 @@
       "name": "M+ FONTS PROJECT",
       "slug": "mplus",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/mplus.webp",
       "website": "",
       "description": "M+ FONTS PROJECT"
     },
@@ -7793,7 +7793,7 @@
       "name": "M+ FONTS PROJECT",
       "slug": "mplus",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/mplus.webp",
       "website": "",
       "description": "M+ FONTS PROJECT"
     },
@@ -7838,7 +7838,7 @@
       "name": "M+ FONTS PROJECT",
       "slug": "mplus",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/mplus.webp",
       "website": "",
       "description": "M+ FONTS PROJECT"
     },
@@ -7883,7 +7883,7 @@
       "name": "M+ FONTS PROJECT",
       "slug": "mplus",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/mplus.webp",
       "website": "",
       "description": "M+ FONTS PROJECT"
     },
@@ -7928,7 +7928,7 @@
       "name": "M+ FONTS PROJECT",
       "slug": "mplus",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/mplus.webp",
       "website": "",
       "description": "M+ FONTS PROJECT"
     },
@@ -7973,7 +7973,7 @@
       "name": "M+ FONTS PROJECT",
       "slug": "mplus",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/mplus.webp",
       "website": "",
       "description": "M+ FONTS PROJECT"
     },
@@ -8107,7 +8107,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -8154,7 +8154,7 @@
       "name": "花乐",
       "slug": "fwhp",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fwhp.webp",
       "website": "https://github.com/FWHP-Enfun",
       "description": "FWHP。把别人的开源字改成自己的一份，许可随各款字体。"
     },
@@ -8198,7 +8198,7 @@
       "name": "花乐",
       "slug": "fwhp",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fwhp.webp",
       "website": "https://github.com/FWHP-Enfun",
       "description": "FWHP。把别人的开源字改成自己的一份，许可随各款字体。"
     },
@@ -8242,7 +8242,7 @@
       "name": "花乐",
       "slug": "fwhp",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fwhp.webp",
       "website": "https://github.com/FWHP-Enfun",
       "description": "FWHP。把别人的开源字改成自己的一份，许可随各款字体。"
     },
@@ -8286,7 +8286,7 @@
       "name": "花乐",
       "slug": "fwhp",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fwhp.webp",
       "website": "https://github.com/FWHP-Enfun",
       "description": "FWHP。把别人的开源字改成自己的一份，许可随各款字体。"
     },
@@ -8330,7 +8330,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -8425,10 +8425,10 @@
     "copyright": "Copyright (c) 2016-2020, Nanigashitei.",
     "foundry": "Nanigashitei",
     "brand": {
-      "name": "Nanigashitei",
-      "slug": "nanigashi",
+      "name": "Aqua（阿杰）",
+      "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "何某手写体 NaniFont。OFL 1.1。"
     },
@@ -8475,7 +8475,7 @@
       "name": "字言字语 (scott0107000)",
       "slug": "scott0107000",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/scott0107000.webp",
       "website": "https://github.com/scott0107000",
       "description": "精品点阵体系列、夜照飞点阵、天王星像素作者。"
     },
@@ -8520,7 +8520,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -8673,7 +8673,7 @@
       "name": "OPPO",
       "slug": "oppo",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/oppo.webp",
       "website": "https://www.oppo.com",
       "description": ""
     },
@@ -8724,7 +8724,7 @@
       "name": "庞门正道",
       "slug": "pangmen",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/pangmen.webp",
       "website": "",
       "description": "PangMenZhengDao出品的字体"
     },
@@ -8811,7 +8811,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -8860,7 +8860,7 @@
       "name": "庞门正道",
       "slug": "pangmen",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/pangmen.webp",
       "website": "",
       "description": "PangMenZhengDao出品的字体"
     },
@@ -8909,7 +8909,7 @@
       "name": "庞门正道",
       "slug": "pangmen",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/pangmen.webp",
       "website": "",
       "description": "PangMenZhengDao出品的字体"
     },
@@ -8958,7 +8958,7 @@
       "name": "庞门正道",
       "slug": "pangmen",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/pangmen.webp",
       "website": "",
       "description": "PangMenZhengDao出品的字体"
     },
@@ -9005,7 +9005,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -9145,7 +9145,7 @@
       "name": "澳声通",
       "slug": "toneoz",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/toneoz.webp",
       "website": "https://github.com/jeffreyxuan/toneoz-font-pinyin-wenkai",
       "description": "澳声通拼音文楷。SIL OFL 1.1。"
     },
@@ -9190,7 +9190,7 @@
       "name": "Lingdong Huang",
       "slug": "lingdong",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lingdong.webp",
       "website": "https://github.com/LingDong-/qiji-font",
       "description": "齐伋体。OFL 1.1。"
     },
@@ -9233,7 +9233,7 @@
       "name": "ChiuMing-Neko",
       "slug": "chiukong",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/chiukong.webp",
       "website": "https://github.com/ChiuMing-Neko/ChiuKongGothic",
       "description": "秋空黑体。基于思源黑体。OFL 1.1。"
     },
@@ -9277,7 +9277,7 @@
       "name": "ChiuMing-Neko",
       "slug": "chiukong",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/chiukong.webp",
       "website": "https://github.com/ChiuMing-Neko/ChiuKongGothic",
       "description": "秋空黑体。基于思源黑体。OFL 1.1。"
     },
@@ -9321,7 +9321,7 @@
       "name": "狼人小林 (TakWolf)",
       "slug": "takwolf",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/takwolf.webp",
       "website": "https://github.com/TakWolf",
       "description": "像素字体作者：方舟像素、缝合像素、果冻像素、怀旧像素等。"
     },
@@ -9366,7 +9366,7 @@
       "name": "NoHeartPen",
       "slug": "qiushui",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/qiushui.webp",
       "website": "https://github.com/NoHeartPen/QiushuiShotai",
       "description": "秋水书体。OFL 1.1。"
     },
@@ -9410,7 +9410,7 @@
       "name": "NoHeartPen",
       "slug": "qiushui",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/qiushui.webp",
       "website": "https://github.com/NoHeartPen/QiushuiShotai",
       "description": "秋水书体。OFL 1.1。"
     },
@@ -9506,7 +9506,7 @@
       "name": "千图网 (58pic)",
       "slug": "qiantu",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/qiantu.webp",
       "website": "https://www.58pic.com/",
       "description": "综合设计素材平台，提供图片、模板、字体等素材下载，VIP会员制商用授权模式。隶属上海图魂网络科技有限公司。"
     },
@@ -9556,7 +9556,7 @@
       "name": "千图网 (58pic)",
       "slug": "qiantu",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/qiantu.webp",
       "website": "https://www.58pic.com/",
       "description": "综合设计素材平台，提供图片、模板、字体等素材下载，VIP会员制商用授权模式。隶属上海图魂网络科技有限公司。"
     },
@@ -9605,7 +9605,7 @@
       "name": "千图网 (58pic)",
       "slug": "qiantu",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/qiantu.webp",
       "website": "https://www.58pic.com/",
       "description": "综合设计素材平台，提供图片、模板、字体等素材下载，VIP会员制商用授权模式。隶属上海图魂网络科技有限公司。"
     },
@@ -9657,7 +9657,7 @@
       "name": "千图网 (58pic)",
       "slug": "qiantu",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/qiantu.webp",
       "website": "https://www.58pic.com/",
       "description": "综合设计素材平台，提供图片、模板、字体等素材下载，VIP会员制商用授权模式。隶属上海图魂网络科技有限公司。"
     },
@@ -9705,7 +9705,7 @@
       "name": "千图网 (58pic)",
       "slug": "qiantu",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/qiantu.webp",
       "website": "https://www.58pic.com/",
       "description": "综合设计素材平台，提供图片、模板、字体等素材下载，VIP会员制商用授权模式。隶属上海图魂网络科技有限公司。"
     },
@@ -9754,7 +9754,7 @@
       "name": "千图网 (58pic)",
       "slug": "qiantu",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/qiantu.webp",
       "website": "https://www.58pic.com/",
       "description": "综合设计素材平台，提供图片、模板、字体等素材下载，VIP会员制商用授权模式。隶属上海图魂网络科技有限公司。"
     },
@@ -9840,7 +9840,7 @@
       "name": "全字库",
       "slug": "cns11643",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/cns11643.webp",
       "website": "https://data.gov.tw/license",
       "description": "全字库正宋、正楷。属台湾省。开放政府数据授权 1.0。"
     },
@@ -9883,7 +9883,7 @@
       "name": "全字库",
       "slug": "cns11643",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/cns11643.webp",
       "website": "https://data.gov.tw/license",
       "description": "全字库正宋、正楷。属台湾省。开放政府数据授权 1.0。"
     },
@@ -9926,7 +9926,7 @@
       "name": "Fontworks",
       "slug": "fontworks",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fontworks.webp",
       "website": "",
       "description": "Fontworks Inc."
     },
@@ -9973,7 +9973,7 @@
       "name": "Fontworks",
       "slug": "fontworks",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fontworks.webp",
       "website": "",
       "description": "Fontworks Inc."
     },
@@ -10215,7 +10215,7 @@
       "name": "GuiWonder",
       "slug": "guiwonder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/guiwonder.webp",
       "website": "https://github.com/GuiWonder",
       "description": "GuiWonder 的开源字体。"
     },
@@ -10267,7 +10267,7 @@
       "name": "GuiWonder",
       "slug": "guiwonder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/guiwonder.webp",
       "website": "https://github.com/GuiWonder",
       "description": "GuiWonder 的开源字体。"
     },
@@ -10317,7 +10317,7 @@
       "name": "GuiWonder",
       "slug": "guiwonder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/guiwonder.webp",
       "website": "https://github.com/GuiWonder",
       "description": "GuiWonder 的开源字体。"
     },
@@ -10368,7 +10368,7 @@
       "name": "GuiWonder",
       "slug": "guiwonder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/guiwonder.webp",
       "website": "https://github.com/GuiWonder",
       "description": "GuiWonder 的开源字体。"
     },
@@ -10414,7 +10414,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -10459,7 +10459,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -10504,7 +10504,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -10549,7 +10549,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -10643,7 +10643,7 @@
       "name": "44670",
       "slug": "44670",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/44670.webp",
       "website": "https://github.com/44670",
       "description": "思源黑体像素化作者。"
     },
@@ -10694,7 +10694,7 @@
       "name": "人生哥",
       "slug": "keynote",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/keynote.webp",
       "website": "https://github.com/maoken-fonts/slidefont",
       "description": "Keynote 研究所人生哥。演示系列 / SlideFont 作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。"
     },
@@ -10744,7 +10744,7 @@
       "name": "人生哥",
       "slug": "keynote",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/keynote.webp",
       "website": "https://github.com/maoken-fonts/slidefont",
       "description": "Keynote 研究所人生哥。演示系列 / SlideFont 作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。"
     },
@@ -10794,7 +10794,7 @@
       "name": "人生哥",
       "slug": "keynote",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/keynote.webp",
       "website": "https://github.com/maoken-fonts/slidefont",
       "description": "Keynote 研究所人生哥。演示系列 / SlideFont 作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。"
     },
@@ -10844,7 +10844,7 @@
       "name": "人生哥",
       "slug": "keynote",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/keynote.webp",
       "website": "https://github.com/maoken-fonts/slidefont",
       "description": "Keynote 研究所人生哥。演示系列 / SlideFont 作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。"
     },
@@ -10888,7 +10888,7 @@
       "name": "人生哥",
       "slug": "keynote",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/keynote.webp",
       "website": "https://github.com/maoken-fonts/slidefont",
       "description": "Keynote 研究所。演示系列的作者。"
     },
@@ -10938,7 +10938,7 @@
       "name": "人生哥",
       "slug": "keynote",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/keynote.webp",
       "website": "https://github.com/maoken-fonts/slidefont",
       "description": "Keynote 研究所人生哥。演示系列 / SlideFont 作者。正式开源仓 maoken-fonts/slidefont，OFL 1.1。"
     },
@@ -10982,7 +10982,7 @@
       "name": "Adobe",
       "slug": "adobe",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/adobe.webp",
       "website": "https://www.adobe.com",
       "description": "全球领先的创意软件公司，与Google合作开发思源黑体/宋体（Source Han Sans/Serif），采用SIL OFL开源协议，是CJK字体领域最重要的贡献者之一。"
     },
@@ -11021,7 +11021,7 @@
       "name": "Adobe",
       "slug": "adobe",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/adobe.webp",
       "website": "https://www.adobe.com",
       "description": "全球领先的创意软件公司，与Google合作开发思源黑体/宋体（Source Han Sans/Serif），采用SIL OFL开源协议，是CJK字体领域最重要的贡献者之一。"
     },
@@ -11060,7 +11060,7 @@
       "name": "Adobe",
       "slug": "adobe",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/adobe.webp",
       "website": "https://www.adobe.com",
       "description": "全球领先的创意软件公司，与Google合作开发思源黑体/宋体（Source Han Sans/Serif），采用SIL OFL开源协议，是CJK字体领域最重要的贡献者之一。"
     },
@@ -11099,7 +11099,7 @@
       "name": "Adobe",
       "slug": "adobe",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/adobe.webp",
       "website": "https://www.adobe.com",
       "description": "全球领先的创意软件公司，与Google合作开发思源黑体/宋体（Source Han Sans/Serif），采用SIL OFL开源协议，是CJK字体领域最重要的贡献者之一。"
     },
@@ -11266,7 +11266,7 @@
       "name": "Fontworks",
       "slug": "fontworks",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fontworks.webp",
       "website": "",
       "description": "Fontworks Inc."
     },
@@ -11313,7 +11313,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11360,7 +11360,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11407,7 +11407,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11454,7 +11454,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11501,7 +11501,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11548,7 +11548,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11595,7 +11595,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11642,7 +11642,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11689,7 +11689,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11736,7 +11736,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11783,7 +11783,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11830,7 +11830,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11877,7 +11877,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11924,7 +11924,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -11971,7 +11971,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12018,7 +12018,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12065,7 +12065,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12112,7 +12112,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12159,7 +12159,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12206,7 +12206,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12253,7 +12253,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12300,7 +12300,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12347,7 +12347,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12394,7 +12394,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12441,7 +12441,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12572,7 +12572,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12619,7 +12619,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12666,7 +12666,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12713,7 +12713,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12760,7 +12760,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12807,7 +12807,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12854,7 +12854,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12901,7 +12901,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12948,7 +12948,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -12995,7 +12995,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13042,7 +13042,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13089,7 +13089,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13136,7 +13136,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13183,7 +13183,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13230,7 +13230,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13277,7 +13277,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13324,7 +13324,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13371,7 +13371,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13418,7 +13418,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13465,7 +13465,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13512,7 +13512,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13559,7 +13559,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13606,7 +13606,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13653,7 +13653,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13700,7 +13700,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13747,7 +13747,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13794,7 +13794,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13841,7 +13841,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13888,7 +13888,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13935,7 +13935,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -13982,7 +13982,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -14037,7 +14037,7 @@
       "name": "Adobe",
       "slug": "adobe",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/adobe.webp",
       "website": "https://www.adobe.com",
       "description": "全球领先的创意软件公司，与Google合作开发思源黑体/宋体（Source Han Sans/Serif），采用SIL OFL开源协议，是CJK字体领域最重要的贡献者之一。"
     },
@@ -14095,7 +14095,7 @@
       "name": "Adobe",
       "slug": "adobe",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/adobe.webp",
       "website": "https://www.adobe.com",
       "description": "全球领先的创意软件公司，与Google合作开发思源黑体/宋体（Source Han Sans/Serif），采用SIL OFL开源协议，是CJK字体领域最重要的贡献者之一。"
     },
@@ -14140,7 +14140,7 @@
       "name": "Adobe",
       "slug": "adobe",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/adobe.webp",
       "website": "https://www.adobe.com",
       "description": "全球领先的创意软件公司，与Google合作开发思源黑体/宋体（Source Han Sans/Serif），采用SIL OFL开源协议，是CJK字体领域最重要的贡献者之一。"
     },
@@ -14191,7 +14191,7 @@
       "name": "Adobe",
       "slug": "adobe",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/adobe.webp",
       "website": "https://www.adobe.com",
       "description": "全球领先的创意软件公司，与Google合作开发思源黑体/宋体（Source Han Sans/Serif），采用SIL OFL开源协议，是CJK字体领域最重要的贡献者之一。"
     },
@@ -14238,7 +14238,7 @@
       "name": "GuiWonder",
       "slug": "guiwonder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/guiwonder.webp",
       "website": "https://github.com/GuiWonder",
       "description": "GuiWonder 的开源字体。"
     },
@@ -14284,7 +14284,7 @@
       "name": "GuiWonder",
       "slug": "guiwonder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/guiwonder.webp",
       "website": "https://github.com/GuiWonder",
       "description": "GuiWonder 的开源字体。"
     },
@@ -14332,7 +14332,7 @@
       "name": "摄图网 (699pic)",
       "slug": "shetu",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/shetu.webp",
       "website": "https://699pic.com",
       "description": "摄图网（699pic.com）是中国正版摄影图片素材平台，推出摄图摩登小方体作为公益免费商用字体，创意个性化黑体风格。"
     },
@@ -14386,7 +14386,7 @@
       "name": "Adobe",
       "slug": "adobe",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/adobe.webp",
       "website": "https://www.adobe.com",
       "description": "全球领先的创意软件公司，与Google合作开发思源黑体/宋体（Source Han Sans/Serif），采用SIL OFL开源协议，是CJK字体领域最重要的贡献者之一。"
     },
@@ -14440,7 +14440,7 @@
       "name": "Adobe",
       "slug": "adobe",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/adobe.webp",
       "website": "https://www.adobe.com",
       "description": "全球领先的创意软件公司，与Google合作开发思源黑体/宋体（Source Han Sans/Serif），采用SIL OFL开源协议，是CJK字体领域最重要的贡献者之一。"
     },
@@ -14497,7 +14497,7 @@
       "name": "Adobe",
       "slug": "adobe",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/adobe.webp",
       "website": "https://www.adobe.com",
       "description": "全球领先的创意软件公司，与Google合作开发思源黑体/宋体（Source Han Sans/Serif），采用SIL OFL开源协议，是CJK字体领域最重要的贡献者之一。"
     },
@@ -14542,7 +14542,7 @@
       "name": "Adobe",
       "slug": "adobe",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/adobe.webp",
       "website": "https://www.adobe.com",
       "description": "全球领先的创意软件公司，与Google合作开发思源黑体/宋体（Source Han Sans/Serif），采用SIL OFL开源协议，是CJK字体领域最重要的贡献者之一。"
     },
@@ -14587,7 +14587,7 @@
       "name": "Alibaba Design",
       "slug": "alibaba-design",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/alibaba-design.webp",
       "website": "",
       "description": "Alibaba Design出品的字体"
     },
@@ -14634,7 +14634,7 @@
       "name": "Buernia",
       "slug": "buernia",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/buernia.webp",
       "website": "https://github.com/Buernia",
       "description": "独立字体作者，煮豆黑体与铁蒺藜体作者。"
     },
@@ -14680,7 +14680,7 @@
       "name": "Fontworks",
       "slug": "fontworks",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fontworks.webp",
       "website": "",
       "description": "Fontworks Inc."
     },
@@ -14727,7 +14727,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -14768,7 +14768,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -14809,7 +14809,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -14850,7 +14850,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -14891,7 +14891,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -14932,7 +14932,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -14971,7 +14971,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15012,7 +15012,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15053,7 +15053,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15094,7 +15094,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15135,7 +15135,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15176,7 +15176,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15217,7 +15217,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15258,7 +15258,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15299,7 +15299,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15340,7 +15340,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15381,7 +15381,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15422,7 +15422,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15463,7 +15463,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15504,7 +15504,7 @@
       "name": "仓耳字库 (Tsanger)",
       "slug": "tsanger",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/tsanger.webp",
       "website": "https://www.makefont.com",
       "description": "创建于2010年，专注汉字新字体字形设计与开发，团队由资深商业设计师和专业字体设计师组成，产品涵盖黑体、宋体、艺术字体、手书系列。"
     },
@@ -15638,7 +15638,7 @@
       "name": "微软 (Microsoft)",
       "slug": "microsoft",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/microsoft.webp",
       "website": "",
       "description": "微软 (Microsoft)出品的字体"
     },
@@ -15684,7 +15684,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -15731,7 +15731,7 @@
       "name": "Unbounded Sans",
       "slug": "unbounded",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/unbounded.webp",
       "website": "",
       "description": "无界黑 Unbounded Sans。不是 Dela Gothic One。OFL 1.1。"
     },
@@ -15917,7 +15917,7 @@
       "name": "字言字语 (scott0107000)",
       "slug": "scott0107000",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/scott0107000.webp",
       "website": "https://github.com/scott0107000",
       "description": "精品点阵体系列、夜照飞点阵、天王星像素作者。"
     },
@@ -16006,7 +16006,7 @@
       "name": "Takushun Wu",
       "slug": "takushun",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/takushun.webp",
       "website": "https://github.com/takushun-wu",
       "description": "Takushun Wu。文津宋体、文渊宋黑圆。OFL 1.1。"
     },
@@ -16049,7 +16049,7 @@
       "name": "Takushun Wu",
       "slug": "takushun",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/takushun.webp",
       "website": "https://github.com/takushun-wu",
       "description": "Takushun Wu。文津宋体、文渊宋黑圆。OFL 1.1。"
     },
@@ -16095,7 +16095,7 @@
       "name": "未来荧坊",
       "slug": "welai",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/welai.webp",
       "website": "https://github.com/welai",
       "description": "未来荧黑（Glow Sans）开源项目。基于思源黑体的参数化衍生，MIT 授权。"
     },
@@ -16144,7 +16144,7 @@
       "name": "文泉驿 (WenQuanYi)",
       "slug": "wenquanyi",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/wenquanyi.webp",
       "website": "",
       "description": "WenQuanYi出品的字体"
     },
@@ -16197,7 +16197,7 @@
       "name": "文泉驿 (WenQuanYi)",
       "slug": "wenquanyi",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/wenquanyi.webp",
       "website": "",
       "description": "WenQuanYi出品的字体"
     },
@@ -16248,7 +16248,7 @@
       "name": "文泉驿 (WenQuanYi)",
       "slug": "wenquanyi",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/wenquanyi.webp",
       "website": "",
       "description": "WenQuanYi出品的字体"
     },
@@ -16295,7 +16295,7 @@
       "name": "文泉驿 (WenQuanYi)",
       "slug": "wenquanyi",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/wenquanyi.webp",
       "website": "",
       "description": "WenQuanYi出品的字体"
     },
@@ -16346,7 +16346,7 @@
       "name": "文泉驿 (WenQuanYi)",
       "slug": "wenquanyi",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/wenquanyi.webp",
       "website": "",
       "description": "WenQuanYi出品的字体"
     },
@@ -16445,7 +16445,7 @@
       "name": "Takushun Wu",
       "slug": "takushun",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/takushun.webp",
       "website": "https://github.com/takushun-wu",
       "description": "Takushun Wu。文津宋体、文渊宋黑圆。OFL 1.1。"
     },
@@ -16491,7 +16491,7 @@
       "name": "Takushun Wu",
       "slug": "takushun",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/takushun.webp",
       "website": "https://github.com/takushun-wu",
       "description": "Takushun Wu。文津宋体、文渊宋黑圆。OFL 1.1。"
     },
@@ -16537,7 +16537,7 @@
       "name": "Takushun Wu",
       "slug": "takushun",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/takushun.webp",
       "website": "https://github.com/takushun-wu",
       "description": "Takushun Wu。文津宋体、文渊宋黑圆。OFL 1.1。"
     },
@@ -16580,7 +16580,7 @@
       "name": "香萃",
       "slug": "xiangcui",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/xiangcui.webp",
       "website": "https://github.com/Miiiller",
       "description": "香萃（Xiangcui / Miiiller）开源字体系列：刻宋、等粗宋、自在、打字机/打字机体、潮汐宋、零度黑、汲学宋、端庄宋体、自在舒畅黑、空缘黑体等。OFL 1.1。"
     },
@@ -16623,7 +16623,7 @@
       "name": "香萃",
       "slug": "xiangcui",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/xiangcui.webp",
       "website": "https://github.com/Miiiller",
       "description": "香萃（Xiangcui / Miiiller）开源字体系列：刻宋、等粗宋、自在、打字机/打字机体、潮汐宋、零度黑、汲学宋、端庄宋体、自在舒畅黑、空缘黑体等。OFL 1.1。"
     },
@@ -16667,7 +16667,7 @@
       "name": "香萃",
       "slug": "xiangcui",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/xiangcui.webp",
       "website": "https://github.com/Miiiller",
       "description": "香萃（Xiangcui / Miiiller）开源字体系列：刻宋、等粗宋、自在、打字机/打字机体、潮汐宋、零度黑、汲学宋、端庄宋体、自在舒畅黑、空缘黑体等。OFL 1.1。"
     },
@@ -16712,7 +16712,7 @@
       "name": "香萃",
       "slug": "xiangcui",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/xiangcui.webp",
       "website": "https://github.com/Miiiller",
       "description": "香萃（Xiangcui / Miiiller）开源字体系列：刻宋、等粗宋、自在、打字机/打字机体、潮汐宋、零度黑、汲学宋、端庄宋体、自在舒畅黑、空缘黑体等。OFL 1.1。"
     },
@@ -16755,7 +16755,7 @@
       "name": "香萃",
       "slug": "xiangcui",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/xiangcui.webp",
       "website": "https://github.com/Miiiller",
       "description": "香萃（Xiangcui / Miiiller）开源字体系列：刻宋、等粗宋、自在、打字机/打字机体、潮汐宋、零度黑、汲学宋、端庄宋体、自在舒畅黑、空缘黑体等。OFL 1.1。"
     },
@@ -16800,7 +16800,7 @@
       "name": "香萃",
       "slug": "xiangcui",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/xiangcui.webp",
       "website": "https://github.com/Miiiller",
       "description": "香萃（Xiangcui / Miiiller）开源字体系列：刻宋、等粗宋、自在、打字机/打字机体、潮汐宋、零度黑、汲学宋、端庄宋体、自在舒畅黑、空缘黑体等。OFL 1.1。"
     },
@@ -16844,7 +16844,7 @@
       "name": "香萃",
       "slug": "xiangcui",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/xiangcui.webp",
       "website": "https://github.com/Miiiller",
       "description": "香萃（Xiangcui / Miiiller）开源字体系列：刻宋、等粗宋、自在、打字机/打字机体、潮汐宋、零度黑、汲学宋、端庄宋体、自在舒畅黑、空缘黑体等。OFL 1.1。"
     },
@@ -16887,7 +16887,7 @@
       "name": "香萃",
       "slug": "xiangcui",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/xiangcui.webp",
       "website": "https://github.com/Miiiller",
       "description": "香萃（Xiangcui / Miiiller）开源字体系列：刻宋、等粗宋、自在、打字机/打字机体、潮汐宋、零度黑、汲学宋、端庄宋体、自在舒畅黑、空缘黑体等。OFL 1.1。"
     },
@@ -16932,7 +16932,7 @@
       "name": "Skr-ZERO",
       "slug": "skr-zero",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/skr-zero.webp",
       "website": "https://github.com/Skr-ZERO",
       "description": "玄冬楷书、飞花宋体作者；猫啃什锦黑繁体版维护者。"
     },
@@ -17029,7 +17029,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17068,7 +17068,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17183,7 +17183,7 @@
       "name": "但",
       "slug": "buttaiwan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/buttaiwan.webp",
       "website": "https://github.com/ButTaiwan",
       "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
     },
@@ -17278,7 +17278,7 @@
       "name": "澳声通",
       "slug": "toneoz",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/toneoz.webp",
       "website": "https://github.com/jeffreyxuan/toneoz-font-pinyin-wenkai",
       "description": "澳声通拼音文楷。SIL OFL 1.1。"
     },
@@ -17326,7 +17326,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17378,7 +17378,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17469,7 +17469,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17516,7 +17516,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17563,7 +17563,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17610,7 +17610,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17657,7 +17657,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17704,7 +17704,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17756,7 +17756,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17809,7 +17809,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17860,7 +17860,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17906,7 +17906,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -17952,7 +17952,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18000,7 +18000,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18050,7 +18050,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18097,7 +18097,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18144,7 +18144,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18191,7 +18191,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18240,7 +18240,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18290,7 +18290,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18337,7 +18337,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18384,7 +18384,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18433,7 +18433,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18481,7 +18481,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18527,7 +18527,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18573,7 +18573,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18619,7 +18619,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -18668,7 +18668,7 @@
       "name": "斜月",
       "slug": "smiley-moon",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/smiley-moon.webp",
       "website": "https://github.com/onichan0923/smiley-moon",
       "description": "斜月体，得意黑加宽屏显版。SIL OFL 1.1。"
     },
@@ -18815,7 +18815,7 @@
       "name": "MoneMizuno",
       "slug": "genne",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/genne.webp",
       "website": "https://github.com/MoneMizuno/Genne-Gothic",
       "description": "源音黑体 Genne Gothic。基于思源黑体。OFL 1.1。"
     },
@@ -18901,7 +18901,7 @@
       "name": "佑字",
       "slug": "yuji",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/yuji.webp",
       "website": "https://github.com/Kinutafontfactory/Yuji",
       "description": "佑字肃（Yuji Syuku）。SIL OFL 1.1。"
     },
@@ -18949,7 +18949,7 @@
       "name": "但",
       "slug": "buttaiwan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/buttaiwan.webp",
       "website": "https://github.com/ButTaiwan",
       "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
     },
@@ -18994,7 +18994,7 @@
       "name": "LXGW",
       "slug": "lxgw",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/lxgw.webp",
       "website": "",
       "description": "LXGW出品的字体"
     },
@@ -19081,7 +19081,7 @@
       "name": "但",
       "slug": "buttaiwan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/buttaiwan.webp",
       "website": "https://github.com/ButTaiwan",
       "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
     },
@@ -19129,7 +19129,7 @@
       "name": "但",
       "slug": "buttaiwan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/buttaiwan.webp",
       "website": "https://github.com/ButTaiwan",
       "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
     },
@@ -19176,7 +19176,7 @@
       "name": "ItMarki",
       "slug": "itmarki",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/itmarki.webp",
       "website": "https://github.com/ItMarki/jyunsaikaai",
       "description": "芫茜雅楷。基于 Klee。OFL 1.1。"
     },
@@ -19223,7 +19223,7 @@
       "name": "但",
       "slug": "buttaiwan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/buttaiwan.webp",
       "website": "https://github.com/ButTaiwan",
       "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
     },
@@ -19302,7 +19302,7 @@
       "name": "优设 (UISDC)",
       "slug": "uisdc",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/uisdc.webp",
       "website": "https://www.uisdc.com",
       "description": "国内知名设计师学习平台，2012年成立。联合字由团队推出优设标题黑、优设好身体等免费商用字体，永久免费授权全社会使用包括商业用途。"
     },
@@ -19394,7 +19394,7 @@
       "name": "但",
       "slug": "buttaiwan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/buttaiwan.webp",
       "website": "https://github.com/ButTaiwan",
       "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
     },
@@ -19439,7 +19439,7 @@
       "name": "但",
       "slug": "buttaiwan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/buttaiwan.webp",
       "website": "https://github.com/ButTaiwan",
       "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
     },
@@ -19484,7 +19484,7 @@
       "name": "人生哥",
       "slug": "keynote",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/keynote.webp",
       "website": "https://github.com/maoken-fonts/slidefont",
       "description": "Keynote 研究所。演示系列的作者。"
     },
@@ -19530,7 +19530,7 @@
       "name": "但",
       "slug": "buttaiwan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/buttaiwan.webp",
       "website": "https://github.com/ButTaiwan",
       "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
     },
@@ -19575,7 +19575,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -19620,7 +19620,7 @@
       "name": "Aqua",
       "slug": "aqua",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/aqua.webp",
       "website": "",
       "description": "Aqua / max32002"
     },
@@ -19669,7 +19669,7 @@
       "name": "GuiWonder",
       "slug": "guiwonder",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/guiwonder.webp",
       "website": "https://github.com/GuiWonder",
       "description": "GuiWonder 的开源字体。"
     },
@@ -19714,7 +19714,7 @@
       "name": "余繁",
       "slug": "yufan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/yufan.webp",
       "website": "",
       "description": "余繁丹青宋、真素、细柳。OFL。"
     },
@@ -19760,7 +19760,7 @@
       "name": "但",
       "slug": "buttaiwan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/buttaiwan.webp",
       "website": "https://github.com/ButTaiwan",
       "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
     },
@@ -19808,7 +19808,7 @@
       "name": "但",
       "slug": "buttaiwan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/buttaiwan.webp",
       "website": "https://github.com/ButTaiwan",
       "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
     },
@@ -19853,7 +19853,7 @@
       "name": "余繁",
       "slug": "yufan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/yufan.webp",
       "website": "",
       "description": "余繁丹青宋、真素、细柳。OFL。"
     },
@@ -19896,7 +19896,7 @@
       "name": "余繁",
       "slug": "yufan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/yufan.webp",
       "website": "",
       "description": "余繁丹青宋、真素、细柳。OFL。"
     },
@@ -19939,7 +19939,7 @@
       "name": "余繁",
       "slug": "yufan",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/yufan.webp",
       "website": "",
       "description": "余繁丹青宋、真素、细柳。OFL。"
     },
@@ -20039,7 +20039,7 @@
       "name": "Buernia",
       "slug": "buernia",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/buernia.webp",
       "website": "https://github.com/Buernia",
       "description": "独立字体作者，煮豆黑体与铁蒺藜体作者。"
     },
@@ -20085,7 +20085,7 @@
       "name": "汉典",
       "slug": "zdic",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/zdic.webp",
       "website": "https://github.com/AlainAlan/zdic-qx-font",
       "description": "汉典秦系文字体。CC0 1.0。"
     },
@@ -20129,7 +20129,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -20174,7 +20174,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -20219,7 +20219,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -20264,7 +20264,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -20309,7 +20309,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -20355,7 +20355,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -20402,7 +20402,7 @@
       "name": "Google",
       "slug": "google-fonts",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/google-fonts.webp",
       "website": "https://fonts.google.com",
       "description": "Google Fonts 开源字体计划。"
     },
@@ -20449,7 +20449,7 @@
       "name": "字魂网",
       "slug": "zihun",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/zihun.webp",
       "website": "https://izihun.com/",
       "description": "原创字体设计与授权平台，提供大量原创中文字体，支持VIP会员制和单字体授权两种商用模式。"
     },
@@ -20546,7 +20546,7 @@
       "name": "站酷字库",
       "slug": "zcool",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/zcool.webp",
       "website": "",
       "description": "站酷字库出品的字体"
     },
@@ -20595,7 +20595,7 @@
       "name": "胡晓波工作室",
       "slug": "huxiaobo",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/huxiaobo.webp",
       "website": "",
       "description": "HUXIAOBO出品的字体"
     },
@@ -20648,7 +20648,7 @@
       "name": "站酷字库",
       "slug": "zcool",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/zcool.webp",
       "website": "",
       "description": "站酷字库出品的字体"
     },
@@ -20700,7 +20700,7 @@
       "name": "站酷字库",
       "slug": "zcool",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/zcool.webp",
       "website": "",
       "description": "站酷字库出品的字体"
     },
@@ -20801,7 +20801,7 @@
       "name": "Z Labs (Astro-2539)",
       "slug": "astro-2539",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/astro-2539.webp",
       "website": "https://github.com/Astro-2539",
       "description": "Z Labs 像素字体系列作者。"
     },
@@ -20846,7 +20846,7 @@
       "name": "Z Labs (Astro-2539)",
       "slug": "astro-2539",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/astro-2539.webp",
       "website": "https://github.com/Astro-2539",
       "description": "Z Labs 像素字体系列作者。"
     },
@@ -20891,7 +20891,7 @@
       "name": "Z Labs (Astro-2539)",
       "slug": "astro-2539",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/astro-2539.webp",
       "website": "https://github.com/Astro-2539",
       "description": "Z Labs 像素字体系列作者。"
     },
@@ -20936,7 +20936,7 @@
       "name": "Z Labs (Astro-2539)",
       "slug": "astro-2539",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/astro-2539.webp",
       "website": "https://github.com/Astro-2539",
       "description": "Z Labs 像素字体系列作者。"
     },
@@ -20981,7 +20981,7 @@
       "name": "Z Labs (Astro-2539)",
       "slug": "astro-2539",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/astro-2539.webp",
       "website": "https://github.com/Astro-2539",
       "description": "Z Labs 像素字体系列作者。"
     },
@@ -21058,7 +21058,7 @@
       "name": "璇玑造字",
       "slug": "triones",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/triones.webp",
       "website": "https://github.com/TrionesType",
       "description": "璇玑造字。开源产品朱雀仿宋，SIL OFL 1.1。"
     },
@@ -21107,7 +21107,7 @@
       "name": "ZCOOL QingKe (Zheng Qingke)",
       "slug": "qingke",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/qingke.webp",
       "website": "https://m.zcool.com.cn/work/ZMTg5MDEyMDQ=.html",
       "description": "设计师郑庆科创作的站酷庆科黄油体，圆润甜美风格，收录于Google Fonts，采用SIL OFL授权免费商用。"
     },
@@ -21251,7 +21251,7 @@
       "name": "昭源",
       "slug": "chiron",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/chiron.webp",
       "website": "https://github.com/chiron-fonts",
       "description": "Tamcy 的昭源字型。宋、黑、圆为 SIL OFL 1.1。"
     },
@@ -21350,7 +21350,7 @@
       "name": "昭源",
       "slug": "chiron",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/chiron.webp",
       "website": "https://github.com/chiron-fonts",
       "description": "Tamcy 的昭源字型。宋、黑、圆为 SIL OFL 1.1。"
     },
@@ -21398,7 +21398,7 @@
       "name": "昭源",
       "slug": "chiron",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/chiron.webp",
       "website": "https://github.com/chiron-fonts",
       "description": "Tamcy 的昭源字型。宋、黑、圆为 SIL OFL 1.1。"
     },
@@ -21443,7 +21443,7 @@
       "name": "花乐",
       "slug": "fwhp",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fwhp.webp",
       "website": "https://github.com/FWHP-Enfun",
       "description": "FWHP。把别人的开源字改成自己的一份，许可随各款字体。"
     },
@@ -21487,7 +21487,7 @@
       "name": "花乐",
       "slug": "fwhp",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fwhp.webp",
       "website": "https://github.com/FWHP-Enfun",
       "description": "FWHP。把别人的开源字改成自己的一份，许可随各款字体。"
     },
@@ -21531,7 +21531,7 @@
       "name": "花乐",
       "slug": "fwhp",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/fwhp.webp",
       "website": "https://github.com/FWHP-Enfun",
       "description": "FWHP。把别人的开源字改成自己的一份，许可随各款字体。"
     },
@@ -21579,7 +21579,7 @@
       "name": "yzdnn",
       "slug": "yzdnn",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/yzdnn.webp",
       "website": "https://github.com/yzdnn",
       "description": "yzdnn 像素补字：长坂点宋系列、KH Dot 衍生与 DotGothic/k6x8 衍生。OFL 1.1。"
     },
@@ -21628,7 +21628,7 @@
       "name": "yzdnn",
       "slug": "yzdnn",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/yzdnn.webp",
       "website": "https://github.com/yzdnn",
       "description": "yzdnn 像素补字：长坂点宋系列、KH Dot 衍生与 DotGothic/k6x8 衍生。OFL 1.1。"
     },
@@ -21678,7 +21678,7 @@
       "name": "yzdnn",
       "slug": "yzdnn",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/yzdnn.webp",
       "website": "https://github.com/yzdnn",
       "description": "yzdnn 像素补字：长坂点宋系列、KH Dot 衍生与 DotGothic/k6x8 衍生。OFL 1.1。"
     },
@@ -21728,7 +21728,7 @@
       "name": "yzdnn",
       "slug": "yzdnn",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/yzdnn.webp",
       "website": "https://github.com/yzdnn",
       "description": "yzdnn 像素补字：长坂点宋系列、KH Dot 衍生与 DotGothic/k6x8 衍生。OFL 1.1。"
     },
@@ -21777,7 +21777,7 @@
       "name": "yzdnn",
       "slug": "yzdnn",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/yzdnn.webp",
       "website": "https://github.com/yzdnn",
       "description": "yzdnn 像素补字：长坂点宋系列、KH Dot 衍生与 DotGothic/k6x8 衍生。OFL 1.1。"
     },
@@ -21825,7 +21825,7 @@
       "name": "yzdnn",
       "slug": "yzdnn",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/yzdnn.webp",
       "website": "https://github.com/yzdnn",
       "description": "yzdnn 像素补字：长坂点宋系列、KH Dot 衍生与 DotGothic/k6x8 衍生。OFL 1.1。"
     },
@@ -21874,7 +21874,7 @@
       "name": "yzdnn",
       "slug": "yzdnn",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/yzdnn.webp",
       "website": "https://github.com/yzdnn",
       "description": "yzdnn 像素补字：长坂点宋系列、KH Dot 衍生与 DotGothic/k6x8 衍生。OFL 1.1。"
     },
@@ -22832,7 +22832,7 @@
       "name": "情報処理推進機構 (IPA)",
       "slug": "ipa",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/ipa.webp",
       "website": "https://moji.or.jp/ipafont/",
       "description": "日本 IPA / 文字情報技術促進協議会。IPAex / IPA 字体官方分发。"
     },
@@ -22884,7 +22884,7 @@
       "name": "情報処理推進機構 (IPA)",
       "slug": "ipa",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/ipa.webp",
       "website": "https://moji.or.jp/ipafont/",
       "description": "日本 IPA / 文字情報技術促進協議会。IPAex / IPA 字体官方分发。"
     },
@@ -23360,7 +23360,7 @@
       "name": "情報処理推進機構 (IPA)",
       "slug": "ipa",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/ipa.webp",
       "website": "https://moji.or.jp/mojikiban/font/",
       "description": "日本 IPA / 文字情報技術促進協議会。IPAmj / IPAex / IPA 字体官方分发。"
     },
@@ -23491,7 +23491,7 @@
     "family": "wenfeng-zoomlamengyas",
     "normalized": "ZoomlaMengyas",
     "designer": "Zoomla!CMS / z01 fonts",
-    "designerShort": "z01",
+    "designerShort": "zoomla",
     "category": "无衬线字体",
     "tags": [
       "开源",
@@ -23515,12 +23515,12 @@
     "copyright": "Copyright 2020 z01 fonts (Author:Jiangxi ZoomlaCMS Soft Co. LTD,E-mail:web@ziti163.com)",
     "foundry": "逐浪字库",
     "brand": {
-      "name": "逐浪字库 / z01font",
-      "slug": "z01font",
+      "name": "逐浪字库",
+      "slug": "zoomla",
       "logoUrl": "",
       "avatarUrl": "",
-      "website": "https://github.com/z01font/ZoomlaMengyas",
-      "description": "逐浪 / z01 开源字体。萌芽字 OFL 1.1 独立仓。"
+      "website": "http://f.ziti163.com",
+      "description": "逐浪字库 / ZoomlaCMS / z01font。萌芽字与粗宋同属一家。"
     },
     "releaseYear": 2021,
     "version": "Version1.00 20211011",
@@ -23676,7 +23676,7 @@
       "logoUrl": "",
       "avatarUrl": "",
       "website": "https://github.com/Steve-Yuu/Chuanqu",
-      "description": "Steve-Yuu。传趣；OFL 1.1。"
+      "description": "Steve-Yuu 开源字体：传趣、納黑、写意体、Y式笔书、Y式新黑体、Y式明朝、Y式源明朝、Yuu Gothic 等。"
     },
     "releaseYear": 2026,
     "version": "Version 0.500",
@@ -23985,5 +23985,380 @@
     "viewCount": 0,
     "id": "12dfb1cb-c2af-4b23-ac29-7f1dd45a8b5d",
     "purchaseUrl": null
+  },
+  {
+    "id": "30e0b8f4-4a49-40cb-ad36-7ec6d49e99ba",
+    "name": "納黑",
+    "en": "NaHei",
+    "family": "wenfeng-nahei",
+    "normalized": "NaHei",
+    "designer": "Steve-Yuu",
+    "designerShort": "Steve-Yuu",
+    "category": "黑体",
+    "tags": [
+      "开源",
+      "OFL",
+      "黑体",
+      "繁体中文",
+      "CJK",
+      "Steve-Yuu"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "納黑（NaHei）。Steve-Yuu/nahei v1.000。基于 Nanum Gothic 补繁体常用字。SIL OFL 1.1。OFL.txt 头误写 Iansui — 以 README 为准。CDN STOPPED — 本波 Foundry 只挂起，等 Bot 总灌闸。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/Steve-Yuu/nahei/blob/main/OFL.txt",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/NaHei/LICENSE",
+    "licenseNotes": "ofl_ok。pin v1.000 NaHei-Regular.ttf。上游 Nanum Gothic。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023-2026 Steve-Yuu; Nanum Gothic Project Authors.",
+    "foundry": "Steve-Yuu",
+    "brand": {
+      "name": "Steve-Yuu",
+      "slug": "steve-yuu",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Steve-Yuu/nahei",
+      "description": "Steve-Yuu 开源字体：传趣、納黑、写意体、Y式笔书、Y式新黑体、Y式明朝、Y式源明朝、Yuu Gothic 等。"
+    },
+    "releaseYear": 2023,
+    "version": "Version 1.000",
+    "languages": [
+      "繁体中文",
+      "简体中文",
+      "韩文"
+    ],
+    "useCases": [
+      "正文",
+      "屏幕阅读"
+    ],
+    "charCount": 0,
+    "glyphCount": 0,
+    "viewCount": 0
+  },
+  {
+    "id": "b7732924-ef03-408b-9bcf-a0fb0a9b9386",
+    "name": "写意体",
+    "en": "YShi Written",
+    "family": "wenfeng-yshiwritten",
+    "normalized": "YShiWritten",
+    "designer": "Steve-Yuu",
+    "designerShort": "Steve-Yuu",
+    "category": "手写体",
+    "tags": [
+      "开源",
+      "OFL",
+      "手写",
+      "简体中文",
+      "CJK",
+      "Steve-Yuu"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "写意体（YShi-Written）。Steve-Yuu/YShi-Written v0.100。基于 Zen 红道手写体，字形偏中国大陆标准。SIL OFL 1.1（RFN 写意体/YShi-Written）。本条钉简体 SC。CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/Steve-Yuu/YShi-Written/blob/main/OFL.txt",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/YShiWritten/LICENSE",
+    "licenseNotes": "ofl_ok。pin v0.100 YShiWrittenSC-Regular.ttf。上游 googlefonts/zen-kurenaido。OFL.txt 头误写 Klee — 以 README 为准。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2023-2026 Steve-Yuu; Zen Kurenaido Project Authors.",
+    "foundry": "Steve-Yuu",
+    "brand": {
+      "name": "Steve-Yuu",
+      "slug": "steve-yuu",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Steve-Yuu/YShi-Written",
+      "description": "Steve-Yuu 开源字体：传趣、納黑、写意体、Y式笔书、Y式新黑体、Y式明朝、Y式源明朝、Yuu Gothic 等。"
+    },
+    "releaseYear": 2023,
+    "version": "Version 0.100",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题",
+      "手写",
+      "显示"
+    ],
+    "charCount": 0,
+    "glyphCount": 0,
+    "viewCount": 0
+  },
+  {
+    "id": "0b693679-3a1c-4038-a970-f732a49a8c6d",
+    "name": "Y式笔书",
+    "en": "YShi Pen Shuti",
+    "family": "wenfeng-yshipenshuti",
+    "normalized": "YShiPenShuti",
+    "designer": "Steve-Yuu",
+    "designerShort": "Steve-Yuu",
+    "category": "楷体",
+    "tags": [
+      "开源",
+      "OFL",
+      "楷体",
+      "旧字形",
+      "CJK",
+      "Steve-Yuu"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "Y式笔书（YshiPen-Shuti）。Steve-Yuu/YshiPen-Shuti v1.401。基于 Klee One / 霞鹜文楷系改作。SIL OFL 1.1（RFN YShi笔书/YShiPen-Shuti）。本条钉 CL 旧字形。另有 CLS/TC/New/MN 变体未分条。CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/Steve-Yuu/YshiPen-Shuti/blob/main/OFL.txt",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/YShiPenShuti/LICENSE",
+    "licenseNotes": "ofl_ok。pin v1.401 YshiPenShutiCL-Regular.ttf。上游 Klee One + lxgw 文楷。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2022-2026 Steve-Yuu; FONTWORKS Klee; LXGW WenKai contributors.",
+    "foundry": "Steve-Yuu",
+    "brand": {
+      "name": "Steve-Yuu",
+      "slug": "steve-yuu",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Steve-Yuu/YshiPen-Shuti",
+      "description": "Steve-Yuu 开源字体：传趣、納黑、写意体、Y式笔书、Y式新黑体、Y式明朝、Y式源明朝、Yuu Gothic 等。"
+    },
+    "releaseYear": 2022,
+    "version": "Version 1.401",
+    "languages": [
+      "繁体中文",
+      "简体中文",
+      "日文"
+    ],
+    "useCases": [
+      "正文",
+      "标题",
+      "印刷"
+    ],
+    "charCount": 0,
+    "glyphCount": 0,
+    "viewCount": 0
+  },
+  {
+    "id": "0319d954-52fc-41b4-9b24-a3b69b14ab38",
+    "name": "Y式新黑体",
+    "en": "YShi New Hei",
+    "family": "wenfeng-yshinewhei",
+    "normalized": "YShiNewHei",
+    "designer": "Steve-Yuu",
+    "designerShort": "Steve-Yuu",
+    "category": "黑体",
+    "tags": [
+      "开源",
+      "IPA",
+      "黑体",
+      "古籍",
+      "CJK",
+      "Steve-Yuu"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "Y式新黑体（YShi-NewHei）。Steve-Yuu/YShi-NewHei v1.001。基于 IPAex 黑体 / 霞鹜晰黑系，补古籍印刷通用字规范字形表。IPA Font License 1.0（≠ ofl_ok；标签隔离）。CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "IPA Font License",
+    "licenseUrl": "https://opensource.org/licenses/IPA",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/YShiNewHei/LICENSE",
+    "licenseNotes": "ipa isolate（≠ ofl_ok）。pin v1.001 YShiNewHeiGGJ-Regular.ttf。上游 IPAex Gothic + LxgwXiHei/NeoXiHei。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright Steve-Yuu; IPA; LXGW.",
+    "foundry": "Steve-Yuu",
+    "brand": {
+      "name": "Steve-Yuu",
+      "slug": "steve-yuu",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Steve-Yuu/YShi-NewHei",
+      "description": "Steve-Yuu 开源字体：传趣、納黑、写意体、Y式笔书、Y式新黑体、Y式明朝、Y式源明朝、Yuu Gothic 等。"
+    },
+    "releaseYear": 2023,
+    "version": "Version 1.001",
+    "languages": [
+      "简体中文",
+      "繁体中文",
+      "日文"
+    ],
+    "useCases": [
+      "正文",
+      "古籍",
+      "屏幕阅读"
+    ],
+    "charCount": 0,
+    "glyphCount": 0,
+    "viewCount": 0
+  },
+  {
+    "id": "9186e45e-65ba-43a8-932c-4862c1804158",
+    "name": "Y式明朝体",
+    "en": "YShi Mincho",
+    "family": "wenfeng-yshimincho",
+    "normalized": "YShiMincho",
+    "designer": "Steve-Yuu",
+    "designerShort": "Steve-Yuu",
+    "category": "宋体",
+    "tags": [
+      "开源",
+      "IPA",
+      "宋体",
+      "旧字形",
+      "CJK",
+      "Steve-Yuu"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "Y式明朝体（YShiMincho）。Steve-Yuu/YShiMincho v1.101。衍生于华英明朝、IPAmj明朝，并结合霞鹜致宋；旧字形为主。IPA Font License 1.0（作者明示与 OFL 不相容；≠ ofl_ok）。本条钉 CL。CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "IPA Font License",
+    "licenseUrl": "https://opensource.org/licenses/IPA",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/YShiMincho/LICENSE",
+    "licenseNotes": "ipa isolate（≠ ofl_ok）。pin v1.101 YShiMinchoCL-Regular.ttf。RFN YShi明朝体/YShiMincho。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright Steve-Yuu; HuayingMincho; IPAmj; LXGW ZhiSong.",
+    "foundry": "Steve-Yuu",
+    "brand": {
+      "name": "Steve-Yuu",
+      "slug": "steve-yuu",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Steve-Yuu/YShiMincho",
+      "description": "Steve-Yuu 开源字体：传趣、納黑、写意体、Y式笔书、Y式新黑体、Y式明朝、Y式源明朝、Yuu Gothic 等。"
+    },
+    "releaseYear": 2022,
+    "version": "Version 1.101",
+    "languages": [
+      "繁体中文",
+      "简体中文",
+      "日文"
+    ],
+    "useCases": [
+      "正文",
+      "印刷",
+      "标题"
+    ],
+    "charCount": 0,
+    "glyphCount": 0,
+    "viewCount": 0
+  },
+  {
+    "id": "7b360c1b-2a87-40cb-9734-e438b3178a2b",
+    "name": "Y式源明朝",
+    "en": "Yshi Yuan Minh",
+    "family": "wenfeng-yshiyuanminh",
+    "normalized": "YshiYuanMinh",
+    "designer": "Steve-Yuu",
+    "designerShort": "Steve-Yuu",
+    "category": "宋体",
+    "tags": [
+      "开源",
+      "OFL",
+      "宋体",
+      "传承字形",
+      "CJK",
+      "Steve-Yuu",
+      "实验"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "Y式源明朝（Yshi-YuanMinh）。Steve-Yuu/Yshi-YuanMinh v1.005 Alpha。据思源宋体映射传承字形；作者标明暂停更新/难产。SIL OFL 1.1。实验品质。CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/Steve-Yuu/Yshi-YuanMinh/blob/main/LICENSE_OFL.txt",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/YshiYuanMinh/LICENSE",
+    "licenseNotes": "ofl_ok（维护风险高）。pin v1.005 YshiMinchoAlpha-Regular.ttf。上游 Source Han Serif。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright Steve-Yuu; Source Han Serif Project Authors.",
+    "foundry": "Steve-Yuu",
+    "brand": {
+      "name": "Steve-Yuu",
+      "slug": "steve-yuu",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Steve-Yuu/Yshi-YuanMinh",
+      "description": "Steve-Yuu 开源字体：传趣、納黑、写意体、Y式笔书、Y式新黑体、Y式明朝、Y式源明朝、Yuu Gothic 等。"
+    },
+    "releaseYear": 2022,
+    "version": "Version 1.005 Alpha",
+    "languages": [
+      "繁体中文",
+      "简体中文",
+      "日文"
+    ],
+    "useCases": [
+      "正文",
+      "实验"
+    ],
+    "charCount": 0,
+    "glyphCount": 0,
+    "viewCount": 0
+  },
+  {
+    "id": "37377278-88ed-4009-bbca-8ffc70c0b72d",
+    "name": "Yuu Gothic",
+    "en": "Yuu Gothic",
+    "family": "wenfeng-yuugothic",
+    "normalized": "YuuGothic",
+    "designer": "Steve-Yuu",
+    "designerShort": "Steve-Yuu",
+    "category": "黑体",
+    "tags": [
+      "开源",
+      "OFL",
+      "黑体",
+      "旧字形",
+      "CJK",
+      "Steve-Yuu",
+      "搁置"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "Yuu Gothic（Yuu-Gothic）。Steve-Yuu/Yuu-Gothic 1.000。基于思源黑体等，主打旧字形；作者永久搁置，建议改用 ChocolateSans。SIL OFL 1.1。本条钉 SC Regular。CDN STOPPED。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/Steve-Yuu/Yuu-Gothic/blob/main/LICENSE_OFL.txt",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/YuuGothic/LICENSE",
+    "licenseNotes": "ofl_ok（永久搁置）。pin 1.000 YuuGothicSC-Regular.ttf。上游 Source Han Sans 等。CDN STOPPED。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright Steve-Yuu; Source Han Sans Project Authors.",
+    "foundry": "Steve-Yuu",
+    "brand": {
+      "name": "Steve-Yuu",
+      "slug": "steve-yuu",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/Steve-Yuu/Yuu-Gothic",
+      "description": "Steve-Yuu 开源字体：传趣、納黑、写意体、Y式笔书、Y式新黑体、Y式明朝、Y式源明朝、Yuu Gothic 等。"
+    },
+    "releaseYear": 2022,
+    "version": "Version 1.000",
+    "languages": [
+      "简体中文",
+      "繁体中文",
+      "越南文"
+    ],
+    "useCases": [
+      "正文",
+      "屏幕阅读"
+    ],
+    "charCount": 0,
+    "glyphCount": 0,
+    "viewCount": 0
   }
 ]
