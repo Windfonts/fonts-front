@@ -9,11 +9,11 @@
   <link rel="stylesheet" href="../css/tokens.css?v=20260923qa" />
   <link rel="stylesheet" href="../css/base.css?v=20260924c" />
   <link rel="stylesheet" href="../css/components.css?v=20260925k" />
-  <link rel="stylesheet" href="../css/app.css?v=20260924r" />
+  <link rel="stylesheet" href="../css/app.css?v=20260927v5" />
   <link rel="icon" type="image/webp" href="../assets/icon.webp" />
 </head>
 <body class="app">
-  <aside class="rail" data-rail data-active="fonts"></aside>
+  <aside class="rail" data-rail data-active="upload"></aside>
   <main class="app-main">
     <div class="app-head"><div><p class="crumb"><a href="fonts.html">我的字体</a><span>/</span><span>上传</span></p><h1>上传字体</h1>
       <p class="sub">同一家族可一次放入多个字重文件。ttf / otf 会读出名称、字重和字形数。woff / woff2 用文件名。上传后可直接放进一个项目。</p></div></div>
@@ -49,12 +49,12 @@
     </form>
   </main>
 
-  <script src="../js/wf-proto.js?v=20260926oflopen"></script>
+  <script src="../js/wf-proto.js?v=20260927v5"></script>
   <script src="../js/wf-chrome.js?v=20260926brandinvite"></script>
   <script src="../js/wf-auth.js?v=20260926sso2"></script>
-  <script src="../js/wf-embed.js?v=20260924q"></script>
-  <script src="../js/wf-app.js?v=20260926up3"></script>
-  <script src="../js/wf-api.js?v=20260926up3"></script>
+  <script src="../js/wf-embed.js?v=20260927v5"></script>
+  <script src="../js/wf-app.js?v=20260927v5"></script>
+  <script src="../js/wf-api.js?v=20260927v5"></script>
   <script>
     (function () {
       if (!WFApp.gate()) return;
@@ -104,12 +104,12 @@
         });
         const cap = (s.plan && s.plan.quota && s.plan.quota.fonts) || 0;
         document.getElementById('kvQuota').textContent = uploads.length + ' / ' + cap + ' 款';
-        if (WFApp.isPro()) return;
+        if (WFApp.can && WFApp.can('upload')) return;
         locked = true;
         btn.disabled = true;
         const note = document.createElement('p');
         note.className = 't-13 muted';
-        note.textContent = '上传自有授权字是专业档。免费档只用公共库。';
+        note.textContent = (WFApp.canLabel && WFApp.canLabel('upload')) || '上传自有授权字需专业档，或认领通过后的厂商台。';
         btn.insertAdjacentElement('afterend', note);
       });
       function u16(view, o) { return view.getUint16(o); }

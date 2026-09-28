@@ -271,7 +271,7 @@
             '<ul class="cert-bullets t-13">' +
               '<li>站内样张 / 编辑器预览本来就能用（本地 woff2），与证书无关。</li>' +
               '<li>接受 PDF 或图片（png / jpg / webp），单文件 ≤ 12 MB。</li>' +
-              '<li>当前为 lab：文件不上传服务器；提交 → 待审核，再用页内「模拟审核」切状态。</li>' +
+              '<li>当前：有 vault 会话则上传存证；否则本机 lab mock。通过后仅本账号开引用。</li>' +
             '</ul>' +
           '</section>' +
           '<label class="drop" id="certDrop">' +
@@ -446,21 +446,70 @@
         showErr('请选择证书文件并勾选确认。');
         return;
       }
-      try {
+      btn.disabled = true;
+      const slug = WFProto.fontSlug(font) || String(font.normalized || '').toLowerCase();
+      const useVault = window.WFApi && typeof WFApi.submitFontCert === 'function' &&
+        !(typeof WFApi.isMock === 'function' && WFApi.isMock());
+
+      function finishLocal(extra) {
+        extra = extra || {};
         WFProto.setCertGrant(font, {
-          status: 'pending',
+          status: extra.status || 'pending',
           fileName: pick.name,
           fileSize: pick.size,
           mime: pick.type || '',
-          reason: '',
-          reviewedAt: '',
-          at: new Date().toISOString()
+          reason: extra.reason || '',
+          reviewedAt: extra.reviewedAt || '',
+          at: new Date().toISOString(),
+          labMock: extra.labMock != null ? extra.labMock : !extra.vaultId,
+          vaultId: extra.vaultId || ''
         });
-        if (WFChrome.toast) WFChrome.toast('已提交 · 待审核（lab）');
+        if (WFChrome.toast) {
+          WFChrome.toast(extra.vaultId ? '已提交 · 待审核' : '已提交 · 待审核（lab）');
+        }
         render(font, { mode: 'status' });
-      } catch (err2) {
-        showErr(err2 && err2.message ? err2.message : '提交失败');
       }
+
+      if (!useVault) {
+        try {
+          finishLocal({ labMock: true });
+        } catch (err2) {
+          showErr(err2 && err2.message ? err2.message : '提交失败');
+          syncBtn();
+        }
+        return;
+      }
+
+      WFApi.submitFontCert({
+        fontKey: slug,
+        family: font.family || '',
+        normalized: font.normalized || slug,
+        name: font.name || slug,
+        fileName: pick.name,
+        fileSize: pick.size,
+        mime: pick.type || ''
+      }).then(function (cert) {
+        return WFApi.putFontCertFile(cert.id, pick, {
+          fileName: pick.name,
+          contentType: pick.type || 'application/octet-stream'
+        }).then(function () { return cert; });
+      }).then(function (cert) {
+        finishLocal({
+          status: cert.status || 'pending',
+          vaultId: cert.id,
+          labMock: false,
+          reason: cert.reason || '',
+          reviewedAt: cert.reviewedAt || ''
+        });
+      }).catch(function (err2) {
+        showErr(err2 && err2.message ? err2.message : '提交失败');
+        /* 无会话时回退本机 pending，便于 lab */
+        if (err2 && (err2.status === 401 || err2.code === 'unauthorized')) {
+          try { finishLocal({ labMock: true }); } catch (e3) { /* ignore */ }
+        } else {
+          syncBtn();
+        }
+      });
     });
   }
 
@@ -478,6 +527,7 @@
         '<section class="app-section"><p><a class="btn" href="' + WFChrome.href('fonts.html') + '">回字体库</a></p></section>';
       return;
     }
-    render(font);
+    const ready = (WFProto.syncVaultFontCerts && WFProto.syncVaultFontCerts()) || Promise.resolve(0);
+    ready.then(function () { render(font); }, function () { render(font); });
   });
 })();

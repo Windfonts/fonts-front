@@ -169,7 +169,7 @@
     if (byFontLive) noteBits.push('按字体拆分已启用');
     if (statusLive) noteBits.push('含 200/304 状态');
     noteBits.push('按 API Key 与项目白名单域名聚合');
-    if (u.stub) noteBits.push('空壳');
+    if (u.stub) noteBits.push('尚无真实投递（stub）');
     if (WFApi.isMock()) noteBits.push('mock');
 
     root.innerHTML =
@@ -184,11 +184,14 @@
         '<div class="stat"><div class="v">' + (bytesLive && req ? WFEmbed.fmtBytes(bytes / req).replace(' ', '<small>') + '</small>' : '—') + '</div><div class="l">平均每次请求</div></div>' +
       '</div>' +
       insightHtml(ps, pct, blockedRows) +
-      '<section class="app-section"><h2>每日请求<span class="more mono">' + range + ' 天</span></h2>' + WFApp.sparkline(daily) +
-        '<div class="spark-meta"><span>' + esc((u.series && u.series.from) || (range + ' 天前')) + '</span><span>' + esc((u.series && u.series.to) || '今天') + '</span></div>' +
-        (statusLive
+      '<section class="app-section"><h2>每日请求<span class="more mono">' + range + ' 天</span></h2>' +
+        (daily.length
+          ? (WFApp.sparkline(daily.map(function (d) { return typeof d === 'number' ? d : (d.requests || 0); })) +
+            '<div class="spark-meta"><span>' + esc((u.series && u.series.from) || (range + ' 天前')) + '</span><span>' + esc((u.series && u.series.to) || '今天') + '</span></div>')
+          : '<p class="empty">尚无投递数据。发布项目并嵌入后，这里显示 vault 聚合曲线。</p>') +
+        (statusLive && req
           ? '<div class="status-row"><span><b>' + Math.round((st['200'] || 0) / stSum * 100) + '%</b>成功下发</span><span><b>' + Math.round((st['304'] || 0) / stSum * 100) + '%</b>缓存命中</span><span><b>' + Math.round((st['403'] || 0) / stSum * 100) + '%</b>被拒</span></div>'
-          : '<p class="t-13 muted" style="margin-top:var(--s-3)">状态码分布尚未采集（仅请求次数）。</p>') +
+          : (req ? '<p class="t-13 muted" style="margin-top:var(--s-3)">状态码分布尚未采集（仅请求次数）。</p>' : '')) +
         '</section>' +
       '<section class="app-section"><h2>按字体<span class="more mono">' + byFont.length + ' 款</span></h2>' +
         '<table class="table"><thead><tr><th>字体</th><th>厂商</th><th>项目</th><th>字重</th><th class="num">请求</th><th class="num">流量</th><th class="num">占比</th></tr></thead><tbody>' +

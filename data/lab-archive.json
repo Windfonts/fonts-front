@@ -1,6 +1,6 @@
 {
   "note": "对照 / 原型 / 研究页真源。文件留在仓根（相对路径不碎）。禁止当垃圾删。见 docs/LAB.md，索引 lab.html。",
-  "updated": "2026-09-26",
+  "updated": "2026-09-27",
   "policy": {
     "keep": true,
     "noProductionNav": true,
@@ -292,6 +292,46 @@
             "css/lab-text-tabs.css",
             "css/detail-text-tabs-audit.css",
             "js/pages/detail-text-tabs-audit.js"
+          ]
+        },
+        {
+          "href": "detail-use-options.html",
+          "title": "开发模式「使用」面板",
+          "status": "active",
+          "note": "甲分层（子集行+工具行+预算贴码+note details）/ 乙左右配置|代码 / 丙极简子集+码·更多选项 / 丁现页。现页未改。",
+          "assets": [
+            "css/detail-use-options.css",
+            "js/pages/detail-use-options.js"
+          ]
+        },
+        {
+          "href": "detail-use-budget-options.html",
+          "title": "预算+缺字补全条位置",
+          "status": "active",
+          "note": "仅保留代码下两套：甲无底一行（预算+缺字补全）/ 乙一条灰底（同上内容）。现页未改。",
+          "assets": [
+            "css/detail-use-budget-options.css",
+            "js/pages/detail-use-budget-options.js"
+          ]
+        },
+        {
+          "href": "detail-use-code-stack-options.html",
+          "title": "代码栈+底条+脚注字号",
+          "status": "active",
+          "note": "结构已锁（码上/灰条预估左补全右/note下）。甲代码主(fs-13/14+底条fs-12+脚注fs-12 details) / 乙底条作脚注(同小字号级) / 丙分层(纸色码块+更深底条+工具复制钮+一行摘要)。现页未改。",
+          "assets": [
+            "css/detail-use-code-stack-options.css",
+            "js/pages/detail-use-code-stack-options.js"
+          ]
+        },
+        {
+          "href": "detail-use-code-copy-options.html",
+          "title": "代码栈间距+文案",
+          "status": "active",
+          "note": "丙分层已落地后收间距/文案。甲紧(码s-3/s-4·轻分隔·短文案) / 乙松一点(码s-5/s-6·同短文案) / 丙现页基线。现页未改。",
+          "assets": [
+            "css/detail-use-code-copy-options.css",
+            "js/pages/detail-use-code-copy-options.js"
           ]
         }
       ]

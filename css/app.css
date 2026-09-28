@@ -355,3 +355,84 @@ body.app { display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); m
   margin-top: var(--s-4);
 }
 
+
+
+/* —— V1 收口：空状态 / 下一步 / 徽章 —— */
+.app-empty-hero {
+  text-align: left;
+  padding: var(--s-10) var(--s-8);
+}
+.app-empty-hero h2 {
+  font-size: var(--fs-22);
+  font-weight: var(--fw-title);
+  margin: 0 0 var(--s-3);
+  letter-spacing: -0.02em;
+}
+.next-list { display: grid; gap: var(--s-2); margin: 0; padding: 0; list-style: none; }
+.next-card a {
+  display: grid; gap: 0.2rem;
+  padding: var(--s-4) var(--s-5);
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+  color: inherit;
+  text-decoration: none;
+}
+.next-card a:hover { background: var(--surface-2); }
+.next-card strong { font-size: var(--fs-16); color: var(--ink); }
+.next-card span { font-size: var(--fs-14); color: var(--ink-2); }
+.next-card small { font-size: var(--fs-12); color: var(--gray-2); }
+
+.project-next {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
+  margin: 0 0 var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  background: var(--paper);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--ink);
+}
+.project-next p { margin: 0.25rem 0 0; font-size: var(--fs-13); color: var(--ink-2); }
+
+.embed-gate {
+  margin-top: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  background: color-mix(in srgb, var(--warn, #c47a2c) 12%, var(--paper));
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-13);
+}
+.embed-gate ul { margin: var(--s-2) 0 0; padding-left: 1.2em; color: var(--ink-2); }
+
+.cite-pill {
+  display: inline-block;
+  margin-left: 0.35em;
+  padding: 0.1em 0.5em;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-label);
+  vertical-align: 0.1em;
+  background: var(--paper);
+  color: var(--ink-2);
+}
+.cite-pill.is-ok { background: color-mix(in srgb, var(--ok, #2a7a4b) 16%, var(--paper)); color: var(--ink); }
+.cite-pill.is-warn { background: color-mix(in srgb, var(--warn, #c47a2c) 14%, var(--paper)); }
+.cite-pill.is-danger { background: color-mix(in srgb, var(--danger, #b33) 12%, var(--paper)); color: var(--ink); }
+
+.rail-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 1.15rem; height: 1.15rem; margin-left: 0.35em;
+  padding: 0 0.3em;
+  border-radius: var(--radius-pill);
+  background: var(--ink); color: var(--on-ink);
+  font-size: 0.65rem; font-weight: var(--fw-label); line-height: 1;
+}
+.rail-foot a { position: relative; }
+
+.app-main .empty {
+  padding: var(--s-6) 0;
+  color: var(--gray);
+  font-size: var(--fs-14);
+}
+
+@media (max-width: 720px) {
+  .project-next { flex-direction: column; align-items: flex-start; }
+  .app-empty-hero { padding: var(--s-6) var(--s-5); }
+}

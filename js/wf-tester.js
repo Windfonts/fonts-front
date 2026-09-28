@@ -596,7 +596,10 @@
         return;
       }
       if (!rec.tpl) rec.tpl = 'poem';
-      WFChrome.copy(WFCard.shareUrl(font.id, rec, { view: 'design' }), '已复制样张链接');
+      WFChrome.copy(
+        (WFCard.socialShareUrl ? WFCard.socialShareUrl(font.id, rec, { view: 'design' }) : WFCard.shareUrl(font.id, rec, { view: 'design' })),
+        '已复制分享链接（含 OG）'
+      );
     }
     function markCard() {
       if (opts.onCard) opts.onCard(!!WFCard.currentKind(stage));

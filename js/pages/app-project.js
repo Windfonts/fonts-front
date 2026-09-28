@@ -5,7 +5,14 @@
   const root = document.getElementById('root');
   const TABS = [['fonts', '字体'], ['domains', '域名'], ['embed', '嵌入'], ['versions', '版本'], ['usage', '用量']];
   let p = null;
-  let tab = WFProto.getQuery('tab') || 'fonts';
+  let tab = WFProto.getQuery('tab') || '';
+  function defaultTab(proj) {
+    if (!proj) return 'fonts';
+    if (!(proj.fonts || []).length) return 'fonts';
+    const verified = (proj.domains || []).some(function (d) { return d.verified; });
+    if (!(proj.domains || []).length || !verified) return 'domains';
+    return 'embed';
+  }
 
   function setTab(t) {
     tab = t;
@@ -13,23 +20,64 @@
     render();
   }
 
+  function projectNext() {
+    if (!p.fonts.length) {
+      return { tab: 'fonts', text: '添加字体', detail: '项目里还没有字体，无法发布。', href: 'subset.html?project=' + encodeURIComponent(p.id) };
+    }
+    const verified = (p.domains || []).some(function (d) { return d.verified; });
+    if (!(p.domains || []).length) {
+      return { tab: 'domains', text: '添加域名', detail: '绑定站点域名后再发布，否则线上嵌入会被拒（403）。', href: null };
+    }
+    if (!verified) {
+      return { tab: 'domains', text: '验证域名', detail: '完成 DNS 或文件验证后，字体才会对正式站返回。', href: null };
+    }
+    return { tab: 'embed', text: '发布到 CDN', detail: '对外地址：地区节点 /p/' + p.slug + '/index.css', href: null };
+  }
   function head() {
     const cur = WFApp.currentVersion(p);
+    const next = projectNext();
+    const banner = (tab !== next.tab || !p.fonts.length || !(p.domains || []).some(function (d) { return d.verified; }))
+      ? '<div class="project-next" role="status"><div><strong>下一步：' + esc(next.text) + '</strong><p>' + esc(next.detail) + '</p></div>' +
+          (next.href
+            ? '<a class="btn btn-ink" href="' + next.href + '">' + WFChrome.icon('plus') + esc(next.text) + '</a>'
+            : '<button type="button" class="btn btn-ink" data-goto-tab="' + next.tab + '">' + WFChrome.icon('arrow-right') + esc(next.text) + '</button>') +
+        '</div>'
+      : '';
     return '<div class="app-head"><div><p class="crumb"><a href="projects.html">项目</a><span>/</span><span>' + esc(p.name) + '</span></p>' +
       '<h1>' + esc(p.name) + '</h1><p class="sub mono">' + esc(p.slug) + ' · v' + cur.v + ' · ' + p.fonts.length + ' 字体 · ' + WFEmbed.fmtBytes(WFApp.projectBytes(p)) + '</p></div>' +
-      '<div class="app-actions"><a class="btn" href="../fonts.html">' + WFChrome.icon('font-size') + '去字体库</a><a class="btn btn-ink" href="subset.html?project=' + esc(p.id) + '">' + WFChrome.icon('plus') + '添加字体</a></div></div>' +
+      '<div class="app-actions"><a class="btn" href="../fonts.html">' + WFChrome.icon('font-size') + '字体库</a><a class="btn btn-ink" href="subset.html?project=' + esc(p.id) + '">' + WFChrome.icon('plus') + '添加字体</a></div></div>' +
+      banner +
       '<div class="tabs" role="tablist">' + TABS.map(function (t) {
         return '<button type="button" role="tab" data-tab="' + t[0] + '"' + (t[0] === tab ? ' class="is-on"' : '') + '>' + t[1] + '</button>';
       }).join('') + '</div>';
   }
 
+  function fontCiteNote(meta, row) {
+    if (!meta || !WFProto.citeAllowed) return '';
+    const cite = WFProto.citeAllowed(meta);
+    if (cite && cite.ok) {
+      if (cite.reason === 'cert-grant' || cite.reason === 'cert-grant-lab') {
+        return '<span class="cite-pill is-ok">证书开引用</span>';
+      }
+      return '';
+    }
+    const src = (row && row.source) || 'catalog';
+    if (src === 'cert' || src === 'upload') return '<span class="cite-pill is-warn">项目内嵌 · ' + esc(src) + '</span>';
+    return '<span class="cite-pill is-danger">cite-closed · 须证书或勿发公共 CDN</span>';
+  }
   function fontsPanel() {
-    if (!p.fonts.length) return '<div class="panel"><p class="empty">项目里还没有字体。<a href="subset.html?project=' + esc(p.id) + '">去字体库添加</a></p></div>';
-    return '<div class="panel"><div class="panel-head"><p>每款字体的字重与子集独立设置；改动会生成新版本。</p></div>' +
+    if (!p.fonts.length) {
+      return '<div class="panel app-empty-hero"><h2>添加第一款字体</h2>' +
+        '<p class="t-14" style="color:var(--ink-2)">从字体库挑选公开可嵌的字，或上传自有授权字 / 证书开引用后再加入。</p>' +
+        '<p style="margin-top:var(--s-5)"><a class="btn btn-ink" href="subset.html?project=' + esc(p.id) + '">' + WFChrome.icon('plus') + '去添加</a> ' +
+        '<a class="btn" href="certs.html">' + WFChrome.icon('certificate') + '我的证书</a></p></div>';
+    }
+    return '<div class="panel"><div class="panel-head"><p>每款字体的字重与子集独立设置；改动会生成新版本。cite-closed 须证书通过后再发公共路径。</p></div>' +
       '<table class="table"><thead><tr><th>字体</th><th>字重</th><th>子集</th><th class="num">估算体积</th><th></th></tr></thead><tbody>' +
       p.fonts.map(function (f) {
         const meta = WFApp.fontMeta(f.fontId) || { name: f.fontId, family: '' };
-        return '<tr><td>' + WFChrome.faceHtml(meta, 18) + '<a href="../font-detail.html?id=' + esc(f.fontId) + '">' + esc(meta.name) + '</a><br><span class="mono t-12 muted">' + esc(meta.family) + '</span></td>' +
+        return '<tr><td>' + WFChrome.faceHtml(meta, 18) + '<a href="../font-detail.html?id=' + esc(f.fontId) + '">' + esc(meta.name) + '</a> ' + fontCiteNote(meta, f) +
+          '<br><span class="mono t-12 muted">' + esc(meta.family) + '</span></td>' +
           '<td class="mono">' + f.weights.join(' · ') + '</td><td>' + esc(WFApp.subsetLabel(f.subset)) + '</td>' +
           '<td class="num">' + WFEmbed.fmtBytes(WFApp.subsetBytes(meta, f.subset, f.weights.length)) + '</td>' +
           '<td class="actions"><a class="btn-text" href="subset.html?project=' + esc(p.id) + '&font=' + esc(f.fontId) + '">' + WFChrome.icon('scissors') + '调整</a> <button type="button" class="btn-text" data-remove-font="' + esc(f.fontId) + '">' + WFChrome.icon('trash') + '移除</button></td></tr>';
@@ -49,7 +97,7 @@
             '<td class="actions">' + (d.verified ? '' : '<button type="button" class="btn-text" data-verify="' + esc(d.host) + '">' + WFChrome.icon('check') + '我已完成验证</button> ') +
             '<button type="button" class="btn-text" data-remove-domain="' + esc(d.host) + '">' + WFChrome.icon('trash') + '移除</button></td></tr>';
         }).join('') + '</tbody></table>' : '<p class="empty">还没绑定域名，字体只能在本地开发环境加载。</p>') +
-      '<p class="t-13 muted" style="margin-top:var(--s-5)">验证方式任选：DNS TXT <code>_windfonts.example.com</code> 的值为 <code>windfonts=' + esc(p.id) + '</code>；或在站点根目录放置 <code>/.well-known/windfonts-verify.txt</code>，内容为项目 ID <code>' + esc(p.id) + '</code>。全部域名与拦截记录见<a href="domains.html">域名</a>。</p></div>';
+      '<p class="t-13 muted" style="margin-top:var(--s-5)">验证方式任选：DNS TXT <code>_windfonts.example.com</code> 的值为 <code>windfonts=' + esc(p.id) + '</code>；或在站点根目录放置 <code>/.well-known/windfonts-verify.txt</code>，内容为项目 ID <code>' + esc(p.id) + '</code>。拦截与用量见项目「用量」或<a href="usage.html">用量总表</a>。</p></div>';
   }
 
   function embedPanel() {
@@ -81,7 +129,7 @@
         sel('optStruct', '地址', [
           { value: 'dynamic', label: '动态' }, { value: 'static', label: '静态' }
         ], d.structure) +
-        '<div class="field"><label for="optAlias">字体名前缀</label><input class="input" id="optAlias" value="' + esc(d.alias) + '" placeholder="留空为 wenfeng-" autocomplete="off"' + (WFApp.isPro() ? '' : ' disabled') + ' /><span class="hint">' + (WFApp.isPro() ? '留空保持 wenfeng-。只改这个项目的嵌入名。' : '专业档可改这个项目的字体名前缀。') + '</span></div>' +
+        '<div class="field"><label for="optAlias">字体名前缀</label><input class="input" id="optAlias" value="' + esc(d.alias) + '" placeholder="留空为 wenfeng-" autocomplete="off"' + (WFApp.can && WFApp.can('fontPrefix') ? '' : ' disabled') + ' /><span class="hint">' + (WFApp.can && WFApp.can('fontPrefix') ? '留空保持 wenfeng-。只改这个项目的嵌入名。' : ((WFApp.canLabel && WFApp.canLabel('fontPrefix')) || '专业档可改这个项目的字体名前缀。')) + '</span></div>' +
       '</div>' +
       '<div class="tabs" role="tablist">' +
         '<button type="button" role="tab" data-embed-src="project" class="is-on">项目一份 CSS</button>' +
@@ -90,7 +138,26 @@
         '<button type="button" class="btn btn-ink" id="btnPublish"' + (p.fonts.length ? '' : ' disabled') + '>' + WFChrome.icon('cloud') + '发布到 CDN</button>' +
         '<button type="button" class="btn" id="btnExportManifest"' + (p.fonts.length ? '' : ' disabled') + '>' + WFChrome.icon('download') + '导出清单</button></div>' +
       '<div id="embed"></div>' +
-      '<p class="t-13 muted" style="margin-top:var(--s-4)">发布后对外地址是地区节点 <code>/p/{slug}/index.css</code>（多字体已烘焙）。写入走 vault；边缘须把 <code>/p/</code> 回源（同 <code>/api/css</code>）。按文案子集成清单时落到项目字符包档。' + (p.fonts.length ? '' : ' 项目里还没有字体，无法发布。') + '</p></div>';
+      embedGateHtml() +
+      '<p class="t-13 muted" style="margin-top:var(--s-4)">发布后对外地址是地区节点 <code>/p/{slug}/index.css</code>。cite-closed 须 <code>source=cert</code> 烘焙，不会灌公共 fonts-packages。' + (p.fonts.length ? '' : ' 项目里还没有字体，无法发布。') + '</p></div>';
+  }
+  function embedGateHtml() {
+    const issues = [];
+    if (!p.fonts.length) issues.push('还没有字体。');
+    const verified = (p.domains || []).some(function (d) { return d.verified; });
+    if (!(p.domains || []).length) issues.push('还没有绑定域名；本地 localhost 默认可测，正式站会被拒。');
+    else if (!verified) issues.push('域名尚未验证；发布后正式站请求可能 403。');
+    (p.fonts || []).forEach(function (f) {
+      const meta = WFApp.fontMeta(f.fontId);
+      if (!meta || !WFProto.citeAllowed) return;
+      const cite = WFProto.citeAllowed(meta);
+      if (cite && !cite.ok && f.source !== 'cert' && f.source !== 'upload') {
+        issues.push((meta.name || f.fontId) + ' 为 cite-closed，须证书通过并以 source=cert 加入，或不要依赖公共 CDN。');
+      }
+    });
+    if (!issues.length) return '';
+    return '<div class="embed-gate" role="alert"><strong>发布前请确认</strong><ul>' +
+      issues.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
   }
 
   function versionsPanel() {
@@ -133,16 +200,21 @@
       }).join('') + '</div>';
   }
   function usagePanel() {
-    const u = p.usage;
-    const daily = WFApp.series(p.id, 30, u.requests30d);
+    const u = p.usage || {};
+    const req = u.requests30d || 0;
+    const bytes = u.bytes30d || 0;
+    const perf = u.perf || {};
+    const spark = (req > 0)
+      ? ('<p class="t-13 muted" style="margin-bottom:var(--s-3)">曲线见<a href="usage.html">用量总表</a>（vault 聚合）。此处不造假日序。</p>')
+      : '<p class="empty">尚无投递。发布并嵌入后，请求与 403 会出现在用量里。</p>';
     return '<div class="panel"><div class="stats" style="margin-bottom:var(--s-8)">' +
-      '<div class="stat"><div class="v">' + WFApp.fmtGB(u.bytes30d) + '<small>GB</small></div><div class="l">30 天流量</div></div>' +
-      '<div class="stat"><div class="v">' + (u.requests30d / 1000).toFixed(1) + '<small>k</small></div><div class="l">字体请求</div></div>' +
-      '<div class="stat"><div class="v">' + u.perf.fontLoadMs + '<small>ms</small></div><div class="l">字体加载中位</div></div>' +
-      '<div class="stat"><div class="v">' + Math.round(u.perf.hitRate * 100) + '<small>%</small></div><div class="l">CDN 命中</div></div></div>' +
-      WFApp.sparkline(daily) + '<div class="spark-meta"><span>30 天前</span><span>今天</span></div>' +
+      '<div class="stat"><div class="v">' + (bytes ? WFApp.fmtGB(bytes) + '<small>GB</small>' : '—') + '</div><div class="l">30 天流量</div></div>' +
+      '<div class="stat"><div class="v">' + (req ? WFProto.formatCount(req) : '—') + '</div><div class="l">字体请求</div></div>' +
+      '<div class="stat"><div class="v">' + (perf.fontLoadMs ? (perf.fontLoadMs + '<small>ms</small>') : '—') + '</div><div class="l">字体加载中位</div></div>' +
+      '<div class="stat"><div class="v">' + (perf.hitRate != null ? (Math.round(perf.hitRate * 100) + '<small>%</small>') : '—') + '</div><div class="l">CDN 命中</div></div></div>' +
+      spark +
       '<div class="usage-grid" style="margin-top:var(--s-8)"><div><h3 class="t-13 muted" style="margin-bottom:var(--s-3)">按页面</h3>' +
-        (u.topPages.length ? '<table class="table"><tbody>' + u.topPages.map(function (r) {
+        ((u.topPages || []).length ? '<table class="table"><tbody>' + u.topPages.map(function (r) {
           return '<tr><td class="mono">' + esc(r.path) + '</td><td class="num">' + WFProto.formatCount(r.requests) + '</td></tr>';
         }).join('') + '</tbody></table>' : '<p class="muted t-13">暂无数据</p>') + '</div>' +
       '<div><h3 class="t-13 muted" style="margin-bottom:var(--s-3)">按域名</h3><table class="table"><tbody>' +
@@ -161,6 +233,9 @@
     const panels = { fonts: fontsPanel, domains: domainsPanel, embed: embedPanel, versions: versionsPanel, usage: usagePanel };
     root.innerHTML = head() + (panels[tab] || fontsPanel)();
     root.querySelectorAll('[data-tab]').forEach(function (b) { b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); }); });
+    root.querySelectorAll('[data-goto-tab]').forEach(function (b) {
+      b.addEventListener('click', function () { setTab(b.getAttribute('data-goto-tab')); });
+    });
 
     root.querySelectorAll('[data-remove-font]').forEach(function (b) {
       b.addEventListener('click', function () {
@@ -256,9 +331,34 @@
           : 'v' + v + ' 没有记下当时的字体清单。回滚只会多一条记录，项目里的字体不会变。';
         WFChrome.confirm({ title: '回滚到 v' + v, message: msg, ok: '回滚' }).then(function (ok) {
           if (!ok) return;
-          const restored = WFApp.rollback(p, v);
-          WFChrome.toast(restored ? '已回滚，字体清单已恢复' : '已记下回滚；这一版没有字体清单，项目里的字体未改');
-          render();
+          const hadFonts = !!(target && target.fonts);
+          const go = (window.WFApi && WFApi.rollbackProject && !WFApi.isMock && !WFApi.isMock())
+            ? WFApi.rollbackProject(p.id, v)
+            : Promise.resolve().then(function () {
+                WFApp.rollback(p, v);
+                return p;
+              });
+          go.then(function (fresh) {
+            if (fresh && fresh.id) {
+              p = fresh;
+              if (window.WFApp && WFApp.replaceProject) WFApp.replaceProject(fresh);
+              else if (window.WFApp && WFApp.save) {
+                try {
+                  const list = WFApp.projects();
+                  const i = list.findIndex(function (x) { return x.id === fresh.id; });
+                  if (i >= 0) {
+                    const st = WFApp.state();
+                    st.projects[i] = fresh;
+                    WFApp.save();
+                  }
+                } catch (e) { /* ignore */ }
+              }
+            }
+            WFChrome.toast(hadFonts ? '已回滚，字体清单已恢复' : '已记下回滚；这一版没有字体清单，项目里的字体未改');
+            render();
+          }).catch(function (err) {
+            WFChrome.toast((err && err.message) || '回滚失败');
+          });
         });
       });
     });
@@ -266,10 +366,15 @@
     const embedEl = document.getElementById('embed');
     if (embedEl) {
       const items = p.fonts.map(function (f) {
+        const meta = WFApp.fontMeta(f.fontId) || {};
+        const cite = WFProto.citeAllowed ? WFProto.citeAllowed(meta) : { ok: true };
+        const certGrant = f.source === 'cert' || (cite && (cite.reason === 'cert-grant' || cite.reason === 'cert-grant-lab'));
         return {
-          family: (WFApp.fontMeta(f.fontId) || {}).family || f.fontId,
+          family: meta.family || f.fontId,
           weights: f.weights,
-          version: p.delivery.subset || 'full'
+          version: p.delivery.subset || 'full',
+          certGrant: !!certGrant,
+          citeMode: certGrant ? 'cert' : ''
         };
       });
       let src = 'project';
@@ -356,10 +461,14 @@
             const v = (body && body.data && body.data.version) || '';
             WFChrome.toast('已发布 · v' + v + ' · ' + WFProto.projectCssUrl(p.slug, 'index.css', WFProto.cdnOriginById(p.delivery.cdn)).replace(/^https:\/\//, ''));
           }).catch(function (err) {
-            WFChrome.toast((err && err.message) || '发布失败');
-            if (err && (err.status === 401 || err.status === 403)) {
-              WFChrome.toast('密钥未登记时请先「导出清单」交运维写入 vault');
+            const code = err && (err.code || err.status);
+            let msg = (err && err.message) || '发布失败';
+            if (code === 401 || code === 403 || code === 'unauthorized') {
+              msg = '无权限发布：请确认已登录并「从会话同步密钥」。也可先导出清单。';
+            } else if (code === 422 || code === 'validation_error') {
+              msg = msg + '（检查 cite-closed 是否 source=cert、域名与清单）';
             }
+            WFChrome.toast(msg);
           }).then(function () { btnPub.disabled = !p.fonts.length; });
         });
       }
@@ -380,6 +489,7 @@
     return loadP.then(function (proj) {
       p = proj;
       if (!p) { root.innerHTML = '<p class="empty">没有项目。<a href="projects.html?new=1">新建一个</a></p>'; return; }
+      if (!tab) tab = defaultTab(p);
       document.title = p.name + ' · 控制台 · 文风字体';
       render();
     }).catch(function (err) {

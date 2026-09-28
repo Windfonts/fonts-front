@@ -20725,16 +20725,17 @@
   },
   {
     "id": "d234612e-ab92-40b5-b739-86c070f078b0",
-    "name": "站酷小薇LOGO体",
+    "name": "站酷小薇体",
     "en": "ZCOOL XiaoWei",
     "family": "wenfeng-zkxwt",
     "normalized": "Zkxwt",
-    "designer": "李大卫",
-    "designerShort": "李大卫",
-    "category": "无衬线字体",
+    "designer": "站酷",
+    "designerShort": "站酷",
+    "category": "宋体",
     "tags": [
-      "黑体",
-      "其他"
+      "宋体",
+      "标题字体",
+      "开源"
     ],
     "weights": [
       "Regular"
@@ -20742,20 +20743,20 @@
     "description": "站酷小薇体：宋风展示字体，Google Fonts 收录，SIL OFL 1.1 开源授权。原站酷小薇LOGO体（李大卫）为另一款字体，已由本条替代下线。",
     "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "https://fonts.google.com/specimen/ZCOOL+XiaoWei",
+    "licenseUrl": "https://github.com/googlefonts/zcool-xiaowei/blob/main/OFL.txt",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Zkxwt/LICENSE",
-    "licenseNotes": "授权原文随上游仓拉取归档（2026-09-26 批次①GF 与作者仓）。",
+    "licenseNotes": "许可原文为 SIL OFL 1.1（googlefonts/zcool-xiaowei）。可免费商用、可修改与再分发，修改版须改名。",
     "licenseVerified": true,
     "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "上海佐兹 / ZCOOL",
+    "copyright": "Copyright 2018 The ZCOOL XiaoWei Project Authors (https://github.com/googlefonts/zcool-xiaowei/)",
+    "foundry": "ZCOOL",
     "brand": {
-      "name": "上海佐兹品牌设计",
-      "slug": "zuozi",
+      "name": "站酷字库",
+      "slug": "zcool",
       "logoUrl": "",
-      "avatarUrl": "",
+      "avatarUrl": "assets/avatars/zcool.webp",
       "website": "",
-      "description": "做字（Zuozi）为字体设计者或工作室，相关信息极少，未找到以做字为名的字体厂商官方页面。"
+      "description": "站酷字库出品的字体"
     },
     "releaseYear": 2018,
     "version": "1.000",
@@ -20763,14 +20764,15 @@
       "简体中文"
     ],
     "useCases": [
-      "品牌标志设计",
-      "广告标题",
-      "平面设计",
+      "标题",
+      "海报",
+      "品牌短句",
       "印刷品标题"
     ],
     "charCount": 0,
     "glyphCount": 0,
-    "viewCount": 34
+    "viewCount": 34,
+    "foundryAvatar": "assets/avatars/zcool.webp"
   },
   {
     "id": "ab854e07-e257-4bfb-a749-a5d45d1d4621",

@@ -9,61 +9,124 @@
   <link rel="stylesheet" href="../css/tokens.css?v=20260923qa" />
   <link rel="stylesheet" href="../css/base.css?v=20260924c" />
   <link rel="stylesheet" href="../css/components.css?v=20260925k" />
-  <link rel="stylesheet" href="../css/app.css?v=20260924q" />
+  <link rel="stylesheet" href="../css/app.css?v=20260927v5" />
   <link rel="icon" type="image/webp" href="../assets/icon.webp" />
 </head>
 <body class="app">
   <aside class="rail" data-rail data-active="overview"></aside>
   <main class="app-main" id="root"><p class="loading">正在加载…</p></main>
 
-  <script src="../js/wf-proto.js?v=20260926oflopen"></script>
+  <script src="../js/wf-proto.js?v=20260927v5"></script>
   <script src="../js/wf-chrome.js?v=20260926brandinvite"></script>
   <script src="../js/wf-auth.js?v=20260926sso2"></script>
-  <script src="../js/wf-embed.js?v=20260924p"></script>
-  <script src="../js/wf-app.js?v=20260926sso2"></script>
-  <script src="../js/wf-api.js?v=20260926sso2"></script>
+  <script src="../js/wf-embed.js?v=20260927v5"></script>
+  <script src="../js/wf-app.js?v=20260927v5"></script>
+  <script src="../js/wf-api.js?v=20260927v5"></script>
   <script>
     (function () {
       if (!WFApp.gate()) return;
       const esc = WFProto.escapeHtml;
       const root = document.getElementById('root');
-      Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(function (r) {
-        const s = r[1];
-        const ps = s.projects;
-        const req = ps.reduce(function (a, p) { return a + p.usage.requests30d; }, 0);
-        const bytes = ps.reduce(function (a, p) { return a + p.usage.bytes30d; }, 0);
-        const domains = ps.reduce(function (a, p) { return a + p.domains.length; }, 0);
-        const fonts = ps.reduce(function (a, p) { return a + p.fonts.length; }, 0);
-        const daily = WFApp.series('all', 30, req);
-        const versions = [];
-        ps.forEach(function (p) { p.versions.slice(0, 3).forEach(function (v) { versions.push({ p: p, v: v }); }); });
-        versions.sort(function (a, b) { return new Date(b.v.at) - new Date(a.v.at); });
+
+      function nextStep(p) {
+        if (!p.fonts.length) {
+          return { title: '添加第一款字体', href: 'subset.html?project=' + encodeURIComponent(p.id), hint: '从字体库挑一款放进项目' };
+        }
+        const verified = (p.domains || []).some(function (d) { return d.verified; });
+        if (!(p.domains || []).length || !verified) {
+          return { title: '绑定并验证域名', href: 'project.html?id=' + encodeURIComponent(p.id) + '&tab=domains', hint: '未验证域名时线上嵌入会被拒' };
+        }
+        return { title: '发布到 CDN', href: 'project.html?id=' + encodeURIComponent(p.id) + '&tab=embed', hint: '生成 /p/' + p.slug + '/index.css' };
+      }
+
+      function paint(s, usage) {
+        const persona = WFApp.consolePersona ? WFApp.consolePersona() : 'customer';
+        const ps = s.projects || [];
+        const claims = WFApp.approvedClaims ? WFApp.approvedClaims() : [];
+        if (!ps.length && persona === 'foundry') {
+          root.innerHTML =
+            '<div class="app-head"><div><h1>概览</h1><p class="sub">管理已认领的页与字体</p></div></div>' +
+            '<section class="app-section app-empty-hero">' +
+              '<h2>品牌与字体</h2>' +
+              '<p class="t-14" style="max-width:28rem;color:var(--ink-2)">你有 ' + claims.length + ' 个已通过认领。先改公开页资料，或到「我的字体 / 上传」维护自家字。</p>' +
+              '<p style="margin-top:var(--s-6)">' +
+                '<a class="btn btn-ink btn-lg" href="pages.html">' + WFChrome.icon('idcard') + '打开我的页</a> ' +
+                '<a class="btn btn-lg" href="fonts.html">' + WFChrome.icon('font') + '我的字体</a></p>' +
+            '</section>';
+          return;
+        }
+        if (!ps.length && persona === 'admin') {
+          root.innerHTML =
+            '<div class="app-head"><div><h1>概览</h1><p class="sub">完整控制台</p></div></div>' +
+            '<section class="app-section app-empty-hero">' +
+              '<h2>还没有项目</h2>' +
+              '<p class="t-14" style="max-width:28rem;color:var(--ink-2)">管理员侧栏保留域名、子集、用量与团队。嵌字仍从项目开始；字典与认领审核在 vault 运营后台。</p>' +
+              '<p style="margin-top:var(--s-6)">' +
+                '<a class="btn btn-ink btn-lg" href="projects.html?new=1">' + WFChrome.icon('plus') + '创建项目</a> ' +
+                '<a class="btn btn-lg" href="https://vault.windfonts.com/admin" target="_blank" rel="noopener">运营后台</a></p>' +
+            '</section>';
+          return;
+        }
+        if (!ps.length) {
+          root.innerHTML =
+            '<div class="app-head"><div><h1>概览</h1><p class="sub">把字体嵌到你的网站上</p></div></div>' +
+            '<section class="app-section app-empty-hero">' +
+              '<h2>还没有项目</h2>' +
+              '<p class="t-14" style="max-width:28rem;color:var(--ink-2)">创建一个项目，加入字体并验证域名后，即可发布一份 <code>/p/{slug}/index.css</code> 给站点引用。</p>' +
+              '<p style="margin-top:var(--s-6)"><a class="btn btn-ink btn-lg" href="projects.html?new=1">' + WFChrome.icon('plus') + '创建项目并开始</a></p>' +
+              '<p class="t-13 muted" style="margin-top:var(--s-4)">cite-closed 字体须先到<a href="certs.html">证书</a>开引用；认领厂商在公开认领页。</p>' +
+            '</section>';
+          return;
+        }
+
+        const u = usage || {};
+        const totals = u.totals || {};
+        const req = totals.requests != null ? totals.requests : ps.reduce(function (a, p) { return a + ((p.usage && p.usage.requests30d) || 0); }, 0);
+        const bytes = totals.bytes != null ? totals.bytes : ps.reduce(function (a, p) { return a + ((p.usage && p.usage.bytes30d) || 0); }, 0);
+        const blocked = totals.blocked != null ? totals.blocked : 0;
+        const hasLiveSeries = u.series && Array.isArray(u.series.requests) && u.series.requests.length && !u.stub;
+        const daily = hasLiveSeries
+          ? u.series.requests.map(function (d) { return typeof d === 'number' ? d : (d.requests || 0); })
+          : null;
+
+        const steps = ps.map(function (p) {
+          const n = nextStep(p);
+          return '<li class="next-card"><a href="' + n.href + '"><strong>' + esc(p.name) + '</strong><span>' + esc(n.title) + '</span><small>' + esc(n.hint) + '</small></a></li>';
+        }).slice(0, 4);
 
         root.innerHTML =
-          '<div class="app-head"><div><h1>概览</h1><p class="sub">' + s.plan.name + '版 · 近 30 天</p></div>' +
-            '<div class="app-actions"><a class="btn" href="subset.html">' + WFChrome.icon('scissors') + '子集化</a><a class="btn btn-ink" href="projects.html?new=1">' + WFChrome.icon('plus') + '新建项目</a></div></div>' +
+          '<div class="app-head"><div><h1>概览</h1><p class="sub">下一步 · 近 30 天用量以 vault 为准</p></div>' +
+            '<div class="app-actions"><a class="btn btn-ink" href="projects.html?new=1">' + WFChrome.icon('plus') + '新建项目</a></div></div>' +
+          '<section class="app-section"><h2>接下来</h2><ul class="next-list">' + steps.join('') + '</ul></section>' +
           '<div class="stats">' +
-            '<div class="stat"><div class="v">' + ps.length + '<small>/ ' + s.plan.quota.projects + '</small></div><div class="l">项目</div></div>' +
-            '<div class="stat"><div class="v">' + WFApp.fmtGB(bytes) + '<small>GB / ' + s.plan.quota.trafficGB + '</small></div><div class="l">本月流量</div></div>' +
-            '<div class="stat"><div class="v">' + (req / 1000).toFixed(1) + '<small>k</small></div><div class="l">字体请求</div></div>' +
-            '<div class="stat"><div class="v">' + fonts + '<small>款 · ' + domains + ' 域名</small></div><div class="l">在用字体</div></div>' +
+            '<div class="stat"><div class="v">' + ps.length + '</div><div class="l">项目</div></div>' +
+            '<div class="stat"><div class="v">' + (req ? WFProto.formatCount(req) : '—') + '</div><div class="l">字体请求</div></div>' +
+            '<div class="stat"><div class="v">' + (bytes ? WFApp.fmtGB(bytes) + '<small>GB</small>' : '—') + '</div><div class="l">流量</div></div>' +
+            '<div class="stat"><div class="v">' + (blocked ? WFProto.formatCount(blocked) : '0') + '</div><div class="l">403 拦截</div></div>' +
           '</div>' +
-          '<section class="app-section"><h2>每日请求<span class="more mono">30 天</span></h2>' + WFApp.sparkline(daily) +
-            '<div class="spark-meta"><span>30 天前</span><span>今天</span></div></section>' +
+          (daily
+            ? '<section class="app-section"><h2>每日请求<span class="more mono">30 天</span></h2>' + WFApp.sparkline(daily) +
+              '<div class="spark-meta"><span>' + esc((u.series && u.series.from) || '30 天前') + '</span><span>' + esc((u.series && u.series.to) || '今天') + '</span></div></section>'
+            : '<section class="app-section"><h2>每日请求</h2><p class="empty">尚无投递数据。发布并嵌入后，这里显示 vault 聚合曲线（不造假序列）。</p></section>') +
           '<section class="app-section"><h2>项目<a class="more" href="projects.html">' + WFChrome.icon('arrow-right') + '全部</a></h2><ul class="proj-list">' +
             ps.map(function (p) {
               return '<li><a class="name" href="project.html?id=' + esc(p.id) + '">' + esc(p.name) + '<small>' + esc(p.slug) + '</small></a>' +
                 '<span><span class="num">' + p.fonts.length + '</span> 字体</span>' +
                 '<span class="hide-md"><span class="num">' + p.domains.length + '</span> 域名</span>' +
-                '<span class="hide-md"><span class="num">' + WFApp.fmtGB(p.usage.bytes30d) + '</span> GB</span>' +
                 '<span>v' + WFApp.currentVersion(p).v + '</span></li>';
-            }).join('') + '</ul></section>' +
-          '<section class="app-section"><h2>最近版本</h2><ul class="version-list">' +
-            versions.slice(0, 6).map(function (x) {
-              return '<li><span class="v' + (x.v.current ? ' is-current' : '') + '">v' + x.v.v + '</span>' +
-                '<span class="note"><a href="project.html?id=' + esc(x.p.id) + '&tab=versions">' + esc(x.p.name) + '</a> · ' + esc(x.v.note) + '</span>' +
-                '<span class="num muted">' + WFEmbed.fmtBytes(x.v.bytes) + '</span><span class="at">' + WFApp.fmtDate(x.v.at) + '</span></li>';
             }).join('') + '</ul></section>';
+      }
+
+      Promise.all([
+        WFProto.loadCatalog(),
+        WFApp.load(),
+        WFApp.ensureClaimsSynced ? WFApp.ensureClaimsSynced() : Promise.resolve()
+      ]).then(function (r) {
+        const s = r[1];
+        const pull = (window.WFApi && WFApi.getUsage && !WFApi.isMock())
+          ? WFApi.getUsage({ range: 30 }).catch(function () { return null; })
+          : Promise.resolve(null);
+        return pull.then(function (u) { paint(s, u); });
       });
     })();
   </script>

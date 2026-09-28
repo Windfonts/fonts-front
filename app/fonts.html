@@ -10,20 +10,20 @@
   <link rel="stylesheet" href="../css/base.css?v=20260924c" />
   <link rel="stylesheet" href="../css/components.css?v=20260925k" />
   <link rel="stylesheet" href="../css/specimen.css" />
-  <link rel="stylesheet" href="../css/app.css?v=20260924q" />
+  <link rel="stylesheet" href="../css/app.css?v=20260927v5" />
   <link rel="icon" type="image/webp" href="../assets/icon.webp" />
 </head>
 <body class="app">
   <aside class="rail" data-rail data-active="fonts"></aside>
   <main class="app-main" id="root"><p class="loading">正在加载…</p></main>
 
-  <script src="../js/wf-proto.js?v=20260926oflopen"></script>
+  <script src="../js/wf-proto.js?v=20260927v5"></script>
   <script src="../js/wf-chrome.js?v=20260926brandinvite"></script>
   <script src="../js/wf-auth.js?v=20260926sso2"></script>
   <script src="../js/wf-specimen.js"></script>
-  <script src="../js/wf-embed.js?v=20260924p"></script>
-  <script src="../js/wf-app.js?v=20260926picks1"></script>
-  <script src="../js/wf-api.js?v=20260926picks1"></script>
+  <script src="../js/wf-embed.js?v=20260927v5"></script>
+  <script src="../js/wf-app.js?v=20260927v5"></script>
+  <script src="../js/wf-api.js?v=20260927v5"></script>
   <script>
     (function () {
       if (!WFApp.gate()) return;
@@ -32,16 +32,46 @@
 
       function render() {
         const s = WFApp.state();
+        const persona = WFApp.consolePersona ? WFApp.consolePersona() : 'customer';
+        const claims = WFApp.approvedClaims ? WFApp.approvedClaims() : [];
+        const owned = (WFApp.can && WFApp.can('ownedFonts') && WFApp.fontsOwnedByClaims)
+          ? WFApp.fontsOwnedByClaims(claims)
+          : [];
         const ps = WFApp.projects();
         const used = {};
         ps.forEach(function (p) { p.fonts.forEach(function (f) { (used[f.fontId] = used[f.fontId] || []).push({ p: p, f: f }); }); });
         const ids = Object.keys(used);
         const fonts = ids.map(function (id) { return WFApp.fontMeta(id); }).filter(Boolean);
         const bagFonts = WFProto.getPicks().map(function (x) { return WFProto.getFont(x.id); }).filter(Boolean);
+        const isFoundry = persona === 'foundry';
+        const canUpload = !(WFApp.can) || WFApp.can('upload');
+
+        const ownedSection = (WFApp.can && WFApp.can('ownedFonts'))
+          ? '<section class="app-section"><h2>归属本页的字<span class="more mono">' + owned.length + '</span></h2>' +
+            (owned.length
+              ? '<ul class="proj-list">' + owned.map(function (f) {
+                  const slug = (f.brand && f.brand.slug) || (f.ownerInfo && f.ownerInfo.id) || '';
+                  return '<li><a class="name" href="../font-detail.html?id=' + esc(f.id) + '">' + esc(f.name) +
+                    '<small>' + esc(f.family || '') + (slug ? ' · ' + esc(slug) : '') + '</small></a>' +
+                    '<span class="num">' + WFProto.formatCount(f.glyphCount || f.charCount || 0) + '</span></li>';
+                }).join('') + '</ul>' +
+                '<p class="t-13 muted" style="margin-top:var(--s-3)">列表只读；改公开页资料在「我的页」，不能改许可档位。</p>'
+              : '<p class="empty">库内还没有挂到已认领页的字。可先<a href="pages.html">改我的页</a>，或<a href="upload.html">上传</a>自有授权字。</p>') +
+            '</section>'
+          : '';
 
         root.innerHTML =
-          '<div class="app-head"><div><h1>我的字体</h1><p class="sub">' + fonts.length + ' 款在项目中 · ' + s.uploads.length + ' 款我上传的 · ' + bagFonts.length + ' 款在选字袋</p></div>' +
-            '<div class="app-actions"><a class="btn" href="../fonts.html">' + WFChrome.icon('font-size') + '字体库</a><a class="btn btn-ink" href="upload.html">' + WFChrome.icon('upload') + '上传字体</a></div></div>' +
+          '<div class="app-head"><div><h1>我的字体</h1><p class="sub">' +
+            (isFoundry
+              ? (owned.length + ' 款归属 · ' + s.uploads.length + ' 款我上传的 · ' + fonts.length + ' 款在项目中')
+              : (fonts.length + ' 款在项目中 · ' + s.uploads.length + ' 款我上传的 · ' + bagFonts.length + ' 款在选字袋')) +
+            '</p></div>' +
+            '<div class="app-actions"><a class="btn" href="../fonts.html">' + WFChrome.icon('font-size') + '字体库</a>' +
+            (canUpload
+              ? '<a class="btn btn-ink" href="upload.html">' + WFChrome.icon('upload') + '上传字体</a>'
+              : '<span class="t-13 muted" style="align-self:center">上传需专业档或厂商认领</span>') +
+            '</div></div>' +
+          ownedSection +
           '<section class="app-section"><h2>在项目中使用</h2>' +
             (fonts.length ? '<table class="table"><thead><tr><th>字体</th><th>项目</th><th>字重 · 子集</th><th class="num">体积</th><th class="num">30 天请求</th><th></th></tr></thead><tbody>' +
               ids.map(function (id) {
@@ -64,9 +94,10 @@
                   '<td class="mono">' + esc(u.format) + '</td><td class="num">' + WFEmbed.fmtBytes(u.size) + '</td><td><span class="status-dot' + (u.status === 'ready' ? '' : ' is-pending') + '">' + (u.status === 'ready' ? '可用' : '处理中') + '</span></td>' +
                   '<td class="actions"><a class="btn-text" href="subset.html?upload=' + esc(u.id) + '">' + WFChrome.icon('plus') + '加入项目</a> <button type="button" class="btn-text" data-drop-upload="' + esc(u.id) + '">' + WFChrome.icon('trash') + '删除</button></td></tr>';
               }).join('') + '</tbody></table>' : '<p class="empty">还没有上传字体。</p>') + '</section>' +
-          '<section class="app-section"><h2>选字袋<a class="more" href="../shopping-bag.html">' + WFChrome.icon('bag') + '查看</a></h2>' +
-            (bagFonts.length ? '<ul class="specimens" id="bagRows"></ul><p style="margin-top:var(--s-4)"><a class="btn" href="subset.html?from=bag">' + WFChrome.icon('plus') + '加入项目</a></p>' : '<p class="empty">选字袋是空的。在字体库点「加入选字袋」。</p>') + '</section>';
-        if (bagFonts.length) WFSpecimen.renderRows(document.getElementById('bagRows'), bagFonts, { size: 40 });
+          (isFoundry ? '' :
+            '<section class="app-section"><h2>选字袋<a class="more" href="../shopping-bag.html">' + WFChrome.icon('bag') + '查看</a></h2>' +
+            (bagFonts.length ? '<ul class="specimens" id="bagRows"></ul><p style="margin-top:var(--s-4)"><a class="btn" href="subset.html?from=bag">' + WFChrome.icon('plus') + '加入项目</a></p>' : '<p class="empty">选字袋是空的。在字体库点「加入选字袋」。</p>') + '</section>');
+        if (!isFoundry && bagFonts.length) WFSpecimen.renderRows(document.getElementById('bagRows'), bagFonts, { size: 40 });
         root.querySelectorAll('[data-drop-upload]').forEach(function (b) {
           b.addEventListener('click', function () {
             const id = b.getAttribute('data-drop-upload');
@@ -80,7 +111,11 @@
           });
         });
       }
-      Promise.all([WFProto.loadCatalog(), WFApp.load()]).then(render);
+      Promise.all([
+        WFProto.loadCatalog(),
+        WFApp.load(),
+        WFApp.ensureClaimsSynced ? WFApp.ensureClaimsSynced() : Promise.resolve()
+      ]).then(render);
     })();
   </script>
 </body>

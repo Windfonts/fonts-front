@@ -1,5 +1,6 @@
 /* 我的证书：当前登录身份下跨字体 grant 列表（lab localStorage） */
 (function () {
+  if (window.WFApp && WFApp.gate && !WFApp.gate()) return;
   const esc = WFProto.escapeHtml;
   const root = document.getElementById('certsRoot');
   if (!root) return;
@@ -84,7 +85,7 @@
     } else if (!grants.length) {
       body =
         '<section class="app-section cert-panel">' +
-          '<p class="t-14">当前身份还没有证书记录。从 cite-closed 字体详情点「上传证书」开始。</p>' +
+          '<p class="t-14">还没有证书记录。从 cite-closed 字体详情上传，或点右上角「上传证书」。通过后可进项目以 source=cert 发布。</p>' +
           '<p class="t-13 muted">示例：' +
             '<a href="' + WFChrome.href('app/cert-upload.html?cert=shmgt') + '">上海摩登体</a> · ' +
             '<a href="' + WFChrome.href('app/cert-upload.html?cert=jlyhmht') + '">吉利银河美好体</a></p>' +
@@ -123,10 +124,12 @@
 
     root.innerHTML =
       '<div class="app-head"><div>' +
-        '<p class="crumb"><a href="' + WFChrome.href('fonts.html') + '">字体库</a><span>/</span><span>我的证书</span></p>' +
-        '<h1>我的证书</h1>' +
-        '<p class="sub">' + esc(subjectLabel()) +
-          ' · 身份键 <code class="mono">' + esc(WFProto.certSubjectKey()) + '</code></p>' +
+        '<h1>证书</h1>' +
+        '<p class="sub">cite-closed 开引用：上传 → 审核（通知）→ 项目 source=cert 发布 · ' + esc(subjectLabel()) + '</p>' +
+      '</div>' +
+      '<div class="app-actions">' +
+        '<a class="btn btn-ink" href="' + WFChrome.href('app/cert-upload.html') + '">' + WFChrome.icon('upload') + '上传证书</a> ' +
+        '<a class="btn" href="' + WFChrome.href('app/notifications.html') + '">' + WFChrome.icon('mail') + '通知</a>' +
       '</div></div>' + body;
 
     const btn = document.getElementById('certsLabLogin');

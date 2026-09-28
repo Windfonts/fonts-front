@@ -56,7 +56,13 @@
     const method = (opts.method || 'GET').toUpperCase();
     const url = base() + path;
     const init = { method: method, headers: bearerHeaders(opts.headers) };
-    if (opts.body != null && method !== 'GET' && method !== 'HEAD') {
+    if (opts.rawBody) {
+      /* 二进制 PUT：勿强加 JSON Content-Type */
+      if (init.headers['Content-Type'] === 'application/json' && !(opts.headers && opts.headers['Content-Type'])) {
+        delete init.headers['Content-Type'];
+      }
+      if (opts.body != null) init.body = opts.body;
+    } else if (opts.body != null && method !== 'GET' && method !== 'HEAD') {
       init.body = typeof opts.body === 'string' ? opts.body : JSON.stringify(opts.body);
     }
     return fetch(url, init).then(function (res) {
@@ -790,7 +796,231 @@
     });
   }
 
-  function listClaims() {
+
+
+  /* —— Team —— */
+  function applyTeamLocal(members) {
+    return ensureApp().then(function () {
+      const s = WFApp.state();
+      if (s) {
+        s.team = Array.isArray(members) ? members.slice() : [];
+        if (typeof WFApp.save === 'function') WFApp.save();
+      }
+      return (s && s.team) || [];
+    });
+  }
+
+  function listTeam() {
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const s = WFApp.state();
+        return ((s && s.team) || []).slice();
+      });
+    }
+    return request('/api/team').then(function (data) {
+      const members = (data && data.members) || [];
+      return applyTeamLocal(members).then(function () { return members.slice(); });
+    });
+  }
+
+  function inviteMember(email, role) {
+    email = String(email || '').trim().toLowerCase();
+    role = role || 'editor';
+    if (!email) return Promise.reject(apiError('validation_error', '邮箱不能为空', 422));
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const result = WFApp.inviteMember(email, role);
+        if (result === 'full') throw apiError('quota_exceeded', '席位已满，专业版最多 5 人', 422);
+        if (!result) throw apiError('conflict', '该邮箱已在团队中', 409);
+        const s = WFApp.state();
+        return (s.team || []).filter(function (m) { return m.email === email; })[0];
+      });
+    }
+    return request('/api/team', { method: 'POST', body: { email: email, role: role } }).then(function (member) {
+      return listTeam().then(function () { return member; });
+    });
+  }
+
+  function setMemberRole(id, role) {
+    id = String(id || '');
+    role = String(role || '');
+    if (!id || !role) return Promise.reject(apiError('validation_error', '成员或角色无效', 422));
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const s = WFApp.state();
+        const m = ((s && s.team) || []).filter(function (x) { return x.id === id; })[0];
+        if (!m) throw apiError('not_found', '成员不存在', 404);
+        if (m.role === 'owner') throw apiError('forbidden', '不能变更所有者角色', 403);
+        if (role === 'owner') throw apiError('validation_error', '不能直接设为所有者', 422);
+        WFApp.setMemberRole(id, role);
+        return ((WFApp.state().team) || []).filter(function (x) { return x.id === id; })[0];
+      });
+    }
+    return request('/api/team/' + encodeURIComponent(id), { method: 'PATCH', body: { role: role } }).then(function (member) {
+      return listTeam().then(function () { return member; });
+    });
+  }
+
+  function removeMember(id) {
+    id = String(id || '');
+    if (!id) return Promise.reject(apiError('validation_error', '成员无效', 422));
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const s = WFApp.state();
+        const m = ((s && s.team) || []).filter(function (x) { return x.id === id; })[0];
+        if (!m) throw apiError('not_found', '成员不存在', 404);
+        if (!WFApp.removeMember(id)) throw apiError('forbidden', '无法移除该成员', 403);
+        return { ok: true };
+      });
+    }
+    return request('/api/team/' + encodeURIComponent(id), { method: 'DELETE' }).then(function () {
+      return listTeam().then(function () { return { ok: true }; });
+    });
+  }
+
+  /* —— Favs —— */
+  function getFavsRemote() {
+    if (isMock()) {
+      return Promise.resolve(window.WFProto && WFProto.loadFavs ? WFProto.loadFavs() : { fonts: [], authors: [] });
+    }
+    return request('/api/favs').catch(function (err) {
+      if (err && (err.status === 401 || err.status === 404 || err.code === 'unauthorized' || err.code === 'not_found')) {
+        return { fonts: [], authors: [] };
+      }
+      throw err;
+    });
+  }
+
+  function putFavs(body) {
+    body = body || {};
+    if (isMock()) {
+      if (window.WFProto && WFProto.replaceFavsLocal) {
+        WFProto.replaceFavsLocal({ fonts: body.fonts || [], authors: body.authors || [] });
+      }
+      return Promise.resolve(body);
+    }
+    return request('/api/favs', {
+      method: 'PUT',
+      body: { fonts: body.fonts || [], authors: body.authors || [] }
+    });
+  }
+
+  function mergeFavBuckets(a, b) {
+    const seen = {};
+    const out = [];
+    (a || []).concat(b || []).forEach(function (item) {
+      if (!item || !item.id || seen[item.id]) return;
+      seen[item.id] = true;
+      out.push({ id: String(item.id), name: String(item.name || item.id) });
+    });
+    return out;
+  }
+
+  function syncFavs(local) {
+    local = local || { fonts: [], authors: [] };
+    if (isMock()) return Promise.resolve(local);
+    return getFavsRemote().then(function (remote) {
+      const merged = {
+        fonts: mergeFavBuckets(local.fonts, remote && remote.fonts),
+        authors: mergeFavBuckets(local.authors, remote && remote.authors)
+      };
+      return putFavs(merged).then(function () { return merged; });
+    }).catch(function (err) {
+      if (err && (err.status === 401 || err.status === 404 || err.code === 'unauthorized' || err.code === 'not_found')) {
+        return local;
+      }
+      throw err;
+    });
+  }
+
+  function listFontCerts() {
+    if (isMock()) {
+      return Promise.resolve([]);
+    }
+    return request('/api/font-certs').catch(function (err) {
+      if (err && (err.status === 404 || err.code === 'not_found')) return [];
+      throw err;
+    });
+  }
+
+  /** 已通过的 fontKey 列表 + 工单（live）。 */
+  function listFontCertGrants() {
+    if (isMock()) {
+      return Promise.resolve({ fontKeys: [], certs: [] });
+    }
+    return request('/api/font-certs?approved=1').catch(function (err) {
+      if (err && (err.status === 401 || err.status === 404 || err.code === 'unauthorized' || err.code === 'not_found')) {
+        return { fontKeys: [], certs: [] };
+      }
+      throw err;
+    });
+  }
+
+  function submitFontCert(payload) {
+    if (isMock()) {
+      return Promise.reject(new Error('mock 不支持 vault 证书'));
+    }
+    return request('/api/font-certs', { method: 'POST', body: payload || {} });
+  }
+
+  function putFontCertFile(id, blob, meta) {
+    meta = meta || {};
+    if (isMock()) return Promise.reject(new Error('mock 不支持 vault 证书'));
+    const headers = {};
+    if (meta.fileName) headers['X-File-Name'] = encodeURIComponent(meta.fileName);
+    if (meta.contentType) headers['Content-Type'] = meta.contentType;
+    else if (blob && blob.type) headers['Content-Type'] = blob.type;
+    return request('/api/font-certs/' + encodeURIComponent(id) + '/file', {
+      method: 'PUT',
+      body: blob,
+      headers: headers,
+      rawBody: true
+    });
+  }
+
+  function fetchFontCertCss(family, weight) {
+    if (isMock()) {
+      return Promise.reject(new Error('mock 无账号证书 CSS'));
+    }
+    let name = String(family || '').trim();
+    if (window.WFProto && typeof WFProto.certCssApiUrl === 'function') {
+      const u = WFProto.certCssApiUrl(name, weight || 'regular', base());
+      const path = u.replace(base(), '') || u;
+      const url = path.indexOf('http') === 0 ? path : (base() + path);
+      return fetch(url, { method: 'GET', headers: bearerHeaders() }).then(function (res) {
+        return res.text().then(function (text) {
+          if (!res.ok) {
+            let msg = 'HTTP ' + res.status;
+            try {
+              const j = JSON.parse(text);
+              if (j && j.error && j.error.message) msg = j.error.message;
+            } catch (e) {}
+            throw apiError(res.status === 401 ? 'unauthorized' : res.status === 403 ? 'forbidden' : 'internal', msg, res.status);
+          }
+          return text;
+        });
+      });
+    }
+    const w = String(weight || 'regular').toLowerCase().replace(/[\s_-]+/g, '') || 'regular';
+    if (name && name.indexOf('wenfeng-') !== 0) name = 'wenfeng-' + name.replace(/^wenfeng-/i, '');
+    const url = base() + '/api/font-certs/css?family=' + encodeURIComponent(name.toLowerCase()) +
+      '&weight=' + encodeURIComponent(w);
+    return fetch(url, { method: 'GET', headers: bearerHeaders() }).then(function (res) {
+      return res.text().then(function (text) {
+        if (!res.ok) {
+          let msg = 'HTTP ' + res.status;
+          try {
+            const j = JSON.parse(text);
+            if (j && j.error && j.error.message) msg = j.error.message;
+          } catch (e) {}
+          throw apiError(res.status === 401 ? 'unauthorized' : res.status === 403 ? 'forbidden' : 'internal', msg, res.status);
+        }
+        return text;
+      });
+    });
+  }
+
+    function listClaims() {
     if (isMock()) {
       return ensureApp().then(function () {
         return (WFApp.state().claims || []).slice();
@@ -802,7 +1032,30 @@
     });
   }
 
-  function submitClaim(payload) {
+  function updateClaimPageRemote(claimId, page) {
+    if (isMock()) {
+      return ensureApp().then(function () {
+        return WFApp.updateClaimPage(claimId, page || {});
+      });
+    }
+    return request('/api/claims/' + encodeURIComponent(claimId) + '/page', {
+      method: 'PATCH',
+      body: page || {}
+    });
+  }
+
+  function publishFoundryPage(claimId, page) {
+    if (isMock()) {
+      return ensureApp().then(function () {
+        WFApp.updateClaimPage(claimId, page || {});
+        return { claimId: claimId, publishedAt: new Date().toISOString(), mock: true };
+      });
+    }
+    const body = Object.assign({ claimId: claimId }, page || {});
+    return request('/api/pages/publish', { method: 'POST', body: body });
+  }
+
+    function submitClaim(payload) {
     if (isMock()) {
       return ensureApp().then(function () {
         return WFApp.submitClaim(payload);
@@ -815,7 +1068,107 @@
    * 往项目加/更新字体并记版本；live 走 patch，mock 走 WFApp.addFont。
    * @returns {Promise<object>} 更新后的项目
    */
-  function addFontToProject(projectId, fontId, weights, subsetObj) {
+  function rollbackProject(projectId, versionNum) {
+    if (useLocalProjects()) {
+      return ensureApp().then(function () {
+        const p = WFApp.projects().filter(function (x) { return x.id === projectId; })[0];
+        if (!p) return Promise.reject(apiError('not_found', '项目不存在', 404));
+        const ok = WFApp.rollback(p, versionNum);
+        return p;
+      });
+    }
+    return request('/api/projects/' + encodeURIComponent(projectId) + '/rollback', {
+      method: 'POST',
+      body: { v: versionNum }
+    });
+  }
+
+  function getPlan() {
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const s = WFApp.state();
+        const projects = s.projects || [];
+        let domains = 0;
+        let bytes = 0;
+        projects.forEach(function (p) {
+          domains += (p.domains || []).length;
+          bytes += (p.usage && p.usage.bytes30d) || 0;
+        });
+        const plan = s.plan || { id: 'pro', name: '专业', quota: { projects: 10, domains: null, trafficGB: 200, fonts: 50 } };
+        return {
+          plan: plan,
+          enforced: false,
+          billingReady: false,
+          usage: {
+            projects: projects.length,
+            domains: domains,
+            trafficBytes30d: bytes,
+            trafficGB30d: Math.round((bytes / 1e9) * 10) / 10
+          },
+          catalog: {
+            free: { id: 'free', name: '免费', quota: { projects: 1, domains: 3, trafficGB: 10, fonts: 5 } },
+            pro: { id: 'pro', name: '专业', quota: { projects: 10, domains: null, trafficGB: 200, fonts: 50 } }
+          },
+          note: 'mock：支付未通，配额只读。'
+        };
+      });
+    }
+    return request('/api/plan');
+  }
+
+  function listNotifications(limit) {
+    if (isMock()) {
+      return Promise.resolve({ items: [], unread: 0 });
+    }
+    const q = limit ? ('?limit=' + encodeURIComponent(String(limit))) : '';
+    return request('/api/notifications' + q).catch(function (err) {
+      if (err && (err.status === 404 || err.code === 'not_found')) return { items: [], unread: 0 };
+      throw err;
+    });
+  }
+
+  function markNotificationsRead(ids) {
+    if (isMock()) return Promise.resolve({ updated: 0 });
+    return request('/api/notifications', {
+      method: 'POST',
+      body: { read: ids == null ? 'all' : ids }
+    }).catch(function () { return { updated: 0 }; });
+  }
+
+    function listAudit(limit) {
+    if (isMock()) {
+      return ensureApp().then(function () {
+        const s = WFApp.state();
+        return (s.audit || []).slice(0, limit || 40);
+      });
+    }
+    const q = limit ? ('?limit=' + encodeURIComponent(String(limit))) : '';
+    return request('/api/audit' + q).catch(function (err) {
+      if (err && (err.status === 404 || err.code === 'not_found')) return [];
+      throw err;
+    });
+  }
+
+  function appendAudit(entry) {
+    if (isMock()) {
+      return ensureApp().then(function () {
+        if (window.WFApp && WFApp.log) {
+          WFApp.log((entry && entry.action) || '操作', (entry && entry.detail) || '');
+        }
+        return entry || {};
+      });
+    }
+    return request('/api/audit', {
+      method: 'POST',
+      body: {
+        action: (entry && entry.action) || '操作',
+        detail: (entry && entry.detail) || '',
+        actor: (entry && entry.actor) || ''
+      }
+    }).catch(function () { return entry || {}; });
+  }
+
+    function addFontToProject(projectId, fontId, weights, subsetObj) {
     return getProject(projectId).then(function (p) {
       if (useLocalProjects() && window.WFApp && WFApp.addFont) {
         WFApp.addFont(p, fontId, weights, subsetObj);
@@ -927,9 +1280,29 @@
     putPicks: putPicks,
     syncPicks: syncPicks,
     mergePickLists: mergePickLists,
+    listTeam: listTeam,
+    inviteMember: inviteMember,
+    setMemberRole: setMemberRole,
+    removeMember: removeMember,
+    getFavsRemote: getFavsRemote,
+    putFavs: putFavs,
+    syncFavs: syncFavs,
+    listFontCerts: listFontCerts,
+    listFontCertGrants: listFontCertGrants,
+    submitFontCert: submitFontCert,
+    putFontCertFile: putFontCertFile,
+    fetchFontCertCss: fetchFontCertCss,
     listClaims: listClaims,
     submitClaim: submitClaim,
+    updateClaimPageRemote: updateClaimPageRemote,
+    publishFoundryPage: publishFoundryPage,
     addFontToProject: addFontToProject,
+    rollbackProject: rollbackProject,
+    getPlan: getPlan,
+    listNotifications: listNotifications,
+    markNotificationsRead: markNotificationsRead,
+    listAudit: listAudit,
+    appendAudit: appendAudit,
     publish: publish,
     publishProject: publishProject
   };

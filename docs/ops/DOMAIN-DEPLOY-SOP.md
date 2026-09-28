@@ -23,41 +23,67 @@
 
 账号禁桶级 `public-read`（见 §5），**公网 `app` 以 feicode 磁盘为准**，不是浏览器直打 OSS。
 
+**纪律（2026-09-28）：**
+
+| 要做 | 不要做 |
+|---|---|
+| 用仓内 [`scripts/deploy-feicode-front.sh`](../../scripts/deploy-feicode-front.sh) 整站同步 | 只 scp `app/*` 或单文件「补丁推」当完整发布 |
+| 先 `--staging`，手验首页 + 字体库 + 控制台后再 `--prod` | 本机 `127.0.0.1:16016` 当现网（那是 lab 工作区直出） |
+| 改公开站（`css/` `js/wf-chrome.js` `index.html` 等）与改控制台一并推 | 假定「推了控制台，前台也会变」 |
+
+推荐命令（本机在 `fonts-front-v4-lab` / `fonts-front` 仓根）：
+
 ```bash
-# 本机打包（在 fonts-front 仓）
+./scripts/deploy-feicode-front.sh --staging   # → /www/wwwroot/fonts-front-staging
+# 验收 staging-app 后：
+./scripts/deploy-feicode-front.sh --prod      # → /www/wwwroot/fonts-front
+# 或一次：
+./scripts/deploy-feicode-front.sh --staging --prod
+```
+
+**传输：** 国内 Mac → `45.117.8.70:22` **直连**（脚本默认 `root@45.117.8.70` + `ProxyJump=none`）。  
+`~/.ssh/config` 里 `feicode-prod` 若带 `ProxyJump weixiaoduo-prod`，整站包（百兆级）会慢一个数量级，**不要**当默认发布路径。仅境外或直连不通时：`WF_FEICODE_SSH=feicode-prod WF_SSH_NO_JUMP=0 ./scripts/deploy-feicode-front.sh --staging`。
+脚本已排除：`lab.html`、`*-options.html`、`v5-*`、`docs/`、`scripts/`、`shots*` 等（与下表一致）。手搓 tar 时须同样排除，并优先走脚本以免漏文件。
+
+手搓等价流程（脚本不可用时）：
+
+```bash
 TMP=/tmp/wf-front-sync.tgz
-tar czf "$TMP" \
+COPYFILE_DISABLE=1 tar czf "$TMP" \
   --exclude='.git' --exclude='.tmp-shots' --exclude='*.bak*' \
   --exclude='node_modules' --exclude='docs' --exclude='scripts' \
   --exclude='deploy' --exclude='.cursor' --exclude='refs' \
+  --exclude='lab.html' --exclude='*-options.html' --exclude='v5-*.html' \
+  --exclude='.lab' --exclude='shots*' \
   .
 
-scp -o ProxyJump=weixiaoduo-prod -i ~/.ssh/fedora_vm_ed25519 \
-  "$TMP" root@45.117.8.70:/tmp/wf-front-sync.tgz
+scp -o ProxyJump=none "$TMP" root@45.117.8.70:/tmp/wf-front-sync.tgz
 
-ssh -o ProxyJump=weixiaoduo-prod -i ~/.ssh/fedora_vm_ed25519 root@45.117.8.70 '
+ssh -o ProxyJump=none root@45.117.8.70 '
   set -euo pipefail
   SRC=/www/wwwroot/fonts-front-oss-sync
   PROD=/www/wwwroot/fonts-front
   STAGING=/www/wwwroot/fonts-front-staging
   rm -rf "$SRC" && mkdir -p "$SRC"
-  tar xzf /tmp/wf-front-sync.tgz -C "$SRC"
-  # 先预发
+  tar --warning=no-unknown-keyword -xzf /tmp/wf-front-sync.tgz -C "$SRC"
   rsync -a --delete "$SRC"/ "$STAGING"/
   # 验收 staging-app 后：
   rsync -a --delete "$STAGING"/ "$PROD"/
-  # 可选：同步私有桶备份
-  ossutil64 cp -r "$SRC"/ oss://wenfeng-web/ -e oss-cn-guangzhou.aliyuncs.com --update --force
 '
 ```
 
-验收：
+验收（**公开站 + 控制台都要看**；只验 HTTP 码不够，还要比内容）：
 
 ```bash
 curl -sS -o /dev/null -w "%{http_code}\n" https://staging-app.windfonts.com/
-curl -sS -o /dev/null -w "%{http_code}\n" https://staging-app.windfonts.com/fonts/ibmps
 curl -sS -o /dev/null -w "%{http_code}\n" https://app.windfonts.com/
-curl -sS -o /dev/null -w "%{http_code}\n" https://app.windfonts.com/fonts/ibmps
+# 前台与本机是否同版（示例）
+curl -sS https://app.windfonts.com/ | grep -oE 'wf-chrome\.js\?v=[^"]+' | head -1
+curl -sS http://127.0.0.1:16016/ | grep -oE 'wf-chrome\.js\?v=[^"]+' | head -1
+# 控制台
+curl -sS https://app.windfonts.com/app/index.html | grep -oE 'wf-app\.js\?v=[^"]+' | head -1
+# 源站磁盘（绕过 CDN 怀疑时）
+ssh feicode-prod 'wc -c /www/wwwroot/fonts-front/js/wf-chrome.js /www/wwwroot/fonts-front/css/site.css'
 ```
 
 Nginx rewrite 参考：`deploy/nginx-fonts-front.snippet.conf`。现网 conf：`/www/server/panel/vhost/nginx/app.windfonts.com.conf`。
@@ -253,9 +279,35 @@ curl -sS https://staging-app.windfonts.com/api/auth/csrf
 登录页：`https://app.windfonts.com/login.html`（管理员账号，非 WP 顾客号）。  
 顾客统一账号仍待 windfonts.com ↔ vault hooks（§11）。
 
+**本仓前台门禁（已做）：** `app`/`staging-app` 须 `source=vault-nextauth`；`?demo=1` 仅本机；设置页对未绑定会话的 API Key 给出同步 CTA，并标明顾客 WP SSO 未通。
+
 ## 13. 详情页 `/fonts/{slug}` 踩坑
 
 nginx `rewrite … last` **不改浏览器地址**。若 HTML 里是相对 `js/…`，会请求 `/fonts/js/…` → 404，页面一直「正在加载字体…」。
 
 **现网：** `font-detail.html` 使用 `<base href="/" />` 且资源写根路径 `/js/…`；`/fonts/` location 与 `.html` 加 `Cache-Control: no-store`。详情脚本从 pathname 解析 slug。
 
+
+
+## 12. 429 限流复核（B9 · 2026-09-26）
+
+vault `withFontApiAuth`（`src/lib/api/font-api-auth.ts`）：
+
+| 场景 | 行为 |
+|---|---|
+| 白名单域 + `whitelist_rate_limit` | 按分钟配额，超限 **429** `rate_limited` |
+| API Key 日配额 | 超日额度 **429** |
+| 匿名 / 未验证站点 | 约 **100 次/天** 基础额度，超限 **429** |
+
+边缘 CyberCDN：字形静态包与 `/api/css` 回源策略不在前台仓改；调参走 ansible `openresty-edge-cache`。本波确认现网开关仍生效，**未改阈值**。
+
+## 13. 目录 JSON 纪律
+
+- 公开 `data/fonts.json` / 分析元数据：**只**经 vault 导出或既定同步脚本写入。
+- 禁止在 prod 磁盘上手改单条字体 JSON 顶替拆包流水线。
+- 字重错挂（如思源）走重拆包工单，不在控制台「改名」了事。
+
+## 14. admin / status 主机（P2）
+
+- `admin.windfonts.com`：反代 vault `/admin` + IP 白名单；snippet 见 vault `deploy/nginx-admin.windfonts.com.snippet.conf`（**DNS 未挂前勿切**）。
+- `status.windfonts.com`：应用静态 `status.html` 作过渡；正式应独立于 vault 同机。

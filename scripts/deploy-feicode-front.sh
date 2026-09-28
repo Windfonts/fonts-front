@@ -8,12 +8,19 @@
 #   ./scripts/deploy-feicode-front.sh --staging --prod  # 先预发再生产（仍建议中间手验）
 #
 # 环境变量：
-#   WF_FEICODE_SSH   默认 feicode-prod（~/.ssh/config）
+#   WF_FEICODE_SSH   默认直连 root@45.117.8.70（国内 Mac 可通；勿默认走 ProxyJump）
+#                    需要跳板时再 export WF_FEICODE_SSH=feicode-prod
 #   WF_FRONT_STAGING / WF_FRONT_PROD  远端路径
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-SSH_HOST="${WF_FEICODE_SSH:-feicode-prod}"
+# 国内环境：feicode 22 口对公网开放，Mac 直连比 ProxyJump=weixiaoduo-prod 快一个数量级
+SSH_HOST="${WF_FEICODE_SSH:-root@45.117.8.70}"
+SSH_OPTS=(-o BatchMode=yes -o ConnectTimeout=30)
+# 若误用了带 ProxyJump 的 Host 别名，仍可用 WF_SSH_NO_JUMP=1 强制直连
+if [[ "${WF_SSH_NO_JUMP:-1}" == "1" ]]; then
+  SSH_OPTS+=(-o ProxyJump=none -o ClearAllForwardings=yes)
+fi
 STAGING="${WF_FRONT_STAGING:-/www/wwwroot/fonts-front-staging}"
 PROD="${WF_FRONT_PROD:-/www/wwwroot/fonts-front}"
 SRC_REMOTE="${WF_FRONT_SRC:-/www/wwwroot/fonts-front-oss-sync}"
@@ -66,8 +73,8 @@ EXCLUDE=(
 echo "root=$ROOT ssh=$SSH_HOST dry=$DRY staging=$DO_STAGING prod=$DO_PROD"
 echo "exclude: lab / *-options / v5-* / docs / scripts / shots*"
 
-if ! ssh -o BatchMode=yes -o ConnectTimeout=15 "$SSH_HOST" 'test -d /www/wwwroot' 2>/dev/null; then
-  echo "无法 SSH 到 $SSH_HOST。检查 ~/.ssh/config 中 feicode-prod。" >&2
+if ! ssh "${SSH_OPTS[@]}" "$SSH_HOST" 'test -d /www/wwwroot' 2>/dev/null; then
+  echo "无法 SSH 到 $SSH_HOST（直连）。可试 WF_FEICODE_SSH=feicode-prod 走跳板。" >&2
   exit 1
 fi
 
@@ -105,10 +112,10 @@ if [[ "$DO_STAGING" -eq 0 && "$DO_PROD" -eq 0 ]]; then
   exit 2
 fi
 
-echo "→ scp $SSH_HOST:/tmp/wf-front-sync.tgz"
-scp -o BatchMode=yes -o ConnectTimeout=30 "$TMP" "$SSH_HOST:/tmp/wf-front-sync.tgz"
+echo "→ scp $SSH_HOST:/tmp/wf-front-sync.tgz (direct, no ProxyJump)"
+scp "${SSH_OPTS[@]}" "$TMP" "$SSH_HOST:/tmp/wf-front-sync.tgz"
 
-ssh -o BatchMode=yes -o ConnectTimeout=30 "$SSH_HOST" \
+ssh "${SSH_OPTS[@]}" "$SSH_HOST" \
   "DO_STAGING=$DO_STAGING DO_PROD=$DO_PROD STAGING='$STAGING' PROD='$PROD' SRC='$SRC_REMOTE' bash -s" <<'REMOTE'
 set -euo pipefail
 rm -rf "$SRC"
