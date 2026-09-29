@@ -768,3 +768,59 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
   - vault `prod.db.bak-20260929-kaonashi` 后 INSERT：`wenfeng-qhddl` `2c4d462b-e2ba-4b5d-adf9-8243be8030b8`、`wenfeng-xxzt` `3493ed7b-38d7-4523-8339-247d63ef6431`；品牌 `kaonashi-tyc`；623→625。顺手 UPDATE 黄引齐/字魂扁桃/mplus hzk 三行授权，避免下次 export 冲 35b7dc6。
   - 目录 572→574。脚本 `fonts-vault/scripts/register-kaonashi.js`。
 
+## 36. 2026-09-29 店面任务交给下一手（Grok `01a0eb5b`）
+
+人 09-29 傍晚：「你先做记录和交接这个任务交给其他人，我们来谈谈 wenfeng.org 怎么弄」。店面六项已做完并推公网；本会话不再接目录债 / 预览包 / 造字。源档案另见 linuxjoy `docs/plans/2026-09-27-wenfeng-source-archive-and-glyph-platform.md`，**不要**把 org 当第二家店面来做。
+
+### 已完成（可核对）
+
+| 项 | 仓 / 提交 | 现网 |
+|---|---|---|
+| 页脚不要厂商认领 | fonts-front `22b90df` | `EXTRA_LINKS`＝关于 / 文档；`claim.html` 只从厂商 CTA |
+| 简介全量重写先不动 | — | `CATALOG-COPY.md` batch-a 仍 draft。`7ad8753` 只是 `descriptionBrief` 从现有简介截短句，**不是**那次冻结的重写 |
+| 授权 OFFSET 写回 | fonts-front `35b7dc6`；vault 同日 UPDATE | 黄引齐招牌体、字魂扁桃体 notes、mplus hzk 12 跟猫啃 OFL |
+| 上架权衡度量体 / 玄宗体 | fonts-front `0440a1b`；font-licenses `843d79a`；fonts-packages `4775b1a` | 目录 **574**；薄表 `fonts-list.json?v=20260929list2` |
+| 详情肥字段戳 | fonts-front `8547f20`（wapuu，已在 origin/main） | by-slug 跟 list2 |
+
+- 产品名跟 README：权衡度量体 / 玄宗体。family `wenfeng-qhddl` / `wenfeng-xxzt`，norm `Qhddl` / `Xxzt`。
+- vault UUID：`2c4d462b-e2ba-4b5d-adf9-8243be8030b8`、`3493ed7b-38d7-4523-8339-247d63ef6431`。品牌 `kaonashi-tyc`。备份 `prod.db.bak-20260929-kaonashi`。623→625。
+- CSS：`https://cn.windfonts.com/fonts-packages/{Qhddl,Xxzt}/Regular/full/result.css` 200。preview-shop / zh 未切，详情走 full 回退。
+- 公网静态 origin＝杭州 `oss://wenfeng-web-hz`。发版 `bash scripts/deploy-web-hz.sh`（Mac 无本地 aliyun，脚本 tar/scp devops 再 recursive cp）。不要 rsync feicode 磁盘当发版。
+
+### 仓状态（交接当时）
+
+- **fonts-front** `main` HEAD `8547f20`＝origin/main。工作区 **脏**：约 31 个 HTML 把 `wf-proto.js` 戳到 `g14`、`wf-specimen.js`/`specimen.css` 到 `ui14`；`wf-proto.js` 给 `preview-*` CSS 加 `?v=20260929shop2`；样张卡加「无汉字」并按卡片正文取 sample。未跟踪 `scripts/preview-local.py`。`docs/ops/DOMAIN-DEPLOY-SOP.md` 未提交改口：本地预览改走 `preview-local.py`（main + 干净 URL 重写）。**记忆仍写 16016＝lab 树；下一手先看谁在听 16016，不要默认 lab。** 这些脏文件 **不是** 六项任务的已审提交，不要整包推。
+- **fonts-packages** `4775b1a` 已推。工作区另有 preview-pack 脚本、`_upstream-src/`、`_wave1_park/` 等，不要当本轮入库。
+- **font-licenses** `843d79a` 已推，干净。
+- **fonts-vault** `feat/admin-font-certs` 本地 `abfdff3`（含 `scripts/register-kaonashi.js`）**ahead 15 behind 1，未推**。prod.db 已 INSERT；缺的是脚本进远端分支。
+- 认领 `grok-01a0eb5b` 在 fonts-front / fonts-packages / fonts-vault / font-licenses 已释放。旧会话 `Grok-01a0eafd` 对 fonts-front/packages 的认领仍 STALE，可 `session-claim.sh gc`。
+
+### leftover（目录债，不是 chrome）
+
+1. **26 `filePending`**：登录墙不绕。25 款继续缺包。只有 Shippori Gothic Bold 可走公开 GitHub `fontdasu/ShipporiGothic`（未做）。
+2. **待核实 23**。
+3. **菲码 `licenseFileUrl` 仍指 feicode.com 私有 raw，公网约 148 条 403**（记忆里曾写 146，以现网目录为准）。
+4. **Qhddl / Xxzt** 无 preview-shop / zh；列表 `shop→zh→full` 会先 404 再出字形。切子集是 fonts-packages 的事，不是缺入库。
+5. **络黑** 仍只 demo VF，不进目录。寒蝉矩黑 Demo 仍不进。
+6. **HarmonyOS** `licenseName` 须为 `HarmonyOS Sans Fonts License Agreement`，禁写「免费商用」。
+7. CATALOG-COPY 全量简介仍冻结。
+8. vault `register-kaonashi.js` 未推。
+
+### 不要做
+
+- 不要整枝合并 `v4-specimen`。不要拿 lab 戳对公网。
+- 不要公开 `GET /api/css?text=`。
+- 不要绕登录去扒乐米 / Booth / FJF / FLOP。
+- 不要重放普惠体 3.0 / 淘宝买菜 / 仓耳 19 / 立夏黑体 / 遍黑体。
+- 不要在 fonts-front 训 zi2zi / M0（`/tmp/m0`，引擎 zi2zi-JiT）。
+- 不要在页脚加厂商认领。
+- 不要把 `wenfeng.org` 做成店面副本；造字不挂 org。`docs/PLATFORMS.md`（09-20）仍把造字写在 org 上，以 09-27 三件套为准。
+- 不要 commit linuxjoy HANDOFF 来记店面。
+
+### 下一手从哪读
+
+1. 本文件 §33–§36 + `docs/LICENSE.md` §10–§11。
+2. 记忆：`topics/fonts-front.md`、`topics/fonts-catalog.md`、`topics/windfonts-app-oss.md`。
+3. leftover 观察：`~/.grok/memory-v2/workspaces/linuxjoy-092c3977/observations/_inbox/grok-01a0eb5b-shop-leftover.md`。
+4. 开工前 `session-claim.sh claim --repo <仓> --task "…" --sig <你>`。
+
