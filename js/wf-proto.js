@@ -1024,6 +1024,20 @@
     return saw;
   }
   const injectedCssText = {};
+  var sampleFaceTimer = 0;
+  function refreshFacesForSample(text) {
+    if (sampleFaceTimer) clearTimeout(sampleFaceTimer);
+    sampleFaceTimer = setTimeout(function () {
+      sampleFaceTimer = 0;
+      const t = text == null ? '' : String(text);
+      document.querySelectorAll('[data-family]').forEach(function (el) {
+        const fam = el.getAttribute('data-family');
+        if (!fam) return;
+        ensureFontCss(fam, el.getAttribute('data-weight') || '400', 'preview-shop', t);
+      });
+    }, 140);
+  }
+
 
   /**
    * 注入字体 CSS。店面短样张走 preview-shop（CDN 预计算包），缺包再 zh / full。
@@ -2066,6 +2080,7 @@
       document.querySelectorAll('[data-specimen]').forEach(function (n) {
         n.textContent = v || '文';
       });
+      refreshFacesForSample(v);
     },
     getSize: function () {
       try {

@@ -65,7 +65,7 @@ aliyun oss --profile wenpai cp <file> oss://wenfeng-web-hz/<key> \
 
 ### 2.4 店面预览包
 
-列表 / 首页短样张走 `fonts-packages/{Norm}/{Weight}/preview-shop/`（字体桶 `wenfeng-fonts`，不是网页桶）。现网 shop 包大约 41 个汉字（「上中体到动南又在地处天文日时月水江派流看行起里间风」一类），**盖不住**「春风又绿江南岸」的春/绿/岸，也盖不住首页「让中文字体，在网页上流动」的让/字/网页。前端 `ensureFontCss(..., text)` 必须按 unicode-range 升级 zh → full。不要公开 `GET /api/css?text=`。
+列表 / 首页短样张走 `fonts-packages/{Norm}/{Weight}/preview-shop/`（字体桶 `wenfeng-fonts`，不是网页桶）。现网 shop 包大约 41 个汉字（「上中体到动南又在地处天文日时月水江派流看行起里间风」一类），**盖不住**「春风又绿江南岸」的春/绿/岸，也盖不住首页「让中文字体，在网页上流动」的让/字/网页。前端 `ensureFontCss(..., text)` 必须按 unicode-range 升级 zh → full。用户在字体库改预览字（`setSample`）也要按新字再跑，禁止只改 `textContent`。不要公开 `GET /api/css?text=`。
 
 ## 3. 发布 / 启停 vault（Next）
 

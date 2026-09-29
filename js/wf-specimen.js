@@ -272,7 +272,10 @@
         markPreset();
       });
     });
-    input.addEventListener('input', markPreset);
+    input.addEventListener('input', function () {
+      markPreset();
+      WFProto.setSample(input.value);
+    });
     if (opts.view) {
       el.querySelectorAll('[data-view]').forEach(function (b) {
         b.addEventListener('click', function () {
