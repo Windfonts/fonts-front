@@ -1,4 +1,4 @@
-/* Shared specimen + pick bag + catalog (fonts.json) — v3.3 */
+/* Shared specimen + pick bag + catalog (fonts-list.json thin) — v3.3 */
 (function () {
   const KEY = 'wf-proto-picks';
   const FAV_KEY = 'wf-favs';
@@ -99,7 +99,7 @@
     if (base.indexOf('/admin') !== -1) return '../data/' + file;
     return 'data/' + file;
   }
-  function catalogUrl() { return dataUrl('fonts.json?v=20260928steve1'); }
+  function catalogUrl() { return dataUrl('fonts-list.json?v=20260929list1'); }
   function analysisMetaUrl() {
     /* CyberCDN 按查询串分变体缓存：换数据必须换新版本值（旧变体会粘住陈旧内容），
        全新值首次回源即全量。20260925b 曾在重建中途被缓存成 1-2 字体的残缺变体。 */
@@ -205,10 +205,10 @@
   function loadCatalog() {
     if (catalog.length) return Promise.resolve(catalog);
     if (catalogPromise) return catalogPromise;
-    /* fonts.json 也带 ?v=，与兄弟 JSON 一样靠查询串作 Cache 键 */
+    /* 热路径只拉瘦目录 fonts-list.json。详情再 enrichFontFromFull 按 slug 补肥字段。 */
     const fontsReq = fetchJsonCached(catalogUrl(), null).then(function (j) {
       if (Array.isArray(j)) return j;
-      throw new Error('fonts.json invalid');
+      throw new Error('fonts-list.json invalid');
     });
     const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20260928oss1'), { foundries: [] });
     const evidenceReq = fetchJsonCached(dataUrl('license-evidence.json?v=20260925b'), { standards: {}, names: {} });
@@ -237,6 +237,33 @@
         return catalog;
       });
     return catalogPromise;
+  }
+
+  const FAT_KEYS = ['description', 'copyright', 'licenseNotes', 'licenseFileUrl', 'licenseUrl', 'purchaseUrl', 'version'];
+  function enrichFontFromFull(font) {
+    if (!font) return Promise.resolve(font);
+    if (font._fat) return Promise.resolve(font);
+    const stem = String(font.normalized || '').trim() || familySlug(font.family);
+    if (!stem) {
+      font._fat = true;
+      return Promise.resolve(font);
+    }
+    const url = dataUrl('fonts-by-slug/' + encodeURIComponent(stem) + '.json?v=20260929list1');
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error(String(r.status));
+      return r.json();
+    }).then(function (fat) {
+      if (fat && typeof fat === 'object') {
+        FAT_KEYS.forEach(function (k) {
+          if (fat[k] != null && fat[k] !== '') font[k] = fat[k];
+        });
+      }
+      font._fat = true;
+      return font;
+    }).catch(function () {
+      font._fat = true;
+      return font;
+    });
   }
 
   /** vault 审核通过的 claimed 覆盖层（不改 foundries.json 也可立刻显示）。 */
@@ -1904,6 +1931,7 @@
     SAFE_CODE: copyrightLine(),
     escapeHtml: escapeHtml,
     loadCatalog: loadCatalog,
+    enrichFontFromFull: enrichFontFromFull,
     getCatalogList: function () { return catalog.slice(); },
     getFoundries: function () { return foundries.slice(); },
     getFoundryById: getFoundryById,
