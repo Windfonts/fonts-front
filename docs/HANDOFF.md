@@ -789,7 +789,7 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 
 ### 仓状态（交接当时）
 
-- **fonts-front** `main` HEAD `8547f20`＝origin/main。工作区 **脏**：约 31 个 HTML 把 `wf-proto.js` 戳到 `g14`、`wf-specimen.js`/`specimen.css` 到 `ui14`；`wf-proto.js` 给 `preview-*` CSS 加 `?v=20260929shop2`；样张卡加「无汉字」并按卡片正文取 sample。未跟踪 `scripts/preview-local.py`。`docs/ops/DOMAIN-DEPLOY-SOP.md` 未提交改口：本地预览改走 `preview-local.py`（main + 干净 URL 重写）。**记忆仍写 16016＝lab 树；下一手先看谁在听 16016，不要默认 lab。** 这些脏文件 **不是** 六项任务的已审提交，不要整包推。
+- **fonts-front** `main` HEAD `228783f`（本交接）＝origin/main。其下 `9d38419`（wapuu）已把交接时看到的脏树提交：`preview-local.py` + launchd、`wf-proto.js?v=20260929g14`、specimen `ui14`、preview-shop CSS `?v=20260929shop2`、样张「无汉字」。SOP：本地 `python3 scripts/preview-local.py --port 16016` 挂 **main + 干净 URL 重写**，不要再用 `http.server` 指 lab 对公网戳。lab 树仍是 `fonts-front-v4-lab` / `v4-specimen`，不合产。工作区现干净。
 - **fonts-packages** `4775b1a` 已推。工作区另有 preview-pack 脚本、`_upstream-src/`、`_wave1_park/` 等，不要当本轮入库。
 - **font-licenses** `843d79a` 已推，干净。
 - **fonts-vault** `feat/admin-font-certs` 本地 `abfdff3`（含 `scripts/register-kaonashi.js`）**ahead 15 behind 1，未推**。prod.db 已 INSERT；缺的是脚本进远端分支。
