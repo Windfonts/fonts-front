@@ -89,7 +89,7 @@
 |---|---|---|---|
 | 顶栏 | `.topbar .topnav .topsearch .topbar-end .topmenu` | components.css / wf-chrome.js | 白底；导航选中为 `--fill` 胶囊；移动端折叠成 `.topmenu` 覆层 |
 | 搜索预测 | `.search-pop .search-hit .search-face` | components.css / `wf-search.js` | 输入出几条；字体名用本款字面，右侧厂商名 |
-| 页脚 | `.site-extra-footer` | components.css / wf-proto.js | 一行：左版权与备案，右关于 / 文档 / 厂商认领 |
+| 页脚 | `.site-extra-footer` | components.css / wf-proto.js | 一行：左版权与备案，右关于 / 文档。厂商认领不进页脚，走 `claim.html` 与厂商页 CTA |
 | 按钮 | `.btn` `.btn-ink` `.btn-text` `.btn-sm` `.icon-btn` | components.css | 默认浅灰胶囊；`btn-ink` 每屏一颗；图标在文字左侧 |
 | 输入 | `.input .select .textarea .field .check` | components.css | 无边框，`--well` 底，焦点 2px 墨黑 outline |
 | 标签 | `.chip` `.chip.is-on` | components.css | 胶囊；选中翻黑 |

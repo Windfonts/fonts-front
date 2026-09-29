@@ -15,6 +15,16 @@
 | `js/pages/fonts.js` | 推荐排序：有汉字面的排前面 |
 | linuxjoy `scripts/lib/cybercdn_url_purge.py` | `app.windfonts.com` → zone `windfonts_app` |
 
+## 进度（2026-09-29 续）
+
+- P0 样张/排序/发版脚本：已上公网。
+- **整站灌桶**：`deploy-web-hz.sh` → 842 files / 32MB → `oss://wenfeng-web-hz`。公网 proto `g11` chrome `ui11`。
+- P1 控制台 `/app/` 相对链：`WFChrome.href` 在 `/app/` 下前缀 `app/`。`/app/index` `/app/projects` html 回退 200。
+- P1 换一款：`liveNext` → `applyLive` 已带 `live.textContent`。
+- P1 发版脚本打印 foundries/list 戳。
+- P2 shop 重切：`fonts-packages` `build-preview-pack.py --force --all-catalog` 进行中（config 字表已含春绿岸与首页标题；CDN 上仍是旧 41 字包，切完再 `upload-preview-shop.js --apply`）。
+- P2 目录债清单：`docs/plans/2026-09-29-catalog-debt.md`（26 filePending + 17 charCount=1）。入库/重导另开，不手改 fonts.json。
+
 ## P0 本会话做
 
 ### 1. 整站发版脚本

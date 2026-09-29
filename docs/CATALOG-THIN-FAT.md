@@ -36,9 +36,9 @@ Rebuild: `python3 scripts/build-fonts-list.py`
 - `detail=fat` — future `GET /api/fonts/{slug}` returns per-slug fat (lab static mirrors this).
 - `WFApi.mode()` default remains **`mock`**. Do not flip default to live; no vault cutover in this tip.
 
-## Out of scope (不合产)
+## Production (2026-09-29)
 
-No production deploy, CDN purge, vault cutover, or mock→live default.
+Hot path on `app.windfonts.com` is `data/fonts-list.json` (thin) via `wf-proto.js`. Detail enrich: `data/fonts-by-slug/{Normalized}.json`. Full `fonts.json` stays authoring input. Vault default remains mock. HTML `?v=` stamps live on each shell; bump them when JS/CSS/list change.
 
 
 ## Track D (this tip, HTML shells)

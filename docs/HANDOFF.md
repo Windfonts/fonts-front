@@ -740,6 +740,27 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 - 目录现网热路径 `data/fonts-list.json` **572** 款（`daa74a5` 上架 101）。HANDOFF 前文写的 471 是 09-28 收口数。
 - 遍黑体已进：P1 `wenfeng-bbht`、P2 `wenfeng-bbhtp2`。络黑仍只有 demo VF，不进。寒蝉矩黑 Demo 仍不进。计划楷 A/B/G 三卡仍不进；合并 Regular `wenfeng-jhk` 已进。
 - 鸿蒙拉丁切片已换掉；中文卡 HarmonyOS Sans SC `wenfeng-harmony`。`licenseName` 改为协议本名 `HarmonyOS Sans Fonts License Agreement`（禁把「免费商用」写进授权名）。
-- 详情文案拍板（`docs/CATALOG-COPY.md`）：简介默认展开短句，厂商折叠 +「查看更多」；使用区不要 `localeFallback=auto` / 预算启发式；获取代码按钮不改、切开发视图出 toast。`5ad5f88` 把 v4-lab UI 接到 main 时冲掉了这些，已接回（`detail.js` / `detail.css` `?v=20260929copy1`）。全量简介重写仍待分批，batch-a 仍是 draft。
+- 详情文案拍板（`docs/CATALOG-COPY.md`）：简介默认展开短句，厂商折叠 +「查看更多」；使用区不要 `localeFallback=auto` / 预算启发式；获取代码按钮不改、切开发视图出 toast。`5ad5f88` 把 v4-lab UI 接到 main 时冲掉了这些，已接回（`detail.js` / `detail.css` `?v=20260929copy1`）。全量简介重写 **先不动**（batch-a 仍是 draft）。
 - 26 款 `filePending`、146 条菲码证书 URL、待核实 23，未在本轮处理。
+- 页脚 **不要**「厂商认领」。`EXTRA_LINKS` 只有关于 / 文档；`claim.html` 仍从厂商页 CTA 进。`docs/DESIGN-SYSTEM.md` 页脚行已改成与现码一致。
 - `v4-specimen` 仍不合产。本地 16016 仍是 lab 树。
+
+## 34. 2026-09-29 ZCode `sess_0a7f6c08` 对拍（源档案 / 造字，不是店面）
+
+同日另一会话（linuxjoy cwd，09-24→29）做的是 FeiCode 源档案镜像、造字平台底稿、M0 zi2zi-JiT。**不是**公网 `app.windfonts.com` URL/OSS 那条。
+
+- 书面：linuxjoy `docs/plans/2026-09-27-wenfeng-source-archive-and-glyph-platform.md`、`docs/plans/2026-09-28-wenfeng-glyph-platform.md`、`docs/plans/2026-09-28-glyph-m0-report.md`。本仓 `docs/PLATFORMS.md`（09-20）仍把造字写在 wenfeng.org，以 09-27 三件套为准：造字独立新域，org 只管源，**页面先不建**。
+- 目录里本会话入库（普惠体 3.0、淘宝买菜体、仓耳 19、立夏黑体）已在 572，不要重放。
+- M0 leftover 在 `/tmp/m0`，引擎是 zi2zi-JiT，本机 MPS smoke 未过。不要在 fonts-front 仓里接着训。
+
+## 35. 2026-09-29 页脚 / 授权写回 / 权衡度量·玄宗体
+
+- 页脚不要「厂商认领」。`docs/DESIGN-SYSTEM.md` 页脚行改为关于 / 文档；`claim.html` 仍从厂商页 CTA 进。
+- 简介全量重写仍先不动。
+- 授权 OFFSET 已核并写回目录（简介原文未改）：
+  - 黄引齐招牌体：不是 OFL；`licenseName`＝黄引齐招牌体授权协议；正名胤淇→引齐。
+  - 字魂扁桃体：`licenseNotes` 旧「需购买」与官方「永久免费商用」相反，已改；`licenseName` 仍 OFL（母本得意黑 inherit）。
+  - mplus hzk 12：仓 LICENSE＝Unlicense，09-26 拍板跟猫啃 OFL；`licenseName` 改为协议本名，notes 记下仓矛盾。
+- 26 款 `filePending`：登录墙不绕。只有 Shippori Gothic Bold 可走公开 GitHub（`fontdasu/ShipporiGothic`）；乐米 / Booth 六款 / FJF 十三 / FLOP 三款继续缺包。
+- 上架 kaonashi-tyc：权衡度量体（MIT，TTF GB2312）+ 玄宗体（OFL，源 OTF name 表仍带 Adobe Source RFN 行，按 README 切 GB2312）。
+
