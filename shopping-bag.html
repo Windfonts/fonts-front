@@ -15,10 +15,10 @@
   <link rel="stylesheet" href="/css/fonts.css?v=20260929ui1" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="/css/fonts.css?v=20260929ui1" /></noscript>
   <link rel="stylesheet" href="/css/tokens.css?v=20260929ui1" />
-  <link rel="stylesheet" href="/css/base.css?v=20260929ui1" />
-  <link rel="stylesheet" href="/css/components.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/base.css?v=20260929ui6" />
+  <link rel="stylesheet" href="/css/components.css?v=20260929ui2" />
   <link rel="stylesheet" href="/css/specimen.css?v=20260929ui14" />
-  <link rel="stylesheet" href="/css/site.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/site.css?v=20260929ui2" />
   <link rel="icon" type="image/webp" href="/assets/icon.webp" />
 </head>
 <body class="page-bag">
@@ -40,7 +40,15 @@
   </main>
   <div id="controlbar"></div>
   <main class="container">
-    <ul class="specimens" id="bagList"></ul>
+    <ul class="specimens" id="bagList">
+      <li class="page-state-item" role="status">
+        <div class="page-state">
+          <p class="page-state-kicker">选字袋</p>
+          <p>选字袋是空的</p>
+          <div class="page-state-act"><a class="btn" href="/fonts">去字体库挑几款</a></div>
+        </div>
+      </li>
+    </ul>
     <div id="bagPair" hidden></div>
     <div id="bagCompare" hidden></div>
 
@@ -74,6 +82,6 @@
   <script defer src="/js/wf-products.js?v=20260929ui1"></script>
   <script defer src="/js/wf-specimen.js?v=20260929ui14"></script>
   <script defer src="/js/wf-embed.js?v=20260929ui1"></script>
-  <script defer src="/js/pages/bag.js?v=20260929ui5"></script>
+  <script defer src="/js/pages/bag.js?v=20260929ui6"></script>
 </body>
 </html>

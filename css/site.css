@@ -641,10 +641,15 @@ html[data-view="dev"] .foundry-eco .foundry-upstream-item { flex-wrap: nowrap; w
   margin: calc(var(--s-3) * -1) 0 var(--s-4);
   font-size: var(--fs-13); color: var(--gray); max-width: 40em;
 }
-.foundry-empty,
-.foundry-empty-filter {
+.foundry-empty:not(.page-state) {
   margin: var(--s-6) 0;
   font-size: var(--fs-14); color: var(--ink-2); max-width: 36em;
+}
+.foundry-empty-filter.page-state,
+.page-state.foundry-empty {
+  margin: var(--s-8) 0 var(--s-12);
+  min-height: 16rem;
+  justify-content: flex-start;
 }
 .foundry-index { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-3); }
 .foundry-index .foundry { min-width: 0; padding: var(--s-4) var(--s-5); background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); }
@@ -1283,15 +1288,8 @@ body.is-index .site-extra-footer { margin-top: 0; padding-top: var(--s-6); }
   font-weight: var(--fw-label);
   color: var(--ink-2);
 }
-.page-fonts .empty-filter {
-  padding: var(--s-16) var(--s-6);
-  background: var(--surface);
-  border-radius: var(--radius);
-}
-.page-fonts .empty-filter .empty-sub { margin-top: var(--s-3); color: var(--gray); }
-.page-fonts .empty-filter .btn-text {
-  color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em;
-  font: inherit; padding: 0; background: none; border: 0; cursor: pointer;
+.page-fonts .specimens > .page-state-item .page-state-act .btn {
+  min-height: 2.25rem;
 }
 #controlbar.controlbar { /* sticky already; keep stacking under topbar */
   z-index: 30;

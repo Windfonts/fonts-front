@@ -204,7 +204,11 @@
       view = 'rows';
       views.querySelectorAll('[data-view]').forEach(function (x) { x.classList.toggle('is-on', x.getAttribute('data-view') === 'rows'); });
       showPane('rows');
-      list.innerHTML = '<li class="empty empty-filter"><p>选字袋是空的。</p><p class="empty-sub"><a href="' + WFChrome.href('fonts.html') + '">去字体库挑几款</a></p></li>';
+      list.innerHTML = '<li class="page-state-item" role="status"><div class="page-state">' +
+        '<p class="page-state-kicker">选字袋</p>' +
+        '<p>选字袋是空的</p>' +
+        '<div class="page-state-act"><a class="btn" href="' + WFChrome.href('fonts.html') + '">去字体库挑几款</a></div>' +
+        '</div></li>';
       lastFonts = [];
       paintEmbed();
       return;

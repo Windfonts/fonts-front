@@ -190,6 +190,40 @@ body.page-foundry > main {
   border-radius: var(--radius-sm);
 }
 
+body.page-fonts,
+body.page-bag {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body.page-fonts > main,
+body.page-bag > main:last-of-type {
+  flex: 1 1 auto;
+}
+.specimens > .page-state-item {
+  display: flex;
+  min-height: 22rem;
+}
+.specimens > .page-state-item .page-state {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 22rem;
+  justify-content: flex-start;
+  padding: var(--s-10) 0 var(--s-16);
+}
+@keyframes wf-skel-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.42; }
+}
+.specimen.is-skel .skel-bar,
+.page-state-skel i {
+  animation: wf-skel-pulse 1.15s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .specimen.is-skel .skel-bar,
+  .page-state-skel i { animation: none; }
+}
+
 
 /* —— 响应式基准 —— */
 @media (max-width: 1024px) {

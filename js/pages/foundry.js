@@ -531,7 +531,10 @@
           '<div id="foundrySections">' +
             INDEX_SECTIONS.map(function (s) { return sectionHtml(s, buckets[s.id]); }).join('') +
           '</div>' +
-          '<p class="foundry-empty-filter" id="foundryEmpty" hidden>没有匹配的厂商。</p>' +
+          '<div class="page-state foundry-empty-filter" id="foundryEmpty" hidden role="status">' +
+            '<p class="page-state-kicker">厂商</p>' +
+            '<p>没有匹配的厂商</p>' +
+          '</div>' +
         '</div>' +
       '</section>' +
       '<section class="foundry-close" id="foundryClose" aria-label="入驻与认领">' +
@@ -711,8 +714,14 @@
   function ownedHtml(g) {
     const collab = g.collab || [];
     if (!g.fonts.length && !collab.length) {
-      if (!g.made.length) return '<p class="foundry-empty">本站暂无此厂商字体。</p>';
-      return '<p class="foundry-empty">本页暂无归属字体。下列「受托制作」为代做款，版权在品牌方。</p>';
+      if (!g.made.length) {
+        return '<div class="page-state foundry-empty" role="status">' +
+          '<p class="page-state-kicker">厂商字体</p><p>本站暂无此厂商字体</p></div>';
+      }
+      return '<div class="page-state foundry-empty" role="status">' +
+        '<p class="page-state-kicker">厂商字体</p>' +
+        '<p>本页暂无归属字体</p>' +
+        '<div class="page-state-act"><p class="muted t-14">下列「受托制作」为代做款，版权在品牌方。</p></div></div>';
     }
     const split = splitOwned(g.fonts, collab);
     const sections = split.sections;

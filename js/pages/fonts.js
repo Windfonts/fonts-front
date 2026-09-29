@@ -175,13 +175,62 @@
       '</div></div>';
   }
 
-  function facetCounts(key, values, getter) {
+  function mapCounts(keys, bag) {
+    return keys.map(function (v) { return { v: v, n: bag[v] || 0 }; });
+  }
+  function railStats() {
     const all = WFProto.getCatalogList();
-    const base = all.filter(function (f) { return matches(f, state, key); });
-    return values.map(function (v) {
-      const n = base.filter(function (f) { return getter(f, v); }).length;
-      return { v: v, n: n };
+    const styleN = {};
+    const catN = {};
+    const foundryN = {};
+    const weightN = {};
+    const langN = {};
+    const licenseN = {};
+    const kindN = {};
+    let openN = 0;
+    WEIGHT_BUCKETS.forEach(function (b) { weightN[b.id] = 0; });
+    all.forEach(function (f) {
+      if (matches(f, state, 'style')) {
+        (f.tags || []).forEach(function (t) {
+          if (STYLE_TAGS.indexOf(t) !== -1) styleN[t] = (styleN[t] || 0) + 1;
+        });
+      }
+      if (matches(f, state, 'cat') && f.category) catN[f.category] = (catN[f.category] || 0) + 1;
+      if (matches(f, state, 'foundry')) {
+        const bid = WFChrome.brandSlug(f);
+        if (bid) foundryN[bid] = (foundryN[bid] || 0) + 1;
+        (f.collaboratorInfos || []).forEach(function (c) {
+          if (c && c.id) foundryN[c.id] = (foundryN[c.id] || 0) + 1;
+        });
+      }
+      if (matches(f, state, 'weight')) {
+        WEIGHT_BUCKETS.forEach(function (b) {
+          if (matchWeight(f, b.id)) weightN[b.id]++;
+        });
+      }
+      if (matches(f, state, 'lang')) {
+        (f.languages || []).forEach(function (l) { langN[l] = (langN[l] || 0) + 1; });
+      }
+      if (matches(f, state, 'license')) {
+        const t = WFChrome.licenseTier(f);
+        if (t) licenseN[t] = (licenseN[t] || 0) + 1;
+      }
+      if (matches(f, state, 'kind')) {
+        const k = WFChrome.brandKind(f);
+        if (k) kindN[k] = (kindN[k] || 0) + 1;
+      }
+      if (matches(f, state, 'open') && WFProto.isOpenFont(f)) openN++;
     });
+    return {
+      style: mapCounts(STYLE_TAGS, styleN),
+      cat: mapCounts(uniq(all.map(function (f) { return f.category; })), catN),
+      foundry: foundryN,
+      weight: mapCounts(WEIGHT_BUCKETS.map(function (b) { return b.id; }), weightN),
+      lang: mapCounts(['简体中文', '繁体中文', '英语', '日文', '韩文'], langN),
+      license: mapCounts(LICENSES, licenseN),
+      kind: mapCounts(['brand', 'foundry', 'author', 'project', 'platform'], kindN),
+      open: [{ v: '1', n: openN }]
+    };
   }
 
   function facetHtml(title, key, items, labelOf) {
@@ -202,26 +251,22 @@
   }
 
   function renderRail() {
-    const all = WFProto.getCatalogList();
-    const cats = uniq(all.map(function (f) { return f.category; }));
-    const langs = ['简体中文', '繁体中文', '英语', '日文', '韩文'];
+    const stats = railStats();
     const brands = brandFacetValues();
+    const foundryItems = brands.ids.map(function (id) { return { v: id, n: stats.foundry[id] || 0 }; });
     const html =
-      facetHtml('风格', 'style', facetCounts('style', STYLE_TAGS, hasStyle)) +
-      catFacetHtml(facetCounts('cat', cats, function (f, v) { return f.category === v; })) +
-      brandFacetHtml(facetCounts('foundry', brands.ids, function (f, v) {
-        if (WFChrome.brandSlug(f) === v) return true;
-        return (f.collaboratorInfos || []).some(function (c) { return c && c.id === v; });
-      }), brands.names) +
-      facetHtml('字重', 'weight', facetCounts('weight', WEIGHT_BUCKETS.map(function (b) { return b.id; }), matchWeight),
+      facetHtml('风格', 'style', stats.style) +
+      catFacetHtml(stats.cat) +
+      brandFacetHtml(foundryItems, brands.names) +
+      facetHtml('字重', 'weight', stats.weight,
         function (id) { return WEIGHT_BUCKETS.filter(function (b) { return b.id === id; })[0].label; }) +
-      facetHtml('语言', 'lang', facetCounts('lang', langs, function (f, v) { return (f.languages || []).indexOf(v) !== -1; }),
+      facetHtml('语言', 'lang', stats.lang,
         function (v) { return v === '英语' ? '英文' : v; }) +
-      facetHtml('许可', 'license', facetCounts('license', LICENSES, function (f, v) { return WFChrome.licenseTier(f) === v; })) +
+      facetHtml('许可', 'license', stats.license) +
       '<div class="for-dev">' +
-      facetHtml('出处', 'kind', facetCounts('kind', ['brand', 'foundry', 'author', 'project', 'platform'], function (f, v) { return WFChrome.brandKind(f) === v; }),
+      facetHtml('出处', 'kind', stats.kind,
         function (id) { return ({ brand: '品牌方', foundry: '字库', author: '作者', project: '项目', platform: '素材平台' })[id] || id; }) +
-      facetHtml('开源', 'open', facetCounts('open', ['1'], function (f, v) { return v === '1' && WFProto.isOpenFont(f); }),
+      facetHtml('开源', 'open', stats.open,
         function () { return '开源协议'; }) +
       '</div>' +
       (hasAny() ? '<button type="button" class="btn-text reset" id="resetFilters">' + WFChrome.icon('close') + '清除全部筛选</button>' : '');
@@ -231,6 +276,17 @@
         const k = b.getAttribute('data-facet');
         const v = b.getAttribute('data-v');
         state[k] = state[k] === v ? '' : v;
+        const on = state[k] === v;
+        if (k === 'cat') {
+          const li = b.closest('li');
+          railEl.querySelectorAll('.facet-cat li').forEach(function (x) { x.classList.toggle('is-on', x === li && on); });
+        } else {
+          railEl.querySelectorAll('[data-facet="' + k + '"]').forEach(function (x) {
+            const hit = x.getAttribute('data-v') === v && on;
+            x.classList.toggle('is-on', hit);
+            x.setAttribute('aria-pressed', hit ? 'true' : 'false');
+          });
+        }
         refresh();
       });
     });
@@ -315,6 +371,34 @@
     moreBtn.hidden = shown >= filtered.length;
   }
 
+  function pageStateItem(kicker, line, act) {
+    return '<li class="page-state-item" role="status">' +
+      '<div class="page-state">' +
+        (kicker ? '<p class="page-state-kicker">' + esc(kicker) + '</p>' : '') +
+        '<p>' + esc(line) + '</p>' +
+        (act ? '<div class="page-state-act">' + act + '</div>' : '') +
+      '</div></li>';
+  }
+  function bindEmptyClear() {
+    const emptyClr = document.getElementById('emptyClear');
+    if (!emptyClr) return;
+    emptyClr.addEventListener('click', function () {
+      state.cat = state.weight = state.lang = state.license = state.foundry = state.lineage = state.open = state.kind = state.style = state.tag = state.keyword = '';
+      const s = document.getElementById('navSearch');
+      if (s) s.value = '';
+      refresh();
+    });
+  }
+  function emptyListHtml() {
+    if (!hasAny()) return pageStateItem('字体库', '字库暂时为空');
+    const act = '<button type="button" class="btn" id="emptyClear">清除全部筛选</button>';
+    if (state.keyword) return pageStateItem('搜索', '没有「' + state.keyword + '」', act);
+    return pageStateItem('筛选', '没有符合当前筛选的字体', act);
+  }
+  function failListHtml() {
+    return pageStateItem('载入失败', '字体目录没读到', '<button type="button" class="btn" onclick="location.reload()">再试一次</button>');
+  }
+
   function appendPage() {
     if (shown >= filtered.length) { updateCount(); return; }
     const next = filtered.slice(shown, shown + PAGE);
@@ -326,32 +410,32 @@
     updateCount();
   }
 
+  function paintList() {
+    shown = 0;
+    if (!filtered.length) {
+      listEl.innerHTML = emptyListHtml();
+      listEl.removeAttribute('aria-busy');
+      bindEmptyClear();
+      updateCount();
+      return;
+    }
+    listEl.innerHTML = '';
+    appendPage();
+    listEl.removeAttribute('aria-busy');
+  }
+
   function refresh(next) {
     if (next) Object.keys(next).forEach(function (k) { if (next[k] != null) state[k] = next[k]; });
     let raw = WFProto.getCatalogList().filter(function (f) { return matches(f, state); });
     if (window.WFProducts) raw = WFProducts.collapseForList(raw);
     filtered = raw;
     if (SORTS[state.sort]) filtered.sort(SORTS[state.sort]);
-    shown = 0;
-    listEl.innerHTML = '';
+    if (listEl) listEl.setAttribute('aria-busy', 'true');
     syncUrl();
-    renderRail();
     renderActive();
-    if (!filtered.length) {
-      listEl.innerHTML = hasAny()
-        ? '<li class="empty empty-filter"><p>没有符合当前筛选的字体。</p><p class="empty-sub">试试放宽风格 / 分类，或 <button type="button" class="btn-text" id="emptyClear">清除全部筛选</button></p></li>'
-        : '<li class="empty"><p>字库暂时为空。</p></li>';
-      updateCount();
-      const emptyClr = document.getElementById('emptyClear');
-      if (emptyClr) emptyClr.addEventListener('click', function () {
-        state.cat = state.weight = state.lang = state.license = state.foundry = state.lineage = state.open = state.kind = state.style = state.tag = state.keyword = '';
-        const s = document.getElementById('navSearch');
-        if (s) s.value = '';
-        refresh();
-      });
-      return;
-    }
-    appendPage();
+    paintList();
+    if (window.requestAnimationFrame) requestAnimationFrame(function () { renderRail(); });
+    else renderRail();
   }
 
   WFSpecimen.controlBar(document.getElementById('controlbar'), {
@@ -403,7 +487,8 @@
   }).catch(function () {
     if (countEl) countEl.textContent = '目录没读到';
     if (listEl) {
-      listEl.innerHTML = '<li class="empty empty-filter"><p>字体目录载入失败。</p><p class="empty-sub"><button type="button" class="btn" onclick="location.reload()">再试一次</button></p></li>';
+      listEl.innerHTML = failListHtml();
+      listEl.removeAttribute('aria-busy');
     }
   });
 })();

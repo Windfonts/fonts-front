@@ -1,6 +1,7 @@
 /* 顶栏搜索：输入出几条预测，字体名用本款字面。依赖 wf-proto / wf-chrome */
 (function () {
   const N = 6;
+  let catalogReady = false;
 
   function esc(s) { return WFProto.escapeHtml(s); }
   function href(path) { return WFChrome.href(path); }
@@ -13,7 +14,7 @@
 
   function faceStyle(font) {
     const w = firstWeight(font);
-    WFProto.ensureFontCss(font.family, w, 'zh');
+    WFProto.ensureFontCss(font.family, w, 'preview-shop');
     return 'font-family:' + esc(WFProto.cssFamilyStack(font.family)) + ';font-weight:' + w;
   }
 
@@ -38,6 +39,11 @@
   function paint(pop, q) {
     const kw = (q || '').trim();
     if (!kw) { pop.hidden = true; pop.innerHTML = ''; return; }
+    if (!catalogReady) {
+      pop.innerHTML = '<p class="search-empty" data-pending role="status">正在查找</p>';
+      pop.hidden = false;
+      return;
+    }
     const list = hits(kw.toLowerCase());
     pop.innerHTML = list.length
       ? list.map(function (f) {
@@ -45,7 +51,7 @@
             '<span class="search-face" style="' + faceStyle(f) + '">' + esc(f.name) + '</span>' +
             '<span class="search-meta">' + esc(WFChrome.brandName(f) || '') + '</span></a>';
         }).join('')
-      : '<p class="search-empty">没有「' + esc(kw) + '」</p>';
+      : '<p class="search-empty" role="status">没有「' + esc(kw) + '」</p>';
     pop.hidden = false;
     setActive(pop, 0);
   }
@@ -76,7 +82,7 @@
 
     let timer = null;
     function run() {
-      WFProto.loadCatalog().then(function () { paint(pop, input.value); });
+      WFProto.loadCatalog().then(function () { catalogReady = true; paint(pop, input.value); });
     }
     function hide() { pop.hidden = true; }
 
