@@ -117,6 +117,10 @@ lab 仓里的 `scripts/deploy-oss-front.sh` 默认广州 `wenfeng-web`，**禁�
 | 书签仍是 `fonts.html` | 边缘 200，顶栏仍输出干净 URL | 只验了干净 URL，旧链 404 |
 | 详情「获取代码」 | toast + 开发视图；嵌入地址是 `cn/hk/en.windfonts.com/api/css`，无 `text=` | 误加匿名子集 |
 | 目录失败 / 找不到 | `.page-state` 占住版心，有回字体库 | 一句灰字贴在超宽白底 |
+| 字库筛选 / 搜索 0 款 | `#fontList` 里 `li.page-state-item`（kicker 筛选或搜索 + 清除全部筛选），高度约 22rem | `.empty.empty-filter` 一行灰字；`refresh()` 先清空再 `renderRail()` 导致点击卡、白闪 |
+| 选字袋 0 款 | `#bagList` 同样 `.page-state` + 去字体库 | 标题「选字袋 0」、列表节点空 |
+| 厂商索引无匹配 | `#foundryEmpty.page-state` 显示 | 隐藏的 14px `foundry-empty-filter` |
+| 顶栏搜索目录未就绪 | 「正在查找」；命中脸 `preview-shop` | 目录空时写「没有「kw」」；每个键位 `ensureFontCss(..., 'zh')` |
 
 ## 3. 发布 / 启停 vault（Next）
 

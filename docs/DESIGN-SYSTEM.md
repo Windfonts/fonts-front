@@ -106,7 +106,7 @@
 | 图标 | `.icon` | components.css / `WFChrome.icon(name)` | 见 §4 |
 | 面板 | `.panel .panel-head .panel-pad` | base.css | 浅灰填充、16px 圆角、无边框 |
 | 页头带 | `.page-head .lead .kicker .crumb` | base.css | |
-| 空态 / 加载 | `.empty .loading` | base.css | |
+| 空态 / 加载 | `.page-state .page-state-item .page-state-skel` | base.css | 公网列表/详情/厂商：kicker + 标题级一行 + CTA，占住版心（约 22rem）。`.empty` / `.loading` 只留给控制台表格小空行，店面不要一行灰字 |
 | 控制条 | `.controlbar .view .size` | specimen.css / `WFSpecimen.controlBar` | 粘在顶栏下的浅灰胶囊 |
 | 字体卡 | `.specimen .act .specimens` | specimen.css / `WFSpecimen.renderRows` | 行 / 网格两种视图 |
 | 字形墙 | `.glyph-wall .wall` | specimen.css | 详情页首屏，全站最大的字 |
@@ -163,5 +163,5 @@
 - 需要用户输入时用 `WFChrome.promptInput`（返回 `Promise<string|null>`），不要用原生 `prompt()`；破坏性操作先 `WFChrome.confirm`。
 - 键盘：`/` 聚焦搜索，Esc 关闭覆层；Tab 顺序按 DOM。
 - 对比：正文 `#111/#fff`；说明 `#666/#fff` ≥ 5.7:1；弱说明 `#9a9a9a` 仅用于非关键信息。
-- 每个列表都有空态文案 + 一个去处链接；每个异步区域有 `.loading`。
+- 每个列表都有空态文案 + 一个去处。公网字库 / 选字袋 / 厂商 / 详情用 `.page-state`（失败带按钮），不要 `.empty` 14px 灰字。控制台表可以仍用 `.empty`。骨架用 `.page-state-skel` / `.specimen.is-skel`，不要再用单独一句 `.loading` 当整页。
 - 每个操作后给 toast 反馈；破坏性操作必须先 `WFChrome.confirm`，再执行。

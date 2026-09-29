@@ -824,3 +824,30 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 3. leftover 观察：`~/.grok/memory-v2/workspaces/linuxjoy-092c3977/observations/_inbox/grok-01a0eb5b-shop-leftover.md`。
 4. 开工前 `session-claim.sh claim --repo <仓> --task "…" --sig <你>`。
 
+## 38. 2026-09-29 公网空状态（Grok `01a0eafd`）
+
+人：「空状态效果太差了，不仅错误而且显示给用户感觉很卡顿」。leftover 先停，先改这块。
+
+### 拍板（后续迭代照这个，不要退回一行灰字）
+
+- 公网列表空态（字库筛选/搜索无匹配、选字袋空、厂商索引无匹配、目录载入失败）用 `.page-state`（kicker + 标题级一行 + CTA），挂在 `li.page-state-item` 或版心里，最小高度约 22rem。不要再用 `.empty` / `.empty-filter` 14px 居中灰字贴在超宽白底上。
+- 控制台表格小空行仍可用 `.empty`；店面字库/袋/厂商不要。
+- `fonts.js`：`paintList()` 先画列表，侧栏 `renderRail()` 放到 `requestAnimationFrame`。计数用 `railStats()` 一遍扫描，不要每个 facet 再 `filter` 574 款。点芯片先改 `is-on` 再 `refresh()`。
+- 不要 `innerHTML=''` 之后先跑 `renderRail()` 再填列表：点击会卡，空结果会闪成空白画布。
+- 顶栏搜索：`catalogReady` 之前写「正在查找」，不要提前「没有「kw」」。命中脸用 `preview-shop`，不要每个键位 `ensureFontCss(..., 'zh')`。
+- 骨架 `.specimen.is-skel .skel-bar` / `.page-state-skel i` 有脉冲；`prefers-reduced-motion: reduce` 关掉。
+
+### 仓 / 现网
+
+- 分支 `grok/empty-state` 提交 `be9f2ab`（本条文档在其后）。**未合**占用中的 `main`（`grok-01a0eb5b` 认领 `~/Projects/fonts-front`）。
+- 工位 `~/wt/fonts-front-empty-state`。不要用这枝的 `wf-chrome.js` / `wf-proto.js` 盖公网 `ui12` / `g15`。
+- 2026-09-29 已把空状态文件单独 cp 进 `oss://wenfeng-web-hz`，HTML 从当时公网壳改戳（保留 proto g15 / chrome ui12）。十边 named unlink `windfonts_app`。
+- 现网戳：`fonts.js?v=20260929ui101`、`base.css?v=20260929ui6`、`site.css?v=20260929ui2`、`components.css?v=20260929ui2`、`bag.js?v=20260929ui6`、`foundry.js?v=20260929ui9`；`wf-search.js?v=20260929g1` 覆盖新字节（chrome 仍引 g1）。
+- 点按（公网处理本身）：装饰字体 4ms；清除筛选 17ms。`?keyword=zzzznofont` 出「搜索 / 没有「zzzznofont」」。选字袋空板「去字体库挑几款」。
+
+### 不要做
+
+- 不要把空态改回 `.empty` 一行灰字「更干净」。
+- 不要为了侧栏计数在点击栈里同步重绘 574×各 facet。
+- 不要整仓 `deploy-web-hz.sh` 从这棵 4611b3d 工位发：会把 chrome/proto 打回 g14/ui11。
+
