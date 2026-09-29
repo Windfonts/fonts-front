@@ -917,9 +917,14 @@
     WFSponsor.bind(root);
   }
 
+  function slugFromPath() {
+    const m = String(location.pathname || '').match(/\/foundry\/([A-Za-z0-9_-]+)\/?$/i);
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+
   WFProto.loadCatalog().then(function (list) {
     const go = function () {
-      const slug = WFProto.getQuery('slug');
+      const slug = WFProto.getQuery('slug') || slugFromPath();
       if (!slug) { renderIndex(list); return; }
       const g = buildGroupForSlug(list, slug);
       if (!g) { root.innerHTML = '<p class="empty container">未找到该厂商。<a href="foundry.html">' + WFChrome.icon('building') + '查看全部厂商</a></p>'; return; }
