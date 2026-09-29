@@ -867,8 +867,28 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 
 - **`text=`：** 现网匿名 `GET /api/css?text=` 曾 200 全包（~188KB）。源站 nginx `location = /api/css`：`$args` 含 `text=`（含空值）→ 400 JSON `no-store`。已铺 `vault.windfonts.com` + `app.windfonts.com`。公网 app/vault/cn 均 400；具名 `subset=zh-common` 仍 200 cl=9318。容器 `:4000` 直打仍 200（镜像未含门），下一手镜像才进 Next。代码在 worktree：`src/lib/css-text-param.ts` + `app/api/css/route.ts`。项目切字仍走 `/p/{slug}?t=`。bak：`*.conf.bak-p3-text-20260929T1855`。`default_type` 不能写在 `if` 里（nginx emerg）。
 - **analysis：** 根因不是 Ibmps 缺行。OSS `fonts-packages/metadata/font-analysis.json` 被 kaonashi 两款（Qhddl/Xxzt，42458B）覆盖；`?v=` 只换 CDN 键，OSS 忽略 query。本机 `fonts-packages/metadata/font-analysis.json` 同步被覆盖。已 `node scripts/build-font-analysis-from-css.mjs` 从店面 574 款 CSS unicode-range 重建 → **546/574**（951504B，Ibmps 在），只上传 analysis（不传 2.4K 的 mapping stub）。bak：`metadata/font-analysis.json.bak-p3-2font`。容器 `OSS_METADATA_VERSION=20260929p3`，同镜像 recreate，`/app/data` 卷保留。`GET /api/fonts/Ibmps/analysis` 200，`char_count` 29287（当前 child 名 Light，重建脚本按 weights 顺序先命中的字重）。28 款无 unicode-range CSS 仍会 404（多为日文展示款 / 乐米等）。
-- **625 vs 574：** DB `published=523, offline=87, archived=15`。导出脚本已 `status=published`。按 family 对拍：店面 574 中 118 不在 published（17 offline、1 archived=`wenfeng-xczz`、100 库无此 family 键）；published 67 不在店面（鸿雷/嗷呜/逐浪/KH Dot/JF Dot/IPA 等，vault 用了另一套 family 键，如 `wenfeng-hongleibanshu` vs 店面 `wenfeng-hlbs`）。条数差 51 是计数，不是同一集合。不要手改 JSON 去「对上」。要新目录须走导出+merge，并先处理 family 键漂移。
+- **625 vs 574：** DB `published=523, offline=87, archived=15`。导出脚本已 `status=published`。按 **family 键**对拍会把同款算成缺失（§41 用 UUID：474 同 id）。不要手改 JSON 去「对上」。不要全量导出盖短码。
 - **`/v1/fonts`：** 现网 404（vault Next HTML / app `404.html`）。表头已标未上线。LICENSE「以后公开接口」保持将来时。
 - **hk/en `/api/css`：** 2026-09-29 18:5x 从 feicode-prod 打 hk/en `subset=zh-common|full` 均 200（9318 / 188256）。Mac 打 hk 25s 超时；en 本轮 200 HIT。回归看源站，不要把 Mac Clash 超时当成 vault 502。未改 DNS。监控继续用源站 `127.0.0.1:4000` + 边 IP `--noproxy --resolve`。
 - 回滚容器：`docker stop fonts-vault; docker rename fonts-vault fonts-vault-p3-new; docker rename fonts-vault-p3-old fonts-vault; docker start fonts-vault`（旧容器仍在，未删）。prod.db bak `prod.db.bak-20260929T1855-p3-meta`。host env bak `.env.production.bak-20260929T1855-p3-meta`。
 - 未提交：fonts-vault-p3 门代码；fonts-packages 重建的 analysis；fonts-front P0；devops ansible P1。未合 `v4-specimen`。未开 P4。
+
+## 41. 2026-09-29 目录键核对（Grok `01a0eb5b`）
+
+不是整表偏移。现网 `GET /api/fonts` 625 = published 523 + offline 87 + archived 15。店面 list 574 与本地 `fonts.json` 同 id/family。
+
+按 **UUID** 对拍（`docs/_family-key-join-20260929.json`）：
+
+| 店面行 | 数量 | 含义 |
+|---|---|---|
+| vault 同 id | 474 | 其中 456 published、17 offline、1 archived=`wenfeng-xczz` |
+| 同 id 但 family/normalized 已改 | 2 | 猫啃什锦黑繁体 `Matc`→`Mksjhtc`；香萃自在舒畅黑 `Xcws`→`Xczzsch`（OSS 两套路径都 200） |
+| 不同 id、同中文名 | 9 | 鸿雷五款 / 嗷呜等高 / 水木黑 / 逐浪粗宋·萌芽：店面短码 `wenfeng-hlbs` vs vault 长码 `wenfeng-hongleibanshu`。OSS `Hlbs` 与 `HongleiBanshu` **各有一份** full CSS |
+| 同 family、不同 id | 2 | 立夏黑体、扇尾胄黑（键没漂，只是两行） |
+| 库里没有这行 | 89 | 26 `shelf-stub`（乐米/登录墙）；其余含 HarmonyOS / vivo / 荣耀 / 思源 JP·HK、遍黑体。Harmony 不是键漂，是没进 vault |
+| vault published 店面没有 | 56 | 多为 KH Dot / JF Dot / IPA 点阵，不是鸿雷漏上架 |
+
+`GET /api/css?family=wenfeng-hlbs` vault JSON「字体不存在」；`family=wenfeng-hongleibanshu&subset=full` 200，`zh-common` 无该字重版本。app 边对未知 `/api/fonts/Hlbs` 曾 **HIT** OSS `404.html`（有 `x-oss-request-id`），不要当成 Next 404。
+
+**口径（FAMILY-VARIANTS）：** 已发布店面 `family` 短码冻结。别名双向但文件内容不同向：vault `family-aliases.json` 短码→长码（CSS 找得到行）；店面 JSON + `wf-proto` 长码→短码（`/fonts/hongleibanshu` 落到现卡）。未改 `fonts.json`，未全量导出，未改 vault `font_family` 列。17 条 offline 仍在货架（#8700 没中文下架的残留），本轮没删。
+

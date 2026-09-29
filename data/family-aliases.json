@@ -1,5 +1,5 @@
 {
-  "note": "2026-09-23: same-product aliases + opsa/systcnl legacy; Source Han regionals restored as own fonts; 2026-09-28: cq→chuanqu（退役 stub）",
+  "note": "2026-09-23: same-product aliases + opsa/systcnl legacy; Source Han regionals restored as own fonts; 2026-09-28: cq→chuanqu（退役 stub）；2026-09-29 双登记：vault 长码 → 店面已发布短码（嵌入身份冻结）。",
   "aliases": {
     "wenfeng-hxbsbt": "wenfeng-hxbsb",
     "hxbsbt": "wenfeng-hxbsb",
@@ -30,6 +30,28 @@
     "wenfeng-douyufont": "wenfeng-dyzgt",
     "douyufont": "wenfeng-dyzgt",
     "wenfeng-cq": "wenfeng-chuanqu",
-    "cq": "wenfeng-chuanqu"
+    "cq": "wenfeng-chuanqu",
+    "wenfeng-hongleibanshu": "wenfeng-hlbs",
+    "hongleibanshu": "wenfeng-hlbs",
+    "wenfeng-hongleixiaozhitiao": "wenfeng-hlxzt",
+    "hongleixiaozhitiao": "wenfeng-hlxzt",
+    "wenfeng-hongleibanshuformal": "wenfeng-hlbszs",
+    "hongleibanshuformal": "wenfeng-hlbszs",
+    "wenfeng-hongleixingshu": "wenfeng-hlxs",
+    "hongleixingshu": "wenfeng-hlxs",
+    "wenfeng-hongleizhuoshu": "wenfeng-hlzs",
+    "hongleizhuoshu": "wenfeng-hlzs",
+    "wenfeng-mizukigothic": "wenfeng-smht",
+    "mizukigothic": "wenfeng-smht",
+    "wenfeng-zoomlacusong": "wenfeng-zlcs",
+    "zoomlacusong": "wenfeng-zlcs",
+    "wenfeng-zoomlamengyas": "wenfeng-zlmeng",
+    "zoomlamengyas": "wenfeng-zlmeng",
+    "wenfeng-howlingeqhisans": "wenfeng-eqhi",
+    "howlingeqhisans": "wenfeng-eqhi",
+    "wenfeng-mksjhtc": "wenfeng-matc",
+    "mksjhtc": "wenfeng-matc",
+    "wenfeng-xczzsch": "wenfeng-xcws",
+    "xczzsch": "wenfeng-xcws"
   }
 }

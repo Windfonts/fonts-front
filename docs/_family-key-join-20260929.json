@@ -1,0 +1,151 @@
+{
+  "date": "2026-09-29",
+  "join": "id first, then exact name (not family-only)",
+  "counts": {
+    "shop": 574,
+    "vault": 625,
+    "vaultPublished": 523,
+    "vaultOffline": 87,
+    "vaultArchived": 15,
+    "shopByVaultStatus": {
+      "published": 456,
+      "offline": 17,
+      "archived": 1,
+      "not-in-db": 100
+    },
+    "sameIdFamilyRename": 2,
+    "dualRegisterSameName": 11
+  },
+  "sameIdFamilyRename": [
+    {
+      "name": "猫啃什锦黑 繁体",
+      "id": "b5ca149c-0a05-4550-a91c-9e9df1bbf198",
+      "shopFamily": "wenfeng-matc",
+      "vaultFamily": "wenfeng-mksjhtc",
+      "shopNormalized": "Matc",
+      "vaultNormalized": "Mksjhtc"
+    },
+    {
+      "name": "香萃自在舒畅黑",
+      "id": "160ff000-cbd9-4805-801a-a5c80b70178a",
+      "shopFamily": "wenfeng-xcws",
+      "vaultFamily": "wenfeng-xczzsch",
+      "shopNormalized": "Xcws",
+      "vaultNormalized": "Xczzsch"
+    }
+  ],
+  "dualRegisterSameName": [
+    {
+      "name": "立夏黑体",
+      "shopId": "c343d1c7-de43-4844-aa97-14450903500a",
+      "shopFamily": "wenfeng-lxht",
+      "shopNormalized": "Lxht",
+      "vaultId": "2a575439-49c8-4303-bc0b-20fa054d8c73",
+      "vaultFamily": "wenfeng-lxht",
+      "vaultNormalized": "Lxht",
+      "vaultStatus": "published"
+    },
+    {
+      "name": "扇尾胄黑 16",
+      "shopId": "ff0a5f71-e966-4af5-8db2-9a6e7f182a41",
+      "shopFamily": "wenfeng-swzh",
+      "shopNormalized": "Swzh",
+      "vaultId": "6f3fe34e-b62b-4b2a-b621-78fd823f13a0",
+      "vaultFamily": "wenfeng-swzh",
+      "vaultNormalized": "Swzh",
+      "vaultStatus": "published"
+    },
+    {
+      "name": "鸿雷小纸条青春体",
+      "shopId": "8ed4ee50-2e4f-4505-8463-c96a6b746f19",
+      "shopFamily": "wenfeng-hlxzt",
+      "shopNormalized": "Hlxzt",
+      "vaultId": "e91de44b-cfcd-424b-b382-dcd5bea4a85d",
+      "vaultFamily": "wenfeng-hongleixiaozhitiao",
+      "vaultNormalized": "HongleiXiaozhitiao",
+      "vaultStatus": "published"
+    },
+    {
+      "name": "鸿雷板书体",
+      "shopId": "f90692e1-51c6-41cb-81c0-35e5d2c6f953",
+      "shopFamily": "wenfeng-hlbs",
+      "shopNormalized": "Hlbs",
+      "vaultId": "23746673-019f-4fa4-bacf-5e6de626c7e8",
+      "vaultFamily": "wenfeng-hongleibanshu",
+      "vaultNormalized": "HongleiBanshu",
+      "vaultStatus": "published"
+    },
+    {
+      "name": "鸿雷板书简体正式版",
+      "shopId": "8f3d42d5-a45a-4da4-8005-0ad10b681a09",
+      "shopFamily": "wenfeng-hlbszs",
+      "shopNormalized": "Hlbszs",
+      "vaultId": "22772b07-8eb9-4eaf-9c29-065cc66d4ab8",
+      "vaultFamily": "wenfeng-hongleibanshuformal",
+      "vaultNormalized": "HongleiBanshuFormal",
+      "vaultStatus": "published"
+    },
+    {
+      "name": "鸿雷行书简体",
+      "shopId": "286f2d30-d0cf-4498-9886-38f5bd8c7e11",
+      "shopFamily": "wenfeng-hlxs",
+      "shopNormalized": "Hlxs",
+      "vaultId": "2ce47ece-b6c0-4a70-9503-ce1c0ddb8530",
+      "vaultFamily": "wenfeng-hongleixingshu",
+      "vaultNormalized": "HongleiXingshu",
+      "vaultStatus": "published"
+    },
+    {
+      "name": "鸿雷拙书简体",
+      "shopId": "3d42c9a5-269f-45e3-bbe0-10cfcf73adb3",
+      "shopFamily": "wenfeng-hlzs",
+      "shopNormalized": "Hlzs",
+      "vaultId": "12dfb1cb-c2af-4b23-ac29-7f1dd45a8b5d",
+      "vaultFamily": "wenfeng-hongleizhuoshu",
+      "vaultNormalized": "HongleiZhuoshu",
+      "vaultStatus": "published"
+    },
+    {
+      "name": "水木黑体",
+      "shopId": "789827af-a406-49b3-9bbb-f6df92784d32",
+      "shopFamily": "wenfeng-smht",
+      "shopNormalized": "Smht",
+      "vaultId": "58c3fe9d-41fb-4507-95b5-b203233c3018",
+      "vaultFamily": "wenfeng-mizukigothic",
+      "vaultNormalized": "MizukiGothic",
+      "vaultStatus": "published"
+    },
+    {
+      "name": "逐浪粗宋简体",
+      "shopId": "4a5ccdd1-2732-4c25-9c2b-e54d0e40fc99",
+      "shopFamily": "wenfeng-zlcs",
+      "shopNormalized": "Zlcs",
+      "vaultId": "3b07c16f-c0f7-4be2-be65-61545c96a086",
+      "vaultFamily": "wenfeng-zoomlacusong",
+      "vaultNormalized": "ZoomlaCusong",
+      "vaultStatus": "published"
+    },
+    {
+      "name": "逐浪萌芽字",
+      "shopId": "d183e09b-412c-4f06-8a3b-1370698e08a8",
+      "shopFamily": "wenfeng-zlmeng",
+      "shopNormalized": "Zlmeng",
+      "vaultId": "e6432772-271d-45ce-9663-2e2eb21d4d40",
+      "vaultFamily": "wenfeng-zoomlamengyas",
+      "vaultNormalized": "ZoomlaMengyas",
+      "vaultStatus": "published"
+    },
+    {
+      "name": "嗷呜等高体",
+      "shopId": "e234da31-c76f-4ddc-89a3-8eedc0779cdd",
+      "shopFamily": "wenfeng-eqhi",
+      "shopNormalized": "Eqhi",
+      "vaultId": "c278cb6a-4816-471c-9246-7296de4313ba",
+      "vaultFamily": "wenfeng-howlingeqhisans",
+      "vaultNormalized": "HowlingEqHiSans",
+      "vaultStatus": "published"
+    }
+  ],
+  "notOffset": "Not a shifted table. 474/574 shop rows share vault UUID. 9 dual UUIDs (鸿雷/嗷呜/逐浪/水木). 2 same-UUID renames (Matc/Xcws). 89 shop-only (26 shelf-stub + Harmony/vivo/思源 JP…). 56 vault published not on shop (KH/JF Dot/IPA).",
+  "convention": "Published shop family short codes stay frozen (FAMILY-VARIANTS). Vault aliases shop-short→vault-long so /api/css finds the row. Shop aliases vault-long→shop-short so /fonts/{long} hits the card. Do not full-export. Do not hand-edit fonts.json."
+}

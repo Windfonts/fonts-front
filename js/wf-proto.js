@@ -457,7 +457,12 @@
   const FAMILY_ALIASES = {
     'hxbsbt': 'hxbsb', 'hzpyt': 'hzpy', 'kslmt': 'kslyt', 'myrbsxt': 'mysxt', 'qtqmt': 'qtxmt', 'cq': 'chuanqu',
     'huxiaobokuhei': 'zkkht', 'happyzcool2016': 'zkklt',
-    'opposansb': 'opsa', 'light': 'systcnl', 'lmqylsrht': 'lmqylszrht'
+    'opposansb': 'opsa', 'light': 'systcnl', 'lmqylsrht': 'lmqylszrht',
+    /* 2026-09-29 双登记：vault 长码 → 店面短码 */
+    'hongleibanshu': 'hlbs', 'hongleixiaozhitiao': 'hlxzt', 'hongleibanshuformal': 'hlbszs',
+    'hongleixingshu': 'hlxs', 'hongleizhuoshu': 'hlzs', 'mizukigothic': 'smht',
+    'zoomlacusong': 'zlcs', 'zoomlamengyas': 'zlmeng', 'howlingeqhisans': 'eqhi',
+    'mksjhtc': 'matc', 'xczzsch': 'xcws'
   };
   function resolveFamilyAlias(token) {
     let s = String(token || '').trim().toLowerCase().replace(/^wenfeng-/, '').replace(/^windfonts-/, '');
