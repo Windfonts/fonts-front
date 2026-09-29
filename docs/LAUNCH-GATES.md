@@ -3,7 +3,7 @@
 > 静态原型（本仓）上线正式域前的硬门槛。未勾完不应切流量。  
 > 对照现网：`app.windfonts.com`。原型预览：`python3 -m http.server 16016`。
 
-**2026-09-28 状态：** `app.windfonts.com` 与 `staging-app.windfonts.com` 已具备 `/fonts/{slug}`、`/foundry/{slug}` rewrite + `try_files $uri $uri.html`；前端 `WFProto.livePagePath` / `foundryHref` 已接线。正式切流前仍须勾完 §2 其余项。
+**2026-09-29：** 访客静态 origin 是 OSS `wenfeng-web-hz`（不是 feicode 磁盘、不是广州 `wenfeng-web`）。边缘 rewrite：`/fonts/{slug}` → `/font-detail.html last`（无 `?slug=`，JS 读 pathname）；`/foundry/{slug}` → `/foundry.html last`。`WFChrome.href` 在 app 域走 `livePagePath`（`?v=20260929ui3` 起）。发版 SOP：`docs/ops/DOMAIN-DEPLOY-SOP.md`。
 
 ## 1. 必须先落地的基础设施（不能只靠前端假装）
 
@@ -19,13 +19,12 @@
 Rewrite 示例（Nginx）：
 
 ```nginx
-# /fonts/albbpht → font-detail.html?slug=albbpht
+# 现网 ansible 模板是 rewrite ^ /font-detail.html last（不带 ?slug=）
 location ~ ^/fonts/([A-Za-z0-9_-]+)/?$ {
-  rewrite ^ /font-detail.html?slug=$1 last;
+  rewrite ^ /font-detail.html last;
 }
-# /foundry/lxgw → foundry.html?slug=lxgw  （勿抢走裸 /foundry）
 location ~ ^/foundry/([A-Za-z0-9_-]+)/?$ {
-  rewrite ^ /foundry.html?slug=$1 last;
+  rewrite ^ /foundry.html last;
 }
 error_page 404 /404.html;
 ```
@@ -50,13 +49,14 @@ Ops / Nginx 建议：
 - **停止** 把 `/fonts` 301 到 `fonts.html`（与详情前缀 `/fonts/{slug}` 冲突；列表用 `try_files` 落到 `fonts.html`）
 - 同理勿把裸 `/foundry` 硬 301 到 `foundry.html` 若会与 `/foundry/{slug}` 冲突；索引靠 `try_files`
 - 可选：对仍带 `.html` 的旧链做 301 → 无扩展名（保留 query）
-- 详情：`/fonts/{slug}` rewrite → `font-detail.html?slug=$1`（见上）；前端也会从 pathname 读 slug
-- 厂商：`/foundry/{slug}` rewrite → `foundry.html?slug=$1`；旧 `/foundry?slug=` / `/foundry.html?slug=` 优先 301 → `/foundry/{slug}`（前端 prod 亦 `history.replaceState`）
+- 详情：`/fonts/{slug}` rewrite → `/font-detail.html last`；slug **只**从 pathname 读。HTML 必须 `/js/` `/css/`。
+- 厂商：`/foundry/{slug}` → `/foundry.html last`（不要回 vault）。HTML 缓存 key 是浏览器路径 `/foundry/{slug}`。
+- `WFChrome.href` 必须调用 `livePagePath`；写 `ROOT + path` 不算接线。
 
 ## 2. 上线前检测门闸（按顺序勾）
 
 ### A. 构建与缓存
-- [ ] 产品页 `wf-proto` / `wf-chrome` / `wf-specimen` / 页面脚本 `?v=` 与改动同步（禁止半仓旧版本）· 本仓已 bump `20260928gates1`，**现网未全量 rsync**
+- [ ] 产品页 `wf-proto` / `wf-chrome` / `wf-specimen` / 页面脚本 `?v=` 与改动同步（禁止半仓旧版本）。对 **OSS hz etag**，不要只对 feicode 磁盘。
 - [ ] 不提交 `*.bak`、本地密钥、`.env`
 - [ ] `v5-*.html`、`*-options.html`、`oss-audit.html`、`lab.html` 不进生产入口（对照 / 研究页；导航不链）。**保留勿删**，见 [LAB.md](LAB.md)。
 

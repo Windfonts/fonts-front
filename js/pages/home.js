@@ -74,7 +74,7 @@
     const w = heavyWeight(font);
     const stack = WFProto.cssFamilyStack(font.family);
     const detail = WFProto.detailHref(font);
-    WFProto.ensureFontCss(font.family, w, 'preview-shop');
+    WFProto.ensureFontCss(font.family, w, 'preview-shop', glyph || '风');
     return '<div class="home-now-card">' +
       '<p class="home-now-glyph" style="font-family:' + esc(stack) + ';font-weight:' + w + '">' + esc(glyph || '风') + '</p>' +
       '<div><h2><a href="' + detail + '">' + esc(font.name) + '</a>' +
@@ -232,7 +232,7 @@
         if (f.id === font.id) {
           const hw = heavyWeight(f);
           /* 首屏只拉眼前这一款；其余格进空闲队列或悬停再拉。 */
-          WFProto.ensureFontCss(f.family, hw, 'preview-shop');
+          WFProto.ensureFontCss(f.family, hw, 'preview-shop', (live && live.textContent) || '风');
           return '<div class="home-forest-cell is-on" data-family="' + esc(f.family || '') + '" data-weight="' + hw + '">' +
             '<p class="home-forest-glyph" data-forest-glyph contenteditable="true" spellcheck="false">' + esc(g) + '</p>' +
             '<i>' + esc((window.WFProducts && WFProducts.listName(f)) || f.name) + devTag(f, hw) + '</i></div>';
@@ -250,7 +250,7 @@
       const fam = el.getAttribute('data-family');
       if (!fam) return;
       el.setAttribute('data-face-queued', '1');
-      WFProto.ensureFontCss(fam, el.getAttribute('data-weight') || '400', 'preview-shop');
+      WFProto.ensureFontCss(fam, el.getAttribute('data-weight') || '400', 'preview-shop', (el.textContent || '风'));
     }
 
     function queueForestFaces() {
@@ -301,7 +301,7 @@
       const w = heavyWeight(f);
       const stack = WFProto.cssFamilyStack(f.family);
       const glyph = forestGlyph();
-      WFProto.ensureFontCss(f.family, w, 'preview-shop');
+      WFProto.ensureFontCss(f.family, w, 'preview-shop', (live && live.textContent) || '风');
       live.style.fontFamily = stack;
       live.style.fontWeight = w;
       const closeMark = document.querySelector('.home-close-bg');

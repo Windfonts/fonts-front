@@ -181,7 +181,7 @@
     if (!fam) return;
     const weight = el.getAttribute('data-weight') || '400';
     if (!('IntersectionObserver' in window)) {
-      WFProto.ensureFontCss(fam, weight, 'preview-shop');
+      WFProto.ensureFontCss(fam, weight, 'preview-shop', WFProto.getSample && WFProto.getSample());
       return;
     }
     if (!specimenCssIo) {
@@ -190,7 +190,7 @@
           if (!en.isIntersecting) return;
           const node = en.target;
           specimenCssIo.unobserve(node);
-          WFProto.ensureFontCss(node.getAttribute('data-family'), node.getAttribute('data-weight') || '400', 'preview-shop');
+          WFProto.ensureFontCss(node.getAttribute('data-family'), node.getAttribute('data-weight') || '400', 'preview-shop', WFProto.getSample && WFProto.getSample());
         });
       }, { rootMargin: '180px 0px', threshold: 0 });
     }
@@ -295,7 +295,7 @@
     return sortedWeights(font).map(function (w) {
       const css = String(WFProto.weightToCss(w));
       /* 必须传字重名：同数字多名称（Text/Regular）时按名拉 CDN，不能只传 400 */
-      WFProto.ensureFontCss(font.family, w, 'preview-shop');
+      WFProto.ensureFontCss(font.family, w, 'preview-shop', sample);
       const on = cur && css === cur;
       return '<button type="button" class="weight-row' + (on ? ' is-on' : '') + '" data-w="' + css + '" data-wn="' + esc(w) + '">' +
         '<span class="w">' + esc(w) + '<span class="for-dev"> · ' + css + '</span></span>' +

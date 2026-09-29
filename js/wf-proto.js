@@ -983,17 +983,63 @@
     });
   }
 
+  function cssRangeSet(css) {
+    const set = {};
+    let any = false;
+    const re = /unicode-range:\s*([^;]+)/gi;
+    let m;
+    while ((m = re.exec(String(css || '')))) {
+      any = true;
+      String(m[1]).split(',').forEach(function (part) {
+        part = String(part || '').trim().toUpperCase().replace(/^U\+/, '');
+        if (!part) return;
+        if (part.indexOf('-') >= 0) {
+          const ab = part.split('-');
+          const a = parseInt(ab[0], 16);
+          const b = parseInt(ab[1], 16);
+          if (!(a >= 0 && b >= a)) return;
+          if (b - a > 400) { set._wide = 1; return; }
+          for (let n = a; n <= b; n++) set[n] = 1;
+        } else {
+          const n = parseInt(part, 16);
+          if (n >= 0) set[n] = 1;
+        }
+      });
+    }
+    if (!any) set._all = 1;
+    return set;
+  }
+  function rangeSetCoversText(set, text) {
+    const s = String(text || '');
+    if (!s) return true;
+    if (set && set._all) return true;
+    if (set && set._wide) return true;
+    let saw = false;
+    for (let i = 0; i < s.length; i++) {
+      const c = s.charCodeAt(i);
+      if (c < 128) continue;
+      saw = true;
+      if (!set || !set[c]) return false;
+    }
+    return saw;
+  }
+  const injectedCssText = {};
+
   /**
    * 注入字体 CSS。店面短样张走 preview-shop（CDN 预计算包），缺包再 zh / full。
+   * 传入 text 时：preview-shop 的 unicode-range 盖不住样张（春/绿/岸、让/字/网页 等）就升级 zh，再不行 full。
    * 不请求已下线的 /wenfeng/fonts，也没有公开 text=。
    */
-  function ensureFontCss(family, weight, version) {
+  function ensureFontCss(family, weight, version, text) {
     if (!family) return Promise.resolve();
     const ver = packageSubset(version);
     const pathName = weightName(family, weight);
     const w = weightToCss(weight || pathName || '400');
     const key = family + '|' + pathName + '|' + ver;
-    if (injectedCss[key]) return injectedCss[key];
+    const needText = text == null ? '' : String(text);
+    if (injectedCss[key]) {
+      return injectedCss[key].then(function () { return upgradeIfNeeded(); });
+    }
     const famCss = String(family).replace(/["']/g, '');
     function noteApi() {
       const hit = catalog.filter(function (f) { return f.family === family; })[0];
@@ -1020,6 +1066,7 @@
       style.setAttribute('data-wf-subset', ver);
       style.textContent = fixed;
       document.head.appendChild(style);
+      injectedCssText[key] = css;
       noteApi();
     }
     function fetchCss(url) {
@@ -1060,10 +1107,16 @@
         });
       });
     };
+    function upgradeIfNeeded() {
+      if (!needText) return;
+      if (rangeSetCoversText(cssRangeSet(injectedCssText[key] || ''), needText)) return;
+      if (String(ver).indexOf('preview-') === 0) return ensureFontCss(family, weight, 'zh', needText);
+      if (ver === 'zh' || ver === 'zh-common' || ver === 'en') return ensureFontCss(family, weight, 'full', needText);
+    }
     injectedCss[key] = citeClosedFamily(family)
       ? injectPreviewFace(family, pathName, w)
       : remoteCss();
-    return injectedCss[key];
+    return injectedCss[key].then(function () { return upgradeIfNeeded(); });
   }
 
   /** 等 CSS 注入后再拉该段文字所需分片。cached 时几乎立刻 resolve。 */
@@ -2384,7 +2437,7 @@
 
       function wireRow(li) {
         const family = li.getAttribute('data-family');
-        ensureFontCss(family, '400', 'preview-shop');
+        ensureFontCss(family, '400', 'preview-shop', (function(){ try { var v=localStorage.getItem(SAMPLE_KEY); if(v) return v; } catch(e) {} return DEFAULT_SPECIMEN.listDefault; })());
         const btn = li.querySelector('[data-join]');
         if (btn && !btn._wfBound) {
           btn._wfBound = true;
