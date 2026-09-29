@@ -337,6 +337,7 @@
       }
       if (more) {
         const n = window.WFProducts ? WFProducts.collapseForList(list).length : list.length;
+        more.href = WFChrome.href('fonts.html');
         more.innerHTML = WFChrome.icon('arrow-right') + '全部 ' + n + ' 款';
       }
       settleFace(f, w, ((live.textContent || '') + glyph).replace(/\s+/g, ''));
