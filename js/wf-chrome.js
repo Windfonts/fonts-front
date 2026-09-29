@@ -11,7 +11,20 @@
     return './';
   }
   const ROOT = rootUrl();
-  function href(path) { return ROOT + path; }
+  function onAppHost() {
+    const h = String((typeof location !== 'undefined' && location.hostname) || '').toLowerCase();
+    return h === 'app.windfonts.com' || h === 'staging-app.windfonts.com';
+  }
+  /* 公网走 livePagePath（/fonts、/foundry/{slug}）；本机 16016 无重写，仍用 .html */
+  function href(path) {
+    path = String(path == null ? '' : path);
+    if (onAppHost() && window.WFProto && typeof WFProto.livePagePath === 'function') {
+      const live = WFProto.livePagePath(path);
+      if (!live || live.charAt(0) === '#' || /^https?:/i.test(live) || live.indexOf('//') === 0) return live;
+      return ROOT + String(live).replace(/^\//, '');
+    }
+    return ROOT + path;
+  }
   function esc(s) { return WFProto.escapeHtml(s); }
 
   function user() {
