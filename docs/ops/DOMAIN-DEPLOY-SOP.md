@@ -82,9 +82,10 @@ aliyun oss --profile wenpai cp <file> oss://wenfeng-web-hz/<key> \
 
 仓：`~/Projects/fonts-front` **main**。不要从 `fonts-front-v4-lab` 灌公网。
 
+0. `bash scripts/deploy-web-hz.sh --dry-run` 看清单，再 `bash scripts/deploy-web-hz.sh`（Mac 无钥匙会经 devops 灌 `oss://wenfeng-web-hz`）。
 1. 改 `js/` `css/` 后，**所有引用该文件的 HTML** 同步 bump `?v=`。只换 JS 不换 HTML 戳 = 边缘继续 HIT 旧 JS。
 2. `git push origin main`。
-3. 文件拷到 **devops**，用 `aliyun oss --profile wenpai --region cn-hangzhou` 写入 `oss://wenfeng-web-hz/<key> --force`。Mac ossutil / 广州桶 / feicode 磁盘 rsync **都不算**发版。
+3. 再跑 `deploy-web-hz.sh`。单文件 `aliyun oss cp` 只给紧急补丁。Mac ossutil / 广州桶 / feicode 磁盘 rsync **都不算**发版。
 4. 验收（不够 200）：
 
 ```bash

@@ -154,7 +154,7 @@
 
   function rowHtml(font, opts) {
     opts = opts || {};
-    const sample = opts.sample != null ? opts.sample : WFProto.getSample();
+    const sample = opts.sample != null ? opts.sample : (WFProto.sampleForFont ? WFProto.sampleForFont(font, WFProto.getSample()) : WFProto.getSample());
     const size = opts.size != null ? opts.size : WFProto.getSize();
     const stack = WFProto.cssFamilyStack(font.family);
     const detail = WFChrome.href(WFProto.detailHref(font));

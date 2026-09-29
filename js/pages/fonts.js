@@ -51,7 +51,12 @@
     view: 'rows'
   };
   const SORTS = {
-    featured: null,
+    featured: function (a, b) {
+      const ac = (WFProto.hasCjkFace && WFProto.hasCjkFace(a)) ? 0 : 1;
+      const bc = (WFProto.hasCjkFace && WFProto.hasCjkFace(b)) ? 0 : 1;
+      if (ac !== bc) return ac - bc;
+      return String(a.name).localeCompare(String(b.name), 'zh-Hans-CN');
+    },
     popular: function (a, b) { return (b.viewCount || 0) - (a.viewCount || 0) || SORTS.name(a, b); },
     name: function (a, b) { return String(a.name).localeCompare(String(b.name), 'zh-Hans-CN'); },
     weights: function (a, b) { return (b.weights || []).length - (a.weights || []).length || SORTS.name(a, b); },

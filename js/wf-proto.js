@@ -1915,6 +1915,26 @@
     if (/english|latin|英文/.test(blob) && !/中文|cjk|汉字/.test(blob)) return '英文';
     return '简体中文';
   }
+  /** 这款字是否有汉字面。latin 名 + 字数很少 + 语言空 = 没有（AAR/Thai/Viet）。 */
+  function hasCjkFace(font) {
+    if (!font) return true;
+    const langs = font.languages || [];
+    if (langs.length) {
+      return langs.some(function (l) { return /中|日|韩|CJK|汉|Japanese|Korean|Chinese/i.test(String(l)); });
+    }
+    if ((Number(font.charCount) || 0) >= 1000) return true;
+    if (/[\u3400-\u9fff]/.test(String(font.name || ''))) return true;
+    if (/^[A-Za-z0-9][A-Za-z0-9 .+-]*$/.test(String(font.name || '').trim()) && (Number(font.charCount) || 0) < 200) return false;
+    return inferLanguage(font) !== '英文';
+  }
+  var LATIN_SAMPLE = 'The quick brown fox 0123';
+  function sampleForFont(font, userSample) {
+    const v = userSample == null ? '' : String(userSample);
+    if (!v) return '文';
+    if (hasCjkFace(font)) return v;
+    if (/[\u3400-\u9fff]/.test(v)) return LATIN_SAMPLE;
+    return v;
+  }
 
   function renderExtraFooter(target) {
     const el = typeof target === 'string' ? document.querySelector(target) : target;
@@ -2091,6 +2111,8 @@
     ensureFontCss: ensureFontCss,
     readyFace: readyFace,
     inferLanguage: inferLanguage,
+    hasCjkFace: hasCjkFace,
+    sampleForFont: sampleForFont,
     renderExtraFooter: renderExtraFooter,
     defaultSpecimen: function () { return JSON.parse(JSON.stringify(DEFAULT_SPECIMEN)); },
     getSpecimenConfig: getSpecimenConfig,
@@ -2109,7 +2131,9 @@
     setSample: function (v) {
       localStorage.setItem(SAMPLE_KEY, v);
       document.querySelectorAll('[data-specimen]').forEach(function (n) {
-        n.textContent = v || '文';
+        const host = n.closest('[data-font-id]');
+        const font = host ? getById(host.getAttribute('data-font-id')) : null;
+        n.textContent = sampleForFont(font, v);
       });
       refreshFacesForSample(v);
     },
