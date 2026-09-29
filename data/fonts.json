@@ -27263,5 +27263,105 @@
     "glyphCount": 0,
     "viewCount": 0,
     "filePending": true
+  },
+  {
+    "id": "2c4d462b-e2ba-4b5d-adf9-8243be8030b8",
+    "name": "权衡度量体",
+    "en": "QuanHengDuLiang",
+    "family": "wenfeng-qhddl",
+    "normalized": "Qhddl",
+    "designer": "Yuchen Tian",
+    "designerShort": "Yuchen Tian",
+    "category": "手写体",
+    "tags": [
+      "开源",
+      "MIT",
+      "手写",
+      "书法"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "权衡度量体。从清《权衡度量实验考》手书 338 字，经 zi2zi-JiT 补全 GB2312。MIT License。",
+    "license": "免费商用",
+    "licenseName": "MIT License",
+    "licenseUrl": "https://github.com/kaonashi-tyc/Zi-QuanHengDuLiang/blob/main/LICENSE",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Qhddl/LICENSE",
+    "licenseNotes": "MIT License。原文随 github.com/kaonashi-tyc/Zi-QuanHengDuLiang 携带，已抄录至 font-licenses。版权行 Copyright (c) 2026 Yuchen Tian。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2026 Yuchen Tian",
+    "foundry": "Yuchen Tian",
+    "brand": {
+      "name": "Yuchen Tian",
+      "slug": "kaonashi-tyc",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/f07f9a541b0a1e3976a180324a8263605a517242ec2d0b93312794db91c43b22?s=144&d=identicon",
+      "website": "https://github.com/kaonashi-tyc",
+      "description": "zi2zi-JiT 书法体作者；权衡度量体、玄宗体。"
+    },
+    "releaseYear": 2026,
+    "version": "v0.1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题",
+      "书法"
+    ],
+    "charCount": 6999,
+    "glyphCount": 6990,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/f07f9a541b0a1e3976a180324a8263605a517242ec2d0b93312794db91c43b22?s=144&d=identicon"
+  },
+  {
+    "id": "3493ed7b-38d7-4523-8339-247d63ef6431",
+    "name": "玄宗体",
+    "en": "XuanZongTi",
+    "family": "wenfeng-xxzt",
+    "normalized": "Xxzt",
+    "designer": "Yuchen Tian",
+    "designerShort": "Yuchen Tian",
+    "category": "手写体",
+    "tags": [
+      "开源",
+      "OFL",
+      "手写",
+      "书法"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "玄宗体。取唐玄宗《鹡鸰颂》字，经 zi2zi-JiT 补全 GB2312。SIL OFL 1.1。源 OTF name 表仍带 Adobe Source 保留名行，入库按 README 切 GB2312。",
+    "license": "免费商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/kaonashi-tyc/Zi-XuanZongTi/blob/main/LICENSE",
+    "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Xxzt/LICENSE",
+    "licenseNotes": "SIL OFL 1.1。原文随 github.com/kaonashi-tyc/Zi-XuanZongTi 携带。版权行 Copyright (c) 2026, Yuchen Tian。仓 LICENSE 无 Reserved Font Name；源 OTF name 表仍带 Adobe Source 保留名行。",
+    "licenseVerified": true,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2026, Yuchen Tian (https://github.com/kaonashi-tyc)",
+    "foundry": "Yuchen Tian",
+    "brand": {
+      "name": "Yuchen Tian",
+      "slug": "kaonashi-tyc",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/f07f9a541b0a1e3976a180324a8263605a517242ec2d0b93312794db91c43b22?s=144&d=identicon",
+      "website": "https://github.com/kaonashi-tyc",
+      "description": "zi2zi-JiT 书法体作者；权衡度量体、玄宗体。"
+    },
+    "releaseYear": 2026,
+    "version": "v0.1",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "标题",
+      "书法"
+    ],
+    "charCount": 7083,
+    "glyphCount": 12930,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/f07f9a541b0a1e3976a180324a8263605a517242ec2d0b93312794db91c43b22?s=144&d=identicon"
   }
 ]

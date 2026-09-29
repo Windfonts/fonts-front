@@ -2794,6 +2794,26 @@
       "claimed": false,
       "provisional": true,
       "description": "Tanugo 马克笔风格开源字体；霞鹜漫黑上游。"
+    },
+    {
+      "id": "kaonashi-tyc",
+      "name": "Yuchen Tian",
+      "en": "Yuchen Tian",
+      "short": "kaonashi",
+      "website": "https://github.com/kaonashi-tyc",
+      "aliases": [
+        "kaonashi-tyc",
+        "Yuchen Tian"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "provisional": true,
+      "fontNames": [
+        "权衡度量体",
+        "玄宗体"
+      ],
+      "description": "zi2zi-JiT 书法体作者；权衡度量体、玄宗体。"
     }
   ]
 }

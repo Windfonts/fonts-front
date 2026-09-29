@@ -763,4 +763,8 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
   - mplus hzk 12：仓 LICENSE＝Unlicense，09-26 拍板跟猫啃 OFL；`licenseName` 改为协议本名，notes 记下仓矛盾。
 - 26 款 `filePending`：登录墙不绕。只有 Shippori Gothic Bold 可走公开 GitHub（`fontdasu/ShipporiGothic`）；乐米 / Booth 六款 / FJF 十三 / FLOP 三款继续缺包。
 - 上架 kaonashi-tyc：权衡度量体（MIT，TTF GB2312）+ 玄宗体（OFL，源 OTF name 表仍带 Adobe Source RFN 行，按 README 切 GB2312）。
+  - 产品名跟 README：权衡度量体 / 玄宗体，不是仓名 Zi-QuanHengDuLiang / Zi-XuanZongTi。
+  - CSS 已在 `cn.windfonts.com/fonts-packages/{Qhddl,Xxzt}/Regular/full/result.css`（200）。
+  - vault `prod.db.bak-20260929-kaonashi` 后 INSERT：`wenfeng-qhddl` `2c4d462b-e2ba-4b5d-adf9-8243be8030b8`、`wenfeng-xxzt` `3493ed7b-38d7-4523-8339-247d63ef6431`；品牌 `kaonashi-tyc`；623→625。顺手 UPDATE 黄引齐/字魂扁桃/mplus hzk 三行授权，避免下次 export 冲 35b7dc6。
+  - 目录 572→574。脚本 `fonts-vault/scripts/register-kaonashi.js`。
 

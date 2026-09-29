@@ -250,6 +250,14 @@
     "tanugo": {
       "name": "Tanugo",
       "upstreamName": ""
+    },
+    "quanhengduliang": {
+      "name": "权衡度量体",
+      "upstreamName": ""
+    },
+    "xuanzong": {
+      "name": "玄宗体",
+      "upstreamName": "思源宋体"
     }
   },
   "byName": {
@@ -4194,6 +4202,28 @@
       "group": "zlabs-pixel-12",
       "family": "wenfeng-zljp",
       "normalized": "Zljp"
+    },
+    "权衡度量体": {
+      "ownerId": "kaonashi-tyc",
+      "makerId": "kaonashi-tyc",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "kaonashi-tyc",
+      "upstreamName": "权衡度量体",
+      "group": "quanhengduliang",
+      "family": "wenfeng-qhddl",
+      "normalized": "Qhddl"
+    },
+    "玄宗体": {
+      "ownerId": "kaonashi-tyc",
+      "makerId": "kaonashi-tyc",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体",
+      "group": "source-han-serif",
+      "family": "wenfeng-xxzt",
+      "normalized": "Xxzt"
     }
   }
 }
