@@ -513,6 +513,10 @@
         return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
       }).join('&');
       if (slug) return 'fonts/' + encodeURIComponent(slug) + (extra ? '?' + extra : '') + hash;
+      if (params.id) {
+        const rest = extra ? '&' + extra : '';
+        return 'font-detail.html?id=' + encodeURIComponent(params.id) + rest + hash;
+      }
       return 'fonts' + hash;
     }
     if (file === 'foundry.html' || file === 'foundry') {

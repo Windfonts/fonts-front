@@ -35,7 +35,7 @@
             '<div class="app-actions"><form class="inline-form" id="newForm"><input class="input" id="newName" placeholder="项目名称，如 品牌官网" aria-label="项目名称" required /><button type="submit" class="btn btn-ink">' + WFChrome.icon('plus') + '新建项目</button></form></div></div>' +
           (ps.length ? '<ul class="proj-list">' + ps.map(function (p) {
             const cur = WFApp.currentVersion(p);
-            return '<li><a class="name" href="project.html?id=' + esc(p.id) + '">' + esc(p.name) + '<small>' + esc(p.slug) + ' · 创建于 ' + WFApp.fmtDate(p.createdAt).slice(0, 10) + '</small></a>' +
+            return '<li><a class="name" href="' + WFChrome.href('project.html?id=' + encodeURIComponent(p.id)) + '">' + esc(p.name) + '<small>' + esc(p.slug) + ' · 创建于 ' + WFApp.fmtDate(p.createdAt).slice(0, 10) + '</small></a>' +
               '<span><span class="num">' + p.fonts.length + '</span> 字体 · <span class="num">' + WFEmbed.fmtBytes(WFApp.projectBytes(p)) + '</span></span>' +
               '<span class="hide-md"><span class="num">' + p.domains.filter(function (d) { return d.verified; }).length + '</span> / ' + p.domains.length + ' 域名已验证</span>' +
               '<span class="hide-md"><span class="num">' + WFApp.fmtGB(p.usage.bytes30d) + '</span> GB / 30 天</span>' +
@@ -50,7 +50,7 @@
           const btn = e.target.querySelector('[type=submit]');
           if (btn) btn.disabled = true;
           WFApi.createProject(name).then(function (p) {
-            location.href = 'project.html?id=' + encodeURIComponent(p.id) + '&tab=fonts';
+            location.href = WFChrome.href('project.html?id=' + encodeURIComponent(p.id) + '&tab=fonts');
           }).catch(function (err) {
             WFChrome.toast((err && err.message) || '创建失败');
             if (btn) btn.disabled = false;

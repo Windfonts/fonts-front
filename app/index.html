@@ -40,7 +40,7 @@
 
         root.innerHTML =
           '<div class="app-head"><div><h1>概览</h1><p class="sub">' + s.plan.name + '版 · 近 30 天</p></div>' +
-            '<div class="app-actions"><a class="btn" href="subset.html">' + WFChrome.icon('scissors') + '子集化</a><a class="btn btn-ink" href="projects.html?new=1">' + WFChrome.icon('plus') + '新建项目</a></div></div>' +
+            '<div class="app-actions"><a class="btn" href="' + WFChrome.href('subset.html') + '">' + WFChrome.icon('scissors') + '子集化</a><a class="btn btn-ink" href="' + WFChrome.href('projects.html?new=1') + '">' + WFChrome.icon('plus') + '新建项目</a></div></div>' +
           '<div class="stats">' +
             '<div class="stat"><div class="v">' + ps.length + '<small>/ ' + s.plan.quota.projects + '</small></div><div class="l">项目</div></div>' +
             '<div class="stat"><div class="v">' + WFApp.fmtGB(bytes) + '<small>GB / ' + s.plan.quota.trafficGB + '</small></div><div class="l">本月流量</div></div>' +
@@ -49,9 +49,9 @@
           '</div>' +
           '<section class="app-section"><h2>每日请求<span class="more mono">30 天</span></h2>' + WFApp.sparkline(daily) +
             '<div class="spark-meta"><span>30 天前</span><span>今天</span></div></section>' +
-          '<section class="app-section"><h2>项目<a class="more" href="projects.html">' + WFChrome.icon('arrow-right') + '全部</a></h2><ul class="proj-list">' +
+          '<section class="app-section"><h2>项目<a class="more" href="' + WFChrome.href('projects.html') + '">' + WFChrome.icon('arrow-right') + '全部</a></h2><ul class="proj-list">' +
             ps.map(function (p) {
-              return '<li><a class="name" href="project.html?id=' + esc(p.id) + '">' + esc(p.name) + '<small>' + esc(p.slug) + '</small></a>' +
+              return '<li><a class="name" href="' + WFChrome.href('project.html?id=' + encodeURIComponent(p.id)) + '">' + esc(p.name) + '<small>' + esc(p.slug) + '</small></a>' +
                 '<span><span class="num">' + p.fonts.length + '</span> 字体</span>' +
                 '<span class="hide-md"><span class="num">' + p.domains.length + '</span> 域名</span>' +
                 '<span class="hide-md"><span class="num">' + WFApp.fmtGB(p.usage.bytes30d) + '</span> GB</span>' +
@@ -60,7 +60,7 @@
           '<section class="app-section"><h2>最近版本</h2><ul class="version-list">' +
             versions.slice(0, 6).map(function (x) {
               return '<li><span class="v' + (x.v.current ? ' is-current' : '') + '">v' + x.v.v + '</span>' +
-                '<span class="note"><a href="project.html?id=' + esc(x.p.id) + '&tab=versions">' + esc(x.p.name) + '</a> · ' + esc(x.v.note) + '</span>' +
+                '<span class="note"><a href="' + WFChrome.href('project.html?id=' + encodeURIComponent(x.p.id) + '&tab=versions') + '">' + esc(x.p.name) + '</a> · ' + esc(x.v.note) + '</span>' +
                 '<span class="num muted">' + WFEmbed.fmtBytes(x.v.bytes) + '</span><span class="at">' + WFApp.fmtDate(x.v.at) + '</span></li>';
             }).join('') + '</ul></section>';
       });

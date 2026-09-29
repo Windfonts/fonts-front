@@ -33,7 +33,7 @@
 - `HOST_TO_ZONE["app.windfonts.com"] = "windfonts_app"`
 - HTML key 无 `:g1`；JS/CSS key 带 `?v=` 和 `:g1`
 
-## P1 下一棒（本会话能做则做）
+## P1（进行中）
 
 4. 控制台 `app/*.html` 链：能走 `href()` 的走 `livePagePath`；边缘若无 `/app/{page}` fallback 则先 `$uri.html`
 5. 首页「换一款」后大标题再跑 `ensureFontCss(..., live.textContent)`（已接线则只验收）

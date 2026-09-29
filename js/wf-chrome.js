@@ -15,9 +15,14 @@
     const h = String((typeof location !== 'undefined' && location.hostname) || '').toLowerCase();
     return h === 'app.windfonts.com' || h === 'staging-app.windfonts.com';
   }
-  /* 公网走 livePagePath（/fonts、/foundry/{slug}）；本机 16016 无重写，仍用 .html */
+  /* 公网走 livePagePath（/fonts、/foundry/{slug}）；本机 16016 无重写，仍用 .html。
+     控制台页里的相对 project.html 要留在 /app/，不能落到站点根 /project。 */
   function href(path) {
     path = String(path == null ? '' : path);
+    const pathname = String((typeof location !== 'undefined' && location.pathname) || '');
+    if (/^\/app(\/|$)/.test(pathname) && !/^(https?:|\/\/|\/|#|app\/|\.\.\/)/i.test(path)) {
+      path = 'app/' + path.replace(/^\.\//, '');
+    }
     if (onAppHost() && window.WFProto && typeof WFProto.livePagePath === 'function') {
       const live = WFProto.livePagePath(path);
       if (!live || live.charAt(0) === '#' || /^https?:/i.test(live) || live.indexOf('//') === 0) return live;
