@@ -210,9 +210,9 @@
       if (Array.isArray(j)) return j;
       throw new Error('fonts.json invalid');
     });
-    const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20260928steve2'), { foundries: [] });
+    const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20260928oss1'), { foundries: [] });
     const evidenceReq = fetchJsonCached(dataUrl('license-evidence.json?v=20260925b'), { standards: {}, names: {} });
-    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20260928steve2'), { groups: {}, byName: {} });
+    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20260928oss1'), { groups: {}, byName: {} });
     const avatarsReq = fetchJsonCached(dataUrl('avatars.json?v=20260928av9'), {});
     catalogPromise = Promise.all([fontsReq, foundriesReq, evidenceReq, lineageReq, avatarsReq])
       .then(function (res) {
@@ -720,6 +720,9 @@
   function packageSubset(version) {
     const v = String(version || 'full').toLowerCase();
     if (v === 'zh' || v === 'zh-common' || v === 'en') return v;
+    if (v === 'preview-shop' || v === 'shop' || v === 'preview-card' || v === 'card' || v === 'preview-yong' || v === 'yong') {
+      return v.indexOf('preview-') === 0 ? v : ('preview-' + v);
+    }
     return 'full';
   }
 
@@ -954,19 +957,16 @@
   }
 
   /**
-   * 注入字体 CSS。优先 fonts-packages/result.css（与现网 app 同源、可 CORS fetch）；
-   * 其次 app /api/css；再退旧 wenfeng/fonts。
-   * 处理后：去 local()、统一 font-family 为目录 wenfeng-*、补 font-weight、相对 url 转绝对。
+   * 注入字体 CSS。店面短样张走 preview-shop（CDN 预计算包），缺包再 zh / full。
+   * 不请求已下线的 /wenfeng/fonts，也没有公开 text=。
    */
-  function ensureFontCss(family, weight) {
+  function ensureFontCss(family, weight, version) {
     if (!family) return Promise.resolve();
+    const ver = packageSubset(version);
     const pathName = weightName(family, weight);
     const w = weightToCss(weight || pathName || '400');
-    const key = family + '|' + pathName;
+    const key = family + '|' + pathName + '|' + ver;
     if (injectedCss[key]) return injectedCss[key];
-    const pkgUrl = packageResultUrl(family, pathName, 'full');
-    const apiUrl = cssApiUrl(family, pathName, 'full');
-    const staticUrl = cssUrl(family, pathName);
     const famCss = String(family).replace(/["']/g, '');
     function noteApi() {
       const hit = catalog.filter(function (f) { return f.family === family; })[0];
@@ -990,6 +990,7 @@
       style.setAttribute('data-wf-family', family);
       style.setAttribute('data-wf-weight', w);
       style.setAttribute('data-wf-weight-name', pathName);
+      style.setAttribute('data-wf-subset', ver);
       style.textContent = fixed;
       document.head.appendChild(style);
       noteApi();
@@ -1002,12 +1003,19 @@
         });
       });
     }
+    function fetchPkg(subset) {
+      return fetchCss(packageResultUrl(family, pathName, subset)).catch(function () {
+        return fetchCss(cssApiUrl(family, pathName, subset));
+      });
+    }
     const remoteCss = function () {
-      return fetchCss(pkgUrl).catch(function () {
-        return fetchCss(apiUrl);
-      }).catch(function () {
-        return fetchCss(staticUrl);
-      }).then(function (res) {
+      let chain = fetchPkg(ver);
+      if (ver.indexOf('preview-') === 0) {
+        chain = chain.catch(function () { return fetchPkg('zh'); }).catch(function () { return fetchPkg('full'); });
+      } else if (ver !== 'full') {
+        chain = chain.catch(function () { return fetchPkg('full'); });
+      }
+      return chain.then(function (res) {
         inject(res.css, res.base);
       }).catch(function () {
         return injectPreviewFace(family, pathName, w).then(function (ok) {
@@ -1015,7 +1023,7 @@
           return new Promise(function (resolve) {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
-            link.href = apiUrl;
+            link.href = cssApiUrl(family, pathName, 'full');
             link.setAttribute('data-wf-family', family);
             link.setAttribute('data-wf-weight-name', pathName);
             link.onload = function () { noteApi(); resolve(); };
@@ -1025,8 +1033,6 @@
         });
       });
     };
-    /* Cite-closed faces are local shelf previews only: do not probe CDN,
-       fonts-packages, or /api/css before loading the same-origin archive face. */
     injectedCss[key] = citeClosedFamily(family)
       ? injectPreviewFace(family, pathName, w)
       : remoteCss();
@@ -1034,10 +1040,10 @@
   }
 
   /** 等 CSS 注入后再拉该段文字所需分片。cached 时几乎立刻 resolve。 */
-  function readyFace(family, weight, text) {
+  function readyFace(family, weight, text, version) {
     const w = weightToCss(weight || '400');
     const fam = String(family || '').replace(/["']/g, '');
-    return ensureFontCss(family, w).then(function () {
+    return ensureFontCss(family, weight, version).then(function () {
       if (!fam || !document.fonts || !document.fonts.load) return;
       return document.fonts.load(w + ' 80px "' + fam + '"', String(text || '')).catch(function () {
         return null;
@@ -2350,7 +2356,7 @@
 
       function wireRow(li) {
         const family = li.getAttribute('data-family');
-        ensureFontCss(family, '400');
+        ensureFontCss(family, '400', 'preview-shop');
         const btn = li.querySelector('[data-join]');
         if (btn && !btn._wfBound) {
           btn._wfBound = true;

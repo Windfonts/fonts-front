@@ -74,7 +74,7 @@
     const w = heavyWeight(font);
     const stack = WFProto.cssFamilyStack(font.family);
     const detail = WFProto.detailHref(font);
-    WFProto.ensureFontCss(font.family, w);
+    WFProto.ensureFontCss(font.family, w, 'preview-shop');
     return '<div class="home-now-card">' +
       '<p class="home-now-glyph" style="font-family:' + esc(stack) + ';font-weight:' + w + '">' + esc(glyph || '风') + '</p>' +
       '<div><h2><a href="' + detail + '">' + esc(font.name) + '</a>' +
@@ -232,7 +232,7 @@
         if (f.id === font.id) {
           const hw = heavyWeight(f);
           /* Active cell + hero need faces now; siblings wait for IntersectionObserver. */
-          WFProto.ensureFontCss(f.family, hw);
+          WFProto.ensureFontCss(f.family, hw, 'preview-shop');
           return '<div class="home-forest-cell is-on" data-family="' + esc(f.family || '') + '" data-weight="' + hw + '">' +
             '<p class="home-forest-glyph" data-forest-glyph contenteditable="true" spellcheck="false">' + esc(g) + '</p>' +
             '<i>' + esc((window.WFProducts && WFProducts.listName(f)) || f.name) + devTag(f, hw) + '</i></div>';
@@ -251,7 +251,7 @@
         ? WFSpecimen.scheduleSpecimenCss
         : function (el) {
             if (el && el.getAttribute('data-family')) {
-              WFProto.ensureFontCss(el.getAttribute('data-family'), el.getAttribute('data-weight') || '400');
+              WFProto.ensureFontCss(el.getAttribute('data-family'), el.getAttribute('data-weight') || '400', 'preview-shop');
             }
           };
       forest.querySelectorAll('.home-forest-cell[data-family]').forEach(function (el) {
@@ -290,7 +290,7 @@
       const w = heavyWeight(f);
       const stack = WFProto.cssFamilyStack(f.family);
       const glyph = forestGlyph();
-      WFProto.ensureFontCss(f.family, w);
+      WFProto.ensureFontCss(f.family, w, 'preview-shop');
       live.style.fontFamily = stack;
       live.style.fontWeight = w;
       const closeMark = document.querySelector('.home-close-bg');
@@ -354,7 +354,7 @@
         paint(false);
       };
       const cap = setTimeout(done, 1200);
-      WFProto.readyFace(font.family, weight, text).then(done, done);
+      WFProto.readyFace(font.family, weight, text, 'preview-shop').then(done, done);
     }
 
     applyLive();
