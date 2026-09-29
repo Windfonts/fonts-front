@@ -182,7 +182,7 @@
         '<a class="more" href="' + WFChrome.href('foundry.html') + '">' + WFChrome.icon('building') + '厂商索引</a></div>' +
       '<div class="stats-grid">' +
         panel('certificate', '按授权', rows(tierItems, function (r) { return 'fonts.html?license=' + encodeURIComponent(r.label); }), '分类说明见文档。') +
-        panel('chart', '字体最多的厂商', rows(topBrands, function (r) { return WFChrome.foundryHref(r.key); })) +
+        panel('chart', '字体最多的厂商', rows(topBrands, function (r) { return 'foundry.html?slug=' + encodeURIComponent(r.key); })) +
         panel('text', '字符规模', rows(scaleItems),
           '按已有字数的 ' + charKnown + ' 款统计' + (unknown ? '；' + unknown + ' 款还没录入字数。' : '。')) +
       '</div>';
