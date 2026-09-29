@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.windfonts.lfl-preview</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/python3</string>
+    <string>/Users/feibisi-studio/Projects/fonts-front/scripts/preview-local.py</string>
+    <string>--port</string>
+    <string>16016</string>
+    <string>--bind</string>
+    <string>127.0.0.1</string>
+  </array>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>StandardOutPath</key><string>/tmp/lfl-16016.out</string>
+  <key>StandardErrorPath</key><string>/tmp/lfl-16016.err</string>
+  <key>WorkingDirectory</key><string>/Users/feibisi-studio/Projects/fonts-front</string>
+</dict>
+</plist>

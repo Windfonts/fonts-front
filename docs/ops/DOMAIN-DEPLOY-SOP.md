@@ -22,7 +22,7 @@
 **访客看到的 HTML/JS/CSS 只认杭州桶 `wenfeng-web-hz`。**  
 feicode `/www/wwwroot/fonts-front` 是 API / 控制台反代机上的副本，**不是**公网静态 origin。只 rsync 磁盘、不写桶 = 公网不变。
 
-仓：`fonts-front` **main**。`127.0.0.1:16016` 是 lab 树 `fonts-front-v4-lab`（相对路径、`fonts.json`），**不要**拿它的戳对公网。
+仓：`fonts-front` **main**。本地预览：`python3 scripts/preview-local.py --port 16016`（main + 干净 URL 重写）。不要再用 `python3 -m http.server 16016 --directory fonts-front-v4-lab` 对公网戳。
 
 ### 2.1 公网静态（必须）
 

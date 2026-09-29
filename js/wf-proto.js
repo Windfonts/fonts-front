@@ -912,8 +912,10 @@
     const norm = (font && font.normalized) || packageName(family) || slug;
     const w = packageWeight(family, weight || '400');
     const ver = packageSubset(version);
-    return (origin || CDN) + '/fonts-packages/' + encodeURIComponent(norm) + '/' +
+    let url = (origin || CDN) + '/fonts-packages/' + encodeURIComponent(norm) + '/' +
       encodeURIComponent(w) + '/' + encodeURIComponent(ver) + '/result.css';
+    if (String(ver).indexOf('preview-') === 0) url += '?v=20260929shop2';
+    return url;
   }
 
   function embedCssUrl(family, weight, version) {

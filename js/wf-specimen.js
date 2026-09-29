@@ -163,6 +163,7 @@
         '" data-weight="' + w + '">' +
       '<div class="head"><span class="name-line"><a class="name" href="' + detail + '">' +
         esc((opts.name != null ? opts.name : (font._listName || font.name))) + '</a>' +
+        (WFProto.hasCjkFace && !WFProto.hasCjkFace(font) ? '<span class="specimen-nocjk">无汉字</span>' : '') +
         (opts.noAction ? '' : WFChrome.favHtml('font', font.id, font.name)) + '</span>' + metaHtml(font) +
         (opts.foot ? (function () { const foot = opts.foot(font); return foot ? '<span class="specimen-foot">' + foot + '</span>' : ''; })() : '') +
         '</div>' +
@@ -181,7 +182,7 @@
     if (!fam) return;
     const weight = el.getAttribute('data-weight') || '400';
     if (!('IntersectionObserver' in window)) {
-      WFProto.ensureFontCss(fam, weight, 'preview-shop', WFProto.getSample && WFProto.getSample());
+      WFProto.ensureFontCss(fam, weight, 'preview-shop', (el.querySelector('[data-specimen]') || {}).textContent || (WFProto.getSample && WFProto.getSample()));
       return;
     }
     if (!specimenCssIo) {
@@ -190,7 +191,7 @@
           if (!en.isIntersecting) return;
           const node = en.target;
           specimenCssIo.unobserve(node);
-          WFProto.ensureFontCss(node.getAttribute('data-family'), node.getAttribute('data-weight') || '400', 'preview-shop', WFProto.getSample && WFProto.getSample());
+          WFProto.ensureFontCss(node.getAttribute('data-family'), node.getAttribute('data-weight') || '400', 'preview-shop', (node.querySelector('[data-specimen]') || {}).textContent || (WFProto.getSample && WFProto.getSample()));
         });
       }, { rootMargin: '180px 0px', threshold: 0 });
     }
