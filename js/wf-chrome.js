@@ -6,42 +6,12 @@
     const scripts = document.getElementsByTagName('script');
     for (let i = scripts.length - 1; i >= 0; i--) {
       const src = scripts[i].src || '';
-      /* /js/wf-chrome.js → site root; safe under /fonts/{slug} and /foundry/{slug}. */
       if (src.indexOf('wf-chrome.js') !== -1) return new URL('../', src).href;
     }
-    return '/';
+    return './';
   }
   const ROOT = rootUrl();
-  function isDevPreviewHost(host) {
-    if (window.WFProto && WFProto.isDevPreviewHost) return WFProto.isDevPreviewHost(host);
-    host = String(host || '').toLowerCase();
-    if (host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0') return true;
-    if (host.indexOf('staging') >= 0 || host.slice(-6) === '.local') return true;
-    if (/^192\.168\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
-    if (/^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
-    if (/^172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
-    return false;
-  }
-  function livePagePath(path) {
-    if (window.WFProto && WFProto.livePagePath) return WFProto.livePagePath(path);
-    return path;
-  }
-  function href(path) {
-    path = String(path == null ? '' : path);
-    try {
-      if (typeof location !== 'undefined' && location.hostname && !isDevPreviewHost(location.hostname)) {
-        path = livePagePath(path);
-      }
-    } catch (e) { /* ignore */ }
-    return ROOT + path;
-  }
-  /** 厂商详情：ROOT + foundry/{slug}（prod）或 foundry.html?slug=（dev）。 */
-  function foundryHref(slug, extra) {
-    if (window.WFProto && WFProto.foundryHref) {
-      return ROOT + WFProto.foundryHref(slug, extra);
-    }
-    return href(slug ? 'foundry.html?slug=' + encodeURIComponent(slug) : 'foundry.html');
-  }
+  function href(path) { return ROOT + path; }
   function esc(s) { return WFProto.escapeHtml(s); }
 
   function user() {
@@ -67,9 +37,16 @@
       role: String(base.role || 'user').toLowerCase()
     };
     if (next.role !== 'admin' && next.role !== 'owner' && next.role !== 'editor') next.role = 'user';
+    if (base.source) next.source = String(base.source);
+    if (base.id) next.id = String(base.id);
     localStorage.setItem(USER_KEY, JSON.stringify(next));
   }
-  function logout() { localStorage.removeItem(USER_KEY); }
+  function logout() {
+    localStorage.removeItem(USER_KEY);
+    if (window.WFAuth && WFAuth.signOut) {
+      try { WFAuth.signOut(); } catch (e) { /* ignore */ }
+    }
+  }
 
   /* —— 主题：亮 / 暗，记在 localStorage，首屏在 <head> 之前由 applyTheme 同步 —— */
   const THEME_KEY = 'wf-theme';
@@ -145,7 +122,7 @@
   }
 
   /* —— 图标：Remix Icon 线标（Apache-2.0），经墨图爱可 icons.motucloud.com/collection/ri 选取，打包在 assets/icons.svg。symbol id 是站内语义名。 —— */
-  const ICON_VER = '20260922sc';
+  const ICON_VER = '20260929g1';
   function icon(name, cls) {
     return '<svg class="icon' + (cls ? ' ' + cls : '') + '" aria-hidden="true" focusable="false"><use href="' + href('assets/icons.svg') + '?v=' + ICON_VER + '#i-' + name + '"/></svg>';
   }
@@ -206,7 +183,7 @@
             '<input type="search" name="keyword" id="navSearch" placeholder="搜索字体、厂商" aria-label="搜索字体" autocomplete="off" />' +
             '<button type="button" class="clear" id="navSearchClear" hidden aria-label="清除搜索">' + icon('close') + '</button>' +
           '</form>' +
-          '<a href="' + href('shopping-bag.html') + '">' + icon('bag') + '<span>选字袋</span><span class="count" data-pick-count data-count="0">0</span></a>' +
+          '<a href="' + href('shopping-bag.html') + '" aria-label="选字袋">' + icon('bag') + '<span class="sr-only">选字袋</span><span class="count" data-pick-count data-count="0">0</span></a>' +
           (inApp
             ? '<a href="' + href('app/index.html') + '">' + icon('dashboard') + '<span>控制台</span></a>'
             : '<a href="' + href('login.html') + '">' + icon('user') + '<span>登录</span></a>') +
@@ -420,13 +397,88 @@
   function brandShort(font) { const b = brandInfo(font); return (b && (b.short || b.name)) || ''; }
   function brandSite(font) { const b = brandInfo(font); return (b && b.website) || (font && font.brand && font.brand.website) || ''; }
   function junkAvatar(url) {
-    return /identicon|cravatar\.com\/avatar|cn\.cravatar\.com\/avatar/i.test(url || '');
+    return /identicon|avatars\.githubusercontent\.com/i.test(url || '');
+  }
+  /** 个人作者 / 个人：缺本地图时用 Cravatar；组织（品牌/字库/平台/项目）用字标 */
+  function isPersonalFoundry(info) {
+    const k = (info && info.kind) || '';
+    return k === 'author' || k === 'individual';
+  }
+  /* 轻量 MD5（与 wf-avatar 一致）；多数页未载 wf-avatar.js，个人 Cravatar 回退仍可用 */
+  function avatarMd5(str) {
+    if (window.WFAvatar && typeof WFAvatar.md5 === 'function') return WFAvatar.md5(str);
+    const S = [7, 12, 17, 22, 5, 9, 14, 20, 4, 11, 16, 23, 6, 10, 15, 21];
+    const K = [];
+    for (let i = 0; i < 64; i++) K[i] = Math.floor(Math.abs(Math.sin(i + 1)) * 4294967296) | 0;
+    function hex(x) {
+      let s = '';
+      for (let i = 0; i < 4; i++) s += ('0' + ((x >>> (i * 8)) & 255).toString(16)).slice(-2);
+      return s;
+    }
+    const bytes = new TextEncoder().encode(String(str));
+    const n = bytes.length;
+    const words = new Array((((n + 8) >> 6) + 1) * 16).fill(0);
+    for (let i = 0; i < n; i++) words[i >> 2] |= bytes[i] << ((i % 4) * 8);
+    words[n >> 2] |= 0x80 << ((n % 4) * 8);
+    words[words.length - 2] = (n * 8) >>> 0;
+    words[words.length - 1] = Math.floor(n / 536870912);
+    let a0 = 0x67452301, b0 = 0xefcdab89 | 0, c0 = 0x98badcfe | 0, d0 = 0x10325476;
+    for (let off = 0; off < words.length; off += 16) {
+      let a = a0, b = b0, c = c0, d = d0;
+      for (let i = 0; i < 64; i++) {
+        let f, g;
+        if (i < 16) { f = (b & c) | (~b & d); g = i; }
+        else if (i < 32) { f = (d & b) | (~d & c); g = (5 * i + 1) % 16; }
+        else if (i < 48) { f = b ^ c ^ d; g = (3 * i + 5) % 16; }
+        else { f = c ^ (b | ~d); g = (7 * i) % 16; }
+        const s = S[(i >> 4) * 4 + (i % 4)];
+        const t = (a + f + K[i] + words[off + g]) | 0;
+        a = d; d = c; c = b;
+        b = (b + ((t << s) | (t >>> (32 - s)))) | 0;
+      }
+      a0 = (a0 + a) | 0; b0 = (b0 + b) | 0; c0 = (c0 + c) | 0; d0 = (d0 + d) | 0;
+    }
+    return hex(a0) + hex(b0) + hex(c0) + hex(d0);
+  }
+  function cravatarHash(info, fallbackSlug) {
+    const raw = (info && info.tips && info.tips.hash) || (info && info.cravatar) || '';
+    if (/^[a-f0-9]{32}$/i.test(raw)) return String(raw).toLowerCase();
+    const seed = String(fallbackSlug || (info && info.id) || '').trim().toLowerCase();
+    if (!seed) return '';
+    return avatarMd5(seed + '@authors.windfonts.local');
+  }
+  /**
+   * @param {*} info
+   * @param {number} [size]
+   * @param {{ default?: string, fallbackSlug?: string }} [opts]
+   *  default: Gravatar/Cravatar d=；个人缺档用 mp（默认头像），赞助核验仍用 404
+   */
+  function cravatarFromInfo(info, size, opts) {
+    opts = opts || {};
+    const hash = cravatarHash(info, opts.fallbackSlug);
+    if (!hash) return '';
+    const s = size || 240;
+    const d = opts.default || '404';
+    return 'https://cravatar.com/avatar/' + hash + '?s=' + s + '&d=' + encodeURIComponent(d);
+  }
+  /** 字标：中文取 short/name 最多两字，拉丁取首字母 */
+  function avatarMark(infoOrName) {
+    const raw = typeof infoOrName === 'string'
+      ? infoOrName
+      : ((infoOrName && (infoOrName.short || infoOrName.name)) || '?');
+    const s = String(raw || '?').trim() || '?';
+    const cjk = s.match(/[\u3400-\u9fff]{1,2}/);
+    if (cjk) return cjk[0];
+    const ch = s.charAt(0);
+    return ch ? ch.toUpperCase() : '?';
   }
   /* 本地清单优先：按正在展示的厂商 id 取图，不看哪条目录碰巧写了 brand.avatarUrl */
   function resolveAvatar(url) {
     const u = String(url || '').trim();
     if (!u || junkAvatar(u)) return '';
-    if (/^(https?:|data:|blob:)/i.test(u)) return u;
+    /* 禁止第三方未缓存 logo 热链作主路径；Cravatar 走 brandAvatar 显式回退 */
+    if (/^https?:\/\//i.test(u)) return '';
+    if (/^(data:|blob:)/i.test(u)) return u;
     return href(u.replace(/^\.\//, ''));
   }
   function brandAvatar(font, info) {
@@ -434,6 +486,10 @@
     const id = (who && who.id) || (font && font.brand && font.brand.slug) || '';
     const fromMap = (WFProto.getAvatarUrl && WFProto.getAvatarUrl(id)) || '';
     if (fromMap) return resolveAvatar(fromMap);
+    /* 个人：Cravatar（有 tips.hash 用真档，否则 slug 派生 + 默认头像 d=mp）；组织：空 → 字标 */
+    if (isPersonalFoundry(who)) {
+      return cravatarFromInfo(who, 240, { fallbackSlug: id, default: 'mp' });
+    }
     if (id) return '';
     const brand = font && font.brand;
     const raw = (brand && (brand.logoUrl || brand.avatarUrl)) || (font && font.foundryAvatar) || '';
@@ -638,7 +694,7 @@
     if (cols.length) bits.push('联合作者 ' + cols.map(function (c) { return c.name; }).join('、'));
     const follow = (L && FOLLOW_COPY[L.licenseFollows]) || '';
     const colLinks = cols.map(function (c) {
-      return '<a href="' + foundryHref(c.id) + '">' +
+      return '<a href="' + href('foundry.html?slug=' + encodeURIComponent(c.id)) + '">' +
         faceHtml(font, 16, c) + esc(c.name) + '</a>';
     }).join('');
     return '<div class="license-cite lineage">' +
@@ -659,11 +715,17 @@
     'IPAex明朝': 'IPAexMincho',
     'IPA明朝': 'IPAexMincho',
     'IPAexGothic': 'IPAex Gothic',
+    'IPAexゴシック': 'IPAex Gothic',
+    'IPAex黑体': 'IPAex Gothic',
     'IPA Gothic': 'IPA 黑体',
+    'IPAゴシック': 'IPA 黑体',
     'IPA黑体': 'IPA 黑体',
     'こころ明朝体': 'こころ明朝',
     'Kokoro Mincho': 'こころ明朝',
     'KokoroMinchoutai': 'こころ明朝',
+    'IPAmjMincho': 'IPAmj明朝',
+    'IPAmj Mincho': 'IPAmj明朝',
+    'IPAmj明朝フォント': 'IPAmj明朝',
     '思源黑体': '思源黑体',
     '思源宋体': '思源宋体',
     '龙藏体': '龙藏体',
@@ -678,8 +740,30 @@
     'KouzanBrushFont': '衡山毛笔',
     'Y.OzFont': 'YozFont',
     'YOzFont': 'YozFont',
-    'IBM Plex Sans SC': 'IBM Plex 无衬线简体中文',
-    '光莹黑体': '未来荧黑'
+    'IBM Plex Sans SC': 'IBM Plex Sans SC 简体中文',
+    'Droid Sans 后备体': 'Droid Sans Fallback',
+    '光莹黑体': '未来荧黑',
+    'KHドット道玄坂12': 'KH Dot 道玄坂 12',
+    'KHドット道玄坂16': 'KH Dot 道玄坂 16',
+    'KHドット八丁堀16': 'KH Dot 八丁堀 16',
+    'KH Dot Hatchobori 16': 'KH Dot 八丁堀 16',
+    'KH Dot Hatcyoubori 16': 'KH Dot 八丁堀 16',
+    'KHドット秋葉原16': 'KH Dot 秋葉原 16',
+    'KHドット人形町16': 'KH Dot 人形町 16',
+    'KHドット兜町16': 'KH Dot 兜町 16',
+    'k6x8ゴシック': 'k6x8 ゴシック',
+    'Slide Font / 幻灯片字体': '演示春风楷',
+    'Slide Font': '演示春风楷',
+    '幻灯片字体': '演示春风楷',
+    '演示字体': '演示春风楷',
+    'Smart Font UI': '03スマートフォントUI',
+    'SmartFontUI': '03スマートフォントUI',
+    '03SmartFontUI': '03スマートフォントUI',
+    'スマートフォントUI': '03スマートフォントUI',
+    '03スマートフォント UI': '03スマートフォントUI',
+    'Star Love': '天天宅在家',
+    'StarLove': '天天宅在家',
+    '宅在家系列': '天天宅在家'
   };
   /** 仍未入库的外源名：不造假字体行；可挂厂商页 / 原文。已入库源头走 UPSTREAM_FONT / fonts.json。 */
   const UPSTREAM_GHOST = {};
@@ -735,6 +819,91 @@
     }
     return chain;
   }
+
+  /** 谱系缺字补全源：按字集差集挑，优先直接下游（2026-09-27 Feng 拍板）。 */
+  var LINEAGE_FALLBACK_DELTA_MIN = 50;
+  var LINEAGE_FALLBACK_ROLE_RANK = {
+    'direct-downstream': 0,
+    'upstream': 1,
+    sibling: 2
+  };
+  var LINEAGE_FALLBACK_ROLE_LABEL = {
+    'direct-downstream': '直接下游',
+    'upstream': '直接上游',
+    sibling: '同谱系'
+  };
+  function coverageCount(f) {
+    var c = Number(f && f.charCount) || 0;
+    var g = Number(f && f.glyphCount) || 0;
+    if (c > 1) return c;
+    if (g > 1) return g;
+    return null;
+  }
+  function lineageFallbackCiteOk(f) {
+    if (!f) return false;
+    if (!window.WFProto || typeof WFProto.citeAllowed !== 'function') return true;
+    var r = WFProto.citeAllowed(f);
+    return !!(r && r.ok);
+  }
+  function suggestLineageFallback(font, list) {
+    if (!font || !list || !list.length) return null;
+    if (!font.family) return null;
+    if (!lineageFallbackCiteOk(font)) return null;
+    var selfCount = coverageCount(font);
+    if (selfCount == null) return null;
+
+    var seen = {};
+    seen[font.id] = true;
+    var cands = [];
+
+    function pushCand(f, role) {
+      if (!f || !f.id || seen[f.id]) return;
+      if (!f.family) return;
+      if (f.id === font.id) return;
+      if (!lineageFallbackCiteOk(f)) return;
+      var candCount = coverageCount(f);
+      if (candCount == null) return;
+      var delta = candCount - selfCount;
+      if (!(delta > LINEAGE_FALLBACK_DELTA_MIN)) return;
+      seen[f.id] = true;
+      cands.push({
+        font: f,
+        role: role,
+        delta: delta,
+        label: LINEAGE_FALLBACK_ROLE_LABEL[role] || role
+      });
+    }
+
+    lineageDownstream(list, font).forEach(function (f) {
+      pushCand(f, 'direct-downstream');
+    });
+
+    var upName = ((font.lineage || {}).upstreamName || '').trim();
+    if (upName && upName !== font.name) {
+      var up = findFontByName(list, upName);
+      if (up && up.id !== font.id) pushCand(up, 'upstream');
+    }
+
+    var group = (font.lineage || {}).group;
+    if (group) {
+      lineageKin(list, font).forEach(function (f) {
+        if (seen[f.id]) return;
+        pushCand(f, 'sibling');
+      });
+    }
+
+    if (!cands.length) return null;
+    cands.sort(function (a, b) {
+      var ra = LINEAGE_FALLBACK_ROLE_RANK[a.role];
+      var rb = LINEAGE_FALLBACK_ROLE_RANK[b.role];
+      if (ra == null) ra = 9;
+      if (rb == null) rb = 9;
+      if (ra !== rb) return ra - rb;
+      return b.delta - a.delta;
+    });
+    return cands[0];
+  }
+
   function lineageSplit(font, list) {
     const L = (font && font.lineage) || {};
     let up = L.upstreamName || '';
@@ -784,7 +953,7 @@
     }
     const bits = [];
     if (who) {
-      bits.push('<a href="' + foundryHref(who.id) + '">' +
+      bits.push('<a href="' + href('foundry.html?slug=' + encodeURIComponent(who.id)) + '">' +
         esc(who.short || who.name) + '</a>');
     }
     if (ghost && ghost.site) {
@@ -847,23 +1016,91 @@
       lineageBlock('同系', split.buckets.other.map(rowOf)) +
       '</div>';
   }
+  /** 品牌/商用根（无开源上游）：详情谱系导语，不与开源师承源头混用 */
+  function brandInviteWho(font) {
+    const info = brandInfo(font);
+    const brandName = (font && font.brand && font.brand.name) || '';
+    if (!info) return brandName;
+    let cur = info;
+    let guard = 0;
+    while (cur && cur.parentId && guard++ < 8) {
+      const p = WFProto.getFoundryParent ? WFProto.getFoundryParent(cur) : null;
+      if (!p || (p.kind !== 'brand' && p.kind !== 'platform' && p.kind !== 'author')) break;
+      cur = p;
+    }
+    const kind = (cur && cur.kind) || (info && info.kind) || '';
+    /* 方正代发/未入典品牌字：owner 可能是 foundry 或 unlisted，优先用 font.brand */
+    if (brandName && kind !== 'brand' && kind !== 'platform' && kind !== 'author') {
+      return brandName;
+    }
+    return (cur && cur.name) || info.name || brandName || '';
+  }
+  function brandLineageOrgHref(font) {
+    if (!font) return '';
+    const L = font.lineage || {};
+    const brandRoots = { alibaba: 1, zcool: 1, qiantu: 1, maoken: 1, pangmen: 1 };
+    const legacy = { 'alibaba-sans': 'alibaba' };
+    let group = L.group || '';
+    if (legacy[group]) group = legacy[group];
+    if (!brandRoots[group]) {
+      const oid = L.ownerId || (font.ownerInfo && font.ownerInfo.id) || '';
+      let cur = oid && WFProto.getFoundryById ? WFProto.getFoundryById(oid) : null;
+      let guard = 0;
+      while (cur && cur.parentId && guard++ < 8) {
+        const p = WFProto.getFoundryParent ? WFProto.getFoundryParent(cur) : null;
+        if (!p) break;
+        cur = p;
+      }
+      const top = (cur && cur.id) || oid;
+      if (brandRoots[top]) group = top;
+      else if (cur && (cur.kind === 'brand' || cur.kind === 'platform' || cur.kind === 'author')) group = top;
+      else group = '';
+    }
+    if (!group) return '';
+    if (WFProto.canShowOrgLineage && !WFProto.canShowOrgLineage(group)) return '';
+    return href('lineage.html?group=' + encodeURIComponent(group) + '&view=org&mode=plex&focus=' +
+      encodeURIComponent(font.id || ''));
+  }
+  function isCiteClosedFont(font) {
+    const tags = (font && font.tags) || [];
+    for (let i = 0; i < tags.length; i++) {
+      if (String(tags[i]) === 'cite-closed') return true;
+    }
+    const ev = (font && font.licenseEvidence) || {};
+    if (WFProto.forbidsFontRedistrib && WFProto.forbidsFontRedistrib(ev)) return true;
+    return false;
+  }
+  function isBrandCommercialRoot(font) {
+    if (!font) return false;
+    const L = font.lineage || {};
+    if (L.relation === 'fork' || L.relation === 'locale') return false;
+    const commissioned = L.relation === 'commissioned' || L.relation === 'collab';
+    if (L.upstreamName && !commissioned && L.licenseFollows !== 'own') return false;
+    const info = brandInfo(font);
+    const kind = (info && info.kind) || '';
+    const tier = licenseTier(font);
+    const ev = font.licenseEvidence || {};
+    const forbids = WFProto.forbidsOpenDerive ? WFProto.forbidsOpenDerive(ev) : false;
+    const citeClosed = isCiteClosedFont(font);
+    const freeOk = tier === '免费商用' && !!(ev.verified || font.licenseVerified);
+    /* font.brand / cite-closed：吉利×方正、摩登等未入典品牌根也走品牌导语 */
+    const brandish = kind === 'brand' || kind === 'platform' || kind === 'author' ||
+      commissioned || !!(font.brand && font.brand.name) || citeClosed;
+    return brandish && (commissioned || forbids || freeOk || citeClosed || L.licenseFollows === 'own');
+  }
+  function brandLineageInviteHtml(font) {
+    if (!isBrandCommercialRoot(font)) return '';
+    const who = brandInviteWho(font) || '品牌方';
+    return '<p class="lin-invite">此为「' + esc(who) +
+      '」品牌商用授权字体。可按权利人条款免费商用。</p>';
+  }
   function lineageInviteHtml(font, split) {
     if (!font) return '';
     const L = (font && font.lineage) || {};
-    if (!WFProto.isOpenFont(font)) {
-      if (L.relation === 'commissioned') {
-        return '<p class="lin-invite">此为品牌或权利人授权字体，可按授权条款商用。下列为发布与协作关系，<strong>非</strong>开源 OFL 派生链；以本页「授权」为准。</p>';
-      }
-      if (L.relation === 'collab') {
-        return '<p class="lin-invite">此款为联合发布。版权与授权以权利人与合作方公示为准，谱系<strong>非</strong>开源派生链。</p>';
-      }
-      if (L.relation === 'locale') {
-        return '<p class="lin-invite">同一字体产品的地区或规格版本，授权随主系列；与开源改作无关。</p>';
-      }
-      if (L.relation === 'fork') {
-        return '<p class="lin-invite">此款有明确上游改作关系。能否再分发以授权区为准，<strong>非</strong>默认可二次发布。</p>';
-      }
-      return '';
+    const open = WFProto.isOpenFont(font);
+    /* 委托/合作或非开源：走品牌商用导语（可空）；开源师承导语只给可衍生开源字 */
+    if (L.relation === 'commissioned' || L.relation === 'collab' || !open) {
+      return brandLineageInviteHtml(font);
     }
     const chain = [];
     if (split && split.root) chain.push(split.root);
@@ -882,15 +1119,17 @@
       bits.push('遵循原许可协议开源发布。');
       return '<p class="lin-invite">' + bits.join('') + '</p>';
     }
+    /* 开源师承源头（思源等）；品牌组织顶卡文案在谱系页 seriesSub，不走这里 */
     if (L.relation === 'original' || !L.upstreamName) {
       return '<p class="lin-invite">此为开源字体谱系源头。许可允许修改后以其他名称再分发，须保留许可声明。</p>';
     }
-    return '<p class="lin-invite">此字体允许派生创作。修改后再分发须更名，并保留原授权声明。</p>';
+    return '<p class="lin-invite">此字体允许衍生创作。修改后再分发须更名，并保留原授权声明。</p>';
   }
   function lineageTreeHtml(font, list, faceOf) {
     const split = lineageSplit(font, list);
     const invite = lineageInviteHtml(font, split);
-    const hasTree = !!(split.root || split.up || split.all.length > 1);
+    /* 只有自己当根不算树：要有真上游（名字/库外）、真下游，或链上还有父级 */
+    const hasTree = !!(split.up || (split.downs && split.downs.length) || (split.all && split.all.length > 1));
     if (!hasTree && !invite) return '';
     const lead = hasTree
       ? '<p class="lin-lead">' + esc(split.L.groupName || split.up || (split.root && split.root.name) || '同系') +
@@ -939,13 +1178,14 @@
     opts = opts || {};
     const info = opts.info || brandInfo(font);
     const name = (info && info.name) || brandName(font) || '未署名';
+    const letter = avatarMark(info || name);
     const avatar = brandAvatar(font, info);
     const size = opts.small ? 24 : 40;
     const mark = avatar
-      ? '<img src="' + esc(avatar) + '" alt="" width="' + size + '" height="' + size + '" loading="lazy" onerror="' + esc("this.replaceWith(Object.assign(document.createElement('span'),{className:'mark',textContent:" + JSON.stringify(name.charAt(0)) + "}))") + '" />'
-      : '<span class="mark">' + esc(name.charAt(0)) + '</span>';
+      ? '<img src="' + esc(avatar) + '" alt="" width="' + size + '" height="' + size + '" loading="lazy" onerror="' + esc("this.replaceWith(Object.assign(document.createElement('span'),{className:'mark',textContent:" + JSON.stringify(letter) + "}))") + '" />'
+      : '<span class="mark">' + esc(letter) + '</span>';
     const slug = (info && info.id) || brandSlug(font);
-    const link = foundryHref(slug);
+    const link = href('foundry.html?slug=' + encodeURIComponent(slug));
     const en = (info && info.en) || brandEn(font);
     const kind = kindLabel(info || font);
     const sub = [kind, opts.sub].filter(Boolean).join(' · ');
@@ -972,7 +1212,7 @@
     if (!url) return '';
     const s = size || 16;
     const who = info || brandInfo(font);
-    const letter = ((who && (who.short || who.name)) || '?').charAt(0);
+    const letter = avatarMark(who);
     return '<img class="meta-face" src="' + esc(url) + '" alt="" width="' + s + '" height="' + s + '" loading="lazy" onerror="' + esc("this.replaceWith(Object.assign(document.createElement('span'),{className:'meta-face mark',textContent:" + JSON.stringify(letter) + "}))") + '" />';
   }
 
@@ -982,10 +1222,11 @@
     const stub = { ownerInfo: info, foundryInfo: info, makerInfo: info };
     const avatar = brandAvatar(stub, info);
     const name = info.short || info.name || info.id;
+    const letter = avatarMark(info);
     const mark = avatar
-      ? '<img src="' + esc(avatar) + '" alt="" width="18" height="18" loading="lazy" />'
-      : '<span class="mark">' + esc(String(name).charAt(0)) + '</span>';
-    return '<a class="partner-face" href="' + foundryHref(info.id) + '">' +
+      ? '<img src="' + esc(avatar) + '" alt="" width="18" height="18" loading="lazy" onerror="' + esc("this.replaceWith(Object.assign(document.createElement('span'),{className:'mark',textContent:" + JSON.stringify(letter) + "}))") + '" />'
+      : '<span class="mark">' + esc(letter) + '</span>';
+    return '<a class="partner-face" href="' + href('foundry.html?slug=' + encodeURIComponent(info.id)) + '">' +
       mark + '<span>' + esc(info.name || name) + '</span></a>';
   }
 
@@ -1004,7 +1245,7 @@
       return;
     }
     const s = document.createElement('script');
-    s.src = href('js/wf-search.js?v=20260922e');
+    s.src = href('js/wf-search.js?v=20260929g1');
     s.setAttribute('data-wf-search', '');
     s.onload = function () { if (window.WFSearch) WFSearch.mount(); };
     document.head.appendChild(s);
@@ -1129,12 +1370,98 @@
     fix(); requestAnimationFrame(fix); requestAnimationFrame(function () { requestAnimationFrame(fix); });
   }
 
+  /* —— 谱系图模态：当前页 iframe 嵌入；点「全宽」才进 lineage 整页 —— */
+  function lineageModalSrc(opts) {
+    opts = opts || {};
+    let src = '';
+    if (opts.href) {
+      try {
+        const u = new URL(opts.href, location.href);
+        u.searchParams.set('embed', '1');
+        u.searchParams.delete('width');
+        src = u.href;
+      } catch (e) {
+        src = String(opts.href || '');
+        src += (src.indexOf('?') >= 0 ? '&' : '?') + 'embed=1';
+      }
+      return src;
+    }
+    const p = new URLSearchParams();
+    if (opts.group) p.set('group', opts.group);
+    if (opts.view) p.set('view', opts.view);
+    if (opts.mode) p.set('mode', opts.mode);
+    if (opts.focus) p.set('focus', opts.focus);
+    p.set('embed', '1');
+    return href('lineage.html?' + p.toString());
+  }
+
+  function openLineageModal(opts) {
+    opts = opts || {};
+    const prev = document.getElementById('wfLineageModal');
+    if (prev) prev.remove();
+    const src = lineageModalSrc(opts);
+    if (!src) return;
+    const wrap = document.createElement('div');
+    wrap.id = 'wfLineageModal';
+    wrap.className = 'dialog-back dialog-back-lineage';
+    wrap.innerHTML =
+      '<div class="dialog dialog-lineage" role="dialog" aria-modal="true" aria-labelledby="wfLineageModalTitle">' +
+        '<div class="dialog-lineage-head">' +
+          '<h3 id="wfLineageModalTitle">谱系图</h3>' +
+          '<button type="button" class="icon-btn dialog-lineage-close" data-close aria-label="关闭">' + icon('close') + '</button>' +
+        '</div>' +
+        '<iframe class="dialog-lineage-frame" title="谱系图" src="' + esc(src) + '"></iframe>' +
+      '</div>';
+    document.body.appendChild(wrap);
+    const dialog = wrap.querySelector('.dialog-lineage');
+    const closeBtn = wrap.querySelector('[data-close]');
+    const frame = wrap.querySelector('iframe');
+    const prior = document.activeElement;
+    document.body.style.overflow = 'hidden';
+    let closed = false;
+    const done = function () {
+      if (closed) return;
+      closed = true;
+      wrap.remove();
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKey);
+      window.removeEventListener('message', onMsg);
+      if (prior && prior.focus) prior.focus();
+    };
+    const onKey = function (e) {
+      if (e.key === 'Escape') { e.preventDefault(); done(); return; }
+      if (e.key !== 'Tab') return;
+      /* 焦点在关闭钮与 iframe 之间轮转；iframe 内 Esc 由 embed 发 postMessage */
+      const nodes = [closeBtn, frame];
+      const i = nodes.indexOf(document.activeElement);
+      e.preventDefault();
+      const next = e.shiftKey ? (i <= 0 ? nodes.length - 1 : i - 1) : (i === nodes.length - 1 || i < 0 ? 0 : i + 1);
+      nodes[next].focus();
+    };
+    const onMsg = function (e) {
+      if (!e || !e.data || e.data.type !== 'wf-lineage-embed-close') return;
+      if (frame && e.source && e.source !== frame.contentWindow) return;
+      done();
+    };
+    closeBtn.addEventListener('click', done);
+    wrap.addEventListener('click', function (e) { if (e.target === wrap) done(); });
+    document.addEventListener('keydown', onKey);
+    window.addEventListener('message', onMsg);
+    closeBtn.focus();
+  }
+
+  document.addEventListener('click', function (e) {
+    const a = e.target && e.target.closest ? e.target.closest('a[data-lineage-modal]') : null;
+    if (!a) return;
+    if (e.defaultPrevented) return;
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    openLineageModal({ href: a.getAttribute('href') });
+  });
+
   window.WFChrome = {
     ROOT: ROOT,
-    isDevPreviewHost: isDevPreviewHost,
-    livePagePath: livePagePath,
     href: href,
-    foundryHref: foundryHref,
     user: user,
     canAccessApp: canAccessApp,
     login: login,
@@ -1155,6 +1482,8 @@
     brandShort: brandShort,
     brandSite: brandSite,
     brandAvatar: brandAvatar,
+    isPersonalFoundry: isPersonalFoundry,
+    avatarMark: avatarMark,
     faceHtml: faceHtml,
     partnerFaceHtml: partnerFaceHtml,
     catLabel: catLabel,
@@ -1177,9 +1506,11 @@
     lineageTreeHtml: lineageTreeHtml,
     lineageListHtml: lineageListHtml,
     findFontByName: findFontByName,
+    suggestLineageFallback: suggestLineageFallback,
     REL_LABEL: REL_LABEL,
     showPricing: showPricing,
     VERIFIED_SVG: VERIFIED_SVG,
-    holdScroll: holdScroll
+    holdScroll: holdScroll,
+    openLineageModal: openLineageModal
   };
 })();

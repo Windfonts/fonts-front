@@ -5,6 +5,18 @@
 #use, #glyphs, #weights, #lineage { scroll-margin-top: calc(var(--topbar-h) + var(--s-4)); }
 .crumb-dark { margin-bottom: var(--s-6); }
 .glyph-wall .weights { display: flex; gap: var(--s-1); flex-wrap: wrap; }
+.glyph-wall .weights.product-grades a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--gray);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  font-size: var(--fs-12);
+}
+.glyph-wall .weights.product-grades a:hover { color: var(--ink); background: var(--surface-2); }
+.glyph-wall .weights.product-grades a.is-on { color: var(--on-ink); background: var(--ink); }
+
 .glyph-wall .presets { display: flex; gap: var(--s-1); flex-wrap: wrap; }
 
 /* 标题行 */
@@ -113,8 +125,8 @@
 .page-detail:has(.wall-stage[data-card]) .side-brand .who-row,
 .page-detail:has(.wall-stage[data-card]) .side-brand .collab-block,
 .page-detail:has(.wall-stage[data-card]) .detail-side .foundry,
-.page-detail:has(.wall-stage[data-card]) .side-brand .font-desc-block,
-.page-detail:has(.wall-stage[data-card]) .side-brand .brand-desc-fold,
+.page-detail:has(.wall-stage[data-card]) .side-brand .brand-desc,
+.page-detail:has(.wall-stage[data-card]) .side-brand .side-fold,
 .page-detail:has(.wall-stage[data-card]) .side-brand .claim,
 .page-detail:has(.wall-stage[data-card]) .side-brand .sp-box { display: none; }
 .page-detail:has(.wall-stage[data-card]) .side-brand .side-meta {
@@ -140,6 +152,10 @@
 .detail-main > .panel { min-width: 0; background: transparent; border-radius: 0; box-shadow: none; border-top: 1px solid var(--rule); }
 .detail-main .panel-head { flex-wrap: wrap; padding: var(--s-12) 0 0; }
 .detail-main .panel-head + .panel-pad { padding: var(--s-5) 0 var(--s-12); }
+/* 乙：代码栈收紧纵向留白；预算条仍保持紧凑 fs-12。 */
+.detail-main #use .panel-head + .panel-pad { display: grid; gap: var(--s-2); }
+/* site.css 的 .use-cdn margin-bottom 会叠在 grid gap 上，地区行与动态/link 行过松 */
+.detail-main #use .use-cdn { margin-bottom: 0; }
 .detail-main .panel-head .input { height: 2rem; font-size: var(--fs-13); }
 .detail-main .panel .input, .detail-main .panel .chip, .detail-main .panel .seg, .detail-main .panel .tabs, .detail-main .panel .code,
 .detail-main .panel .btn:not(.btn-ink):not(.btn-text):not(.ink-design), .detail-main .use-note code { background: var(--fill); }
@@ -157,6 +173,7 @@
 
 /* 使用：地区单独一行；动态/静态与引用方式同一行，高度与地区开关一致 */
 .use-bar {
+  margin-bottom: 0;
   display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3);
 }
 .detail-main .use-bar .seg,
@@ -177,16 +194,93 @@
 .use-fallback input { margin-top: 0.2em; }
 .use-fallback .hint { color: var(--gray); font-weight: var(--fw-regular); }
 .use-fallback .hint.is-warn { color: var(--warn, #a65c00); }
-.use-note { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-4); line-height: 1.7; }
+.use-fallback-source { display: contents; }
+.use-note { font-size: var(--fs-13); color: var(--gray); margin-top: var(--s-2); line-height: var(--lh-snug); }
 .use-note code { background: var(--paper); padding: 0.05em 0.35em; border-radius: 6px; }
 .use-note a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }
-.use-budget-host { margin-top: var(--s-3); }
+.use-note-fold { margin: 0; }
+.use-note-fold > summary {
+  list-style: none; cursor: pointer; user-select: none;
+  display: inline-flex; align-items: center; gap: 0.3em;
+  color: var(--gray); font-size: var(--fs-12); font-weight: var(--fw-label);
+}
+.use-note-fold > summary::-webkit-details-marker { display: none; }
+.use-note-fold > summary .icon {
+  flex: none; width: 1em; height: 1em; transition: transform 0.15s ease;
+}
+.use-note-fold[open] > summary { margin-bottom: var(--s-1); }
+.use-note-fold[open] > summary .icon { transform: rotate(180deg); }
+.use-note-lead { margin: 0; line-height: var(--lh-snug); }
+.use-note-body { margin: 0; font-size: var(--fs-12); line-height: var(--lh-body); }
+/* 丙：纸色代码块与填充预算条分层，但仍贴合为一个代码栈。 */
+.use-code-stack {
+  margin-top: var(--s-2);
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--rule);
+}
+.detail-main .panel .use-code-stack > .code {
+  margin: 0;
+  background: var(--paper);
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+.detail-main .panel .use-code-stack > .code pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: var(--fs-12);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.detail-main .panel .use-code-stack > .code .copy {
+  position: absolute;
+  top: var(--s-2);
+  right: var(--s-2);
+  font-size: var(--fs-11);
+  color: var(--gray-2);
+  padding: 0.1rem 0.45rem;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+}
+.detail-main .panel .use-code-stack > .code .copy:hover {
+  color: var(--ink);
+  background: var(--surface);
+  border-color: var(--gray-2);
+}
+.use-budget-host {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-3); flex-wrap: wrap; margin-top: 0;
+  /* 字号仍小；上下留白避免挤贴代码与底边 */
+  padding: var(--s-3) var(--s-4); background: var(--fill);
+  border-top: 1px solid var(--rule);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+.use-budget-host > [data-budget-content] { flex: 1 1 18rem; min-width: 0; }
 .use-budget {
   display: flex; flex-direction: column; gap: 0.25rem;
-  padding: var(--s-3) var(--s-4);
-  background: var(--fill); border-radius: var(--radius);
   font-size: var(--fs-13); color: var(--ink); line-height: 1.55;
 }
+.use-budget-host .use-budget {
+  gap: 0.15rem;
+  font-size: var(--fs-12); line-height: var(--lh-snug);
+}
+.use-budget-host .use-fallback {
+  font-size: var(--fs-12); line-height: var(--lh-snug);
+}
+.use-code-stack .use-budget {
+  font-size: var(--fs-12); color: var(--ink-2); line-height: var(--lh-snug);
+}
+.use-code-stack .use-fallback {
+  font-size: var(--fs-12); color: var(--ink-2); line-height: var(--lh-snug);
+}
+.use-code-stack .use-fallback .hint { color: var(--gray); }
+.use-budget-host .use-fallback { margin: 0; }
+.use-fallback-options {
+  display: flex; flex: 0 1 auto; flex-direction: column; align-items: flex-end;
+  gap: 0.2rem; min-width: 0; max-width: 100%;
+}
+.use-fallback-options .use-fallback { justify-content: flex-end; max-width: 100%; }
 .use-budget-main b { font-variant-numeric: tabular-nums; }
 .use-budget-extra { color: var(--gray); }
 
@@ -249,16 +343,8 @@
 .license-cite.lineage { border-bottom: 0; padding-top: 0; }
 .detail-related .section-head { flex-wrap: wrap; }
 .detail-related .section-head .more + .more { margin-left: var(--s-4); }
-.side-brand .font-desc-block { margin-top: var(--s-4); }
-.side-brand .font-desc-head { margin-bottom: var(--s-3); font-size: var(--fs-12); color: var(--gray-2); font-weight: var(--fw-label); display: flex; align-items: center; gap: 0.35em; }
-.side-brand .font-desc { color: var(--ink-2); line-height: 1.7; }
-.side-brand .who-row + .brand-desc-fold,
-.side-brand .collab-block + .brand-desc-fold,
-.side-brand .font-desc + .brand-desc-fold { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
-
-.side-brand .brand-desc-fold { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
-.side-brand .brand-desc-more { margin-top: var(--s-3); font-size: var(--fs-12); }
-.side-brand .brand-desc-more a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }
+.side-brand .brand-desc { margin-top: var(--s-4); color: var(--ink-2); line-height: 1.7; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.side-brand .side-fold { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
 .side-brand .claim { margin-top: var(--s-3); color: var(--gray); font-size: var(--fs-12); display: flex; align-items: center; gap: 0.4em; }
 .side-brand .claim.is-quiet { color: var(--gray-2); }
 .side-brand .claim a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }
@@ -344,6 +430,16 @@
 .lin-fold[open] > summary { margin-bottom: var(--s-2); color: var(--ink); }
 .lin-fold[open] > summary .icon { transform: rotate(180deg); }
 .lin-acts { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
+/* 丙：谱系上传保留 ink-design，但两种视图都保持实心墨色。 */
+html[data-view="dev"] .detail-main .lin-acts .btn.ink-design,
+html:not([data-view="dev"]) .detail-main .lin-acts .btn.ink-design {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+html[data-view="dev"] .detail-main .lin-acts .btn.ink-design:hover,
+html:not([data-view="dev"]) .detail-main .lin-acts .btn.ink-design:hover {
+  background: var(--ink-hover);
+}
 
 @media (max-width: 1024px) {
   .detail-body { grid-template-columns: minmax(0, 1fr); gap: var(--s-8); }
@@ -429,7 +525,7 @@
 .detail-main .lp-act { font-size: var(--fs-12); color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; white-space: nowrap; display: inline-flex; align-items: center; gap: 0.3em; }
 @media (max-width: 720px) { .lp5-node .what { white-space: normal; } }
 
-/* 服务状态 + 版权归属：同款 meta 组，组底分割线与厂商信誉对称，再接下方出处链 */
+/* 服务状态 + 商业主体：组底原分割线下移到版权归属之上（不另加顶线） */
 .lp5-meta-block {
   padding-bottom: var(--s-4);
   margin-bottom: var(--s-4);
@@ -486,6 +582,54 @@
 /* 开源商用档：语义绿芯片（免费商用保持墨色） */
 .license-head .tier.is-open { background: var(--ok); color: var(--on-ok); border-color: var(--ok); }
 .lp5-points .lp-badge-warn { border-color: var(--warn-edge); color: var(--warn); text-decoration: none; }
+
+
+/* 服务状态三档：正常 / 受限 / 不可用 */
+.lp5-node.lp5-meta.svc-row .what {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+}
+.lp5-node.lp5-meta.svc-row .svc-grade {
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+  color: var(--ink);
+}
+.lp5-node.lp5-meta.svc-row .svc-grade.is-mid { color: var(--warn); }
+.lp5-node.lp5-meta.svc-row .svc-grade.is-bad { color: var(--caution); }
+.lp5-node.lp5-meta.svc-row .svc-why {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+}
+
+/* 商业主体关系档：运营 / 签约 / 合作（≠ 服务状态 正常/受限 配色） */
+.lp5-node.lp5-meta.entity-row .what {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+}
+.lp5-node.lp5-meta.entity-row .entity-grade {
+  font-size: var(--fs-13);
+  font-weight: var(--fw-title);
+  color: var(--ink);
+}
+.lp5-node.lp5-meta.entity-row .entity-name {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+}
+.lp5-node.lp5-meta.entity-row .entity-exp,
+.lp5-node.lp5-meta.entity-row .entity-note {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+}
 
 /* ===== 出处与依据 · 厂商信誉行（首行结论，结构对齐下方 meta）===== */
 .license-fold .trust-block { padding: var(--s-6) 0 var(--s-5); border-bottom: 1px solid var(--rule); margin-bottom: var(--s-5); }
@@ -613,9 +757,104 @@
   .glyph-live-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-.use-cite-closed { padding: var(--s-4); background: var(--fill); border-radius: var(--radius); }
-.use-cite-title { font-weight: var(--fw-label); margin-bottom: var(--s-2); }
-.use-cite-body { color: var(--ink-2); line-height: 1.7; font-size: var(--fs-13); }
-.use-cite-upload { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; margin: var(--s-4) 0 var(--s-2); }
-.use-cite-meta { font-size: var(--fs-12); color: var(--gray); line-height: 1.6; }
-.use-cite-meta a { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
+
+/* 引用关闭（对照货架：吉利/摩登等禁止嵌入）· 乙：中性灰底 */
+.use-cite-closed {
+  margin-top: 0;
+  padding: var(--s-5) var(--s-6);
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius-sm);
+  background: var(--fill);
+}
+.use-cite-closed .use-cite-title {
+  margin: 0 0 var(--s-2);
+  font-weight: var(--fw-title);
+  font-size: var(--fs-15);
+  color: var(--ink);
+}
+.use-cite-closed .use-cite-body {
+  margin: 0 0 var(--s-3);
+  line-height: var(--lh-body);
+  font-size: var(--fs-13);
+  color: var(--ink-2);
+}
+.use-cite-closed .use-cite-meta {
+  margin: 0;
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+}
+
+.use-cite-opened {
+  margin: 0 0 var(--s-4);
+  padding: var(--s-5) var(--s-6);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--ok, #2a7a4b) 10%, var(--fill));
+  border: 1px solid color-mix(in srgb, var(--ok, #2a7a4b) 28%, var(--rule));
+}
+.use-cite-opened .use-cite-title {
+  margin: 0 0 var(--s-2);
+  font-weight: var(--fw-title);
+  font-size: var(--fs-15);
+  color: var(--ink);
+}
+.use-cite-opened .use-cite-body {
+  margin: 0 0 var(--s-3);
+  line-height: var(--lh-body);
+  font-size: var(--fs-13);
+  color: var(--ink-2);
+}
+.use-cite-opened .use-cite-meta {
+  margin: 0;
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+}
+
+.use-cite-pending {
+  margin-top: 0;
+  padding: var(--s-5) var(--s-6);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--warn, #c47a2c) 10%, var(--fill));
+  border: 1px solid color-mix(in srgb, var(--warn, #c47a2c) 28%, var(--rule));
+}
+.use-cite-pending .use-cite-title {
+  margin: 0 0 var(--s-2);
+  font-weight: var(--fw-title);
+  font-size: var(--fs-15);
+  color: var(--ink);
+}
+.use-cite-pending .use-cite-body {
+  margin: 0 0 var(--s-3);
+  line-height: var(--lh-body);
+  font-size: var(--fs-13);
+  color: var(--ink-2);
+}
+.use-cite-pending .use-cite-meta {
+  margin: 0;
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+}
+
+.use-cite-rejected {
+  margin-top: 0;
+  padding: var(--s-5) var(--s-6);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--danger, #b33) 8%, var(--fill));
+  border: 1px solid color-mix(in srgb, var(--danger, #b33) 24%, var(--rule));
+}
+.use-cite-rejected .use-cite-title {
+  margin: 0 0 var(--s-2);
+  font-weight: var(--fw-title);
+  font-size: var(--fs-15);
+  color: var(--ink);
+}
+.use-cite-rejected .use-cite-body {
+  margin: 0 0 var(--s-3);
+  line-height: var(--lh-body);
+  font-size: var(--fs-13);
+  color: var(--ink-2);
+}
+.use-cite-rejected .use-cite-meta {
+  margin: 0;
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+}

@@ -13,7 +13,7 @@
 
   function faceStyle(font) {
     const w = firstWeight(font);
-    WFProto.ensureFontCss(font.family, w);
+    WFProto.ensureFontCss(font.family, w, 'zh');
     return 'font-family:' + esc(WFProto.cssFamilyStack(font.family)) + ';font-weight:' + w;
   }
 

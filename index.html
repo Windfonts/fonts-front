@@ -6,20 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>文风字体 · 中文网页字体</title>
   <meta name="description" content="在网页上使用中文字体：托管、子集化、域名白名单，一行代码接入。" />
-  <link rel="preconnect" href="https://cn.windfonts.com" crossorigin />
-  <link rel="dns-prefetch" href="https://cn.windfonts.com" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/Albbpht/Regular/zh-common/2.woff2" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/Hckht/Medium/full/16.woff2" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/Hckht/Medium/full/18.woff2" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/Hckht/Medium/full/15.woff2" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/Hckht/Medium/full/19.woff2" />
-  <link rel="stylesheet" href="/css/fonts.css?v=20260927perf4" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="/css/fonts.css?v=20260927perf4" /></noscript>
-  <link rel="stylesheet" href="/css/tokens.css?v=20260927perf4" />
-  <link rel="stylesheet" href="/css/base.css?v=20260927perf4" />
-  <link rel="stylesheet" href="/css/components.css?v=20260927perf4" />
-  <link rel="stylesheet" href="/css/specimen.css?v=20260927perf4" />
-  <link rel="stylesheet" href="/css/site.css?v=20260927perf4" />
+  <link rel="stylesheet" href="/css/fonts.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/tokens.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/base.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/components.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/specimen.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/site.css?v=20260929ui1" />
   <link rel="icon" type="image/webp" href="/assets/icon.webp" />
 </head>
 <body class="page-index">
@@ -30,14 +22,14 @@
       <div class="container">
         <div class="home-hero-top">
           <p class="kicker">中文网页字体</p>
-          <p class="live-caption"><span class="live-using"><span>正在使用</span><a class="now" id="liveName" href="/fonts">—</a><span class="for-dev mono" id="liveFamily"></span></span><button type="button" id="liveNext"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-refresh"/></svg>换一款</button></p>
+          <p class="live-caption"><span class="live-using"><span>正在使用</span><a class="now" id="liveName" href="fonts.html">—</a><span class="for-dev mono" id="liveFamily"></span></span><button type="button" id="liveNext"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260929ui1#i-refresh"/></svg>换一款</button></p>
         </div>
         <h1 class="live" id="live" contenteditable="true" spellcheck="false" aria-label="可编辑的活样张" data-placeholder="写几个字试试">让中文字体，<br>在网页上流动。</h1>
         <div class="home-hero-foot">
           <p class="lead">托管、子集化、域名白名单，一行代码接入。每款字的授权以出处原文为准。</p>
           <div class="home-cta">
-            <a class="btn ink-design btn-lg" href="/fonts"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-folder"/></svg>浏览字体库</a>
-            <a class="btn ink-dev btn-lg" href="/docs"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-book"/></svg>查看文档</a>
+            <a class="btn ink-design btn-lg" href="fonts.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260929ui1#i-folder"/></svg>浏览字体库</a>
+            <a class="btn ink-dev btn-lg" href="docs.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260929ui1#i-book"/></svg>查看文档</a>
           </div>
         </div>
         <p class="home-stats" id="homeStats" aria-label="库里的数字"></p>
@@ -46,14 +38,14 @@
 
     <section class="home-forest" aria-label="字林">
       <div class="container">
-        <div class="section-head"><h2><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-stack"/></svg>字林</h2></div>
+        <div class="section-head"><h2><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260929ui1#i-stack"/></svg>字林</h2></div>
         <div class="home-forest-grid" id="homeForest"></div>
       </div>
     </section>
 
     <section class="home-now" aria-label="当前字体">
       <div class="container">
-        <div class="section-head"><h2><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-font"/></svg>当前字体</h2></div>
+        <div class="section-head"><h2><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260929ui1#i-font"/></svg>当前字体</h2></div>
         <div id="homeNow"></div>
       </div>
     </section>
@@ -62,7 +54,7 @@
       <div class="container">
         <div class="section-head">
           <h2 id="homeRelatedCount"></h2>
-          <a class="more" id="homeMore" href="/fonts"></a>
+          <a class="more" id="homeMore" href="fonts.html"></a>
         </div>
         <ul class="specimens" id="homeRelated"></ul>
       </div>
@@ -81,7 +73,7 @@
         <div>
           <h2>接入文风字体</h2>
           <p class="lead">在字体页复制一行 CSS，放进网页即可。</p>
-          <a class="btn btn-ink btn-lg" href="/docs"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260927perf4#i-book"/></svg>查看 API 文档</a>
+          <a class="btn btn-ink btn-lg" href="docs.html"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260929ui1#i-book"/></svg>查看 API 文档</a>
         </div>
       </div>
     </section>
@@ -89,10 +81,10 @@
 
   <footer id="wfExtraFooter"></footer>
 
-  <script defer src="/js/wf-proto.js?v=20260929g5"></script>
-  <script defer src="/js/wf-chrome.js?v=20260928steve1"></script>
-  <script defer src="/js/wf-products.js?v=20260927perf4"></script>
-  <script defer src="/js/wf-specimen.js?v=20260929g3"></script>
-  <script defer src="/js/pages/home.js?v=20260929g4"></script>
+  <script src="/js/wf-proto.js?v=20260929g5"></script>
+  <script src="/js/wf-chrome.js?v=20260929ui1"></script>
+  <script src="/js/wf-products.js?v=20260929ui1"></script>
+  <script src="/js/wf-specimen.js?v=20260929ui1"></script>
+  <script src="/js/pages/home.js?v=20260929ui1"></script>
 </body>
 </html>

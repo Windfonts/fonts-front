@@ -128,11 +128,11 @@
     function faceHtml(font) {
       if (!font) return '';
       const url = WFChrome.brandAvatar(font);
-      const name = WFChrome.brandName(font) || '';
+      const letter = (WFChrome.avatarMark && WFChrome.avatarMark(WFChrome.brandInfo(font) || WFChrome.brandName(font))) || (WFChrome.brandName(font) || '厂').charAt(0) || '厂';
       if (url) {
-        return '<img class="stat-face" src="' + esc(url) + '" alt="" width="22" height="22" loading="lazy" />';
+        return '<img class="stat-face" src="' + esc(url) + '" alt="" width="22" height="22" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'stat-face mark\',textContent:' + JSON.stringify(letter) + '}))" />';
       }
-      return '<span class="stat-face mark" aria-hidden="true">' + esc(name.charAt(0) || '厂') + '</span>';
+      return '<span class="stat-face mark" aria-hidden="true">' + esc(letter) + '</span>';
     }
     function rows(items, href) {
       const max = Math.max.apply(null, items.map(function (r) { return r.n; })) || 1;
@@ -169,9 +169,9 @@
       const brands = Object.keys(brandCount).length;
       const free = tiers['免费商用'] || 0;
       homeStats.innerHTML =
-        '<a href="/fonts"><b>' + WFProto.formatCount(list.length) + '</b> 款</a>' +
-        '<a href="' + WFChrome.href('foundry.html') + '"><b>' + WFProto.formatCount(brands) + '</b> 家</a>' +
-        '<a href="/fonts?license=' + encodeURIComponent('免费商用') + '"><b>' +
+        '<a href="fonts.html"><b>' + WFProto.formatCount(list.length) + '</b> 款</a>' +
+        '<a href="foundry.html"><b>' + WFProto.formatCount(brands) + '</b> 家</a>' +
+        '<a href="fonts.html?license=' + encodeURIComponent('免费商用') + '"><b>' +
           WFProto.formatCount(free) + '</b> 免费商用</a>';
     }
     const closeCount = document.getElementById('homeCloseCount');
@@ -179,7 +179,7 @@
 
     band.innerHTML =
       '<div class="section-head"><h2>' + WFChrome.icon('box') + '字体库存</h2>' +
-        '<a class="more" href="' + WFChrome.href('foundry.html') + '">' + WFChrome.icon('building') + '厂商索引</a></div>' +
+        '<a class="more" href="foundry.html">' + WFChrome.icon('building') + '厂商索引</a></div>' +
       '<div class="stats-grid">' +
         panel('certificate', '按授权', rows(tierItems, function (r) { return 'fonts.html?license=' + encodeURIComponent(r.label); }), '分类说明见文档。') +
         panel('chart', '字体最多的厂商', rows(topBrands, function (r) { return 'foundry.html?slug=' + encodeURIComponent(r.key); })) +
@@ -231,7 +231,7 @@
         const stack = WFProto.cssFamilyStack(f.family);
         if (f.id === font.id) {
           const hw = heavyWeight(f);
-          /* Active cell + hero need faces now; siblings wait for IntersectionObserver. */
+          /* 首屏只拉眼前这一款；其余格进空闲队列或悬停再拉。 */
           WFProto.ensureFontCss(f.family, hw, 'preview-shop');
           return '<div class="home-forest-cell is-on" data-family="' + esc(f.family || '') + '" data-weight="' + hw + '">' +
             '<p class="home-forest-glyph" data-forest-glyph contenteditable="true" spellcheck="false">' + esc(g) + '</p>' +
@@ -245,19 +245,30 @@
       }).join('');
     }
 
-    function observeForestCss() {
+    function loadForestCellFace(el) {
+      if (!el || el.getAttribute('data-face-queued') === '1') return;
+      const fam = el.getAttribute('data-family');
+      if (!fam) return;
+      el.setAttribute('data-face-queued', '1');
+      WFProto.ensureFontCss(fam, el.getAttribute('data-weight') || '400', 'preview-shop');
+    }
+
+    function queueForestFaces() {
       if (!forest) return;
-      const schedule = (window.WFSpecimen && WFSpecimen.scheduleSpecimenCss)
-        ? WFSpecimen.scheduleSpecimenCss
-        : function (el) {
-            if (el && el.getAttribute('data-family')) {
-              WFProto.ensureFontCss(el.getAttribute('data-family'), el.getAttribute('data-weight') || '400', 'preview-shop');
-            }
-          };
-      forest.querySelectorAll('.home-forest-cell[data-family]').forEach(function (el) {
-        if (el.classList.contains('is-on')) return; /* already eager-loaded */
-        schedule(el);
+      const rest = Array.prototype.slice.call(forest.querySelectorAll('.home-forest-cell[data-family]:not(.is-on)'));
+      rest.forEach(function (el) {
+        el.addEventListener('pointerenter', function () { loadForestCellFace(el); }, { once: true });
+        el.addEventListener('focus', function () { loadForestCellFace(el); }, { once: true });
       });
+      let i = 0;
+      function next() {
+        if (i >= rest.length) return;
+        loadForestCellFace(rest[i++]);
+        if (window.requestIdleCallback) requestIdleCallback(next, { timeout: 600 });
+        else setTimeout(next, 80);
+      }
+      if (window.requestIdleCallback) requestIdleCallback(next, { timeout: 800 });
+      else setTimeout(next, 200);
     }
 
     function wirePick(f) {
@@ -304,7 +315,7 @@
       if (liveFamily) liveFamily.textContent = famOf(f) + ' · ' + w;
       if (forest) {
         forest.innerHTML = forestHtml(f, glyph);
-        observeForestCss();
+        queueForestFaces();
         const liveG = forest.querySelector('[data-forest-glyph]');
         if (liveG) {
           liveG.style.fontFamily = stack;

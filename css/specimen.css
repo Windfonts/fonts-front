@@ -540,14 +540,45 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
 
 /* —— 字符表 v2：工具条 / 缺字标记 / 覆盖统计 —— */
 .glyph-tools { display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-2); }
-.glyph-tools .seg-glyph { display: inline-flex; gap: 2px; background: var(--fill); border-radius: var(--radius-pill); padding: 2px; }
-.glyph-tools .seg-glyph button { border: 0; background: transparent; color: var(--ink-2); padding: 0.22rem 0.85rem; border-radius: var(--radius-pill); font-size: var(--fs-13); cursor: pointer; }
-.glyph-tools .seg-glyph button:hover { color: var(--ink); }
-.glyph-tools .seg-glyph button.is-on { background: var(--ink); color: var(--on-ink); }
+.glyph-tools .seg-glyph,
+.glyph-summary-actions .glyph-filter { display: inline-flex; gap: 2px; background: var(--fill); border-radius: var(--radius-pill); padding: 2px; }
+.glyph-tools .seg-glyph button,
+.glyph-summary-actions .glyph-filter button { border: 0; background: transparent; color: var(--ink-2); padding: 0.22rem 0.85rem; border-radius: var(--radius-pill); font-size: var(--fs-13); cursor: pointer; }
+.glyph-tools .seg-glyph button:hover,
+.glyph-summary-actions .glyph-filter button:hover { color: var(--ink); }
+.glyph-tools .seg-glyph button.is-on,
+.glyph-summary-actions .glyph-filter button.is-on { background: var(--ink); color: var(--on-ink); }
+/* 乙：缺字时的软文案 tabs；满覆盖时由 wf-specimen 隐藏整组。 */
+.glyph-summary-actions .glyph-filter-soft {
+  display: inline-flex; align-items: center; gap: 0.15rem 0.55rem;
+  margin: 0; padding: 0; border: 0; background: transparent;
+}
+.glyph-summary-actions .glyph-filter-soft button {
+  border: 0; background: transparent; padding: 0; margin: 0;
+  font: inherit; font-size: var(--fs-13); font-weight: var(--fw-body);
+  color: var(--gray); cursor: pointer; border-radius: 0;
+}
+.glyph-summary-actions .glyph-filter-soft button:hover { color: var(--ink); }
+.glyph-summary-actions .glyph-filter-soft button.is-on {
+  background: transparent; color: var(--ink); font-weight: var(--fw-title);
+  text-decoration: underline; text-underline-offset: 0.22em;
+  text-decoration-thickness: 1.5px;
+}
+.glyph-summary-status { color: var(--gray); font-weight: var(--fw-body); }
 .glyph-tools .gtoggle { border: 0; background: var(--fill); color: var(--ink-2); padding: 0.32rem 0.9rem; border-radius: var(--radius-pill); font-size: var(--fs-13); cursor: pointer; }
 .glyph-tools .gtoggle:hover { color: var(--ink); }
 .glyph-tools .gtoggle[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
-.glyph-summary { margin-bottom: var(--s-5); max-width: 34rem; }
+.glyph-summary { margin-bottom: var(--s-5); max-width: 44rem; }
+.glyph-summary-actions {
+  display: inline-flex; align-items: center; flex-wrap: nowrap; gap: var(--s-3);
+  margin-left: var(--s-3); vertical-align: middle; white-space: nowrap;
+  position: relative; z-index: 2; pointer-events: auto;
+}
+.glyph-summary-actions .glyph-filter,
+.glyph-summary-actions .glyph-qz-link,
+.glyph-summary-actions .glyph-filter button {
+  pointer-events: auto; position: relative; z-index: 2; cursor: pointer;
+}
 .glyph-diff {
   margin: 0 0 var(--s-5);
   padding: var(--s-3) var(--s-4);
@@ -890,3 +921,6 @@ html[data-view="dev"] .glyph-wall .wall-tools .for-design { display: none; }
     pointer-events: none;
   }
 }
+
+/* 常用字视图下写法开关禁用态：可见但置灰，不凭空消失 */
+.seg-glyph.is-off button { opacity: 0.4; cursor: not-allowed; }

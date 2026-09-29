@@ -61,10 +61,54 @@
   }
   function ensureVaultApiKey() {
     if (!state || !state.settings) return Promise.resolve(null);
-    if (apiKeyLooksVault(state.settings.apiKey)) return Promise.resolve(state.settings.apiKey);
+    const existing = state.settings.apiKey;
+    const looksOk = apiKeyLooksVault(existing);
+
+    if (window.WFAuth && WFAuth.ensureConsoleKey && WFAuth.requiresVaultSession && WFAuth.requiresVaultSession()) {
+      return WFAuth.ensureConsoleKey({ apiKey: looksOk ? existing : undefined }).then(function (data) {
+        if (data && data.apiKey) {
+          state.settings.apiKey = data.apiKey;
+          if (!state.settings.apiKeyCreatedAt || data.created || data.rotated) {
+            state.settings.apiKeyCreatedAt = new Date().toISOString();
+          }
+          state.settings.apiKeySource = 'vault-sso';
+          save();
+          if (window.WFProto && WFProto.syncPicksWithVault) {
+            WFProto.syncPicksWithVault().catch(function () { /* ignore */ });
+          }
+          if (window.WFProto && WFProto.syncFavsWithVault) {
+            WFProto.syncFavsWithVault().catch(function () { /* ignore */ });
+          }
+          if (window.WFProto && WFProto.syncVaultFontCerts) {
+            WFProto.syncVaultFontCerts().catch(function () { /* ignore */ });
+          }
+          return data.apiKey;
+        }
+        if (looksOk) return existing;
+        return mintApiKeyAsync('live').then(function (k) {
+          state.settings.apiKey = k;
+          state.settings.apiKeyCreatedAt = new Date().toISOString();
+          state.settings.apiKeySource = 'local';
+          save();
+          return k;
+        });
+      }).catch(function () {
+        if (looksOk) return existing;
+        return mintApiKeyAsync('live').then(function (k) {
+          state.settings.apiKey = k;
+          state.settings.apiKeyCreatedAt = new Date().toISOString();
+          state.settings.apiKeySource = 'local';
+          save();
+          return k;
+        });
+      });
+    }
+
+    if (looksOk) return Promise.resolve(existing);
     return mintApiKeyAsync('live').then(function (k) {
       state.settings.apiKey = k;
       state.settings.apiKeyCreatedAt = new Date().toISOString();
+      state.settings.apiKeySource = 'local';
       save();
       return k;
     });
@@ -84,7 +128,7 @@
     return dirty;
   }
   const SUBSETS = ['full', 'zh', 'zh-common', 'en'];
-  const CDNS = ['cn', 'hk', 'en'];
+  const CDNS = ['cn', 'hk', 'en', 'jp'];
   function ensureDelivery(p, settings) {
     settings = settings || {};
     if (!p.delivery || typeof p.delivery !== 'object') p.delivery = {};
@@ -138,18 +182,90 @@
     const u = (window.WFChrome && WFChrome.user()) || {};
     state.audit.unshift({ at: new Date().toISOString(), actor: u.email || u.name || '本机', action: action, detail: detail || '' });
     state.audit = state.audit.slice(0, 80);
+    if (window.WFApi && typeof WFApi.appendAudit === 'function' && !WFApi.isMock()) {
+      try {
+        if (state.settings && state.settings.apiKey) {
+          WFApi.appendAudit({
+            action: action,
+            detail: detail || '',
+            actor: u.email || u.name || ''
+          }).catch(function () { /* ignore */ });
+        }
+      } catch (e) { /* ignore */ }
+    }
   }
 
+  function liveMode() {
+    return !!(window.WFApi && typeof WFApi.isMock === 'function' && !WFApi.isMock());
+  }
+  function emptyLiveShell() {
+    return ensureShape({
+      plan: JSON.parse(JSON.stringify(PLAN_DEFAULT)),
+      settings: {},
+      team: defaultTeam(),
+      claims: [],
+      audit: [],
+      uploads: [],
+      projects: []
+    });
+  }
+  let _hydratePromise = null;
+  /** live：用 vault 项目/上传覆盖本地；并同步认领。失败保留空列表，不回退 mock 演示项目。 */
+  function hydrateFromVault() {
+    if (!liveMode()) return Promise.resolve(state);
+    if (_hydratePromise) return _hydratePromise;
+    if (!state) state = emptyLiveShell();
+    _hydratePromise = Promise.all([
+      WFApi.listProjects().catch(function () { return []; }),
+      (WFApi.listUploads ? WFApi.listUploads() : Promise.resolve([])).catch(function () { return []; }),
+      ensureClaimsSynced()
+    ]).then(function (pair) {
+      const raw = pair[0];
+      const rows = Array.isArray(raw) ? raw : ((raw && Array.isArray(raw.projects)) ? raw.projects : []);
+      const upsRaw = pair[1];
+      const ups = Array.isArray(upsRaw) ? upsRaw : ((upsRaw && Array.isArray(upsRaw.uploads)) ? upsRaw.uploads : []);
+      state.projects = rows.filter(function (p) { return p && p.id; });
+      state.uploads = ups.filter(function (u) { return u && u.id; });
+      ensureShape(state);
+      save();
+      refreshRails();
+      return state;
+    }).catch(function () {
+      return state;
+    });
+    return _hydratePromise;
+  }
   function load() {
-    if (state) return ensureVaultApiKey().then(function () { return state; });
+    if (state) {
+      return ensureVaultApiKey().then(function () {
+        return liveMode() ? hydrateFromVault().then(function () { return state; }) : state;
+      });
+    }
+    const live = liveMode();
     try {
       const cached = JSON.parse(localStorage.getItem(KEY) || 'null');
-      if (cached && cached.projects) {
+      if (cached && Array.isArray(cached.projects)) {
         state = ensureShape(cached);
+        if (live) {
+          /* 丢弃演示项目/上传壳，等 hydrate；保留 settings / apiKey / audit */
+          state.projects = [];
+          state.uploads = [];
+          if (!Array.isArray(state.claims)) state.claims = [];
+        }
         refreshRails();
-        return ensureVaultApiKey().then(function () { return state; });
+        return ensureVaultApiKey().then(function () {
+          return live ? hydrateFromVault().then(function () { return state; }) : state;
+        });
       }
     } catch (e) { /* ignore */ }
+    if (live) {
+      state = emptyLiveShell();
+      save();
+      refreshRails();
+      return ensureVaultApiKey().then(function () {
+        return hydrateFromVault().then(function () { return state; });
+      });
+    }
     return fetch(mockUrl()).then(function (r) { return r.json(); }).then(function (json) {
       state = ensureShape(json);
       save();
@@ -168,6 +284,13 @@
 
   function projects() { return state.projects.slice(); }
   function project(id) { return state.projects.filter(function (p) { return p.id === id; })[0] || null; }
+  function replaceProject(p) {
+    if (!state || !p || !p.id) return;
+    const i = state.projects.findIndex(function (x) { return x.id === p.id; });
+    if (i >= 0) state.projects[i] = p;
+    else state.projects.unshift(p);
+    save();
+  }
   function currentVersion(p) { return (p.versions || []).filter(function (v) { return v.current; })[0] || (p.versions || [])[0] || { v: 0, at: p.createdAt || '', note: '', bytes: 0, current: true }; }
   function pushVersion(p, note, bytes) {
     const max = p.versions.reduce(function (m, v) { return Math.max(m, v.v); }, 0);
@@ -290,9 +413,20 @@
   }
 
   function fontMeta(id) {
+    if (!id) return null;
     const cat = WFProto.getFont(id);
     if (cat) return cat;
-    const up = ((state && state.uploads) || []).filter(function (u) { return u.id === id; })[0];
+    /* 用量按 CSS family 聚合：短码 / normalized / wenfeng-* */
+    const raw = String(id);
+    const bySlug =
+      WFProto.getFontBySlug(raw) ||
+      WFProto.getFontBySlug(raw.replace(/^wenfeng-/, '')) ||
+      WFProto.getFontBySlug(raw.replace(/^windfonts-/, ''));
+    if (bySlug) return bySlug;
+    const key = raw.toLowerCase();
+    const up = ((state && state.uploads) || []).filter(function (u) {
+      return u.id === id || String(u.family || '').toLowerCase() === key;
+    })[0];
     if (!up) return null;
     return {
       id: up.id, name: up.name, family: up.family,
@@ -413,27 +547,73 @@
   function fmtGB(bytes) { return (bytes / 1e9).toFixed(bytes >= 1e10 ? 0 : 1); }
 
   /* —— 壳 —— */
-  const NAV_USE = [
-    { id: 'overview', label: '概览', path: 'app/index.html', icon: 'dashboard' },
-    { id: 'projects', label: '项目', path: 'app/projects.html', icon: 'folder' },
-    { id: 'domains', label: '域名', path: 'app/domains.html', icon: 'globe' },
-    { id: 'fonts', label: '我的字体', path: 'app/fonts.html', icon: 'font' },
-    { id: 'subset', label: '子集化', path: 'app/subset.html', icon: 'scissors' },
-    { id: 'license', label: '授权查询', path: 'app/license-query.html', icon: 'shield' },
-    { id: 'standard-bar', label: '标准棒', path: 'app/standard-bar.html', icon: 'stack' },
-    { id: 'tickets', label: '工单', path: 'app/tickets.html', icon: 'list' },
-    { id: 'usage', label: '用量', path: 'app/usage.html', icon: 'chart' },
-    { id: 'team', label: '团队', path: 'app/team.html', icon: 'group' },
-    { id: 'settings', label: '设置', path: 'app/settings.html', icon: 'settings' }
+  /* 三套控制台（按身份，不是顶部分段开关）：
+     customer = 嵌字瘦版；foundry = 品牌/字体管理；admin = 收口前完整侧栏 */
+  const NAV_ITEM = {
+    overview: { id: 'overview', label: '概览', path: 'app/index.html', icon: 'dashboard' },
+    projects: { id: 'projects', label: '项目', path: 'app/projects.html', icon: 'folder' },
+    domains: { id: 'domains', label: '域名', path: 'app/domains.html', icon: 'globe' },
+    fonts: { id: 'fonts', label: '我的字体', path: 'app/fonts.html', icon: 'font' },
+    pages: { id: 'pages', label: '我的页', path: 'app/pages.html', icon: 'idcard' },
+    upload: { id: 'upload', label: '上传', path: 'app/upload.html', icon: 'upload' },
+    subset: { id: 'subset', label: '子集化', path: 'app/subset.html', icon: 'scissors' },
+    usage: { id: 'usage', label: '用量', path: 'app/usage.html', icon: 'chart' },
+    certs: { id: 'certs', label: '证书', path: 'app/certs.html', icon: 'certificate' },
+    team: { id: 'team', label: '团队', path: 'app/team.html', icon: 'group' },
+    settings: { id: 'settings', label: '设置', path: 'app/settings.html', icon: 'settings' }
+  };
+  /* 客户 / 普通用户：嵌字主旅程 */
+  const NAV_CUSTOMER = [
+    NAV_ITEM.overview, NAV_ITEM.projects, NAV_ITEM.certs, NAV_ITEM.settings
   ];
-  const NAV_PAGE = [
-    { id: 'pages', label: '我的页', path: 'app/pages.html', icon: 'idcard' },
-    { id: 'settings', label: '设置', path: 'app/settings.html', icon: 'settings' }
+  /* 厂商 / 作者：管自己的页、字体与上传 */
+  const NAV_FOUNDRY = [
+    NAV_ITEM.overview, NAV_ITEM.pages, NAV_ITEM.fonts, NAV_ITEM.upload,
+    NAV_ITEM.certs, NAV_ITEM.projects, NAV_ITEM.settings
+  ];
+  /* 管理员：收口前完整侧栏 */
+  const NAV_ADMIN = [
+    NAV_ITEM.overview, NAV_ITEM.projects, NAV_ITEM.domains, NAV_ITEM.fonts,
+    NAV_ITEM.subset, NAV_ITEM.usage, NAV_ITEM.certs, NAV_ITEM.team, NAV_ITEM.settings
+  ];
+  const NAV_SECONDARY = [
+    { id: 'domains', path: 'app/domains.html' },
+    { id: 'fonts', path: 'app/fonts.html' },
+    { id: 'favs', path: 'app/favs.html' },
+    { id: 'notifications', path: 'app/notifications.html' },
+    { id: 'subset', path: 'app/subset.html' },
+    { id: 'usage', path: 'app/usage.html' },
+    { id: 'team', path: 'app/team.html' },
+    { id: 'upload', path: 'app/upload.html' },
+    { id: 'cert-upload', path: 'app/cert-upload.html' },
+    { id: 'project', path: 'app/project.html' },
+    { id: 'pages', path: 'app/pages.html' }
   ];
   function approvedClaims() {
     const list = state && state.claims;
     return (list || []).filter(function (c) { return c.status === 'approved'; });
   }
+  /** customer | foundry | admin */
+  function consolePersona() {
+    const u = (window.WFChrome && WFChrome.user && WFChrome.user()) || {};
+    const role = String(u.role || 'user').toLowerCase();
+    if (role === 'admin' || role === 'owner') return 'admin';
+    if (approvedClaims().length) return 'foundry';
+    return 'customer';
+  }
+  function primaryNav() {
+    const persona = consolePersona();
+    if (persona === 'admin') {
+      const nav = NAV_ADMIN.slice();
+      if (approvedClaims().length) {
+        nav.splice(nav.length - 1, 0, NAV_ITEM.pages);
+      }
+      return nav;
+    }
+    if (persona === 'foundry') return NAV_FOUNDRY.slice();
+    return NAV_CUSTOMER.slice();
+  }
+  /* 兼容旧链 ?desk= */
   function desk() {
     let d = 'use';
     try {
@@ -447,14 +627,119 @@
   function isPro() {
     return !!(state && state.plan && state.plan.id === 'pro');
   }
+  /**
+   * 功能门禁（身份 × 套餐）。
+   * upload | pages | ownedFonts | fontPrefix | adminTools | vaultAdmin | team | subsetLab | domainsTable | usageTable
+   */
+  function can(feature) {
+    const persona = consolePersona();
+    const f = String(feature || '');
+    if (f === 'upload') {
+      return persona === 'foundry' || persona === 'admin' || isPro();
+    }
+    if (f === 'pages' || f === 'ownedFonts') {
+      return approvedClaims().length > 0;
+    }
+    if (f === 'fontPrefix') {
+      return persona === 'admin' || isPro();
+    }
+    if (f === 'adminTools' || f === 'vaultAdmin' || f === 'team' || f === 'subsetLab' || f === 'domainsTable' || f === 'usageTable') {
+      return persona === 'admin';
+    }
+    if (f === 'certs' || f === 'projects' || f === 'settings') return true;
+    return false;
+  }
+  function canLabel(feature) {
+    const f = String(feature || '');
+    if (f === 'upload') return '上传自有授权字需专业档，或认领通过后的厂商台。';
+    if (f === 'pages') return '认领通过后才能改「我的页」。';
+    if (f === 'fontPrefix') return '专业档可改项目字体名前缀。';
+    if (f === 'adminTools') return '仅管理员可见完整工具侧栏。';
+    return '当前账号无此权限。';
+  }
+  /** 同步拿到 state，禁止走 load→hydrate（认领合并在 hydrate 内调用，会死锁）。 */
+  function ensureStateShell() {
+    if (state) return state;
+    try {
+      const cached = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (cached && Array.isArray(cached.projects)) {
+        state = ensureShape(cached);
+        return state;
+      }
+    } catch (e) { /* ignore */ }
+    state = liveMode() ? emptyLiveShell() : ensureShape({
+      plan: JSON.parse(JSON.stringify(PLAN_DEFAULT)),
+      settings: {},
+      team: defaultTeam(),
+      claims: [],
+      audit: [],
+      uploads: [],
+      projects: []
+    });
+    return state;
+  }
+  function mergeClaimsFromVault(rows) {
+    ensureStateShell();
+    const remote = Array.isArray(rows) ? rows : [];
+    const byId = {};
+    (state.claims || []).forEach(function (c) { byId[c.id] = c; });
+    remote.forEach(function (r) {
+      if (!r || !r.id) return;
+      const prev = byId[r.id] || {};
+      byId[r.id] = Object.assign({}, prev, r, {
+        page: r.page || prev.page || {}
+      });
+    });
+    state.claims = Object.keys(byId).map(function (k) { return byId[k]; });
+    save();
+  }
+
+  let _claimsSyncPromise = null;
+  /** 拉 vault 认领并入本地；mock / 无 API 时立即 resolve。rail 与概览共用。 */
+  function ensureClaimsSynced() {
+    if (_claimsSyncPromise) return _claimsSyncPromise;
+    if (!(window.WFApi && WFApi.listClaims && !WFApi.isMock())) {
+      _claimsSyncPromise = Promise.resolve(approvedClaims());
+      return _claimsSyncPromise;
+    }
+    _claimsSyncPromise = WFApi.listClaims().then(function (rows) {
+      if (Array.isArray(rows)) mergeClaimsFromVault(rows);
+      return approvedClaims();
+    }).catch(function () {
+      return approvedClaims();
+    });
+    return _claimsSyncPromise;
+  }
+
+  /** catalog 中归属已通过认领 slug 的字（brand.slug / ownerInfo.id 等） */
+  function fontsOwnedByClaims(claims) {
+    const list = Array.isArray(claims) ? claims : approvedClaims();
+    const slugs = {};
+    list.forEach(function (c) {
+      if (c && c.slug) slugs[String(c.slug).toLowerCase()] = true;
+    });
+    const keys = Object.keys(slugs);
+    if (!keys.length || !(window.WFProto && WFProto.getFonts)) return [];
+    return (WFProto.getFonts() || []).filter(function (f) {
+      if (!f) return false;
+      const brand = f.brand && f.brand.slug ? String(f.brand.slug).toLowerCase() : '';
+      if (brand && slugs[brand]) return true;
+      const ids = [f.ownerInfo, f.foundryInfo, f.makerInfo]
+        .map(function (info) { return info && info.id ? String(info.id).toLowerCase() : ''; })
+        .filter(Boolean);
+      return ids.some(function (id) { return slugs[id]; });
+    });
+  }
+
   function updateClaimPage(id, page) {
     const c = approvedClaims().filter(function (x) { return x.id === id; })[0];
     if (!c) return false;
     c.page = {
-      intro: String(page.intro || '').slice(0, 500),
-      site: String(page.site || '').slice(0, 200),
-      links: String(page.links || '').slice(0, 300),
-      repo: String(page.repo || '').slice(0, 200)
+      intro: String(page.intro || '').slice(0, 2000),
+      site: String(page.site || '').slice(0, 500),
+      links: String(page.links || '').slice(0, 1000),
+      repo: String(page.repo || '').slice(0, 500),
+      publishedAt: page.publishedAt != null ? String(page.publishedAt) : ((c.page && c.page.publishedAt) || '')
     };
     log('更新页资料', c.name);
     save();
@@ -463,61 +748,111 @@
   function renderRail(el) {
     const active = el.getAttribute('data-active') || '';
     const u = WFChrome.user() || {};
-    const d = desk();
-    const nav = d === 'page' ? NAV_PAGE : NAV_USE;
-    if (state && active && !nav.some(function (n) { return n.id === active; })) {
-      location.replace(WFChrome.href(nav[0].path));
-      return;
-    }
-    const switcher = approvedClaims().length
-      ? '<div class="desk-switch" role="tablist" aria-label="工作台">' +
-          '<a href="' + WFChrome.href('app/index.html?desk=use') + '"' + (d === 'use' ? ' class="is-on"' : '') + '>用字</a>' +
-          '<a href="' + WFChrome.href('app/pages.html?desk=page') + '"' + (d === 'page' ? ' class="is-on"' : '') + '>我的页</a></div>'
+    const nav = primaryNav();
+    const vaultAdmin = can('vaultAdmin')
+      ? '<a href="https://vault.windfonts.com/admin" target="_blank" rel="noopener">' + WFChrome.icon('settings') + '运营后台</a>'
       : '';
     el.innerHTML =
       '<a class="wordmark" href="' + WFChrome.href('index.html') + '"><img src="' + WFChrome.href('assets/icon.webp') + '" alt="" width="22" height="22" /><span>文风字体</span></a>' +
-      switcher +
       '<nav class="rail-nav" aria-label="控制台导航">' + nav.map(function (n) {
         return '<a href="' + WFChrome.href(n.path) + '"' + (n.id === active ? ' class="is-active"' : '') + '>' + WFChrome.icon(n.icon) + n.label + '</a>';
       }).join('') + '</nav>' +
       '<div class="rail-foot"><div class="who"><strong>' + esc(u.name || '未登录') + '</strong><span>' + esc(u.email || '') + '</span></div>' +
-        '<a href="' + WFChrome.href('fonts.html') + '">' + WFChrome.icon('font-size') + '字体库</a><a href="' + WFChrome.href('docs.html') + '">' + WFChrome.icon('book') + '文档</a>' +
+        '<a href="' + WFChrome.href('app/notifications.html') + '" id="railNotif">' + WFChrome.icon('mail') + '通知<span class="rail-badge" id="railNotifBadge" hidden></span></a>' +
+        vaultAdmin +
+        '<a href="' + WFChrome.href('app/team.html') + '">' + WFChrome.icon('group') + '团队</a>' +
+        '<a href="' + WFChrome.href('fonts.html') + '">' + WFChrome.icon('font-size') + '字体库</a>' +
+        '<a href="' + WFChrome.href('docs.html') + '">' + WFChrome.icon('book') + '文档</a>' +
         '<button type="button" class="btn-text" data-theme-toggle data-label="主题" aria-label="切换主题">' + WFChrome.icon(WFChrome.theme() === 'dark' ? 'sun' : 'moon') + '主题</button>' +
         '<button type="button" class="btn-text" id="railLogout">' + WFChrome.icon('exit') + '退出</button></div>';
     el.querySelector('[data-theme-toggle]').addEventListener('click', WFChrome.toggleTheme);
     const out = el.querySelector('#railLogout');
-    if (out) out.addEventListener('click', function () { WFChrome.logout(); location.href = WFChrome.href('index.html'); });
+    if (out) out.addEventListener('click', function () {
+      const go = function () { location.href = WFChrome.href('index.html'); };
+      if (window.WFAuth && WFAuth.signOut) {
+        WFAuth.signOut().then(function () { WFChrome.logout(); go(); }).catch(function () { WFChrome.logout(); go(); });
+      } else {
+        WFChrome.logout();
+        go();
+      }
+    });
     const on = el.querySelector('.rail-nav a.is-active');
     if (on && on.scrollIntoView) on.scrollIntoView({ inline: 'center', block: 'nearest' });
-  }
-  function isDevPreviewHost(host) {
-    host = String(host || '').toLowerCase();
-    if (host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0') return true;
-    if (host.indexOf('staging') >= 0 || host.slice(-6) === '.local') return true;
-    /* private LAN — Designer 预览常走 192.168.*，须免登 */
-    if (/^192\.168\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
-    if (/^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
-    if (/^172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3}$/.test(host)) return true;
-    return false;
+    if (!el._claimsSynced) {
+      el._claimsSynced = true;
+      const beforePersona = consolePersona();
+      const beforeNav = primaryNav().map(function (n) { return n.id; }).join(',');
+      ensureClaimsSynced().then(function () {
+        const afterNav = primaryNav().map(function (n) { return n.id; }).join(',');
+        if (consolePersona() !== beforePersona || afterNav !== beforeNav) renderRail(el);
+      });
+    }
+    if (window.WFApi && WFApi.listNotifications && !WFApi.isMock()) {
+      WFApi.listNotifications(20).then(function (data) {
+        const n = (data && data.unread) || 0;
+        const badge = document.getElementById('railNotifBadge');
+        if (!badge) return;
+        if (n > 0) {
+          badge.hidden = false;
+          badge.textContent = n > 9 ? '9+' : String(n);
+        } else {
+          badge.hidden = true;
+        }
+      }).catch(function () { /* ignore */ });
+    }
   }
   function gate() {
-    /* 本机 / LAN / staging：默认演示免登（无需 ?demo=1）；生产域名禁止 */
-    var host = String(location.hostname || '').toLowerCase();
-    var wantDemo = !!WFProto.getQuery('demo') || isDevPreviewHost(host);
-    if (!WFChrome.user() && wantDemo && isDevPreviewHost(host)) {
-      WFChrome.login({ role: 'admin', name: '演示预览', email: 'demo@local' });
-      try { document.documentElement.setAttribute('data-wf-demo', '1'); } catch (e) { /* ignore */ }
+    /* ?demo=1 仅本机 / 显式允许；生产域名禁止免登管理员 */
+    if (!WFChrome.user() && WFProto.getQuery('demo')) {
+      var host = String(location.hostname || '').toLowerCase();
+      var allow =
+        host === 'localhost' ||
+        host === '127.0.0.1' ||
+        host === '0.0.0.0' ||
+        host.endsWith('.local') ||
+        !!(window.WFProto && WFProto.ALLOW_DEMO);
+      if (allow) WFChrome.login({ role: 'admin', source: 'demo' });
     }
-    if (!(WFChrome.canAccessApp && WFChrome.canAccessApp())) {
-      const back = location.pathname.split('/').slice(-1)[0];
-      var login = WFChrome.href('login.html?next=app&back=' + encodeURIComponent(back));
-      if (isDevPreviewHost(host)) {
-        /* 仍未进：给明显 mock 指引，避免被登录墙误读成坏页 */
-        location.replace(login + (login.indexOf('?') >= 0 ? '&' : '?') + 'hint=demo');
-      } else {
-        location.replace(login);
-      }
+    const back = location.pathname.split('/').slice(-1)[0];
+    const loginUrl = WFChrome.href('login.html?next=app&back=' + encodeURIComponent(back));
+    const needVault = window.WFAuth && WFAuth.requiresVaultSession && WFAuth.requiresVaultSession();
+
+    function deny() {
+      location.replace(loginUrl);
       return false;
+    }
+
+    if (needVault && window.WFAuth && WFAuth.syncFromVault) {
+      /* 生产：每次进控制台都对一下 vault 会话；清掉假 localStorage 壳 */
+      WFAuth.syncFromVault().then(function (profile) {
+        if (profile && WFChrome.canAccessApp()) {
+          return load().then(function () {
+            if (!WFChrome.user() || WFChrome.user().source !== WFAuth.AUTH_USER_SOURCE) {
+              location.reload();
+            }
+          });
+        }
+        if (WFAuth.clearOrphanLocalUser) WFAuth.clearOrphanLocalUser();
+        location.replace(loginUrl);
+      }).catch(function () {
+        if (WFAuth.clearOrphanLocalUser) WFAuth.clearOrphanLocalUser();
+        location.replace(loginUrl);
+      });
+      /* 同步完成前先挡住渲染；有有效 vault 壳则短暂放行避免闪白 */
+      const u = WFChrome.user();
+      if (u && u.source === (WFAuth.AUTH_USER_SOURCE || 'vault-nextauth') && WFChrome.canAccessApp()) return true;
+      return false;
+    }
+
+    if (!(WFChrome.canAccessApp && WFChrome.canAccessApp())) {
+      if (window.WFAuth && WFAuth.syncFromVault) {
+        WFAuth.syncFromVault().then(function (profile) {
+          if (profile && WFChrome.canAccessApp()) location.reload();
+          else deny();
+        }).catch(function () { deny(); });
+        return false;
+      }
+      return deny();
     }
     return true;
   }
@@ -634,15 +969,76 @@
     const fonts = (p.fonts || []).map(function (f) {
       const meta = fontMeta(f.fontId) || {};
       const family = String(meta.family || '').toLowerCase() || ('wenfeng-' + String(f.fontId || '').toLowerCase());
+      const isUpload =
+        !!meta.custom ||
+        String(f.fontId || '').indexOf('up-') === 0 ||
+        String(f.source || '') === 'upload';
+      if (isUpload) {
+        const fam = String(meta.family || f.family || '').trim();
+        const weights = (f.weights && f.weights.length
+          ? f.weights
+          : meta.weights && meta.weights.length
+            ? meta.weights
+            : ['Regular']
+        ).map(function (w) { return String(w); });
+        const row = {
+          family: fam || String(f.fontId || ''),
+          weights: weights,
+          subset: 'full',
+          source: 'upload',
+          uploadId: String(meta.id || f.fontId || f.uploadId || '')
+        };
+        const sub = f.subset || {};
+        if (sub.mode === 'text' && String(sub.text || '').trim()) {
+          row.text = String(sub.text).slice(0, 8000);
+        }
+        return row;
+      }
       const weights = (f.weights && f.weights.length ? f.weights : ['regular']).map(function (w) {
         return WFProto.weightName(family, w);
       });
+      let catalogFont = null;
+      if (window.WFProto) {
+        const slug = String(f.fontId || family || '').replace(/^wenfeng-/i, '');
+        if (WFProto.getFontBySlug) catalogFont = WFProto.getFontBySlug(slug);
+        if (!catalogFont && WFProto.getBySlug) catalogFont = WFProto.getBySlug(slug);
+        if (!catalogFont && WFProto.catalog) {
+          const list = WFProto.catalog() || [];
+          catalogFont = list.filter(function (x) {
+            return String(x.family || '').toLowerCase() === family ||
+              String(x.normalized || '').toLowerCase() === slug.toLowerCase() ||
+              String(x.id || '') === String(f.fontId || '');
+          })[0] || null;
+        }
+      }
+      const citeClosed = catalogFont && Array.isArray(catalogFont.tags) &&
+        catalogFont.tags.indexOf('cite-closed') !== -1;
+      const hasGrant = citeClosed && window.WFProto && WFProto.hasCertGrant &&
+        WFProto.hasCertGrant(catalogFont);
+      if (citeClosed && hasGrant) {
+        const fontKey = String(
+          (catalogFont && (catalogFont.normalized || catalogFont.id)) ||
+          family.replace(/^wenfeng-/i, '')
+        ).toLowerCase();
+        return {
+          family: family,
+          weights: weights,
+          subset: 'full',
+          source: 'cert',
+          fontKey: fontKey
+        };
+      }
+      if (citeClosed && !hasGrant) {
+        /* 未过审：不进发布清单（避免 bake 撞公共包 404） */
+        return null;
+      }
       return {
         family: family,
         weights: weights,
-        subset: packageSubset(f.subset, d.subset)
+        subset: packageSubset(f.subset, d.subset),
+        source: 'catalog'
       };
-    });
+    }).filter(Boolean);
     return {
       slug: String(p.slug || '').toLowerCase(),
       name: p.name || p.slug,
@@ -653,12 +1049,33 @@
     };
   }
 
+  /** 把 vault 上传行记进本地 state.uploads，供 fontMeta / 发布清单用 */
+  function rememberUpload(row) {
+    if (!row || !row.id) return;
+    ensureStateShell();
+    state.uploads = (state.uploads || []).filter(function (u) { return u.id !== row.id; });
+    state.uploads.unshift({
+      id: row.id,
+      name: row.name || row.id,
+      family: row.family || '',
+      weights: row.weights || [],
+      glyphCount: row.glyphCount || 0,
+      format: row.format || '',
+      size: row.size || 0,
+      license: row.license || '',
+      status: row.status || 'processing',
+      projectId: row.projectId || '',
+      uploadedAt: row.uploadedAt || new Date().toISOString()
+    });
+    save();
+  }
+
   /**
    * 发布到 vault：POST {apiOrigin}/api/projects/publish。
    * 写入走 app（vault）；嵌入 URL 仍是地区 CDN /p/{slug}/index.css。
    */
   function publishOrigin() {
-    return (window.WFProto && WFProto.CSS_API) || 'https://app.windfonts.com';
+    return (window.WFProto && WFProto.CSS_API) || 'https://vault.windfonts.com';
   }
 
   function publishProject(p) {
@@ -697,20 +1114,23 @@
     state: function () { return state; },
     ROLES: ROLES, roleLabel: roleLabel,
     inviteMember: inviteMember, setMemberRole: setMemberRole, removeMember: removeMember,
-    submitClaim: submitClaim, updateClaimPage: updateClaimPage, approvedClaims: approvedClaims,
-    desk: desk, isPro: isPro,
-    projects: projects, project: project, createProject: createProject, removeProject: removeProject,
+    submitClaim: submitClaim, updateClaimPage: updateClaimPage, mergeClaimsFromVault: mergeClaimsFromVault, approvedClaims: approvedClaims,
+    ensureClaimsSynced: ensureClaimsSynced, hydrateFromVault: hydrateFromVault, fontsOwnedByClaims: fontsOwnedByClaims,
+    consolePersona: consolePersona, primaryNav: primaryNav,
+    desk: desk, isPro: isPro, can: can, canLabel: canLabel,
+    projects: projects, project: project, replaceProject: replaceProject, createProject: createProject, removeProject: removeProject,
     currentVersion: currentVersion, pushVersion: pushVersion, rollback: rollback,
     validHost: validHost, addDomain: addDomain, removeDomain: removeDomain, verifyDomain: verifyDomain,
     allDomains: allDomains, blockedHosts: blockedHosts, usageByFont: usageByFont, fontUsage: fontUsage, statusTotals: statusTotals,
     toCsv: toCsv, download: download,
     addFont: addFont, removeFont: removeFont, removeWeight: removeWeight, removeUpload: removeUpload,
+    rememberUpload: rememberUpload,
     fontMeta: fontMeta,
     uniqueChars: uniqueChars, parseRanges: parseRanges, subsetGlyphs: subsetGlyphs, subsetBytes: subsetBytes,
     subsetLabel: subsetLabel, projectBytes: projectBytes,
     projectManifest: projectManifest, publishProject: publishProject, publishOrigin: publishOrigin,
     mintApiKeyAsync: mintApiKeyAsync, apiKeyLooksVault: apiKeyLooksVault, ensureVaultApiKey: ensureVaultApiKey,
     series: series, sparkline: sparkline, fmtDate: fmtDate, fmtGB: fmtGB,
-    NAV: NAV_USE
+    NAV: NAV_CUSTOMER
   };
 })();

@@ -62,7 +62,7 @@
         live.classList.remove('is-pending');
       };
       const cap = setTimeout(done, 1200);
-      WFProto.readyFace(font.family, weight, (live.textContent || '').replace(/\s+/g, '')).then(done, done);
+      WFProto.readyFace(font.family, weight, (live.textContent || '').replace(/\s+/g, ''), 'zh').then(done, done);
     }
 
     function applyLive() {
@@ -70,7 +70,7 @@
       if (!f) return;
       const w = heavyWeight(f);
       const stack = WFProto.cssFamilyStack(f.family);
-      WFProto.ensureFontCss(f.family, w);
+      WFProto.ensureFontCss(f.family, w, 'zh');
       live.style.fontFamily = stack;
       live.style.fontWeight = w;
       liveName.textContent = f.name;

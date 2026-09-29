@@ -427,6 +427,28 @@
     const u = new URL(location.href);
     return u.origin + u.pathname.replace(/[^/]*$/, '') + path;
   }
+  /** 爬虫可读的固定 OG 落地：vault /share/font/{id} → og:image=/api/og/font */
+  function socialShareUrl(fontId, rec, opts) {
+    const base = (window.WFProto && WFProto.CSS_API) || 'https://vault.windfonts.com';
+    const q = [];
+    if (opts && opts.view) q.push('view=' + encodeURIComponent(opts.view));
+    if (rec && rec.tpl) q.push('tpl=' + encodeURIComponent(rec.tpl));
+    const t = String((rec && rec.hero) || '').trim().slice(0, 80);
+    const s = String((rec && rec.sub) || '').trim().slice(0, 80);
+    if (t) q.push('t=' + qval(t));
+    if (s) q.push('s=' + qval(s));
+    return String(base).replace(/\/$/, '') + '/share/font/' + encodeURIComponent(fontId) +
+      (q.length ? '?' + q.join('&') : '');
+  }
+  function ogImageUrl(fontId, rec) {
+    const base = (window.WFProto && WFProto.CSS_API) || 'https://vault.windfonts.com';
+    const q = new URLSearchParams();
+    const title = String((rec && rec.hero) || '').trim() || String(fontId);
+    q.set('title', title.slice(0, 48));
+    q.set('name', String(fontId));
+    if (rec && rec.sub) q.set('sub', String(rec.sub).slice(0, 60));
+    return String(base).replace(/\/$/, '') + '/api/og/font?' + q.toString();
+  }
 
   window.addEventListener('resize', function () {
     document.querySelectorAll('.glyph-pair .wall-stage[data-card]').forEach(function (stage) { fit(stage); });
@@ -453,6 +475,8 @@
     paintStudio: paintStudio,
     readShare: readShare,
     sharePath: sharePath,
-    shareUrl: shareUrl
+    shareUrl: shareUrl,
+    socialShareUrl: socialShareUrl,
+    ogImageUrl: ogImageUrl
   };
 })();

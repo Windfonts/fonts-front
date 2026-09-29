@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <script>try{if(localStorage.getItem("wf-theme")==="dark")document.documentElement.setAttribute("data-theme","dark");if(localStorage.getItem("wf-scale")==="lg")document.documentElement.setAttribute("data-scale","lg");if(localStorage.getItem("wf-view")==="dev")document.documentElement.setAttribute("data-view","dev");if(/[?&]wide=1(?:&|$)/.test(location.search))document.documentElement.setAttribute("data-wide","1")}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>永字墙 · 文风字体</title>
+  <meta name="description" content="全库永字样张墙：每张卡片用字体自己的字型排印「永」。实验室页，不进生产导航。" />
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/css/fonts.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/tokens.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/base.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/components.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/site.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/yong-wall.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/wide-embed.css?v=20260929ui1" />
+  <link rel="icon" type="image/webp" href="/assets/icon.webp" />
+</head>
+<body class="page-yong-wall">
+  <header data-topbar data-active="fonts"></header>
+
+  <main class="container yw-page">
+    <div class="page-head">
+      <p class="yw-kicker">实验室 · 不进生产导航</p>
+      <h1>永字墙</h1>
+      <p class="lead">全库一格一「永」——用字体自己的字型排印。搜索名、点谱系组或品牌前缀筛选；卡片进详情。</p>
+    </div>
+
+    <div class="yw-toolbar">
+      <label class="yw-search">
+        <span class="visually-hidden">搜索字体名</span>
+        <input id="ywQ" type="search" placeholder="搜索中文名 / 英文 / family…" autocomplete="off" />
+      </label>
+      <p class="count-line" id="ywCount">正在加载…</p>
+    </div>
+
+    <div class="chips yw-chips" id="ywChips" aria-label="分组筛选"></div>
+
+    <section class="yw-grid" id="ywGrid" aria-live="polite">
+      <p class="yw-empty">正在加载字体目录…</p>
+    </section>
+  </main>
+
+  <footer id="wfExtraFooter"></footer>
+
+  <script src="/js/wf-proto.js?v=20260929g5"></script>
+  <script src="/js/wf-chrome.js?v=20260929ui1"></script>
+  <script src="/js/pages/yong-wall.js?v=20260929ui1"></script>
+</body>
+</html>

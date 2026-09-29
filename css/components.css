@@ -27,7 +27,7 @@
 .topbar-end > a .icon { color: var(--gray); }
 .topbar-end > a:hover { text-decoration: none; background: var(--fill); }
 .topbar-end .count { color: var(--ink); margin-left: 0.25em; font-weight: var(--fw-title); }
-.topbar-end .count[data-count="0"] { color: var(--gray-2); font-weight: var(--fw-body); }
+.topbar-end .count[data-count="0"] { display: none; }
 .topsearch { position: relative; display: flex; align-items: center; }
 .topsearch .icon { position: absolute; left: 0.8rem; width: 1rem; height: 1rem; color: var(--gray-2); pointer-events: none; }
 .topsearch input {
@@ -83,9 +83,6 @@
   font-size: var(--fs-13);
 }
 .site-extra-footer .extra-inner {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -262,12 +259,12 @@ html[data-view="dev"] body.page-bag main .for-design { display: unset; }
   display: grid; place-items: center; font-size: var(--fs-16); font-weight: var(--fw-title);
 }
 .foundry img { background: var(--face); }
-.foundry .mark { background: var(--ink); color: var(--on-ink); }
+.foundry .mark { background: var(--ink); color: var(--on-ink); letter-spacing: -0.06em; line-height: 1; font-size: var(--fs-14); }
 .foundry > span { display: grid; gap: 0.1rem; min-width: 0; overflow: hidden; }
 .foundry .name { font-size: var(--fs-14); font-weight: var(--fw-title); display: flex; align-items: center; flex-wrap: wrap; gap: 0 0.35em; min-width: 0; max-width: 100%; }
 .foundry .name .en { flex-basis: 100%; min-width: 0; max-width: 100%; font-size: var(--fs-12); color: var(--gray-2); font-weight: var(--fw-body); font-family: var(--font-mono); letter-spacing: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .foundry .sub { font-size: var(--fs-12); color: var(--gray); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.foundry-sm img, .foundry-sm .mark { width: 24px; height: 24px; font-size: var(--fs-12); }
+.foundry-sm img, .foundry-sm .mark { width: 24px; height: 24px; font-size: var(--fs-11); }
 a.foundry:hover { text-decoration: none; }
 a.foundry:hover .name { text-decoration: underline; text-underline-offset: 0.2em; }
 
@@ -484,4 +481,54 @@ a.foundry:hover .name { text-decoration: underline; text-underline-offset: 0.2em
   .site-extra-footer .extra-copy { overflow-wrap: anywhere; }
   .site-extra-footer .extra-inner { flex-direction: column; align-items: flex-start; }
   .dialog { width: 100%; }
+}
+
+/* —— 谱系图大模态（详情 / 厂商页嵌入） —— */
+.dialog-back-lineage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-4);
+}
+.dialog.dialog-lineage {
+  width: min(72rem, 100%);
+  height: min(90vh, 52rem);
+  max-height: calc(100dvh - 2rem);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--paper);
+}
+.dialog-lineage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--rule);
+  flex: 0 0 auto;
+  /* 与图面同色，只留底部分隔线 */
+  background: transparent;
+}
+.dialog-lineage-head h3 {
+  margin: 0;
+  font-size: var(--fs-16);
+  font-weight: var(--fw-title);
+  color: var(--ink);
+}
+.dialog-lineage-close { flex: none; }
+.dialog-lineage-frame {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  border: 0;
+  background: var(--paper);
+}
+@media (max-width: 768px) {
+  .dialog.dialog-lineage {
+    width: 100%;
+    height: calc(100dvh - 1.5rem);
+    max-height: none;
+  }
 }

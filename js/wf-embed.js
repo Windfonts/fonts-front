@@ -25,7 +25,15 @@
     return estimateBytes(v.glyphs(font));
   }
 
+  function itemsNeedCert(items) {
+    return (items || []).some(function (it) { return !!(it && it.certGrant); });
+  }
+
   function fileUrl(it, weight, structure, origin) {
+    if (it && it.certGrant && WFProto.certCssApiUrl) {
+      /* 账号级：忽略 CDN / 静态拆包；主机固定 vault CSS_API */
+      return WFProto.certCssApiUrl(it.family, weight);
+    }
     const version = it.version && it.version !== 'full' ? it.version : 'full';
     const host = origin || WFProto.cdnOrigin();
     if (structure === 'static') {
@@ -83,22 +91,21 @@
 
   function budgetHtml(est) {
     if (!est) return '';
-    const tag = est.fromManifest ? '包体清单' : '估算';
     if (est.mode === 'clipped') {
       return (
         '<div class="use-budget" id="useBudget">' +
-          '<span class="use-budget-main">大约 <b>' + esc(est.primaryLabel) + '</b>（主款 · 当前档位 · ' + tag + '）</span>' +
-          '<span class="use-budget-extra">开启补缺后仍只多拉缺失字形；若带上兄弟款「' +
+          '<span class="use-budget-main">预估 ≈ <b>' + esc(est.primaryLabel) + '</b>（主款）</span>' +
+          '<span class="use-budget-extra">补全上限 + 同档「' +
           esc(est.peerName) +
-          '」，总体积上限约 ' +
+          '」≈ ' +
           esc(est.ceilingLabel) +
-          '（通常远小于两倍）</span>' +
+          '（含主款）</span>' +
         '</div>'
       );
     }
     return (
       '<div class="use-budget" id="useBudget">' +
-        '<span class="use-budget-main">大约 <b>' + esc(est.primaryLabel) + '</b>（当前字重与档位 · ' + tag + '）</span>' +
+        '<span class="use-budget-main">预估 ≈ <b>' + esc(est.primaryLabel) + '</b>（当前档）</span>' +
       '</div>'
     );
   }
@@ -187,17 +194,37 @@
     }).join('\n');
   }
 
+  function certAuthNote(list) {
+    const vault = (WFProto.CSS_API || 'https://vault.windfonts.com').replace(/\/$/, '');
+    const sample = (list && list[0]) || (vault + '/api/font-certs/css');
+    return '/* 账号级证书 CSS · 须 Authorization: Bearer <API Key> · 勿把 Key 写进 URL */\n' +
+      '/* 浏览器裸 <link> 带不了头；生产请加入项目发布 /p/{slug}/index.css（B2） */\n' +
+      '/* 调试：curl -H "Authorization: Bearer $WINDFONTS_KEY" "' + sample + '" */\n';
+  }
+
   function code(kind, items, opts) {
     opts = opts || {};
     const structure = opts.structure === 'static' ? 'static' : 'dynamic';
     const list = urls(items, structure, opts.origin);
     const display = opts.display || '';
+    const certMode = itemsNeedCert(items);
     if (kind === 'link') {
+      if (certMode) {
+        return certAuthNote(list) +
+          list.map(function (u) {
+            return '<!-- 不可直接用；改走服务端代理或项目 /p/ -->\n' +
+              '<!-- <link rel="stylesheet" href="' + u + '"> -->';
+          }).join('\n');
+      }
       return WFProto.CDN_LICENSE_NOTE + '\n<link rel="preconnect" href="' + apiOrigin() + '" crossorigin>\n' +
         (opts.preload ? list.map(function (u) { return '<link rel="preload" as="style" href="' + u + '">'; }).join('\n') + '\n' : '') +
         list.map(function (u) { return '<link rel="stylesheet" href="' + u + '">'; }).join('\n');
     }
     if (kind === 'import') {
+      if (certMode) {
+        return certAuthNote(list) +
+          list.map(function (u) { return "/* @import url('" + u + "'); */"; }).join('\n');
+      }
       return list.map(function (u) { return "@import url('" + u + "');"; }).join('\n');
     }
     if (kind === 'css') {
@@ -227,6 +254,11 @@
         '<link rel="stylesheet" href="' + url + '">';
     }
     if (kind === 'npm') {
+      if (certMode) {
+        return certAuthNote(list) +
+          '/* npm loader 暂不支持账号证书 CSS；请用项目发布或服务端带 Key 拉取 */\n' +
+          list.map(function (u) { return '// ' + u; }).join('\n');
+      }
       const rows = [];
       items.forEach(function (it) {
         const ver = it.version && it.version !== 'full' ? it.version : '';
@@ -299,25 +331,36 @@
     let kind = opts.kind || 'link';
     let cur = items;
     let curOpts = opts;
+    const certMount = itemsNeedCert(items);
     el.innerHTML =
       '<div class="use-bar">' +
-        (opts.cdn ? WFProto.cdnSwitchHtml() : '') +
-        '<div class="seg" role="group" aria-label="地址结构">' +
+        (certMount ? '' : (opts.cdn ? WFProto.cdnSwitchHtml() : '')) +
+        (certMount
+          ? '<p class="use-cert-note muted t-13" style="margin:0">账号证书 CSS · vault <code>/api/font-certs/css</code> · 须 API Key</p>'
+          : ('<div class="seg" role="group" aria-label="地址结构">' +
           '<button type="button" data-struct="dynamic"' + (curOpts.structure === 'static' ? '' : ' class="is-on"') + '>动态</button>' +
           '<button type="button" data-struct="static"' + (curOpts.structure === 'static' ? ' class="is-on"' : '') + '>静态</button>' +
-        '</div>' +
+        '</div>')) +
         '<div class="tabs" role="tablist">' + KINDS.map(function (k) {
           return '<button type="button" role="tab" data-kind="' + k.id + '"' + (k.id === kind ? ' class="is-on"' : '') + '>' + k.label + '</button>';
         }).join('') + '</div>' +
       '</div>' +
-      '<div class="use-budget-host" data-budget></div>' +
-      '<div class="code" style="margin-top:var(--s-4)"><button type="button" class="copy">' + WFChrome.icon('copy') + '复制</button><pre></pre></div>';
+      (certMount
+        ? '<p class="use-cite-meta muted t-13" data-cert-actions style="margin-top:var(--s-3)">' +
+          '<button type="button" class="btn-text" data-cert-preview>用本账号 Key 预览</button>' +
+          ' · 生产请加入项目发布 <code>/p/</code>（下一批）</p>'
+        : '') +
+      '<div class="use-code-stack">' +
+        '<div class="code"><button type="button" class="copy">' + WFChrome.icon('copy') + '复制</button><pre></pre></div>' +
+        '<div class="use-budget-host" data-budget><div data-budget-content></div></div>' +
+      '</div>';
     const pre = el.querySelector('pre');
     const budgetHost = el.querySelector('[data-budget]');
+    const budgetContent = el.querySelector('[data-budget-content]');
     function paintBudget() {
-      if (!budgetHost) return;
+      if (!budgetHost || !budgetContent) return;
       if (curOpts.budget === false) {
-        budgetHost.innerHTML = '';
+        budgetContent.innerHTML = '';
         return;
       }
       const resolve = curOpts.resolveFont || function (fam) {
@@ -325,7 +368,7 @@
           ? WFProto.getFontBySlug(String(fam || '').replace(/^wenfeng-/, ''))
           : null;
       };
-      budgetHost.innerHTML = budgetHtml(budgetEstimate(cur, resolve));
+      budgetContent.innerHTML = budgetHtml(budgetEstimate(cur, resolve));
     }
     function paint() {
       if (!pre.isConnected) return;
@@ -352,6 +395,37 @@
       });
     });
     el.querySelector('.copy').addEventListener('click', function () { WFChrome.copy(pre.textContent, '已复制代码'); });
+    const prevBtn = el.querySelector('[data-cert-preview]');
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        if (!window.WFApi || typeof WFApi.fetchFontCertCss !== 'function') {
+          WFChrome.toast('需要登录并持有 API Key');
+          return;
+        }
+        const it0 = cur[0] || {};
+        const fam = it0.family;
+        const wTok = ((it0.weights || ['regular'])[0]);
+        const wName = WFProto.weightName ? WFProto.weightName(fam, wTok) : wTok;
+        prevBtn.disabled = true;
+        const go = (window.WFApp && WFApp.ensureVaultApiKey)
+          ? WFApp.ensureVaultApiKey()
+          : Promise.resolve();
+        go.then(function () {
+          return WFApi.fetchFontCertCss(fam, wName);
+        }).then(function (css) {
+          let tag = document.getElementById('wf-cert-css-preview');
+          if (!tag) {
+            tag = document.createElement('style');
+            tag.id = 'wf-cert-css-preview';
+            document.head.appendChild(tag);
+          }
+          tag.textContent = css || '';
+          WFChrome.toast('已注入账号证书 CSS（本页预览）');
+        }).catch(function (err) {
+          WFChrome.toast((err && err.message) || '预览失败');
+        }).then(function () { prevBtn.disabled = false; });
+      });
+    }
     paint();
     return {
       setItems: function (items2) { cur = items2; paint(); },

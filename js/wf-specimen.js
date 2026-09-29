@@ -60,6 +60,7 @@
   const QIANZIWEN_EXCERPT = 80;
   const COMMON_3500_EXCERPT = 120;
   let COMMON_3500 = null;
+  let COMMON_3500_FAILED = false;
   let COMMON_3500_PROMISE = null;
   function loadCommon3500() {
     if (COMMON_3500) return Promise.resolve(COMMON_3500);
@@ -69,6 +70,7 @@
       : ((window.WFChrome && WFChrome.href) ? WFChrome.href('data/common-chars-3500.json') : 'data/common-chars-3500.json');
     COMMON_3500_PROMISE = fetch(url, { method: 'GET' })
       .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { COMMON_3500_FAILED = true; return ''; })
       .then(function (j) {
         COMMON_3500 = (j && typeof j.chars === 'string' && j.chars.length) ? j.chars : '';
         return COMMON_3500;
@@ -171,7 +173,7 @@
     '</li>';
   }
 
-  /* Viewport-gated package CSS: first screen (~8–12) intersects immediately; rest wait. */
+  /* 样张行进视口再拉包；首屏相交的立刻开始，其余等滚动。 */
   let specimenCssIo = null;
   function scheduleSpecimenCss(el) {
     if (!el) return;
@@ -384,6 +386,12 @@
     const pathName = WFProto.weightName(family, weight || '400');
     const key = family + '|' + pathName;
     if (cssRangeCache[key]) return cssRangeCache[key];
+    /* Cite-closed archive previews have no CDN/package coverage endpoint;
+       keep the character table local and let canvas/font loading decide glyph ink. */
+    if (WFProto.citeClosedFamily && WFProto.citeClosedFamily(family)) {
+      cssRangeCache[key] = Promise.resolve(null);
+      return cssRangeCache[key];
+    }
     cssRangeCache[key] = fetch(WFProto.packageResultUrl(family, pathName, 'full'))
       .then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.text(); })
       .then(parseUnicodeRanges)
@@ -414,6 +422,7 @@
       marks: { hans: null, hant: null, c3500: null },
       hit: { hans: 0, hant: 0, c3500: 0 },
       total: { hans: 0, hant: 0, c3500: 0 },
+      coverage: font.coverage || null, /* 目录静态下发：字体确定性产品，覆盖统计入库即算好 */
       hollow: {}
     };
 
@@ -538,11 +547,13 @@
       const key = activeKey();
       const marks = st.marks[key];
       const full = qzw();
+      /* 满覆盖时没有可筛内容：收起筛选后，避免保留旧的「只看缺字」状态。 */
+      if (marks && st.filter !== 'all' && st.hit[key] === st.total[key]) st.filter = 'all';
       /* 缺字视图必须扫全文——缺字常在节选之外，否则筛出来是空的 */
       const excerpt = st.charset === 'c3500' ? COMMON_3500_EXCERPT : QIANZIWEN_EXCERPT;
       const shown = st.filter === 'miss' ? full : full.slice(0, excerpt);
       const title = st.charset === 'c3500'
-        ? '常用汉字 · 3500（GB2312 一级截取）'
+        ? '常用字 · 3500（GB2312 一级表）'
         : (st.variant === 'hant' ? '常用漢字 · 千字文（繁體）' : '常用汉字 · 千字文（简体）');
       let html =
         '<h3>' + title +
@@ -577,28 +588,85 @@
       const key = activeKey();
       const marks = st.marks[key];
       if (!marks) {
-        summaryEl.innerHTML = '<p class="glyph-sum-line is-quiet">正在核对这款字收录了哪些字…</p>';
+        const bcov = st.coverage && st.coverage[st.charset === 'c3500' ? 'c3500' : st.variant];
+        if (bcov && bcov.total) {
+          const pct = Math.round(bcov.hit / bcov.total * 100);
+          const label = st.charset === 'c3500' ? '常用字' : '常用字';
+          summaryEl.innerHTML = '<p class="glyph-sum-line"><b>' + bcov.hit + '</b> / ' + bcov.total + ' ' + label +
+            '已收录 · ' + (pct >= 95 && bcov.hit < bcov.total ? '缺 ' + (bcov.total - bcov.hit) + ' 字' : '覆盖 ' + pct + '%') +
+            '</p><p class="glyph-legend is-quiet">逐字核对加载中…</p>';
+          return;
+        }
+        summaryEl.innerHTML = '<p class="glyph-sum-line is-quiet">' +
+          (st.charset === 'c3500' && COMMON_3500_FAILED
+            ? '常用字表加载失败，请刷新重试。'
+            : '正在核对这款字收录了哪些字…') + '</p>';
         return;
       }
       const total = st.total[key] || uniqueHits(qzw(), {}).total;
       const hit = st.hit[key];
       const miss = total - hit;
-      const pct = total ? Math.round(hit / total * 100) : 0;
-      /* 高覆盖时进度条与满条无法区分，改把缺口直接说出口；「缺 N 字」可点，直接筛出缺的字 */
+      /* 乙：满覆盖只保留轻提示；有缺字时才露出软文案 tabs。 */
+      const fullyCovered = miss === 0;
       let suffix;
-      if (miss === 0) suffix = '全部收录';
-      else if (pct >= 95) suffix = '缺 <button type="button" class="chip-miss" data-filter="miss">' + miss + '</button> 字';
-      else suffix = '覆盖 ' + pct + '%';
-      const label = st.charset === 'c3500' ? '常用 3500' : '常用字';
-      const extraBtn = st.charset === 'c3500'
+      if (fullyCovered) suffix = '<span class="glyph-summary-status">全部收录</span>';
+      else suffix = '缺 <button type="button" class="chip-miss" data-filter="miss">' + miss + '</button> 字';
+      const label = '常用字';
+      const qzLink = st.charset === 'c3500'
         ? ''
-        : ' · <button type="button" class="glyph-qz-link">通篇预览</button>';
+        : '<button type="button" class="glyph-qz-link">通篇预览</button>';
+      const filterCtl = (skipCov || fullyCovered) ? '' :
+        '<span class="lab-text-tabs lab-text-tabs--bare lab-ttab glyph-filter-soft" role="group" aria-label="筛选">' +
+          '<button type="button" data-f="all"' + (st.filter === 'all' ? ' class="is-on"' : '') + '>全部</button>' +
+          '<button type="button" data-f="hit"' + (st.filter === 'hit' ? ' class="is-on"' : '') + '>已收录</button>' +
+          '<button type="button" data-f="miss"' + (st.filter === 'miss' ? ' class="is-on"' : '') + '>缺字</button></span>';
+      const summaryActions = (qzLink || filterCtl)
+        ? '<span class="glyph-summary-actions">' +
+            (qzLink ? qzLink : '') + filterCtl +
+          '</span>'
+        : '';
       summaryEl.innerHTML =
-        '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' ' + label + '已收录 · ' + suffix +
-          extraBtn + '</p>' +
+        '<p class="glyph-sum-line"><b>' + hit + '</b> / ' + total + ' ' + label + ' · ' + suffix +
+          summaryActions + '</p>' +
         '<p class="glyph-legend">虚线框表示字体里没有这个字。' +
           (st.charset === 'c3500' ? '字表为 GB2312 一级按码位截取的 3500 字，逐 unicode-range 核对。' : '') +
         '</p>';
+      bindSummaryActions();
+    }
+
+    function applyFilter(next) {
+      if (!next) return;
+      st.filter = next;
+      renderBlocks();
+      syncTools();
+      if (st.filter === 'hit' || st.filter === 'miss') {
+        blocksEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function bindSummaryActions() {
+      if (!summaryEl) return;
+      summaryEl.querySelectorAll('[data-f]').forEach(function (b) {
+        b.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          applyFilter(b.getAttribute('data-f'));
+        });
+      });
+      summaryEl.querySelectorAll('.chip-miss').forEach(function (b) {
+        b.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          applyFilter('miss');
+        });
+      });
+      summaryEl.querySelectorAll('.glyph-qz-link').forEach(function (b) {
+        b.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          openQianziwenStele(font, { weight: weight, variant: st.variant });
+        });
+      });
     }
 
     function syncTools() {
@@ -608,11 +676,19 @@
       toolsEl.querySelectorAll('[data-sc]').forEach(function (b) {
         b.classList.toggle('is-on', b.getAttribute('data-sc') === st.variant);
       });
-      toolsEl.querySelectorAll('[data-f]').forEach(function (b) {
+      summaryEl.querySelectorAll('[data-f]').forEach(function (b) {
         b.classList.toggle('is-on', b.getAttribute('data-f') === st.filter);
       });
       const qzOnly = toolsEl.querySelector('[data-qz-only]');
-      if (qzOnly) qzOnly.hidden = st.charset === 'c3500';
+      if (qzOnly) {
+        const off = st.charset === 'c3500';
+        qzOnly.hidden = false;
+        qzOnly.querySelectorAll('button').forEach(function (b) {
+          b.disabled = off;
+          b.title = off ? '常用字表只有简体字形，无繁体对照' : '';
+        });
+        qzOnly.classList.toggle('is-off', off);
+      }
     }
 
     function applyRanges(ranges) {
@@ -697,6 +773,7 @@
         });
         renderBlocks();
         renderSummary();
+        syncTools();
         if (pendingQuery) renderQuery(pendingQuery);
       }).catch(function () {});
     }
@@ -704,15 +781,10 @@
     toolsEl.innerHTML =
       '<div class="seg-glyph" role="group" aria-label="字表">' +
         '<button type="button" data-cs="qz">千字文</button>' +
-        '<button type="button" data-cs="c3500">常用3500</button></div>' +
+        '<button type="button" data-cs="c3500">常用</button></div>' +
       '<div class="seg-glyph" role="group" aria-label="写法" data-qz-only>' +
         '<button type="button" data-sc="hans">简</button>' +
-        '<button type="button" data-sc="hant">繁</button></div>' +
-      (skipCov ? '' :
-        '<div class="seg-glyph" role="group" aria-label="筛选">' +
-          '<button type="button" data-f="all">全部</button>' +
-          '<button type="button" data-f="hit">已收录</button>' +
-          '<button type="button" data-f="miss">缺字</button></div>');
+        '<button type="button" data-sc="hant">繁</button></div>';
     toolsEl.addEventListener('click', function (e) {
       const btn = e.target.closest ? e.target.closest('button') : null;
       if (!btn) return;
@@ -737,19 +809,28 @@
         renderBlocks(); renderSummary(); syncTools();
         return;
       }
-      const f = btn.getAttribute('data-f');
-      if (f) { st.filter = f; renderBlocks(); syncTools(); }
     });
+    /* Fallback delegation: direct binds in bindSummaryActions are primary */
     summaryEl.addEventListener('click', function (e) {
-      const chip = e.target.closest ? e.target.closest('.chip-miss') : null;
-      if (chip) {
-        st.filter = 'miss';
-        renderBlocks(); syncTools();
-        blocksEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      const t = e.target && e.target.nodeType === 1 ? e.target : (e.target && e.target.parentElement);
+      if (!t || !t.closest) return;
+      const filter = t.closest('[data-f]');
+      if (filter && summaryEl.contains(filter)) {
+        e.preventDefault();
+        applyFilter(filter.getAttribute('data-f'));
         return;
       }
-      const qz = e.target.closest ? e.target.closest('.glyph-qz-link') : null;
-      if (qz) openQianziwenStele(font, { weight: weight, variant: st.variant });
+      const chip = t.closest('.chip-miss');
+      if (chip && summaryEl.contains(chip)) {
+        e.preventDefault();
+        applyFilter('miss');
+        return;
+      }
+      const qz = t.closest('.glyph-qz-link');
+      if (qz && summaryEl.contains(qz)) {
+        e.preventDefault();
+        openQianziwenStele(font, { weight: weight, variant: st.variant });
+      }
     });
 
     function paintFace() {
@@ -934,12 +1015,12 @@
   document.addEventListener('wf:picks', syncActs);
 
   window.WFSpecimen = {
-    scheduleSpecimenCss: scheduleSpecimenCss,
     PRESETS: PRESETS,
     GLYPH_BLOCKS: GLYPH_BLOCKS,
     rowHtml: rowHtml,
     renderRows: renderRows,
     appendRows: appendRows,
+    scheduleSpecimenCss: scheduleSpecimenCss,
     syncActs: syncActs,
     controlBar: controlBar,
     firstWeight: firstWeight,
