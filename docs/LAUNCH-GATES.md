@@ -9,7 +9,7 @@
 
 | 项 | 现状 | 上线要求 | 验收 |
 |---|---|---|---|
-| **详情路径** | `font-detail.html?slug=albbpht`（兼 `?id=`） | CDN/OSS/Nginx 将 `/fonts/{slug}` rewrite 到详情页；旧 UUID 链 301 到 slug | 打开 `/fonts/ibmps` 与线上一致；错误 slug → `404.html` |
+| **详情路径** | `/fonts/{slug}` rewrite → `font-detail.html last`（无 `?slug=`） | 保持 pathname 读 slug；HTML 根路径 `/js/` `/css/` | 打开 `/fonts/ibmps` 不请求 `/fonts/js/`；错误 slug 出 `.page-state` |
 | **目录真相源** | 本地 `data/fonts.json` 等 | 公开站从 API 或构建流水线拉目录；禁止手改生产 JSON 不入库 | 构建产物含最新目录；字段与 HANDOFF §3 契约一致 |
 | **统计** | 浏览 / 下载 / API 为 `localStorage` 叠加演示 | 服务端计数；详情「统计信息」读 API；样张导出打 download；CDN CSS 打 api | 多端数字一致；刷新不丢；无登录也可增浏览 |
 | **CDN `@font-face`** | 公开动态链接用 `cn` / `hk` / `en` 的 `/api/css`（以后反代重写）。预览优先 `cn.windfonts.com/fonts-packages/…/result.css`；`ensureFontCss` 去 `local()`、统一 `wenfeng-*` family、补 weight | 流水线 CSS 默认无 local()；包内字重与目录一致（如思源 Regular 勿挂 ExtraLight） | `hckht` 等与现网预览同形；本机装同族时 Bold ≠ Regular |
@@ -37,9 +37,9 @@ error_page 404 /404.html;
 
 | 生产 URL | 对应文件 |
 |---|---|
-| `/foundry/lxgw` | `foundry.html?slug=lxgw` |
+| `/foundry/lxgw` | `foundry.html`（JS 读 pathname） |
 | `/foundry` | `foundry.html`（索引） |
-| `/fonts/ibmps` | `font-detail.html?slug=ibmps` |
+| `/fonts/ibmps` | `font-detail.html`（JS 读 pathname） |
 | `/fonts` | `fonts.html`（列表） |
 | `/license-query` | `license-query.html` |
 
@@ -61,15 +61,17 @@ Ops / Nginx 建议：
 - [ ] `v5-*.html`、`*-options.html`、`oss-audit.html`、`lab.html` 不进生产入口（对照 / 研究页；导航不链）。**保留勿删**，见 [LAB.md](LAB.md)。
 
 ### B. 公开主路径冒烟
-- [ ] 首页：字林可换字；字体库链可用
-- [ ] 字体库：分类 / **风格** / **品牌** / 许可可筛；按热门排序；卡片露浏览量
-- [ ] 详情：`?slug=` 与 `?id=` 均可；字重 Thin→Bold 视觉递增；查字可用
-- [ ] 嵌入：中国/香港/国际节点、完整/中文子集、link/@import/css/npm 可复制
+- [ ] 首页：字林可换字；「浏览字体库」是 `/fonts`；大标题是该款面（不是系统黑体混排）
+- [ ] 字体库：分类 / **风格** / **品牌** / 许可可筛；按热门排序
+- [ ] 预览框自己打字 / 点「诗句」「中英数」：可见行补 `zh`/`full`，禁止只改文字
+- [ ] 下滑加载更多：新行用当前预览字
+- [ ] 详情：`/fonts/{slug}` 与旧 `?slug=` / `?id=` 均可；字重 Thin→Bold 视觉递增
+- [ ] 嵌入：`cn/hk/en.windfonts.com/api/css`，无匿名 `text=`
 - [ ] 文档：REST + CSS 多字体 + NPM 示例与现网口径一致
-- [ ] 顶栏：未登录不显示控制台；登录注册/管理员可见
+- [ ] 顶栏：未登录不显示控制台；链接无 `.html`
 
 ### C. 字体渲染回归（必测一款多字重）
-- [ ] `font-detail.html?slug=ibmps`：Regular / Text / Bold 墨量分离
+- [ ] `/fonts/ibmps`：Regular / Text / Bold 墨量分离
 - [ ] 本机已装同族字体时仍正确（验证无 `local()` 污染）
 - [ ] 网络面板：各字重请求的是 `/…/{thin|regular|text|bold}/web/*.woff2`
 
@@ -87,7 +89,7 @@ Ops / Nginx 建议：
 
 已在原型补齐、不依赖基建的：列表品牌/风格筛、卡片浏览量、列表按热门排序、查字、slug 查询参数、文档、字重 local() 修复。首页不重复放热门区块（字林 + 同分类已够；热门只在 `fonts.html?sort=popular`）。
 
-仍卡在基建、**不要用更多前端 hack 顶替**的：真路径 `/fonts/slug`、真统计、真登录、CDN CSS 源头修正、REST 网关。
+路径 `/fonts/{slug}` `/foundry/{slug}` 已在边缘。仍卡基建、不要用前端顶替的：真统计、顾客 SSO、REST 网关与文档一致。
 
 ## 4. 相关文档
 

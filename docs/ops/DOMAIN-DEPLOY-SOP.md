@@ -65,7 +65,54 @@ aliyun oss --profile wenpai cp <file> oss://wenfeng-web-hz/<key> \
 
 ### 2.4 店面预览包
 
-列表 / 首页短样张走 `fonts-packages/{Norm}/{Weight}/preview-shop/`（字体桶 `wenfeng-fonts`，不是网页桶）。现网 shop 包大约 41 个汉字（「上中体到动南又在地处天文日时月水江派流看行起里间风」一类），**盖不住**「春风又绿江南岸」的春/绿/岸，也盖不住首页「让中文字体，在网页上流动」的让/字/网页。前端 `ensureFontCss(..., text)` 必须按 unicode-range 升级 zh → full。用户在字体库改预览字（`setSample`）也要按新字再跑，禁止只改 `textContent`。不要公开 `GET /api/css?text=`。
+列表 / 首页短样张走 `fonts-packages/{Norm}/{Weight}/preview-shop/`（字体桶 `wenfeng-fonts`，不是网页桶）。现网 shop 包大约 41 个汉字（「上中体到动南又在地处天文日时月水江派流看行起里间风」一类），**盖不住**「春风又绿江南岸」的春/绿/岸，也盖不住首页「让中文字体，在网页上流动」的让/字/网页。
+
+规则：
+
+- `ensureFontCss(family, weight, 'preview-shop', text)` 按注入 CSS 的 `unicode-range` 检查 `text`；盖不住就升级 `zh`，再不行 `full`。
+- `WFProto.setSample` **必须**按新字再跑（输入框、预设按钮、粘贴）。禁止只改 `[data-specimen]` 的 `textContent`。
+- 禁止公开 `GET /api/css?text=`。
+- 下滑加载的新行用**当前**样张去拉包，不要用页面刚打开时的默认句。
+- 字库本身没有汉字（AAR / Thai / Viet 等）：即使用户输入中文，补 `zh`/`full` 也变不出这款字的中文，会走系统黑体。这是字库覆盖，不是包坏了。
+
+### 2.5 发版步骤（公网口径，按这个做）
+
+仓：`~/Projects/fonts-front` **main**。不要从 `fonts-front-v4-lab` 灌公网。
+
+1. 改 `js/` `css/` 后，**所有引用该文件的 HTML** 同步 bump `?v=`。只换 JS 不换 HTML 戳 = 边缘继续 HIT 旧 JS。
+2. `git push origin main`。
+3. 文件拷到 **devops**，用 `aliyun oss --profile wenpai --region cn-hangzhou` 写入 `oss://wenfeng-web-hz/<key> --force`。Mac ossutil / 广州桶 / feicode 磁盘 rsync **都不算**发版。
+4. 验收（不够 200）：
+
+```bash
+# 戳必须与刚推的 main HTML 一致
+curl -sS https://app.windfonts.com/ | grep -oE 'wf-(proto|chrome)\.js\?v=[^"]+'
+curl -sS https://app.windfonts.com/fonts | grep -oE 'wf-proto\.js\?v=[^"]+'
+# rewrite 页不能出现相对 js/
+curl -sS https://app.windfonts.com/fonts/ibmps | grep -E 'src="/js/|href="/css/' | head
+# 顶栏脚本是 ui3+（href → livePagePath）
+```
+
+5. HTML 按**浏览器路径**缓存约 1m。`/foundry/zcool` 可能仍 HIT 旧壳；等 TTL 或删边缘 `/var/cache/openresty/windfonts_app/` 对应 key。
+6. 换 chrome / proto / 预览逻辑后，用浏览器走一遍 §2.6，不要只 curl。
+
+lab 仓里的 `scripts/deploy-oss-front.sh` 默认广州 `wenfeng-web`，**禁止**当公网发版。单文件 `cp` 只给已经对过「谁引用了这个戳」的补丁。
+
+### 2.6 用户路径（发版后必点）
+
+| 谁在干什么 | 期望 | 常见翻车 |
+|------------|------|----------|
+| 打开首页 | 大标题是这款字的面；「浏览字体库」→ `/fonts` | shop 包缺「让/字/网页」，没传 hero 文本去升级就会混系统字体 |
+| 点「换一款」 | 新款重新 `preview-shop` → 按标题文字升级 | 只换了 DOM family，CSS 还停在上一款 |
+| 进字体库 | 默认短句尽快变成该款面；骨架行被样张替换 | 只铺了 shop，春/绿/岸一直系统黑体 |
+| **自己在预览框打字 / 粘贴** | 140ms 后按新字补 `zh`/`full`，可见行一起变 | 只改了字，包还是 41 字那份 |
+| 点预设（短句/标题/段落/品牌/诗句/中英数） | 与打字同一条 `setSample` | 预设走了另一条只改 text 的路径 |
+| 下滑加载更多 | 新行用**当前输入**拉包 | IntersectionObserver 捕获的是进页时的默认句 |
+| 无汉字的卡（AAR/Thai/Viet）打中文 | 系统黑体，不要当成这款字 | 看起来「很多预览缺字」 |
+| 打开 `/fonts/{slug}`、`/foundry/{slug}` | 详情/厂商壳，不是加载空一句；资源 `/js/` | 相对路径 → `/fonts/js/` 404，卡在「正在加载字体…」 |
+| 书签仍是 `fonts.html` | 边缘 200，顶栏仍输出干净 URL | 只验了干净 URL，旧链 404 |
+| 详情「获取代码」 | toast + 开发视图；嵌入地址是 `cn/hk/en.windfonts.com/api/css`，无 `text=` | 误加匿名子集 |
+| 目录失败 / 找不到 | `.page-state` 占住版心，有回字体库 | 一句灰字贴在超宽白底 |
 
 ## 3. 发布 / 启停 vault（Next）
 
@@ -178,7 +225,7 @@ docker start fonts-vault
 
 | 场景 | 动作 |
 |---|---|
-| 前端坏页 | `rsync` 上一份备份，或从 `oss://wenfeng-web` 拉回；nginx conf 有 `.bak-static-*` |
+| 前端坏页 | 把上一版 main 的对象再 `cp` 进 `oss://wenfeng-web-hz`（不要拉广州 `wenfeng-web`）；HTML 路径缓存约 1m |
 | vault 坏版本 | `docker` 回滚上一镜像 tag 并 recreate |
 | CDN Host 误改回 app | 按 §6 再改 vault 并 reload；清相关 CSS 缓存键 |
 | api 网关误配 | 恢复 `api.windfonts.com.conf`；前端仍可直连 vault |
@@ -211,7 +258,7 @@ curl -sS -o /dev/null -w "stg=%{http_code}\n" https://staging-app.windfonts.com/
 | `docs/DOMAIN-ARCHITECTURE.md` | 域名职责与验收 |
 | `deploy/nginx-fonts-front.snippet.conf` | app 静态 rewrite |
 | `deploy/nginx-api-gateway.snippet.conf` | api 网关壳 |
-| `scripts/deploy-oss-front.sh` | 灌私有桶 |
+| lab `scripts/deploy-oss-front.sh` | 默认广州桶，禁止当公网发版 |
 | feicode nginx | `/www/server/panel/vhost/nginx/*windfonts*` |
 | devops ansible | `openresty-edge-cache` defaults |
 | cybercdn | N1/N1b 脚本 + defaults 备份 |
@@ -242,7 +289,7 @@ curl -sS https://app.windfonts.com/api/auth/providers
 curl -sS https://staging-app.windfonts.com/api/auth/csrf
 ```
 
-登录页：`https://app.windfonts.com/login.html`（管理员账号，非 WP 顾客号）。  
+登录页：`https://app.windfonts.com/login`（管理员账号，非 WP 顾客号；`login.html` 仍 200）。  
 顾客统一账号仍待 windfonts.com ↔ vault hooks（§11）。
 
 **本仓前台门禁（已做）：** `app`/`staging-app` 须 `source=vault-nextauth`；`?demo=1` 仅本机；设置页对未绑定会话的 API Key 给出同步 CTA，并标明顾客 WP SSO 未通。
@@ -259,7 +306,7 @@ HTML 缓存按**浏览器 URI**（`/foundry/zcool` ≠ `/foundry.html`）。发�
 
 
 
-## 12. 429 限流复核（B9 · 2026-09-26）
+## 15. 429 限流复核（B9 · 2026-09-26）
 
 vault `withFontApiAuth`（`src/lib/api/font-api-auth.ts`）：
 
@@ -271,13 +318,13 @@ vault `withFontApiAuth`（`src/lib/api/font-api-auth.ts`）：
 
 边缘 CyberCDN：字形静态包与 `/api/css` 回源策略不在前台仓改；调参走 ansible `openresty-edge-cache`。本波确认现网开关仍生效，**未改阈值**。
 
-## 13. 目录 JSON 纪律
+## 16. 目录 JSON 纪律
 
 - 公开 `data/fonts.json` / 分析元数据：**只**经 vault 导出或既定同步脚本写入。
 - 禁止在 prod 磁盘上手改单条字体 JSON 顶替拆包流水线。
 - 字重错挂（如思源）走重拆包工单，不在控制台「改名」了事。
 
-## 14. admin / status 主机（P2）
+## 17. admin / status 主机（P2）
 
 - `admin.windfonts.com`：反代 vault `/admin` + IP 白名单；snippet 见 vault `deploy/nginx-admin.windfonts.com.snippet.conf`（**DNS 未挂前勿切**）。
 - `status.windfonts.com`：应用静态 `status.html` 作过渡；正式应独立于 vault 同机。
