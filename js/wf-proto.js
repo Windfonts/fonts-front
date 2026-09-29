@@ -436,13 +436,20 @@
     return null;
   }
 
+  /** 详情 URL 路径段：只允许 [A-Za-z0-9_-]。中文名不进 /fonts/。 */
+  function fontUrlSlug(raw) {
+    const s = String(raw || '').trim().toLowerCase().replace(/^wenfeng-/, '').replace(/^windfonts-/, '');
+    if (!s) return '';
+    if (isUrlSlug(s)) return resolveFamilyAlias(s);
+    return slugify(s);
+  }
   /** 详情页 / 卡片公开 slug：优先 family 短码（wenfeng-albbpht → albbpht），
    *  不用 OSS normalized 文件名堆砌（SourceHanSansSCRegular）。旧 normalized 链仍可由 getBySlug 解析。 */
   function fontSlug(font) {
     if (!font) return '';
     const fromFamily = familySlug(font.family);
-    if (fromFamily) return fromFamily.toLowerCase();
-    return String(font.normalized || '').trim().toLowerCase();
+    if (fromFamily) return fontUrlSlug(fromFamily);
+    return fontUrlSlug(font.normalized);
   }
 
   /* 去重弃用短码 → 保留短码（与 vault data/family-aliases.json 对齐） */
@@ -500,7 +507,7 @@
     }
     const file = base.split('/').pop() || base;
     if (file === 'font-detail.html' || file === 'font-detail') {
-      const slug = params.slug || '';
+      const slug = fontUrlSlug(params.slug || '');
       delete params.slug; delete params.id;
       const extra = Object.keys(params).map(function (k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
@@ -550,9 +557,9 @@
 
     /** 正式站详情：app /fonts/{slug}（OSS 静态 + 边缘 rewrite → font-detail.html）。 */
   function publicDetailPath(font) {
-    const slug = fontSlug(font) || (font && font.normalized);
+    const slug = fontUrlSlug(fontSlug(font) || (font && font.normalized));
     if (!slug) return '/fonts';
-    return '/fonts/' + encodeURIComponent(String(slug).toLowerCase().replace(/^wenfeng-/, ''));
+    return '/fonts/' + encodeURIComponent(slug);
   }
   function publicDetailUrl(font) {
     return SITE_ORIGIN + publicDetailPath(font);
@@ -2066,6 +2073,7 @@
     livePagePath: livePagePath,
     foundryHref: foundryHref,
     foundryUrlSlug: foundryUrlSlug,
+    fontUrlSlug: fontUrlSlug,
     isUrlSlug: isUrlSlug,
     publicDetailPath: publicDetailPath,
     publicDetailUrl: publicDetailUrl,

@@ -1289,7 +1289,12 @@
   function slugFromPath() {
     const m = String(location.pathname || '').match(/\/fonts\/([^/]+)\/?$/i);
     if (!m) return '';
-    return decodeURIComponent(m[1]);
+    const raw = decodeURIComponent(m[1]);
+    const s = (WFProto.fontUrlSlug && WFProto.fontUrlSlug(raw)) || raw;
+    if (s && s !== raw) {
+      try { history.replaceState(null, '', '/fonts/' + encodeURIComponent(s) + location.search + location.hash); } catch (e) {}
+    }
+    return s;
   }
 
   WFProto.loadCatalog().then(function (list) {

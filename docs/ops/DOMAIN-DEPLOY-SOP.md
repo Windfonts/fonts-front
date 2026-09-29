@@ -76,7 +76,7 @@ aliyun oss --profile wenpai cp <file> oss://wenfeng-web-hz/<key> \
 - 字库本身没有汉字（AAR / Thai / Viet 等）：即使用户输入中文，补 `zh`/`full` 也变不出这款字的中文，会走系统黑体。这是字库覆盖，不是包坏了。
 
 
-路径段只允许 `[A-Za-z0-9_-]`（`/foundry/huawei`）。中文名只出现在标题。`slugify` 不得把「华为」写进 URL；未入字典的中文名用短码 `f…`。边缘 rewrite 用 `[^/]+`，避免 `/foundry/华为` 落到 OSS `foundry/华为.html` 吐 XML。
+路径段只允许 `[A-Za-z0-9_-]`（`/foundry/huawei`、`/fonts/harmony`）。中文名只出现在标题。详情 `fontUrlSlug` 与厂商 `foundryUrlSlug` 同样禁止中文进路径。`slugify` 不得把「华为」写进 URL；未入字典的中文名用短码 `f…`。边缘 rewrite 用 `[^/]+`，避免 `/foundry/华为` 落到 OSS `foundry/华为.html` 吐 XML。
 
 ### 2.5 发版步骤（公网口径，按这个做）
 
