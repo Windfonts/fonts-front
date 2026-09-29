@@ -3,6 +3,14 @@
   const esc = WFProto.escapeHtml;
   const root = document.getElementById('detailRoot');
 
+  function pageState(kicker, line, act) {
+    return '<div class="page-state container" role="status">' +
+      (kicker ? '<p class="page-state-kicker">' + esc(kicker) + '</p>' : '') +
+      '<p>' + esc(line) + '</p>' +
+      (act ? '<div class="page-state-act">' + act + '</div>' : '') +
+      '</div>';
+  }
+
   const FONT_DESC_BRIEF_MAX = 120;
   const BRAND_DESC_BRIEF_MAX = 72;
 
@@ -177,7 +185,7 @@
     const whyLine = n > 0
       ? (vendorWide ? '所属厂商' : '此字体') + '有 ' + n + ' 项授权调整记录'
       : fname + (/[A-Za-z0-9]$/.test(fname) ? ' ' : '') + '自发布以来未发现争议及授权变更记录';
-    const claimAct = '<a class="lp-act" href="claim.html?slug=' + encodeURIComponent(info.id) + '">认领主页 →</a>';
+    const claimAct = '<a class="lp-act" href="' + WFChrome.href('claim.html?slug=' + encodeURIComponent(info.id)) + '">认领主页 →</a>';
     let what = '<span class="trust-grade ' + cls + '">' + esc(grade) + '</span>' +
       '<span class="trust-why">' + esc(whyLine) + '</span>';
     if (info.claimed) what += '<span class="trust-claim">' + WFChrome.icon('check') + '已认领</span>';
@@ -348,7 +356,7 @@
     const info = font.ownerInfo || font.foundryInfo;
     const tr = info && info.trackRecord;
     if (!tr || !Array.isArray(tr.incidents) || !tr.incidents.length) return '';
-    return '<a class="lp-badge lp-badge-warn" href="foundry.html?slug=' + encodeURIComponent(info.id) + '#record">厂商有授权变更记录 →</a>';
+    return '<a class="lp-badge lp-badge-warn" href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(info.id)) + '#record">厂商有授权变更记录 →</a>';
   }
 
   /* 条款徽章也按档位出固定三条，与句子同一张配置表。
@@ -508,7 +516,7 @@
 
     // 字体本身的属性两边都给；版本与发布年份仅开发模式。浏览量改放「统计信息」。
     const kv = [
-      maker ? { icon: 'palette', dt: '制作方', dd: '<a href="foundry.html?slug=' + encodeURIComponent(maker.id) + '">' + esc(maker.name) + '</a>', html: true } : null,
+      maker ? { icon: 'palette', dt: '制作方', dd: '<a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(maker.id)) + '">' + esc(maker.name) + '</a>', html: true } : null,
       { icon: 'classify', dt: '分类', dd: WFChrome.catLabel(font.category) || font.category },
       { icon: 'translate', dt: '语言', dd: (font.languages || []).map(function (l) { return l === '英语' ? '英文' : l; }).join(' · ') },
       { icon: 'calendar', dt: '发布', dd: font.releaseYear ? String(font.releaseYear) : '', dev: true },
@@ -526,8 +534,8 @@
           '<div class="panel-pad">' + lineageBody + '</div></section>'
       : '';
     const wallText = sample || titleName;
-    const crumb = '<p class="crumb"><a href="fonts.html">字体库</a><span>/</span>' +
-      (font.category ? '<a href="fonts.html?cat=' + encodeURIComponent(font.category) + '">' + esc(WFChrome.catLabel(font.category) || font.category) + '</a><span>/</span>' : '') +
+    const crumb = '<p class="crumb"><a href="' + WFChrome.href('fonts.html') + '">字体库</a><span>/</span>' +
+      (font.category ? '<a href="' + WFChrome.href('fonts.html?cat=' + encodeURIComponent(font.category)) + '">' + esc(WFChrome.catLabel(font.category) || font.category) + '</a><span>/</span>' : '') +
       '<span>' + esc(titleName) + (variantLabel ? ' · ' + esc(variantLabel) : '') + '</span></p>';
     root.innerHTML =
       '<div class="container detail-crumb">' + crumb + '</div>' +
@@ -571,7 +579,7 @@
             (titleEn && titleEn !== titleName ? '<small>' + esc(titleEn) + '</small>' : '') + '</h1>' +
           (gradesAsWeights ? '' : (window.WFProducts ? WFProducts.variantBarHtml(font) : '')) +
           '<p class="dotlist">' +
-            '<a class="foundry-inline" href="foundry.html?slug=' + encodeURIComponent(WFChrome.brandSlug(font)) + '">' +
+            '<a class="foundry-inline" href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(WFChrome.brandSlug(font))) + '">' +
               (avatar ? '<img src="' + esc(avatar) + '" alt="" />' : '') + esc(brand || '未署名') +
               (WFChrome.brandVerified(font) ? WFChrome.VERIFIED_SVG : '') + '</a>' +
             (function () {
@@ -638,9 +646,9 @@
             })() +
             '</div>' +
             '<div id="embed"></div>' +
-            '<p class="use-note use-note-lead">「常用」偏标题与短句，「中文」偏正文。页面用字少时，可到 <a href="' + (user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a> 按实际用字缩小包体。</p>' +
+            '<p class="use-note use-note-lead">「常用」偏标题与短句，「中文」偏正文。页面用字少时，可到 <a href="' + WFChrome.href(user ? 'app/subset.html?font=' + encodeURIComponent(font.id) : 'login.html') + '">子集化工作台</a> 按实际用字缩小包体。</p>' +
             '<details class="use-note-fold"><summary>' + WFChrome.icon('chevron-down') + '参数与补全</summary>' +
-              '<p class="use-note use-note-body">勾选补缺或简繁后，上方链接与示例会自动更新；两种都开时，先走谱系补缺。CSS 的 <code>font-family</code> 要写主款与补全款的完整栈。细则见 <a href="docs.html">文档</a>。</p>' +
+              '<p class="use-note use-note-body">勾选补缺或简繁后，上方链接与示例会自动更新；两种都开时，先走谱系补缺。CSS 的 <code>font-family</code> 要写主款与补全款的完整栈。细则见 <a href="' + WFChrome.href('docs.html') + '">文档</a>。</p>' +
             '</details></div>' +
           '</section>' +
           (weights.length > 1
@@ -668,7 +676,7 @@
                 }).join('') +
                 trackBadgeHtml(font) +
               '</div>' +
-              '<p class="license-foot">声明为厂商原文摘录，条款以权利人为准。 <a href="license.html">许可类型说明</a></p></details></div>' +
+              '<p class="license-foot">声明为厂商原文摘录，条款以权利人为准。 <a href="' + WFChrome.href('license.html') + '">许可类型说明</a></p></details></div>' +
           '</section>' +
           lineageSection +
         '</div>' +
@@ -712,9 +720,9 @@
             '<p class="side-stats-note for-dev">下载含样张导出；API 为 CDN CSS 拉取次数（开发 / 厂商可见）。</p>' +
           '</div>' +
           '<div class="panel panel-pad"><h3>' + WFChrome.icon('star') + '标签</h3><div class="chips">' + (font.tags || []).map(function (t) {
-            return '<a class="chip" href="fonts.html?tag=' + encodeURIComponent(t) + '">' + esc(t) + '</a>';
+            return '<a class="chip" href="' + WFChrome.href('fonts.html?tag=' + encodeURIComponent(t)) + '">' + esc(t) + '</a>';
           }).concat((font.useCases || []).map(function (t) {
-            return '<a class="chip" href="fonts.html?keyword=' + encodeURIComponent(t) + '">' + esc(t) + '</a>';
+            return '<a class="chip" href="' + WFChrome.href('fonts.html?keyword=' + encodeURIComponent(t)) + '">' + esc(t) + '</a>';
           })).join('') + '</div></div>' +
         '</aside>' +
       '</div>' +
@@ -1288,7 +1296,7 @@
       const id = WFProto.getQuery('id');
       const slug = WFProto.getQuery('slug') || slugFromPath();
       const font = (id && WFProto.getFont(id)) || (slug && WFProto.getFontBySlug(slug)) || (!id && !slug ? list[0] : null);
-      if (!font) { root.innerHTML = '<p class="empty">未找到该字体。<a href="fonts.html">回到字体库</a></p>'; return; }
+      if (!font) { root.innerHTML = pageState('找不到', '目录里没有这款字。', '<a class="btn" href="' + WFChrome.href('fonts.html') + '">回字体库</a>'); return; }
       const q = new URLSearchParams(location.search);
       const extras = {};
       ['from', 'view', 'tpl', 'frame', 't', 's'].forEach(function (k) {
@@ -1308,6 +1316,6 @@
     if (window.WFLocaleFallback) WFLocaleFallback.load().then(boot).catch(boot);
     else boot();
   }).catch(function () {
-    root.innerHTML = '<p class="empty">字体目录加载失败。<a href="fonts.html">回到字体库</a></p>';
+    root.innerHTML = pageState('载入失败', '字体目录没读到。', '<a class="btn" href="' + WFChrome.href('fonts.html') + '">回字体库</a>');
   });
 })();

@@ -129,6 +129,68 @@ html[data-view="dev"] .panel .btn.ink-design { background: var(--paper); }
 .empty.panel { padding: var(--s-12) var(--s-6); }
 .loading { color: var(--gray-2); padding: var(--s-12) 0; font-size: var(--fs-13); }
 
+/* 详情 / 厂商：加载与空态占住版心，避免一句灰字贴在超宽白底上 */
+body.page-detail,
+body.page-foundry {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body.page-detail > main,
+body.page-foundry > main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+.page-state {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--s-16) 0 var(--s-20);
+  min-height: 22rem;
+}
+.page-state-kicker {
+  font-size: var(--fs-12);
+  color: var(--gray-2);
+  font-weight: var(--fw-label);
+  margin-bottom: var(--s-3);
+}
+.page-state > p {
+  font-size: var(--fs-28);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-snug);
+  letter-spacing: -0.02em;
+  color: var(--ink-2);
+  max-width: 16em;
+}
+.page-state-act { margin-top: var(--s-6); }
+.page-state-skel {
+  margin-top: var(--s-10);
+  display: grid;
+  gap: var(--s-3);
+  max-width: 36rem;
+}
+.page-state-skel i {
+  display: block;
+  height: 0.65rem;
+  border-radius: 6px;
+  background: var(--fill);
+}
+.page-state-skel i:nth-child(1) { width: 42%; height: 2.5rem; }
+.page-state-skel i:nth-child(2) { width: 72%; }
+.page-state-skel i:nth-child(3) { width: 58%; }
+.specimen.is-skel { pointer-events: none; }
+.specimen.is-skel .skel-bar {
+  display: block;
+  height: 2.4em;
+  width: 68%;
+  max-width: 28rem;
+  background: var(--fill);
+  border-radius: var(--radius-sm);
+}
+
+
 /* —— 响应式基准 —— */
 @media (max-width: 1024px) {
   :root { --gutter: var(--s-5); }

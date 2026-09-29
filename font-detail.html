@@ -8,7 +8,7 @@
   <title>字体详情 · 文风字体</title>
   <link rel="stylesheet" href="/css/fonts.css?v=20260929ui1" />
   <link rel="stylesheet" href="/css/tokens.css?v=20260929ui1" />
-  <link rel="stylesheet" href="/css/base.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/base.css?v=20260929ui5" />
   <link rel="stylesheet" href="/css/components.css?v=20260929ui1" />
   <link rel="stylesheet" href="/css/specimen.css?v=20260929ui1" />
   <link rel="stylesheet" href="/css/card.css?v=20260929ui1" />
@@ -24,7 +24,11 @@
   <header data-topbar data-active="fonts"></header>
 
   <main id="detailRoot">
-    <p class="loading container">正在加载字体…</p>
+    <div class="page-state container" role="status">
+      <p class="page-state-kicker">字体详情</p>
+      <p>正在载入这款字</p>
+      <div class="page-state-skel" aria-hidden="true"><i></i><i></i><i></i></div>
+    </div>
   </main>
 
   <footer id="wfExtraFooter"></footer>
@@ -43,6 +47,6 @@
   <script src="/js/wf-card.js?v=20260929ui1"></script>
   <script src="/js/wf-avatar.js?v=20260929ui1"></script>
   <script src="/js/wf-tester.js?v=20260929ui1"></script>
-  <script src="/js/pages/detail.js?v=20260929copy1"></script>
+  <script src="/js/pages/detail.js?v=20260929ui5"></script>
 </body>
 </html>

@@ -546,8 +546,8 @@
             '<div class="foundry-close-foot">' +
               '<p class="foundry-close-stat"><b>' + listed + '</b>家在目录</p>' +
               '<div class="foundry-close-acts">' +
-                '<a class="btn btn-ink btn-lg" href="claim.html">' + WFChrome.icon('idcard') + '去认领</a>' +
-                '<a class="btn btn-lg" href="license.html">' + WFChrome.icon('info') + '权益说明</a>' +
+                '<a class="btn btn-ink btn-lg" href="' + WFChrome.href('claim.html') + '">' + WFChrome.icon('idcard') + '去认领</a>' +
+                '<a class="btn btn-lg" href="' + WFChrome.href('license.html') + '">' + WFChrome.icon('info') + '权益说明</a>' +
                 '<a class="btn btn-lg" href="https://wenfeng.org" target="_blank" rel="noopener noreferrer">' +
                   WFChrome.icon('external') + '开源创作</a>' +
               '</div>' +
@@ -717,7 +717,7 @@
     const split = splitOwned(g.fonts, collab);
     const sections = split.sections;
     const packsOf = split.packsOf;
-    const filter = '<a class="more" href="fonts.html?foundry=' + encodeURIComponent(g.slug) + '">' + WFChrome.icon('filter') + '在字体库筛选</a>';
+    const filter = '<a class="more" href="' + WFChrome.href('fonts.html?foundry=' + encodeURIComponent(g.slug)) + '">' + WFChrome.icon('filter') + '在字体库筛选</a>';
     if (sections.length === 1) {
       const s = sections[0];
       return '<div class="count-line">' + s.title + ' <strong>' + s.fonts.length + '</strong> 款' +
@@ -802,7 +802,7 @@
       ? WFProto.getFoundryById(info.parentId) : null;
     const showOrg = WFProto.canShowOrgLineage && WFProto.canShowOrgLineage(g.slug);
     /* 谱系图：canShowOrgLineage 门槛即组织图；纯品牌字库用 org，避免 derive 出族蜘蛛网 / 前缀假边 */
-    var lineageTarget = 'lineage.html?group=' + encodeURIComponent(g.slug) + '&view=org&mode=flow';
+    var lineageTarget = WFChrome.href('lineage.html?group=' + encodeURIComponent(g.slug) + '&view=org&mode=flow');
     const orgKv = showOrg
       ? { icon: 'branch', dt: '谱系图', html: true,
           dd: '<a href="' + WFChrome.href(lineageTarget) + '" data-lineage-modal>查看</a>' }
@@ -837,7 +837,7 @@
       : '';
     const claimHtml = '<p class="claim">' + WFChrome.icon('idcard') + '<span>' + (g.claimed
       ? who + '已认领此页。许可仍以每款字体的出处为准。'
-      : '这是你的品牌？<a href="claim.html?slug=' + encodeURIComponent(g.slug) + '">认领此页</a>。通过后可改标志与介绍。') + '</span></p>';
+      : '这是你的品牌？<a href="' + WFChrome.href('claim.html?slug=' + encodeURIComponent(g.slug)) + '">认领此页</a>。通过后可改标志与介绍。') + '</span></p>';
 
     const crumbTail = parent
       ? '<a href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(parent.id)) + '">' + esc(parent.name) + '</a><span>/</span><span>' + esc(g.name) + '</span>'
@@ -845,7 +845,7 @@
 
     root.innerHTML =
       '<div class="container">' +
-      '<div class="detail-top"><p class="crumb"><a href="foundry.html">厂商</a><span>/</span>' + crumbTail + '</p></div>' +
+      '<div class="detail-top"><p class="crumb"><a href="' + WFChrome.href('foundry.html') + '">厂商</a><span>/</span>' + crumbTail + '</p></div>' +
       '<header class="foundry-hero">' +
         '<div class="foundry-hero-main">' +
           '<div class="foundry-hero-id">' +
@@ -927,10 +927,12 @@
       const slug = WFProto.getQuery('slug') || slugFromPath();
       if (!slug) { renderIndex(list); return; }
       const g = buildGroupForSlug(list, slug);
-      if (!g) { root.innerHTML = '<p class="empty container">未找到该厂商。<a href="foundry.html">' + WFChrome.icon('building') + '查看全部厂商</a></p>'; return; }
+      if (!g) { root.innerHTML = '<div class="page-state container" role="status"><p class="page-state-kicker">找不到</p><p>没有这家厂商。</p><div class="page-state-act"><a class="btn" href="' + WFChrome.href('foundry.html') + '">' + WFChrome.icon('building') + '全部厂商</a></div></div>'; return; }
       renderOne(list, g);
     };
     if (window.WFProducts) WFProducts.load().then(go);
     else go();
+  }).catch(function () {
+    root.innerHTML = '<div class="page-state container" role="status"><p class="page-state-kicker">载入失败</p><p>厂商目录没读到。</p><div class="page-state-act"><a class="btn" href="' + WFChrome.href('foundry.html') + '">重试</a></div></div>';
   });
 })();

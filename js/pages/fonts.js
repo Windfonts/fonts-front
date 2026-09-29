@@ -395,5 +395,10 @@
       const s = document.getElementById('navSearch');
       if (s && state.keyword) s.value = state.keyword;
     });
+  }).catch(function () {
+    if (countEl) countEl.textContent = '目录没读到';
+    if (listEl) {
+      listEl.innerHTML = '<li class="empty empty-filter"><p>字体目录载入失败。</p><p class="empty-sub"><button type="button" class="btn" onclick="location.reload()">再试一次</button></p></li>';
+    }
   });
 })();
