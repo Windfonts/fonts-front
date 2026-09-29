@@ -892,3 +892,13 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 
 **口径（FAMILY-VARIANTS）：** 已发布店面 `family` 短码冻结。别名双向但文件内容不同向：vault `family-aliases.json` 短码→长码（CSS 找得到行）；店面 JSON + `wf-proto` 长码→短码（`/fonts/hongleibanshu` 落到现卡）。未改 `fonts.json`，未全量导出，未改 vault `font_family` 列。17 条 offline 仍在货架（#8700 没中文下架的残留），本轮没删。
 
+## 42. 2026-09-29 #8700 货架下架 + Harmony 入库（Grok `01a0eb5b`）
+
+人授权「所以说继续」。未开 P4。未全量导出。未改 vault 已有 `font_family`。未删 OSS 包。未 `vm-return`。座位仍是 devops。
+
+**店面目录 574→556。** UUID 对拍后，货架上 17 条 vault `offline` 与 #8700「没中文的要清理」同批（含名单未点名的 First Shine / NISCRIPT），加 1 条 vault `archived`=`wenfeng-xczz`（香萃自在，不是在架的 `wenfeng-xcws` 香萃自在舒畅黑）。脚本按 id 从 `fonts.json` 去掉这 18 行，重建 `fonts-list.json` / `fonts-by-slug`。`font-products.json` 去掉已空的 `elffont` 组。花园明朝 B / 上元明朝 B / 文津宋体 P2 / 煮豆黑体仍在架。OSS 包未删（#8700：恢复=vault 翻转 + 目录加回）。
+
+热路径 `fonts-list.json?v=20260929list3`；壳 `wf-proto.js?v=20260929g17`。`bash scripts/deploy-web-hz.sh` → oss://wenfeng-web-hz 866 objects `OSS_RECURSIVE_DONE`。公网 `index.html` 已是 g17；list3 n=556；AAR / 寒蝉像素体 / 香萃自在 OUT；HarmonyOS Sans / 花园明朝 B / 煮豆黑体 IN。清单 `docs/_drop-8700-20260929.json`。
+
+**Harmony 入库。** 店面短码保持 `wenfeng-harmony` / `Harmony` / 店面 UUID `11c57445-29f9-423f-9da1-fb4f005a1f70`。OSS 六档 TTF full CSS 原先就 200。`prod.db.bak-20260929-harmony` 后 INSERT 一行 + 品牌 `huawei`（`550ea5d0-bb0b-493f-9b58-b0353d48ebf6`）。license 写协议本名 `HarmonyOS Sans Fonts License Agreement`。vault `fonts` 625→626。现网 `GET /api/fonts/Harmony` 与 `GET /api/fonts/wenfeng-harmony` 200 published；`GET /api/css?family=wenfeng-harmony&subset=full` 200 cl=168196。未新镜像。脚本一次性 `/tmp/register-harmony.js` → 容器 `/app/register-harmony.js`。不要改 `Projects/fonts-vault` 的 `feat/admin-font-certs`。
+

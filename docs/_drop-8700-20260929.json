@@ -1,0 +1,146 @@
+{
+  "date": "2026-09-29",
+  "recall": 8700,
+  "shop_before": 574,
+  "shop_after": 556,
+  "dropped": [
+    {
+      "id": "44ae95d4-6bea-434f-bc74-c00a516540b1",
+      "name": "AAR",
+      "family": "wenfeng-aar",
+      "normalized": "AAR",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "005693ed-7091-4d7b-be9f-4c9ef22a1897",
+      "name": "Alibaba Sans Thai",
+      "family": "wenfeng-alibabasansthai",
+      "normalized": "AlibabaSansThai",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "6d29ed99-4517-49e4-a096-953aa4d5daf4",
+      "name": "Alibaba Sans Viet",
+      "family": "wenfeng-alibabasansviet",
+      "normalized": "AlibabaSansViet",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "305626c3-b6f9-4e7b-9ae1-e5cded0330a1",
+      "name": "Elffont Fern",
+      "family": "wenfeng-elffern",
+      "normalized": "Elffern",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "0cb3f181-937d-4861-bac4-31e07416441f",
+      "name": "Elffont Rock",
+      "family": "wenfeng-elfrock",
+      "normalized": "Elfrock",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "cb556570-98e2-43b7-866c-91a569d5cdb0",
+      "name": "First Shine",
+      "family": "wenfeng-firstshine",
+      "normalized": "FirstShine",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "b927c7ed-c2ca-4911-b173-cd65a54877dd",
+      "name": "NISCRIPT",
+      "family": "wenfeng-niscript",
+      "normalized": "NISCRIPTRegular",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "157d972c-cd44-47ef-811a-07536bd23e35",
+      "name": "寒蝉像素体",
+      "family": "wenfeng-hcpixels",
+      "normalized": "Hcpixels",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "7a16cae1-48a9-483a-8159-9a1134fdad43",
+      "name": "寒蝉月等宽",
+      "family": "wenfeng-hcydk",
+      "normalized": "Hcydk",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "82c49f21-658d-4c53-b174-b03d521cfdd0",
+      "name": "寒蝉线体",
+      "family": "wenfeng-hcline",
+      "normalized": "Hcline",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "a6c49324-cd22-4d47-b5ff-3428abc66285",
+      "name": "怀旧像素 可爱",
+      "family": "wenfeng-rtpxcute",
+      "normalized": "RtpxCute",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "57c2dff0-5e99-43bb-ad01-a51df3ded31d",
+      "name": "怀旧像素 小巧",
+      "family": "wenfeng-rtpxpetty",
+      "normalized": "RtpxPetty",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "3557d296-c80c-44a1-baee-e893570bc0fd",
+      "name": "怀旧像素 粗体",
+      "family": "wenfeng-rtpxthick",
+      "normalized": "RtpxThick",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "c3dd6f76-5b3d-4c28-b456-b8ae8e3bc547",
+      "name": "怀旧像素 街机",
+      "family": "wenfeng-rtpxarcade",
+      "normalized": "RtpxArcade",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "dd8a123f-8ec5-49f2-a92d-674c96762ba4",
+      "name": "杰森手写",
+      "family": "wenfeng-jshw",
+      "normalized": "Jshw",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "23770934-08a0-467f-ba09-c68a6af14ce7",
+      "name": "激笔 SFX",
+      "family": "wenfeng-gekifude",
+      "normalized": "Gekifude",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "ef520201-f272-4b11-910d-743933a41d63",
+      "name": "霞鹜拼音体",
+      "family": "wenfeng-xwpinyin",
+      "normalized": "Xwpinyin",
+      "reason": "vault-offline #8700 no-CJK leftover"
+    },
+    {
+      "id": "6a131422-68f1-4937-a2e3-d44c912599ab",
+      "name": "香萃自在",
+      "family": "wenfeng-xczz",
+      "normalized": "Xczz",
+      "reason": "archived wenfeng-xczz"
+    }
+  ],
+  "kept_exclusions": {
+    "wenfeng-wjm2": "文津宋体 P2",
+    "wenfeng-symb": "上元明朝 B",
+    "wenfeng-harmony": "HarmonyOS Sans",
+    "wenfeng-hymb": "花园明朝 B",
+    "wenfeng-xcws": "香萃自在舒畅黑",
+    "wenfeng-zdht": "煮豆黑体"
+  },
+  "removed_products": [
+    "elffont"
+  ],
+  "oss_not_deleted": true
+}
