@@ -43,14 +43,22 @@ base = read("css/base.css")
 ok(".specimens > .page-state-item" in base, "base.css missing list page-state")
 ok("wf-skel-pulse" in base, "base.css missing skeleton pulse")
 ok("prefers-reduced-motion" in base, "base.css missing reduced-motion")
+ok("padding: var(--s-16) 0 var(--s-20)" not in base,
+   ".page-state padding shorthand zeros .container gutter (empty wider than chrome)")
+ok("padding-top: var(--s-16)" in base, ".page-state must set padding-top, not shorthand")
+ok("padding-bottom: var(--s-20)" in base, ".page-state must set padding-bottom, not shorthand")
+ok("padding: 0 var(--gutter)" in base, ".container must keep horizontal gutter")
 
 html_fonts = read("fonts.html")
 ok("fonts.js?v=20260929ui101" in html_fonts, "fonts.html stamp not ui101")
-ok("base.css?v=20260929ui6" in html_fonts, "fonts.html base stamp not ui6")
+ok("base.css?v=20260929ui7" in html_fonts, "fonts.html base stamp not ui7")
+ok("base.css?v=20260929ui7" in read("font-detail.html"), "font-detail.html base stamp not ui7")
+ok("base.css?v=20260929ui7" in read("foundry.html"), "foundry.html base stamp not ui7")
 
 bag_html = read("shopping-bag.html")
 ok("选字袋是空的" in bag_html, "shopping-bag.html missing initial empty board")
 ok("bag.js?v=20260929ui6" in bag_html, "shopping-bag.html bag.js stamp not ui6")
+ok("base.css?v=20260929ui7" in bag_html, "shopping-bag.html base stamp not ui7")
 
 if fails:
     print("FAIL")

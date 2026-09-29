@@ -106,7 +106,7 @@
 | 图标 | `.icon` | components.css / `WFChrome.icon(name)` | 见 §4 |
 | 面板 | `.panel .panel-head .panel-pad` | base.css | 浅灰填充、16px 圆角、无边框 |
 | 页头带 | `.page-head .lead .kicker .crumb` | base.css | |
-| 空态 / 加载 | `.page-state .page-state-item .page-state-skel` | base.css | 公网列表/详情/厂商：kicker + 标题级一行 + CTA，占住版心（约 22rem）。`.empty` / `.loading` 只留给控制台表格小空行，店面不要一行灰字 |
+| 空态 / 加载 | `.page-state .page-state-item .page-state-skel` | base.css | 公网列表/详情/厂商：kicker + 标题级一行 + CTA，占住版心（约 22rem）。`.page-state` 只设 padding-top/bottom，左右走 `.container` gutter，不要 `padding` 简写把页眉页脚的 gutter 清掉。`.empty` / `.loading` 只留给控制台表格小空行，店面不要一行灰字 |
 | 控制条 | `.controlbar .view .size` | specimen.css / `WFSpecimen.controlBar` | 粘在顶栏下的浅灰胶囊 |
 | 字体卡 | `.specimen .act .specimens` | specimen.css / `WFSpecimen.renderRows` | 行 / 网格两种视图 |
 | 字形墙 | `.glyph-wall .wall` | specimen.css | 详情页首屏，全站最大的字 |

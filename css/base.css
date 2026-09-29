@@ -147,7 +147,8 @@ body.page-foundry > main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--s-16) 0 var(--s-20);
+  padding-top: var(--s-16);
+  padding-bottom: var(--s-20);
   min-height: 22rem;
 }
 .page-state-kicker {
