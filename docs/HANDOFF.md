@@ -851,3 +851,21 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 - 不要为了侧栏计数在点击栈里同步重绘 574×各 facet。
 - 不要整仓 `deploy-web-hz.sh` 从这棵 4611b3d 工位发：会把 chrome/proto 打回 g14/ui11。
 
+## 39. 2026-09-29 仓耳 W01–W05 规格条（Grok `01a0eafd`）
+
+人：「仓耳这些字重切换规格怎么没了」。
+
+根因：详情 `gradesAsWeights`（`detail.js`，`5ad5f88` 从 v4 接到 main）要 `WFProducts.siblings ≥ 2`。仓耳每个 W0x 是独立 Regular Family，不是 CSS 字重。产品组写在 v4-specimen `9cdd2f3`（`tsanger-yumo` / `tsanger-yuyang` / `tsanger-shuyuan` / `tsanger-feibai`，default W03），**从未进 main**。公网 `font-products.json` 38 条、零仓耳，所以 siblings=[]，样张旁没有规格条，点列只显示「1 字重」。不是 CSS 丢了，也不是空状态发版盖掉的。
+
+### 拍板
+
+- 渔阳 / 与墨 / 非白 / 舒圆：目录一张卡，详情样张旁 W01–W05。舒圆 W01 的 family 是 `wenfeng-cesyt`（无数字后缀）。
+- 小丸子、周珂正大榜书保持单卡，不进这四组。
+- 不要为了这四组去合 v4-specimen。只把产品表抄回 main。
+
+### 仓 / 现网
+
+- 枝 `grok/tsanger-grades`（工位仍 `~/wt/fonts-front-empty-state`）`28f2f93`。契约 `scripts/test-tsanger-grades-contract.py`。
+- 公网：`data/font-products.json?v=20260929tsanger`（42 产品）、`wf-products.js?v=20260929ui2`。HTML 从当时公网壳改戳，chrome `ui12` / proto `g15` / `detail.js` `ui10` 未动。
+- 点按公网：`/fonts/cesyt3` 标题「仓耳舒圆体 · W03」、5 枚芯片、点 W05 → `/fonts/cesyt5`；渔阳/与墨/非白同样 5 规格；小丸子仍「1 字重」；霞鹜文楷仍标题下 完整/GB/TC。字库搜「仓耳渔阳」库内 1 款 +「5 规格」。
+

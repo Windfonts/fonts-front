@@ -24,7 +24,7 @@
 
 1. **新产品**：先定 `font-products` 一条；`default` 必须是主规格、可商用默认嵌入。
 2. **短码**：主规格 = 产品词干（`wenfeng-xwwk`）。旁支产品单独词干（Bright → `xwbright`，勿再挂在 `xwwk*` 下假装同矩阵）。
-3. **扩规格**：可以继续用「词干 + 后缀」短码（兼容现网），但**必须**写入 `members[]`，并标 `tier`：
+3. **扩规格**：可以继续用「词干 + 后缀」短码（兼容现网），但**必须**写入 `members[]`，并标 `tier`。仓耳渔阳/与墨/非白/舒圆这种「每个 W0x 独立 Regular Family」也走 `members[]`（chip `W01`–`W05`，`default` W03）；只写进 v4-specimen 等于公网没有规格条。小丸子、周珂正大榜书不是这套，不要硬塞进组。
    - `primary`：目录 / 详情默认露出（字集主分支等）
    - `secondary`：常用优化（Lite / Screen / 等宽主款）
    - `advanced`：折叠进「更多规格」（Fusion、Screen Full、冷门组合）
