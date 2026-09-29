@@ -919,3 +919,6 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 
 **仍空 / 未做：** `GET /api/claim-status` `bySlug={}`（没有工单，不编造）。统计仍目录/localStorage。顾客登录要 weixiaoduo 环境变量进 providers，本轮不开。credentials 只认 vault 管理员，不从生产 env 抽密码、不在生产造用户。P3 镜像门、PR #72、剩余 shop-only/vault-only 行，都不是本轮。
 
+**发版与验收（同日夜）：** 仓 `a81f431` origin/main。未整仓 `deploy-web-hz.sh`；39 文件（HTML + `wf-chrome.js`）经 devops `aliyun oss --profile wenpai` 进 `oss://wenfeng-web-hz`。公网 `/app/index` 含 `wf-auth.js` + chrome ui13，CSS 仍 ui8。Playwright：未登录 `/app/index.html` → `/login?next=app&back=index.html`（不是 `/app/login`）；错密码 toast「账号或密码错误」、session 仍 `null`；假 localStorage `{role:user}` 首页仍「登录」无「控制台」，`canAccessApp===false`；`/app/?demo=1` 仍跳登录并清掉假壳。`POST /api/console/ensure-key` 无 cookie 401「请先登录」。credentials 错号 `CredentialsSignin`。未用管理员密码登录。
+
+
