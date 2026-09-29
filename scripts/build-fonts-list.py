@@ -22,7 +22,7 @@ KEEP = [
 ]
 BRAND_KEEP = ("name", "slug", "logoUrl", "avatarUrl", "website")
 FAT = [
-    "description", "copyright", "licenseNotes", "licenseFileUrl",
+    "description", "descriptionBrief", "copyright", "licenseNotes", "licenseFileUrl",
     "licenseUrl", "purchaseUrl", "version",
 ]
 

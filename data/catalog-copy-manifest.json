@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "purpose": "字体简介与厂商简介重写进度；规范见 docs/CATALOG-COPY.md",
-  "updatedAt": "2026-09-28",
+  "updatedAt": "2026-09-29",
   "summary": {
-    "fontsTotal": 471,
+    "fontsTotal": 574,
     "fontsPending": 465,
-    "fontsDraft": 7,
+    "fontsDraft": 545,
     "fontsApproved": 0,
     "foundriesPending": "all except batch-a",
-    "note": "首批建议从站酷/阿里/寒蝉/霞鹜/思源与 platform 厂商开始",
+    "note": "2026-09-29 自动从非内部 description 截出 descriptionBrief 545 条；人工全文重写仍待分批。charCount=1 已用 CDN cmap 回填 17 条。filePending 26 无包（CDN full 404），不能入库。",
     "foundriesDraft": 5
   },
   "batches": [

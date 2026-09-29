@@ -260,7 +260,7 @@
     return catalogPromise;
   }
 
-  const FAT_KEYS = ['description', 'copyright', 'licenseNotes', 'licenseFileUrl', 'licenseUrl', 'purchaseUrl', 'version'];
+  const FAT_KEYS = ['description', 'descriptionBrief', 'copyright', 'licenseNotes', 'licenseFileUrl', 'licenseUrl', 'purchaseUrl', 'version'];
   function enrichFontFromFull(font) {
     if (!font) return Promise.resolve(font);
     if (font._fat) return Promise.resolve(font);
