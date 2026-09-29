@@ -734,3 +734,12 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 ### 这一棒
 
 先改 vault 里 `wenfeng-zkxwt` 的 `chinese_name`（以及会一起导出的分类、许可、厂商），再考虑重导。现网静态页还没 rsync。证书上传链和 `v4-specimen` 都不合产。
+
+## 33. 2026-09-29 Cursor `b7ca9c7a` / `6c6c8424` 对拍
+
+- 目录现网热路径 `data/fonts-list.json` **572** 款（`daa74a5` 上架 101）。HANDOFF 前文写的 471 是 09-28 收口数。
+- 遍黑体已进：P1 `wenfeng-bbht`、P2 `wenfeng-bbhtp2`。络黑仍只有 demo VF，不进。寒蝉矩黑 Demo 仍不进。计划楷 A/B/G 三卡仍不进；合并 Regular `wenfeng-jhk` 已进。
+- 鸿蒙拉丁切片已换掉；中文卡 HarmonyOS Sans SC `wenfeng-harmony`。`licenseName` 改为协议本名 `HarmonyOS Sans Fonts License Agreement`（禁把「免费商用」写进授权名）。
+- 详情文案拍板（`docs/CATALOG-COPY.md`）：简介默认展开短句，厂商折叠 +「查看更多」；使用区不要 `localeFallback=auto` / 预算启发式；获取代码按钮不改、切开发视图出 toast。`5ad5f88` 把 v4-lab UI 接到 main 时冲掉了这些，已接回（`detail.js` / `detail.css` `?v=20260929copy1`）。全量简介重写仍待分批，batch-a 仍是 draft。
+- 26 款 `filePending`、146 条菲码证书 URL、待核实 23，未在本轮处理。
+- `v4-specimen` 仍不合产。本地 16016 仍是 lab 树。

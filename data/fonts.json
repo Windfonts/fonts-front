@@ -25653,7 +25653,7 @@
     ],
     "description": "HarmonyOS Sans 简体（HarmonyOS_Sans_SC），华为 HarmonyOS Sans Fonts License Agreement（非 OFL）。拉丁切片已换掉，本条是中文六档。",
     "license": "免费商用",
-    "licenseName": "免费商用",
+    "licenseName": "HarmonyOS Sans Fonts License Agreement",
     "licenseUrl": "https://gitee.com/openharmony/utils_system_resources/blob/master/LICENSE_Fonts",
     "licenseFileUrl": "",
     "licenseNotes": "不可修改字体文件。可随非字体软件捆绑未改副本。禁止把字体文件单独再分发或出售。",

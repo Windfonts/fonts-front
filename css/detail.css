@@ -125,6 +125,8 @@
 .page-detail:has(.wall-stage[data-card]) .side-brand .who-row,
 .page-detail:has(.wall-stage[data-card]) .side-brand .collab-block,
 .page-detail:has(.wall-stage[data-card]) .detail-side .foundry,
+.page-detail:has(.wall-stage[data-card]) .side-brand .font-desc-block,
+.page-detail:has(.wall-stage[data-card]) .side-brand .brand-desc-fold,
 .page-detail:has(.wall-stage[data-card]) .side-brand .brand-desc,
 .page-detail:has(.wall-stage[data-card]) .side-brand .side-fold,
 .page-detail:has(.wall-stage[data-card]) .side-brand .claim,
@@ -343,7 +345,16 @@
 .license-cite.lineage { border-bottom: 0; padding-top: 0; }
 .detail-related .section-head { flex-wrap: wrap; }
 .detail-related .section-head .more + .more { margin-left: var(--s-4); }
-.side-brand .brand-desc { margin-top: var(--s-4); color: var(--ink-2); line-height: 1.7; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.side-brand .font-desc-block { margin-top: var(--s-4); }
+.side-brand .font-desc-head { margin-bottom: var(--s-3); font-size: var(--fs-12); color: var(--gray-2); font-weight: var(--fw-label); display: flex; align-items: center; gap: 0.35em; }
+.side-brand .font-desc { color: var(--ink-2); line-height: 1.7; }
+.side-brand .brand-desc { margin-top: var(--s-4); color: var(--ink-2); line-height: 1.7; }
+.side-brand .who-row + .brand-desc-fold,
+.side-brand .collab-block + .brand-desc-fold,
+.side-brand .font-desc-block + .brand-desc-fold { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
+.side-brand .brand-desc-fold { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
+.side-brand .brand-desc-more { margin-top: var(--s-3); font-size: var(--fs-12); }
+.side-brand .brand-desc-more a { color: var(--ink); font-weight: var(--fw-label); text-decoration: underline; text-underline-offset: 0.2em; }
 .side-brand .side-fold { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
 .side-brand .claim { margin-top: var(--s-3); color: var(--gray); font-size: var(--fs-12); display: flex; align-items: center; gap: 0.4em; }
 .side-brand .claim.is-quiet { color: var(--gray-2); }
