@@ -918,8 +918,14 @@
   }
 
   function slugFromPath() {
-    const m = String(location.pathname || '').match(/\/foundry\/([A-Za-z0-9_-]+)\/?$/i);
-    return m ? decodeURIComponent(m[1]) : '';
+    const m = String(location.pathname || '').match(/\/foundry\/([^/]+)\/?$/i);
+    if (!m) return '';
+    const raw = decodeURIComponent(m[1]);
+    const s = (WFProto.foundryUrlSlug && WFProto.foundryUrlSlug(raw)) || raw;
+    if (s && s !== raw && /^https?:/.test(location.protocol)) {
+      try { history.replaceState(null, '', '/foundry/' + encodeURIComponent(s) + location.search + location.hash); } catch (e) {}
+    }
+    return s;
   }
 
   WFProto.loadCatalog().then(function (list) {

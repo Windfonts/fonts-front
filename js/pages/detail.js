@@ -1287,8 +1287,9 @@
   }
 
   function slugFromPath() {
-    const m = String(location.pathname || '').match(/\/fonts\/([A-Za-z0-9_-]+)\/?$/i);
-    return m ? decodeURIComponent(m[1]) : '';
+    const m = String(location.pathname || '').match(/\/fonts\/([^/]+)\/?$/i);
+    if (!m) return '';
+    return decodeURIComponent(m[1]);
   }
 
   WFProto.loadCatalog().then(function (list) {

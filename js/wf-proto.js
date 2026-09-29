@@ -114,7 +114,28 @@
   const foundryByAlias = {};
   const foundryByFont = {};
   function normKey(s) { return String(s || '').trim().toLowerCase().replace(/\s+/g, ' '); }
-  function slugify(s) { return String(s || '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-+|-+$/g, ''); }
+  function isUrlSlug(s) { return /^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(String(s || '')); }
+  /* URL 路径段禁止中文。拉丁名压成 kebab；纯中文未入字典时用稳定短码，不进路径。 */
+  function slugify(s) {
+    const raw = String(s || '').trim();
+    const ascii = raw.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    if (ascii) return ascii;
+    let h = 2166136261;
+    for (let i = 0; i < raw.length; i++) {
+      h ^= raw.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return 'f' + (h >>> 0).toString(36);
+  }
+  function foundryUrlSlug(raw) {
+    const s = String(raw || '').trim();
+    if (!s) return '';
+    if (isUrlSlug(s)) return s;
+    const hit = foundryByAlias[normKey(s)] || foundryByAlias[normKey(s.split(/[;；]/)[0])];
+    if (hit && hit.id) return hit.id;
+    return slugify(s);
+  }
+
   function getAvatarUrl(id) {
     const u = (id && avatars[id]) || '';
     if (!u || /^https?:\/\//i.test(u)) return '';
@@ -210,7 +231,7 @@
       if (Array.isArray(j)) return j;
       throw new Error('fonts-list.json invalid');
     });
-    const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20260928oss1'), { foundries: [] });
+    const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20260929hw1'), { foundries: [] });
     const evidenceReq = fetchJsonCached(dataUrl('license-evidence.json?v=20260925b'), { standards: {}, names: {} });
     const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20260928oss1'), { groups: {}, byName: {} });
     const avatarsReq = fetchJsonCached(dataUrl('avatars.json?v=20260928av9'), {});
@@ -488,7 +509,7 @@
       return 'fonts' + hash;
     }
     if (file === 'foundry.html' || file === 'foundry') {
-      const slug = params.slug || '';
+      const slug = foundryUrlSlug(params.slug || '');
       delete params.slug;
       const extra = Object.keys(params).map(function (k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
@@ -511,7 +532,7 @@
   function foundryHref(slug, extra) {
     const host = String((typeof location !== 'undefined' && location.hostname) || '').toLowerCase();
     const onApp = host === 'app.windfonts.com' || host === 'staging-app.windfonts.com';
-    const s = slug ? String(slug) : '';
+    const s = foundryUrlSlug(slug);
     if (onApp && !extra) {
       return s ? 'foundry/' + encodeURIComponent(s) : 'foundry';
     }
@@ -2044,6 +2065,8 @@
     detailHref: detailHref,
     livePagePath: livePagePath,
     foundryHref: foundryHref,
+    foundryUrlSlug: foundryUrlSlug,
+    isUrlSlug: isUrlSlug,
     publicDetailPath: publicDetailPath,
     publicDetailUrl: publicDetailUrl,
     getFontStats: getFontStats,

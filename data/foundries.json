@@ -18,6 +18,25 @@
       "description": "阿里巴巴集团；其下设计、钉钉、淘宝、阿里妈妈等产品线的免费商用字体归入本树。"
     },
     {
+      "id": "huawei",
+      "name": "华为",
+      "en": "Huawei",
+      "short": "华为",
+      "website": "https://www.huawei.com",
+      "aliases": [
+        "华为",
+        "Huawei",
+        "HUAWEI",
+        "Huawei Device",
+        "华为终端",
+        "HarmonyOS"
+      ],
+      "kind": "brand",
+      "openSource": false,
+      "claimed": false,
+      "description": "华为终端；HarmonyOS Sans 等系统字体归入本页。"
+    },
+    {
       "id": "alibaba-design",
       "name": "阿里巴巴设计",
       "en": "Alibaba Design",
@@ -2759,6 +2778,22 @@
       ],
       "description": "Naver 나눔글꼴 / Nanum fonts。納黑上游 Nanum Gothic。",
       "provisional": true
+    },
+    {
+      "id": "tanugo",
+      "name": "Tanugo",
+      "en": "Tanugo",
+      "short": "Tanugo",
+      "website": "https://github.com/nagamaki008/tanugo",
+      "aliases": [
+        "Tanugo",
+        "たぬご"
+      ],
+      "kind": "project",
+      "openSource": true,
+      "claimed": false,
+      "provisional": true,
+      "description": "Tanugo 马克笔风格开源字体；霞鹜漫黑上游。"
     }
   ]
 }

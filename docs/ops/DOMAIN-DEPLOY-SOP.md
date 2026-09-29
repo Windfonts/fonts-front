@@ -54,7 +54,7 @@ aliyun oss --profile wenpai cp <file> oss://wenfeng-web-hz/<key> \
 现网 rewrite（ansible `openresty-edge-cache` `windfonts_app.locations`，**不带** `?slug=`）：
 
 - `/fonts/{slug}` → `rewrite ^ /font-detail.html last`（slug 由 `detail.js` 读 pathname）
-- `/foundry/{slug}` → `rewrite ^ /foundry.html last`（**不要**回 vault）
+- `/foundry/{slug}` → `rewrite ^ /foundry.html last`（**不要**回 vault；path 用 `[^/]+`，不要只认 ASCII，否则中文段会 html_fallback 成 OSS NoSuchKey XML）
 - `/fonts` `/foundry` `/docs` `/about` `/features` `/lineage` → `$uri.html`
 
 ### 2.3 feicode 磁盘（可选，不是访客 origin）
@@ -74,6 +74,9 @@ aliyun oss --profile wenpai cp <file> oss://wenfeng-web-hz/<key> \
 - 禁止公开 `GET /api/css?text=`。
 - 下滑加载的新行用**当前**样张去拉包，不要用页面刚打开时的默认句。
 - 字库本身没有汉字（AAR / Thai / Viet 等）：即使用户输入中文，补 `zh`/`full` 也变不出这款字的中文，会走系统黑体。这是字库覆盖，不是包坏了。
+
+
+路径段只允许 `[A-Za-z0-9_-]`（`/foundry/huawei`）。中文名只出现在标题。`slugify` 不得把「华为」写进 URL；未入字典的中文名用短码 `f…`。边缘 rewrite 用 `[^/]+`，避免 `/foundry/华为` 落到 OSS `foundry/华为.html` 吐 XML。
 
 ### 2.5 发版步骤（公网口径，按这个做）
 
