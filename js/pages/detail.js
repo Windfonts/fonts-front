@@ -1290,11 +1290,23 @@
     const m = String(location.pathname || '').match(/\/fonts\/([^/]+)\/?$/i);
     if (!m) return '';
     const raw = decodeURIComponent(m[1]);
-    const s = (WFProto.fontUrlSlug && WFProto.fontUrlSlug(raw)) || raw;
-    if (s && s !== raw) {
-      try { history.replaceState(null, '', '/fonts/' + encodeURIComponent(s) + location.search + location.hash); } catch (e) {}
+    const hit = WFProto.getFontBySlug && WFProto.getFontBySlug(raw);
+    if (hit) {
+      const s = (WFProto.fontSlug && WFProto.fontSlug(hit)) || raw;
+      if (s && s !== raw) {
+        try { history.replaceState(null, '', '/fonts/' + encodeURIComponent(s) + location.search + location.hash); } catch (e) {}
+      }
+      return s;
     }
-    return s;
+    if (/^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(raw)) {
+      const s = (WFProto.fontUrlSlug && WFProto.fontUrlSlug(raw)) || raw;
+      if (s && s !== raw) {
+        try { history.replaceState(null, '', '/fonts/' + encodeURIComponent(s) + location.search + location.hash); } catch (e) {}
+      }
+      return s;
+    }
+    /* 非 ASCII 未命中：不要 slugify 成 f… */
+    return raw;
   }
 
   WFProto.loadCatalog().then(function (list) {
@@ -1302,7 +1314,24 @@
       const id = WFProto.getQuery('id');
       const slug = WFProto.getQuery('slug') || slugFromPath();
       const font = (id && WFProto.getFont(id)) || (slug && WFProto.getFontBySlug(slug)) || (!id && !slug ? list[0] : null);
-      if (!font) { root.innerHTML = pageState('找不到', '目录里没有这款字。', '<a class="btn" href="' + WFChrome.href('fonts.html') + '">回字体库</a>'); return; }
+      if (!font) {
+        let act = '<a class="btn" href="' + WFChrome.href('fonts.html') + '">回字体库</a>';
+        const raw = String(slug || WFProto.getQuery('slug') || '').trim();
+        const fdSlug = raw && WFProto.foundryUrlSlug ? WFProto.foundryUrlSlug(raw) : '';
+        const foundries = WFProto.getFoundries ? WFProto.getFoundries() : [];
+        let fd = null;
+        if (fdSlug) {
+          for (let i = 0; i < foundries.length; i++) {
+            if (String(foundries[i].id) === fdSlug) { fd = foundries[i]; break; }
+          }
+        }
+        if (fd) {
+          const fdName = fd.name || fd.id;
+          act = '<a class="btn" href="' + WFChrome.href('foundry.html?slug=' + encodeURIComponent(fd.id)) + '">去' + esc(fdName) + '厂商页</a> ' + act;
+        }
+        root.innerHTML = pageState('找不到', '目录里没有这款字。', act);
+        return;
+      }
       const q = new URLSearchParams(location.search);
       const extras = {};
       ['from', 'view', 'tpl', 'frame', 't', 's'].forEach(function (k) {

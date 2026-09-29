@@ -70,7 +70,7 @@ sourceKind  sourceUrl  quote  verifiedAt  restrictions[]  spdx  verified
 
 没有这几项，不要点亮「免费商用 + 已核对」。
 
-以后公开接口：`GET /v1/fonts/{id}` 带 `licenseEvidence`；存档柜在 `wenfeng.org`。
+以后公开接口（未上线，现网不要打 `/v1/`）：`GET /v1/fonts/{id}` 带 `licenseEvidence`；存档柜在 `wenfeng.org`。现网目录是 `GET /api/fonts`。
 
 ## 6. 出现位置
 

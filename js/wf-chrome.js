@@ -16,15 +16,22 @@
     return h === 'app.windfonts.com' || h === 'staging-app.windfonts.com';
   }
   /* 公网走 livePagePath（/fonts、/foundry/{slug}）；本机 16016 无重写，仍用 .html。
-     控制台页里的相对 project.html 要留在 /app/，不能落到站点根 /project。 */
+     控制台页里的相对 project.html 要留在 /app/，不能落到站点根 /project。
+     站点页（login/index/fonts…）即使从 /app/ 点出去也不加 app/ 前缀。 */
+  const SITE_HTML = /^(index|login|fonts|font-detail|foundry|docs|about|shopping-bag|bag|claim|features|lineage|faq|license|licenses|license-query|pricing|404|privacy|terms|disclaimer|trademark|upload-terms|yong-wall)\.html(\?|#|$)/i;
   function href(path) {
     path = String(path == null ? '' : path);
     const pathname = String((typeof location !== 'undefined' && location.pathname) || '');
-    if (/^\/app(\/|$)/.test(pathname) && !/^(https?:|\/\/|\/|#|app\/|\.\.\/)/i.test(path)) {
-      path = 'app/' + path.replace(/^\.\//, '');
+    const rel = path.replace(/^\.\//, '');
+    if (/^\/app(\/|$)/.test(pathname) &&
+        /\.html(\?|#|$)/i.test(rel) &&
+        !SITE_HTML.test(rel) &&
+        !/^(https?:|\/\/|\/|#|app\/|\.\.\/)/i.test(path)) {
+      path = 'app/' + rel;
     }
     if (onAppHost() && window.WFProto && typeof WFProto.livePagePath === 'function') {
       const live = WFProto.livePagePath(path);
+      if (live === '/' || live === '') return ROOT;
       if (!live || live.charAt(0) === '#' || /^https?:/i.test(live) || live.indexOf('//') === 0) return live;
       return ROOT + String(live).replace(/^\//, '');
     }

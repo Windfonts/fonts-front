@@ -107,7 +107,7 @@
 | `GET /api/fonts?page&size&category&brand&search&sort`，`sort` 为 `name` / `createdAt` / `viewCount`。`data` 含 `total,page,pageTotal,dataList`。2026-09-24 抽样 total 410 | 目录仍读 `data/fonts.json` |
 | `GET /api/fonts/:id` 或 `:family`，带 `viewCount` / `downloadCount` / `apiCallCount`、`weights` 对象、`languages`、`useCases` | 详情仍用本地目录。打开详情时按 `fontFamily` 拉这一次计数，6 小时内缓存；**CORS 已通（2026-09-25）** |
 | `GET /api/categories`、`GET /api/brands` | 分类和厂商用本地 JSON |
-| `GET /api/fonts/:id/analysis` 字符表，没有分析文件时 404 | 详情查字用本地数据 |
+| `GET /api/fonts/:id/analysis` 字符表。2026-09-29 起 metadata `?v=20260929p3`（546 款，Ibmps 200）。缺 CSS unicode-range 的仍 404 | 详情查字用本地数据 |
 | `GET /api/css?family&weight&subset`（`subset`/`lang`：`full`/`zh`/`zh-common`/`en`）。可选 `fallback`/`fallbackWeight`（缺口裁切）。**不认 `version` 换包**。`cn.windfonts.com/api/css` **已回源 vault（2026-09-25）** | 嵌入写 CDN `/api/css`，双写 `subset`+`version`；有上游时可勾选补全 → `fallback=` |
 | 管理后台：字体 / 厂商 / 分类 / 风格、同步、安全开关、域名白名单、域名黑名单、API 密钥。IP 白名单在导航里被拿掉 | 顾客控制台不做这套运营后台 |
 
@@ -115,21 +115,21 @@
 
 密钥：`Authorization: Bearer`、`X-API-Key`，或 query `apiKey`（不要写进公开页面）。
 
-下面的 `/v1/` 表是尚未落地的顾客控制台契约，不是现网路径。
+下面的 `/v1/` 表是尚未落地的顾客控制台契约，不是现网路径。2026-09-29 公网 `GET /v1/fonts`：vault 返回 Next HTML 404，app 返回店面 `404.html`。不要把这张表抄进现网文档或复制代码当活接口。现网目录接口是 `GET /api/fonts`。
 
-统一响应：`{ "data": …, "error": null }` / `{ "data": null, "error": { "code", "message" } }`；带 `X-Request-Id`；从 `/v1/` 起版本化；列表接口分页 `?page=&size=`。
+统一响应（草案，未上）：`{ "data": …, "error": null }` / `{ "data": null, "error": { "code", "message" } }`；带 `X-Request-Id`；从 `/v1/` 起版本化；列表接口分页 `?page=&size=`。
 
-### 公开
+### 公开（未上线，现网 404）
 | 方法 | 路径 | 说明 | 对应前端 |
 |---|---|---|---|
-| GET | `/v1/fonts` | 目录，字段同 `fonts.json` 记录 | `WFProto.loadCatalog` |
+| GET | `/v1/fonts` | 未上。不要请求。目录走 `GET /api/fonts` 或本仓 `fonts.json` | `WFProto.loadCatalog` |
 | GET | `/v1/fonts/{id}` | 单字体 | `WFProto.getFont` |
 | GET | `/v1/foundries` | 厂商字典，字段同 `foundries.json` | `WFProto.getFoundries` |
 | GET | `/v1/foundries/{id}/fonts` | 厂商旗下字体（归属；受托制作另列） | 厂商页 |
 | GET | `/v1/lineage` | 同系 / 上下游，字段同 `font-lineage.json` | 详情谱系、`?lineage=` |
 | GET | `/v1/search?q=` | 关键词 / 自然语言检索（AI 选字） | 顶栏搜索、控制条 |
 
-### 认证后
+### 认证后（未上线）
 | 方法 | 路径 | 说明 | 对应前端 |
 |---|---|---|---|
 | GET/POST | `/v1/projects` · `/v1/projects/{id}` | 项目 CRUD | `WFApp.projects/createProject/removeProject` |
@@ -819,8 +819,56 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 
 ### 下一手从哪读
 
-1. 本文件 §33–§36 + `docs/LICENSE.md` §10–§11。
+1. 本文件 §33–§37 + `docs/LICENSE.md` §10–§11。
 2. 记忆：`topics/fonts-front.md`、`topics/fonts-catalog.md`、`topics/windfonts-app-oss.md`。
 3. leftover 观察：`~/.grok/memory-v2/workspaces/linuxjoy-092c3977/observations/_inbox/grok-01a0eb5b-shop-leftover.md`。
 4. 开工前 `session-claim.sh claim --repo <仓> --task "…" --sig <你>`。
 
+## 37. 2026-09-29 app.windfonts.com 审计 P0（Grok `01a0eb5b`）
+
+计划 `docs/plans/2026-09-29-app-audit-fix.md`。P0 静态前台已发 OSS；P1 边缘见 §38；P2 拆包见 §39；P3 vault 见 §40。P4 真登录另开会话。
+
+- `/app/` 未登录不再请求 `app/login.html`（OSS NoSuchKey）。`WFChrome.href` 只给控制台相对 `*.html` 加 `app/`；`login.html` / `index.html` / `fonts.html` 等站点页不加。本机 16016：`/app/` → `/login.html?next=app&back=`。
+- 词标 `livePagePath('index.html')` → `/`（`app/index.html` 仍是控制台）。公网 `href('index.html')` = 站点根。本机无 `onAppHost`，词标仍是 `/index.html`。
+- `/fonts/华为` 不再 `replaceState` 成 `/fonts/f2fj3ld`。`getBySlug` 认 `name`/`en`（霞鹜文楷 → xwwk）。华为不是字体名：找不到 +「去华为厂商页」→ foundry `huawei`。`/fonts/harmony` 仍是 HarmonyOS Sans。
+- preview-shop 不再打 `/api/css?subset=preview-shop`。`Normal` 包 404 再试 `Regular`（Syhtsc / Misa 已 200）。不把 Thin 回成 Regular。
+- 新增根 `robots.txt`：Allow `/`；Disallow `lab.html` / `oss-audit.html` / `data/fonts.json`。
+- 戳：`wf-proto.js?v=20260929g15`、`wf-chrome.js?v=20260929ui12`、`detail.js?v=20260929ui10`。未改 `wf-app.js`（loginUrl 已走 href）。
+- 未合 `v4-specimen`。未改生产 DNS。未公开 `text=`。P1+ 见计划 Task 6–9。
+- 2026-09-29 已 `bash scripts/deploy-web-hz.sh` → `oss://wenfeng-web-hz`（846 files，经 devops）。公网 HTML 已是 proto `g15` / chrome `ui12`。`/app/` → `/login?next=app`；词标 `https://app.windfonts.com/`；`/fonts/华为` 不去 `f2fj3ld`，CTA `/foundry/huawei`。仓内改动未提交。
+
+## 38. 2026-09-29 app.windfonts.com P1 边缘（Grok `01a0eb5b`）
+
+计划 Task 6。人授权「继续 P1」。10 台 `cdn_edge` 已 reload：bj hz sz qd wh cd sh hk sg jp。
+
+- 未知路径：`error_page 404 =404 /404.html`。根因是 `@html_fallback` 缺 `proxy_intercept_errors`，第二跳漏 OSS XML。旗标 `html_not_found: /404.html`（motuicons 不要开）。
+- `/app/login` → `/login`；`/lab.html` `/oss-audit.html` `return 410`。`favicon.ico` 已进 `oss://wenfeng-web-hz`（15086 bytes，`image/vnd.microsoft.icon`）。
+- HTML `Cache-Control: public, max-age=60`；JS/CSS/ico `max-age=604800`。HSTS `max-age=31536000`（不要 `includeSubDomains`）。CSP 放行 `cn|hk|en.windfonts.com`、`vault.windfonts.com`、`cravatar.com`。
+- 真源：devops `~/ansible/roles/openresty-edge-cache/` `defaults/main.yml` `windfonts_app` + `templates/site.conf.j2`。gzip 同 location 不能 `off` 再 `on`（hz 第一次 canary `nginx -t` emerg）。
+- **不要**跑全 role `cdn-edge-vhost.yml` 铺这一站：会在「清理自签证书残留」SSH 超时，随后边不再铺。窄入口 `playbooks/p1-windfonts-app-vhost.yml` 只渲染 `windfonts_app-edge.conf`。`origin_ip_by_node` 在 `nginx.conf`，禁止把 hz 的 conf 拷到其他边。
+- 探针必须 `curl --noproxy '*' --resolve app.windfonts.com:443:EDGE_IP`。Mac Clash 会忽略 `--resolve`。jp 第一次 `/app/login` 仍可能 HIT 旧 404 XML / 未知路径 504，再打一次才是 200/店面 404。
+- Ansible ControlPersist mux 卡死 jp 时：`ssh -o ControlMaster=no`，必要时清 `~/.ansible/cp/` 该 host 套接字。缓存树不要 leftover-GC 式整树清空。
+- 回滚：各边 `/usr/local/openresty/nginx/conf/conf.d/windfonts_app-edge.conf.bak-p1-20260929T1718`。SoT bak：`defaults/main.yml.bak-p1-app-headers-20260929T1718`、`templates/site.conf.j2.bak-p1-app-headers-20260929T1718`。
+- 未提交：fonts-front P0 JS + `favicon.ico`；devops ansible 脏树（原已在 `ops/2026-08-24-incident-fixes`）。未合 `v4-specimen`。未改 DNS。P2 见 §39。
+
+## 39. 2026-09-29 app.windfonts.com P2 拆包（Grok `01a0eb5b`）
+
+计划 Task 7。人授权「继续」。仓 `fonts-packages`，桶 `oss://wenfeng-fonts`（广州）→ `cn.windfonts.com` zone `windfonts`。不要公开 `GET /api/css?text=`。
+
+- **Ibmps**（IBM Plex Sans SC）：目录字重 `Thin / Extralight / Light / Text / Bold / Regular`。OSS 文件夹是 `Extralight`（不是 `ExtraLight`）。`full` 六档都 200；`preview-shop` 原先只有 Regular。根因：`build-preview-pack.py --all-catalog` 只 `pick_weight` 一档（Regular）。本轮 `--norm Ibmps --weight {Thin,Extralight,Light,Text,Bold}` 切到 `staging/preview-shop-p2`，`--import-lab` 指空目录，不碰 592 家旧 staging。`node scripts/upload-preview-shop.js --apply` 经 symlink 只传 p2：**137 文件 ok=137 fail=0**。
+- **思源黑体 `Syhtsc` / 小米兰亭 Sans `Misa`：** `Normal` 与 `Regular` 的 `full`/`zh`/`zh-common` **都在**（体积不同）。Adobe `Normal=350`、`Regular=400`，不能把 Regular 目录当成 Normal 的长期统一。缺的是 `preview-shop`。已切 `Syhtsc/Normal`（23 片 43020B）、`Misa/Normal`（16 片 21048B）。P0 JS `siblingWeightFolder` 仍留着给只有一档的家族。
+- **寒蝉 UI：** `css/fonts.css` 只钉词标「文风字体」U+6587 / U+98CE / U+4F53 / U+5B57，四片 `Hckht/Medium/full/{16,18,15,19}.woff2` 合计约 66KB（10224+14916+20268+20688）。本轮不改 `fonts.css`。以后若切四字专用包须另给两套对照。
+- **CDN：** 上传后裸 URL 仍 HIT OSS `NoSuchKey` XML。`?p2=1` 已 200 且 md5 对得上本地。`cybercdn-url-purge` 规划 7 条 `result.css` 命名文件（zone `windfonts`，key `$scheme$uri$args` 无 host）。devops ansible 清 9 边（跳过 jp mux）再单独 `cravatar-jp` ControlMaster=no。之后裸 URL：Ibmps 五档 + Syhtsc/Misa Normal CSS 200，抽查 `0.woff2` 200。`ExtraLight`（大写 L）仍 404。Thin CSS md5 `e04abd913f70ead4b643beb476ee9e77`。
+- 未改 `fonts.json`。未合 `v4-specimen`。未改 DNS。fonts-packages 工作区仍脏（`_upstream-src/` 等），p2 staging 勿并进那堆。未提交。P3 见 §40。
+
+## 40. 2026-09-29 app.windfonts.com P3 vault（Grok `01a0eb5b`）
+
+计划 Task 8。人授权「继续」。仓 `fonts-vault` 工位 `~/wt/fonts-vault-p3` 分支 `feat/p3-css-text-gate`（认领 `c-05bf26`）。不要改 `Projects/fonts-vault` 的 `feat/admin-font-certs`。不要新镜像 tag。不要改生产 DNS。不要手改 `fonts.json`。
+
+- **`text=`：** 现网匿名 `GET /api/css?text=` 曾 200 全包（~188KB）。源站 nginx `location = /api/css`：`$args` 含 `text=`（含空值）→ 400 JSON `no-store`。已铺 `vault.windfonts.com` + `app.windfonts.com`。公网 app/vault/cn 均 400；具名 `subset=zh-common` 仍 200 cl=9318。容器 `:4000` 直打仍 200（镜像未含门），下一手镜像才进 Next。代码在 worktree：`src/lib/css-text-param.ts` + `app/api/css/route.ts`。项目切字仍走 `/p/{slug}?t=`。bak：`*.conf.bak-p3-text-20260929T1855`。`default_type` 不能写在 `if` 里（nginx emerg）。
+- **analysis：** 根因不是 Ibmps 缺行。OSS `fonts-packages/metadata/font-analysis.json` 被 kaonashi 两款（Qhddl/Xxzt，42458B）覆盖；`?v=` 只换 CDN 键，OSS 忽略 query。本机 `fonts-packages/metadata/font-analysis.json` 同步被覆盖。已 `node scripts/build-font-analysis-from-css.mjs` 从店面 574 款 CSS unicode-range 重建 → **546/574**（951504B，Ibmps 在），只上传 analysis（不传 2.4K 的 mapping stub）。bak：`metadata/font-analysis.json.bak-p3-2font`。容器 `OSS_METADATA_VERSION=20260929p3`，同镜像 recreate，`/app/data` 卷保留。`GET /api/fonts/Ibmps/analysis` 200，`char_count` 29287（当前 child 名 Light，重建脚本按 weights 顺序先命中的字重）。28 款无 unicode-range CSS 仍会 404（多为日文展示款 / 乐米等）。
+- **625 vs 574：** DB `published=523, offline=87, archived=15`。导出脚本已 `status=published`。按 family 对拍：店面 574 中 118 不在 published（17 offline、1 archived=`wenfeng-xczz`、100 库无此 family 键）；published 67 不在店面（鸿雷/嗷呜/逐浪/KH Dot/JF Dot/IPA 等，vault 用了另一套 family 键，如 `wenfeng-hongleibanshu` vs 店面 `wenfeng-hlbs`）。条数差 51 是计数，不是同一集合。不要手改 JSON 去「对上」。要新目录须走导出+merge，并先处理 family 键漂移。
+- **`/v1/fonts`：** 现网 404（vault Next HTML / app `404.html`）。表头已标未上线。LICENSE「以后公开接口」保持将来时。
+- **hk/en `/api/css`：** 2026-09-29 18:5x 从 feicode-prod 打 hk/en `subset=zh-common|full` 均 200（9318 / 188256）。Mac 打 hk 25s 超时；en 本轮 200 HIT。回归看源站，不要把 Mac Clash 超时当成 vault 502。未改 DNS。监控继续用源站 `127.0.0.1:4000` + 边 IP `--noproxy --resolve`。
+- 回滚容器：`docker stop fonts-vault; docker rename fonts-vault fonts-vault-p3-new; docker rename fonts-vault-p3-old fonts-vault; docker start fonts-vault`（旧容器仍在，未删）。prod.db bak `prod.db.bak-20260929T1855-p3-meta`。host env bak `.env.production.bak-20260929T1855-p3-meta`。
+- 未提交：fonts-vault-p3 门代码；fonts-packages 重建的 analysis；fonts-front P0；devops ansible P1。未合 `v4-specimen`。未开 P4。

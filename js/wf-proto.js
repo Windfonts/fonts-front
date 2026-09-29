@@ -466,12 +466,17 @@
   }
 
   function getBySlug(slug) {
-    let s = resolveFamilyAlias(slug);
-    if (!s) return null;
+    const raw = String(slug || '').trim();
+    let s = resolveFamilyAlias(raw);
+    if (!s && !raw) return null;
+    const key = String(s || raw).trim().toLowerCase();
+    const rawKey = raw.toLowerCase();
     for (let i = 0; i < catalog.length; i++) {
       const f = catalog[i];
-      if (String(f.normalized || '').toLowerCase() === s) return f;
-      if (familySlug(f.family).toLowerCase() === s) return f;
+      if (String(f.normalized || '').toLowerCase() === key) return f;
+      if (familySlug(f.family).toLowerCase() === key) return f;
+      if (rawKey && String(f.name || '').trim().toLowerCase() === rawKey) return f;
+      if (rawKey && String(f.en || '').trim().toLowerCase() === rawKey) return f;
     }
     return null;
   }
@@ -527,6 +532,13 @@
       }).join('&');
       if (slug) return 'foundry/' + encodeURIComponent(slug) + (extra ? '?' + extra : '') + hash;
       return 'foundry' + hash;
+    }
+    /* 站点根：index.html → / 。带目录的 app/index.html 仍是控制台。 */
+    if (base.indexOf('/') < 0 && (file === 'index.html' || file === 'index')) {
+      const extra = Object.keys(params).map(function (k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(params[k]);
+      }).join('&');
+      return '/' + (extra ? '?' + extra : '') + hash;
     }
     if (/\.html$/i.test(file)) {
       const dir = base.indexOf('/') >= 0 ? base.slice(0, base.lastIndexOf('/') + 1) : '';
@@ -1125,8 +1137,25 @@
         });
       });
     }
+    function siblingWeightFolder(w) {
+      const k = String(w || '').toLowerCase().replace(/[\s-]+/g, '');
+      if (k === 'normal') return 'Regular';
+      if (k === 'regular') return 'Normal';
+      return '';
+    }
     function fetchPkg(subset) {
-      return fetchCss(packageResultUrl(family, pathName, subset)).catch(function () {
+      const pack = function (weightArg) {
+        return fetchCss(packageResultUrl(family, weightArg, subset));
+      };
+      let chain = pack(pathName);
+      const folder = packageWeight(family, pathName);
+      const sib = siblingWeightFolder(folder) || siblingWeightFolder(pathName);
+      if (sib) {
+        chain = chain.catch(function () { return pack(sib); });
+      }
+      /* preview-* 只拉拆包；/api/css?subset=preview-shop 现网 400 且无 CORS */
+      if (String(subset).indexOf('preview-') === 0) return chain;
+      return chain.catch(function () {
         return fetchCss(cssApiUrl(family, pathName, subset));
       });
     }
