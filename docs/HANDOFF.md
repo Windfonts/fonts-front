@@ -869,3 +869,20 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 - 公网：`data/font-products.json?v=20260929tsanger`（42 产品）、`wf-products.js?v=20260929ui2`。HTML 从当时公网壳改戳，chrome `ui12` / proto `g15` / `detail.js` `ui10` 未动。
 - 点按公网：`/fonts/cesyt3` 标题「仓耳舒圆体 · W03」、5 枚芯片、点 W05 → `/fonts/cesyt5`；渔阳/与墨/非白同样 5 规格；小丸子仍「1 字重」；霞鹜文楷仍标题下 完整/GB/TC。字库搜「仓耳渔阳」库内 1 款 +「5 规格」。
 
+## 40. 2026-09-29 详情/厂商空态比页眉页脚宽（Grok `01a0eafd`）
+
+人：「详情页、厂商页这些空状态都比页眉页脚宽」。
+
+根因：`.page-state { padding: var(--s-16) 0 var(--s-20); }` 简写把左右写成 0，盖掉同节点 `.container { padding: 0 var(--gutter); }`。1440 宽时 kicker 在 x=0，词标和页脚在 x=24。字库列表空态在已有 gutter 的栏里，不带 `.container`，这条打不中。
+
+### 拍板
+
+- `.page-state` 只写 `padding-top` / `padding-bottom`。左右 gutter 留给 `.container`。不要再写三值 `padding` 简写。
+- 详情/厂商找不到、载入失败、正在载入：`.page-state.container`，跟顶栏 `.container.topbar-inner`、页脚 `.container.extra-inner` 同宽。
+
+### 仓 / 现网
+
+- 枝仍 `grok/tsanger-grades`，`9e8b564`。契约 `scripts/test-empty-state-contract.py` 禁那条简写。
+- 公网 `base.css?v=20260929ui7`（etag AEBAE749）。HTML 从当时公网壳改戳，chrome `ui12` / proto `g15` 未动。
+- 点按公网 1440：`/fonts/no-such-font`、`/foundry/no-such-foundry` 的 kicker / 词标 / 页脚版权都在 x=24。
+
