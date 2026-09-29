@@ -49,7 +49,7 @@ aliyun oss --profile wenpai cp <file> oss://wenfeng-web-hz/<key> \
 | JS / CSS | `"$scheme$host$uri$args:g1"` | 长 |
 | HTML | `"$scheme$host$uri$args"`（**浏览器路径**，含 `/foundry/zcool`） | 约 1m |
 
-清 JS 必须带 `?v=` 和 `:g1`。`/foundry/zcool` 与 `/foundry.html` 不是同一份 HTML 缓存。`cybercdn-url-purge.py` 尚未登记 `app.windfonts.com`。
+清 JS 必须带 `?v=` 和 `:g1`。`/foundry/zcool` 与 `/foundry.html` 不是同一份 HTML 缓存。linuxjoy `scripts/lib/cybercdn_url_purge.py` 的 `HOST_TO_ZONE` 已把 `app.windfonts.com` / `staging-app.windfonts.com` 指到 zone `windfonts_app`。该文件若只在本机文档枝，不算集群真源；进独立 ops 枝后再当工具用。HTML key 无 `:g1`；JS/CSS key 带 `?v=` 和 `:g1`。
 
 现网 rewrite（ansible `openresty-edge-cache` `windfonts_app.locations`，**不带** `?slug=`）：
 
@@ -65,7 +65,7 @@ aliyun oss --profile wenpai cp <file> oss://wenfeng-web-hz/<key> \
 
 ### 2.4 店面预览包
 
-列表 / 首页短样张走 `fonts-packages/{Norm}/{Weight}/preview-shop/`（字体桶 `wenfeng-fonts`，不是网页桶）。现网 shop 包大约 41 个汉字（「上中体到动南又在地处天文日时月水江派流看行起里间风」一类），**盖不住**「春风又绿江南岸」的春/绿/岸，也盖不住首页「让中文字体，在网页上流动」的让/字/网页。
+列表 / 首页短样张走 `fonts-packages/{Norm}/{Weight}/preview-shop/`（字体桶 `wenfeng-fonts`，不是网页桶）。shop 包已按 `fonts-packages/config/preview-packs.json` 重切，CSS 带 `?v=20260929shop2`。unicode-range 仍盖不住时 `ensureFontCss` 升 zh、再升 full。Qhddl / Xxzt 无 zh-common，升 full。CDN 对字体 CSS/woff2 可能仍输出一年 `max-age`；换包必须 bump query，不要以为改了 OSS 头浏览器立刻换文件。
 
 规则：
 

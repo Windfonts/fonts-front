@@ -1,7 +1,7 @@
 # 上线前检测门闸 · 基础设施清单
 
 > 静态原型（本仓）上线正式域前的硬门槛。未勾完不应切流量。  
-> 对照现网：`app.windfonts.com`。原型预览：`python3 -m http.server 16016`。
+> 对照现网：`app.windfonts.com`。本地预览：`python3 scripts/preview-local.py --port 16016`（fonts-front **main** + 干净 URL）。不要 `python3 -m http.server 16016` 指 lab。
 
 **2026-09-29：** 访客静态 origin 是 OSS `wenfeng-web-hz`（不是 feicode 磁盘、不是广州 `wenfeng-web`）。边缘 rewrite：`/fonts/{slug}` → `/font-detail.html last`（无 `?slug=`，JS 读 pathname）；`/foundry/{slug}` → `/foundry.html last`。`WFChrome.href` 在 app 域走 `livePagePath`（`?v=20260929ui3` 起）。发版 SOP：`docs/ops/DOMAIN-DEPLOY-SOP.md`。
 

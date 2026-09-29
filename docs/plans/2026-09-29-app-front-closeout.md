@@ -15,15 +15,15 @@
 | `js/pages/fonts.js` | 推荐排序：有汉字面的排前面 |
 | linuxjoy `scripts/lib/cybercdn_url_purge.py` | `app.windfonts.com` → zone `windfonts_app` |
 
-## 进度（2026-09-29 续）
+## 进度（2026-09-29 晚）
 
 - P0 样张/排序/发版脚本：已上公网。
-- **整站灌桶**：`deploy-web-hz.sh` → 842 files / 32MB → `oss://wenfeng-web-hz`。公网 proto `g11` chrome `ui11`。
-- P1 控制台 `/app/` 相对链：`WFChrome.href` 在 `/app/` 下前缀 `app/`。`/app/index` `/app/projects` html 回退 200。
+- **整站灌桶**：`deploy-web-hz.sh` → `oss://wenfeng-web-hz`。公开店面 proto `g14`、chrome `ui11`、specimen `ui14`。
+- P1 控制台 `/app` 无斜杠：边缘 rewrite 200 HTML。`WFChrome.href` 在 `/app/` 下前缀 `app/`。**壳 stamp 在 leftover 执行里跟到 g14/ui11**（执行计划 `2026-09-29-app-leftover-execute.md`）。
 - P1 换一款：`liveNext` → `applyLive` 已带 `live.textContent`。
 - P1 发版脚本打印 foundries/list 戳。
-- P2 shop 重切：`fonts-packages` `build-preview-pack.py --force --all-catalog` 进行中（config 字表已含春绿岸与首页标题；CDN 上仍是旧 41 字包，切完再 `upload-preview-shop.js --apply`）。
-- P2 目录债清单：`docs/plans/2026-09-29-catalog-debt.md`（26 filePending + 17 charCount=1）。入库/重导另开，不手改 fonts.json。
+- P2 shop 重切：已上传；CSS `?v=20260929shop2`。CDN `Cache-Control` 现测一年，以 leftover 计划 Task 4 为准。
+- P2 目录债：`docs/plans/2026-09-29-catalog-debt.md`。26 filePending 仍开。公网薄表 `charCount=1` 已为 0（cmap 回填，不是 vault 重导）。简介全量重写仍冻结。
 
 ## P0 本会话做
 
