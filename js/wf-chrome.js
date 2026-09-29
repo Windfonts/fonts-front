@@ -47,10 +47,12 @@
       return u;
     } catch (e) { return null; }
   }
-  /** 注册用户 / 管理员可进控制台；访客不显示入口。role 缺省视为已注册 user。 */
+  /** 注册用户 / 管理员可进控制台；访客不显示入口。role 缺省视为已注册 user。
+      生产 app 域只认 vault NextAuth 写下的壳（source=vault-nextauth），避免 login.html 本地冒充。 */
   function canAccessApp(u) {
     u = u || user();
     if (!u) return false;
+    if (onAppHost() && String(u.source || '') !== 'vault-nextauth') return false;
     const role = String(u.role || 'user').toLowerCase();
     return role === 'user' || role === 'admin' || role === 'owner' || role === 'editor';
   }

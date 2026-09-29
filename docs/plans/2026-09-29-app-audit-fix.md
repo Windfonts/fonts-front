@@ -1,6 +1,6 @@
 # app.windfonts.com 审计修复计划
 
-> **For agentic workers:** P0 静态前台 + P1 `windfonts_app` 边缘 + P2 拆包 + P3 vault 已做（2026-09-29，Grok `01a0eb5b`）。下一手 P4 真登录，另开会话。不要合 `v4-specimen`。不要手改 `fonts.json` 去「对目录」。不要公开 `GET /api/css?text=`。
+> **For agentic workers:** P0–P3 已做。P4 前台接线已做（2026-09-29，Grok `01a0eb5b`，HANDOFF §43）：生产 `/app/` 走 NextAuth，假 localStorage 进不了控制台。顾客 weixiaoduo OAuth 现网未进 providers；认领 `bySlug` 空；不要新镜像。不要合 `v4-specimen`。不要手改 `fonts.json` 去「对目录」。不要公开 `GET /api/css?text=`。
 
 **Goal:** 按 2026-09-29 公网实测，把店面能修的断链和扇出错先修掉，其余按仓拆开排期。
 
@@ -35,7 +35,7 @@ P1 ansible 真源在 devops `roles/openresty-edge-cache`（`html_not_found` / HS
 | **P1** 边缘 404 / 缓存头 / HSTS / CSP | devops + `windfonts_app` | 2026-09-29 已铺 10 边 |
 | **P2** preview-shop 缺字重、Hckht UI full 切片 | fonts-packages 拆包上传 | 2026-09-29 已切 Ibmps 五档 + Syhtsc/Misa Normal |
 | **P3** `text=` 关掉、analysis、vault↔list | fonts-vault | 2026-09-29 已做，见 HANDOFF §40 |
-| **P4** 真登录 / 项目 / 用量 / 认领 | vault + 控制台 | 产品排期，不挡 P0 发版 |
+| **P4** 真登录 / 项目 / 用量 / 认领 | vault + 控制台 | 前台已接线；OAuth/认领/服务端计数另开 |
 
 **本会话不做：** CATALOG-COPY 全量、filePending 入库、合 lab、改生产 DNS、改 `fonts.json` 去对 625。
 
@@ -164,12 +164,13 @@ curl -sSI https://app.windfonts.com/ | grep -i x-cache
 
 ### Task 9: P4 控制台（不挡店面）
 
-1. NextAuth 现网 session `null`，providers 只有 credentials。`/login` 邮箱密码页在；进 `/app/` 须落到它。
-2. `GET /api/projects|domains|uploads|usage|picks|team` 401 `missing_api_key` — 登录后要带 key/cookie。
-3. 统计仍是目录/localStorage。LAUNCH-GATES「服务端计数」未做。
-4. `claim-status.bySlug` 空。认领工单未接。
-5. `/p/demo/index.css` 只在 vault 200，app 404 — 文档/复制代码不要写 app 域这条。
-6. 生产继续禁止 `?demo=1`。
+1. [x] NextAuth 现网 session `null`，providers 只有 credentials。生产 `/app/` 客户端门跳 `login.html?next=app`；`login.html` 走 `WFAuth.signIn`。OSS 不 302。
+2. [x] 无 Bearer 仍 401 `missing_api_key`。登录后 `POST /api/console/ensure-key` 发 key（须 cookie）。本轮未用管理员密码验收发 key。
+3. [ ] 统计仍是目录/localStorage。LAUNCH-GATES「服务端计数」未做。
+4. [ ] `claim-status.bySlug` 空。认领工单未接，不编造。
+5. [x] `/p/demo/index.css` 只在 vault 200，app 404。`docs.html` 已写 `cn.windfonts.com/p/{slug}`。
+6. [x] 生产继续禁止 `?demo=1`。
+7. [ ] 顾客 weixiaoduo OAuth：现网 providers 无该键，须 vault env + 新镜像，另开。
 
 ---
 

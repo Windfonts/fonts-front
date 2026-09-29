@@ -16,9 +16,9 @@
   <link rel="stylesheet" href="/css/fonts.css?v=20260929ui1" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="/css/fonts.css?v=20260929ui1" /></noscript>
   <link rel="stylesheet" href="/css/tokens.css?v=20260929ui1" />
-  <link rel="stylesheet" href="/css/base.css?v=20260929ui1" />
-  <link rel="stylesheet" href="/css/components.css?v=20260929ui1" />
-  <link rel="stylesheet" href="/css/site.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/base.css?v=20260929ui8" />
+  <link rel="stylesheet" href="/css/components.css?v=20260929ui8" />
+  <link rel="stylesheet" href="/css/site.css?v=20260929ui8" />
   <link rel="stylesheet" href="/css/gap-fill.css?v=20260929ui1" />
   <link rel="icon" type="image/webp" href="/assets/icon.webp" />
 </head>
@@ -34,7 +34,13 @@
           <h1>许可类型对照</h1>
           <p class="lead">本站转述条款，不二次授权。按用途一键判定请用 <a href="/license-query">授权查询</a>；说明原文见 <a href="/license">许可说明</a>。</p>
         </section>
-        <div id="licRoot"><p class="loading">正在加载…</p></div>
+        <div id="licRoot">
+          <div class="page-state" role="status">
+            <p class="page-state-kicker">许可类型</p>
+            <p>正在载入对照表</p>
+            <div class="page-state-skel" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+        </div>
       </article>
       <aside data-docs-aside="licenses" aria-label="相关"></aside>
     </div>
@@ -43,10 +49,10 @@
   <footer id="wfExtraFooter"></footer>
 
   <script defer src="/js/wf-proto.js?v=20260929g17"></script>
-  <script defer src="/js/wf-chrome.js?v=20260929ui12"></script>
+  <script defer src="/js/wf-chrome.js?v=20260929ui13"></script>
   <script defer src="/js/wf-docs-nav.js?v=20260929ui1"></script>
   <script defer src="/js/wf-app.js?v=20260929ui1"></script>
   <script defer src="/js/wf-api.js?v=20260929ui1"></script>
-  <script defer src="/js/pages/licenses.js?v=20260929ui1"></script>
+  <script defer src="/js/pages/licenses.js?v=20260929ui8b"></script>
 </body>
 </html>

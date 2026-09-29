@@ -902,3 +902,20 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 
 **Harmony 入库。** 店面短码保持 `wenfeng-harmony` / `Harmony` / 店面 UUID `11c57445-29f9-423f-9da1-fb4f005a1f70`。OSS 六档 TTF full CSS 原先就 200。`prod.db.bak-20260929-harmony` 后 INSERT 一行 + 品牌 `huawei`（`550ea5d0-bb0b-493f-9b58-b0353d48ebf6`）。license 写协议本名 `HarmonyOS Sans Fonts License Agreement`。vault `fonts` 625→626。现网 `GET /api/fonts/Harmony` 与 `GET /api/fonts/wenfeng-harmony` 200 published；`GET /api/css?family=wenfeng-harmony&subset=full` 200 cl=168196。未新镜像。脚本一次性 `/tmp/register-harmony.js` → 容器 `/app/register-harmony.js`。不要改 `Projects/fonts-vault` 的 `feat/admin-font-certs`。
 
+## 43. 2026-09-29 P4 控制台接线（Grok `01a0eb5b`）
+
+计划 Task 9。人授权「继续」（#8700 + Harmony 之后的 leftover）。未新 vault 镜像。未合 PR #72。未开 weixiaoduo OAuth（现网 `/api/auth/providers` 只有 credentials）。未 `vm-return`。未整仓 `deploy-web-hz.sh`（公网 CSS 戳已是 ui8，本树 CSS 文件仍旧，整仓会盖回去）。
+
+**现网已经有的：** app 域 `/api/auth/*` 反代 vault NextAuth；`POST /api/console/ensure-key`（无 cookie 401「请先登录」）；顾客 API 无 Bearer 401 `missing_api_key`；`?demo=1` 仅 localhost。缺的是前台没加载 `wf-auth.js`，`login.html` 任意邮箱写 localStorage 就能进 `/app/`。
+
+**本轮前台：**
+
+- 14 个 `app/*.html` 在 `wf-chrome` 后加载 `js/wf-auth.js?v=20260929ui1`。`WFApp.gate()` 在生产对 `/api/auth/session`，假壳 `clearOrphanLocalUser` 后跳 `login.html?next=app&back=`。OSS 静态不能 302，门在客户端。
+- `login.html`：`DOMContentLoaded` 后，生产走 `WFAuth.signIn`（csrf + `POST /api/auth/callback/credentials`），隐藏注册；本机 16016 仍 mock `WFChrome.login`。错密码 toast「账号或密码错误」。已登录则 `location.replace(dest())`，`dest` 走 `WFChrome.href`（公网 `/app/index`）。
+- `wf-chrome.js` `canAccessApp`：生产 app 域要求 `user.source === 'vault-nextauth'`，首页「控制台」入口不再被本地壳点亮。戳 `?v=20260929ui13`。
+- 公网 HTML 的 `base.css`/`components.css`/`site.css` **保持 ui8**（empty-state/CSP 会话已发桶，未进本树 CSS 文件）。本轮只传 HTML + `wf-chrome.js`，不传 `css/`。
+
+**校正：** 旧交接曾写 `app.windfonts.com/p/demo/index.css` 200。现网 app 该路径 404 HTML；vault `https://vault.windfonts.com/p/demo/index.css` 200。文档复制代码已是 `https://cn.windfonts.com/p/{slug}/index.css`（`docs.html`），不要改去 app 域。
+
+**仍空 / 未做：** `GET /api/claim-status` `bySlug={}`（没有工单，不编造）。统计仍目录/localStorage。顾客登录要 weixiaoduo 环境变量进 providers，本轮不开。credentials 只认 vault 管理员，不从生产 env 抽密码、不在生产造用户。P3 镜像门、PR #72、剩余 shop-only/vault-only 行，都不是本轮。
+

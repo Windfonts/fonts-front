@@ -15,9 +15,9 @@
   <link rel="stylesheet" href="/css/fonts.css?v=20260929ui1" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="/css/fonts.css?v=20260929ui1" /></noscript>
   <link rel="stylesheet" href="/css/tokens.css?v=20260929ui1" />
-  <link rel="stylesheet" href="/css/base.css?v=20260929ui1" />
-  <link rel="stylesheet" href="/css/components.css?v=20260929ui1" />
-  <link rel="stylesheet" href="/css/site.css?v=20260929ui1" />
+  <link rel="stylesheet" href="/css/base.css?v=20260929ui8" />
+  <link rel="stylesheet" href="/css/components.css?v=20260929ui8" />
+  <link rel="stylesheet" href="/css/site.css?v=20260929ui8" />
   <link rel="icon" type="image/webp" href="/assets/icon.webp" />
 </head>
 <body class="page-login">
@@ -46,21 +46,25 @@
 
   <footer id="wfExtraFooter"></footer>
   <script defer src="/js/wf-proto.js?v=20260929g17"></script>
-  <script defer src="/js/wf-chrome.js?v=20260929ui12"></script>
+  <script defer src="/js/wf-chrome.js?v=20260929ui13"></script>
+  <script defer src="/js/wf-auth.js?v=20260929ui1"></script>
   <script>
-    (function () {
+    document.addEventListener('DOMContentLoaded', function () {
       const signup = WFProto.getQuery('mode') === 'signup';
       const q = new URLSearchParams(location.search);
+      const prod = window.WFAuth && WFAuth.requiresVaultSession && WFAuth.requiresVaultSession();
 
       function dest() {
         const next = WFProto.getQuery('next');
-        if (next === 'bag') return 'app/subset.html?from=bag';
-        if (next === 'app' && /^[\w-]+\.html$/.test(WFProto.getQuery('back'))) return 'app/' + WFProto.getQuery('back');
+        if (next === 'bag') return WFChrome.href('app/subset.html?from=bag');
+        if (next === 'app' && /^[\w-]+\.html$/.test(WFProto.getQuery('back'))) {
+          return WFChrome.href('app/' + WFProto.getQuery('back'));
+        }
         if (next === 'claim') {
           const slug = WFProto.getQuery('slug');
-          return 'claim.html' + (slug ? '?slug=' + encodeURIComponent(slug) : '');
+          return WFChrome.href('claim.html' + (slug ? '?slug=' + encodeURIComponent(slug) : ''));
         }
-        return 'app/index.html';
+        return WFChrome.href('app/index.html');
       }
 
       function hrefFor(mode) {
@@ -68,14 +72,59 @@
         if (mode === 'signup') next.set('mode', 'signup');
         else next.delete('mode');
         const s = next.toString();
-        return 'login.html' + (s ? '?' + s : '');
+        return WFChrome.href('login.html' + (s ? '?' + s : ''));
       }
 
-      function enter() {
+      function enterLocal() {
         const email = document.getElementById('email').value || 'design@wenpai.org';
         const name = (document.getElementById('displayName').value || '').trim() || email.split('@')[0];
         WFChrome.login({ name: name, email: email, role: 'user' });
         location.href = dest();
+      }
+
+      function enterProd() {
+        const btn = document.getElementById('authBtn');
+        btn.disabled = true;
+        const username = String(document.getElementById('email').value || '').trim();
+        const password = String(document.getElementById('password').value || '');
+        WFAuth.signIn(username, password).then(function (r) {
+          if (!r || !r.ok) {
+            btn.disabled = false;
+            WFChrome.toast((r && r.error) || '登录失败');
+            return;
+          }
+          location.href = dest();
+        }).catch(function (err) {
+          btn.disabled = false;
+          WFChrome.toast((err && err.message) || '登录失败');
+        });
+      }
+
+      if (prod) {
+        document.getElementById('authTitle').textContent = '登录控制台';
+        document.getElementById('authSub').textContent = '使用文风账号管理项目、域名与用量。';
+        const emailLab = document.querySelector('label[for="email"]');
+        if (emailLab) emailLab.textContent = '账号';
+        const emailEl = document.getElementById('email');
+        emailEl.type = 'text';
+        emailEl.autocomplete = 'username';
+        emailEl.placeholder = '账号';
+        document.getElementById('nameField').hidden = true;
+        document.getElementById('confirmField').hidden = true;
+        document.getElementById('authAlt').innerHTML = '';
+        if (signup) {
+          location.replace(hrefFor('login'));
+          return;
+        }
+        document.getElementById('authForm').addEventListener('submit', function (e) {
+          e.preventDefault();
+          enterProd();
+        });
+        WFAuth.syncFromVault().then(function (profile) {
+          if (profile && WFChrome.canAccessApp()) location.replace(dest());
+          else if (WFAuth.clearOrphanLocalUser) WFAuth.clearOrphanLocalUser();
+        });
+        return;
       }
 
       if (signup) {
@@ -100,11 +149,11 @@
           const b = document.getElementById('confirm').value;
           if (a !== b) { WFChrome.toast('两次密码不一致'); return; }
         }
-        enter();
+        enterLocal();
       });
 
       if (WFChrome.user()) location.replace(dest());
-    })();
+    });
   </script>
 </body>
 </html>
