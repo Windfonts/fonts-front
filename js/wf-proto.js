@@ -269,7 +269,7 @@
       font._fat = true;
       return Promise.resolve(font);
     }
-    const url = dataUrl('fonts-by-slug/' + encodeURIComponent(stem) + '.json?v=20260929list1');
+    const url = dataUrl('fonts-by-slug/' + encodeURIComponent(stem) + '.json?v=20260929list2');
     return fetch(url).then(function (r) {
       if (!r.ok) throw new Error(String(r.status));
       return r.json();
