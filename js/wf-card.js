@@ -9,14 +9,18 @@
     square: { w: 1080, h: 1080, label: '方图' }
   };
   const TEMPLATES = [
-    { id: 'poem', label: '诗签', hint: '居中短句，底部署名', frame: 'og', layout: 'center', slots: ['sub'], hero: '行到水穷处，坐看云起时', sub: '—— 王维', size: 72, leading: 1.28, tracking: 0.06, align: 'center', wrap: 1, fit: 0, invert: 0 },
-    { id: 'hero', label: '巨字', hint: '一行撑满画心', frame: 'og', layout: 'fill', slots: [], size: 140, leading: 1.05, tracking: -0.02, align: 'left', wrap: 0, fit: 1, invert: 0 },
-    { id: 'mast', label: '刊头', hint: '横幅，字左名右', frame: 'banner', layout: 'mast', slots: ['sub', 'bg'], sub: '', size: 88, leading: 1.08, tracking: -0.01, align: 'left', wrap: 0, fit: 1, invert: 0 },
-    { id: 'card', label: '名刺', hint: '姓名 + 头像职务', frame: 'og', layout: 'card', slots: ['sub', 'avatar'], credit: 0, hero: '张三', sub: '设计师', size: 88, leading: 1.2, tracking: 0.02, align: 'left', wrap: 1, fit: 0, invert: 0, face: 112 },
-    { id: 'quote', label: '引言', hint: '一段话，头像 + 作者', frame: 'og', layout: 'quote', slots: ['sub', 'avatar'], credit: 0, hero: '好的设计，是让人感觉不到设计。', sub: '—— 某设计师', size: 48, leading: 1.5, tracking: 0.02, align: 'left', wrap: 1, fit: 0, invert: 0, face: 56 },
-    { id: 'poster', label: '海报', hint: '背景图铺满，反白压字', frame: 'og', layout: 'poster', slots: ['sub', 'bg'], hero: '让中文字体，在网页上流动。', sub: '', size: 72, leading: 1.15, tracking: 0, align: 'left', wrap: 1, fit: 0, invert: 1 },
-    { id: 'ink', label: '墨底', hint: '反相居中', frame: 'og', layout: 'center', slots: ['sub'], hero: '行到水穷处，坐看云起时', sub: '—— 王维', size: 72, leading: 1.28, tracking: 0.04, align: 'center', wrap: 1, fit: 0, invert: 1 },
-    { id: 'seal', label: '方印', hint: '方图，头像压在字下', frame: 'square', layout: 'seal', slots: ['sub', 'avatar'], credit: 0, hero: '文', sub: '', size: 160, leading: 1.05, tracking: 0.12, align: 'center', wrap: 0, fit: 0, invert: 0, face: 96 }
+    { id: 'poem', label: '诗签', hint: '居中短句，底部署名', frame: 'og', layout: 'center', slots: ['sub', 'avatar', 'bg'], hero: '行到水穷处，坐看云起时', sub: '—— 王维', size: 72, leading: 1.28, tracking: 0.06, align: 'center', wrap: 1, fit: 0, invert: 0 },
+    { id: 'hero', label: '巨字', hint: '一行撑满画心', frame: 'og', layout: 'fill', slots: ['avatar', 'bg'], size: 140, leading: 1.05, tracking: -0.02, align: 'left', wrap: 0, fit: 1, invert: 0 },
+    { id: 'mast', label: '刊头', hint: '横幅，字左名右', frame: 'banner', layout: 'mast', slots: ['sub', 'avatar', 'bg'], sub: '', size: 88, leading: 1.08, tracking: -0.01, align: 'left', wrap: 0, fit: 1, invert: 0 },
+    { id: 'card', label: '名刺', hint: '姓名 + 头像职务', frame: 'og', layout: 'card', slots: ['sub', 'avatar', 'bg'], credit: 0, hero: '张三', sub: '设计师', size: 88, leading: 1.2, tracking: 0.02, align: 'left', wrap: 1, fit: 0, invert: 0, face: 112 },
+    { id: 'quote', label: '引言', hint: '一段话，头像 + 作者', frame: 'og', layout: 'quote', slots: ['sub', 'avatar', 'bg'], credit: 0, hero: '好的设计，是让人感觉不到设计。', sub: '—— 某设计师', size: 48, leading: 1.5, tracking: 0.02, align: 'left', wrap: 1, fit: 0, invert: 0, face: 56 },
+    { id: 'poster', label: '海报', hint: '背景图铺满，反白压字', frame: 'og', layout: 'poster', slots: ['sub', 'avatar', 'bg'], hero: '让中文字体，在网页上流动。', sub: '', size: 72, leading: 1.15, tracking: 0, align: 'left', wrap: 1, fit: 0, invert: 1 },
+    { id: 'ink', label: '墨底', hint: '反相居中', frame: 'og', layout: 'center', slots: ['sub', 'avatar', 'bg'], hero: '行到水穷处，坐看云起时', sub: '—— 王维', size: 72, leading: 1.28, tracking: 0.04, align: 'center', wrap: 1, fit: 0, invert: 1 },
+    { id: 'seal', label: '方印', hint: '方图，头像压在字下', frame: 'square', layout: 'seal', slots: ['sub', 'avatar', 'bg'], credit: 0, hero: '文', sub: '', size: 160, leading: 1.05, tracking: 0.12, align: 'center', wrap: 0, fit: 0, invert: 0, face: 96 },
+    { id: 'vert', label: '竖排', hint: '窄幅直排', frame: 'narrow', layout: 'vert', slots: ['sub', 'avatar', 'bg'], hero: '风雅', sub: '', size: 88, leading: 1.12, tracking: 0.08, align: 'center', wrap: 0, fit: 0, invert: 0 },
+    { id: 'couple', label: '对联', hint: '窄幅两行相对', frame: 'narrow', layout: 'couple', slots: ['sub', 'avatar', 'bg'], hero: '海内存知己\n天涯若比邻', sub: '—— 王勃', size: 64, leading: 1.55, tracking: 0.08, align: 'center', wrap: 1, fit: 0, invert: 0 },
+    { id: 'plaque', label: '匾额', hint: '横幅居中大字', frame: 'banner', layout: 'center', slots: ['sub', 'avatar', 'bg'], hero: '文风字体', sub: '', size: 96, leading: 1.05, tracking: 0.18, align: 'center', wrap: 0, fit: 1, invert: 0 },
+    { id: 'excerpt', label: '摘录', hint: '一段正文', frame: 'og', layout: 'text', slots: ['sub', 'avatar', 'bg'], hero: '好的设计，是让人感觉不到设计。它把秩序藏进日常，让字自己站稳。', sub: '', size: 36, leading: 1.6, tracking: 0.02, align: 'left', wrap: 1, fit: 0, invert: 0 }
   ];
   const WALL_BGS = ['01', '02', '03', '04', '05', '06'].map(function (n) {
     return WFChrome.href('assets/wall/' + n + '.jpg');
@@ -189,7 +193,20 @@
       const w = bg ? sr.width : r.width, h = bg ? sr.height : r.height;
       ctx.save();
       const rad = radiusOf(cs, w, h, k);
-      if (rad > 0) {
+      const face = el.classList.contains('card-avatar') || el.getAttribute('data-slot') === 'avatar';
+      if (face && rad > 0) {
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(x, y, w, h, rad);
+        else ctx.arc(x + w / 2, y + h / 2, Math.min(w, h) / 2, 0, Math.PI * 2);
+        ctx.fillStyle = token('--face', '#ffffff');
+        ctx.fill();
+        const inset = 1;
+        const ir = Math.max(0, rad - 1);
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(x + inset, y + inset, Math.max(0, w - inset * 2), Math.max(0, h - inset * 2), ir);
+        else ctx.arc(x + w / 2, y + h / 2, Math.max(0, Math.min(w, h) / 2 - inset), 0, Math.PI * 2);
+        ctx.clip();
+      } else if (rad > 0) {
         ctx.beginPath();
         if (ctx.roundRect) ctx.roundRect(x, y, w, h, rad); else ctx.rect(x, y, w, h);
         ctx.clip();

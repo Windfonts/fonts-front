@@ -886,3 +886,604 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 - 公网 `base.css?v=20260929ui7`（etag AEBAE749）。HTML 从当时公网壳改戳，chrome `ui12` / proto `g15` 未动。
 - 点按公网 1440：`/fonts/no-such-font`、`/foundry/no-such-foundry` 的 kicker / 词标 / 页脚版权都在 x=24。
 
+## 41. 2026-09-29 移动端核查（Grok `01a0eafd`）
+
+人：「去把所有的移动端显示效果都核查一遍，弄完之后我们再继续谈」。公网 `app.windfonts.com`，390×844 走完店面主路，另拍 375 首页、768 六页。截图在 linuxjoy `.playwright-mcp/wf-mobile-audit/`。未改 CSS、未发版。
+
+### 客观坏掉
+
+- 大字 `html[data-scale="lg"] { zoom: 1.5 }`：390 顶栏图标叠进词标，`overflowX=14`。`base.css` 第 4 行，无窄屏关掉。
+- 谱系 `/lineage`：390 `overflowX=247`（`.lfl-stage` 撑出文档）；工具条芯片和「全宽 PNG SVG − + 重置」挤成一团；画布节点在视口外。768 仍 `overflowX=58`，且「正在载入谱系」`.page-state` 加载完还叠在画布上（`lineage.html` 里那块没摘）。
+- 关于页「两个站点」表：390 量到 thead 宽 548，第三列被裁，行尾露出箭头。文档 `overflowX=0`，是表自己超出。
+- 许可对照 `/licenses` 仍是 `<p class="loading">正在加载…</p>`，不是 `.page-state`。
+- `/docs` 控制台 `WFChrome is not defined`（内联脚本早于 chrome）。
+- 若干 preview-shop 404（寒蝉 DIN / 仓耳渔阳 TW / 谱系节点 Ysbs·Qsst·Xstq）。不是窄屏专属，字墙会缺字。
+
+### 折叠本身是有的
+
+960 汉堡、768 字库 1 列 +「筛选」summary、厂商 1 列、详情动作换行、页脚换列。390 除谱系和大字外文档不横滚。仓耳 W01–W05 在 390 可见。详情/厂商空态 gutter 16px 与词标齐。
+
+### 口味（人说不满意，未动）
+
+顶栏 5 个 32px 图标、搜索进汉堡、汉堡不遮罩正文透出、960 以下 iPad 也是这套、字库侧栏折成「筛选」、厂商芯片换行「入驻与认领」掉右下、仓耳/方正空头像、选字袋空态上头还挂试样条、空搜索上面一条匹配结果下面再一个大空态。
+
+## 42. 2026-09-29 谱系模态 CSP + 窄屏四条（Grok `01a0eafd`）
+
+人：「查看谱系图模态窗提示 app.windfonts.com 拒绝了我们的连接请求。你先调整」。并批准窄屏四条：关 zoom 1.5、谱系溢出、关于表、许可空态。
+
+根因：边缘 CSP `frame-ancestors 'none'`，同源 iframe `/lineage?embed=1` 被 Chrome 写成「拒绝了我们的连接请求」（ERR_BLOCKED_BY_RESPONSE），不是 TCP 拒绝。
+
+### 拍板
+
+- `windfonts_app.csp` 用 `frame-ancestors 'self'`。别站仍嵌不进来。
+- 不要为了模态去合 lab / 改 chrome。公网壳继续 `wf-chrome.js?v=20260929ui12`。
+- 窄屏 `html[data-scale="lg"]` 在 max-width 960 把 zoom 设回 1；汉堡里藏大字开关。
+- 谱系画布关在 `.lfl-viewport { overflow: hidden }`；`?embed=1` 藏站点壳。
+- 关于页表进 `.table-wrap`；许可对照占位用 `.page-state`，不要 `.loading`。
+- `WFApi.listLicenses` 现网 `wf-api.js` 没有、vault `/api/licenses` 404：对照表填不出来是旧缺口。JS 缺函数时走失败空态，不要一直「正在载入」。不要为了这页去盖 `wf-api.js`。
+
+### 仓 / 现网
+
+- 枝仍 `grok/tsanger-grades`，工位 `~/wt/fonts-front-empty-state`。未合 `main`。
+- Ansible SoT `roles/openresty-edge-cache/defaults/main.yml` `frame-ancestors 'self'`。十边 live conf 已换。9 边 reload + jp 探针已是 `'self'`。未跑全 role `cdn-edge-vhost.yml`。
+- 公网 CSS `base/components/site/lineage.css?v=20260929ui8`，`licenses.js?v=20260929ui8b`。HTML 从当时公网壳改戳。
+- 现网 chrome `ui12`；proto 多数页 `g17`（占用中的 main 20:00 整桶发过一版，本会话按新壳重打补丁）。`licenses.html` 仍引 proto `g16`。
+- 点按：思源黑体详情「在谱系图中查看」iframe 标题「思源黑体 · 字体谱系」，正文无「拒绝」，`html.lg-embed`。10 边 `/lineage?embed=1` CSP `'self'`，无 `X-Frame-Options`。关于页 `.table-wrap` overflow-x auto。许可页 `.page-state`「许可类型 / 正在载入对照表」，随后因缺 API 进失败空态。
+
+### 不要做
+
+- 不要从这棵工位跑 `deploy-web-hz.sh`（会把 chrome/proto 打回去）。
+- 不要 `find -delete` 边缘缓存；只 named unlink。
+- leftover 余项仍暂停。顶栏两套方案还没画。
+
+## 43. 2026-09-29 谱系模态图画布缺卡（Grok `01a0eafd`）
+
+人：「你有没有看到里面的谱系图界面是乱的」。模态已能打开，里面只剩曲线、没有卡片，工具条挤着 PNG/SVG/全宽。
+
+根因：公网 `css/lineage.css` 只有乙支线/丙墙列表样式，没有 `.lfl-card { position: absolute }` 等画布规则（lab 有、main 一直没有）。节点坐标写在 inline `left/top` 上不生效，卡叠在文档流里，看起来像空画布。
+
+### 拍板
+
+- 只抄 lab 画布 CSS（卡片、边、字墙网格、embed 壳），不合 lab 目录、不合 v4-specimen。
+- 嵌入/≤768 藏 PNG/SVG；全宽留下，仍可跳出 iframe。
+- 窄屏聚焦：不要把 1288px 邻域缩到 0.55；焦点卡 scale≈1，下游从下方露出。
+- 不要上传工位 `wf-chrome.js`。HTML 只改 `lineage.css` / `lineage.js` 的 `?v=`。
+
+### 仓 / 现网
+
+- 枝仍 `grok/tsanger-grades`。`css/lineage.css?v=20260929ui9`（含 `.lfl-card`），`js/pages/lineage.js?v=20260929ui9`（`narrowPlex`）。
+- 发版时占用中的 main 把 `lineage.html` 盖成 chrome `ui13`。按新壳重打戳，chrome 保持 **ui13**，proto **g17**。
+- 390 模态：工具条约 76px，无 PNG/SVG，思源黑体焦点卡可读，下接思源黑系。1280 模态：六张卡都在，派生扇可见。
+- 契约 `scripts/test-mobile-chrome-contract.py` 含 `.lfl-card` + `narrowPlex`。
+
+### 不要做
+
+- 不要从这棵工位跑 `deploy-web-hz.sh`。
+- leftover 余项仍暂停。顶栏两套方案还没画。
+
+## 44. 2026-09-29 谱系「永」与画布细节（Grok `01a0eafd`）
+
+人：「你去把“字”还有我们谱系图这些细节再调整一下…主要是功能逻辑和界面 UI」。
+
+### 根因
+
+- `weightOf` / `htmlWeightOf` 用 `/regular|normal/i` 取第一命中。思源 `Normal=350`，永字看起来偏细。
+- 系列卡 `canSpecimenFace` 为假，图上五张系卡没有永。
+- `narrowPlex` 把全部 `lg-embed` 当窄屏，桌面模态左右裁切；没有 ResizeObserver，先开桌面再缩 390 焦点飞出画面。
+- 聚焦切图谱 `keepScale`，整树停在几千 px 外。
+- 字墙 `.lg-cell .lg-yong { width: auto }` 在 column flex 里撑满卡宽。
+
+### 现网
+
+- `lineage.css` / `lineage.js` `?v=20260929ui10`。HTML 只改这两处戳。chrome **ui13**，proto **g17**。
+- 永走 `preferredWeightName`（`/^regular$/` 先于 Normal）。系列卡用成员 `specimenSource` 画永。
+- 窄屏 `r.width < 720` 钉焦点；桌面嵌入 bbox-fit。iframe 尺寸变了会重算。
+- 390：思源黑体在画面中，永 Regular 400、32px。1280：六张卡都在且带永。字墙 92 格，永不撑宽。
+- 契约 `scripts/test-lineage-polish-contract.py`。坑 cluster-recall **#8895**。
+
+### 不要做
+
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+- leftover 余项仍暂停。顶栏两套方案还没画。
+
+## 45. 2026-09-29 谱系链接新窗口（Grok `01a0eafd`）
+
+人：「谱系里的链接应该都是新窗口打开，不然会出现嵌套网页」。
+
+谱系模态是同源 iframe（`?embed=1`）。字体名 / 字墙格 / 芯片没有 `target`，点进去会在 iframe 里打开详情。
+
+### 现网
+
+- `lineage.js?v=20260929ui11`。HTML 只改这一处戳。css 仍 **ui10**，chrome **ui13**，proto **g17**。
+- 六个 `detailHref` 走 `detailAnchor`：`target="_blank" rel="noopener noreferrer"`。
+- embed 里 `applyBlankTargets` 把页眉页脚残留 `<a>` 也改成新窗口。全宽仍是按钮，走 `top.location`，未改。
+- 390 嵌入：点「思源黑体」新开 `/fonts/syhtsc`；iframe 仍停在 `/lineage?embed=1`。字墙 92 格全是 `_blank`。
+- 契约 `scripts/test-lineage-polish-contract.py`。坑 cluster-recall **#8896**。
+
+### 不要做
+
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+- leftover 余项仍暂停。顶栏两套方案还没画。
+
+## 46. 2026-09-29 全宽深色工具栏灰带（Grok `01a0eafd`）
+
+人贴了全宽 + 深色截图：「全宽深色是不是有样式问题」。
+
+`html.lg-wide .lg-toolbar` 用 `background: var(--paper)`（深色 `#2a2a2a`），页眉/页面是 `--page` `#111`。工具栏又在 `.container` 内边距里，所以多出一条缩进灰带。浅色下 `--paper` 与 `--page` 都是白，看不出来。
+
+### 现网
+
+- `lineage.css?v=20260929ui11`。HTML 只改这一处戳。js 仍 **ui11**，chrome **ui13**，proto **g17**。
+- 全宽工具栏 `background: var(--page)`，负 margin 铺过容器 padding。
+- 1440 深色：工具栏与页眉都是 `rgb(17,17,17)`，x=0 宽=视口。
+- 「全宽」选中白底与芯片选中相同，未改。坑 cluster-recall **#8898**。
+
+### 不要做
+
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+- leftover 余项仍暂停。顶栏两套方案还没画。
+
+## 47. 2026-09-29 谱系模态桌面错位（Grok `01a0eafd`）
+
+人贴了仓耳详情页深色谱系模态：「这个样式也有错位」。
+
+- `html.lg-embed .tb-a { flex-direction: column }` 无条件，桌面模态把 聚焦/图谱/字墙/全宽 挤到第二行左侧。
+- `.dialog.dialog-lineage` / frame 用 `--paper`（深色 `#2a2a2a`），iframe 是 `--page` `#111`，灰头压黑身。
+- `#stage` 默认没有 `is-off`，`.page-state` 22rem / fs-28「正在载入谱系」盖住画布。
+
+### 现网
+
+- `lineage.css?v=20260929ui12`，`components.css?v=20260929ui9`。js 仍 **ui11**，chrome **ui13**，proto **g17**。
+- embed 工具栏竖排只在 `max-width: 720px`。`#stage` 默认 `is-off`。模态壳 `--page`。
+- 1280 深色仓耳模态：工具栏 `flex-direction: row`、同一行、高 42px；dialog `rgb(17,17,17)`。390 仍竖排、藏全宽。
+- 契约 `scripts/test-lineage-polish-contract.py`。
+
+### 不要做
+
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+- leftover 余项仍暂停。顶栏两套方案还没画。
+
+## 48. 2026-09-29 谱系 PNG/SVG 导出文件名（Grok `01a0eafd`）
+
+人：「导出的 png svg 名称和后缀不对」。
+
+Chrome 下载记录是 UUID 且无后缀（隐身：`f7f12e80-…`、`a0d7f73f-…`）。`downloadDataUrl` 把 html-to-image 的 data URL 直接赋给 `a.href`；异步链 + 长 data URL 让 `a.download` 失效，Chrome 用 MIME/UUID 当文件名。
+
+### 现网
+
+- `lineage-export.js?v=20260929ui2`。HTML 只改这一处戳。css **ui12**，js **ui11**，chrome **ui13**，proto **g17**。
+- data URL → Blob → `createObjectURL`，`a.download` 仍是 `文风字体谱系-{名}-{聚焦|图谱}.png|.svg`。
+- 现网建议名：`文风字体谱系-思源黑体-聚焦.png` / `.svg`。
+- 契约 `scripts/test-lineage-export-contract.py`。
+
+### 不要做
+
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+- leftover 余项仍暂停。顶栏两套方案还没画。
+
+## 49. 2026-09-29 编辑样张工坊 A（Grok `01a0eafd`）
+
+人拍 A：修现工坊，改完再谈。未上公网。
+
+- 手机 768：画布 grid-row 1，模板横滑 row 2，控件 row 3；复制图/导出图/完成 `position:fixed` 吸底。`--studio-h: 22rem`，避免底栏盖住模板名。
+- 编辑时藏 `.detail-title` / `.detail-body` / `#wfExtraFooter`。「完成」后回来。
+- 海报/刊头（模板声明 `bg` 槽）自动带 `assets/wall/01.jpg`。
+- 拿掉工坊和墙上的「复制链接」（og:image 后端未接）。
+- 戳：`specimen.css?v=20260929ui15`、`detail.css?v=20260929ui2`、`wf-tester.js?v=20260929ui2`、`detail.js?v=20260929ui11`。chrome / proto 未动。
+- 契约 `scripts/test-tester-studio-a-contract.py`。本地 16032 验过 1280 / 390。
+
+### 不要做
+
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+- leftover 余项仍暂停。顶栏两套方案还没画。
+
+## 50. 2026-09-29 工坊右侧栏四套对照（Grok `01a0eafd`）
+
+人：「你做几版原型出来我看看效果」。未改 `wf-tester.js` / `detail.js`，未上公网。
+
+- 页：`detail-tester-rail-options.html`（noindex）。`http://127.0.0.1:16032/detail-tester-rail-options.html`
+- 甲现栏 / 乙横滑（字/图仍在，字重不折行，无显示排、无画幅常显，完成收到顶栏；无底图槽则无图页）/ 丙按槽（取消字/图）/ 丁画布底（字重+对齐在画布下）。
+- 活工坊，顶栏切套。登记 `data/lab-archive.json`。契约 `scripts/test-tester-rail-options-contract.py`。
+
+### 不要做
+
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+- 人选之前不要把乙/丙/丁写进生产 `wf-tester.js`。
+
+## 50. 2026-09-29 工坊右侧栏四套对照（Grok `01a0eafd`）
+
+人：「你做几版原型出来我看看效果」。未改 `wf-tester.js` / `detail.js`，未上公网。
+
+- 页：`detail-tester-rail-options.html`（noindex）。`http://127.0.0.1:16032/detail-tester-rail-options.html`
+- 甲现栏 / 乙横滑（字/图仍在，字重不折行，无显示排、无画幅常显，完成收到顶栏；无底图槽则无图页）/ 丙按槽（取消字/图）/ 丁画布底（字重+对齐在画布下）。
+- 活工坊，顶栏切套。登记 `data/lab-archive.json`。契约 `scripts/test-tester-rail-options-contract.py`。
+
+### 不要做
+
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+- 人选之前不要把乙/丙/丁写进生产 `wf-tester.js`。
+
+## 51. 2026-09-29 工坊丁：字重底栏 + 每套都能选背景（Grok `01a0eafd`）
+
+人：「ExtraLight Light Regular Medium SemiBold Bold Heavy 左 中 右 这些放底部我同意，但是你的误解在于背景图方面，实际上所有的模板都可以选背景图才是」。未上公网。
+
+- 字重 + 左/中/右 进 `.tester-under`，桌面画布正下方（grid col 2 row 2），一行 nowrap 横滑。右侧 `.tester-rail` 只留 字/图、副文、显示、滑杆、画幅、导出。
+- 八套 TEMPLATES 的 `slots` 都带 `bg`。诗签/巨字/名刺/引言/墨底/方印 打开「图」就能选 `assets/wall/01–06.jpg`。
+- 自动铺图仍只海报/刊头。`takeTpl` 调 `seedBg(T.id === 'poster' || T.id === 'mast')`；`seedBg(false)` 不再 `setContent('bg','')`。都可以选 ≠ 每套都自动铺。
+- 戳：`specimen.css?v=20260929ui16`、`wf-tester.js?v=20260929ui3`、`wf-card.js?v=20260929ui2`。chrome / proto 未动。
+- 契约 `scripts/test-tester-ding-contract.py`；A 契约 768 改为 canvas/under/templates/rail。本地 16032 截图 `docs/_ui-tester/ding-poem-bg-1280.png`（诗签选 wall/01 铺上）、`ding-poster-1280.png`、`ding-poem-390.png`。
+
+### 不要做（§51 丁+全模板背景）
+
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades` / `grok/empty-state` / `grok/windfonts-app-purge`。
+- leftover 余项仍暂停。顶栏两套方案还没画。
+
+## 52. 2026-09-30 工坊右侧栏第二轮对照（Grok `01a0eafd`）
+
+人：「你去之前的原型图上改几版我看看效果」。未改正式 `wf-tester.js`，未上公网。
+
+- 页仍是 `detail-tester-rail-options.html`（noindex）。`http://127.0.0.1:16032/detail-tester-rail-options.html`
+- 甲现栏 / 乙一列（取消字图、署名改字、画幅一行、背景常显）/ 丙字图（分页还在、无显示排、画幅一行）/ 丁三块（文字/画面/输出小标题）。
+- 字重仍在画布下（§51 已拍）。契约 `scripts/test-tester-rail-options-contract.py`。截图 `docs/_ui-tester/rail2-*-ctl.png`。
+
+### 不要做（§52 右侧栏第二轮对照）
+
+- 人选之前不要把乙/丙/丁写进生产 `wf-tester.js`。
+- 不要从这棵工位跑 `deploy-web-hz.sh`。
+
+## 53. 2026-09-30 工坊左栏 14 套模板（Grok `01a0eafd`）
+
+人：「那你模板先做多几个吧，不然感觉左右不对称」。未上公网。未改正式右侧栏。
+
+- 8 → 14：竖排 / 对联 / 匾额 / 摘录 / 封面 / 金句。两列 7 行。桌面 1280 模板列高 651，甲栏 452。
+- 新 layout：`vert`（writing-mode vertical-rl）、`couple`、`text`。匾额复用 center+banner，封面复用 poster+square（不自动铺底），金句复用 center+x。
+- 每套 `slots` 仍含 `bg`。自动铺仍只海报/刊头。切模板 `keepText=true`，默认文案要点「重置」。
+- 重置后：竖排「风雅」、对联「海内存知己\\n天涯若比邻」、匾额「文风字体」。对联目前是窄幅两行横排，不是左右两列直排。
+- 戳 `wf-card.js?v=20260929ui3`、`card.css?v=20260929ui2`、`specimen.css?v=20260929ui17`。契约 `scripts/test-tester-more-templates-contract.py`。截图 `docs/_ui-tester/tpl14-*.png`。
+
+### 不要做（§53 十四套模板）
+
+- 不要给封面/竖排/对联/匾额/摘录/金句自动铺底。
+- 人选之前不要把乙写进生产 `wf-tester.js`。
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 54. 2026-09-30 工坊左栏改回 12 套（Grok `01a0eafd`）
+
+人：「改到 12 个」。去掉封面、金句（方图海报复读、X 卡片诗签复读）。留下竖排/对联/匾额/摘录。未上公网。
+
+- 12 套两列 6 行。桌面 1280 模板列高 544，甲栏 452。
+- 戳 `wf-card.js?v=20260929ui4`、`specimen.css?v=20260929ui18`。契约仍 `scripts/test-tester-more-templates-contract.py`（正好 12，禁 cover/motto）。截图 `docs/_ui-tester/tpl12-poem-1280.png`。
+- 旧偏好里的封面/金句 `byId` 退回诗签。
+
+### 不要做（§54 十二套模板）
+
+- 不要把封面/金句加回去，除非人点名。
+- 不要从这棵工位跑 `deploy-web-hz.sh`。
+
+## 55. 2026-09-30 现栏按乙改成一列（Grok `01a0eafd`）
+
+人：「那就按这个改现栏」。未上公网。
+
+- 取消字/图分页。副文、滑杆、反相、署名、背景墙、导出同一列。
+- 画幅改成一行字 `画幅 · 1200×630 · 分享图`，五颗尺寸胶囊去掉。
+- 显示胶囊改成「署名」文字开关；副文开关贴在输入右侧。
+- 头像槽没有时邮箱框隐藏。取景/横/纵/压色没有背景图时隐藏。
+- 点墙纸不把 `http://127.0.0.1:16032/assets/wall/…` 填进地址框。报错贴在头像/背景字段上，切模板会清掉。
+- 导出图主按钮；复制图、完成、重置是字。
+- 戳 `wf-tester.js?v=20260929ui4`、`specimen.css?v=20260929ui19`。契约 `scripts/test-tester-rail-yi-contract.py`。截图 `docs/_ui-tester/yi-*-rail.png`。
+
+### 不要做（§55 现栏乙一列）
+
+- 不要把字/图分页加回去。不要把画幅五颗胶囊加回去。
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 56. 2026-09-30 现栏滑杆两列（Grok `01a0eafd`）
+
+人：「把滑竿调整为两栏是不是可以省点右侧空间」。省的是高度，不是栏宽。
+
+- 去掉 `.is-editing .tester-cols-2 { 1fr }`。字号/行距并排，取景/横、纵/压色并排。
+- 桌面 1280：诗签右栏 581→550（与左栏模板同高）；海报带取景 698→604。
+- 戳 `specimen.css?v=20260929ui20`。未上公网。
+
+### 不要做（§56 滑杆两列）
+
+- 不要把 editing 滑杆再盖回一列，除非人说挤。
+- 不要从这棵工位跑 `deploy-web-hz.sh`。
+
+## 57. 2026-09-30 现栏重排：署名贴副文、头像滑杆贴头像框（Grok `01a0eafd`）
+
+人：「按这个改，改之前再把设计样式指南看一遍」。未上公网。
+
+先读 `docs/DESIGN-SYSTEM.md`：不加重标题、不加灰胶囊排、每屏一颗 `btn-ink`、填充只给状态、Tab 顺序即 DOM。按此只换同一列顺序，不加「文字 / 画面」。
+
+- 副文 → 署名 → 字号/行距/字距 → 反相 → 头像框+头像滑杆（有槽才出）→ 背景地址+六张图 → 取景/横/纵/压色。画幅、导出、完成不动。
+- 诗签 1280：副文 164、署名 206、字号 239、反相 325、背景 362。名刺：头像框 330、头像滑杆 374、背景 403。
+- 戳 `wf-tester.js?v=20260929ui5`、`specimen.css?v=20260929ui21`。契约 `scripts/test-tester-rail-yi-contract.py`。截图 `docs/_ui-tester/yi-order-*.png`。
+
+### 不要做（§57 现栏重排）
+
+- 不要把字/图分页或画幅五颗胶囊加回去。不要加「文字 / 画面」小标题。
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 58. 2026-09-30 画布底字号一行三格 + 完成不再清掉墙纸（Grok `01a0eafd`）
+
+人：「按这个改」字号/行距/字距放到预览下；随后「中间那么宽为什么还分两栏」；并查「点击完成后数据和改动就丢失」。未上公网。
+
+- 字号三根在 `.tester-under` 第二行，与字重分行。画布底 640px，三根同一行 `repeat(3)`，不用右侧那套两列。取景/横/纵/压色仍在右栏两列。
+- 完成丢失：点墙纸时地址框故意留空（不写 localhost），`persist` 只读输入框所以 `bg:""`；完成后再 `overlay` 把空值写回，画布图被清掉。现 `persist` 在输入为空时改读 `[data-slot=bg]` 的 src。海报完成后面还在，副文还在。
+- 戳 `wf-tester.js?v=20260929ui7`、`specimen.css?v=20260929ui23`。契约 `scripts/test-tester-rail-yi-contract.py`。截图 `docs/_ui-tester/under3-1280-under.png`、`after-done-bg.png`。
+
+### 不要做（§58 画布底三格 + 完成墙纸）
+
+- 不要把画布底字号再盖回两列。不要把取景三根也拉到画布底。
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 59. 2026-09-30 完成改成全宽灰胶囊（Grok `01a0eafd`）
+
+人：「完成按钮太小了」。未上公网。
+
+完成原先是 `btn-text` 挂在导出图下面，高度 auto、字号 13。现改成默认 `.btn` 灰胶囊，栏宽 100%，高度 2.25rem。导出图仍是唯一 `btn-ink`。复制图仍是文字链。
+
+- 桌面 1280：完成 272×36，灰 `rgb(240,240,240)`。390 底栏：完成 358×36。
+- 戳 `wf-tester.js?v=20260929ui8`、`specimen.css?v=20260929ui24`。契约 `scripts/test-tester-rail-yi-contract.py`。截图 `docs/_ui-tester/done-1280-dock.png`、`done-390-dock.png`。
+
+### 不要做（§59 完成灰胶囊）
+
+- 不要把完成改成第二颗 `btn-ink`。不要把复制图也做成灰条。
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 60. 2026-09-30 头像邮箱进画布下滑竿行；左栏改称样张模板（Grok `01a0eafd`）
+
+人：「把头像邮箱也放到中间跟滑竿一排，模板 改成 样张模板」。未上公网。
+
+- 左栏标题 `样张模板`。
+- `field('avatar')` 进 `.tester-under .tester-sliders`，和字号/行距/字距同一行。诗签等无头像槽时隐藏，仍三列；名刺/引言/方印第四列。390 邮箱单独一行，不把四格挤进 326px。
+- 头像尺寸滑杆仍在右栏（人只点了邮箱）。
+- 戳 `wf-tester.js?v=20260929ui9`、`specimen.css?v=20260929ui25`。契约 `scripts/test-tester-rail-yi-contract.py`。截图 `docs/_ui-tester/av-card-1280-under.png`、`av-poem-1280-title.png`。
+
+### 不要做（§60 头像邮箱下行 + 样张模板）
+
+- 不要把取景三根也拉到画布底。不要把字/图分页加回去。
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 61. 2026-09-30 头像邮箱默认都显示；邮箱和图片框改矮（Grok `01a0eafd`）
+
+人：「默认都显示，另外邮箱和图片输入框高度太高」。未上公网。
+
+- `applyLayers` 不再按槽把 `[data-field=avatar]` 藏掉。诗签也出第四列。无头像槽时填邮箱不往画布画（`setContent` 仍 `slotHas`）。头像尺寸滑杆仍按槽藏。
+- 桌面滑竿行固定四列。邮箱/图片 `.input` 和上传钮 `1.5rem`（24px），副文仍 2.125rem。
+- 戳 `wf-tester.js?v=20260929ui10`、`specimen.css?v=20260929ui26`。契约 `scripts/test-tester-rail-yi-contract.py`。截图 `docs/_ui-tester/av-always-poem-1280-under.png`、`av-always-poem-1280-bg.png`。
+
+### 不要做（§61 邮箱默认显示 + 矮框）
+
+- 不要把无槽模板硬画头像。不要把副文也压成 1.5rem，除非人说。
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 62. 2026-09-30 输入邮箱在每套模板上取 Cravatar 头像（Grok `01a0eafd`）
+
+人：「输入邮箱获取 Cravatar 头像」。§61「无槽不画」作废。未上公网。
+
+- 12 套 `TEMPLATES.slots` 都含 `avatar`（与背景图同一条）。`setContent` / `overlay` 不再 `slotHas('avatar')` 提前 return。邮箱走 `WFAvatar.cravatar` → `https://cravatar.com/avatar/{md5}?s=240&d=404`。格式不对提示「邮箱格式不对」；Cravatar 404 提示「这个邮箱没有头像」。
+- 头像尺寸滑杆按 `data-has-avatar` 显隐（有图才出），与取景对 `data-has-bg` 相同。邮箱框仍默认都显示。
+- 戳 `wf-tester.js?v=20260929ui11`、`wf-card.js?v=20260929ui5`。契约 yi/ding/more-templates。截图 `docs/_ui-tester/cravatar-poem-1280.png`（缺档提示）、`cravatar-hit-poem-1280-canvas.png`（诗签画出头像）。
+
+### 不要做（§62 Cravatar 每套模板）
+
+- 不要把 `d=404` 改成 identicon 或 mp。不要写 `cravatar.cn`。不要把副文压成 1.5rem。
+- 不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。不要把封面/金句加回去。
+
+## 63. 2026-09-30 邮箱框文案改成「输入邮箱获取 Cravatar 头像」（Grok `01a0eafd`）
+
+人：「文案改成 输入邮箱获取 Cravatar 头像」。未上公网。
+
+- placeholder / aria-label 从「填邮箱自动取头像」改成这句。第四列从 `minmax(12rem, 1.5fr)` 加到 `minmax(16rem, 2fr)`，不然 165px 输入框会裁成「头…」。
+- 戳 `wf-tester.js?v=20260929ui12`、`specimen.css?v=20260929ui27`。截图 `docs/_ui-tester/cravatar-ph-1280-under.png`。
+
+### 不要做（§63 邮箱框文案）
+
+- 不要把这句再缩回去。不要把副文也改。不要从这棵工位跑 `deploy-web-hz.sh`。
+
+## 64. 2026-09-30 副文改矮并改文案；头像滑杆贴邮箱（Grok `01a0eafd`）
+
+人：「那副文输入框和头像滑竿是不是也要改」。未上公网。
+
+- 副文 placeholder / aria-label「输入副文」，高度与邮箱、图片同为 1.5rem。画布里空副文仍是 `副文字 / 署名`（卡片占位，不是输入框）。
+- 头像滑杆离开右栏，进画布下邮箱列，标签「大小」，有 `data-has-avatar` 才出。
+- 戳 `wf-tester.js?v=20260929ui13`、`specimen.css?v=20260929ui28`。截图 `docs/_ui-tester/sub-face-1280-under.png`、`sub-face-1280-rail.png`。
+
+### 不要做（§64 副文 + 头像滑杆）
+
+- 不要把取景三根也拉到画布底。不要把「大小」改成长句。不要从这棵工位跑 `deploy-web-hz.sh`。
+
+## 65. 2026-09-30 Cravatar 按 Gravatar 兼容用 mp 默认图（Grok `01a0eafd`）
+
+人：「有问题 这个邮箱没有头像  cravatar.com 是 gravatar 的兼容」。未上公网。§62「不要把 d=404 改成 mp」作废。
+
+- `WFAvatar.cravatar` 从 `&d=404` 改成 `&d=mp`。未注册邮箱走 Gravatar 同协议默认剪影（实测 `test@example.com` `d=mp` 200 `avatar-from: default`；`d=404` 仍 404）。
+- 画布不再提示「这个邮箱没有头像」。格式不对仍「邮箱格式不对」；真加载失败改「头像加载失败」。赞助码核验 `wf-sponsor.js` 仍 `d=404`。主机仍 `cravatar.com`，不写 `cravatar.cn`。
+- 戳 `wf-avatar.js?v=20260929ui2`、`wf-tester.js?v=20260929ui14`。契约 yi：要求 `&d=mp`，禁 `&d=404` 与旧提示。截图 `docs/_ui-tester/cravatar-mp-poem-1280-canvas.png`。
+
+### 不要做（§65 Cravatar mp）
+
+- 不要改成 identicon。不要动赞助码 `d=404`。不要写 `cravatar.cn`。不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 66. 2026-09-30 邮箱头像要能导出，不再提示「在线图片只能预览」（Grok `01a0eafd`）
+
+人：「邮箱头像导出也要能用，别再提示这句话」。未上公网。
+
+- 根因：`cravatar.com/avatar/` 无 `Access-Control-Allow-Origin`（边缘与源站 45.117.8.70 都没有）。`adopt()` CORS fetch 失败后标 `data-preview-only`，导出跳过，提示「在线图片只能预览，导出请改用上传」。feicode-prod `write_policy=board_required`，本会话不改 Cravatar 生产。
+- `WFAvatar.adopt` 把 `cravatar.com/avatar/{md5}` 改写成同源 `/cravatar/avatar/{md5}`。`preview-local.py` 只代理 32 位 hex，回源 `https://cravatar.com/avatar/`（不写 `cravatar.cn`）。邮箱头像按本地图进 PNG。
+- 邮箱字段不再出那句。贴网上背景地址仍提示。戳 `wf-avatar.js?v=20260929ui3`、`wf-tester.js?v=20260929ui15`。yi-contract GREEN。导出 `docs/_ui-tester/cravatar-export-poem.png`（1200×630 含默认剪影，toast「已导出」无「未能导出」）。
+
+### 不要做（§66 邮箱头像导出）
+
+- 不要把那句从背景地址上也删掉。不要改 identicon。不要写 `cravatar.cn`。不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+- 上公网前要给 `app.windfonts.com` 配 `/cravatar/` 回源，或 board 给 Cravatar `/avatar/` 加 CORS。静态 OSS 没有这层代理。
+
+## 67. 2026-09-30 Cravatar `/avatar/` 源码加上 CORS（Grok `01a0eafd`）
+
+人：「那就给 cravatar 加上 CORS 头」；「继续」。
+
+- 工位 `/Users/feibisi-studio/wt/cravatar-avatar-cors` 分支 `grok/avatar-cors` 从 `origin/master` `3959c30` 切出，不碰 `feat/disposable-email-avatar`。
+- `AvatarResponseFactory` 给 `/avatar/` 加 `Access-Control-Allow-Origin: *`。单测 156/4431 绿。提交 `8632a27`。`linuxjoy` 无写权限；2026-09-30 用 `feicode-wapuu` 推到 `Cravatar/cravatar` 分支 `grok/avatar-cors`。对比 https://feicode.com/Cravatar/cravatar/compare/master...grok/avatar-cors 。未合 `master`，现网仍无这行头。上线走 cravatar immutable deploy（board + `CRAVATAR_PRODUCTION_WRITE=allow`）。
+- 文风 `paintSrc` 只在 `127.0.0.1`/`localhost` 走 `/cravatar/` 代理；线上直读 `cravatar.com`。戳 `wf-avatar.js?v=20260929ui4`。
+
+### 不要做（§67 Cravatar CORS）
+
+- 不要把 CORS 改提交到 disposable-email 分支。不要无 board 写 feicode-prod。不要给 `linuxjoy` 私自加 `Cravatar/cravatar` 写权限。不要从 fonts-front 工位跑 `deploy-web-hz.sh`。
+
+## 68. 2026-09-30 Cravatar CORS 合进 master，change 单已发（Grok `01a0eafd`）
+
+人：「合进 master，发 change 单上线」。
+
+- FeiCode 当时 `master` 已是 `a20e7f92`（PR #20），不是工位当初切出的 `3959c30`。CORS 从 `8632a27` 摘到 `grok/avatar-cors-on-master` 提交 `b096323`。单测 178/4531 绿。wapuu 开并合并 PR [#21](https://feicode.com/Cravatar/cravatar/pulls/21)。`master` = `691ca52`。
+- Board：项目 `P-cravatar-avatar-cors-20260930`，task `BT-1790762359-30930-17459-0`，family=change，`pre_approval_required=true`，capability=`cluster_orchestration`。本单只授权 `/avatar/` ACAO `*`，不授权 disposable identity 表迁移。
+- 2026-09-30 17:59 公网和源站 `45.117.8.70` 仍无 `Access-Control-Allow-Origin`。未跑 `deploy-immutable.sh`。
+
+### 不要做（§68）
+
+- 不要把 `691ca52` 整包当「只加 CORS」上线。不要在本单跑 `wp_9_disposable_identity`。不要无 devops 预审写 feicode-prod。不要给 linuxjoy 开 Cravatar 写权限。不要写 cravatar.cn。
+
+## 69. 2026-09-30 头像「大小」跟邮箱同一排（Grok `01a0eafd`）
+
+人：「头像的滑竿怎么是在输入框下面显示」。未上公网。§64 把「大小」叠在邮箱列下是误读；「那副文输入框和头像滑竿是不是也要改」只改高度。
+
+- 去掉 `.tester-avatar-col`。邮箱字段和 `[data-face-sliders]` 是 `.tester-under .tester-sliders` 的并列格子。
+- 桌面五列：`repeat(3, minmax(0, 1fr)) minmax(16rem, 2fr) minmax(0, 1fr)` → 字号 行距 字距 邮箱 大小。390：邮箱 `grid-column: 1 / 3`，大小 `grid-column: 3`，仍在邮箱右侧。
+- 戳 `wf-tester.js?v=20260929ui16`、`specimen.css?v=20260929ui30`。契约 `scripts/test-tester-rail-yi-contract.py` GREEN。实测 1280：`sameRow`、大小在邮箱右，`dy=0`；390 同。截图 `docs/_ui-tester/face-beside-email-1280.png`、`face-beside-email-390.png`。
+
+### 不要做（§69 大小同一排）
+
+- 不要把「大小」再叠回邮箱下面。不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 70. 2026-09-30 导出头像白底圆 + 里收 1px，不加描边（Grok `01a0eafd`）
+
+人：「不要描边，按你说的修，然后看看是不是要给个 2X 导出选项」。未上公网。
+
+- `.card-avatar` 预览 `background: var(--face)`。导出 `drawPaint` 先填 `--face` 圆，再按半径减 1px 裁图。不加 `stroke` / `box-shadow`。
+- 戳 `wf-card.js?v=20260929ui6`、`card.css?v=20260929ui3`。契约 `scripts/test-tester-avatar-export-contract.py` GREEN。墨底导出裁块 `docs/_ui-tester/avatar-inset-ink-zoom.png`。
+- 2× 导出不加：画幅已是 1200×630 / 1080×1440 等 1× 社交规格；毛刺是圆裁不是分辨率。2× 文件大约四倍，平台仍会压回。
+
+### 不要做（§70 头像导出）
+
+- 不要加描边。不要加 2× 开关，除非人再说。不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 71. 2026-09-30 邮箱列缩短，字号滑竿不再被挤（Grok `01a0eafd`）
+
+人：「邮箱框太长，输入框又太挤了」。未上公网。
+
+- 画布下五列改成 `repeat(5, minmax(0, 1fr))`，去掉邮箱 `minmax(16rem, 2fr)`。1280 实测每列 115px（原先邮箱 256、字号 80）。
+- 768 不再让邮箱跨两列；邮箱和「大小」各占一格、同一排。戳 `specimen.css?v=20260929ui31`。
+
+### 不要做（§71 邮箱列宽）
+
+- 不要把邮箱再拉回 16rem/2fr。不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 72. 2026-09-30 画布下字号排与邮箱排拆开（Grok `01a0eafd`）
+
+人：「那就拆这一排，按你说的改。」未上公网。
+
+- 字重+对齐仍第一行。`typeSliders` 只留字号/行距/字距，三列。邮箱+大小另起 `.tester-under-face`：桌面三列（邮箱宽≈字号，1280 实测 203px）；768 两列（390 邮箱 155px，不再跟字号挤成 98px）。
+- 不加模块标题。取景仍在右栏。
+- 戳 `wf-tester.js?v=20260929ui17`、`specimen.css?v=20260929ui32`（`font-detail.html`、`detail-tester-rail-options.html`）。契约 `scripts/test-tester-rail-yi-contract.py` GREEN。截图 `docs/_ui-tester/split-under-1280.png`、`split-under-390.png`。
+
+### 不要做（§72 画布下拆排）
+
+- 不要把邮箱塞回字号那一排。不要加 16rem/2fr。不要把取景拉到画布下。不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 73. 2026-09-30 手机画布下改一列（Grok `01a0eafd`）
+
+人：「手机上太挤了」。未上公网。
+
+- `max-width: 560px`：字号/行距/字距一列；邮箱和「大小」也一列（390 实测各 326px，原先字号 98、邮箱 155）。桌面仍三列，768 仍字号三列、邮箱两列。
+- 戳 `specimen.css?v=20260929ui33`。契约 yi GREEN。截图 `docs/_ui-tester/split-under-390-stack.png`。
+
+### 不要做（§73 手机一列）
+
+- 不要在 390 把字号改回三列。桌面不要把「大小」叠到邮箱下面。不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 74. 2026-09-30 邮箱跨两列，大小对齐字距（Grok `01a0eafd`）
+
+人：「你有没有发现这样也是毫无美感」（桌面第三列空着）。未上公网。
+
+- 画布下仍是三列拍子。邮箱 `grid-column: 1 / span 2`，大小落在第三列，和字距同宽同列。768 取消 span（两列均分）；560 仍一列。
+- 戳 `specimen.css?v=20260929ui34`。契约 yi GREEN。1280 实测邮箱 421px 对齐字号+行距，大小 203px 对齐字距。截图 `docs/_ui-tester/face-span2-1280.png`。
+
+### 不要做（§74 邮箱跨列）
+
+- 不要把桌面邮箱缩回一列留下空格。不要恢复 16rem/2fr 挤字号。不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 75. 2026-09-30 上传占第二列，邮箱不再跨两列（Grok `01a0eafd`）
+
+人：「这邮箱输入框拉的太长了，是不是缺了个什么占位」。未上公网。
+
+- 缺的是上传钮：它原先吞在邮箱格里。现在 `data-face-pick` 独立占第二列（对行距），邮箱一列对字号，大小对字距。1280 三格各 203px。
+- 560：邮箱+上传同一排，大小全宽在下。上传槽 `min-width: 1.5rem`，避免被挤成 13px。
+- 戳 `wf-tester.js?v=20260929ui18`、`specimen.css?v=20260929ui38`。契约 yi GREEN。截图 `docs/_ui-tester/face-pick-1280.png`。
+
+### 不要做（§75 上传占位）
+
+- 已被 §76 取代：孤独上传占位否决。不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 76. 2026-10-01 背景框下到画布下，取景四滑竿一行（Grok `01a0eafd`）
+
+人：「这像话吗？？？？还不如把背景图上传框移下来；然后把取景这些滑竿调整为单行」。未上公网。
+
+- 画布下第三排：邮箱（上传仍在字段里）| 背景 URL+上传 | 大小。三格各 203px，对字号/行距/字距。
+- 第四排 `data-crop-sliders`：取景/横/纵/压色一行四列（1280 各 148px）。17rem 右栏放不下四列，所以下到画布下。右栏只留预设墙。
+- 无背景时整排 `hidden`（`applyLayers` + `data-has-bg`）。
+- 560：邮箱/背景/大小一列；取景两列（取景|横，纵|压色），避免四列 80px。
+- 戳 `wf-tester.js?v=20260929ui19`、`specimen.css?v=20260929ui39`。契约 yi GREEN。截图 `docs/_ui-tester/bg-down-1280.png`、`bg-down-390.png`。
+- 人说「取景还是在右侧」时预览页仍是 ui18；硬刷 ui19 后 `zoomInRail=false`，取景在画布下 x=288。
+
+### 不要做（§76 背景下移）
+
+- 取景下到画布下已否决（§77）。不要再加 `data-face-pick` 空占位。不要恢复邮箱 `span 2` 或 16rem/2fr。不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 77. 2026-10-01 取景滑竿改回右栏（Grok `01a0eafd`）
+
+人：「取景这些滑竿还是在右侧，改回去」。未上公网。
+
+- 取景/横/纵/压色回到右栏 `tester-cols-2`（两列：取景|横，纵|压色）。画布下不再有 `cropRow`。
+- 背景 URL+上传仍在画布下，和邮箱、大小一排。不要把孤独 `data-face-pick` 加回来。
+- 戳 `wf-tester.js?v=20260929ui20`、`specimen.css?v=20260929ui40`。契约 yi GREEN。1280：`zoomInRail=true`，背景在画布下 x=507。
+
+### 不要做（§77 取景回右栏）
+
+- 不要再把取景四滑竿排到画布下。不要恢复 `data-face-pick`。不要把背景框搬回右栏。不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 78. 2026-10-01 右栏取景改回一列（Grok `01a0eafd`）
+
+人：「右侧现在长度够了，调整为一列」。未上公网。
+
+- 去掉 `tester-cols-2`。取景/横/纵/压色在右栏上下一列（1280 宽 272px，y=429/460/492/523）。
+- 戳 `wf-tester.js?v=20260929ui21`、`specimen.css?v=20260929ui41`。契约 yi GREEN。
+
+### 不要做（§78 取景一列）
+
+- 不要把右栏取景改回两列，除非人再说栏太短。不要把取景搬回画布下。不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 79. 2026-10-01 第四张墙图转 180° + 编辑器间距控件核查（Grok `01a0eafd`）
+
+人：「第四张背景旋转 180 度，然后你把整个编辑器的细节和间距还有控件这些全部再做一次设计核查和改进」。未上公网。
+
+- `assets/wall/04.jpg` 原图转 180°（`sips -r 180`）。纸卷在右下，暗部在上。导出跟着文件走。
+- 右栏组距 `--s-3`；墙图 3 列（2 列会把取景压进粘底 完成）。字重用 `--fs-12`。字/纸有标签。
+- 画布下不再叠 `margin-top`：studio 行距 `--s-5`（20px），`.tester-under { margin-top: 0 }`。
+- 完成条 `padding-top: --s-3`；复制图行不再多一层 `padding-top`。署名间距 `--s-2`。反相改成和署名一样的字按钮。字/纸色块 1.5rem。输入 `padding-inline: --s-3`。
+- 没有头像时「大小」隐藏，邮箱|背景改两列，不留空第三格。有头像仍三列。大小滑竿行 `min-height: 1.5rem`。
+- 墙图不要改成两列。取景仍在右栏一列。1280：压色 bottom=500，完成条 top=500，未被挡住。390：字号/行距/字距一列。
+- 戳 `specimen.css?v=20260929ui43`、`wf-tester.js?v=20260929ui22`。契约 yi/ding GREEN。截图 `docs/_ui-tester/editor-pass-1280.png`、`editor-pass-390.png`。
+
+### 不要做（§79 编辑器核查）
+
+- 不要把墙图改成两列。不要把取景搬回画布下。不要恢复 `tester-cols-2`、`data-face-pick`、邮箱 span 2。不要从这棵工位跑 `deploy-web-hz.sh`。不要合 `grok/tsanger-grades`。
+
+## 80. 2026-10-01 人批准核验后推枝并部分上公网（Grok `01a0eafd`）
+
+人：「好，你做最终核验，无误后推送和提交，还有部署在线」。
+
+- 核验：yi/ding/avatar-export/more-templates/studio-a/rail-options 合约 GREEN。1280 编辑器第四张墙选中、`specimen.css?v=20260929ui43`、`wf-tester.js?v=20260929ui22`、取景一列在右栏、压色未被完成挡住。390 字号/邮箱一列，`.tester-dock` fixed。
+- git：提交车间文件到 `grok/tsanger-grades` 并推 origin。**不合 main**（`~/Projects/fonts-front` 仍被 grok-01a0eb5b 占着；工位 `detail.js` 落后 main，上公网会丢 slug 路由）。
+- 公网：只 `oss://wenfeng-web-hz` 部分灌 `css/specimen.css`、`css/card.css`、`js/wf-tester.js`、`js/wf-card.js`、`js/wf-avatar.js`、`assets/wall/04.jpg`。下载现网 `font-detail.html` 只改这五处 `?v=`（specimen ui43 / card.css ui3 / tester ui22 / card.js ui6 / avatar ui4）。**保留** live `wf-chrome.js?v=20260929ui13`、`wf-proto.js?v=20260929g17`、`detail.js?v=20260929ui10`。不要整棵 `deploy-web-hz.sh`。
+- 边缘 zone `windfonts_app` named unlink：新 JS/CSS `?v=` 带 `:g1`；HTML `/font-detail.html` 与至少一条 `/fonts/{slug}`；`/assets/wall/04.jpg` 无 query 必须清，否则还是旧 45590 字节。
