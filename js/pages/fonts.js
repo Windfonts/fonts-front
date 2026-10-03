@@ -62,6 +62,17 @@
     weights: function (a, b) { return (b.weights || []).length - (a.weights || []).length || SORTS.name(a, b); },
     newest: function (a, b) { return (parseInt(b.releaseYear, 10) || 0) - (parseInt(a.releaseYear, 10) || 0) || SORTS.name(a, b); }
   };
+  /* 默认推荐序才把日文主字体放到结果末尾。筛选结果仍包含它们；组内原相对顺序不动。 */
+  function sinkJapanesePrimary(list) {
+    if (state.sort && state.sort !== 'featured') return list;
+    var head = [];
+    var tail = [];
+    list.forEach(function (f) {
+      if (WFProto.isJapanesePrimary && WFProto.isJapanesePrimary(f)) tail.push(f);
+      else head.push(f);
+    });
+    return head.concat(tail);
+  }
   let filtered = [];
   let shown = 0;
 
@@ -334,6 +345,7 @@
     if (window.WFProducts) raw = WFProducts.collapseForList(raw);
     filtered = raw;
     if (SORTS[state.sort]) filtered.sort(SORTS[state.sort]);
+    filtered = sinkJapanesePrimary(filtered);
     shown = 0;
     listEl.innerHTML = '';
     syncUrl();
