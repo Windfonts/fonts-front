@@ -2,7 +2,7 @@
 (function () {
   var ORIGIN = (window.WFProto && WFProto.CSS_API) || 'https://vault.windfonts.com';
   var META = (window.WFProto && WFProto.analysisMetaUrl && WFProto.analysisMetaUrl()) ||
-    (((window.WFProto && WFProto.CDN) || 'https://cn.windfonts.com') + '/fonts-packages/metadata/font-analysis.json?v=20260927r15z1');
+    (((window.WFProto && WFProto.CDN) || 'https://cn.windfonts.com') + '/fonts-packages/metadata/font-analysis.json?v=20261003r18finz1');
   var TTL = 6 * 60 * 60 * 1000;
   var KEY = 'wf-live-counts';
   var KEY_A = 'wf-live-analysis';
