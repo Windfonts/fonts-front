@@ -34472,5 +34472,480 @@
     "glyphCount": 8403,
     "viewCount": 0,
     "foundryAvatar": ""
+  },
+  {
+    "id": "6da1efac-9ce0-4a6d-8256-8be51ff2a2f8",
+    "name": "チェックポイントフォント",
+    "en": "CP Font",
+    "family": "CheckpointFont",
+    "normalized": "CheckpointFont",
+    "designer": "マルセ / プロジェクトU-Fo",
+    "designerShort": "マルセ",
+    "category": "手写体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "手写",
+      "显示",
+      "CJK",
+      "CheckpointFont"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "チェックポイントフォント（CP Font）。name-table family CP Font / チェックポイントフォント。免费商用；未改字形可再配布，不要改字形或著作权表示后再配布。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/CheckpointFont/LICENSE.txt",
+    "licenseNotes": "未改字形可再配布，不要改字形或著作权表示后再配布。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "2010-2026 MARUSE / Project U-Fo",
+    "foundry": "よく飛ばない鳥",
+    "brand": {
+      "name": "よく飛ばない鳥",
+      "slug": "yokutobanaitori",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://yokutobanaitori.web.fc2.com/",
+      "description": "よく飛ばない鳥（マルセ / プロジェクトU-Fo）。免费商用；未改字形可再配布，不要改字形或著作权表示后再配布。"
+    },
+    "releaseYear": null,
+    "version": "2.12",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 14964,
+    "glyphCount": 14964,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "246c2f34-fe9c-4a08-9f3c-deb88ae7b91a",
+    "name": "じゆうちょうフォント",
+    "en": "Jiyucho",
+    "family": "Jiyucho",
+    "normalized": "Jiyucho",
+    "designer": "マルセ / プロジェクトU-Fo",
+    "designerShort": "マルセ",
+    "category": "手写体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "手写",
+      "显示",
+      "CJK",
+      "Jiyucho"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "じゆうちょうフォント（Jiyucho）。name-table family Jiyucho / じゆうちょうフォント。免费商用；未改字形可再配布，不要改字形或著作权表示后再配布。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/Jiyucho/LICENSE.txt",
+    "licenseNotes": "未改字形可再配布，不要改字形或著作权表示后再配布。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "2012-2026 MARUSE / Project U-Fo",
+    "foundry": "よく飛ばない鳥",
+    "brand": {
+      "name": "よく飛ばない鳥",
+      "slug": "yokutobanaitori",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://yokutobanaitori.web.fc2.com/",
+      "description": "よく飛ばない鳥（マルセ / プロジェクトU-Fo）。免费商用；未改字形可再配布，不要改字形或著作权表示后再配布。"
+    },
+    "releaseYear": null,
+    "version": "2.12",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 14964,
+    "glyphCount": 14964,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "ed693d06-ab2f-4c4f-8311-4367529641df",
+    "name": "きずだらけのぎゃーてー",
+    "en": "Ghatee",
+    "family": "Ghatee",
+    "normalized": "Ghatee",
+    "designer": "マルセ / プロジェクトU-Fo",
+    "designerShort": "マルセ",
+    "category": "手写体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "手写",
+      "显示",
+      "CJK",
+      "Ghatee"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "きずだらけのぎゃーてー（Ghatee）。name-table family Ghatee / きずだらけのぎゃーてー。免费商用；未改字形可再配布，不要改字形或著作权表示后再配布。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/Ghatee/LICENSE.txt",
+    "licenseNotes": "未改字形可再配布，不要改字形或著作权表示后再配布。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "2012-2026 MARUSE / Project U-Fo",
+    "foundry": "よく飛ばない鳥",
+    "brand": {
+      "name": "よく飛ばない鳥",
+      "slug": "yokutobanaitori",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://yokutobanaitori.web.fc2.com/",
+      "description": "よく飛ばない鳥（マルセ / プロジェクトU-Fo）。免费商用；未改字形可再配布，不要改字形或著作权表示后再配布。"
+    },
+    "releaseYear": null,
+    "version": "2.12",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 14964,
+    "glyphCount": 14964,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "95320086-e2be-40fc-9865-3daf27b20bff",
+    "name": "自由の翼フォント",
+    "en": "JiyunoTsubasaFont",
+    "family": "JiyuNoTsubasa",
+    "normalized": "JiyuNoTsubasa",
+    "designer": "たぬき侍",
+    "designerShort": "たぬき侍",
+    "category": "手写体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "手写",
+      "显示",
+      "CJK",
+      "JiyuNoTsubasa"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "自由の翼フォント（JiyunoTsubasaFont）。name-table family JiyunoTsubasaFont / 自由の翼フォント。免费商用；不能擅自单卖字体文件。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/JiyuNoTsubasa/LICENSE.txt",
+    "licenseNotes": "不能擅自单卖字体文件。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "たぬき侍",
+    "foundry": "たぬきフォント",
+    "brand": {
+      "name": "たぬきフォント",
+      "slug": "tanukifont",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://tanukifont.com/",
+      "description": "たぬきフォント。免费商用；不能擅自单卖字体文件。"
+    },
+    "releaseYear": 2013,
+    "version": "1.01",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 14963,
+    "glyphCount": 14963,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "553fb614-1a47-417c-87cf-280654f09c7c",
+    "name": "みかちゃん",
+    "en": "mikachan",
+    "family": "Mikachan",
+    "normalized": "Mikachan",
+    "designer": "みかちゃん",
+    "designerShort": "みかちゃん",
+    "category": "手写体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "手写",
+      "显示",
+      "CJK",
+      "Mikachan"
+    ],
+    "weights": [
+      "mikachan",
+      "mikachan-P",
+      "mikachan-PB",
+      "mikachan-PS"
+    ],
+    "description": "みかちゃん（mikachan）。name-table family mikachan / みかちゃん。styles mikachan·mikachan-P·mikachan-PB·mikachan-PS；CSS font-family Mikachan。免费商用。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "みかちゃん",
+    "foundry": "みかちゃん",
+    "brand": {
+      "name": "みかちゃん",
+      "slug": "mikachan",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "",
+      "description": "みかちゃん。免费商用。"
+    },
+    "releaseYear": null,
+    "version": "9.1",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 14963,
+    "glyphCount": 14963,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "ecd53e7c-eb04-4ade-a45b-30ec0e525f34",
+    "name": "ぎゃーてーるみねっせんす",
+    "en": "Gyate-Luminescence",
+    "family": "GyateLuminescence",
+    "normalized": "GyateLuminescence",
+    "designer": "マルセ / プロジェクトU-Fo",
+    "designerShort": "マルセ",
+    "category": "手写体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "手写",
+      "显示",
+      "CJK",
+      "GyateLuminescence"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "ぎゃーてーるみねっせんす（Gyate-Luminescence）。name-table family Gyate-Luminescence / ぎゃーてーるみねっせんす。免费商用；未改字形可再配布，不要改字形或著作权表示后再配布。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/GyateLuminescence/guideline-2024-05-18.txt",
+    "licenseNotes": "未改字形可再配布，不要改字形或著作权表示后再配布。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "2012-2026 MARUSE / Project U-Fo",
+    "foundry": "よく飛ばない鳥",
+    "brand": {
+      "name": "よく飛ばない鳥",
+      "slug": "yokutobanaitori",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://yokutobanaitori.web.fc2.com/",
+      "description": "よく飛ばない鳥（マルセ / プロジェクトU-Fo）。免费商用；未改字形可再配布，不要改字形或著作权表示后再配布。"
+    },
+    "releaseYear": null,
+    "version": "2.12",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 14964,
+    "glyphCount": 14964,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "983c4129-a5fc-4d1d-a0b1-96b8e6e2861f",
+    "name": "和田研細丸ゴシック2004絵文字",
+    "en": "WadaLabMaruGo2004Emoji",
+    "family": "WadaLabMaruGothic",
+    "normalized": "WadaLabMaruGothic",
+    "designer": "和田研 / 希土類元素レアアース",
+    "designerShort": "希土類元素レアアース",
+    "category": "圆体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "圆体",
+      "等宽",
+      "CJK",
+      "公有领域",
+      "WadaLabMaruGothic"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "和田研細丸ゴシック2004絵文字（WadaLabMaruGo2004Emoji）。name-table family WadaLabMaruGo2004Emoji / 和田研細丸ゴシック2004絵文字。免费商用；Public Domain。公有领域。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/WadaLabMaruGothic/wlmaru2004emoji.txt",
+    "licenseNotes": "Public Domain。公有领域。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "WadaLab, RareEarth",
+    "foundry": "希土類元素レアアース",
+    "brand": {
+      "name": "希土類元素レアアース",
+      "slug": "rareearth",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://sourceforge.net/p/jis2004/wiki/",
+      "description": "和田研細丸ゴシック2004絵文字。免费商用；Public Domain。公有领域。"
+    },
+    "releaseYear": 2025,
+    "version": "4.73",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 23909,
+    "glyphCount": 23909,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "c2aafac1-be20-4d06-8ec4-f4612bcf1f8f",
+    "name": "しねきゃぷしょん",
+    "en": "cinecaption",
+    "family": "Cinecaption",
+    "normalized": "Cinecaption",
+    "designer": "chiphead / 雑念の塊",
+    "designerShort": "chiphead",
+    "category": "无衬线字体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "字幕",
+      "显示",
+      "CJK",
+      "Cinecaption"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "しねきゃぷしょん（cinecaption）。name-table family cinecaption / しねきゃぷしょん。免费商用；未改字形可再配布，不要改字形或著作权表示后再配布。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/Cinecaption/cinecaption2.28.txt",
+    "licenseNotes": "未改字形可再配布，不要改字形或著作权表示后再配布。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright(C)2009 chiphead",
+    "foundry": "chiphead",
+    "brand": {
+      "name": "chiphead",
+      "slug": "chiphead",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://chiphead.jp",
+      "description": "しねきゃぷしょん。免费商用；未改字形可再配布，不要改字形或著作权表示后再配布。"
+    },
+    "releaseYear": 2009,
+    "version": "2.28",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 4534,
+    "glyphCount": 4534,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "c842a58c-6022-4bfd-a6a9-4a5f20b88b7f",
+    "name": "きろ字",
+    "en": "kiloji",
+    "family": "Kiloji",
+    "normalized": "Kiloji",
+    "designer": "kilo",
+    "designerShort": "kilo",
+    "category": "手写体",
+    "tags": [
+      "BSD",
+      "日文",
+      "手写",
+      "显示",
+      "CJK",
+      "Kiloji"
+    ],
+    "weights": [
+      "Regular",
+      "P",
+      "Bold",
+      "Diet"
+    ],
+    "description": "きろ字（kiloji）。name-table family kiloji / きろ字。styles Regular（等宽）·P·Bold·Diet；CSS font-family Kiloji。BSD-3-Clause（sidecar License.txt）。",
+    "license": "BSD-3-Clause",
+    "licenseName": "bsd",
+    "licenseUrl": "",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/Kiloji/License.txt",
+    "licenseNotes": "BSD-3-Clause。sidecar 文件名 License.txt。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2007, kilo. All rights reserved.",
+    "foundry": "kilo",
+    "brand": {
+      "name": "kilo",
+      "slug": "kilo",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://www.ez0.net",
+      "description": "きろ字。BSD-3-Clause；License.txt。"
+    },
+    "releaseYear": 2007,
+    "version": "2.1.0",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 14963,
+    "glyphCount": 14963,
+    "viewCount": 0,
+    "foundryAvatar": ""
   }
 ]
