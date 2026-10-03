@@ -33088,5 +33088,539 @@
     "glyphCount": 15563,
     "viewCount": 3,
     "foundryAvatar": ""
+  },
+  {
+    "id": "1f28da2c-1d48-4ab3-b9f0-ba2da6b481b3",
+    "name": "源样注音明",
+    "en": "Bpmf GenYo Min",
+    "family": "BpmfGenYoMin",
+    "normalized": "BpmfGenYoMin",
+    "designer": "But Ko",
+    "designerShort": "But Ko",
+    "category": "衬线",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "注音",
+      "衬线",
+      "BpmfGenYoMin"
+    ],
+    "weights": [
+      "ExtraLight",
+      "Light",
+      "Regular",
+      "Medium",
+      "SemiBold",
+      "Bold",
+      "Heavy"
+    ],
+    "description": "源样注音明（Bpmf GenYo Min）。But Ko。注音符号切，SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "http://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 But Ko / OFL-1.1",
+    "foundry": "buttaiwan",
+    "brand": {
+      "name": "但",
+      "slug": "buttaiwan",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+      "website": "https://github.com/ButTaiwan",
+      "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
+    },
+    "releaseYear": 2020,
+    "version": "1.500",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "教材",
+      "正文"
+    ],
+    "charCount": 15604,
+    "glyphCount": 33005,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon"
+  },
+  {
+    "id": "b954e0b8-2ff4-4959-a824-5bd69406c9bf",
+    "name": "源样注音黑",
+    "en": "Bpmf GenYo Gothic",
+    "family": "BpmfGenYoGothic",
+    "normalized": "BpmfGenYoGothic",
+    "designer": "But Ko",
+    "designerShort": "But Ko",
+    "category": "无衬线字体",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "注音",
+      "黑体",
+      "BpmfGenYoGothic"
+    ],
+    "weights": [
+      "ExtraLight",
+      "Light",
+      "Regular",
+      "Normal",
+      "Medium",
+      "Bold",
+      "Heavy"
+    ],
+    "description": "源样注音黑（Bpmf GenYo Gothic）。But Ko。注音符号切，含 Normal 与 Regular。SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "http://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 But Ko / OFL-1.1",
+    "foundry": "buttaiwan",
+    "brand": {
+      "name": "但",
+      "slug": "buttaiwan",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+      "website": "https://github.com/ButTaiwan",
+      "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
+    },
+    "releaseYear": 2020,
+    "version": "1.500",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "教材",
+      "正文"
+    ],
+    "charCount": 15604,
+    "glyphCount": 33005,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon"
+  },
+  {
+    "id": "050909ee-6b95-435a-96cc-90d6ba059f5a",
+    "name": "源流注音明",
+    "en": "Bpmf GenRyu Min",
+    "family": "BpmfGenRyuMin",
+    "normalized": "BpmfGenRyuMin",
+    "designer": "But Ko",
+    "designerShort": "But Ko",
+    "category": "衬线",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "注音",
+      "衬线",
+      "BpmfGenRyuMin"
+    ],
+    "weights": [
+      "ExtraLight",
+      "Light",
+      "Regular",
+      "Medium",
+      "SemiBold",
+      "Bold",
+      "Heavy"
+    ],
+    "description": "源流注音明（Bpmf GenRyu Min）。But Ko。注音符号切，SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "http://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 But Ko / OFL-1.1",
+    "foundry": "buttaiwan",
+    "brand": {
+      "name": "但",
+      "slug": "buttaiwan",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+      "website": "https://github.com/ButTaiwan",
+      "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
+    },
+    "releaseYear": 2020,
+    "version": "1.500",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "教材",
+      "正文"
+    ],
+    "charCount": 15604,
+    "glyphCount": 33179,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon"
+  },
+  {
+    "id": "a0763908-e13a-43af-923d-45ee581abb4e",
+    "name": "源石注音黑",
+    "en": "Bpmf GenSeki Gothic",
+    "family": "BpmfGenSekiGothic",
+    "normalized": "BpmfGenSekiGothic",
+    "designer": "But Ko",
+    "designerShort": "But Ko",
+    "category": "无衬线字体",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "注音",
+      "黑体",
+      "BpmfGenSekiGothic"
+    ],
+    "weights": [
+      "Light",
+      "Regular",
+      "Medium",
+      "Bold",
+      "Heavy"
+    ],
+    "description": "源石注音黑（Bpmf GenSeki Gothic）。But Ko。注音符号切，SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "http://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 But Ko / OFL-1.1",
+    "foundry": "buttaiwan",
+    "brand": {
+      "name": "但",
+      "slug": "buttaiwan",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+      "website": "https://github.com/ButTaiwan",
+      "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
+    },
+    "releaseYear": 2020,
+    "version": "1.500",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "教材",
+      "正文"
+    ],
+    "charCount": 15604,
+    "glyphCount": 33179,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon"
+  },
+  {
+    "id": "23600e68-bc33-48b1-b89f-7835b082de91",
+    "name": "源云注音明",
+    "en": "Bpmf GenWan Min",
+    "family": "BpmfGenWanMin",
+    "normalized": "BpmfGenWanMin",
+    "designer": "But Ko",
+    "designerShort": "But Ko",
+    "category": "衬线",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "注音",
+      "衬线",
+      "BpmfGenWanMin"
+    ],
+    "weights": [
+      "ExtraLight",
+      "Light",
+      "Regular",
+      "Medium",
+      "SemiBold"
+    ],
+    "description": "源云注音明（Bpmf GenWan Min）。But Ko。注音符号切，SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "http://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 But Ko / OFL-1.1",
+    "foundry": "buttaiwan",
+    "brand": {
+      "name": "但",
+      "slug": "buttaiwan",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+      "website": "https://github.com/ButTaiwan",
+      "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
+    },
+    "releaseYear": 2020,
+    "version": "1.500",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "教材",
+      "正文"
+    ],
+    "charCount": 15604,
+    "glyphCount": 33179,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon"
+  },
+  {
+    "id": "55757ed4-58e0-4b42-bb91-e4dc87d3277a",
+    "name": "源泉注音圆",
+    "en": "Bpmf GenSen Rounded",
+    "family": "BpmfGenSenRounded",
+    "normalized": "BpmfGenSenRounded",
+    "designer": "But Ko",
+    "designerShort": "But Ko",
+    "category": "圆体",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "注音",
+      "圆体",
+      "BpmfGenSenRounded"
+    ],
+    "weights": [
+      "ExtraLight",
+      "Light",
+      "Regular",
+      "Medium",
+      "Bold",
+      "Heavy"
+    ],
+    "description": "源泉注音圆（Bpmf GenSen Rounded）。But Ko。font-family 为 BpmfGenSenRounded，不是 GenYo。SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "http://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 But Ko / OFL-1.1",
+    "foundry": "buttaiwan",
+    "brand": {
+      "name": "但",
+      "slug": "buttaiwan",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+      "website": "https://github.com/ButTaiwan",
+      "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
+    },
+    "releaseYear": 2020,
+    "version": "1.500",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "教材",
+      "正文"
+    ],
+    "charCount": 15604,
+    "glyphCount": 33179,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon"
+  },
+  {
+    "id": "40a2f2f3-be30-4904-b19d-5fb2dfa629bf",
+    "name": "字嗨注音黑",
+    "en": "Bpmf Zihi Sans",
+    "family": "BpmfZihiSans",
+    "normalized": "BpmfZihiSans",
+    "designer": "But Ko",
+    "designerShort": "But Ko",
+    "category": "无衬线字体",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "注音",
+      "黑体",
+      "字嗨",
+      "Zihi",
+      "BpmfZihiSans"
+    ],
+    "weights": [
+      "ExtraLight",
+      "Light",
+      "Regular",
+      "Medium",
+      "Bold",
+      "Heavy"
+    ],
+    "description": "字嗨注音黑（Bpmf Zihi Sans）。But Ko。保留名 字嗨 / Zihi。SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "http://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 But Ko, RFN 字嗨/Zihi / OFL-1.1",
+    "foundry": "buttaiwan",
+    "brand": {
+      "name": "但",
+      "slug": "buttaiwan",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+      "website": "https://github.com/ButTaiwan",
+      "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
+    },
+    "releaseYear": 2020,
+    "version": "1.500",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "教材",
+      "正文"
+    ],
+    "charCount": 15486,
+    "glyphCount": 32756,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon"
+  },
+  {
+    "id": "853deff9-9f38-4757-811b-add31df30fa6",
+    "name": "字嗨注音宋",
+    "en": "Bpmf Zihi Serif",
+    "family": "BpmfZihiSerif",
+    "normalized": "BpmfZihiSerif",
+    "designer": "But Ko",
+    "designerShort": "But Ko",
+    "category": "宋体",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "注音",
+      "衬线",
+      "字嗨",
+      "Zihi",
+      "BpmfZihiSerif"
+    ],
+    "weights": [
+      "ExtraLight",
+      "Light",
+      "Regular",
+      "Medium",
+      "SemiBold",
+      "Bold",
+      "Heavy"
+    ],
+    "description": "字嗨注音宋（Bpmf Zihi Serif）。But Ko。保留名 字嗨 / Zihi。SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "http://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 But Ko, RFN 字嗨/Zihi / OFL-1.1",
+    "foundry": "buttaiwan",
+    "brand": {
+      "name": "但",
+      "slug": "buttaiwan",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+      "website": "https://github.com/ButTaiwan",
+      "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
+    },
+    "releaseYear": 2020,
+    "version": "1.500",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "教材",
+      "正文"
+    ],
+    "charCount": 15264,
+    "glyphCount": 32280,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon"
+  },
+  {
+    "id": "df9c334a-9152-4f25-801f-22ef87057517",
+    "name": "字咍粉圆",
+    "en": "Taigi Huninn",
+    "family": "TaigiHuninn",
+    "normalized": "TaigiHuninn",
+    "designer": "But Ko",
+    "designerShort": "But Ko",
+    "category": "圆体",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "台语",
+      "字咍",
+      "圆体",
+      "TaigiHuninn"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "字咍粉圆（Taigi Huninn）。But Ko。保留名 字咍。货架只有 Regular 一张字重；schemes 下七个 TTF 是台语标音制式，不是字重。SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "http://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2022 But Ko, RFN 字咍 / OFL-1.1",
+    "foundry": "buttaiwan",
+    "brand": {
+      "name": "但",
+      "slug": "buttaiwan",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+      "website": "https://github.com/ButTaiwan",
+      "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
+    },
+    "releaseYear": 2022,
+    "version": "0.960",
+    "languages": [
+      "繁体中文",
+      "台语",
+      "英语"
+    ],
+    "useCases": [
+      "教材",
+      "正文"
+    ],
+    "charCount": 5411,
+    "glyphCount": 17128,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon"
   }
 ]
