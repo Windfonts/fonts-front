@@ -32984,5 +32984,109 @@
     "downloadCount": 0,
     "apiCount": 0,
     "apiCallCount": 0
+  },
+  {
+    "id": "87aaef81-0a2f-4187-ae11-b0d1eb0b139b",
+    "name": "出岛明朝",
+    "en": "Dejima Mincho",
+    "family": "wenfeng-dejimamincho",
+    "normalized": "DejimaMincho",
+    "designer": "Yoshiki Hayashi",
+    "designerShort": "Yoshiki Hayashi",
+    "category": "衬线",
+    "tags": [
+      "开源",
+      "MIT",
+      "CJK",
+      "DejimaMincho",
+      "明朝",
+      "日文"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "出岛明朝（Dejima Mincho）。Yoshiki Hayashi。Debian fonts-dejima-mincho。MIT。",
+    "license": "MIT",
+    "licenseName": "mit",
+    "licenseUrl": "",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright (c) 2006 Yoshiki Hayashi / MIT",
+    "foundry": "Yoshiki Hayashi",
+    "brand": {
+      "name": "Yoshiki Hayashi",
+      "slug": "yoshiki-hayashi",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/sacco325/dejima-fonts",
+      "description": "出島明朝 Dejima Mincho。MIT。sitemap freekanji new 2026-10-03。"
+    },
+    "releaseYear": 2009,
+    "version": "1.000",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 6706,
+    "glyphCount": 6709,
+    "viewCount": 4,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "9f564a99-a740-49e0-ac41-581d2343b881",
+    "name": "方草",
+    "en": "Gata Sousho",
+    "family": "wenfeng-gatasousho",
+    "normalized": "GataSousho",
+    "designer": "があた",
+    "designerShort": "があた",
+    "category": "手写体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "手写",
+      "草書",
+      "CJK",
+      "GataSousho"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "方草（があた草書，Gata Sousho）。2016-11-14 教育汉字裁切。商用問わず使用・改造・再配布可、無保証。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "があた / 商用問わず使用・改造・再配布可・無保証",
+    "foundry": "があた",
+    "brand": {
+      "name": "があた",
+      "slug": "gata",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://uu.getuploader.com/amogata/download/60",
+      "description": "があた草書。商用問わず使用・改造・再配布可・無保証。"
+    },
+    "releaseYear": 2016,
+    "version": "2016.11.14",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 14963,
+    "glyphCount": 15563,
+    "viewCount": 3,
+    "foundryAvatar": ""
   }
 ]
