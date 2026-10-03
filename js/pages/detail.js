@@ -76,6 +76,19 @@
     return defaultBrandBlurb(entry, font);
   }
 
+  /* 备注明文允许修改 / 改造 / 再分发时，免费商用不再写「不得修改后再分发」。否定式（不可/不得）不算允许。 */
+  function notesGrantModifyRedistrib(notes) {
+    var text = String(notes || '');
+    var re = /(可以|可|允许)(修改|改造|再分发)/g;
+    var m;
+    while ((m = re.exec(text))) {
+      var prev = m.index > 0 ? text.charAt(m.index - 1) : '';
+      if (prev === '不' || prev === '禁' || prev === '勿' || prev === '未') continue;
+      return true;
+    }
+    return false;
+  }
+
   function licenseLists(font) {
     const tier = proofTier(font);
     const ev = WFChrome.licenseEvidence(font);
@@ -101,7 +114,8 @@
       no.push('不得单独售卖字体文件');
     } else if (tier === '免费商用') {
       ok.push('可免费用于商业项目与网页嵌入', '可用于品牌、电商、海报、界面');
-      no.push('不得修改字体文件后再分发', '不得单独售卖字体文件');
+      if (!notesGrantModifyRedistrib(font.licenseNotes)) no.push('不得修改字体文件后再分发');
+      no.push('不得单独售卖字体文件');
       if (!ev.verified) no.push('条款还没核对原文，先看出处');
       if (ev.sourceKind === 'platform') no.push('目前只有素材站声明，不是厂商官网');
     } else if (tier === '个人免费') {
@@ -149,6 +163,20 @@
     if (tier === '个人免费') return '字体仅个人免费商用。';
     if (tier === '需授权') return '字体需取得权利人授权后方可商用。';
     return '字体授权档位待核实。';
+  }
+  function isStdOpenProtocol(name) {
+    var n = String(name || '');
+    return OPEN_LICENSE.test(n) || !!OPEN_AGREEMENTS[n];
+  }
+  /* 授权协议行的协议名。开源标准协议保留原文名称；免费商用用字体名，不用 free_commercial，也不用档位句子。 */
+  function protocolTitle(font) {
+    var n = String((font && font.licenseName) || '').trim();
+    if (isStdOpenProtocol(n)) return n;
+    if (proofTier(font) === '免费商用') {
+      var fname = String((font && font.name) || '').trim() || '本款字体';
+      return fname + '授权协议';
+    }
+    return '';
   }
   function ownHost(h) { return /(^|\.)(wenfeng\.org|windfonts\.com)$/i.test(h); }
   function hostOf(url) { try { return new URL(url).hostname.replace(/^www\./, ''); } catch (e) { return ''; } }
@@ -338,7 +366,8 @@
     let html = '<div class="lp5-meta-block">' + proofMetaLine(font) + proofCommercialLine(font) + '</div>';
     html += proofOwnerLine(font);
     html += '<div class="lp5-chain">';
-    html += proofRow('授权协议', esc(tierSentence(proofTier(font))), date,
+    var agreeTier = proofTier(font);
+    html += proofRow('授权协议', esc(protocolTitle(font) || tierSentence(agreeTier)), date,
       (proofLink(font.licenseUrl) + purchase) || '', font.licenseQuote);
     html += claim
       ? proofRow('国标声明', '厂商声明符合 <b>' + esc(claim.standard) + '</b>。', '', proofLink(claim.url))
@@ -362,14 +391,19 @@
   /* 条款徽章也按档位出固定三条，与句子同一张配置表。
    * 开源档追加 RFN 徽章：版权行声明 with Reserved Font Name → 修改版须换名；
    * 已核对且无声明 → 可沿用原名；未核对原文（rfn 缺省）→ 不显示。 */
-  function tierPoints(tier, rfn) {
+  function tierPoints(tier, rfn, font) {
     if (tier === '开源' || tier === '开源商用') {
       const pts = [['ok', '个人与企业免费使用'], ['ok', '可修改与再分发'], ['no', '不得单独售卖字体文件']];
       if (rfn === true) pts.push(['no', '修改版须避开保留字体名']);
       if (rfn === false) pts.push(['ok', '修改版可沿用原名']);
       return pts;
     }
-    if (tier === '免费商用') return [['ok', '个人与企业商用免费'], ['no', '修改字体文件'], ['no', '再分发字体文件']];
+    if (tier === '免费商用') {
+      var pts = [['ok', '个人与企业商用免费']];
+      if (!notesGrantModifyRedistrib(font && font.licenseNotes)) pts.push(['no', '不得修改字体文件后再分发']);
+      pts.push(['no', '不得单独售卖字体文件']);
+      return pts;
+    }
     if (tier === '个人免费') return [['ok', '个人非商业使用免费'], ['no', '商业使用'], ['no', '再分发字体文件']];
     if (tier === '需授权') return [['ok', '取得授权后按合同使用'], ['no', '未授权公开使用'], ['no', '再分发字体文件']];
     return [];
@@ -662,7 +696,11 @@
             '<div class="glyph-blocks" id="glyphBlocks"></div></div></section>' +
           '<section class="panel" id="license"><div class="panel-head"><h2>' + WFChrome.icon('certificate') + '授权</h2>' +
             '<div class="license-head"><span class="lic-chip tier' + (proofTier(font) === '开源' ? ' is-open' : '') + '" data-tier="' + esc(proofTier(font)) + '">' + esc(tierLabel(proofTier(font))) + '</span>' +
-              (font.licenseName ? '<span class="name">' + esc(font.licenseName) + '</span>' : '') + '</div></div>' +
+              (function () {
+                var rawName = String(font.licenseName || '').trim();
+                var shown = isStdOpenProtocol(rawName) ? rawName : (proofTier(font) === '免费商用' ? protocolTitle(font) : rawName);
+                return shown ? '<span class="name">' + esc(shown) + '</span>' : '';
+              })() + '</div></div>' +
             '<div class="panel-pad">' +
             '<p class="license-lead">' + esc(licenseLead(proofTier(font))) + '</p>' +
             '<details class="side-fold license-fold"' +
@@ -671,7 +709,7 @@
               vendorTrustHtml(font) +
               proofChainHtml(font) +
               '<div class="lp5-points">' +
-                tierPoints(proofTier(font), font.rfn).map(function (p) {
+                tierPoints(proofTier(font), font.rfn, font).map(function (p) {
                   return '<span class="lp-badge">' + (p[0] === 'ok' ? '✓ ' : '× ') + esc(p[1]) + '</span>';
                 }).join('') +
                 trackBadgeHtml(font) +
