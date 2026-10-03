@@ -34053,5 +34053,267 @@
     "glyphCount": 7101,
     "viewCount": 0,
     "foundryAvatar": "https://cravatar.com/avatar/bc02c608b28e6b503dbc7ad301e368da7122924516e7e34f3e4d5be5d167d485?s=144&d=identicon"
+  },
+  {
+    "id": "2a668185-5edf-44d4-a01f-f87980e80060",
+    "name": "851チカラヨワク",
+    "en": "851CHIKARA-YOWAKU",
+    "family": "851ChikaraYowaku",
+    "normalized": "851ChikaraYowaku",
+    "designer": "851",
+    "designerShort": "851",
+    "category": "手写体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "手写",
+      "显示",
+      "CJK",
+      "851ChikaraYowaku"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "851チカラヨワク（851CHIKARA-YOWAKU）。name-table family 851CHIKARA-YOWAKU / 851チカラヨワク。免费商用；字体文件不能单独转售。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "",
+    "licenseNotes": "字体文件不能单独转售",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "8:51:22 pm",
+    "foundry": "851",
+    "brand": {
+      "name": "851",
+      "slug": "851",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "",
+      "description": "851 fonts。免费商用；字体文件不能单独转售。"
+    },
+    "releaseYear": null,
+    "version": "0.02",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 14963,
+    "glyphCount": 14963,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "a214aa12-979c-4511-94bc-af9cb710fc78",
+    "name": "851ゴチカクット",
+    "en": "851Gkktt",
+    "family": "851Gochikakutto",
+    "normalized": "851Gochikakutto",
+    "designer": "851",
+    "designerShort": "851",
+    "category": "无衬线字体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "黑体",
+      "显示",
+      "CJK",
+      "851Gochikakutto"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "851ゴチカクット（851Gkktt）。name-table family 851Gkktt / 851ゴチカクット。免费商用；字体文件不能单独转售。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "",
+    "licenseNotes": "字体文件不能单独转售",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "8:51:22 pm",
+    "foundry": "851",
+    "brand": {
+      "name": "851",
+      "slug": "851",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "",
+      "description": "851 fonts。免费商用；字体文件不能单独转售。"
+    },
+    "releaseYear": null,
+    "version": "0.05",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 15036,
+    "glyphCount": 15036,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "42d313a4-f688-42b2-9059-534ff36a585c",
+    "name": "851マカポップ",
+    "en": "851MkPOP",
+    "family": "851MkPOP",
+    "normalized": "851MkPOP",
+    "designer": "851",
+    "designerShort": "851",
+    "category": "手写体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "手写",
+      "POP",
+      "显示",
+      "CJK",
+      "851MkPOP"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "851マカポップ（851MkPOP）。name-table family 851MkPOP / 851マカポップ。免费商用；字体文件不能单独转售。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "",
+    "licenseNotes": "字体文件不能单独转售",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "8:51:22 pm",
+    "foundry": "851",
+    "brand": {
+      "name": "851",
+      "slug": "851",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "",
+      "description": "851 fonts。免费商用；字体文件不能单独转售。"
+    },
+    "releaseYear": null,
+    "version": "1.01",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 15524,
+    "glyphCount": 15524,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "bf0ae57e-5560-4ee8-85e4-710b59d70729",
+    "name": "851テガキカクット",
+    "en": "851H-kktt",
+    "family": "851TegakiKakutto",
+    "normalized": "851TegakiKakutto",
+    "designer": "851",
+    "designerShort": "851",
+    "category": "手写体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "手写",
+      "显示",
+      "CJK",
+      "851TegakiKakutto"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "851テガキカクット（851H-kktt）。name-table family 851H-kktt / 851テガキカクット。免费商用；字体文件不能单独转售。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "",
+    "licenseNotes": "字体文件不能单独转售",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "8:51:22 pm",
+    "foundry": "851",
+    "brand": {
+      "name": "851",
+      "slug": "851",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "",
+      "description": "851 fonts。免费商用；字体文件不能单独转售。"
+    },
+    "releaseYear": null,
+    "version": "0.04",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 14963,
+    "glyphCount": 14963,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "8d50d2df-5ce4-4faa-af29-edee0a8af133",
+    "name": "FZイモケンピ",
+    "en": "FZ-Imokenpi",
+    "family": "FZImokenpi",
+    "normalized": "FZImokenpi",
+    "designer": "108go, aoki tetsu",
+    "designerShort": "108go, aoki tetsu",
+    "category": "手写体",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "日文",
+      "手写",
+      "FontZone108",
+      "FZImokenpi"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "FZイモケンピ（FZ-Imokenpi）。Font Zone 108 / 108go, aoki tetsu。SIL Open Font License 1.1。No RFN。仅 TTF 发布。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "https://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "Font Zone 108。OFL-1.1。No RFN。仅 TTF 发布，无 OTF。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright © 2013,2024 by Font Zone 108. All rights reserved.",
+    "foundry": "Font Zone 108",
+    "brand": {
+      "name": "Font Zone 108",
+      "slug": "fontzone108",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://zone108.main.jp",
+      "description": "Font Zone 108。OFL 1.1。"
+    },
+    "releaseYear": 2024,
+    "version": "2.00",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 1473,
+    "glyphCount": 1473,
+    "viewCount": 0,
+    "foundryAvatar": ""
   }
 ]
