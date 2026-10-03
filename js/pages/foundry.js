@@ -452,56 +452,38 @@
     return (g.children || []).some(function (ch) { return matchQuery(ch, q); });
   }
 
-  function jpStrictMajority(fonts) {
-    const list = uniqFonts(fonts || []);
-    if (!list.length) return false;
-    let n = 0;
-    list.forEach(function (f) {
-      if (WFProto.isJapanesePrimary(f)) n++;
-    });
-    return n * 2 > list.length;
-  }
+  var LANG_CHIPS = ['简体中文', '繁体中文', '英语', '日文', '韩文'];
+  function langLabel(v) { return v === '英语' ? '英文' : v; }
 
-  /**
-   * 一家只进一个层。厂商按货架上的归属字体；作者按署名过的字体
-   * （归属 + 合作 + 受托）。日文主字体未过半、以及平局，留在中文。
-   */
-  function groupRegion(g) {
-    const bucket = indexBucket(g);
-    const author = bucket === 'author' || bucket === 'oss-author';
-    const fonts = author
-      ? [].concat(g.fonts || [], g.collab || [], g.made || [])
-      : (g.fonts || []);
-    return jpStrictMajority(fonts) ? 'ja' : 'zh';
+  /** 这家卡片名下的货架字体：归属、合作、受托。语言筛看其中是否出现该语言。 */
+  function cardFonts(g) {
+    return uniqFonts([].concat(g.fonts || [], g.collab || [], g.made || []));
+  }
+  function cardHasLang(g, lang) {
+    if (!lang) return true;
+    return cardFonts(g).some(function (f) {
+      return (f.languages || []).indexOf(lang) !== -1;
+    });
   }
 
   function renderIndex(list) {
     const gs = attachBrandParents(groups(list)).sort(sortGroups);
     const buckets = {};
-    ['zh', 'ja'].forEach(function (region) {
-      INDEX_SECTIONS.forEach(function (s) { buckets[region + '|' + s.id] = []; });
-    });
+    INDEX_SECTIONS.forEach(function (s) { buckets[s.id] = []; });
     gs.forEach(function (g) {
       let id = indexBucket(g);
-      if (!buckets['zh|' + id]) id = 'unlisted';
-      buckets[groupRegion(g) + '|' + id].push(g);
+      if (!buckets[id]) id = 'unlisted';
+      buckets[id].push(g);
     });
-    ['zh', 'ja'].forEach(function (region) {
-      const key = region + '|brand';
-      if (buckets[key]) buckets[key] = brandIndexItems(buckets[key]);
-    });
-
-    function kindCount(id) {
-      return (buckets['zh|' + id] || []).length + (buckets['ja|' + id] || []).length;
-    }
+    if (buckets.brand) buckets.brand = brandIndexItems(buckets.brand);
 
     const listed = INDEX_SECTIONS.filter(function (s) {
       return s.id !== 'unlisted' && s.id !== 'commissioned';
-    }).reduce(function (n, s) { return n + kindCount(s.id); }, 0);
+    }).reduce(function (n, s) { return n + buckets[s.id].length; }, 0);
 
     document.body.classList.add('is-index');
 
-    function sectionHtml(sec, items, bucketKey) {
+    function sectionHtml(sec, items) {
       if (!items.length) return '';
       const note = sec.id === 'commissioned'
         ? '<p class="foundry-sec-note">本站没有归属字体，只列代做款；版权在品牌方。</p>'
@@ -514,7 +496,7 @@
               : (sec.id === 'project'
                 ? '<p class="foundry-sec-note">协作仓、机构发布线或计划名；不是个人作者页。</p>'
                 : ''))));
-      return '<section class="foundry-sec" data-sec="' + sec.id + '" data-bucket="' + bucketKey + '">' +
+      return '<section class="foundry-sec" data-sec="' + sec.id + '">' +
         '<div class="section-head"><h2>' + esc(sec.title) + ' <span class="n">' + items.length + '</span></h2></div>' +
         note +
         '<div class="foundry-index">' + items.map(function (g) {
@@ -522,40 +504,27 @@
         }).join('') + '</div></section>';
     }
 
-    const FOUNDRY_KINDS = INDEX_SECTIONS.filter(function (s) {
-      return s.id !== 'author' && s.id !== 'oss-author';
-    });
-    const AUTHOR_KINDS = INDEX_SECTIONS.filter(function (s) {
-      return s.id === 'author' || s.id === 'oss-author';
-    });
     const primaryKinds = INDEX_SECTIONS.filter(function (s) {
       return s.id !== 'commissioned' && s.id !== 'unlisted';
     });
     const extraKinds = INDEX_SECTIONS.filter(function (s) {
-      return (s.id === 'commissioned' || s.id === 'unlisted') && kindCount(s.id);
+      return (s.id === 'commissioned' || s.id === 'unlisted') && buckets[s.id].length;
     });
 
-    function tierCount(region, kinds) {
-      return kinds.reduce(function (n, s) {
-        return n + (buckets[region + '|' + s.id] || []).length;
+    function langCount(code) {
+      return INDEX_SECTIONS.reduce(function (n, s) {
+        return n + buckets[s.id].filter(function (g) { return cardHasLang(g, code); }).length;
       }, 0);
     }
-    function tierHtml(region, title, kinds) {
-      const n = tierCount(region, kinds);
-      if (!n) return '';
-      return '<section class="foundry-tier">' +
-        '<div class="section-head"><h2>' + esc(title) + ' <span class="n">' + n + '</span></h2></div>' +
-        kinds.map(function (s) {
-          return sectionHtml(s, buckets[region + '|' + s.id] || [], region + '|' + s.id);
-        }).join('') +
-        '</section>';
-    }
+
+    const langFromQuery = WFProto.getQuery('lang');
+    let lang = LANG_CHIPS.indexOf(langFromQuery) === -1 ? '' : langFromQuery;
 
     root.innerHTML =
       '<section class="foundry-index-hero">' +
         '<div class="container">' +
           '<h1>厂商</h1>' +
-          '<p class="lead"><b>' + listed + '</b> 家在目录。中文、日文分列；字库、品牌方、作者、开源作者与开源项目仍按类型归组。版权归品牌方。</p>' +
+          '<p class="lead"><b>' + listed + '</b> 家在目录。字库、品牌方、作者、开源作者与开源项目分列；版权归品牌方。</p>' +
         '</div>' +
       '</section>' +
       '<div class="foundry-stick-bar">' +
@@ -567,15 +536,23 @@
             '<button type="button" class="is-on" data-kind="" role="tab" aria-selected="true">全部</button>' +
             primaryKinds.map(function (s) {
               return '<button type="button" data-kind="' + s.id + '" role="tab" aria-selected="false">' +
-                esc(s.title) + '<span class="n">' + kindCount(s.id) + '</span></button>';
+                esc(s.title) + '<span class="n">' + buckets[s.id].length + '</span></button>';
             }).join('') +
             (extraKinds.length
               ? '<span class="foundry-kinds-gap" aria-hidden="true"></span>' +
                 extraKinds.map(function (s) {
                   return '<button type="button" data-kind="' + s.id + '" role="tab" aria-selected="false">' +
-                    esc(s.title) + '<span class="n">' + kindCount(s.id) + '</span></button>';
+                    esc(s.title) + '<span class="n">' + buckets[s.id].length + '</span></button>';
                 }).join('')
               : '') +
+          '</div>' +
+          '<div class="foundry-kinds foundry-langs" id="foundryLangChips" role="group" aria-label="语言">' +
+            LANG_CHIPS.map(function (code) {
+              const on = lang === code;
+              return '<button type="button" data-lang="' + esc(code) + '"' +
+                (on ? ' class="is-on" aria-pressed="true"' : ' aria-pressed="false"') + '>' +
+                esc(langLabel(code)) + '<span class="n">' + langCount(code) + '</span></button>';
+            }).join('') +
           '</div>' +
           '<a class="foundry-stick-jump" href="#foundryClose">入驻与认领</a>' +
         '</div>' +
@@ -583,10 +560,7 @@
       '<section class="foundry-index-body">' +
         '<div class="container">' +
           '<div id="foundrySections">' +
-            tierHtml('zh', '中文厂商', FOUNDRY_KINDS) +
-            tierHtml('ja', '日文厂商', FOUNDRY_KINDS) +
-            tierHtml('zh', '中文作者', AUTHOR_KINDS) +
-            tierHtml('ja', '日文作者', AUTHOR_KINDS) +
+            INDEX_SECTIONS.map(function (s) { return sectionHtml(s, buckets[s.id]); }).join('') +
           '</div>' +
           '<p class="foundry-empty-filter" id="foundryEmpty" hidden>没有匹配的厂商。</p>' +
         '</div>' +
@@ -615,30 +589,33 @@
 
     const qEl = document.getElementById('foundryQ');
     const chipsEl = document.getElementById('foundryKindChips');
+    const langEl = document.getElementById('foundryLangChips');
     const emptyEl = document.getElementById('foundryEmpty');
     let kind = '';
     let q = '';
+
+    function syncLangUrl() {
+      const p = new URLSearchParams(location.search);
+      if (lang) p.set('lang', lang);
+      else p.delete('lang');
+      const qs = p.toString();
+      history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+    }
 
     function applyFilter() {
       let visible = 0;
       root.querySelectorAll('.foundry-sec').forEach(function (sec) {
         const sid = sec.getAttribute('data-sec');
-        const arr = buckets[sec.getAttribute('data-bucket')] || [];
+        const arr = buckets[sid] || [];
         const showSec = !kind || kind === sid;
         let secVisible = 0;
         sec.querySelectorAll('.foundry-index > .foundry, .foundry-index > .foundry-tree').forEach(function (card, i) {
           const g = arr[i];
-          const ok = showSec && g && matchQuery(g, q);
+          const ok = showSec && g && matchQuery(g, q) && cardHasLang(g, lang);
           card.hidden = !ok;
           if (ok) { secVisible++; visible++; }
         });
         sec.hidden = !showSec || secVisible === 0;
-      });
-      root.querySelectorAll('.foundry-tier').forEach(function (tier) {
-        const any = Array.prototype.some.call(tier.querySelectorAll('.foundry-sec'), function (sec) {
-          return !sec.hidden;
-        });
-        tier.hidden = !any;
       });
       if (emptyEl) emptyEl.hidden = visible > 0;
     }
@@ -656,12 +633,28 @@
         applyFilter();
       });
     }
+    if (langEl) {
+      langEl.addEventListener('click', function (e) {
+        const b = e.target.closest('[data-lang]');
+        if (!b) return;
+        const v = b.getAttribute('data-lang') || '';
+        lang = lang === v ? '' : v;
+        langEl.querySelectorAll('[data-lang]').forEach(function (c) {
+          const on = lang && c.getAttribute('data-lang') === lang;
+          c.classList.toggle('is-on', on);
+          c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        syncLangUrl();
+        applyFilter();
+      });
+    }
     if (qEl) {
       qEl.addEventListener('input', function () {
         q = String(qEl.value || '').trim().toLowerCase();
         applyFilter();
       });
     }
+    if (lang) applyFilter();
   }
 
   /** 厂商页分段：外源 fork 算本页「源字」；同主再 fork 才进「派生」 */
