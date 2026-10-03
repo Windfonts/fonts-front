@@ -1,0 +1,49 @@
+{
+  "id": "07b8d1b0-787b-4103-bb19-b0ca86887e78",
+  "name": "文泉驿Unibit",
+  "en": "WenQuanYi Unibit",
+  "family": "wenfeng-wqy-unibit",
+  "normalized": "WqyUnibit",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "GPL-2.0",
+    "简体中文",
+    "繁体中文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "GPL-2.0",
+  "licenseVerified": null,
+  "foundry": "文泉驿",
+  "brand": {
+    "name": "文泉驿 (WenQuanYi)",
+    "slug": "wenquanyi"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "Qianqian Fang",
+  "designer": "Qianqian Fang",
+  "languages": [
+    "简体中文",
+    "繁体中文"
+  ],
+  "releaseYear": 2011,
+  "charCount": 27484,
+  "glyphCount": 27484,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "文泉驿 / GPL-2.0",
+  "licenseNotes": "GPL-2.0 / 开源商用. pin WqyUnibit/wqy-unibit-16px.bdf sha256:ae32d908e750cc3b327adc8b7e87d84eca8fdbae5ed17a736c81fcae32dc38ca. oss_path=/fonts-packages/WqyUnibit. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. GPL-2.0 copyleft, NOT OFL. Directory LICENSE is the GPL v2 text and does not contain a font-embedding exception. Not stamped GPL-2.0-with-font-exception (that tier is the 文泉驿点阵宋体 row, whose note cites the Zen Hei README). Existing GPL-2.0 tier used (same license string as 天王星像素). Not 文泉驿点阵宋体. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "1.1"
+}

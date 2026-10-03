@@ -1,0 +1,47 @@
+{
+  "id": "b7696369-3a8b-4a07-999b-b535433eb4b2",
+  "name": "中科院宋体点阵",
+  "en": "ISAS Song",
+  "family": "wenfeng-isas-song",
+  "normalized": "IsasSong",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "free_commercial",
+    "简体中文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "免费商用",
+  "licenseName": "free_commercial",
+  "licenseVerified": null,
+  "foundry": "中国科学院软件研究所",
+  "brand": {
+    "name": "中国科学院软件研究所",
+    "slug": "isas"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "中国科学院软件研究所",
+  "designer": "中国科学院软件研究所",
+  "languages": [
+    "简体中文"
+  ],
+  "releaseYear": 1988,
+  "charCount": 6392,
+  "glyphCount": 6392,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "中国科学院软件研究所 / free_commercial",
+  "licenseNotes": "free_commercial / 免费可商用. pin IsasSong/gb16st.bdf sha256:478ab75777627f1cf4a36406c421d5304b4e6acbf7c93b4cabe8e797f5c735a1. oss_path=/fonts-packages/IsasSong. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. HPND any-purpose, same grant as FangSong. NOT OFL. 16px and 24px on one card. free_commercial. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "font-isas-misc-1.0.4"
+}

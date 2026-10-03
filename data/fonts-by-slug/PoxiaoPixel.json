@@ -1,0 +1,47 @@
+{
+  "id": "701573cb-547c-4b4a-954a-b3cebc62c16a",
+  "name": "破晓像素",
+  "en": "Poxiao Pixel",
+  "family": "wenfeng-poxiao-pixel",
+  "normalized": "PoxiaoPixel",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "ofl",
+    "简体中文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "OFL",
+  "licenseVerified": null,
+  "foundry": "DWNfonts",
+  "brand": {
+    "name": "DWNfonts (diaowinner)",
+    "slug": "dwnfonts"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "DWNfonts (diaowinner)",
+  "designer": "DWNfonts (diaowinner)",
+  "languages": [
+    "简体中文"
+  ],
+  "releaseYear": 2026,
+  "charCount": 12634,
+  "glyphCount": 12634,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "DWNfonts / ofl",
+  "licenseNotes": "ofl / OFL. pin PoxiaoPixel/PoxiaoPixel-CN-12px.bdf sha256:50b937eac1e7edbfa74abdb54123e79db4151751599f8ddcfa0502deaaf3410b. oss_path=/fonts-packages/PoxiaoPixel. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. OFL. File is the CN build. Not Galmuri. Not Korean-primary. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "bdf"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "d91d5103-054c-47ed-a4f2-c7a933ae9418",
+  "name": "东云黑体",
+  "en": "Shinonome Gothic",
+  "family": "wenfeng-shinonome-gothic",
+  "normalized": "ShinonomeGothic",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "日文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "",
+  "licenseVerified": null,
+  "foundry": "The Electronic Font Open Laboratory",
+  "brand": {
+    "name": "The Electronic Font Open Laboratory",
+    "slug": "efont-shinonome"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "古川泰之 / efont",
+  "designer": "古川泰之 / efont",
+  "languages": [
+    "日文"
+  ],
+  "releaseYear": 2001,
+  "charCount": 6356,
+  "glyphCount": 6356,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "The Electronic Font Open Laboratory / free_commercial",
+  "licenseNotes": "公有领域。",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "bdf"
+}

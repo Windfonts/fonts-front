@@ -1,0 +1,51 @@
+{
+  "id": "36648569-683a-419e-b589-334bf12e8c63",
+  "name": "Mona S",
+  "en": "Mona S",
+  "family": "wenfeng-mona-s",
+  "normalized": "MonaS",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "ofl",
+    "简体中文",
+    "繁体中文",
+    "日文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "OFL",
+  "licenseVerified": null,
+  "foundry": "Monad ABXY",
+  "brand": {
+    "name": "Monad ABXY",
+    "slug": "monad-abxy"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "Monad ABXY",
+  "designer": "Monad ABXY",
+  "languages": [
+    "简体中文",
+    "繁体中文",
+    "日文"
+  ],
+  "releaseYear": 2026,
+  "charCount": 20452,
+  "glyphCount": 20452,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "Monad ABXY / ofl",
+  "licenseNotes": "ofl / OFL. pin MonaS/MonaS12Text-cn-12px.bdf sha256:58ccb205694747a5c19f94c98f8ef3a9266bb93fed806c6b01a1d6273ec4f2bc. oss_path=/fonts-packages/MonaS. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. OFL. Same file cut as Mona: 8 regional cn/tw/hk/ja files only. Main and *-ko-* excluded. Not Korean-primary. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "2026.08.16"
+}

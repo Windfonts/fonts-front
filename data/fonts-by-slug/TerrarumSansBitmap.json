@@ -1,0 +1,51 @@
+{
+  "id": "2aa0f104-18e7-4361-ab4a-bf9022f361be",
+  "name": "Terrarum Sans Bitmap",
+  "en": "Terrarum Sans Bitmap",
+  "family": "wenfeng-terrarum-sans-bitmap",
+  "normalized": "TerrarumSansBitmap",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "ofl",
+    "简体中文",
+    "繁体中文",
+    "日文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "OFL",
+  "licenseVerified": null,
+  "foundry": "CuriousTorvald",
+  "brand": {
+    "name": "CuriousTorvald",
+    "slug": "curioustorvald"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "CuriousTorvald",
+  "designer": "CuriousTorvald",
+  "languages": [
+    "简体中文",
+    "繁体中文",
+    "日文"
+  ],
+  "releaseYear": 2017,
+  "charCount": 27584,
+  "glyphCount": 27584,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "CuriousTorvald / ofl",
+  "licenseNotes": "ofl / OFL. pin TerrarumSansBitmap/TerrarumSansBitmap-20px.bdf sha256:61398bd9283dcea12dce47b18b44bb09ee1de9037317658a9f43b22934a1a3d9. oss_path=/fonts-packages/TerrarumSansBitmap. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. OFL 1.1. LICENSE.md pastes an MIT grant first, then states this Font Software is SIL OFL 1.1. RFN TERRARUM. One BDF. Han max 27584 from inventory note (no regional filename). Not Korean-primary. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "2017-2026"
+}

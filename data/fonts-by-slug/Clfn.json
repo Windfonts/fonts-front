@@ -1,0 +1,47 @@
+{
+  "id": "9106daa5-f6eb-4d2e-844c-33506937fc2a",
+  "name": "粗柳坊新",
+  "en": "CLFN",
+  "family": "wenfeng-clfn",
+  "normalized": "Clfn",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "free_commercial",
+    "简体中文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "免费商用",
+  "licenseName": "free_commercial",
+  "licenseVerified": null,
+  "foundry": "DWNfonts",
+  "brand": {
+    "name": "DWNfonts (diaowinner)",
+    "slug": "dwnfonts"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "DWNfonts (diaowinner)",
+  "designer": "DWNfonts (diaowinner)",
+  "languages": [
+    "简体中文"
+  ],
+  "releaseYear": 2024,
+  "charCount": 6763,
+  "glyphCount": 6763,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "DWNfonts / free_commercial",
+  "licenseNotes": "free_commercial / 免费可商用. pin Clfn/c16xcnr.bdf sha256:b1c6e7e63b54bfe64e4332e9fe83770213825b110d23be24e80c0cf83816510e. oss_path=/fonts-packages/Clfn. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. HPND any-purpose in COPYING (use, copy, modify, distribute for any purpose). NOT OFL. Itch.io CC-BY-SA is a different source and is not the file in this directory. Shelf note is the directory grant. free_commercial. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "bdf"
+}

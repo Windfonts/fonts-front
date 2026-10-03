@@ -1,0 +1,49 @@
+{
+  "id": "1a59481d-9e27-4e57-93b2-8be1d87186fb",
+  "name": "目哉像素",
+  "en": "Muzai Pixel",
+  "family": "wenfeng-muzai-pixel",
+  "normalized": "MuzaiPixel",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "ofl",
+    "简体中文",
+    "日文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "OFL",
+  "licenseVerified": null,
+  "foundry": "DWNfonts",
+  "brand": {
+    "name": "DWNfonts (diaowinner)",
+    "slug": "dwnfonts"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "DWNfonts (diaowinner)",
+  "designer": "DWNfonts (diaowinner)",
+  "languages": [
+    "简体中文",
+    "日文"
+  ],
+  "releaseYear": 2024,
+  "charCount": 13972,
+  "glyphCount": 13972,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "DWNfonts / ofl",
+  "licenseNotes": "ofl / OFL. pin MuzaiPixel/MuzaiPixel.bdf sha256:a3c8fb9b4cd5f6f6522364543bd704ec0ed624f893c2d10d10e0deaea6de5d4d. oss_path=/fonts-packages/MuzaiPixel. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. OFL 1.1 (LICENSE.md and OFL.txt). 8x12 Chinese/Japanese bitmap based on k8x12. Not the already-vaulted k8x12 cards. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "2.0.20241013"
+}

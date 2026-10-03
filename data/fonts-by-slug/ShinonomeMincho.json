@@ -1,0 +1,46 @@
+{
+  "id": "d5bcf6a8-a862-4e09-a5ed-759f17253523",
+  "name": "东云明朝",
+  "en": "Shinonome Mincho",
+  "family": "wenfeng-shinonome-mincho",
+  "normalized": "ShinonomeMincho",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "日文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "",
+  "licenseVerified": null,
+  "foundry": "The Electronic Font Open Laboratory",
+  "brand": {
+    "name": "The Electronic Font Open Laboratory",
+    "slug": "efont-shinonome"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "古川泰之 / efont",
+  "designer": "古川泰之 / efont",
+  "languages": [
+    "日文"
+  ],
+  "releaseYear": 2001,
+  "charCount": 6356,
+  "glyphCount": 6356,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "The Electronic Font Open Laboratory / free_commercial",
+  "licenseNotes": "公有领域。",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "bdf"
+}

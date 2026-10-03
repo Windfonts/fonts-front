@@ -1,0 +1,51 @@
+{
+  "id": "bc8fa156-d471-4070-8d66-b1e73cb76e44",
+  "name": "缝合粗像素",
+  "en": "Fusion Bold Pixel",
+  "family": "wenfeng-fusion-bold-pixel",
+  "normalized": "FusionBoldPixel",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "ofl",
+    "简体中文",
+    "繁体中文",
+    "日文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "OFL",
+  "licenseVerified": null,
+  "foundry": "TakWolf",
+  "brand": {
+    "name": "TakWolf",
+    "slug": "takwolf"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "TakWolf",
+  "designer": "TakWolf",
+  "languages": [
+    "简体中文",
+    "繁体中文",
+    "日文"
+  ],
+  "releaseYear": 2026,
+  "charCount": 20694,
+  "glyphCount": 20694,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "TakWolf / ofl",
+  "licenseNotes": "ofl / OFL. pin FusionBoldPixel/fusion-bold-pixel-12px-monospaced-zh_hans.bdf sha256:d4bcebae5c04824a6ac2831a866cf5b3055b9b09a5603561879c9df7ab04f928. oss_path=/fonts-packages/FusionBoldPixel. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. OFL. All 30 BDF files on one card, including zh_hans/zh_hant/ja/latin and the ko slices. Not Korean-primary (TakWolf 缝合粗像素). ko files are in the package because the approved cut is all 30; language tags are 简体/繁体/日文, not 韩文. No TTF conversion. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "2026.09.01"
+}

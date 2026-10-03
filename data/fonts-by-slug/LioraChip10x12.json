@@ -1,0 +1,49 @@
+{
+  "id": "f0289ec6-7714-4953-95d6-00fdb96925d3",
+  "name": "辰芯像素体10x12",
+  "en": "Liora Chip 10x12",
+  "family": "wenfeng-liora-chip-10x12",
+  "normalized": "LioraChip10x12",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "ofl",
+    "简体中文",
+    "繁体中文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "OFL",
+  "licenseVerified": null,
+  "foundry": "Liora Chen",
+  "brand": {
+    "name": "Liora Chen",
+    "slug": "liora-chen"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "Liora Chen",
+  "designer": "Liora Chen",
+  "languages": [
+    "简体中文",
+    "繁体中文"
+  ],
+  "releaseYear": 2026,
+  "charCount": 2643,
+  "glyphCount": 2643,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "Liora Chen / ofl",
+  "licenseNotes": "ofl / OFL. pin LioraChip10x12/LioraChip10x12.bdf sha256:3087f3ea7d83155e4e91dd5af39e8b256c393a27409fd210db5804ad034696ef. oss_path=/fonts-packages/LioraChip10x12. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. OFL 1.1. RFN Liora. Also credits x8y12pxDenkiChip authors. Not the already-shelved DenkiChip card. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "bdf"
+}

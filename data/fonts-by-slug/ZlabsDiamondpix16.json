@@ -1,0 +1,47 @@
+{
+  "id": "bcde88f2-88ec-4869-9a08-7a76772e7ab5",
+  "name": "Z工坊金刚黑体16px",
+  "en": "Z Labs DiamondPix 16px",
+  "family": "wenfeng-zlabs-diamondpix-16px",
+  "normalized": "ZlabsDiamondpix16",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "ofl",
+    "简体中文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "OFL",
+  "licenseVerified": null,
+  "foundry": "Z Labs",
+  "brand": {
+    "name": "Z Labs",
+    "slug": "zlabs"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "Astro_2539",
+  "designer": "Astro_2539",
+  "languages": [
+    "简体中文"
+  ],
+  "releaseYear": 2026,
+  "charCount": 1060,
+  "glyphCount": 1060,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "Z Labs / ofl",
+  "licenseNotes": "ofl / OFL. pin ZlabsDiamondpix16/ZLabsDiamondPix_16px_SC.bdf sha256:0fc411f6dfc4f5a089d67e8e485a45821949e118c1b38d5ba83b2d13f3dc5c24. oss_path=/fonts-packages/ZlabsDiamondpix16. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. OFL 1.1. RFN Z工坊/ZLabs and UwU Matrix / UwUMatrix. SC file. Not 创客贴金刚体. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "Build_20260309"
+}

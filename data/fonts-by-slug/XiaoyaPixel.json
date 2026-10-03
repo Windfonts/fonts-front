@@ -1,0 +1,48 @@
+{
+  "id": "64a8ff97-f6e4-49fe-a4bb-2b3a5058890b",
+  "name": "小雅像素",
+  "en": "Xiaoya Pixel",
+  "family": "wenfeng-xiaoya-pixel",
+  "normalized": "XiaoyaPixel",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "简体中文",
+    "日文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "免费商用",
+  "licenseName": "free_commercial",
+  "licenseVerified": null,
+  "foundry": "DWNfonts",
+  "brand": {
+    "name": "DWNfonts (diaowinner)",
+    "slug": "dwnfonts"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "hicchicc",
+  "designer": "hicchicc; DWNfonts",
+  "languages": [
+    "简体中文",
+    "日文"
+  ],
+  "releaseYear": 2026,
+  "charCount": 7865,
+  "glyphCount": 7865,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "DWNfonts / ofl",
+  "licenseNotes": "可以修改和再分发。字体文件不能单独转售。",
+  "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/XiaoyaPixel/LICENSE.txt",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "bdf"
+}

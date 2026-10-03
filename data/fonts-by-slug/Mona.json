@@ -1,0 +1,51 @@
+{
+  "id": "42a4048b-570f-4241-9e7b-8f978609c864",
+  "name": "Mona",
+  "en": "Mona",
+  "family": "wenfeng-mona",
+  "normalized": "Mona",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "ofl",
+    "简体中文",
+    "繁体中文",
+    "日文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "OFL",
+  "licenseVerified": null,
+  "foundry": "Monad ABXY",
+  "brand": {
+    "name": "Monad ABXY",
+    "slug": "monad-abxy"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "Monad ABXY",
+  "designer": "Monad ABXY",
+  "languages": [
+    "简体中文",
+    "繁体中文",
+    "日文"
+  ],
+  "releaseYear": 2026,
+  "charCount": 20452,
+  "glyphCount": 20452,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "Monad ABXY / ofl",
+  "licenseNotes": "ofl / OFL. pin Mona/Mona12Text-cn-12px.bdf sha256:6326d69d6f20facdce403d9d7e9e47b37d8fae9e2723fbb11f2009080c7f30f6. oss_path=/fonts-packages/Mona. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. OFL. ONLY the 8 regional files *-cn-* *-tw-* *-hk-* *-ja-* (regular and bold). Main and *-ko-* are not in the package. Languages from those files: 简体 (cn), 繁体 (tw/hk), 日文 (ja). Not 韩文. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "2026.08.16"
+}

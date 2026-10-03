@@ -1,0 +1,47 @@
+{
+  "id": "0837f84e-cc9e-4820-8a1a-f8c24e108c50",
+  "name": "中科院仿宋体点阵",
+  "en": "ISAS FangSong",
+  "family": "wenfeng-isas-fangsong",
+  "normalized": "IsasFangsong",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "free_commercial",
+    "简体中文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "免费商用",
+  "licenseName": "free_commercial",
+  "licenseVerified": null,
+  "foundry": "中国科学院软件研究所",
+  "brand": {
+    "name": "中国科学院软件研究所",
+    "slug": "isas"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "中国科学院软件研究所",
+  "designer": "中国科学院软件研究所",
+  "languages": [
+    "简体中文"
+  ],
+  "releaseYear": 1988,
+  "charCount": 6392,
+  "glyphCount": 6392,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "中国科学院软件研究所 / free_commercial",
+  "licenseNotes": "free_commercial / 免费可商用. pin IsasFangsong/gb16fs.bdf sha256:4d35fb2cf1321437750734c29de4f850a13f3757e75ad41dd24e8cd566d852c8. oss_path=/fonts-packages/IsasFangsong. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. HPND any-purpose in LICENSE (1988 Institute of Software, Academia Sinica). NOT OFL. GB2312 FangSong 16px. free_commercial. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "font-isas-misc-1.0.4"
+}

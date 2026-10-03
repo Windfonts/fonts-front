@@ -1,0 +1,47 @@
+{
+  "id": "d18458fe-7cc8-4234-877d-6f9d76e9a23f",
+  "name": "PixelMplus",
+  "en": "PixelMplus",
+  "family": "wenfeng-pixel-mplus",
+  "normalized": "PixelMplus",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "free_commercial",
+    "日文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "免费商用",
+  "licenseName": "free_commercial",
+  "licenseVerified": null,
+  "foundry": "itouhiro",
+  "brand": {
+    "name": "itouhiro",
+    "slug": "itouhiro"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "itouhiro",
+  "designer": "itouhiro",
+  "languages": [
+    "日文"
+  ],
+  "releaseYear": 2013,
+  "charCount": 5979,
+  "glyphCount": 5979,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "itouhiro / free_commercial",
+  "licenseNotes": "free_commercial / 免费可商用. pin PixelMplus/mplus_j12r.bdf sha256:dc97aba9dda768bb7c3f65084ab027ef555d20e51beec61ff50eb0a51607eb8b. oss_path=/fonts-packages/PixelMplus. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. M+ grant in LICENSE_E: unlimited use, copy, distribute, commercially or not. NOT OFL. Not the outline M+ families and not JFドットM+. All 18 BDF subset files on one card (Han/kana plus iso/jisx slices). Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "bdf"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "3dea817b-b2e3-4e12-86c4-a4edc94d63a8",
+  "name": "核心像素体",
+  "en": "Hexin Pixel Font",
+  "family": "wenfeng-hexin-pixel",
+  "normalized": "HexinPixel",
+  "category": "无衬线字体",
+  "tags": [
+    "像素",
+    "点阵",
+    "ofl",
+    "简体中文"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "OFL",
+  "licenseVerified": null,
+  "foundry": "DWNfonts",
+  "brand": {
+    "name": "DWNfonts (diaowinner)",
+    "slug": "dwnfonts"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "DWNfonts (diaowinner)",
+  "designer": "DWNfonts (diaowinner)",
+  "languages": [
+    "简体中文"
+  ],
+  "releaseYear": 2026,
+  "charCount": 7945,
+  "glyphCount": 7945,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "DWNfonts / ofl",
+  "licenseNotes": "ofl / OFL. pin HexinPixel/HexinPixelFont-8px.bdf sha256:722465e58e1b4fd2d7b9c8e8e9d6a295375697bba56db4c821d4def1fb61a79a. oss_path=/fonts-packages/HexinPixel. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. OFL. Simplified Chinese 12x8 pixel face based on k12x8. Not the already-vaulted k12x8 card. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "bdf"
+}
