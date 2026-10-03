@@ -63,6 +63,23 @@
       '</div></div>';
   }
 
+  /**
+   * 品牌名没对上字典时，foundry 原文可能已是别名。
+   * 并进那一家的同一张卡，不为别名或品牌原文再开一张。
+   */
+  function foldAlias(info, font) {
+    if (info && !info.unlisted && info.id) return info;
+    if (!font || !WFProto.getFoundryById) return info;
+    const raw = String(font.foundry || '').trim();
+    if (!raw) return info;
+    let hit = WFProto.getFoundryById(raw);
+    if ((!hit || hit.unlisted) && /[;；]/.test(raw)) {
+      hit = WFProto.getFoundryById(raw.split(/[;；]/)[0].trim());
+    }
+    if (hit && !hit.unlisted && hit.id) return hit;
+    return info;
+  }
+
   function groups(list) {
     const map = {};
     function ensure(info) {
@@ -76,8 +93,9 @@
       return map[info.id];
     }
     list.forEach(function (f) {
-      const owner = f.ownerInfo || f.foundryInfo;
-      const maker = f.makerInfo;
+      const owner = foldAlias(f.ownerInfo || f.foundryInfo, f);
+      let maker = f.makerInfo;
+      if (maker && maker.unlisted) maker = foldAlias(maker, f);
       const og = ensure(owner);
       if (og && og.fonts.indexOf(f) === -1) {
         og.fonts.push(f);
