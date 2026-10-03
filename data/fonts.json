@@ -33622,5 +33622,436 @@
     "glyphCount": 17128,
     "viewCount": 0,
     "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon"
+  },
+  {
+    "id": "1d7047dc-a663-452a-b220-0c97c01f1641",
+    "name": "仙人掌明体",
+    "en": "Cactus Classical Serif",
+    "family": "CactusClassicalSerif",
+    "normalized": "CactusClassicalSerif",
+    "designer": "Henry Chan、田海东、宇文满月、夜煞之乐",
+    "designerShort": "Henry Chan",
+    "category": "衬线",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "衬线",
+      "明体",
+      "CactusClassicalSerif"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "仙人掌明体（Cactus Classical Serif）。Henry Chan、田海东、宇文满月、夜煞之乐。SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "https://openfontlicense.org",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "",
+    "foundry": "Moonlit Owen",
+    "brand": {
+      "name": "Moonlit Owen",
+      "slug": "moonlitowen",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/MoonlitOwen",
+      "description": "开源字体计划，作品包括仙人掌明体、朱古力黑体。"
+    },
+    "releaseYear": 2024,
+    "version": "1.005",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 61165,
+    "glyphCount": 61165,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "7ab80ebf-fe78-4d51-a8c5-e2774ae7603e",
+    "name": "朱古力黑体",
+    "en": "Chocolate Classical Sans",
+    "family": "ChocolateClassicalSans",
+    "normalized": "ChocolateClassicalSans",
+    "designer": "田海东、宇文满月",
+    "designerShort": "田海东",
+    "category": "无衬线字体",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "黑体",
+      "ChocolateClassicalSans"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "朱古力黑体（Chocolate Classical Sans）。田海东、宇文满月。SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "https://openfontlicense.org",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2025 The Chocolate Classical Sans Project Authors (https://github.com/MoonlitOwen/ChocolateSans)",
+    "foundry": "Moonlit Owen",
+    "brand": {
+      "name": "Moonlit Owen",
+      "slug": "moonlitowen",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/MoonlitOwen",
+      "description": "开源字体计划，作品包括仙人掌明体、朱古力黑体。"
+    },
+    "releaseYear": 2025,
+    "version": "1.005",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 37641,
+    "glyphCount": 37641,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "fab54489-4764-4043-9e34-334dfaecfad0",
+    "name": "宇文天穹",
+    "en": "UoqMunThenKhung",
+    "family": "UoqMunThenKhung",
+    "normalized": "UoqMunThenKhung",
+    "designer": "Font-Kai、金井和夫、宇文满月",
+    "designerShort": "宇文满月",
+    "category": "楷体",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "楷体",
+      "字集未完",
+      "UoqMunThenKhung"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "宇文天穹（UoqMunThenKhung）。字集未完。宇文满月、金井和夫、Font-Kai。SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "https://openfontlicense.org",
+    "licenseFileUrl": "",
+    "licenseNotes": "字集未完",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2025 The UoqMunThenKhung Project Authors (https://github.com/MoonlitOwen/ThenKhung)",
+    "foundry": "Moonlit Owen",
+    "brand": {
+      "name": "Moonlit Owen",
+      "slug": "moonlitowen",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://github.com/MoonlitOwen/ThenKhung",
+      "description": "宇文天穹。字集未完。"
+    },
+    "releaseYear": 2025,
+    "version": "1.005",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "正文"
+    ],
+    "charCount": 9489,
+    "glyphCount": 9489,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "82d26bc8-94ff-48e7-84c4-fc3b19d4dfff",
+    "name": "滑油字 TC",
+    "en": "WD-XL Lubrifont TC",
+    "family": "WDXLLubrifontTC",
+    "normalized": "WDXLLubrifontTC",
+    "designer": "NightFurySL2001",
+    "designerShort": "NightFurySL2001",
+    "category": "无衬线字体",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "WDXLLubrifontTC"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "滑油字 TC（WD-XL Lubrifont TC）。NightFurySL2001。SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "https://openfontlicense.org",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020-2025 The WD-XL Lubrifont Project Authors (https://github.com/NightFurySL2001/WD-XL-font)",
+    "foundry": "WD-XL",
+    "brand": {
+      "name": "WD-XL",
+      "slug": "wdxl",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/0d0b6458273944ba6ab4b730caf2654095aa945511fda90516220d6911c3ed4b?s=144&d=identicon",
+      "website": "https://github.com/NightFurySL2001/WD-XL-font",
+      "description": "滑油字。OFL 1.1。"
+    },
+    "releaseYear": 2025,
+    "version": "2.100",
+    "languages": [
+      "繁体中文",
+      "日文",
+      "英语"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 15882,
+    "glyphCount": 15882,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/0d0b6458273944ba6ab4b730caf2654095aa945511fda90516220d6911c3ed4b?s=144&d=identicon"
+  },
+  {
+    "id": "58f8aabd-99cc-4cf0-a35a-4dbb33fcadb0",
+    "name": "注音粉圆",
+    "en": "Bpmf Huninn",
+    "family": "BpmfHuninn",
+    "normalized": "BpmfHuninn",
+    "designer": "But Ko",
+    "designerShort": "But Ko",
+    "category": "圆体",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "注音",
+      "圆体",
+      "BpmfHuninn"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "注音粉圆（Bpmf Huninn）。But Ko。font-family 为 BpmfHuninn。SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "http://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 But Ko / OFL-1.1",
+    "foundry": "buttaiwan",
+    "brand": {
+      "name": "但",
+      "slug": "buttaiwan",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+      "website": "https://github.com/ButTaiwan",
+      "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
+    },
+    "releaseYear": 2020,
+    "version": "1.500",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "教材",
+      "正文"
+    ],
+    "charCount": 10589,
+    "glyphCount": 10589,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon"
+  },
+  {
+    "id": "c5ee1001-c6dd-463f-aca8-0f642fb08c26",
+    "name": "注音芫荽",
+    "en": "Bpmf Iansui",
+    "family": "BpmfIansui",
+    "normalized": "BpmfIansui",
+    "designer": "But Ko",
+    "designerShort": "But Ko",
+    "category": "手写体",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "注音",
+      "芫荽",
+      "BpmfIansui"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "注音芫荽（Bpmf Iansui）。But Ko。中文名是芫荽。SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "https://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 But Ko / OFL-1.1",
+    "foundry": "buttaiwan",
+    "brand": {
+      "name": "但",
+      "slug": "buttaiwan",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+      "website": "https://github.com/ButTaiwan",
+      "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
+    },
+    "releaseYear": 2020,
+    "version": "1.500",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "教材",
+      "正文"
+    ],
+    "charCount": 10828,
+    "glyphCount": 10828,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon"
+  },
+  {
+    "id": "4560d0ca-1c4e-49a5-9dc1-f6afb6996664",
+    "name": "字嗨注音标楷",
+    "en": "Bpmf Zihi KaiStd",
+    "family": "BpmfZihiKaiStd",
+    "normalized": "BpmfZihiKaiStd",
+    "designer": "But Ko",
+    "designerShort": "But Ko",
+    "category": "楷体",
+    "tags": [
+      "开源",
+      "CC-BY-4.0",
+      "OFL",
+      "CJK",
+      "繁体中文",
+      "注音",
+      "楷体",
+      "字嗨",
+      "Zihi",
+      "Source",
+      "BpmfZihiKaiStd"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "字嗨注音标楷（Bpmf Zihi KaiStd）。But Ko。汉字 CC-BY-4.0，须具名署全字库正楷；其余 OFL-1.1。保留名 字嗨 / Zihi 与 Source。",
+    "license": "双许可",
+    "licenseName": "汉字 CC-BY-4.0 + 其余 OFL-1.1",
+    "licenseUrl": "",
+    "licenseFileUrl": "",
+    "licenseNotes": "汉字以 CC-BY-4.0 授权，须具名署「全字库正楷」。其余字形为 SIL OFL 1.1。保留名 字嗨 / Zihi 与 Source。不是单一 OFL。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2020 But Ko, RFN 字嗨/Zihi；汉字 CC-BY-4.0（全字库正楷），其余 OFL-1.1",
+    "foundry": "buttaiwan",
+    "brand": {
+      "name": "但",
+      "slug": "buttaiwan",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+      "website": "https://github.com/ButTaiwan",
+      "description": "开源字体计划，作品包括芫荽、源泉圆体、源样黑体、源样明体。"
+    },
+    "releaseYear": 2020,
+    "version": "1.501",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "教材",
+      "正文"
+    ],
+    "charCount": 16618,
+    "glyphCount": 16618,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon"
+  },
+  {
+    "id": "6f6f636c-ddc5-481c-b7e5-4dd082d7c9fa",
+    "name": "志莽行书",
+    "en": "Zhi Mang Xing",
+    "family": "ZhiMangXing",
+    "normalized": "ZhiMangXing",
+    "designer": "ZhongQi",
+    "designerShort": "ZhongQi",
+    "category": "手写体",
+    "tags": [
+      "开源",
+      "OFL",
+      "CJK",
+      "简体中文",
+      "手写",
+      "行书",
+      "ZhiMangXing"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "志莽行书（Zhi Mang Xing）。钟齐。SIL Open Font License 1.1。",
+    "license": "开源商用",
+    "licenseName": "OFL",
+    "licenseUrl": "http://scripts.sil.org/OFL",
+    "licenseFileUrl": "",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright 2018 The ZhiMangXing Project Authors (https://github.com/googlefonts/zhimangxing)",
+    "foundry": "ZhongQi",
+    "brand": {
+      "name": "ZhongQi",
+      "slug": "zhongqi",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/bc02c608b28e6b503dbc7ad301e368da7122924516e7e34f3e4d5be5d167d485?s=144&d=identicon",
+      "website": "",
+      "description": "ZhongQi出品的字体"
+    },
+    "releaseYear": 2018,
+    "version": "2.001",
+    "languages": [
+      "简体中文",
+      "英语"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 7101,
+    "glyphCount": 7101,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/bc02c608b28e6b503dbc7ad301e368da7122924516e7e34f3e4d5be5d167d485?s=144&d=identicon"
   }
 ]

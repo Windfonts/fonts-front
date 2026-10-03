@@ -24,7 +24,7 @@ rsync -a --delete \
   --exclude '*-options.html' --exclude 'v5-*.html' --exclude 'lab.html' \
   --exclude 'oss-audit.html' --exclude 'docs/' --exclude 'scripts/' \
   --exclude 'deploy/' --exclude '*.md' --exclude '.agents/' \
-  --exclude '.deploy-web-hz/' --exclude '.gitignore' \
+  --exclude '.deploy-web-hz/' --exclude '.deploy-web-hz.tar' --exclude '.gitignore' \
   "$ROOT"/ "$STAGE"/
 
 echo "stage files: $(find "$STAGE" -type f | wc -l | tr -d ' ')"
