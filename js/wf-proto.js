@@ -1956,6 +1956,22 @@
     return '简体中文';
   }
   /** 这款字是否有汉字面。latin 名 + 字数很少 + 语言空 = 没有（AAR/Thai/Viet）。 */
+  /**
+   * 日文主货架：languages 含「日文」，且不含简体中文 / 繁体中文 / 中文。
+   * 中日双语留在中文桶。不看名字里的假名，也不把「日语」当成「日文」。
+   */
+  function isJapanesePrimary(font) {
+    const langs = (font && font.languages) || [];
+    if (langs.indexOf('日文') === -1) return false;
+    for (let i = 0; i < langs.length; i++) {
+      const l = langs[i];
+      if (l === '简体中文' || l === '繁体中文' || l === '中文') return false;
+    }
+    return true;
+  }
+  function shelfRegion(font) {
+    return isJapanesePrimary(font) ? 'ja' : 'zh';
+  }
   function hasCjkFace(font) {
     if (!font) return true;
     const langs = font.languages || [];
@@ -2152,6 +2168,8 @@
     readyFace: readyFace,
     inferLanguage: inferLanguage,
     hasCjkFace: hasCjkFace,
+    isJapanesePrimary: isJapanesePrimary,
+    shelfRegion: shelfRegion,
     sampleForFont: sampleForFont,
     renderExtraFooter: renderExtraFooter,
     defaultSpecimen: function () { return JSON.parse(JSON.stringify(DEFAULT_SPECIMEN)); },

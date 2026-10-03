@@ -452,24 +452,56 @@
     return (g.children || []).some(function (ch) { return matchQuery(ch, q); });
   }
 
+  function jpStrictMajority(fonts) {
+    const list = uniqFonts(fonts || []);
+    if (!list.length) return false;
+    let n = 0;
+    list.forEach(function (f) {
+      if (WFProto.isJapanesePrimary(f)) n++;
+    });
+    return n * 2 > list.length;
+  }
+
+  /**
+   * 一家只进一个层。厂商按货架上的归属字体；作者按署名过的字体
+   * （归属 + 合作 + 受托）。日文主字体未过半、以及平局，留在中文。
+   */
+  function groupRegion(g) {
+    const bucket = indexBucket(g);
+    const author = bucket === 'author' || bucket === 'oss-author';
+    const fonts = author
+      ? [].concat(g.fonts || [], g.collab || [], g.made || [])
+      : (g.fonts || []);
+    return jpStrictMajority(fonts) ? 'ja' : 'zh';
+  }
+
   function renderIndex(list) {
     const gs = attachBrandParents(groups(list)).sort(sortGroups);
     const buckets = {};
-    INDEX_SECTIONS.forEach(function (s) { buckets[s.id] = []; });
-    gs.forEach(function (g) {
-      const id = indexBucket(g);
-      (buckets[id] || buckets.unlisted).push(g);
+    ['zh', 'ja'].forEach(function (region) {
+      INDEX_SECTIONS.forEach(function (s) { buckets[region + '|' + s.id] = []; });
     });
-    /* 品牌方：顶卡只留母公司 / 无父节点；子品牌挂在母公司卡下 */
-    if (buckets.brand) buckets.brand = brandIndexItems(buckets.brand);
+    gs.forEach(function (g) {
+      let id = indexBucket(g);
+      if (!buckets['zh|' + id]) id = 'unlisted';
+      buckets[groupRegion(g) + '|' + id].push(g);
+    });
+    ['zh', 'ja'].forEach(function (region) {
+      const key = region + '|brand';
+      if (buckets[key]) buckets[key] = brandIndexItems(buckets[key]);
+    });
+
+    function kindCount(id) {
+      return (buckets['zh|' + id] || []).length + (buckets['ja|' + id] || []).length;
+    }
 
     const listed = INDEX_SECTIONS.filter(function (s) {
       return s.id !== 'unlisted' && s.id !== 'commissioned';
-    }).reduce(function (n, s) { return n + buckets[s.id].length; }, 0);
+    }).reduce(function (n, s) { return n + kindCount(s.id); }, 0);
 
     document.body.classList.add('is-index');
 
-    function sectionHtml(sec, items) {
+    function sectionHtml(sec, items, bucketKey) {
       if (!items.length) return '';
       const note = sec.id === 'commissioned'
         ? '<p class="foundry-sec-note">本站没有归属字体，只列代做款；版权在品牌方。</p>'
@@ -482,7 +514,7 @@
               : (sec.id === 'project'
                 ? '<p class="foundry-sec-note">协作仓、机构发布线或计划名；不是个人作者页。</p>'
                 : ''))));
-      return '<section class="foundry-sec" data-sec="' + sec.id + '">' +
+      return '<section class="foundry-sec" data-sec="' + sec.id + '" data-bucket="' + bucketKey + '">' +
         '<div class="section-head"><h2>' + esc(sec.title) + ' <span class="n">' + items.length + '</span></h2></div>' +
         note +
         '<div class="foundry-index">' + items.map(function (g) {
@@ -490,18 +522,40 @@
         }).join('') + '</div></section>';
     }
 
+    const FOUNDRY_KINDS = INDEX_SECTIONS.filter(function (s) {
+      return s.id !== 'author' && s.id !== 'oss-author';
+    });
+    const AUTHOR_KINDS = INDEX_SECTIONS.filter(function (s) {
+      return s.id === 'author' || s.id === 'oss-author';
+    });
     const primaryKinds = INDEX_SECTIONS.filter(function (s) {
       return s.id !== 'commissioned' && s.id !== 'unlisted';
     });
     const extraKinds = INDEX_SECTIONS.filter(function (s) {
-      return (s.id === 'commissioned' || s.id === 'unlisted') && buckets[s.id].length;
+      return (s.id === 'commissioned' || s.id === 'unlisted') && kindCount(s.id);
     });
+
+    function tierCount(region, kinds) {
+      return kinds.reduce(function (n, s) {
+        return n + (buckets[region + '|' + s.id] || []).length;
+      }, 0);
+    }
+    function tierHtml(region, title, kinds) {
+      const n = tierCount(region, kinds);
+      if (!n) return '';
+      return '<section class="foundry-tier">' +
+        '<div class="section-head"><h2>' + esc(title) + ' <span class="n">' + n + '</span></h2></div>' +
+        kinds.map(function (s) {
+          return sectionHtml(s, buckets[region + '|' + s.id] || [], region + '|' + s.id);
+        }).join('') +
+        '</section>';
+    }
 
     root.innerHTML =
       '<section class="foundry-index-hero">' +
         '<div class="container">' +
           '<h1>厂商</h1>' +
-          '<p class="lead"><b>' + listed + '</b> 家在目录。字库、品牌方、作者、开源作者与开源项目分列；版权归品牌方。</p>' +
+          '<p class="lead"><b>' + listed + '</b> 家在目录。中文、日文分列；字库、品牌方、作者、开源作者与开源项目仍按类型归组。版权归品牌方。</p>' +
         '</div>' +
       '</section>' +
       '<div class="foundry-stick-bar">' +
@@ -513,13 +567,13 @@
             '<button type="button" class="is-on" data-kind="" role="tab" aria-selected="true">全部</button>' +
             primaryKinds.map(function (s) {
               return '<button type="button" data-kind="' + s.id + '" role="tab" aria-selected="false">' +
-                esc(s.title) + '<span class="n">' + buckets[s.id].length + '</span></button>';
+                esc(s.title) + '<span class="n">' + kindCount(s.id) + '</span></button>';
             }).join('') +
             (extraKinds.length
               ? '<span class="foundry-kinds-gap" aria-hidden="true"></span>' +
                 extraKinds.map(function (s) {
                   return '<button type="button" data-kind="' + s.id + '" role="tab" aria-selected="false">' +
-                    esc(s.title) + '<span class="n">' + buckets[s.id].length + '</span></button>';
+                    esc(s.title) + '<span class="n">' + kindCount(s.id) + '</span></button>';
                 }).join('')
               : '') +
           '</div>' +
@@ -529,7 +583,10 @@
       '<section class="foundry-index-body">' +
         '<div class="container">' +
           '<div id="foundrySections">' +
-            INDEX_SECTIONS.map(function (s) { return sectionHtml(s, buckets[s.id]); }).join('') +
+            tierHtml('zh', '中文厂商', FOUNDRY_KINDS) +
+            tierHtml('ja', '日文厂商', FOUNDRY_KINDS) +
+            tierHtml('zh', '中文作者', AUTHOR_KINDS) +
+            tierHtml('ja', '日文作者', AUTHOR_KINDS) +
           '</div>' +
           '<p class="foundry-empty-filter" id="foundryEmpty" hidden>没有匹配的厂商。</p>' +
         '</div>' +
@@ -566,15 +623,22 @@
       let visible = 0;
       root.querySelectorAll('.foundry-sec').forEach(function (sec) {
         const sid = sec.getAttribute('data-sec');
+        const arr = buckets[sec.getAttribute('data-bucket')] || [];
         const showSec = !kind || kind === sid;
         let secVisible = 0;
         sec.querySelectorAll('.foundry-index > .foundry, .foundry-index > .foundry-tree').forEach(function (card, i) {
-          const g = buckets[sid][i];
+          const g = arr[i];
           const ok = showSec && g && matchQuery(g, q);
           card.hidden = !ok;
           if (ok) { secVisible++; visible++; }
         });
         sec.hidden = !showSec || secVisible === 0;
+      });
+      root.querySelectorAll('.foundry-tier').forEach(function (tier) {
+        const any = Array.prototype.some.call(tier.querySelectorAll('.foundry-sec'), function (sec) {
+          return !sec.hidden;
+        });
+        tier.hidden = !any;
       });
       if (emptyEl) emptyEl.hidden = visible > 0;
     }

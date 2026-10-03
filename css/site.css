@@ -637,6 +637,15 @@ html[data-view="dev"] .foundry-eco .foundry-upstream-item { flex-wrap: nowrap; w
   font-size: var(--fs-13); font-weight: var(--fw-body); color: var(--gray);
   font-variant-numeric: tabular-nums;
 }
+.foundry-tier { margin-bottom: var(--s-10); }
+.foundry-tier[hidden] { display: none; }
+.foundry-tier > .section-head { margin-bottom: var(--s-4); }
+.foundry-tier > .section-head h2 { font-size: var(--fs-18); font-weight: var(--fw-title); }
+.foundry-tier > .section-head .n {
+  font-size: var(--fs-13); font-weight: var(--fw-body); color: var(--gray);
+  font-variant-numeric: tabular-nums;
+}
+
 .foundry-sec-note {
   margin: calc(var(--s-3) * -1) 0 var(--s-4);
   font-size: var(--fs-13); color: var(--gray); max-width: 40em;
