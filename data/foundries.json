@@ -427,17 +427,17 @@
         "wechat": true
       }
     },
-    {
+        {
       "id": "fontzone108",
-      "name": "字体传奇",
+      "name": "Font Zone 108",
       "en": "Font Zone 108",
-      "short": "字体传奇",
-      "website": "",
+      "short": "Font Zone 108",
+      "website": "http://zone108.main.jp",
       "aliases": [
-        "Font Zone 108"
+        "Font Zone 108",
+        "FontZone108"
       ],
-      "provisional": true,
-      "kind": "platform",
+      "kind": "author",
       "openSource": false,
       "claimed": false
     },
