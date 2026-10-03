@@ -85,8 +85,7 @@
     return (f.tags || []).indexOf(style) !== -1;
   }
   function matches(f, s, skip) {
-    /* 字体库只列中文桶。日文主字体不并进分类/风格，筛选器也不再有日文层。?region=ja 不生效。 */
-    if (WFProto.shelfRegion(f) === 'ja') return false;
+    /* 日文主字体回到原有分类/风格。筛选器没有日文层；?region=ja 与 ?lang=日文 都不开一层。 */
     if (skip !== 'cat' && s.cat && String(f.category || '') !== s.cat) return false;
     if (skip !== 'weight' && !matchWeight(f, s.weight)) return false;
     if (skip !== 'lang' && s.lang && s.lang !== '日文' && (f.languages || []).indexOf(s.lang) === -1) return false;
