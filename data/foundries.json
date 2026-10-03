@@ -133,7 +133,8 @@
         "Google",
         "Noto CJK",
         "Noto Sans CJK",
-        "Noto Serif CJK"
+        "Noto Serif CJK",
+        "Google Noto"
       ],
       "kind": "project",
       "openSource": true,
@@ -597,7 +598,8 @@
         "Welai",
         "project-welai",
         "Glow Sans",
-        "未来荧黑"
+        "未来荧黑",
+        "Wêlai"
       ],
       "kind": "project",
       "openSource": true,
@@ -1320,6 +1322,25 @@
       "claimed": false
     },
     {
+      "id": "nanigashitei",
+      "name": "何某亭",
+      "en": "Nanigashitei",
+      "short": "何某亭",
+      "website": "https://font.sleepcows.com/",
+      "aliases": [
+        "何某亭 / Nanigashitei"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "おつとめフォント页面写明著作权属于何某亭，并适用 SIL OFL 1.1；这不是目录中 aqua/max32002 的派生项目。",
+      "descSource": {
+        "site": "font.sleepcows.com",
+        "url": "https://font.sleepcows.com/",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
       "id": "aqua",
       "name": "Aqua（阿杰）",
       "en": "Aqua / max32002",
@@ -1426,7 +1447,8 @@
         "AoyagiKouzan",
         "青柳衡山",
         "衡山毛笔",
-        "香山毛笔字体"
+        "香山毛笔字体",
+        "KouzanAoyagi / opentype.jp"
       ],
       "fontNames": [
         "衡山毛笔"
@@ -2814,6 +2836,618 @@
         "玄宗体"
       ],
       "description": "zi2zi-JiT 书法体作者；权衡度量体、玄宗体。"
+    },
+    {
+      "id": "moji-waku",
+      "name": "もじワク研究",
+      "en": "Moji-Waku",
+      "short": "もじワク",
+      "website": "https://moji-waku.com/",
+      "aliases": [
+        "文字枠研究 / Moji-Waku",
+        "moji-waku"
+      ],
+      "kind": "project",
+      "openSource": false,
+      "claimed": false,
+      "description": "もじワク研究是在 moji-waku.com 发布ユムール、マキナス等日文自由字体的字体站点，页面未给出个人姓名。",
+      "descSource": {
+        "site": "moji-waku.com",
+        "url": "https://moji-waku.com/",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "omonomo",
+      "name": "omonomo",
+      "en": "omonomo",
+      "short": "omonomo",
+      "website": "https://github.com/omonomo/Cyroit",
+      "aliases": [
+        "omonomo"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "GitHub 用户 omonomo 制作并发布 Cyroit、Awroit 等日文编程字体，Cyroit 仓库许可证为 MIT。",
+      "descSource": {
+        "site": "github.com",
+        "url": "https://raw.githubusercontent.com/omonomo/Cyroit/main/LICENSE.txt",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "yuru7",
+      "name": "yuru7",
+      "en": "Yuko Otawara",
+      "short": "yuru7",
+      "website": "https://github.com/yuru7/bizin-gothic",
+      "aliases": [
+        "yuru7"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "GitHub 用户 yuru7（版权行署名为 Yuko Otawara）制作 Bizin Gothic 等编程字体，该仓库为 SIL OFL 1.1。",
+      "descSource": {
+        "site": "github.com",
+        "url": "https://raw.githubusercontent.com/yuru7/bizin-gothic/main/LICENSE",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "modi-factory",
+      "name": "MODI工場",
+      "en": "MODI Factory",
+      "short": "MODI",
+      "website": "https://modi.jpn.org/",
+      "aliases": [
+        "modi-factory",
+        "MODI工場"
+      ],
+      "kind": "project",
+      "openSource": false,
+      "claimed": false,
+      "description": "MODI工場是 modi.jpn.org 上的日文自由字体发布站，站点未署个人或公司法定名称。",
+      "descSource": {
+        "site": "modi.jpn.org",
+        "url": "https://modi.jpn.org/",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "pm85122",
+      "name": "8:51:22 pm",
+      "en": "8:51:22 pm",
+      "short": "851",
+      "website": "https://pm85122.onamae.jp/851fontTerm.html",
+      "aliases": [
+        "851"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "851 字体系列的作者是个人 8:51:22 pm；页面写明改造与再配布自由，但单品再贩卖不行。",
+      "descSource": {
+        "site": "pm85122.onamae.jp",
+        "url": "https://pm85122.onamae.jp/851fontTerm.html",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "musashi-system",
+      "name": "武蔵システム",
+      "en": "Musashi System",
+      "short": "武蔵",
+      "website": "https://opentype.jp/aboutmusashi.htm",
+      "aliases": [
+        "opentype.jp / 武蔵システム"
+      ],
+      "kind": "foundry",
+      "openSource": false,
+      "claimed": false,
+      "description": "武蔵システム（Musashi System）是新潟县长冈市的软件公司，运营字体站 opentype.jp。",
+      "descSource": {
+        "site": "opentype.jp",
+        "url": "https://opentype.jp/aboutmusashi.htm",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "yokutobanaitori",
+      "name": "よく飛ばない鳥",
+      "en": "Yokutobanai Tori",
+      "short": "マルセ",
+      "website": "https://yokutobanaitori.web.fc2.com/about.html",
+      "aliases": [
+        "よく飛ばない鳥"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "よく飛ばない鳥是管理人マルセ个人运营的日文自由字体站，发布クイズ与手写字体。",
+      "descSource": {
+        "site": "yokutobanaitori.web.fc2.com",
+        "url": "https://yokutobanaitori.web.fc2.com/about.html",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "logotype-jp",
+      "name": "ロゴタイプJP",
+      "en": "Logotype JP",
+      "short": "ロゴタイプ",
+      "website": "https://logotype.jp/profile.html",
+      "aliases": [
+        "ロゴタイプJP"
+      ],
+      "kind": "project",
+      "openSource": true,
+      "claimed": false,
+      "description": "ロゴタイプJP是发布公司标志风日文字体的站点，运营者栏只写站点名，并写明字体适用 SIL OFL 1.1。",
+      "descSource": {
+        "site": "logotype.jp",
+        "url": "https://logotype.jp/profile.html",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "tanuki-font",
+      "name": "たぬきフォント",
+      "en": "Tanuki Font",
+      "short": "たぬき侍",
+      "website": "https://tanukifont.com/about-me/",
+      "aliases": [
+        "たぬきフォント"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "たぬきフォント是句柄たぬき侍的个人字体站，发布たぬき油性マジック、自由の翼与站内的たぬゴ，不是目录里的 tanugo 项目。",
+      "descSource": {
+        "site": "tanukifont.com",
+        "url": "https://tanukifont.com/about-me/",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "gutenberg-labo",
+      "name": "Gutenberg Labo",
+      "en": "Gutenberg Labo",
+      "short": "GL",
+      "website": "https://github.com/Gutenberg-Labo",
+      "aliases": [
+        "Gutenberg Labo",
+        "gutenberg-labo"
+      ],
+      "kind": "project",
+      "openSource": true,
+      "claimed": false,
+      "description": "Gutenberg Labo 是以该名义发布 GL 系列等日文字体的字体实验室，GL-NovantiquaMinamoto 为 SIL OFL 1.1。",
+      "descSource": {
+        "site": "github.com",
+        "url": "https://raw.githubusercontent.com/Gutenberg-Labo/GL-NovantiquaMinamoto/main/OFL.txt",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "honoka-project",
+      "name": "HONOKA Project",
+      "en": "HONOKA Project",
+      "short": "ほのか",
+      "website": "https://font.gloomy.jp/profile.html",
+      "aliases": [
+        "font-gloomy",
+        "ほのかフォント"
+      ],
+      "kind": "project",
+      "openSource": false,
+      "claimed": false,
+      "description": "ほのかフォント由 HONOKA Project 在 font.gloomy.jp 提供，站点提供者名是项目名而不是个人。",
+      "descSource": {
+        "site": "font.gloomy.jp",
+        "url": "https://font.gloomy.jp/profile.html",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "jirou",
+      "name": "jirou",
+      "en": "jirou",
+      "short": "ゆたぽん",
+      "website": "https://net2-system.top/index.cgi",
+      "aliases": [
+        "yuta-fonts"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "ゆたぽん与ゆたココ所在站点写明软件和字体著作权属于个人 jirou。",
+      "descSource": {
+        "site": "net2-system.top",
+        "url": "https://net2-system.top/index.cgi",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "simo",
+      "name": "SIMO",
+      "en": "SIMO",
+      "short": "SIMO",
+      "website": "https://opentype.jp/aoyagireisho.htm",
+      "aliases": [
+        "SIMO / opentype.jp"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "青柳隷書しも页面写明由 SIMO 把青柳衡山的隶书做成字体并持有著作权，武蔵システム只是托管下载。",
+      "descSource": {
+        "site": "opentype.jp",
+        "url": "https://opentype.jp/aoyagireisho.htm",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "ito-font",
+      "name": "糸 FONT",
+      "en": "Ito Font",
+      "short": "糸FONT",
+      "website": "https://font.websozai.jp/",
+      "aliases": [
+        "font.websozai.jp"
+      ],
+      "kind": "project",
+      "openSource": false,
+      "claimed": false,
+      "description": "font.websozai.jp 是名为糸 FONT 的极细日文字体站，提供者页只给联系邮箱、没有个人或公司名。",
+      "descSource": {
+        "site": "font.websozai.jp",
+        "url": "https://font.websozai.jp/inquiry.html",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "hicchicc",
+      "name": "hicchicc",
+      "en": "hicc",
+      "short": "hicchicc",
+      "website": "https://github.com/hicchicc/x8y12pxDenkiChip",
+      "aliases": [
+        "hicchicc"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "GitHub 用户 hicchicc 发布像素字体でんきチップ（x8y12pxDenkiChip），仓库为 SIL OFL 1.1。",
+      "descSource": {
+        "site": "github.com",
+        "url": "https://raw.githubusercontent.com/hicchicc/x8y12pxDenkiChip/main/OFL.txt",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "negset",
+      "name": "negset",
+      "en": "negset",
+      "short": "negset",
+      "website": "https://negset.com/Firple/",
+      "aliases": [
+        "negset"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "negset 制作编程字体 Firple，其 GitHub LICENSE 以 negset 为版权人并采用 SIL Open Font License。",
+      "descSource": {
+        "site": "github.com",
+        "url": "https://raw.githubusercontent.com/negset/Firple/master/LICENSE",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "haru",
+      "name": "はる",
+      "en": "Haru",
+      "short": "はる",
+      "website": "https://www.vector.co.jp/soft/data/writing/se505937.html",
+      "aliases": [
+        "haru-tegaki"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "Vector 软件页把はる手書きフォント的作者记为个人はる。",
+      "descSource": {
+        "site": "vector.co.jp",
+        "url": "https://www.vector.co.jp/soft/data/writing/se505937.html",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "kawaii-font-hako",
+      "name": "かわいいフォント箱",
+      "en": "Kawaii Font Hako",
+      "short": "JK FONTS",
+      "website": "https://font.cutegirl.jp/",
+      "aliases": [
+        "かわいいフォント箱"
+      ],
+      "kind": "project",
+      "openSource": false,
+      "claimed": false,
+      "description": "かわいいフォント箱是 font.cutegirl.jp（ふぉんときゅーとがーる）的运营名，简介未给出个人姓名。",
+      "descSource": {
+        "site": "font.cutegirl.jp",
+        "url": "https://font.cutegirl.jp/category/about",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "kazesawa",
+      "name": "Kazesawa",
+      "en": "Kazesawa",
+      "short": "かぜさわ",
+      "website": "https://kazesawa.github.io/",
+      "aliases": [
+        "kazesawa"
+      ],
+      "kind": "project",
+      "openSource": true,
+      "claimed": false,
+      "description": "Kazesawa 是 GitHub 组织名下的日文合成字体项目，项目页写明以 SIL OFL 提供。",
+      "descSource": {
+        "site": "kazesawa.github.io",
+        "url": "https://kazesawa.github.io/",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "koruri",
+      "name": "Koruri",
+      "en": "Koruri",
+      "short": "コルリ",
+      "website": "https://koruri.github.io/",
+      "aliases": [
+        "Koruri"
+      ],
+      "kind": "project",
+      "openSource": true,
+      "claimed": false,
+      "description": "Koruri 是 GitHub 组织发布的日文 TrueType 字体项目，项目页写明按 Apache License 2.0 提供。",
+      "descSource": {
+        "site": "koruri.github.io",
+        "url": "https://koruri.github.io/",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "nicomoji",
+      "name": "ニコ文字配布所",
+      "en": "Nico Moji",
+      "short": "Ku-Ku",
+      "website": "https://nicofont.pupu.jp/profile.html",
+      "aliases": [
+        "ニコ文字配布所"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "丸文字フォント（ニコ文字）配布所的简介把运营者写成个人 Ku-Ku，站点发布ニコ角等字体。",
+      "descSource": {
+        "site": "nicofont.pupu.jp",
+        "url": "https://nicofont.pupu.jp/profile.html",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "umihotaru",
+      "name": "うみほたる",
+      "en": "umihotaru",
+      "short": "うみほたる",
+      "website": "https://umihotaru.work/",
+      "aliases": [
+        "umihotaru"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "にしき的フォント页面文末署名为制作者うみほたる。",
+      "descSource": {
+        "site": "umihotaru.work",
+        "url": "https://umihotaru.work/",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "ryota2357",
+      "name": "ryota2357",
+      "en": "ryota2357",
+      "short": "ryota2357",
+      "website": "https://github.com/ryota2357/PleckJP",
+      "aliases": [
+        "ryota2357"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "GitHub 用户 ryota2357 制作编程字体 PleckJP，LICENSE 版权人为 ryota2357，字体为 SIL OFL 1.1。",
+      "descSource": {
+        "site": "github.com",
+        "url": "https://raw.githubusercontent.com/ryota2357/PleckJP/main/LICENSE",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "orioncactus",
+      "name": "Kil Hyung-jin",
+      "en": "Kil Hyung-jin",
+      "short": "orioncactus",
+      "website": "https://github.com/orioncactus/pretendard",
+      "aliases": [
+        "orioncactus"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "Pretendard 的 OFL 版权人是 Kil Hyung-jin，GitHub 账号为 orioncactus，不是韩国字体公司条目。",
+      "descSource": {
+        "site": "github.com",
+        "url": "https://raw.githubusercontent.com/orioncactus/pretendard/main/LICENSE",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "cockatrice-digital",
+      "name": "Cockatrice Digital",
+      "en": "Hagi42",
+      "short": "Hagi42",
+      "website": "https://cktrc.com/about/",
+      "aliases": [
+        "Cockatrice Digital"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "Cockatrice Digital 是 Hagi42 个人站点，关于页写明以 SIL Open Font License 发布字体適当ポエム。",
+      "descSource": {
+        "site": "cktrc.com",
+        "url": "https://cktrc.com/about/",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "uchida-akira",
+      "name": "内田明",
+      "en": "Akira Uchida",
+      "short": "内田",
+      "website": "https://www.asahi-net.or.jp/~sd5a-ucd/freefonts/XANO-mincho/index.html.ja.sjis",
+      "aliases": [
+        "uchida-xano"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "XANO明朝由内田明开发并分发，依据其与日立、TypeBank 的字体权利使用许可，许可不是 OSI 开源许可证。",
+      "descSource": {
+        "site": "asahi-net.or.jp",
+        "url": "https://www.asahi-net.or.jp/~sd5a-ucd/freefonts/XANO-mincho/index.html.ja.sjis",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "yoshiki-hayashi",
+      "name": "Yoshiki Hayashi",
+      "en": "Yoshiki Hayashi",
+      "short": "Hayashi",
+      "website": "https://github.com/sacco325/dejima-fonts",
+      "aliases": [
+        "Yoshiki Hayashi"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "出岛明朝（Dejima）仓库 LICENSE 的版权人是 Yoshiki Hayashi，许可证为 MIT。",
+      "descSource": {
+        "site": "github.com",
+        "url": "https://raw.githubusercontent.com/sacco325/dejima-fonts/master/LICENSE",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "gaata",
+      "name": "があた",
+      "en": "Gaata",
+      "short": "があた",
+      "website": "https://nukosuki.booth.pm/items/318557",
+      "aliases": [
+        "があた"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "BOOTH 商品页把草书字体があた草書（方草 / Gata Sousho）的作者写成があた。",
+      "descSource": {
+        "site": "booth.pm",
+        "url": "https://nukosuki.booth.pm/items/318557",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "kanji-uk",
+      "name": "kanji.uk",
+      "en": "Kanji Stroke Order Font",
+      "short": "kanji.uk",
+      "website": "https://www.kanji.uk/",
+      "aliases": [
+        "kanji.uk"
+      ],
+      "kind": "project",
+      "openSource": true,
+      "claimed": false,
+      "description": "kanji.uk 是汉字笔顺字体的发布站点；随包说明写明按 BSD 风格许可证分发，笔顺图版权属于 Ulrich Apel 等。",
+      "descSource": {
+        "site": "kanji.uk",
+        "url": "https://www.kanji.uk/",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "mikachan",
+      "name": "みかちゃん",
+      "en": "mikachan",
+      "short": "みかちゃん",
+      "website": "http://www.mikachan-font.com/",
+      "aliases": [
+        "みかちゃん"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "みかちゃん是日文手写字体的名称，维基百科记其制作者为みか，字体 AC 也用这一名称介绍该字体。",
+      "descSource": {
+        "site": "ja.wikipedia.org",
+        "url": "https://ja.wikipedia.org/wiki/%E3%81%BF%E3%81%8B%E3%81%A1%E3%82%83%E3%82%93",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "chiphead",
+      "name": "chiphead",
+      "en": "chiphead",
+      "short": "chiphead",
+      "website": "https://www.vector.co.jp/vpack/browse/person/an037581.html",
+      "aliases": [
+        "chiphead"
+      ],
+      "kind": "author",
+      "openSource": false,
+      "claimed": false,
+      "description": "Vector 作者页把しねきゃぷしょん的作者记为个人 chiphead；原站 chiphead.jp 本次打开超时。",
+      "descSource": {
+        "site": "vector.co.jp",
+        "url": "https://www.vector.co.jp/vpack/browse/person/an037581.html",
+        "fetched": "2026-10-03"
+      }
+    },
+    {
+      "id": "kironono",
+      "name": "きろのの",
+      "en": "kironono",
+      "short": "kilo",
+      "website": "https://kironono.hatenablog.jp/entry/fonts-kiloji",
+      "aliases": [
+        "kilo"
+      ],
+      "kind": "author",
+      "openSource": true,
+      "claimed": false,
+      "description": "きろ字作者页写明 kilo 是 kironono 在 2004 年的句柄，字体为 New BSD；不是 GitHub 上同名组织。",
+      "descSource": {
+        "site": "kironono.hatenablog.jp",
+        "url": "https://kironono.hatenablog.jp/entry/fonts-kiloji",
+        "fetched": "2026-10-03"
+      }
     }
   ]
 }
