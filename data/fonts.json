@@ -25976,39 +25976,6 @@
     "descriptionBrief": "玄宗体。取唐玄宗《鹡鸰颂》字，经 zi2zi-JiT 补全 GB2312。SIL OFL 1.1。源 OTF name 表仍带 Adobe Source 保留名行，入库按 README 切 GB2312。"
   },
   {
-    "id": "44ae95d4-6bea-434f-bc74-c00a516540b1",
-    "name": "AAR",
-    "en": "AAR",
-    "family": "wenfeng-aar",
-    "normalized": "AAR",
-    "designer": "",
-    "designerShort": "—",
-    "category": "",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "",
-    "license": "免费商用",
-    "licenseName": "AAR授权协议",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "",
-    "brand": null,
-    "releaseYear": null,
-    "version": "1.000",
-    "languages": [],
-    "useCases": [],
-    "charCount": 95,
-    "glyphCount": 95,
-    "viewCount": 23,
-    "foundryAvatar": "https://cravatar.com/avatar/bda050585a00f0f6cb502350559d75532ae3b244c9498b996e7c5df2d98dfc8d?s=144&d=identicon"
-  },
-  {
     "id": "1eccc1f3-74ab-4d09-8344-c602f16defd0",
     "name": "Albertella",
     "en": "Albertella",
@@ -26052,72 +26019,6 @@
     "glyphCount": 220,
     "viewCount": 0,
     "foundryAvatar": "https://cravatar.com/avatar/ddabf1918d45fe205ac481e02cb16fd3bb3d65edd843bb05859fd60ee99e7004?s=144&d=identicon"
-  },
-  {
-    "id": "005693ed-7091-4d7b-be9f-4c9ef22a1897",
-    "name": "Alibaba Sans Thai",
-    "en": "Alibaba Sans Thai",
-    "family": "wenfeng-alibabasansthai",
-    "normalized": "AlibabaSansThai",
-    "designer": "",
-    "designerShort": "—",
-    "category": "",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "",
-    "license": "免费商用",
-    "licenseName": "Alibaba Sans Thai授权协议",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "",
-    "brand": null,
-    "releaseYear": null,
-    "version": "1.000",
-    "languages": [],
-    "useCases": [],
-    "charCount": 966,
-    "glyphCount": 966,
-    "viewCount": 22,
-    "foundryAvatar": "https://cravatar.com/avatar/bda050585a00f0f6cb502350559d75532ae3b244c9498b996e7c5df2d98dfc8d?s=144&d=identicon"
-  },
-  {
-    "id": "6d29ed99-4517-49e4-a096-953aa4d5daf4",
-    "name": "Alibaba Sans Viet",
-    "en": "Alibaba Sans Viet",
-    "family": "wenfeng-alibabasansviet",
-    "normalized": "AlibabaSansViet",
-    "designer": "",
-    "designerShort": "—",
-    "category": "",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "",
-    "license": "免费商用",
-    "licenseName": "Alibaba Sans Viet授权协议",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "",
-    "brand": null,
-    "releaseYear": null,
-    "version": "1.000",
-    "languages": [],
-    "useCases": [],
-    "charCount": 974,
-    "glyphCount": 974,
-    "viewCount": 21,
-    "foundryAvatar": "https://cravatar.com/avatar/bda050585a00f0f6cb502350559d75532ae3b244c9498b996e7c5df2d98dfc8d?s=144&d=identicon"
   },
   {
     "id": "15d74d21-d00d-4fc3-9245-79b2f1b90dfb",
@@ -27133,102 +27034,6 @@
     "foundryAvatar": "https://cravatar.com/avatar/d2cca05883872acc25cd060849baef45ecc485655893f6ea044417520d4fbe80?s=144&d=identicon"
   },
   {
-    "id": "305626c3-b6f9-4e7b-9ae1-e5cded0330a1",
-    "name": "Elffont Fern",
-    "en": "Elffont Fern",
-    "family": "wenfeng-elffern",
-    "normalized": "Elffern",
-    "designer": "justfont",
-    "designerShort": "justfont",
-    "category": "手写体",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "Elffont Fern。OFL（仓库 license NOASSERTION，release 为 OFL 惯用开源字形）。",
-    "license": "开源商用",
-    "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "justfont",
-    "brand": {
-      "name": "justfont",
-      "slug": "justfont",
-      "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/287159f88ff0c2fa8d55759ef345527034483b0b06873fe39fd13b2b8c3fca73?s=144&d=identicon",
-      "website": "",
-      "description": "justfont"
-    },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch1 2026-09-23",
-    "languages": [
-      "简体中文",
-      "繁体中文",
-      "英语"
-    ],
-    "useCases": [
-      "正文",
-      "标题",
-      "屏幕阅读"
-    ],
-    "charCount": 84,
-    "glyphCount": 84,
-    "viewCount": 5,
-    "foundryAvatar": "https://cravatar.com/avatar/287159f88ff0c2fa8d55759ef345527034483b0b06873fe39fd13b2b8c3fca73?s=144&d=identicon"
-  },
-  {
-    "id": "0cb3f181-937d-4861-bac4-31e07416441f",
-    "name": "Elffont Rock",
-    "en": "Elffont Rock",
-    "family": "wenfeng-elfrock",
-    "normalized": "Elfrock",
-    "designer": "justfont",
-    "designerShort": "justfont",
-    "category": "手写体",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "Elffont Rock。",
-    "license": "开源商用",
-    "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "justfont",
-    "brand": {
-      "name": "justfont",
-      "slug": "justfont",
-      "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/287159f88ff0c2fa8d55759ef345527034483b0b06873fe39fd13b2b8c3fca73?s=144&d=identicon",
-      "website": "",
-      "description": "justfont"
-    },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch1 2026-09-23",
-    "languages": [
-      "简体中文",
-      "繁体中文",
-      "英语"
-    ],
-    "useCases": [
-      "正文",
-      "标题",
-      "屏幕阅读"
-    ],
-    "charCount": 84,
-    "glyphCount": 84,
-    "viewCount": 3,
-    "foundryAvatar": "https://cravatar.com/avatar/287159f88ff0c2fa8d55759ef345527034483b0b06873fe39fd13b2b8c3fca73?s=144&d=identicon"
-  },
-  {
     "id": "fcb69b46-a0b4-4e99-bd94-1a147ef8535b",
     "name": "ESCUMASIA",
     "en": "Escumasia",
@@ -27372,39 +27177,6 @@
     "foundryAvatar": "https://cravatar.com/avatar/0118b20b6c2b5fbf527fe9a9bd2101c9098e6d45db5e9a8d70bde458747499a3?s=144&d=identicon"
   },
   {
-    "id": "cb556570-98e2-43b7-866c-91a569d5cdb0",
-    "name": "First Shine",
-    "en": "First Shine",
-    "family": "wenfeng-firstshine",
-    "normalized": "FirstShine",
-    "designer": "",
-    "designerShort": "—",
-    "category": "",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "",
-    "license": "免费商用",
-    "licenseName": "First Shine授权协议",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "",
-    "brand": null,
-    "releaseYear": null,
-    "version": "1.000",
-    "languages": [],
-    "useCases": [],
-    "charCount": 165,
-    "glyphCount": 165,
-    "viewCount": 21,
-    "foundryAvatar": "https://cravatar.com/avatar/bda050585a00f0f6cb502350559d75532ae3b244c9498b996e7c5df2d98dfc8d?s=144&d=identicon"
-  },
-  {
     "id": "16a1e933-fe0b-4db0-a51c-47e0537969bb",
     "name": "缝合像素 12",
     "en": "Fusion Pixel 12px",
@@ -27455,51 +27227,6 @@
     "glyphCount": 36342,
     "viewCount": 0,
     "foundryAvatar": "https://cravatar.com/avatar/4c4d6fcd63ab92791462475949cec4fdb229bd958d0de75e23c35e2b0138f8e1?s=144&d=identicon"
-  },
-  {
-    "id": "23770934-08a0-467f-ba09-c68a6af14ce7",
-    "name": "激笔 SFX",
-    "en": "GEKIFUDE SFX",
-    "family": "wenfeng-gekifude",
-    "normalized": "Gekifude",
-    "designer": "ukr8b3g",
-    "designerShort": "ukr8b3g",
-    "category": "手写体",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "激笔 SFX，假名笔触，没有汉字。CC0 1.0。",
-    "license": "开源商用",
-    "licenseName": "CC0 1.0",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "激笔",
-    "brand": {
-      "name": "激笔",
-      "slug": "gekifude",
-      "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/2f13d3810fa47199a21ac2aa0e12dbd27816e2465a9a2ca0f88fe8eff1387779?s=144&d=identicon",
-      "website": "https://github.com/ukr8b3g-cmyk/GEKIFUDE-SFX",
-      "description": "激笔 SFX。CC0 1.0。"
-    },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch2 2026-09-23",
-    "languages": [
-      "日文",
-      "英语"
-    ],
-    "useCases": [
-      "西文标题"
-    ],
-    "charCount": 364,
-    "glyphCount": 364,
-    "viewCount": 3,
-    "foundryAvatar": "https://cravatar.com/avatar/2f13d3810fa47199a21ac2aa0e12dbd27816e2465a9a2ca0f88fe8eff1387779?s=144&d=identicon"
   },
   {
     "id": "208fefc5-4fd0-41de-93dd-0b00b66342ab",
@@ -28602,146 +28329,6 @@
     "glyphCount": 9354,
     "viewCount": 0,
     "foundryAvatar": "https://cravatar.com/avatar/8c4215e152df1e52ead9698133a3a85a79dd45c7782635dd7cc347822f22f04b?s=144&d=identicon"
-  },
-  {
-    "id": "82c49f21-658d-4c53-b174-b03d521cfdd0",
-    "name": "寒蝉线体",
-    "en": "Chill Line",
-    "family": "wenfeng-hcline",
-    "normalized": "Hcline",
-    "designer": "ChillType",
-    "designerShort": "ChillType",
-    "category": "无衬线字体",
-    "tags": [],
-    "weights": [
-      "Black"
-    ],
-    "description": "寒蝉线体，等距等线英文。无汉字。字重文件与 name 表不完全同名：Regular 实为 Normal，ExtraBold 实为 UltraBold，SemiBold 实为 DemiBold。SIL OFL 1.1。",
-    "license": "开源商用",
-    "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "寒蝉字型",
-    "brand": {
-      "name": "ChillType",
-      "slug": "chilltype",
-      "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/01e131de64ecc63bb395a2dc5c9bb81f0c4708b7cc4f609fad1a1e8397f4db56?s=144&d=identicon",
-      "website": "",
-      "description": "ChillType出品的字体"
-    },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch2 2026-09-23",
-    "languages": [
-      "英语",
-      "拉丁字母"
-    ],
-    "useCases": [
-      "西文标题",
-      "西文正文"
-    ],
-    "charCount": 414,
-    "glyphCount": 414,
-    "viewCount": 3,
-    "foundryAvatar": "https://cravatar.com/avatar/01e131de64ecc63bb395a2dc5c9bb81f0c4708b7cc4f609fad1a1e8397f4db56?s=144&d=identicon"
-  },
-  {
-    "id": "157d972c-cd44-47ef-811a-07536bd23e35",
-    "name": "寒蝉像素体",
-    "en": "Chill Pixels",
-    "family": "wenfeng-hcpixels",
-    "normalized": "Hcpixels",
-    "designer": "ChillType",
-    "designerShort": "ChillType",
-    "category": "无衬线字体",
-    "tags": [],
-    "weights": [
-      "Matrix"
-    ],
-    "description": "寒蝉像素体，四款风格面（Mono / Maximal / Minimalism / Matrix），无汉字。Regular 与 Mono 为同一文件。SIL OFL 1.1。",
-    "license": "开源商用",
-    "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "寒蝉字型",
-    "brand": {
-      "name": "ChillType",
-      "slug": "chilltype",
-      "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/01e131de64ecc63bb395a2dc5c9bb81f0c4708b7cc4f609fad1a1e8397f4db56?s=144&d=identicon",
-      "website": "",
-      "description": "ChillType出品的字体"
-    },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch2 2026-09-23",
-    "languages": [
-      "英语",
-      "拉丁字母"
-    ],
-    "useCases": [
-      "西文标题",
-      "西文正文"
-    ],
-    "charCount": 521,
-    "glyphCount": 521,
-    "viewCount": 2,
-    "foundryAvatar": "https://cravatar.com/avatar/01e131de64ecc63bb395a2dc5c9bb81f0c4708b7cc4f609fad1a1e8397f4db56?s=144&d=identicon"
-  },
-  {
-    "id": "7a16cae1-48a9-483a-8159-9a1134fdad43",
-    "name": "寒蝉月等宽",
-    "en": "Chill Moon Mono",
-    "family": "wenfeng-hcydk",
-    "normalized": "Hcydk",
-    "designer": "ChillType",
-    "designerShort": "ChillType",
-    "category": "Mono",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "寒蝉月等宽。SIL OFL 1.1。",
-    "license": "开源商用",
-    "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "寒蝉字型",
-    "brand": {
-      "name": "ChillType",
-      "slug": "chilltype",
-      "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/01e131de64ecc63bb395a2dc5c9bb81f0c4708b7cc4f609fad1a1e8397f4db56?s=144&d=identicon",
-      "website": "",
-      "description": "ChillType出品的字体"
-    },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch1 2026-09-23",
-    "languages": [
-      "简体中文",
-      "繁体中文",
-      "英语"
-    ],
-    "useCases": [
-      "正文",
-      "标题",
-      "屏幕阅读"
-    ],
-    "charCount": 862,
-    "glyphCount": 862,
-    "viewCount": 2,
-    "foundryAvatar": "https://cravatar.com/avatar/01e131de64ecc63bb395a2dc5c9bb81f0c4708b7cc4f609fad1a1e8397f4db56?s=144&d=identicon"
   },
   {
     "id": "118aa9f4-afc2-4fc6-a2aa-62f7404e7d22",
@@ -29872,54 +29459,6 @@
     "foundryAvatar": "https://cravatar.com/avatar/7774906aa8bad0eb66acdc42e5f1989f4e332c13253fb7dfea6ee7f1b88db6ae?s=144&d=identicon"
   },
   {
-    "id": "dd8a123f-8ec5-49f2-a92d-674c96762ba4",
-    "name": "杰森手写",
-    "en": "JasonHandWritingFonts",
-    "family": "wenfeng-jshw",
-    "normalized": "Jshw",
-    "designer": "Aqua",
-    "designerShort": "Aqua",
-    "category": "手写体",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "杰森手写（Aqua）。SIL OFL 1.1。",
-    "license": "开源商用",
-    "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "Aqua（阿杰）",
-    "brand": {
-      "name": "Aqua",
-      "slug": "aqua",
-      "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/143ea17f6a47a30b5a974a6b4f9649a5937a25fda9c4fa7e839a435c4ad38714?s=144&d=identicon",
-      "website": "",
-      "description": "Aqua / max32002"
-    },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch1 2026-09-23",
-    "languages": [
-      "简体中文",
-      "繁体中文",
-      "英语"
-    ],
-    "useCases": [
-      "正文",
-      "标题",
-      "屏幕阅读"
-    ],
-    "charCount": 100,
-    "glyphCount": 100,
-    "viewCount": 4,
-    "foundryAvatar": "https://cravatar.com/avatar/143ea17f6a47a30b5a974a6b4f9649a5937a25fda9c4fa7e839a435c4ad38714?s=144&d=identicon"
-  },
-  {
     "id": "c7efdc53-8453-4c1e-9ee4-df1fc06cbdd5",
     "name": "Juisee",
     "en": "Juisee",
@@ -30962,39 +30501,6 @@
     "foundryAvatar": "https://cravatar.com/avatar/13222c24bb10e9c1aabaf9caa9509b29f3980f7bdb0fd97d5f4566656bdf996e?s=144&d=identicon"
   },
   {
-    "id": "b927c7ed-c2ca-4911-b173-cd65a54877dd",
-    "name": "NISCRIPT",
-    "en": "NISCRIPT",
-    "family": "wenfeng-niscript",
-    "normalized": "NISCRIPTRegular",
-    "designer": "",
-    "designerShort": "—",
-    "category": "",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "",
-    "license": "免费商用",
-    "licenseName": "NISCRIPT授权协议",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "",
-    "brand": null,
-    "releaseYear": null,
-    "version": "1.000",
-    "languages": [],
-    "useCases": [],
-    "charCount": 222,
-    "glyphCount": 222,
-    "viewCount": 20,
-    "foundryAvatar": "https://cravatar.com/avatar/bda050585a00f0f6cb502350559d75532ae3b244c9498b996e7c5df2d98dfc8d?s=144&d=identicon"
-  },
-  {
     "id": "ad8ca28e-d71c-4f0a-acf4-b5beefb4511c",
     "name": "NOTONOTO",
     "en": "NOTONOTO",
@@ -31907,190 +31413,6 @@
     "glyphCount": 17739,
     "viewCount": 0,
     "foundryAvatar": "https://cravatar.com/avatar/7774906aa8bad0eb66acdc42e5f1989f4e332c13253fb7dfea6ee7f1b88db6ae?s=144&d=identicon"
-  },
-  {
-    "id": "c3dd6f76-5b3d-4c28-b456-b8ae8e3bc547",
-    "name": "怀旧像素 街机",
-    "en": "Retro Pixel Arcade",
-    "family": "wenfeng-rtpxarcade",
-    "normalized": "RtpxArcade",
-    "designer": "怀旧像素 街机",
-    "designerShort": "怀旧像素 街机",
-    "category": "无衬线字体",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "怀旧街机风像素字体，复古游戏观感。",
-    "license": "免费商用",
-    "licenseName": "MIT",
-    "licenseUrl": "https://github.com/TakWolf/retro-pixel-font/blob/main/LICENSE",
-    "licenseFileUrl": "",
-    "licenseNotes": "MIT License，原文随上游仓携带并核对。可商用、可修改、可再分发，须保留版权与许可声明。",
-    "licenseVerified": true,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "狼人小林 (TakWolf)",
-    "brand": {
-      "name": "狼人小林 (TakWolf)",
-      "slug": "takwolf",
-      "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/4c4d6fcd63ab92791462475949cec4fdb229bd958d0de75e23c35e2b0138f8e1?s=144&d=identicon",
-      "website": "https://github.com/TakWolf",
-      "description": "像素字体作者：方舟像素、缝合像素、果冻像素、怀旧像素等。"
-    },
-    "releaseYear": 2024,
-    "version": "2026.09.18",
-    "languages": [
-      "简体中文",
-      "英语"
-    ],
-    "useCases": [
-      "正文",
-      "标题"
-    ],
-    "charCount": 115,
-    "glyphCount": 115,
-    "viewCount": 0,
-    "foundryAvatar": "https://cravatar.com/avatar/4c4d6fcd63ab92791462475949cec4fdb229bd958d0de75e23c35e2b0138f8e1?s=144&d=identicon"
-  },
-  {
-    "id": "a6c49324-cd22-4d47-b5ff-3428abc66285",
-    "name": "怀旧像素 可爱",
-    "en": "Retro Pixel Cute Mono",
-    "family": "wenfeng-rtpxcute",
-    "normalized": "RtpxCute",
-    "designer": "怀旧像素 可爱",
-    "designerShort": "怀旧像素 可爱",
-    "category": "无衬线字体",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "怀旧可爱风等宽像素字体。",
-    "license": "免费商用",
-    "licenseName": "MIT",
-    "licenseUrl": "https://github.com/TakWolf/retro-pixel-font/blob/main/LICENSE",
-    "licenseFileUrl": "",
-    "licenseNotes": "MIT License，原文随上游仓携带并核对。可商用、可修改、可再分发，须保留版权与许可声明。",
-    "licenseVerified": true,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "狼人小林 (TakWolf)",
-    "brand": {
-      "name": "狼人小林 (TakWolf)",
-      "slug": "takwolf",
-      "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/4c4d6fcd63ab92791462475949cec4fdb229bd958d0de75e23c35e2b0138f8e1?s=144&d=identicon",
-      "website": "https://github.com/TakWolf",
-      "description": "像素字体作者：方舟像素、缝合像素、果冻像素、怀旧像素等。"
-    },
-    "releaseYear": 2024,
-    "version": "2026.09.18",
-    "languages": [
-      "简体中文",
-      "英语"
-    ],
-    "useCases": [
-      "正文",
-      "标题"
-    ],
-    "charCount": 111,
-    "glyphCount": 111,
-    "viewCount": 0,
-    "foundryAvatar": "https://cravatar.com/avatar/4c4d6fcd63ab92791462475949cec4fdb229bd958d0de75e23c35e2b0138f8e1?s=144&d=identicon"
-  },
-  {
-    "id": "57c2dff0-5e99-43bb-ad01-a51df3ded31d",
-    "name": "怀旧像素 小巧",
-    "en": "Retro Pixel Petty 5x5",
-    "family": "wenfeng-rtpxpetty",
-    "normalized": "RtpxPetty",
-    "designer": "怀旧像素 小巧",
-    "designerShort": "怀旧像素 小巧",
-    "category": "无衬线字体",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "5x5 极小像素字体，适合低分辨率场景。",
-    "license": "免费商用",
-    "licenseName": "MIT",
-    "licenseUrl": "https://github.com/TakWolf/retro-pixel-font/blob/main/LICENSE",
-    "licenseFileUrl": "",
-    "licenseNotes": "MIT License，原文随上游仓携带并核对。可商用、可修改、可再分发，须保留版权与许可声明。",
-    "licenseVerified": true,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "狼人小林 (TakWolf)",
-    "brand": {
-      "name": "狼人小林 (TakWolf)",
-      "slug": "takwolf",
-      "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/4c4d6fcd63ab92791462475949cec4fdb229bd958d0de75e23c35e2b0138f8e1?s=144&d=identicon",
-      "website": "https://github.com/TakWolf",
-      "description": "像素字体作者：方舟像素、缝合像素、果冻像素、怀旧像素等。"
-    },
-    "releaseYear": 2024,
-    "version": "2026.09.18",
-    "languages": [
-      "简体中文",
-      "英语"
-    ],
-    "useCases": [
-      "正文",
-      "标题"
-    ],
-    "charCount": 95,
-    "glyphCount": 95,
-    "viewCount": 0,
-    "foundryAvatar": "https://cravatar.com/avatar/4c4d6fcd63ab92791462475949cec4fdb229bd958d0de75e23c35e2b0138f8e1?s=144&d=identicon"
-  },
-  {
-    "id": "3557d296-c80c-44a1-baee-e893570bc0fd",
-    "name": "怀旧像素 粗体",
-    "en": "Retro Pixel Thick",
-    "family": "wenfeng-rtpxthick",
-    "normalized": "RtpxThick",
-    "designer": "怀旧像素 粗体",
-    "designerShort": "怀旧像素 粗体",
-    "category": "无衬线字体",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "粗笔画怀旧像素字体。",
-    "license": "免费商用",
-    "licenseName": "MIT",
-    "licenseUrl": "https://github.com/TakWolf/retro-pixel-font/blob/main/LICENSE",
-    "licenseFileUrl": "",
-    "licenseNotes": "MIT License，原文随上游仓携带并核对。可商用、可修改、可再分发，须保留版权与许可声明。",
-    "licenseVerified": true,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "狼人小林 (TakWolf)",
-    "brand": {
-      "name": "狼人小林 (TakWolf)",
-      "slug": "takwolf",
-      "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/4c4d6fcd63ab92791462475949cec4fdb229bd958d0de75e23c35e2b0138f8e1?s=144&d=identicon",
-      "website": "https://github.com/TakWolf",
-      "description": "像素字体作者：方舟像素、缝合像素、果冻像素、怀旧像素等。"
-    },
-    "releaseYear": 2024,
-    "version": "2026.09.18",
-    "languages": [
-      "简体中文",
-      "英语"
-    ],
-    "useCases": [
-      "正文",
-      "标题"
-    ],
-    "charCount": 110,
-    "glyphCount": 110,
-    "viewCount": 0,
-    "foundryAvatar": "https://cravatar.com/avatar/4c4d6fcd63ab92791462475949cec4fdb229bd958d0de75e23c35e2b0138f8e1?s=144&d=identicon"
   },
   {
     "id": "a100683c-c2c8-4422-95b0-776fddd5328b",
@@ -33405,99 +32727,6 @@
     "foundryAvatar": "https://cravatar.com/avatar/9f1e67826655b392e6d274b2b4b34635b9f2454af8d73d4b6062a22c23a6be96?s=144&d=identicon"
   },
   {
-    "id": "6a131422-68f1-4937-a2e3-d44c912599ab",
-    "name": "香萃自在",
-    "en": "Xiangcui Wave Sans",
-    "family": "wenfeng-xczz",
-    "normalized": "Xczz",
-    "designer": "香萃",
-    "designerShort": "香萃",
-    "category": "无衬线字体",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "香萃自在，字内家族名 Xiangcui Wave Sans。OFL 1.1。",
-    "license": "开源商用",
-    "licenseName": "OFL-1.1",
-    "licenseUrl": "https://github.com/Miiiller",
-    "licenseFileUrl": "",
-    "licenseNotes": "授权依据=官方发布页/上游仓（2026-09-26 记录；原文文件待抓取后补）。",
-    "licenseVerified": false,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "香萃",
-    "brand": {
-      "name": "香萃",
-      "slug": "xiangcui",
-      "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/52b44adbbf3749d216d574ebce5dab4892395165de7fc34d9eaa8faacda07020?s=144&d=identicon",
-      "website": "",
-      "description": "香萃刻宋、等粗宋、自在。OFL 1.1。"
-    },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch2 2026-09-23",
-    "languages": [
-      "简体中文",
-      "繁体中文"
-    ],
-    "useCases": [
-      "正文"
-    ],
-    "charCount": 29919,
-    "glyphCount": 29919,
-    "viewCount": 8,
-    "foundryAvatar": "https://cravatar.com/avatar/52b44adbbf3749d216d574ebce5dab4892395165de7fc34d9eaa8faacda07020?s=144&d=identicon"
-  },
-  {
-    "id": "ef520201-f272-4b11-910d-743933a41d63",
-    "name": "霞鹜拼音体",
-    "en": "LXGW Pinyin",
-    "family": "wenfeng-xwpinyin",
-    "normalized": "Xwpinyin",
-    "designer": "LXGW",
-    "designerShort": "LXGW",
-    "category": "手写体",
-    "tags": [],
-    "weights": [
-      "Regular"
-    ],
-    "description": "霞鹜拼音体。SIL OFL 1.1。",
-    "license": "开源商用",
-    "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
-    "licenseFileUrl": "",
-    "licenseNotes": "",
-    "licenseVerified": null,
-    "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "LXGW",
-    "brand": {
-      "name": "LXGW",
-      "slug": "lxgw",
-      "logoUrl": "",
-      "avatarUrl": "https://cravatar.com/avatar/800327db498d570d8bde0eef1692c3576a64c7565fea5fdd5b3aa19a9e815c3d?s=144&d=identicon",
-      "website": "",
-      "description": "LXGW出品的字体"
-    },
-    "releaseYear": 2024,
-    "version": "OSS ingest batch1 2026-09-23",
-    "languages": [
-      "简体中文",
-      "繁体中文",
-      "英语"
-    ],
-    "useCases": [
-      "正文",
-      "标题",
-      "屏幕阅读"
-    ],
-    "charCount": 162,
-    "glyphCount": 162,
-    "viewCount": 3,
-    "foundryAvatar": "https://cravatar.com/avatar/800327db498d570d8bde0eef1692c3576a64c7565fea5fdd5b3aa19a9e815c3d?s=144&d=identicon"
-  },
-  {
     "id": "dc245f99-6360-4019-9626-f666c5b2089a",
     "name": "余繁离形体",
     "en": "YuFanLixing",
@@ -33634,5 +32863,126 @@
     "glyphCount": 16980,
     "viewCount": 0,
     "foundryAvatar": "https://cravatar.com/avatar/1bfbce5d914602adf3207465adbdc958e244fd44f17c8bfaf72443fdb1314617?s=144&d=identicon"
+  },
+  {
+    "id": "a8f3c2e1-9b4d-4e6a-8f1c-2d5e7a9b0c31",
+    "name": "吉利银河美好体",
+    "en": "Geely Galaxy Beautiful",
+    "family": "wenfeng-jlyhmht",
+    "normalized": "Jlyhmht",
+    "license": "免费商用",
+    "licenseName": "方正×吉利 吉利银河美好体免费字授权（商业发布）",
+    "licenseNotes": "仅商业发布范围免费，可下载直接使用无需书面授权。嵌入网站/App/软件/设备、注册商标、出版物发行不在免费授权内——本站不开 CDN 引用。商标「吉利」「银河」归吉利汽车；字库制作方为正字库。对照货架：可预览状态与授权债务，不可热链引用。",
+    "licenseVerified": false,
+    "licenseUrl": "https://www.foundertype.com/index.php/FontInfo/index/id/12510",
+    "licenseFileUrl": "",
+    "tags": [
+      "免费商用",
+      "品牌字体",
+      "黑体",
+      "吉利",
+      "方正",
+      "cite-closed",
+      "shelf-compare"
+    ],
+    "languages": [
+      "简体中文",
+      "英语"
+    ],
+    "foundry": "FounderType",
+    "foundryAvatar": "assets/avatars/founder.webp",
+    "brand": {
+      "name": "吉利",
+      "slug": "geely",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.geely.com",
+      "description": "吉利汽车品牌设计；与方正字库联合发布吉利银河美好体（商业发布免费字）。"
+    },
+    "weights": [
+      "Light",
+      "Regular",
+      "Bold"
+    ],
+    "version": "1.02",
+    "charCount": 6763,
+    "glyphCount": 7719,
+    "description": "吉利银河美好体（GeelyDesign Type）由吉利设计与方正字库联合打造，黑楷结合，GB2312-80 简体。方正「免费字」：仅商业发布免费；嵌入、商标、出版物须另授。vault 登记且 oss_path 空，不上 fonts-packages；cite-closed。",
+    "copyright": "Copyright Beijing Founder Electronics Co.,Ltd. / Geely Design. All rights reserved.",
+    "designer": "汪文, 张译丹, 李月美（方正 × 吉利设计）",
+    "designerShort": "方正 × 吉利",
+    "category": "无衬线字体",
+    "coverage": "GB2312",
+    "releaseYear": 2026,
+    "useCases": [
+      "标题",
+      "品牌传播",
+      "海报"
+    ],
+    "purchaseUrl": "https://www.foundertype.com/index.php/FontInfo/index/id/12510",
+    "viewCount": 0,
+    "downloadCount": 0,
+    "apiCount": 0,
+    "apiCallCount": 0
+  },
+  {
+    "id": "b7e4d5c2-1a0f-4c8b-9e3d-6f8a2b4c5d70",
+    "name": "上海摩登体",
+    "en": "Shanghai Modeng",
+    "family": "wenfeng-shmgt",
+    "normalized": "Shmgt",
+    "license": "免费商用",
+    "licenseName": "上海摩登体作者声明授权（汉唐文化）",
+    "licenseNotes": "官网作者声明：个人及企业可免费用于商业发布。禁止修改、禁止转售字库、禁止嵌入系统/软件/App、禁止商标注册。部分站点误标 OFL——不以误称为准。本站不开 CDN 引用；上架仅供对照授权与服务状态。",
+    "licenseVerified": false,
+    "licenseUrl": "https://www.shanghaimodeng.com/",
+    "licenseFileUrl": "",
+    "tags": [
+      "免费商用",
+      "品牌字体",
+      "装饰",
+      "城市主题",
+      "汉唐文化",
+      "cite-closed",
+      "shelf-compare"
+    ],
+    "languages": [
+      "简体中文",
+      "英语"
+    ],
+    "foundry": "汉唐文化",
+    "foundryAvatar": "",
+    "brand": {
+      "name": "汉唐文化",
+      "slug": "hantang",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "https://www.shanghaimodeng.com/",
+      "description": "汉唐文化发起研发「上海摩登体」；城市文化主题中西文字体，以官网授权证书为准。"
+    },
+    "weights": [
+      "Regular"
+    ],
+    "version": "1.000",
+    "charCount": 6904,
+    "glyphCount": 7317,
+    "description": "上海摩登体（Shanghai Modeng）由汉唐文化出品，Art Déco 城市气质，GB2312 量级中西文。免费商业发布，禁止嵌入/修改/商标。vault 登记且 oss_path 空，不上 fonts-packages；cite-closed。",
+    "copyright": "Copyright 汉唐文化 / 上海摩登体. All rights reserved.",
+    "designer": "汉唐文化 × 茉莉字型",
+    "designerShort": "汉唐文化",
+    "category": "装饰字体",
+    "coverage": "GB2312",
+    "releaseYear": 2025,
+    "useCases": [
+      "标题",
+      "品牌传播",
+      "海报",
+      "包装"
+    ],
+    "purchaseUrl": "https://www.shanghaimodeng.com/",
+    "viewCount": 0,
+    "downloadCount": 0,
+    "apiCount": 0,
+    "apiCallCount": 0
   }
 ]
