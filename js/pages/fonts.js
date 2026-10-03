@@ -49,7 +49,6 @@
     open: WFProto.getQuery('open') === '1' ? '1' : '',
     kind: WFProto.getQuery('kind'),
     style: WFProto.getQuery('style'),
-    region: WFProto.getQuery('region') === 'ja' ? 'ja' : '',
     tag: WFProto.getQuery('tag'),
     keyword: WFProto.getQuery('keyword'),
     sort: WFProto.getQuery('sort') || 'featured',
@@ -86,8 +85,8 @@
     return (f.tags || []).indexOf(style) !== -1;
   }
   function matches(f, s, skip) {
-    /* 货架分区：日文主字体只进日文层；默认中文桶不含这批。风格筛选不会跨层。 */
-    if (skip !== 'region' && ((WFProto.shelfRegion(f) === 'ja') !== (s.region === 'ja'))) return false;
+    /* 字体库只列中文桶。日文主字体不并进分类/风格，筛选器也不再有日文层。?region=ja 不生效。 */
+    if (WFProto.shelfRegion(f) === 'ja') return false;
     if (skip !== 'cat' && s.cat && String(f.category || '') !== s.cat) return false;
     if (skip !== 'weight' && !matchWeight(f, s.weight)) return false;
     if (skip !== 'lang' && s.lang && s.lang !== '日文' && (f.languages || []).indexOf(s.lang) === -1) return false;
@@ -105,7 +104,7 @@
 
   function syncUrl() {
     const p = new URLSearchParams();
-    ['keyword', 'tag', 'cat', 'weight', 'lang', 'license', 'foundry', 'lineage', 'open', 'kind', 'style', 'region'].forEach(function (k) { if (state[k]) p.set(k, state[k]); });
+    ['keyword', 'tag', 'cat', 'weight', 'lang', 'license', 'foundry', 'lineage', 'open', 'kind', 'style'].forEach(function (k) { if (state[k]) p.set(k, state[k]); });
     if (state.sort && state.sort !== 'featured') p.set('sort', state.sort);
     const q = p.toString();
     history.replaceState(null, '', location.pathname + (q ? '?' + q : ''));
@@ -213,20 +212,8 @@
     const cats = uniq(all.map(function (f) { return f.category; }));
     const langs = ['简体中文', '繁体中文', '英语', '韩文'];
     const brands = brandFacetValues();
-    const jaOn = state.region === 'ja';
-    const jaN = all.filter(function (f) {
-      return matches(f, Object.assign({}, state, { region: 'ja', cat: '', style: '' }));
-    }).length;
-    /* 日文是语言层，跟在中文分类（无衬线 / 手写 / 衬线…）后面，不并进风格芯片。 */
-    const regionFacet =
-      '<div class="facet facet-cat facet-region">' +
-        '<ul><li' + (jaOn ? ' class="is-on"' : '') + '>' +
-          '<button type="button" data-facet="region" data-v="ja"' +
-            (jaOn ? ' aria-pressed="true"' : ' aria-pressed="false"') + '>' +
-            '<span>日文</span><span class="n">' + jaN + '</span></button></li></ul></div>';
     const html =
       catFacetHtml(facetCounts('cat', cats, function (f, v) { return f.category === v; })) +
-      regionFacet +
       facetHtml('风格', 'style', facetCounts('style', STYLE_TAGS, hasStyle)) +
       brandFacetHtml(facetCounts('foundry', brands.ids, function (f, v) {
         if (WFChrome.brandSlug(f) === v) return true;
@@ -262,14 +249,14 @@
     }
     const reset = document.getElementById('resetFilters');
     if (reset) reset.addEventListener('click', function () {
-      state.cat = state.weight = state.lang = state.license = state.foundry = state.lineage = state.open = state.kind = state.style = state.region = state.tag = state.keyword = '';
+      state.cat = state.weight = state.lang = state.license = state.foundry = state.lineage = state.open = state.kind = state.style = state.tag = state.keyword = '';
       const s = document.getElementById('navSearch');
       if (s) s.value = '';
       refresh();
     });
   }
 
-  function hasAny() { return !!(state.cat || state.weight || state.lang || state.license || state.foundry || state.lineage || state.open || state.kind || state.style || state.region || state.tag || state.keyword); }
+  function hasAny() { return !!(state.cat || state.weight || state.lang || state.license || state.foundry || state.lineage || state.open || state.kind || state.style || state.tag || state.keyword); }
   function uniq(arr) {
     const seen = {};
     return arr.filter(function (x) { if (!x || seen[x]) return false; seen[x] = true; return true; });
@@ -280,7 +267,6 @@
     if (state.keyword) chips.push({ k: 'keyword', l: '搜索「' + state.keyword + '」' });
     if (state.tag) chips.push({ k: 'tag', l: '标签 ' + state.tag });
     if (state.cat) chips.push({ k: 'cat', l: catLabel(state.cat) || state.cat });
-    if (state.region === 'ja') chips.push({ k: 'region', l: '日文' });
     if (state.style) chips.push({ k: 'style', l: '风格 ' + state.style });
     if (state.weight) {
       const b = WEIGHT_BUCKETS.filter(function (x) { return x.id === state.weight; })[0];
@@ -321,7 +307,7 @@
       moreBtn.hidden = true;
       const clr = document.getElementById('countClear');
       if (clr) clr.addEventListener('click', function () {
-        state.cat = state.weight = state.lang = state.license = state.foundry = state.lineage = state.open = state.kind = state.style = state.region = state.tag = state.keyword = '';
+        state.cat = state.weight = state.lang = state.license = state.foundry = state.lineage = state.open = state.kind = state.style = state.tag = state.keyword = '';
         const s = document.getElementById('navSearch');
         if (s) s.value = '';
         refresh();
@@ -347,8 +333,9 @@
   }
 
   function refresh(next) {
-    if (next) Object.keys(next).forEach(function (k) { if (next[k] != null) state[k] = next[k]; });
+    if (next) Object.keys(next).forEach(function (k) { if (next[k] != null && k !== 'region') state[k] = next[k]; });
     if (state.lang === '日文') state.lang = '';
+    state.region = '';
     let raw = WFProto.getCatalogList().filter(function (f) { return matches(f, state); });
     if (window.WFProducts) raw = WFProducts.collapseForList(raw);
     filtered = raw;
@@ -365,7 +352,7 @@
       updateCount();
       const emptyClr = document.getElementById('emptyClear');
       if (emptyClr) emptyClr.addEventListener('click', function () {
-        state.cat = state.weight = state.lang = state.license = state.foundry = state.lineage = state.open = state.kind = state.style = state.region = state.tag = state.keyword = '';
+        state.cat = state.weight = state.lang = state.license = state.foundry = state.lineage = state.open = state.kind = state.style = state.tag = state.keyword = '';
         const s = document.getElementById('navSearch');
         if (s) s.value = '';
         refresh();
@@ -407,7 +394,7 @@
 
   window.WFFontsList = {
     refresh: refresh,
-    getFilter: function () { return { tag: state.tag, keyword: state.keyword, license: state.license, cat: state.cat, weight: state.weight, lang: state.lang, foundry: state.foundry, lineage: state.lineage, open: state.open, kind: state.kind, style: state.style, region: state.region }; }
+    getFilter: function () { return { tag: state.tag, keyword: state.keyword, license: state.license, cat: state.cat, weight: state.weight, lang: state.lang, foundry: state.foundry, lineage: state.lineage, open: state.open, kind: state.kind, style: state.style }; }
   };
 
   WFProto.loadCatalog().then(function () {
