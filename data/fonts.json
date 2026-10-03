@@ -34315,5 +34315,162 @@
     "glyphCount": 1473,
     "viewCount": 0,
     "foundryAvatar": ""
+  },
+  {
+    "id": "0126a51e-3a5e-4f6b-84d7-f31535d8580e",
+    "name": "851チカラヅヨク",
+    "en": "851CHIKARA-DZUYOKU",
+    "family": "851ChikaraDzuyoku",
+    "normalized": "851ChikaraDzuyoku",
+    "designer": "851",
+    "designerShort": "851",
+    "category": "手写体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "手写",
+      "显示",
+      "CJK",
+      "851ChikaraDzuyoku"
+    ],
+    "weights": [
+      "KanaA",
+      "KanaB"
+    ],
+    "description": "851チカラヅヨク（851CHIKARA-DZUYOKU）。name-table family 851CHIKARA-DZUYOKU-KANA-A / 851チカラヅヨク-かなA 与 851CHIKARA-DZUYOKU-KANA-B / 851チカラヅヨク-かなB。styles KanaA·KanaB；CSS font-family 851ChikaraDzuyoku。免费商用；字体文件不能单独转售。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "",
+    "licenseNotes": "字体文件不能单独转售",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "8:51:22 pm",
+    "foundry": "851",
+    "brand": {
+      "name": "851",
+      "slug": "851",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "",
+      "description": "851 fonts。免费商用；字体文件不能单独转售。"
+    },
+    "releaseYear": null,
+    "version": "0.04",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 14963,
+    "glyphCount": 14963,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "bf90bc32-df05-49d8-aac2-f982feb0321c",
+    "name": "851手書き雑フォント",
+    "en": "851tegakizatsu",
+    "family": "851TegakiZatsu",
+    "normalized": "851TegakiZatsu",
+    "designer": "851",
+    "designerShort": "851",
+    "category": "手写体",
+    "tags": [
+      "免费可商用",
+      "日文",
+      "手写",
+      "显示",
+      "CJK",
+      "851TegakiZatsu"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "851手書き雑フォント（851tegakizatsu）。name-table family 851tegakizatsu / 851手書き雑フォント。免费商用；字体文件不能单独转售。",
+    "license": "免费商用",
+    "licenseName": "free_commercial",
+    "licenseUrl": "",
+    "licenseFileUrl": "",
+    "licenseNotes": "字体文件不能单独转售",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "8:51:22 pm",
+    "foundry": "851",
+    "brand": {
+      "name": "851",
+      "slug": "851",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "",
+      "description": "851 fonts。免费商用；字体文件不能单独转售。"
+    },
+    "releaseYear": null,
+    "version": "0.883",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "标题",
+      "显示"
+    ],
+    "charCount": 60275,
+    "glyphCount": 60275,
+    "viewCount": 0,
+    "foundryAvatar": ""
+  },
+  {
+    "id": "20643ea5-95f9-4ac9-935a-c19250317ea7",
+    "name": "KanjiStrokeOrders",
+    "en": "KanjiStrokeOrders",
+    "family": "KanjiStrokeOrders",
+    "normalized": "KanjiStrokeOrders",
+    "designer": "Ulrich Apel / Tim Eyre / Wadoku / AAAA",
+    "designerShort": "Ulrich Apel / Tim Eyre",
+    "category": "其他",
+    "tags": [
+      "开源",
+      "BSD",
+      "CJK",
+      "日文",
+      "笔顺",
+      "KanjiStrokeOrders"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "KanjiStrokeOrders。name-table family KanjiStrokeOrders。BSD-3-Clause（sidecar LICENCE.txt，该拼写非 LICENSE）。笔顺图著作权 Ulrich Apel / Wadoku / AAAA；FontForge 组装 Tim Eyre。",
+    "license": "BSD-3-Clause",
+    "licenseName": "bsd",
+    "licenseUrl": "",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/KanjiStrokeOrders/LICENCE.txt",
+    "licenseNotes": "BSD-3-Clause。sidecar 文件名 LICENCE.txt（该拼写，非 LICENSE）。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "This font may be freely distributed under the terms of the BSD-style license that accompanies this font in the file LICENCE.txt.\n\nThe kanji stroke order diagrams remain under the copyright of Ulrich Apel and the Wadoku and AAAA projects. If you find this font useful then please consider making a donation to the Wadoku projec by pointing your web browser at https://www.wadoku.de and clicking on \"Spenden\".\n\nFont assembled in FontForge by Tim Eyre.\n\nPlease submit corrections to mail [at] kanji.uk. The latest version of this font is at http://kanji.uk.",
+    "foundry": "kanji.uk",
+    "brand": {
+      "name": "kanji.uk",
+      "slug": "kanji-uk",
+      "logoUrl": "",
+      "avatarUrl": "",
+      "website": "http://kanji.uk",
+      "description": "KanjiStrokeOrders。BSD-3-Clause；LICENCE.txt。"
+    },
+    "releaseYear": 2025,
+    "version": "4.005",
+    "languages": [
+      "日文"
+    ],
+    "useCases": [
+      "教育",
+      "显示"
+    ],
+    "charCount": 8403,
+    "glyphCount": 8403,
+    "viewCount": 0,
+    "foundryAvatar": ""
   }
 ]
