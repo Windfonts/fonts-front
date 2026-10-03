@@ -38,7 +38,11 @@
   const state = {
     cat: WFProto.getQuery('cat'),
     weight: WFProto.getQuery('weight'),
-    lang: WFProto.getQuery('lang'),
+    lang: (function () {
+      /* 「日文」只留给日文主货架。旧语言芯片的 ?lang=日文 不再筛中文桶。 */
+      const q = WFProto.getQuery('lang');
+      return q === '日文' ? '' : q;
+    })(),
     license: WFProto.getQuery('license'),
     foundry: WFProto.getQuery('foundry'),
     lineage: WFProto.getQuery('lineage'),
@@ -86,7 +90,7 @@
     if (skip !== 'region' && ((WFProto.shelfRegion(f) === 'ja') !== (s.region === 'ja'))) return false;
     if (skip !== 'cat' && s.cat && String(f.category || '') !== s.cat) return false;
     if (skip !== 'weight' && !matchWeight(f, s.weight)) return false;
-    if (skip !== 'lang' && s.lang && (f.languages || []).indexOf(s.lang) === -1) return false;
+    if (skip !== 'lang' && s.lang && s.lang !== '日文' && (f.languages || []).indexOf(s.lang) === -1) return false;
     if (skip !== 'license' && s.license && WFChrome.licenseTier(f) !== s.license) return false;
     if (skip !== 'foundry' && s.foundry && WFChrome.brandSlug(f) !== s.foundry) {
       const cols = f.collaboratorInfos || [];
@@ -207,7 +211,7 @@
   function renderRail() {
     const all = WFProto.getCatalogList();
     const cats = uniq(all.map(function (f) { return f.category; }));
-    const langs = ['简体中文', '繁体中文', '英语', '日文', '韩文'];
+    const langs = ['简体中文', '繁体中文', '英语', '韩文'];
     const brands = brandFacetValues();
     const jaOn = state.region === 'ja';
     const jaN = all.filter(function (f) {
@@ -344,6 +348,7 @@
 
   function refresh(next) {
     if (next) Object.keys(next).forEach(function (k) { if (next[k] != null) state[k] = next[k]; });
+    if (state.lang === '日文') state.lang = '';
     let raw = WFProto.getCatalogList().filter(function (f) { return matches(f, state); });
     if (window.WFProducts) raw = WFProducts.collapseForList(raw);
     filtered = raw;
