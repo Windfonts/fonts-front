@@ -332,7 +332,6 @@ body.is-index .page-head { padding-top: 0; }
 }
 .foundry-stick-inner .foundry-search { max-width: 16rem; margin: 0; }
 .foundry-stick-inner .foundry-kinds { flex: 1 1 12rem; min-width: 0; }
-.foundry-stick-inner .foundry-langs { flex: 1 1 100%; }
 .foundry-stick-jump {
   margin-left: auto;
   flex: none;
