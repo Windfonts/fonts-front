@@ -27,6 +27,7 @@ python3 -m http.server 16016   # 仓根
 ## 数据
 
 - `data/fonts.json` — 字体目录，由 `node scripts/export-fonts.mjs` 从 vault API 导出，不手改。
+- **冻结（2026-10-05 Bot）：谁都别跑。data/fonts-list.json 和 data/fonts-by-slug/ 是手工维护的真源；跑此脚本会丢失手加记录、恢复已下架字体并重写全部详情。**（适用于 `scripts/build-fonts-list.py` 与 `scripts/export-fonts.mjs`；两者默认直接退出，解冻须 Bot 书面同意并设 `WF_CATALOG_BUILD_UNFREEZE=1`。`data/fonts.json` 已停在 708 条，不再是货架真源。）
 - `data/foundries.json` — 厂商字典（中文名 / 英文 / 简称 / 官网 / 别名），厂商名称唯一真源，手工维护。
 - `data/mock-app.json` — 控制台演示数据。
 

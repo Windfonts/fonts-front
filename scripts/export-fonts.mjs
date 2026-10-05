@@ -1,4 +1,10 @@
 #!/usr/bin/env node
+// 冻结（2026-10-05 Bot）：谁都别跑。data/fonts-list.json 和 data/fonts-by-slug/ 是手工维护的真源；跑此脚本会丢失手加记录、恢复已下架字体并重写全部详情。
+// 解冻须 Bot 书面同意，并显式设 WF_CATALOG_BUILD_UNFREEZE=1。
+if (process.env.WF_CATALOG_BUILD_UNFREEZE !== '1') {
+  console.error('冻结（2026-10-05 Bot）：谁都别跑。data/fonts-list.json 和 data/fonts-by-slug/ 是手工维护的真源；跑此脚本会丢失手加记录、恢复已下架字体并重写全部详情。（未设 WF_CATALOG_BUILD_UNFREEZE=1，已退出）');
+  process.exit(1);
+}
 /**
  * 导出字体目录：现网 vault API → data/fonts.json（前台静态数据）
  *
