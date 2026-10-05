@@ -41,7 +41,7 @@
   "description": "",
   "descriptionBrief": null,
   "copyright": "文泉驿 / GPL-2.0",
-  "licenseNotes": "GPL-2.0 / 开源商用. pin WqyUnibit/wqy-unibit-16px.bdf sha256:ae32d908e750cc3b327adc8b7e87d84eca8fdbae5ed17a736c81fcae32dc38ca. oss_path=/fonts-packages/WqyUnibit. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. GPL-2.0 copyleft, NOT OFL. Directory LICENSE is the GPL v2 text and does not contain a font-embedding exception. Not stamped GPL-2.0-with-font-exception (that tier is the 文泉驿点阵宋体 row, whose note cites the Zen Hei README). Existing GPL-2.0 tier used (same license string as 天王星像素). Not 文泉驿点阵宋体. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseNotes": "GPL-2.0，不含字体嵌入例外。",
   "licenseFileUrl": "",
   "licenseUrl": "",
   "purchaseUrl": null,

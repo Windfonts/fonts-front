@@ -43,7 +43,7 @@
   "description": "",
   "descriptionBrief": null,
   "copyright": "Monad ABXY / ofl",
-  "licenseNotes": "ofl / OFL. pin MonaS/MonaS12Text-cn-12px.bdf sha256:58ccb205694747a5c19f94c98f8ef3a9266bb93fed806c6b01a1d6273ec4f2bc. oss_path=/fonts-packages/MonaS. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. OFL. Same file cut as Mona: 8 regional cn/tw/hk/ja files only. Main and *-ko-* excluded. Not Korean-primary. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseNotes": "本页是简繁和日文点阵，不含韩文文件。",
   "licenseFileUrl": "",
   "licenseUrl": "",
   "purchaseUrl": null,

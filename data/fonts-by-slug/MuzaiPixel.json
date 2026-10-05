@@ -41,7 +41,7 @@
   "description": "",
   "descriptionBrief": null,
   "copyright": "DWNfonts / ofl",
-  "licenseNotes": "ofl / OFL. pin MuzaiPixel/MuzaiPixel.bdf sha256:a3c8fb9b4cd5f6f6522364543bd704ec0ed624f893c2d10d10e0deaea6de5d4d. oss_path=/fonts-packages/MuzaiPixel. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. OFL 1.1 (LICENSE.md and OFL.txt). 8x12 Chinese/Japanese bitmap based on k8x12. Not the already-vaulted k8x12 cards. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseNotes": "",
   "licenseFileUrl": "",
   "licenseUrl": "",
   "purchaseUrl": null,

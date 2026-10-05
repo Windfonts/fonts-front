@@ -39,7 +39,7 @@
   "description": "",
   "descriptionBrief": null,
   "copyright": "itouhiro / free_commercial",
-  "licenseNotes": "free_commercial / 免费可商用. pin Tekuplus/mplus_j12r.bdf sha256:dc97aba9dda768bb7c3f65084ab027ef555d20e51beec61ff50eb0a51607eb8b. oss_path=/fonts-packages/Tekuplus. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. Explicit free+redistrib in LICENSE.md (same M+ paragraph, copyright itouhiro 2022-2024 and M+ FONTS PROJECT). NOT OFL. All 8 files on one card. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseNotes": "可以修改和再分发。",
   "licenseFileUrl": "",
   "licenseUrl": "",
   "purchaseUrl": null,

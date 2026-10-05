@@ -41,7 +41,7 @@
   "description": "",
   "descriptionBrief": null,
   "copyright": "DWNfonts / ofl",
-  "licenseNotes": "ofl / OFL. pin QuanPixel/QuanPixel-8px.bdf sha256:d23113cababf9ecceb1c1a3005c89e5b8f00abdaf2e2be3115c5f4f9dcfe92c7. oss_path=/fonts-packages/QuanPixel. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. OFL. Alias GalmuriExtended does not make this the Galmuri family (Galmuri stays on the KR hold). Chinese pixel face. Description mentions Hangul in the same file; not labeled Korean-primary and not tagged 韩文. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseNotes": "不是 Galmuri。",
   "licenseFileUrl": "",
   "licenseUrl": "",
   "purchaseUrl": null,

@@ -39,7 +39,7 @@
   "description": "",
   "descriptionBrief": null,
   "copyright": "DWNfonts / ofl",
-  "licenseNotes": "ofl / OFL. pin HexinPixel/HexinPixelFont-8px.bdf sha256:722465e58e1b4fd2d7b9c8e8e9d6a295375697bba56db4c821d4def1fb61a79a. oss_path=/fonts-packages/HexinPixel. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. OFL. Simplified Chinese 12x8 pixel face based on k12x8. Not the already-vaulted k12x8 card. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseNotes": "",
   "licenseFileUrl": "",
   "licenseUrl": "",
   "purchaseUrl": null,

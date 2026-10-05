@@ -39,7 +39,7 @@
   "description": "",
   "descriptionBrief": null,
   "copyright": "中国科学院软件研究所 / free_commercial",
-  "licenseNotes": "free_commercial / 免费可商用. pin IsasFangsong/gb16fs.bdf sha256:4d35fb2cf1321437750734c29de4f850a13f3757e75ad41dd24e8cd566d852c8. oss_path=/fonts-packages/IsasFangsong. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. HPND any-purpose in LICENSE (1988 Institute of Software, Academia Sinica). NOT OFL. GB2312 FangSong 16px. free_commercial. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseNotes": "可以修改和再分发。",
   "licenseFileUrl": "",
   "licenseUrl": "",
   "purchaseUrl": null,

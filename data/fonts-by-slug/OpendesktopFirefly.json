@@ -41,7 +41,7 @@
   "description": "",
   "descriptionBrief": null,
   "copyright": "OpenDesktop / GPL-2.0",
-  "licenseNotes": "GPL-2.0 / 开源商用. pin OpendesktopFirefly/fireflyR16.bdf sha256:c416b3d8874281a3cf3c3c710b9ca83ed8426a914952df353793506cff87bfe2. oss_path=/fonts-packages/OpendesktopFirefly. READY_FOR_CDN (Bot Depot). wave fontpixel-cj-2026-10-03. GPL-2.0-only copyleft, NOT OFL. License.txt is GPL v2 (Chinese translation plus the English text) with no font-embedding exception. Existing GPL-2.0 tier, not the 文泉驿点阵宋体 font-exception tier. Six sizes 11-16px on one card. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "licenseNotes": "GPL-2.0，不含字体嵌入例外。",
   "licenseFileUrl": "",
   "licenseUrl": "",
   "purchaseUrl": null,
