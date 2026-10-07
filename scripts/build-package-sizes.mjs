@@ -24,7 +24,8 @@ async function cssBytes(url) {
 }
 
 async function sizeFor(normalized, weight, subset) {
-  const url = `${CDN}/fonts-packages/${encodeURIComponent(normalized)}/${encodeURIComponent(weight)}/${subset}/result.css`;
+  const pack = String(normalized || '').toLowerCase();
+  const url = `${CDN}/fonts-packages/${encodeURIComponent(pack)}/${encodeURIComponent(weight)}/${subset}/result.css`;
   return cssBytes(url);
 }
 

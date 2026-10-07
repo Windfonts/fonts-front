@@ -20,7 +20,7 @@
     ]
   };
   const PAGE_SIZE = 10;
-  /* 预览真源：cn.windfonts.com/fonts-packages/{Normalized}/{Weight}/{full|zh-common}/result.css
+  /* 预览真源：cn.windfonts.com/fonts-packages/{norm小写}/{Weight}/{full|zh-common}/result.css
      （与 app /api/css 同源拆包）。旧路径 /wenfeng/fonts/{slug}/{weight}/web/ 仅兜底。
      嵌入「动态」给 Google 风格查询参数：{cdn}/api/css?family=&weight=&version=。 */
   /* 域名口径：详见 docs/DOMAIN-ARCHITECTURE.md
@@ -922,11 +922,14 @@
     return (origin || CDN) + '/wenfeng/fonts/' + familySlug(family) + '/' + weightName(family, weight || '400') + '/web/' + file;
   }
 
-  /** 现网拆包静态 CSS（CORS *）：fonts-packages/{Normalized}/{Weight}/{version}/result.css */
+  /** 现网拆包静态 CSS（CORS *）：fonts-packages/{norm小写}/{Weight}/{version}/result.css
+   *  2026-10-06 起 OSS 包目录只留小写；混写路径 404。normalized 展示名可保留大小写，URL 段一律 lower。 */
   function packageResultUrl(family, weight, version, origin) {
     const font = catalog.filter(function (f) { return f.family === family; })[0];
     const slug = familySlug(family);
-    const norm = (font && font.normalized) || packageName(family) || slug;
+    const norm = String((font && font.normalized) || packageName(family) || slug || '')
+      .trim()
+      .toLowerCase();
     const w = packageWeight(family, weight || '400');
     const ver = packageSubset(version);
     let url = (origin || CDN) + '/fonts-packages/' + encodeURIComponent(norm) + '/' +
