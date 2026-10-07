@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-10-07T11:27:10+0800",
+  "summary": "708 packs probed: 705 have full; only 168 zh / 194 zh-common / 526 preview-shop. Console 404s were mostly missing subsets, not missing fonts. Runtime now uses data/pack-subsets.json to pick existing subset first.",
+  "emptyPacks": [
+    {
+      "pack": "clg",
+      "family": "wenfeng-clg",
+      "note": "no OSS pack"
+    },
+    {
+      "pack": "jlyhmht",
+      "family": "wenfeng-jlyhmht",
+      "note": "cite-closed local preview"
+    },
+    {
+      "pack": "shmgt",
+      "family": "wenfeng-shmgt",
+      "note": "cite-closed local preview"
+    }
+  ],
+  "stats": {
+    "packs": 708,
+    "withFull": 705,
+    "withZh": 168,
+    "withZhCommon": 194,
+    "withShop": 526,
+    "empty": 3
+  },
+  "fix": "data/pack-subsets.json?v=20261007a1"
+}

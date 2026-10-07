@@ -20,7 +20,7 @@
     ]
   };
   const PAGE_SIZE = 10;
-  /* 预览真源：cn.windfonts.com/fonts-packages/{Normalized}/{Weight}/{full|zh-common}/result.css
+  /* 预览真源：cn.windfonts.com/fonts-packages/{norm小写}/{Weight}/{full|zh-common}/result.css
      （与 app /api/css 同源拆包）。旧路径 /wenfeng/fonts/{slug}/{weight}/web/ 仅兜底。
      嵌入「动态」给 Google 风格查询参数：{cdn}/api/css?family=&weight=&version=。 */
   /* 域名口径：详见 docs/DOMAIN-ARCHITECTURE.md
@@ -111,6 +111,9 @@
   let avatars = {};
   let licenseEvidenceData = { standards: {}, names: {} };
   let lineageData = { groups: {}, byName: {} };
+  /* pack → { s: 子集列表, w: { Weight: 子集列表 } }；现网探测生成，避免盲请求 zh/shop 404 */
+  let packSubsets = null;
+  let packSubsetsPromise = null;
   const foundryByAlias = {};
   const foundryByFont = {};
   function normKey(s) { return String(s || '').trim().toLowerCase().replace(/\s+/g, ' '); }
@@ -235,7 +238,8 @@
     const evidenceReq = fetchJsonCached(dataUrl('license-evidence.json?v=20260925b'), { standards: {}, names: {} });
     const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20260929ka1'), { groups: {}, byName: {} });
     const avatarsReq = fetchJsonCached(dataUrl('avatars.json?v=20260928av9'), {});
-    catalogPromise = Promise.all([fontsReq, foundriesReq, evidenceReq, lineageReq, avatarsReq])
+    const packSubsetsReq = loadPackSubsets();
+    catalogPromise = Promise.all([fontsReq, foundriesReq, evidenceReq, lineageReq, avatarsReq, packSubsetsReq])
       .then(function (res) {
         avatars = (res[4] && typeof res[4] === 'object') ? res[4] : {};
         indexFoundries((res[1] && res[1].foundries) || []);
@@ -922,11 +926,59 @@
     return (origin || CDN) + '/wenfeng/fonts/' + familySlug(family) + '/' + weightName(family, weight || '400') + '/web/' + file;
   }
 
-  /** 现网拆包静态 CSS（CORS *）：fonts-packages/{Normalized}/{Weight}/{version}/result.css */
-  function packageResultUrl(family, weight, version, origin) {
+  function packDirName(family) {
     const font = catalog.filter(function (f) { return f.family === family; })[0];
     const slug = familySlug(family);
-    const norm = (font && font.normalized) || packageName(family) || slug;
+    return String((font && font.normalized) || packageName(family) || slug || '')
+      .trim()
+      .toLowerCase();
+  }
+
+  function loadPackSubsets() {
+    if (packSubsets) return Promise.resolve(packSubsets);
+    if (packSubsetsPromise) return packSubsetsPromise;
+    packSubsetsPromise = fetchJsonCached(dataUrl('pack-subsets.json?v=20261007a1'), { packs: {} })
+      .then(function (j) {
+        packSubsets = (j && j.packs && typeof j.packs === 'object') ? j.packs : {};
+        return packSubsets;
+      })
+      .catch(function () {
+        packSubsets = {};
+        return packSubsets;
+      });
+    return packSubsetsPromise;
+  }
+
+  /** 按现网探测表选真实存在的 subset，避免盲请求 zh/zh-common/preview-shop 404。 */
+  function pickPackSubset(family, weight, requested) {
+    const req = packageSubset(requested);
+    const pack = packDirName(family);
+    const rec = packSubsets && packSubsets[pack];
+    if (!rec) return req;
+    const folder = packageWeight(family, weight || '400');
+    let avail = (rec.w && rec.w[folder]) || null;
+    if ((!avail || !avail.length) && rec.w) {
+      const sib = folder === 'Regular' ? 'Normal' : (folder === 'Normal' ? 'Regular' : '');
+      if (sib && rec.w[sib] && rec.w[sib].length) avail = rec.w[sib];
+    }
+    if (!avail || !avail.length) avail = Array.isArray(rec.s) ? rec.s : [];
+    if (!avail.length) return req;
+    if (avail.indexOf(req) !== -1) return req;
+    let order;
+    if (String(req).indexOf('preview-') === 0) order = ['preview-shop', 'zh-common', 'zh', 'full'];
+    else if (req === 'zh-common') order = ['zh-common', 'zh', 'full'];
+    else if (req === 'zh' || req === 'en') order = ['zh', 'zh-common', 'full'];
+    else order = ['full', 'zh-common', 'zh', 'preview-shop'];
+    for (let i = 0; i < order.length; i++) {
+      if (avail.indexOf(order[i]) !== -1) return order[i];
+    }
+    return avail[0] || req;
+  }
+
+  /** 现网拆包静态 CSS（CORS *）：fonts-packages/{norm小写}/{Weight}/{version}/result.css
+   *  2026-10-06 起 OSS 包目录只留小写；混写路径 404。normalized 展示名可保留大小写，URL 段一律 lower。 */
+  function packageResultUrl(family, weight, version, origin) {
+    const norm = packDirName(family);
     const w = packageWeight(family, weight || '400');
     const ver = packageSubset(version);
     let url = (origin || CDN) + '/fonts-packages/' + encodeURIComponent(norm) + '/' +
@@ -1091,114 +1143,128 @@
 
 
   /**
-   * 注入字体 CSS。店面短样张走 preview-shop（CDN 预计算包），缺包再 zh / full。
-   * 传入 text 时：preview-shop 的 unicode-range 盖不住样张（春/绿/岸、让/字/网页 等）就升级 zh，再不行 full。
+   * 注入字体 CSS。店面短样张走 preview-shop（CDN 预计算包），缺包再按 pack-subsets 表选 zh/full。
+   * 传入 text 时：preview-shop 的 unicode-range 盖不住样张就升级到更大子集。
    * 不请求已下线的 /wenfeng/fonts，也没有公开 text=。
    */
   function ensureFontCss(family, weight, version, text) {
     if (!family) return Promise.resolve();
-    const ver = packageSubset(version);
     const pathName = weightName(family, weight);
     const w = weightToCss(weight || pathName || '400');
-    const key = family + '|' + pathName + '|' + ver;
     const needText = text == null ? '' : String(text);
-    if (injectedCss[key]) {
-      return injectedCss[key].then(function () { return upgradeIfNeeded(); });
-    }
-    const famCss = String(family).replace(/["']/g, '');
-    function noteApi() {
-      const hit = catalog.filter(function (f) { return f.family === family; })[0];
-      if (hit && hit.id) bumpFontStat(hit.id, 'api', 1);
-    }
-    function inject(css, base) {
-      /* 包内 result.css 常把各档都写成 font-weight:400；若只在 font-family 后追加字重，
-         后面残留的 font-weight:400 会盖掉 Demi/Ultra/Medium，样张看起来「字重没变化」。 */
-      const fixed = css
-        .replace(/src:\s*[^;]+;/gi, function (srcDecl) {
-          const urls = srcDecl.match(/url\((?:\\?["']?)[^)]+\)(?:\s+format\((?:\\?["']?)[^)]+\))?/gi);
-          if (!urls || !urls.length) return srcDecl;
-          return 'src:' + urls.join(',') + ';';
-        })
-        .replace(/font-weight\s*:\s*[^;]+;/gi, '')
-        .replace(/font-family\s*:\s*[^;]+;/gi, 'font-family:"' + famCss + '";font-weight:' + w + ';')
-        .replace(/font-style\s*:\s*[^;]+;/gi, 'font-style:normal;')
-        .replace(/url\("\.\//g, 'url("' + base)
-        .replace(/url\('\.\//g, "url('" + base);
-      const style = document.createElement('style');
-      style.setAttribute('data-wf-family', family);
-      style.setAttribute('data-wf-weight', w);
-      style.setAttribute('data-wf-weight-name', pathName);
-      style.setAttribute('data-wf-subset', ver);
-      style.textContent = fixed;
-      document.head.appendChild(style);
-      injectedCssText[key] = css;
-      noteApi();
-    }
-    function fetchCss(url) {
-      return fetch(url).then(function (r) {
-        if (!r.ok) throw new Error(String(r.status));
-        return r.text().then(function (css) {
-          return { css: css, base: url.replace(/[^/]+$/, '') };
-        });
-      });
-    }
-    function siblingWeightFolder(w) {
-      const k = String(w || '').toLowerCase().replace(/[\s-]+/g, '');
-      if (k === 'normal') return 'Regular';
-      if (k === 'regular') return 'Normal';
-      return '';
-    }
-    function fetchPkg(subset) {
-      const pack = function (weightArg) {
-        return fetchCss(packageResultUrl(family, weightArg, subset));
-      };
-      let chain = pack(pathName);
-      const folder = packageWeight(family, pathName);
-      const sib = siblingWeightFolder(folder) || siblingWeightFolder(pathName);
-      if (sib) {
-        chain = chain.catch(function () { return pack(sib); });
+    const requested = packageSubset(version);
+
+    return loadPackSubsets().then(function () {
+      const ver = pickPackSubset(family, pathName, requested);
+      const key = family + '|' + pathName + '|' + ver;
+      if (injectedCss[key]) {
+        return injectedCss[key].then(function () { return upgradeIfNeeded(ver, key); });
       }
-      /* preview-* 只拉拆包；/api/css?subset=preview-shop 现网 400 且无 CORS */
-      if (String(subset).indexOf('preview-') === 0) return chain;
-      return chain.catch(function () {
-        return fetchCss(cssApiUrl(family, pathName, subset));
-      });
-    }
-    const remoteCss = function () {
-      let chain = fetchPkg(ver);
-      if (ver.indexOf('preview-') === 0) {
-        chain = chain.catch(function () { return fetchPkg('zh'); }).catch(function () { return fetchPkg('full'); });
-      } else if (ver !== 'full') {
-        chain = chain.catch(function () { return fetchPkg('full'); });
+      const famCss = String(family).replace(/["']/g, '');
+      function noteApi() {
+        const hit = catalog.filter(function (f) { return f.family === family; })[0];
+        if (hit && hit.id) bumpFontStat(hit.id, 'api', 1);
       }
-      return chain.then(function (res) {
-        inject(res.css, res.base);
-      }).catch(function () {
-        return injectPreviewFace(family, pathName, w).then(function (ok) {
-          if (ok) return;
-          return new Promise(function (resolve) {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = cssApiUrl(family, pathName, 'full');
-            link.setAttribute('data-wf-family', family);
-            link.setAttribute('data-wf-weight-name', pathName);
-            link.onload = function () { noteApi(); resolve(); };
-            link.onerror = function () { resolve(); };
-            document.head.appendChild(link);
+      function inject(css, base) {
+        /* 包内 result.css 常把各档都写成 font-weight:400；若只在 font-family 后追加字重，
+           后面残留的 font-weight:400 会盖掉 Demi/Ultra/Medium，样张看起来「字重没变化」。 */
+        const fixed = css
+          .replace(/src:\s*[^;]+;/gi, function (srcDecl) {
+            const urls = srcDecl.match(/url\((?:\\?["']?)[^)]+\)(?:\s+format\((?:\\?["']?)[^)]+\))?/gi);
+            if (!urls || !urls.length) return srcDecl;
+            return 'src:' + urls.join(',') + ';';
+          })
+          .replace(/font-weight\s*:\s*[^;]+;/gi, '')
+          .replace(/font-family\s*:\s*[^;]+;/gi, 'font-family:"' + famCss + '";font-weight:' + w + ';')
+          .replace(/font-style\s*:\s*[^;]+;/gi, 'font-style:normal;')
+          .replace(/url\("\.\//g, 'url("' + base)
+          .replace(/url\('\.\//g, "url('" + base);
+        const style = document.createElement('style');
+        style.setAttribute('data-wf-family', family);
+        style.setAttribute('data-wf-weight', w);
+        style.setAttribute('data-wf-weight-name', pathName);
+        style.setAttribute('data-wf-subset', ver);
+        style.textContent = fixed;
+        document.head.appendChild(style);
+        injectedCssText[key] = css;
+        noteApi();
+      }
+      function fetchCss(url) {
+        return fetch(url).then(function (r) {
+          if (!r.ok) throw new Error(String(r.status));
+          return r.text().then(function (css) {
+            return { css: css, base: url.replace(/[^/]+$/, '') };
           });
         });
-      });
-    };
-    function upgradeIfNeeded() {
-      if (!needText) return;
-      if (rangeSetCoversText(cssRangeSet(injectedCssText[key] || ''), needText)) return;
-      if (String(ver).indexOf('preview-') === 0) return ensureFontCss(family, weight, 'zh', needText);
-      if (ver === 'zh' || ver === 'zh-common' || ver === 'en') return ensureFontCss(family, weight, 'full', needText);
-    }
-    injectedCss[key] = citeClosedFamily(family)
-      ? injectPreviewFace(family, pathName, w)
-      : remoteCss();
-    return injectedCss[key].then(function () { return upgradeIfNeeded(); });
+      }
+      function siblingWeightFolder(name) {
+        const k = String(name || '').toLowerCase().replace(/[\s-]+/g, '');
+        if (k === 'normal') return 'Regular';
+        if (k === 'regular') return 'Normal';
+        return '';
+      }
+      function fetchPkg(subset) {
+        const pack = function (weightArg) {
+          return fetchCss(packageResultUrl(family, weightArg, subset));
+        };
+        let chain = pack(pathName);
+        const folder = packageWeight(family, pathName);
+        const sib = siblingWeightFolder(folder) || siblingWeightFolder(pathName);
+        /* Regular↔Normal 仅在目录声明了该档、或探测表有该档时再试。 */
+        if (sib) {
+          const hit = catalog.filter(function (f) { return f.family === family; })[0];
+          const declared = (hit && Array.isArray(hit.weights) ? hit.weights : []).map(function (n) {
+            return String(n || '').toLowerCase().replace(/[\s-]+/g, '');
+          });
+          const packRec = packSubsets && packSubsets[packDirName(family)];
+          const mapped = !!(packRec && packRec.w && packRec.w[sib] && packRec.w[sib].length);
+          if (mapped || !declared.length || declared.indexOf(String(sib).toLowerCase()) !== -1) {
+            chain = chain.catch(function () { return pack(sib); });
+          }
+        }
+        return chain;
+      }
+      function remoteCss() {
+        /* 已按 pack-subsets 选好 subset；仍保留 full 兜底以防表过期。 */
+        let chain = fetchPkg(ver);
+        if (ver !== 'full') {
+          chain = chain.catch(function () { return fetchPkg('full'); });
+        }
+        return chain.then(function (res) {
+          inject(res.css, res.base);
+        }).catch(function () {
+          return injectPreviewFace(family, pathName, w).then(function (ok) {
+            if (ok) return;
+            return new Promise(function (resolve) {
+              const link = document.createElement('link');
+              link.rel = 'stylesheet';
+              link.href = cssApiUrl(family, pathName, 'full');
+              link.setAttribute('data-wf-family', family);
+              link.setAttribute('data-wf-weight-name', pathName);
+              link.onload = function () { noteApi(); resolve(); };
+              link.onerror = function () { resolve(); };
+              document.head.appendChild(link);
+            });
+          });
+        });
+      }
+      function upgradeIfNeeded(loadedVer, loadedKey) {
+        if (!needText) return;
+        if (rangeSetCoversText(cssRangeSet(injectedCssText[loadedKey] || ''), needText)) return;
+        if (String(loadedVer).indexOf('preview-') === 0) {
+          const next = pickPackSubset(family, pathName, 'zh');
+          if (next && next !== loadedVer) return ensureFontCss(family, weight, next, needText);
+        }
+        if (loadedVer === 'zh' || loadedVer === 'zh-common' || loadedVer === 'en') {
+          const next = pickPackSubset(family, pathName, 'full');
+          if (next && next !== loadedVer) return ensureFontCss(family, weight, next, needText);
+        }
+      }
+      injectedCss[key] = citeClosedFamily(family)
+        ? injectPreviewFace(family, pathName, w)
+        : remoteCss();
+      return injectedCss[key].then(function () { return upgradeIfNeeded(ver, key); });
+    });
   }
 
   /** 等 CSS 注入后再拉该段文字所需分片。cached 时几乎立刻 resolve。 */

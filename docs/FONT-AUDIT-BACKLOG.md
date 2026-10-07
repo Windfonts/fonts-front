@@ -1,6 +1,19 @@
 # 全量字体核对 backlog（2026-09-23）
 
-> 当前 **published ≈ 336**（`data/fonts.json`）。霞鹜主线及衍生已入库；**OSS 首批 101**（寒蝉 / Fontworks / 狮尾·Aqua / 霞鹜剩余等）已上架，见 `docs/_oss-ingest-batch1-progress.md`。
+> 当前目录以 `fonts-list.json` 为准（2026-10-07：**708**）。霞鹜主线及衍生已入库；**OSS 首批 101**（寒蝉 / Fontworks / 狮尾·Aqua / 霞鹜剩余等）已上架，见 `docs/_oss-ingest-batch1-progress.md`。
+
+## 2026-10-07 · CDN 包路径 / 子集（已做）
+
+| 项 | 结果 |
+|---|---|
+| OSS 包目录 | **仅小写**；混写 404。前台 `packageResultUrl` + UI preload/`fonts.css` 已对齐 |
+| 全量 HEAD 探测 | 708 包 → 705 有 `full`；`zh` 168 / `zh-common` 194 / `preview-shop` 526 |
+| 运行时 | `data/pack-subsets.json` + `pickPackSubset`，先选真实子集再拉 CSS |
+| 空包 | `clg`（无包）、`jlyhmht`/`shmgt`（cite-closed 本地预览） |
+| 文风存档链 | 详情 → `https://wenfeng.org/source/{slug}/` |
+| 落盘 | `docs/_pack-404-audit.json`；stamp `wf-proto.js?v=20261007pack4` |
+
+**下一棒（命名）：** 核对 `family` 短码 / `normalized` / OSS 包名三套一致性（例 `wenfeng-975hei` vs 包 `hei975`）。补 CDN 子集后须重跑探测并升 `pack-subsets.json?v=`。
 
 ## 本轮已完成
 

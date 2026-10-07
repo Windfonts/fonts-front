@@ -333,7 +333,8 @@
     const claim = font.standardClaim || null;
     const kind = proofVerifyKind(font);
     const date = kind === '原文' ? (font.licenseVerifiedAt || '') : '';
-    const slug = String(font.family || '').replace(/^wenfeng-/, '');
+    const slug = (WFProto.fontSlug && WFProto.fontSlug(font)) ||
+      String((font && (font.normalized || font.family)) || '').replace(/^wenfeng-/i, '').toLowerCase();
     const purchase = (proofTier(font) === '需授权' && font.purchaseUrl) ? proofLink(font.purchaseUrl) : '';
     let html = '<div class="lp5-meta-block">' + proofMetaLine(font) + proofCommercialLine(font) + '</div>';
     html += proofOwnerLine(font);
@@ -347,7 +348,9 @@
         : kind === '标准' ? '收录入库，按开源标准许可文本核对。'
         : kind === '出处' ? '收录入库，许可出处已核对。'
         : '请自行阅读查看原始授权。', date,
-      '<a class="lp-act" href="https://wenfeng.org/font/' + esc(slug) + '" rel="noopener noreferrer">wenfeng.org ↗</a>');
+      slug
+        ? '<a class="lp-act" href="https://wenfeng.org/source/' + esc(slug) + '/" rel="noopener noreferrer">wenfeng.org ↗</a>'
+        : '');
     return html + '</div>';
   }
 

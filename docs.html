@@ -8,13 +8,13 @@
   <meta name="description" content="文风字体接入文档：CDN、REST API、API Key / 白名单、link / @import / CSS / npm、子集化、font-display、域名与版本。" />
   <link rel="preconnect" href="https://cn.windfonts.com" crossorigin />
   <link rel="dns-prefetch" href="https://cn.windfonts.com" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/Albbpht/Regular/zh-common/2.woff2" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/Hckht/Medium/full/16.woff2" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/Hckht/Medium/full/18.woff2" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/Hckht/Medium/full/15.woff2" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/Hckht/Medium/full/19.woff2" />
-  <link rel="stylesheet" href="/css/fonts.css?v=20260929ui1" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="/css/fonts.css?v=20260929ui1" /></noscript>
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/albbpht/Regular/zh-common/2.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/hckht/Medium/full/16.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/hckht/Medium/full/18.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/hckht/Medium/full/15.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://cn.windfonts.com/fonts-packages/hckht/Medium/full/19.woff2" />
+  <link rel="stylesheet" href="/css/fonts.css?v=20261007pack3" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="/css/fonts.css?v=20261007pack3" /></noscript>
   <link rel="stylesheet" href="/css/tokens.css?v=20260929ui1" />
   <link rel="stylesheet" href="/css/base.css?v=20260929ui8" />
   <link rel="stylesheet" href="/css/components.css?v=20260929ui8" />
@@ -95,7 +95,7 @@
         <h3>拆包路径（预览真源）</h3>
         <p>OSS 上按族 / 字重 / 版本拆好的 <code>result.css</code>，与动态接口读同一批对象。本站样张优先走这条；也可直接 <code>&lt;link&gt;</code>，跨域头已放开。</p>
         <div class="code"><pre>https://cn.windfonts.com/fonts-packages/<b>{Normalized}</b>/<b>{Weight}</b>/<b>{version}</b>/result.css</pre></div>
-        <div class="code"><pre>https://cn.windfonts.com/fonts-packages/Albbpht/Heavy/full/result.css</pre></div>
+        <div class="code"><pre>https://cn.windfonts.com/fonts-packages/albbpht/Heavy/full/result.css</pre></div>
         <ul>
           <li><code>{Normalized}</code>：目录归一化名（元数据 <code>normalized</code>），如 <code>Albbpht</code>。</li>
           <li><code>{Weight}</code>：包内字重目录，保留大小写（<code>Regular</code>、<code>Heavy</code>…）。</li>
@@ -121,7 +121,7 @@
 &lt;link rel="preconnect" href="https://cn.windfonts.com" crossorigin&gt;
 &lt;link rel="stylesheet" href="https://cn.windfonts.com/api/css?family=wenfeng-albbpht&amp;weight=regular&amp;subset=full"&gt;</pre></div>
         <p>拆包路径同一款：</p>
-        <div class="code"><pre>&lt;link rel="stylesheet" href="https://cn.windfonts.com/fonts-packages/Albbpht/Regular/full/result.css"&gt;</pre></div>
+        <div class="code"><pre>&lt;link rel="stylesheet" href="https://cn.windfonts.com/fonts-packages/albbpht/Regular/full/result.css"&gt;</pre></div>
         <p>静态旧路径（仅兼容）：</p>
         <div class="code"><pre>&lt;link rel="stylesheet" href="https://cn.windfonts.com/wenfeng/fonts/albbpht/regular/web/index.css"&gt;</pre></div>
         <p>需要多个字重就多写几行 <code>&lt;link&gt;</code>，每个字重一份 CSS；字体页「使用」区与<a href="/shopping-bag">选字袋</a>可一次生成多款、多字重的合并代码。</p>
@@ -308,7 +308,7 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
             <tr><td><strong>按编码范围</strong></td><td>多语言、自定义字集</td><td>控制台 · 子集化工作台</td></tr>
           </tbody>
         </table>
-        <div class="code"><pre>https://cn.windfonts.com/fonts-packages/Albbpht/Regular/zh-common/result.css</pre></div>
+        <div class="code"><pre>https://cn.windfonts.com/fonts-packages/albbpht/Regular/zh-common/result.css</pre></div>
         <p>控制台生成的自定义子集作为<a href="#versions">项目版本</a>发布，走项目 CDN 地址，改子集不需要改嵌入代码。</p>
         <h3>按文字即时切</h3>
         <p>标题、品牌名这类固定文案可以不建项目，用密钥直接按文字要一版。密钥在控制台「设置」。地址里的字重用字重名，不用数字。</p>
@@ -333,8 +333,8 @@ GET /api/fonts?apiKey=wf_live_...</pre></div>
         <h2>preload 与 preconnect</h2>
         <p>关键字体（首屏标题）可在 <code>&lt;head&gt;</code> 顶部预加载 CSS，再由 CSS 拉字体分片；配合 <code>preconnect</code> 效果最好。不要 preload 字体文件本身——分片由 <code>unicode-range</code> 决定，浏览器比你更清楚要哪几片。</p>
         <div class="code"><pre>&lt;link rel="preconnect" href="https://cn.windfonts.com" crossorigin&gt;
-&lt;link rel="preload" as="style" href="https://cn.windfonts.com/fonts-packages/Albbpht/Bold/full/result.css"&gt;
-&lt;link rel="stylesheet" href="https://cn.windfonts.com/fonts-packages/Albbpht/Bold/full/result.css"&gt;</pre></div>
+&lt;link rel="preload" as="style" href="https://cn.windfonts.com/fonts-packages/albbpht/Bold/full/result.css"&gt;
+&lt;link rel="stylesheet" href="https://cn.windfonts.com/fonts-packages/albbpht/Bold/full/result.css"&gt;</pre></div>
       </section>
 
       <section id="cache" class="for-dev">
@@ -441,7 +441,7 @@ https://cn.windfonts.com/wenfeng/fonts/{slug}/{weight}/web/{index|zh_index}.css<
 
   <footer id="wfExtraFooter"></footer>
 
-  <script defer src="/js/wf-proto.js?v=20260929g17"></script>
+  <script defer src="/js/wf-proto.js?v=20261007pack4"></script>
   <script defer src="/js/wf-chrome.js?v=20260929ui13"></script>
   <script>
     (function () {
