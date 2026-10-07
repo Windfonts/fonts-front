@@ -5,3 +5,7 @@ node_modules/
 dist/
 .deploy-web-hz/
 .deploy-web-hz.tar
+
+# Local rollback snapshots and one-shot bundles
+data/*.bak*
+js/lib/
