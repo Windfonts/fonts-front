@@ -10,7 +10,7 @@
 | `data/fonts-list.json` | 列表热路径（瘦） | 直接当作者文件改完不回写 `fonts.json` |
 | `data/font-products.json` | 一个产品下多规格怎么并成一张卡 | 嵌入身份。嵌入用成员自己的 `family` |
 | `data/font-lineage.json` | 谱系关系 | 目录收录名单 |
-| `data/family-aliases.json` | 旧短码 → 现在的 `family` | 在 vault 库还是旧名时部署到 `/api/css` |
+| `data/family-aliases.json` | 旧短码 → 现在的 `family` | 整份覆盖 vault（vault 只收目标在库里的键） |
 
 热列表缓存键在 `js/wf-proto.js` 的 `catalogUrl()`。改了列表就要换 `?v=`。
 
@@ -32,7 +32,7 @@
 | `xwxxhcode` / `xwxxhplus` / `xwxxhscreen` / `xwxxhscreenfull` | `xwxxhc` / `xwxxhp` / `xwxxhs` / `xwxxhsf` |
 | `xwxzsplus` / `xwxzsscreen` / `xwxzsscreenfull` | `xwxzsp` / `xwxzss` / `xwxzssf` |
 
-现网 vault 库里的 `fontFamily` 仍是旧码。`family-aliases.json` 是旧→新。先把这份文件放到 CSS 接口上，旧请求会被改成库里没有的名字。
+现网 vault `fontFamily` 已于 2026-10-07 改成店面短码，`/api/css` 旧码走 vault 别名。杭州静态店面仍未发。不要整份店面别名覆盖 vault。
 
 OSS 旧版本对过：杭州桶 `wenfeng-web-hz` 的 `data/fonts.json.bak-*` 共 13 份（2026-09-24）。和今天线上 `data/fonts.json` 比，同一 `normalized` 的 `family` 没有一条不同。不要用那堆备份把这 11 条改回去。
 

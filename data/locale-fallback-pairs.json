@@ -1,34 +1,41 @@
 {
   "$schema": "./locale-fallback-pairs.schema.json",
   "note": "简繁兄弟配对。localeFallback=auto|sc|tc 由 vault 展开为第二 family；不做码点转换。",
-  "generatedAt": "2026-09-25",
+  "generatedAt": "2026-10-07",
   "pairs": [
     {
       "scFamily": "wenfeng-mksjh",
-      "tcFamily": "wenfeng-matc",
+      "tcFamily": "wenfeng-mksjhtc",
       "productId": "maoken-shijinhei",
       "source": "font-products",
       "localeFallbackAllowed": true
     },
     {
-      "scFamily": "wenfeng-swjayleg",
-      "tcFamily": "wenfeng-swfanleg",
+      "scFamily": "wenfeng-swjzhtsc",
+      "tcFamily": "wenfeng-swfzhtsc",
       "productId": "swei-swfan+swei-swjay",
       "source": "localePeerProduct",
       "localeFallbackAllowed": true
     },
     {
-      "scFamily": "wenfeng-swjaysans",
-      "tcFamily": "wenfeng-swfansans",
+      "scFamily": "wenfeng-swjzst",
+      "tcFamily": "wenfeng-swfzst",
       "productId": "swei-swfan+swei-swjay",
       "source": "localePeerProduct",
       "localeFallbackAllowed": true
     },
     {
-      "scFamily": "wenfeng-swjayserif",
-      "tcFamily": "wenfeng-swfanserif",
+      "scFamily": "wenfeng-swjztht",
+      "tcFamily": "wenfeng-swfztht",
       "productId": "swei-swfan+swei-swjay",
       "source": "localePeerProduct",
+      "localeFallbackAllowed": true
+    },
+    {
+      "scFamily": "wenfeng-sydksc",
+      "tcFamily": "wenfeng-sydktc",
+      "productId": null,
+      "source": "family-suffix:wenfeng-sydk",
       "localeFallbackAllowed": true
     },
     {
@@ -83,60 +90,74 @@
   ],
   "byFamily": {
     "wenfeng-mksjh": {
-      "peer": "wenfeng-matc",
+      "peer": "wenfeng-mksjhtc",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
       "productId": "maoken-shijinhei"
     },
-    "wenfeng-matc": {
+    "wenfeng-mksjhtc": {
       "peer": "wenfeng-mksjh",
       "role": "tc",
       "peerRole": "sc",
       "localeFallbackAllowed": true,
       "productId": "maoken-shijinhei"
     },
-    "wenfeng-swjayleg": {
-      "peer": "wenfeng-swfanleg",
+    "wenfeng-swjzhtsc": {
+      "peer": "wenfeng-swfzhtsc",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
       "productId": "swei-swfan+swei-swjay"
     },
-    "wenfeng-swfanleg": {
-      "peer": "wenfeng-swjayleg",
+    "wenfeng-swfzhtsc": {
+      "peer": "wenfeng-swjzhtsc",
       "role": "tc",
       "peerRole": "sc",
       "localeFallbackAllowed": true,
       "productId": "swei-swfan+swei-swjay"
     },
-    "wenfeng-swjaysans": {
-      "peer": "wenfeng-swfansans",
+    "wenfeng-swjzst": {
+      "peer": "wenfeng-swfzst",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
       "productId": "swei-swfan+swei-swjay"
     },
-    "wenfeng-swfansans": {
-      "peer": "wenfeng-swjaysans",
+    "wenfeng-swfzst": {
+      "peer": "wenfeng-swjzst",
       "role": "tc",
       "peerRole": "sc",
       "localeFallbackAllowed": true,
       "productId": "swei-swfan+swei-swjay"
     },
-    "wenfeng-swjayserif": {
-      "peer": "wenfeng-swfanserif",
+    "wenfeng-swjztht": {
+      "peer": "wenfeng-swfztht",
       "role": "sc",
       "peerRole": "tc",
       "localeFallbackAllowed": true,
       "productId": "swei-swfan+swei-swjay"
     },
-    "wenfeng-swfanserif": {
-      "peer": "wenfeng-swjayserif",
+    "wenfeng-swfztht": {
+      "peer": "wenfeng-swjztht",
       "role": "tc",
       "peerRole": "sc",
       "localeFallbackAllowed": true,
       "productId": "swei-swfan+swei-swjay"
+    },
+    "wenfeng-sydksc": {
+      "peer": "wenfeng-sydktc",
+      "role": "sc",
+      "peerRole": "tc",
+      "localeFallbackAllowed": true,
+      "productId": null
+    },
+    "wenfeng-sydktc": {
+      "peer": "wenfeng-sydksc",
+      "role": "tc",
+      "peerRole": "sc",
+      "localeFallbackAllowed": true,
+      "productId": null
     },
     "wenfeng-syhtcn": {
       "peer": "wenfeng-syhttw",

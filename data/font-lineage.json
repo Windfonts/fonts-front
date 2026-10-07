@@ -2426,15 +2426,6 @@
       "upstreamOwnerId": "maoken",
       "licenseFollows": "inherit"
     },
-    "寒蝉端黑": {
-      "ownerId": "chilltype",
-      "makerId": "chilltype",
-      "relation": "fork",
-      "upstreamName": "思源黑体",
-      "upstreamOwnerId": "adobe",
-      "licenseFollows": "inherit",
-      "group": "source-han-sans"
-    },
     "寒蝉活字仿宋": {
       "ownerId": "chilltype",
       "makerId": "chilltype",

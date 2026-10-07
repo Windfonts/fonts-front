@@ -375,10 +375,10 @@
       "id": "lxgw-zhenkai",
       "name": "霞鹜臻楷",
       "en": "LXGW ZhenKai",
-      "default": "wenfeng-xwzkgb",
+      "default": "wenfeng-xwzk",
       "members": [
         {
-          "family": "wenfeng-xwzkgb",
+          "family": "wenfeng-xwzk",
           "chips": [
             "标准"
           ],
@@ -390,7 +390,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-xwzksgb",
+          "family": "wenfeng-xwzks",
           "chips": [
             "Slab"
           ],
@@ -409,10 +409,10 @@
       "id": "lxgw-xiaolai",
       "name": "小赖字体",
       "en": "Xiaolai",
-      "default": "wenfeng-xiaolaisc",
+      "default": "wenfeng-xlztsc",
       "members": [
         {
-          "family": "wenfeng-xiaolaisc",
+          "family": "wenfeng-xlztsc",
           "chips": [
             "SC"
           ],
@@ -424,7 +424,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-xiaolaimonosc",
+          "family": "wenfeng-xlztdksc",
           "chips": [
             "SC",
             "等宽"
@@ -444,17 +444,17 @@
       "id": "fanmei",
       "name": "范美体",
       "en": "Fanmei",
-      "default": "wenfeng-fmthei",
+      "default": "wenfeng-fmht",
       "members": [
         {
-          "family": "wenfeng-fmthei",
+          "family": "wenfeng-fmht",
           "chips": [
             "黑体"
           ],
           "tier": "primary"
         },
         {
-          "family": "wenfeng-fmtming",
+          "family": "wenfeng-fmmt",
           "chips": [
             "明体"
           ],
@@ -476,7 +476,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-hcrym",
+          "family": "wenfeng-hcytm",
           "chips": [
             "圆体 M"
           ],
@@ -488,10 +488,10 @@
       "id": "chill-tanhei",
       "name": "寒蝉谭黑",
       "en": "Chill Tan Hei",
-      "default": "wenfeng-hcth",
+      "default": "wenfeng-hcyjt",
       "members": [
         {
-          "family": "wenfeng-hcth",
+          "family": "wenfeng-hcyjt",
           "chips": [
             "有机体"
           ],
@@ -510,10 +510,10 @@
       "id": "glow-sans",
       "name": "未来荧黑",
       "en": "Glow Sans",
-      "default": "wenfeng-wlhxh",
+      "default": "wenfeng-wlyh",
       "members": [
         {
-          "family": "wenfeng-wlhxh",
+          "family": "wenfeng-wlyh",
           "chips": [
             "SC Normal"
           ],
@@ -525,10 +525,10 @@
       "id": "swei-sw3t",
       "name": "狮尾三角黑体",
       "en": "sw3t",
-      "default": "wenfeng-sw3tsans",
+      "default": "wenfeng-swsjhtsc",
       "members": [
         {
-          "family": "wenfeng-sw3tsans",
+          "family": "wenfeng-swsjhtsc",
           "chips": [
             "Sans",
             "狮尾三角黑体"
@@ -536,7 +536,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-sw3tleg",
+          "family": "wenfeng-swstht",
           "chips": [
             "Leg",
             "狮尾三腿黑体"
@@ -549,10 +549,10 @@
       "id": "swei-swalias",
       "name": "狮尾锯齿黑体",
       "en": "swalias",
-      "default": "wenfeng-swaliassans",
+      "default": "wenfeng-swjuchtsc",
       "members": [
         {
-          "family": "wenfeng-swaliassans",
+          "family": "wenfeng-swjuchtsc",
           "chips": [
             "Sans",
             "狮尾锯齿黑体"
@@ -560,7 +560,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swaliasleg",
+          "family": "wenfeng-swjutht",
           "chips": [
             "Leg",
             "狮尾锯腿黑体"
@@ -573,10 +573,10 @@
       "id": "swei-swax",
       "name": "狮尾斧头黑体",
       "en": "swax",
-      "default": "wenfeng-swaxsans",
+      "default": "wenfeng-swfthtsc",
       "members": [
         {
-          "family": "wenfeng-swaxsans",
+          "family": "wenfeng-swfthtsc",
           "chips": [
             "Sans",
             "狮尾斧头黑体"
@@ -584,7 +584,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swaxleg",
+          "family": "wenfeng-swftht",
           "chips": [
             "Leg",
             "狮尾斧腿黑体"
@@ -597,10 +597,10 @@
       "id": "swei-swb2",
       "name": "狮尾B2黑体",
       "en": "swb2",
-      "default": "wenfeng-swb2sans",
+      "default": "wenfeng-swb2htsc",
       "members": [
         {
-          "family": "wenfeng-swb2sans",
+          "family": "wenfeng-swb2htsc",
           "chips": [
             "Sans",
             "狮尾B2黑体"
@@ -608,7 +608,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swb2leg",
+          "family": "wenfeng-swb2tht",
           "chips": [
             "Leg",
             "狮尾B2腿黑体"
@@ -621,10 +621,10 @@
       "id": "swei-swbell",
       "name": "狮尾喇叭黑体",
       "en": "swbell",
-      "default": "wenfeng-swbellsans",
+      "default": "wenfeng-swlbhtsc",
       "members": [
         {
-          "family": "wenfeng-swbellsans",
+          "family": "wenfeng-swlbhtsc",
           "chips": [
             "Sans",
             "狮尾喇叭黑体"
@@ -632,7 +632,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swbellleg",
+          "family": "wenfeng-swltht",
           "chips": [
             "Leg",
             "狮尾喇腿黑体"
@@ -645,10 +645,10 @@
       "id": "swei-swbone",
       "name": "狮尾骨头黑体",
       "en": "swbone",
-      "default": "wenfeng-swbonesans",
+      "default": "wenfeng-swgthtsc",
       "members": [
         {
-          "family": "wenfeng-swbonesans",
+          "family": "wenfeng-swgthtsc",
           "chips": [
             "Sans",
             "狮尾骨头黑体"
@@ -656,7 +656,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swboneleg",
+          "family": "wenfeng-swgtht",
           "chips": [
             "Leg",
             "狮尾骨腿黑体"
@@ -669,10 +669,10 @@
       "id": "swei-swbow",
       "name": "狮尾霓黑体",
       "en": "swbow",
-      "default": "wenfeng-swbowsans",
+      "default": "wenfeng-swnhtsc",
       "members": [
         {
-          "family": "wenfeng-swbowsans",
+          "family": "wenfeng-swnhtsc",
           "chips": [
             "Sans",
             "狮尾霓黑体"
@@ -680,7 +680,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swbowleg",
+          "family": "wenfeng-swntht",
           "chips": [
             "Leg",
             "狮尾霓腿黑体"
@@ -693,10 +693,10 @@
       "id": "swei-swcurve",
       "name": "狮尾弯黑体",
       "en": "swcurve",
-      "default": "wenfeng-swcurvesans",
+      "default": "wenfeng-swwhtsc",
       "members": [
         {
-          "family": "wenfeng-swcurvesans",
+          "family": "wenfeng-swwhtsc",
           "chips": [
             "Sans",
             "狮尾弯黑体"
@@ -704,7 +704,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swcurveleg",
+          "family": "wenfeng-swwtht",
           "chips": [
             "Leg",
             "狮尾弯腿黑体"
@@ -717,10 +717,10 @@
       "id": "swei-swdart",
       "name": "狮尾飞镖黑体",
       "en": "swdart",
-      "default": "wenfeng-swdartsans",
+      "default": "wenfeng-swfbhtsc",
       "members": [
         {
-          "family": "wenfeng-swdartsans",
+          "family": "wenfeng-swfbhtsc",
           "chips": [
             "Sans",
             "狮尾飞镖黑体"
@@ -728,7 +728,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swdartleg",
+          "family": "wenfeng-swfbtht",
           "chips": [
             "Leg",
             "狮尾飞腿黑体"
@@ -741,10 +741,10 @@
       "id": "swei-swdelluna",
       "name": "狮尾德鲁纳黑体",
       "en": "swdelluna",
-      "default": "wenfeng-swdellunasans",
+      "default": "wenfeng-swdlnhtsc",
       "members": [
         {
-          "family": "wenfeng-swdellunasans",
+          "family": "wenfeng-swdlnhtsc",
           "chips": [
             "Sans",
             "狮尾德鲁纳黑体"
@@ -752,7 +752,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swdellunaleg",
+          "family": "wenfeng-swdltht",
           "chips": [
             "Leg",
             "狮尾D卤腿黑体"
@@ -765,10 +765,10 @@
       "id": "swei-swdevil",
       "name": "狮尾恶魔黑体",
       "en": "swdevil",
-      "default": "wenfeng-swdevilsans",
+      "default": "wenfeng-swemhtsc",
       "members": [
         {
-          "family": "wenfeng-swdevilsans",
+          "family": "wenfeng-swemhtsc",
           "chips": [
             "Sans",
             "狮尾恶魔黑体"
@@ -776,7 +776,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swdevilleg",
+          "family": "wenfeng-swetht",
           "chips": [
             "Leg",
             "狮尾恶腿黑体"
@@ -789,10 +789,10 @@
       "id": "swei-swfan",
       "name": "狮尾繁中黑体",
       "en": "swfan",
-      "default": "wenfeng-swfansans",
+      "default": "wenfeng-swfzhtsc",
       "members": [
         {
-          "family": "wenfeng-swfansans",
+          "family": "wenfeng-swfzhtsc",
           "chips": [
             "Sans",
             "狮尾繁中黑体"
@@ -805,7 +805,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swfanleg",
+          "family": "wenfeng-swfztht",
           "chips": [
             "Leg",
             "狮尾繁腿黑体"
@@ -818,7 +818,7 @@
           "tier": "secondary"
         },
         {
-          "family": "wenfeng-swfanserif",
+          "family": "wenfeng-swfzst",
           "chips": [
             "Serif",
             "狮尾繁中宋体"
@@ -837,10 +837,10 @@
       "id": "swei-swfist",
       "name": "狮尾咏春黑体",
       "en": "swfist",
-      "default": "wenfeng-swfistsans",
+      "default": "wenfeng-swychtsc",
       "members": [
         {
-          "family": "wenfeng-swfistsans",
+          "family": "wenfeng-swychtsc",
           "chips": [
             "Sans",
             "狮尾咏春黑体"
@@ -848,7 +848,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swfistleg",
+          "family": "wenfeng-swytht",
           "chips": [
             "Leg",
             "狮尾咏腿黑体"
@@ -861,10 +861,10 @@
       "id": "swei-swgospel",
       "name": "狮尾福音黑体",
       "en": "swgospel",
-      "default": "wenfeng-swgospelsans",
+      "default": "wenfeng-swfyhtsc",
       "members": [
         {
-          "family": "wenfeng-swgospelsans",
+          "family": "wenfeng-swfyhtsc",
           "chips": [
             "Sans",
             "狮尾福音黑体"
@@ -872,7 +872,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swgospelleg",
+          "family": "wenfeng-swfytht",
           "chips": [
             "Leg",
             "狮尾福腿黑体"
@@ -885,10 +885,10 @@
       "id": "swei-swjay",
       "name": "狮尾简中黑体",
       "en": "swjay",
-      "default": "wenfeng-swjaysans",
+      "default": "wenfeng-swjzhtsc",
       "members": [
         {
-          "family": "wenfeng-swjaysans",
+          "family": "wenfeng-swjzhtsc",
           "chips": [
             "Sans",
             "狮尾简中黑体"
@@ -901,7 +901,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swjayleg",
+          "family": "wenfeng-swjztht",
           "chips": [
             "Leg",
             "狮尾简腿黑体"
@@ -914,7 +914,7 @@
           "tier": "secondary"
         },
         {
-          "family": "wenfeng-swjayserif",
+          "family": "wenfeng-swjzst",
           "chips": [
             "Serif",
             "狮尾简中宋体"
@@ -937,20 +937,38 @@
       "members": [
         {
           "family": "wenfeng-syhtsc",
-          "chips": ["SC"],
-          "axes": { "charset": "sc", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "SC"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         },
         {
           "family": "wenfeng-syhtcn",
-          "chips": ["CN"],
-          "axes": { "charset": "cn", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "CN"
+          ],
+          "axes": {
+            "charset": "cn",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "secondary"
         },
         {
           "family": "wenfeng-syhttw",
-          "chips": ["TW"],
-          "axes": { "charset": "tc", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "TW"
+          ],
+          "axes": {
+            "charset": "tc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         }
       ]
@@ -963,26 +981,51 @@
       "members": [
         {
           "family": "wenfeng-systsc",
-          "chips": ["SC"],
-          "axes": { "charset": "sc", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "SC"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         },
         {
           "family": "wenfeng-systcn",
-          "chips": ["CN"],
-          "axes": { "charset": "cn", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "CN"
+          ],
+          "axes": {
+            "charset": "cn",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "secondary"
         },
         {
           "family": "wenfeng-systcnl",
-          "chips": ["CN", "Light"],
-          "axes": { "charset": "cn", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "CN",
+            "Light"
+          ],
+          "axes": {
+            "charset": "cn",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "secondary"
         },
         {
           "family": "wenfeng-systtc",
-          "chips": ["TC"],
-          "axes": { "charset": "tc", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "TC"
+          ],
+          "axes": {
+            "charset": "tc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         }
       ]
@@ -995,14 +1038,28 @@
       "members": [
         {
           "family": "wenfeng-mksjh",
-          "chips": ["简", "什锦黑"],
-          "axes": { "charset": "sc", "purpose": "std", "width": "proportional" },
+          "chips": [
+            "简",
+            "什锦黑"
+          ],
+          "axes": {
+            "charset": "sc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         },
         {
-          "family": "wenfeng-matc",
-          "chips": ["繁", "什锦黑"],
-          "axes": { "charset": "tc", "purpose": "std", "width": "proportional" },
+          "family": "wenfeng-mksjhtc",
+          "chips": [
+            "繁",
+            "什锦黑"
+          ],
+          "axes": {
+            "charset": "tc",
+            "purpose": "std",
+            "width": "proportional"
+          },
           "tier": "primary"
         }
       ]
@@ -1011,10 +1068,10 @@
       "id": "swei-swmarker",
       "name": "狮尾麦克黑体",
       "en": "swmarker",
-      "default": "wenfeng-swmarkersans",
+      "default": "wenfeng-swmkhtsc",
       "members": [
         {
-          "family": "wenfeng-swmarkersans",
+          "family": "wenfeng-swmkhtsc",
           "chips": [
             "Sans",
             "狮尾麦克黑体"
@@ -1022,7 +1079,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swmarkerleg",
+          "family": "wenfeng-swmtht",
           "chips": [
             "Leg",
             "狮尾麦腿黑体"
@@ -1035,10 +1092,10 @@
       "id": "swei-swmatch",
       "name": "狮尾火柴黑体",
       "en": "swmatch",
-      "default": "wenfeng-swmatchsans",
+      "default": "wenfeng-swhchtsc",
       "members": [
         {
-          "family": "wenfeng-swmatchsans",
+          "family": "wenfeng-swhchtsc",
           "chips": [
             "Sans",
             "狮尾火柴黑体"
@@ -1046,7 +1103,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swmatchleg",
+          "family": "wenfeng-swhtht",
           "chips": [
             "Leg",
             "狮尾火腿黑体"
@@ -1059,10 +1116,10 @@
       "id": "swei-swnut",
       "name": "狮尾螺帽黑体",
       "en": "swnut",
-      "default": "wenfeng-swnutsans",
+      "default": "wenfeng-swlmhtsc",
       "members": [
         {
-          "family": "wenfeng-swnutsans",
+          "family": "wenfeng-swlmhtsc",
           "chips": [
             "Sans",
             "狮尾螺帽黑体"
@@ -1070,7 +1127,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swnutleg",
+          "family": "wenfeng-swlmtht",
           "chips": [
             "Leg",
             "狮尾螺帽腿黑体"
@@ -1083,10 +1140,10 @@
       "id": "swei-swshear",
       "name": "狮尾快剪黑体",
       "en": "swshear",
-      "default": "wenfeng-swshearsans",
+      "default": "wenfeng-swkjhtsc",
       "members": [
         {
-          "family": "wenfeng-swshearsans",
+          "family": "wenfeng-swkjhtsc",
           "chips": [
             "Sans",
             "狮尾快剪黑体"
@@ -1094,7 +1151,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swshearleg",
+          "family": "wenfeng-swktht",
           "chips": [
             "Leg",
             "狮尾快腿黑体"
@@ -1107,10 +1164,10 @@
       "id": "swei-swspike",
       "name": "狮尾尖刺黑体",
       "en": "swspike",
-      "default": "wenfeng-swspikesans",
+      "default": "wenfeng-swjchtsc",
       "members": [
         {
-          "family": "wenfeng-swspikesans",
+          "family": "wenfeng-swjchtsc",
           "chips": [
             "Sans",
             "狮尾尖刺黑体"
@@ -1118,7 +1175,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-swspikeleg",
+          "family": "wenfeng-swjtht",
           "chips": [
             "Leg",
             "狮尾尖腿黑体"

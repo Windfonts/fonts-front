@@ -2,11 +2,19 @@
 
 > 面向接手后端 / 全栈的同学与智能体：原型现状、页面清单、需要后端提供的接口契约、已知待办。
 
+**2026-10-07 水木覆盖 smht [Grok]：** 人说「覆盖过去」。广州包 `mizukigothic` → `smht`（117 文件，13 覆盖，104 同大小跳过）。vault id `58c3fe9d` `MizukiGothic`→`smht` `/fonts-packages/smht`。备份 `prod.db.bak-20261007-smht`。现网包 CSS 131600 与英文源同 etag；`/api/css?family=wenfeng-smht` 200（IPA，描述写 CDN OPEN）。店面 `normalized` 仍 `Smht`。旧前缀未删。未 git commit。
+
+**2026-10-07 Hangzhou #2 + wave2 指针已上 [Grok]：** 人说「去做」后：店面 `normalized` 五条改短码（跳过水木覆盖）；vault 四条 SQL（全濑 `cjkfqlt`、潭黑 `hcth`、圆形 `ddxstyx`、志莽 `zmxs`）；Kaisei Opti 库里没有行，只改店面+OSS。戳 `wf-proto.js?v=20261007slug8`、`fonts-list.json?v=20261007list15`。杭州桶 `wenfeng-web-hz` 1584 对象。大陆七边按 `$scheme$uri$args`（不含 host）指名删 dest CSS。现网 `/fonts/cjkfqlt` 拉 `fonts-packages/cjkfqlt` 200；`/fonts/zmxs` vault+包 200；`/fonts/kaiso` 包 200、vault `/api/fonts/wenfeng-kaiso` 404（店面独有）。水木英文行仍 `mizukigothic`。别名去掉 `kaiseiopti`→`kisjp`。旧 OSS 前缀未删。未 git commit。回退：`prod.db.bak-20261007-wave2`、`family-aliases.json.bak-20261007-wave2`。
+
+**2026-10-07 vault fontFamily 已改成店面短码 [Grok]：** feicode-prod 495 条 published 已改（含 `harmsa`/`xwwkb`）。备份 `prod.db.bak-20261007-family-rename`。vault 别名 1080 键，旧→新；不要整份覆盖店面 1120。`kaiso` 不别去 `kisjp`。撞码 live 键不别名。OSS 路径小写已热补 chunk。杭州静态店面仍未发。不要整库导出覆盖 `fonts.json`。切片不用重切。
+
+**2026-10-07 family-review 已写入本地目录（未发杭州桶、未动 vault）[Grok]：** 人 18:14 审完后先写锁定 512 条，随后人要求未锁定 20 条也写。合计 **532** 条 `family`（相对 `fonts.json.bak-family-20261007T182138`）。含 HarmonyOS Sans `harmony`→`harmsa`（旧码别名；vault 仍认 `wenfeng-harmony`）。11 条点名未动。寒蝉端黑已并入端黑体 `hcdht`。别名 1120（560 无前缀，勿上 `/api/css`）。`fonts-list.json?v=20261007list14`，`wf-proto.js?v=20261007slug6`。`normalized` / OSS 目录不改。回退两份：`bak-family-20261007T182138`（写前）、`bak-family-20261007Tunlocked20`（20 条前）。实录 `docs/_family-review-apply-20261007.json` + `docs/_family-review-apply-unlocked20-20261007.json`。审查页硬刷新，旧页签不要 Save。自由の翼锁定稿是 `zyzyjp`。
+
 **2026-10-07 谱系与短码（已上 OSS `ab04749`）：** `lineage.css?v=20261007ln2` 29637 字节，画布卡定位。`lineage.js?v=20261007ln4`。字墙走 `lg-stage`。卡片链新窗口。合并地区切分后，下游不再为被合并的 TC 另起幽灵卡。11 条已确认短码。34 条大写上游 id 改为 `wenfeng-` + 小写。`normalized` 和 OSS 目录不改。别名不要先放到 `/api/css`。`fonts-list.json?v=20261007list12`，`wf-proto.js?v=20261007slug4`。
 
 **2026-10-07：** 全量探测 708 包：705 有 full，仅 168 zh / 194 zh-common；控制台大量 404 是盲请求不存在子集。现用 `data/pack-subsets.json` + `pickPackSubset` 先选真实子集。UI preload/`fonts.css` 包路径小写（`Albbpht`→`albbpht`）。详情「文风存档」→ `https://wenfeng.org/source/{normalized 小写}/`（`detail.js?v=20261007src2`；店面短码 ≠ norm 的 36 款不再 404）。空包 3：`clg` / `jlyhmht` / `shmgt`。stamp `wf-proto.js?v=20261007pack4`。审计 `docs/_pack-404-audit.json`。发版 `bash scripts/deploy-web-hz.sh`（已上 OSS）。
 
-**下一棒（2026-10-07）：** ① `family-aliases.json` 的 11 条旧→新不要先于库更新放到 `/api/css`；② 存档链已改 `normalized` 小写；仍有只在店面、不在 wenfeng.org 目录的款，链会 404；③ 空包 `clg` 补包或下架；④ 补 CDN 子集后重跑探测并升 `pack-subsets.json?v=`；⑤ `/api/css` 的参数形状不要改成 `charset`/`purpose`。
+**下一棒（2026-10-07）：** ① vault `fontFamily` 与 `/api/css` 别名已改，杭州静态店面未发；② 存档链已改 `normalized` 小写；仍有只在店面、不在 wenfeng.org 目录的款，链会 404；③ 空包 `clg` 补包或下架；④ 补 CDN 子集后重跑探测并升 `pack-subsets.json?v=`；⑤ `/api/css` 的参数形状不要改成 `charset`/`purpose`。不要整库导出覆盖 `fonts.json`。
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 

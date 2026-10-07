@@ -1,0 +1,170 @@
+{
+  "savedAtEdits": "2026-10-07T11:02:22.000Z",
+  "applied": 20,
+  "rows": [
+    {
+      "name": "衡山毛筆フォント行書",
+      "id": "63ab8c36-7027-43fc-be27-b79f6bccc1ac",
+      "old": "wenfeng-kouzangyousho",
+      "new": "wenfeng-hsmbxs",
+      "normalized": "KouzanGyousho"
+    },
+    {
+      "name": "851テガキカクット",
+      "id": "bf0ae57e-5560-4ee8-85e4-710b59d70729",
+      "old": "wenfeng-851tegakikakutto",
+      "new": "wenfeng-851hkt",
+      "normalized": "851TegakiKakutto"
+    },
+    {
+      "name": "851マカポップ",
+      "id": "42d313a4-f688-42b2-9059-534ff36a585c",
+      "old": "wenfeng-851mkpop",
+      "new": "wenfeng-851mkp",
+      "normalized": "851MkPOP"
+    },
+    {
+      "name": "Fontopo Nihongo",
+      "id": "53c10e64-5066-4e74-9929-c441897e4a17",
+      "old": "wenfeng-fontopo",
+      "new": "wenfeng-ftpnh",
+      "normalized": "Fontopo"
+    },
+    {
+      "name": "HarmonyOS Sans",
+      "id": "11c57445-29f9-423f-9da1-fb4f005a1f70",
+      "old": "wenfeng-harmony",
+      "new": "wenfeng-harmsa",
+      "normalized": "Harmony"
+    },
+    {
+      "name": "JFドットK12",
+      "id": "a90f6a4a-183c-5c91-be88-23a640c5ebf6",
+      "old": "wenfeng-jfdotk12",
+      "new": "wenfeng-jfdk12",
+      "normalized": "JfDotK12"
+    },
+    {
+      "name": "JFドットK14",
+      "id": "8cb58e97-a8b5-586b-8db4-142dd6d72525",
+      "old": "wenfeng-jfdotk14",
+      "new": "wenfeng-jfdk14",
+      "normalized": "JfDotK14"
+    },
+    {
+      "name": "JFドットKappa20",
+      "id": "03c09175-cf59-567b-8f5d-6f201695656d",
+      "old": "wenfeng-jfdotkappa20",
+      "new": "wenfeng-jfdk20",
+      "normalized": "JfDotKappa20"
+    },
+    {
+      "name": "JFドットjiskan16",
+      "id": "06ff7493-67e4-5f27-85d1-d66f96828cde",
+      "old": "wenfeng-jfdotjiskan16",
+      "new": "wenfeng-jfdj16",
+      "normalized": "JfDotJiskan16"
+    },
+    {
+      "name": "JFドットjiskan24",
+      "id": "068d8c4d-23bd-5fef-9aa7-b20921bea45f",
+      "old": "wenfeng-jfdotjiskan24",
+      "new": "wenfeng-jfdj24",
+      "normalized": "JfDotJiskan24"
+    },
+    {
+      "name": "JFドットmilkjf16",
+      "id": "fe855dcc-d99c-523e-b3be-472cb422ff31",
+      "old": "wenfeng-jfdotmilkjf16",
+      "new": "wenfeng-jfdm16",
+      "normalized": "JfDotMilkjf16"
+    },
+    {
+      "name": "JFドット出水ゴシック",
+      "id": "248e131f-595a-57f0-a7bc-c0ebf4269686",
+      "old": "wenfeng-jfdotizumi",
+      "new": "wenfeng-jfdig",
+      "normalized": "JfDotIzumi"
+    },
+    {
+      "name": "LINE Seed JP",
+      "id": "726fbf47-c11c-49ab-9caf-79376026d904",
+      "old": "wenfeng-lineseedjp",
+      "new": "wenfeng-linesjp",
+      "normalized": "Lineseedjp"
+    },
+    {
+      "name": "YShi新黑",
+      "id": "eaf75d6a-21c4-4577-9e0f-4d563f09df6f",
+      "old": "wenfeng-ysxin",
+      "new": "wenfeng-yshxh",
+      "normalized": "Ysxin"
+    },
+    {
+      "name": "コーポレート・ロゴ（ラウンド）ver3",
+      "id": "99f4367e-a0c4-4ceb-88bc-0179a04d3fb5",
+      "old": "wenfeng-corplogoround3",
+      "new": "wenfeng-clrv3",
+      "normalized": "CorplogoRound3"
+    },
+    {
+      "name": "梅黑体",
+      "id": "5ba1a6ca-4713-4624-87c7-4a266b568e93",
+      "old": "wenfeng-umgh",
+      "new": "wenfeng-mhtug",
+      "normalized": "Umgh"
+    },
+    {
+      "name": "演示斜黑体",
+      "id": "caf81e12-8291-4f02-9ef3-2e57e6faff6f",
+      "old": "wenfeng-ysxh",
+      "new": "wenfeng-ysxhts",
+      "normalized": "Ysxh"
+    },
+    {
+      "name": "衡山毛筆フォント草書",
+      "id": "91bd2d54-bc54-4bee-bed4-39e8ea00ea1c",
+      "old": "wenfeng-kouzansousho",
+      "new": "wenfeng-hsmbcs",
+      "normalized": "KouzanSousho"
+    },
+    {
+      "name": "青柳衡山フォントT",
+      "id": "dcf31419-f1a8-47d4-9e9e-a3753a5ef8cf",
+      "old": "wenfeng-aoyagikouzant",
+      "new": "wenfeng-qlhct",
+      "normalized": "AoyagiKouzanT"
+    },
+    {
+      "name": "青柳隷書しも",
+      "id": "ef61ea8b-b3ea-4f3d-b0c2-c9bfd68338db",
+      "old": "wenfeng-aoyagireisho",
+      "new": "wenfeng-qllst",
+      "normalized": "AoyagiReisho"
+    }
+  ],
+  "bak": "fonts.json.bak-family-20261007Tunlocked20",
+  "oldToNew": {
+    "kouzangyousho": "hsmbxs",
+    "851tegakikakutto": "851hkt",
+    "851mkpop": "851mkp",
+    "fontopo": "ftpnh",
+    "harmony": "harmsa",
+    "jfdotk12": "jfdk12",
+    "jfdotk14": "jfdk14",
+    "jfdotkappa20": "jfdk20",
+    "jfdotjiskan16": "jfdj16",
+    "jfdotjiskan24": "jfdj24",
+    "jfdotmilkjf16": "jfdm16",
+    "jfdotizumi": "jfdig",
+    "lineseedjp": "linesjp",
+    "ysxin": "yshxh",
+    "corplogoround3": "clrv3",
+    "umgh": "mhtug",
+    "ysxh": "ysxhts",
+    "kouzansousho": "hsmbcs",
+    "aoyagikouzant": "qlhct",
+    "aoyagireisho": "qllst"
+  },
+  "note": "second pass: previously skipped unlocked 20 drafts, including Harmony harmony→harmsa. not deployed."
+}
