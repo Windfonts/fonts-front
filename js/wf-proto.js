@@ -99,7 +99,7 @@
     if (base.indexOf('/admin') !== -1) return '../data/' + file;
     return 'data/' + file;
   }
-  function catalogUrl() { return dataUrl('fonts-list.json?v=20261003list8'); }
+  function catalogUrl() { return dataUrl('fonts-list.json?v=20261007list12'); }
   function analysisMetaUrl() {
     /* CyberCDN 按查询串分变体缓存：换数据必须换新版本值（旧变体会粘住陈旧内容），
        全新值首次回源即全量。20260925b 曾在重建中途被缓存成 1-2 字体的残缺变体。 */
@@ -236,7 +236,7 @@
     });
     const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20260929ka1'), { foundries: [] });
     const evidenceReq = fetchJsonCached(dataUrl('license-evidence.json?v=20260925b'), { standards: {}, names: {} });
-    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20260929ka1'), { groups: {}, byName: {} });
+    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20261007ln1'), { groups: {}, byName: {} });
     const avatarsReq = fetchJsonCached(dataUrl('avatars.json?v=20260928av9'), {});
     const packSubsetsReq = loadPackSubsets();
     catalogPromise = Promise.all([fontsReq, foundriesReq, evidenceReq, lineageReq, avatarsReq, packSubsetsReq])
@@ -273,7 +273,7 @@
       font._fat = true;
       return Promise.resolve(font);
     }
-    const url = dataUrl('fonts-by-slug/' + encodeURIComponent(stem) + '.json?v=20261003list8');
+    const url = dataUrl('fonts-by-slug/' + encodeURIComponent(stem) + '.json?v=20261007list12');
     return fetch(url).then(function (r) {
       if (!r.ok) throw new Error(String(r.status));
       return r.json();
@@ -452,7 +452,10 @@
   function fontSlug(font) {
     if (!font) return '';
     const fromFamily = familySlug(font.family);
-    if (fromFamily) return fontUrlSlug(fromFamily);
+    if (fromFamily) {
+      const resolved = fontUrlSlug(fromFamily);
+      return PUBLIC_SLUG[resolved] || resolved;
+    }
     return fontUrlSlug(font.normalized);
   }
 
@@ -466,13 +469,36 @@
     'hongleibanshu': 'hlbs', 'hongleixiaozhitiao': 'hlxzt', 'hongleibanshuformal': 'hlbszs',
     'hongleixingshu': 'hlxs', 'hongleizhuoshu': 'hlzs', 'mizukigothic': 'smht',
     'zoomlacusong': 'zlcs', 'zoomlamengyas': 'zlmeng', 'howlingeqhisans': 'eqhi',
-    'mksjhtc': 'matc', 'xczzsch': 'xcws'
+    'mksjhtc': 'matc', 'xczzsch': 'xcws',
+    /* 2026-10-07 已确认的 11 条：旧英文词短码 → 新短码。现网库还是旧 fontFamily，别名不要先部署。 */
+    'xwbright': 'xwwkb', 'xwbrightcode': 'xwwkbc',
+    'wenkaimono': 'xwwkdk', 'wenkaimonotc': 'xwwkdktc',
+    'xwxxhcode': 'xwxxhc', 'xwxxhplus': 'xwxxhp',
+    'xwxxhscreen': 'xwxxhs', 'xwxxhscreenfull': 'xwxxhsf',
+    'xwxzsplus': 'xwxzsp', 'xwxzsscreen': 'xwxzss', 'xwxzsscreenfull': 'xwxzssf'
   };
   function resolveFamilyAlias(token) {
     let s = String(token || '').trim().toLowerCase().replace(/^wenfeng-/, '').replace(/^windfonts-/, '');
     if (FAMILY_ALIASES[s]) s = FAMILY_ALIASES[s];
     return s;
   }
+
+  /* 公开地址用已确认的 11 个新短码。OSS normalized 不改。 */
+  const PUBLIC_SLUG = {
+    xwbright: 'xwwkb',
+    xwbrightcode: 'xwwkbc',
+    wenkaimono: 'xwwkdk',
+    wenkaimonotc: 'xwwkdktc',
+    xwxxhcode: 'xwxxhc',
+    xwxxhplus: 'xwxxhp',
+    xwxxhscreen: 'xwxxhs',
+    xwxxhscreenfull: 'xwxxhsf',
+    xwxzsplus: 'xwxzsp',
+    xwxzsscreen: 'xwxzss',
+    xwxzsscreenfull: 'xwxzssf'
+  };
+  const PUBLIC_SLUG_REV = {};
+  Object.keys(PUBLIC_SLUG).forEach(function (k) { PUBLIC_SLUG_REV[PUBLIC_SLUG[k]] = k; });
 
   function getBySlug(slug) {
     const raw = String(slug || '').trim();
@@ -486,6 +512,13 @@
       if (familySlug(f.family).toLowerCase() === key) return f;
       if (rawKey && String(f.name || '').trim().toLowerCase() === rawKey) return f;
       if (rawKey && String(f.en || '').trim().toLowerCase() === rawKey) return f;
+    }
+    const back = PUBLIC_SLUG_REV[key] || PUBLIC_SLUG_REV[rawKey];
+    if (back) {
+      for (let j = 0; j < catalog.length; j++) {
+        const g = catalog[j];
+        if (familySlug(g.family).toLowerCase() === back) return g;
+      }
     }
     return null;
   }
@@ -1390,9 +1423,11 @@
   }
 
   function matchNamedRecord(map, name) {
+    const n = String(name || '');
+    if (map && Object.prototype.hasOwnProperty.call(map, n)) return map[n];
     const keys = Object.keys(map || {}).sort(function (a, b) { return b.length - a.length; });
     for (let i = 0; i < keys.length; i++) {
-      if (String(name || '').indexOf(keys[i]) !== -1) return map[keys[i]];
+      if (n.indexOf(keys[i]) !== -1) return map[keys[i]];
     }
     return null;
   }

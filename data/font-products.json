@@ -52,10 +52,10 @@
       "id": "lxgw-wenkai-bright",
       "name": "霞鹜文楷 Bright",
       "en": "LXGW Bright",
-      "default": "wenfeng-xwbright",
+      "default": "wenfeng-xwwkb",
       "members": [
         {
-          "family": "wenfeng-xwbright",
+          "family": "wenfeng-xwwkb",
           "chips": [
             "完整"
           ],
@@ -67,7 +67,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-xwbrightcode",
+          "family": "wenfeng-xwwkbc",
           "chips": [
             "完整",
             "Code"
@@ -80,7 +80,7 @@
           "tier": "secondary"
         }
       ],
-      "canonical": "xwbright",
+      "canonical": "xwwkb",
       "status": "active"
     },
     {
@@ -102,7 +102,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-xwxxhplus",
+          "family": "wenfeng-xwxxhp",
           "chips": [
             "Plus"
           ],
@@ -114,7 +114,7 @@
           "tier": "secondary"
         },
         {
-          "family": "wenfeng-xwxxhscreen",
+          "family": "wenfeng-xwxxhs",
           "chips": [
             "Screen"
           ],
@@ -126,7 +126,7 @@
           "tier": "secondary"
         },
         {
-          "family": "wenfeng-xwxxhscreenfull",
+          "family": "wenfeng-xwxxhsf",
           "chips": [
             "Screen Full"
           ],
@@ -138,7 +138,7 @@
           "tier": "advanced"
         },
         {
-          "family": "wenfeng-xwxxhcode",
+          "family": "wenfeng-xwxxhc",
           "chips": [
             "Code"
           ],
@@ -172,7 +172,7 @@
           "tier": "primary"
         },
         {
-          "family": "wenfeng-xwxzsplus",
+          "family": "wenfeng-xwxzsp",
           "chips": [
             "Plus"
           ],
@@ -184,7 +184,7 @@
           "tier": "secondary"
         },
         {
-          "family": "wenfeng-xwxzsscreen",
+          "family": "wenfeng-xwxzss",
           "chips": [
             "Screen"
           ],
@@ -196,7 +196,7 @@
           "tier": "secondary"
         },
         {
-          "family": "wenfeng-xwxzsscreenfull",
+          "family": "wenfeng-xwxzssf",
           "chips": [
             "Screen Full"
           ],

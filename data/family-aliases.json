@@ -1,5 +1,5 @@
 {
-  "note": "2026-09-23: same-product aliases + opsa/systcnl legacy; Source Han regionals restored as own fonts; 2026-09-28: cq→chuanqu（退役 stub）；2026-09-29 双登记：vault 长码 → 店面已发布短码（嵌入身份冻结）。",
+  "note": "2026-09-23: same-product aliases + opsa/systcnl legacy; Source Han regionals restored as own fonts; 2026-09-28: cq→chuanqu（退役 stub）；2026-09-29 双登记：vault 长码 → 店面已发布短码。2026-10-07 已确认 11 条旧英文词短码 → 新短码（xwbright→xwwkb 等）。店面目录 family 已是新短码。vault 库里的 fontFamily 仍是旧码，这份别名不要先于库更新放到 CSS API 上。2026-09-24 OSS 上 fonts.json.bak-* 与今天线上 fonts.json 的 family 一致，不要再拿那些备份去改这 11 条，也不要给其余字体另起短码。",
   "aliases": {
     "wenfeng-hxbsbt": "wenfeng-hxbsb",
     "hxbsbt": "wenfeng-hxbsb",
@@ -52,6 +52,28 @@
     "wenfeng-mksjhtc": "wenfeng-matc",
     "mksjhtc": "wenfeng-matc",
     "wenfeng-xczzsch": "wenfeng-xcws",
-    "xczzsch": "wenfeng-xcws"
+    "xczzsch": "wenfeng-xcws",
+    "wenfeng-xwbright": "wenfeng-xwwkb",
+    "xwbright": "wenfeng-xwwkb",
+    "wenfeng-xwbrightcode": "wenfeng-xwwkbc",
+    "xwbrightcode": "wenfeng-xwwkbc",
+    "wenfeng-wenkaimono": "wenfeng-xwwkdk",
+    "wenkaimono": "wenfeng-xwwkdk",
+    "wenfeng-wenkaimonotc": "wenfeng-xwwkdktc",
+    "wenkaimonotc": "wenfeng-xwwkdktc",
+    "wenfeng-xwxxhcode": "wenfeng-xwxxhc",
+    "xwxxhcode": "wenfeng-xwxxhc",
+    "wenfeng-xwxxhplus": "wenfeng-xwxxhp",
+    "xwxxhplus": "wenfeng-xwxxhp",
+    "wenfeng-xwxxhscreen": "wenfeng-xwxxhs",
+    "xwxxhscreen": "wenfeng-xwxxhs",
+    "wenfeng-xwxxhscreenfull": "wenfeng-xwxxhsf",
+    "xwxxhscreenfull": "wenfeng-xwxxhsf",
+    "wenfeng-xwxzsplus": "wenfeng-xwxzsp",
+    "xwxzsplus": "wenfeng-xwxzsp",
+    "wenfeng-xwxzsscreen": "wenfeng-xwxzss",
+    "xwxzsscreen": "wenfeng-xwxzss",
+    "wenfeng-xwxzsscreenfull": "wenfeng-xwxzssf",
+    "xwxzsscreenfull": "wenfeng-xwxzssf"
   }
 }

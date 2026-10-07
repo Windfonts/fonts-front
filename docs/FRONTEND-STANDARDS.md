@@ -102,7 +102,7 @@ Feng 定规（2026-09-25）：调整**许可标签、胶囊、色块、密度、
 
 **字体标识命名（硬约束）：**
 - `family`：`wenfeng-{短码}`。短码是**嵌入身份**，多为拼音缩写、小写、**不含字重**。正例：`wenfeng-albbpht`、`wenfeng-syhtcjk`、`wenfeng-systcn`、`wenfeng-ibmps`。
-- 同产品多规格（字集 / Lite / 等宽）历史会进短码后缀（`wenfeng-xwwkgblite`）；**目录展示**收成产品卡，见 `data/font-products.json` 与 [FAMILY-VARIANTS.md](FAMILY-VARIANTS.md)。嵌入仍用具体 `family=`，退役走 `family-aliases.json`，禁止为「好看」改已发布短码。
+- 同产品多规格（字集 / Lite / 等宽）历史会进短码后缀（`wenfeng-xwwkgblite`）；**目录展示**收成产品卡，见 `data/font-products.json` 与 [FAMILY-VARIANTS.md](FAMILY-VARIANTS.md)。嵌入用该规格的 `family=`，退役走 `family-aliases.json`。已有人嵌入的短码不改。2026-10-07 已确认的 11 条英文词短码改为新短码（`xwbright`→`xwwkb` 等），旧码留别名。不要改回去。
 - `normalized`：OSS 包目录名（PascalCase）。理想与短码同形（`Albbpht`）；历史包可能仍是文件名（`SourceHanSansSCRegular`），只给 `packageResultUrl` 用，**不当公开 slug**。
 - `weights[]`：字重单独列。禁止把 `Regular`/`Bold`/`Light` 粘进 `family`（禁止 `wenfeng-sourcehansansscregular` 这类）。
 - 公开 slug、动态 API 的 `family=`、卡片 meta：一律用 `family` 去前缀后的短码（`syhtsc`），不是英文全称堆砌。

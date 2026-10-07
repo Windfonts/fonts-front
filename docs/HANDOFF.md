@@ -2,9 +2,11 @@
 
 > 面向接手后端 / 全栈的同学与智能体：原型现状、页面清单、需要后端提供的接口契约、已知待办。
 
+**2026-10-07 谱系与短码（未上 OSS）：** 现网页还是旧 `lineage.css`（6.8KB），卡片不定位。本地已换成画布 CSS `lineage.css?v=20261007ln2`，`lineage.js?v=20261007ln4`。字墙走 `lg-stage`。卡片链新窗口。合并地区切分后，下游不再为被合并的 TC 另起一张幽灵卡。已确认的 11 条 family 用新短码。其余 family 全小写：34 条大写上游 id 改成 `wenfeng-` + 小写（`BpmfGenYoMin` → `wenfeng-bpmfgenyomin`）。`normalized` 和 OSS 目录不改。别名不要先于库更新放到接口上。`fonts-list.json?v=20261007list12`，`wf-proto.js?v=20261007slug4`。未发版。
+
 **2026-10-07：** 全量探测 708 包：705 有 full，仅 168 zh / 194 zh-common；控制台大量 404 是盲请求不存在子集。现用 `data/pack-subsets.json` + `pickPackSubset` 先选真实子集。UI preload/`fonts.css` 包路径小写（`Albbpht`→`albbpht`）。详情「文风存档」→ `https://wenfeng.org/source/{normalized 小写}/`（`detail.js?v=20261007src2`；店面短码 ≠ norm 的 36 款不再 404）。空包 3：`clg` / `jlyhmht` / `shmgt`。stamp `wf-proto.js?v=20261007pack4`。审计 `docs/_pack-404-audit.json`。发版 `bash scripts/deploy-web-hz.sh`（已上 OSS）。
 
-**下一棒（2026-10-07）：** ① 存档链已改 `normalized` 小写；仍有 178 款只在店面、不在 wenfeng.org 目录，链会 404；② 空包 `clg` 补包或下架；③ 补 CDN 子集后重跑探测并升 `pack-subsets.json?v=`；④ `/api/css` CORS/边缘回源仍走 infra，**勿**改动态嵌入口径。
+**下一棒（2026-10-07）：** ① 谱系画布 CSS、字墙、11 条短码、34 条全小写还在本地，`wf-proto.js?v=20261007slug4`、`fonts-list.json?v=20261007list12`、`lineage.css?v=20261007ln2`、`lineage.js?v=20261007ln4`，未上 OSS；② `family-aliases.json` 的 11 条旧→新不要先于库更新放到 `/api/css`；③ 存档链已改 `normalized` 小写；仍有只在店面、不在 wenfeng.org 目录的款，链会 404；④ 空包 `clg` 补包或下架；⑤ 补 CDN 子集后重跑探测并升 `pack-subsets.json?v=`；⑥ `/api/css` 的参数形状不要改成 `charset`/`purpose`。
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 

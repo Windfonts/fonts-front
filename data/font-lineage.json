@@ -737,6 +737,24 @@
       "upstreamName": "霞鹜文楷 Bright",
       "upstreamOwnerId": "lxgw"
     },
+    "霞鹜文楷等宽": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "relation": "locale",
+      "licenseFollows": "inherit",
+      "group": "lxgw-wenkai",
+      "upstreamName": "霞鹜文楷",
+      "upstreamOwnerId": "lxgw"
+    },
+    "霞鹜文楷等宽 TC": {
+      "ownerId": "lxgw",
+      "makerId": "lxgw",
+      "relation": "locale",
+      "licenseFollows": "inherit",
+      "group": "lxgw-wenkai",
+      "upstreamName": "霞鹜文楷等宽",
+      "upstreamOwnerId": "lxgw"
+    },
     "霞鹜新晰黑": {
       "ownerId": "lxgw",
       "makerId": "lxgw",

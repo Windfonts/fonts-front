@@ -177,7 +177,7 @@
   const btnExportPng = document.getElementById('btnExportPng');
   const btnExportSvg = document.getElementById('btnExportSvg');
   const clusterNav = { hidden: true, innerHTML: '', querySelectorAll: function () { return []; } };
-  const wallEl = { hidden: true, innerHTML: '', querySelectorAll: function () { return []; } };
+  const wallEl = document.getElementById('wall') || { hidden: true, innerHTML: '', querySelectorAll: function () { return []; } };
 
   let curGroup = '';
   let curView = ''; /* derive | org — synced with 师承/品牌 + ?view= */
@@ -443,7 +443,7 @@
           const cellYong = (f.family && cellFace)
             ? '<span class="lg-yong" data-face="' + esc(f.family) + '|' + cellW + '" style="' + cellFace + '" aria-hidden="true">' + YONG + '</span>'
             : '<span class="lg-yong" aria-hidden="true"></span>';
-          return '<a class="lg-cell' + (f.id === mid ? ' is-root' : '') + '" href="' + WFChrome.href(WFProto.detailHref(f)) + '">' +
+          return '<a class="lg-cell' + (f.id === mid ? ' is-root' : '') + '" href="' + WFChrome.href(WFProto.detailHref(f)) + '" target="_blank" rel="noopener">' +
             cellYong +
             '<span class="lg-name">' + esc(f.name) + '</span>' +
             '<span class="lg-meta">' + metaOf(f) + '</span></a>';
@@ -856,9 +856,13 @@
         return;
       }
       const parent = WFChrome.findFontByName(all, up);
-      if (parent && byId[parent.id]) {
-        (children[parent.id] = children[parent.id] || []).push(f);
-        parentOf[f.id] = parent.id;
+      let parentId = parent && parent.id;
+      if (parentId && faceMergeAlias[parentId] && byId[faceMergeAlias[parentId]]) {
+        parentId = faceMergeAlias[parentId];
+      }
+      if (parentId && byId[parentId]) {
+        (children[parentId] = children[parentId] || []).push(f);
+        parentOf[f.id] = parentId;
       } else if (catalogMode) {
         /* 上游不在本组成员集：目录视图下作平级根，交给品牌枢纽 */
         roots.push(f);
@@ -3042,7 +3046,7 @@
       ? '<span class="lfl-yong" data-face="' + esc(n.family) + '|' + weightOf(n) + '" style="' + face + '" aria-hidden="true">' + YONG + '</span>'
       : '';
     const nameInner = listed
-      ? '<a class="lfl-name" href="' + WFChrome.href(WFProto.detailHref(n)) + '" data-nav>' + esc(n.name) + '</a>'
+      ? '<a class="lfl-name" href="' + WFChrome.href(WFProto.detailHref(n)) + '" target="_blank" rel="noopener" data-nav>' + esc(n.name) + '</a>'
       : '<span class="lfl-name">' + esc(n.name) + '</span>';
     const badge = ghost ? '<span class="lfl-badge">未收录上游</span>' :
       (out ? '<span class="lfl-badge">上游</span>' : '');
@@ -3341,7 +3345,7 @@
         : '<span class="lfl-wall-yong" aria-hidden="true"></span>';
       html += '<button type="button" class="lfl-wall-card" data-id="' + esc(n.id) + '">' +
         yong +
-        '<a class="lfl-wall-name" href="' + WFChrome.href(WFProto.detailHref(n)) + '" data-nav>' +
+        '<a class="lfl-wall-name" href="' + WFChrome.href(WFProto.detailHref(n)) + '" target="_blank" rel="noopener" data-nav>' +
         esc(n.name) + '</a>' +
         '<div class="lfl-wall-meta"><span>' + esc(lic) + '</span><span>' + esc(who) + '</span></div>' +
         '</button>';
@@ -3474,6 +3478,10 @@
     if (htmlStage) {
       htmlStage.classList.toggle('is-off', isCanvasMode(mode));
       htmlStage.removeAttribute('hidden');
+    }
+    if (wallEl && wallEl.classList) {
+      wallEl.classList.add('is-off');
+      wallEl.setAttribute('hidden', '');
     }
     /* 缩放工具仅「图谱」(flow) 可见；聚焦/字墙隐藏，不占位 */
     const showZoom = mode === 'flow';
