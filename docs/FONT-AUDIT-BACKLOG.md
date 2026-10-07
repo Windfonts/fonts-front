@@ -10,10 +10,10 @@
 | 全量 HEAD 探测 | 708 包 → 705 有 `full`；`zh` 168 / `zh-common` 194 / `preview-shop` 526 |
 | 运行时 | `data/pack-subsets.json` + `pickPackSubset`，先选真实子集再拉 CSS |
 | 空包 | `clg`（无包）、`jlyhmht`/`shmgt`（cite-closed 本地预览） |
-| 文风存档链 | 详情 → `https://wenfeng.org/source/{slug}/` |
+| 文风存档链 | 详情 → `https://wenfeng.org/source/{normalized 小写}/`（`detail.js?v=20261007src2`）。店面短码和文风 norm 不同的 36 款已改指现网 200 的目录页 |
 | 落盘 | `docs/_pack-404-audit.json`；stamp `wf-proto.js?v=20261007pack4` |
 
-**下一棒（命名）：** 核对 `family` 短码 / `normalized` / OSS 包名三套一致性（例 `wenfeng-975hei` vs 包 `hei975`）。补 CDN 子集后须重跑探测并升 `pack-subsets.json?v=`。
+**下一棒（命名）：** 存档链已用 `normalized` 小写（例 `975hei` → `/source/hei975/`）。仍有 178 款在店面、不在 wenfeng.org 目录，存档链会 404。补 CDN 子集后须重跑探测并升 `pack-subsets.json?v=`。
 
 ## 本轮已完成
 

@@ -2,9 +2,9 @@
 
 > 面向接手后端 / 全栈的同学与智能体：原型现状、页面清单、需要后端提供的接口契约、已知待办。
 
-**2026-10-07：** 全量探测 708 包：705 有 full，仅 168 zh / 194 zh-common；控制台大量 404 是盲请求不存在子集。现用 `data/pack-subsets.json` + `pickPackSubset` 先选真实子集。UI preload/`fonts.css` 包路径小写（`Albbpht`→`albbpht`）。详情「文风存档」→ `https://wenfeng.org/source/{slug}/`。空包 3：`clg` / `jlyhmht` / `shmgt`。stamp `wf-proto.js?v=20261007pack4`。审计 `docs/_pack-404-audit.json`。发版 `bash scripts/deploy-web-hz.sh`（已上 OSS）。
+**2026-10-07：** 全量探测 708 包：705 有 full，仅 168 zh / 194 zh-common；控制台大量 404 是盲请求不存在子集。现用 `data/pack-subsets.json` + `pickPackSubset` 先选真实子集。UI preload/`fonts.css` 包路径小写（`Albbpht`→`albbpht`）。详情「文风存档」→ `https://wenfeng.org/source/{normalized 小写}/`（`detail.js?v=20261007src2`；店面短码 ≠ norm 的 36 款不再 404）。空包 3：`clg` / `jlyhmht` / `shmgt`。stamp `wf-proto.js?v=20261007pack4`。审计 `docs/_pack-404-audit.json`。发版 `bash scripts/deploy-web-hz.sh`（已上 OSS）。
 
-**下一棒（2026-10-07）：** ① **命名三套对齐**（`family` 短码 / `normalized` / OSS 包名，例 `wenfeng-975hei` vs 包 `hei975`）；② 空包 `clg` 补包或下架；③ 补 CDN 子集后重跑探测并升 `pack-subsets.json?v=`；④ `/api/css` CORS/边缘回源仍走 infra，**勿**改动态嵌入口径。
+**下一棒（2026-10-07）：** ① 存档链已改 `normalized` 小写；仍有 178 款只在店面、不在 wenfeng.org 目录，链会 404；② 空包 `clg` 补包或下架；③ 补 CDN 子集后重跑探测并升 `pack-subsets.json?v=`；④ `/api/css` CORS/边缘回源仍走 infra，**勿**改动态嵌入口径。
 
 **2026-09-25 停点（analysis 满覆盖）：** OSS `fonts-packages/metadata/font-analysis.json` **471/471**（`build-font-analysis-from-css.mjs` ← CDN `full/result.css` unicode-range）。vault `GET …/analysis` 与前台 `wf-live` 回退已通（抽查 AAR/XiaolaiSC/Ibmps 200）。**坑：** metadata 曾 `Cache-Control: max-age=31536000`，边缘按 URL 长缓存，原地覆盖后 hz 等节点仍吃旧文件；现上传改 `max-age=300`，拉取强制 `?v=`（vault `OSS_METADATA_VERSION`、前台 `wf-live.js`）。**现网 vault：** pnpm 镜像已正式部署（PR #29）；`OSS_METADATA_VERSION` 已进源码。详见 §25。
 

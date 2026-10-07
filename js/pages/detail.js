@@ -333,8 +333,11 @@
     const claim = font.standardClaim || null;
     const kind = proofVerifyKind(font);
     const date = kind === '原文' ? (font.licenseVerifiedAt || '') : '';
-    const slug = (WFProto.fontSlug && WFProto.fontSlug(font)) ||
-      String((font && (font.normalized || font.family)) || '').replace(/^wenfeng-/i, '').toLowerCase();
+    /* wenfeng.org/source/{norm}/ 的 norm 是 normalized 小写，不是店面短码。
+       例：店面 975hei，存档 hei975。短码和 norm 相同的款两种写法一样。 */
+    const slug = String((font && font.normalized) || '').trim().toLowerCase() ||
+      ((WFProto.fontSlug && WFProto.fontSlug(font)) ||
+        String((font && font.family) || '').replace(/^wenfeng-/i, '').toLowerCase());
     const purchase = (proofTier(font) === '需授权' && font.purchaseUrl) ? proofLink(font.purchaseUrl) : '';
     let html = '<div class="lp5-meta-block">' + proofMetaLine(font) + proofCommercialLine(font) + '</div>';
     html += proofOwnerLine(font);
