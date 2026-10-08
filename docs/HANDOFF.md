@@ -1,5 +1,9 @@
 # 文风字体 · 交接与后续开发
 
+**2026-10-08 首页 FEATURED 霞鹜 [Grok]：** 人「home.js 同一串也改掉并提交」。`js/pages/home.js` `霞鹙文楷`→`霞鹜文楷`，戳 `index.html` `home.js?v=20261008home1`。杭州 occupancy-safe：index.html + home.js。不改 *-options.html。
+
+**2026-10-08 /features 控制台 unused-preload 与精选错字 [Grok]：** 人贴 `albbpht/Regular/zh-common/2.woff2` unused preload，再要自己看 `/features`。22 份公网 HTML 的 chrome preload 从该 Regular 切片改成 `/assets/fonts/ui/PuHuiTi-400.woff2`（UI SoT，OSS 已有）。`features.js` 精选关键词 `霞鹙文楷`→`霞鹜文楷`（目录本名），戳 `?v=20261008feat1`。杭州 occupancy-safe：22 html 后补 features.html + features.js。硬刷后控制台 0；精选第六张现网是霞鹜文楷。一行接入仍写 `cn.windfonts.com/api/css`（cn/hk/en 现 502）；活样张走包 `fonts-packages/.../result.css`。未提交。不要整树 deploy-web-hz.sh。首页 FEATURED 仍是鹙。
+
 **2026-10-08 ToneOZ 谱系按上游 README/OFL 改完并上杭州 [Grok]：** 人「按这个改谱系」。`font-lineage.json`：晓声通秋茄 fork 随峰体 Beta/cjkfonts（family `wenfeng-xstqj`/`xstqj`，去掉误挂霞鹜与 `Xstq`）；澳声通快雪 fork Quicksand/google-fonts；快雪拼音楷 fork 全字库正楷体/cns11643；拼音文楷仍 fork 霞鹜文楷（Klee One 走霞鹜上游，schema 单 `upstreamName`）；大拼音文楷改为拼音文楷的 locale；库楷简两行 `upstreamName` 文鼎PL简中楷（无 arphic foundry，不写 upstreamOwnerId）。秋茄注音/拼音/双拼与繁体库楷六行未改。戳 `font-lineage.json?v=20261008ln4`，`wf-proto.js?v=20261008slug17`。杭州 occupancy-safe 41 文件。现网 `/fonts/xstqj` 谱系「随峰体 Beta」；`/fonts/astqs` Quicksand 库外；`/fonts/astkx` 全字库正楷体；`/fonts/astpywk` 霞鹜+祖 Klee One，地区版大拼音文楷；`/fonts/astzykks` 文鼎PL简中楷库外。bak `data/font-lineage.json.bak-toneoz-20261008ln4`。提交 `6f4cd05`。不要整树 `deploy-web-hz.sh`。不要加 Quicksand/文鼎目录行、不要加 arphic foundry。
 
 

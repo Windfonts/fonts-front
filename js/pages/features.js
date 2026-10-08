@@ -1,6 +1,6 @@
 /* 特点页：活样张轮换 + 一行接入代码 + 精选样张 + 厂商条 */
 (function () {
-  const FEATURED = ['阿里巴巴普惠体', '得意黑', '思源黑体', '站酷', '思源宋体', '霞鹙文楷', 'LXGW', '寒蝉', '钟齐'];
+  const FEATURED = ['阿里巴巴普惠体', '得意黑', '思源黑体', '站酷', '思源宋体', '霞鹜文楷', 'LXGW', '寒蝉', '钟齐'];
 
   function pickFeatured(list, n) {
     const out = [];

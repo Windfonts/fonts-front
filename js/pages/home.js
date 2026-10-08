@@ -1,7 +1,7 @@
 /* 首页：原 hero + 数字一行 + 字林 + 当前款一条 + 同分类四款 + 库内结构 + 合作伙伴。全库在 fonts.html。 */
 (function () {
   const esc = WFProto.escapeHtml;
-  const FEATURED = ['阿里巴巴普惠体', '得意黑', '思源黑体', '站酷', '思源宋体', '霞鹙文楷', 'LXGW', '寒蝉', '钟齐'];
+  const FEATURED = ['阿里巴巴普惠体', '得意黑', '思源黑体', '站酷', '思源宋体', '霞鹜文楷', 'LXGW', '寒蝉', '钟齐'];
   const RELATED_N = 4;
   const PARTNERS = [
     { name: '文派', slug: 'wenpai' },
