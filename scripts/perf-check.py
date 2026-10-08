@@ -26,8 +26,6 @@ TIMEOUT = 25
 UA = "windfonts-perf-check/2026-10-08"
 
 KNOWN_WARNS = (
-    "home-forest-needText-textContent",
-    "features-zh-then-full",
     "org-ui-on-cloudflare",
 )
 
@@ -93,14 +91,18 @@ def static_repo_findings(root: Path) -> dict[str, Any]:
     proto = (root / "js/wf-proto.js").read_text(encoding="utf-8") if (root / "js/wf-proto.js").exists() else ""
     fonts_css = (root / "css/fonts.css").read_text(encoding="utf-8") if (root / "css/fonts.css").exists() else ""
     comp = (root / "css/components.css").read_text(encoding="utf-8") if (root / "css/components.css").exists() else ""
-    forest = "el.textContent" in home and "loadForestCellFace" in home
+    forest_fn = re.search(r"function loadForestCellFace\(el\) \{.*?\n    \}", home, re.S)
+    forest = bool(forest_fn and "el.textContent" in forest_fn.group(0))
     feat_zh = bool(re.search(r"ensureFontCss\([^)]*'zh'", feat))
     page_size = None
     m = re.search(r"PAGE_SIZE\s*=\s*(\d+)", proto)
     if m:
         page_size = int(m.group(1))
+    qfn = re.search(r"function queueForestFaces\(\) \{.*?\n    \}", home, re.S)
+    idle_queue = bool(qfn and "requestIdleCallback" in qfn.group(0))
     return {
         "home_forest_needText_textContent": forest,
+        "home_forest_idle_queue": idle_queue,
         "features_ensure_zh": feat_zh,
         "page_size": page_size,
         "ui_font_puhuiti": "Alibaba PuHuiTi" in fonts_css or "PuHuiTi" in fonts_css,
@@ -177,6 +179,8 @@ def grade(app: dict[str, Any], org: dict[str, Any], repo: dict[str, Any], baseli
         (known if "home-forest-needText-textContent" in bl_known else warns).append(
             "home-forest-needText-textContent"
         )
+    if repo.get("home_forest_idle_queue"):
+        (known if "home-forest-idle-queue" in bl_known else warns).append("home-forest-idle-queue")
     if repo.get("features_ensure_zh"):
         (known if "features-zh-then-full" in bl_known else warns).append("features-zh-then-full")
     if repo.get("page_size") not in (None, 10):

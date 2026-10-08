@@ -1,6 +1,8 @@
 # 文风字体 · 交接与后续开发
 
-**2026-10-08 性能检测规程 + 页眉菜单距 [Grok]：** 人要记录、大改动后再测（app+org）、org 静态考虑国内线路（`.org` 不备案）、app 页眉菜单左距跟 org。linuxjoy SOP #40 `docs/ops/sop-windfonts-perf.md`。本仓 `docs/ops/PERF-CHECK.md` + `scripts/perf-check.py` + 基线 `docs/ops/perf-baseline-2026-10-08.json`。`.topnav a` padding `0.4rem 1.5rem`，公网 HTML `components.css?v=20261008nav1`。杭州 occupancy-safe：`css/components.css` + 38 html（39 对象）。现网戳 nav1，菜单项左右 24px。未改字林 needText、未回退 feat2、未改 org DNS/Worker。不要整树 `deploy-web-hz.sh`。不要发 `*-options.html`。未 git commit。cluster-recall **#9354**。
+**2026-10-08 店面加速 [Grok]：** 计划 `docs/plans/2026-10-08-shop-perf.md`。字林 needText 只用 mark/glyph；排队改 IntersectionObserver（无 idle 全拉）；特点英雄 `'preview-shop'` 起步、缺字仍升；`readyFace` 把 text 传进 `ensureFontCss`。戳 `home.js?v=20261008home2` `features.js?v=20261008feat3` `wf-proto.js?v=20261008slug18`。未拆普惠体 700。未改 org。不要整树 deploy-web-hz。已提交本仓。验收：`perf-check.py --skip-live` 与 `--site app` 均 EXIT 0。现网隔离浏览器：首页字林 8 格 + 英雄全是 `preview-shop/result.css`，无目录 `full`；特点英雄 `albbpht/Black` shop→zh-common→full（「字/尽/显」仍能出），精选行进视口后 shop；`/fonts` 首屏 shop，刀隶体一句升 zh。本地 `:16016` 同行为。
+
+**2026-10-08 性能检测规程 + 页眉菜单距 [Grok]：** 人要记录、大改动后再测（app+org）、org 静态考虑国内线路（`.org` 不备案）、app 页眉菜单左距跟 org。linuxjoy SOP #40 `docs/ops/sop-windfonts-perf.md`。本仓 `docs/ops/PERF-CHECK.md` + `scripts/perf-check.py` + 基线 `docs/ops/perf-baseline-2026-10-08.json`。`.topnav a` padding `0.4rem 1.5rem`，公网 HTML `components.css?v=20261008nav1`。杭州 occupancy-safe：`css/components.css` + 38 html（39 对象）。现网戳 nav1，菜单项左右 24px。未改字林 needText、未回退 feat2、未改 org DNS/Worker。不要整树 `deploy-web-hz.sh`。不要发 `*-options.html`。提交 `86ff12d`。cluster-recall **#9354**。
 
 **2026-10-08 特点页活样张缺字 [Grok]：** 人推远程后问 `/features` 缺字。活样张 `ensureFontCss(..., 'zh')` 不带文案，Black 只有 zh-common（无 字/尽/显），不升 full。`features.js` 把标题字传进 ensureFontCss，戳 `?v=20261008feat2`。现网会再拉 `albbpht/Black/full`。未改 wf-proto `readyFace`（仍不传 text）。
 

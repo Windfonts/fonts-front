@@ -245,30 +245,41 @@
       }).join('');
     }
 
+    function forestCellNeedText(el) {
+      const mark = el && el.querySelector('.home-forest-mark, [data-forest-glyph]');
+      const t = mark ? String(mark.textContent || '').replace(/\s+/g, '') : '';
+      return t || '风';
+    }
+
     function loadForestCellFace(el) {
       if (!el || el.getAttribute('data-face-queued') === '1') return;
       const fam = el.getAttribute('data-family');
       if (!fam) return;
       el.setAttribute('data-face-queued', '1');
-      WFProto.ensureFontCss(fam, el.getAttribute('data-weight') || '400', 'preview-shop', (el.textContent || '风'));
+      WFProto.ensureFontCss(fam, el.getAttribute('data-weight') || '400', 'preview-shop', forestCellNeedText(el));
     }
 
+    let forestIo = null;
     function queueForestFaces() {
       if (!forest) return;
+      if (forestIo) {
+        forestIo.disconnect();
+        forestIo = null;
+      }
       const rest = Array.prototype.slice.call(forest.querySelectorAll('.home-forest-cell[data-family]:not(.is-on)'));
       rest.forEach(function (el) {
         el.addEventListener('pointerenter', function () { loadForestCellFace(el); }, { once: true });
         el.addEventListener('focus', function () { loadForestCellFace(el); }, { once: true });
       });
-      let i = 0;
-      function next() {
-        if (i >= rest.length) return;
-        loadForestCellFace(rest[i++]);
-        if (window.requestIdleCallback) requestIdleCallback(next, { timeout: 600 });
-        else setTimeout(next, 80);
-      }
-      if (window.requestIdleCallback) requestIdleCallback(next, { timeout: 800 });
-      else setTimeout(next, 200);
+      if (typeof IntersectionObserver !== 'function') return;
+      forestIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          loadForestCellFace(en.target);
+          forestIo.unobserve(en.target);
+        });
+      }, { rootMargin: '80px 0px', threshold: 0.01 });
+      rest.forEach(function (el) { forestIo.observe(el); });
     }
 
     function wirePick(f) {

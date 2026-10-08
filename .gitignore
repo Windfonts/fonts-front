@@ -11,3 +11,6 @@ dist/
 # Local rollback snapshots and one-shot bundles
 data/*.bak*
 js/lib/
+
+# local preview only; live ui/ woff2 are occupancy-safe OSS subsets
+assets/fonts/ui/

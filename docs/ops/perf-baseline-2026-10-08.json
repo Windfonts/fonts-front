@@ -2,8 +2,6 @@
   "date": "2026-10-08",
   "note": "Mac Clash cold load; not mainland user. Cached reload is not this baseline. Org not optimized.",
   "known_warns": [
-    "home-forest-needText-textContent",
-    "features-zh-then-full",
     "org-ui-on-cloudflare"
   ],
   "app": {
@@ -21,7 +19,8 @@
       "/": 3.5,
       "/fonts": 5.2
     },
-    "html_must_not_fetch": "fonts.json"
+    "html_must_not_fetch": "fonts.json",
+    "shop_perf": "2026-10-08-shop-perf: forest glyph needText; IO queue; features preview-shop; readyFace text"
   },
   "org": {
     "optimized": false,

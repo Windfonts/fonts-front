@@ -1353,7 +1353,7 @@
   function readyFace(family, weight, text, version) {
     const w = weightToCss(weight || '400');
     const fam = String(family || '').replace(/["']/g, '');
-    return ensureFontCss(family, weight, version).then(function () {
+    return ensureFontCss(family, weight, version, text).then(function () {
       if (!fam || !document.fonts || !document.fonts.load) return;
       return document.fonts.load(w + ' 80px "' + fam + '"', String(text || '')).catch(function () {
         return null;

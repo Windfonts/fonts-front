@@ -28,11 +28,9 @@ python3 scripts/perf-check.py --skip-live   # 只扫本仓 JS/CSS 债
 
 已知债（基线 `known_warns`，再出现不算新红）：
 
-- `home-forest-needText-textContent`：字林 `el.textContent` 含字体名，shop 升 full
-- `features-zh-then-full`：特点页 `'zh'` + 活字，Black 升 full（feat2 故意）
 - `org-ui-on-cloudflare`：org 首页 HTML 零条 `cn.windfonts.com`，UI 还在 CF
 
-**不要**未开口改字林 needText 或回退 feat2。Lighthouse 可选，不当唯一门。冷启动与 Clash 缓存重载分开写。
+2026-10-08 店面加速后：字林 needText 只用格子里的字；字林不 idle 全排队；特点英雄从 `preview-shop` 起、缺字仍可升 full。`home-forest-needText-textContent` / `features-zh-then-full` 再出现算新 WARN。不要回退缺字升级、不要公开 `?text=`。Lighthouse 可选。冷启动与 Clash 缓存重载分开写。
 
 ## org
 

@@ -67,8 +67,8 @@
       };
       const cap = setTimeout(done, 1200);
       const glyph = liveGlyph();
-      WFProto.ensureFontCss(font.family, weight, 'zh', glyph);
-      WFProto.readyFace(font.family, weight, glyph, 'zh').then(done, done);
+      WFProto.ensureFontCss(font.family, weight, 'preview-shop', glyph);
+      WFProto.readyFace(font.family, weight, glyph, 'preview-shop').then(done, done);
     }
 
     function applyLive() {
@@ -77,7 +77,7 @@
       const w = heavyWeight(f);
       const stack = WFProto.cssFamilyStack(f.family);
       const glyph = liveGlyph();
-      WFProto.ensureFontCss(f.family, w, 'zh', glyph);
+      WFProto.ensureFontCss(f.family, w, 'preview-shop', glyph);
       live.style.fontFamily = stack;
       live.style.fontWeight = w;
       liveName.textContent = f.name;
@@ -92,7 +92,7 @@
     live.addEventListener('input', function () {
       const f = featured[idx % featured.length];
       if (!f) return;
-      WFProto.ensureFontCss(f.family, heavyWeight(f), 'zh', liveGlyph());
+      WFProto.ensureFontCss(f.family, heavyWeight(f), 'preview-shop', liveGlyph());
     });
     document.getElementById('ctaCopy').addEventListener('click', function () {
       WFChrome.copy(WFProto.CDN_LICENSE_NOTE + '\n' + code.textContent, '已复制 <link>');
