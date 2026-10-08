@@ -3366,8 +3366,8 @@
       "relation": "original",
       "licenseFollows": "inherit",
       "upstreamOwnerId": "ipa",
-      "family": "wenfeng-ipaexgothic",
-      "normalized": "IPAexGothic"
+      "family": "wenfeng-ipago",
+      "normalized": "ipaexgothic"
     },
     "IPA 黑体": {
       "ownerId": "ipa",
@@ -3377,7 +3377,7 @@
       "licenseFollows": "inherit",
       "upstreamOwnerId": "ipa",
       "family": "wenfeng-ipagothic",
-      "normalized": "IPAGothic"
+      "normalized": "ipagothic"
     },
     "こころ明朝": {
       "ownerId": "typingart",
@@ -3457,7 +3457,7 @@
       "licenseFollows": "inherit",
       "upstreamOwnerId": "littlelimit",
       "norm": "Misakig2nd",
-      "family": "wenfeng-misakig2nd"
+      "family": "wenfeng-mskg2nd"
     },
     "Misaki Gothic 2nd": {
       "ownerId": "littlelimit",
@@ -3467,7 +3467,7 @@
       "licenseFollows": "inherit",
       "upstreamOwnerId": "littlelimit",
       "norm": "Misakig2nd",
-      "family": "wenfeng-misakig2nd"
+      "family": "wenfeng-mskg2nd"
     },
     "MisakiGothic2nd": {
       "ownerId": "littlelimit",
@@ -3477,7 +3477,7 @@
       "licenseFollows": "inherit",
       "upstreamOwnerId": "littlelimit",
       "norm": "Misakig2nd",
-      "family": "wenfeng-misakig2nd"
+      "family": "wenfeng-mskg2nd"
     },
     "k8x12": {
       "ownerId": "littlelimit",
@@ -3586,8 +3586,8 @@
       "relation": "original",
       "licenseFollows": "inherit",
       "upstreamOwnerId": "ipa",
-      "family": "wenfeng-ipamjmincho",
-      "normalized": "IPAmjMincho"
+      "family": "wenfeng-ipamjm",
+      "normalized": "ipamjm"
     },
     "03スマートフォントUI": {
       "ownerId": "flopdesign",
@@ -3648,8 +3648,8 @@
       "group": "nanum-gothic",
       "upstreamName": "Nanum Gothic",
       "upstreamOwnerId": "naver",
-      "family": "wenfeng-nahei",
-      "normalized": "NaHei"
+      "family": "wenfeng-nhzt",
+      "normalized": "nh"
     },
     "写意体": {
       "ownerId": "steve-yuu",
@@ -3659,8 +3659,8 @@
       "group": "zen-kurenaido",
       "upstreamName": "Zen Kurenaido",
       "upstreamOwnerId": "google-fonts",
-      "family": "wenfeng-yshiwritten",
-      "normalized": "YShiWritten"
+      "family": "wenfeng-xytysw",
+      "normalized": "xieyit"
     },
     "Y式笔书": {
       "ownerId": "steve-yuu",
@@ -3681,8 +3681,8 @@
       "group": "ipa-gothic",
       "upstreamName": "霞鹜新晰黑",
       "upstreamOwnerId": "lxgw",
-      "family": "wenfeng-yshinewhei",
-      "normalized": "YShiNewHei"
+      "family": "wenfeng-yshxh",
+      "normalized": "yshxh"
     },
     "Y式明朝体": {
       "ownerId": "steve-yuu",
@@ -3692,8 +3692,8 @@
       "group": "ipamj-mincho",
       "upstreamName": "华英明朝",
       "upstreamOwnerId": "guiwonder",
-      "family": "wenfeng-yshimincho",
-      "normalized": "YShiMincho"
+      "family": "wenfeng-ysmct",
+      "normalized": "ysmct"
     },
     "Y式源明朝": {
       "ownerId": "steve-yuu",
@@ -3703,8 +3703,8 @@
       "group": "source-han-serif",
       "upstreamName": "思源宋体",
       "upstreamOwnerId": "adobe",
-      "family": "wenfeng-yshiyuanminh",
-      "normalized": "YshiYuanMinh"
+      "family": "wenfeng-ysymc",
+      "normalized": "ysymc"
     },
     "Yuu Gothic": {
       "ownerId": "steve-yuu",
@@ -3714,8 +3714,8 @@
       "group": "source-han-sans",
       "upstreamName": "思源黑体",
       "upstreamOwnerId": "adobe",
-      "family": "wenfeng-yuugothic",
-      "normalized": "YuuGothic"
+      "family": "wenfeng-yugjp",
+      "normalized": "yugjp"
     },
     "Stick": {
       "ownerId": "fontworks",
@@ -4233,6 +4233,178 @@
       "group": "source-han-serif",
       "family": "wenfeng-xxzt",
       "normalized": "Xxzt"
+    },
+    "Nagino": {
+      "ownerId": "amazusa",
+      "family": "wenfeng-nagino",
+      "normalized": "nagino",
+      "makerId": "amazusa",
+      "relation": "original"
+    },
+    "小夏": {
+      "ownerId": "masuda-mitiya",
+      "makerId": "masuda-mitiya",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "masuda-mitiya",
+      "family": "wenfeng-konatu",
+      "normalized": "konatu",
+      "group": "konatu",
+      "upstreamName": "小夏"
+    },
+    "小夏等幅": {
+      "ownerId": "masuda-mitiya",
+      "makerId": "masuda-mitiya",
+      "relation": "locale",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "masuda-mitiya",
+      "family": "wenfeng-xxdft",
+      "normalized": "konatutohaba",
+      "group": "konatu",
+      "upstreamName": "小夏"
+    },
+    "激笔 SFX": {
+      "ownerId": "gekifude",
+      "makerId": "gekifude",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "gekifude",
+      "family": "wenfeng-gekifude",
+      "normalized": "gekifude",
+      "group": "gekifude",
+      "upstreamName": "激笔 SFX"
+    },
+    "怀旧像素 街机": {
+      "ownerId": "takwolf",
+      "makerId": "takwolf",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "takwolf",
+      "family": "wenfeng-hjxsjj",
+      "normalized": "hjxsjj",
+      "group": "retro-pixel",
+      "upstreamName": "怀旧像素 街机"
+    },
+    "怀旧像素 可爱": {
+      "ownerId": "takwolf",
+      "makerId": "takwolf",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "takwolf",
+      "family": "wenfeng-hjxskw",
+      "normalized": "hjxskw",
+      "group": "retro-pixel",
+      "upstreamName": "怀旧像素 可爱"
+    },
+    "怀旧像素 小巧": {
+      "ownerId": "takwolf",
+      "makerId": "takwolf",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "takwolf",
+      "family": "wenfeng-hjxsxq",
+      "normalized": "hjxsxq",
+      "group": "retro-pixel",
+      "upstreamName": "怀旧像素 小巧"
+    },
+    "怀旧像素 粗体": {
+      "ownerId": "takwolf",
+      "makerId": "takwolf",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "takwolf",
+      "family": "wenfeng-hjxsct",
+      "normalized": "hjxsct",
+      "group": "retro-pixel",
+      "upstreamName": "怀旧像素 粗体"
+    },
+    "鸿雷小纸条青春体": {
+      "ownerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "makerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "family": "wenfeng-hlxztqct",
+      "normalized": "hlxztqct",
+      "group": "honglei",
+      "upstreamName": "鸿雷小纸条青春体"
+    },
+    "鸿雷板书体": {
+      "ownerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "makerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "family": "wenfeng-hlbst",
+      "normalized": "hlbst",
+      "group": "honglei",
+      "upstreamName": "鸿雷板书体"
+    },
+    "鸿雷板书简体正式版": {
+      "ownerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "makerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "family": "wenfeng-hlbsjt",
+      "normalized": "hlbsjt",
+      "group": "honglei",
+      "upstreamName": "鸿雷板书简体正式版"
+    },
+    "鸿雷行书简体": {
+      "ownerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "makerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "family": "wenfeng-hlxsjt",
+      "normalized": "hlxsjt",
+      "group": "honglei",
+      "upstreamName": "鸿雷行书简体"
+    },
+    "鸿雷拙书简体": {
+      "ownerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "makerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "d82bd370-a7dc-46c1-b21d-8992241d7c31",
+      "family": "wenfeng-hlzsjt",
+      "normalized": "hlzsjt",
+      "group": "honglei",
+      "upstreamName": "鸿雷拙书简体"
+    },
+    "怀旧像素 可爱等宽": {
+      "ownerId": "takwolf",
+      "makerId": "takwolf",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "takwolf",
+      "family": "wenfeng-hjxscm",
+      "normalized": "hjxscm",
+      "group": "retro-pixel",
+      "upstreamName": "怀旧像素 可爱等宽"
+    },
+    "怀旧像素 小巧5H": {
+      "ownerId": "takwolf",
+      "makerId": "takwolf",
+      "relation": "original",
+      "licenseFollows": "own",
+      "upstreamOwnerId": "takwolf",
+      "family": "wenfeng-hjxs5h",
+      "normalized": "hjxs5h",
+      "group": "retro-pixel",
+      "upstreamName": "怀旧像素 小巧5H"
+    },
+    "香萃端庄宋体": {
+      "ownerId": "xiangcui",
+      "makerId": "xiangcui",
+      "relation": "fork",
+      "licenseFollows": "inherit",
+      "upstreamOwnerId": "adobe",
+      "upstreamName": "思源宋体",
+      "group": "source-han-serif",
+      "family": "wenfeng-xcdzst",
+      "normalized": "xcdzst"
     }
   }
 }

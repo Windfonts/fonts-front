@@ -284,7 +284,8 @@
         "寒蝉端黑体",
         "寒蝉龙藏楷书",
         "寒蝉春秋·春风",
-        "寒蝉春秋·秋鸿"
+        "寒蝉春秋·秋鸿",
+        "寒蝉团圆体 Sans"
       ]
     },
     {
@@ -935,7 +936,8 @@
         "台湾教育部"
       ],
       "fontNames": [
-        "MOESongUN"
+        "MOESongUN",
+        "教育部标准宋体UN"
       ],
       "kind": "project",
       "openSource": true,
@@ -1181,7 +1183,8 @@
       "aliases": [],
       "fontNames": [
         "Mplus HZK 12 像素字体",
-        "M+ gothic 12r"
+        "M+ gothic 12r",
+        "mplus hzk 12 像素字体"
       ],
       "kind": "project",
       "openSource": true,
@@ -1700,7 +1703,8 @@
         "激笔"
       ],
       "fontNames": [
-        "激笔 SFX"
+        "激笔 SFX",
+        "GEKIFUDE SFX"
       ],
       "kind": "author",
       "openSource": true,
@@ -1953,7 +1957,11 @@
         "人偶仿宋",
         "扇尾胄黑",
         "正格点黑",
-        "袖珍像素体"
+        "袖珍像素体",
+        "扇尾胄黑 16",
+        "八丁饰尾体 16",
+        "人偶仿宋 16",
+        "长坂点宋 16"
       ],
       "kind": "author",
       "openSource": true,
@@ -2301,7 +2309,9 @@
         "怀旧像素 可爱",
         "怀旧像素 小巧",
         "怀旧像素 粗体",
-        "二维码像素"
+        "二维码像素",
+        "怀旧像素 可爱等宽",
+        "怀旧像素 小巧5H"
       ],
       "kind": "individual",
       "openSource": true,
@@ -2464,7 +2474,9 @@
       ],
       "fontNames": [
         "Konatu",
-        "Konatu Tohaba"
+        "Konatu Tohaba",
+        "小夏",
+        "小夏等幅"
       ],
       "kind": "author",
       "openSource": true,
@@ -2740,7 +2752,14 @@
       ],
       "kind": "author",
       "website": "https://www.zcool.com.cn/u/12963257",
-      "openSource": false
+      "openSource": false,
+      "fontNames": [
+        "鸿雷小纸条青春体",
+        "鸿雷板书体",
+        "鸿雷板书简体正式版",
+        "鸿雷行书简体",
+        "鸿雷拙书简体"
+      ]
     },
     {
       "id": "b0282765-1289-4d9c-b97d-a5093620186b",

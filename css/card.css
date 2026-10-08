@@ -1,5 +1,5 @@
-/* 样张卡片：固定像素画布 + CSS 缩放。版式由 data-layout 决定，槽位（副文字 / 头像 / 背景图）
-   只在模板声明了（data-slots）且用户填了（data-has-*）时出现。不带 data-card 时全部退回普通字形墙。 */
+/* 样张卡片：固定像素画布 + CSS 缩放。版式由 data-layout 决定。副文字 / 头像跟模板槽位；
+   背景图、头像每套模板都能选：有 data-has-bg 就铺图，有 data-has-avatar 就出头像。不带 data-card 时全部退回普通字形墙。 */
 .glyph-wall .card-view { width: 100%; }
 .glyph-wall .card-view.is-framed { position: relative; overflow: hidden; }
 .glyph-wall .wall-stage { min-height: 1.4em; }
@@ -88,7 +88,7 @@
 }
 .glyph-wall .wall-stage[data-slots~="sub"][data-has-sub] .card-sub { display: block; }
 .glyph-wall .wall-stage[data-credit="0"] .card-credit { display: none; }
-.glyph-wall .card-avatar { display: none; width: var(--avatar-size, 88px); height: var(--avatar-size, 88px); border-radius: 50%; object-fit: cover; flex: none; }
+.glyph-wall .card-avatar { display: none; width: var(--avatar-size, 88px); height: var(--avatar-size, 88px); border-radius: 50%; object-fit: cover; flex: none; background: var(--face); }
 .glyph-wall .wall-stage[data-has-avatar] .card-avatar { display: block; }
 .glyph-wall .card-quote { display: none; font-family: var(--card-face, inherit); }
 
@@ -153,6 +153,34 @@
 }
 .glyph-wall .wall-stage[data-layout="seal"] .card-lines { align-items: center; text-align: center; }
 .glyph-wall .wall-stage[data-layout="seal"] .card-avatar { width: var(--avatar-size, 96px); height: var(--avatar-size, 96px); order: -1; }
+
+/* 竖排：窄幅直排 */
+.glyph-wall .wall-stage[data-layout="vert"] .card-body {
+  justify-content: center;
+  writing-mode: vertical-rl;
+  padding: 96px 80px;
+}
+.glyph-wall .wall-stage[data-layout="vert"] .wall { text-align: center; }
+.glyph-wall .wall-stage[data-layout="vert"] .card-meta {
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* 对联：两行相对 */
+.glyph-wall .wall-stage[data-layout="couple"] .card-body {
+  justify-content: center;
+  padding: 120px 72px;
+}
+.glyph-wall .wall-stage[data-layout="couple"] .wall { text-align: center; }
+
+/* 摘录：一段正文 */
+.glyph-wall .wall-stage[data-layout="text"] .card-body {
+  align-items: flex-start;
+  padding: 80px 96px 40px;
+}
+.glyph-wall .wall-stage[data-layout="text"] .wall { text-align: left; }
+.glyph-wall .wall-stage[data-layout="text"] .card-meta { justify-content: flex-start; }
 /* 编辑态：卡片内联改字（主文 / 副文 / 字体名 / 品牌） */
 .glyph-wall.is-editing .wall-stage[data-card][data-slots~="sub"] .card-sub,
 .glyph-wall.is-editing .wall-stage[data-card]:not([data-credit="0"]):not([data-layout="fill"]) .card-name,

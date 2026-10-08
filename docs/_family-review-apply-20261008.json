@@ -1,0 +1,196 @@
+{
+  "savedAtEdits": "2026-10-08T04:42:43.428Z",
+  "appliedAt": "2026-10-08T04:55:08.463706Z",
+  "applied": 9,
+  "catalog": 762,
+  "untouchedFamily": 753,
+  "bak": {
+    "fonts": "fonts.json.bak-family-20261008T125508",
+    "aliases": "family-aliases.json.bak-family-20261008T125508",
+    "lineage": "font-lineage.json.bak-family-20261008T125508"
+  },
+  "stamps": {
+    "list": "20261008list4",
+    "slug": "20261008slug13"
+  },
+  "slugReplacements": {
+    "files": 110,
+    "count": 110
+  },
+  "aliasesAdded": [
+    [
+      "lana-pixel",
+      "lanapixel"
+    ],
+    [
+      "wenfeng-lana-pixel",
+      "wenfeng-lanapixel"
+    ],
+    [
+      "taipei-pixel",
+      "tbzt"
+    ],
+    [
+      "wenfeng-taipei-pixel",
+      "wenfeng-tbzt"
+    ],
+    [
+      "ipaexgothic",
+      "ipago"
+    ],
+    [
+      "wenfeng-ipaexgothic",
+      "wenfeng-ipago"
+    ],
+    [
+      "qyyt",
+      "qyyt16"
+    ],
+    [
+      "wenfeng-qyyt",
+      "wenfeng-qyyt16"
+    ],
+    [
+      "zgdh",
+      "zgdh16"
+    ],
+    [
+      "wenfeng-zgdh",
+      "wenfeng-zgdh16"
+    ],
+    [
+      "misakig2nd",
+      "mskg2nd"
+    ],
+    [
+      "wenfeng-misakig2nd",
+      "wenfeng-mskg2nd"
+    ],
+    [
+      "nh",
+      "nhzt"
+    ],
+    [
+      "wenfeng-nh",
+      "wenfeng-nhzt"
+    ],
+    [
+      "xieyit",
+      "xytysw"
+    ],
+    [
+      "wenfeng-xieyit",
+      "wenfeng-xytysw"
+    ],
+    [
+      "konatutohaba",
+      "xxdft"
+    ],
+    [
+      "wenfeng-konatutohaba",
+      "wenfeng-xxdft"
+    ]
+  ],
+  "aliasesRetargeted": [
+    [
+      "nahei",
+      "nh",
+      "nhzt"
+    ],
+    [
+      "wenfeng-nahei",
+      "wenfeng-nh",
+      "wenfeng-nhzt"
+    ],
+    [
+      "yshiwritten",
+      "xieyit",
+      "xytysw"
+    ],
+    [
+      "wenfeng-yshiwritten",
+      "wenfeng-xieyit",
+      "wenfeng-xytysw"
+    ]
+  ],
+  "lineageHits": {
+    "wenfeng-lana-pixel": 0,
+    "wenfeng-taipei-pixel": 0,
+    "wenfeng-ipaexgothic": 1,
+    "wenfeng-qyyt": 0,
+    "wenfeng-zgdh": 0,
+    "wenfeng-misakig2nd": 3,
+    "wenfeng-nh": 1,
+    "wenfeng-xieyit": 1,
+    "wenfeng-konatutohaba": 1
+  },
+  "build": "wrote /Users/feibisi-studio/Projects/fonts-front/data/fonts-list.json (602051 bytes, 762 fonts)\nwrote /Users/feibisi-studio/Projects/fonts-front/data/fonts-detail.json (556086 bytes)\nwrote 762 per-slug files under /Users/feibisi-studio/Projects/fonts-front/data/fonts-by-slug (771 slug keys)",
+  "hangzhou": false,
+  "vault": false,
+  "commit": false,
+  "rows": [
+    {
+      "name": "LanaPixel",
+      "id": "7fc63136-1286-4a40-9df4-090d135db09b",
+      "old": "wenfeng-lana-pixel",
+      "new": "wenfeng-lanapixel",
+      "normalized": "lana-pixel"
+    },
+    {
+      "name": "台北字体",
+      "id": "30ecc980-dbf8-452e-9799-4b3ad65896b6",
+      "old": "wenfeng-taipei-pixel",
+      "new": "wenfeng-tbzt",
+      "normalized": "taipei-pixel"
+    },
+    {
+      "name": "IPAex Gothic",
+      "id": "fd1590b1-2900-456e-ab3a-99ed7d0f4aa6",
+      "old": "wenfeng-ipaexgothic",
+      "new": "wenfeng-ipago",
+      "normalized": "ipaexgothic"
+    },
+    {
+      "name": "秋叶圆体",
+      "id": "dd8d1b7b-7b9b-49e4-b74f-b9d326a23cc5",
+      "old": "wenfeng-qyyt",
+      "new": "wenfeng-qyyt16",
+      "normalized": "qyyt"
+    },
+    {
+      "name": "正格点黑",
+      "id": "b243c728-0728-4266-a960-7884ee1e61a6",
+      "old": "wenfeng-zgdh",
+      "new": "wenfeng-zgdh16",
+      "normalized": "zgdh"
+    },
+    {
+      "name": "美咲ゴシック第2",
+      "id": "78812b21-81bd-4889-ad98-d8f5190fa52c",
+      "old": "wenfeng-misakig2nd",
+      "new": "wenfeng-mskg2nd",
+      "normalized": "misakig2nd"
+    },
+    {
+      "name": "納黑",
+      "id": "30e0b8f4-4a49-40cb-ad36-7ec6d49e99ba",
+      "old": "wenfeng-nh",
+      "new": "wenfeng-nhzt",
+      "normalized": "nh"
+    },
+    {
+      "name": "写意体",
+      "id": "b7732924-ef03-408b-9bcf-a0fb0a9b9386",
+      "old": "wenfeng-xieyit",
+      "new": "wenfeng-xytysw",
+      "normalized": "xieyit"
+    },
+    {
+      "name": "小夏等幅",
+      "id": "8828f9da-4a4a-4268-be4f-1e3f56d709ec",
+      "old": "wenfeng-konatutohaba",
+      "new": "wenfeng-xxdft",
+      "normalized": "konatutohaba"
+    }
+  ]
+}

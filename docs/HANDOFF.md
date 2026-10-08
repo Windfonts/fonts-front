@@ -1,6 +1,12 @@
 # 文风字体 · 交接与后续开发
 
+**2026-10-08 乙工坊合进 main [Grok]：** 人「提交推送合并」。empty-state 工作副本 specimen ui48 / tester ui28 / card ui3/ui6 / avatar ui4 叠进 main `font-detail.html`（保留 proto slug13 / detail src2）。不合整枝 `grok/tsanger-grades`。family9 目录同提交。
+
 > 面向接手后端 / 全栈的同学与智能体：原型现状、页面清单、需要后端提供的接口契约、已知待办。
+
+**2026-10-08 family 对照 9 条已写入目录并上杭州 [Grok]：** 人 12:42 锁完 762。草案和现网 family 不同的 9 条已写入 `fonts.json`（LanaPixel `lanapixel`、台北字体 `tbzt`、IPAex Gothic `ipago`、秋叶圆体 `qyyt16`、正格点黑 `zgdh16`、美咲ゴシック第2 `mskg2nd`、納黑 `nhzt`、写意体 `xytysw`、小夏等幅 `xxdft`）。`normalized` / OSS 不改。旧码进别名（`nahei`/`yshiwritten` 改指新码；`xcdz` 仍 `xcdzj`）。PIN4 / IPA 黑体 / Harmony `harmsa` / 小夏 `konatu` 未动。戳 `fonts-list.json?v=20261008list4`、`wf-proto.js?v=20261008slug13`。回退 `data/fonts.json.bak-family-20261008T125508`。实录 `docs/_family-review-apply-20261008.json`。已上杭州；vault 7 改 5 增。本提交。
+
+**2026-10-08 family 对照改成长期跟目录 [Grok]：** 人看还是 707，要长期用。页不再嵌冻结 seed。每次打开读 `fonts-list.json`（现 762），锁定稿按 `id` 叠 `family-review-edits.json`（682 锁 + PIN4 未动；新进 55 未锁，草案=现网 family）。打开 `python3 scripts/family-review-serve.py` → `http://127.0.0.1:16043/family-review-options.html`。入库后刷新本页。重建 `python3 scripts/family-review-rebuild.py`。本页不上杭州桶，未写回 `fonts.json`。
 
 **2026-10-07 水木覆盖 smht [Grok]：** 人说「覆盖过去」。广州包 `mizukigothic` → `smht`（117 文件，13 覆盖，104 同大小跳过）。vault id `58c3fe9d` `MizukiGothic`→`smht` `/fonts-packages/smht`。备份 `prod.db.bak-20261007-smht`。现网包 CSS 131600 与英文源同 etag；`/api/css?family=wenfeng-smht` 200（IPA，描述写 CDN OPEN）。店面 `normalized` 仍 `Smht`。旧前缀未删。未 git commit。
 
@@ -935,4 +941,16 @@ feibisi 在二稿（lineage-visual2-options.html）上拍板「甲跟乙结合�
 
 **发版与验收（同日夜）：** 仓 `a81f431` origin/main。未整仓 `deploy-web-hz.sh`；39 文件（HTML + `wf-chrome.js`）经 devops `aliyun oss --profile wenpai` 进 `oss://wenfeng-web-hz`。公网 `/app/index` 含 `wf-auth.js` + chrome ui13，CSS 仍 ui8。Playwright：未登录 `/app/index.html` → `/login?next=app&back=index.html`（不是 `/app/login`）；错密码 toast「账号或密码错误」、session 仍 `null`；假 localStorage `{role:user}` 首页仍「登录」无「控制台」，`canAccessApp===false`；`/app/?demo=1` 仍跳登录并清掉假壳。`POST /api/console/ensure-key` 无 cookie 401「请先登录」。credentials 错号 `CredentialsSignin`。未用管理员密码登录。
 
+## 44. 2026-10-08 许可原文 / 原件 OSS 真源（Grok `01a0eafd`）
 
+人要求许可证和原件拉齐进 OSS，店面/本机/项目指针同一份。
+
+公开真源：
+
+- `https://cn.windfonts.com/fonts-packages/{normalized小写}/license/original.txt`
+- `https://cn.windfonts.com/fonts-packages/{normalized小写}/source/`（有原件才有 index.json）
+- 总索引 `https://cn.windfonts.com/metadata/true-source.json`
+
+不要把 `_fonts_park`、`/tmp`、FeiCode raw、`wenfeng-original/{short}.tar.gz` 当权威。改许可先改 OSS 那一份。
+
+本轮：广州新传许可 70 + 原件 20；店面 `licenseFileUrl` 509 条指向 original.txt；杭州戳 `list3` / `slug12`。活站 by-slug 已是 OSS URL。未 commit。未改 org JSON。

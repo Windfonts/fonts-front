@@ -38,6 +38,22 @@ OSS 旧版本对过：杭州桶 `wenfeng-web-hz` 的 `data/fonts.json.bak-*` 共
 
 family 一律小写。原先大写上游 id 的 34 条改成 `wenfeng-` + 小写（`BpmfGenYoMin` → `wenfeng-bpmfgenyomin`）。`normalized` 仍是原来的大小写，OSS 目录仍是它的小写。不要另起拼音首字母。
 
+
+## 许可原文（真源）
+
+`licenseFileUrl` 指向 `https://cn.windfonts.com/fonts-packages/{normalized小写}/license/original.txt`。
+不要改回 feicode raw 或 GitHub blob。改许可先改 OSS 那一份，再改店面指针。
+字体原件在 `{norm}/source/`（有 `source/index.json` 才算进了 OSS）。
+总索引 `https://cn.windfonts.com/metadata/true-source.json`。本机 park 不是真源。
+
+## family 对照（长期本地工具）
+
+页 `family-review-options.html`。打开：`python3 scripts/family-review-serve.py` → `http://127.0.0.1:16043/family-review-options.html`。
+每次打开读当前 `data/fonts-list.json`，锁定稿在 `data/family-review-edits.json`，按目录 `id` 合并。不要再往 HTML 里嵌一份冻结目录。
+新进目录的行未锁定，草案先等于现网 `family`。不要假设 family = `wenfeng-` + lower(normalized)。
+入库后刷新本页即可。刷新锁定表：`python3 scripts/family-review-rebuild.py`。
+本页不上杭州桶。写入 `fonts.json` 仍要人说「写进去」。2026-10-08 人锁完 762 后写入 9 条；杭州 `list4`/`slug13` 已上；乙工坊合进 main。
+
 ## 发版
 
 - 静态页：`bash scripts/deploy-web-hz.sh`，桶 `wenfeng-web-hz`（杭州）。Mac 没有 wenpai 的写钥匙。不要用 `scripts/deploy-oss-front.sh`。

@@ -37,4 +37,5 @@ HTML **留在仓根**，不搬进子目录——相对路径（`css/` `js/` `dat
 ## 研究页附带文档
 
 OSS 审计：`oss-audit.html` → `_oss-authors-github-audit.*` → `_oss-ingest-batch1.json`。  
+family 对照：`family-review-options.html`（本地 `:16043`，读现网 `fonts-list.json`，锁定稿 `family-review-edits.json`）。不上公网。  
 产品规格：`FAMILY-VARIANTS.md`。

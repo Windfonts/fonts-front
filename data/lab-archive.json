@@ -1,6 +1,6 @@
 {
   "note": "对照 / 原型 / 研究页真源。文件留在仓根（相对路径不碎）。禁止当垃圾删。见 docs/LAB.md，索引 lab.html。",
-  "updated": "2026-09-25",
+  "updated": "2026-10-08",
   "policy": {
     "keep": true,
     "noProductionNav": true,
@@ -356,6 +356,18 @@
             "docs/_oss-ingest-batch1.json",
             "docs/FAMILY-VARIANTS.md",
             "docs/FONT-AUDIT-BACKLOG.md"
+          ]
+        },
+        {
+          "href": "family-review-options.html",
+          "title": "family 对照",
+          "status": "active",
+          "note": "长期本地工具。python3 scripts/family-review-serve.py → :16043。读 fonts-list.json，锁在 family-review-edits.json。不上杭州桶。",
+          "assets": [
+            "scripts/family-review-serve.py",
+            "scripts/family-review-rebuild.py",
+            "scripts/family_review.py",
+            "data/family-review-edits.json"
           ]
         }
       ]

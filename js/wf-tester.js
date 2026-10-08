@@ -26,16 +26,19 @@
   function field(id, type, ph, pick) {
     const up = pick ? '<button type="button" class="btn-icon" data-pick="' + id + '" aria-label="上传">' + WFChrome.icon('upload') +
       '</button><input type="file" accept="image/*" hidden data-file="' + id + '" />' : '';
+    const note = id === 'avatar' ? '<p class="tester-note" data-note="avatar" hidden></p>'
+      : id === 'bg' ? '<p class="tester-note" data-note="bg" hidden></p>'
+      : '';
     return '<div class="tester-field" data-field="' + id + '"><input class="input" type="' + type + '" data-c="' + id +
-      '" placeholder="' + esc(ph) + '" aria-label="' + esc(ph) + '" autocomplete="off" spellcheck="false" />' + up + '</div>';
+      '" placeholder="' + esc(ph) + '" aria-label="' + esc(ph) + '" autocomplete="off" spellcheck="false" />' + up + note + '</div>';
   }
   function slider(id, label, min, max, step, val) {
     return '<label class="tester-row"><span class="k">' + esc(label) + '</span>' +
       '<input class="range" type="range" data-k="' + id + '" min="' + min + '" max="' + max + '" step="' + step + '" value="' + val + '" />' +
       '<span class="val" data-val="' + id + '"></span></label>';
   }
-  function pills(key, items, cur) {
-    return '<div class="tester-pills" role="group">' + items.map(function (it) {
+  function pills(key, items, cur, extraClass) {
+    return '<div class="tester-pills' + (extraClass ? ' ' + extraClass : '') + '" role="group">' + items.map(function (it) {
       return '<button type="button" data-set="' + key + '" data-v="' + esc(it[0]) + '"' + (String(it[0]) === String(cur) ? ' class="is-on"' : '') + '>' + esc(it[1]) + '</button>';
     }).join('') + '</div>';
   }
@@ -46,39 +49,40 @@
       return '<button type="button" data-w="' + c + '"' + (c === state.weight ? ' class="is-on"' : '') + ' title="' + esc(w) + ' · ' + c + '">' + esc(w) + '</button>';
     }).join('') + '</div>';
     const reset = '<button type="button" class="btn-text" data-reset>' + WFChrome.icon('refresh') + '重置</button>';
-    const colors = '<div class="tester-colors"><label class="tester-color"><input type="color" data-ink aria-label="字色" /></label>' +
-      '<label class="tester-color"><input type="color" data-paper aria-label="底色" /></label>' +
+    const colors = '<div class="tester-colors seg">' +
+      '<label class="tester-color"><span class="k">字</span><input type="color" data-ink aria-label="字色" /></label>' +
+      '<label class="tester-color"><span class="k">纸</span><input type="color" data-paper aria-label="底色" /></label>' +
       '<button type="button" data-invert>反相</button></div>';
-    const layers = '<div class="tester-layers"><span class="k">显示</span><div class="tester-pills" role="group" aria-label="显示">' +
-      LAYERS.map(function (it) {
+    const credit = '<div class="tester-layers is-credit"><span class="k">署名</span><div class="tester-pills seg" role="group" aria-label="署名">' +
+      [['name', '字体名'], ['brand', '品牌'], ['mark', '文风']].map(function (it) {
         return '<button type="button" data-layer="' + it[0] + '" class="is-on" aria-pressed="true">' + esc(it[1]) + '</button>';
       }).join('') + '</div></div>';
-    const typeBody = field('sub', 'text', '副文字 / 署名', 0) + layers +
-      '<div class="tester-toolbar">' + wt + pills('align', [['left', '左'], ['center', '中'], ['right', '右']], state.align) + '</div>' +
-      '<div class="tester-sliders tester-cols-2">' + slider('size', '字号', 12, 240, 1, state.size) +
-        slider('leading', '行距', 0.8, 2.4, 0.05, state.leading) + slider('tracking', '字距', -0.12, 0.24, 0.005, state.tracking) + '</div>' + colors;
-    const mediaBody = field('avatar', 'email', '填邮箱自动取头像', 1) + field('bg', 'url', '图片地址', 1) +
-      '<div class="wall-bgs" role="listbox" aria-label="默认背景">' + (WFCard.WALL_BGS || []).map(function (src, i) {
+    const subRow = '<div class="tester-field is-sub" data-field="sub"><input class="input" type="text" data-c="sub" placeholder="输入副文" aria-label="输入副文" autocomplete="off" spellcheck="false" />' +
+      '<button type="button" data-layer="sub" class="is-on" aria-pressed="true">副文</button></div>';
+    const typeBody = subRow + credit + colors;
+    const typeSliders = '<div class="tester-sliders" data-type-sliders hidden>' + slider('size', '字号', 12, 240, 1, state.size) +
+      slider('leading', '行距', 0.8, 2.4, 0.05, state.leading) + slider('tracking', '字距', -0.12, 0.24, 0.005, state.tracking) + '</div>';
+    const faceRow = '<div class="tester-under-face">' + field('avatar', 'email', '输入邮箱获取 Cravatar 头像', 1) +
+      field('bg', 'url', '粘贴图片地址，或点选下面的图', 1) +
+      '<div class="tester-sliders" data-face-sliders>' + slider('face', '大小', 32, 240, 1, state.face) + '</div></div>';
+    const mediaBody = '<div class="wall-bgs" role="listbox" aria-label="默认背景">' + (WFCard.WALL_BGS || []).map(function (src, i) {
         return '<button type="button" class="wall-bg" data-wall-bg="' + esc(src) + '" aria-label="背景 ' + (i + 1) + '" style="background-image:url(\'' + esc(src) + '\')"></button>';
       }).join('') + '</div>' +
-      '<div class="tester-sliders tester-cols-2">' + slider('face', '头像', 32, 240, 1, state.face) + slider('zoom', '取景', 1, 2.5, 0.05, state.zoom) +
+      '<div class="tester-sliders">' + slider('zoom', '取景', 1, 2.5, 0.05, state.zoom) +
         slider('bgx', '横', 0, 100, 1, state.bgx) + slider('bgy', '纵', 0, 100, 1, state.bgy) +
         slider('scrim', '压色', 0, 90, 1, state.scrim) + '</div>';
     return {
-      tpl: '<div class="tester-sec"><div class="tester-sec-head"><h4>模板</h4></div>' + WFCard.templatesHtml() + '</div>',
-      ctl: '<div class="tester-headbar">' +
-      ('<div class="tester-tabs" role="tablist"><button type="button" role="tab" data-tab="type" class="is-on" aria-selected="true">字</button><button type="button" role="tab" data-tab="media" aria-selected="false">图</button></div>') + reset + '</div>' +
-      '<div class="tester-scroll">' +
-      '<div class="tester-panel" data-panel="type" role="tabpanel">' + typeBody + '</div>' +
-      '<div class="tester-panel" data-panel="media" role="tabpanel" hidden>' + mediaBody + '</div></div>' +
-      '<div class="tester-end"><p class="tester-note" data-note hidden></p>' +
-      '<div class="tester-out">' + pills('frame', [['narrow', '窄幅'], ['og', '分享图'], ['x', 'X'], ['banner', '横幅'], ['square', '方图']], 'narrow') +
-        '<span data-out></span></div>' +
-      '<div class="tester-foot">' +
+      tpl: '<div class="tester-sec"><div class="tester-sec-head"><h4>样张模板</h4></div>' + WFCard.templatesHtml() + '</div>',
+      ctl: '<div class="tester-rail"><div class="tester-headbar">' + reset + '</div>' +
+      '<div class="tester-scroll">' + typeBody + mediaBody + '</div>' +
+      '<div class="tester-end">' +
+      '<div class="tester-out"><span data-out></span></div>' +
+      '<div class="tester-dock"><div class="tester-foot">' +
       '<button type="button" class="btn" data-share>' + WFChrome.icon('link') + '复制链接</button>' +
       '<button type="button" class="btn" data-copy>' + WFChrome.icon('copy') + '复制图</button>' +
       '<button type="button" class="btn btn-ink" data-export>' + WFChrome.icon('download') + '导出图</button></div>' +
-      '<button type="button" class="btn" data-done>' + WFChrome.icon('check') + '完成</button></div>'
+      '<button type="button" class="btn" data-done>' + WFChrome.icon('check') + '完成</button></div></div></div>' +
+      '<div class="tester-under"><div class="tester-under-row">' + wt + pills('align', [['left', '左'], ['center', '中'], ['right', '右']], state.align, 'seg is-align') + '</div>' + typeSliders + faceRow + '</div>'
     };
   }
   function fmt(k, v) {
@@ -104,10 +108,15 @@
     }
     const inkEl = ctl.querySelector('[data-ink]');
     const paperEl = ctl.querySelector('[data-paper]');
-    const noteEl = ctl.querySelector('[data-note]');
     const timers = {};
     let saveTimer, closeScrollY;
-    function note(msg) { noteEl.textContent = msg || ''; noteEl.hidden = !msg; }
+    function note(msg, slot) {
+      const sel = slot ? '[data-note="' + slot + '"]' : '[data-note]';
+      ctl.querySelectorAll(sel).forEach(function (el) {
+        el.textContent = msg || '';
+        el.hidden = !msg;
+      });
+    }
     function wallTone(src) {
       const m = String(src || '').replace(/[?#].*$/, '').match(/\/wall\/0([1-6])\.jpg$/);
       return m ? (Number(m[1]) <= 3 ? 'dark' : 'light') : '';
@@ -145,36 +154,47 @@
     }
     function setContent(slot, raw) {
       const v = String(raw || '').trim();
-      note('');
+      note('', slot === 'sub' ? undefined : slot);
       if (slot === 'sub') { WFCard.setSlot(stage, 'sub', v); return; }
       let src = v;
       if (slot === 'avatar') {
         src = WFAvatar.cravatar(v);
-        if (v && !src) { note('邮箱格式不对'); WFCard.setSlot(stage, 'avatar', ''); return; }
+        if (v && !src) {
+          note('邮箱格式不对', 'avatar');
+          WFCard.setSlot(stage, 'avatar', '');
+          applyLayers();
+          return;
+        }
       } else if (v && !/^https?:\/\//i.test(v) && !WFAvatar.isLocal(v)) {
-        note('背景图要填完整地址，或点上传');
+        note('背景图要填完整地址，或点上传', 'bg');
         WFCard.setSlot(stage, 'bg', '');
         return;
       }
       WFCard.setSlot(stage, slot, src, function (ok, kind) {
-        if (!v) return;
+        if (!v) { applyLayers(); return; }
         if (!ok) {
-          note(slot === 'avatar' ? '这个邮箱没有头像' : '背景图加载失败');
+          note(slot === 'avatar' ? '头像加载失败' : '背景图加载失败', slot);
+          applyLayers();
           return;
         }
-        if (kind === 'preview') note('在线图片只能预览，导出请改用上传');
+        if (kind === 'preview') {
+          if (slot === 'avatar') { apply(); return; }
+          note('在线图片只能预览，导出请改用上传', 'bg');
+        }
         else warnPaint();
+        apply();
       });
     }
     function setFile(slot, file) {
       const url = WFAvatar.fileUrl(file);
-      if (!url) { note('请选一张图片'); return; }
+      if (!url) { note('请选一张图片', slot); return; }
       const input = ctl.querySelector('[data-c="' + slot + '"]');
       if (input) input.value = '';
-      note('');
+      note('', slot);
       WFCard.setSlot(stage, slot, url, function (ok) {
-        if (!ok) note('这张图读不出来');
+        if (!ok) note('这张图读不出来', slot);
         else if (slot === 'bg') inkFromBg(url);
+        apply();
       });
       persistSoon();
     }
@@ -249,15 +269,24 @@
         el.setAttribute('aria-pressed', on ? 'true' : 'false');
       });
       const layerRow = ctl.querySelector('.tester-layers');
-      if (layerRow) layerRow.hidden = !LAYERS.some(function (it) { return layerLive(it[0]); });
+      if (layerRow) {
+        layerRow.hidden = !['name', 'brand', 'mark'].some(function (k) { return layerLive(k); });
+      }
       const subField = ctl.querySelector('[data-field="sub"]');
       if (subField) subField.hidden = !slotHas('sub');
-      const avField = ctl.querySelector('[data-field="avatar"]');
-      if (avField) avField.hidden = !slotHas('avatar');
+      const hasAv = !!(stage && stage.hasAttribute('data-has-avatar'));
       ['face'].forEach(function (id) {
         const row = ctl.querySelector('[data-k="' + id + '"]');
         const host = row && row.closest('.tester-row');
-        if (host) host.hidden = !slotHas('avatar');
+        if (host) host.hidden = !hasAv;
+      });
+      const faceBox = ctl.querySelector('[data-face-sliders]');
+      if (faceBox) faceBox.hidden = !hasAv;
+      const hasBg = !!(stage && stage.hasAttribute('data-has-bg'));
+      ['zoom', 'bgx', 'bgy', 'scrim'].forEach(function (id) {
+        const row = ctl.querySelector('[data-k="' + id + '"]');
+        const host = row && row.closest('.tester-row');
+        if (host) host.hidden = !hasBg;
       });
       const empty = ctl.querySelector('[data-media-empty]');
       if (empty) empty.hidden = true;
@@ -296,11 +325,16 @@
       ctl.querySelectorAll('[data-panel]').forEach(function (pn) { pn.hidden = pn.getAttribute('data-panel') !== id; });
     }
     function syncBgPick() {
-      var inp = ctl.querySelector('[data-c="bg"]');
-      var cur = inp ? String(inp.value || '').trim() : '';
-      ctl.querySelectorAll('[data-wall-bg]').forEach(function (el) {
-        el.classList.toggle('is-on', el.getAttribute('data-wall-bg') === cur);
+      const el = stage && stage.querySelector('[data-slot="bg"]');
+      const cur = el ? String(el.getAttribute('src') || '').trim() : '';
+      ctl.querySelectorAll('[data-wall-bg]').forEach(function (btn) {
+        btn.classList.toggle('is-on', btn.getAttribute('data-wall-bg') === cur);
       });
+      const inp = ctl.querySelector('[data-c="bg"]');
+      if (!inp || document.activeElement === inp) return;
+      const walls = WFCard.WALL_BGS || [];
+      if (!cur || walls.indexOf(cur) !== -1 || /^(blob|data):/i.test(cur)) inp.value = '';
+      else inp.value = cur;
     }
     function syncUi() {
       ctl.querySelectorAll('[data-k]').forEach(function (el) { el.value = String(state[el.getAttribute('data-k')]); });
@@ -316,21 +350,17 @@
       syncFrames();
     }
     function warnPaint() {
-      if (stage && stage.querySelector('img[data-preview-only][src]')) {
-        note('在线图片只能预览，导出请改用上传');
-      } else if (/跨域/.test(noteEl.textContent || '')) note('');
+      if (stage && stage.querySelector('img[data-preview-only][src]:not([data-slot="avatar"])')) {
+        note('在线图片只能预览，导出请改用上传', 'bg');
+      } else {
+        const bgNote = ctl.querySelector('[data-note="bg"]');
+        if (bgNote && /跨域|预览/.test(bgNote.textContent || '')) note('', 'bg');
+      }
     }
     function syncFrames() {
-      const lock = stage && stage.getAttribute('data-template') === 'seal';
-      const kind = (stage && stage.getAttribute('data-card')) || '';
-      ctl.querySelectorAll('[data-set="frame"]').forEach(function (el) {
-        const v = el.getAttribute('data-v');
-        el.hidden = !!(lock && v !== 'square');
-        el.classList.toggle('is-on', v === kind);
-      });
       const outEl = ctl.querySelector('[data-out]');
       const out = stage && WFCard.outputSize(stage);
-      if (outEl && out) outEl.textContent = out.w + '×' + out.h + ' · ' + out.label;
+      if (outEl && out) outEl.textContent = '画幅 · ' + out.w + '×' + out.h + ' · ' + out.label;
     }
     function setFrame(kind) {
       if (!kind || (stage && stage.getAttribute('data-template') === 'seal' && kind !== 'square')) return;
@@ -340,6 +370,8 @@
     }
     function takeTpl(T, keepText) {
       if (!T) return;
+      setTypeOpen(false);
+      note('');
       state.size = T.size; state.leading = T.leading; state.tracking = T.tracking;
       state.align = T.align; state.wrap = !!T.wrap; state.fit = !!T.fit;
       state.face = T.face || 88; state.zoom = 1; state.bgx = 50; state.bgy = 50; state.scrim = 62;
@@ -353,6 +385,23 @@
       }
       syncUi();
       WFCard.paintStudio(tpl, stage);
+      seedBg(T.id === 'poster' || T.id === 'mast');
+    }
+    function seedBg(auto) {
+      if (!auto) {
+        syncBgPick();
+        return;
+      }
+      const el = stage && stage.querySelector('[data-slot="bg"]');
+      if (stage && stage.hasAttribute('data-has-bg') && el && el.getAttribute('src')) return;
+      const src = (WFCard.WALL_BGS || [])[0];
+      if (!src) return;
+      const inp = ctl.querySelector('[data-c="bg"]');
+      if (inp && document.activeElement !== inp) inp.value = '';
+      setContent('bg', src);
+      inkFromBg(src);
+      persistSoon();
+      syncBgPick();
     }
     function overlay(src, keepHero) {
       const keepText = !!(keepHero && src.hero != null);
@@ -403,6 +452,9 @@
       };
       TWEAK.forEach(function (k) { rec[k] = state[k]; });
       ctl.querySelectorAll('[data-c]').forEach(function (el) { rec[el.getAttribute('data-c')] = durable(el.value); });
+      var bgEl = stage && stage.querySelector('[data-slot="bg"]');
+      var liveBg = bgEl && (bgEl.getAttribute('src') || bgEl.getAttribute('data-blob') || '');
+      if (!rec.bg) rec.bg = durable(liveBg);
       var ne = stage && stage.querySelector('[data-card-name]'), be = stage && stage.querySelector('[data-card-brand]');
       rec.cardName = durable(ne && ne.textContent); rec.cardBrand = durable(be && be.textContent);
       rec.hide = hideList().join(' ');
@@ -445,6 +497,17 @@
       }, seed && seed.scrollY);
     }
 
+    function setTypeOpen(on) {
+      const box = ctl.querySelector('[data-type-sliders]');
+      if (box) box.hidden = !on;
+    }
+    function onTypePick(e) {
+      if (!wall || !wall.classList.contains('is-editing')) return;
+      const t = e.target;
+      if (hero && (t === hero || (hero.contains && hero.contains(t)))) { setTypeOpen(true); return; }
+      if (t.closest && t.closest('.tester-under')) return;
+      setTypeOpen(false);
+    }
     function onMd(e) { if (e.target.closest('[data-done]')) closeScrollY = window.scrollY; }
     function onInput(e) {
       const t = e.target;
@@ -515,7 +578,7 @@
       const wallBg = b.getAttribute('data-wall-bg');
       if (wallBg) {
         var bgInp = ctl.querySelector('[data-c="bg"]');
-        if (bgInp) bgInp.value = wallBg;
+        if (bgInp) bgInp.value = '';
         setContent('bg', wallBg);
         inkFromBg(wallBg);
         persistSoon();
@@ -554,6 +617,8 @@
       if (b.hasAttribute('data-done')) setOpen(false);
     }
     [tpl, ctl].forEach(function (el) { el.addEventListener('mousedown', onMd, true); el.addEventListener('input', onInput); el.addEventListener('click', onClick); });
+    if (wall) wall.addEventListener('click', onTypePick);
+    if (hero) hero.addEventListener('focus', function () { setTypeOpen(true); });
 
     syncColors();
     paintVals();

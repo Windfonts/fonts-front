@@ -41,12 +41,26 @@
   function cravatar(email, size) {
     const e = String(email || '').trim().toLowerCase();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) return '';
-    return 'https://cravatar.com/avatar/' + md5(e) + '?s=' + (size || 240) + '&d=404';
+    return 'https://cravatar.com/avatar/' + md5(e) + '?s=' + (size || 240) + '&d=mp';
   }
 
   function isLocal(src) {
     if (/^(blob:|data:)/.test(src || '')) return true;
     try { return new URL(src, location.href).origin === location.origin; } catch (e) { return false; }
+  }
+
+  /* 本机预览无 Cravatar CORS：走同源 /cravatar/avatar/{md5}。线上直读 cravatar.com。 */
+  function paintSrc(src) {
+    try {
+      const u = new URL(src, location.href);
+      const host = location.hostname;
+      if ((host === '127.0.0.1' || host === 'localhost')
+          && u.hostname === 'cravatar.com'
+          && /^\/avatar\/[0-9a-f]{32}$/i.test(u.pathname)) {
+        return location.origin + '/cravatar' + u.pathname + u.search;
+      }
+    } catch (e) {}
+    return src;
   }
 
   function fileUrl(file) {
@@ -65,6 +79,7 @@
   /* kind: local | blob | preview。preview = 能显示但不能保证导出。 */
   function adopt(src, done) {
     if (!src) { done('', ''); return; }
+    src = paintSrc(src);
     if (isLocal(src)) { done(src, 'local'); return; }
     fetch(src, { mode: 'cors', credentials: 'omit' }).then(function (r) {
       if (!r.ok) throw new Error('bad');
