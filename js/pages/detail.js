@@ -980,7 +980,7 @@
       });
     }
     function setWeight(w) {
-      const token = w;
+      const token = WFProto.packageWeight(font.family, w);
       weight = String(WFProto.weightToCss(token));
       WFProto.ensureFontCss(font.family, token, 'zh');
       hero.style.fontWeight = weight;
@@ -1007,8 +1007,9 @@
     function applyWallState(s) {
       if (s.size) { size.value = String(Math.round(s.size)); hero.style.fontSize = size.value + 'px'; }
       if (s.weight) {
-        weight = String(s.weight);
-        if (glyphTable) glyphTable.setWeight(weight);
+        const token = WFProto.packageWeight(font.family, s.weight);
+        weight = String(WFProto.weightToCss(token));
+        if (glyphTable) glyphTable.setWeight(token);
       }
       syncTools();
     }
@@ -1022,9 +1023,10 @@
       weights: weights,
       weight: weight,
       onWeight: function (w) {
-        weight = w;
+        const token = WFProto.packageWeight(font.family, w);
+        weight = String(WFProto.weightToCss(token));
         refreshEmbed();
-        if (glyphTable) glyphTable.setWeight(w);
+        if (glyphTable) glyphTable.setWeight(token);
         syncWeightUi();
         paintGlyphDiff();
       },

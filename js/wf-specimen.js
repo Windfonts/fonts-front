@@ -869,10 +869,11 @@
       });
     }
     function setWeight(w) {
-      const next = String(WFProto.weightToCss(w));
+      const token = WFProto.packageWeight ? WFProto.packageWeight(fam, w) : w;
+      const next = String(WFProto.weightToCss(token));
       if (!next || next === weight) { paintFace(); return; }
       weight = next;
-      WFProto.ensureFontCss(fam, weight);
+      WFProto.ensureFontCss(fam, token);
       paintFace();
       loadCoverage();
     }

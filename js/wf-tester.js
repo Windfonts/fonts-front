@@ -293,6 +293,9 @@
     }
     function apply() {
       if (!hero) return;
+      if (font && font.family && typeof WFProto.packageWeight === 'function') {
+        state.weight = String(WFProto.weightToCss(WFProto.packageWeight(font.family, state.weight)));
+      }
       if (state.fit) fitText();
       else fitLine();
       const hs = hero.style;

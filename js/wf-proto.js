@@ -783,35 +783,83 @@
   /** 字体族 slug（CDN 路径段）：wenfeng-albbpht → albbpht */
   function familySlug(family) { return String(family || '').replace(/^wenfeng-/, ''); }
 
+  function weightKey(n) {
+    return String(n == null ? '' : n).toLowerCase().replace(/[\s-]+/g, '');
+  }
+
+  function fontWeightNames(family) {
+    const font = catalog.filter(function (f) { return f.family === family; })[0];
+    return (font && Array.isArray(font.weights) && font.weights.length) ? font.weights.slice() : [];
+  }
+
+  function packWeightNames(family) {
+    const rec = packSubsets && packSubsets[packDirName(family)];
+    if (!rec || !rec.w) return [];
+    return Object.keys(rec.w).filter(function (k) {
+      return rec.w[k] && rec.w[k].length;
+    });
+  }
+
+  function matchWeightName(names, want) {
+    const key = weightKey(want);
+    if (!key || !names || !names.length) return '';
+    for (let i = 0; i < names.length; i++) {
+      if (weightKey(names[i]) === key) return names[i];
+    }
+    return '';
+  }
+
+  function preferRegular(names) {
+    return matchWeightName(names, 'Regular') || matchWeightName(names, 'Normal') || (names && names[0]) || '';
+  }
+
+  /** 目录或拆包没有请求的那一档时，改用 Regular（没有再用 Normal / 第一档）。
+   *  拆包表已加载时以包内真实文件夹为准，避免目录多写了 Bold 仍去请求 bold/。 */
+  function pickAvailableWeight(family, weight) {
+    const names = fontWeightNames(family);
+    const packs = packWeightNames(family);
+    const pool = packs.length ? packs : names;
+    const s = String(weight == null || weight === '' ? '400' : weight).trim();
+    function cased(raw) {
+      return matchWeightName(names, raw) || matchWeightName(packs, raw) || raw;
+    }
+    function fromPoolByCss(css) {
+      const hits = pool.filter(function (n) { return String(weightToCss(n)) === String(css); });
+      if (hits.length > 1) {
+        const prefer = hits.filter(function (n) {
+          const k = weightKey(n);
+          return k === 'regular' || k === 'normal';
+        })[0];
+        if (prefer) return cased(prefer);
+      }
+      return hits[0] ? cased(hits[0]) : '';
+    }
+    if (!pool.length) {
+      if (!/^\d{2,4}$/.test(s)) return s;
+      const mapped = CSS_TO_NAME[s];
+      if (mapped) return mapped.charAt(0).toUpperCase() + mapped.slice(1);
+      return 'Regular';
+    }
+    if (!/^\d{2,4}$/.test(s)) {
+      const named = matchWeightName(pool, s);
+      if (named) return cased(named);
+      const byCss = fromPoolByCss(weightToCss(s));
+      if (byCss) return byCss;
+      return cased(preferRegular(pool));
+    }
+    const exact = fromPoolByCss(s);
+    if (exact) return exact;
+    return cased(preferRegular(pool));
+  }
+
   /** 数值字重 → CDN 路径里的小写字重名。同数字多名称时优先 Regular / normal。 */
   function weightName(family, weight) {
-    const s = String(weight == null ? '400' : weight).trim();
-    if (!/^\d{2,4}$/.test(s)) return s.toLowerCase().replace(/[\s-]+/g, '');
-    const font = catalog.filter(function (f) { return f.family === family; })[0];
-    const names = (font && font.weights) || [];
-    const hits = names.filter(function (n) { return weightToCss(n) === s; });
-    if (hits.length > 1) {
-      const prefer = hits.filter(function (n) {
-        const k = String(n).toLowerCase().replace(/[\s-]+/g, '');
-        return k === 'regular' || k === 'normal';
-      })[0];
-      if (prefer) return prefer.toLowerCase().replace(/[\s-]+/g, '');
-    }
-    const hit = hits[0];
-    return (hit || CSS_TO_NAME[s] || 'regular').toLowerCase().replace(/[\s-]+/g, '');
+    return weightKey(pickAvailableWeight(family, weight)) || 'regular';
   }
 
   /** 动态地址用的字重名：保留字库里的大小写，如 Regular、Heavy。 */
   function packageWeight(family, weight) {
-    const s = String(weight == null ? '400' : weight).trim();
-    const font = catalog.filter(function (f) { return f.family === family; })[0];
-    const names = (font && font.weights) || [];
-    if (!/^\d{2,4}$/.test(s)) {
-      const key = s.toLowerCase().replace(/[\s-]+/g, '');
-      const hit = names.filter(function (n) { return n.toLowerCase().replace(/[\s-]+/g, '') === key; })[0];
-      return hit || s;
-    }
-    return names.filter(function (n) { return weightToCss(n) === s; })[0] || CSS_TO_NAME[s] || 'Regular';
+    return pickAvailableWeight(family, weight) || 'Regular';
   }
 
   function packageName(family) {
@@ -984,6 +1032,15 @@
     if ((!avail || !avail.length) && rec.w) {
       const sib = folder === 'Regular' ? 'Normal' : (folder === 'Normal' ? 'Regular' : '');
       if (sib && rec.w[sib] && rec.w[sib].length) avail = rec.w[sib];
+    }
+    if ((!avail || !avail.length) && rec.w) {
+      avail = rec.w.Regular || rec.w.Normal || null;
+      if ((!avail || !avail.length)) {
+        const keys = Object.keys(rec.w);
+        for (let i = 0; i < keys.length; i++) {
+          if (rec.w[keys[i]] && rec.w[keys[i]].length) { avail = rec.w[keys[i]]; break; }
+        }
+      }
     }
     if (!avail || !avail.length) avail = Array.isArray(rec.s) ? rec.s : [];
     if (!avail.length) return req;
@@ -1173,12 +1230,13 @@
    */
   function ensureFontCss(family, weight, version, text) {
     if (!family) return Promise.resolve();
-    const pathName = weightName(family, weight);
-    const w = weightToCss(weight || pathName || '400');
     const needText = text == null ? '' : String(text);
     const requested = packageSubset(version);
 
     return loadPackSubsets().then(function () {
+      const folder = packageWeight(family, weight);
+      const pathName = String(folder).toLowerCase().replace(/[\s-]+/g, '');
+      const w = weightToCss(folder);
       const ver = pickPackSubset(family, pathName, requested);
       const key = family + '|' + pathName + '|' + ver;
       if (injectedCss[key]) {
