@@ -179,8 +179,11 @@ Feng 定规（2026-09-25）：调整**许可标签、胶囊、色块、密度、
 
 ## 9. 性能预算
 
+大改动后按 [PERF-CHECK.md](ops/PERF-CHECK.md) 再测（app **和** org）。集群规程 linuxjoy `docs/ops/sop-windfonts-perf.md` #40。基线 [perf-baseline-2026-10-08.json](ops/perf-baseline-2026-10-08.json)。
+
 - 首屏 HTML + CSS + JS（不含字体）≤ 150 KB gzip 前。
-- UI 字体寒蝉全圆体 5 个字重本地子集共 ≤ 1.2 MB，`font-display: swap`。
-- 样张字体按需加载：只为可见卡片 `ensureFontCss`；列表分页 12 条 + 无限滚动。
+- UI 字体现网是阿里巴巴普惠体 400+700 本地子集（`assets/fonts/ui/PuHuiTi-{400,700}.woff2`），`font-display: swap`。旧句「寒蝉全圆体 5 个字重 ≤ 1.2 MB」不再是 SoT。
+- 样张字体按需加载：只为可见卡片 `ensureFontCss`；列表分页 **10** 条（`PAGE_SIZE`）+ 无限滚动。
+- 热路径只拉 `fonts-list.json`，禁止列表/首页拉 `fonts.json`（#8804）。
 - 图标单一 sprite，一次请求。
 - 不引入第三方运行时库。

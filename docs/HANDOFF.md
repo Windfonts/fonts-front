@@ -1,5 +1,7 @@
 # 文风字体 · 交接与后续开发
 
+**2026-10-08 性能检测规程 + 页眉菜单距 [Grok]：** 人要记录、大改动后再测（app+org）、org 静态考虑国内线路（`.org` 不备案）、app 页眉菜单左距跟 org。linuxjoy SOP #40 `docs/ops/sop-windfonts-perf.md`。本仓 `docs/ops/PERF-CHECK.md` + `scripts/perf-check.py` + 基线 `docs/ops/perf-baseline-2026-10-08.json`。`.topnav a` padding `0.4rem 1.5rem`，公网 HTML `components.css?v=20261008nav1`。杭州 occupancy-safe：`css/components.css` + 38 html（39 对象）。现网戳 nav1，菜单项左右 24px。未改字林 needText、未回退 feat2、未改 org DNS/Worker。不要整树 `deploy-web-hz.sh`。不要发 `*-options.html`。未 git commit。cluster-recall **#9354**。
+
 **2026-10-08 特点页活样张缺字 [Grok]：** 人推远程后问 `/features` 缺字。活样张 `ensureFontCss(..., 'zh')` 不带文案，Black 只有 zh-common（无 字/尽/显），不升 full。`features.js` 把标题字传进 ensureFontCss，戳 `?v=20261008feat2`。现网会再拉 `albbpht/Black/full`。未改 wf-proto `readyFace`（仍不传 text）。
 
 **2026-10-08 首页 FEATURED 霞鹜 [Grok]：** 人「home.js 同一串也改掉并提交」。`js/pages/home.js` `霞鹙文楷`→`霞鹜文楷`，戳 `index.html` `home.js?v=20261008home1`。杭州 occupancy-safe：index.html + home.js。不改 *-options.html。

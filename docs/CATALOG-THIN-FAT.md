@@ -41,6 +41,11 @@ Rebuild: `python3 scripts/build-fonts-list.py`
 Hot path on `app.windfonts.com` is `data/fonts-list.json` (thin) via `wf-proto.js`. Detail enrich: `data/fonts-by-slug/{Normalized}.json`. Full `fonts.json` stays authoring input. Vault default remains mock. HTML `?v=` stamps live on each shell; bump them when JS/CSS/list change.
 
 
+## Live 2026-10-08
+
+Chrome preload is `/assets/fonts/ui/PuHuiTi-400.woff2` (not the Albbpht shop shard in Track D below). Wordmark remains hckht full shards 16/18/15/19. After major catalog/JS/CSS changes run `python3 scripts/perf-check.py --all`. Track D below is the 2026-09-29 tip, not current chrome.
+
+
 ## Track D (this tip, HTML shells)
 
 - `preconnect` + `dns-prefetch` → `https://cn.windfonts.com`

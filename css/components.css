@@ -19,7 +19,7 @@
 .wordmark img { width: 24px; height: 24px; border-radius: 6px; }
 .wordmark:hover { text-decoration: none; }
 .topnav { display: flex; gap: var(--s-1); font-size: var(--fs-14); }
-.topnav a { padding: 0.4rem 0.85rem; border-radius: var(--radius-pill); color: var(--gray); }
+.topnav a { padding: 0.4rem 1.5rem; border-radius: var(--radius-pill); color: var(--gray); }
 .topnav a:hover { color: var(--ink); text-decoration: none; background: var(--fill); }
 .topnav a.is-active { color: var(--ink); background: var(--fill); font-weight: var(--fw-title); }
 .topbar-end { margin-left: auto; display: flex; align-items: center; gap: var(--s-4); font-size: var(--fs-13); }

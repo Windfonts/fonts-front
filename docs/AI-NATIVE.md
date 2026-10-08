@@ -12,6 +12,7 @@
 6. `docs/CLAIM-SCOPES.md` — 厂商认领权限矩阵；动认领页 / 厂商 CTA / 厂商后台时必读
 7. 与任务相关的页面 HTML、其 `js/pages/*.js`，以及被引用的 `wf-*.js`
 8. `styleguide.html`（可在浏览器打开）核对组件长相
+9. 大改动（`ensureFontCss` / 目录体积 / UI 字 / org 静态）后读 `docs/ops/PERF-CHECK.md` 并跑 `python3 scripts/perf-check.py --all`
 
 不读文件就动手、凭记忆猜类名或令牌名，是本仓最常见的返工来源。
 
