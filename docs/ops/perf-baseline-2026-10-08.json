@@ -1,9 +1,7 @@
 {
   "date": "2026-10-08",
-  "note": "Mac Clash cold load; not mainland user. Cached reload is not this baseline. Org not optimized.",
-  "known_warns": [
-    "org-ui-on-cloudflare"
-  ],
+  "note": "Mac Clash cold load; not mainland user. Cached reload is not this baseline. Org chrome on cn.windfonts.com as of 2026-10-08 evening.",
+  "known_warns": [],
   "app": {
     "fonts_list_gzip_bytes": 91254,
     "fonts_list_decoded_bytes": 614045,
@@ -23,13 +21,14 @@
     "shop_perf": "2026-10-08-shop-perf: forest glyph needText; IO queue; features preview-shop; readyFace text"
   },
   "org": {
-    "optimized": false,
+    "optimized": "chrome-on-cn",
     "icp": false,
     "apex_cannot_icp": ".org not on MIIT suffix list (feibisi 2026-10-01)",
-    "home_html_bytes": 32407,
-    "home_cn_windfonts_in_first_html": 0,
-    "ui_assets_host": "wenfeng.org",
+    "home_html_bytes": 32300,
+    "home_cn_windfonts_in_first_html": 8,
+    "ui_assets_host": "cn.windfonts.com/assets/",
     "html_stays": "Cloudflare Worker wenfeng-org-proxy -> oss://wenfeng-org",
-    "static_consider": "cn.windfonts.com (already ICP) for CSS/JS/woff2/images; do not attach mainland seven A; do not put HTML in wenfeng-web-hz"
+    "static_host": "oss://wenfeng-fonts/assets/ Guangzhou (zone windfonts; not wenfeng-fonts-hz until cut)",
+    "do_not": "mainland seven A; org HTML in wenfeng-web-hz; Worker/DNS change"
   }
 }

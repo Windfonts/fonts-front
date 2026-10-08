@@ -26,17 +26,15 @@ python3 scripts/perf-check.py --skip-live   # 只扫本仓 JS/CSS 债
 | 分页 | `PAGE_SIZE=10` | 10 |
 | 页眉菜单 | `.topnav a` padding `0.4rem 1.5rem`（与 wenfeng.org 相同） | `20261008nav1` |
 
-已知债（基线 `known_warns`，再出现不算新红）：
-
-- `org-ui-on-cloudflare`：org 首页 HTML 零条 `cn.windfonts.com`，UI 还在 CF
+已知债（基线 `known_warns`，再出现不算新红）：无。`org-ui-on-cloudflare` 在 org 页眉改走 cn 后不再是债；首页 HTML 零条 cn 才重新报 WARN。
 
 2026-10-08 店面加速后：字林 needText 只用格子里的字；字林不 idle 全排队；特点英雄从 `preview-shop` 起、缺字仍可升 full。`home-forest-needText-textContent` / `features-zh-then-full` 再出现算新 WARN。不要回退缺字升级、不要公开 `?text=`。Lighthouse 可选。冷启动与 Clash 缓存重载分开写。
 
 ## org
 
 - `.org` **备不了案**（`DEPLOY.md` 2026-10-01）。禁止大陆七 A 上 apex。
-- HTML 留 CF/Worker。静态以后才考虑已备案 `cn.windfonts.com`。不要把 org 网页写进 `oss://wenfeng-web-hz`。
-- 2026-10-08 首页 HTML ~32KB，UI `/assets/*` 全在 `wenfeng.org`。
+- HTML 留 CF/Worker → `oss://wenfeng-org`。页眉 CSS/JS/woff2/图 2026-10-08 起走 `https://cn.windfonts.com/assets/`（广州 `wenfeng-fonts/assets/`）。不要把 org 网页写进 `oss://wenfeng-web-hz`。不要改 Worker/DNS。
+- 2026-10-08 晚首页 HTML ~32KB，`cn.windfonts.com` ≥8 条。
 
 ## 浏览器补测（脚本代替不了）
 

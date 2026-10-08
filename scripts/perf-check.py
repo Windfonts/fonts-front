@@ -248,7 +248,10 @@ def main() -> int:
 
     if args.site in ("org", "all") and not args.skip_live:
         pages = [audit_html(args.org_origin.rstrip("/") + path, "org") for path in ORG_PAGES]
-        out["org"] = {"pages": pages, "optimized": False}
+        out["org"] = {
+            "pages": pages,
+            "optimized": any((p.get("cn_windfonts_refs") or 0) > 0 for p in pages),
+        }
 
     out["grade"] = grade(out.get("app") or {}, out.get("org") or {}, repo, baseline)
     print(json.dumps(out, ensure_ascii=False, indent=2))
