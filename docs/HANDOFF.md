@@ -1,5 +1,9 @@
 # 文风字体 · 交接与后续开发
 
+**2026-10-09 SEO/GEO 已发版 [Grok]：** 人要按审查改到符合标准。`scripts/build-seo.py` 预渲染 775 字体 + 186 厂商；sitemap 976 loc；llms 200。杭州 `wenfeng-web-hz` 2967。十边去掉 SPA rewrite，`/fonts/` 301 `/fonts`，未知 slug HTTP 404。`/fonts/xwwk` 第一字节 H1 霞鹜文楷。pricing/bag/login/lab noindex。albbpht `licenseNotes` 不再写 OPPO 条款。linuxjoy SOP #41。未提交 Search Console。不要 `*-options.html`。
+
+**2026-10-08 SEO/GEO 审查 [Grok]：** 人要 app+org 全面审查。稿在 linuxjoy `docs/plans/2026-10-08-windfonts-seo-geo-audit.md`。本站：无 sitemap/canonical/JSON-LD/llms；`/fonts` 无 H1；`/fonts/` 是详情壳；未知 slug 200 壳；定价与 mock 查询可被引用。未改生产、未上传 sitemap。
+
 **2026-10-08 org favicon 反色 [Grok]：** 人要 org 标签图标用 app 反色。现网 `wenfeng.org/favicon.ico` 深标浅底 200；app 仍白标深底。页眉方标两边仍是同一张 `icon.webp`。仓在 `wenfeng-org`。
 
 **2026-10-08 org 页眉走 cn [Grok]：** 人「未做的去做」。HTML 仍 CF/`oss://wenfeng-org`。页眉 CSS/JS/woff2/图 → `https://cn.windfonts.com/assets/`（广州 `wenfeng-fonts/assets/`，1506 对象）。授权 PDF 仍同源。未改 Worker/DNS，未挂大陆七 A，未进 `wenfeng-web-hz`。`perf-check.py --site org` EXIT 0，基线去掉 `org-ui-on-cloudflare`。浏览器：首页/用法/关于 CSS+寒蝉/玄宗 woff2 均 cn 200；续验 `/source/` `/source/xwwk/` `/attest/xwwk/` 页眉+证面思源均 cn 200。CF `purge_everything` zone `91c9a7ea…` success。仅 `favicon.ico` 404（旧债）。仓在 `wenfeng-org`。

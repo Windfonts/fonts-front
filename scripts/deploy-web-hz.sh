@@ -11,6 +11,9 @@ DRY=0
 STAGE="$ROOT/.deploy-web-hz"
 mkdir -p "$STAGE"
 
+echo "== seo prerender =="
+python3 "$ROOT/scripts/build-seo.py"
+
 echo "== proto data stamps =="
 python3 -c "import re,sys; from pathlib import Path
 t=Path(sys.argv[1]).read_text(encoding='utf-8', errors='replace')

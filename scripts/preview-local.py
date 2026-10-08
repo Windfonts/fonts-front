@@ -17,8 +17,6 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 REWRITE = [
     (re.compile(r"^/app/?$"), "/app/index.html"),
-    (re.compile(r"^/fonts/[^/]+/?$"), "/font-detail.html"),
-    (re.compile(r"^/foundry/[^/]+/?$"), "/foundry.html"),
 ]
 
 
@@ -55,6 +53,15 @@ class Handler(SimpleHTTPRequestHandler):
         for w in words:
             out = os.path.join(out, w)
         return out
+
+    def do_GET(self):
+        path = unquote(self.path.split("?", 1)[0].split("#", 1)[0])
+        if path in ("/fonts/", "/foundry/"):
+            self.send_response(301)
+            self.send_header("Location", path.rstrip("/"))
+            self.end_headers()
+            return
+        return super().do_GET()
 
     def log_message(self, fmt: str, *args) -> None:
         sys.stderr.write("%s - %s\n" % (self.address_string(), fmt % args))

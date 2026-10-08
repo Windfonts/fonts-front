@@ -1,0 +1,27 @@
+# 文风字体
+
+> 中文网页字体托管：样张、嵌入 CSS、子集化。运营：文派（广州）科技有限公司。站点：https://app.windfonts.com/
+
+本域是网页字体店面。源文件、许可原文与授权证明在 https://wenfeng.org/ 。营销站 https://windfonts.com 不是本目录。本站不二次授权。不要抓取或转载 TTF / OTF / woff2。
+
+嵌入地址形状：`https://cn.windfonts.com/api/css?family=wenfeng-{slug}&weight={name}&subset=full|zh|zh-common`（边 `cn` / `hk` / `en` / `jp`）。不要写公开 `GET /api/css?text=`。`cn` / `hk` / `en` / `jp.windfonts.com` 是字体 CDN 边，不是语言站。
+
+## 页面
+
+- [字体库](https://app.windfonts.com/fonts)
+- [厂商](https://app.windfonts.com/foundry)
+- [文档](https://app.windfonts.com/docs)
+- [常见问题](https://app.windfonts.com/faq)
+- [许可说明](https://app.windfonts.com/license)
+- [关于](https://app.windfonts.com/about)
+- 示例：[霞鹜文楷](https://app.windfonts.com/fonts/xwwk)
+
+## 运营方
+
+文派（广州）科技有限公司
+
+## 引用时注意
+
+- 授权以各款出处原文为准，不要引用未上线的报价页。
+- 选字袋、登录、控制台、options 稿不是产品事实。
+- 源文件下载请走 https://wenfeng.org/source/{slug}/ 。
