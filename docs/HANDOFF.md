@@ -1,5 +1,7 @@
 # 文风字体 · 交接与后续开发
 
+**2026-10-08 缺字重回退 Regular 已上杭州 [Grok]：** 人「发杭州桶」。`packageWeight` 以拆包文件夹为准，没有请求档时 Regular / Normal / 第一档。戳 `wf-proto.js?v=20261008slug15`，`detail.js` / `wf-tester.js` / `wf-specimen.js` `?v=20261008w1`。乙工坊戳保留 specimen.css ui48 / card.css ui3 / wf-card ui6 / wf-avatar ui4。杭州 `wenfeng-web-hz` 1802。现网 `/fonts/zjgljt?tpl=poster` 只拉 `zjgljt/Regular/{full,zh}/result.css` 200，无 bold、无 `/api/css?weight=bold`。提交 `56b31ee`。
+
 **2026-10-08 乙工坊合进 main [Grok]：** 人「提交推送合并」。empty-state 工作副本 specimen ui48 / tester ui28 / card ui3/ui6 / avatar ui4 叠进 main `font-detail.html`（保留 proto slug13 / detail src2）。不合整枝 `grok/tsanger-grades`。family9 目录同提交。
 
 > 面向接手后端 / 全栈的同学与智能体：原型现状、页面清单、需要后端提供的接口契约、已知待办。
