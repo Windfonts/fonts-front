@@ -1,5 +1,8 @@
 # 文风字体 · 交接与后续开发
 
+**2026-10-08 ToneOZ 谱系按上游 README/OFL 改完并上杭州 [Grok]：** 人「按这个改谱系」。`font-lineage.json`：晓声通秋茄 fork 随峰体 Beta/cjkfonts（family `wenfeng-xstqj`/`xstqj`，去掉误挂霞鹜与 `Xstq`）；澳声通快雪 fork Quicksand/google-fonts；快雪拼音楷 fork 全字库正楷体/cns11643；拼音文楷仍 fork 霞鹜文楷（Klee One 走霞鹜上游，schema 单 `upstreamName`）；大拼音文楷改为拼音文楷的 locale；库楷简两行 `upstreamName` 文鼎PL简中楷（无 arphic foundry，不写 upstreamOwnerId）。秋茄注音/拼音/双拼与繁体库楷六行未改。戳 `font-lineage.json?v=20261008ln4`，`wf-proto.js?v=20261008slug17`。杭州 occupancy-safe 41 文件。现网 `/fonts/xstqj` 谱系「随峰体 Beta」；`/fonts/astqs` Quicksand 库外；`/fonts/astkx` 全字库正楷体；`/fonts/astpywk` 霞鹜+祖 Klee One，地区版大拼音文楷；`/fonts/astzykks` 文鼎PL简中楷库外。bak `data/font-lineage.json.bak-toneoz-20261008ln4`。本提交。不要整树 `deploy-web-hz.sh`。不要加 Quicksand/文鼎目录行、不要加 arphic foundry。
+
+
 **2026-10-08 缺字重回退 Regular 已上杭州 [Grok]：** 人「发杭州桶」。`packageWeight` 以拆包文件夹为准，没有请求档时 Regular / Normal / 第一档。戳 `wf-proto.js?v=20261008slug15`，`detail.js` / `wf-tester.js` / `wf-specimen.js` `?v=20261008w1`。乙工坊戳保留 specimen.css ui48 / card.css ui3 / wf-card ui6 / wf-avatar ui4。杭州 `wenfeng-web-hz` 1802。现网 `/fonts/zjgljt?tpl=poster` 只拉 `zjgljt/Regular/{full,zh}/result.css` 200，无 bold、无 `/api/css?weight=bold`。提交 `56b31ee`。
 
 **2026-10-08 乙工坊合进 main [Grok]：** 人「提交推送合并」。empty-state 工作副本 specimen ui48 / tester ui28 / card ui3/ui6 / avatar ui4 叠进 main `font-detail.html`（保留 proto slug13 / detail src2）。不合整枝 `grok/tsanger-grades`。family9 目录同提交。

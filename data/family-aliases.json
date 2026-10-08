@@ -1187,5 +1187,9 @@
     "wenfeng-konatutohaba": "wenfeng-xxdft",
     "wenfeng-ipagothic": "wenfeng-ipahtgo",
     "ipagothic": "ipahtgo"
-  }
+  },
+  "wenfeng-toneozquicksnow": "wenfeng-astqs",
+  "toneozquicksnow": "wenfeng-astqs",
+  "wenfeng-quicksnow": "wenfeng-astqs",
+  "quicksnow": "wenfeng-astqs"
 }

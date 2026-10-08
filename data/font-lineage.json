@@ -1770,7 +1770,10 @@
       "relation": "fork",
       "upstreamName": "霞鹜文楷",
       "upstreamOwnerId": "lxgw",
-      "licenseFollows": "inherit"
+      "licenseFollows": "inherit",
+      "group": "lxgw-wenkai",
+      "family": "wenfeng-astpywk",
+      "normalized": "astpywk"
     },
     "鹏翎文楷": {
       "ownerId": "lxgw",
@@ -4184,11 +4187,10 @@
       "makerId": "toneoz",
       "relation": "fork",
       "licenseFollows": "inherit",
-      "upstreamOwnerId": "lxgw",
-      "upstreamName": "霞鹜文楷",
-      "group": "lxgw-wenkai",
-      "family": "wenfeng-xstq",
-      "normalized": "Xstq"
+      "upstreamOwnerId": "cjkfonts",
+      "upstreamName": "随峰体 Beta",
+      "family": "wenfeng-xstqj",
+      "normalized": "xstqj"
     },
     "Z Labs 点阵 港标": {
       "ownerId": "astro-2539",
@@ -4405,6 +4407,144 @@
       "group": "source-han-serif",
       "family": "wenfeng-xcdzst",
       "normalized": "xcdzst"
+    },
+    "澳声通大拼音文楷": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "locale",
+      "upstreamName": "澳声通拼音文楷",
+      "upstreamOwnerId": "toneoz",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-astpywwk",
+      "normalized": "astpywwk"
+    },
+    "晓声通秋茄注音": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "locale",
+      "upstreamName": "晓声通秋茄",
+      "upstreamOwnerId": "toneoz",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-xstqjzy",
+      "normalized": "xstqjzy"
+    },
+    "晓声通秋茄拼音": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "locale",
+      "upstreamName": "晓声通秋茄",
+      "upstreamOwnerId": "toneoz",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-xstqjpy",
+      "normalized": "xstqjpy"
+    },
+    "晓声通秋茄双拼": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "locale",
+      "upstreamName": "晓声通秋茄",
+      "upstreamOwnerId": "toneoz",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-xstqjpz",
+      "normalized": "xstqjpz"
+    },
+    "澳声通注音库楷": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "fork",
+      "upstreamName": "全字库正楷体",
+      "upstreamOwnerId": "cns11643",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-astzykk",
+      "normalized": "astzykk"
+    },
+    "澳声通大注音库楷": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "fork",
+      "upstreamName": "全字库正楷体",
+      "upstreamOwnerId": "cns11643",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-astzywkk",
+      "normalized": "astzywkk"
+    },
+    "澳声通部首注音库楷": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "fork",
+      "upstreamName": "全字库正楷体",
+      "upstreamOwnerId": "cns11643",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-astbszy",
+      "normalized": "astbszy"
+    },
+    "澳声通拼音库楷": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "fork",
+      "upstreamName": "全字库正楷体",
+      "upstreamOwnerId": "cns11643",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-astpykk",
+      "normalized": "astpykk"
+    },
+    "澳声通部首拼音库楷": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "fork",
+      "upstreamName": "全字库正楷体",
+      "upstreamOwnerId": "cns11643",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-astbspy",
+      "normalized": "astbspy"
+    },
+    "澳声通大拼音库楷": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "fork",
+      "upstreamName": "全字库正楷体",
+      "upstreamOwnerId": "cns11643",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-astpywkk",
+      "normalized": "astpywkk"
+    },
+    "澳声通注音库楷简": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "fork",
+      "upstreamName": "文鼎PL简中楷",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-astzykks",
+      "normalized": "astzykks"
+    },
+    "澳声通大注音库楷简": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "fork",
+      "upstreamName": "文鼎PL简中楷",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-astzywkks",
+      "normalized": "astzywkks"
+    },
+    "澳声通快雪": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "fork",
+      "upstreamName": "Quicksand",
+      "upstreamOwnerId": "google-fonts",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-astqs",
+      "normalized": "astqs"
+    },
+    "澳声通快雪拼音楷": {
+      "ownerId": "toneoz",
+      "makerId": "toneoz",
+      "relation": "fork",
+      "upstreamName": "全字库正楷体",
+      "upstreamOwnerId": "cns11643",
+      "licenseFollows": "inherit",
+      "family": "wenfeng-astkx",
+      "normalized": "astkx"
     }
   }
 }

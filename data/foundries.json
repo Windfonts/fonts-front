@@ -1660,19 +1660,34 @@
       "name": "澳声通",
       "en": "ToneOZ",
       "short": "澳声通",
-      "website": "https://github.com/jeffreyxuan/toneoz-font-pinyin-wenkai",
+      "website": "https://toneoz.com/",
       "aliases": [
         "ToneOZ",
+        "晓声通",
         "澳声通"
       ],
       "fontNames": [
+        "澳声通快雪拼音楷",
+        "澳声通快雪",
         "澳声通拼音文楷",
-        "晓声通秋茄"
+        "澳声通大拼音文楷",
+        "晓声通秋茄",
+        "晓声通秋茄注音",
+        "晓声通秋茄拼音",
+        "晓声通秋茄双拼",
+        "澳声通注音库楷",
+        "澳声通注音库楷简",
+        "澳声通大注音库楷",
+        "澳声通大注音库楷简",
+        "澳声通部首注音库楷",
+        "澳声通拼音库楷",
+        "澳声通部首拼音库楷",
+        "澳声通大拼音库楷"
       ],
       "kind": "author",
       "openSource": true,
       "claimed": false,
-      "description": "澳声通拼音文楷、晓声通秋茄。SIL OFL 1.1。"
+      "description": "澳声通 ToneOZ。注音、拼音、秋茄、快雪。作者页 toneoz.com。"
     },
     {
       "id": "zdic",

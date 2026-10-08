@@ -99,7 +99,7 @@
     if (base.indexOf('/admin') !== -1) return '../data/' + file;
     return 'data/' + file;
   }
-  function catalogUrl() { return dataUrl('fonts-list.json?v=20261008list5'); }
+  function catalogUrl() { return dataUrl('fonts-list.json?v=20261008list6'); }
   function analysisMetaUrl() {
     /* CyberCDN 按查询串分变体缓存：换数据必须换新版本值（旧变体会粘住陈旧内容），
        全新值首次回源即全量。20260925b 曾在重建中途被缓存成 1-2 字体的残缺变体。 */
@@ -234,9 +234,9 @@
       if (Array.isArray(j)) return j;
       throw new Error('fonts-list.json invalid');
     });
-    const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20261008ka2'), { foundries: [] });
+    const foundriesReq = fetchJsonCached(dataUrl('foundries.json?v=20261008ka3'), { foundries: [] });
     const evidenceReq = fetchJsonCached(dataUrl('license-evidence.json?v=20260925b'), { standards: {}, names: {} });
-    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20261008ln2'), { groups: {}, byName: {} });
+    const lineageReq = fetchJsonCached(dataUrl('font-lineage.json?v=20261008ln4'), { groups: {}, byName: {} });
     const avatarsReq = fetchJsonCached(dataUrl('avatars.json?v=20260928av9'), {});
     const packSubsetsReq = loadPackSubsets();
     catalogPromise = Promise.all([fontsReq, foundriesReq, evidenceReq, lineageReq, avatarsReq, packSubsetsReq])
@@ -273,7 +273,7 @@
       font._fat = true;
       return Promise.resolve(font);
     }
-    const url = dataUrl('fonts-by-slug/' + encodeURIComponent(stem) + '.json?v=20261008list5');
+    const url = dataUrl('fonts-by-slug/' + encodeURIComponent(stem) + '.json?v=20261008list6');
     return fetch(url).then(function (r) {
       if (!r.ok) throw new Error(String(r.status));
       return r.json();
@@ -1009,7 +1009,7 @@
   function loadPackSubsets() {
     if (packSubsets) return Promise.resolve(packSubsets);
     if (packSubsetsPromise) return packSubsetsPromise;
-    packSubsetsPromise = fetchJsonCached(dataUrl('pack-subsets.json?v=20261007a2'), { packs: {} })
+    packSubsetsPromise = fetchJsonCached(dataUrl('pack-subsets.json?v=20261008t1'), { packs: {} })
       .then(function (j) {
         packSubsets = (j && j.packs && typeof j.packs === 'object') ? j.packs : {};
         return packSubsets;

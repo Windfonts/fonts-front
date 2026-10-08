@@ -1183,6 +1183,184 @@
           "tier": "secondary"
         }
       ]
+    },
+    {
+      "id": "toneoz-quicksnow",
+      "name": "澳声通快雪",
+      "en": "ToneOZ QuickSnow",
+      "default": "wenfeng-astqs",
+      "members": [
+        {
+          "family": "wenfeng-astqs",
+          "chips": [
+            "拉丁",
+            "可变"
+          ],
+          "tier": "primary"
+        }
+      ],
+      "canonical": "astqs",
+      "status": "active"
+    },
+    {
+      "id": "toneoz-quicksnow-pinyin-kai",
+      "name": "澳声通快雪拼音楷",
+      "en": "ToneOZ QuickSnow Pinyin Kai",
+      "default": "wenfeng-astkx",
+      "members": [
+        {
+          "family": "wenfeng-astkx",
+          "chips": [
+            "拼音",
+            "楷"
+          ],
+          "tier": "primary"
+        }
+      ],
+      "canonical": "astkx",
+      "status": "active"
+    },
+    {
+      "id": "toneoz-pinyin-wenkai",
+      "name": "澳声通拼音文楷",
+      "en": "ToneOZ Pinyin WenKai",
+      "default": "wenfeng-astpywk",
+      "members": [
+        {
+          "family": "wenfeng-astpywk",
+          "chips": [
+            "拼音"
+          ],
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-astpywwk",
+          "chips": [
+            "大拼音"
+          ],
+          "tier": "secondary"
+        }
+      ],
+      "canonical": "astpywk",
+      "status": "active"
+    },
+    {
+      "id": "toneoz-tsuipita",
+      "name": "晓声通秋茄",
+      "en": "ToneOZ Tsuipita",
+      "default": "wenfeng-xstqj",
+      "members": [
+        {
+          "family": "wenfeng-xstqj",
+          "chips": [
+            "手写"
+          ],
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-xstqjzy",
+          "chips": [
+            "注音"
+          ],
+          "tier": "secondary"
+        },
+        {
+          "family": "wenfeng-xstqjpy",
+          "chips": [
+            "拼音"
+          ],
+          "tier": "secondary"
+        },
+        {
+          "family": "wenfeng-xstqjpz",
+          "chips": [
+            "双拼"
+          ],
+          "tier": "secondary"
+        }
+      ],
+      "canonical": "xstqj",
+      "status": "active"
+    },
+    {
+      "id": "toneoz-zhuyin-kai",
+      "name": "澳声通注音库楷",
+      "en": "ToneOZ Zhuyin Kai",
+      "default": "wenfeng-astzykk",
+      "members": [
+        {
+          "family": "wenfeng-astzykk",
+          "chips": [
+            "繁",
+            "注音"
+          ],
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-astzykks",
+          "chips": [
+            "简",
+            "注音"
+          ],
+          "tier": "secondary"
+        },
+        {
+          "family": "wenfeng-astzywkk",
+          "chips": [
+            "繁",
+            "大注音"
+          ],
+          "tier": "secondary"
+        },
+        {
+          "family": "wenfeng-astzywkks",
+          "chips": [
+            "简",
+            "大注音"
+          ],
+          "tier": "secondary"
+        },
+        {
+          "family": "wenfeng-astbszy",
+          "chips": [
+            "部首注音"
+          ],
+          "tier": "advanced"
+        }
+      ],
+      "canonical": "astzykk",
+      "status": "active"
+    },
+    {
+      "id": "toneoz-pinyin-kai",
+      "name": "澳声通拼音库楷",
+      "en": "ToneOZ Pinyin Kai",
+      "default": "wenfeng-astpykk",
+      "members": [
+        {
+          "family": "wenfeng-astpykk",
+          "chips": [
+            "拼音"
+          ],
+          "tier": "primary"
+        },
+        {
+          "family": "wenfeng-astpywkk",
+          "chips": [
+            "大拼音"
+          ],
+          "tier": "secondary"
+        },
+        {
+          "family": "wenfeng-astbspy",
+          "chips": [
+            "部首拼音"
+          ],
+          "tier": "advanced"
+        }
+      ],
+      "canonical": "astpykk",
+      "status": "active"
     }
   ],
   "policy": {

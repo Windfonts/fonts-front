@@ -10963,10 +10963,10 @@
     "weights": [
       "Regular"
     ],
-    "description": "晓声通秋茄，繁体。ToneOZ Tsuipita。OFL 1.1。",
-    "license": "免费商用",
+    "description": "晓声通秋茄，繁体手写。ToneOZ Tsuipita TC。SIL OFL 1.1。",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-tsuipita/blob/main/OFL.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/xstqj/license/original.txt",
     "licenseNotes": "",
     "licenseVerified": null,
@@ -10978,11 +10978,11 @@
       "slug": "toneoz",
       "logoUrl": "",
       "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
-      "website": "https://github.com/jeffreyxuan/toneoz-font-pinyin-wenkai",
-      "description": "澳声通拼音文楷。SIL OFL 1.1。"
+      "website": "https://github.com/jeffreyxuan/toneoz-font-tsuipita",
+      "description": "晓声通秋茄。SIL OFL 1.1。"
     },
     "releaseYear": 2024,
-    "version": "OSS ingest batch2 2026-09-23",
+    "version": "ToneOZ ingest 2026-10-08",
     "languages": [
       "繁体中文"
     ],
@@ -10993,7 +10993,7 @@
     "glyphCount": 16356,
     "viewCount": 3,
     "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
-    "descriptionBrief": "晓声通秋茄，繁体。ToneOZ Tsuipita。OFL 1.1。"
+    "descriptionBrief": "晓声通秋茄，繁体手写。ToneOZ Tsuipita TC。SIL OFL 1.1。"
   },
   {
     "id": "f5d41a64-e342-44b0-908a-1183805c64b2",
@@ -13401,15 +13401,19 @@
     "tags": [
       "开源",
       "OFL",
-      "batch3"
+      "toneoz",
+      "拼音",
+      "文楷"
     ],
     "weights": [
-      "Regular"
+      "Regular",
+      "Light",
+      "Bold"
     ],
-    "description": "澳声通拼音文楷。SIL OFL 1.1。",
-    "license": "免费商用",
+    "description": "澳声通拼音文楷。霞鹜文楷加汉语拼音。SIL OFL 1.1。含 Regular / Light / Bold。",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
-    "licenseUrl": "",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-pinyin-wenkai/blob/master/OFL.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/astpywk/license/original.txt",
     "licenseNotes": "",
     "licenseVerified": null,
@@ -13425,7 +13429,7 @@
       "description": "澳声通拼音文楷。SIL OFL 1.1。"
     },
     "releaseYear": 2024,
-    "version": "OSS ingest batch2 2026-09-23",
+    "version": "ToneOZ ingest 2026-10-08",
     "languages": [
       "繁体中文",
       "英语"
@@ -13438,7 +13442,7 @@
     "glyphCount": 65517,
     "viewCount": 3,
     "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
-    "descriptionBrief": "澳声通拼音文楷。SIL OFL 1.1。"
+    "descriptionBrief": "澳声通拼音文楷。霞鹜文楷加汉语拼音。SIL OFL 1.1。含 Regular / Light / Bold。"
   },
   {
     "id": "7328b800-0824-4d62-9e9f-aba6a19fc5e0",
@@ -32444,54 +32448,57 @@
   },
   {
     "id": "c084c625-00a0-4be7-b7ba-0acdae0207a9",
-    "name": "澳声通快雪",
-    "en": "ToneOZ QuickSnow",
+    "name": "澳声通快雪拼音楷",
+    "en": "ToneOZ QuickSnow Pinyin Kai Traditional",
     "family": "wenfeng-astkx",
     "normalized": "astkx",
-    "designer": "toneoz",
-    "designerShort": "toneoz",
-    "category": "衬线",
-    "tags": [],
-    "weights": [
-      "Variable",
-      "W300",
-      "W400",
-      "W500",
-      "W600",
-      "W700"
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "楷体",
+    "tags": [
+      "开源",
+      "OFL",
+      "toneoz",
+      "拼音",
+      "楷体"
     ],
-    "description": "",
+    "weights": [
+      "Regular",
+      "Variable"
+    ],
+    "description": "澳声通快雪拼音楷。汉字楷体加汉语拼音。SIL OFL 1.1。与拉丁「澳声通快雪」不是同一款。",
     "license": "开源商用",
-    "licenseName": "OFL",
-    "licenseUrl": "",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-quicksnow-pinyin-kai-traditional/blob/main/OFL.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/astkx/license/original.txt",
     "licenseNotes": "",
     "licenseVerified": null,
     "purchaseUrl": null,
-    "copyright": "",
-    "foundry": "toneoz",
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
     "brand": {
       "name": "澳声通",
       "slug": "toneoz",
       "logoUrl": "",
       "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
-      "website": "https://github.com/jeffreyxuan/toneoz-font-pinyin-wenkai",
-      "description": "澳声通拼音文楷。SIL OFL 1.1。"
+      "website": "https://github.com/jeffreyxuan/toneoz-font-quicksnow-pinyin-kai-traditional",
+      "description": "澳声通快雪拼音楷。SIL OFL 1.1。"
     },
-    "releaseYear": 2026,
-    "version": "1",
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
     "languages": [
-      "中文",
-      "日文"
+      "繁体中文",
+      "英语"
     ],
     "useCases": [
       "正文",
       "标题"
     ],
-    "charCount": 737,
-    "glyphCount": 905,
+    "charCount": 26225,
+    "glyphCount": 60570,
     "viewCount": 0,
-    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon"
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "澳声通快雪拼音楷。汉字楷体加汉语拼音。SIL OFL 1.1。与拉丁「澳声通快雪」不是同一款。"
   },
   {
     "id": "1e2f9059-c10e-42ed-bacd-be8636ce8125",
@@ -37879,5 +37886,674 @@
     "viewCount": 0,
     "foundryAvatar": "https://cravatar.com/avatar/131aba712b62aae75313854832973c30b67830484624a6ec0a449a000e26d341?s=144&d=identicon",
     "descriptionBrief": "香萃端庄宋体。OFL 1.1。"
+  },
+  {
+    "id": "9a289843-ba71-4e30-a074-9a212b348376",
+    "name": "澳声通快雪",
+    "en": "ToneOZ QuickSnow",
+    "family": "wenfeng-astqs",
+    "normalized": "astqs",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "衬线",
+    "tags": [
+      "开源",
+      "OFL",
+      "toneoz",
+      "拉丁"
+    ],
+    "weights": [
+      "Variable",
+      "W300",
+      "W400",
+      "W500",
+      "W600",
+      "W700"
+    ],
+    "description": "澳声通快雪。拉丁可变字体（W300–W700）。SIL OFL 1.1。汉字拼音楷见「澳声通快雪拼音楷」。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-quicksnow/blob/main/OFL.txt",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/astqs/license/original.txt",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+      "website": "https://github.com/jeffreyxuan/toneoz-font-quicksnow",
+      "description": "澳声通快雪。拉丁可变字体。SIL OFL 1.1。"
+    },
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
+    "languages": [
+      "英语"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 737,
+    "glyphCount": 905,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "澳声通快雪。拉丁可变字体（W300–W700）。SIL OFL 1.1。汉字拼音楷见「澳声通快雪拼音楷」。"
+  },
+  {
+    "id": "b916f723-0f60-4a10-8526-7088ef39cfd7",
+    "name": "澳声通大拼音文楷",
+    "en": "ToneOZ PinyinW WenKai",
+    "family": "wenfeng-astpywwk",
+    "normalized": "astpywwk",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "手写体",
+    "tags": [
+      "开源",
+      "OFL",
+      "toneoz",
+      "拼音",
+      "文楷"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "澳声通大拼音文楷。拼音标在字侧。SIL OFL 1.1。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-pinyin-wenkai/blob/master/OFL.txt",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/astpywwk/license/original.txt",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+      "website": "https://github.com/jeffreyxuan/toneoz-font-pinyin-wenkai",
+      "description": "澳声通大拼音文楷。SIL OFL 1.1。"
+    },
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 30956,
+    "glyphCount": 65517,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "澳声通大拼音文楷。拼音标在字侧。SIL OFL 1.1。"
+  },
+  {
+    "id": "dcc028a5-c273-45cb-9d74-2cb9e182ef99",
+    "name": "晓声通秋茄注音",
+    "en": "ToneOZ Zhuyin Tsuipita TC",
+    "family": "wenfeng-xstqjzy",
+    "normalized": "xstqjzy",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "手写体",
+    "tags": [
+      "开源",
+      "OFL",
+      "toneoz",
+      "注音"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "晓声通秋茄注音。秋茄手写加注音。SIL OFL 1.1。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-tsuipita/blob/main/OFL.txt",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/xstqjzy/license/original.txt",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+      "website": "https://github.com/jeffreyxuan/toneoz-font-tsuipita",
+      "description": "晓声通秋茄注音。SIL OFL 1.1。"
+    },
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
+    "languages": [
+      "繁体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 17686,
+    "glyphCount": 44118,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "晓声通秋茄注音。秋茄手写加注音。SIL OFL 1.1。"
+  },
+  {
+    "id": "1ee13322-b561-4ad7-9d7a-9be705ae74de",
+    "name": "晓声通秋茄拼音",
+    "en": "ToneOZ Pinyin Tsuipita TC",
+    "family": "wenfeng-xstqjpy",
+    "normalized": "xstqjpy",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "手写体",
+    "tags": [
+      "开源",
+      "OFL",
+      "toneoz",
+      "拼音"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "晓声通秋茄拼音。秋茄手写加汉语拼音。SIL OFL 1.1。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-tsuipita/blob/main/OFL.txt",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/xstqjpy/license/original.txt",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+      "website": "https://github.com/jeffreyxuan/toneoz-font-tsuipita",
+      "description": "晓声通秋茄拼音。SIL OFL 1.1。"
+    },
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 16261,
+    "glyphCount": 40447,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "晓声通秋茄拼音。秋茄手写加汉语拼音。SIL OFL 1.1。"
+  },
+  {
+    "id": "dc3145f7-06aa-4d61-ba24-93b9932877a0",
+    "name": "晓声通秋茄双拼",
+    "en": "ToneOZ YinPZ Tsuipita TC",
+    "family": "wenfeng-xstqjpz",
+    "normalized": "xstqjpz",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "手写体",
+    "tags": [
+      "开源",
+      "OFL",
+      "toneoz",
+      "拼音"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "晓声通秋茄双拼。秋茄手写加注音拼音双标。SIL OFL 1.1。",
+    "license": "开源商用",
+    "licenseName": "SIL Open Font License 1.1",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-tsuipita/blob/main/OFL.txt",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/xstqjpz/license/original.txt",
+    "licenseNotes": "",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+      "website": "https://github.com/jeffreyxuan/toneoz-font-tsuipita",
+      "description": "晓声通秋茄双拼。SIL OFL 1.1。"
+    },
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
+    "languages": [
+      "繁体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 17686,
+    "glyphCount": 44178,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "晓声通秋茄双拼。秋茄手写加注音拼音双标。SIL OFL 1.1。"
+  },
+  {
+    "id": "f2c4dae1-a4b6-41b0-b234-3d173c2c152f",
+    "name": "澳声通注音库楷",
+    "en": "ToneOZ Zhuyin Kai Traditional",
+    "family": "wenfeng-astzykk",
+    "normalized": "astzykk",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "楷体",
+    "tags": [
+      "免费商用",
+      "toneoz",
+      "注音",
+      "楷体"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "澳声通注音库楷。全字库正楷加注音。台湾省开放政府数据授权条款 1.0。",
+    "license": "免费商用",
+    "licenseName": "台湾省开放政府数据授权条款 1.0",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-zhuyin/blob/main/LICENSE",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/astzykk/license/original.txt",
+    "licenseNotes": "繁体汉字走全字库 OGDL 1.0；注音层来自 bpmfvs（Apache-2.0）。不是 SIL OFL。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+      "website": "https://github.com/jeffreyxuan/toneoz-font-zhuyin",
+      "description": "澳声通注音库楷。全字库 OGDL 1.0。"
+    },
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
+    "languages": [
+      "繁体中文"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 27922,
+    "glyphCount": 64898,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "澳声通注音库楷。全字库正楷加注音。台湾省开放政府数据授权条款 1.0。"
+  },
+  {
+    "id": "9d128e14-6ae6-4e13-be3f-e729048e11fd",
+    "name": "澳声通注音库楷简",
+    "en": "ToneOZ Zhuyin Kai Simplified",
+    "family": "wenfeng-astzykks",
+    "normalized": "astzykks",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "楷体",
+    "tags": [
+      "免费商用",
+      "toneoz",
+      "注音",
+      "楷体"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "澳声通注音库楷简。文鼎楷加注音。ARPHIC PUBLIC LICENSE 1999。",
+    "license": "免费商用",
+    "licenseName": "ARPHIC PUBLIC LICENSE 1999",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-zhuyin/blob/main/LICENSE",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/astzykks/license/original.txt",
+    "licenseNotes": "简体汉字走文鼎 PL 1999；注音层 Apache-2.0。不是 SIL OFL。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+      "website": "https://github.com/jeffreyxuan/toneoz-font-zhuyin",
+      "description": "澳声通注音库楷简。文鼎 PL 1999。"
+    },
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 22658,
+    "glyphCount": 50150,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "澳声通注音库楷简。文鼎楷加注音。ARPHIC PUBLIC LICENSE 1999。"
+  },
+  {
+    "id": "01a70a4c-54c1-4e5d-a67c-287896fe805c",
+    "name": "澳声通大注音库楷",
+    "en": "ToneOZ ZhuyinW Kai Traditional",
+    "family": "wenfeng-astzywkk",
+    "normalized": "astzywkk",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "楷体",
+    "tags": [
+      "免费商用",
+      "toneoz",
+      "注音",
+      "楷体"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "澳声通大注音库楷。注音标在字侧。台湾省开放政府数据授权条款 1.0。",
+    "license": "免费商用",
+    "licenseName": "台湾省开放政府数据授权条款 1.0",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-zhuyin/blob/main/LICENSE",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/astzywkk/license/original.txt",
+    "licenseNotes": "繁体汉字走全字库 OGDL 1.0；注音标在字侧。不是 SIL OFL。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+      "website": "https://github.com/jeffreyxuan/toneoz-font-zhuyin",
+      "description": "澳声通大注音库楷。全字库 OGDL 1.0。"
+    },
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
+    "languages": [
+      "繁体中文"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 27920,
+    "glyphCount": 64897,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "澳声通大注音库楷。注音标在字侧。台湾省开放政府数据授权条款 1.0。"
+  },
+  {
+    "id": "1ec96e93-3b6f-4a67-83a8-690ddac75404",
+    "name": "澳声通大注音库楷简",
+    "en": "ToneOZ ZhuyinW Kai Simplified",
+    "family": "wenfeng-astzywkks",
+    "normalized": "astzywkks",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "楷体",
+    "tags": [
+      "免费商用",
+      "toneoz",
+      "注音",
+      "楷体"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "澳声通大注音库楷简。注音标在字侧。ARPHIC PUBLIC LICENSE 1999。",
+    "license": "免费商用",
+    "licenseName": "ARPHIC PUBLIC LICENSE 1999",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-zhuyin/blob/main/LICENSE",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/astzywkks/license/original.txt",
+    "licenseNotes": "简体汉字走文鼎 PL 1999。不是 SIL OFL。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+      "website": "https://github.com/jeffreyxuan/toneoz-font-zhuyin",
+      "description": "澳声通大注音库楷简。文鼎 PL 1999。"
+    },
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
+    "languages": [
+      "简体中文"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 22656,
+    "glyphCount": 50147,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "澳声通大注音库楷简。注音标在字侧。ARPHIC PUBLIC LICENSE 1999。"
+  },
+  {
+    "id": "a6d38d3c-4304-4233-9fbb-3fdd66105c64",
+    "name": "澳声通部首注音库楷",
+    "en": "ToneOZ RadicalZ Kai Traditional",
+    "family": "wenfeng-astbszy",
+    "normalized": "astbszy",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "楷体",
+    "tags": [
+      "免费商用",
+      "toneoz",
+      "注音",
+      "楷体"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "澳声通部首注音库楷。部首加注音。台湾省开放政府数据授权条款 1.0。",
+    "license": "免费商用",
+    "licenseName": "台湾省开放政府数据授权条款 1.0",
+    "licenseUrl": "https://github.com/jeffreyxuan/toneoz-font-zhuyin/blob/main/LICENSE",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/astbszy/license/original.txt",
+    "licenseNotes": "部首注音教学用。繁体汉字走全字库 OGDL 1.0。不是 SIL OFL。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+      "website": "https://github.com/jeffreyxuan/toneoz-font-zhuyin",
+      "description": "澳声通部首注音库楷。全字库 OGDL 1.0。"
+    },
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
+    "languages": [
+      "繁体中文"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 26220,
+    "glyphCount": 48802,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "澳声通部首注音库楷。部首加注音。台湾省开放政府数据授权条款 1.0。"
+  },
+  {
+    "id": "fc06f4a5-8ff3-46bc-95b4-5510814a18ba",
+    "name": "澳声通拼音库楷",
+    "en": "ToneOZ Pinyin Kai Traditional",
+    "family": "wenfeng-astpykk",
+    "normalized": "astpykk",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "楷体",
+    "tags": [
+      "免费商用",
+      "toneoz",
+      "拼音",
+      "楷体"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "澳声通拼音库楷。全字库正楷加汉语拼音。台湾省开放政府数据授权条款 1.0。",
+    "license": "免费商用",
+    "licenseName": "台湾省开放政府数据授权条款 1.0",
+    "licenseUrl": "https://toneoz.com/blog/download-fonts/",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/astpykk/license/original.txt",
+    "licenseNotes": "zip 只有安装说明声称 SIL OFL；汉字仍走全字库 OGDL 1.0。本站不按 OFL 出证。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+      "website": "https://toneoz.com/blog/download-fonts/",
+      "description": "澳声通拼音库楷。全字库 OGDL 1.0。"
+    },
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 26225,
+    "glyphCount": 60558,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "澳声通拼音库楷。全字库正楷加汉语拼音。台湾省开放政府数据授权条款 1.0。"
+  },
+  {
+    "id": "e38a856d-0c3b-4a10-afd7-789697ddce94",
+    "name": "澳声通部首拼音库楷",
+    "en": "ToneOZ RadicalP Kai Traditional",
+    "family": "wenfeng-astbspy",
+    "normalized": "astbspy",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "楷体",
+    "tags": [
+      "免费商用",
+      "toneoz",
+      "拼音",
+      "楷体"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "澳声通部首拼音库楷。部首加汉语拼音。台湾省开放政府数据授权条款 1.0。",
+    "license": "免费商用",
+    "licenseName": "台湾省开放政府数据授权条款 1.0",
+    "licenseUrl": "https://toneoz.com/blog/download-fonts/",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/astbspy/license/original.txt",
+    "licenseNotes": "部首拼音教学用。汉字走全字库 OGDL 1.0。本站不按 OFL 出证。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+      "website": "https://toneoz.com/blog/download-fonts/",
+      "description": "澳声通部首拼音库楷。全字库 OGDL 1.0。"
+    },
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "标题"
+    ],
+    "charCount": 26217,
+    "glyphCount": 56713,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "澳声通部首拼音库楷。部首加汉语拼音。台湾省开放政府数据授权条款 1.0。"
+  },
+  {
+    "id": "e70fb74f-89bd-43f7-b84f-10f5bb1ad6f6",
+    "name": "澳声通大拼音库楷",
+    "en": "ToneOZ PinyinW Kai Traditional",
+    "family": "wenfeng-astpywkk",
+    "normalized": "astpywkk",
+    "designer": "ToneOZ",
+    "designerShort": "ToneOZ",
+    "category": "楷体",
+    "tags": [
+      "免费商用",
+      "toneoz",
+      "拼音",
+      "楷体"
+    ],
+    "weights": [
+      "Regular"
+    ],
+    "description": "澳声通大拼音库楷。拼音标在字侧。台湾省开放政府数据授权条款 1.0。",
+    "license": "免费商用",
+    "licenseName": "台湾省开放政府数据授权条款 1.0",
+    "licenseUrl": "https://toneoz.com/blog/download-fonts/",
+    "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/astpywkk/license/original.txt",
+    "licenseNotes": "拼音标在字侧。汉字走全字库 OGDL 1.0。本站不按 OFL 出证。",
+    "licenseVerified": null,
+    "purchaseUrl": null,
+    "copyright": "Copyright ToneOZ",
+    "foundry": "澳声通",
+    "brand": {
+      "name": "澳声通",
+      "slug": "toneoz",
+      "logoUrl": "",
+      "avatarUrl": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+      "website": "https://toneoz.com/blog/download-fonts/",
+      "description": "澳声通大拼音库楷。全字库 OGDL 1.0。"
+    },
+    "releaseYear": 2024,
+    "version": "ToneOZ ingest 2026-10-08",
+    "languages": [
+      "繁体中文",
+      "英语"
+    ],
+    "useCases": [
+      "正文",
+      "标题"
+    ],
+    "charCount": 26225,
+    "glyphCount": 60558,
+    "viewCount": 0,
+    "foundryAvatar": "https://cravatar.com/avatar/57d49cecb64e72a29291c9ac2a8c3f33c427b4dd2b3f5ac8fc5ec7f53db2c205?s=144&d=identicon",
+    "descriptionBrief": "澳声通大拼音库楷。拼音标在字侧。台湾省开放政府数据授权条款 1.0。"
   }
 ]
