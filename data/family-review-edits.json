@@ -9302,12 +9302,12 @@
       "name": "IPA 黑体",
       "en": "IPA Gothic",
       "normalized": "ipagothic",
-      "family": "wenfeng-ipagothic",
+      "family": "wenfeng-ipahtgo",
       "draft": "wenfeng-ipahtgo",
       "generated": "wenfeng-ipagothic",
       "rule": "中文拼音",
       "edited": true,
-      "locked": false,
+      "locked": true,
       "new": false
     },
     {
