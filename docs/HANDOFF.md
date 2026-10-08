@@ -1,5 +1,7 @@
 # 文风字体 · 交接与后续开发
 
+**2026-10-08 特点页活样张缺字 [Grok]：** 人推远程后问 `/features` 缺字。活样张 `ensureFontCss(..., 'zh')` 不带文案，Black 只有 zh-common（无 字/尽/显），不升 full。`features.js` 把标题字传进 ensureFontCss，戳 `?v=20261008feat2`。现网会再拉 `albbpht/Black/full`。未改 wf-proto `readyFace`（仍不传 text）。
+
 **2026-10-08 首页 FEATURED 霞鹜 [Grok]：** 人「home.js 同一串也改掉并提交」。`js/pages/home.js` `霞鹙文楷`→`霞鹜文楷`，戳 `index.html` `home.js?v=20261008home1`。杭州 occupancy-safe：index.html + home.js。不改 *-options.html。
 
 **2026-10-08 /features 控制台 unused-preload 与精选错字 [Grok]：** 人贴 `albbpht/Regular/zh-common/2.woff2` unused preload，再要自己看 `/features`。22 份公网 HTML 的 chrome preload 从该 Regular 切片改成 `/assets/fonts/ui/PuHuiTi-400.woff2`（UI SoT，OSS 已有）。`features.js` 精选关键词 `霞鹙文楷`→`霞鹜文楷`（目录本名），戳 `?v=20261008feat1`。杭州 occupancy-safe：22 html 后补 features.html + features.js。硬刷后控制台 0；精选第六张现网是霞鹜文楷。一行接入仍写 `cn.windfonts.com/api/css`（cn/hk/en 现 502）；活样张走包 `fonts-packages/.../result.css`。未提交。不要整树 deploy-web-hz.sh。首页 FEATURED 仍是鹙。

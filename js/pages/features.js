@@ -50,6 +50,10 @@
     let idx = 0;
     let faceGen = 0;
 
+    function liveGlyph() {
+      return (live.textContent || '').replace(/\s+/g, '');
+    }
+
     function settleFace(font, weight) {
       const gen = ++faceGen;
       const timer = setTimeout(function () {
@@ -62,7 +66,9 @@
         live.classList.remove('is-pending');
       };
       const cap = setTimeout(done, 1200);
-      WFProto.readyFace(font.family, weight, (live.textContent || '').replace(/\s+/g, ''), 'zh').then(done, done);
+      const glyph = liveGlyph();
+      WFProto.ensureFontCss(font.family, weight, 'zh', glyph);
+      WFProto.readyFace(font.family, weight, glyph, 'zh').then(done, done);
     }
 
     function applyLive() {
@@ -70,7 +76,8 @@
       if (!f) return;
       const w = heavyWeight(f);
       const stack = WFProto.cssFamilyStack(f.family);
-      WFProto.ensureFontCss(f.family, w, 'zh');
+      const glyph = liveGlyph();
+      WFProto.ensureFontCss(f.family, w, 'zh', glyph);
       live.style.fontFamily = stack;
       live.style.fontWeight = w;
       liveName.textContent = f.name;
@@ -82,6 +89,11 @@
     applyLive();
     document.addEventListener('wf:cdn', applyLive);
     document.getElementById('liveNext').addEventListener('click', function () { idx += 1; applyLive(); });
+    live.addEventListener('input', function () {
+      const f = featured[idx % featured.length];
+      if (!f) return;
+      WFProto.ensureFontCss(f.family, heavyWeight(f), 'zh', liveGlyph());
+    });
     document.getElementById('ctaCopy').addEventListener('click', function () {
       WFChrome.copy(WFProto.CDN_LICENSE_NOTE + '\n' + code.textContent, '已复制 <link>');
     });
