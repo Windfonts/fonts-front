@@ -1,6 +1,8 @@
 # 文风字体 · 交接与后续开发
 
-**2026-10-08 org 页眉走 cn [Grok]：** 人「未做的去做」。HTML 仍 CF/`oss://wenfeng-org`。页眉 CSS/JS/woff2/图 → `https://cn.windfonts.com/assets/`（广州 `wenfeng-fonts/assets/`，1506 对象）。授权 PDF 仍同源。未改 Worker/DNS，未挂大陆七 A，未进 `wenfeng-web-hz`。`perf-check.py --site org` EXIT 0，基线去掉 `org-ui-on-cloudflare`。浏览器：首页/用法/关于 CSS+寒蝉/玄宗 woff2 均 cn 200；仅 `favicon.ico` 404（旧债）。仓在 `wenfeng-org`。
+**2026-10-08 org favicon 反色 [Grok]：** 人要 org 标签图标用 app 反色。现网 `wenfeng.org/favicon.ico` 深标浅底 200；app 仍白标深底。页眉方标两边仍是同一张 `icon.webp`。仓在 `wenfeng-org`。
+
+**2026-10-08 org 页眉走 cn [Grok]：** 人「未做的去做」。HTML 仍 CF/`oss://wenfeng-org`。页眉 CSS/JS/woff2/图 → `https://cn.windfonts.com/assets/`（广州 `wenfeng-fonts/assets/`，1506 对象）。授权 PDF 仍同源。未改 Worker/DNS，未挂大陆七 A，未进 `wenfeng-web-hz`。`perf-check.py --site org` EXIT 0，基线去掉 `org-ui-on-cloudflare`。浏览器：首页/用法/关于 CSS+寒蝉/玄宗 woff2 均 cn 200；续验 `/source/` `/source/xwwk/` `/attest/xwwk/` 页眉+证面思源均 cn 200。CF `purge_everything` zone `91c9a7ea…` success。仅 `favicon.ico` 404（旧债）。仓在 `wenfeng-org`。
 
 **2026-10-08 店面加速 [Grok]：** 计划 `docs/plans/2026-10-08-shop-perf.md`。字林 needText 只用 mark/glyph；排队改 IntersectionObserver（无 idle 全拉）；特点英雄 `'preview-shop'` 起步、缺字仍升；`readyFace` 把 text 传进 `ensureFontCss`。戳 `home.js?v=20261008home2` `features.js?v=20261008feat3` `wf-proto.js?v=20261008slug18`。未拆普惠体 700。不要整树 deploy-web-hz。已提交本仓 `5f751fb`。验收：`perf-check.py --skip-live` 与 `--site app` 均 EXIT 0。现网隔离浏览器：首页字林 8 格 + 英雄全是 `preview-shop/result.css`，无目录 `full`；特点英雄 `albbpht/Black` shop→zh-common→full（「字/尽/显」仍能出），精选行进视口后 shop；`/fonts` 首屏 shop，刀隶体一句升 zh。本地 `:16016` 同行为。
 
