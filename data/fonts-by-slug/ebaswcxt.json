@@ -30,8 +30,8 @@
     "基础英文排版",
     "个人项目"
   ],
-  "description": "EBAS 是一款使用 FontForge 工具创建的无衬线字体，其元信息显示为中等字重。该字体由 CMEX 设计，其字符集主要支持拉丁字母，适用于基本的英文排版。",
-  "descriptionBrief": "EBAS 是一款使用 FontForge 工具创建的无衬线字体，其元信息显示为中等字重。该字体由 CMEX 设计，其字符集主要支持拉丁字母，适用于基本的英文排版。",
+  "description": "EBAS 是一款使用 FontForge 工具创建的无衬线字体，其元信息显示为中等字重。该字体由 CMEX 设计，其字符集主要支持拉丁字母，适用于基本的英文排版。许可原文与权利人声明仍缺，货架档位保持「待核实」，勿按开源或免费商用使用。",
+  "descriptionBrief": "EBAS 是一款使用 FontForge 工具创建的无衬线字体，其元信息显示为中等字重。该字体由 CMEX 设计，其字符集主要支持拉丁字母，适用于基本的英文排版。许可原文与权利人声明仍缺，货架档位保持「待核实」，勿按开源或免费商用使用。",
   "copyright": "Created by CMEX with FontForge 1.0 (http://fontforge.sf.net)",
   "licenseNotes": "",
   "licenseFileUrl": "https://wenfeng.org/license/ebaswcxt/",

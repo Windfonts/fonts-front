@@ -302,7 +302,7 @@ def main() -> int:
         name = g["name"]
         title = "%s · 文风字体" % name
         n = len(g["fonts"])
-        desc = "%s 出品的开源与免费商用中文网页字体，文风字体库收录 %d 款。本站不二次授权。" % (name, n)
+        desc = "%s 出品的开源商用与免费商用中文网页字体，文风字体库收录 %d 款。本站不二次授权。" % (name, n)
         canon = abs_url("/foundry/" + slug)
         jsonld = ld(graph(
             {

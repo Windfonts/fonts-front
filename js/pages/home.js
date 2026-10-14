@@ -167,10 +167,13 @@
     const homeStats = document.getElementById('homeStats');
     if (homeStats) {
       const brands = Object.keys(brandCount).length;
+      const openTier = tiers['开源商用'] || 0;
       const free = tiers['免费商用'] || 0;
       homeStats.innerHTML =
         '<a href="' + WFChrome.href('fonts.html') + '"><b>' + WFProto.formatCount(list.length) + '</b> 款</a>' +
         '<a href="' + WFChrome.href('foundry.html') + '"><b>' + WFProto.formatCount(brands) + '</b> 家</a>' +
+        '<a href="' + WFChrome.href('fonts.html?license=' + encodeURIComponent('开源商用')) + '"><b>' +
+          WFProto.formatCount(openTier) + '</b> 开源商用</a>' +
         '<a href="' + WFChrome.href('fonts.html?license=' + encodeURIComponent('免费商用')) + '"><b>' +
           WFProto.formatCount(free) + '</b> 免费商用</a>';
     }

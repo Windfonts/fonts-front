@@ -32,7 +32,7 @@
   <meta property="og:url" content="https://app.windfonts.com/faq" />
   <meta property="og:image" content="https://app.windfonts.com/assets/icon.webp" />
   <meta name="twitter:card" content="summary" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"页面上字体没生效？","acceptedAnswer":{"@type":"Answer","text":"按顺序查三件事：CSS 地址能否打开、font-family 写成 wenfeng-{slug}、字重是否在该字体字重列表里。"}},{"@type":"Question","name":"粗细看起来不对，或 Bold 和 Regular 一样？","acceptedAnswer":{"@type":"Answer","text":"常见原因是本机同名字体抢先命中，或多个字重没写清 font-weight。"}},{"@type":"Question","name":"动态、拆包、静态有什么区别？","acceptedAnswer":{"@type":"Answer","text":"动态走 /api/css；拆包读 fonts-packages 的 result.css；静态是旧路径，多数已停更。"}},{"@type":"Question","name":"控制台请求量很低，但站点访问不少？","acceptedAnswer":{"@type":"Answer","text":"正常。分片带内容哈希，回访走浏览器缓存。"}},{"@type":"Question","name":"为什么字体打不开 / 返回被拒？","acceptedAnswer":{"@type":"Answer","text":"项目 CDN 要求来源域名在白名单里。公开 CDN 不校验域名，但有限流。"}},{"@type":"Question","name":"能把字体文件下载到自己服务器吗？","acceptedAnswer":{"@type":"Answer","text":"免费商用或开源款请到 wenfeng.org 取原始文件。CDN 分片不用于二次托管。"}},{"@type":"Question","name":"「免费商用」是不是都能随便用？","acceptedAnswer":{"@type":"Answer","text":"不能打包理解。每款以出处原文为准。本站不二次授权。"}},{"@type":"Question","name":"厂商页上的「归属」「受托」「同系」是什么意思？","acceptedAnswer":{"@type":"Answer","text":"归属是版权在本页这家；受托是代做；同系是地区版或同规格。"}},{"@type":"Question","name":"子集化在哪里做？公开 CSS 已经很小了吗？","acceptedAnswer":{"@type":"Answer","text":"公开包按 Unicode 区间切分。还要再瘦用控制台子集化。"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"页面上字体没生效？","acceptedAnswer":{"@type":"Answer","text":"按顺序查三件事：CSS 地址能否打开、font-family 写成 wenfeng-{slug}、字重是否在该字体字重列表里。"}},{"@type":"Question","name":"粗细看起来不对，或 Bold 和 Regular 一样？","acceptedAnswer":{"@type":"Answer","text":"常见原因是本机同名字体抢先命中，或多个字重没写清 font-weight。"}},{"@type":"Question","name":"动态、拆包、静态有什么区别？","acceptedAnswer":{"@type":"Answer","text":"动态走 /api/css；拆包读 fonts-packages 的 result.css；静态是旧路径，多数已停更。"}},{"@type":"Question","name":"控制台请求量很低，但站点访问不少？","acceptedAnswer":{"@type":"Answer","text":"正常。分片带内容哈希，回访走浏览器缓存。"}},{"@type":"Question","name":"为什么字体打不开 / 返回被拒？","acceptedAnswer":{"@type":"Answer","text":"项目 CDN 要求来源域名在白名单里。公开 CDN 不校验域名，但有限流。"}},{"@type":"Question","name":"能把字体文件下载到自己服务器吗？","acceptedAnswer":{"@type":"Answer","text":"免费商用或开源款请到 wenfeng.org 取原始文件。CDN 分片不用于二次托管。"}},{"@type":"Question","name":"「免费商用」是不是都能随便用？","acceptedAnswer":{"@type":"Answer","text":"不能打包理解。每款以出处原文为准。本站不二次授权。"}},{"@type":"Question","name":"「开源商用」和「免费商用」有什么差别？","acceptedAnswer":{"@type":"Answer","text":"开源商用是可改可再分发的开源许可上架；免费商用是品牌免费声明，通常禁改字再分发。均以出处原文为准。"}},{"@type":"Question","name":"厂商页上的「归属」「受托」「同系」是什么意思？","acceptedAnswer":{"@type":"Answer","text":"归属是版权在本页这家；受托是代做；同系是地区版或同规格。"}},{"@type":"Question","name":"子集化在哪里做？公开 CSS 已经很小了吗？","acceptedAnswer":{"@type":"Answer","text":"公开包按 Unicode 区间切分。还要再瘦用控制台子集化。"}}]}</script>
   <!-- /wf-seo -->
 </head>
 <body class="page-faq">
@@ -43,7 +43,7 @@
     <div class="docs-main">
       <article class="docs-body">
       <section>
-        <p class="kicker">参考 · 更新于 <time datetime="2026-09-23">2026-09-23</time></p>
+        <p class="kicker">参考 · 更新于 <time datetime="2026-10-15">2026-10-15</time></p>
         <h1>常见问题</h1>
         <p class="lead">嵌入、字重、白名单与授权。点开一条看说明；接入步骤见<a href="/docs">文档</a>。</p>
       </section>
@@ -112,6 +112,17 @@
             <summary><span>「免费商用」是不是都能随便用？</span><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260929ui1#i-chevron-down"/></svg></summary>
             <div class="faq-fold-body">
               <p>不能打包理解。每款字的范围以字体页「授权」区的出处为准；素材站声明不等于厂商官网。本站不二次授权。类型对照见<a href="/license#types">许可类型</a>，注意边界见<a href="/disclaimer">免责</a>。</p>
+            </div>
+          </details>
+
+          <details class="faq-fold" id="open-vs-free">
+            <summary><span>「开源商用」和「免费商用」有什么差别？</span><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg?v=20260929ui1#i-chevron-down"/></svg></summary>
+            <div class="faq-fold-body">
+              <ul>
+                <li><strong>开源商用</strong>：开源许可上架（OFL、Apache、MIT 等）。一般允许按许可改字再分发（须换名、保留声明等），也常可嵌入网页。</li>
+                <li><strong>免费商用</strong>：品牌方声明免费商用。网页嵌入多半可以，但通常<strong>禁止改字再分发</strong>、不得单独分发字体文件。</li>
+              </ul>
+              <p>两档都以字体页「授权」区的出处为准；本站不二次授权。对照见<a href="/license#shelf">货架两档</a>。</p>
             </div>
           </details>
 
