@@ -194,7 +194,7 @@
       "Regular"
     ],
     "description": "cjkFonts是一款基于清松手写体，通过AI深度学习技术扩展生成的中文字体。其设计初衷是为了扩充原始手写体的字符集，以覆盖更广泛的汉字需求。该字体风格保留了手写体的自然笔触与轻微的不规则感，旨在为设计提供一种亲切、非机械化的视觉体验。它适用于需要体现手工艺感、个性化或轻松氛围的设计场景，如社交媒体配图、个人博客、文创产品及非正式的商业宣传材料。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/cjksxz/license/original.txt",
@@ -540,7 +540,7 @@
       "Regular"
     ],
     "description": "I.Ngaan 是一款基于王汉宗博士早期颜体字型，由 Ichiten Fonts Project 在 2013-2014 年间进行数字化和优化的字体。该字体融合了传统书法韵味与现代数字可读性，字形优雅流畅，带有手写风格的艺术气息。其版权信息显示，原始设计可追溯至 1999-2004 年，后续由 Ichiten Fonts Project 以 GNU General Public License 发布，允许免费使用和修改。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "GNU General Public License",
     "licenseUrl": "",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Klsyt/LICENSE",
@@ -3115,7 +3115,7 @@
       "Regular"
     ],
     "description": "I.Ming（一点明体）是一款基于日本IPA明体（IPAex明朝）进行改造和扩展的开源中文字体。该项目旨在提供一款在屏幕显示和印刷上均表现良好的明体/宋体字体。其设计保留了IPA明体的基本骨架和印刷美感，同时针对汉字使用环境进行了优化和增补，支持繁简中文及日文。该字体遵循IPA Font License v1.0协议，允许免费商用。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "IPA Font License v1.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/ydmt/license/original.txt",
@@ -5020,7 +5020,7 @@
       "Regular"
     ],
     "description": "余繁新语。仓库许可是 MIT。只收了常规。汉字大约六千七百。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "MIT License",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/yfxy/license/original.txt",
@@ -5069,7 +5069,7 @@
       "Regular"
     ],
     "description": "余繁真素。字内许可行写 OFL。汉字大约七千。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "",
@@ -5118,7 +5118,7 @@
       "Regular"
     ],
     "description": "余繁细柳。字内许可行写 OFL。汉字大约七千。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "",
@@ -5269,7 +5269,7 @@
       "Regular"
     ],
     "description": "用得意黑和斜月体改的。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/FWHP-Enfun/Crooked-Black-Fun/blob/main/LICENSE.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/pwdhqt/license/original.txt",
@@ -5319,7 +5319,7 @@
       "Regular"
     ],
     "description": "Silver 是一款由 Poppy Works 团队（设计师包括 Itou Hiro, Yoon Design, Wolfgang Wozniak）于 2019 年发布的像素字体。该字体专为游戏项目设计，内置了 TRC 和 Lotcheck 兼容的游戏手柄按钮图标以及完整的键盘和鼠标提示。其字形设计重心下移，笔画形状经过调整，使字体下边缘呈直线对齐，呈现出可爱、卡通且独特的视觉效果。笔画处理上进行了简化，部分笔画被设计为简单的像素点连接，增强了像素感，同时保证了可读性。与其他像素字体相比，其字形尺寸相对较小，约为同字号下其他字体的一半。字体支持简体中文、繁体中文及英文，其中简体中文字符3933个，繁体中文4408个，部分缺失的简体字符可用繁体替代。该项目仍在持续更新，旨在增加新的 Unicode 字形，目标是成为像素游戏和应用程序的实用字体。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "CC BY 4.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Xsslv/LICENSE",
@@ -6055,7 +6055,7 @@
       "Regular"
     ],
     "description": "传承字形、旧字形风格明朝体，基于 IPAmj 明朝衍生，简体部分参考霞鹜新致宋制作，支持 IVD 异体选择器。本条目取传承体（Classic），另有旧印体、旧典体、繁体三个变体随上游发布。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "https://github.com/GuiWonder/HuayingMincho/blob/main/LICENSE.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/hymc/license/original.txt",
@@ -6306,7 +6306,7 @@
       "Heavy"
     ],
     "description": "合简字体项目的黑体面，与库内合简宋体同门配套，七档字重。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/GuiWonder/HeSimplFonts/blob/main/LICENSE.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/hjht/license/original.txt",
@@ -6780,7 +6780,7 @@
       "Regular"
     ],
     "description": "宅在家系列。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/FWHP-Enfun/Star-Love-Font/blob/main/LICENSE.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/zzjftt/license/original.txt",
@@ -6830,7 +6830,7 @@
       "Regular"
     ],
     "description": "宅在家系列。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/FWHP-Enfun/Star-Love-Font/blob/main/LICENSE.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/zzjzdb/license/original.txt",
@@ -6880,7 +6880,7 @@
       "Regular"
     ],
     "description": "宅在家系列。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/FWHP-Enfun/Star-Love-Font/blob/main/LICENSE.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/zzjmkb/license/original.txt",
@@ -7319,7 +7319,7 @@
       "Normal"
     ],
     "description": "寒蝉手拙体是一款手写风格的中文免费商用字体，由设计师萧熠Siue创作。字体以创造的笔意和结构完成，风格独特，旨在提供逼真的手写视觉体验。该字体基于GB2312-80字符集标准，共包含7586个字形，适用于简体中文环境。其设计灵感来源于日常手写，旨在为设计项目增添自然、亲切的人文气息。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/hcszt/license/original.txt",
@@ -7426,7 +7426,7 @@
       "Medium"
     ],
     "description": "寒蝉谭黑系列·无机体。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/hcwjt/license/original.txt",
@@ -7480,7 +7480,7 @@
       "Medium"
     ],
     "description": "寒蝉谭黑系列·有机体。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/hcyjt/license/original.txt",
@@ -8017,7 +8017,7 @@
       "ExtraBold"
     ],
     "description": "寒蝉龙藏楷。基于龙藏体风格化拓展。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/longcang/OFL.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/hclcks/license/original.txt",
@@ -8225,7 +8225,7 @@
       "Heavy"
     ],
     "description": "尙古系列的圆体面，同一套传承字形骨架的圆润处理，七档字重。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/GuiWonder/Shanggu/blob/main/LICENSE.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/sgyt/license/original.txt",
@@ -8338,7 +8338,7 @@
       "Heavy"
     ],
     "description": "尙古系列的等宽面，汉字与西文同宽排齐，另有斜体随上游发布，适合代码与对照排版。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/GuiWonder/Shanggu/blob/main/LICENSE.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/sgdk/license/original.txt",
@@ -8397,7 +8397,7 @@
       "Heavy"
     ],
     "description": "基于思源黑体的传承字形（旧字形）改造，尙古系列的黑体面，七档字重，覆盖中日韩全字集。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/GuiWonder/Shanggu/blob/main/LICENSE.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/sght/license/original.txt",
@@ -9712,7 +9712,7 @@
       "Regular"
     ],
     "description": "MOESongUN 是一款基于教育部标准宋体（MOESong）进行修改和扩展的字体。其名称中的UN可能代表Unicode或Universal，表明该字体旨在提供更广泛的字符覆盖，特别是对Unicode标准中更多字符的支持。该字体保留了标准宋体的基本结构和易读性，同时通过扩展字符集来满足更广泛的多语言排版需求。其版权信息表明该字体允许在注明来源的情况下进行免费分发和商业使用。适用于需要标准中文字体且兼容多语言环境的文档、教育材料及一般性排版。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Twjybbzst/LICENSE",
@@ -9766,7 +9766,7 @@
       "Regular"
     ],
     "description": "教育部標準楷書是由中華民國教育部主導開發與發布的標準楷書字體，旨在為教育、出版及公眾使用提供一套規範、清晰、美觀的楷體中文字型。該字體嚴格遵循傳統楷書的書寫規範與結構，筆畫清晰、端正，具有良好的可讀性，適用於教科書、公文、正式文件及需要展現傳統書法美感的印刷品。其授權允許免費商用與非商用分發，是台灣地區廣泛使用的公眾授權字體之一。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "CC BY-ND 3.0 TW",
     "licenseUrl": "",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Twjybbzjs/LICENSE",
@@ -9820,7 +9820,7 @@
       "Regular"
     ],
     "description": "WenQuanYi Micro Hei is a free and open-source sans-serif typeface designed for screen display and user interfaces. It was developed as part of the WenQuanYi project, a Chinese open-source font initiative. The font combines the glyph structures of the Droid Sans and Hei Ti (黑体) styles, aiming to provide high readability at small sizes on digital screens. It supports a wide range of characters including Simplified Chinese, Traditional Chinese, Japanese Kana, and Latin alphabets. The design emphasizes clarity and legibility for electronic communication, making it suitable for UI design, web content, and mobile applications.",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "Apache 2.0 / GPLv3 (双许可证)",
     "licenseUrl": "https://github.com/anthonyfok/fonts-wqy-microhei",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/wqywmh/license/original.txt",
@@ -9877,7 +9877,7 @@
       "Regular"
     ],
     "description": "文泉驿正黑体是一款开源的黑体风格（无衬线）中文字体，由文泉驿项目开发。它是第一个开放源代码的中文黑体字体，旨在为CJK（中日韩）用户提供一个视觉美观、符合标准、平台独立且紧凑的解决方案，用于在计算机上显示和打印中文。该字体包含超过35000个矢量字形，覆盖了超过21000个汉字，对GBK字符集、CJK统一表意文字以及简体中文、繁体中文、日文和韩文区域设置所需的代码点提供了完整的支持。字体笔画略微加粗，增强了屏幕显示的对比度和易读性。从0.8版本开始，该字体包包含比例间距的文泉驿正黑和等宽间距的文泉驿正黑等宽两个字体家族。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "GPL-2.0-with-font-exception",
     "licenseUrl": "https://github.com/deepin-community/fonts-wqy-zenhei",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/wqyzht/license/original.txt",
@@ -9935,7 +9935,7 @@
       "Regular"
     ],
     "description": "WenQuanYi Zen Hei Mono 是文泉驿项目开发的一款开源等宽黑体（无衬线）中文字体。它专为中文、日文、韩文等 CJK 字符的通用文本排版和屏幕显示而设计。该字体包含超过 35,000 个字形，覆盖 GBK 字符集、CJK 统一表意文字，并支持简体中文、繁体中文、日语和韩语等多种语言环境。其笔画经过加粗处理，增强了屏幕显示的对比度和可读性。字体内部嵌入了文泉驿点阵宋体，以优化特定小字号下的屏幕显示效果。作为一款开源字体，它旨在为 CJK 用户提供一个视觉舒适、符合标准、跨平台且紧凑的解决方案。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "GPL-2.0-with-font-exception",
     "licenseUrl": "https://github.com/deepin-community/fonts-wqy-zenhei",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/wqyzhdk/license/original.txt",
@@ -9992,7 +9992,7 @@
       "Regular"
     ],
     "description": "文泉驿点阵宋体 12pt。点点像素各款的上游。官方位图按原像素画成静态字形后入库。GPL-2.0，带字体嵌入例外。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "GPL-2.0-with-font-exception",
     "licenseUrl": "https://github.com/deepin-community/fonts-wqy-zenhei",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/wqydzst/license/original.txt",
@@ -10046,7 +10046,7 @@
       "Regular"
     ],
     "description": "WenQuanYi Micro Hei Mono 是一款专为现代数字环境设计的开源等宽中文字体，是文泉驿微米黑（WenQuanYi Micro Hei）的等宽变体。该字体基于 Google 的 Droid Sans Fallback 扩展和优化而来，采用 TrueType Collection (TTC) 格式封装，文件体积轻量（约5MB），支持 GBK 标准21003个汉字，并覆盖 Unicode 5.1 标准中的 CJK 统一表意文字范围（U+4E00-U+9FC3）。同时，它完美支持拉丁语、扩展拉丁语、日文假名和韩文谚文字符。其设计初衷是为用户界面、代码编辑器、终端和嵌入式系统提供清晰、高效的中日韩文字显示方案，尤其适合程序开发和命令行环境。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "Apache 2.0 / GPLv3",
     "licenseUrl": "https://github.com/anthonyfok/fonts-wqy-microhei",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/wqydkwmh/license/original.txt",
@@ -10205,7 +10205,7 @@
       "Bold"
     ],
     "description": "文渊圆体。收了细、常规、中、粗。OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/wyyt/license/original.txt",
@@ -10257,7 +10257,7 @@
       "Bold"
     ],
     "description": "文渊宋体，基于思源宋体改的简体宋。文件名仍是 WenYuan。收了细、常规、中、粗。OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/wyst/license/original.txt",
@@ -10309,7 +10309,7 @@
       "Bold"
     ],
     "description": "文渊黑体，基于思源黑体的简体黑体。只收了标准宽度的细、常规、中、粗。OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/wyht/license/original.txt",
@@ -11641,7 +11641,7 @@
       "Bold"
     ],
     "description": "修复 IBM Plex Sans SC 简中字形并补齐字重的开源黑体，保留 Plex 特有的油墨陷阱设计。本包为 GB 版，Thin 至 Bold 共 8 档字重，另有可变字体随上游发布。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/maoken-fonts/frex-sans/blob/main/OFL.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/xhfsa/license/original.txt",
@@ -11951,7 +11951,7 @@
       "Regular"
     ],
     "description": "齐汲体补了源流明体的英文。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "",
@@ -12001,7 +12001,7 @@
       "Regular"
     ],
     "description": "汲古明体 B。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "",
@@ -12051,7 +12051,7 @@
       "Regular"
     ],
     "description": "汲古明体 C。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "",
@@ -12375,7 +12375,7 @@
       "Bold"
     ],
     "description": "把霞鹜文楷、霞鹜文楷 TC、芫荽混在一起。这一套收了细、常规、中、粗。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/FWHP-Enfun/Mixed-VsWeKai/blob/main/OFL.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/hcxk/license/original.txt",
@@ -12749,7 +12749,7 @@
       "Regular"
     ],
     "description": "源界明朝（Genkai Mincho / げんかい明朝）是 FLOP Design 基于 Adobe 思源宋体（Source Han Serif）派生的日文明朝体开源字体。字形覆盖约 9804 字 / 15444 glyph（cmap 实测）。上游 FLOP 禁 webfont；本店面 IPA Font License Agreement v1.0。",
-    "license": "ipa",
+    "license": "开源商用",
     "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/yjmc/license/original.txt",
@@ -13619,7 +13619,7 @@
       "Regular"
     ],
     "description": "",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "GPL-2.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/ddxstyx/license/original.txt",
@@ -13662,7 +13662,7 @@
       "Regular"
     ],
     "description": "Dotted Songti Circle 是一款基于 GPL 2.0 协议开源的中文像素艺术字体，属于点点像素字体家族。该字体由设计师 wixette 开发，其技术基础源于开源字体文泉驿点阵宋体，通过 JavaScript 工具进行自动矢量化、变形和美化处理，将点阵像素转换为圆点形状的 OpenType 字体。它覆盖了超过 22000 个 Unicode 字形，完整支持 GBK 字符集，包含简体与繁体中文。字体设计具有鲜明的像素艺术风格和复古电子游戏感，圆点装饰为其增添了柔和与创意特质。主要适用于需要营造复古、科技、趣味或创意氛围的设计场景，如游戏界面、海报标题、品牌标识、社交媒体图片和各类数字艺术创作。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "GPL-2.0",
     "licenseUrl": "https://github.com/wixette/dotted-chinese-fonts/blob/master/LICENSE",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/ddxsyt/license/original.txt",
@@ -13714,7 +13714,7 @@
       "Regular"
     ],
     "description": "Dotted Songti Diamond 是一款基于 GPL 2.0 协议开源的中文像素艺术字体。该字体衍生自文泉驿点阵宋体，通过自动化工具将点阵字形矢量化，并将像素点变形为菱形样式。它支持超过 22000 个 Unicode 字形，完整覆盖 GBK 编码的简繁体汉字，适用于复古风格、像素艺术、游戏界面、海报设计等需要营造怀旧或数字感视觉效果的场景。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "GPL-2.0",
     "licenseUrl": "https://github.com/wixette/dotted-chinese-fonts/blob/master/LICENSE",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/ddxsstlx/license/original.txt",
@@ -13765,7 +13765,7 @@
       "Regular"
     ],
     "description": "Dotted Songti Square 是一款基于 GPL 2.0 协议开源的中文像素艺术字体。该字体衍生自文泉驿点阵宋体，通过自动矢量化、变形和美化处理，将传统点阵转换为具有方形点阵风格的 OpenType 字体。它覆盖超过 22000 个 Unicode 字形，支持 GBK 编码中的全部简繁体汉字，适用于复古像素风设计、游戏界面、海报及需要独特艺术感的数字项目。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "GPL-2.0",
     "licenseUrl": "https://github.com/wixette/dotted-chinese-fonts/blob/master/LICENSE",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/dzxsstcgt/license/original.txt",
@@ -13822,7 +13822,7 @@
       "Heavy"
     ],
     "description": "Noto 风格的中日韩标点符号字体，补齐搭配场景的符号与标点，七档字重，衍生自 Noto Sans。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/Buernia/Zhudou-Sans/blob/main/LICENSE",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/zdht/license/original.txt",
@@ -17098,7 +17098,7 @@
       "Regular"
     ],
     "description": "基于思源宋体 Heavy 加重再制的超重展示宋体，与扛重族黑同族配套，适合大号标题与复古排版。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/maoken-fonts/maoken-heavy-labourer/blob/main/LICENSE.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/mkkzzs/license/original.txt",
@@ -17150,7 +17150,7 @@
       "Regular"
     ],
     "description": "基于思源黑体 Heavy 加重再制的超重展示黑体，猫啃网以 SIL OFL 1.1 重新发布，适合大号标题与海报。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/maoken-fonts/maoken-heavy-labourer/blob/main/LICENSE.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/mkkzzh/license/original.txt",
@@ -17201,7 +17201,7 @@
       "Regular"
     ],
     "description": "猫啃网社区出品的硬笔楷书，基于随峰体 Plus 改作，笔画硬朗利落，收录简体常用字七千余。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/maoken-fonts/MaokenYingBiKaiShuJ/blob/main/OFL.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/mkybks/license/original.txt",
@@ -18126,7 +18126,7 @@
       "Regular"
     ],
     "description": "站酷高端黑是站酷网于2014年圣诞发布的首款冠名公益字体，由设计师胡晓波、刘兵克发起，通过汉字百人舞活动征集近百位设计师集体创作完成。该字体字形方正，笔画硬朗，属于现代黑体风格，包含6763个汉字、数字和英文字母。作为一款免费商用字体，它适用于广告宣传、品牌标识、影视海报、游戏界面等需要醒目、现代感的视觉设计领域。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Zkgdht/LICENSE",
@@ -18434,7 +18434,7 @@
       "Regular"
     ],
     "description": "用 TCFontCreator 从全字库改的繁体宋体。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://data.gov.tw/license",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/fdqst/license/original.txt",
@@ -18484,7 +18484,7 @@
       "Regular"
     ],
     "description": "繁多全宋体的扩展档。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://data.gov.tw/license",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/fdqst2/license/original.txt",
@@ -18534,7 +18534,7 @@
       "Regular"
     ],
     "description": "用 TCFontCreator 从全字库改的繁体楷体。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://data.gov.tw/license",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/fdqkt/license/original.txt",
@@ -18584,7 +18584,7 @@
       "Regular"
     ],
     "description": "繁多全楷体的扩展档。SIL OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://data.gov.tw/license",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/fdqkt2/license/original.txt",
@@ -19249,7 +19249,7 @@
       "Bold"
     ],
     "description": "苦累蛙圆体，Max Yao 的繁体圆体。收了细、常规、粗。OFL 1.1。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "",
@@ -19516,7 +19516,7 @@
       "Regular"
     ],
     "description": "荆南字坊出品的手写风格圆体，笔画圆润、重心平稳，覆盖一万七千余字，适合品牌标识与包装文案。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/maoken-fonts/KNMaiyuan/blob/main/OFL.txt",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/jnmy/license/original.txt",
@@ -20156,7 +20156,7 @@
       "Regular"
     ],
     "description": "I.PenCrane-B 是一款由 Ichiten Fonts Project 维护的硬笔手写风格字体。其设计基于 Dr. Hann-Tzong Wang 在 1999-2004 年间的工作，并由 Ichiten Fonts Project 在 2013-2014 年进行更新和发布。该字体风格简洁清晰，笔画带有硬笔书写的特征，适用于需要手写体风格的标题、引言、创意设计等场景。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "GNU General Public License v2.0 or later",
     "licenseUrl": "",
     "licenseFileUrl": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Kslgbht/LICENSE",
@@ -20210,7 +20210,7 @@
       "Regular"
     ],
     "description": "基于 Fontworks 雷鬼体（Reggae One）扩展的开源中文字体，笔画张扬的展示风格。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/Buernia/Tiejili/blob/main/LICENSE",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/tjlt/license/original.txt",
@@ -20707,7 +20707,7 @@
       "Regular"
     ],
     "description": "霞鹜尚智黑基于「03スマートフォントUI」衍生的开源黑体。IPA Font License Agreement v1.0（上游 FLOP 禁 webfont）。",
-    "license": "ipa",
+    "license": "开源商用",
     "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/xwszh/license/original.txt",
@@ -20760,7 +20760,7 @@
       "Regular"
     ],
     "description": "霞鹜尚智黑 CL（Traditional Chinese）开源黑体。IPA Font License Agreement v1.0。",
-    "license": "ipa",
+    "license": "开源商用",
     "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/xwszhcl/license/original.txt",
@@ -20813,7 +20813,7 @@
       "Regular"
     ],
     "description": "霞鹜尚智黑 Mono 等宽开源黑体。IPA Font License Agreement v1.0。",
-    "license": "ipa",
+    "license": "开源商用",
     "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/xwszhmn/license/original.txt",
@@ -23326,7 +23326,7 @@
       "Regular"
     ],
     "description": "仲春仿宋（Sotyr Fangsong），SIL OFL 1.1，上游 github.com/Hulenkius/sotyr。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/Hulenkius/sotyr",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/zcfs/license/original.txt",
@@ -23378,7 +23378,7 @@
       "Bold"
     ],
     "description": "香菜碼等宽（Cilantro Code Mono），SIL OFL 1.1，上游 github.com/DraftingDreamer/FontCilantroCode。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/DraftingDreamer/FontCilantroCode",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/xcmdk/license/original.txt",
@@ -23430,7 +23430,7 @@
       "Regular"
     ],
     "description": "计划楷（Plan Kai），SIL OFL 1.1，上游 Des-Magmeta/PlanKai。作者标明不含基本区汉字、只作扩展区后备；简体 A/B/G 三切片已合并为 Regular。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/Des-Magmeta/PlanKai",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/jhk/license/original.txt",
@@ -23481,7 +23481,7 @@
       "Regular"
     ],
     "description": "游趣体（Child Fun Sans），SIL OFL 1.1，上游 github.com/Des-Magmeta/ChildFunSans。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/Des-Magmeta/ChildFunSans",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/yqt/license/original.txt",
@@ -23531,7 +23531,7 @@
       "Regular"
     ],
     "description": "遊趣體（Child Fun Sans TC），SIL OFL 1.1，上游 github.com/Des-Magmeta/ChildFunSans-TC。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/Des-Magmeta/ChildFunSans-TC",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/yqttc/license/original.txt",
@@ -23581,7 +23581,7 @@
       "Regular"
     ],
     "description": "Y式笔书（YshiPen-Shuti），SIL OFL 1.1，上游 github.com/Steve-Yuu/YshiPen-Shuti（Release TC Regular）。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/Steve-Yuu/YshiPen-Shuti",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/ysbs/license/original.txt",
@@ -23734,7 +23734,7 @@
       "Medium"
     ],
     "description": "大桥和楷书体（BR Wakaishotai），SIL OFL 1.1，上游 github.com/BridgeRiver/BRWakaishotai。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/BridgeRiver/BRWakaishotai",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/dqhkst/license/original.txt",
@@ -23785,7 +23785,7 @@
       "Bold"
     ],
     "description": "宙黑体（Zev Hei TC），SIL OFL 1.1，上游 github.com/chiron-fonts/zev-hei-tc（由 N-VF 实例化）。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/chiron-fonts/zev-hei-tc",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/zht/license/original.txt",
@@ -23838,7 +23838,7 @@
       "Regular"
     ],
     "description": "耀圆体（KirakaraMaru），SIL OFL 1.1，上游 github.com/feiyangjun-1/KirakaraMaru。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/feiyangjun-1/KirakaraMaru",
     "licenseFileUrl": "",
@@ -23877,7 +23877,7 @@
     "family": "wenfeng-zyytrhr",
     "normalized": "zyytrhr",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -23909,7 +23909,7 @@
     "family": "wenfeng-hcqyt",
     "normalized": "hcqyt",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -23936,7 +23936,7 @@
     "family": "wenfeng-yytyy",
     "normalized": "yytyy",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -23962,7 +23962,7 @@
     "family": "wenfeng-sydkjp",
     "normalized": "sydkjp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -23994,7 +23994,7 @@
     "family": "wenfeng-syhtjp",
     "normalized": "syhtjp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24026,7 +24026,7 @@
     "family": "wenfeng-syhthk",
     "normalized": "syhthk",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24058,7 +24058,7 @@
     "family": "wenfeng-systjp",
     "normalized": "systjp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24090,7 +24090,7 @@
     "family": "wenfeng-systhk",
     "normalized": "systhk",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24122,7 +24122,7 @@
     "family": "wenfeng-sydkmjp",
     "normalized": "sydkmjp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24154,7 +24154,7 @@
     "family": "wenfeng-sydktc",
     "normalized": "sydktc",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24186,7 +24186,7 @@
     "family": "wenfeng-bizudg",
     "normalized": "bizudg",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24213,7 +24213,7 @@
     "family": "wenfeng-bizudpg",
     "normalized": "bizudpg",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24240,7 +24240,7 @@
     "family": "wenfeng-bizudm",
     "normalized": "bizudm",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24267,7 +24267,7 @@
     "family": "wenfeng-bizudpm",
     "normalized": "bizudpm",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24294,7 +24294,7 @@
     "family": "wenfeng-ibmpsjp",
     "normalized": "ibmpsjp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24327,7 +24327,7 @@
     "family": "wenfeng-hnmcjp",
     "normalized": "hnmcjp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24353,7 +24353,7 @@
     "family": "wenfeng-ntgmjp",
     "normalized": "ntgmjp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24379,7 +24379,7 @@
     "family": "wenfeng-yjmjp",
     "normalized": "yjmjp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24405,7 +24405,7 @@
     "family": "wenfeng-yjbkjp",
     "normalized": "yjbkjp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24431,7 +24431,7 @@
     "family": "wenfeng-linesjp",
     "normalized": "linesjp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24460,7 +24460,7 @@
     "family": "wenfeng-mrcjp",
     "normalized": "mrcjp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24487,7 +24487,7 @@
     "family": "wenfeng-ksdcjp",
     "normalized": "ksdcjp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24515,7 +24515,7 @@
     "family": "wenfeng-khujp",
     "normalized": "khujp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24543,7 +24543,7 @@
     "family": "wenfeng-kaiso",
     "normalized": "kaiso",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24571,7 +24571,7 @@
     "family": "wenfeng-kstkm",
     "normalized": "kstkm",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24600,7 +24600,7 @@
     "family": "wenfeng-ymgjp",
     "normalized": "ymgjp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24626,7 +24626,7 @@
     "family": "wenfeng-swrbg",
     "normalized": "swrbg",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24652,7 +24652,7 @@
     "family": "wenfeng-swrbm",
     "normalized": "swrbm",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24678,7 +24678,7 @@
     "family": "wenfeng-hnkmc",
     "normalized": "hnkmc",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24703,7 +24703,7 @@
     "family": "wenfeng-yyxmc",
     "normalized": "yyxmc",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24729,7 +24729,7 @@
     "family": "wenfeng-yyhtgeg",
     "normalized": "yyhtgeg",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24760,7 +24760,7 @@
     "family": "wenfeng-yynht",
     "normalized": "yynht",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24786,7 +24786,7 @@
     "family": "wenfeng-yyaga",
     "normalized": "yyaga",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24812,7 +24812,7 @@
     "family": "wenfeng-hrnajp",
     "normalized": "hrnajp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24843,7 +24843,7 @@
     "family": "wenfeng-wdxlljp",
     "normalized": "wdxlljp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24869,7 +24869,7 @@
     "family": "wenfeng-genijp",
     "normalized": "genijp",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -24902,7 +24902,7 @@
     "family": "wenfeng-kzkrw",
     "normalized": "kzkrw",
     "tier": "ofl",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseVerified": true,
     "tags": [
@@ -25305,7 +25305,7 @@
       "Regular"
     ],
     "description": "水木黑体 Mizuki Gothic，IPA Font License Agreement v1.0（非 OFL）。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/smht/license/original.txt",
@@ -25386,7 +25386,7 @@
       "Regular"
     ],
     "description": "Bokutachi no Gothic，IPA Font License Agreement v1.0（非 OFL）。包来自 fontopo.com/fontdata/boku.zip。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/bngjp/license/original.txt",
@@ -25421,7 +25421,7 @@
       "Regular"
     ],
     "description": "Fontopo Nihongo，IPA Font License Agreement v1.0（非 OFL）。包来自 fontopo.com/fontdata/nihongo.zip。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/ftpnh/license/original.txt",
@@ -25456,7 +25456,7 @@
       "Regular"
     ],
     "description": "逐浪粗宋简体，Apache License 2.0（非 OFL）。上游 zoomla/ZoomlaFont。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "Apache License 2.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/zlcsjt/license/original.txt",
@@ -25533,7 +25533,7 @@
       "Regular"
     ],
     "description": "逐浪萌芽字，SIL Open Font License 1.1。上游 z01font/ZoomlaMengyas。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/zlmyz/license/original.txt",
@@ -25572,7 +25572,7 @@
       "Regular"
     ],
     "description": "JK Maru Gothic，汉字版权属 M+ FONTS PROJECT。上游 font.cutegirl.jp。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "M+ FONTS PROJECT",
     "licenseUrl": "",
     "licenseFileUrl": "",
@@ -25608,7 +25608,7 @@
       "Regular"
     ],
     "description": "遍黑体 Plangothic，SIL OFL 1.1。上游 TTC 拆成两套字形面，本条为 P1（Regular）。P2 因字形数超过单文件上限，另开 wenfeng-bbhtp2，不是更粗的字重。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "",
@@ -25648,7 +25648,7 @@
       "Regular"
     ],
     "description": "遍黑体 Plangothic P2，SIL OFL 1.1。与 P1 同包拆出的第二套字形面（扩展区溢出），不是更粗的字重。短码 bbhtp2。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "",
@@ -25684,7 +25684,7 @@
       "Regular"
     ],
     "description": "嗷呜等高体 Howling EqHi Sans，SIL Open Font License 1.1。上游 howlingFounts/EqHiSans，基于文渊黑体+Roboto Flex。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/awdgt/license/original.txt",
@@ -25840,7 +25840,7 @@
       "Black"
     ],
     "description": "ポプらむ☆キウイ（テロップ）。作者站 kiwi-kawagoto.com 包内说明为 LINE Seed 派生，SIL Open Font License 1.1。单字重，OS/2 900，目录记为 Black。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://kiwi-kawagoto.com/poprumkiwi/index.html",
     "licenseFileUrl": "",
@@ -25877,7 +25877,7 @@
       "Bold"
     ],
     "description": "Corporate Logo Ver3。logotype.jp 官方 ZIP 内附 SIL Open Font License 1.1。字重 Medium、Bold。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://logotype.jp/corporate-logo-font-dl.html",
     "licenseFileUrl": "",
@@ -25956,7 +25956,7 @@
       "Regular"
     ],
     "description": "装甲明朝，FLOP Design 基于思源宋体（Source Han Serif）改作。包来自 Font Squirrel 镜像，包内 SIL Open Font License 1.1。Booth 原页仍在登录墙后。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://flopdesign.booth.pm/items/1028555",
     "licenseFileUrl": "",
@@ -33111,7 +33111,7 @@
       "Regular"
     ],
     "description": "出岛明朝（Dejima Mincho）。Yoshiki Hayashi。Debian fonts-dejima-mincho。MIT。",
-    "license": "MIT",
+    "license": "开源商用",
     "licenseName": "mit",
     "licenseUrl": "",
     "licenseFileUrl": "",
@@ -34547,7 +34547,7 @@
       "Regular"
     ],
     "description": "KanjiStrokeOrders。name-table family KanjiStrokeOrders。BSD-3-Clause（sidecar LICENCE.txt，该拼写非 LICENSE）。笔顺图著作权 Ulrich Apel / Wadoku / AAAA；FontForge 组装 Tim Eyre。",
-    "license": "BSD-3-Clause",
+    "license": "开源商用",
     "licenseName": "bsd",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/ksojp/license/original.txt",
@@ -35022,7 +35022,7 @@
       "Diet"
     ],
     "description": "きろ字（kiloji）。name-table family kiloji / きろ字。styles Regular（等宽）·P·Bold·Diet；CSS font-family Kiloji。BSD-3-Clause（sidecar License.txt）。",
-    "license": "BSD-3-Clause",
+    "license": "开源商用",
     "licenseName": "bsd",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/kljjp/license/original.txt",
@@ -35123,7 +35123,7 @@
       "Regular"
     ],
     "description": "LanaPixel（LanaPixel）。OFL 1.1. RFN LanaPixel. One file contains full Hangul and Hanzi; Hangul cannot be dropped without subsetting. Japanese/Chinese pixel font, not Korean-primary. Languages 日文 and 简体. Inventory also notes decent 繁体. Not tagged 韩文. Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "",
     "licenseFileUrl": "",
@@ -37854,7 +37854,7 @@
       "Regular"
     ],
     "description": "香萃端庄宋体。开源中文宋体。",
-    "license": "免费商用",
+    "license": "开源商用",
     "licenseName": "SIL Open Font License 1.1",
     "licenseUrl": "https://github.com/Miiiller/Xiangcui-Duanzhuangsongti",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/xcdzst/license/original.txt",
