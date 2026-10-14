@@ -1,1 +1,51 @@
-{"id":"1eb9799e-16af-4bf5-b43b-9731eac9d6a9","name":"问藏书房","en":"WenCang","family":"wenfeng-wcsf","normalized":"wcsf","category":"无衬线字体","tags":["现代","黑体","多语言支持"],"weights":["Normal"],"license":"免费商用","licenseName":"问藏书房授权协议","licenseVerified":false,"foundry":"问藏书房","brand":{"name":"问藏书房","slug":"wencang"},"foundryAvatar":"https://cravatar.com/avatar/7909eb520d16148e376a929ee4dd6c1f0b0d6c18a76d3fddc02db30a463e1f89?s=144&d=identicon","viewCount":17,"designerShort":"丁道华","designer":"丁道华","languages":["简体中文","繁体中文","英语","日文"],"releaseYear":2019,"charCount":7256,"glyphCount":7212,"useCases":["品牌标识","网页设计","UI界面","印刷标题"],"description":"WenCang（问藏书房）是一款由丁道华设计的中文字体，于2019年9月发布。该字体风格为现代无衬线黑体，字形结构清晰，笔画简洁，具有良好的可读性。它支持简体中文、繁体中文、日文以及基本拉丁字符，适用于多种数字排版场景，如品牌标识、网页设计、UI界面和印刷品标题等。根据公开信息，其商业使用需要获得授权。","descriptionBrief":"WenCang（问藏书房）是一款由丁道华设计的中文字体，于2019年9月发布。该字体风格为现代无衬线黑体，字形结构清晰，笔画简洁，具有良好的可读性。它支持简体中文、繁体中文、日文以及基本拉丁字符，适用于多种数字排版场景…","copyright":"2019 丁道华. All rights reserved.","licenseNotes":"","licenseFileUrl":"https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Wcsf/LICENSE","licenseUrl":"","purchaseUrl":null,"version":"1.0.0"}
+{
+  "id": "1eb9799e-16af-4bf5-b43b-9731eac9d6a9",
+  "name": "问藏书房",
+  "en": "WenCang",
+  "family": "wenfeng-wcsf",
+  "normalized": "wcsf",
+  "category": "无衬线字体",
+  "tags": [
+    "现代",
+    "黑体",
+    "多语言支持"
+  ],
+  "weights": [
+    "Normal"
+  ],
+  "license": "免费商用",
+  "licenseName": "问藏书房授权协议",
+  "licenseVerified": false,
+  "foundry": "问藏书房",
+  "brand": {
+    "name": "问藏书房",
+    "slug": "wencang"
+  },
+  "foundryAvatar": "https://cravatar.com/avatar/7909eb520d16148e376a929ee4dd6c1f0b0d6c18a76d3fddc02db30a463e1f89?s=144&d=identicon",
+  "viewCount": 17,
+  "designerShort": "丁道华",
+  "designer": "丁道华",
+  "languages": [
+    "简体中文",
+    "繁体中文",
+    "英语",
+    "日文"
+  ],
+  "releaseYear": 2019,
+  "charCount": 7256,
+  "glyphCount": 7212,
+  "useCases": [
+    "品牌标识",
+    "网页设计",
+    "UI界面",
+    "印刷标题"
+  ],
+  "description": "WenCang（问藏书房）是一款由丁道华设计的中文字体，于2019年9月发布。该字体风格为现代无衬线黑体，字形结构清晰，笔画简洁，具有良好的可读性。它支持简体中文、繁体中文、日文以及基本拉丁字符，适用于多种数字排版场景，如品牌标识、网页设计、UI界面和印刷品标题等。根据公开信息，其商业使用需要获得授权。",
+  "descriptionBrief": "WenCang（问藏书房）是一款由丁道华设计的中文字体，于2019年9月发布。该字体风格为现代无衬线黑体，字形结构清晰，笔画简洁，具有良好的可读性。它支持简体中文、繁体中文、日文以及基本拉丁字符，适用于多种数字排版场景…",
+  "copyright": "2019 丁道华. All rights reserved.",
+  "licenseNotes": "",
+  "licenseFileUrl": "https://wenfeng.org/license/wcsf/",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "1.0.0"
+}

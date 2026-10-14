@@ -1,1 +1,64 @@
-{"id":"7fdcfd07-864d-49a1-8727-b51d78316e0b","name":"阿里巴巴普惠体","en":"Alibaba PuHuiTi","family":"wenfeng-albbpht","normalized":"albbpht","category":"无衬线字体","tags":["免费商用","阿里巴巴","黑体","现代","多语言"],"weights":["Thin","Light","Regular","Medium","SemiBold","Bold","ExtraBold","Heavy","Black"],"license":"免费商用","licenseName":"阿里巴巴普惠体授权协议","licenseVerified":false,"foundry":"Alibaba Design","brand":{"name":"Alibaba Design","slug":"alibaba-design","avatarUrl":"assets/avatars/alibaba-design.webp"},"foundryAvatar":"https://cravatar.com/avatar/f9f700f291cf90da22c37b2d30827567fcce3be00e51aec1373fe57d63765d24?s=144&d=identicon","viewCount":225,"designerShort":"—","designer":"","languages":["简体中文","繁体中文","英语","日文","韩文"],"releaseYear":2019,"charCount":29197,"glyphCount":29296,"useCases":["电商设计","品牌宣传","UI/UX界面","广告海报","办公文档"],"description":"阿里巴巴普惠体，阿里巴巴集团 2019 年发布的免费商用黑体，由阿里设计与汉仪联合制作。字形现代、略瘦偏高，细字重适合长文与界面，粗字重适合标题。多字重；大陆站以 SC 规格为主，繁体请切换 TC。授权条款见本页「授权」。","descriptionBrief":"阿里巴巴普惠体，阿里巴巴集团 2019 年发布的免费商用黑体，由阿里设计与汉仪联合制作。字形现代、略瘦偏高，细字重适合长文与界面，粗字重适合标题。多字重；大陆站以 SC 规格为主，繁体请切换 TC。授权条款见本页「授权」。","copyright":"Copyright ?2019 Alibaba (China) Co., Ltd. All rights reserved.","licenseNotes":"厂商协议。本站不二次授权。许可以出处原文为准，见 https://wenfeng.org/license/albbpht/ 。不要把本条当成其他字库的条款。","licenseFileUrl":"https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Albbpht/LICENSE","licenseUrl":"","purchaseUrl":null,"version":"3.0.0"}
+{
+  "id": "7fdcfd07-864d-49a1-8727-b51d78316e0b",
+  "name": "阿里巴巴普惠体",
+  "en": "Alibaba PuHuiTi",
+  "family": "wenfeng-albbpht",
+  "normalized": "albbpht",
+  "category": "无衬线字体",
+  "tags": [
+    "免费商用",
+    "阿里巴巴",
+    "黑体",
+    "现代",
+    "多语言"
+  ],
+  "weights": [
+    "Thin",
+    "Light",
+    "Regular",
+    "Medium",
+    "SemiBold",
+    "Bold",
+    "ExtraBold",
+    "Heavy",
+    "Black"
+  ],
+  "license": "免费商用",
+  "licenseName": "阿里巴巴普惠体授权协议",
+  "licenseVerified": false,
+  "foundry": "Alibaba Design",
+  "brand": {
+    "name": "Alibaba Design",
+    "slug": "alibaba-design",
+    "avatarUrl": "assets/avatars/alibaba-design.webp"
+  },
+  "foundryAvatar": "https://cravatar.com/avatar/f9f700f291cf90da22c37b2d30827567fcce3be00e51aec1373fe57d63765d24?s=144&d=identicon",
+  "viewCount": 225,
+  "designerShort": "—",
+  "designer": "",
+  "languages": [
+    "简体中文",
+    "繁体中文",
+    "英语",
+    "日文",
+    "韩文"
+  ],
+  "releaseYear": 2019,
+  "charCount": 29197,
+  "glyphCount": 29296,
+  "useCases": [
+    "电商设计",
+    "品牌宣传",
+    "UI/UX界面",
+    "广告海报",
+    "办公文档"
+  ],
+  "description": "阿里巴巴普惠体，阿里巴巴集团 2019 年发布的免费商用黑体，由阿里设计与汉仪联合制作。字形现代、略瘦偏高，细字重适合长文与界面，粗字重适合标题。多字重；大陆站以 SC 规格为主，繁体请切换 TC。授权条款见本页「授权」。",
+  "descriptionBrief": "阿里巴巴普惠体，阿里巴巴集团 2019 年发布的免费商用黑体，由阿里设计与汉仪联合制作。字形现代、略瘦偏高，细字重适合长文与界面，粗字重适合标题。多字重；大陆站以 SC 规格为主，繁体请切换 TC。授权条款见本页「授权」。",
+  "copyright": "Copyright ?2019 Alibaba (China) Co., Ltd. All rights reserved.",
+  "licenseNotes": "厂商协议。本站不二次授权。许可以出处原文为准，见 https://wenfeng.org/license/albbpht/ 。不要把本条当成其他字库的条款。",
+  "licenseFileUrl": "https://wenfeng.org/license/albbpht/",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "3.0.0"
+}

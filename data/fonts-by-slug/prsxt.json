@@ -1,1 +1,53 @@
-{"id":"eb9717d5-a3d0-456a-ad9b-2e809feb813b","name":"品如手写体","en":"PinRuShouXieTi","family":"wenfeng-prsxt","normalized":"prsxt","category":"手写体","tags":["免费商用","手写","硬笔","创意","SIL OFL"],"weights":["Regular"],"license":"免费商用","licenseName":"品如手写体授权协议","licenseVerified":false,"foundry":"Pinru","brand":{"name":"Pinru","slug":"pinru","avatarUrl":"https://cravatar.com/avatar/4fbb12e02380261166d757c9f363d33c6422f91f6daa426fa1371c36babf950a?s=144&d=identicon"},"foundryAvatar":"https://cravatar.com/avatar/4fbb12e02380261166d757c9f363d33c6422f91f6daa426fa1371c36babf950a?s=144&d=identicon","viewCount":27,"designerShort":"林芳柽","designer":"林芳柽","languages":["简体中文"],"releaseYear":2017,"charCount":7584,"glyphCount":7584,"useCases":["电商设计","社交媒体配图","海报标题","品牌标识","个人项目","网页设计"],"description":"品如手写体是由设计师林芳柽创作的一款永久免费可商用的手写字体。作者因不满字体版权收费的现状，作为书法爱好者，利用半年业余时间完成了这套字库。字体风格为硬笔手写，笔画流畅自然，带有个人书写特色。该字体基于SIL Open Font License 1.1协议发布，允许个人和企业免费商用、传播和修改。字体最初发布于2017年，后续在2022年进行了更新，修复了在macOS系统上的显示问题以及字体在系统中归类错误的问题。作者林芳柽是品如设计的创意总监，曾任职于奥美广告公司，服务过多个知名品牌。","descriptionBrief":"品如手写体是由设计师林芳柽创作的一款永久免费可商用的手写字体。作者因不满字体版权收费的现状，作为书法爱好者，利用半年业余时间完成了这套字库。字体风格为硬笔手写，笔画流畅自然，带有个人书写特色。该字体基于SIL Open Font…","copyright":"(C) Quanzhou Yuchen E-commerce Co., Ltd.","licenseNotes":"可免费商用，不可修改字体文件后再分发，不可单独售卖字体文件","licenseFileUrl":"https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Prsxt/LICENSE","licenseUrl":"","purchaseUrl":null,"version":"1.0.0"}
+{
+  "id": "eb9717d5-a3d0-456a-ad9b-2e809feb813b",
+  "name": "品如手写体",
+  "en": "PinRuShouXieTi",
+  "family": "wenfeng-prsxt",
+  "normalized": "prsxt",
+  "category": "手写体",
+  "tags": [
+    "免费商用",
+    "手写",
+    "硬笔",
+    "创意",
+    "SIL OFL"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "免费商用",
+  "licenseName": "品如手写体授权协议",
+  "licenseVerified": false,
+  "foundry": "Pinru",
+  "brand": {
+    "name": "Pinru",
+    "slug": "pinru",
+    "avatarUrl": "https://cravatar.com/avatar/4fbb12e02380261166d757c9f363d33c6422f91f6daa426fa1371c36babf950a?s=144&d=identicon"
+  },
+  "foundryAvatar": "https://cravatar.com/avatar/4fbb12e02380261166d757c9f363d33c6422f91f6daa426fa1371c36babf950a?s=144&d=identicon",
+  "viewCount": 27,
+  "designerShort": "林芳柽",
+  "designer": "林芳柽",
+  "languages": [
+    "简体中文"
+  ],
+  "releaseYear": 2017,
+  "charCount": 7584,
+  "glyphCount": 7584,
+  "useCases": [
+    "电商设计",
+    "社交媒体配图",
+    "海报标题",
+    "品牌标识",
+    "个人项目",
+    "网页设计"
+  ],
+  "description": "品如手写体是由设计师林芳柽创作的一款永久免费可商用的手写字体。作者因不满字体版权收费的现状，作为书法爱好者，利用半年业余时间完成了这套字库。字体风格为硬笔手写，笔画流畅自然，带有个人书写特色。该字体基于SIL Open Font License 1.1协议发布，允许个人和企业免费商用、传播和修改。字体最初发布于2017年，后续在2022年进行了更新，修复了在macOS系统上的显示问题以及字体在系统中归类错误的问题。作者林芳柽是品如设计的创意总监，曾任职于奥美广告公司，服务过多个知名品牌。",
+  "descriptionBrief": "品如手写体是由设计师林芳柽创作的一款永久免费可商用的手写字体。作者因不满字体版权收费的现状，作为书法爱好者，利用半年业余时间完成了这套字库。字体风格为硬笔手写，笔画流畅自然，带有个人书写特色。该字体基于SIL Open Font…",
+  "copyright": "(C) Quanzhou Yuchen E-commerce Co., Ltd.",
+  "licenseNotes": "可免费商用，不可修改字体文件后再分发，不可单独售卖字体文件",
+  "licenseFileUrl": "https://wenfeng.org/license/prsxt/",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "1.0.0"
+}

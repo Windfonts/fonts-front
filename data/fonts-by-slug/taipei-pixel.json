@@ -1,1 +1,45 @@
-{"id":"30ecc980-dbf8-452e-9799-4b3ad65896b6","name":"台北字体","en":"Taipei","family":"wenfeng-tbzt","normalized":"taipei-pixel","category":"","tags":["像素","点阵","CC-BY-SA-4.0","繁体中文"],"weights":["Regular","Taipei24"],"license":"免费商用","licenseName":"CC-BY-SA-4.0","licenseVerified":null,"foundry":"DWNfonts","brand":null,"foundryAvatar":"https://cravatar.com/avatar/bda050585a00f0f6cb502350559d75532ae3b244c9498b996e7c5df2d98dfc8d?s=144&d=identicon","viewCount":0,"designerShort":"DWNfonts","designer":"DWNfonts (diaowinner)","languages":["繁体中文"],"releaseYear":2026,"charCount":13061,"glyphCount":13061,"useCases":["像素","正文"],"description":"台北字体（Taipei）。CC-BY-SA-4.0 share-alike + attribution. NOT OFL. NOT free_commercial. Existing license string CC-BY-SA-4.0. Not 台北黑體 (Taipei Sans TC, a different OFL card). Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.","descriptionBrief":null,"copyright":"DWNfonts / CC-BY-SA-4.0","licenseNotes":"","licenseFileUrl":"","licenseUrl":"","purchaseUrl":null,"version":"bdf"}
+{
+  "id": "30ecc980-dbf8-452e-9799-4b3ad65896b6",
+  "name": "台北字体",
+  "en": "Taipei",
+  "family": "wenfeng-tbzt",
+  "normalized": "taipei-pixel",
+  "category": "",
+  "tags": [
+    "像素",
+    "点阵",
+    "CC-BY-SA-4.0",
+    "繁体中文"
+  ],
+  "weights": [
+    "Regular",
+    "Taipei24"
+  ],
+  "license": "开源商用",
+  "licenseName": "CC-BY-SA-4.0",
+  "licenseVerified": null,
+  "foundry": "DWNfonts",
+  "brand": null,
+  "foundryAvatar": "https://cravatar.com/avatar/bda050585a00f0f6cb502350559d75532ae3b244c9498b996e7c5df2d98dfc8d?s=144&d=identicon",
+  "viewCount": 0,
+  "designerShort": "DWNfonts",
+  "designer": "DWNfonts (diaowinner)",
+  "languages": [
+    "繁体中文"
+  ],
+  "releaseYear": 2026,
+  "charCount": 13061,
+  "glyphCount": 13061,
+  "useCases": [
+    "像素",
+    "正文"
+  ],
+  "description": "台北字体（Taipei）。CC-BY-SA-4.0 share-alike + attribution. NOT OFL. NOT free_commercial. Existing license string CC-BY-SA-4.0. Not 台北黑體 (Taipei Sans TC, a different OFL card). Bitmap BDF as in the fontpixel checkout. No TTF conversion. CDN not opened.",
+  "descriptionBrief": null,
+  "copyright": "DWNfonts / CC-BY-SA-4.0",
+  "licenseNotes": "",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "bdf"
+}

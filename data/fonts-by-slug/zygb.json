@@ -1,1 +1,50 @@
-{"id":"64862922-ca77-43a4-9e4d-e6e35efec8be","name":"臻妍GB","en":"ZhenyanGB Regular","family":"wenfeng-zygb","normalized":"zygb","category":"无衬线字体","tags":["GB2312","现代","商业字体"],"weights":["Regular"],"license":"免费商用","licenseName":"臻妍GB 常规体授权协议","licenseVerified":false,"foundry":"Reeji (RuiZi Trendy Font)","brand":{"name":"Reeji (RuiZi Trendy Font)","slug":"ruixian","avatarUrl":"https://cravatar.com/avatar/ee0b11cc835980d4368c8261b234bd186e7d52e94bbb010df8bc55db8e51da10?s=144&d=identicon","website":"https://www.reeji.com/"},"foundryAvatar":"https://cravatar.com/avatar/ee0b11cc835980d4368c8261b234bd186e7d52e94bbb010df8bc55db8e51da10?s=144&d=identicon","viewCount":17,"designerShort":"REEJI","designer":"REEJI","languages":["简体中文"],"releaseYear":2018,"charCount":7678,"glyphCount":7656,"useCases":["商业文档","品牌设计","用户界面","印刷品"],"description":"ZhenyanGB 是一款由上海瑞贤创意设计有限公司（REEJI）于2018年发布的现代无衬线中文字体。其设计风格简洁、清晰，笔画均匀，字形结构规整，具有良好的屏幕显示和印刷阅读体验。该字体严格遵循GB2312字符集标准，覆盖了常用的简体中文字符，适用于需要正式、清晰视觉呈现的文档排版、界面设计、品牌标识等商业场景。","descriptionBrief":"ZhenyanGB 是一款由上海瑞贤创意设计有限公司（REEJI）于2018年发布的现代无衬线中文字体。其设计风格简洁、清晰，笔画均匀，字形结构规整，具有良好的屏幕显示和印刷阅读体验。该字体严格遵循GB2312字符集标准…","copyright":"For commercial use, please purchase permission to authorize business:  www.reeji.com QQ:2770851733 Mail:Reejifont@outlook.com   2018 by Shang hai Rui Xian Creative Design Co., Ltd..All rights reserved.","licenseNotes":"需购买商业授权后方可使用","licenseFileUrl":"https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Rzzyt/LICENSE","licenseUrl":"","purchaseUrl":null,"version":"1.0.0"}
+{
+  "id": "64862922-ca77-43a4-9e4d-e6e35efec8be",
+  "name": "臻妍GB",
+  "en": "ZhenyanGB Regular",
+  "family": "wenfeng-zygb",
+  "normalized": "zygb",
+  "category": "无衬线字体",
+  "tags": [
+    "GB2312",
+    "现代",
+    "商业字体"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "免费商用",
+  "licenseName": "臻妍GB 常规体授权协议",
+  "licenseVerified": false,
+  "foundry": "Reeji (RuiZi Trendy Font)",
+  "brand": {
+    "name": "Reeji (RuiZi Trendy Font)",
+    "slug": "ruixian",
+    "avatarUrl": "https://cravatar.com/avatar/ee0b11cc835980d4368c8261b234bd186e7d52e94bbb010df8bc55db8e51da10?s=144&d=identicon",
+    "website": "https://www.reeji.com/"
+  },
+  "foundryAvatar": "https://cravatar.com/avatar/ee0b11cc835980d4368c8261b234bd186e7d52e94bbb010df8bc55db8e51da10?s=144&d=identicon",
+  "viewCount": 17,
+  "designerShort": "REEJI",
+  "designer": "REEJI",
+  "languages": [
+    "简体中文"
+  ],
+  "releaseYear": 2018,
+  "charCount": 7678,
+  "glyphCount": 7656,
+  "useCases": [
+    "商业文档",
+    "品牌设计",
+    "用户界面",
+    "印刷品"
+  ],
+  "description": "ZhenyanGB 是一款由上海瑞贤创意设计有限公司（REEJI）于2018年发布的现代无衬线中文字体。其设计风格简洁、清晰，笔画均匀，字形结构规整，具有良好的屏幕显示和印刷阅读体验。该字体严格遵循GB2312字符集标准，覆盖了常用的简体中文字符，适用于需要正式、清晰视觉呈现的文档排版、界面设计、品牌标识等商业场景。",
+  "descriptionBrief": "ZhenyanGB 是一款由上海瑞贤创意设计有限公司（REEJI）于2018年发布的现代无衬线中文字体。其设计风格简洁、清晰，笔画均匀，字形结构规整，具有良好的屏幕显示和印刷阅读体验。该字体严格遵循GB2312字符集标准…",
+  "copyright": "For commercial use, please purchase permission to authorize business:  www.reeji.com QQ:2770851733 Mail:Reejifont@outlook.com   2018 by Shang hai Rui Xian Creative Design Co., Ltd..All rights reserved.",
+  "licenseNotes": "需购买商业授权后方可使用",
+  "licenseFileUrl": "https://wenfeng.org/license/zygb/",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "1.0.0"
+}

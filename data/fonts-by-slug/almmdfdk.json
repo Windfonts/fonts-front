@@ -1,1 +1,53 @@
-{"id":"521ff9df-f6dd-49c6-9a96-2dcc75e2ea10","name":"阿里妈妈东方大楷","en":"Alimama DongFangDaKai","family":"wenfeng-almmdfdk","normalized":"almmdfdk","category":"手写体","tags":["阿里巴巴","颜体","多宝塔碑","AI生成","人机协同"],"weights":["Regular"],"license":"免费商用","licenseName":"阿里妈妈东方大楷授权协议","licenseVerified":false,"foundry":"Alibaba Design","brand":{"name":"Alibaba Design","slug":"alibaba-design","avatarUrl":"assets/avatars/alibaba-design.webp"},"foundryAvatar":"https://cravatar.com/avatar/f9f700f291cf90da22c37b2d30827567fcce3be00e51aec1373fe57d63765d24?s=144&d=identicon","viewCount":24,"designerShort":"Chen Qihui","designer":"Chen Qihui, Hong Liangfen, Liu Chuan, Han Xiaoming, Li Dandan, Chen Yangjian, Gong Wei, Li Jie, Wang Chi, Zhou Min, Li Mu","languages":["简体中文","英语"],"releaseYear":2023,"charCount":7017,"glyphCount":7044,"useCases":["品牌标题","文化宣传物料","电商广告","书籍封面","传统艺术相关设计"],"description":"阿里妈妈东方大楷是一款基于唐代书法家颜真卿《多宝塔碑》风格，通过算法生成并结合人工优化完成的楷书字体。该字体运用机器学习技术捕捉了颜体丰腴厚重的神韵，在笔画处理上实现了传统书法中的收放起伏，规范了字形骨架与笔画结构，还原了落笔、转笔、藏锋、护尾等书法韵味，使整体风格饱满、圆融、浑厚。字库包含简体中文字符（GB2312标准，共6763个汉字）、英文字母及常用标点符号，总计7043个字符。","descriptionBrief":"阿里妈妈东方大楷是一款基于唐代书法家颜真卿《多宝塔碑》风格，通过算法生成并结合人工优化完成的楷书字体。该字体运用机器学习技术捕捉了颜体丰腴厚重的神韵，在笔画处理上实现了传统书法中的收放起伏，规范了字形骨架与笔画结构…","copyright":"Copyright (c) 2023 Alibaba (China) Co., Ltd. All rights reserved.","licenseNotes":"可免费商用，不可修改字体文件后再分发，不可单独售卖字体文件","licenseFileUrl":"https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Almmdfdk/LICENSE","licenseUrl":"","purchaseUrl":null,"version":"1.0.0"}
+{
+  "id": "521ff9df-f6dd-49c6-9a96-2dcc75e2ea10",
+  "name": "阿里妈妈东方大楷",
+  "en": "Alimama DongFangDaKai",
+  "family": "wenfeng-almmdfdk",
+  "normalized": "almmdfdk",
+  "category": "手写体",
+  "tags": [
+    "阿里巴巴",
+    "颜体",
+    "多宝塔碑",
+    "AI生成",
+    "人机协同"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "免费商用",
+  "licenseName": "阿里妈妈东方大楷授权协议",
+  "licenseVerified": false,
+  "foundry": "Alibaba Design",
+  "brand": {
+    "name": "Alibaba Design",
+    "slug": "alibaba-design",
+    "avatarUrl": "assets/avatars/alibaba-design.webp"
+  },
+  "foundryAvatar": "https://cravatar.com/avatar/f9f700f291cf90da22c37b2d30827567fcce3be00e51aec1373fe57d63765d24?s=144&d=identicon",
+  "viewCount": 24,
+  "designerShort": "Chen Qihui",
+  "designer": "Chen Qihui, Hong Liangfen, Liu Chuan, Han Xiaoming, Li Dandan, Chen Yangjian, Gong Wei, Li Jie, Wang Chi, Zhou Min, Li Mu",
+  "languages": [
+    "简体中文",
+    "英语"
+  ],
+  "releaseYear": 2023,
+  "charCount": 7017,
+  "glyphCount": 7044,
+  "useCases": [
+    "品牌标题",
+    "文化宣传物料",
+    "电商广告",
+    "书籍封面",
+    "传统艺术相关设计"
+  ],
+  "description": "阿里妈妈东方大楷是一款基于唐代书法家颜真卿《多宝塔碑》风格，通过算法生成并结合人工优化完成的楷书字体。该字体运用机器学习技术捕捉了颜体丰腴厚重的神韵，在笔画处理上实现了传统书法中的收放起伏，规范了字形骨架与笔画结构，还原了落笔、转笔、藏锋、护尾等书法韵味，使整体风格饱满、圆融、浑厚。字库包含简体中文字符（GB2312标准，共6763个汉字）、英文字母及常用标点符号，总计7043个字符。",
+  "descriptionBrief": "阿里妈妈东方大楷是一款基于唐代书法家颜真卿《多宝塔碑》风格，通过算法生成并结合人工优化完成的楷书字体。该字体运用机器学习技术捕捉了颜体丰腴厚重的神韵，在笔画处理上实现了传统书法中的收放起伏，规范了字形骨架与笔画结构…",
+  "copyright": "Copyright (c) 2023 Alibaba (China) Co., Ltd. All rights reserved.",
+  "licenseNotes": "可免费商用，不可修改字体文件后再分发，不可单独售卖字体文件",
+  "licenseFileUrl": "https://wenfeng.org/license/almmdfdk/",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "1.0.0"
+}

@@ -1,1 +1,50 @@
-{"id":"c4285fb5-1aa5-4b38-a156-5fb605a2eaa4","name":"千图学画体","en":"qiantuxuehuati","family":"wenfeng-qtxht","normalized":"qtxht","category":"手写体","tags":["手写","教育","创意"],"weights":["Regular"],"license":"免费商用","licenseName":"千图学画体授权协议","licenseVerified":false,"foundry":"拼图","brand":{"name":"千图网 (58pic)","slug":"qiantu","avatarUrl":"assets/avatars/qiantu.webp","website":"https://www.58pic.com/"},"foundryAvatar":"https://cravatar.com/avatar/6df6278422e623c3192e102199ca270d65079973f69b9d8f60843da47e67fcb5?s=144&d=identicon","viewCount":19,"designerShort":"Shanghai PinTu Network Technology Co.","designer":"Shanghai PinTu Network Technology Co.,Ltd.","languages":["简体中文"],"releaseYear":null,"charCount":10476,"glyphCount":10490,"useCases":["学习笔记","教育课件","创意海报","社交媒体配图"],"description":"qiantuxuehuati 是一款由上海品图网络科技有限公司（Shanghai PinTu Network Technology Co.,Ltd.）设计的手写风格字体。其名称千图学画体暗示了其与学习绘画或手绘相关的设计背景，字体风格偏向硬笔手写，笔画自然流畅，带有一定的亲和力与学习感。该字体适用于需要体现手写感、教育学习、创意笔记、轻松活泼的视觉设计场景。","descriptionBrief":"qiantuxuehuati 是一款由上海品图网络科技有限公司（Shanghai PinTu Network Technology Co.,Ltd.）设计的手写风格字体。其名称千图学画体暗示了其与学习绘画或手绘相关的设计背景…","copyright":"Copyright Shanghai PinTu Network Technology Co.,Ltd.","licenseNotes":"可免费商用，不可修改字体文件后再分发，不可单独售卖字体文件","licenseFileUrl":"https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Qtxht/LICENSE","licenseUrl":"","purchaseUrl":null,"version":"1.0.0"}
+{
+  "id": "c4285fb5-1aa5-4b38-a156-5fb605a2eaa4",
+  "name": "千图学画体",
+  "en": "qiantuxuehuati",
+  "family": "wenfeng-qtxht",
+  "normalized": "qtxht",
+  "category": "手写体",
+  "tags": [
+    "手写",
+    "教育",
+    "创意"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "免费商用",
+  "licenseName": "千图学画体授权协议",
+  "licenseVerified": false,
+  "foundry": "拼图",
+  "brand": {
+    "name": "千图网 (58pic)",
+    "slug": "qiantu",
+    "avatarUrl": "assets/avatars/qiantu.webp",
+    "website": "https://www.58pic.com/"
+  },
+  "foundryAvatar": "https://cravatar.com/avatar/6df6278422e623c3192e102199ca270d65079973f69b9d8f60843da47e67fcb5?s=144&d=identicon",
+  "viewCount": 19,
+  "designerShort": "Shanghai PinTu Network Technology Co.",
+  "designer": "Shanghai PinTu Network Technology Co.,Ltd.",
+  "languages": [
+    "简体中文"
+  ],
+  "releaseYear": null,
+  "charCount": 10476,
+  "glyphCount": 10490,
+  "useCases": [
+    "学习笔记",
+    "教育课件",
+    "创意海报",
+    "社交媒体配图"
+  ],
+  "description": "qiantuxuehuati 是一款由上海品图网络科技有限公司（Shanghai PinTu Network Technology Co.,Ltd.）设计的手写风格字体。其名称千图学画体暗示了其与学习绘画或手绘相关的设计背景，字体风格偏向硬笔手写，笔画自然流畅，带有一定的亲和力与学习感。该字体适用于需要体现手写感、教育学习、创意笔记、轻松活泼的视觉设计场景。",
+  "descriptionBrief": "qiantuxuehuati 是一款由上海品图网络科技有限公司（Shanghai PinTu Network Technology Co.,Ltd.）设计的手写风格字体。其名称千图学画体暗示了其与学习绘画或手绘相关的设计背景…",
+  "copyright": "Copyright Shanghai PinTu Network Technology Co.,Ltd.",
+  "licenseNotes": "可免费商用，不可修改字体文件后再分发，不可单独售卖字体文件",
+  "licenseFileUrl": "https://wenfeng.org/license/qtxht/",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "1.0.0"
+}

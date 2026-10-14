@@ -1,1 +1,53 @@
-{"id":"5baf55e4-bba0-4f21-aab8-38d004bf706d","name":"贤二体","en":"XianErTi","family":"wenfeng-xet","normalized":"xet","category":"手写体","tags":["龙泉寺","汉仪","卡通","书法"],"weights":["Regular"],"license":"免费商用","licenseName":"贤二体授权协议","licenseVerified":false,"foundry":"Beijing Longquan Monastery Animation Center","brand":{"name":"北京龙泉寺","slug":"longquansi","avatarUrl":"https://cravatar.com/avatar/34209db508b757ea687fc1c13ed57fdbe240941304ee40f3b4021a948277d137?s=144&d=identicon"},"foundryAvatar":"https://cravatar.com/avatar/34209db508b757ea687fc1c13ed57fdbe240941304ee40f3b4021a948277d137?s=144&d=identicon","viewCount":40,"designerShort":"—","designer":"","languages":["简体中文","繁体中文","英语","日文"],"releaseYear":2025,"charCount":10352,"glyphCount":9962,"useCases":["动漫衍生品","儿童读物","文化创意设计","社交媒体配图"],"description":"贤二体是一款由北京龙泉寺授权、汉仪字库开发制作的卡通创意毛笔书法字体。其设计灵感来源于北京龙泉寺的动漫形象贤二，字体风格俏皮可爱，笔画模仿毛笔书写，带有手写感和童趣。该字体支持简体中文、繁体中文、英文、日文等多种语言文字，字符集较为完整。根据版权信息，该字体由汉仪字库负责商业授权，通常需要购买授权后方可用于商业用途。","descriptionBrief":"贤二体是一款由北京龙泉寺授权、汉仪字库开发制作的卡通创意毛笔书法字体。其设计灵感来源于北京龙泉寺的动漫形象贤二，字体风格俏皮可爱，笔画模仿毛笔书写，带有手写感和童趣。该字体支持简体中文、繁体中文、英文、日文等多种语言文字，字符集较为完整。…","copyright":"(c) Copyright Beijing LongQuan Temple","licenseNotes":"可免费商用，不可修改字体文件后再分发，不可单独售卖字体文件","licenseFileUrl":"https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Xet/LICENSE","licenseUrl":"","purchaseUrl":null,"version":"5.0.0"}
+{
+  "id": "5baf55e4-bba0-4f21-aab8-38d004bf706d",
+  "name": "贤二体",
+  "en": "XianErTi",
+  "family": "wenfeng-xet",
+  "normalized": "xet",
+  "category": "手写体",
+  "tags": [
+    "龙泉寺",
+    "汉仪",
+    "卡通",
+    "书法"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "免费商用",
+  "licenseName": "贤二体授权协议",
+  "licenseVerified": false,
+  "foundry": "Beijing Longquan Monastery Animation Center",
+  "brand": {
+    "name": "北京龙泉寺",
+    "slug": "longquansi",
+    "avatarUrl": "https://cravatar.com/avatar/34209db508b757ea687fc1c13ed57fdbe240941304ee40f3b4021a948277d137?s=144&d=identicon"
+  },
+  "foundryAvatar": "https://cravatar.com/avatar/34209db508b757ea687fc1c13ed57fdbe240941304ee40f3b4021a948277d137?s=144&d=identicon",
+  "viewCount": 40,
+  "designerShort": "—",
+  "designer": "",
+  "languages": [
+    "简体中文",
+    "繁体中文",
+    "英语",
+    "日文"
+  ],
+  "releaseYear": 2025,
+  "charCount": 10352,
+  "glyphCount": 9962,
+  "useCases": [
+    "动漫衍生品",
+    "儿童读物",
+    "文化创意设计",
+    "社交媒体配图"
+  ],
+  "description": "贤二体是一款由北京龙泉寺授权、汉仪字库开发制作的卡通创意毛笔书法字体。其设计灵感来源于北京龙泉寺的动漫形象贤二，字体风格俏皮可爱，笔画模仿毛笔书写，带有手写感和童趣。该字体支持简体中文、繁体中文、英文、日文等多种语言文字，字符集较为完整。根据版权信息，该字体由汉仪字库负责商业授权，通常需要购买授权后方可用于商业用途。",
+  "descriptionBrief": "贤二体是一款由北京龙泉寺授权、汉仪字库开发制作的卡通创意毛笔书法字体。其设计灵感来源于北京龙泉寺的动漫形象贤二，字体风格俏皮可爱，笔画模仿毛笔书写，带有手写感和童趣。该字体支持简体中文、繁体中文、英文、日文等多种语言文字，字符集较为完整。…",
+  "copyright": "(c) Copyright Beijing LongQuan Temple",
+  "licenseNotes": "可免费商用，不可修改字体文件后再分发，不可单独售卖字体文件",
+  "licenseFileUrl": "https://wenfeng.org/license/xet/",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "5.0.0"
+}

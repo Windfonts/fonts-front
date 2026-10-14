@@ -1,0 +1,1085 @@
+{
+  "p03": [
+    {
+      "normalized": "astbspy",
+      "name": "澳声通部首拼音库楷",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/astbspy.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "astbszy",
+      "name": "澳声通部首注音库楷",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/astbszy.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "astpykk",
+      "name": "澳声通拼音库楷",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/astpykk.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "astpywkk",
+      "name": "澳声通大拼音库楷",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/astpywkk.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "astzykk",
+      "name": "澳声通注音库楷",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/astzykk.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "astzywkk",
+      "name": "澳声通大注音库楷",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/astzywkk.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "chusung",
+      "name": "粗宋",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "CC-BY-SA-4.0"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "CC-BY-SA-4.0"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/chusung.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "fonsung",
+      "name": "坊宋",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "CC-BY-SA-4.0"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "CC-BY-SA-4.0"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/fonsung.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "hzpyt",
+      "name": "汉字拼音体",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "CC-BY-SA-4.0"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "CC-BY-SA-4.0"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/hzpyt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "lyusung",
+      "name": "柳宋",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "CC-BY-SA-4.0"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "CC-BY-SA-4.0"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/lyusung.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "qzkzkt",
+      "name": "全字库正楷体",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/qzkzkt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "qzkzst",
+      "name": "全字库正宋体",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "台湾省开放政府数据授权条款 1.0"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/qzkzst.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "symca",
+      "name": "上元明朝 A",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "GlyphWiki 著作权与许可协议"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "GlyphWiki 著作权与许可协议"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/symca.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "symcb",
+      "name": "上元明朝 B",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "GlyphWiki 著作权与许可协议"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "GlyphWiki 著作权与许可协议"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/symcb.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "taipei-pixel",
+      "name": "台北字体",
+      "before": {
+        "license": "免费商用",
+        "licenseName": "CC-BY-SA-4.0"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "CC-BY-SA-4.0"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/taipei-pixel.json",
+        "fonts.json"
+      ]
+    }
+  ],
+  "p04": [
+    {
+      "normalized": "zhzybk",
+      "name": "字嗨注音标楷",
+      "before": {
+        "license": "双许可",
+        "licenseName": "汉字 CC-BY-4.0 + 其余 OFL-1.1"
+      },
+      "after": {
+        "license": "开源商用",
+        "licenseName": "汉字 CC-BY-4.0 + 其余 OFL-1.1"
+      },
+      "files": [
+        "fonts-list.json",
+        "fonts-by-slug/zhzybk.json",
+        "fonts.json"
+      ]
+    }
+  ],
+  "p02": [
+    {
+      "normalized": "albbpht",
+      "name": "阿里巴巴普惠体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Albbpht/LICENSE",
+      "after": "https://wenfeng.org/license/albbpht/",
+      "files": [
+        "fonts-by-slug/albbpht.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "alhyznht",
+      "name": "阿里汉仪智能黑体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Alhyznht/LICENSE",
+      "after": "https://wenfeng.org/license/alhyznht/",
+      "files": [
+        "fonts-by-slug/alhyznht.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "almmdfdk",
+      "name": "阿里妈妈东方大楷",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Almmdfdk/LICENSE",
+      "after": "https://wenfeng.org/license/almmdfdk/",
+      "files": [
+        "fonts-by-slug/almmdfdk.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "almmdlt",
+      "name": "阿里妈妈刀隶体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Almmdlt/LICENSE",
+      "after": "https://wenfeng.org/license/almmdlt/",
+      "files": [
+        "fonts-by-slug/almmdlt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "almmsht",
+      "name": "阿里妈妈数黑体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Almmsht/LICENSE",
+      "after": "https://wenfeng.org/license/almmsht/",
+      "files": [
+        "fonts-by-slug/almmsht.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "btxbt",
+      "name": "包图小白体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Btxbt/LICENSE",
+      "after": "https://wenfeng.org/license/btxbt/",
+      "files": [
+        "fonts-by-slug/btxbt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "cexwz",
+      "name": "仓耳小丸子",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cexwz/LICENSE",
+      "after": "https://wenfeng.org/license/cexwz/",
+      "files": [
+        "fonts-by-slug/cexwz.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "cezkzdbs",
+      "name": "仓耳周珂正大榜书",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cezkzdbs/LICENSE",
+      "after": "https://wenfeng.org/license/cezkzdbs/",
+      "files": [
+        "fonts-by-slug/cezkzdbs.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "cktjgt",
+      "name": "创客贴金刚体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cktjgt/LICENSE",
+      "after": "https://wenfeng.org/license/cktjgt/",
+      "files": [
+        "fonts-by-slug/cktjgt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "ddjbt",
+      "name": "钉钉进步体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Ddjbt/LICENSE",
+      "after": "https://wenfeng.org/license/ddjbt/",
+      "files": [
+        "fonts-by-slug/ddjbt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "dlkjt",
+      "name": "鼎猎客家体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Dlkjt/LICENSE",
+      "after": "https://wenfeng.org/license/dlkjt/",
+      "files": [
+        "fonts-by-slug/dlkjt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "dymht",
+      "name": "抖音美好体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Dymht/LICENSE",
+      "after": "https://wenfeng.org/license/dymht/",
+      "files": [
+        "fonts-by-slug/dymht.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "dyzgt",
+      "name": "斗鱼追光体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Dyzgt/LICENSE",
+      "after": "https://wenfeng.org/license/dyzgt/",
+      "files": [
+        "fonts-by-slug/dyzgt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "ebaswcxt",
+      "name": "EBAS 无衬线体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Qzkswjz/LICENSE",
+      "after": "https://wenfeng.org/license/ebaswcxt/",
+      "files": [
+        "fonts-by-slug/ebaswcxt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "gbhb",
+      "name": "钢笔鹤-B",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Kslgbht/LICENSE",
+      "after": "https://wenfeng.org/license/gbhb/",
+      "files": [
+        "fonts-by-slug/gbhb.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "gfmft",
+      "name": "龚帆免费体3.0",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Gfmft/LICENSE",
+      "after": "https://wenfeng.org/license/gfmft/",
+      "files": [
+        "fonts-by-slug/gfmft.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "gljgbt",
+      "name": "光良酒-干杯体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Gljgbt/LICENSE",
+      "after": "https://wenfeng.org/license/gljgbt/",
+      "files": [
+        "fonts-by-slug/gljgbt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "hkhlssxt",
+      "name": "黄凯桦律师手写体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Hkhlssxt/LICENSE",
+      "after": "https://wenfeng.org/license/hkhlssxt/",
+      "files": [
+        "fonts-by-slug/hkhlssxt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "hsmb",
+      "name": "衡山毛笔",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Hsmbzt/LICENSE",
+      "after": "https://wenfeng.org/license/hsmb/",
+      "files": [
+        "fonts-by-slug/hsmb.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "hxbnst",
+      "name": "胡晓波男神体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Hxbnst/LICENSE",
+      "after": "https://wenfeng.org/license/hxbnst/",
+      "files": [
+        "fonts-by-slug/hxbnst.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "hxbsbt",
+      "name": "胡晓波骚包体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Hxbsb/LICENSE",
+      "after": "https://wenfeng.org/license/hxbsbt/",
+      "files": [
+        "fonts-by-slug/hxbsbt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "hxbzst",
+      "name": "胡晓波真帅体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Hxbzst/LICENSE",
+      "after": "https://wenfeng.org/license/hxbzst/",
+      "files": [
+        "fonts-by-slug/hxbzst.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "inkslyt",
+      "name": "I.Ngaan刻石录颜体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Klsyt/LICENSE",
+      "after": "https://wenfeng.org/license/inkslyt/",
+      "files": [
+        "fonts-by-slug/inkslyt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "jnyyjyy",
+      "name": "今年也要加油鸭",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Jnyyjyy/LICENSE",
+      "after": "https://wenfeng.org/license/jnyyjyy/",
+      "files": [
+        "fonts-by-slug/jnyyjyy.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "jsyjst",
+      "name": "金山云技术体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Jsyjst/LICENSE",
+      "after": "https://wenfeng.org/license/jsyjst/",
+      "files": [
+        "fonts-by-slug/jsyjst.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "jxzkt",
+      "name": "江西拙楷体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Jxzk/LICENSE",
+      "after": "https://wenfeng.org/license/jxzkt/",
+      "files": [
+        "fonts-by-slug/jxzkt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "jybbzks",
+      "name": "教育部標準楷書",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Twjybbzjs/LICENSE",
+      "after": "https://wenfeng.org/license/jybbzks/",
+      "files": [
+        "fonts-by-slug/jybbzks.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "jybbzstun",
+      "name": "教育部标准宋体UN",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Twjybbzst/LICENSE",
+      "after": "https://wenfeng.org/license/jybbzstun/",
+      "files": [
+        "fonts-by-slug/jybbzstun.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "kksjt",
+      "name": "快看世界体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Kksjt/LICENSE",
+      "after": "https://wenfeng.org/license/kksjt/",
+      "files": [
+        "fonts-by-slug/kksjt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "lhktss",
+      "name": "刘欢卡通手书",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Lhktss/LICENSE",
+      "after": "https://wenfeng.org/license/lhktss/",
+      "files": [
+        "fonts-by-slug/lhktss.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "lhtt",
+      "name": "临海体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Lhls/LICENSE",
+      "after": "https://wenfeng.org/license/lhtt/",
+      "files": [
+        "fonts-by-slug/lhtt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "lmqylszrht",
+      "name": "联盟起艺卢帅正锐黑体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Lmqylszrht/LICENSE",
+      "after": "https://wenfeng.org/license/lmqylszrht/",
+      "files": [
+        "fonts-by-slug/lmqylszrht.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "misa",
+      "name": "小米兰亭 Sans",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Misa/LICENSE",
+      "after": "https://wenfeng.org/license/misa/",
+      "files": [
+        "fonts-by-slug/misa.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "myrbsxt",
+      "name": "沐瑶软笔手写体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Mysxt/LICENSE",
+      "after": "https://wenfeng.org/license/myrbsxt/",
+      "files": [
+        "fonts-by-slug/myrbsxt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "pfhtt",
+      "name": "PFanHuTuTi",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Pfhtt/LICENSE",
+      "after": "https://wenfeng.org/license/pfhtt/",
+      "files": [
+        "fonts-by-slug/pfhtt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "pmzdbtt",
+      "name": "庞门正道标题体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Pmzdbtt/LICENSE",
+      "after": "https://wenfeng.org/license/pmzdbtt/",
+      "files": [
+        "fonts-by-slug/pmzdbtt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "pmzdcst",
+      "name": "庞门正道粗书体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Pmzdcsd/LICENSE",
+      "after": "https://wenfeng.org/license/pmzdcst/",
+      "files": [
+        "fonts-by-slug/pmzdcst.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "pmzdqst",
+      "name": "庞门正道轻松体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Pmzdqst/LICENSE",
+      "after": "https://wenfeng.org/license/pmzdqst/",
+      "files": [
+        "fonts-by-slug/pmzdqst.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "prsxt",
+      "name": "品如手写体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Prsxt/LICENSE",
+      "after": "https://wenfeng.org/license/prsxt/",
+      "files": [
+        "fonts-by-slug/prsxt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "qtbfsxt",
+      "name": "千图笔锋手写体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Qtbfsxt/LICENSE",
+      "after": "https://wenfeng.org/license/qtbfsxt/",
+      "files": [
+        "fonts-by-slug/qtbfsxt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "qthht",
+      "name": "千图厚黑体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Qthht/LICENSE",
+      "after": "https://wenfeng.org/license/qthht/",
+      "files": [
+        "fonts-by-slug/qthht.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "qtmksxt",
+      "name": "千图马克手写体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Qtmksxt/LICENSE",
+      "after": "https://wenfeng.org/license/qtmksxt/",
+      "files": [
+        "fonts-by-slug/qtmksxt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "qtxht",
+      "name": "千图学画体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Qtxht/LICENSE",
+      "after": "https://wenfeng.org/license/qtxht/",
+      "files": [
+        "fonts-by-slug/qtxht.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "qtxmt",
+      "name": "千图纤墨体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Qtxmt/LICENSE",
+      "after": "https://wenfeng.org/license/qtxmt/",
+      "files": [
+        "fonts-by-slug/qtxmt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "qtxtt",
+      "name": "千图小兔体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Qtxtt/LICENSE",
+      "after": "https://wenfeng.org/license/qtxtt/",
+      "files": [
+        "fonts-by-slug/qtxtt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "scjskkt",
+      "name": "素材集市康康体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Scjskkt/LICENSE",
+      "after": "https://wenfeng.org/license/scjskkt/",
+      "files": [
+        "fonts-by-slug/scjskkt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "stfyt",
+      "name": "书体坊颜体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Stfytz/LICENSE",
+      "after": "https://wenfeng.org/license/stfyt/",
+      "files": [
+        "fonts-by-slug/stfyt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "stfzxfxct",
+      "name": "书体坊禚效锋行草体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Stfzxfxct/LICENSE",
+      "after": "https://wenfeng.org/license/stfzxfxct/",
+      "files": [
+        "fonts-by-slug/stfzxfxct.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "stmdxft",
+      "name": "摄图摩登小方体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Symdxft/LICENSE",
+      "after": "https://wenfeng.org/license/stmdxft/",
+      "files": [
+        "fonts-by-slug/stmdxft.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "wcsf",
+      "name": "问藏书房",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Wcsf/LICENSE",
+      "after": "https://wenfeng.org/license/wcsf/",
+      "files": [
+        "fonts-by-slug/wcsf.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "xet",
+      "name": "贤二体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Xet/LICENSE",
+      "after": "https://wenfeng.org/license/xet/",
+      "files": [
+        "fonts-by-slug/xet.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "xlfht",
+      "name": "乡立方黑体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Xlfht/LICENSE",
+      "after": "https://wenfeng.org/license/xlfht/",
+      "files": [
+        "fonts-by-slug/xlfht.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "xsszt",
+      "name": "像素Silver字体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Xsslv/LICENSE",
+      "after": "https://wenfeng.org/license/xsszt/",
+      "files": [
+        "fonts-by-slug/xsszt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "xxmttw",
+      "name": "新细明体 (台湾版)",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Twjybxxmt/LICENSE",
+      "after": "https://wenfeng.org/license/xxmttw/",
+      "files": [
+        "fonts-by-slug/xxmttw.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "ydwxjhxt",
+      "name": "YDW 香蕉滑行++体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Ydwbnnsp/LICENSE",
+      "after": "https://wenfeng.org/license/ydwxjhxt/",
+      "files": [
+        "fonts-by-slug/ydwxjhxt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "yffyt",
+      "name": "云峰飞云体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Yffyt/LICENSE",
+      "after": "https://wenfeng.org/license/yffyt/",
+      "files": [
+        "fonts-by-slug/yffyt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "yfzkzqscbbt",
+      "name": "云峰字库重庆山城棒棒体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Cqscbbt/LICENSE",
+      "after": "https://wenfeng.org/license/yfzkzqscbbt/",
+      "files": [
+        "fonts-by-slug/yfzkzqscbbt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "ysbth",
+      "name": "优设标题黑",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Ysbth/LICENSE",
+      "after": "https://wenfeng.org/license/ysbth/",
+      "files": [
+        "fonts-by-slug/ysbth.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "ysbzt",
+      "name": "峄山碑篆体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Ysbzt/LICENSE",
+      "after": "https://wenfeng.org/license/ysbzt/",
+      "files": [
+        "fonts-by-slug/ysbzt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "zhbtt",
+      "name": "字魂扁桃体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Zhbtt/LICENSE",
+      "after": "https://wenfeng.org/license/zhbtt/",
+      "files": [
+        "fonts-by-slug/zhbtt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "zjgljt",
+      "name": "卓见橄榄简体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Zjgljt/LICENSE",
+      "after": "https://wenfeng.org/license/zjgljt/",
+      "files": [
+        "fonts-by-slug/zjgljt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "zkgdh",
+      "name": "站酷高端黑",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Zkgdht/LICENSE",
+      "after": "https://wenfeng.org/license/zkgdh/",
+      "files": [
+        "fonts-by-slug/zkgdh.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "zkkh",
+      "name": "站酷酷黑",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Zkkht/LICENSE",
+      "after": "https://wenfeng.org/license/zkkh/",
+      "files": [
+        "fonts-by-slug/zkkh.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "zkwyt",
+      "name": "站酷文艺体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Zkwyt/LICENSE",
+      "after": "https://wenfeng.org/license/zkwyt/",
+      "files": [
+        "fonts-by-slug/zkwyt.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "ztqxyjxs",
+      "name": "字体圈-新意吉祥宋",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Ztqxyjxs/LICENSE",
+      "after": "https://wenfeng.org/license/ztqxyjxs/",
+      "files": [
+        "fonts-by-slug/ztqxyjxs.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "zygb",
+      "name": "臻妍GB",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Rzzyt/LICENSE",
+      "after": "https://wenfeng.org/license/zygb/",
+      "files": [
+        "fonts-by-slug/zygb.json",
+        "fonts.json"
+      ]
+    },
+    {
+      "normalized": "zysst",
+      "name": "智勇手书体",
+      "before": "https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Zyss/LICENSE",
+      "after": "https://wenfeng.org/license/zysst/",
+      "files": [
+        "fonts-by-slug/zysst.json",
+        "fonts.json"
+      ]
+    }
+  ],
+  "p02_cleared": [],
+  "license_evidence": [
+    {
+      "key": "names.仓耳.sourceUrl",
+      "before": "https://feicode.com/Windfonts/font-licenses",
+      "after": "https://wenfeng.org/license/cexwz/",
+      "quote_updated": true
+    }
+  ],
+  "counts": {
+    "p03": 15,
+    "p04": 1,
+    "p02_rewritten": 67,
+    "p02_cleared": 0,
+    "license_evidence": 1,
+    "license_dist_after": {
+      "免费商用": 151,
+      "开源商用": 619,
+      "待核实": 3,
+      "个人免费": 1,
+      "联系授权": 1
+    },
+    "feicode_left": 0
+  },
+  "fonts_detail_rewritten": 67,
+  "fonts_detail_uncleared": [],
+  "tree": "fonts-front-pro-1014",
+  "branch": "pro/foundry-fixes-1014",
+  "pre_live_list_md5": "88997b8322c705754d912446d73dbc1b",
+  "post_list_md5": "2ad1e04e720a32c7a578f6cbdf85c7b4",
+  "backup": "~/Projects/_bak-foundry-p0-data-20261015-rerun/",
+  "publish_for_pro": [
+    "data/fonts-list.json",
+    "data/fonts.json",
+    "data/fonts-detail.json",
+    "data/license-evidence.json",
+    "data/fonts-by-slug/albbpht.json",
+    "data/fonts-by-slug/alhyznht.json",
+    "data/fonts-by-slug/almmdfdk.json",
+    "data/fonts-by-slug/almmdlt.json",
+    "data/fonts-by-slug/almmsht.json",
+    "data/fonts-by-slug/astbspy.json",
+    "data/fonts-by-slug/astbszy.json",
+    "data/fonts-by-slug/astpykk.json",
+    "data/fonts-by-slug/astpywkk.json",
+    "data/fonts-by-slug/astzykk.json",
+    "data/fonts-by-slug/astzywkk.json",
+    "data/fonts-by-slug/btxbt.json",
+    "data/fonts-by-slug/cexwz.json",
+    "data/fonts-by-slug/cezkzdbs.json",
+    "data/fonts-by-slug/chusung.json",
+    "data/fonts-by-slug/cktjgt.json",
+    "data/fonts-by-slug/ddjbt.json",
+    "data/fonts-by-slug/dlkjt.json",
+    "data/fonts-by-slug/dymht.json",
+    "data/fonts-by-slug/dyzgt.json",
+    "data/fonts-by-slug/ebaswcxt.json",
+    "data/fonts-by-slug/fonsung.json",
+    "data/fonts-by-slug/gbhb.json",
+    "data/fonts-by-slug/gfmft.json",
+    "data/fonts-by-slug/gljgbt.json",
+    "data/fonts-by-slug/hkhlssxt.json",
+    "data/fonts-by-slug/hsmb.json",
+    "data/fonts-by-slug/hxbnst.json",
+    "data/fonts-by-slug/hxbsbt.json",
+    "data/fonts-by-slug/hxbzst.json",
+    "data/fonts-by-slug/hzpyt.json",
+    "data/fonts-by-slug/inkslyt.json",
+    "data/fonts-by-slug/jnyyjyy.json",
+    "data/fonts-by-slug/jsyjst.json",
+    "data/fonts-by-slug/jxzkt.json",
+    "data/fonts-by-slug/jybbzks.json",
+    "data/fonts-by-slug/jybbzstun.json",
+    "data/fonts-by-slug/kksjt.json",
+    "data/fonts-by-slug/lhktss.json",
+    "data/fonts-by-slug/lhtt.json",
+    "data/fonts-by-slug/lmqylszrht.json",
+    "data/fonts-by-slug/lyusung.json",
+    "data/fonts-by-slug/misa.json",
+    "data/fonts-by-slug/myrbsxt.json",
+    "data/fonts-by-slug/pfhtt.json",
+    "data/fonts-by-slug/pmzdbtt.json",
+    "data/fonts-by-slug/pmzdcst.json",
+    "data/fonts-by-slug/pmzdqst.json",
+    "data/fonts-by-slug/prsxt.json",
+    "data/fonts-by-slug/qtbfsxt.json",
+    "data/fonts-by-slug/qthht.json",
+    "data/fonts-by-slug/qtmksxt.json",
+    "data/fonts-by-slug/qtxht.json",
+    "data/fonts-by-slug/qtxmt.json",
+    "data/fonts-by-slug/qtxtt.json",
+    "data/fonts-by-slug/qzkzkt.json",
+    "data/fonts-by-slug/qzkzst.json",
+    "data/fonts-by-slug/scjskkt.json",
+    "data/fonts-by-slug/stfyt.json",
+    "data/fonts-by-slug/stfzxfxct.json",
+    "data/fonts-by-slug/stmdxft.json",
+    "data/fonts-by-slug/symca.json",
+    "data/fonts-by-slug/symcb.json",
+    "data/fonts-by-slug/taipei-pixel.json",
+    "data/fonts-by-slug/wcsf.json",
+    "data/fonts-by-slug/xet.json",
+    "data/fonts-by-slug/xlfht.json",
+    "data/fonts-by-slug/xsszt.json",
+    "data/fonts-by-slug/xxmttw.json",
+    "data/fonts-by-slug/ydwxjhxt.json",
+    "data/fonts-by-slug/yffyt.json",
+    "data/fonts-by-slug/yfzkzqscbbt.json",
+    "data/fonts-by-slug/ysbth.json",
+    "data/fonts-by-slug/ysbzt.json",
+    "data/fonts-by-slug/zhbtt.json",
+    "data/fonts-by-slug/zhzybk.json",
+    "data/fonts-by-slug/zjgljt.json",
+    "data/fonts-by-slug/zkgdh.json",
+    "data/fonts-by-slug/zkkh.json",
+    "data/fonts-by-slug/zkwyt.json",
+    "data/fonts-by-slug/ztqxyjxs.json",
+    "data/fonts-by-slug/zygb.json",
+    "data/fonts-by-slug/zysst.json"
+  ],
+  "license_dist_before": {
+    "开源商用": 603,
+    "免费商用": 166,
+    "待核实": 3,
+    "个人免费": 1,
+    "联系授权": 1,
+    "双许可": 1
+  },
+  "notes": {
+    "p02_target": "https://wenfeng.org/license/{normalized}/ (all 67 HEAD 200; cn fonts-packages/.../license/original.txt all 404 for this set)",
+    "p02_cleared": 0,
+    "no_oss_upload": true,
+    "main_tree_untouched": true
+  },
+  "rerun": true
+}

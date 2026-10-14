@@ -1,1 +1,48 @@
-{"id":"0aae99f5-0592-49d3-b1c7-81787e55641b","name":"峄山碑篆体","en":"Yishan Stele Seal Script","family":"wenfeng-ysbzt","normalized":"ysbzt","category":"手写体","tags":["篆书","小篆","书法","传统","古典"],"weights":["Regular"],"license":"免费商用","licenseName":"峄山碑篆体授权协议","licenseVerified":false,"foundry":"小叶子","brand":null,"foundryAvatar":"https://cravatar.com/avatar/1cdc85048b2edc783a129c2213ce22f3fa9f7fa8e19d41563e1ddf746210cba8?s=144&d=identicon","viewCount":50,"designerShort":"字传","designer":"字传","languages":["简体中文"],"releaseYear":2022,"charCount":3843,"glyphCount":3843,"useCases":["古籍文献排版","文化宣传品设计","书法临摹与教学","传统品牌标识","艺术展览与海报"],"description":"峄山碑篆体是一款基于秦代刻石《峄山碑》风格设计的篆书字体，适用于古籍排版、文化宣传等古典庄重场景。","descriptionBrief":"峄山碑篆体是一款基于秦代刻石《峄山碑》风格设计的篆书字体，适用于古籍排版、文化宣传等古典庄重场景。","copyright":"","licenseNotes":"可免费商用，不可修改字体文件后再分发，不可单独售卖字体文件","licenseFileUrl":"https://feicode.com/Windfonts/font-licenses/src/branch/main/licenses/Ysbzt/LICENSE","licenseUrl":"","purchaseUrl":null,"version":"1.0.0"}
+{
+  "id": "0aae99f5-0592-49d3-b1c7-81787e55641b",
+  "name": "峄山碑篆体",
+  "en": "Yishan Stele Seal Script",
+  "family": "wenfeng-ysbzt",
+  "normalized": "ysbzt",
+  "category": "手写体",
+  "tags": [
+    "篆书",
+    "小篆",
+    "书法",
+    "传统",
+    "古典"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "免费商用",
+  "licenseName": "峄山碑篆体授权协议",
+  "licenseVerified": false,
+  "foundry": "小叶子",
+  "brand": null,
+  "foundryAvatar": "https://cravatar.com/avatar/1cdc85048b2edc783a129c2213ce22f3fa9f7fa8e19d41563e1ddf746210cba8?s=144&d=identicon",
+  "viewCount": 50,
+  "designerShort": "字传",
+  "designer": "字传",
+  "languages": [
+    "简体中文"
+  ],
+  "releaseYear": 2022,
+  "charCount": 3843,
+  "glyphCount": 3843,
+  "useCases": [
+    "古籍文献排版",
+    "文化宣传品设计",
+    "书法临摹与教学",
+    "传统品牌标识",
+    "艺术展览与海报"
+  ],
+  "description": "峄山碑篆体是一款基于秦代刻石《峄山碑》风格设计的篆书字体，适用于古籍排版、文化宣传等古典庄重场景。",
+  "descriptionBrief": "峄山碑篆体是一款基于秦代刻石《峄山碑》风格设计的篆书字体，适用于古籍排版、文化宣传等古典庄重场景。",
+  "copyright": "",
+  "licenseNotes": "可免费商用，不可修改字体文件后再分发，不可单独售卖字体文件",
+  "licenseFileUrl": "https://wenfeng.org/license/ysbzt/",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "1.0.0"
+}
