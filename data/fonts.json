@@ -12737,8 +12737,8 @@
     "en": "Genkaimincho",
     "family": "wenfeng-yjmc",
     "normalized": "yjmc",
-    "designer": "Dr. Ken Lunde (project architect, glyph set definition & overall production); Masataka HATTORI \\u670D \\u90E8 \\u6B63 \\u8CB4  (production & ideograph elements)",
-    "designerShort": "Dr. Ken Lunde (project architect",
+    "designer": "FLOP Design（フロップデザイン）",
+    "designerShort": "FLOP",
     "category": "衬线",
     "tags": [
       "Adobe",
@@ -12748,16 +12748,16 @@
     "weights": [
       "Regular"
     ],
-    "description": "Genkaimincho 是一款由 Adobe Systems 发布的日文宋体（明朝体）字体。该字体的设计由 Ken Lunde 博士担任项目架构师，负责字形集定义和整体制作，服部正貴（Masataka HATTORI）负责制作和表意文字元素。其设计旨在提供高质量的字形表现，支持包含简体中文、繁体中文和日文在内的多语言字符集，适用于需要东亚文字排版的印刷和数字媒体设计。",
-    "license": "开源商用",
-    "licenseName": "SIL Open Font License 1.1",
+    "description": "源界明朝（Genkai Mincho / げんかい明朝）是 FLOP Design 基于 Adobe 思源宋体（Source Han Serif）派生的日文明朝体开源字体。字形覆盖约 9804 字 / 15444 glyph（cmap 实测）。上游 FLOP 禁 webfont；本店面 IPA Font License Agreement v1.0。",
+    "license": "ipa",
+    "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/yjmc/license/original.txt",
     "licenseNotes": "可免费商用，不可修改字体文件后再分发，不可单独售卖字体文件",
     "licenseVerified": false,
     "purchaseUrl": null,
-    "copyright": "Adobe Systems Incorporated",
-    "foundry": "",
+    "copyright": "Copyright (c) 2013 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name 'Source'.",
+    "foundry": "FLOP Design",
     "brand": null,
     "releaseYear": 2014,
     "version": "1.0.0",
@@ -12775,7 +12775,7 @@
     "glyphCount": 15444,
     "viewCount": 313,
     "foundryAvatar": "https://cravatar.com/avatar/f45e0b05739b5308f0c44f727b628e64504388a51a2af0261bebc900c347c491?s=144&d=identicon",
-    "descriptionBrief": "Genkaimincho 是一款由 Adobe Systems 发布的日文宋体（明朝体）字体。该字体的设计由 Ken Lunde 博士担任项目架构师，负责字形集定义和整体制作，服部正貴（Masataka…"
+    "descriptionBrief": "FLOP Design 思源派生日文明朝。IPA Font License Agreement v1.0（上游 FLOP 禁 webfont）。"
   },
   {
     "id": "08e65ca7-b400-480c-9640-f9baab35b5a7",
@@ -20706,9 +20706,9 @@
     "weights": [
       "Regular"
     ],
-    "description": "霞鹜尚智黑基于「03スマートフォントUI」衍生的开源黑体。SIL OFL 1.1。",
-    "license": "开源商用",
-    "licenseName": "SIL Open Font License 1.1",
+    "description": "霞鹜尚智黑基于「03スマートフォントUI」衍生的开源黑体。IPA Font License Agreement v1.0（上游 FLOP 禁 webfont）。",
+    "license": "ipa",
+    "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/xwszh/license/original.txt",
     "licenseNotes": "",
@@ -20740,7 +20740,7 @@
     "glyphCount": 20000,
     "viewCount": 3,
     "foundryAvatar": "https://cravatar.com/avatar/800327db498d570d8bde0eef1692c3576a64c7565fea5fdd5b3aa19a9e815c3d?s=144&d=identicon",
-    "descriptionBrief": "霞鹜尚智黑基于「03スマートフォントUI」衍生的开源黑体。SIL OFL 1.1。"
+    "descriptionBrief": "霞鹜尚智黑基于「03スマートフォントUI」衍生的开源黑体。IPA Font License Agreement v1.0。"
   },
   {
     "id": "cd0ae7a9-9aa8-4845-a723-e9589b64496f",
@@ -20759,9 +20759,9 @@
     "weights": [
       "Regular"
     ],
-    "description": "霞鹜尚智黑 CL。SIL OFL 1.1。",
-    "license": "开源商用",
-    "licenseName": "SIL Open Font License 1.1",
+    "description": "霞鹜尚智黑 CL（Traditional Chinese）开源黑体。IPA Font License Agreement v1.0。",
+    "license": "ipa",
+    "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/xwszhcl/license/original.txt",
     "licenseNotes": "",
@@ -20793,7 +20793,7 @@
     "glyphCount": 20000,
     "viewCount": 3,
     "foundryAvatar": "https://cravatar.com/avatar/800327db498d570d8bde0eef1692c3576a64c7565fea5fdd5b3aa19a9e815c3d?s=144&d=identicon",
-    "descriptionBrief": "霞鹜尚智黑 CL。SIL OFL 1.1。"
+    "descriptionBrief": "霞鹜尚智黑 CL（Traditional Chinese）开源黑体。IPA Font License Agreement v1.0。"
   },
   {
     "id": "1fc90780-0eae-4713-a10f-fccb7bbb1453",
@@ -20812,9 +20812,9 @@
     "weights": [
       "Regular"
     ],
-    "description": "霞鹜尚智黑 MN。SIL OFL 1.1。",
-    "license": "开源商用",
-    "licenseName": "SIL Open Font License 1.1",
+    "description": "霞鹜尚智黑 Mono 等宽开源黑体。IPA Font License Agreement v1.0。",
+    "license": "ipa",
+    "licenseName": "IPA Font License Agreement v1.0",
     "licenseUrl": "",
     "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/xwszhmn/license/original.txt",
     "licenseNotes": "",
@@ -20846,7 +20846,7 @@
     "glyphCount": 20000,
     "viewCount": 3,
     "foundryAvatar": "https://cravatar.com/avatar/800327db498d570d8bde0eef1692c3576a64c7565fea5fdd5b3aa19a9e815c3d?s=144&d=identicon",
-    "descriptionBrief": "霞鹜尚智黑 MN。SIL OFL 1.1。"
+    "descriptionBrief": "霞鹜尚智黑 Mono 等宽开源黑体。IPA Font License Agreement v1.0。"
   },
   {
     "id": "0a88a0a0-d355-4462-96b3-e35f14c7c9a4",

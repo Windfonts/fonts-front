@@ -523,7 +523,7 @@ xcdzst,香萃端庄宋体,license,免费商用,开源商用,licenseName=SIL Open
 文案,首页,copy,正版 01 / 免费 02 / 造字 03,授权查询 / 授权证明 / 缺字反馈,装饰词与栏目不对应（「造字」对应的是缺字反馈）,Foundry 稿 / Bot 上线
 文案,页脚/导航,copy,feiCode ↗,菲码 ↗,规范写法应为「菲码」,Foundry 稿 / Bot 上线
 wlmg2004e,和田研細丸ゴシック2004絵文字,license,免费商用,开源商用,Public Domain = 开源商用 + 公有领域备注；vault 已是开源商用，货架仍免费商用,Pro
-yjmc,源界明朝,charCount,9804,（按 CDN Regular.ttf 实测重算）,更正：装甲明朝 zjmc cmap=9804 正确；错的是 yjmc 抄了同数。文件：CDN https://cn.windfonts.com/fonts-packages/yjmc/source/Regular.ttf （sha256 21facd62751b4597…，bytes 23021312）；name表 Family=源界明朝。cmap 实测待补入本字段。,Pro
+yjmc,源界明朝,charCount,9804,（待 CDN 恢复后实测；文件 https://cn.windfonts.com/fonts-packages/yjmc/source/Regular.ttf sha256 21facd62… bytes 23021312；本轮 502）,更正：zjmc 9804 正确；yjmc 是抄数。Depot 清缓存后 Foundry/Pro 重算写入,Pro
 yjmc,源界明朝,foundry,,FLOP Design,作者 FLOP Design；name表 0/8 的 Adobe 是思源血统遗留，copyright 行保留 Adobe 原文,Pro
 yjmc,源界明朝,designer,Dr. Ken Lunde…,FLOP Design（改作）；原思源制作：Ken Lunde / 服部正貴,designer 写改作者；原版权人放 copyright,Pro
 yjmc,源界明朝,copyright,Adobe Systems Incorporated,Adobe Systems Incorporated（思源宋体原版权，name 表原文保留）；改作：FLOP Design,如实保留 Adobe 行 + 注明改作方,Pro
