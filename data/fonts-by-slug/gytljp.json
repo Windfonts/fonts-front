@@ -1,1 +1,50 @@
-{"id":"ecd53e7c-eb04-4ade-a45b-30ec0e525f34","name":"ぎゃーてーるみねっせんす","en":"Gyate-Luminescence","family":"wenfeng-gytljp","normalized":"gytljp","category":"手写体","tags":["免费商用","日文","手写","显示","CJK","GyateLuminescence"],"weights":["Regular"],"license":"免费商用","licenseName":"free_commercial","licenseVerified":null,"foundry":"よく飛ばない鳥","brand":{"name":"よく飛ばない鳥","slug":"yokutobanaitori","website":"https://yokutobanaitori.web.fc2.com/"},"foundryAvatar":"","viewCount":0,"designerShort":"マルセ","designer":"マルセ / プロジェクトU-Fo","languages":["日文"],"releaseYear":null,"charCount":14964,"glyphCount":14964,"useCases":["标题","显示"],"description":"ぎゃーてーるみねっせんす（Gyate-Luminescence）。name-table family Gyate-Luminescence / ぎゃーてーるみねっせんす。免费商用；未改字形可再配布，不要改字形或著作权表示后再配布。","descriptionBrief":null,"copyright":"2012-2026 MARUSE / Project U-Fo","licenseNotes":"未改字形可再配布，不要改字形或著作权表示后再配布。","licenseFileUrl":"https://cn.windfonts.com/fonts-packages/gytljp/license/original.txt","licenseUrl":"","purchaseUrl":null,"version":"2.12"}
+{
+  "id": "ecd53e7c-eb04-4ade-a45b-30ec0e525f34",
+  "name": "ぎゃーてーるみねっせんす",
+  "en": "Gyate-Luminescence",
+  "family": "wenfeng-gytljp",
+  "normalized": "gytljp",
+  "category": "手写体",
+  "tags": [
+    "免费商用",
+    "日文",
+    "手写",
+    "显示",
+    "CJK",
+    "GyateLuminescence"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "免费商用",
+  "licenseName": "よく飛ばない鳥フォントガイドライン（2024-05-18）",
+  "licenseVerified": null,
+  "foundry": "よく飛ばない鳥",
+  "brand": {
+    "name": "よく飛ばない鳥",
+    "slug": "yokutobanaitori",
+    "website": "https://yokutobanaitori.web.fc2.com/"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "マルセ",
+  "designer": "マルセ / プロジェクトU-Fo",
+  "languages": [
+    "日文"
+  ],
+  "releaseYear": null,
+  "charCount": 14964,
+  "glyphCount": 14964,
+  "useCases": [
+    "标题",
+    "显示"
+  ],
+  "description": "ぎゃーてーるみねっせんす（Gyate-Luminescence）。name-table family Gyate-Luminescence / ぎゃーてーるみねっせんす。免费商用；未改字形可再配布，不要改字形或著作权表示后再配布。",
+  "descriptionBrief": null,
+  "copyright": "2012-2026 MARUSE / Project U-Fo",
+  "licenseNotes": "未改字形可再配布，不要改字形或著作权表示后再配布。",
+  "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/gytljp/license/original.txt",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "2.12"
+}

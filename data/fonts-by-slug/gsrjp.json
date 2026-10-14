@@ -1,1 +1,49 @@
-{"id":"1bb8b158-465b-4424-a9f7-00b4b6220800","name":"源泉丸ゴシック","en":"GenSenRounded JP","family":"wenfeng-gsrjp","normalized":"gsrjp","category":"其他","tags":[],"weights":["Bold","ExtraLight","Heavy","Light","Medium","Regular"],"license":"开源商用","licenseName":"OFL","licenseVerified":null,"foundry":"buttaiwan","brand":{"name":"但","slug":"buttaiwan","avatarUrl":"https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon","website":"https://github.com/ButTaiwan"},"foundryAvatar":"https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon","viewCount":0,"designerShort":"buttaiwan","designer":"buttaiwan","languages":["中文","日文"],"releaseYear":2026,"charCount":27077,"glyphCount":37634,"useCases":["正文","标题"],"description":"","descriptionBrief":null,"copyright":"","licenseNotes":"","licenseFileUrl":"https://cn.windfonts.com/fonts-packages/gsrjp/license/original.txt","licenseUrl":"","purchaseUrl":null,"version":"1"}
+{
+  "id": "1bb8b158-465b-4424-a9f7-00b4b6220800",
+  "name": "源泉丸ゴシック",
+  "en": "GenSenRounded JP",
+  "family": "wenfeng-gsrjp",
+  "normalized": "gsrjp",
+  "category": "其他",
+  "tags": [],
+  "weights": [
+    "Bold",
+    "ExtraLight",
+    "Heavy",
+    "Light",
+    "Medium",
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "OFL",
+  "licenseVerified": null,
+  "foundry": "buttaiwan",
+  "brand": {
+    "name": "但",
+    "slug": "buttaiwan",
+    "avatarUrl": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+    "website": "https://github.com/ButTaiwan"
+  },
+  "foundryAvatar": "https://cravatar.com/avatar/1f863793c6f0460da1b2c353b168893acafec0c7acda3640dff96ee43d8bb3af?s=144&d=identicon",
+  "viewCount": 0,
+  "designerShort": "buttaiwan",
+  "designer": "buttaiwan",
+  "languages": [
+    "日文"
+  ],
+  "releaseYear": 2026,
+  "charCount": 27077,
+  "glyphCount": 37634,
+  "useCases": [
+    "正文",
+    "标题"
+  ],
+  "description": "",
+  "descriptionBrief": null,
+  "copyright": "",
+  "licenseNotes": "",
+  "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/gsrjp/license/original.txt",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "1"
+}

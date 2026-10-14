@@ -1,1 +1,48 @@
-{"id":"c5ae4a80-63bf-4dcd-b2e9-1ff1b78e4d04","name":"汲古明体B","en":"JiGu Ming B","family":"wenfeng-jgmtb","normalized":"jgmtb","category":"宋体","tags":["开源","OFL","fwhp"],"weights":["Regular"],"license":"免费商用","licenseName":"SIL Open Font License 1.1","licenseVerified":false,"foundry":"花乐","brand":{"name":"花乐","slug":"fwhp","avatarUrl":"https://cravatar.com/avatar/709bbedfffc5dbd4457489b8fac0724fdbfd10da5d40b34298cd7ffd4c6b7e85?s=144&d=identicon","website":"https://github.com/FWHP-Enfun"},"foundryAvatar":"https://cravatar.com/avatar/709bbedfffc5dbd4457489b8fac0724fdbfd10da5d40b34298cd7ffd4c6b7e85?s=144&d=identicon","viewCount":1,"designerShort":"FWHP","designer":"FWHP","languages":["繁体中文","简体中文"],"releaseYear":2024,"charCount":22939,"glyphCount":22898,"useCases":["正文"],"description":"汲古明体 B。SIL OFL 1.1。","descriptionBrief":"汲古明体 B。SIL OFL 1.1。","copyright":"Copyright 2023 FWHP (JiGu-Ming). Copyright 2020 ButTaiwan (genryu-font). Copyright (c) 2020 Lingdong Huang","licenseNotes":"OFL 1.1（依上游链：源流明体 ButTaiwan OFL × 齐伋体 灵动 OFL），上游仓未携授权原文，待补后升级 verified。衍生链：源流明体（←思源宋体）→ 汲古明体（FWHP）。","licenseFileUrl":"","licenseUrl":"","purchaseUrl":null,"version":"OSS ingest batch2 2026-09-23"}
+{
+  "id": "c5ae4a80-63bf-4dcd-b2e9-1ff1b78e4d04",
+  "name": "汲古明体B",
+  "en": "JiGu Ming B",
+  "family": "wenfeng-jgmtb",
+  "normalized": "jgmtb",
+  "category": "宋体",
+  "tags": [
+    "开源",
+    "OFL",
+    "fwhp"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "开源商用",
+  "licenseName": "SIL Open Font License 1.1",
+  "licenseVerified": false,
+  "foundry": "花乐",
+  "brand": {
+    "name": "花乐",
+    "slug": "fwhp",
+    "avatarUrl": "https://cravatar.com/avatar/709bbedfffc5dbd4457489b8fac0724fdbfd10da5d40b34298cd7ffd4c6b7e85?s=144&d=identicon",
+    "website": "https://github.com/FWHP-Enfun"
+  },
+  "foundryAvatar": "https://cravatar.com/avatar/709bbedfffc5dbd4457489b8fac0724fdbfd10da5d40b34298cd7ffd4c6b7e85?s=144&d=identicon",
+  "viewCount": 1,
+  "designerShort": "FWHP",
+  "designer": "FWHP",
+  "languages": [
+    "繁体中文",
+    "简体中文"
+  ],
+  "releaseYear": 2024,
+  "charCount": 22939,
+  "glyphCount": 22898,
+  "useCases": [
+    "正文"
+  ],
+  "description": "汲古明体 B。SIL OFL 1.1。",
+  "descriptionBrief": "汲古明体 B。SIL OFL 1.1。",
+  "copyright": "Copyright 2023 FWHP (JiGu-Ming). Copyright 2020 ButTaiwan (genryu-font). Copyright (c) 2020 Lingdong Huang",
+  "licenseNotes": "OFL 1.1（依上游链：源流明体 ButTaiwan OFL × 齐伋体 灵动 OFL），上游仓未携授权原文，待补后升级 verified。衍生链：源流明体（←思源宋体）→ 汲古明体（FWHP）。",
+  "licenseFileUrl": "",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "OSS ingest batch2 2026-09-23"
+}

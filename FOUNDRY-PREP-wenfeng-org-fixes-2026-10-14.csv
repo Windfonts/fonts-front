@@ -1,0 +1,530 @@
+norm,name,field,now,proposed,why,owner
+975ht,975 黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+b2hy,B2花园,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+cjksxz,CJK手写字,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+dg16jp,DotGothic16,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+dshbt,Droid Sans 后备体,license,免费商用,开源商用,licenseName=Apache 2.0 属标准开源协议,Pro
+gnuuf,GNU Unifont,license,免费商用,开源商用,"licenseName=Dual license: GNU GPL version 2 or later with the GNU Font Embedding Exception, and SIL Open Font License version 1.1 属标准开源协议",Pro
+hmpjp,Hachi Maru Pop,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ibmps,IBM Plex 无衬线简体中文,license,开源免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ipamjp,IPAexMincho,license,免费商用,开源商用,licenseName=IPA Font License 属标准开源协议,Pro
+jfofy,jf open 粉圆,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+khtsa,Kalo 黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+kwmrjp,Kiwi Maru,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+klojp,Klee One,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ksgjp,Kosugi,license,免费商用,开源商用,licenseName=Apache License 2.0 属标准开源协议,Pro
+ksgmr,Kosugi Maru,license,免费商用,开源商用,licenseName=Apache License 2.0 属标准开源协议,Pro
+linestw,LINE Seed TW,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mp1jp,M+ 1,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mp1cjp,M+ 1 Code,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+m1cjp,M+ 1c,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mp1mjp,M+ 1m,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mp1mn,M+ 1mn,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mp1pjp,M+ 1p,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mp2jp,M+ 2,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mp2cjp,M+ 2c,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mp2mjp,M+ 2m,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mp2pjp,M+ 2p,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mpujp,M+ U,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ramojp,Rampart One,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+regojp,Reggae One,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+rrojp,RocknRoll,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+rrojp,RocknRoll,languages,日语/英语,日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+spatq,Shippori Antique,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+sab1jp,Shippori Antique B1,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+shimjp,Shippori Mincho,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+smb1jp,Shippori Mincho B1,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+stijp,Stick,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+traojp,Train One,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+unijp,Unifont,license,免费商用,开源商用,licenseName=GPL 2.0 属标准开源协议,Pro
+yofjp,YozFont,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ysmjp,Yusei Magic,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zlxs12,Z Labs 像素 12px,license,免费商用,开源商用,licenseName=MIT License 属标准开源协议,Pro
+zlyxs12,Z Labs 圆像素 12px,license,免费商用,开源商用,licenseName=MIT License 属标准开源协议,Pro
+zlyxs16,Z Labs 圆像素 16px,license,免费商用,开源商用,licenseName=MIT License 属标准开源协议,Pro
+zldzjp,Z Labs 点阵 日标,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zldzhk,Z Labs 点阵 港标,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zenajp,Zen Antique,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zasjp,Zen Antique Soft,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zkgajp,Zen Kaku Gothic Antique,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zkgnjp,Zen Kaku Gothic New,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zenkjp,Zen Kurenaido,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zmgjp,Zen Maru Gothic,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zomjp,Zen Old Mincho,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ydmt,一点明体,license,免费商用,开源商用,licenseName=IPA Font License v1.0 属标准开源协议,Pro
+wzht,丸子黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ewmxs,二维码像素,license,免费商用,开源商用,licenseName=MIT License 属标准开源协议,Pro
+ceymw01,仓耳与墨 W01,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+ceymw02,仓耳与墨 W02,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+ceymw03,仓耳与墨 W03,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+ceymw04,仓耳与墨 W04,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+ceymw05,仓耳与墨 W05,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+cezkzdbs,仓耳周珂正大榜书,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+cexwz,仓耳小丸子,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+ceyytw01,仓耳渔阳体 W01,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+ceyytw02,仓耳渔阳体 W02,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+ceyytw03,仓耳渔阳体 W03,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+ceyytw04,仓耳渔阳体 W04,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+ceyytw05,仓耳渔阳体 W05,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+cesyt,仓耳舒圆体,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+cesytw02,仓耳舒圆体 W02,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+cesytw03,仓耳舒圆体 W03,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+cesytw04,仓耳舒圆体 W04,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+cesytw05,仓耳舒圆体 W05,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+cefbw01,仓耳非白 W01,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+cefbw02,仓耳非白 W02,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+cefbw03,仓耳非白 W03,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+cefbw04,仓耳非白 W04,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+cefbw05,仓耳非白 W05,license,开源免费商用,免费商用,厂商自拟声明，不属开源,Pro
+yzst,佑字肃,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hmsxt,何某手写体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yzzyp,余珍珠,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yfdqs,余繁丹青宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yfxy,余繁新语,license,免费商用,开源商用,licenseName=MIT License 属标准开源协议,Pro
+yfzs,余繁真素,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yfxl,余繁细柳,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+lft11h,俐方体11号,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+jzzt,假珍珠,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+pwdhqt,偏歪的黑趣体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+cxmct,初夏明朝体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hymc,华英明朝,license,免费商用,开源商用,licenseName=IPA Font License Agreement v1.0 属标准开源协议,Pro
+twzz,台湾珍珠,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hjst,合简宋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hjht,合简黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yzfdz,夜照飞点阵,license,免费商用,开源商用,licenseName=GPL-3.0 属标准开源协议,Pro
+twxxs,天王星像素,license,免费商用,开源商用,licenseName=GPL-2.0 属标准开源协议,Pro
+nkakf,奈楷,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+nswt,女書梧桐,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+nsfq,女書鳳栖,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zzjftt,宅在家粉条甜,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zzjzdb,宅在家自动笔,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zzjmkb,宅在家麦克笔,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcdingt,寒蝉 DIN 哥特,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcymh,寒蝉云墨黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hctyts,寒蝉团圆体 Sans,license,免费商用,开源商用,licenseName=SIL Open Font License (OFL) 属标准开源协议,Pro
+hcytm,寒蝉圆体 M,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcyht,寒蝉圆黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hckht,寒蝉宽黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 属标准开源协议,Pro
+hcdh,寒蝉德黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcszt,寒蝉手拙体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hczk,寒蝉拙楷,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcwjt,寒蝉无机体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcyjt,寒蝉有机体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hckt,寒蝉楷体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hchfs,寒蝉活仿宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hchzfs,寒蝉活字仿宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcth,寒蝉潭黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcdzt,寒蝉点阵体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcdht,寒蝉端黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcdhs,寒蝉端黑宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcjss,寒蝉锦书宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcgh,寒蝉高黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hclcks,寒蝉龙藏楷书,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xlztsc,小赖字体 SC,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xlztdksc,小赖字体等宽 SC,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+sgyt,尚古圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+sgmt,尚古明体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+sgdk,尚古等宽,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+sght,尚古黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+jsbczb,就是不错字（吧）,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+pxzs,屏显臻宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+dyh,得意黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+systsc,思源宋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+systcn,思源宋体 CN,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+systcnl,思源宋体 CN Light,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+systtc,思源宋体 TC,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+sypxzscn,思源屏显臻宋 CN,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+sydksc,思源等宽,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+syhtsc,思源黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+syhtcn,思源黑体 CN,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+syhtr,思源黑体 Regular,license,免费商用,开源商用,licenseName=SIL Open Font License 属标准开源协议,Pro
+syhtxs,思源黑体 像素,license,免费商用,开源商用,licenseName=MIT License 属标准开源协议,Pro
+syhtxt,思源黑体斜体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+syhttw,思源黑體 TW,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yzztyz,悠哉字体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+jybbzstun,教育部标准宋体UN,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+wqywmh,文泉驿微米黑,license,免费商用,开源商用,licenseName=Apache 2.0 / GPLv3 (双许可证) 属标准开源协议,Pro
+wqyzht,文泉驿正黑体,license,免费商用,开源商用,licenseName=GPL-2.0-with-font-exception 属标准开源协议,Pro
+wqyzhdk,文泉驿正黑等宽,license,免费商用,开源商用,licenseName=GPL-2.0-with-font-exception 属标准开源协议,Pro
+wqydzst,文泉驿点阵宋体,license,免费商用,开源商用,licenseName=GPL-2.0-with-font-exception 属标准开源协议,Pro
+wqydkwmh,文泉驿等宽微米黑,license,免费商用,开源商用,licenseName=Apache 2.0 / GPLv3 属标准开源协议,Pro
+wjst,文津宋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+wjstp2,文津宋体 P2,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+wyyt,文渊圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+wyst,文渊宋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+wyht,文渊黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xyt,斜月体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+fzxs10,方舟像素,license,免费商用,开源商用,licenseName=MIT License 属标准开源协议,Pro
+wjht,无界黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zyyt,昭源圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zyst,昭源宋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zyht,昭源黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mhkrwg,暮黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+gsdk,更纱等宽,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+gsht,更纱黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yxkt,月星楷,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+wlyh,未来荧黑,license,免费商用,开源商用,licenseName=MIT 属标准开源协议,Pro
+zqfs,朱雀仿宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+gdxs12,果冻像素,license,免费商用,开源商用,licenseName=MIT License 属标准开源协议,Pro
+myst,萌神汉宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xhfsa,械黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zfmb,正风毛笔,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hwmc,汇文明朝,license,免费商用,开源商用,licenseName=CC0 1.0 属标准开源协议,Pro
+hdqxwzt,汉典秦系文字体,license,免费商用,开源商用,licenseName=CC0 1.0 属标准开源协议,Pro
+jgmta,汲古明体A,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+jgmtb,汲古明体B,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+jgmtc,汲古明体C,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+btot,波塔One,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+lxdzt16,流行点阵体16,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+lxhtpop,流行黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcxk,混菜写楷,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+qssxt2,清松手写体2,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yymttw,源云明体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yymt,源样明体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yyht,源样黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yqyt,源泉圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ylmt,源流明体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yjmc,源界明朝,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ysht,源石黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yqmt,源起明体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yqht,源起黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yyhtgng,源音黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hyzt,滑油字,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ysfxt,演示佛系体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ysxxk,演示夏行楷,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ysyrxk,演示悠然小楷,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ysyrxke,演示悠然小楷二,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ysxhts,演示斜黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yscfk,演示春风楷,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ysqhk,演示秋鸿楷,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+lhzt,濑户字体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+jzkgeht,瀞之库格尔黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+jmct,瀞明朝,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ddxstyx,点点像素体-圆形,license,免费商用,开源商用,licenseName=GPL-2.0 属标准开源协议,Pro
+ddxsyt,点点像素圆体,license,免费商用,开源商用,licenseName=GPL-2.0 属标准开源协议,Pro
+ddxsstlx,点点像素宋体菱形,license,免费商用,开源商用,licenseName=GPL-2.0 属标准开源协议,Pro
+dzxsstcgt,点阵像素宋体 常规体,license,免费商用,开源商用,licenseName=GPL-2.0 属标准开源协议,Pro
+zdht,煮豆黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+bkdft,爆呆,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swb2jtst,狮尾B2加糖宋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swb2st,狮尾B2宋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swb2tht,狮尾B2腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swb2htsc,狮尾B2黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swdltht,狮尾D卤腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swdlx,狮尾D露西,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swxdzz,狮尾XD珍珠,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swstht,狮尾三腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swsjhtsc,狮尾三角黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swjtst,狮尾加糖宋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swbyt,狮尾半月体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swyxyhtsc,狮尾右下圆黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swyxtht,狮尾右下腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swychtsc,狮尾咏春黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swytht,狮尾咏腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swlbhtsc,狮尾喇叭黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swltht,狮尾喇腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swsjc,狮尾四季春,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swytsc,狮尾圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swjchtsc,狮尾尖刺黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swjtht,狮尾尖腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swwtht,狮尾弯腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swwhtsc,狮尾弯黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swcht,狮尾彩虹腿,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swdlnhtsc,狮尾德鲁纳黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swkjhtsc,狮尾快剪黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swktht,狮尾快腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swetht,狮尾恶腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swemhtsc,狮尾恶魔黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swfthtsc,狮尾斧头黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swftht,狮尾斧腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swhchtsc,狮尾火柴黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swhtht,狮尾火腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swygyt,狮尾牙膏圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swfytht,狮尾福腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swfyhtsc,狮尾福音黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swjzst,狮尾简中宋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swjzhtsc,狮尾简中黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swjztht,狮尾简腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swfzst,狮尾繁中宋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swfzhtsc,狮尾繁中黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swfztht,狮尾繁腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swrwsc,狮尾肉丸,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swtyt,狮尾腿圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swbfyt,狮尾蝙蝠圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swlmtht,狮尾螺帽腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swlmhtsc,狮尾螺帽黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swjutht,狮尾锯腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swjuchtsc,狮尾锯齿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swntht,狮尾霓腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swnhtsc,狮尾霓黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swfbtht,狮尾飞腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swfbhtsc,狮尾飞镖黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swgthtsc,狮尾骨头黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swgtht,狮尾骨腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swmkhtsc,狮尾麦克黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swmtht,狮尾麦腿黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swhtsc,狮尾黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mksjh,猫啃什锦黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mksjhtc,猫啃什锦黑 繁体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mkkzzs,猫啃扛重族宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mkkzzh,猫啃扛重族黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mkybks,猫啃硬笔楷书,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mkzyt,猫啃竹圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mkwgzs,猫啃网故障宋,license,免费商用,开源商用,licenseName=SIL Open Font License (OFL) 属标准开源协议,Pro
+mkwgzh,猫啃网故障黑,license,免费商用,开源商用,licenseName=SIL Open Font License 属标准开源协议,Pro
+mkwtyt,猫啃网糖圆体,license,免费商用,开源商用,licenseName=OFL 属标准开源协议,Pro
+mkwfys,猫啃网风雅宋,license,免费商用,开源商用,licenseName=SIL Open Font License 属标准开源协议,Pro
+xdks,玄冬楷书,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+qsst,秋水书体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+qsstb,秋水书体 Bright,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+qkhtcl,秋空黑体 CL,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+qkhtm,秋空黑体 M,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+kyhtsa,空缘黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zkklt,站酷快乐体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zkgdh,站酷高端黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+jysht,简语生活体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+jpdzt7x7,精品点阵体7x7,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+jpdzt9x9,精品点阵体9x9,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+fdqst,繁多全宋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+fdqst2,繁多全宋体2,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+fdqkt,繁多全楷体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+fdqkt2,繁多全楷体2,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+fhxs10,缝合像素,license,免费商用,开源商用,licenseName=MIT License 属标准开源协议,Pro
+mjdzt,美绩点阵体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mjdztmc,美绩点阵体明朝,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yqyk,芫茜雅楷,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ysls,芫荽,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+klwyt,苦累蛙圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+fmmt,范美明体,license,免费商用,开源商用,licenseName=0BSD 属标准开源协议,Pro
+fmht,范美黑体,license,免费商用,开源商用,licenseName=0BSD 属标准开源协议,Pro
+jnymt,荆南缘默体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+jnmy,荆南麦圆,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mdmb,莫大毛笔,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mssxt,萌神手写体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xlft,谐灵附体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+cylytt,辰宇落雁体 Thin,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xstes,邪宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zqljmc,钟齐流江毛草,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+tjlt,铁蒺藜体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zbds16,长坂点宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+sftb,随峰体 Beta,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwszh,霞鹜尚智黑,license/licenseName,免费商用 / SIL Open Font License 1.1,开源商用 / IPA Font License Agreement v1.0,确认：正式名称 IPA Font License Agreement v1.0（lxgw/LxgwFasmartGothic license.txt 标题）,Pro
+xwszhcl,霞鹜尚智黑 CL,license/licenseName,免费商用 / SIL Open Font License 1.1,开源商用 / IPA Font License Agreement v1.0,确认：正式名称 IPA Font License Agreement v1.0（lxgw/LxgwFasmartGothic license.txt 标题）,Pro
+xwszhmn,霞鹜尚智黑 MN,license/licenseName,免费商用 / SIL Open Font License 1.1,开源商用 / IPA Font License Agreement v1.0,确认：正式名称 IPA Font License Agreement v1.0（lxgw/LxgwFasmartGothic license.txt 标题）,Pro
+xwwk,霞鹜文楷,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwwkb,霞鹜文楷 Bright,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwwkbc,霞鹜文楷 Bright Code,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwwkgb,霞鹜文楷 GB,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwwktc,霞鹜文楷 TC,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwxxh,霞鹜新晰黑,license,免费商用,开源商用,licenseName=IPA Font License 属标准开源协议,Pro
+xwxxhc,霞鹜新晰黑 Code,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwxxhp,霞鹜新晰黑 Plus,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwxxhs,霞鹜新晰黑 Screen,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwxxhsf,霞鹜新晰黑 Screen Full,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwxzs,霞鹜新致宋,license,免费商用,开源商用,licenseName=IPA Open Font License 1.0 属标准开源协议,Pro
+xwxzsp,霞鹜新致宋 Plus,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwxzss,霞鹜新致宋 Screen,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwxzssf,霞鹜新致宋 Screen Full,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwxhcl,霞鹜晰黑 CL,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwxhmn,霞鹜晰黑 MN,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwmh,霞鹜漫黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwzt,霞鹜篆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwzscl,霞鹜致宋 CL,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwzsmn,霞鹜致宋 MN,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwzk,霞鹜臻楷,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwzks,霞鹜臻楷 Slab,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwmxs,霞鹜铭心宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwmxscl,霞鹜铭心宋 CL,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xwmxsmn,霞鹜铭心宋 MN,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+fhst,飞花宋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mtht,馒头黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xcks,香萃刻宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xcdzjt,香萃打字机体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xcjxs,香萃汲学宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xcdcs,香萃等粗宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xczzsch,香萃自在舒畅黑,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mszks,马善政楷书,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mlkyt,马路口圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+plwkpl,鹏翎文楷,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+htmzt,黑糖梅子糖,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+qjt,齐伋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+lsclzt,龙珠体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+lct,龙藏体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zcfs,仲春仿宋,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+xcmdk,香菜碼等宽,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+jhk,计划楷,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yqt,游趣体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yqttc,遊趣體,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ysbs,Y式笔书,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+lxhtssa,立夏黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swzh16,扇尾胄黑 16,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+dqhkst,大桥和楷书体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zht,宙黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yytkm,耀圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zyytrhr,资源圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hcqyt,寒蝉全圆体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yytyy,阅圆,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+sydkjp,思源等宽 JP,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+syhtjp,思源黑体 JP,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+syhthk,思源黑体 HK,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+systjp,思源宋体 JP,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+systhk,思源宋体 HK,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+sydkmjp,思源等宽 Mono JP,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+sydktc,思源等宽 TC,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+bizudg,BIZ UDGothic,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+bizudpg,BIZ UDPGothic,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+bizudm,BIZ UDMincho,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+bizudpm,BIZ UDPMincho,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ibmpsjp,IBM Plex Sans JP,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hnmcjp,Hina Mincho,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ntgmjp,New Tegomin,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yjmjp,Yuji Mai,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yjbkjp,Yuji Boku,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+linesjp,LINE Seed JP,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+mrcjp,Murecho,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ksdcjp,Kaisei Decol,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+khujp,Kaisei HarunoUmi,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+kaiso,Kaisei Opti,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+kstkm,Kaisei Tokumin,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+ymgjp,Yomogi,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swrbg,Sawarabi Gothic,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+swrbm,Sawarabi Mincho,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hnkmc,ほのか新明朝,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yyxmc,源暎小明朝,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yyhtgeg,源暎黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yynht,源暎 Nu 黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+yyaga,源暎 Antique,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+hrnajp,Harano Aji,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+wdxlljp,WDXL Lubrifont JP,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+genijp,Gen Interface JP,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+kzkrw,KazukiReiwa,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+smht,水木黑体,license,免费商用,开源商用,licenseName=IPA Font License Agreement v1.0 属标准开源协议,Pro
+bngjp,Bokutachi no Gothic,license,免费商用,开源商用,licenseName=IPA Font License Agreement v1.0 属标准开源协议,Pro
+ftpnh,Fontopo Nihongo,license,免费商用,开源商用,licenseName=IPA Font License Agreement v1.0 属标准开源协议,Pro
+zlcsjt,逐浪粗宋简体,license,免费商用,开源商用,licenseName=Apache License 2.0 属标准开源协议,Pro
+zlmyz,逐浪萌芽字,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+bhtpgt,遍黑体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+bhtp2,遍黑体 P2,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+awdgt,嗷呜等高体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+prktjp,PopRumKiwi Telop,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+clv3jp,Corporate Logo Ver3,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+zjmc,装甲明朝,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+qhdlt,权衡度量体,license,免费商用,开源商用,licenseName=MIT License 属标准开源协议,Pro
+xzt,玄宗体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+cjkfqlt,cjkFonts 全濑体,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+fzxs12,方舟像素 12,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+bdswt16,八丁饰尾体 16,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+zbds12,长坂点宋 12,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+zsngwls,芝士奶盖乌龙宋,languages,中文,简体中文、繁体中文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+myhtp3l,梦源黑体（Pal3love）,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+mystp3l,梦源宋体·Pal3love,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+fhxs12,缝合像素 12,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+yqhtjp,源起黑体 JP,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+yqhtpjp,源起黑体 PJP,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+yqhtd,源起黑体丹,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+yqmcp,源起明朝P,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+yqmtd,源起明体丹,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+ylmcp,源流明朝P,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+gsgpjp,源石ゴシックP,languages,中文/日文,日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+yshtd,源石黑体丹,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+gsrjp,源泉丸ゴシック,languages,中文/日文,日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+gsrpjp,源泉丸ゴシックP,languages,中文/日文,日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+yqytd,源泉圆体丹,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+yymcpgwm,源雲明朝P,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+gygpjp,源様ゴシックP,languages,中文/日文,日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+yymcpgym,源様明朝P,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+xyygn,𦁣夕源,languages,越南语/中文/日文,HOLD,暂缓（Feng 未定：GothicNguyen/MinhNguyen/ScriptwideSansCJK）,Pro
+jfdj16,JFドットjiskan16,note,,公有领域,Public Domain = 开源商用 + 公有领域,Pro
+jfdj16s,JFドットjiskan16s,note,,公有领域,Public Domain = 开源商用 + 公有领域,Pro
+jfdj24,JFドットjiskan24,note,,公有领域,Public Domain = 开源商用 + 公有领域,Pro
+jfdj24h,JFドットjiskan24h,note,,公有领域,Public Domain = 开源商用 + 公有领域,Pro
+jfdsjp,JFドット東雲,note,,公有领域,Public Domain = 开源商用 + 公有领域,Pro
+myngy,明源,languages,越南语/中文/日文,HOLD,暂缓（Feng 未定：GothicNguyen/MinhNguyen/ScriptwideSansCJK）,Pro
+nrdws,纳挼点文宋,languages,中文/繁体中文,繁体中文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+plwkpe,彭蠡文楷,languages,中文/繁体中文,繁体中文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+mlkytjp,马路口圆体 JP,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+mlkyttc,马路口圆体 TC,languages,中文/日文,繁体中文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+rofs16,人偶仿宋 16,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+gsuihk,更纱 UI HK,languages,中文/日文,繁体中文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+gsuitc,更纱 UI TC,languages,中文/日文,繁体中文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+sscjk,Scriptwide Sans CJK,languages,中文/繁体中文/日文/韩文,HOLD,暂缓（Feng 未定：GothicNguyen/MinhNguyen/ScriptwideSansCJK）,Pro
+sydkhk,思源等宽 HK,languages,中文/粤语,繁体中文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+szht,拾字黑体,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+szst,拾字宋体,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+skmgjp,すきまゴシック,languages,日文/中文/繁体中文,繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+clsxt,草率手写体,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+xwwkdk,霞鹜文楷等宽,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+xwwkdktc,霞鹜文楷等宽 TC,languages,中文/日文,繁体中文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+yflxt,余繁离形体,languages,中文/日文,简体中文、繁体中文、日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+cdmc,出岛明朝,licenseName,mit,MIT,英文代码/小写,Pro
+cdmc,出岛明朝,license,MIT,开源商用,10-05 F2 已批中文档位,Pro
+fcgtss,方草,licenseName,free_commercial,があたフォント利用規約（方草）,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+fcgtss,方草,tags,免费可商用,免费商用,写法规范,Pro
+zhzybk,字嗨注音标楷,license,双许可,开源商用,10-05 F2 已批中文档位,Pro
+851ckrywk,851チカラヨワク,licenseName,free_commercial,851フォントシリーズご利用規約,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+851ckrywk,851チカラヨワク,tags,免费可商用,免费商用,写法规范,Pro
+851gjp,851ゴチカクット,licenseName,free_commercial,851フォントシリーズご利用規約,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+851gjp,851ゴチカクット,tags,免费可商用,免费商用,写法规范,Pro
+851mkp,851マカポップ,licenseName,free_commercial,851フォントシリーズご利用規約,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+851mkp,851マカポップ,tags,免费可商用,免费商用,写法规范,Pro
+851hkt,851テガキカクット,licenseName,free_commercial,851フォントシリーズご利用規約,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+851hkt,851テガキカクット,tags,免费可商用,免费商用,写法规范,Pro
+851ckrdzyk,851チカラヅヨク,licenseName,free_commercial,851フォントシリーズご利用規約,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+851ckrdzyk,851チカラヅヨク,tags,免费可商用,免费商用,写法规范,Pro
+851tgkzt,851手書き雑フォント,licenseName,free_commercial,851フォントシリーズご利用規約,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+851tgkzt,851手書き雑フォント,tags,免费可商用,免费商用,写法规范,Pro
+ksojp,KanjiStrokeOrders,licenseName,bsd,BSD-3-Clause,英文代码/小写,Pro
+ksojp,KanjiStrokeOrders,license,BSD-3-Clause,开源商用,10-05 F2 已批中文档位,Pro
+cpfjp,チェックポイントフォント,licenseName,free_commercial,よく飛ばない鳥フォントガイドライン（2024-05-18）,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+cpfjp,チェックポイントフォント,tags,免费可商用,免费商用,写法规范,Pro
+jycjp,じゆうちょうフォント,licenseName,free_commercial,よく飛ばない鳥フォントガイドライン（2024-05-18）,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+jycjp,じゆうちょうフォント,tags,免费可商用,免费商用,写法规范,Pro
+ghatee,きずだらけのぎゃーてー,licenseName,free_commercial,よく飛ばない鳥フォントガイドライン（2024-05-18）,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+ghatee,きずだらけのぎゃーてー,tags,免费可商用,免费商用,写法规范,Pro
+zyzyjp,自由の翼フォント,licenseName,free_commercial,M+ FONTS LICENSE,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+zyzyjp,自由の翼フォント,tags,免费可商用,免费商用,写法规范,Pro
+mkcjp,みかちゃん,licenseName,free_commercial,みかちゃん利用規約（フォントAC）,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+mkcjp,みかちゃん,tags,免费可商用,免费商用,写法规范,Pro
+gytljp,ぎゃーてーるみねっせんす,licenseName,free_commercial,よく飛ばない鳥フォントガイドライン（2024-05-18）,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+gytljp,ぎゃーてーるみねっせんす,tags,免费可商用,免费商用,写法规范,Pro
+wlmg2004e,和田研細丸ゴシック2004絵文字,licenseName,free_commercial,公有领域声明（和田研細丸ゴシック2004絵文字）,上游 wlmaru2004emoji.txt：いわゆるパブリックドメインと同じです,Pro
+wlmg2004e,和田研細丸ゴシック2004絵文字,note,,公有领域,Public Domain = 开源商用 + 公有领域,Pro
+wlmg2004e,和田研細丸ゴシック2004絵文字,tags,免费可商用,免费商用,写法规范,Pro
+cinjp,しねきゃぷしょん,licenseName,free_commercial,しねきゃぷしょん利用条件（chiphead）,上游原文/厂商页面正式条款名（Foundry 2026-10-14）,Pro
+cinjp,しねきゃぷしょん,tags,免费可商用,免费商用,写法规范,Pro
+kljjp,きろ字,licenseName,bsd,BSD-3-Clause,英文代码/小写,Pro
+kljjp,きろ字,license,BSD-3-Clause,开源商用,10-05 F2 已批中文档位,Pro
+lana-pixel,LanaPixel,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+konatu,小夏,languages,日语,日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+konatutohaba,小夏等幅,languages,日语,日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+gekifude,激笔 SFX,languages,日语,日文,按 slug/名称启发式（cmap 实测未完成，Pro 可用 cmap 复核）,Pro
+xcdzst,香萃端庄宋体,license,免费商用,开源商用,licenseName=SIL Open Font License 1.1 属标准开源协议,Pro
+文案,全站 /source /license 列表,copy,free_commercial · 851,免费商用 · 851,英文代码直接外露（15 款）,Foundry 稿 / Bot 上线
+文案,货架 tags（15 款）,copy,免费可商用,免费商用,违反写法规范,Foundry 稿 / Bot 上线
+文案,/source/cdmc 等 3 款,copy,MIT …… 免费商用但不允许再分发字体文件,先核原文；MIT/BSD 属实就改为「开源商用，可按原文再分发」,标签与说明矛盾,Foundry 稿 / Bot 上线
+文案,/source/mkkzzh 状态行,copy,本站下载。开源。体积过大，本站不收，请到上游取。,官方下载。文件体积较大，请到上游发布页获取。,同一句里既「本站下载」又「本站不收」,Foundry 稿 / Bot 上线
+文案,方舟像素 详情页状态行,copy,店面目录曾写 MIT，收录记 OFL 1.1，条款以原文为准。,删去；只写「开源商用 · OFL 1.1」,内部对账备注外露,Foundry 稿 / Bot 上线
+文案,/source/syhtr 状态行,copy,思源系列上游在 adobe-fonts。,上游：Adobe 思源黑体（Source Han Sans）,仓库名直接当文案；英文名写成 Noto Sans CJK Regular（谷歌品牌）而非 Source Han Sans,Foundry 稿 / Bot 上线
+文案,/source/astzykk 等 2 款,copy,网页切片不含 GSUB 多音字选择器；源文件原件保留。,网页版不支持多音字切换；需要时请下载原件。,技术黑话,Foundry 稿 / Bot 上线
+文案,/source/albbpht 状态行,copy,待核实。免费商用，不允许单独再分发字体文件。,待核实：许可原文核对中，暂不提供文件。,「待核实」又同时下结论「免费商用」,Foundry 稿 / Bot 上线
+文案,全站开发模式行（for-dev）,copy,offer=source · textState=pointer、fonts[]=752、POST 未接、can_attest、serial + holder、miss → forged,默认模式下全部隐藏；开发模式保留,字段名、接口名混进正文（切换开发模式可见，部分如面包屑 · /source/975yt · offer=source 默认可见）,Foundry 稿 / Bot 上线
+文案,/v 说明,copy,编号在证明记录里查不到，按伪造处理 · miss → forged,查不到该编号：请核对输入，或来信 license@wenfeng.org 核实,措辞生硬，有法律风险（直接定性伪造）,Foundry 稿 / Bot 上线
+文案,/about,copy,本站为非盈利公开资源站,本站为公益性质的公开资源站,错别字（非营利）；与公司主体、出证服务并列，容易被质疑,Foundry 稿 / Bot 上线
+文案,/about 相关站点,copy,头像 互联网公认头像。,Cravatar：通用头像服务,不通顺,Foundry 稿 / Bot 上线
+文案,/legal 证明是什么,copy,它用于满足档案里「要一份盖章件」的要求,用于企业采购、验收等场景的存档材料,口语、不正式,Foundry 稿 / Bot 上线
+文案,/legal,copy,印迹是视觉签章产品，与本证无关。,删去,没上下文，读者不知道「印迹」是什么,Foundry 稿 / Bot 上线
+文案,/use 目录 API,copy,商业字只出字段， files 为空。 lineage 恒为 null 。,厂商字体只提供信息，不提供文件。（接口上线后再展示）,黑话；且接口线上 404,Foundry 稿 / Bot 上线
+文案,详情页「出处」,copy,—,补上官方发布页；确实没有的写「作者未公开发布页」,371 / 718 个详情页出处为空,Foundry 稿 / Bot 上线
+文案,列表厂商栏,copy,未标注,补作者；查不到写「作者不详」,122 款，读者以为没有作者,Foundry 稿 / Bot 上线
+文案,详情页样张,copy,行到水穷处，坐看云起时,按语种换样张：日文用假名句，拉丁字用英文句,所有字统一一句；纯假名/像素/拉丁字体（如澳声通快雪 737 字）显示成缺字,Foundry 稿 / Bot 上线
+文案,货架 languages,copy,中文（40 款）/ 日语（4）/ 越南文 vs 越南语 / 拉丁,简体中文/繁体中文/日文/越南语,未归一（简繁、日文/日语）,Foundry 稿 / Bot 上线
+文案,货架/目录,copy,澳声通快雪（两条同名）,astkx 写「澳声通快雪拼音楷」，astqs 写「澳声通快雪（拉丁）」,重名,Foundry 稿 / Bot 上线
+文案,全站,copy,Windfonts / 文风 / 文派 / 文风云 ® / 文风 ™,页脚一次讲清：文风（Windfonts）是文派科技的字体品牌,品牌称呼混用，读者分不清谁是主体,Foundry 稿 / Bot 上线
+文案,首页,copy,正版 01 / 免费 02 / 造字 03,授权查询 / 授权证明 / 缺字反馈,装饰词与栏目不对应（「造字」对应的是缺字反馈）,Foundry 稿 / Bot 上线
+文案,页脚/导航,copy,feiCode ↗,菲码 ↗,规范写法应为「菲码」,Foundry 稿 / Bot 上线
+wlmg2004e,和田研細丸ゴシック2004絵文字,license,免费商用,开源商用,Public Domain = 开源商用 + 公有领域备注；vault 已是开源商用，货架仍免费商用,Pro
+yjmc,源界明朝,charCount,9804,（按 CDN Regular.ttf 实测重算）,更正：装甲明朝 zjmc cmap=9804 正确；错的是 yjmc 抄了同数。文件：CDN https://cn.windfonts.com/fonts-packages/yjmc/source/Regular.ttf （sha256 21facd62751b4597…，bytes 23021312）；name表 Family=源界明朝。cmap 实测待补入本字段。,Pro
+yjmc,源界明朝,foundry,,FLOP Design,作者 FLOP Design；name表 0/8 的 Adobe 是思源血统遗留，copyright 行保留 Adobe 原文,Pro
+yjmc,源界明朝,designer,Dr. Ken Lunde…,FLOP Design（改作）；原思源制作：Ken Lunde / 服部正貴,designer 写改作者；原版权人放 copyright,Pro
+yjmc,源界明朝,copyright,Adobe Systems Incorporated,Adobe Systems Incorporated（思源宋体原版权，name 表原文保留）；改作：FLOP Design,如实保留 Adobe 行 + 注明改作方,Pro
+yjmc,源界明朝,description,Genkaimincho 是一款由 Adobe Systems 发布…,源界明朝（Genkaimincho）是 FLOP Design 基于思源宋体（Source Han Serif / Adobe）改作的日文明朝体。字体文件 name 表仍保留 Adobe / Ken Lunde / 服部正貴 的原版权与制作人信息（思源血统）。授权 SIL OFL 1.1，开源商用。,纠正「Adobe 发布」误述,Pro

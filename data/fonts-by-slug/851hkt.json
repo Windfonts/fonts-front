@@ -1,1 +1,49 @@
-{"id":"bf0ae57e-5560-4ee8-85e4-710b59d70729","name":"851テガキカクット","en":"851H-kktt","family":"wenfeng-851hkt","normalized":"851hkt","category":"手写体","tags":["免费商用","日文","手写","显示","CJK","851TegakiKakutto"],"weights":["Regular"],"license":"免费商用","licenseName":"free_commercial","licenseVerified":null,"foundry":"851","brand":{"name":"851","slug":"851"},"foundryAvatar":"","viewCount":0,"designerShort":"851","designer":"851","languages":["日文"],"releaseYear":null,"charCount":14963,"glyphCount":14963,"useCases":["标题","显示"],"description":"851テガキカクット（851H-kktt）。name-table family 851H-kktt / 851テガキカクット。免费商用；字体文件不能单独转售。","descriptionBrief":null,"copyright":"8:51:22 pm","licenseNotes":"字体文件不能单独转售","licenseFileUrl":"https://cn.windfonts.com/fonts-packages/851hkt/license/original.txt","licenseUrl":"","purchaseUrl":null,"version":"0.04"}
+{
+  "id": "bf0ae57e-5560-4ee8-85e4-710b59d70729",
+  "name": "851テガキカクット",
+  "en": "851H-kktt",
+  "family": "wenfeng-851hkt",
+  "normalized": "851hkt",
+  "category": "手写体",
+  "tags": [
+    "免费商用",
+    "日文",
+    "手写",
+    "显示",
+    "CJK",
+    "851TegakiKakutto"
+  ],
+  "weights": [
+    "Regular"
+  ],
+  "license": "免费商用",
+  "licenseName": "851フォントシリーズご利用規約",
+  "licenseVerified": null,
+  "foundry": "851",
+  "brand": {
+    "name": "851",
+    "slug": "851"
+  },
+  "foundryAvatar": "",
+  "viewCount": 0,
+  "designerShort": "851",
+  "designer": "851",
+  "languages": [
+    "日文"
+  ],
+  "releaseYear": null,
+  "charCount": 14963,
+  "glyphCount": 14963,
+  "useCases": [
+    "标题",
+    "显示"
+  ],
+  "description": "851テガキカクット（851H-kktt）。name-table family 851H-kktt / 851テガキカクット。免费商用；字体文件不能单独转售。",
+  "descriptionBrief": null,
+  "copyright": "8:51:22 pm",
+  "licenseNotes": "字体文件不能单独转售",
+  "licenseFileUrl": "https://cn.windfonts.com/fonts-packages/851hkt/license/original.txt",
+  "licenseUrl": "",
+  "purchaseUrl": null,
+  "version": "0.04"
+}
