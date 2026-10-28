@@ -19,17 +19,20 @@
     },
     "mjdzt": {
       "brand": {
-        "website": "https://github.com/ItMarki"
+        "website": "https://github.com/ItMarki",
+        "description": "ItMarki（Mark Li）的开源字体项目，包括芫茜雅楷（基于 Klee One）和美绩点阵体（含明朝版），均为 OFL 1.1。"
       }
     },
     "mjdztmc": {
       "brand": {
-        "website": "https://github.com/ItMarki"
+        "website": "https://github.com/ItMarki",
+        "description": "ItMarki（Mark Li）的开源字体项目，包括芫茜雅楷（基于 Klee One）和美绩点阵体（含明朝版），均为 OFL 1.1。"
       }
     },
     "yqyk": {
       "brand": {
-        "website": "https://github.com/ItMarki"
+        "website": "https://github.com/ItMarki",
+        "description": "ItMarki（Mark Li）的开源字体项目，包括芫茜雅楷（基于 Klee One）和美绩点阵体（含明朝版），均为 OFL 1.1。"
       }
     }
   }
